@@ -1,7 +1,9 @@
 @homeReady = () ->
-  loc_path = $("#home-map").data("path")
+  $("[data-toggle~='tooltip']").tooltip(
+    container: 'body'
+    )
 
-  console.log loc_path
+  loc_path = $("#home-map").data("path")
 
   $.getJSON(loc_path, null, (data) ->
 
@@ -16,7 +18,7 @@
 
     $.each(data.all_locations, (key, latlng) ->
       new google.maps.Marker({
-        icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
+        icon: '//maps.google.com/mapfiles/ms/icons/red-dot.png'
         position: new google.maps.LatLng(latlng.latitude, latlng.longitude),
         map: document.map
       })

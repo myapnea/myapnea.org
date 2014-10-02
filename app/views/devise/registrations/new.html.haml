@@ -1,24 +1,10 @@
-
-.row
-  .col-md-8.col-md-offset-2
-
-    %h3 Here's how it works
-    .req The explanatory content here, and imagery if applicable
-    %ol
-      %li Fill out this form.
-      %li Create a social profile.
-      %li Get involved in sleep apnea research by signing a consent form.
-
-%br/
-%br/
-
 .row
   .col-md-8.col-md-offset-2
     #registration.panel.panel-default
       .panel-heading
         .row
           .col-md-6
-            %h2 Sign Up For MyApnea.org
+            %h2 Sign Up For MyApnea.Org
           .col-md-6
             %p.pull-right
               Already a member?
@@ -33,17 +19,17 @@
                 %li= msg.html_safe
         = form_for(resource, :as => resource_name, :url => registration_path(resource_name), html: {}) do |f|
           .form-group
-            = f.label :first_name, class: 'sr-only'
-            = f.text_field :first_name, class: 'form-control input-lg', placeholder: User.human_attribute_name(:first_name), autocomplete: :off
+            = label "#{resource_name}[first_name]", :first_name, class: 'sr-only'
+            = text_field_tag "#{resource_name}[first_name]", (params[resource_name] ? params[resource_name][:first_name] : ''), class: 'form-control input-lg', placeholder: User.human_attribute_name(:first_name), autocomplete: :off
           .form-group
-            = f.label :last_name, class: 'sr-only'
-            = f.text_field :last_name, class: 'form-control input-lg', placeholder: User.human_attribute_name(:last_name), autocomplete: :off
+            = label "#{resource_name}[last_name]", :last_name, class: 'sr-only'
+            = text_field_tag "#{resource_name}[last_name]", (params[resource_name] ? params[resource_name][:last_name] : ''), class: 'form-control input-lg', placeholder: User.human_attribute_name(:last_name), autocomplete: :off
           .form-group
-            = f.label :year_of_birth, class: 'sr-only'
-            = f.text_field :year_of_birth, class: 'form-control input-lg', placeholder: User.human_attribute_name(:year_of_birth), autocomplete: :off
+            = label "#{resource_name}[year_of_birth]", :year_of_birth, class: 'sr-only'
+            = text_field_tag "#{resource_name}[year_of_birth]", (params[resource_name] ? params[resource_name][:year_of_birth] : ''), class: 'form-control input-lg', placeholder: User.human_attribute_name(:year_of_birth), autocomplete: :off
           .form-group
-            = f.label :zip_code, class: 'sr-only'
-            = f.text_field :zip_code, class: 'form-control input-lg', placeholder: User.human_attribute_name(:zip_code), autocomplete: :off
+            = label "#{resource_name}[zip_code]", :zip_code, class: 'sr-only'
+            = text_field_tag "#{resource_name}[zip_code]", (params[resource_name] ? params[resource_name][:zip_code] : ''), class: 'form-control input-lg', placeholder: User.human_attribute_name(:zip_code), autocomplete: :off
           .form-group
             = f.label :email, class: 'sr-only'
             = f.email_field :email, class: 'form-control input-lg', placeholder: User.human_attribute_name(:email), autocomplete: :off
@@ -51,19 +37,13 @@
             = f.label :password, class: 'sr-only'
             = f.password_field :password, class: 'form-control input-lg', placeholder: User.human_attribute_name(:password)
 
-          .form-group
-            .col-sm-offset-1.col-sm-11
-              .checkbox
-                %label
-                  %input{:type => "checkbox"}
-                    I am interested in joining the
-                    %strong social community.
-                    = link_to "Learn more...", learn_path, target: "_blank"
-              .checkbox
-                %label
-                  %input{:type => "checkbox"}
-                    I am interested in joining the
-                    %strong research community.
-                    = link_to "Learn more...", research_path, target: "_blank"
 
           = f.submit "Sign Up", class: 'btn btn-primary btn-block btn-lg'
+
+.row
+  .col-md-8.col-md-offset-2
+    %h3 Here's how to sign up and get involved
+    %ol
+      %li Fill out this form to become a member
+      %li Create a social profile so you can join and contribute to the community
+      %li Get involved in sleep apnea research by signing a consent form

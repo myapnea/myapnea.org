@@ -37,7 +37,7 @@ $borderColor:     rgba(255,255,255,.5);
 // -------------------------
 $bodyBackground:        $white;
 $textColor:             $grayDark;
-
+$contentBackground:     $white; // #f4e4cb;
 
 // Links
 // -------------------------
@@ -48,9 +48,12 @@ $linkColorHover:        #ff9400;
 
 // Typography
 // -------------------------
-$sansFontFamily:        "futuraextendedregular", Lucida Sans, Helvetica Neue, Helvetica, Arial, sans-serif;
-$contentFontFamily:        "futuralightregular", Lucida Sans, Helvetica Neue, Helvetica, Arial, sans-serif;
-$boldFontFamily:    "futura_bdcn_btbold", Lucida Sans, Helvetica Neue, Helvetica, Arial, sans-serif;
+// $sansFontFamily:        "futuraextendedregular", Lucida Sans, Helvetica Neue, Helvetica, Arial, sans-serif;
+// $contentFontFamily:        "futuralightregular", Lucida Sans, Helvetica Neue, Helvetica, Arial, sans-serif;
+// $boldFontFamily:    "futura_bdcn_btbold", Lucida Sans, Helvetica Neue, Helvetica, Arial, sans-serif;
+$sansFontFamily: "Lato", sans-serif;
+$contentFontFamily: "Lato", sans-serif;
+$boldFontFamily: "Lato", sans-serif;
 
 $serifFontFamily:       Georgia, "Times New Roman", Times, serif;
 $monoFontFamily:        Monaco, Menlo, Consolas, "Courier New", monospace;
@@ -126,8 +129,8 @@ $subtleShadow:            2px -4px 17px 9px rgba(0, 0, 0, 0.08);
 // Gradients
 // -------------------------
 
-$highlightBox: linear-gradient(to bottom, #b9b9b9 0%, #fcfcfc 51%, #fcfcfc 79%, #e6e5e5 100%);
-$highlightPanel: linear-gradient(to bottom, #ececec 0%, #b9b9b9 100%);
+$highlightBox: linear-gradient(to bottom, #FFFFF7 0%, #fcfcfc 51%, #fcfcfc 79%, #FFFFF7 100%);
+$highlightPanel: linear-gradient(to bottom, #FFF 0%, #FFFFFF 100%);
 
 // Forms
 // -------------------------
@@ -199,8 +202,12 @@ $wellBackground:                  #f5f5f5;
 
 // Navbar
 // -------------------------
+$grid-float-breakpoint:           $screen-lg-desktop;
+
 $navbarCollapseWidth:             100%;
 $navbarCollapseDesktopWidth:      $navbarCollapseWidth + 1;
+
+$normal-nav-height: 85px;
 
 $navbarHeight:                    100px;
 $navbarBackgroundHighlight:       #ffffff;
@@ -251,24 +258,31 @@ $heroUnitHeadingColor:            inherit;
 $heroUnitLeadColor:               inherit;
 
 
-// Form states and alerts
-// -------------------------
-$warningText:             #c09853;
-$warningBackground:       #fcf8e3;
-$warningBorder:           darken(adjust-hue($warningBackground, -10), 3%);
+//== Form states and alerts
+//
+//## Define colors for form feedback states and, by default, alerts.
+//
+//$state-success-text:             #3c763d !default;
+//$state-success-bg:               #dff0d8 !default;
+//$state-success-border:           darken(adjust-hue($state-success-bg, -10), 5%) !default;
+//
+//$state-info-text:                #31708f !default;
+//$state-info-bg:                  #d9edf7 !default;
+//$state-info-border:              darken(adjust-hue($state-info-bg, -10), 7%) !default;
 
-$errorText:               #b94a48;
-$errorBackground:         #f2dede;
-$errorBorder:             darken(adjust-hue($errorBackground, -10), 3%);
+//$state-warning-text:             #8a6d3b;
+//$state-warning-bg:               lighten($orange, 25%);
+//$state-warning-border:           darken(adjust-hue($state-warning-bg, -10), 5%);
 
-$successText:             #468847;
-$successBackground:       #dff0d8;
-$successBorder:           darken(adjust-hue($successBackground, -10), 5%);
+//$state-danger-text:              #a94442 !default;
+//$state-danger-bg:                #f2dede !default;
+//$state-danger-border:            darken(adjust-hue($state-danger-bg, -10), 5%) !default;
 
-$infoText:                #3a87ad;
-$infoBackground:          #d9edf7;
-$infoBorder:              darken(adjust-hue($infoBackground, -10), 7%);
 
+// Breadcrumbs
+$breadcrumb-research-bg:               lighten($orange, 33%);
+$breadcrumb-research-border:           darken(adjust-hue($state-warning-bg, -10), 5%);
+$breadcrumb-research-divider:          $gray;
 
 // Tooltips and popovers
 // -------------------------

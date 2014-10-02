@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   get 'external_link_warning' => 'static#external_link_warning'
   get 'terms' => 'static#terms'
   get 'theme' => 'static#theme'
+  get 'version' => 'static#version'
 
   # MyApnea Specific
   get 'learn' => 'static#learn'

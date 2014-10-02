@@ -5,6 +5,26 @@
       font-size: $fontSizeLarge;
     }
 
+    #home-research-qs {
+      .list-group-item {
+        padding: 5px 15px;
+
+        h2 {
+          margin-top: 10px;
+        }
+        h4 {
+          line-height: 1.1;
+        }
+
+      }
+      a.disabled {
+        color: $gray
+
+
+      }
+
+    }
+
     #memberCount {
       border-width: 1px;
       border-color: rgb(255, 255, 255);
@@ -16,10 +36,8 @@
       height: auto;
       width: 140px;
       padding: 20px 0;
-      margin-top: 90px;
-      margin-right: 10px;
-      float: right;
-      font-family: 'futuraextendedregular';
+      margin: 0px auto;
+      font-family: 'lato'; // 'futuraextendedregular';
       text-align: center;
       text-transform: uppercase;
 
@@ -74,9 +92,13 @@
       overflow: hidden;
     }
 
+    .topic {
+      height: 210px;
+    }
 
     #reason-carousel {
       position: relative;
+      margin-bottom: 20px;
 
       .carousel-control {
         background-image: none;
@@ -90,27 +112,29 @@
         margin: 0;
 
       }
-      
+
       .vertical-center {
         blockquote {
-          height: 297px;
+          height: 237px;
           margin-bottom: 0;
           border: none;
           overflow: hidden;
         }
       }
 
-      .testimonialImg {
-        top: 30px;
-        border-radius: 0 237px 237px 0;
-        height: 237px;
-        position: absolute;
-        border: 0px solid rgba(0,0,0,0.1);
-        box-shadow:$subtleShadow inset;
-        width: 100%;
+      .testimonial-img-container {
+        text-align: center;
+      }
 
-        overflow: hidden;
+      @media screen and (min-width:992px) {
+        .testimonial-img-container {
+          border-radius: 0 237px 237px 0;
+          height: 237px;
+          border: 0px solid rgba(0,0,0,0.1);
+          box-shadow:$subtleShadow inset;
 
+          overflow: hidden;
+        }
       }
 
     }
