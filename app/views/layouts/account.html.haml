@@ -1,10 +1,6 @@
 - @title = "My Account"
 
 - content_for :sublayout do
-  .row
-    .col-md-3
-      = render :partial => "layouts/navigation/account_nav"
-    .col-md-9
-      = yield
+  = render partial: "layouts/sublayout_sidebar", locals: {nav: 'layouts/navigation/account_nav'}
 
 = render template: "layouts/#{Rails.application.config.layout}"

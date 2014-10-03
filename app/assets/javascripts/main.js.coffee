@@ -50,22 +50,31 @@ $.rails.allowAction = (element) ->
     allow_single_deselect: true
     no_results_text: 'No results matched'
     width: '100%'
+
   $(".chosen").chosen
     allow_single_deselect: true
     no_results_text: 'No results matched'
     width: '100%'
-  $("#consent-link").popover(
-    content: "Click here to sign a consent form and unlock all the research features."
-    trigger: 'hover, focus'
-  )
-  $("#social-profile-link").popover(
-    content: "Click here to create a social profile and contribute to the community."
-    trigger: 'hover, focus'
-  )
+#  $("#consent-link").popover(
+#    content: "Click here to sign a consent form and unlock all the research features."
+#    trigger: 'hover, focus'
+#  )
+#  $("#social-profile-link").popover(
+#    content: "Click here to create a social profile and contribute to the community."
+#    trigger: 'hover, focus'
+#  )
 
   $(document.links).filter(() ->
     return this.hostname != window.location.hostname
   ).attr('target', '_blank')
+
+  # Offcanvas
+  $("[data-toggle=\"offcanvas\"]").click ->
+    $(".row-offcanvas").toggleClass "active"
+    $(".offcanvas-toggle a").toggleClass "active"
+    return
+
+
 
 @consentReady = () ->
   $("#consent .scroll").slimscroll(

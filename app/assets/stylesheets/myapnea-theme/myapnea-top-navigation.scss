@@ -1,9 +1,7 @@
-$nav-border-width: 1px;
-$user-fn-height: $normal-nav-height / 2;
-$nav-fn-height: $normal-nav-height - $user-fn-height - $nav-border-width;
+
 
 header#top-navigation.navbar-inverse {
-  background-color:$blueDark;
+  //background-color:$blueDar;
   height: $normal-nav-height;
   box-shadow: $subtleShadow;
   -webkit-transition: height 0.25s;
@@ -12,21 +10,71 @@ header#top-navigation.navbar-inverse {
   -o-transition: height 0.25s;
   transition: height 0.25s;
 
+  // Toggle
+
+  .navbar-header {
+    position: relative;
+
+  }
+
+  .navbar-toggle {
+
+
+    border: none;
+    padding: 10px 10px;
+    margin: 7px 15px 0px 15px;
+
+    .fa {
+      color: $navbar-inverse-toggle-color;
+      font-size: $font-size-h1;
+    }
+  }
+
+  .navbar-toggle:hover {
+    .fa {
+      color: $navbar-inverse-toggle-hover-color;
+    }
+  }
+
+
   #top-nav-container {
-    background-color:$blueDark;
+    background-color: $navbar-inverse-bg;
+    @media screen and (max-width: $screen-sm-max) {
+      text-align: center;
+    }
+
+
     #myApneaLogo {
       background-image: url('#{$assets-path}/myapnea/icons/myApneaLogo.png');
+
+
+      @media screen and (max-width: $screen-sm-max) {
+        left: 15px;
+      }
+
+      @media screen and (max-width: $screen-sm-max) {
+        background-size: 100%;
+        position: static;
+        margin-top: 5px;
+        width: 250px;
+        height: 70px;
+        float: none;
+        display: inline-block;
+
+      }
+
+
+      left: 0px;
       height: 100px;
       overflow: hidden;
       text-indent: -9999px;
       width: 400px;
       padding: 0;
-      float: left;
       position: absolute;
-      top: 20px;
+      top: 12px;
       background-size: 80%;
       background-repeat: no-repeat;
-      background-position: 0 -2px;
+      background-position: -3px -2px;
       //        -webkit-transition: all 0.5s ease-in-out;
       //        -moz-transition: all 0.5s ease-in-out;
       //        -ms-transition: all 0.5s ease-in-out;
@@ -35,20 +83,21 @@ header#top-navigation.navbar-inverse {
     }
   }
 
+
   .nav > li {
-    color: $menuLinkColor;
+    //color: $menuLinkColor;
     font-size: $fontSizeLarge;
   }
 
 
   .navbar-nav > li > a:hover {
-    color:$linkColorHover;
+    //color:$linkColorHover;
     font-weight:normal;
   }
 
   .navbar-nav > li > a {
     padding-top:0;
-    color:$menuLinkColor;
+    //color:$menuLinkColor;
     padding:2px 0;
   }
 

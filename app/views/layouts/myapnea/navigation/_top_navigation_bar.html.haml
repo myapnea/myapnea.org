@@ -3,9 +3,10 @@
     .navbar-header
       %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", type: "button"}
         %span.sr-only Toggle navigation
-        %span.icon-bar
-        %span.icon-bar
-        %span.icon-bar
+        %span.fa.fa-ellipsis-v
+      .visible-sm-block.visible-xs-block.offcanvas-toggle
+        %a.btn.btn-link.btn-xs{type: "button", "data-toggle" => "offcanvas"}
+          %span.fa.fa-bars
       = link_to 'MyApnea.Org', main_app.root_path, class: 'navbar-brand', id: 'myApneaLogo'
     .collapse.navbar-collapse
       #user-functions

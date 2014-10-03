@@ -9,11 +9,11 @@
     Discussion Forum
   %a.list-group-item{href: main_app.research_topics_path, class: "#{"active" if action_name == "research_topics"}"}
     Research Topics
-
-.small
-  %p
-    = link_to 'Create a social profile', main_app.social_profile_path
-    to join and contribute to the community
+- unless current_user.created_social_profile?
+  .small
+    %p
+      = link_to 'Create a social profile', main_app.social_profile_path
+      to join and contribute to the community
 
 %h2 Research
 .list-group
@@ -30,10 +30,11 @@
       %i.fa.fa-lock &nbsp;
     My Surveys
     %span.badge= QuestionFlow.unstarted(current_user).count + QuestionFlow.incomplete(current_user).count
-.small
-  %p
-    = link_to 'Sign the consent form', main_app.consent_path
-    to get involved in sleep apnea research
+- unless current_user.signed_consent?
+  .small
+    %p
+      = link_to 'Sign the consent form', main_app.consent_path
+      to get involved in sleep apnea research
 
 %h2 Coming Soon!
 .list-group

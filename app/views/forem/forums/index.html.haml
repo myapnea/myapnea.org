@@ -1,5 +1,4 @@
 #forums_container
-  = render @categories
 
   %ol.breadcrumb
     %li Forums
@@ -12,6 +11,8 @@
       = link_to main_app.terms_and_conditions_path, class: 'btn btn-xs btn-link' do
         %span.fa.fa-legal
         Terms and Conditions
+
+  = render @categories
 
   .panel.panel-default#intro
     .panel-heading
