@@ -84,9 +84,10 @@ class Question < ActiveRecord::Base
         groups << {label: o.value, answers: [], count: 0, frequency: 0.0}
       end
 
-      total_answers = answers.map(&:answer_values).flatten.map(&:show_value).length
+      valid_answers = answers.map(&:answer_values).flatten.select{|av| av.value.present?}
+      total_answers = valid_answers.map(&:show_value).length
 
-      answers.map(&:answer_values).flatten.group_by{|av| av.show_value}.each_pair do |key, array|
+      valid_answers.group_by{|av| av.show_value}.each_pair do |key, array|
         g = groups.find{|x| x[:label] == key }
         if g
           g[:answers] = array
