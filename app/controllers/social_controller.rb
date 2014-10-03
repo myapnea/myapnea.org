@@ -42,7 +42,9 @@ class SocialController < ApplicationController
         :location_id,
         :age,
         :sex,
-        :photo
+        :photo,
+        :visible_to_community,
+        :visible_to_world
     )
   end
 end
