@@ -53,4 +53,13 @@ class SurveysControllerTest < ActionController::TestCase
 
     assert_response :success
   end
+
+  test "Survey report does not break when survey not started" do
+    login(users(:has_unstarted_survey))
+
+
+    get :show_report, answer_session_id: answer_sessions(:unstarted)
+
+    assert_response :success
+  end
 end

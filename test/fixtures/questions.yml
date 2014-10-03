@@ -1,8 +1,8 @@
 q1:
-  text_en: What is your favorite color?
+  text_en: What are your favorite colors?
   time_estimate: 1.0
   answer_templates:
-  - text
+  - colors
 q2:
   text_en: What is the air-speed velocity of an unladen swallow?
   time_estimate: 1.0

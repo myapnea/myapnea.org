@@ -20,3 +20,15 @@ fair:
   text_value_en: Fair
 poor:
   text_value_en: Poor
+red:
+  text_value_en: red
+blue:
+  text_value_en: blue
+green:
+  text_value_en: green
+purple:
+  text_value_en: purple
+yellow:
+  text_value_en: yellow
+brown:
+  text_value_en: brown

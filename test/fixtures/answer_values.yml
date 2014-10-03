@@ -1,7 +1,7 @@
 av1:
   answer: a1
   answer_template: text
-  text_value: red
+  answer_option: red
 av2:
   answer: a2
   answer_template: numeric
@@ -17,7 +17,7 @@ av4:
 av5:
   answer: a5
   answer_template: text
-  text_value: indigo
+  answer_option: indigo
 av6:
   answer: a6
   answer_template: numeric

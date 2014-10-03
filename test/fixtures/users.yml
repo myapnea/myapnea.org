@@ -73,3 +73,12 @@ has_incomplete_survey:
   accepted_consent_at: <%= 5.day.ago.to_s(:db) %>
   year_of_birth: 1980
   encrypted_password: <%= pw %>
+
+has_unstarted_survey:
+  first_name: Unstarted
+  last_name: Survey
+  email: us@mail.com
+  zip_code: 12345
+  accepted_consent_at: <%= 5.day.ago.to_s(:db) %>
+  year_of_birth: 1980
+  encrypted_password: <%= pw %>
