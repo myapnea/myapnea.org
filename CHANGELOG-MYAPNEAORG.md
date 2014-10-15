@@ -1,3 +1,21 @@
+## 1.0.1
+
+### Bug Fixes
+- **Social Profile**
+  - Fixed problem where social profile update did not save all fields.
+  - Added validation for negative age values.
+  - Fixed crash when uploading photo on production.
+- **Research Surveys**
+  - Fixed survey stability issues.
+  - Cleaned up and fixed issues with survey completion report.
+- **Forum**
+  - Made entry into forums more obvious for users.
+
+### Enhancements
+- **Sidebar Navigation**
+  - Implemented collapsing sidebar for mobile users.
+
+
 ## 1.0.0
 
 ### Major Features
