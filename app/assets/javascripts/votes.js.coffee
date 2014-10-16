@@ -1,4 +1,4 @@
-$(document).on "click", "#answer-session .voting button.vote", () ->
+$(document).on "click", "#answer-session .voting button.vote", (event) ->
   event.preventDefault()
 
   button = $(this)
@@ -28,7 +28,7 @@ $(document).on "click", "#answer-session .voting button.vote", () ->
       )
   )
 
-$(document).on "click", ".research_topics a.voting", () ->
+$(document).on "click", ".research_topics a.voting", (event) ->
   event.preventDefault()
 
   link = $(this)
@@ -63,6 +63,7 @@ $(document).on "click", ".research_topics a.voting", () ->
 
 
   )
+
 
 $(document).on "show.bs.tab", 'a[data-toggle="tab"]', (event) ->
 
