@@ -10,6 +10,7 @@
     data_type: answer_option_id
     allow_multiple: true
     answer_option_ids:
+    - 296
     - 78
     - 79
     - 80

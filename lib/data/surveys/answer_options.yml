@@ -594,6 +594,8 @@
   text_value_en: Prefer not to answer
 - id: 295
   text_value_en: High school diploma
+- id: 296
+  text_value_en: American Sleep Apnea Association (ASAA)
 - id: 200001
   numeric_value: 1
 
