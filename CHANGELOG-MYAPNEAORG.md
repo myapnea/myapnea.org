@@ -1,4 +1,13 @@
-## 1.0.1
+## 1.1.0
+- **Bug Fixes**
+  - Fixed research topic voting problems encountered on Firefox browsers.
+  - Fixed erroneous 'true' flash message after session expiration.
+- **Research Surveys**
+  - Added survey question about sleep care institutions
+  - Added ASAA as a choice for how a user heard about MyApnea.
+  - Implemented new question type, based on `typeahead.js`.
+
+## 1.0.1 (October 15, 2014)
 
 ### Bug Fixes
 - **Social Profile**
@@ -16,7 +25,7 @@
   - Implemented collapsing sidebar for mobile users.
 
 
-## 1.0.0
+## 1.0.0 (October 3, 2014)
 
 ### Major Features
 

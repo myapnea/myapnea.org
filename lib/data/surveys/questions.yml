@@ -31,6 +31,12 @@
   time_estimate: 1.0
   answer_template_ids:
   - 1
+- id: 10491
+  text_en: |
+    Where do you receive your sleep care?
+  time_estimate: 0.5
+  answer_template_ids:
+  - 25
 - id: 491
   text_en: Has a doctor or health care professional diagnosed you with sleep apnea?
   time_estimate: 0.15

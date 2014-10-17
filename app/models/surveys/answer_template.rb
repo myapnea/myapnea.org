@@ -5,4 +5,7 @@ class AnswerTemplate < ActiveRecord::Base
   belongs_to :display_type
   belongs_to :unit
 
+
+
+
 end
