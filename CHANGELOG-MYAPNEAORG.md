@@ -1,4 +1,4 @@
-## 1.1.0
+## 1.1.0 (October 17, 2014)
 - **Bug Fixes**
   - Fixed research topic voting problems encountered on Firefox browsers.
   - Fixed erroneous 'true' flash message after session expiration.
