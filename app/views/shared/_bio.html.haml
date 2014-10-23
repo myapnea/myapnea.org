@@ -4,7 +4,7 @@
   %li.list-group-item
     .media
       .pull-left
-        = image_tag current_user.photo_url, :class => " media-item-object img-circle user-avatar"
+        = image_tag current_user.photo_url, :class => " media-item-object img-circle user-avatar" if current_user.present?
       .media-body.small
         %h4 Sean Ahrens
         .badge.badge-primary 900 Karma

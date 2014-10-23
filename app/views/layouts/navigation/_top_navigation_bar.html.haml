@@ -46,7 +46,7 @@
   .col-md-12.pprn-nav
     %ul.nav.nav-pills.top-nav
       %li{:class => "#{"active" if @active_top_nav_link == :home}"}
-        %a{href: home_path} Home
+        %a{href: root_path} Home
       %li{:class => "#{"active" if @active_top_nav_link == :research_topics}"}
         %a{href: research_topics_path} Research Topics
       %li{:class => "#{"active" if @active_top_nav_link == :health_data}"}
