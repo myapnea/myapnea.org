@@ -1,6 +1,10 @@
 source 'https://rubygems.org'
 
+# Required in Rails 4 for logs to work in production
+gem 'rails_12factor', group: :production
+
 gem 'thin'
+gem 'airbrake'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.6'
@@ -9,6 +13,11 @@ gem 'pg'
 # User HAML for views
 gem 'haml'
 
+# Debugging
+gem 'byebug'
+
+# Helps Store Secrets Securely for Heroku Deploys
+gem 'figaro'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -61,6 +70,13 @@ gem 'acts-as-taggable-on'
 gem 'geocoder'
 gem 'carrierwave'
 gem 'mini_magick'
+
+
+gem 'merit'
+
+# For Third-Party API Connections
+gem 'validic'
+gem 'faraday'
 
 # Development
 group :development do

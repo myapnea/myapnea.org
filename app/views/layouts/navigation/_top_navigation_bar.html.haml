@@ -1,36 +1,20 @@
-.navbar.navbar-default{role: "navigation"}
-  -#.navbar-fixed-top
-  .container
-    .navbar-header
-      %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", type: "button"}
-        %span.sr-only Toggle navigation
-        %span.icon-bar
-        %span.icon-bar
-        %span.icon-bar
-      %a.navbar-brand{href: "/"}
-        = @pprn_title
-        %span.req
-    .collapse.navbar-collapse
-      %ul.nav.navbar-nav
-        - if current_user
-          %li{:class => "#{"active" if @active_top_nav_link == :research}"}
-            %a{href: "/research_karma"} Research
-        - else
-          %li{:class => "#{"active" if @active_top_nav_link == :research_topics}"}
-            %a{href: "/research_topics"} Research
 
-        %li{:class => "#{"active" if @active_top_nav_link == :health_data}"}
-          %a{href: "/data_explore"} My Health Data
-        %li{:class => "#{"active" if @active_top_nav_link == :social}"}
-          %a{href: "/social"} Patients
-        %li{:class => "#{"active" if @active_top_nav_link == :blog}"}
-          %a{href: "/blog"} Blog
+.row
+  .col-md-12.pprn-heading
+    %h1.pull-left= PPRN_TITLE
 
 
-      %ul.nav.navbar-nav.pull-right
+    .pull-right
+      %br/
+
+
+      %ul.nav.nav-pills.small
         %li
-          %a.req{href: "/req", style: "display:none !important; color: red;"}
-
+          %a{:href => content_path(:about_partners)} About
+        %li
+          %a{:href => "#"} Resources
+        %li
+          %a{:href => "#"} Help
 
         - if current_user
           %li.dropdown
@@ -39,11 +23,11 @@
               %b.caret
             %ul.dropdown-menu
               %li
-                %a{href: "/account"}
+                %a{href: account_path}
                   %i.fa.fa-user &nbsp; Account Settings
               - if current_user.can?(:view_admin_dashboard)
                 %li
-                  %a{href: "/admin", :title => "Admin Panel"}
+                  %a{href: admin_path, :title => "Admin Panel"}
                     %i.fa.fa-wrench &nbsp; Admin Panel
               %li
                 = link_to "<i class='fa fa-sign-out'></i> Sign out".html_safe, main_app.destroy_user_session_path, :method => :delete
@@ -52,3 +36,25 @@
             %a{:href => new_user_session_path}
               %i.fa.fa-sign-in
                 Sign In
+
+    .clearfix
+    %hr
+
+
+
+.row
+  .col-md-12.pprn-nav
+    %ul.nav.nav-pills.top-nav
+      %li{:class => "#{"active" if @active_top_nav_link == :home}"}
+        %a{href: home_path} Home
+      %li{:class => "#{"active" if @active_top_nav_link == :research_topics}"}
+        %a{href: research_topics_path} Research Topics
+      %li{:class => "#{"active" if @active_top_nav_link == :health_data}"}
+        %a{href: data_explore_path} Health Data
+      %li{class: "#{"active" if @active_top_nav_link == :surveys}"}
+        %a{href: surveys_path} Surveys
+      - if PPRN == :my_apnea
+        %li
+          %a{href: forem.root_path, class: "#{"active" if controller_path =~ /forem/}"} Discussion
+
+

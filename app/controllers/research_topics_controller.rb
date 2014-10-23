@@ -3,8 +3,12 @@ class ResearchTopicsController < ApplicationController
 
   before_action :no_layout, :only => [:research_topics, :vote_counter]
   before_action :set_research_topic, only: [:show, :update, :edit, :destroy]
+  before_action :set_active_top_nav_link_to_research
 
-  authorize_actions_for ResearchTopic, only: [:index, :create, :new]
+
+  layout "community"
+
+  authorize_actions_for ResearchTopic, only: [:index] #, :create, :new]
 
   def research_topics
     raise StandardError
@@ -24,7 +28,7 @@ class ResearchTopicsController < ApplicationController
     @research_topic = current_user.research_topics.new(research_topic_params)
 
     if @research_topic.save
-      redirect_to research_topics_path, notice: "Your research topic has been successfully submitted!"
+      redirect_to research_topics_path, notice: "Your research question was successfully added."
     else
       render :new
     end
@@ -39,15 +43,14 @@ class ResearchTopicsController < ApplicationController
 
     if @research_topic.update(research_topic_params)
       if current_user.can_moderate?(@research_topic)
-        redirect_to admin_research_topic_path(@research_topic), notice: "Your research topic has been successfully updated!"
+        redirect_to admin_research_topic_path(@research_topic)
       else
-        redirect_to research_topic_path(@research_topic), notice: "Your research topic has been successfully updated!"
+        redirect_to research_topic_path(@research_topic)
       end
     else
       if current_user.can_moderate?(@research_topic)
-        redirect_to admin_research_topics_path, error: "There were problems updating your research topic."
+        redirect_to admin_research_topics_path
       else
-        flash[:error] = "There were problems updating your research topic."
         render :edit
       end
 
@@ -69,9 +72,9 @@ class ResearchTopicsController < ApplicationController
     @research_topic.destroy
 
     if current_user.can?(:view_admin_dashboard)
-      redirect_to admin_research_topics_path, notice: "Research topic deleted!"
+      redirect_to admin_research_topics_path
     else
-      redirect_to research_topics_path, notice: "Research topic deleted!"
+      redirect_to research_topics_path
     end
 
   end

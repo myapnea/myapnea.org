@@ -1,12 +1,3 @@
-= render partial: 'shared/coming_soon'
-
-%ol.breadcrumb.research
-  %li
-    %a{href: "#"} Research
-  %li.active
-    %a{href: "#"} My Data Connections
-
-
 .row
   .col-md-12
     %h3 My Data Connections
@@ -16,7 +7,7 @@
 
 - source_num = 0
 
-- @pprn["data_sources"].each do |source,junk|
+- DUMMY_DATA_SOURCES.each do |source,junk|
   - if (source_num % 3 == 0)
     .row
 

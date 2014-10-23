@@ -11,11 +11,12 @@ puts template_folder
 puts root_folder
 
 files = [['config/environments', 'production.rb'],
-  ['config/initializers', '00_site_name.rb'],
+  #['config/initializers', '00_site_name.rb'],
   ['config/initializers', 'action_mailer.rb'],
   ['app/assets/javascripts', 'google_analytics.js'],
   ['app/assets/javascripts', 'uservoice.js'],
-  ['config/initializers', 'secret_token.rb']
+  ['config/initializers', 'secret_token.rb'],
+  ['config/initializers', 'pprn.rb']
   # ['config/initializers', 'devise.rb']
   ]
 

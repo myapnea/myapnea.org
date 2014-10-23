@@ -1,12 +1,18 @@
 # Changelog for OpenPPRN
 
+
+## Sean Full Integration
+- Sean removed social security check for posting new questions. 
+- Commented out forum link in admin panel (_admin_nav)
+
+
+
 ## R2
 
 ## Enhancements
-- Research Democracy - voting for research topics.
+- Research Democracy - submitting and voting for research topics.
 
 ## Fixes
-- home page learn and share and research boxes now have the same height.
 
 ## R1 - Social Functionality
 ### Enhancements
@@ -26,3 +32,4 @@
 - Add Survey functionality
 - Add Travis-CI testing badge that shows the continuous integration test status
   - Based on Travis-CI guide here: http://docs.travis-ci.com/user/using-postgresql/#Using-PostgreSQL-in-your-Builds
+

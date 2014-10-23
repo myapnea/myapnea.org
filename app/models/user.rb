@@ -1,9 +1,12 @@
 class User < ActiveRecord::Base
   rolify role_join_table_name: 'roles_users'
 
-
   include Authority::UserAbilities
   include Authority::Abilities
+
+  # Enable User Connection to External API Accounts
+  include ExternalUsers
+
 
   self.authorizer_name = "UserAuthorizer"
 
@@ -13,8 +16,9 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :timeoutable
 
   # Model Validation
-  validates_presence_of :first_name, :last_name, :zip_code, :year_of_birth
-  validates_numericality_of :year_of_birth, only_integer: true, less_than_or_equal_to: -> (user){ Date.today.year - 18 }, greater_than_or_equal_to: -> (user){ 1900 }
+  # validates_presence_of :first_name, :last_name, :zip_code, :year_of_birth
+  validates_numericality_of :year_of_birth, only_integer: true, less_than_or_equal_to: -> (user){ Date.today.year - 18 }, greater_than_or_equal_to: -> (user){ 1900 }, allow_nil: true, allow_blank: true
+
 
   # Model Relationships
   has_many :answer_sessions
@@ -65,36 +69,18 @@ class User < ActiveRecord::Base
   end
 
   def signed_consent?
-    self.accepted_consent_at.present?
+    # Local Consent Storage
+    # self.accepted_consent_at.present?
+    # OODT Consent Storage
+    self.oodt_status
   end
 
   def forem_admin?
     self.has_role? :admin
   end
 
-  def can_create_forem_topics?(forum)
-    self.can?(:participate_in_social)
-  end
-
-  def can_reply_to_forem_topic?(topic)
-    self.can?(:participate_in_social)
-  end
-
-  def can_edit_forem_posts?(forum)
-    self.can?(:participate_in_social)
-  end
-
-  def can_destroy_forem_posts?(forum)
-    self.can?(:participate_in_social)
-  end
-
-
-  def can_moderate_forem_forum?(forum)
-    self.has_role? :forum_moderator or self.has_role? :admin
-  end
-
   def todays_votes
-    votes.select{|vote| vote.updated_at.today? and vote.rating != 0 and vote.research_topic_id.present?}
+    votes.select{|vote| vote.created_at.today? and vote.rating != 0 and vote.research_topic_id.present?}
   end
 
   def available_votes_percent
@@ -138,8 +124,9 @@ class User < ActiveRecord::Base
     true
   end
 
-  def has_votes_remaining?(rating = 1)
-
-    (todays_votes.length < vote_quota) or (rating < 1)
+  def has_votes_remaining?
+    todays_votes.length < vote_quota
   end
+
+
 end
