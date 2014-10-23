@@ -23,7 +23,6 @@
 //= require bloodhound
 //= require bootstrap-tagsinput
 //= require placeholders.jquery.min
-//= require facebook
 //= require main
 //= require pages
 //= require admin

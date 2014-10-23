@@ -1,12 +1,4 @@
 Rails.application.routes.draw do
-
-  # This line mounts Forem's routes at /forums by default.
-  # This means, any requests to the /forums URL of your application will go to Forem::ForumsController#index.
-  # If you would like to change where this extension is mounted, simply change the :at option to something different.
-  #
-  # We ask that you don't use the :as option here, as Forem relies on it being the default of "forem"
-  mount Forem::Engine, :at => '/social/discussion'
-
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -27,6 +19,11 @@ Rails.application.routes.draw do
   get 'faqs' => 'static#faqs'
   get 'team' => 'static#team'
   match 'user_dashboard', to: 'account#dashboard', as: :user_dashboard, via: :get
+
+  get 'privacy_policy_document' => 'static#content', :page => "privacy_policy"
+  get 'terms_of_service' => 'static#content', :page => "terms_of_service"
+
+
 
   # Research Topics
   #match 'research_topic/:id', to: "research_topics#show", as: :research_topic, via: :get
@@ -50,6 +47,7 @@ Rails.application.routes.draw do
   match 'research_surveys/process_answer', to: 'surveys#process_answer', via: :post, as: :process_answer
   get 'questions/frequencies(/:question_id/:answer_session_id)', to: "questions#frequencies", as: :question_frequencies, format: :json
   get 'questions/typeahead/:question_id', to: "questions#typeahead", as: :question_typeahead, format: :json
+
 
   # Health Data Section
   get 'data_explore' => 'health_data#explore'
@@ -114,7 +112,6 @@ Rails.application.routes.draw do
   #
   # We ask that you don't use the :as option here, as Forem relies on it being the default of "forem"
   mount Forem::Engine, :at => '/social/discussion'
-
 
 # # Authentication
 #   devise_for :user, skip: [:sessions, :passwords, :confirmations, :registrations]

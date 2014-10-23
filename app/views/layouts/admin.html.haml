@@ -2,6 +2,11 @@
 - @intro = true
 
 - content_for :sublayout do
-  = render partial: "layouts/sublayout_sidebar", locals: {nav: 'layouts/navigation/admin_nav'}
+  .row
+    .col-md-3
+      = render :partial => "layouts/navigation/admin_nav"
+    .col-md-9#admin-content
+      = yield
+
 
 = render template: "layouts/application"

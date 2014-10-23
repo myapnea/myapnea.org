@@ -217,7 +217,12 @@ class AnswerSession < ActiveRecord::Base
 
     coll
   end
-  
+
+
+  ## Reports
+
+
+
   private
 
   def completed_path
@@ -247,5 +252,6 @@ class AnswerSession < ActiveRecord::Base
       end
     end
   end
+
 
 end
