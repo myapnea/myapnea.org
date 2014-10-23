@@ -49,7 +49,7 @@ Rails.application.routes.draw do
   get 'research_surveys/:answer_session_id/:question_id', to: 'surveys#ask_question', as: :ask_question
   match 'research_surveys/process_answer', to: 'surveys#process_answer', via: :post, as: :process_answer
   get 'questions/frequencies(/:question_id/:answer_session_id)', to: "questions#frequencies", as: :question_frequencies, format: :json
-
+  get 'questions/typeahead/:question_id', to: "questions#typeahead", as: :question_typeahead, format: :json
 
   # Health Data Section
   get 'data_explore' => 'health_data#explore'

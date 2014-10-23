@@ -89,6 +89,7 @@ $.rails.allowAction = (element) ->
 @loaders = () ->
   mainLoader()
   consentReady()
+  surveysReady()
 
 
 $(document).ready(loaders)
