@@ -1,0 +1,50 @@
+.pprn-heading {
+  overflow: hidden;
+  height: 119px;
+  position: relative;
+
+  #nav-bg-lines {
+    .blue, .yellow {
+      width: 100%;
+      position: absolute;
+    }
+
+    .blue {
+      top: 95px;
+      height: 24px;
+      background-color: $ma-light-blue;
+    }
+
+    .yellow {
+      top: 64px;
+      height: 23px;
+      background-color: $ma-light-yellow;
+
+    }
+  }
+
+
+  .brand {
+    position: relative;
+    width: 50%;
+    display: block;
+
+    #logo-top {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    #logo-bottom{
+      position: absolute;
+      top: 95px;
+      left: 0;
+    }
+
+  }
+}
+
+.pprn-nav {
+  margin-top: 30px;
+
+}

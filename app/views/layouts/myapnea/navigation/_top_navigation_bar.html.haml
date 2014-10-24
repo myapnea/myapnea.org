@@ -1,0 +1,62 @@
+
+.row
+  .col-md-12
+    .pprn-heading
+      #nav-bg-lines
+        .yellow
+        .blue
+
+      %a.brand{href: main_app.root_path}
+
+        #logo-top= image_tag "MyApnea/myApneaLogoTop.png"
+        #logo-bottom= image_tag "MyApnea/myApneaLogoBottom.png"
+
+      .pull-right
+        %br/
+
+
+        %ul.nav.nav-pills.small
+          %li
+            %a{:href => main_app.content_path(:about_partners)} About
+          %li
+            %a{:href => "#"} Resources
+          %li
+            %a{:href => "#"} Help
+
+          - if current_user
+            %li.dropdown
+              %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
+                My Settings
+                %b.caret
+              %ul.dropdown-menu
+                %li
+                  %a{href: main_app.account_path}
+                    %i.fa.fa-user &nbsp; Account Settings
+                - if current_user.can?(:view_admin_dashboard)
+                  %li
+                    %a{href: main_app.admin_path, :title => "Admin Panel"}
+                      %i.fa.fa-wrench &nbsp; Admin Panel
+                %li
+                  = link_to "<i class='fa fa-sign-out'></i> Sign out".html_safe, main_app.destroy_user_session_path, :method => :delete
+          - else
+            %li
+              %a{:href => main_app.new_user_session_path}
+                %i.fa.fa-sign-in
+                  Sign In
+
+.row
+  .col-md-12.pprn-nav
+    %ul.nav.nav-pills.top-nav
+      %li{:class => "#{"active" if @active_top_nav_link == :home}"}
+        %a{href: main_app.root_path} Home
+      %li{:class => "#{"active" if @active_top_nav_link == :research_topics}"}
+        %a{href: main_app.research_topics_path} Research Topics
+      %li{:class => "#{"active" if @active_top_nav_link == :health_data}"}
+        %a{href: main_app.data_explore_path} Health Data
+      %li{class: "#{"active" if @active_top_nav_link == :surveys}"}
+        %a{href: main_app.surveys_path} Surveys
+      - if PPRN == :my_apnea
+        %li
+          %a{href: forem.root_path, class: "#{"active" if controller_path =~ /forem/}"} Discussion
+
+
