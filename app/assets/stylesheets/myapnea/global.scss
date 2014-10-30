@@ -1,0 +1,65 @@
+//// TODO: The following couple sections could be moved into seperate files
+//
+
+//// **
+//// Main Styles start here
+//// **
+//
+//body#MyApnea {
+//  a:hover {
+//    text-decoration: underline;
+//  }
+//
+//  > .container {
+//    margin-top: $normal-nav-height - 10px;
+//    background-color: transparent;
+//  }
+//
+//  .page-header-blank {
+//    height: 50px;
+//  }
+//
+//  a.disabled {
+//    pointer-events: none;
+//
+//  }
+//  a.disabled:after {
+//    pointer-events: none;
+//
+//  }
+//
+//  a[disabled] {
+//    pointer-events: none;
+//  }
+//
+//  .community-img {
+//    height: 60px;
+//  }
+//}
+//
+//ul {
+//  list-style-image: url('#{$assets-path}/myapnea/icons/myapnea-logo-list-style-image.png');
+//}
+//
+//ul.unstyled {
+//  list-style-image: none;
+//}
+//
+//p{
+//  margin:20px 0;
+//  line-height: 1.75;
+//}
+//
+//// Footer
+//
+//#footer {
+//  background:$white;
+//
+//
+//  img {
+//    padding-top: 15px;
+//    max-width: 100%;
+//  }
+//
+//}
+//

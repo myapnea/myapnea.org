@@ -1,9 +1,8 @@
-/*
 #MyApnea {
   #home-page {
     .sub-header {
       font-style: italic;
-      font-size: $fontSizeLarge;
+      font-size: $font-size-large;
     }
 
     #home-research-qs {
@@ -132,7 +131,6 @@
           border-radius: 0 237px 237px 0;
           height: 237px;
           border: 0px solid rgba(0,0,0,0.1);
-          box-shadow:$subtleShadow inset;
 
           overflow: hidden;
         }
@@ -144,4 +142,3 @@
   }
 
 }
-*/

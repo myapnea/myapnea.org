@@ -30,6 +30,8 @@ $ma-lighter-blue:       #9faac9;
 $ma-lightest-blue:      #c6cce0;
 $ma-white-blue:         #e0e7ff;
 
+$ma-white-yellow:       #fff4e2;
+
 $ma-base-black:          #051033;
 $gray-darker:            lighten($ma-base-black, 13.5%); // #222
 $gray-dark:              lighten($ma-base-black, 20%);   // #333
@@ -719,11 +721,11 @@ $panel-border-radius:         $border-radius-base;
 
 //** Border color for elements within panels
 $panel-inner-border:          $ma-lightest-blue;
-$panel-footer-bg:             $ma-white-blue;
+$panel-footer-bg:             $ma-white-yellow;
 
 $panel-default-text:          $gray-dark;
 $panel-default-border:        $ma-lightest-blue;
-$panel-default-heading-bg:    $ma-white-blue;
+$panel-default-heading-bg:    $ma-white-yellow;
 
 $panel-primary-text:          #fff;
 $panel-primary-border:        $brand-primary;
@@ -769,7 +771,7 @@ $thumbnail-caption-padding:   9px;
 //
 //##
 
-$well-bg:                     $ma-white-blue;
+$well-bg:                     $ma-white-yellow;
 $well-border:                 darken($well-bg, 7%);
 
 

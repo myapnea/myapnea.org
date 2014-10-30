@@ -19,7 +19,7 @@ class StaticController < ApplicationController
 
   def theme
     #raise StandardError
-    render layout: "layouts/theme"
+    #render layout: "layouts/theme"
   end
 
   private
@@ -31,7 +31,11 @@ class StaticController < ApplicationController
   def page_content(name)
     YAML.load_file(Rails.root.join('lib', 'data', 'content', "#{name}.#{I18n.locale}.yml"))[I18n.locale.to_s][name]
   end
-
+  #
+  # def temm
+  #   path = File.expand_path('../myapnea', __FILE__)
+  #   self.view_path.push(*path)
+  # end
 
 
 end

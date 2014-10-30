@@ -1,0 +1,9 @@
+/* This file controls whether base styles or theme styles are used, based on config*/
+
+/* The manifest files in the base directory or the theme directory control what gets included */
+
+<% if false %>
+@import "manifest"
+<% else %>
+@import "myapnea/manifest"
+<% end %>
