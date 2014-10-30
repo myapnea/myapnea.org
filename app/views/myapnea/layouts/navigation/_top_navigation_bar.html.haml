@@ -16,12 +16,11 @@
 
 
         %ul.nav.nav-pills.small
-          %li
-            %a{:href => main_app.content_path(:about_partners)} About
-          %li
-            %a{:href => "#"} Resources
-          %li
-            %a{:href => "#"} Help
+          %li{class: ("active" if action_name == 'home')}= link_to "Home", main_app.root_path
+          %li{class: ("active" if controller_name == 'forums')}= link_to "Forum", forem.root_path
+          %li{class: ("active" if action_name == 'intro')}= link_to "About", main_app.intro_path
+          %li{class: ("active" if action_name == 'faqs')}= link_to "Help", main_app.faqs_path
+
 
           - if current_user
             %li.dropdown
@@ -44,19 +43,19 @@
                 %i.fa.fa-sign-in
                   Sign In
 
-.row
-  .col-md-12.pprn-nav
-    %ul.nav.nav-pills.top-nav
-      %li{:class => "#{"active" if @active_top_nav_link == :home}"}
-        %a{href: main_app.root_path} Home
-      %li{:class => "#{"active" if @active_top_nav_link == :research_topics}"}
-        %a{href: main_app.research_topics_path} Research Topics
-      %li{:class => "#{"active" if @active_top_nav_link == :health_data}"}
-        %a{href: main_app.data_explore_path} Health Data
-      %li{class: "#{"active" if @active_top_nav_link == :surveys}"}
-        %a{href: main_app.surveys_path} Surveys
-      - if PPRN == :my_apnea
-        %li
-          %a{href: forem.root_path, class: "#{"active" if controller_path =~ /forem/}"} Discussion
-
-
+-#.row
+-#  .col-md-12.pprn-nav
+-#    %ul.nav.nav-pills.top-nav
+-#      %li{:class => "#{"active" if @active_top_nav_link == :home}"}
+-#        %a{href: main_app.root_path} Home
+-#      %li{:class => "#{"active" if @active_top_nav_link == :research_topics}"}
+-#        %a{href: main_app.research_topics_path} Research Topics
+-#      %li{:class => "#{"active" if @active_top_nav_link == :health_data}"}
+-#        %a{href: main_app.data_explore_path} Health Data
+-#      %li{class: "#{"active" if @active_top_nav_link == :surveys}"}
+-#        %a{href: main_app.surveys_path} Surveys
+-#      - if PPRN == :my_apnea
+-#        %li
+-#          %a{href: forem.root_path, class: "#{"active" if controller_path =~ /forem/}"} Discussion
+-#
+-#

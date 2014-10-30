@@ -1,5 +1,6 @@
 class StaticController < ApplicationController
-  before_action :load_pc, only: [:learn, :share, :research, :team, :faqs, :privacy_policy ]
+  before_action :load_pc, only: [:about, :intro, :learn, :share, :research, :team, :faqs ]
+  before_action :about_layout, only: [:about, :intro, :learn, :share, :research, :team, :faqs]
 
   def content
     @page = params[:page]
@@ -9,17 +10,11 @@ class StaticController < ApplicationController
   def home
     @active_top_nav_link = :home
     @posts = Post.blog_posts.viewable
-    render layout: "community"
+    render layout: "main"
   end
 
-
-  # def home
-  #   @research_qs = Group.find_by_name("Research Questions").questions.sort_by{|q| -q.rating }
-  # end
-
   def theme
-    #raise StandardError
-    #render layout: "layouts/theme"
+    render layout: "layouts/theme"
   end
 
   private
@@ -31,11 +26,9 @@ class StaticController < ApplicationController
   def page_content(name)
     YAML.load_file(Rails.root.join('lib', 'data', 'content', "#{name}.#{I18n.locale}.yml"))[I18n.locale.to_s][name]
   end
-  #
-  # def temm
-  #   path = File.expand_path('../myapnea', __FILE__)
-  #   self.view_path.push(*path)
-  # end
 
+  def about_layout
+    render layout: "layouts/about"
+  end
 
 end

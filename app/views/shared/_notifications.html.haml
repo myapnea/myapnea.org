@@ -1,8 +1,4 @@
 .panel.panel-default
-  .panel-heading
-    %h3.panel-title Notifications
-
-
   %ul.list-group.small
     - notifications.each do |notification|
       %li.list-group-item
@@ -19,7 +15,7 @@
     -#.text-center.small
     -#  = link_to "Show More...", "#" if notifications.present?
 
-    - if current_user.can_create?(new_notification)
+    - if current_user and current_user.can_create?(new_notification)
       %li.list-group-item.list-group-item-warning
         %h5 Add a New Notification
         = render partial: 'posts/form', locals: { post: new_notification }

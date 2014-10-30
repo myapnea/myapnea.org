@@ -1,5 +1,15 @@
+
 .row.row-offcanvas.row-offcanvas-left
+  %br/
+  %br/
   #sidebar.col-md-3.col-sm-6.sidebar-offcanvas{role: "navigation"}
+    .offcanvas-toggle.visible-sm-block.visible-xs-block
+      %a{"data-toggle" => "offcanvas"}
+        .fa.fa-bars
     = render partial: nav
+    .clearfix
   .col-md-9.col-sm-12
+    .visible-sm-block.visible-xs-block
+      %br/
+      %br/
     = yield

@@ -1,9 +1,6 @@
 - @title = "About"
 
 - content_for :sublayout do
-  .row
-    .col-md-3
-      = render :partial => "layouts/navigation/content_nav"
-    .col-md-9
-      = yield
+  = render partial: "layouts/sublayout_sidebar", locals: {nav: 'layouts/navigation/content_nav'}
+
 = render template: "layouts/application"

@@ -4,13 +4,13 @@ Rails.application.routes.draw do
 
   # Static Pages
   root 'static#home'
-  get 'about' => 'static#about'
+  get 'intro' => 'static#intro'
   get 'external_link_warning' => 'static#external_link_warning'
   get 'theme' => 'static#theme'
   get 'version' => 'static#version'
   #Content Pages
-  get 'content/:page' => 'static#content'
-  get 'content/' => 'static#content'
+  match 'content/:page', to: 'static#content', as: :content, via: :get
+  #get 'content/' => 'static#content'
 
   # MyApnea Specific
   get 'learn' => 'static#learn'

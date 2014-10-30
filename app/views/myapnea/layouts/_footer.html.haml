@@ -1,19 +1,16 @@
 %hr/
 
-.row
+.row#footer
   .col-md-2.small
-    %a{href: main_app.about_path} About
+    = link_to 'FAQs', main_app.faqs_path
     %br/
-    %a{href: main_app.terms_of_service_path} Terms of Service
+    = link_to "Team", main_app.team_path
     %br/
-    %a{href: main_app.privacy_policy_document_path} Privacy Policy
+    = link_to 'Privacy Policy', main_app.privacy_path
     %br/
 
-  .col-md-6.small
-    Attribution and Organization behind this site. Lorem ipsum dolor sit amet, ius sonet veniam signiferumque eu, pri ad libris aperiam euripidis. Est ei ferri dolores, purto equidem ea eum. Latine tibique detracto cu pro.
-  .col-md-4.small
-    Except where otherwise noted, content on this site is licensed under a
-    %a{href: "http://creativecommons.org/licenses/by/4.0/", rel: "license"} Creative Commons Attribution 4.0 International license.
-    %br/
-    / %a{href: "http://creativecommons.org/licenses/by/4.0/", rel: "license"}
-    /   %img{alt: "Creative Commons License", src: "https://i.creativecommons.org/l/by/4.0/88x31.png", style: "border-width:0"}/
+  .col-md-10.small
+    .row
+      .col-md-4= link_to image_tag('myapnea/icons/ASAA.png', class: "img-responsive"), 'http://www.sleepapnea.org/'
+      .col-md-4= link_to image_tag('myapnea/icons/pcornet.png', class: "img-responsive"), 'http://www.pcornet.org/'
+      .col-md-4= link_to image_tag('myapnea/icons/brigham.png', class: "img-responsive"), 'http://www.brighamandwomens.org/'

@@ -1,3 +1,9 @@
+## 2.0.0
+- **Enhancements**
+  - Revamped the navigation flow.
+  - Synchronized vision with OpenPPRN.
+  - Cleaned up overall style.
+
 ## 1.1.0 (October 17, 2014)
 - **Bug Fixes**
   - Fixed research topic voting problems encountered on Firefox browsers.

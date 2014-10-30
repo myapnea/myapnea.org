@@ -1,48 +1,24 @@
-- content_for :community_contributions do
-  .row
-    .col-md-12
-      .panel.panel-primary
-        .panel-heading
-          Community Contributions
-        .panel-body.text-right
-          .row
-            .col-md-3
-              Members
-              %br/
-              %span.h0 5,432
-            .col-md-3
-              Research Ideas
-              %br/
-              %span.h0 214
-            .col-md-3
-              Surveys Completed
-              %br/
-              %span.h0 450
-            .col-md-3
-              Health Data Streams
-              %br/
-              %span.h0 681
+.row
+  .col-md-12
+    .panel.panel-success
+      .panel-heading
+        Start Survey
+      .panel-body
+.row
+  .col-md-12
+    .panel.panel-primary
+      .panel-heading
+        Visit Forum
+      .panel-body
+.row
+  .col-md-5
+    .panel.panel-info
+      .panel-heading
+        Your Daily Health Trends
+      .panel-body
+  .col-md-7
+    .panel.panel-default
+      .panel-heading
+        Vote on Research Topics
+      = render partial: "research_topics/research_topics", locals: {research_topics: ResearchTopic.popular.take(5), editable: false, disabled: true}
 
-- content_for :your_contributions do
-  %ul.list-group
-    %li.list-group-item.tip{"data-toggle" => "tooltip", "data-placement" => "left", "title" => "Well done!!"}
-      .media
-        %a.pull-left{:href => "#"}
-          %span.fa-stack.fa-lg.media-object{:style => "color: red;"}
-            %i.fa.fa-circle.fa-stack-2x
-            %i.fa.fa-heart-o.fa-stack-1x.fa-inverse
-        .media-body
-          %h1.media-heading
-            900
-            %small Karma
-    %li.list-group-item.tip{"data-toggle" => "tooltip", "data-placement" => "left", "title" => "Well done!!"}
-      .media
-        %a.pull-left{:href => "#"}
-          %i.fa.fa-certificate.media-object.badger{:style => "color: gold;"}
-        .media-body
-          %h1.media-heading
-            6/20
-            %small Badges
-
-%h3 Blog Posts
-= render partial: "shared/blog_posts", locals: { blog_posts: @posts, new_blog_post: @new_post, short: false }

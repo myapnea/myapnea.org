@@ -1,51 +1,78 @@
-.pprn-heading {
-  overflow: hidden;
-  height: 119px;
-  position: relative;
-  margin-top: 15px;
-
-  #nav-bg-lines {
-    .blue, .yellow {
-      width: 100%;
-      position: absolute;
-    }
-
-    .blue {
-      top: 95px;
-      height: 24px;
-      background-color: $ma-light-blue;
-    }
-
-    .yellow {
-      top: 64px;
-      height: 23px;
-      background-color: $ma-light-yellow;
-
-    }
-  }
-
-
-  .brand {
+#MyApnea {
+  .pprn-heading {
+    height: 119px;
     position: relative;
-    width: 50%;
-    display: block;
+    margin-top: 15px;
 
-    #logo-top {
-      position: absolute;
-      top: 0;
-      left: 0;
+    #nav-bg-lines {
+      .blue, .yellow {
+        width: 100%;
+        position: absolute;
+      }
+
+      .blue {
+        top: 95px;
+        height: 24px;
+        background-color: $ma-light-blue;
+      }
+
+      .yellow {
+        top: 64px;
+        height: 23px;
+        background-color: $ma-light-yellow;
+
+      }
     }
 
-    #logo-bottom{
-      position: absolute;
-      top: 95px;
-      left: 0;
+
+    .brand {
+      position: relative;
+      width: 50%;
+      display: block;
+
+      #logo-top {
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+
+      #logo-bottom{
+        position: absolute;
+        top: 95px;
+        left: 0;
+      }
+
     }
+
+    .nav-pills {
+      > li {
+
+        > a {
+          &:hover,
+          &:focus {
+            color: $ma-dark-yellow;
+            background-color: transparent;
+
+          }
+          font-size: $font-size-h5;
+        }
+        // Active state
+        &.active > a {
+          &,
+          &:hover,
+          &:focus {
+            color: $ma-dark-yellow;
+            background-color: transparent;
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+
+  .pprn-nav {
+    margin-top: 30px;
 
   }
-}
-
-.pprn-nav {
-  margin-top: 30px;
 
 }

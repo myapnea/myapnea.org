@@ -1,0 +1,19 @@
+.list-group
+  %a.list-group-item{href: main_app.admin_users_path, class: "#{"active" if action_name == "users"}"} Users
+  %a.list-group-item{href: main_app.admin_surveys_path, class: "#{"active" if action_name == "surveys"}"} Surveys
+  -#%a.list-group-item{href: forem.admin_root_path, class: "#{ 'active' if controller_path =~ /forem/ }"} Forums
+  %a.list-group-item{href: main_app.admin_blog_path, class: "#{"active" if action_name == "blog"}"} Blog Posts
+  %a.list-group-item{href: main_app.admin_notifications_path, class: "#{"active" if action_name == "notifications"}"} Notifications
+  %a.list-group-item{href: main_app.admin_research_topics_path, class: "#{"active" if /research_topic/ =~ action_name }"} Research Topics
+
+
+.list-group
+  %a.list-group-item.list-group-item-warning{href: "https://myapnea1.uservoice.com/admin", :target => "_blank"} UserVoice
+  %a.list-group-item.list-group-item-warning{href: "https://www.google.com/analytics/web/?hl=en#report/visitors-overview/#{"keeey"}/", :target => "_blank"} Google Analytics
+
+
+
+-# Description of this section
+%p.small This admin panel gives admins control over users and content on the site.
+
+

@@ -1,0 +1,21 @@
+.list-group
+  %a.list-group-item{href: main_app.root_path, class: "#{"active" if action_name == "home"}"} Home
+  %a.list-group-item{href: forem.root_path, class: "#{"active" if controller_path =~ /forem/}"} Forums
+  %a.list-group-item{href: main_app.surveys_path, class: "#{"active" if action_name == "research_surveys"}" } Surveys
+  %a.list-group-item.visible-sm.visible-xs{href: main_app.blog_path, class: "#{"active" if action_name == "blog"}"} In The News
+  %a.list-group-item{href: main_app.research_topics_path, class: "#{"active" if action_name == "research_topics"}"} Research Topics
+
+
+.hidden-sm.hidden-xs
+  %h4
+    = link_to "In The News", blog_path
+  = render partial: "shared/blog_posts", locals: { blog_posts: @posts, new_blog_post: @new_post, short: true }
+
+%h4 Coming Soon!
+.list-group
+  %a.list-group-item{href: main_app.research_today_path, class: "#{"active" if action_name == "research_today"}"}
+    Daily Trends
+  %a.list-group-item{href: main_app.data_connections_path, class: "#{"active" if action_name == "data_connections"}"} My Data Connections
+  %a.list-group-item{href: main_app.data_explore_path, class: "#{"active" if action_name == "explore"}"} My Health Data
+  / %a.list-group-item{href: main_app.data_reports_path, class: "#{"active" if action_name == "reports"}"} My Reports
+  / %a.list-group-item{href: main_app.data_medications_path, class: "#{"active" if action_name == "medications"}"} My Medications
