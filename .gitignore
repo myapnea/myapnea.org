@@ -52,7 +52,7 @@ config/initializers/secret_token.rb
 /config/initializers/00_site_name.rb
 /config/initializers/db.rb
 /config/environments/production.rb
-#/config/secrets.yml
+/config/secrets.yml
 /config/initializers/validic.rb
 
 # Ignore OS generated files
