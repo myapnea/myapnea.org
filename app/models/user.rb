@@ -140,6 +140,9 @@ class User < ActiveRecord::Base
     ResearchTopic.created_by(self)
   end
 
+  def has_no_started_surveys?
+    incomplete_surveys.blank? and complete_surveys.blank?
+  end
 
   def share_research_topics?
     true

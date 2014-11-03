@@ -6,7 +6,7 @@ class ResearchTopicsController < ApplicationController
   before_action :set_active_top_nav_link_to_research
 
 
-  layout "community"
+  layout "main"
 
   authorize_actions_for ResearchTopic, only: [:index] #, :create, :new]
 

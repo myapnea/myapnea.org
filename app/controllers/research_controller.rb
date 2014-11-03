@@ -4,7 +4,7 @@ class ResearchController < ApplicationController
 
   before_action :fetch_notifications
 
-  layout "community"
+  layout "main"
 
   def fetch_notifications
     @posts = Post.notifications.viewable.all

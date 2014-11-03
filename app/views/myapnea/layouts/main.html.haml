@@ -3,6 +3,22 @@
 
 
 - content_for :sublayout do
+  .row.mosaic-bg
+
+    %br
+    .col-md-8
+      .panel.panel-primary.display-inline-block
+        .panel-heading
+          %span.h1= @active_top_nav_link.to_s.titleize
+      - if content_for(:community_contributions)
+        = yield :community_contributions
+    .col-md-4
+      - if content_for(:your_contributions)
+        .panel.panel-primary
+          .panel-heading
+            Your Contributions
+          = yield :your_contributions
+    .clearfix
   = render partial: "layouts/sublayout_sidebar", locals: {nav: 'layouts/navigation/main_nav'}
 
 = render template: "layouts/application"
@@ -20,8 +36,7 @@
 -#
 -#
 -#      -# COMMUNITY CONTRIBUTIONS PANEL
--#      - if content_for(:community_contributions)
--#        = yield :community_contributions
+
 -#        <br/><br/>
 -#      - else
 -#        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
@@ -38,15 +53,6 @@
 -#      - if content_for(:your_contributions)
 -#
 -#        <br/><br/><br/><br/><br/>
--#        %a{href: account_path}
--#          .panel.panel-primary
--#            = render partial: "shared/bio"
--#
--#
--#        .panel.panel-primary
--#          .panel-heading
--#            Your Contributions
--#          = yield :your_contributions
 -#
 -#
 -#

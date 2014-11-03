@@ -2,7 +2,7 @@ class SurveysController < ApplicationController
   before_filter :authenticate_user!
   before_action :set_active_top_nav_link_to_surveys
 
-  layout "community"
+  layout "main"
 
   def start_survey
     @question_flow = QuestionFlow.find(params[:question_flow_id])

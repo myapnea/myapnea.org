@@ -1,23 +1,21 @@
 - content_for :community_contributions do
-  .row
-    .col-md-6
-      .panel.panel-primary
-        .panel-heading
-          Community Contributions
-        .panel-body.text-right
-          .row
-            .col-md-4
-              Data Sources
-              %br/
-              %span.h0 121
-            .col-md-4
-              Data Points
-              %br/
-              %span.h0 4.6k
-            .col-md-4
-              Studies
-              %br/
-              %span.h0 1
+  .panel.panel-primary
+    .panel-heading
+      Community Contributions
+    .panel-body.text-right
+      .row
+        .col-md-4
+          Data Sources
+          %br/
+          %span.h0 121
+        .col-md-4
+          Data Points
+          %br/
+          %span.h0 4.6k
+        .col-md-4
+          Studies
+          %br/
+          %span.h0 1
 
 - content_for :your_contributions do
   = render partial: "shared/badge_list", :locals => {badges: [{title: "Connector", earned: true, body: "You've connected 3 Data Sources", icon: "fa-link"},

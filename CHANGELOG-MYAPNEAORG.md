@@ -3,6 +3,9 @@
   - Revamped the navigation flow.
   - Synchronized vision with OpenPPRN.
   - Cleaned up overall style.
+  - Added community and personal contributions
+  - Revamped forumns
+  
 
 ## 1.1.0 (October 17, 2014)
 - **Bug Fixes**

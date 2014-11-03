@@ -4,12 +4,12 @@
   %a.list-group-item{href: main_app.surveys_path, class: "#{"active" if action_name == "research_surveys"}" } Surveys
   %a.list-group-item.visible-sm.visible-xs{href: main_app.blog_path, class: "#{"active" if action_name == "blog"}"} In The News
   %a.list-group-item{href: main_app.research_topics_path, class: "#{"active" if action_name == "research_topics"}"} Research Topics
-
+  %a.list-group-item{href: main_app.social_path, class: "#{"active" if action_name == "overview"}"} Our Community
 
 .hidden-sm.hidden-xs
   %h4
-    = link_to "In The News", blog_path
-  = render partial: "shared/blog_posts", locals: { blog_posts: @posts, new_blog_post: @new_post, short: true }
+    = link_to "In The News", main_app.blog_path
+  = render partial: "shared/blog_posts", locals: { blog_posts: (@blog_posts.present? ? @blog_posts : Post.blog_posts.viewable), new_blog_post: @new_post, short: true }
 
 %h4 Coming Soon!
 .list-group

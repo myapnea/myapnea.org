@@ -1,24 +1,89 @@
-.row
-  .col-md-12
-    .panel.panel-success
-      .panel-heading
-        Start Survey
-      .panel-body
-.row
-  .col-md-12
-    .panel.panel-primary
-      .panel-heading
-        Visit Forum
-      .panel-body
-.row
-  .col-md-5
-    .panel.panel-info
-      .panel-heading
-        Your Daily Health Trends
-      .panel-body
-  .col-md-7
-    .panel.panel-default
-      .panel-heading
-        Vote on Research Topics
-      = render partial: "research_topics/research_topics", locals: {research_topics: ResearchTopic.popular.take(5), editable: false, disabled: true}
+#home
+  .row
+    .col-md-12
+      .panel.panel-success#surveys
+        .panel-heading
+          Surveys
+        .list-group
+          - if current_user.nil? or current_user.has_no_started_surveys?
+            - if QuestionFlow.viewable.present?
+              - s = QuestionFlow.viewable.first
+              .list-group-item
+                .col-md-8
+                  %h4= s.name
+                  %p= s.description
+                  %p
+                    %b
+                      Done by
+                      = pluralize(s.answer_sessions.count, "user")
+                .col-md-4
+                  = link_to start_or_resume_survey(s), class: 'btn btn-success btn-lg btn-block survey-btn' do
+                    Start Survey
+                    &nbsp;
+                    .fa.fa-arrow-right
+                .clearfix
+            - else
+              .panel-body
+                %h3.text-success Nothing here yet - Check back soon!
+          - else
+            - if current_user.incomplete_surveys.present?
+              - survey = current_user.incomplete_surveys.first
+              .list-group-item
+                .col-md-8
+                  %h4= survey.name
+                  %p= survey.description
+                .col-md-4
+                  = link_to start_or_resume_survey(survey, survey.most_recent_answer_session(current_user)), class: 'btn btn-success btn-lg btn-block survey-btn' do
+                    Resume Survey
+                    &nbsp;
+                    .fa.fa-arrow-right
+                .col-md-12
+                  = render partial: 'surveys/partials/session_progress', locals: {stats: survey.completion_stats(current_user), question_flow: survey, answer: nil}
 
+                .clearfix
+  .row
+    .col-md-12
+      .panel.panel-primary
+        .panel-heading
+          Forums
+        .list-group
+          - Forem::Forum.all.each do |forum|
+            .list-group-item
+              .row
+                .col-md-8
+                  %h3= link_to forem_emojify(forum.title), forem.forum_path(forum), :class => "title"
+                  .text-info= forem_format(forum.description)
+                .col-md-4
+                  = link_to forem.forum_path(forum), :class => "btn btn-primary btn-lg btn-block" do
+                    Enter Forum
+                    &nbsp;
+                    .fa.fa-arrow-right
+              %hr/
+              - if last_post = forum.last_post_for(forem_user)
+                = link_to(forem_emojify(last_post.topic.subject), forem.forum_topic_path(forum, last_post.topic))
+                = t('by')
+                = last_post.user.forem_name
+                %time{:datetime => last_post.created_at.to_s(:db)}= "#{time_ago_in_words(last_post.created_at)} #{t("ago")}"
+              - else
+                .text-warning No post yet!
+              %br/
+  .row
+    .col-md-5
+      .panel.panel-info
+        .panel-heading
+          Your Daily Health Trends
+        .panel-body
+    .col-md-7
+      .panel.panel-default
+        .panel-heading
+          Research Topics
+        = render partial: "research_topics/research_topics", locals: {research_topics: ResearchTopic.popular.take(5), editable: false, disabled: true}
+
+  .row
+    .col-md-12
+      .panel.panel-warning
+        .panel-heading
+          The MyApnea.Org Community
+        #user_map{data: {path: locations_path}}
+= javascript_include_tag "//maps.googleapis.com/maps/api/js?key=AIzaSyBB91qMUvtmPzct9z7slTqm-lTUEVuYjKo"
+= javascript_include_tag 'social/maps'
