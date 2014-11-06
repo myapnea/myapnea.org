@@ -22,3 +22,11 @@ p.lead {
   cursor: pointer;
   z-index: 1000;
 }
+
+.row.mosaic-bg {
+  > .col-md-8 {
+    .panel {
+      margin-left: 15px;
+    }
+  }
+}

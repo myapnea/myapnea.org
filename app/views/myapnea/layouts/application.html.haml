@@ -6,25 +6,6 @@
     %title= yield(:title) + " " + PPRN_TITLE
     = render "layouts/before_scripts"
 
-
-  -#%body#MyApnea{screen_capture_injected: "true",  data: { email: "#{current_user.email if current_user}", fullname: "#{current_user.name if current_user}" } }
-  -#  .container{role: "main"}
-  -#
-  -#    = render "layouts/navigation/top_navigation_bar"
-  -#    = render "layouts/flash_messages"
-  -#
-  -#
-  -#    - if content_for(:sublayout)
-  -#      = yield :sublayout # the sublayouts must make their own call to yield
-  -#    - else
-  -#      = yield
-  -#
-  -#
-  -#    = render "layouts/footer"
-  -#    = render "layouts/after_scripts"
-
-
-
   %body#MyApnea{screen_capture_injected: "true",  data: { email: "#{current_user.email if current_user}", fullname: "#{current_user.name if current_user}" } }
     .container{role: "main"}
       .row.row-offcanvas.row-offcanvas-left.row-offcanvas-right
