@@ -62,7 +62,8 @@ Rails.application.routes.draw do
   match 'social/profile', to: 'social#profile', as: 'social_profile', via: :get #edit
   match 'social/profile', to: 'social#update_profile', as: 'update_social_profile', via: [:put, :post, :patch] # update
   match 'locations', via: :get, as: :locations, format: :json, to: 'social#locations'
-
+  get 'social/discussion', to: redirect("forums")
+  get 'forum', to: redirect("forums")
 
   # Blog Section
   get 'blog' => 'blog#blog'
@@ -111,7 +112,7 @@ Rails.application.routes.draw do
   # If you would like to change where this extension is mounted, simply change the :at option to something different.
   #
   # We ask that you don't use the :as option here, as Forem relies on it being the default of "forem"
-  mount Forem::Engine, :at => '/forum'
+  mount Forem::Engine, :at => '/forums'
 
 # # Authentication
 #   devise_for :user, skip: [:sessions, :passwords, :confirmations, :registrations]

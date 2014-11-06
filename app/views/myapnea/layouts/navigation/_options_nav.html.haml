@@ -20,9 +20,11 @@
             %i.fa.fa-wrench
             &nbsp; Admin Panel
       %li
-        = link_to "<i class='fa fa-sign-out'></i> Sign out".html_safe, main_app.destroy_user_session_path, :method => :delete
+        = link_to main_app.destroy_user_session_path, :method => :delete do
+          %i.fa.fa-sign-out
+          &nbsp; Sign out
 - else
   %li
     %a{:href => main_app.new_user_session_path}
       %i.fa.fa-sign-in
-      Sign In
+      &nbsp; Sign In

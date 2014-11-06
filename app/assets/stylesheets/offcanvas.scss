@@ -40,12 +40,14 @@ footer {
     position: absolute;
 //    left: 0px;
     font-size: $font-size-h1;
-//    padding: 5px 10px 5px 0;
     .fa {
 //      position: relative;
 //      left: -7px;
     }
+
+
   }
+
   a.active {
     color: $ma-dark-yellow;
     border-color: $ma-dark-yellow;
@@ -56,6 +58,7 @@ footer {
   right: 0;
 
   a {
+    padding: 0 25px;
     right: 0;
   }
 }
@@ -64,6 +67,8 @@ footer {
   left: 0;
 
   a {
+    padding: 0 11.5px;
+
     left: 0;
   }
 }

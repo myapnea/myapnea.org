@@ -28,5 +28,5 @@
 //= require admin
 //= require votes
 //= require surveys
-
+//= require forem/topics
 

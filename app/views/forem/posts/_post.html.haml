@@ -1,0 +1,60 @@
+%a{:name => "post-#{post.id}"}
+.well
+  .post{:id => "post_#{post_counter + 1}"}
+    - if post.pending_review?
+      .alert.alert-info.alert-dismissible{:role => "alert"}
+        %button.close{"data-dismiss" => "alert", :type => "button"}
+          %span{"aria-hidden" => "true"} &times;
+          %span.sr-only Close
+        = t(".pending_review")
+        - if forem_admin_or_moderator?(post.topic.forum)
+          - if local_assigns[:mass_moderation]
+            = render "/forem/posts/moderation_tools", :post => post
+          - else
+            = form_tag forem.forum_moderate_posts_path(post.topic.forum), :method => :put do
+              = render "/forem/posts/moderation_tools", :post => post
+    .contents.row
+      .user.col-md-1
+        - if post.user.is_a?(Forem::NilUser)
+          = image_tag 'default-user.jpg', class: "img-responsive img-thumbnail"
+        - else
+          = image_tag post.user.photo_url, class: "img-responsive img-thumbnail"
+      .contents.col-md-11
+        .row
+          .col-md-11
+            .post-heading
+              %small
+                %strong
+                  - if post.user.is_a?(Forem::NilUser)
+                    = t(:deleted)
+                  - else
+                    = link_to_if Forem.user_profile_links, post.user.forem_name, [main_app, post.user]
+                %span
+                  posted
+                  %a{:href => "#post-#{post.id}"}
+                    = post_time_tag(post)
+                  - if post.reply_to
+                    %span.in-reply-to
+                      = link_to "in reply to #{post.reply_to.user.forem_name}", "#post-#{post.reply_to.id}"
+          .col-md-1
+            .btn-group.btn-group-xs
+              %button.btn.btn-info.dropdown-toggle{type: "button", data: {toggle: "dropdown"}}
+                .fa.fa-cog
+                .fa.fa-caret-down
+              %ul.dropdown-menu{role: "menu"}
+                - if can?(:reply, post.topic)
+                  - if post.topic.can_be_replied_to?
+                    %li= link_to t('reply', :scope => 'forem.topic'), forem.new_forum_topic_post_path(post.forum, post.topic, :reply_to_id => post.id), :class => ""
+                    %li= link_to t('quote', :scope => 'forem.topic'), forem.new_forum_topic_post_path(post.forum, post.topic, :reply_to_id => post.id, :quote => true), :class => "text-success"
+                - if forem_user and post.owner_or_admin?(forem_user)
+                  - if can?(:edit_post, post.topic.forum)
+                    %li= link_to "Edit", forem.edit_forum_topic_post_path(post.forum, post.topic, post), :class => "text-info"
+                  - if can?(:destroy_post, post.topic.forum)
+                    %li= link_to t('delete', :scope => 'forem.topic'), forem.forum_topic_post_path(post.forum, post.topic, post), :method => :delete, data: { :confirm => t("are_you_sure") }, :class => "text-danger"
+
+        .post-content
+          - if post.user.is_a?(Forem::NilUser)
+            %span.text-muted= t(:deleted)
+          - else
+            = forem_format(post.text)
+        %p

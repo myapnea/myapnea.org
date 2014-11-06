@@ -8,14 +8,13 @@
 
       - if content_for(:sidenav)
         .offcanvas-toggle.visible-sm-block.visible-xs-block.left
-          %a{"data-toggle" => "offcanvas-left"}
+          %a.btn.btn-default{"data-toggle" => "offcanvas-left"}
             .fa.fa-bars
       %a.brand{href: main_app.root_path}
 
         #logo-top= image_tag "myapnea/myApneaLogoTop.png"
         #logo-bottom
           .text Improving sleep apnea through information, support, and research
-          =# image_tag "myapnea/myApneaLogoBottom.png"
 
       .pull-right
         %br/
@@ -24,25 +23,9 @@
         %ul.nav.nav-pills.small.visible-md-block.visible-lg-block
           = render partial: 'layouts/navigation/options_nav'
       .offcanvas-toggle.visible-sm-inline.visible-xs-inline.right
-        %a{"data-toggle" => "offcanvas-right"}
+        %a.btn.btn-default{"data-toggle" => "offcanvas-right"}
           .fa.fa-ellipsis-v
 
 %br/
 .visible-xs-block
   %br/
--#.row
--#  .col-md-12.pprn-nav
--#    %ul.nav.nav-pills.top-nav
--#      %li{:class => "#{"active" if @active_top_nav_link == :home}"}
--#        %a{href: main_app.root_path} Home
--#      %li{:class => "#{"active" if @active_top_nav_link == :research_topics}"}
--#        %a{href: main_app.research_topics_path} Research Topics
--#      %li{:class => "#{"active" if @active_top_nav_link == :health_data}"}
--#        %a{href: main_app.data_explore_path} Health Data
--#      %li{class: "#{"active" if @active_top_nav_link == :surveys}"}
--#        %a{href: main_app.surveys_path} Surveys
--#      - if PPRN == :my_apnea
--#        %li
--#          %a{href: forem.root_path, class: "#{"active" if controller_path =~ /forem/}"} Discussion
--#
--#
