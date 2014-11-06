@@ -1,6 +1,9 @@
 - @title = "MyApnea.Org"
 - @intro = false
 
+- content_for :sidenav do
+  = render partial: "layouts/navigation/main_nav"
+
 
 - content_for :sublayout do
   .row.mosaic-bg
@@ -19,43 +22,5 @@
             Your Contributions
           = yield :your_contributions
     .clearfix
-  = render partial: "layouts/sublayout_sidebar", locals: {nav: 'layouts/navigation/main_nav'}
 
 = render template: "layouts/application"
-
--#- content_for :sublayout do
--#
--#  -# MOSAIC AND TITLE
--#  .row
--#    .col-md-9
--#      <br/>
--#      .panel.panel-primary.display-inline-block
--#        .panel-heading
--#          %span.h1= @active_top_nav_link.to_s.titleize
--#
--#
--#
--#      -# COMMUNITY CONTRIBUTIONS PANEL
-
--#        <br/><br/>
--#      - else
--#        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
--#
--#      -#################
--#      -# PAGE CONTENT! #
--#      = yield
--#
--#
--#    -# YOUR CONTRIBUTIONS SIDEBAR
--#    .col-md-3
--#      = render partial: "shared/promotion_to_join" if !current_user
--#
--#      - if content_for(:your_contributions)
--#
--#        <br/><br/><br/><br/><br/>
--#
--#
--#
--#
--#= render template: "layouts/application"
--#

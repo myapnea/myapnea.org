@@ -68,11 +68,15 @@ $.rails.allowAction = (element) ->
   ).attr('target', '_blank')
 
   # Offcanvas
-  $("[data-toggle=\"offcanvas\"]").click ->
-    $(".row-offcanvas").toggleClass "active"
+  $("[data-toggle=\"offcanvas-left\"]").click ->
+    $(".row-offcanvas").toggleClass "active-left"
     $(".offcanvas-toggle a").toggleClass "active"
     return
 
+  $("[data-toggle=\"offcanvas-right\"]").click ->
+    $(".row-offcanvas").toggleClass "active-right"
+    $(".offcanvas-toggle a").toggleClass "active"
+    return
 
 
 @consentReady = () ->

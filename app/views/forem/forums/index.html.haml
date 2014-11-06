@@ -1,5 +1,7 @@
-#forums_container
+- content_for(:sidenav) do
+  = render partial: "layouts/navigation/main_nav"
 
+#forums_container
   %ol.breadcrumb
     %li Forums
     - if forem_admin?

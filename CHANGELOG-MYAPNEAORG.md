@@ -5,7 +5,8 @@
   - Cleaned up overall style.
   - Added community and personal contributions
   - Revamped forumns
-  
+  - Improved mobile navigation design
+
 
 ## 1.1.0 (October 17, 2014)
 - **Bug Fixes**

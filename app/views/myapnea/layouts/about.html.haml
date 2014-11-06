@@ -1,6 +1,6 @@
 - @title = "About"
 
-- content_for :sublayout do
-  = render partial: "layouts/sublayout_sidebar", locals: {nav: 'layouts/navigation/about_nav'}
+- content_for :sidenav do
+  = render partial: 'layouts/navigation/about_nav'
 
 = render template: "layouts/application"

@@ -6,6 +6,10 @@
         .yellow
         .blue
 
+      - if content_for(:sidenav)
+        .offcanvas-toggle.visible-sm-block.visible-xs-block.left
+          %a{"data-toggle" => "offcanvas-left"}
+            .fa.fa-bars
       %a.brand{href: main_app.root_path}
 
         #logo-top= image_tag "myapnea/myApneaLogoTop.png"
@@ -15,33 +19,11 @@
         %br/
 
 
-        %ul.nav.nav-pills.small
-          %li{class: ("active" if action_name == 'home')}= link_to "Home", main_app.root_path
-          %li{class: ("active" if controller_name == 'forums')}= link_to "Forum", forem.root_path
-          %li{class: ("active" if action_name == 'intro')}= link_to "About", main_app.intro_path
-          %li{class: ("active" if action_name == 'faqs')}= link_to "Help", main_app.faqs_path
-
-
-          - if current_user
-            %li.dropdown
-              %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
-                My Settings
-                %b.caret
-              %ul.dropdown-menu
-                %li
-                  %a{href: main_app.account_path}
-                    %i.fa.fa-user &nbsp; Account Settings
-                - if current_user.can?(:view_admin_dashboard)
-                  %li
-                    %a{href: main_app.admin_path, :title => "Admin Panel"}
-                      %i.fa.fa-wrench &nbsp; Admin Panel
-                %li
-                  = link_to "<i class='fa fa-sign-out'></i> Sign out".html_safe, main_app.destroy_user_session_path, :method => :delete
-          - else
-            %li
-              %a{:href => main_app.new_user_session_path}
-                %i.fa.fa-sign-in
-                  Sign In
+        %ul.nav.nav-pills.small.visible-md-block.visible-lg-block
+          = render partial: 'layouts/navigation/options_nav'
+      .offcanvas-toggle.visible-sm-inline.visible-xs-inline.right
+        %a{"data-toggle" => "offcanvas-right"}
+          .fa.fa-ellipsis-v
 
 %br/
 -#.row
