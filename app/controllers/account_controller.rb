@@ -4,6 +4,7 @@ class AccountController < ApplicationController
   # def view_consent
   #   @pc = YAML.load_file(Rails.root.join('lib', 'data', 'content', "consent.#{I18n.locale}.yml"))
   # end
+  layout 'account'
 
   def privacy_policy
     if params[:agreed_to_participate]
@@ -13,7 +14,7 @@ class AccountController < ApplicationController
       current_user.update_attribute(:accepted_consent_at, nil)
       redirect_to social_profile_path
     else
-
+      load_content
     end
   end
 
@@ -25,7 +26,7 @@ class AccountController < ApplicationController
       current_user.update_attribute(:accepted_consent_at, nil)
       redirect_to social_profile_path
     else
-
+      load_content
     end
   end
 
@@ -70,6 +71,10 @@ class AccountController < ApplicationController
   def user_params
     # NOTE: Using `strong_parameters` gem
     params.required(:user).permit(:email, :first_name, :last_name, :zip_code, :year_of_birth, :password, :password_confirmation, :current_password)
+  end
+
+  def load_content
+    @pc = YAML.load_file(Rails.root.join('lib', 'data', 'content', "#{action_name}.#{I18n.locale}.yml"))[I18n.locale.to_s][action_name.to_s]
   end
 
 end

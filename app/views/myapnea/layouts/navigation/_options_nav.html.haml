@@ -5,7 +5,7 @@
 
 
 - if current_user
-  %li.dropdown
+  %li.dropdown{class: ("active" if @active_top_nav_link == 'my_settings')}
     %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
       My Settings
       %b.caret
