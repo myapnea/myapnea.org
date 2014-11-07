@@ -6,10 +6,9 @@
   %a.list-group-item{href: main_app.research_topics_path, class: "#{"active" if action_name == "research_topics"}"} Research Topics
   %a.list-group-item{href: main_app.social_path, class: "#{"active" if action_name == "overview"}"} Our Community
 
-.hidden-sm.hidden-xs
-  %h4
-    = link_to "In The News", main_app.blog_path
-  = render partial: "shared/blog_posts", locals: { blog_posts: (@blog_posts.present? ? @blog_posts : Post.blog_posts.viewable), new_blog_post: @new_post, short: true }
+  %a.list-group-item.hidden-sm.hidden-xs{href: main_app.blog_path}
+    .list-group-item-heading In The News
+= render partial: "shared/blog_posts", locals: { blog_posts: (@blog_posts.present? ? @blog_posts : Post.blog_posts.viewable), new_blog_post: @new_post, short: true }
 
 %h4 Coming Soon!
 .list-group

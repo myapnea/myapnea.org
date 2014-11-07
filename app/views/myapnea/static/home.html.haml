@@ -3,7 +3,7 @@
     .col-md-12
       .panel.panel-success#surveys
         .panel-heading
-          Surveys
+          Surveys - Participate in Research
         .list-group
           - if current_user.nil? or current_user.has_no_started_surveys?
             - if QuestionFlow.viewable.present?
@@ -45,7 +45,7 @@
     .col-md-12
       .panel.panel-primary
         .panel-heading
-          Forums
+          Forums - Share with the Community
         .list-group
           - Forem::Forum.all.each do |forum|
             .list-group-item
@@ -76,8 +76,13 @@
     .col-md-7
       .panel.panel-default
         .panel-heading
-          Research Topics
+          Top-rated Research Questions
         = render partial: "research_topics/research_topics", locals: {research_topics: ResearchTopic.popular.take(5), editable: false, disabled: true}
+        .list-group
+          %a.list-group-item.text-right{href: research_topics_path}
+            View and vote on all submitted questions and pose your own
+            &nbsp;
+            .fa.fa-arrow-right
 
   .row
     .col-md-12
