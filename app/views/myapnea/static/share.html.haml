@@ -19,11 +19,17 @@
 
     %h2= @pc['getting_started_title']
     .instructions
-      - @pc['getting_started_steps'].each do |step|
-        %h3
-          = image_tag 'myapnea/icons/myapnea-logo-transparent.png', size: '28x28', style: 'vertical-align: text-bottom'
-          = step['step_title']
-        %p= markdown step['step_description']
+      %h3
+        = image_tag 'myapnea/icons/myapnea-logo-transparent.png', size: '28x28', style: 'vertical-align: text-bottom'
+        = link_to "Visit the forums", forem.root_path
+      %h3
+        = image_tag 'myapnea/icons/myapnea-logo-transparent.png', size: '28x28', style: 'vertical-align: text-bottom'
+        = link_to "Submit and vote on research questions", main_app.research_topics_path
+      %h3
+        = image_tag 'myapnea/icons/myapnea-logo-transparent.png', size: '28x28', style: 'vertical-align: text-bottom'
+        Join MyApnea.Org on social media
+      %p Follow and interact with the MyApnea.Org community on social media by following the MyApnea.Org Twitter page, Facebook page, and YouTube page. Just click on the icons below.
+
   -#.col-md-4
   -#  .fb-like-box{"data-colorscheme" => "light", "data-header" => "false", "data-href" => "https://www.facebook.com/sleepapneaassn", "data-show-border" => "false", "data-show-faces" => "false", "data-stream" => "true", "data-height" => "750"}
   .clearfix
