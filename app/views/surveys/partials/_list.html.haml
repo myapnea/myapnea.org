@@ -11,6 +11,6 @@
       %tr
         %td= qf.name
         %td= qf.total_questions
-        %td= qf.total_time
+        %td= "%.2f" % qf.total_time
         %td= qf.answer_sessions.count
         %td= qf.answer_sessions.select{|as| as.completed?}.length

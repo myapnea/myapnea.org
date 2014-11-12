@@ -1,16 +1,24 @@
 
-%h3 Surveys
-
 .panel.panel-default
   .panel-heading
-    %h3.panel-title Questions
-  .panel-body
-    = render partial: "questions/list"
-    = link_to "+ Add New Question"
-
-.panel.panel-default
-  .panel-heading
-    %h3.panel-title Surveys
+    .row
+      .col-md-3
+        %h3 Surveys
+      .col-md-9
+        .row
+          .col-md-10
+            .pull-right
+              %strong Total MyApnea.Org users:
+          .col-md-2
+            .text-info= User.all.count
+          .clearfix
+        .row
+          .col-md-10
+            .pull-right
+              %strong Users with signed consent:
+          .col-md-2
+            .text-info= User.where("accepted_consent_at is not null").count
+          .clearfix
   .panel-body
     = render partial: "surveys/partials/list"
-    = link_to "+ Create New Survey"
+    = # link_to "+ Create New Survey"
