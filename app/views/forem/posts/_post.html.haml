@@ -38,14 +38,12 @@
                       = link_to "in reply to #{post.reply_to.user.forem_name}", "#post-#{post.reply_to.id}"
           .col-md-1
             .btn-group.btn-group-xs
-              %button.btn.btn-info.dropdown-toggle{type: "button", data: {toggle: "dropdown"}}
+              %button.btn.btn-primary.dropdown-toggle{type: "button", data: {toggle: "dropdown"}}
                 .fa.fa-cog
                 .fa.fa-caret-down
               %ul.dropdown-menu{role: "menu"}
-                - if can?(:reply, post.topic)
-                  - if post.topic.can_be_replied_to?
-                    %li= link_to t('reply', :scope => 'forem.topic'), forem.new_forum_topic_post_path(post.forum, post.topic, :reply_to_id => post.id), :class => ""
-                    %li= link_to t('quote', :scope => 'forem.topic'), forem.new_forum_topic_post_path(post.forum, post.topic, :reply_to_id => post.id, :quote => true), :class => "text-success"
+                %li= link_to t('reply', :scope => 'forem.topic'), forem.new_forum_topic_post_path(post.forum, post.topic, :reply_to_id => post.id), :class => ""
+                %li= link_to t('quote', :scope => 'forem.topic'), forem.new_forum_topic_post_path(post.forum, post.topic, :reply_to_id => post.id, :quote => true), :class => "text-success"
                 - if forem_user and post.owner_or_admin?(forem_user)
                   - if can?(:edit_post, post.topic.forum)
                     %li= link_to "Edit", forem.edit_forum_topic_post_path(post.forum, post.topic, post), :class => "text-info"

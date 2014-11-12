@@ -4,10 +4,11 @@ Rails.application.routes.draw do
 
   # Static Pages
   root 'static#home'
-  get 'intro' => 'static#intro'
+  get 'about' => 'static#intro', as: :intro
   get 'external_link_warning' => 'static#external_link_warning'
   get 'theme' => 'static#theme'
   get 'version' => 'static#version'
+  get 'home' => 'static#home'
   #Content Pages
   match 'content/:page', to: 'static#content', as: :content, via: :get
   #get 'content/' => 'static#content'
@@ -66,7 +67,7 @@ Rails.application.routes.draw do
   get 'forum', to: redirect("forums")
 
   # Blog Section
-  get 'blog' => 'blog#blog'
+  get 'in_the_news' => 'blog#blog', as: :blog
   get 'blog_findings' => 'blog#blog_findings'
 
 
@@ -101,6 +102,7 @@ Rails.application.routes.draw do
   # Voting on Questions
   resources :questions
   match 'vote', to: 'votes#vote', via: :post, as: :vote
+  match 'vote', to: 'research_topics#index', via: :get, as: :vote_fake
 
   # Blog and Notification Posts
   resources :posts, except: [:show, :index]

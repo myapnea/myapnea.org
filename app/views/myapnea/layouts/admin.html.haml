@@ -1,0 +1,26 @@
+- @title = "MyApnea.Org Administration"
+- @intro = false
+- @active_top_nav_link = "admin_panel"
+
+- content_for :sidenav do
+  = render partial: "layouts/navigation/admin_nav"
+
+
+- content_for :sublayout do
+  .row.mosaic-bg
+    %br
+    .col-md-8
+      .panel.panel-primary.display-inline-block
+        .panel-heading
+          %span.h1= @active_top_nav_link.to_s.titleize
+      - if content_for(:community_contributions)
+        = yield :community_contributions
+    .col-md-4
+      - if content_for(:your_contributions)
+        .panel.panel-primary
+          .panel-heading
+            Your Contributions
+          = yield :your_contributions
+    .clearfix
+
+= render template: "layouts/application"

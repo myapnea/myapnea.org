@@ -2,8 +2,10 @@ class BlogController < ApplicationController
   before_action :authenticate_user!, :only => [:new] #add authentication here where needed
   before_action :set_active_top_nav_link_to_blog
 
+  layout 'main'
 
   def blog
+    @active_top_nav_link = "blog"
     @posts = Post.blog_posts.viewable
     @new_post = Post.new(post_type: "blog")
   end

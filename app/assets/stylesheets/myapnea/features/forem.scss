@@ -1,4 +1,8 @@
 #forums_container {
+  .list-group-item {
+    border-color: $ma-lighter-blue;
+  }
+
   .list-group-heading {
 
     line-height: 35px;
@@ -13,6 +17,7 @@
   hr {
     margin-top: 0px;
     margin-bottom: 0px;
+    border-color: $ma-lightest-blue;
   }
 
   a.topic-link {
@@ -48,8 +53,8 @@ table.topics tr {
 
 #posts {
   .well {
-    background: $ma-white-yellow;
-    border: $ma-light-yellow;
+    background: transparent;
+    border: $ma-lighter-blue 1px solid;
     padding: 15px;
     margin-bottom: 10px;
   }

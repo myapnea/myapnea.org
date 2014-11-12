@@ -1,0 +1,19 @@
+.panel.panel-primary {
+  .panel-heading {
+    a {
+      color: $ma-dark-yellow;
+      text-decoration: none;
+
+      :hover {
+        text-decoration: underline;
+      }
+
+
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      color: white;
+    }
+
+  }
+}

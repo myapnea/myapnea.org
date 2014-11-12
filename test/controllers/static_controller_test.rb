@@ -3,7 +3,7 @@ require 'test_helper.rb'
 class StaticControllerTest < ActionController::TestCase
 
   test "should get about" do
-    get :about
+    get :intro
     assert_response :success
   end
 

@@ -1,0 +1,97 @@
+- @title = "Account"
+
+%h3 Account Settings
+%br/
+
+.row
+  .col-md-6
+    .panel.panel-default
+      .panel-heading
+        %h4.panel-title User Information
+      .panel-body
+        - if @user.errors.any? and @update_for == :user_info
+          = render partial: "shared/form_errors", locals: {resource: @user, message: "Your account settings could not be saved."}
+        = form_for @user, url: update_account_path do |f|
+          .form-group
+            = f.label :first_name, class: 'sr-only'
+            = f.text_field :first_name, class: 'form-control input-lg', placeholder: User.human_attribute_name(:first_name), autocomplete: :off
+          .form-group
+            = f.label :last_name, class: 'sr-only'
+            = f.text_field :last_name, class: 'form-control input-lg', placeholder: User.human_attribute_name(:last_name), autocomplete: :off
+          .form-group
+            = f.label :email, class: 'sr-only'
+            = f.email_field :email, class: 'form-control input-lg', placeholder: User.human_attribute_name(:email), autocomplete: :off
+          .form-group
+            = f.label :zip_code, class: 'sr-only'
+            = f.text_field :zip_code, class: 'form-control input-lg', placeholder: User.human_attribute_name(:zip_code), autocomplete: :off
+          .form-group
+            = f.label :year_of_birth, class: 'sr-only'
+            = f.text_field :year_of_birth, class: 'form-control input-lg', placeholder: User.human_attribute_name(:year_of_birth), autocomplete: :off
+          = f.submit "Save Changes", class: 'btn btn-primary pull-right'
+    .panel.panel-default
+      .panel-heading
+        %h4.panel-title Password
+      .panel-body
+        - if @user.errors.any? and @update_for == :password
+          = render partial: "shared/form_errors", locals: {resource: @user, message: "Your new password could not be saved."}
+        = form_for @user, url: change_password_path do |f|
+          .form-group
+            = f.label :current_password, class: "sr-only"
+            = f.password_field :current_password, class: 'form-control input-lg', placeholder: 'Current Password'
+          .form-group
+            = f.label :password, class: 'sr-only'
+            = f.password_field :password, class: 'form-control input-lg', placeholder: "New Password"
+          = f.submit "Change my password", class: 'btn btn-warning pull-right'
+
+
+
+  .col-md-6
+    .panel.panel-default
+      .panel-heading
+        %h4.panel-title Member Stats
+      %table.table
+        %tr
+          %td Member Since
+          %td= current_user.created_at.strftime("%b %e, %Y")
+        %tr
+          %td Member Number
+          %td= "##{current_user.id}"
+    .panel.panel-default
+      .panel-heading
+        %h4.panel-title Notification Preferences
+      .panel-body
+        %form.form-horizontal{role: "form"}
+          .radio
+            %label
+              %input#optionsRadios1{checked: "checked", name: "optionsRadios", type: "radio", value: "option1"}/
+              Email Me
+          .radio
+            %label
+              %input#optionsRadios2{name: "optionsRadios", type: "radio", value: "option2"}/
+              Don't Email Me
+
+
+
+    .panel.panel-default
+      .panel-heading
+        %h4.panel-title Language
+      .panel-body
+        %form.form-horizontal{:role => "form"}
+          .form-group
+            / %label.control-label.col-md-6{for: "inputPassword3"}
+            /   %i.fa.fa-globe &nbsp; Language:
+            .col-md-6
+              %select.form-control
+                %option
+                  %i.fa.fa-globe
+                  English
+                %option Spanish
+
+    .panel.panel-default
+      .panel-heading
+        %h4.panel-title Account Settings
+      .panel-body
+        %h3 Leave Research Study
+        %p.small= "You may choose to leave the research study at any time. We will no longer collect any information from you and we will stop all communication. However, as stated in the informed consent, the information that you have already provided to #{PPRN_TITLE} will remain within the study results."
+        = link_to 'View Consent', consent_path, class: 'btn btn-info btn-block'
+        = link_to 'Leave Research Study', consent_path(consent_revoked: true), method: :post, class: 'btn btn-warning btn-block'
