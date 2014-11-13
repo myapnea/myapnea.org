@@ -6,6 +6,7 @@
   - Added community and personal contributions
   - Revamped forumns
   - Improved mobile navigation design
+  - Added new landing page based of introduction page
 
 
 ## 1.1.0 (October 17, 2014)
