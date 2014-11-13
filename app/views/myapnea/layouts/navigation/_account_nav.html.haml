@@ -1,5 +1,9 @@
 
 .list-group
+  %a.list-group-item{href: main_app.root_path, class: "#{"active" if action_name == "home"}"}
+    .fa.fa-home
+    &nbsp;
+    Home
   %a.list-group-item{href: account_path, class: "#{"active" if action_name == "account"}"} My Account Settings
   %a.list-group-item{href: social_profile_path, class: "#{"active" if action_name == "profile"}"} My Social Profile
   %a.list-group-item{href: consent_path, class: "#{"active" if action_name == "consent"}"} Research Consent

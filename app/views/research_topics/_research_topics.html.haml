@@ -4,7 +4,7 @@
       .row
         .col-md-1.col-sm-2
           %h2
-            = link_to vote_path, data: {research_topic_id: research_topic.id, submit_path: vote_path, research_topic_path: research_topic_path(research_topic) }, class: "voting #{'disabled' if disabled}" do
+            = link_to vote_path, data: {research_topic_id: research_topic.id, submit_path: vote_path, research_topic_path: research_topic_path(research_topic) }, class: "#{disabled ? 'disabled' : 'voting'}" do
               %i.fa.research-star{class: checkbox_class(research_topic)}
         .col-md-1.col-sm-2
           %h2.text-center.rating= research_topic.rating

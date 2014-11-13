@@ -1,4 +1,7 @@
-%li{class: ("active" if action_name == 'home')}= link_to "Home", main_app.root_path
+%li{class: ("active" if action_name == 'home')}
+  = link_to main_app.root_path do
+    .fa.fa-home
+    Home
 %li{class: ("active" if controller_name == 'forums')}= link_to "Forum", forem.root_path
 %li{class: ("active" if action_name == 'intro')}= link_to "About", main_app.intro_path
 %li{class: ("active" if action_name == 'faqs')}= link_to "Help", main_app.faqs_path

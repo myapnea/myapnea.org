@@ -1,5 +1,8 @@
 .list-group
-  %a.list-group-item{href: main_app.root_path, class: "#{"active" if action_name == "home"}"} Home
+  %a.list-group-item{href: main_app.root_path, class: "#{"active" if action_name == "home"}"}
+    .fa.fa-home
+    &nbsp;
+    Home
   %a.list-group-item{href: forem.root_path, class: "#{"active" if controller_path =~ /forem/}"} Forums
   %a.list-group-item{href: main_app.surveys_path, class: "#{"active" if action_name == "research_surveys"}" } Surveys
   %a.list-group-item{href: main_app.blog_path, class: "#{"active" if action_name == "blog"}"} In The News

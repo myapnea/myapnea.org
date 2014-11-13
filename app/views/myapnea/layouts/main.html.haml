@@ -12,10 +12,10 @@
       .panel.panel-primary.display-inline-block
         .panel-heading
           %span.h1= @active_top_nav_link.to_s.titleize
-      - if content_for(:community_contributions)
-        = yield :community_contributions
+      - if false # content_for(:community_contributions)
+        = yield :community_contributions1
     .col-md-4
-      - if content_for(:your_contributions)
+      - if false #content_for(:your_contributions)
         .panel.panel-primary
           .panel-heading
             Your Contributions

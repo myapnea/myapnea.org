@@ -64,6 +64,9 @@ $(document).on "click", ".research_topics a.voting", (event) ->
 
   )
 
+$(document).on "click", ".research_topics a.disabled", (event) ->
+  event.preventDefault()
+
 
 $(document).on "show.bs.tab", 'a[data-toggle="tab"]', (event) ->
 
