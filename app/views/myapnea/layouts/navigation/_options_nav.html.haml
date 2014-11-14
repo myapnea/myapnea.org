@@ -8,11 +8,6 @@
 
 
 - if current_user
-  - if current_user.can?(:view_admin_dashboard)
-    %li
-      %a{href: main_app.admin_path, :title => "Admin Panel"}
-        %i.fa.fa-wrench
-        &nbsp; Admin Panel
   %li.dropdown{class: ("active" if @active_top_nav_link == 'my_settings')}
     %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
       My Settings
@@ -22,6 +17,11 @@
         %a{href: main_app.account_path}
           %i.fa.fa-user
           &nbsp; Account Settings
+      - if current_user.can?(:view_admin_dashboard)
+        %li
+          %a{href: main_app.admin_path, :title => "Admin Panel"}
+            %i.fa.fa-wrench
+            &nbsp; Admin Panel
       %li
         = link_to main_app.destroy_user_session_path, :method => :delete do
           %i.fa.fa-sign-out
