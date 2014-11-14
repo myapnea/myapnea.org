@@ -20,6 +20,7 @@
 //= require d3.min
 //= require bootbox.min
 //= require typeahead
+//= require uservoice
 //= require bloodhound
 //= require bootstrap-tagsinput
 //= require placeholders.jquery.min

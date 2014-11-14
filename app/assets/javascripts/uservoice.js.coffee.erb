@@ -5,7 +5,7 @@ UserVoice = window.UserVoice or []
   uv = document.createElement("script")
   uv.type = "text/javascript"
   uv.async = true
-  uv.src = "//widget.uservoice.com/<%= "Enter uservoice ID here (from config)" %>.js"
+  uv.src = "//widget.uservoice.com/<%= USERVOICE_ID %>.js"
   s = document.getElementsByTagName("script")[0]
   s.parentNode.insertBefore uv, s
   return
@@ -23,6 +23,10 @@ UserVoice.push [
     accent_color: "#e2753a"
     trigger_color: "white"
     trigger_background_color: "#6aba2e"
+    menu_enabled: false
+    permalinks_enabled: false
+    post_idea_enabled: false
+    smartvote_enabled: false
   }
 ]
 
@@ -73,4 +77,4 @@ $(document).on "click", ".u-voice", ->
 
 
 # Autoprompt for Satisfaction and SmartVote (only displayed under certain conditions)
-UserVoice.push ["autoprompt", {}]
+#UserVoice.push ["autoprompt", {}]
