@@ -1,7 +1,5 @@
 
 data_sources:
-  "GI Buddy":
-    - :GI_symptoms
   "Fitbit":
     - :steps
     - :walking
@@ -20,8 +18,6 @@ data_sources:
     - :walking
     - :running
     - :cycling
-  "Crohnology":
-    - :GI_symptoms
   "JawBone Up":
     - :steps
   "Body Media":
@@ -43,6 +39,12 @@ data_sources:
     - :heart_rate
     - :weight
     - :body_fat
+  "CPAP Adherence":
+    - :sleep
+  "iHealth":
+    - :sleep
+  "Sleep Tracking":
+    - :sleep
 data_source_types:
   - :steps
   - :walking

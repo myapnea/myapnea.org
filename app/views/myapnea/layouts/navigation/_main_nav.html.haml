@@ -12,12 +12,11 @@
 
 = render partial: "shared/blog_posts", locals: { blog_posts: (@blog_posts.present? ? @blog_posts : Post.blog_posts.viewable), new_blog_post: @new_post, short: true }
 
-- if false
-  %h4 Coming Soon!
-  .list-group
-    %a.list-group-item{href: main_app.research_today_path, class: "#{"active" if action_name == "research_today"}"}
-      Daily Trends
-    %a.list-group-item{href: main_app.data_connections_path, class: "#{"active" if action_name == "data_connections"}"} My Data Connections
-    %a.list-group-item{href: main_app.data_explore_path, class: "#{"active" if action_name == "explore"}"} My Health Data
-    / %a.list-group-item{href: main_app.data_reports_path, class: "#{"active" if action_name == "reports"}"} My Reports
-    / %a.list-group-item{href: main_app.data_medications_path, class: "#{"active" if action_name == "medications"}"} My Medications
+%h4 Coming Soon!
+.list-group
+  %a.list-group-item{href: main_app.research_today_path, class: "#{"active" if action_name == "research_today"}"}
+    Daily Trends
+  %a.list-group-item{href: main_app.data_connections_path, class: "#{"active" if action_name == "data_connections"}"} My Data Connections
+  %a.list-group-item.disabled{href: '#', class: "#{"active" if action_name == "explore"}"} My Health Data
+  / %a.list-group-item{href: main_app.data_reports_path, class: "#{"active" if action_name == "reports"}"} My Reports
+  / %a.list-group-item{href: main_app.data_medications_path, class: "#{"active" if action_name == "medications"}"} My Medications
