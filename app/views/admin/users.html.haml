@@ -6,7 +6,7 @@
     .btn-toolbar{role: "toolbar"}
       %form#user-search.form-inline{ role: 'form', action: admin_users_path, :style => "display: inline;" }
 
-        .col-sm-5
+        .col-sm-6
           .btn-group.btn-group-sm{data: {toggle: 'buttons'}}
             %label.btn.btn-default
               %input{type: 'radio', name: 'search_role', value: ''} All Users
@@ -16,7 +16,7 @@
               %input{type: 'radio', name: 'search_role', value: 'owner'} Owners
             %label.btn.btn-default
               %input{type: 'radio', name: 'search_role', value: 'moderator'} Moderators
-        .col-sm-7
+        .col-sm-4
           .btn-group
             %input#auth-token{name: 'authenticity_token', type: "hidden", value: form_authenticity_token}
             %label.control-label.sr-only Limit by user email
@@ -24,6 +24,9 @@
               %input.form-control{type: 'search', placeholder: 'Search by Email', name: 'search', value: params[:search]}
               %span.input-group-btn
                 %button.btn.btn-default{type: "submit", value: ""} Search
+        .col-sm-2
+          %span.label.label-primary
+            = pluralize @users.count, 'User'
 
 
 
