@@ -22,7 +22,7 @@
 
       if user_location
         new google.maps.Marker({
-          icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
+          icon: '//maps.google.com/mapfiles/ms/icons/blue-dot.png'
           position: new google.maps.LatLng(user_location.latitude, user_location.longitude)
           map: document.map
           title: user_location.title
@@ -30,7 +30,7 @@
 
       $.each(data.all_locations, (key, latlng) ->
         new google.maps.Marker({
-          icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
+          icon: '//maps.google.com/mapfiles/ms/icons/red-dot.png'
           position: new google.maps.LatLng(latlng.latitude, latlng.longitude),
           map: document.map
         })
