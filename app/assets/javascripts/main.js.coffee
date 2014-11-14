@@ -94,6 +94,8 @@ $.rails.allowAction = (element) ->
   mainLoader()
   consentReady()
   surveysReady()
+  fbReady()
+
 
 
 $(document).ready(loaders)

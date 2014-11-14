@@ -3,7 +3,7 @@
   = forem_pages_widget(@topics)
   .panel.panel-default
     .panel-heading
-      %h4.pull-left Conversations in this forum
+      %h4.pull-left Discussion in this forum:
       #forum_topic_links.btn-group.pull-right.btn-group-sm
         - if can? :moderate, @forum
           = link_to t('forem.forum.moderator_tools'), forem.forum_moderator_tools_path(@forum), :class => "btn btn-danger"
@@ -12,7 +12,7 @@
       %thead
         %tr
           %th.icon
-          %th.byline Topic
+          %th.byline Discussion Topic
           %th.latest-post.text-center= t('forem.topic.headings.latest')
           %th.posts-count.text-center= t('forem.topic.headings.posts')
           %th.views-count.text-center= t('forem.topic.headings.views')

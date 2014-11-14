@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
   def forem_user
     current_user
   end
+
   helper_method :forem_user
 
   # Prevent CSRF attacks by raising an exception.
@@ -49,6 +50,10 @@ class ApplicationController < ActionController::Base
 
   def no_layout
     render layout: false
+  end
+
+  def facebook_access_token
+
   end
 
 end

@@ -7,6 +7,8 @@ class SocialController < ApplicationController
   def profile
     @social_profile = current_user.social_profile || current_user.create_social_profile
 
+    session[:return_to] = request.referer if session.delete :return
+
     render layout: "account"
   end
 
@@ -14,8 +16,8 @@ class SocialController < ApplicationController
     @social_profile = current_user.social_profile
 
     if @social_profile.update(social_profile_params)
-      flash[:notice] = "Updated Successfully!"
-      redirect_to social_profile_path
+      flash[:notice] = "Social profile successfully saved!"
+      redirect_to(session[:return_to] ? session.delete(:return_to) : social_profile_path)
     else
       render :profile
     end
