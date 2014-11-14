@@ -46,6 +46,7 @@ class SocialController < ApplicationController
         :latitude,
         :longitude,
         :location_id,
+        :make_public,
         :age,
         :sex,
         :photo,

@@ -23,13 +23,21 @@ class ApplicationController < ActionController::Base
   # Send 'em back where they came from with a slap on the wrist
   def authority_forbidden(error)
     Authority.logger.warn(error.message)
-    redirect_to request.referrer.presence || root_path, :alert => "Sorry! You attempted to visit a page you do not have access to. If you believe this message to be unjustified, please contact us at <#{PPRN_SUPPORT_EMAIL}>."
+
+    if error.action == 'research'
+      session[:return_to] = request.referrer.presence
+      redirect_to consent_path, alert: "In order to participate in research, read and accept the consent and privacy policy."
+    elsif error.resource.to_s == "ResearchTopic" and error.action == 'create'
+      session[:return_to] = request.referrer.presence
+      redirect_to social_profile_path, alert: "In order to create your own research questions, please create a social profile below."
+    else
+      redirect_to request.referrer.presence || root_path, :alert => "Sorry! You attempted to visit a page you do not have access to. If you believe this message to be unjustified, please contact us at [support@myapnea.org]."
+    end
   end
 
 
-
   def set_active_top_nav_link_to_research
-    @active_top_nav_link = :research_topics
+    @active_top_nav_link = :research_questions
   end
 
   def set_active_top_nav_link_to_health_data
@@ -54,6 +62,10 @@ class ApplicationController < ActionController::Base
 
   def facebook_access_token
 
+  end
+
+  def authenticate_research
+    raise Authority::SecurityViolation.new(current_user, 'research', action_name) unless current_user.can?(:participate_in_research)
   end
 
 end

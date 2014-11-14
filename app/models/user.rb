@@ -45,7 +45,7 @@ class User < ActiveRecord::Base
   end
 
   def photo_url
-    if social_profile and social_profile.photo.present?
+    if social_profile and social_profile.photo.present? and social_profile.make_public?
       social_profile.photo.url
     else
       "//www.gravatar.com/avatar/#{Digest::MD5.hexdigest(email.to_s)}?d=identicon"
@@ -53,7 +53,7 @@ class User < ActiveRecord::Base
   end
 
   def forem_name
-    if social_profile and social_profile.name.present?
+    if social_profile and social_profile.name.present? and social_profile.make_public?
       social_profile.name
     else
       "Anonymous User"
@@ -62,6 +62,11 @@ class User < ActiveRecord::Base
 
   def to_s
     email
+  end
+
+  def revoke_consent
+    update_attribute :accepted_consent_at, nil
+    update_attribute :accepted_privacy_policy_at, nil
   end
 
   def created_social_profile?
@@ -73,6 +78,19 @@ class User < ActiveRecord::Base
     self.accepted_consent_at.present?
     # OODT Consent Storage
     #self.oodt_status
+  end
+
+  def accepted_privacy_policy?
+    self.accepted_privacy_policy_at.present?
+
+  end
+
+  def accepted_terms_conditions?
+    self.accepted_terms_conditions_at.present?
+  end
+
+  def ready_for_research?
+    accepted_privacy_policy? and signed_consent?
   end
 
   def forem_admin?

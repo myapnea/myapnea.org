@@ -1,14 +1,11 @@
 class ResearchTopicAuthorizer < ApplicationAuthorizer
-  # def self.creatable_by?(user)
-  #   user.can?(:participate_in_social)
-  # end
-  # openpprn divergence
+   def self.creatable_by?(user)
+     user.can?(:participate_in_social)
+  end
 
   def moderatable_by?(user)
     user.has_role? :moderator
   end
-
-
 
   def self.updatable_by?(user)
     user.has_role? :moderator

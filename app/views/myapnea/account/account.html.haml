@@ -56,36 +56,36 @@
         %tr
           %td Member Number
           %td= "##{current_user.id}"
-    .panel.panel-default
-      .panel-heading
-        %h4.panel-title Notification Preferences
-      .panel-body
-        %form.form-horizontal{role: "form"}
-          .radio
-            %label
-              %input#optionsRadios1{checked: "checked", name: "optionsRadios", type: "radio", value: "option1"}/
-              Email Me
-          .radio
-            %label
-              %input#optionsRadios2{name: "optionsRadios", type: "radio", value: "option2"}/
-              Don't Email Me
+    -#.panel.panel-default
+    -#  .panel-heading
+    -#    %h4.panel-title Notification Preferences
+    -#  .panel-body
+    -#    %form.form-horizontal{role: "form"}
+    -#      .radio
+    -#        %label
+    -#          %input#optionsRadios1{checked: "checked", name: "optionsRadios", type: "radio", value: "option1"}/
+    -#          Email Me
+    -#      .radio
+    -#        %label
+    -#          %input#optionsRadios2{name: "optionsRadios", type: "radio", value: "option2"}/
+    -#          Don't Email Me
+    -#
 
 
-
-    .panel.panel-default
-      .panel-heading
-        %h4.panel-title Language
-      .panel-body
-        %form.form-horizontal{:role => "form"}
-          .form-group
-            / %label.control-label.col-md-6{for: "inputPassword3"}
-            /   %i.fa.fa-globe &nbsp; Language:
-            .col-md-6
-              %select.form-control
-                %option
-                  %i.fa.fa-globe
-                  English
-                %option Spanish
+    -#.panel.panel-default
+    -#  .panel-heading
+    -#    %h4.panel-title Language
+    -#  .panel-body
+    -#    %form.form-horizontal{:role => "form"}
+    -#      .form-group
+    -#        / %label.control-label.col-md-6{for: "inputPassword3"}
+    -#        /   %i.fa.fa-globe &nbsp; Language:
+    -#        .col-md-6
+    -#          %select.form-control
+    -#            %option
+    -#              %i.fa.fa-globe
+    -#              English
+    -#            %option Spanish
 
     .panel.panel-default
       .panel-heading
@@ -94,4 +94,5 @@
         %h3 Leave Research Study
         %p.small= "You may choose to leave the research study at any time. We will no longer collect any information from you and we will stop all communication. However, as stated in the informed consent, the information that you have already provided to #{PPRN_TITLE} will remain within the study results."
         = link_to 'View Consent', consent_path, class: 'btn btn-info btn-block'
-        = link_to 'Leave Research Study', consent_path(consent_revoked: true), method: :post, class: 'btn btn-warning btn-block'
+        = link_to "View Privacy Policy", privacy_path, class: 'btn btn-info btn-block'
+        = link_to 'Leave Research Study', consent_path(declined_to_participate: true), method: :post, class: 'btn btn-warning btn-block'

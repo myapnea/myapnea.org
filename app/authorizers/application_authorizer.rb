@@ -19,7 +19,7 @@ class ApplicationAuthorizer < Authority::Authorizer
   end
 
   def self.authorizes_to_participate_in_research?(user, options={})
-    user.signed_consent?
+    user.ready_for_research?
   end
 
   def self.authorizes_to_participate_in_social?(user, options={})
