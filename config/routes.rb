@@ -83,7 +83,7 @@ Rails.application.routes.draw do
   match 'change_password', to: 'account#change_password', as: 'change_password', via: :patch
 
   # Admin Section
-  get 'admin' => 'admin#notifications'
+  get 'admin' => 'admin#users'
   match 'admin/users', to: 'admin#users', as: 'admin_users', via: [:get, :post]
   get 'admin/surveys' => 'admin#surveys', as: 'admin_surveys'
   get 'admin/blog' => 'admin#blog', as: 'admin_blog'
