@@ -5,17 +5,19 @@
     Home
   %a.list-group-item{href: forem.root_path, class: "#{"active" if controller_path =~ /forem/}"} Forums
   %a.list-group-item{href: main_app.surveys_path, class: "#{"active" if action_name == "research_surveys"}" } Surveys
-  %a.list-group-item{href: main_app.blog_path, class: "#{"active" if action_name == "blog"}"} In The News
+  - if false
+    %a.list-group-item{href: main_app.blog_path, class: "#{"active" if action_name == "blog"}"} In The News
   %a.list-group-item{href: main_app.research_topics_path, class: "#{"active" if controller_path =~ /research_topics/}"} Research Questions
   %a.list-group-item{href: main_app.social_path, class: "#{"active" if action_name == "overview"}"} Our Community
 
 = render partial: "shared/blog_posts", locals: { blog_posts: (@blog_posts.present? ? @blog_posts : Post.blog_posts.viewable), new_blog_post: @new_post, short: true }
 
-%h4 Coming Soon!
-.list-group
-  %a.list-group-item{href: main_app.research_today_path, class: "#{"active" if action_name == "research_today"}"}
-    Daily Trends
-  %a.list-group-item{href: main_app.data_connections_path, class: "#{"active" if action_name == "data_connections"}"} My Data Connections
-  %a.list-group-item{href: main_app.data_explore_path, class: "#{"active" if action_name == "explore"}"} My Health Data
-  / %a.list-group-item{href: main_app.data_reports_path, class: "#{"active" if action_name == "reports"}"} My Reports
-  / %a.list-group-item{href: main_app.data_medications_path, class: "#{"active" if action_name == "medications"}"} My Medications
+- if false
+  %h4 Coming Soon!
+  .list-group
+    %a.list-group-item{href: main_app.research_today_path, class: "#{"active" if action_name == "research_today"}"}
+      Daily Trends
+    %a.list-group-item{href: main_app.data_connections_path, class: "#{"active" if action_name == "data_connections"}"} My Data Connections
+    %a.list-group-item{href: main_app.data_explore_path, class: "#{"active" if action_name == "explore"}"} My Health Data
+    / %a.list-group-item{href: main_app.data_reports_path, class: "#{"active" if action_name == "reports"}"} My Reports
+    / %a.list-group-item{href: main_app.data_medications_path, class: "#{"active" if action_name == "medications"}"} My Medications

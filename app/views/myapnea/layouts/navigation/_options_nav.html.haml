@@ -19,7 +19,7 @@
           &nbsp; Account Settings
       - if current_user.can?(:view_admin_dashboard)
         %li
-          %a{href: main_app.admin_path, :title => "Admin Panel"}
+          %a{href: main_app.admin_users_path, :title => "Admin Panel"}
             %i.fa.fa-wrench
             &nbsp; Admin Panel
       %li
