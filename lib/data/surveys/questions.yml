@@ -649,3 +649,28 @@
     - 58
     - 59
     - 60
+
+- id: 20001
+  text_en: What is your energy level, from 1 (low) to 10 (high)?
+  group_id: 2
+  answer_template_ids:
+    - 2000
+
+- id: 20002
+  text_en: How many hours did you sleep last night?
+  group_id: 2
+  answer_template_ids:
+    - 16
+
+- id: 20003
+  text_en: How sleepy do you feel, from 1 (not sleepy) to 10 (very sleepy)?
+  group_id: 2
+  answer_template_ids:
+    - 2000
+
+- id: 20004
+  text_en: How many hours did you use your PAP machine in the last day?
+  group_id: 2
+  answer_template_ids:
+    - 16
+

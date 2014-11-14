@@ -35,7 +35,7 @@ class SocialControllerTest < ActionController::TestCase
     get :profile
 
     post :update_profile, profile_params
-    assert_equal "Updated Successfully!", flash[:notice]
+    assert_match /Successfully/i, flash[:notice]
 
     assert_not_nil assigns(:social_profile)
 

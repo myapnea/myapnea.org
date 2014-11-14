@@ -238,3 +238,19 @@
   - 10060
   - 10061
   - 10062
+
+- id: 2000
+  name: daily_trends_scale
+  display_type_id: 3
+  data_type: answer_option_id
+  answer_option_ids:
+    - 200001
+    - 200002
+    - 200003
+    - 200004
+    - 200005
+    - 200006
+    - 200007
+    - 200008
+    - 200009
+    - 200010
