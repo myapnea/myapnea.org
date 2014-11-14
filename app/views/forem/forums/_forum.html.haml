@@ -17,7 +17,7 @@
             .col-sm-1
               = image_tag post.user.photo_url, class: "img-responsive img-thumbnail"
             .col-sm-8
-              = truncate(sanitize(post.text, length: 200))
+              = strip_tags(post.text).truncate(200, separator: ' ').html_safe
             .col-sm-3
               .text-muted.text-small
                 %time{:datetime => post.created_at.to_s(:db)}= "posted #{time_ago_in_words(post.created_at)} #{t("ago")}"
