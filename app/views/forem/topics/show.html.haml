@@ -28,12 +28,16 @@
 
   %hr/
 
-  = form_for [forem, @topic.forum, @topic, @post] do |f|
-    = render :partial => "forem/posts/form", :locals => { :f => f }
+  - if current_user
+    = form_for [forem, @topic.forum, @topic, @post] do |f|
+      = render :partial => "forem/posts/form", :locals => { :f => f }
 
-    = hidden_field_tag :source, "topic"
-    = f.button :class => "btn btn-primary btn-block btn-sm" do
-      %i.fa.fa-plus
-      \&nbsp; Submit your comment
+      = hidden_field_tag :source, "topic"
+      = f.button :class => "btn btn-primary btn-block btn-sm" do
+        %i.fa.fa-plus
+        \&nbsp; Submit your comment
+  - else
+    = link_to 'Sign in', main_app.new_user_session_path, class: "btn btn-primary btn-sm"
+    to leave a comment
 
   = forem_pages_widget(@posts)
