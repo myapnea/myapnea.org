@@ -12,9 +12,9 @@ class User < ActiveRecord::Base
   self.authorizer_name = "UserAuthorizer"
 
   # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
+  # :confirmable, :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :timeoutable
+         :recoverable, :rememberable, :trackable, :validatable, :timeoutable, :lockable
 
   # Model Validation
   validates_presence_of :first_name, :last_name, :year_of_birth
