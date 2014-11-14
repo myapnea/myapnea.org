@@ -15,8 +15,8 @@ class NavigationTest < ActionDispatch::IntegrationTest
   end
 
   test "should get discussion forum" do
-    get "/social/discussion/"
-    assert_equal "/social/discussion", path
+    get "/forums/"
+    assert_equal "/forums/", path
   end
 
 end

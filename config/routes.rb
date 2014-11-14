@@ -57,7 +57,8 @@ Rails.application.routes.draw do
   get 'data_medications' => 'health_data#medications'
   get 'data_intro' => 'health_data#intro'
 
-
+  # Discussion
+  match 'forums/terms_and_conditions', to: 'account#terms_and_conditions', via: :get, as: :terms_and_conditions
 
   # Social Section
   match 'social', to: 'social#overview', via: :get, as: 'social' # show
@@ -65,6 +66,7 @@ Rails.application.routes.draw do
   match 'social/profile', to: 'social#update_profile', as: 'update_social_profile', via: [:put, :post, :patch] # update
   match 'locations', via: :get, as: :locations, format: :json, to: 'social#locations'
   get 'social/discussion', to: redirect("forums")
+  get 'social/discussion(/*path)', to: redirect("forums/%{path}")
   get 'forum', to: redirect("forums")
 
   # Blog Section
@@ -79,9 +81,6 @@ Rails.application.routes.draw do
   match 'privacy_policy', to: "account#privacy_policy", as: :privacy, via: [:get, :post]
   match 'update_account', to: 'account#update', as: 'update_account', via: :patch
   match 'change_password', to: 'account#change_password', as: 'change_password', via: :patch
-
-  # Discussion
-  match 'social/discussion/terms_and_conditions', to: 'account#terms_and_conditions', via: :get, as: :terms_and_conditions
 
   # Admin Section
   get 'admin' => 'admin#notifications'
