@@ -45,18 +45,19 @@ class User < ActiveRecord::Base
   end
 
   def photo_url
-    if social_profile and social_profile.photo.present? and social_profile.make_public?
-      social_profile.photo.url
+    if social_profile
+      social_profile.photo_url
     else
       "//www.gravatar.com/avatar/#{Digest::MD5.hexdigest(email.to_s)}?d=identicon"
     end
   end
 
+
   def forem_name
-    if social_profile and social_profile.name.present? and social_profile.make_public?
+    if social_profile
       social_profile.name
     else
-      "Anonymous User"
+      "Anonymous User #{Digest::MD5.hexdigest(email.to_s)[0,5]}"
     end
   end
 
@@ -163,7 +164,7 @@ class User < ActiveRecord::Base
   end
 
   def share_research_topics?
-    true
+    social_profile.present? and social_profile.show_publicly?
   end
 
   def has_votes_remaining?(rating = 1)
