@@ -15,7 +15,7 @@ class SocialProfile < ActiveRecord::Base
 
 
   def show_publicly?
-    make_public? or visible_to_community? or visible_to_world?
+    make_public?
   end
 
   def photo_url

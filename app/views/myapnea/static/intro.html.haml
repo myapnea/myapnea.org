@@ -47,7 +47,7 @@
   .row
     .col-md-6
       %h2 Our Community
-      .map#home-map{data: {path: locations_path}}
+      .map#user_map{data: {path: locations_path}}
     .col-md-6
       %h2 Rate the Research
       %h4
@@ -85,4 +85,4 @@
           %span.icon-next
 
 = javascript_include_tag "//maps.googleapis.com/maps/api/js?key=AIzaSyBB91qMUvtmPzct9z7slTqm-lTUEVuYjKo"
-= javascript_include_tag 'home'
+= javascript_include_tag "social/maps"
