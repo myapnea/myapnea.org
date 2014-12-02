@@ -11,6 +11,7 @@
   - Added new landing page based of introduction page
 - **Gem Changes**
   - Updated to rails 4.2.0.rc1
+  - Updated to ruby 2.1.5
 
 ## 1.1.0 (October 17, 2014)
 - **Bug Fixes**
