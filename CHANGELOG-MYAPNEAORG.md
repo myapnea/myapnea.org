@@ -1,5 +1,7 @@
 ## 2.0.0
-- **Enhancements**
+
+### Enhancements
+- **General Changes**
   - Revamped the navigation flow.
   - Synchronized vision with OpenPPRN.
   - Cleaned up overall style.
@@ -7,7 +9,8 @@
   - Revamped forumns
   - Improved mobile navigation design
   - Added new landing page based of introduction page
-
+- **Gem Changes**
+  - Updated to rails 4.2.0.rc1
 
 ## 1.1.0 (October 17, 2014)
 - **Bug Fixes**
