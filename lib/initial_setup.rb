@@ -12,7 +12,7 @@ puts root_folder
 
 files = [['config/initializers', 'action_mailer.rb'],
   ['config/initializers', 'secret_token.rb'],
-  ['config/initializers', 'pprn.rb']
+  ['config/initializers', 'pprn.rb'],
   ['config', 'application.yml']
 ]
 
