@@ -10,8 +10,7 @@ template_folder = FileUtils.pwd
 puts template_folder
 puts root_folder
 
-files = [['config/environments', 'production.rb'],
-  ['config/initializers', 'action_mailer.rb'],
+files = [['config/initializers', 'action_mailer.rb'],
   ['config/initializers', 'secret_token.rb'],
   ['config/initializers', 'pprn.rb']
   # ['config/initializers', 'devise.rb']

@@ -13,6 +13,9 @@
   - Updated to rails 4.2.0.rc1
   - Updated to ruby 2.1.5
 
+### Refactoring
+- Updated production environment initialization
+
 ## 1.1.0 (October 17, 2014)
 - **Bug Fixes**
   - Fixed research topic voting problems encountered on Firefox browsers.
