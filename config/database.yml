@@ -78,4 +78,4 @@ test:
 # You can use this database configuration with:
 #
 production:
-  url: <%= ENV['DATABASE_URL'] %>
+  url: <%= ENV['database_url'] %>
