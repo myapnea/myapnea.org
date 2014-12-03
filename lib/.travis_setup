@@ -1,7 +1,6 @@
 localhost
 localhost
 25
-SMTPDOMAIN
 plain
 travis-ci@example.com
 smtp-username
