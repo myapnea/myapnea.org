@@ -6,11 +6,13 @@ plain
 travis-ci@example.com
 smtp-username
 smtp-password
-MyApnea.Org
-MyApnea.Org
-Sleep Apnea
-support@myapnea.org
-N
-N
 USERVOICE
 GOOGLE_ANALYTICS
+DATABASE_URL
+PPRN NAME
+PPRN TITLE
+PPRN CONDITIONS
+travis-ci@example.com
+N
+N
+
