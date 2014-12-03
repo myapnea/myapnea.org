@@ -48,7 +48,6 @@ config/initializers/secret_token.rb
 
 # Security Ignores
 /config/initializers/secret_token.rb
-/config/initializers/action_mailer.rb
 /config/initializers/00_site_name.rb
 /config/initializers/db.rb
 /config/secrets.yml
