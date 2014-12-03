@@ -1,4 +1,5 @@
 localhost
+localhost
 25
 SMTPDOMAIN
 plain
@@ -13,4 +14,3 @@ N
 N
 USERVOICE
 GOOGLE_ANALYTICS
-localhost

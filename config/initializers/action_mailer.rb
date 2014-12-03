@@ -1,3 +1,4 @@
+ActionMailer::Base.default_url_options[:host] = ENV['website_url'].to_s.gsub(/^https?:\/\//, '')
 unless Rails.env.test?
   ActionMailer::Base.delivery_method = :smtp
   ActionMailer::Base.smtp_settings = {
