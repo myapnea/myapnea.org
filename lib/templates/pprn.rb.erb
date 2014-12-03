@@ -24,5 +24,4 @@ DUMMY_DATA_SOURCE_TYPES = DUMMY_HEALTH_DATA["data_source_types"]
 USERVOICE_ID = "<%= print "Enter uservoice ID:"; ga = gets.chomp; ga %>"
 GOOGLE_ANALYTICS_ID = "<%= print "Google Analytics ID:"; ga = gets.chomp; ga %>"
 
-
-ENV["DATABASE_URL"] = "<%= print "Enter Database URL: "; db_url = gets.chomp; db_url %>"
+ActionMailer::Base.default_url_options[:host] = "<%= print "Enter Website Host: "; website_host = gets.chomp.gsub(/^https?:\/\//, '').gsub(/(\/)*$/, ''); website_host %>"

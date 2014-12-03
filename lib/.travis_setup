@@ -1,18 +1,15 @@
-postgresql://localhost
-http://localhost
 localhost
 25
-
+SMTPDOMAIN
 travis-ci@example.com
-uname
-1111
-MyApnea
+smtp-username
+smtp-password
+MyApnea.Org
 MyApnea.Org
 Sleep Apnea
 support@myapnea.org
 N
 N
-
-
-
-
+USERVOICE
+GOOGLE_ANALYTICS
+localhost
