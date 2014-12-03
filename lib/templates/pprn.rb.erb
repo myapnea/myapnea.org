@@ -19,3 +19,5 @@ VALIDIC_ENABLED = <%= print "Enable Validic? Y/N: "; ga = gets.chomp; ga == "Y" 
 DUMMY_HEALTH_DATA = YAML.load_file("config/health_data.yml")
 DUMMY_DATA_SOURCES = DUMMY_HEALTH_DATA["data_sources"]
 DUMMY_DATA_SOURCE_TYPES = DUMMY_HEALTH_DATA["data_source_types"]
+
+ActionMailer::Base.default_url_options[:host] = "<%= print "Enter Website Host: "; website_host = gets.chomp.gsub(/^https?:\/\//, '').gsub(/(\/)*$/, ''); website_host %>"
