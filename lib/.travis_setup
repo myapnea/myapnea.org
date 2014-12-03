@@ -7,11 +7,10 @@ smtp-username
 smtp-password
 USERVOICE
 GOOGLE_ANALYTICS
-DATABASE_URL
+
 PPRN NAME
 PPRN TITLE
 PPRN CONDITIONS
 travis-ci@example.com
 N
 N
-
