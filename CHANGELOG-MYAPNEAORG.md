@@ -14,7 +14,7 @@
   - Updated to ruby 2.1.5
 
 ### Refactoring
-- Updated production environment initialization
+- Updated production environment initialization, including integration with Figaro gem.
 
 ## 1.1.0 (October 17, 2014)
 - **Bug Fixes**
