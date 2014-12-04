@@ -1,0 +1,27 @@
+-# Post is a facebook post (from GraphAPI)
+.panel.panel-default
+  .panel-heading
+    .row
+      .col-md-1
+        = image_tag @fb_picture, :class => "img-responsive img-thumbnail"
+      .col-md-10
+        =link_to post["link"] do
+          %h4.media-heading= post["name"]
+        %p.caption= post["caption"]
+        %small
+          = link_to 'Posted on Facebook by the American Sleep Apnea Association', "https://www.facebook.com/sleepapneaassn"
+        %br
+        %small
+          %strong= Time.zone.parse(post["created_time"]).strftime("%m/%d/%Y")
+      .col-md-1
+        .fa.fa-facebook-square
+
+  .panel-body
+    = image_tag post["picture"], class: 'img-responsive'
+    %p= post["description"]
+    %p= link_to "Read more...", post["link"], target: '_blank'
+    %p= link_to "Visit facebook page", main_app.blog_path, target: '_blank'
+    -#%p= markdown post.introduction
+    -#- if short
+    -#- else
+    -#  = markdown post.body

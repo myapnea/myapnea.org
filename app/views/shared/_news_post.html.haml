@@ -1,0 +1,29 @@
+-# Post is a Forum Post (topic)
+.panel.panel-default
+  .panel-heading
+    .row
+      .col-md-1
+        = image_tag post.user.photo_url, :class => "img-responsive img-thumbnail" if post.user
+      .col-md-11
+        - if current_user
+          .btn-group.pull-right
+            = link_to "Edit", edit_post_path(post), class: "btn btn-warning btn-xs" if current_user.can_update?(post)
+            = link_to "Delete", main_app.post_path(post), method: :delete, class: "btn btn-danger btn-xs", data: { confirm: "Are you sure?" } if current_user.can_delete?(post)
+        =link_to main_app.  blog_path do
+          %h4.media-heading= post.title
+        %small
+          = post.author
+        %br
+        %small
+          %strong= post.created_at.strftime("%m/%d/%Y")
+        %br
+        %small
+          Tags:
+          - post.tag_list.each do |tag|
+            %span.label.label-primary= tag
+  .panel-body
+    %p= markdown post.introduction
+    - if short
+      %p= link_to "Read more...", main_app.blog_path
+    - else
+      = markdown post.body

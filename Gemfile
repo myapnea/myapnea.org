@@ -60,6 +60,9 @@ gem 'acts-as-dag'
 gem 'rolify'
 gem 'authority'
 
+# Facebook
+gem 'koala'
+
 # Forum
 gem 'forem', :github => "openpprn/forem", :branch => "rails-4.2"
 gem 'kaminari', '~> 0.16.1'

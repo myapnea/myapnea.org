@@ -22,10 +22,10 @@
             %td{:align => "center", :colspan => "5"}= t('forem.topic.none')
         = render @topics
     - unless @topic.try(:new_record?)
-      - if can? :create_topic, @forum
-        .panel-body
-          = link_to forem.new_forum_topic_path(@forum), :class => "btn btn-primary btn-block btn-sm", :id => "new-topic" do
-            .fa.fa-plus
-            &nbsp; Start a new conversation
+
+      .panel-body
+        = link_to forem.new_forum_topic_path(@forum), :class => "btn btn-primary btn-block btn-sm", :id => "new-topic" do
+          .fa.fa-plus
+          &nbsp; Start a new conversation
 
   = forem_pages_widget(@topics)

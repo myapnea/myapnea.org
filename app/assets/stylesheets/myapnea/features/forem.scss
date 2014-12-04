@@ -58,6 +58,9 @@ table.topics tr {
     padding: 15px;
     margin-bottom: 10px;
   }
+  .well.original-post {
+    background: $ma-white-yellow;
+  }
   .post-content {
     font-size: $font-size-large * .9
   }

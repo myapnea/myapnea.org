@@ -1,6 +1,27 @@
 <div class="form-group">
   <%= f.label :text, class: 'sr-only' %>
-  <%= f.text_area :text, rows: 7, class: 'form-control input-lg', placeholder: "Contribute to the discussion here..." %>
+  <% if current_user %>
+    <% if current_user.can?(:participate_in_social) %>
+      <% placeholder = "Contribute to the discussion here..." %>
+      <% disabled = false %>
+    <% else %>
+      <% placeholder = "Please create a social profile to contribute..." %>
+      <% disabled = true %>
+    <% end %>
+  <% else %>
+    <% placeholder = "Please sign in to contribute..." %>
+    <% disabled = true %>
+  <% end %>
+
+
+
+
+  <%= f.text_area :text,
+                  rows: 7,
+                  class: 'form-control input-lg',
+                  placeholder: placeholder,
+                  disabled: disabled
+  %>
 </div>
 
 <% if params[:reply_to_id] %>

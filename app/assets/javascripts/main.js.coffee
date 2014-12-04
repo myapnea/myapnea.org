@@ -78,6 +78,8 @@ $.rails.allowAction = (element) ->
     $(".offcanvas-toggle a").toggleClass "active"
     return
 
+  $('[data-toggle="tooltip"]').tooltip()
+
 
 @consentReady = () ->
   $("#consent .scroll").slimscroll(

@@ -1,5 +1,5 @@
 %a{:name => "post-#{post.id}"}
-.well
+.well{class: ('original-post' if (post.topic.posts.first == post))}
   .post{:id => "post_#{post_counter + 1}"}
     - if post.pending_review?
       .alert.alert-info.alert-dismissible{:role => "alert"}
@@ -14,21 +14,24 @@
             = form_tag forem.forum_moderate_posts_path(post.topic.forum), :method => :put do
               = render "/forem/posts/moderation_tools", :post => post
     .contents.row
-      .user.col-md-1
+      .user.col-md-1.col-sm-2
         - if post.user.is_a?(Forem::NilUser)
           = image_tag 'default-user.jpg', class: "img-responsive img-thumbnail"
         - else
           = image_tag post.user.photo_url, class: "img-responsive img-thumbnail"
-      .contents.col-md-11
+      .contents.col-md-11.col-sm-10
         .row
-          .col-md-11
+          .col-md-11.col-sm-10
             .post-heading
               %small
                 %strong
                   - if post.user.is_a?(Forem::NilUser)
                     = t(:deleted)
                   - else
-                    = link_to_if Forem.user_profile_links, post.user.forem_name, [main_app, post.user]
+                    %span.post-user
+                      - if post.topic.user == post.user
+                        .fa.fa-star{data: {toggle: "tooltip", placement: "top", title: "Original Poster"}}
+                      %span= post.user.forem_name
                 %span
                   posted
                   %a{:href => "#post-#{post.id}"}
@@ -36,7 +39,7 @@
                   - if post.reply_to
                     %span.in-reply-to
                       = link_to "in reply to #{post.reply_to.user.forem_name}", "#post-#{post.reply_to.id}"
-          .col-md-1
+          .col-md-1.col-sm-2
             .btn-group.btn-group-xs
               %button.btn.btn-primary.dropdown-toggle{type: "button", data: {toggle: "dropdown"}}
                 .fa.fa-cog

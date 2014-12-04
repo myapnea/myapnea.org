@@ -9,6 +9,7 @@
   - Revamped forumns
   - Improved mobile navigation design
   - Added new landing page based of introduction page
+  - **In the News** integrates Facebook and Forum posts.
 - **Gem Changes**
   - Updated to rails 4.2.0.rc1
   - Updated to ruby 2.1.5
