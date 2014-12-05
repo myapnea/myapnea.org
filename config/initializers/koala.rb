@@ -10,4 +10,9 @@ Koala::Facebook::OAuth.class_eval do
 end
 
 
-FB_API = Koala::Facebook::API.new(Koala::Facebook::OAuth.new.get_app_access_token)
+begin
+  FB_API = Koala::Facebook::API.new(Koala::Facebook::OAuth.new.get_app_access_token)
+rescue
+  FB_API = nil
+  raise
+end
