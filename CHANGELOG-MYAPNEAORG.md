@@ -10,12 +10,15 @@
   - Improved mobile navigation design
   - Added new landing page based of introduction page
   - **In the News** integrates Facebook and Forum posts.
+  - Reduced size of header image to load more quickly
+
 - **Gem Changes**
   - Updated to rails 4.2.0.rc1
   - Updated to ruby 2.1.5
+
 ### Bug Fixes
   - Surveys cannot be reset now without explicit permission from user.
-   
+
 ### Refactoring
   - Updated production environment initialization, including integration with Figaro gem.
 
