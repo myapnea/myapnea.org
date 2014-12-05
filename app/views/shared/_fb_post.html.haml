@@ -2,25 +2,45 @@
 .panel.panel-default
   .panel-heading
     .row
-      .col-md-1
-        = image_tag post[:user_photo], :class => "img-responsive img-thumbnail"
-      .col-md-10
-        =link_to post[:title_link] do
-          %h4.media-heading= post[:title]
-        %p.caption= post["caption"]
-        %small
-          = link_to "Posted on Facebook by #{post[:user]}", post[:user_link]
-        %br
-        %small
-          %strong= post[:created_at].strftime("%m/%d/%Y")
-      .col-md-1
-        .fa.fa-facebook-square
+      - if short
+        .col-lg-12
+          .pull-right
+            = link_to post[:user_link] do
+              .fa.fa-facebook-square
+          =link_to post[:title_link] do
+            %h4.media-heading= post[:title]
+          %p.caption= post["caption"]
+          %small
+            = link_to "Posted on Facebook by #{post[:user]}", post[:user_link]
+          %br
+          %small
+            %strong= post[:created_at].strftime("%m/%d/%Y")
+      - else
+        .col-lg-1
+          = image_tag post[:user_photo], :class => "img-responsive img-thumbnail"
+        .col-lg-10
+          =link_to post[:title_link] do
+            %h4.media-heading= post[:title]
+          %p.caption= post["caption"]
+          %small
+            = link_to "Posted on Facebook by #{post[:user]}", post[:user_link]
+          %br
+          %small
+            %strong= post[:created_at].strftime("%m/%d/%Y")
+        .col-lg-1
+          = link_to post[:user_link] do
+            .fa.fa-facebook-square
 
   .panel-body
     .row
-      .col-md-3.col-sm-4
-        = image_tag post[:content_picture], class: 'img-responsive'
-      .col-md-9.col-sm-8
-        %p= post[:content_description]
+      - if short
+        .col-lg-12
+          = image_tag post[:content_picture], class: 'img-responsive'
+          %p= post[:content_description]
+      - else
+        .col-md-3.col-sm-4
+          = image_tag post[:content_picture], class: 'img-responsive'
+        .col-md-9.col-sm-8
+          %p= post[:content_description]
     %p= link_to "Read more...", post[:title_link], target: '_blank'
     %p= link_to "Visit facebook page", post[:user_link], target: '_blank'

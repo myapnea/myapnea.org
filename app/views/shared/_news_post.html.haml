@@ -1,29 +1,41 @@
--# Post is a Forum Post (topic)
 .panel.panel-default
   .panel-heading
     .row
-      .col-md-1
-        = image_tag post.user.photo_url, :class => "img-responsive img-thumbnail" if post.user
-      .col-md-11
-        - if current_user
-          .btn-group.pull-right
-            = link_to "Edit", edit_post_path(post), class: "btn btn-warning btn-xs" if current_user.can_update?(post)
-            = link_to "Delete", main_app.post_path(post), method: :delete, class: "btn btn-danger btn-xs", data: { confirm: "Are you sure?" } if current_user.can_delete?(post)
-        =link_to main_app.  blog_path do
-          %h4.media-heading= post.title
-        %small
-          = post.author
-        %br
-        %small
-          %strong= post.created_at.strftime("%m/%d/%Y")
-        %br
-        %small
-          Tags:
-          - post.tag_list.each do |tag|
-            %span.label.label-primary= tag
+      - if short
+        .col-lg-12
+          .pull-right
+            = link_to forum_path do
+              .fa.fa-comments-o
+          =link_to forem.forum_topic_path(post[:post].forum, post[:post]) do
+            %h4.media-heading= post[:title]
+          %p.caption= post["caption"]
+          %small
+            = link_to "Posted in the News Forum by #{post[:user]}", forem.forum_path(post[:post].forum)
+          %br
+          %small
+            %strong= post[:created_at].strftime("%m/%d/%Y")
+      - else
+        .col-lg-1
+          = image_tag post[:user_photo], :class => "img-responsive img-thumbnail"
+        .col-lg-10
+          =link_to forem.forum_topic_path(post[:post].forum, post[:post]) do
+            %h4.media-heading= post[:title]
+          %p.caption= post["caption"]
+          %small
+            = link_to "Posted in the News Forum by #{post[:user]}", forem.forum_path(post[:post].forum)
+          %br
+          %small
+            %strong= post[:created_at].strftime("%m/%d/%Y")
+        .col-lg-1
+          = link_to forum_path do
+            .fa.fa-comments-o
+
   .panel-body
-    %p= markdown post.introduction
-    - if short
-      %p= link_to "Read more...", main_app.blog_path
-    - else
-      = markdown post.body
+    .row
+      .col-md-12
+        - if short
+          %p= markdown truncate(post[:content], length: 100)
+        - else
+          %p= markdown post[:content]
+
+    %p= link_to "Read more...", forem.forum_topic_path(post[:post].forum, post[:post]), target: '_blank'
