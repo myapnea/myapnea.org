@@ -13,9 +13,11 @@
 - **Gem Changes**
   - Updated to rails 4.2.0.rc1
   - Updated to ruby 2.1.5
-
+### Bug Fixes
+  - Surveys cannot be reset now without explicit permission from user.
+   
 ### Refactoring
-- Updated production environment initialization, including integration with Figaro gem.
+  - Updated production environment initialization, including integration with Figaro gem.
 
 ## 1.1.0 (October 17, 2014)
 - **Bug Fixes**
