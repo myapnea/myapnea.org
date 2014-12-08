@@ -3,14 +3,26 @@
     .fa.fa-home
     &nbsp;
     Home
-  %a.list-group-item{href: forem.root_path, class: "#{"active" if controller_path =~ /forem/}"} Forums
+  %a.list-group-item{href: forem.root_path, class: "#{"active" if controller_path =~ /forem/}"}
+    .fa.fa-comments-o
+    &nbsp; Forums
   %a.list-group-item{href: main_app.surveys_path, class: "#{"active" if action_name == "research_surveys"}" } Surveys
   - if false
     %a.list-group-item{href: main_app.blog_path, class: "#{"active" if action_name == "blog"}"} In The News
   %a.list-group-item{href: main_app.research_topics_path, class: "#{"active" if controller_path =~ /research_topics/}"} Research Questions
   %a.list-group-item{href: main_app.social_path, class: "#{"active" if action_name == "overview"}"} Our Community
 
-= render partial: "shared/blog_posts", locals: { blog_posts: (@blog_posts.present? ? @blog_posts : Post.blog_posts.viewable), new_blog_post: @new_post, short: true }
+%hr/
+= link_to main_app.blog_path do
+  %h4 Recent News
+
+= render partial: "shared/blog_posts", locals: { posts: Post.all_posts(true) }
+.text-muted.small
+  = link_to main_app.blog_path do
+    View more stories &nbsp;
+    .fa.fa-arrow-right
+
+%hr/
 
 %h4 Coming Soon!
 .list-group

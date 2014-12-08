@@ -52,10 +52,17 @@ class User < ActiveRecord::Base
     end
   end
 
+  def my_photo_url
+    if social_profile and social_profile.photo
+      social_profile.photo.url
+    else
+      photo_url
+    end
+  end
 
   def forem_name
     if social_profile
-      social_profile.name
+      social_profile.public_nickname
     else
       "Anonymous User #{Digest::MD5.hexdigest(email.to_s)[0,5]}"
     end

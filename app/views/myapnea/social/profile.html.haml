@@ -29,7 +29,7 @@
 
       .form-group
         %label.col-sm-3.control-label
-          = image_tag current_user.photo_url, :class => "img-responsive img-thumbnail"
+          = image_tag current_user.my_photo_url, :class => "img-responsive img-thumbnail"
         .col-sm-9
           - if @social_profile.photo.present?
             %h3 Change Photo

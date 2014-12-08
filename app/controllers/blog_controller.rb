@@ -8,38 +8,8 @@ class BlogController < ApplicationController
     # TODO: Refactor into models (fb posts and forum posts are types of posts)
 
     @active_top_nav_link = "blog"
-    @posts = []
 
-    # Facebook
-    if FB_API
-      fb_posts = FB_API.get_connections("sleepapneaassn", "feed", {limit: 15, fields: "id,from,story,picture,link,name,caption,description,icon,created_time"})
-      fb_poster =  FB_API.get_object("sleepapneaassn")
-      fb_picture = FB_API.get_connections("sleepapneaassn", "picture", {redirect: false})["data"]["url"]
-
-      fb_posts.each do |fb_post|
-        @posts << {
-            type: :facebook,
-            user_photo: fb_picture,
-            title: fb_post["name"],
-            title_link: fb_post["link"],
-            user: fb_poster["name"],
-            user_link: fb_poster["link"],
-            created_at: Time.zone.parse(fb_post["created_time"]),
-            content_picture: fb_post["picture"],
-            content_description: fb_post["description"],
-            caption: fb_post[:caption]
-        }
-      end
-
-    end
-
-    # Forem
-    news_forem = Forem::Forum.find_by_name("News")
-    if news_forem.present?
-      forum_posts = news_forum.topics
-    end
-
-
+    @posts = Post.all_posts(false)
 
 
 
