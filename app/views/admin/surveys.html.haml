@@ -8,14 +8,14 @@
         .row
           .col-md-10
             .pull-right
-              %strong Total MyApnea.Org users:
+              %strong Total MyApnea.Org members:
           .col-md-2
             .text-info= User.all.count
           .clearfix
         .row
           .col-md-10
             .pull-right
-              %strong Users with signed consent:
+              %strong Members with signed consent:
           .col-md-2
             .text-info= User.where("accepted_consent_at is not null").count
           .clearfix

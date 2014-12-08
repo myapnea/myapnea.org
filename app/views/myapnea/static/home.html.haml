@@ -16,7 +16,7 @@
                     %p
                       %b
                         Done by
-                        = pluralize(s.answer_sessions.count, "user")
+                        = pluralize(s.answer_sessions.count, "member")
                   .col-md-4
                     = link_to start_or_resume_survey(s), class: 'btn btn-success btn-lg btn-block survey-btn' do
                       Start Survey

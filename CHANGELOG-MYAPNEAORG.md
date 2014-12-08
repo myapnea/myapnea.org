@@ -1,5 +1,9 @@
 ## 2.1.0
 
+### Enhancements
+- **General Changes**
+  - Some minor text and content changes
+
 ### Refactoring
 - The forem gem now uses the default configured email address
 

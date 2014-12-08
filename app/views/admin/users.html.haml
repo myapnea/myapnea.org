@@ -1,5 +1,5 @@
 
-%h3 User Management
+%h3 Member Management
 
 .panel.panel-default#admin-dashboard
   .panel-heading
@@ -9,7 +9,7 @@
         .col-sm-6
           .btn-group.btn-group-sm{data: {toggle: 'buttons'}}
             %label.btn.btn-default
-              %input{type: 'radio', name: 'search_role', value: ''} All Users
+              %input{type: 'radio', name: 'search_role', value: ''} All Members
             %label.btn.btn-default
               %input{type: 'radio', name: 'search_role', value: 'admin'} Admins
             %label.btn.btn-default
@@ -19,14 +19,14 @@
         .col-sm-4
           .btn-group
             %input#auth-token{name: 'authenticity_token', type: "hidden", value: form_authenticity_token}
-            %label.control-label.sr-only Limit by user email
+            %label.control-label.sr-only Limit by member email
             .input-group
               %input.form-control{type: 'search', placeholder: 'Search by Email', name: 'search', value: params[:search]}
               %span.input-group-btn
                 %button.btn.btn-default{type: "submit", value: ""} Search
         .col-sm-2
           %span.label.label-primary
-            = pluralize @users.count, 'User'
+            = pluralize @users.count, 'Member'
 
 
 
@@ -35,7 +35,7 @@
       %thead
         %tr
           %th
-            User
+            Member
           %th
             Role
 
@@ -64,7 +64,7 @@
                     %a.add-role{href: "#", data: {role: 'moderator'}} Make Moderator
                   %li.divider
                   %li
-                    %a.delete-user{href: "#"} Delete User
+                    %a.delete-user{href: "#"} Delete Member
 
 
 
