@@ -1,6 +1,6 @@
 .list-group
   - if current_user.has_role? :owner
-    %a.list-group-item{href: main_app.admin_users_path, class: "#{"active" if action_name == "users"}"} Users
+    %a.list-group-item{href: main_app.admin_users_path, class: "#{"active" if action_name == "users"}"} Members
   %a.list-group-item{href: main_app.admin_surveys_path, class: "#{"active" if action_name == "surveys"}"} Surveys
   %a.list-group-item{href: forem.admin_root_path, class: "#{ 'active' if controller_path =~ /forem/ }"} Forums
   %a.list-group-item{href: main_app.admin_blog_path, class: "#{"active" if action_name == "blog"}"} Blog Posts
