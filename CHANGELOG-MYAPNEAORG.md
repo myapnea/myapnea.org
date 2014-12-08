@@ -4,9 +4,18 @@
 - **General Changes**
   - **In the News** integrates Facebook and forum news posts
   - Some minor text and content changes
+  - Reduced size of header image to load more quickly
+
+- **Gem Changes**
+  - Updated to rails 4.2.0.rc1
+  - Updated to ruby 2.1.5
 
 ### Refactoring
+- Updated production environment initialization, including integration with Figaro gem.
 - The forem gem now uses the default configured email address
+
+### Bug Fixes
+- Surveys cannot be reset now without explicit permission from user.
 
 ## 2.0.0 (November 14, 2014)
 
@@ -19,28 +28,24 @@
   - Revamped forumns
   - Improved mobile navigation design
   - Added new landing page based of introduction page
-  - Reduced size of header image to load more quickly
-
-- **Gem Changes**
-  - Updated to rails 4.2.0.rc1
-  - Updated to ruby 2.1.5
-
-### Bug Fixes
-  - Surveys cannot be reset now without explicit permission from user.
-
-### Refactoring
-  - Updated production environment initialization, including integration with Figaro gem.
 
 ## 1.1.0 (October 17, 2014)
-- **Bug Fixes**
-  - Fixed research topic voting problems encountered on Firefox browsers.
-  - Fixed erroneous 'true' flash message after session expiration.
+
+### Enhancements
 - **Research Surveys**
   - Added survey question about sleep care institutions
   - Added ASAA as a choice for how a user heard about MyApnea.
   - Implemented new question type, based on `typeahead.js`.
 
+### Bug Fixes
+- Fixed research topic voting problems encountered on Firefox browsers.
+- Fixed erroneous 'true' flash message after session expiration.
+
 ## 1.0.1 (October 15, 2014)
+
+### Enhancements
+- **Sidebar Navigation**
+  - Implemented collapsing sidebar for mobile users.
 
 ### Bug Fixes
 - **Social Profile**
@@ -52,11 +57,6 @@
   - Cleaned up and fixed issues with survey completion report.
 - **Forum**
   - Made entry into forums more obvious for users.
-
-### Enhancements
-- **Sidebar Navigation**
-  - Implemented collapsing sidebar for mobile users.
-
 
 ## 1.0.0 (October 3, 2014)
 
