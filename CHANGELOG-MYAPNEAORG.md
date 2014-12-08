@@ -2,6 +2,7 @@
 
 ### Enhancements
 - **General Changes**
+  - **In the News** integrates Facebook and forum news posts
   - Some minor text and content changes
 
 ### Refactoring
@@ -18,7 +19,6 @@
   - Revamped forumns
   - Improved mobile navigation design
   - Added new landing page based of introduction page
-  - **In the News** integrates Facebook and Forum posts.
   - Reduced size of header image to load more quickly
 
 - **Gem Changes**

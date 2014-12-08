@@ -30,7 +30,7 @@
                   - else
                     %span.post-user
                       - if post.topic.user == post.user
-                        .fa.fa-star{data: {toggle: "tooltip", placement: "top", title: "Original Poster"}}
+                        .fa.fa-star{data: {toggle: "tooltip", placement: "top", container: 'body', title: "Original Poster"}}
                       %span= post.user.forem_name
                 %span
                   posted
