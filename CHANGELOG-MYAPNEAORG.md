@@ -8,7 +8,7 @@
 ### Refactoring
 - The forem gem now uses the default configured email address
 
-## 2.0.0
+## 2.0.0 (November 14, 2014)
 
 ### Enhancements
 - **General Changes**
