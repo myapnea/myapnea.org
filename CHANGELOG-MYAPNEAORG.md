@@ -16,7 +16,8 @@
 
 ### Bug Fixes
 - Surveys cannot be reset now without explicit permission from user.
-- Added fix for Google Analytics to correctly track page views
+- Added fix for Google Analytics to correctly track page views.
+- Surveys with 0 answers completed can be resumed.
 
 ## 2.0.0 (November 14, 2014)
 
