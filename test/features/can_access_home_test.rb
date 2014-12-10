@@ -23,7 +23,7 @@ feature "CanAccessHome" do
     fill_in 'Password', :with => "password"
     click_button 'Sign in'
 
-    page.must_have_content "Signed in successfully."
+    page.must_have_content I18n.t('devise.sessions.signed_in')
   end
 
   scenario "user can log out" do
