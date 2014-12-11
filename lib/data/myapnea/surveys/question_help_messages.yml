@@ -22,7 +22,10 @@
     The following questions are about you and can help you compare yourself to others with sleep apnea.
 - id: 1001
   message_en: |
-    Did any of the following symptoms trigger you to be evaluated for sleep apnea?
+    Which of the following symptoms triggered you to be evaluated for sleep apnea?
+- id: 2001
+  message_en: |
+    Do you currently experience any of these symptoms?
 
 - id: 1002
   message_en: |

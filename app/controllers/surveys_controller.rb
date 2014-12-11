@@ -11,8 +11,8 @@ class SurveysController < ApplicationController
     @answer_session =  AnswerSession.find_by(user_id: current_user.id, question_flow_id: @question_flow.id)
 
     if @answer_session
-      if params[:reset_survey]
-        @answer_session.reset_answers
+      if false# params[:reset_survey]
+        #@answer_session.reset_answers
       else
         redirect_to surveys_path
       end

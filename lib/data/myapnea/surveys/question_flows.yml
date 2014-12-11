@@ -1,0 +1,20 @@
+- id: 13
+  name_en: About Me and My Sleep
+  description_en: |
+    This survey covers some basic information about you and your sleep so that we can better understand who has sleep apnea and how sleep apnea is diagnosed.
+    Thank you for helping  to strengthen the sleep apnea community!
+  first_question_id: 489
+  status: show
+
+- id: 14
+  name_en: About My Sleep Apnea
+  description_en: |
+    This survey covers some basic information about your sleep apnea or why you may think you are at risk of sleep apnea. You probably have answered many of these questions before but we need to ask them again so that we have a clear picture of who is in the network and how your apnea may change over time.
+
+    This survey will take about 10 minutes to complete. You can leave the survey at any time and come back to finish your work. Once you have completed the survey, you be able to compare your information with others within the MyApnea.Org community.
+
+    Thank you for helping to strengthen the sleep apnea community!
+  first_question_id: 489
+  status: show
+
+
