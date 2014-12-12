@@ -72,13 +72,13 @@ class SurveysControllerTest < ActionController::TestCase
 
   end
 
-  test "Surveys can be restarted when verified by user" do
+  test "Surveys cannot be restarted even when verified by user" do
     login(users(:has_completed_survey))
 
     get :start_survey, question_flow_id: question_flows(:survey_1).id, reset_survey: true
 
-    assert_response :success
-    assert_equal users(:has_completed_survey).complete_surveys.length, 0
+    assert_response 302
+    assert_equal users(:has_completed_survey).complete_surveys.length, 1
 
   end
 end

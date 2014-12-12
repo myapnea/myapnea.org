@@ -30,3 +30,8 @@
 - id: 1002
   message_en: |
     Please indicate how you think your sleep apnea treatment has influenced the following symptoms.
+
+- id: 42
+  message_en: |
+    If a researcher was studying a condition or health problem that you care about, would you participate if it required the following activities?
+    Please pick your level of interest in participation for each activity.

@@ -23,17 +23,28 @@
 - id: 12
   text_value_en: Other country
 - id: 13
-  text_value_en: Black or African American
+  text_value_en: |
+    Black, African American, African, or Afro-Caribbean (i.e. African American, Haitian, Nigerian, etc.)
+- id: 9913
+  text_value_en: |
+    Hispanic, Latino, or Spanish origin (i.e. Mexican, Mexican American, Puerto Rican, Cuban, Argentinian, Colombian, Dominican, Nicaraguan, Salvadorian, Spaniard, etc.)
+- id: 9914
+  text_value_en: |
+    Middle Eastern/North African
 - id: 14
-  text_value_en: White
+  text_value_en: |
+    White (i.e. German, Irish, Lebanese, Egyptian etc.)
 - id: 15
-  text_value_en: Asian (including South Asian and Asian Indian)
+  text_value_en: |
+    Asian (i.e. Asian Indian, Chinese, Filipino, Japanese, Korean, Vietnamese, Hmong, Laotian, Thai, Pakistani, Cambodian, etc.)
 - id: 16
-  text_value_en: Native Hawaiian or Pacific Islander
+  text_value_en: |
+    Native Hawaiian or Other Pacific Islander (i.e. Native Hawaiian, Guamanian or Chamorro, Samoan, Fijian, Tongan, etc.)
 - id: 17
-  text_value_en: American Indian or Alaska Native
+  text_value_en: |
+    Native American, American Indian or Alaskan Native (i.e. Navajo, Mayan, Tingt, etc.)
 - id: 18
-  text_value_en: Some other race
+  text_value_en: Some other race or origin
 - id: 19
   text_value_en: Don't know
 - id: 20
@@ -123,7 +134,7 @@
 - id: 61
   text_value_en: Married
 - id: 62
-  text_value_en: Living with domestic partner (or other marriage-like relationship)
+  text_value_en: Unmarried, but living with a partner
 - id: 63
   text_value_en: Widowed
 - id: 64
@@ -596,6 +607,57 @@
   text_value_en: High school diploma
 - id: 296
   text_value_en: American Sleep Apnea Association (ASAA)
+- id: 297
+  text_value_en: Email
+- id: 298
+  text_value_en: Cell phone text messaging
+- id: 299
+  text_value_en: Social media (such as Facebook, Twitter, or Pinterest)
+- id: 300
+  text_value_en: Letter or post card in the mail
+- id: 301
+  text_value_en: A computer created phone message
+- id: 302
+  text_value_en: Personal phone call from research staff or my doctor
+- id: 303
+  text_value_en: Talking face-to-face with research staff or my doctor when I am visiting the clinic
+- id: 304
+  text_value_en: I am not interested in being contacted about future research studies
+- id: 305
+  text_value_en: Not interested
+- id: 306
+  text_value_en: Somewhat interested
+- id: 307
+  text_value_en: Very interested
+- id: 308
+  text_value_en: Completely
+- id: 309
+  text_value_en: Mostly
+- id: 310
+  text_value_en: Moderately
+- id: 311
+  text_value_en: A little
+- id: 312
+  text_value_en: Without any difficulty
+- id: 313
+  text_value_en: With a little difficulty
+- id: 314
+  text_value_en: With some difficulty
+- id: 315
+  text_value_en: With much difficulty
+- id: 316
+  text_value_en: Unable to do
+- id: 317
+  text_value_en: Never
+- id: 318
+  text_value_en: English
+- id: 319
+  text_value_en: Spanish
+- id: 320
+  text_value_en: Chinese
+- id: 321
+  text_value_en: Another language
+
 # Sleep Champioons
 - id: 10002
   text_value_en: Albert Einstein College of Medicine

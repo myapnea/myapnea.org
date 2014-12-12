@@ -1,7 +1,7 @@
 
 .row
   .col-md-12.pprn-heading
-    %h1.pull-left= PPRN_TITLE
+    %h1.pull-left= ENV["pprn_title"]
 
 
     .pull-right
@@ -53,8 +53,5 @@
         %a{href: data_explore_path} Health Data
       %li{class: "#{"active" if @active_top_nav_link == :surveys}"}
         %a{href: surveys_path} Surveys
-      - if PPRN == :my_apnea
-        %li
-          %a{href: forem.root_path, class: "#{"active" if controller_path =~ /forem/}"} Discussion
 
 

@@ -24,7 +24,7 @@ class StaticController < ApplicationController
   end
 
   def page_content(name)
-    YAML.load_file(Rails.root.join('lib', 'data', 'content', "#{name}.#{I18n.locale}.yml"))[I18n.locale.to_s][name]
+    YAML.load_file(Rails.root.join('lib', 'data', 'myapnea', 'content', "#{name}.#{I18n.locale}.yml"))[I18n.locale.to_s][name]
   end
 
   def about_layout

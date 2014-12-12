@@ -179,7 +179,7 @@
   answer_option_ids:
   - 10002
   - 10003
-  - 10004
+  - 10004           answer_templates
   - 10005
   - 10006
   - 10007
@@ -254,3 +254,58 @@
     - 200008
     - 200009
     - 200010
+
+- id: 31
+  name: interest_scale
+  display_type_id: 3
+  data_type: answer_option_id
+  answer_option_ids:
+  - 305
+  - 306
+  - 307
+
+- id: 27
+  name: extent_scale
+  display_type_id: 3
+  data_type: answer_option_id
+  answer_option_ids:
+  - 308
+  - 309
+  - 115
+  - 311
+  - 117
+
+- id: 28
+  name: difficulty_scale
+  display_type_id: 3
+  data_type: answer_option_id
+  answer_option_ids:
+  - 312
+  - 313
+  - 314
+  - 315
+  - 316
+
+- id: 29
+  name: frequency_scale
+  display_type_id: 3
+  data_type: answer_option_id
+  answer_option_ids:
+  - 317
+  - 164
+  - 163
+  - 269
+  - 161
+
+- id: 30
+  name: how_much
+  display_type_id: 3
+  data_type: answer_option_id
+  answer_option_ids:
+  - 117
+  - 116
+  - 268
+  - 114
+  - 267
+
+

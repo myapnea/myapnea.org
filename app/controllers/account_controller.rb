@@ -83,7 +83,7 @@ class AccountController < ApplicationController
   end
 
   def load_content
-    @pc = YAML.load_file(Rails.root.join('lib', 'data', 'content', "#{action_name}.#{I18n.locale}.yml"))[I18n.locale.to_s][action_name.to_s]
+    @pc = YAML.load_file(Rails.root.join('lib', 'data', 'myapnea', 'content', "#{action_name}.#{I18n.locale}.yml"))[I18n.locale.to_s][action_name.to_s]
   end
 
 end

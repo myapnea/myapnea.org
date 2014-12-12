@@ -4,8 +4,8 @@ module ExternalUsers
   extend ActiveSupport::Concern
 
   # Configure your application to use OODT and/or Validic in config/initalizers/pprn.rb
-  include OODTUser if OODT_ENABLED
-  include ValidicUser if VALIDIC_ENABLED
+  include OODTUser if ENV['oodt_enabled']
+  include ValidicUser if ENV['validic_enabled']
 
   included do
     after_create :provision_external_users
@@ -20,13 +20,13 @@ module ExternalUsers
   end
 
   def provision_external_users
-    provision_oodt_user if OODT_ENABLED
-    provision_validic_user if VALIDIC_ENABLED
+    provision_oodt_user if ENV['oodt_enabled']
+    provision_validic_user if ENV['oodt_enabled']
   end
 
   def delete_external_users
-    delete_oodt_user if OODT_ENABLED
-    delete_validic_user if VALIDIC_ENABLED
+    delete_oodt_user if ENV['oodt_enabled']
+    delete_validic_user if ENV['oodt_enabled']
   end
 
   module ClassMethods

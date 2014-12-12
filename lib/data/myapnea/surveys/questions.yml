@@ -476,6 +476,8 @@
   group_id: 6
   answer_template_ids:
   - 20
+
+
 - id: 529
   text_en: |
     In general, would you say your health is:
@@ -604,15 +606,17 @@
     answer_option_ids:
     - 5
     - 6
+    - 34
+    - 294
 - id: 547
-  text_en: What is your height?
+  text_en: How tall are you in feet and inches?
   time_estimate: 0.2
   question_help_message_id: 41
   answer_template_ids:
   - 8
   - 9
 - id: 548
-  text_en: What is your last weight?
+  text_en: How much do you weigh in pounds?
   time_estimate: 0.2
   answer_template_ids:
   - 24
@@ -640,24 +644,29 @@
 - id: 551
   text_en: What is your race? Check all that apply.
   time_estimate: 0.1
-  question_help_message_id: 41
   answer_templates:
   - id: 1007
     display_type_id: 4
     data_type: answer_option_id
     allow_multiple: true
     answer_option_ids:
-    - 13
-    - 14
     - 15
-    - 16
+    - 13
+    - 9913
+    - 9914
     - 17
+    - 16
+    - 14
     - 18
-    - 19
+    - 294
+- id: 1551
+  text_en: Please specify your other race or origin
+  time_estimate: .8
+  answer_template_ids:
+  - 1
 - id: 552
   text_en: Are you Hispanic or Latino?
   time_estimate: 0.1
-  question_help_message_id: 41
   answer_templates:
   - id: 1008
     display_type_id: 3
@@ -672,7 +681,6 @@
 - id: 553
   text_en: What is the **highest** level of education you completed?
   time_estimate: 0.1
-  question_help_message_id: 41
   answer_templates:
   - id: 1009
     display_type_id: 3
@@ -688,7 +696,6 @@
 - id: 554
   text_en: What is your current marital status?
   time_estimate: 0.1
-  question_help_message_id: 41
   answer_templates:
   - id: 1010
     display_type_id: 3
@@ -700,17 +707,19 @@
     - 64
     - 65
     - 66
-    - 34
-    - 35
+    - 294
 - id: 555
   text_en: Please describe your current marital status.
   time_estimate: 1.0
-  question_help_message_id: 41
   answer_template_ids:
   - 1
 - id: 556
-  text_en: How many people, other than you, live in your household?
-  question_help_message_id: 41
+  text_en: How many people, other than you, live in your household most of the time?
+  time_estimate: 0.2
+  answer_template_ids:
+  - 4
+- id: 9556
+  text_en: How many persons less than 18 years of age usually live in your home?
   time_estimate: 0.2
   answer_template_ids:
   - 4
@@ -966,3 +975,162 @@
   answer_template_ids:
   - 6
   - 7
+
+- id: 560
+  text_en: Have you ever taken part in research projects related to your health or the health of a family member?
+  time_estimate: .2
+  answer_template_ids:
+  - 13
+
+- id: 561
+  text_en: |
+    How would you prefer to be contacted to learn about potential research studies? **Check all that are okay with you.**
+  time_estimate: .4
+  answer_templates:
+  - id: 91011
+    display_type_id: 3
+    data_type: answer_option_id
+    answer_option_ids:
+    - 297
+    - 298
+    - 299
+    - 300
+    - 301
+    - 302
+    - 303
+    - 34
+    - 304
+- id: 562
+  text_en: |
+    You indicated you would prefer to be contacted about potential research studies in another way than listed in the last question. What would that method be?
+  time_estimate: .2
+  answer_template_ids:
+  - 1
+
+ # Group 9
+- id: 563
+  text_en: Completing a survey two or more times
+  time_estimate: .2
+  question_help_message_id: 42
+  group_id: 9
+  answer_template_ids:
+  - 31
+- id: 564
+  text_en: Give a blood sample
+  time_estimate: .2
+  question_help_message_id: 42
+  group_id: 9
+  answer_template_ids:
+  - 31
+- id: 565
+  text_en: Taking part in a study that involves talking by phone or over the internet
+  time_estimate: .2
+  question_help_message_id: 42
+  group_id: 9
+  answer_template_ids:
+  - 31
+- id: 566
+  text_en: Taking part in a study where you have to take a medication
+  time_estimate: .2
+  question_help_message_id: 42
+  group_id: 9
+  answer_template_ids:
+  - 31
+- id: 567
+  text_en: Taking part in a study that involves meeting at a local community center or school
+  time_estimate: .2
+  question_help_message_id: 42
+  group_id: 9
+  answer_template_ids:
+  - 31
+- id: 568
+  text_en: Taking part in a study that involves you and other people in your family
+  time_estimate: .2
+  question_help_message_id: 42
+  group_id: 9
+  answer_template_ids:
+  - 31
+- id: 569
+  text_en: Taking part in a study which you would stay in the hospital for 1 or more days
+  time_estimate: .2
+  question_help_message_id: 42
+  group_id: 9
+  answer_template_ids:
+  - 31
+#
+
+- id: 570
+  text_en: In general, would you say your quality of life is...
+  time_estimate: .2
+  answer_template_ids:
+  - 21
+
+- id: 571
+  text_en: To what extent are you able to carry out your everyday physical activities such as walking, climbing stairs, carrying groceries, or moving a chair?
+  time_estimate: .2
+  answer_template_ids:
+  - 27
+
+- id: 572
+  text_en: Are you able to run errands and shop?
+  time_estimate: .2
+  answer_template_ids:
+  - 28
+
+- id: 573
+  text_en: During the past 7 days, I have felt depressed...
+  time_estimate: .2
+  answer_template_ids:
+  - 29
+
+- id: 574
+  text_en: During the past 7 days, I have felt fatigued...
+  time_estimate: .2
+  answer_template_ids:
+  - 30
+
+- id: 575
+  text_en: During the past 7 days, I have had problems with my sleep...
+  time_estimate: .2
+  answer_template_ids:
+  - 30
+
+- id: 576
+  text_en: I have trouble doing all of my regular leisure activities with others...
+  time_estimate: .2
+  answer_template_ids:
+  - 29
+
+- id: 577
+  text_en: During the past 7 days, pain has interfered with my day to day activities...
+  time_estimate: .2
+  answer_template_ids:
+  - 30
+
+- id: 578
+  text_en: What is your date of birth?
+  time_estimate: .5
+  answer_template_ids:
+  - 3
+
+- id: 579
+  text_en: |
+    What language do you **mainly** speak at home?
+  time_estimate: 0.4
+  answer_templates:
+  - id: 91222
+    display_type_id: 3
+    data_type: answer_option_id
+    answer_option_ids:
+    - 318
+    - 319
+    - 320
+    - 321
+    - 294
+
+- id: 580
+  text_en: |
+    Please specify what other language you **mainly** speak at home:
+  time_estimate: .8
+  answer_template_ids:
+  - 1

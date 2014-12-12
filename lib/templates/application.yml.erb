@@ -10,6 +10,11 @@
 #   stripe_api_key: sk_live_EeHnL644i6zo4Iyq4v1KdV9H
 #   stripe_publishable_key: pk_live_9lcthxpSIHbGwmdO941O1XVU
 
+## PPRN-specific
+pprn_title:           "<%= print "Enter PPRN title: "; ga = gets.chomp; ga %>"
+pprn_support_email:   "<%= print "Enter support email address: "; ga = gets.chomp; ga %>"
+
+## Other Settings
 website_url:          "<%= print "Enter Website URL: "; gets.chomp.gsub(/(\/)*$/, '') %>"
 website_name:         "<%= print "Enter Website Name/Title: "; gets.chomp %>"
 
@@ -28,3 +33,6 @@ database_url:         "<%= print "Enter Database URL: "; gets.chomp %>"
 fb_app_id:            "<%= print "Enter the facebook app ID: "; gets.chomp %>"
 fb_app_secret:        "<%= print "Enter the facebook app secret: "; gets.chomp %>"
 
+# External Accounts
+oodt_enabled:         "<%= print "Enable OODT? Y/N: "; ga = gets.chomp; ga == "Y" %>"
+validic_enabled:      "<%= print "Enable Validic? Y/N: "; ga = gets.chomp; ga == "Y" %>"

@@ -59,7 +59,7 @@ namespace :surveys do
 
 
       files.each do |file_name, model_class|
-        file_path = Rails.root.join('lib', 'data', 'surveys', file_name)
+        file_path = Rails.root.join('lib', 'data', 'myapnea', 'surveys', file_name)
 
         puts(file_path)
 
@@ -80,7 +80,7 @@ namespace :surveys do
 
       clean_join_tables(["question_edges"])
 
-      qe_path = Rails.root.join('lib', 'data', 'surveys', 'question_edges.yml')
+      qe_path = Rails.root.join('lib', 'data', 'myapnea', 'surveys', 'question_edges.yml')
 
       puts(qe_path)
 
