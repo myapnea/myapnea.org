@@ -65,7 +65,17 @@ class QuestionFlow < ActiveRecord::Base
 
   def total_time
     if self[:longest_time].blank?
-      update_attribute(:longest_time, find_longest_path(source,leaf)[:time])
+      lp = 0
+
+      leaves.each do |oneleaf|
+        lp = [lp, find_longest_path(source,oneleaf)[:time]].max
+      end
+
+
+      update_attribute(:longest_time, lp)
+
+
+
     end
 
     self[:longest_time]
@@ -73,7 +83,13 @@ class QuestionFlow < ActiveRecord::Base
 
   def total_questions
     if self[:longest_path].blank?
-      update_attribute(:longest_path, find_longest_path(source,leaf)[:distance])
+      ld = 0
+
+      leaves.each do |oneleaf|
+        ld = [ld, find_longest_path(source,oneleaf)[:distance]].max
+      end
+
+      update_attribute(:longest_path, ld)
     end
 
     self[:longest_path]
@@ -143,6 +159,17 @@ class QuestionFlow < ActiveRecord::Base
 
   end
 
+  def leaves
+    if first_question.descendants.length > 0
+      first_question.descendants.select {|q| q.leaf?}
+
+
+    else
+      # Only one question!
+      [first_question]
+    end
+
+  end
 
   def reset_paths
     update_attributes(tsorted_edges: nil, longest_time: nil, longest_path: nil)

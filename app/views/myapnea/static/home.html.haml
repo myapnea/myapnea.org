@@ -7,22 +7,22 @@
         .list-group
           - if current_user.nil? or current_user.has_no_started_surveys?
             - if QuestionFlow.viewable.present?
-              - s = QuestionFlow.viewable.first
-              .list-group-item
-                .row
-                  .col-md-8
-                    %h4= s.name
-                    %p= s.description
-                    %p
-                      %b
-                        Done by
-                        = pluralize(s.answer_sessions.count, "member")
-                  .col-md-4
-                    = link_to start_or_resume_survey(s), class: 'btn btn-success btn-lg btn-block survey-btn' do
-                      Start Survey
-                      &nbsp;
-                      .fa.fa-arrow-right
-                  .clearfix
+              - QuestionFlow.viewable.each do |s|
+                .list-group-item
+                  .row
+                    .col-md-8
+                      %h4= s.name
+                      %p= markdown s.description
+                      %p
+                        %b
+                          Done by
+                          = pluralize(s.answer_sessions.count, "member")
+                    .col-md-4
+                      = link_to start_or_resume_survey(s), class: 'btn btn-success btn-lg btn-block survey-btn' do
+                        Start Survey
+                        &nbsp;
+                        .fa.fa-arrow-right
+                    .clearfix
             - else
               .panel-body
                 %h3.text-success Nothing here yet - Check back soon!
