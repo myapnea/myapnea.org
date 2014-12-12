@@ -811,13 +811,13 @@
   text_en: Snoring
   time_estimate: .2
   question_help_message_id: 2001
-  group_id: 3
+  group_id: 8
   answer_template_ids:
   - 13
 - id: 220494
   text_en: How long had this symptom been present before you were diagnosed with sleep apnea?
   time_estimate: 0.5
-  group_id: 3
+  group_id: 8
   answer_template_ids:
   - 6
   - 7
@@ -825,13 +825,13 @@
   text_en: Sleepiness
   time_estimate: .2
   question_help_message_id: 2001
-  group_id: 3
+  group_id: 8
   answer_template_ids:
   - 13
 - id: 220495
   text_en: How long had this symptom been present before you were diagnosed with sleep apnea?
   time_estimate: 0.5
-  group_id: 3
+  group_id: 8
   answer_template_ids:
   - 6
   - 7
@@ -839,13 +839,13 @@
   text_en: Driving or work accident
   time_estimate: .2
   question_help_message_id: 2001
-  group_id: 3
+  group_id: 8
   answer_template_ids:
   - 13
 - id: 220496
   text_en: How long had this symptom been present before you were diagnosed with sleep apnea?
   time_estimate: 0.5
-  group_id: 3
+  group_id: 8
   answer_template_ids:
   - 6
   - 7
@@ -853,13 +853,13 @@
   text_en: Shortness of breath during sleep
   time_estimate: .2
   question_help_message_id: 2001
-  group_id: 3
+  group_id: 8
   answer_template_ids:
   - 13
 - id: 220497
   text_en: How long had this symptom been present before you were diagnosed with sleep apnea?
   time_estimate: 0.5
-  group_id: 3
+  group_id: 8
   answer_template_ids:
   - 6
   - 7
@@ -867,13 +867,13 @@
   text_en: Stopped breathing during sleep
   time_estimate: .2
   question_help_message_id: 2001
-  group_id: 3
+  group_id: 8
   answer_template_ids:
   - 13
 - id: 220498
   text_en: How long had this symptom been present before you were diagnosed with sleep apnea?
   time_estimate: 0.5
-  group_id: 3
+  group_id: 8
   answer_template_ids:
   - 6
   - 7
@@ -881,13 +881,13 @@
   text_en: Heart disease
   time_estimate: .2
   question_help_message_id: 2001
-  group_id: 3
+  group_id: 8
   answer_template_ids:
   - 13
 - id: 220499
   text_en: How long had this symptom been present before you were diagnosed with sleep apnea?
   time_estimate: 0.5
-  group_id: 3
+  group_id: 8
   answer_template_ids:
   - 6
   - 7
@@ -895,13 +895,13 @@
   text_en: High blood pressure
   time_estimate: .2
   question_help_message_id: 2001
-  group_id: 3
+  group_id: 8
   answer_template_ids:
   - 13
 - id: 220500
   text_en: How long had this symptom been present before you were diagnosed with sleep apnea?
   time_estimate: 0.5
-  group_id: 3
+  group_id: 8
   answer_template_ids:
   - 6
   - 7
@@ -909,13 +909,13 @@
   text_en: Depressed mood
   time_estimate: .2
   question_help_message_id: 2001
-  group_id: 3
+  group_id: 8
   answer_template_ids:
   - 13
 - id: 220501
   text_en: How long had this symptom been present before you were diagnosed with sleep apnea?
   time_estimate: 0.5
-  group_id: 3
+  group_id: 8
   answer_template_ids:
   - 6
   - 7
@@ -923,13 +923,13 @@
   text_en: Irritability
   time_estimate: .2
   question_help_message_id: 2001
-  group_id: 3
+  group_id: 8
   answer_template_ids:
   - 13
 - id: 220502
   text_en: How long had this symptom been present before you were diagnosed with sleep apnea?
   time_estimate: 0.5
-  group_id: 3
+  group_id: 8
   answer_template_ids:
   - 6
   - 7
@@ -937,13 +937,13 @@
   text_en: Concerned friend or spouse
   time_estimate: .2
   question_help_message_id: 2001
-  group_id: 3
+  group_id: 8
   answer_template_ids:
   - 13
 - id: 220503
   text_en: How long had this symptom been present before you were diagnosed with sleep apnea?
   time_estimate: 0.5
-  group_id: 3
+  group_id: 8
   answer_template_ids:
   - 6
   - 7
@@ -951,13 +951,13 @@
   text_en: Forgetfulness
   time_estimate: .2
   question_help_message_id: 2001
-  group_id: 3
+  group_id: 8
   answer_template_ids:
   - 13
 - id: 220504
   text_en: How long had this symptom been present before you were diagnosed with sleep apnea?
   time_estimate: 0.5
-  group_id: 3
+  group_id: 8
   answer_template_ids:
   - 6
   - 7
@@ -965,13 +965,13 @@
   text_en: Healthcare provider
   time_estimate: .2
   question_help_message_id: 2001
-  group_id: 3
+  group_id: 8
   answer_template_ids:
   - 13
 - id: 220505
   text_en: How long had this symptom been present before you were diagnosed with sleep apnea?
   time_estimate: 0.5
-  group_id: 3
+  group_id: 8
   answer_template_ids:
   - 6
   - 7

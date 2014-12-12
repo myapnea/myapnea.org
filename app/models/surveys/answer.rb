@@ -146,6 +146,7 @@ class Answer < ActiveRecord::Base
       else
         chosen_edge = candidate_edges.select {|e| self.fits_condition?(e.condition)}.first || candidate_edges.select { |e| e.condition == nil }.first || candidate_edges.first
       end
+
       chosen_edge.descendant
     end
 

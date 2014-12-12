@@ -3,11 +3,12 @@
     .col-md-9
       %strong.text-primary= markdown question.text
     .col-md-3
-      .rate-question
-        %span.text-muted.pull-left.small
-          Rate this question:&nbsp;
-        .pull-right= render partial: 'surveys/partials/rate_question', locals: { question: question, show_badge: false }
-        .clearfix
+      - unless local_assigns.has_key? :group
+        .rate-question
+          %span.text-muted.pull-left.small
+            Rate this question:&nbsp;
+          .pull-right= render partial: 'surveys/partials/rate_question', locals: { question: question, show_badge: false }
+          .clearfix
   .row
     = hidden_field_tag "question_id[]", question.id
 

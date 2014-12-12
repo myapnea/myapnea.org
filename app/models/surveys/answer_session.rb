@@ -162,6 +162,7 @@ class AnswerSession < ActiveRecord::Base
     end
 
     self.save
+
     answer
   end
 
@@ -243,7 +244,6 @@ class AnswerSession < ActiveRecord::Base
       if source
         leaves = question_flow.leaves
 
-
         max_dist = 0
         result = nil
 
@@ -251,7 +251,7 @@ class AnswerSession < ActiveRecord::Base
 
 
           temp_result = question_flow.find_longest_path(source,oneleaf)
-          max_dist = [max_dist, temp_result[:distance]].max
+          max_dist = [max_dist, temp_result[:distance]].max if temp_result[:distance]
 
           result = temp_result if max_dist == temp_result[:distance]
 
