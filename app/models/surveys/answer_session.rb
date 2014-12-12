@@ -238,12 +238,26 @@ class AnswerSession < ActiveRecord::Base
     if last_answer.blank?
       {time: question_flow.total_time, distance: question_flow.total_questions}
     else
-      s = last_answer.next_question
+      source = last_answer.next_question
 
-      if s
-        l = question_flow.leaf
+      if source
+        leaves = question_flow.leaves
 
-        result = question_flow.find_longest_path(s,l)
+
+        max_dist = 0
+        result = nil
+
+        leaves.each do |oneleaf|
+
+
+          temp_result = question_flow.find_longest_path(source,oneleaf)
+          max_dist = [max_dist, temp_result[:distance]].max
+
+          result = temp_result if max_dist == temp_result[:distance]
+
+
+        end
+
         corrections = {time: 0.0, distance: 0}
 
         {time: result[:time] - corrections[:time], distance: result[:distance] - corrections[:distance]}
