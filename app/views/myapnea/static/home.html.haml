@@ -38,7 +38,7 @@
                 .row
                   .col-md-8
                     %h4= survey.name
-                    %p= survey.description
+                    %p= survey.short_description
                   .col-md-4
                     = link_to start_or_resume_survey(survey, survey.most_recent_answer_session(current_user)), class: 'btn btn-success btn-lg btn-block survey-btn' do
                       Resume Survey
