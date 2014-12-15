@@ -4,6 +4,10 @@
       .panel.panel-success#surveys
         .panel-heading
           Surveys - Participate in Research
+        .panel-body
+          %p.lead
+            Each completed survey earns you an entry into
+            = link_to 'our monthly drawing*', surveys_path
         .list-group
           - if current_user.nil? or current_user.has_no_started_surveys?
             - if QuestionFlow.viewable.present?

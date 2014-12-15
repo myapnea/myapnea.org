@@ -8,10 +8,13 @@
       %strong= @question_flow.name
       Survey!
   .panel-body
+    %p.lead Congratulations, you have received one entry into the next monthly drawing!
     .list-group
       .alert.alert-info
         Improved feedback for this survey is coming soon. Help us build feedback you'd like to see with
         %a.u-voice your suggestions!
+
+
     = render partial: "surveys/reports/report_#{@question_flow.id}" rescue nil
 
     = render partial: "surveys/reports/default"
