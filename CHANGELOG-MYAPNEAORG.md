@@ -2,6 +2,7 @@
 
 ### Enhancements
 - **General Changes**
+  - Added lottery language to the Informed Consent to Question 14.
   - Added new landing page prototype
 
 ## 2.1.0 (December 10, 2014)
