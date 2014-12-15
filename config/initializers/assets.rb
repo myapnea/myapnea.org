@@ -10,3 +10,5 @@ Rails.application.config.assets.precompile += %w( bootswatch.js )
 Rails.application.config.assets.precompile += %w( home.js dashboard.js)
 Rails.application.config.assets.precompile += %w( reports/default.js reports/report_13.js )
 
+# Kyle's new redesign
+Rails.application.config.assets.precompile += %w( cleantheme.css cleantheme.js )

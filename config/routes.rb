@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   get 'team' => 'static#team'
   match 'user_dashboard', to: 'account#dashboard', as: :user_dashboard, via: :get
   get 'landing' => 'static#landing'
+  get 'stealth' => 'static#stealth'
 
   get 'privacy_policy_document' => 'static#content', :page => "privacy_policy"
   get 'terms_of_service' => 'static#content', :page => "terms_of_service"

@@ -96,6 +96,7 @@ $.rails.allowAction = (element) ->
   mainLoader()
   consentReady()
   surveysReady()
+  slidesReady() if slidesReady?
 
 $(document).ready(loaders)
 $(document).on('page:load', loaders)

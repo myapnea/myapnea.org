@@ -1,7 +1,8 @@
 ## 3.0.0
 
 ### Enhancements
-
+- **General Changes**
+  - Added new landing page prototype
 
 ## 2.1.0 (December 10, 2014)
 
