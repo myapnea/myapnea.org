@@ -5,6 +5,7 @@ class QuestionFlow < ActiveRecord::Base
 
   localize :name
   localize :description
+  localize :short_description
 
   include Authority::Abilities
   self.authorizer_name = "AdminAuthorizer"

@@ -12,11 +12,12 @@
                   .row
                     .col-md-8
                       %h4= s.name
-                      %p= markdown s.description
+                      %p=markdown s.short_description
                       %p
                         %b
-                          Done by
-                          = pluralize(s.answer_sessions.count, "member")
+                          - if false
+                            Done by
+                            = pluralize(s.answer_sessions.count, "member")
                     .col-md-4
                       = link_to start_or_resume_survey(s), class: 'btn btn-success btn-lg btn-block survey-btn' do
                         Start Survey
