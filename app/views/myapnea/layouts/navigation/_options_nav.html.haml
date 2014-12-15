@@ -6,15 +6,22 @@
   = link_to forem.root_path do
     .fa.fa-comments-o
     Forums
-%li{class: ("active" if action_name == 'intro')}= link_to "About", main_app.intro_path
-%li{class: ("active" if action_name == 'faqs')}= link_to "Help", main_app.faqs_path
+%li{class: ("active" if action_name == 'intro')}
+  = link_to main_app.intro_path do
+    .fa.fa-book
+    About
+%li{class: ("active" if action_name == 'faqs')}
+  = link_to main_app.faqs_path do
+    .fa.fa-question
+    Help
 
 
 - if current_user
   %li.dropdown{class: ("active" if @active_top_nav_link == 'my_settings')}
     %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
-      My Settings
-      %b.caret
+      .fa.fa-cog
+      Welcome,
+      = current_user.first_name
     %ul.dropdown-menu
       %li
         %a{href: main_app.account_path}
