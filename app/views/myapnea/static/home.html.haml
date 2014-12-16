@@ -7,7 +7,8 @@
         .panel-body
           %p.lead
             Each completed survey earns you an entry into
-            = link_to 'our monthly drawing.', surveys_path, class: 'content-link'
+            = link_to 'our monthly drawing', surveys_path, class: 'content-link'
+            for a chance to win a $250 gift card.
         .list-group
           - if current_user.nil? or current_user.has_no_started_surveys?
             - if QuestionFlow.viewable.present?
