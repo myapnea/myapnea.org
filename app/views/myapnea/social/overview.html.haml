@@ -56,59 +56,6 @@
     - else
       Where do you live?
       = link_to "Add yourself to this map.", social_profile_path
-.graphs
-
-  .row
-    .col-md-4
-      .panel.panel-default
-        .panel-heading
-          %h3.panel-title Age
-        .panel-body
-          = image_tag "histogram.png", class: "img-responsive"
-          .req age_distribution (hash of age -> count)
-
-
-    .col-md-4
-      .panel.panel-default
-        .panel-heading
-          %h3.panel-title Gender
-        .panel-body
-          = image_tag "donut.png", class: "img-responsive"
-          .req sex_distribution (sex -> count)
-
-
-    .col-md-4
-      .panel.panel-default
-        .panel-heading
-          %h3.panel-title Location
-        .panel-body
-          = image_tag "bar.png", class: "img-responsive"
-          .req locations (location(lat/lon, city, state, country) -> count)
-
-  .row
-    .col-md-4
-      .panel.panel-default
-        .panel-heading
-          %h3.panel-title Surveys Completed
-        .panel-body
-          = image_tag "pie.png", class: "img-responsive"
-          .req surveys_completed [date,survey_id]
-
-
-    .col-md-4
-      .panel.panel-default
-        .panel-heading
-          %h3.panel-title Research Topic Input
-        .panel-body
-          = image_tag "histogram.png", class: "img-responsive"
-
-    .col-md-4
-      .panel.panel-default
-        .panel-heading
-          %h3.panel-title Connected Data Sources
-        .panel-body
-          = image_tag "pie.png", class: "img-responsive"
-          .req data_sources_connected [date,data_source_id]
 
 = javascript_include_tag "//maps.googleapis.com/maps/api/js?key=AIzaSyBB91qMUvtmPzct9z7slTqm-lTUEVuYjKo"
 = javascript_include_tag 'social/maps'
