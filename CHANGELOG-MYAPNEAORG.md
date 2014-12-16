@@ -1,8 +1,9 @@
-## 3.0.0
+## 3.0.0 (December 16, 2014)
 
 ### Enhancements
 - **General Changes**
   - Added lottery language to the Informed Consent to Question 14.
+  - Split existing survey into three smaller surveys
   - Added new landing page prototype
 
 ## 2.1.0 (December 10, 2014)
