@@ -193,7 +193,7 @@ nav li a {
 
 #slide-5 h1 {
   // font-family: 'Shadows Into Light Two', cursive;
-  // font-family: 'Handlee', cursive;
+  font-family: 'Handlee', cursive;
   text-align:center;
   margin-top: 50px;
   margin-bottom:30px;
@@ -250,7 +250,7 @@ p { font-size: 14px; }
 /* RESPONSIVE DESIGN */
 
 @media (max-width: 1200px) {
-  /* MED SCREENS */
+  /* MEDIUM SCREENS */
   h1{ font-size: 42px; }
   h2{ font-size: 30px; }
   h3{ font-size: 24px; }
@@ -260,7 +260,7 @@ p { font-size: 14px; }
 }
 
 @media (max-width: 992px) {
-  /* MEDIUM SCREENS */
+  /* SMALL SCREENS */
   h1{ font-size: 42px; }
   h2{ font-size: 30px; }
   h3{ font-size: 24px; }
@@ -276,7 +276,7 @@ p { font-size: 14px; }
 }
 
 @media (max-width: 768px) {
-  /* XS SCREENS */
+  /* XSMALL SCREENS */
   h1{ font-size: 30px; }
   h2{ font-size: 24px; }
   h3{ font-size: 20px; }
