@@ -87,7 +87,7 @@
     .col-md-12
       .panel.panel-default
         .panel-heading
-          Top-rated Research Questions
+          Research Questions - Vote on the Future of Sleep Apnea Research
         = render partial: "research_topics/research_topics", locals: {research_topics: ResearchTopic.popular.take(5), editable: false, disabled: true}
         .list-group
           %a.list-group-item.text-right{href: research_topics_path}
