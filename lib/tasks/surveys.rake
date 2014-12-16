@@ -116,6 +116,38 @@ namespace :surveys do
   end
 
 
+  desc "Update links"
+  task :migrate_old_survey => :environment do
+    User.order("created_at asc").each do |user|
+      puts "Migrating user #{user.email}"
+      old_answer_session = user.answer_sessions.where(question_flow_id: 13).first
+
+      if old_answer_session
+        QuestionFlow.viewable.each do |question_flow|
+          puts "Migrating survey #{question_flow.name}"
+
+          answer_session = AnswerSession.find_or_create_by(user_id: user.id, question_flow_id: question_flow.id)
+          answer_session.reset_answers if answer_session.completed?
+
+          question = question_flow.first_question
+
+          until answer_session.completed?
+            old_answer = question.answers.where(answer_session_id: old_answer_session.id).first
+
+            if old_answer and old_answer.string_value.present?
+              new_answer = answer_session.process_answer(question, {question.id.to_s => old_answer.string_value})
+            else
+              new_answer = answer_session.process_answer(question, {})
+            end
+            question = new_answer.next_question
+          end
+
+        end
+      end
+    end
+
+  end
+
   def clean_tables(tables)
     tables.each do |table|
       ActiveRecord::Base.connection.execute("DELETE FROM #{table} where id < #{SEQUENCE_VALUE}")
