@@ -199,21 +199,38 @@ nav li a {
   margin-bottom:30px;
 }
 
-.panel-default {
-  margin-top: 100px;
+.panel{
+  background-color: rgba(255, 255, 255, .6);
+}
+
+.panel-heading {
   background-color: rgba(255, 255, 255, .8);
 }
 
 .panel-title {
-  font-size: 28px;
+  font-size: 36px;
   margin-top:10px;
 }
 
+#panel-sign-up h4 {
+  margin-bottom: 15px;
+  margin-left:10px;
+  margin-right:20px;
+}
+
 #panel-sign-up .input-group {
-  font-size: 18px;
+  width:98%;
   margin:10px;
-  width:100%;
+}
+
+#panel-sign-up .input-group input {
   border-radius:3px;
+  font-size:16px;
+}
+
+#submit-join input {
+  background-color: #455A92;
+  color:white;
 }
 
 
