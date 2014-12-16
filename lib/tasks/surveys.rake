@@ -118,8 +118,9 @@ namespace :surveys do
 
   desc "Update links"
   task :migrate_old_survey => :environment do
-    User.order("created_at asc").each do |user|
-      puts "Migrating user #{user.email}"
+    user_count = User.count
+    User.order("created_at asc").each_with_index do |user, index|
+      puts "Migrating user (#{index+1} of #{user_count}) #{user.email}"
       old_answer_session = user.answer_sessions.where(question_flow_id: 13).first
 
       if old_answer_session
