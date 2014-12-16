@@ -1,22 +1,32 @@
 /* COLOR PALETTE */
 
-.primary-blue { color: #182D67; }
-.lighter-blue { color: #2A407F; }
-.lighterer-blue { color: #455A92; }
-.darker-blue { color: #081B4E; }  /* 031032 */
-.primary-orange { color: #FFA400; }  /* 996F15 */
+.primary-blue { color: #5999DE; }
+.lighter-blue { color: #7FB2EB; }
+.lighterer-blue { color: #B1D2F6; }
+.darker-blue { color: #387FCF; }
+.darkerer-blue { color: #1765BC; }
+.primary-orange { color: #FFA400; }
 .lighter-orange { color: #FFB839; }
 .lighterer-orange { color: #FFC864; }
-.darker-orange { color: #C67F00; } /* 9B6400 */
+.darker-orange { color: #C67F00; }
+.darkerer-orange { color: #9B6400; }
 
-.primary-blue-bcg { background-color: #182D67; }
-.lighter-blue-bcg { background-color: #2A407F; }  /* 455A92 */
-.darker-blue-bcg { background-color: #081B4E; }  /* 031032 */
-.primary-orange-bcg { background-color: #FFA400; }  /* 996F15 */
-.lighter-orange-bcg { background-color: #FFB839; }  /* FFC864 */
-.darker-orange-bcg { background-color: #C67F00; } /* 9B6400 */
+.primary-blue-bcg { background-color: #5999DE; }
+.lighter-blue-bcg { background-color: #7FB2EB; }
+.lighterer-blue-bcg { background-color: #B1D2F6; }
+.darker-blue-bcg { background-color: #387FCF; }
+.darkerer-blue-bcg { background-color: #1765BC; }
+.primary-orange-bcg { background-color: #FFA400; }
+.lighter-orange-bcg { background-color: #FFB839; }
+.lighterer-orange-bcg { background-color: #FFC864; }
+.darker-orange-bcg { background-color: #C67F00; }
+.darkerer-orange-bcg { background-color: #9B6400; }
 
 .text-white { color: #fff; }
+
+.centered-text {
+  text-align:center;
+}
 
 /* DOCUMENT */
 
