@@ -9,19 +9,11 @@
           - if current_user
             - if current_user.incomplete_surveys.count == 0
               - # All Done
-              %p.lead
-                Thank you for completing all
-                = pluralize(Survey.viewable.count, 'survey') + '!'
-                Each
-                %b completed survey
-                earns you an entry into
-                = link_to 'our monthly drawing', surveys_path, class: 'content-link'
-                for a chance to win a $250 gift card.
-              = render partial: 'surveys/viewable_surveys_widget'
+              = render partial: 'surveys/drawings_text_all_completed'
             - else
               - # Surveys in Progress
               = render partial: 'surveys/drawings_text'
-              = render partial: 'surveys/viewable_surveys_widget'
+            = render partial: 'surveys/viewable_surveys_widget'
           - else
             - # Not Signed In
             = render partial: 'surveys/drawings_text'
@@ -29,11 +21,6 @@
               = link_to new_user_registration_path, class: 'btn btn-lg btn-success' do
                 Sign Up and Get Started
                 .fa.fa-arrow-right
-
-            .row{ style: 'margin-top:20px' }
-              - Survey.viewable.each do |survey|
-                .col-sm-4
-                  = render partial: 'surveys/survey_widget', locals: { survey: survey }
   .row
     .col-md-12#forums_container
       .panel.panel-primary
