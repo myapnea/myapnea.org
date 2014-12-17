@@ -46,6 +46,22 @@ class QuestionFlow < ActiveRecord::Base
     res
   end
 
+  def complete?(user)
+    false unless user.present?
+    answer_session = self.answer_sessions.where( user_id: user.id ).order( updated_at: :desc ).first
+    answer_session.present? and answer_session.completed?
+  end
+
+  def incomplete?(user)
+    false unless user.present?
+    answer_session = self.answer_sessions.where( user_id: user.id ).order( updated_at: :desc ).first
+    answer_session.present? and !answer_session.completed?
+  end
+
+  def unstarted?(user)
+    false unless user.present?
+    self.answer_sessions.where( user_id: user.id ).empty?
+  end
 
   # Instance Methods
   def tsort_each_node(&block)

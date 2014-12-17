@@ -1,5 +1,9 @@
 ## 3.1.0
 
+### Enhancements
+- **Home Page Changes**
+  - Surveys linked on the home page have been updated to better show a member's progress through the available surveys
+
 ## 3.0.0 (December 16, 2014)
 
 ### Enhancements

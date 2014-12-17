@@ -4,59 +4,36 @@
       .panel.panel-success#surveys
         .panel-heading
           Surveys - Participate in Research
-        .panel-body
-          %p.lead
-            Here we provide questions to help the sleep apnea community better
-            understand the symptoms found in patients with sleep apnea or at
-            risk for sleep apnea, their experiences with getting diagnosed,
-            and their health conditions. After you complete each survey, you
-            will see how your answers compare to the others within the network.
-            Each
-            %b completed survey
-            earns you an entry into
-            = link_to 'our monthly drawing', surveys_path, class: 'content-link'
-            for a chance to win a $250 gift card.
-        .list-group
-          - if current_user.nil? or current_user.has_no_started_surveys?
-            - if QuestionFlow.viewable.present?
-              - QuestionFlow.viewable.each do |s|
-                .list-group-item
-                  .row
-                    .col-md-8
-                      %h4= s.name
-                      %p=markdown s.short_description
-                      %p
-                        %b
-                          - if false
-                            Done by
-                            = pluralize(s.answer_sessions.count, "member")
-                    .col-md-4
-                      = link_to start_or_resume_survey(s), class: 'btn btn-success btn-lg btn-block survey-btn' do
-                        Start Survey
-                        &nbsp;
-                        .fa.fa-arrow-right
-                    .clearfix
-            - else
-              .panel-body
-                %h3.text-success Nothing here yet - Check back soon!
-          - else
-            - if current_user.incomplete_surveys.present?
-              - survey = current_user.incomplete_surveys.first
-              .list-group-item
-                .row
-                  .col-md-8
-                    %h4= survey.name
-                    %p= survey.short_description
-                  .col-md-4
-                    = link_to start_or_resume_survey(survey, survey.most_recent_answer_session(current_user)), class: 'btn btn-success btn-lg btn-block survey-btn' do
-                      Resume Survey
-                      &nbsp;
-                      .fa.fa-arrow-right
-                .row
-                  .col-md-12
-                    = render partial: 'surveys/partials/session_progress', locals: {stats: survey.completion_stats(current_user), question_flow: survey, answer: nil}
 
-                .clearfix
+        .panel-body
+          - if current_user
+            - if current_user.incomplete_surveys.count == 0
+              - # All Done
+              %p.lead
+                Thank you for completing all
+                = pluralize(Survey.viewable.count, 'survey') + '!'
+                Each
+                %b completed survey
+                earns you an entry into
+                = link_to 'our monthly drawing', surveys_path, class: 'content-link'
+                for a chance to win a $250 gift card.
+              = render partial: 'surveys/viewable_surveys_widget'
+            - else
+              - # Surveys in Progress
+              = render partial: 'surveys/drawings_text'
+              = render partial: 'surveys/viewable_surveys_widget'
+          - else
+            - # Not Signed In
+            = render partial: 'surveys/drawings_text'
+            %div{ style: 'text-align:center' }
+              = link_to new_user_registration_path, class: 'btn btn-lg btn-success' do
+                Sign Up and Get Started
+                .fa.fa-arrow-right
+
+            .row{ style: 'margin-top:20px' }
+              - Survey.viewable.each do |survey|
+                .col-sm-4
+                  = render partial: 'surveys/survey_widget', locals: { survey: survey }
   .row
     .col-md-12#forums_container
       .panel.panel-primary
