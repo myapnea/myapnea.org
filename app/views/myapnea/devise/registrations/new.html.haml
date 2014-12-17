@@ -8,7 +8,7 @@
           .col-md-6
             %p.pull-right
               Already a member?
-              = link_to 'Sign in!', new_session_path(:user)
+              = link_to 'Sign in!', new_session_path(:user), class: 'content-link'
       .panel-body
         - if resource.errors.any?
           .alert.alert-danger.alert-dismissable
