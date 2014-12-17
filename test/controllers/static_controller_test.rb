@@ -7,8 +7,8 @@ class StaticControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should get stealth" do
-    get :stealth
+  test "should get landing" do
+    get :landing
     assert_response :success
   end
 

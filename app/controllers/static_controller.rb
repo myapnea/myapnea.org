@@ -1,5 +1,5 @@
 class StaticController < ApplicationController
-  before_action :load_pc, only: [:about, :intro, :learn, :share, :research, :team, :faqs, :landing]
+  before_action :load_pc, only: [:about, :intro, :learn, :share, :research, :team, :faqs]
   before_action :about_layout, only: [:about, :intro, :learn, :share, :research, :team, :faqs]
 
   def content
@@ -17,7 +17,7 @@ class StaticController < ApplicationController
     render layout: "layouts/theme"
   end
 
-  def stealth
+  def landing
     render layout: 'layouts/cleantheme'
   end
 
