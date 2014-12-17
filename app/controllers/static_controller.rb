@@ -21,6 +21,10 @@ class StaticController < ApplicationController
     render layout: 'layouts/cleantheme'
   end
 
+  def stealth_steering
+    render layout: 'layouts/cleantheme'
+  end
+
   private
 
   def load_pc
