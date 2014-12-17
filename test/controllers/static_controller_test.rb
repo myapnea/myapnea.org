@@ -12,4 +12,10 @@ class StaticControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should get landing and redirect to home page for logged in user" do
+    login(users(:user_1))
+    get :landing
+    assert_redirected_to root_path
+  end
+
 end
