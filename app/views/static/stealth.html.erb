@@ -5,25 +5,21 @@
       <h2 class="text-white">Finding answers to sleep apnea, together.</h2>
       <h3 class="lighter-orange">Sleep apnea currently affects over 18 million of us. We are working together to improve patient support and treatment through information exchange and research.</h3>
       <h4 class="text-white">Wake up to a better future - join now!</h4>
-      <button type="button" class="btn btn-primary" id="btn-join"><strong>Join the Community</strong></button>
+      <%= link_to 'Join the Community', new_user_registration_path, class: 'btn btn-primary', id: 'btn-join', style: 'font-weight: bold;'  %>
     </div>
+
+    <!-- COMMUNITY TRACKER -->
     <div class="row" id="community-tracker">
-      <div class="col-md-5 col-md-offset-1">
-        <h2 class="lighterer-blue">Current community: <span class="primary-blue">563</span> members</h2>
+      <div class="col-md-5 col-md-offset-1 col-sm-5 col-sm-offset-1">
+        <h2 class="lighterer-blue">Current community:</br>
+          <span class="primary-blue"><%= number_with_delimiter User.all.count %> </span>members
+        </h2>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-6 col-sm-6">
         <%= image_tag 'myapnea/testimonials/sRedline-cropped.png', class: 'round-img round-img-orange hidden-xs' %>
         <%= image_tag 'myapnea/testimonials/larry-testimonial-cropped.png', class: 'round-img round-img-blue hidden-xs' %>
         <%= image_tag 'myapnea/testimonials/justine-testimonial-cropped.jpeg', class: 'round-img round-img-orange hidden-xs' %>
         <%= image_tag 'myapnea/testimonials/steve-testimonial-cropped.jpeg', class: 'round-img round-img-blue hidden-xs' %>
-<!--         <%= image_tag 'myapnea/welcome/img-small/member1_bw.jpg', class: 'round-img round-img-orange hidden-xs' %>
-        <%= image_tag 'myapnea/welcome/img-small/member1_bw.jpg', class: 'round-img round-img-blue hidden-xs' %>
-        <%= image_tag 'myapnea/welcome/img-small/member1_bw.jpg', class: 'round-img round-img-orange hidden-xs' %>
-        <%= image_tag 'myapnea/welcome/img-small/member1_bw.jpg', class: 'round-img round-img-blue hidden-xs' %>
-        <%= image_tag 'myapnea/welcome/img-small/member1_bw.jpg', class: 'round-img round-img-orange hidden-xs' %>
-        <%= image_tag 'myapnea/welcome/img-small/member1_bw.jpg', class: 'round-img round-img-blue hidden-xs' %>
-        <%= image_tag 'myapnea/welcome/img-small/member1_bw.jpg', class: 'round-img round-img-orange hidden-xs' %>
- -->
       </div>
     </div>
   </div> <!-- END ROW -->
@@ -81,14 +77,14 @@
   </div><!-- END ROW -->
 
   <div class="row" id="partners-banner">
-    <div class="col-md-4 col-lg-3 col-lg-offset-1">
-      <%= image_tag 'myapnea/welcome/img-small/ASAA-Logo-horizontal.png', class: 'partners-img', id: 'partner-AASA' %>
+    <div class="col-md-4 col-lg-4 col-lg-offset-1">
+      <%= image_tag 'myapnea/welcome/img-small/asaa_logo.jpg', class: 'partners-img', id: 'partner-AASA' %>
     </div>
     <div class="col-md-4 col-lg-3 ">
-      <%= image_tag 'myapnea/welcome/img-small/bwh-logo.png', class: 'partners-img', id: 'partner-BWH'%>
+      <%= image_tag 'myapnea/welcome/img-small/bwh_logo.jpg', class: 'partners-img', id: 'partner-BWH'%>
     </div>
     <div class="col-md-4 col-lg-3 ">
-      <%= image_tag 'myapnea/welcome/img-small/PCORnet.png', class: 'partners-img', id: 'partner-PCORnet' %>
+      <%= image_tag 'myapnea/welcome/img-small/pcornet_logo.jpg', class: 'partners-img', id: 'partner-PCORnet' %>
     </div>
   </div>
 
@@ -99,28 +95,39 @@
       <h1 class="primary-orange">Wake up to a better future!</h1>
       <div class="panel ">
         <div class="panel-body" id="panel-sign-up">
-          <h4 class="">By joining, you gain access to a unique group of resources and a growing research community. </br></br>
-          It's fast, simple, and completely free of cost to join and start making a difference!</br></h4>
-          <div class="input-group">
-            <input type="text" class="form-control" placeholder="First name">
-          </div>
-          <div class="input-group">
-            <input type="text" class="form-control" placeholder="Last name">
-          </div>
-          <div class="input-group">
-            <input type="text" class="form-control" placeholder="Year of birth">
-          </div>
-          <div class="input-group">
-            <input type="text" class="form-control" placeholder="Email">
-          </div>
-          <div class="input-group">
-            <input type="text" class="form-control" placeholder="Password">
-          </div>
-          <div class="input-group" id="submit-join">
-            <input type="submit" class="form-control" value="Join!">
-          </div>
+          <h4 class="">By joining, you gain access to a unique group of resources and a growing research community. </br></br>It's fast, simple, and completely free of cost to join and start making a difference!</br></h4>
+
+          <%= form_tag user_registration_path, method: :post do %>
+            <%= text_field_tag 'user[first_name]', nil, placeholder: 'First name', class: 'form-control' %>
+            <%= text_field_tag 'user[last_name]', nil, placeholder: 'Last name', class: 'form-control' %>
+            <%= select_tag 'user[year_of_birth]', options_for_select([['-- Select a Year --', nil]] + (1900..Date.today.year).to_a.reverse.collect{|i| [i,i]}), class: 'form-control' %>
+            <%= text_field_tag 'user[email]', nil, placeholder: 'Email address', class: 'form-control' %>
+            <%= password_field_tag 'user[password]', nil, placeholder: 'Password', class: 'form-control' %>
+            <%= submit_tag 'Sign up!', class: 'form-control' %>
+<!--
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="First name">
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Last name">
+            </div>
+            <div class="form-group"> -->
+            <!-- </div> -->
+<!--             <div class="form-group">
+              <input type="text" class="form-control" placeholder="Email">
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Password">
+            </div>
+            <div class="form-group" id="submit-join">
+              <input type="submit" class="form-control" value="Join!">
+            </div> -->
+
+          <% end %>
         </div>
       </div>
     </div> <!-- END COL-10 -->
 
   </div><!-- END ROW -->
+
+
