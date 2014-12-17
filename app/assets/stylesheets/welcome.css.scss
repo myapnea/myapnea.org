@@ -215,12 +215,14 @@ nav li a {
   min-height:115px;
   border-top: 5px solid orange;
   border-bottom:5px solid #5999DE;
+  padding-top:20px;
 }
 
 .partners-img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
   width:100%;
-  margin:0px ;
-  position:relative;
 }
 
 
@@ -285,17 +287,14 @@ nav li a {
   margin-right:20px;
 }
 
-#panel-sign-up .input-group {
+#panel-sign-up .form-control {
   width:98%;
   margin:10px;
-}
-
-#panel-sign-up .input-group input {
-  border-radius:3px;
   font-size:16px;
 }
 
-#submit-join input {
+
+#submit-join {
   background-color: #455A92;
   color:white;
 }
@@ -319,7 +318,7 @@ p { font-size: 14px; }
 @media (max-width: 1600px) {
   /* LARGE SCREENS */
   #community-tracker {
-    padding-bottom:100px;
+    padding-bottom:80px;
   }
 }
 
@@ -353,9 +352,9 @@ p { font-size: 14px; }
   #btn-join {margin-left: 25px;}
 
   .partners-img {
-    align:center;
     width:auto;
-    max-height:50px;
+    max-height:100px;
+    padding:10px 0;
   }
 
     #community-tracker h2 {
@@ -377,7 +376,6 @@ p { font-size: 14px; }
 
   .navbar-header {
     width:70%;
-/*    border:1px solid blue; */
   }
 
   #btn-login-phone {

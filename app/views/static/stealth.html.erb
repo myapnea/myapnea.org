@@ -81,10 +81,10 @@
       <%= image_tag 'myapnea/welcome/img-small/asaa_logo.jpg', class: 'partners-img', id: 'partner-AASA' %>
     </div>
     <div class="col-md-4 col-lg-3 ">
-      <%= image_tag 'myapnea/welcome/img-small/bwh_logo.jpg', class: 'partners-img', id: 'partner-BWH'%>
+      <%= image_tag 'myapnea/welcome/img-small/pcornet_logo.jpg', class: 'partners-img', id: 'partner-PCORnet' %>
     </div>
     <div class="col-md-4 col-lg-3 ">
-      <%= image_tag 'myapnea/welcome/img-small/pcornet_logo.jpg', class: 'partners-img', id: 'partner-PCORnet' %>
+      <%= image_tag 'myapnea/welcome/img-small/bwh_logo.jpg', class: 'partners-img', id: 'partner-BWH'%>
     </div>
   </div>
 
@@ -103,27 +103,9 @@
             <%= select_tag 'user[year_of_birth]', options_for_select([['-- Select a Year --', nil]] + (1900..Date.today.year).to_a.reverse.collect{|i| [i,i]}), class: 'form-control' %>
             <%= text_field_tag 'user[email]', nil, placeholder: 'Email address', class: 'form-control' %>
             <%= password_field_tag 'user[password]', nil, placeholder: 'Password', class: 'form-control' %>
-            <%= submit_tag 'Sign up!', class: 'form-control' %>
-<!--
-            <div class="form-group">
-              <input type="text" class="form-control" placeholder="First name">
-            </div>
-            <div class="form-group">
-              <input type="text" class="form-control" placeholder="Last name">
-            </div>
-            <div class="form-group"> -->
-            <!-- </div> -->
-<!--             <div class="form-group">
-              <input type="text" class="form-control" placeholder="Email">
-            </div>
-            <div class="form-group">
-              <input type="text" class="form-control" placeholder="Password">
-            </div>
-            <div class="form-group" id="submit-join">
-              <input type="submit" class="form-control" value="Join!">
-            </div> -->
-
+            <%= submit_tag 'Sign up!', class: 'form-control', id: 'submit-join' %>
           <% end %>
+
         </div>
       </div>
     </div> <!-- END COL-10 -->
