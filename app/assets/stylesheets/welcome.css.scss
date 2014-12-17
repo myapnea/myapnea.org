@@ -378,12 +378,17 @@ p { font-size: 14px; }
     width:70%;
   }
 
-  #btn-login-phone {
+  #btn-login-phone, #btn-welcome-phone {
     float:right;
     width:20%;
     height:40px;
     position:relative;
     top:-50px;
+  }
+
+  #btn-welcome-phone {
+    width:30%;
+    font-size:18px;
   }
 
 }

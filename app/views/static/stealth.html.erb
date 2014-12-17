@@ -100,7 +100,7 @@
           <%= form_tag user_registration_path, method: :post do %>
             <%= text_field_tag 'user[first_name]', nil, placeholder: 'First name', class: 'form-control' %>
             <%= text_field_tag 'user[last_name]', nil, placeholder: 'Last name', class: 'form-control' %>
-            <%= select_tag 'user[year_of_birth]', options_for_select([['-- Select a Year --', nil]] + (1900..Date.today.year).to_a.reverse.collect{|i| [i,i]}), class: 'form-control' %>
+            <%= select_tag 'user[year_of_birth]', options_for_select([['- Select your birth year -', nil]] + (1900..Date.today.year).to_a.reverse.collect{|i| [i,i]}), class: 'form-control' %>
             <%= text_field_tag 'user[email]', nil, placeholder: 'Email address', class: 'form-control' %>
             <%= password_field_tag 'user[password]', nil, placeholder: 'Password', class: 'form-control' %>
             <%= submit_tag 'Sign up!', class: 'form-control', id: 'submit-join' %>
