@@ -86,6 +86,7 @@ Rails.application.routes.draw do
   # Admin Section
   get 'admin' => 'admin#users'
   match 'admin/users', to: 'admin#users', as: 'admin_users', via: [:get, :post]
+  get 'admin/export_users', to: 'admin#export_users', as: 'export_users'
   get 'admin/surveys' => 'admin#surveys', as: 'admin_surveys'
   get 'admin/blog' => 'admin#blog', as: 'admin_blog'
   get 'admin/notifications' => 'admin#notifications', as: 'admin_notifications'

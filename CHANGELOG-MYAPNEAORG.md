@@ -3,6 +3,8 @@
 ### Enhancements
 - **Home Page Changes**
   - Surveys linked on the home page have been updated to better show a member's progress through the available surveys
+- **Administrative Changes**
+  - Administrators can export users to update MailChimp lists and segments
 
 ## 3.0.0 (December 16, 2014)
 
