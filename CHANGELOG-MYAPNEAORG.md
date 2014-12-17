@@ -3,6 +3,8 @@
 ### Enhancements
 - **Home Page Changes**
   - Surveys linked on the home page have been updated to better show a member's progress through the available surveys
+- **Registration Changes**
+  - Year of Birth is now a drop down list to avoid confusion between entering Birth Date instead of Year of Birth
 - **Administrative Changes**
   - Administrators can export users to update MailChimp lists and segments
 
