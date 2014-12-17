@@ -1,13 +1,27 @@
 <!-- WELCOME / JOIN -->
 
   <div class="row row-fullscreen" style="" id="slide-1">
-    <div class="col-md-7 col-md-offset-1">
-      <h2 class="text-white"><strong>Finding answers to sleep apnea, together.</strong></h2>
+    <div class="col-md-8 col-md-offset-1">
+      <h2 class="text-white">Finding answers to sleep apnea, together.</h2>
       <h3 class="lighter-orange">Sleep apnea currently affects over 18 million of us. We are working together to improve patient support and treatment through information exchange and research.</h3>
       <h4 class="text-white">Wake up to a better future - join now!</h4>
-      <button type="button" class="btn btn-primary" id="btn-join"><strong>Join the Community</strong></button>
+      <%= link_to 'Join the Community', new_user_registration_path, class: 'btn btn-primary', id: 'btn-join', style: 'font-weight: bold;'  %>
     </div>
 
+    <!-- COMMUNITY TRACKER -->
+    <div class="row" id="community-tracker">
+      <div class="col-md-5 col-md-offset-1 col-sm-5 col-sm-offset-1">
+        <h2 class="lighterer-blue">Current community:</br>
+          <span class="primary-blue"><%= number_with_delimiter User.all.count %> </span>members
+        </h2>
+      </div>
+      <div class="col-md-6 col-sm-6">
+        <%= image_tag 'myapnea/testimonials/sRedline-cropped.png', class: 'round-img round-img-orange hidden-xs' %>
+        <%= image_tag 'myapnea/testimonials/larry-testimonial-cropped.png', class: 'round-img round-img-blue hidden-xs' %>
+        <%= image_tag 'myapnea/testimonials/justine-testimonial-cropped.jpeg', class: 'round-img round-img-orange hidden-xs' %>
+        <%= image_tag 'myapnea/testimonials/steve-testimonial-cropped.jpeg', class: 'round-img round-img-blue hidden-xs' %>
+      </div>
+    </div>
   </div> <!-- END ROW -->
 
 
@@ -31,35 +45,48 @@
     </div>
     <div class="col-md-6 col-md-offset-1">
       <h1 class="primary-orange">Our Platform</h1>
-      <h3 class="lighter-orange">We plan to dramatically improve sleep apnea through information, support, and research</h3>
+      <h3 class="lighter-orange">We plan to improve sleep apnea through information, support, and research</h3>
       <h5 class="">We are inviting thousands of people with sleep apnea and their caregivers to come together at MyApnea.Org to learn more about symptoms and treatment, to share their experiences with others within the community, and to become part of a national research network to improve lives. It’s a whole new way of finding help—for you and for millions of people with sleep apnea.</h5>
     </div>
   </div><!-- END ROW -->
+
+
 
 <!-- COMMUNITY -->
   <div class="row row-fullscreen centered-text" id="slide-4">
     <div class="row">
       <div class="col-md-10 col-md-offset-1">
         <h1 class="primary-blue">Our Community</h1>
-        <h2 class="lighter-blue">Join a new patient-led community created to fight sleep apnea. MyApnea.Org is a network created by people with sleep apnea to empower others and to help get needed answers.</h2>
+        <h2 class="lighter-blue">Join a new patient-led community created to fight sleep apnea. MyApnea.Org is a community built by patients, providers and researchers to share and learn from one another.</h2>
       </div><!-- END COL-10 -->
     </div><!-- END ROW -->
     <div class="row">
       <a href="https://myapnea.org/forums/"><div class="col-md-3 col-md-offset-1 col-button" id="col-button-1" style="clear:both">
         <h1 class="text-white">Active </br> Forums</h1>
-        <p>Nam malesuada erat sit amet sapien aliquet dictum. Nulla porttitor luctus vestibulum. Curabitur et neque velit. Cras mattis dignissim gravida. Vivamus molestie ex massa, a molestie felis congue nec. In hac habitasse platea dictumst. In sed malesuada mauris. Proin ac vestibulum nisl. Mauris fermentum finibus sollicitudin. Nullam hendrerit nisl vitae consequat tempus. Nam sodales malesuada urna, sed elementum neque tempus nec.</p>
+        <p>Talk with others about living with sleep apnea and where you would like research to go. Share ideas on how to promote the website to others. The more members we have, the more we can learn from each other and contribute to future research.</p>
       </div></a><!-- END COL-3 -->
       <a href="https://myapnea.org/research_surveys/"><div class="col-md-3 col-button">
         <h1 class="text-white">Research </br> Surveys</h1>
-        <p>Nam malesuada erat sit amet sapien aliquet dictum. Nulla porttitor luctus vestibulum. Curabitur et neque velit. Cras mattis dignissim gravida. Vivamus molestie ex massa, a molestie felis congue nec. In hac habitasse platea dictumst. In sed malesuada mauris. Proin ac vestibulum nisl. Mauris fermentum finibus sollicitudin. Nullam hendrerit nisl vitae consequat tempus. Nam sodales malesuada urna, sed elementum neque tempus nec.</p>
+        <p>Answer a series of questions about symptoms, experiences with getting diagnosed, and related health conditions. Your answers will help the sleep apnea community better understand the disease and where future research efforts should be directed. </p>
       </div></a><!-- END COL-3 -->
       <a href="https://myapnea.org/social"><div class="col-md-3 col-button">
-        <h1 class="text-white">Support </br> Groups</h1>
-        <p>Nam malesuada erat sit amet sapien aliquet dictum. Nulla porttitor luctus vestibulum. Curabitur et neque velit. Cras mattis dignissim gravida. Vivamus molestie ex massa, a molestie felis congue nec. In hac habitasse platea dictumst. In sed malesuada mauris. Proin ac vestibulum nisl. Mauris fermentum finibus sollicitudin. Nullam hendrerit nisl vitae consequat tempus. Nam sodales malesuada urna, sed elementum neque tempus nec.</p>
+        <h1 class="text-white">Impact </br> Questions</h1>
+        <p>Cast your vote on which research questions matter to you most. Providers and researchers will share what is known about the highest ranked topics and if data is lacking they will endorse the topic as an important direction for future research.</p>
       </div></a><!-- END COL-3 -->
     </div><!-- END ROW -->
   </div><!-- END ROW -->
 
+  <div class="row" id="partners-banner">
+    <div class="col-md-4 col-lg-4 col-lg-offset-1">
+      <%= image_tag 'myapnea/welcome/img-small/asaa_logo.jpg', class: 'partners-img', id: 'partner-AASA' %>
+    </div>
+    <div class="col-md-4 col-lg-3 ">
+      <%= image_tag 'myapnea/welcome/img-small/pcornet_logo.jpg', class: 'partners-img', id: 'partner-PCORnet' %>
+    </div>
+    <div class="col-md-4 col-lg-3 ">
+      <%= image_tag 'myapnea/welcome/img-small/bwh_logo.jpg', class: 'partners-img', id: 'partner-BWH'%>
+    </div>
+  </div>
 
 <!-- JOIN US -->
   <div class="row row-fullscreen" id="slide-5">
@@ -68,28 +95,21 @@
       <h1 class="primary-orange">Wake up to a better future!</h1>
       <div class="panel ">
         <div class="panel-body" id="panel-sign-up">
-          <h4 class="">By joining, you gain access to a unique group of resources and a growing community that will always be available to offer support and advice. </br></br>
-          It's fast, simple, and completely free of cost to join and start making a difference!</br></h4>
-          <div class="input-group">
-            <input type="text" class="form-control" placeholder="First name">
-          </div>
-          <div class="input-group">
-            <input type="text" class="form-control" placeholder="Last name">
-          </div>
-          <div class="input-group">
-            <input type="text" class="form-control" placeholder="Year of birth">
-          </div>
-          <div class="input-group">
-            <input type="text" class="form-control" placeholder="Email">
-          </div>
-          <div class="input-group">
-            <input type="text" class="form-control" placeholder="Password">
-          </div>
-          <div class="input-group" id="submit-join">
-            <input type="submit" class="form-control" value="Join!">
-          </div>
+          <h4 class="">By joining, you gain access to a unique group of resources and a growing research community. </br></br>It's fast, simple, and completely free of cost to join and start making a difference!</br></h4>
+
+          <%= form_tag user_registration_path, method: :post do %>
+            <%= text_field_tag 'user[first_name]', nil, placeholder: 'First name', class: 'form-control' %>
+            <%= text_field_tag 'user[last_name]', nil, placeholder: 'Last name', class: 'form-control' %>
+            <%= select_tag 'user[year_of_birth]', options_for_select([['- Select your birth year -', nil]] + (1900..Date.today.year).to_a.reverse.collect{|i| [i,i]}), class: 'form-control' %>
+            <%= text_field_tag 'user[email]', nil, placeholder: 'Email address', class: 'form-control' %>
+            <%= password_field_tag 'user[password]', nil, placeholder: 'Password', class: 'form-control' %>
+            <%= submit_tag 'Sign up!', class: 'form-control', id: 'submit-join' %>
+          <% end %>
+
         </div>
       </div>
     </div> <!-- END COL-10 -->
 
   </div><!-- END ROW -->
+
+

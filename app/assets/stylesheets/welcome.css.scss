@@ -28,6 +28,12 @@
   text-align:center;
 }
 
+//* FONTS */
+@font-face {
+    font-family: Segoe-Print;
+    src: asset-url('myapnea/welcome/segoe_print.ttf');
+}
+
 /* DOCUMENT */
 
 body {
@@ -71,14 +77,32 @@ nav li a {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+  position:relative;
+  padding-bottom:100px;
 }
+
 
 #slide-1 h2 {
   margin-top:90px;
+  // font-family: Segoe-Print, sans-serif;
+  // font-family: 'Handlee', cursive;
+  // font-family: 'Cabin', sans-serif;
+  font-family: 'Dosis', sans-serif;
+}
+
+#slide-1 h3 {
+  // font-family: Segoe-Print, sans-serif;
+  // font-family: 'Handlee', cursive;
+  // font-family: 'Cabin', sans-serif;
+  font-family: 'Dosis', sans-serif;
 }
 
 #slide-1 h4 {
   margin-top:50px;
+  // font-family: Segoe-Print, sans-serif;
+  // font-family: 'Handlee', cursive;
+  // font-family: 'Cabin', sans-serif;
+  font-family: 'Dosis', sans-serif;
 }
 
 #btn-join {
@@ -89,6 +113,32 @@ nav li a {
   border:1px solid white;
 }
 
+#community-tracker {
+  position:absolute;
+  bottom:0px;
+  width:100%;
+  padding-bottom:0px;
+  text-align:center;
+}
+
+.round-img {
+  width:20%;
+  height:auto;
+  border-radius:100%;
+  margin:70px 1% 0 1%;
+
+  // Controls for xlarge screens
+  max-width: 120px;
+  max-height:120px;
+}
+
+.round-img-orange {
+  border:5px solid #FFA400;
+}
+
+.round-img-blue {
+  border:5px solid #5999DE;
+}
 
 /* MISSION */
 
@@ -109,7 +159,7 @@ nav li a {
 }
 
 #slide-2 h1 {
-  margin-top:120px;
+  margin-top:150px;
 }
 
 #slide-2 h3 {
@@ -121,7 +171,7 @@ nav li a {
 }
 
 #slide-2 img {
-  margin-top:120px;
+  margin-top:150px;
   margin-left:20%;
   width:60%;
   max-height: 400px;
@@ -159,11 +209,30 @@ nav li a {
   margin-bottom:40px;
 }
 
+/* PARTNERS BANNER */
+#partners-banner {
+  background-color:white;
+  min-height:115px;
+  border-top: 5px solid orange;
+  border-bottom:5px solid #5999DE;
+  padding-top:20px;
+}
+
+.partners-img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width:100%;
+}
+
+
 
 /* COMMUNITY HIGHLIGHTS */
 
 #slide-4 {
   background-image: asset-url('myapnea/welcome/textures/grey.png');
+  position:relative;
+  padding-bottom:150px;
 }
 
 .col-button {
@@ -189,11 +258,11 @@ nav li a {
   background-size:100% 100%;
   background-repeat:no-repeat;
   background-position: bottom;
+  font-family: 'Dosis', sans-serif;
 }
 
 #slide-5 h1 {
-  // font-family: 'Shadows Into Light Two', cursive;
-  font-family: 'Handlee', cursive;
+  font-family: 'Dosis', sans-serif;
   text-align:center;
   margin-top: 50px;
   margin-bottom:30px;
@@ -218,17 +287,14 @@ nav li a {
   margin-right:20px;
 }
 
-#panel-sign-up .input-group {
+#panel-sign-up .form-control {
   width:98%;
   margin:10px;
-}
-
-#panel-sign-up .input-group input {
-  border-radius:3px;
   font-size:16px;
 }
 
-#submit-join input {
+
+#submit-join {
   background-color: #455A92;
   color:white;
 }
@@ -249,6 +315,13 @@ p { font-size: 14px; }
 
 /* RESPONSIVE DESIGN */
 
+@media (max-width: 1600px) {
+  /* LARGE SCREENS */
+  #community-tracker {
+    padding-bottom:80px;
+  }
+}
+
 @media (max-width: 1200px) {
   /* MEDIUM SCREENS */
   h1{ font-size: 42px; }
@@ -257,6 +330,11 @@ p { font-size: 14px; }
   h4{ font-size: 20px; }
   h5{ font-size: 16px; }
   p { font-size: 14px; }
+
+  #community-tracker h2 {
+    font-size:36px;
+    text-align:center;
+  }
 }
 
 @media (max-width: 992px) {
@@ -273,6 +351,17 @@ p { font-size: 14px; }
   }
   #btn-join {margin-left: 25px;}
 
+  .partners-img {
+    width:auto;
+    max-height:100px;
+    padding:10px 0;
+  }
+
+    #community-tracker h2 {
+    font-size:36px;
+    text-align:center;
+  }
+
 }
 
 @media (max-width: 768px) {
@@ -287,14 +376,19 @@ p { font-size: 14px; }
 
   .navbar-header {
     width:70%;
-/*    border:1px solid blue; */
   }
 
-  #btn-login-phone {
+  #btn-login-phone, #btn-welcome-phone {
     float:right;
     width:20%;
     height:40px;
     position:relative;
     top:-50px;
   }
+
+  #btn-welcome-phone {
+    width:30%;
+    font-size:18px;
+  }
+
 }
