@@ -62,14 +62,11 @@
           Research Questions - Vote on the Future of Sleep Apnea Research
         .panel-body
           %p.lead
-            At MyApnea.Org you can help direct the future of sleep apnea research.
-            Below are research questions that network members would like answers to.
-            Every month, you can cast up to five votes.
-            At the end of the month, the top rated question will be explored within
-            the Forum.  Providers and researchers in the network will share what is
-            known on the topic and if data is lacking they will endorse the topic as
-            an important direction for future research. Let your voice be heard,
-            vote now!
+            Help direct the future of sleep apnea research. Below are questions
+            important to network members. Every month, you can cast up to five
+            votes. Top rated questions will be explored within the Forum. If
+            data is lacking, the topic will be endorsed as an important
+            direction for future research. Let your voice be heard, vote now!
         = render partial: "research_topics/research_topics", locals: {research_topics: ResearchTopic.popular.take(5), editable: false, disabled: true}
         .list-group
           %a.list-group-item.text-right{href: research_topics_path}
