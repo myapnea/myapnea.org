@@ -1,11 +1,11 @@
 /* COLOR PALETTE */
 
-.primary-blue { color: #5999DE; }
+.primary-blue { color: #5999DE; } // BLUE
 .lighter-blue { color: #7FB2EB; }
 .lighterer-blue { color: #B1D2F6; }
 .darker-blue { color: #387FCF; }
 .darkerer-blue { color: #1765BC; }
-.primary-orange { color: #FFA400; }
+.primary-orange { color: #FFA400; } // ORANGE
 .lighter-orange { color: #FFB839; }
 .lighterer-orange { color: #FFC864; }
 .darker-orange { color: #C67F00; }
@@ -46,6 +46,10 @@ body {
   padding-bottom:70px;
 }
 
+.row {
+  margin:auto 0px;
+}
+
 /* NAVIGATION BAR */
 
 nav {
@@ -64,10 +68,13 @@ nav li a {
   color:white;
 }
 
-.navbar-right .form-group, .navbar-right button {
-  margin-bottom:20px;
-}
+// .navbar-right .form-group, .navbar-right button {
+//   margin-bottom:20px;
+// }
 
+.navbar-right {
+  margin-top:-10px;
+}
 
 
 /* WELCOME */
@@ -109,6 +116,7 @@ nav li a {
   font-size:21px;
   padding:10px;
   width:50%;
+  min-width:190px;
   background-color: #FFA400;
   border:1px solid white;
 }
@@ -209,22 +217,6 @@ nav li a {
   margin-bottom:40px;
 }
 
-/* PARTNERS BANNER */
-#partners-banner {
-  background-color:white;
-  min-height:115px;
-  border-top: 5px solid orange;
-  border-bottom:5px solid #5999DE;
-  padding-top:20px;
-}
-
-.partners-img {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width:100%;
-}
-
 
 
 /* COMMUNITY HIGHLIGHTS */
@@ -251,6 +243,23 @@ nav li a {
   color:white;
 }
 
+
+/* PARTNERS BANNER */
+#partners-banner {
+  background-color:white;
+  min-height:115px;
+  border-top: 5px solid #FFA400;
+  border-bottom:5px solid #5999DE;
+  padding-top:20px;
+}
+
+.partners-img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width:100%;
+}
+
 /* SIGN UP */
 
 #slide-5 {
@@ -262,14 +271,16 @@ nav li a {
 }
 
 #slide-5 h1 {
-  font-family: 'Dosis', sans-serif;
+
   text-align:center;
-  margin-top: 50px;
-  margin-bottom:30px;
+  margin-bottom:20px;
+  font-weight:600;
+  font-size:40px;
 }
 
 .panel{
-  background-color: rgba(255, 255, 255, .6);
+  margin-top:50px;
+  background-color: rgba(255, 255, 255, .8);
 }
 
 .panel-heading {
@@ -283,8 +294,7 @@ nav li a {
 
 #panel-sign-up h4 {
   margin-bottom: 15px;
-  margin-left:10px;
-  margin-right:20px;
+  padding:0 10px;
 }
 
 #panel-sign-up .form-control {
@@ -295,7 +305,7 @@ nav li a {
 
 
 #submit-join {
-  background-color: #455A92;
+  background-color: #5999DE;
   color:white;
 }
 
@@ -357,7 +367,7 @@ p { font-size: 14px; }
     padding:10px 0;
   }
 
-    #community-tracker h2 {
+  #community-tracker h2 {
     font-size:36px;
     text-align:center;
   }
@@ -372,18 +382,13 @@ p { font-size: 14px; }
   h4{ font-size: 18px; }
   h5{ font-size: 16px; }
   p { font-size: 16px; }
-  #btn-join { font-size:16px; }
 
-  .navbar-header {
-    width:70%;
-  }
+  #btn-join { font-size:16px; }
 
   #btn-login-phone, #btn-welcome-phone {
     float:right;
     width:20%;
-    height:40px;
-    position:relative;
-    top:-50px;
+    margin-right:10px;
   }
 
   #btn-welcome-phone {
@@ -391,8 +396,14 @@ p { font-size: 14px; }
     font-size:18px;
   }
 
+  #navbar-myapnea-logo {
+    width: 80%;
+  }
+
 }
 
+
+/* FIX - Divs within link tags  */
 a.community-highlight-links:hover {
   text-decoration: none;
 }
