@@ -9,6 +9,7 @@
   - Forum index no longer shows quoted text in forum replies
 - **General Changes**
   - Minor text and content updates throughout the site
+  - Fixed an issue where long links and title would run into the page from the Recent News bar
 - **Administrative Changes**
   - Administrators can export users to update MailChimp lists and segments
 
