@@ -25,29 +25,28 @@
   <nav class="navbar navbar-fixed-top" role="navigation">
     <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header">
-
+      <div class="navbar-header" style="padding-right:0;">
           <%= link_to image_tag('myapnea/welcome/img-small/myApneaLogoOld.png', width: '100%', style: 'position:relative;top:-32px; left:0px;', id: 'navbar-myapnea-logo'), root_path, class: 'navbar-brand', style: 'color:white; line-height:100%; width:260px;' %>
 
-      </div>
 
-      <% if current_user %>
-        <div class='navbar-right text-white centered-text', style='margin-top:-10px;'>
+    <% if current_user %>
+        <div class='navbar-right text-white centered-text'>
           <h4 id='btn-welcome-phone' style='font-weight:300'>Welcome, <span class='lighterer-blue'><%= current_user.first_name %></span>!</h4>
         </div>
-      <% else  %>
+      </div><!-- /.navbar-header -->
+    <% else  %>
         <!-- Add a login for mobile devices -->
         <%= link_to 'Login', new_user_session_path, class: 'btn primary-blue-bcg text-white visible-xs float-right', id: 'btn-login-phone' %>
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <%= form_tag user_session_path, method: :post, class: 'navbar-form navbar-right' do %>
-            <%= text_field_tag 'user[email]', nil, placeholder: 'Email', class: 'form-control' %>
-            <%= password_field_tag 'user[password]', nil, placeholder: 'Password', class: 'form-control' %>
-            <%= submit_tag 'Login', class: 'btn btn-primary' %>
-          <% end %>
+      </div><!-- /.navbar-header -->
+      <div class="collapse navbar-collapse navbar-right">
+        <%= form_tag user_session_path, method: :post, class: 'navbar-form' do %>
+          <%= text_field_tag 'user[email]', nil, placeholder: 'Email', class: 'form-control' %>
+          <%= password_field_tag 'user[password]', nil, placeholder: 'Password', class: 'form-control' %>
+          <%= submit_tag 'Login', class: 'btn btn-primary' %>
+        <% end %>
+      </div>
+    <% end %>
 
-        </div><!-- /.navbar-collapse -->
-      <% end %>
     </div><!-- /.container-fluid -->
   </nav>
 

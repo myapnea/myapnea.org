@@ -46,6 +46,10 @@ body {
   padding-bottom:70px;
 }
 
+.row {
+  margin:auto 0px;
+}
+
 /* NAVIGATION BAR */
 
 nav {
@@ -64,10 +68,13 @@ nav li a {
   color:white;
 }
 
-.navbar-right .form-group, .navbar-right button {
-  margin-bottom:20px;
-}
+// .navbar-right .form-group, .navbar-right button {
+//   margin-bottom:20px;
+// }
 
+.navbar-right {
+  margin-top:-10px;
+}
 
 
 /* WELCOME */
@@ -109,6 +116,7 @@ nav li a {
   font-size:21px;
   padding:10px;
   width:50%;
+  min-width:190px;
   background-color: #FFA400;
   border:1px solid white;
 }
@@ -357,7 +365,7 @@ p { font-size: 14px; }
     padding:10px 0;
   }
 
-    #community-tracker h2 {
+  #community-tracker h2 {
     font-size:36px;
     text-align:center;
   }
@@ -372,18 +380,13 @@ p { font-size: 14px; }
   h4{ font-size: 18px; }
   h5{ font-size: 16px; }
   p { font-size: 16px; }
-  #btn-join { font-size:16px; }
 
-  .navbar-header {
-    width:70%;
-  }
+  #btn-join { font-size:16px; }
 
   #btn-login-phone, #btn-welcome-phone {
     float:right;
     width:20%;
-    height:40px;
-    position:relative;
-    top:-50px;
+    margin-right:10px;
   }
 
   #btn-welcome-phone {
@@ -391,8 +394,14 @@ p { font-size: 14px; }
     font-size:18px;
   }
 
+  #navbar-myapnea-logo {
+    width: 80%;
+  }
+
 }
 
+
+/* FIX - Divs within link tags  */
 a.community-highlight-links:hover {
   text-decoration: none;
 }
