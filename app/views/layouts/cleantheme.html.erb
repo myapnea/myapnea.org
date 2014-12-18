@@ -14,7 +14,7 @@
   <%= stylesheet_link_tag 'cleantheme', media: 'all', data: { turbolinks_track: true } %>
   <%= javascript_include_tag 'cleantheme', data: { turbolinks_track: true } %>
 </head>
-<body>
+<body data-email="<%= current_user.email if current_user %>" data-fullname="<%= current_user.name if current_user %>">
 
 <!-- NAVIGATION BAR -->
 
