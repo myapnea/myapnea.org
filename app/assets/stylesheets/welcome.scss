@@ -68,9 +68,10 @@ nav li a {
   color:white;
 }
 
-// .navbar-right .form-group, .navbar-right button {
-//   margin-bottom:20px;
-// }
+// Ensure proper logo size for large screens
+.navbar-header {
+  min-width:30%;
+  }
 
 .navbar-right {
   margin-top:-10px;
@@ -389,6 +390,7 @@ p { font-size: 14px; }
     float:right;
     width:20%;
     margin-right:10px;
+    margin-left:0px;
   }
 
   #btn-welcome-phone {
@@ -397,7 +399,6 @@ p { font-size: 14px; }
   }
 
   #navbar-myapnea-logo {
-    width: 80%;
   }
 
 }
