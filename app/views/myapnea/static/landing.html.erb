@@ -99,19 +99,19 @@
   <div class="row row-fullscreen" id="slide-5">
 
     <div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
-      <h1 class="primary-orange">Wake up to a better future!</h1>
       <div class="panel ">
         <div class="panel-body" id="panel-sign-up">
-          <h4 class="">By joining, you gain access to a unique group of resources and a growing research community. </br></br>It's fast, simple, and completely free of cost to join and start making a difference!</br></h4>
+        <h1 class="darker-blue">Wake up to a better future!</h1>
+        <h4>By joining, you gain access to a unique group of resources and a growing research community. </br></br>It's fast, simple, and completely free of cost to join and start making a difference!</br></h4>
 
-          <%= form_tag user_registration_path, method: :post do %>
-            <%= text_field_tag 'user[first_name]', nil, placeholder: 'First name', class: 'form-control' %>
-            <%= text_field_tag 'user[last_name]', nil, placeholder: 'Last name', class: 'form-control' %>
-            <%= select_tag 'user[year_of_birth]', options_for_select([['- Select your birth year -', nil]] + (1900..Date.today.year).to_a.reverse.collect{|i| [i,i]}), class: 'form-control' %>
-            <%= text_field_tag 'user[email]', nil, placeholder: 'Email address', class: 'form-control' %>
-            <%= password_field_tag 'user[password]', nil, placeholder: 'Password', class: 'form-control' %>
-            <%= submit_tag 'Sign up!', class: 'form-control', id: 'submit-join' %>
-          <% end %>
+        <%= form_tag user_registration_path, method: :post do %>
+          <%= text_field_tag 'user[first_name]', nil, placeholder: 'First name', class: 'form-control' %>
+          <%= text_field_tag 'user[last_name]', nil, placeholder: 'Last name', class: 'form-control' %>
+          <%= select_tag 'user[year_of_birth]', options_for_select([['- Select your birth year -', nil]] + (1900..Date.today.year).to_a.reverse.collect{|i| [i,i]}), class: 'form-control' %>
+          <%= text_field_tag 'user[email]', nil, placeholder: 'Email address', class: 'form-control' %>
+          <%= password_field_tag 'user[password]', nil, placeholder: 'Password', class: 'form-control' %>
+          <%= submit_tag 'Sign up!', class: 'form-control', id: 'submit-join' %>
+        <% end %>
 
         </div>
       </div>

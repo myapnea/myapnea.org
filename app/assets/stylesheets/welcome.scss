@@ -1,11 +1,11 @@
 /* COLOR PALETTE */
 
-.primary-blue { color: #5999DE; }
+.primary-blue { color: #5999DE; } // BLUE
 .lighter-blue { color: #7FB2EB; }
 .lighterer-blue { color: #B1D2F6; }
 .darker-blue { color: #387FCF; }
 .darkerer-blue { color: #1765BC; }
-.primary-orange { color: #FFA400; }
+.primary-orange { color: #FFA400; } // ORANGE
 .lighter-orange { color: #FFB839; }
 .lighterer-orange { color: #FFC864; }
 .darker-orange { color: #C67F00; }
@@ -217,22 +217,6 @@ nav li a {
   margin-bottom:40px;
 }
 
-/* PARTNERS BANNER */
-#partners-banner {
-  background-color:white;
-  min-height:115px;
-  border-top: 5px solid orange;
-  border-bottom:5px solid #5999DE;
-  padding-top:20px;
-}
-
-.partners-img {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width:100%;
-}
-
 
 
 /* COMMUNITY HIGHLIGHTS */
@@ -259,6 +243,23 @@ nav li a {
   color:white;
 }
 
+
+/* PARTNERS BANNER */
+#partners-banner {
+  background-color:white;
+  min-height:115px;
+  border-top: 5px solid #FFA400;
+  border-bottom:5px solid #5999DE;
+  padding-top:20px;
+}
+
+.partners-img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width:100%;
+}
+
 /* SIGN UP */
 
 #slide-5 {
@@ -270,14 +271,16 @@ nav li a {
 }
 
 #slide-5 h1 {
-  font-family: 'Dosis', sans-serif;
+
   text-align:center;
-  margin-top: 50px;
-  margin-bottom:30px;
+  margin-bottom:20px;
+  font-weight:600;
+  font-size:40px;
 }
 
 .panel{
-  background-color: rgba(255, 255, 255, .6);
+  margin-top:50px;
+  background-color: rgba(255, 255, 255, .8);
 }
 
 .panel-heading {
@@ -291,8 +294,7 @@ nav li a {
 
 #panel-sign-up h4 {
   margin-bottom: 15px;
-  margin-left:10px;
-  margin-right:20px;
+  padding:0 10px;
 }
 
 #panel-sign-up .form-control {
@@ -303,7 +305,7 @@ nav li a {
 
 
 #submit-join {
-  background-color: #455A92;
+  background-color: #5999DE;
   color:white;
 }
 
