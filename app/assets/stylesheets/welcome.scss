@@ -249,7 +249,15 @@ nav li a {
 
 .col-button:hover {
   border: 5px solid #FFB839;
+  color:#999;
+}
+
+.col-button:hover #survey-drawing-highlight {
   color:white;
+}
+
+.col-button:hover #visa-gift-card {
+  font-weight:bold;
 }
 
 
