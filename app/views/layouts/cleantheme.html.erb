@@ -2,13 +2,17 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>MyApnea.Org Welcome</title>
-  <meta name="generator" content="BBEdit 10.5" />
-  <link href='//fonts.googleapis.com/css?family=Patrick+Hand|Handlee|Coming+Soon' rel='stylesheet' type='text/css'>
-  <link href='//fonts.googleapis.com/css?family=Dosis:400,700|Cabin:400,700' rel='stylesheet' type='text/css'>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Welcome to MyApnea.Org</title>
+  <link href='//fonts.googleapis.com/css?family=Patrick+Hand|Handlee|Coming+Soon' rel='stylesheet' type='text/css' />
+  <link href='//fonts.googleapis.com/css?family=Dosis:400,700|Cabin:400,700' rel='stylesheet' type='text/css' />
 
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="//oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
 
   <!-- Style Sheets -->
   <%= stylesheet_link_tag 'cleantheme', media: 'all', data: { turbolinks_track: true } %>
@@ -23,7 +27,7 @@
     <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
 
-          <%= link_to image_tag('myapnea/welcome/img-small/myApneaLogoOld.png', width: '100%', style: 'position:relative;top:-32px; left:0px;'), root_path, class: 'navbar-brand', style: 'color:white; line-height:100%; width:260px;' %>
+          <%= link_to image_tag('myapnea/welcome/img-small/myApneaLogoOld.png', width: '100%', style: 'position:relative;top:-32px; left:0px;', id: 'navbar-myapnea-logo'), root_path, class: 'navbar-brand', style: 'color:white; line-height:100%; width:260px;' %>
 
       </div>
 
