@@ -1,33 +1,48 @@
--# if can?(:read, forum)
-.list-group-item.forum
-  %h3.list-group-heading
-    = link_to forem_emojify(forum.title), forem.forum_path(forum), :class => "title"
-    = link_to forem.forum_path(forum), class: 'btn btn-sm pull-right btn-primary' do
-      %strong Enter Forum&nbsp;
+.forum-container
+  %h3
+    = link_to forem_emojify(forum.title), forem.forum_path(forum)
+    = link_to forem.forum_path(forum), class: 'btn btn-sm pull-right btn-primary hidden-xs' do
+      Enter Forum
       %span.fa.fa-arrow-right
-  .list-group-body
-    %h4.description.text-info= forem_format(forum.description)
+    %p.lead.text-info
+      = forem_format(forum.description)
+  %hr/
 
-
-    .last_posts
-      - if forum.last_visible_post(forem_user)
-        - forum.posts.approved_or_pending_review_for(forem_user).reverse[0,3].each do |post|
-          %hr/
-          = link_to forem.forum_topic_path(forum, post.topic), class: "topic-link" do
-            .col-sm-1
-              = image_tag post.user.photo_url, class: "img-responsive img-thumbnail"
-            .col-sm-8
-              = strip_tags(strip_quote(post.text)).truncate(200, separator: ' ').html_safe
-            .col-sm-3
-              .text-muted.text-small
-                %time{:datetime => post.created_at.to_s(:db)}= "posted #{time_ago_in_words(post.created_at)} #{t("ago")}"
-                = t('by')
-                = post.user.forem_name
-            .clearfix
-
-      - else
-        %hr/
-        %br/
-        .text-warning.text-center No post so far!
-        %br/
-    .clearfix
+  - if forum.last_visible_post(forem_user)
+    -# forum.posts.approved_or_pending_review_for(forem_user).reverse[0,3].each do |post|
+    - forum.topics.where(state: 'approved').order(last_post_at: :desc).limit(3).each do |topic|
+      .topic-container
+        .row
+          .col-xs-1{ style: 'text-align:right' }
+            = render partial: 'forem/forums/user_image', locals: { user: topic.user, size: 25 }
+          .col-md-11.col-xs-10.col-xs-offset-1.col-md-offset-0{ style: 'border-left: 1px solid #5999de;' }
+            %p.lead{ style: 'margin-bottom:10px' }= link_to topic, forem.forum_topic_path(forum, topic), class: 'content-link-primary', style: 'text-decoration:none'
+        - number_of_previous_posts = topic.posts.where(state: 'approved').count - 1
+        - if number_of_previous_posts > 0
+          .row
+            .col-md-11.col-xs-10.col-xs-offset-2.col-md-offset-1{ style: 'border-left: 1px solid #5999de;padding-bottom:10px' }
+              = link_to forem.forum_topic_path(forum, topic) do
+                .text-muted{ style: 'font-weight: 300' }
+                  %i.fa.fa-comments-o
+                  = pluralize topic.posts.where(state: 'approved').count - 1, 'previous post'
+        - if post = topic.posts.where(state: 'approved').order(created_at: :desc).last
+          .row
+            .col-xs-1
+            .col-md-11.col-xs-10.col-xs-offset-1.col-md-offset-0{ style: 'border-left: 1px solid #5999de;padding-bottom:0px;margin-bottom:10px' }
+              .row
+                .col-xs-2.col-sm-1
+                  = render partial: 'forem/forums/user_image', locals: { user: post.user, size: 20 }
+                .col-xs-10.col-sm-11
+                  %p
+                    - link_string = "&nbsp;" + link_to('more...'.html_safe, forem.forum_topic_post_path(post.forum, post.topic, post), class: 'content-link-primary small')
+                    = strip_tags(strip_quote(post.text)).truncate(80 + link_string.size, separator: ' ', omission: link_string ).html_safe
+                  .small.text-muted{ style: 'font-weight: 300' }
+                    %abbr{ title: post.created_at.strftime("%-d %B %Y, %-l:%M %p"), data: { toggle: 'tooltip', container: 'body', placement: 'bottom' } }= (time_ago_in_words(post.created_at) + t("ago")).html_safe
+                    = t('by')
+                    = post.user.forem_name
+  - else
+    %hr/
+    %br/
+    .text-warning.text-center No post so far!
+    %br/
+  .clearfix

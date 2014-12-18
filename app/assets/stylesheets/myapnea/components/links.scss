@@ -7,3 +7,13 @@ a.content-link:hover {
   color: $ma-light-yellow;
 }
 
+
+a.content-link-primary {
+  color: $ma-light-blue;
+  text-decoration: underline;
+}
+
+a.content-link-primary:hover {
+  color: $ma-lighter-blue;
+}
+

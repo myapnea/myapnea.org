@@ -7,6 +7,7 @@
   - Year of Birth is now a drop down list to avoid confusion between entering Birth Date instead of Year of Birth
 - **Forum Changes**
   - Forum index no longer shows quoted text in forum replies
+  - Improved the user interface for the forum index and the forum widget on the home page
 - **General Changes**
   - Minor text and content updates throughout the site
   - Fixed an issue where long links and title would run into the page from the Recent News bar

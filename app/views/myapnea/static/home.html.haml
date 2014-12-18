@@ -24,9 +24,19 @@
   .panel.panel-primary
     .panel-heading
       Forums - Share with the Community
-    .list-group
-      - Forem::Forum.all.each do |forum|
-        = render partial: "forem/forums/forum", locals: { forum: forum }
+    .panel-body
+      - if most_recent_approved_post = Forem::Post.order(created_at: :desc).where(state: 'approved').first
+        = render partial: "forem/forums/forum", locals: { forum: most_recent_approved_post.forum }
+        %h3= link_to 'More Forums', forem.root_path
+        .row
+        - Forem::Forum.where.not(id: most_recent_approved_post.forum.id).sort{|f| f.topics.count}.each do |forum|
+          .col-sm-4
+            .panel.panel-primary
+              .panel-heading
+                = link_to forum, forem.forum_path(forum), style: 'color:white'
+              .panel-body
+                %strong= link_to pluralize(forum.topics.where(state: 'approved').count, 'topic'), forem.forum_path(forum)
+                %p= forum.description
 
 .panel.panel-default
   .panel-heading

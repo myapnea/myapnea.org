@@ -1,0 +1,2 @@
+- size = 25 unless defined?(size)
+= image_tag user.photo_url, size: "#{size}x#{size}", class: "img-thumbnail", style: "min-height:#{size+5}px;min-width:#{size+5}px;", title: user.forem_name, data: { toggle: 'tooltip', container: 'body', placement: 'top' }

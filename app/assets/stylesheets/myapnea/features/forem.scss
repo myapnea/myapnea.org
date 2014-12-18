@@ -1,49 +1,9 @@
-#forums_container {
-  .list-group-item {
-    border-color: $ma-lighter-blue;
+.forum-container {
+
+  .topic-container {
+    margin-bottom: 20px;
   }
 
-  .list-group-heading {
-
-    line-height: 35px;
-    margin-bottom: 0px;
-    margin-top: 20px;
-  }
-
-  .description {
-    margin-top: 10px;
-    margin-bottom: 25px;
-  }
-  hr {
-    margin-top: 0px;
-    margin-bottom: 0px;
-    border-color: $ma-lightest-blue;
-  }
-
-  a.topic-link {
-    display: block;
-    padding: 5px 0;
-  }
-
-  a.topic-link:hover {
-    background: $ma-white-blue;
-  }
-
-
-}
-#forum {
-  #description {
-    font-size: $font-size-base
-  }
-
-}
-div.forum {
-  .panel-heading {
-    background: white;
-  }
-  .panel-body {
-    padding: 0;
-  }
 }
 
 table.topics tr {
