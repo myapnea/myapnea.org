@@ -5,6 +5,8 @@
   - Surveys linked on the home page have been updated to better show a member's progress through the available surveys
 - **Registration Changes**
   - Year of Birth is now a drop down list to avoid confusion between entering Birth Date instead of Year of Birth
+- **Forum Changes**
+  - Forum index no longer shows quoted text in forum replies
 - **General Changes**
   - Minor text and content updates throughout the site
 - **Administrative Changes**
