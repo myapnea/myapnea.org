@@ -1,84 +1,53 @@
 #home
-  .row
-    .col-md-12
-      .panel.panel-success#surveys
-        .panel-heading
-          Surveys - Participate in Research
+  .panel.panel-success#surveys
+    .panel-heading
+      Surveys - Participate in Research
 
-        .panel-body
-          - if current_user
-            - if current_user.incomplete_surveys.count == 0
-              - # All Done
-              = render partial: 'surveys/drawings_text_all_completed'
-            - else
-              - # Surveys in Progress
-              = render partial: 'surveys/drawings_text'
-            = render partial: 'surveys/viewable_surveys_widget'
-          - else
-            - # Not Signed In
-            = render partial: 'surveys/drawings_text'
-            %div{ style: 'text-align:center' }
-              = link_to new_user_registration_path, class: 'btn btn-lg btn-success' do
-                Sign Up and Get Started
-                .fa.fa-arrow-right
-  .row
-    .col-md-12#forums_container
-      .panel.panel-primary
-        .panel-heading
-          Forums - Share with the Community
-        .list-group
-          - Forem::Forum.all.each do |forum|
-            = render partial: "forem/forums/forum", locals: {forum: forum}
-            -#.list-group-item
-            -#  .row
-            -#    .col-md-8
-            -#      %h3= link_to forem_emojify(forum.title), forem.forum_path(forum), :class => "title"
-            -#      .text-info= forem_format(forum.description)
-            -#    .col-md-4
-            -#      = link_to forem.forum_path(forum), :class => "btn btn-primary btn-lg btn-block" do
-            -#        Enter Forum
-            -#        &nbsp;
-            -#        .fa.fa-arrow-right
-            -#  %hr/
-            -#  - if last_post = forum.last_post_for(forem_user)
-            -#    = link_to(forem_emojify(last_post.topic.subject), forem.forum_topic_path(forum, last_post.topic))
-            -#    = t('by')
-            -#    = last_post.user.forem_name
-            -#    %time{:datetime => last_post.created_at.to_s(:db)}= "#{time_ago_in_words(last_post.created_at)} #{t("ago")}"
-            -#  - else
-            -#    .text-warning No post yet!
-            -#  %br/
-  .row
-    - if false
-      .col-md-5
-        .panel.panel-info
-          .panel-heading
-            Your Daily Health Trends
-          .panel-body
-            .text-info Coming soon!
-    .col-md-12
-      .panel.panel-default
-        .panel-heading
-          Research Questions - Vote on the Future of Sleep Apnea Research
-        .panel-body
-          %p.lead
-            Help direct the future of sleep apnea research. Below are questions
-            important to network members. Every month, you can cast up to five
-            votes. Top rated questions will be explored within the Forum. If
-            data is lacking, the topic will be endorsed as an important
-            direction for future research. Let your voice be heard, vote now!
-        = render partial: "research_topics/research_topics", locals: {research_topics: ResearchTopic.popular.take(5), editable: false, disabled: true}
-        .list-group
-          %a.list-group-item.text-right{href: research_topics_path}
-            View and vote on all submitted questions and pose your own
-            &nbsp;
+    .panel-body
+      - if current_user
+        - if current_user.incomplete_surveys.count == 0
+          - # All Done
+          = render partial: 'surveys/drawings_text_all_completed'
+        - else
+          - # Surveys in Progress
+          = render partial: 'surveys/drawings_text'
+        = render partial: 'surveys/viewable_surveys_widget'
+      - else
+        - # Not Signed In
+        = render partial: 'surveys/drawings_text'
+        %div{ style: 'text-align:center' }
+          = link_to new_user_registration_path, class: 'btn btn-lg btn-success' do
+            Sign Up and Get Started
             .fa.fa-arrow-right
 
-  .row
-    .col-md-12
-      .panel.panel-warning
-        .panel-heading
-          The MyApnea.Org Community
-        #user_map{data: {path: locations_path}}
+#forums_container
+  .panel.panel-primary
+    .panel-heading
+      Forums - Share with the Community
+    .list-group
+      - Forem::Forum.all.each do |forum|
+        = render partial: "forem/forums/forum", locals: { forum: forum }
+
+.panel.panel-default
+  .panel-heading
+    Research Questions - Vote on the Future of Sleep Apnea Research
+  .panel-body
+    %p.lead
+      Help direct the future of sleep apnea research. Below are questions
+      important to network members. Every month, you can cast up to five
+      votes. Top rated questions will be explored within the Forum. If
+      data is lacking, the topic will be endorsed as an important
+      direction for future research. Let your voice be heard, vote now!
+  = render partial: "research_topics/research_topics", locals: { research_topics: ResearchTopic.popular.take(5), editable: false, disabled: true }
+  .list-group
+    %a.list-group-item.text-right{ href: research_topics_path }
+      View and vote on all submitted questions and pose your own
+      .fa.fa-arrow-right
+
+.panel.panel-warning
+  .panel-heading
+    The MyApnea.Org Community
+  #user_map{ data: { path: locations_path } }
+
 = javascript_include_tag "//maps.googleapis.com/maps/api/js?key=AIzaSyBB91qMUvtmPzct9z7slTqm-lTUEVuYjKo"
 = javascript_include_tag 'social/maps'
