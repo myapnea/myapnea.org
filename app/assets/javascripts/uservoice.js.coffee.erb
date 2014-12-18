@@ -18,6 +18,7 @@ $(document).on "click", ".u-voice", ->
 # https://www.uservoice.com/o/javascript-sdk
 
 showuservoice = ->
+    return if $('[data-object~="no-user-voice"]').length > 0
     return unless UserVoice?
 
     # Set colors
