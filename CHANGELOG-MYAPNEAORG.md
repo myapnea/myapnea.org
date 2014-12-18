@@ -3,6 +3,7 @@
 ### Enhancements
 - **Home Page Changes**
   - Surveys linked on the home page have been updated to better show a member's progress through the available surveys
+  - Landing page now loads for non-logged in users
 - **Registration Changes**
   - Year of Birth is now a drop down list to avoid confusion between entering Birth Date instead of Year of Birth
 - **Forum Changes**

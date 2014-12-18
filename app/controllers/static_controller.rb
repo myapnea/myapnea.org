@@ -8,9 +8,13 @@ class StaticController < ApplicationController
   end
 
   def home
-    @active_top_nav_link = :home
-    @posts = Post.blog_posts.viewable
-    render layout: "main"
+    if current_user
+      @active_top_nav_link = :home
+      @posts = Post.blog_posts.viewable
+      render layout: "main"
+    else
+      render 'landing', layout: 'layouts/cleantheme'
+    end
   end
 
   def theme

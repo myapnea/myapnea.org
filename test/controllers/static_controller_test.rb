@@ -7,15 +7,17 @@ class StaticControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should get landing" do
-    get :landing
+  test "should get landing when logged out" do
+    get :home
+    assert_template 'landing'
     assert_response :success
   end
 
-  test "should get landing and redirect to home page for logged in user" do
+  test "should get home page when logged in" do
     login(users(:user_1))
-    get :landing
-    assert_redirected_to root_path
+    get :home
+    assert_template 'home'
+    assert_response :success
   end
 
 end

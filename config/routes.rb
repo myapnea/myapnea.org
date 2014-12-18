@@ -20,7 +20,6 @@ Rails.application.routes.draw do
   get 'faqs' => 'static#faqs'
   get 'team' => 'static#team'
   match 'user_dashboard', to: 'account#dashboard', as: :user_dashboard, via: :get
-  get 'landing' => 'static#landing'
   get 'stealth' => 'static#stealth'
   get 'stealth_steering' => 'static#stealth_steering'
 
