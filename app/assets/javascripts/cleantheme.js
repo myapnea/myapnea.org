@@ -17,7 +17,7 @@
 //= require forem
 //= require jquery.slimscroll
 //= require jquery.PrintArea
-//= require d3.min
+// require d3.min
 //= require bootbox.min
 //= require typeahead
 //= require uservoice
