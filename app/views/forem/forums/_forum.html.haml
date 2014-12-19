@@ -4,7 +4,7 @@
       = link_to 'Forums', forem.root_path
       &middot;
     = link_to forem_emojify(forum.title), forem.forum_path(forum)
-    - if can? :moderate, @forum
+    - if current_user and current_user.can_moderate_forem_forum?(@forum)
       = link_to t('forem.forum.moderator_tools'), forem.forum_moderator_tools_path(@forum), :class => "btn btn-sm btn-default"
     - if location == 'home'
       = link_to forem.forum_path(forum), class: 'btn btn-sm pull-right btn-primary hidden-xs' do
