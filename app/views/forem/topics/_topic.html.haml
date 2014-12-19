@@ -14,7 +14,7 @@
   %td.byline
     = new_since_last_view_text(topic)
     .subject= forem_emojify(topic.subject)
-    - if first_relevant_post
+    - if first_relevant_post and first_relevant_post.user
       .started-by
         = t "started_by"
         = first_relevant_post.user.forem_name
