@@ -46,3 +46,15 @@
   </div>
 </div>
 
+<script>
+  // Mouse-over effects for small images
+  $('.team-member-picture').hover(function() {
+    $(this).toggleClass('img-bw');
+    $(this).toggleClass('img-bw');$(this).toggleClass('img-bw-partial');
+  });
+
+  $('.team-member-picture').click(function() {
+    $('.team-member-picture-large').fadeOut();
+  })
+</script>
+
