@@ -1,8 +1,48 @@
-<div class="container">
+<!-- Turn off UserVoice -->
+<div style="display:none" data-object="no-user-voice"></div>
 
+<div class='container'>
+<!-- SIDE NAVBAR -->
+  <div id='container-left' class='primary-blue-bcg'>
+    <!-- PSEUDO-ROW -->
+      <!-- USER IMAGE -->
+      <div class='col-sm-6 col-md-5 col-lg-4'>
+        <%= image_tag 'myapnea/testimonials/sRedline-cropped.png', class: 'user-picture' %>
+      </div>
+      <!-- USER NAME -->
+      <div class='col-sm-6 col-md-7'>
+        <h5 class='user-name text-white'>Susan Redline</h5>
+      </div>
+    <!-- PSEUDO ROW -->
+      <div class='col-sm-12 reset-layout' style='margin-top:30px;'>
+        <ul class="list-group">
+          <li class="list-group-item">Community Profile</li>
+          <li class="list-group-item">Forums</li>
+          <li class="list-group-item">Research Surveys</li>
+          <li class="list-group-item">Research Questions</li>
+        </ul>
+      </div>
+  </div>
 
-
-
-
-
+<!-- MAIN CONTENT -->
+  <div id='container-right'>
+    <!-- HEADER BAR -->
+    <div class='col-xs-12 primary-orange-bcg content-main-header'>
+    <!-- http://www.clker.com/cliparts/o/T/f/Y/i/z/people-standing-hi.png -->
+      <%= image_tag 'myapnea/welcome/people-standing-hi.png', class: 'img-responsive', style: 'float:right; position:relative; max-width:450px; padding:30px 0;'%>
+      <h1 class='content-main-title'>About our team</h1>
+    </div>
+    <!-- STEERING COMMITTEE -->
+    <div class='col-sm-10 col-sm-offset-1 locate'>
+      <%= image_tag 'myapnea/team/redline_crop_color.jpg', class: 'team-member-picture-large' %>
+      <ul id='steering-committee-list'>
+        <li><%= image_tag 'myapnea/team/redline_crop_color.jpg', class: 'team-member-picture img-bw' %></li>
+        <li><%= image_tag 'myapnea/team/amdur_crop.jpg', class: 'team-member-picture img-bw' %></li>
+        <li><%= image_tag 'myapnea/team/headapohl.jpg', class: 'team-member-picture img-bw' %></li>
+        <li><%= image_tag 'myapnea/team/kapur_crop.jpg', class: 'team-member-picture img-bw' %></li>
+        <li><%= image_tag 'myapnea/team/owens_crop.jpg', class: 'team-member-picture img-bw' %></li>
+      </ul>
+    </div>
+  </div>
 </div>
+
