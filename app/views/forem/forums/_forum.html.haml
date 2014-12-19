@@ -4,8 +4,8 @@
       = link_to 'Forums', forem.root_path
       &middot;
     = link_to forem_emojify(forum.title), forem.forum_path(forum)
-    - if current_user and current_user.can_moderate_forem_forum?(@forum)
-      = link_to t('forem.forum.moderator_tools'), forem.forum_moderator_tools_path(@forum), :class => "btn btn-sm btn-default"
+    - if current_user and current_user.can_moderate_forem_forum?(forum)
+      = link_to t('forem.forum.moderator_tools'), forem.forum_moderator_tools_path(forum), :class => "btn btn-sm btn-default"
     - if location == 'home'
       = link_to forem.forum_path(forum), class: 'btn btn-sm pull-right btn-primary hidden-xs' do
         Enter Forum
@@ -46,7 +46,7 @@
                   .small.text-muted{ style: 'font-weight: 300' }
                     %abbr{ title: post.created_at.strftime("%-d %B %Y, %-l:%M %p"), data: { toggle: 'tooltip', container: 'body', placement: 'bottom' } }= (time_ago_in_words(post.created_at) + t("ago")).html_safe
                     = t('by')
-                    = post.user.forem_name
+                    = post.user.is_a?(Forem::NilUser) ? '[deleted]' : post.user.forem_name
   - else
     %hr/
     %br/
