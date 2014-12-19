@@ -46,9 +46,9 @@ body {
   padding-bottom:70px;
 }
 
-.row {
-  margin:auto 0px;
-}
+// .row {
+//   margin:auto 0px;
+// }
 
 /* NAVIGATION BAR */
 
@@ -74,18 +74,20 @@ nav li a {
   }
 
 .navbar-right {
-  margin-top:-10px;
+  margin-top:-5px;
 }
 
 
 /* WELCOME */
 
 #slide-1 {
+  margin-top: 81px;
   background-image: asset-url('myapnea/welcome/img-large/unsplash-standing-colors.jpg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
   position:relative;
+  height:800px;
   padding-bottom:100px;
 }
 
