@@ -1,5 +1,159 @@
+/* DEBUGGING */
+.locate {
+  border:1px solid pink;
+}
+
+.reset-layout {
+  margin:0;
+  padding:0;
+}
+
+/* DOCUMENT LAYOUT */
+
+nav {
+  // background-color:rgba(30,23,71,1);  // OLD LOGO
+  background-color:rgba(36,50,100,1); // NEW LOGO
+  padding-bottom:10px;
+  box-shadow: 1px 3px 5px #444;
+  z-index:2;
+}
+
 .container {
-  margin-top:100px;
+  margin-top:81px;
   width:100%;
   background-image: asset-url('myapnea/welcome/textures/grey.png');
+  padding:0;
 }
+
+#container-left {
+  padding-top:30px;
+  width:20%;
+  float:left;
+  min-height:1300px;
+  position:fixed;
+  box-shadow: 3px 1px 5px #777;
+  z-index:100000;
+}
+
+#container-right {
+  width:80%;
+  float:right;
+  min-height:2000px;
+}
+
+
+/* USER SIDEBAR */
+
+.user-picture {
+  width:100%;
+  border-radius: 100%;
+  border:2px solid rgba(255,255,255,.8);
+  margin-left:15px;
+}
+
+.user-name {
+  font-weight:300;
+  line-height:20px;
+}
+
+#container-left .list-group {
+  border-bottom:1px solid rgba(255,255,255,.4);
+}
+
+#container-left .list-group-item {
+  color:rgba(255,255,255,.9);
+  background-color:transparent;
+  border:none;
+  border-radius:0px;
+  border-top:1px solid rgba(255,255,255,.4);
+  font-size:16px;
+  font-weight:300;
+}
+
+#container-left .list-group-item:hover {
+  position:relative;
+  top:-2px;
+  border-top:1px solid rgba(255,255,255,.3);
+  box-shadow:1px 2px 5px rgba(255,255,255,.4);
+  font-weight:400;
+}
+
+
+/* MAIN CONTENT */
+
+.content-main-header {
+  padding-top:50px;
+  margin-bottom:50px;
+  box-shadow:4px 1px 5px rgba(0,0,0,.25);
+}
+
+.content-main-title {
+  font-family: 'Lato', sans-serif;
+  color: rgba(255,255,255,.85);
+  position:absolute;
+  bottom:20px;
+  left:40px;
+  font-size:52px;
+}
+
+.team-member-picture {
+  width:150px;
+  height:150px;
+  border-radius:100%;
+  border:2px solid orange;
+}
+
+.team-member-picture-large {
+  width:30%;
+  height:auto;
+  border-radius:100%;
+  border:2px solid orange;
+  margin-left:10%;
+}
+
+#steering-committee-list {
+  margin:50px 0;
+}
+
+#steering-committee-list li {
+  display:inline;
+  list-style-type:none;
+}
+
+#steering-committee-list li:first-child {
+
+}
+
+.img-bw {
+  -webkit-filter: grayscale(100%); /* Chrome 19+ & Safari 6+ */
+  -webkit-transition: all .4s ease; /* Fade to color for Chrome and Safari */
+  -webkit-backface-visibility: hidden; /* Fix for transition flickering */
+}
+
+.img-bw-partial {
+  -webkit-filter: grayscale(30%); /* Chrome 19+ & Safari 6+ */
+  -webkit-transition: all .4s ease; /* Fade to color for Chrome and Safari */
+  -webkit-backface-visibility: hidden; /* Fix for transition flickering */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

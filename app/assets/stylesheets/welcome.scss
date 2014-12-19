@@ -46,9 +46,9 @@ body {
   padding-bottom:70px;
 }
 
-.row {
-  margin:auto 0px;
-}
+// .row {
+//   margin:auto 0px;
+// }
 
 /* NAVIGATION BAR */
 
@@ -74,7 +74,7 @@ nav li a {
   }
 
 .navbar-right {
-  margin-top:-10px;
+  margin-top:-5px;
 }
 
 
@@ -85,7 +85,10 @@ nav li a {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+  -ms-behavior: url(/backgroundsize.min.htc);
+  background-color: rgba(15, 18, 27, 1);
   position:relative;
+  height:800px;
   padding-bottom:100px;
 }
 
@@ -229,11 +232,13 @@ nav li a {
 }
 
 .col-button {
+  background-color: rgb(255, 164, 0);
   background-color:rgba(255, 164, 0, .6);
   margin-top:50px;
   margin-right:2.8%;
   padding-bottom:15px;
   border-radius:10px;
+  border:5px solid rgb(255, 164, 0);
   border:5px solid rgba(255,184,57,0);
   color: #666;
   font-size:16px;

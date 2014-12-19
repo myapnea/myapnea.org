@@ -1,9 +1,9 @@
 @slidesReady = () ->
-  winH = 700 # $(window).height()
-  navH = $('nav').height()
-  # $('.row-fullscreen').height(winH - navH)
-  $('#slide-1').css('margin-top', navH)
-  $('#slide-1').height(800);
+  # winH = 700 # $(window).height()
+  # navH = $('nav').height()
+  # # $('.row-fullscreen').height(winH - navH)
+  # $('#slide-1').css('margin-top', navH)
+  # $('#slide-1').height(800);
 
   # # Landing page - community highlights
   # highlightH1 = $('#community-highlight-1').height();
