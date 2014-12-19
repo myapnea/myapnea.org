@@ -29,7 +29,10 @@
 
       .form-group
         %label.col-sm-3.control-label
-          = image_tag current_user.my_photo_url, :class => "img-responsive img-thumbnail"
+          - if current_user.social_profile and current_user.social_profile.photo.present?
+            = image_tag current_user.social_profile.photo_url, class: 'img-responsive img-thumbnail'
+          - else
+            = image_tag 'default-user.jpg', class: 'img-responsive img-thumbnail'
         .col-sm-9
           - if @social_profile.photo.present?
             %h3 Change Photo

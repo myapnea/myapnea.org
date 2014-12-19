@@ -26,7 +26,7 @@
       Forums - Share with the Community
     .panel-body
       - if most_recent_approved_post = Forem::Post.order(created_at: :desc).where(state: 'approved').first
-        = render partial: "forem/forums/forum", locals: { forum: most_recent_approved_post.forum }
+        = render partial: "forem/forums/forum", locals: { forum: most_recent_approved_post.forum, location: 'home' }
         %h3= link_to 'More Forums', forem.root_path
         .row
         - Forem::Forum.where.not(id: most_recent_approved_post.forum.id).sort{|f| f.topics.count}.each do |forum|

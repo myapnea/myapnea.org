@@ -48,7 +48,7 @@ class User < ActiveRecord::Base
     if social_profile
       social_profile.photo_url
     else
-      "//www.gravatar.com/avatar/#{Digest::MD5.hexdigest(email.to_s)}?d=identicon"
+      'default-user.jpg'
     end
   end
 
@@ -99,6 +99,10 @@ class User < ActiveRecord::Base
 
   def ready_for_research?
     accepted_privacy_policy? and signed_consent?
+  end
+
+  def can_post_links?
+    self.forem_admin?
   end
 
   def forem_admin?

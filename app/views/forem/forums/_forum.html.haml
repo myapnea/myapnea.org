@@ -1,16 +1,21 @@
 .forum-container
   %h3
+    - unless location == 'home'
+      = link_to 'Forums', forem.root_path
+      &middot;
     = link_to forem_emojify(forum.title), forem.forum_path(forum)
-    = link_to forem.forum_path(forum), class: 'btn btn-sm pull-right btn-primary hidden-xs' do
-      Enter Forum
-      %span.fa.fa-arrow-right
+    - if location == 'home'
+      = link_to forem.forum_path(forum), class: 'btn btn-sm pull-right btn-primary hidden-xs' do
+        Enter Forum
+        %span.fa.fa-arrow-right
     %p.lead.text-info
       = forem_format(forum.description)
   %hr/
 
   - if forum.last_visible_post(forem_user)
-    -# forum.posts.approved_or_pending_review_for(forem_user).reverse[0,3].each do |post|
-    - forum.topics.where(state: 'approved').order(last_post_at: :desc).limit(3).each do |topic|
+    - topic_scope = forum.topics.where(state: 'approved').order(last_post_at: :desc)
+    - topic_scope = topic_scope.limit(3) if location == 'home'
+    - topic_scope.each do |topic|
       .topic-container
         .row
           .col-xs-1{ style: 'text-align:right' }

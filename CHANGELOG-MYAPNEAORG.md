@@ -9,6 +9,7 @@
 - **Forum Changes**
   - Forum index no longer shows quoted text in forum replies
   - Improved the user interface for the forum index and the forum widget on the home page
+  - Forum topics now have an updated interface that focuses on easier readability
 - **General Changes**
   - Minor text and content updates throughout the site
   - Fixed an issue where long links and title would run into the page from the Recent News bar

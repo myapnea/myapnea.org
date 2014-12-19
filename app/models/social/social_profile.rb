@@ -22,7 +22,7 @@ class SocialProfile < ActiveRecord::Base
     if show_publicly? and photo.present?
       photo.url
     else
-      "//www.gravatar.com/avatar/#{Digest::MD5.hexdigest(user.email.to_s)}?d=identicon"
+      'default-user.jpg'
     end
   end
 
