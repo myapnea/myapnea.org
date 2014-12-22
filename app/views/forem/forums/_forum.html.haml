@@ -14,6 +14,13 @@
       = forem_format(forum.description)
   %hr/
 
+  - if current_user
+    .row{ style: 'margin-bottom:20px'}
+      .col-xs-1
+      .col-md-11.col-xs-10.col-xs-offset-1.col-md-offset-0{ style: 'border-left: 1px solid transparent;' }
+        = link_to forem.new_forum_topic_path(forum), class: 'btn btn-primary btn-sm', :id => "new-topic" do
+          .fa.fa-plus
+          Start a new conversation
   - if forum.last_visible_post(forem_user)
     - topic_scope = forum.topics.where(state: 'approved').order(last_post_at: :desc)
     - topic_scope = topic_scope.limit(3) if location == 'home'
