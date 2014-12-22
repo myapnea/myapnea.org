@@ -6,15 +6,15 @@
   <div id='container-left' class='primary-blue-bcg'>
     <!-- PSEUDO-ROW -->
       <!-- USER IMAGE -->
-      <div class='col-sm-6 col-md-5 col-lg-4'>
+      <div class='col-lg-5 col-md-6 col-sm-8'>
         <%= image_tag 'myapnea/testimonials/sRedline-cropped.png', class: 'user-picture' %>
       </div>
       <!-- USER NAME -->
-      <div class='col-sm-6 col-md-7'>
-        <h5 class='user-name text-white'>Susan Redline</h5>
+      <div class='col-md-6 col-sm-8'>
+        <h4 class='user-name text-white'>Susan Redline</h4>
       </div>
     <!-- PSEUDO ROW -->
-      <div class='col-sm-12 reset-layout' style='margin-top:30px;'>
+      <div class='col-xs-12 reset-layout' style='margin-top:30px;'>
         <ul class="list-group">
           <li class="list-group-item">Community Profile</li>
           <li class="list-group-item">Forums</li>
@@ -29,7 +29,7 @@
     <!-- HEADER BAR -->
     <div class='col-xs-12 primary-orange-bcg content-main-header'>
     <!-- http://www.clker.com/cliparts/o/T/f/Y/i/z/people-standing-hi.png -->
-      <%= image_tag 'myapnea/welcome/people-standing-hi.png', class: 'img-responsive', style: 'float:right; position:relative; max-width:450px; padding:30px 0;'%>
+      <%= image_tag 'myapnea/welcome/people-standing-hi.png', class: 'img-responsive hidden-sm hidden-xs', style: 'float:right; max-width:450px; padding:30px 0;'%>
       <h1 class='content-main-title'>About our team</h1>
     </div>
 
@@ -97,7 +97,7 @@
             <div class='col-xs-1'>
             </div>
             <div class='col-xs-10 col-xs-offset-1'>
-              <h5 style='clear:both'>Will Headapohl is chairman of the board of directors for the American Sleep Apnea Association. He is a patient advocate, writer, and consultant focused on the challenges of getting all undiagnosed apnea sufferers into treatment. He is the co-author of the book, Sleep or Die: Overcome Apnea Before It Overcomes You. His work is aimed at mobilizing all those touched by the disease, including partners, association members, loved ones, medical care providers, and victims. Will’s resume includes executive vice president, chief information officer, and chief operating officer roles in the Internet, information technology, and wireless industries.</h5>
+              <h5 style='clear:both'>Will Headapohl is chairman of the board of directors for the American Sleep Apnea Association. He is a patient advocate, writer, and consultant focused on the challenges of getting all undiagnosed apnea sufferers into treatment. He is the co-author of the book, Sleep or Die: Overcome Apnea Before It Overcomes You. His work is aimed at mobilizing all those touched by the disease, including partners, association members, loved ones, medical care providers, and victims. Will’s resume includes executive vice president, chief information officer, and chief operating officer roles in the internet, information technology, and wireless industries.</h5>
             </div>
           </div> <!-- END ROW -->
         </div> <!-- END ITEM -->
@@ -122,7 +122,7 @@
       <div class='col-xs-10 col-xs-offset-1'>
         <ol id='steering-committee-list'>
           <li data-target="#carousel-steering-committee" data-slide-to="0" class="active">
-            <%= image_tag 'myapnea/team/redline_crop_color.jpg', class: 'team-member-picture img-color' %>
+            <%= image_tag 'myapnea/team/redline_crop_color.jpg', class: 'team-member-picture img-bw img-color' %>
           </li>
           <li data-target="#carousel-steering-committee" data-slide-to="1">
             <%= image_tag 'myapnea/team/amdur_crop.jpg', class: 'team-member-picture img-bw' %>
@@ -158,8 +158,5 @@
     $(this).toggleClass('img-color');
   })
 
-  // $('.team-member-picture').click(function() {
-  //   $('.team-member-picture-large').fadeOut();
-  // })
 </script>
 

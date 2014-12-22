@@ -51,7 +51,6 @@ nav {
 
 .user-name {
   font-weight:300;
-  line-height:20px;
 }
 
 #container-left .list-group {
@@ -83,6 +82,7 @@ nav {
   padding-top:50px;
   margin-bottom:50px;
   box-shadow:4px 1px 5px rgba(0,0,0,.25);
+  min-height:150px;
 }
 
 .content-main-title {
@@ -142,7 +142,6 @@ nav {
   height:auto;
   border-radius:100%;
   border:2px solid orange;
-  margin-right:10%;
 }
 
 .img-bw {
@@ -161,4 +160,26 @@ nav {
   -webkit-filter: grayscale(0%); /* Chrome 19+ & Safari 6+ */
   -webkit-transition: all .4s ease; /* Fade to color for Chrome and Safari */
   -webkit-backface-visibility: hidden; /* Fix for transition flickering */
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 992px) {
+  .team-member-picture-large {
+    width:60%;
+    margin-left:20%;
+    margin-right:20%;
+  }
+}
+
+@media (max-width: 768px) {
+  // put side navbar into an off-screen div
+  #container-left {
+    display:none;
+  }
+
+  #container-right {
+    width:100%;
+  }
 }
