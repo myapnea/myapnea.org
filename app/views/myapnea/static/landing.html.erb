@@ -2,31 +2,30 @@
 
 <!-- WELCOME / JOIN -->
 
-  <div class="row-fullscreen" style="" id="slide-1">
-    <div class="row">
+  <!-- <div class="row-fullscreen" style="" id="slide-1"> -->
+    <div class="row row-fullscreen" style="" id="slide-1">
       <div class="col-md-8 col-md-offset-1">
         <h2 class="text-white">Finding answers...together!</h2>
         <h3 class="lighter-orange">Sleep apnea affects over 25 million Americans.  We are working together to improve the health and wellbeing of people with sleep apnea through information sharing, support, and research.</h3>
         <h4 class="text-white">Wake up to a better future - join now!</h4>
         <%= link_to 'Join the Community', '#signup', class: 'btn btn-primary', id: 'btn-join', style: 'font-weight: bold;'  %>
       </div>
-    </div>
-
-    <!-- COMMUNITY TRACKER -->
-    <div class="row" id="community-tracker">
-      <div class="col-md-5 col-md-offset-1 col-sm-5 col-sm-offset-1">
-        <h2 class="lighterer-blue">Current community:</br>
-          <span class="primary-blue"><%= number_with_delimiter User.all.count %> </span>members
-        </h2>
+      <div class='col-md-1'></div>
+      <!-- COMMUNITY TRACKER -->
+      <div class="row" id="community-tracker">
+        <div class="col-md-5 col-md-offset-1 col-sm-5 col-sm-offset-1">
+          <h2 class="lighterer-blue">Current community:</br>
+            <span class="primary-blue"><%= number_with_delimiter User.all.count %> </span>members
+          </h2>
+        </div>
+        <div class="col-md-6 col-sm-6">
+          <%= image_tag 'myapnea/testimonials/sRedline-cropped.png', class: 'round-img round-img-orange hidden-xs' %>
+          <%= image_tag 'myapnea/testimonials/larry-testimonial-cropped.png', class: 'round-img round-img-blue hidden-xs' %>
+          <%= image_tag 'myapnea/testimonials/justine-testimonial-cropped.jpeg', class: 'round-img round-img-orange hidden-xs' %>
+          <%= image_tag 'myapnea/testimonials/steve-testimonial-cropped.jpeg', class: 'round-img round-img-blue hidden-xs' %>
+        </div>
       </div>
-      <div class="col-md-6 col-sm-6">
-        <%= image_tag 'myapnea/testimonials/sRedline-cropped.png', class: 'round-img round-img-orange hidden-xs' %>
-        <%= image_tag 'myapnea/testimonials/larry-testimonial-cropped.png', class: 'round-img round-img-blue hidden-xs' %>
-        <%= image_tag 'myapnea/testimonials/justine-testimonial-cropped.jpeg', class: 'round-img round-img-orange hidden-xs' %>
-        <%= image_tag 'myapnea/testimonials/steve-testimonial-cropped.jpeg', class: 'round-img round-img-blue hidden-xs' %>
-      </div>
     </div>
-  </div> <!-- END ROW -->
 
 <!-- MISSION -->
   <div class="row row-fullscreen" id="slide-2">
