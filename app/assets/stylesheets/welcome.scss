@@ -356,7 +356,13 @@ h4{ font-size: 24px; }
 h5{ font-size: 18px; }
 p { font-size: 14px; }
 
-
+// Increase line-height by ceiling(30%)
+h1.spaced { line-height: 65px; }
+h2.spaced { line-height: 48px; }
+h3.spaced { line-height: 39px; }
+h4.spaced { line-height: 32px; }
+h5.spaced { line-height: 24px; }
+p.spaced { line-height: 19px; }
 
 /* RESPONSIVE DESIGN */
 
@@ -375,6 +381,12 @@ p { font-size: 14px; }
   h4{ font-size: 20px; }
   h5{ font-size: 16px; }
   p { font-size: 14px; }
+  h1.spaced { line-height: 55px; }
+  h2.spaced { line-height: 39px; }
+  h3.spaced { line-height: 32px; }
+  h4.spaced { line-height: 27px; }
+  h5.spaced { line-height: 21px; }
+  p.spaced { line-height: 19px; }
 
   #community-tracker h2 {
     font-size:36px;
@@ -390,6 +402,12 @@ p { font-size: 14px; }
   h4{ font-size: 20px; }
   h5{ font-size: 20px; }
   p { font-size: 20px; }
+  h1.spaced { line-height: 55px; }
+  h2.spaced { line-height: 39px; }
+  h3.spaced { line-height: 32px; }
+  h4.spaced { line-height: 26px; }
+  h5.spaced { line-height: 26px; }
+  p.spaced { line-height: 26px; }
 
   h1,h2,h3,h4,h5,p {
     padding: 0 25px;
@@ -421,6 +439,12 @@ p { font-size: 14px; }
   h4{ font-size: 18px; }
   h5{ font-size: 16px; }
   p { font-size: 16px; }
+  h1.spaced { line-height: 39px; }
+  h2.spaced { line-height: 32px; }
+  h3.spaced { line-height: 26px; }
+  h4.spaced { line-height: 24px; }
+  h5.spaced { line-height: 21px; }
+  p.spaced { line-height: 21px; }
 
   #btn-join { font-size:16px; }
 

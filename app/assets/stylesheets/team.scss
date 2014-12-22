@@ -100,10 +100,16 @@ nav {
 #carousel-steering-committee {
   clear:both;
   position:relative;
+  // Surface material
+    background-color:white;
+    padding-top:20px;
+    margin-top:20px;
+    border-radius:20px;
+    box-shadow:0px 3px 5px rgba(0,0,0,.5);
 }
 
 #carousel-steering-committee .item {
-  height:444px;
+  height:465px;
 }
 
 #carousel-steering-committee .item .row h2,
@@ -116,7 +122,7 @@ nav {
 }
 
 #steering-committee-list {
-  padding-top:30px;
+  padding-top:10px;
   width:100%;
 }
 
