@@ -12,17 +12,15 @@
 
 nav {
   // background-color:rgba(30,23,71,1);  // OLD LOGO
-  background-color:rgba(36,50,100,1); // NEW LOGO
+  background-color:rgba(36,50,100,.75); // NEW LOGO
+  // background-color: #5b658b;
   padding-bottom:10px;
   box-shadow: 1px 3px 5px #444;
   z-index:2;
 }
 
-.container {
-  margin-top:81px;
-  width:100%;
+.container-fluid > .row {
   background-image: asset-url('myapnea/welcome/textures/grey.png');
-  padding:0;
 }
 
 #container-left {
@@ -96,32 +94,52 @@ nav {
   font-size:52px;
 }
 
-.team-member-picture {
-  width:150px;
-  height:150px;
-  border-radius:100%;
-  border:2px solid orange;
+
+/* CAROUSEL */
+
+#carousel-steering-committee {
+  clear:both;
+  position:relative;
 }
 
-.team-member-picture-large {
-  width:30%;
-  height:auto;
-  border-radius:100%;
-  border:2px solid orange;
-  margin-left:10%;
+#carousel-steering-committee .item {
+  height:444px;
+}
+
+#carousel-steering-committee .item .row h2,
+#carousel-steering-committee .item .row h3 {
+  // text-align:right;
+  margin-left:30px;
+}
+
+#carousel-steering-committee .item .row h5 {
+  margin-top:30px;
+  font-weight:300;
 }
 
 #steering-committee-list {
-  margin:50px 0;
 }
 
 #steering-committee-list li {
   display:inline;
   list-style-type:none;
+  margin-left:30px;
 }
 
-#steering-committee-list li:first-child {
+.team-member-picture {
+  width:130px;
+  height:130px;
+  border-radius:100%;
+  border:2px solid orange;
+  margin-right:20px;
+}
 
+.team-member-picture-large {
+  width:100%;
+  height:auto;
+  border-radius:100%;
+  border:2px solid orange;
+  margin-right:10%;
 }
 
 .img-bw {
@@ -131,29 +149,13 @@ nav {
 }
 
 .img-bw-partial {
-  -webkit-filter: grayscale(30%); /* Chrome 19+ & Safari 6+ */
+  -webkit-filter: grayscale(50%); /* Chrome 19+ & Safari 6+ */
   -webkit-transition: all .4s ease; /* Fade to color for Chrome and Safari */
   -webkit-backface-visibility: hidden; /* Fix for transition flickering */
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.img-color {
+  -webkit-filter: grayscale(0%); /* Chrome 19+ & Safari 6+ */
+  -webkit-transition: all .4s ease; /* Fade to color for Chrome and Safari */
+  -webkit-backface-visibility: hidden; /* Fix for transition flickering */
+}

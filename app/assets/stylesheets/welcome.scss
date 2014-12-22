@@ -40,6 +40,7 @@ body {
   margin:0px;
   padding:0px;
   background-color: rgba(15, 18, 27, 1);
+  padding-top:81px;
 }
 
 .row-fullscreen {
@@ -88,7 +89,7 @@ nav li a {
   -ms-behavior: url(/backgroundsize.min.htc);
   background-color: rgba(15, 18, 27, 1);
   position:relative;
-  height:800px;
+  min-height:800px;
   padding-bottom:100px;
 }
 
@@ -276,6 +277,7 @@ nav li a {
 /* PARTNERS BANNER */
 #partners-banner {
   background-color:white;
+  background-image: none;
   min-height:115px;
   border-top: 5px solid #FFA400;
   border-bottom:5px solid #5999DE;
