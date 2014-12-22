@@ -15,6 +15,7 @@
   - Fixed an issue where long links and title would run into the page from the Recent News bar
 - **Administrative Changes**
   - Administrators can export users to update MailChimp lists and segments
+  - Blog posts link now correctly goes to the news forum
 
 ## 3.0.0 (December 16, 2014)
 
