@@ -1,0 +1,98 @@
+<!-- Turn off UserVoice -->
+<div style="display:none" data-object="no-user-voice"></div>
+
+<div class='row'>
+<!-- SIDE NAVBAR -->
+  <div id='container-left' class='primary-blue-bcg'>
+    <!-- PSEUDO-ROW -->
+      <!-- USER IMAGE -->
+      <div class='col-lg-5 col-md-6 col-sm-8'>
+        <%= image_tag 'myapnea/testimonials/sRedline-cropped.png', class: 'user-picture' %>
+      </div>
+      <!-- USER NAME -->
+      <div class='col-md-6 col-sm-8'>
+        <h4 class='user-name text-white'>Susan Redline</h4>
+      </div>
+    <!-- PSEUDO ROW -->
+      <div class='col-xs-12 reset-layout' style='margin-top:30px;'>
+        <ul class="list-group">
+          <li class="list-group-item">Community Profile</li>
+          <li class="list-group-item">Forums</li>
+          <li class="list-group-item">Research Surveys</li>
+          <li class="list-group-item">Research Questions</li>
+        </ul>
+      </div>
+  </div>
+
+<!-- MAIN CONTENT -->
+  <div id='container-right'>
+    <!-- HEADER BAR -->
+    <div class='col-sm-10 col-sm-offset-1 primary-orange-bcg content-main-header'>
+      <h1 class='content-main-title'>Rank the Research</h1>
+    </div>
+
+    <div class="panel panel-rank-research col-sm-10 col-sm-offset-1">
+      <!-- Table -->
+      <table class="table">
+        <tr>
+          <td>
+            <h1 data-toggle="collapse" data-target="#collapseProgress"><i class="fa fa-thumbs-o-up fa-rank"></i></h1>
+          </td>
+          <td>
+            <h4>How does long-term chronic apnea affect brain plasticity (memory, focus, and attention deficits)?</h4>
+            <p class='f300 collapse' id='collapseExample'>I'm 47 and recently diagnosed with severe sleep apnea. I remember my mother being concerned that she noticed I would stop breathing while I was asleep in my early teens, but we didn't know what to do. I have noticed over the years that my mental function has been declining. The doctor stated I stopped breathing an average of 119 times per hour. I'm very interested in how apnea has affected my life and am trying to work on regaining some, if not all, of my mental functions back to what they were.</p>
+            <p class='f300 expand-topic' data-toggle="collapse" data-target="#collapseExample">Read more</p>
+            <div class='collapse progress' id='collapseProgress' style='width:90%;'>
+              <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">
+                  60%
+              </div>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+  </div> <!-- END CONTAINTER RIGHT -->
+</div> <!-- END ROW -->
+
+
+<script src='//code.jquery.com/color/jquery.color-2.1.2.min.js'></script>
+<script>
+
+// UX for read more
+$('.expand-topic').click(function() {
+  if ($(this).html()=='Read more') {
+    // $(this).parent().children('.collapse').fadeIn();
+    $(this).html('Read less');
+  } else {
+    // $(this).parent().children('.collapse').fadeOut();
+    $(this).html('Read more');
+  }
+});
+
+// UX for thumbs up
+$('.fa-rank').click(function() {
+  var currentColor = $(this).css('color');
+  // If already clicked
+  if (currentColor == 'rgb(89, 153, 222)') {
+    $(this).animate({
+      color: 'rgba(0,0,0,.8)'
+    }, 400, function() {
+      console.log('animation to gray complete');
+    });
+  } else {
+    $(this).animate({
+      color: 'rgb(89, 153, 222)'
+    }, 400, function() {
+      console.log('animation to blue complete');
+
+      // Adjust value and animate progress bar
+      newWidth = parseFloat($('.progress-bar').attr('aria-valuenow')) + 1;
+      $('.progress-bar').width(newWidth+'%');
+      $('.progress-bar').html(newWidth+'%');
+    });
+  }
+});
+
+
+</script>

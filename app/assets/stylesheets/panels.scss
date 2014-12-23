@@ -40,7 +40,7 @@
 
 /* UX */
 
-.panel table td:hover {
+.panel-hover table td:hover {
   position:relative;
   top:-1px;
   box-shadow:0px 2px 3px rgba(0,0,0,.3);
@@ -76,4 +76,35 @@ table tr td {
 
 table tr td h5 {
   margin:10px;
+}
+
+
+/* RANK THE RESEARCH */
+
+.panel-rank-research tr td:nth-of-type(1) {
+  width:15%;
+  // vertical-align:middle;
+  text-align:center;
+  padding-top:0;
+}
+.panel-rank-research tr td:nth-of-type(2) {
+  width:85%;
+}
+
+.fa-rank:hover {
+  color: #B1D2F6;
+}
+
+.expand-topic {
+  color: #B1D2F6;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.progress {
+  margin-top:20px;
+}
+.progress-bar {
+  -webkit-transition: width 1.5s ease-in-out;
+  transition: width 1.5s ease-in-out;
 }
