@@ -17,10 +17,27 @@ nav {
   padding-top:30px;
   width:20%;
   float:left;
-  min-height:1300px;
   position:fixed;
   box-shadow: 3px 1px 5px #777;
   z-index:100000;
+  min-height:1300px;
+}
+
+#recent-news {
+  position:relative;
+  max-height:700px;
+  overflow-y:scroll;
+}
+
+//Show users that they can scroll -- need to fix
+#recent-news-container:after {
+  content:' v v v v ';
+  font-size:10px;
+  text-align:center;
+  color:rgba(0,0,0,.4);
+  display:inline-block;
+  width:100%;
+  background-color:rgba(245,245,245,.7);
 }
 
 #container-right {
