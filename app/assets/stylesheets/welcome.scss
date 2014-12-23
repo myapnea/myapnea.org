@@ -1,39 +1,3 @@
-/* COLOR PALETTE */
-
-.primary-blue { color: #5999DE; } // BLUE
-.lighter-blue { color: #7FB2EB; }
-.lighterer-blue { color: #B1D2F6; }
-.darker-blue { color: #387FCF; }
-.darkerer-blue { color: #1765BC; }
-.primary-orange { color: #FFA400; } // ORANGE
-.lighter-orange { color: #FFB839; }
-.lighterer-orange { color: #FFC864; }
-.darker-orange { color: #C67F00; }
-.darkerer-orange { color: #9B6400; }
-
-.primary-blue-bcg { background-color: #5999DE; }
-.lighter-blue-bcg { background-color: #7FB2EB; }
-.lighterer-blue-bcg { background-color: #B1D2F6; }
-.darker-blue-bcg { background-color: #387FCF; }
-.darkerer-blue-bcg { background-color: #1765BC; }
-.primary-orange-bcg { background-color: #FFA400; }
-.lighter-orange-bcg { background-color: #FFB839; }
-.lighterer-orange-bcg { background-color: #FFC864; }
-.darker-orange-bcg { background-color: #C67F00; }
-.darkerer-orange-bcg { background-color: #9B6400; }
-
-.text-white { color: #fff; }
-
-.centered-text {
-  text-align:center;
-}
-
-//* FONTS */
-@font-face {
-    font-family: Segoe-Print;
-    src: asset-url('myapnea/welcome/segoe_print.ttf');
-}
-
 /* DOCUMENT */
 
 body {
@@ -46,10 +10,6 @@ body {
 .row-fullscreen {
   padding-bottom:70px;
 }
-
-// .row {
-//   margin:auto 0px;
-// }
 
 /* NAVIGATION BAR */
 
@@ -313,20 +273,6 @@ span#privacy-policy:hover {
   cursor:pointer;
 }
 
-.panel{
-  margin-top:50px;
-  background-color: rgba(255, 255, 255, .8);
-}
-
-.panel-heading {
-  background-color: rgba(255, 255, 255, .8);
-}
-
-.panel-title {
-  font-size: 36px;
-  margin-top:10px;
-}
-
 #panel-sign-up h4 {
   margin-bottom: 15px;
   padding:0 10px;
@@ -347,23 +293,6 @@ span#privacy-policy:hover {
 
 
 
-/* TYPOGRAPHY */
-
-h1{ font-size: 50px; }
-h2{ font-size: 36px; }
-h3{ font-size: 30px; }
-h4{ font-size: 24px; }
-h5{ font-size: 18px; }
-p { font-size: 14px; }
-
-// Increase line-height by ceiling(30%)
-h1.spaced { line-height: 65px; }
-h2.spaced { line-height: 48px; }
-h3.spaced { line-height: 39px; }
-h4.spaced { line-height: 32px; }
-h5.spaced { line-height: 24px; }
-p.spaced { line-height: 19px; }
-
 /* RESPONSIVE DESIGN */
 
 @media (max-width: 1600px) {
@@ -375,19 +304,6 @@ p.spaced { line-height: 19px; }
 
 @media (max-width: 1200px) {
   /* MEDIUM SCREENS */
-  h1{ font-size: 42px; }
-  h2{ font-size: 30px; }
-  h3{ font-size: 24px; }
-  h4{ font-size: 20px; }
-  h5{ font-size: 16px; }
-  p { font-size: 14px; }
-  h1.spaced { line-height: 55px; }
-  h2.spaced { line-height: 39px; }
-  h3.spaced { line-height: 32px; }
-  h4.spaced { line-height: 27px; }
-  h5.spaced { line-height: 21px; }
-  p.spaced { line-height: 19px; }
-
   #community-tracker h2 {
     font-size:36px;
     text-align:center;
@@ -396,22 +312,6 @@ p.spaced { line-height: 19px; }
 
 @media (max-width: 992px) {
   /* SMALL SCREENS */
-  h1{ font-size: 42px; }
-  h2{ font-size: 30px; }
-  h3{ font-size: 24px; }
-  h4{ font-size: 20px; }
-  h5{ font-size: 20px; }
-  p { font-size: 20px; }
-  h1.spaced { line-height: 55px; }
-  h2.spaced { line-height: 39px; }
-  h3.spaced { line-height: 32px; }
-  h4.spaced { line-height: 26px; }
-  h5.spaced { line-height: 26px; }
-  p.spaced { line-height: 26px; }
-
-  h1,h2,h3,h4,h5,p {
-    padding: 0 25px;
-  }
   #btn-join {margin-left: 25px;}
 
   .partners-img {
@@ -433,19 +333,6 @@ p.spaced { line-height: 19px; }
 
 @media (max-width: 768px) {
   /* XSMALL SCREENS */
-  h1{ font-size: 30px; }
-  h2{ font-size: 24px; }
-  h3{ font-size: 20px; }
-  h4{ font-size: 18px; }
-  h5{ font-size: 16px; }
-  p { font-size: 16px; }
-  h1.spaced { line-height: 39px; }
-  h2.spaced { line-height: 32px; }
-  h3.spaced { line-height: 26px; }
-  h4.spaced { line-height: 24px; }
-  h5.spaced { line-height: 21px; }
-  p.spaced { line-height: 21px; }
-
   #btn-join { font-size:16px; }
 
   #btn-login-phone, #btn-welcome-phone {

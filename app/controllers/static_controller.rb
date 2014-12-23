@@ -33,6 +33,10 @@ class StaticController < ApplicationController
     render layout: 'layouts/cleantheme'
   end
 
+  def stealth_forums
+    render layout: 'layouts/cleantheme'
+  end
+
   private
 
   def load_pc

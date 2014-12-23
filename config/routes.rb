@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   match 'user_dashboard', to: 'account#dashboard', as: :user_dashboard, via: :get
   get 'stealth' => 'static#stealth'
   get 'stealth_steering' => 'static#stealth_steering'
+  get 'stealth_forums' => 'static#stealth_forums'
 
   get 'privacy_policy_document' => 'static#content', :page => "privacy_policy"
   get 'terms_of_service' => 'static#content', :page => "terms_of_service"
