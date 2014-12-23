@@ -1,0 +1,141 @@
+
+// Thanks to http://nicolasgallagher.com/pure-css-speech-bubbles/demo/
+.rectangle-speech-border {
+  margin-top:30px;
+  position:relative;
+  padding: 15px;
+  border-width:3px;
+  border-style: solid;
+  background:#fff;
+  color:rgba(0,0,0,.7);
+  /* css3 */
+  -webkit-border-radius:20px;
+  -moz-border-radius:20px;
+  border-radius:20px;
+}
+
+.rectangle-speech-border-orange {
+  border-color: #FFC864;
+  box-shadow:0px 3px 5px rgba(0,0,0,.2);
+  margin-bottom:10px;
+  left:15px
+}
+
+.rectangle-speech-border-blue {
+  border-color: #B1D2F6;
+  box-shadow:0px 3px 5px rgba(0,0,0,.3);
+  margin-bottom:30px;
+  right:15px;
+}
+
+/* creates larger curve */
+.rectangle-speech-border-left:before {
+  content:"";
+  position:absolute;
+  z-index:10;
+  bottom:-30px;
+  left:53px;
+  width:39px;
+  height:30px;
+  border-style:solid;
+  border-width:0 3px 3px 0;
+  border-color:#FFC864;
+  background:transparent;
+  /* css3 */
+  -webkit-border-bottom-right-radius:80px 50px;
+  -moz-border-radius-bottomright:80px 50px;
+  border-bottom-right-radius:80px 50px;
+  /* reduce the damage in FF3.0 */
+  display:block;
+}
+
+/* creates smaller curve */
+.rectangle-speech-border-left:after {
+  content:"";
+  position:absolute;
+  z-index:10;
+  bottom:-30px;
+  left:50px;
+  width:20px;
+  height:30px;
+  border-style:solid;
+  border-width:0 3px 3px 0;
+  border-color:#FFC864;
+  background:transparent;
+  /* css3 */
+  -webkit-border-bottom-right-radius:40px 50px;
+  -moz-border-radius-bottomright:40px 50px;
+  border-bottom-right-radius:40px 50px;
+  /* reduce the damage in FF3.0 */
+  display:block;
+}
+
+/* creates a white rectangle to cover part of the oval border*/
+.rectangle-speech-border-left > :first-child:after {
+  content:"";
+  position:absolute;
+  bottom:-10px;
+  left:70px;
+  width:20px;
+  height:15px;
+  background:#fff;
+}
+
+
+
+/* creates larger curve */
+.rectangle-speech-border-right:before {
+  content:"";
+  position:absolute;
+  z-index:10;
+  bottom:-30px;
+  right:53px;
+  width:39px;
+  height:30px;
+  border-style:solid;
+  border-width:0 0 3px 3px;
+  border-color:#B1D2F6;
+  background:transparent;
+  /* css3 */
+  // -webkit-border-bottom-left-radius:80px 50px;
+  // -moz-border-radius-bottomleft:80px 50px;
+  border-bottom-left-radius:80px 50px;
+  /* reduce the damage in FF3.0 */
+  display:block;
+}
+
+/* creates smaller curve */
+.rectangle-speech-border-right:after {
+  content:"";
+  position:absolute;
+  z-index:10;
+  bottom:-30px;
+  right:50px;
+  width:20px;
+  height:30px;
+  border-style:solid;
+  border-width:0 0 3px 3px;
+  border-color:#B1D2F6;
+  background:transparent;
+  /* css3 */
+  -webkit-border-bottom-left-radius:40px 50px;
+  -moz-border-radius-bottomleft:40px 50px;
+  border-bottom-left-radius:40px 50px;
+  /* reduce the damage in FF3.0 */
+  display:block;
+}
+
+/* creates a white rectangle to cover part of the oval border*/
+.rectangle-speech-border-right > :first-child:after {
+  content:"";
+  position:absolute;
+  bottom:-10px;
+  right:70px;
+  width:20px;
+  height:15px;
+  background:#fff;
+}
+
+
+
+
