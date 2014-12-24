@@ -1,0 +1,36 @@
+
+.row.row-fullscreen{id:'slide-1'}
+  .col-md-6.col-md-offset-1
+    %h2.text-white Help us put an end to sleep apnea!
+    %h3.lighter-orange We are working directly with researchers and providers to treat this illness. By creating your own provider page, you can make an important impact.
+    = link_to 'Create your page', '#signup', class: 'btn btn-primary', id: 'btn-join', style: 'font-weight: bold; border-radius:100px; margin-top:50px;'
+  .col-md-3.col-md-offset-1{style: 'margin-top:150px;'}
+    .thumbnail#video-play{:style=>'background-color:rgba(250,250,250,.43); padding:30px; text-align:center; border:none; cursor:pointer; border-radius:20px', :data=>{:toggle=>'modal', :target =>'#myModal'}}
+      %i.fa.fa-play-circle{style:'color:#2F5687; font-size:147px; line-height:118px; border-radius:100%;'}
+    .modal.fade.col-sm-8.col-sm-offset-2{id:'myModal', tabindex: '-1', role:'dialog'}
+      .modal-dialog{:style=>'margin-top:200px'}
+        %button{:style=>'width:50px; height:50px; color:white; background-color: black; border:5px solid white; border-radius:25px; position:absolute; top:2%; left:98%;', :data=>{:dismiss=>'modal'}}
+          X
+        %iframe{:allowscriptaccess => "always", :allowFullScreen => "true", :frameborder => "", :src => "//player.vimeo.com/video/104640787", style: 'border:15px solid white; border-radius:20px;height:400px; width:100%;'}
+
+/ Signup sheet
+.row.row-fullscreen{style:'height:1500px;'}
+%a{:name=>'signup'}
+.row.row-fullscreen
+  .col-md-10.col-md-offset-1.col-lg-8.col-lg-offset-2.panel.panel-signup
+    .panel-body#panel-sign-up
+      %h1.darker-blue Help us now!
+      %h4 By joining, you are helping people!!!!
+      = form_tag user_registration_path, method: :post do
+        = text_field_tag 'user[first_name]', nil, placeholder: 'First name', class: 'form-control'
+        = text_field_tag 'user[last_name]', nil, placeholder: 'Last name', class: 'form-control'
+        = text_field_tag 'user[address1]', nil, placeholder: 'Address line 1', class: 'form-control'
+        = text_field_tag 'user[address2]', nil, placeholder: 'Address line 2', class: 'form-control'
+        = text_field_tag 'user[city]', nil, placeholder: 'City', class: 'form-control'
+        = text_field_tag 'user[state]', nil, placeholder: 'State', class: 'form-control'
+        = text_field_tag 'user[zipcode]', nil, placeholder: 'Zip code', class: 'form-control'
+        = select_tag 'user[year_of_birth]', options_for_select([['- Select your birth year -', nil]] + (1900..Date.today.year).to_a.reverse.collect{|i| [i,i]}), class: 'form-control'
+        = text_field_tag 'user[email]', nil, placeholder: 'Email address', class: 'form-control'
+        = password_field_tag 'user[password]', nil, placeholder: 'Password', class: 'form-control'
+        = submit_tag 'Sign up!', class: 'form-control', id: 'submit-join'
+

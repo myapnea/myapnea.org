@@ -1,178 +1,177 @@
-<div style="display:none" data-object="no-user-voice"></div>
-
 <!-- WELCOME / JOIN -->
 
   <!-- <div class="row-fullscreen" style="" id="slide-1"> -->
-    <div class="row row-fullscreen" style="" id="slide-1">
-      <div class="col-md-8 col-md-offset-1">
-        <h2 class="text-white">Finding answers...together!</h2>
-        <h3 class="lighter-orange">Sleep apnea affects over 25 million Americans.  We are working together to improve the health and wellbeing of people with sleep apnea through information sharing, support, and research.</h3>
-        <h4 class="text-white">Wake up to a better future - join now!</h4>
-        <%= link_to 'Join the Community', '#signup', class: 'btn btn-primary', id: 'btn-join', style: 'font-weight: bold; border-radius:100px;'  %>
-      </div>
-      <div class='col-md-1'></div>
-      <!-- COMMUNITY TRACKER -->
-      <div class="row" id="community-tracker">
-        <div class="col-md-5 col-md-offset-1 col-sm-5 col-sm-offset-1">
-          <h2 class="lighterer-blue">Current community:</br>
-            <span class="primary-blue"><%= number_with_delimiter User.all.count %> </span>members
-          </h2>
-        </div>
-        <div class="col-md-6 col-sm-6">
-          <%= image_tag 'myapnea/testimonials/sRedline-cropped.png', class: 'round-img round-img-orange hidden-xs' %>
-          <%= image_tag 'myapnea/testimonials/larry-testimonial-cropped.png', class: 'round-img round-img-blue hidden-xs' %>
-          <%= image_tag 'myapnea/testimonials/justine-testimonial-cropped.jpeg', class: 'round-img round-img-orange hidden-xs' %>
-          <%= image_tag 'myapnea/testimonials/steve-testimonial-cropped.jpeg', class: 'round-img round-img-blue hidden-xs' %>
-        </div>
-      </div>
+<div class="row row-fullscreen" style="" id="slide-1">
+  <div class="col-md-8 col-md-offset-1">
+    <h2 class="text-white">Finding answers...together!</h2>
+    <h3 class="lighter-orange">Sleep apnea affects over 25 million Americans.  We are working together to improve the health and wellbeing of people with sleep apnea through information sharing, support, and research.</h3>
+    <h4 class="text-white">Wake up to a better future - join now!</h4>
+    <%= link_to 'Join the Community', '#signup', class: 'btn btn-primary', id: 'btn-join', style: 'font-weight: bold; border-radius:100px;'  %>
+  </div>
+  <div class='col-md-1'>
+  </div>
+  <!-- COMMUNITY TRACKER -->
+  <div class="row" id="community-tracker">
+    <div class="col-md-5 col-md-offset-1 col-sm-5 col-sm-offset-1">
+      <h2 class="lighterer-blue">Current community:</br>
+        <span class="primary-blue"><%= number_with_delimiter User.all.count %> </span>members
+      </h2>
     </div>
+    <div class="col-md-6 col-sm-6">
+      <%= image_tag 'myapnea/testimonials/sRedline-cropped.png', class: 'round-img round-img-orange hidden-xs' %>
+      <%= image_tag 'myapnea/testimonials/larry-testimonial-cropped.png', class: 'round-img round-img-blue hidden-xs' %>
+      <%= image_tag 'myapnea/testimonials/justine-testimonial-cropped.jpeg', class: 'round-img round-img-orange hidden-xs' %>
+      <%= image_tag 'myapnea/testimonials/steve-testimonial-cropped.jpeg', class: 'round-img round-img-blue hidden-xs' %>
+    </div>
+  </div>
+</div>
 
 <!-- MISSION -->
-  <div class="row row-fullscreen" id="slide-2">
+<div class="row row-fullscreen" id="slide-2">
 
-    <div class="col-md-6 col-md-offset-1">
-      <h1 class="primary-blue"><strong>Our Mission</strong></h1>
-      <!-- <h3 class="lighter-blue">We plan to improve sleep apnea through information, support, and research</h3> -->
-      <h3>The mission of MyApnea.Org is to improve the diagnosis and treatment of sleep apnea through the <span class="lighter-blue">active engagement</span> of patients, families, researchers, and healthcare providers in a community that facilitates patient-centered research.</h3>
-    </div>
-    <div class="col-md-4">
-      <%= image_tag 'myapnea/welcome/img-small/team-hands-cropped.jpg', class: 'hidden-sm hidden-xs' %>
-    </div>
-  </div><!-- END ROW -->
+  <div class="col-md-6 col-md-offset-1">
+    <h1 class="primary-blue"><strong>Our Mission</strong></h1>
+    <!-- <h3 class="lighter-blue">We plan to improve sleep apnea through information, support, and research</h3> -->
+    <h3>The mission of MyApnea.Org is to improve the diagnosis and treatment of sleep apnea through the <span class="lighter-blue">active engagement</span> of patients, families, researchers, and healthcare providers in a community that facilitates patient-centered research.</h3>
+  </div>
+  <div class="col-md-4">
+    <%= image_tag 'myapnea/welcome/img-small/team-hands-cropped.jpg', class: 'hidden-sm hidden-xs' %>
+  </div>
+</div><!-- END ROW -->
 
 <!-- PLATFORM -->
-  <div class="row row-fullscreen" id="slide-3">
-    <div class="col-md-3 col-md-offset-1 col-sm-12">
-      <%= image_tag 'myapnea/welcome/img-large/unsplash-dont-stand-there.jpg', class: 'hidden-sm hidden-xs' %>
-    </div>
-    <div class="col-md-6 col-md-offset-1">
-      <h1 class="primary-blue"><strong>Our Goal</strong></h1>
-      <!-- <h3 class="lighter-orange">We plan to improve sleep apnea through information, support, and research</h3> -->
-      <h3>MyApnea.Org is what’s called <span class="lighter-blue">patient-powered research</span>.  We are inviting thousands of people with (or at-risk of) sleep apnea and their caregivers to come together at MyApnea.Org to learn more about symptoms and treatment, to share their experiences, and to become part of a national research network to improve lives.  It’s a whole new way of finding help—for you and for millions of people with sleep apnea.</h3>
-    </div>
-  </div><!-- END ROW -->
+<div class="row row-fullscreen" id="slide-3">
+  <div class="col-md-3 col-md-offset-1 col-sm-12">
+    <%= image_tag 'myapnea/welcome/img-large/unsplash-dont-stand-there.jpg', class: 'hidden-sm hidden-xs' %>
+  </div>
+  <div class="col-md-6 col-md-offset-1">
+    <h1 class="primary-blue"><strong>Our Goal</strong></h1>
+    <!-- <h3 class="lighter-orange">We plan to improve sleep apnea through information, support, and research</h3> -->
+    <h3>MyApnea.Org is what’s called <span class="lighter-blue">patient-powered research</span>.  We are inviting thousands of people with (or at-risk of) sleep apnea and their caregivers to come together at MyApnea.Org to learn more about symptoms and treatment, to share their experiences, and to become part of a national research network to improve lives.  It’s a whole new way of finding help—for you and for millions of people with sleep apnea.</h3>
+  </div>
+</div><!-- END ROW -->
 
 
 
 <!-- COMMUNITY -->
 
-  <div class="row row-fullscreen centered-text" id="slide-4">
-    <div class="col-md-10 col-md-offset-1">
-      <h1 class="primary-blue"><strong>Our Community</strong></h1>
-      <h2>MyApnea.Org is a community built by people with sleep apnea, family members, providers and researchers to share and learn from one another.</h2>
-    </div><!-- END COL-10 -->
-    <div class="col-md-1">
-      <!-- PSEUDO-END ROW -->
-    </div>
-    <%= link_to forem.forums_path, class: 'community-highlight-links ' do %>
-      <div class='col-md-3 col-md-offset-1 col-xs-12 col-button community-highlight' id='community-highlight-1'>
-        <h3 class="text-white">Active Forums</h3>
-        <p class='lead'>Discuss with others about living with sleep apnea and what is important to you.  Share ideas on how to promote the website to others.  The more members we have, the more we can learn from each other and contribute to future research.</p>
-      </div>
-    <% end %>
-    <%= link_to surveys_path, class: 'community-highlight-links' do %>
-      <div class="col-md-3 col-xs-12 col-button community-highlight" id='community-highlight-2'>
-        <h3 class="text-white">Research Surveys</h3>
-        <p class='lead'>Answer a series of questions about symptoms, treatment, and related health conditions.  Your answers will help the sleep apnea community better understand the disorder and where future research efforts should be directed.</p>
-        <p class='lead' id='survey-drawing-highlight'>Each completed survey earns you an entry into our monthly drawing for a <span id='visa-gift-card' class='text-white'>$250 Visa Gift card.</span></p>
-      </div>
-    <% end %>
-    <%= link_to research_topics_path, class: 'community-highlight-links' do %>
-      <div class="col-md-3 col-xs-12 col-button community-highlight" id='community-highlight-3'>
-        <h3 class="text-white">Impact Questions</h3>
-        <p class='lead'>Cast your vote on which research questions matter to you most. Providers and researchers will share what is known about the highest ranked topics and if data is lacking they will endorse the topic as an important direction for future research.</p>
-      </div>
-    <% end %>
-  </div><!-- END ROW -->
-
-  <div class="row" id="partners-banner">
-    <div class="col-sm-12 col-md-4 col-lg-4 col-lg-offset-1">
-      <%= image_tag 'myapnea/welcome/img-small/asaa_logo.jpg', class: 'partners-img img-responsive', id: 'partner-AASA' %>
-    </div>
-    <div class="col-sm-12 col-md-4 col-lg-3 ">
-      <%= image_tag 'myapnea/welcome/img-small/pcornet_logo.jpg', class: 'partners-img img-responsive', id: 'partner-PCORnet' %>
-    </div>
-    <div class="col-sm-12 col-md-4 col-lg-3 ">
-      <%= image_tag 'myapnea/welcome/img-small/bwh_logo.jpg', class: 'partners-img img-responsive', id: 'partner-BWH'%>
-    </div>
+<div class="row row-fullscreen centered-text" id="slide-4">
+  <div class="col-md-10 col-md-offset-1">
+    <h1 class="primary-blue"><strong>Our Community</strong></h1>
+    <h2>MyApnea.Org is a community built by people with sleep apnea, family members, providers and researchers to share and learn from one another.</h2>
+  </div><!-- END COL-10 -->
+  <div class="col-md-1">
+    <!-- PSEUDO-END ROW -->
   </div>
+  <%= link_to forem.forums_path, class: 'community-highlight-links ' do %>
+    <div class='col-md-3 col-md-offset-1 col-xs-12 col-button community-highlight' id='community-highlight-1'>
+      <h3 class="text-white">Active Forums</h3>
+      <p class='lead'>Discuss with others about living with sleep apnea and what is important to you.  Share ideas on how to promote the website to others.  The more members we have, the more we can learn from each other and contribute to future research.</p>
+    </div>
+  <% end %>
+  <%= link_to surveys_path, class: 'community-highlight-links' do %>
+    <div class="col-md-3 col-xs-12 col-button community-highlight" id='community-highlight-2'>
+      <h3 class="text-white">Research Surveys</h3>
+      <p class='lead'>Answer a series of questions about symptoms, treatment, and related health conditions.  Your answers will help the sleep apnea community better understand the disorder and where future research efforts should be directed.</p>
+      <p class='lead' id='survey-drawing-highlight'>Each completed survey earns you an entry into our monthly drawing for a <span id='visa-gift-card' class='text-white'>$250 Visa Gift card.</span></p>
+    </div>
+  <% end %>
+  <%= link_to research_topics_path, class: 'community-highlight-links' do %>
+    <div class="col-md-3 col-xs-12 col-button community-highlight" id='community-highlight-3'>
+      <h3 class="text-white">Impact Questions</h3>
+      <p class='lead'>Cast your vote on which research questions matter to you most. Providers and researchers will share what is known about the highest ranked topics and if data is lacking they will endorse the topic as an important direction for future research.</p>
+    </div>
+  <% end %>
+</div><!-- END ROW -->
+
+<div class="row" id="partners-banner">
+  <div class="col-sm-12 col-md-4 col-lg-4 col-lg-offset-1">
+    <%= image_tag 'myapnea/welcome/img-small/asaa_logo.jpg', class: 'partners-img img-responsive', id: 'partner-AASA' %>
+  </div>
+  <div class="col-sm-12 col-md-4 col-lg-3 ">
+    <%= image_tag 'myapnea/welcome/img-small/pcornet_logo.jpg', class: 'partners-img img-responsive', id: 'partner-PCORnet' %>
+  </div>
+  <div class="col-sm-12 col-md-4 col-lg-3 ">
+    <%= image_tag 'myapnea/welcome/img-small/bwh_logo.jpg', class: 'partners-img img-responsive', id: 'partner-BWH'%>
+  </div>
+</div>
 
 <!-- JOIN US -->
-  <a name="signup"></a>
-  <div class="row row-fullscreen" id="slide-5">
-    <div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 panel panel-signup">
-      <div class="panel-body" id="panel-sign-up">
-      <h1 class="darker-blue">Wake up to a better future!</h1>
-      <h4>By joining, you gain access to a unique group of resources and a growing research community. It's fast, simple, and completely free of cost to join and start making a difference!</br></br>
-      And, of course, all of your information is completely protected! <span id='privacy-policy' class='lighter-blue' data-toggle="modal" data-target="#myModal">See our privacy policy.</span>
-      </h4>
+<a name="signup"></a>
+<div class="row row-fullscreen" id="slide-5">
+  <div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 panel panel-signup">
+    <div class="panel-body" id="panel-sign-up">
+    <h1 class="darker-blue">Wake up to a better future!</h1>
+    <h4>By joining, you gain access to a unique group of resources and a growing research community. It's fast, simple, and completely free of cost to join and start making a difference!</br></br>
+    And, of course, all of your information is completely protected! <span id='privacy-policy' class='lighter-blue' data-toggle="modal" data-target="#myModal">See our privacy policy.</span>
+    </h4>
 
-      <!-- Modal -->
-      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-              <h4 class="modal-title" id="myModalLabel">Privacy Policy and Data Security Measures</h4>
-            </div>
-            <div class="modal-body" style='overflow-y:scroll; max-height:600px;'>
-              <p>We at MyApnea.Org have taken many steps to protect your privacy. Health information is private under federal law. However, by joining MyApnea.Org’s research portal and agreeing to our informed consent form, you are giving permission for the following people and groups to see, use, and share your identifiable health information: </p>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title" id="myModalLabel">Privacy Policy and Data Security Measures</h4>
+          </div>
+          <div class="modal-body" style='overflow-y:scroll; max-height:600px;'>
+            <p>We at MyApnea.Org have taken many steps to protect your privacy. Health information is private under federal law. However, by joining MyApnea.Org’s research portal and agreeing to our informed consent form, you are giving permission for the following people and groups to see, use, and share your identifiable health information: </p>
 
-              <ul>
-                <li>Any groups that help create or support MyApnea.Org</li>
-                <li>The Partners HealthCare ethics board that oversees the project and the Partners HealthCare research quality improvement programs</li>
-                <li>People from organizations that provide accreditation and oversight of hospitals and research</li>
-                <li>Federal and state agencies that oversee or review research, such as the Patient-Centered Outcomes Network</li>
-              </ul>
+            <ul>
+              <li>Any groups that help create or support MyApnea.Org</li>
+              <li>The Partners HealthCare ethics board that oversees the project and the Partners HealthCare research quality improvement programs</li>
+              <li>People from organizations that provide accreditation and oversight of hospitals and research</li>
+              <li>Federal and state agencies that oversee or review research, such as the Patient-Centered Outcomes Network</li>
+            </ul>
 
-              <p style='font-weight:bold'>We will use your information for research.</p>
+            <p style='font-weight:bold'>We will use your information for research.</p>
 
-              <p>We collect information about you, your health, and some of your behaviors. This information will be used in research and will be presented in scientific conferences and published in scientific journals. These presentations and publications will never show any information that identifies you or any other individual in the study. We will share summary information that does not contain any identifying information with other participants in the network, which include members of the National Patient-Centered Outcomes Network and research partners in MyApnea.Org.</p>
+            <p>We collect information about you, your health, and some of your behaviors. This information will be used in research and will be presented in scientific conferences and published in scientific journals. These presentations and publications will never show any information that identifies you or any other individual in the study. We will share summary information that does not contain any identifying information with other participants in the network, which include members of the National Patient-Centered Outcomes Network and research partners in MyApnea.Org.</p>
 
-              <p>While we think that there are only minimal risks associated with sharing research results, we cannot predict how this information might be used in the future. We take many safety measures to protect your privacy, but we cannot guarantee that your identity will never be known.</p>
+            <p>While we think that there are only minimal risks associated with sharing research results, we cannot predict how this information might be used in the future. We take many safety measures to protect your privacy, but we cannot guarantee that your identity will never be known.</p>
 
-              <p style='font-weight:bold'>We will never sell, rent, or lease your information.</p>
+            <p style='font-weight:bold'>We will never sell, rent, or lease your information.</p>
 
-              <p style='font-style:italic'>*We will never voluntarily share identifying information about you without your permission. *</p>
+            <p style='font-style:italic'>*We will never voluntarily share identifying information about you without your permission. *</p>
 
-              <p>You will be able to see some of your study information and summary information provided by other members in MyApnea.Org. When you register for MyApnea.Org, you provide us with a username and a password. You can use this to sign in to the study and see your Dashboard and some of the health information you’ve provided to us (e.g., your sleep surveys and health profile). Some of this information will be displayed in summary form and shown in relationship to summary information provided by other members of MyApnea.Org.</p>
+            <p>You will be able to see some of your study information and summary information provided by other members in MyApnea.Org. When you register for MyApnea.Org, you provide us with a username and a password. You can use this to sign in to the study and see your Dashboard and some of the health information you’ve provided to us (e.g., your sleep surveys and health profile). Some of this information will be displayed in summary form and shown in relationship to summary information provided by other members of MyApnea.Org.</p>
 
-              <p>You should be very careful not to provide your login information to anyone else. If you are worried that someone else may be using your login information, please let us know immediately, or change your password yourself through the My Account Setting page.</p>
+            <p>You should be very careful not to provide your login information to anyone else. If you are worried that someone else may be using your login information, please let us know immediately, or change your password yourself through the My Account Setting page.</p>
 
-              <p style='font-weight:bold'>We follow the Electronic Security and Adherence to the U.S. Health Insurance Portability and Accountability Act (HIPAA) Privacy Rule.</p>
+            <p style='font-weight:bold'>We follow the Electronic Security and Adherence to the U.S. Health Insurance Portability and Accountability Act (HIPAA) Privacy Rule.</p>
 
-              <p>MyApnea.Org follows the security guidelines of the U.S. Health Insurance Portability and Accountability Act of 1996 (HIPAA). All study data is sent, stored, and processed in a secure environment.</p>
+            <p>MyApnea.Org follows the security guidelines of the U.S. Health Insurance Portability and Accountability Act of 1996 (HIPAA). All study data is sent, stored, and processed in a secure environment.</p>
 
-              <p>We are required by HIPAA to protect the privacy of health information obtained for research. This is an abbreviated notice, and does not describe all details of this requirement - see Partners Privacy Notice.</p>
+            <p>We are required by HIPAA to protect the privacy of health information obtained for research. This is an abbreviated notice, and does not describe all details of this requirement - see Partners Privacy Notice.</p>
 
-              <p>During this study, identifiable information about you or your health will be collected and shared with the researchers conducting the research. In general, under federal law, identifiable health information is private. However, there are exceptions to this rule. In some cases, others may see your identifiable health information for purposes of research oversight, quality control, public health and safety, or law enforcement. We share your health information only when we must, and we ask anyone who receives it from us to protect your privacy.</p>
+            <p>During this study, identifiable information about you or your health will be collected and shared with the researchers conducting the research. In general, under federal law, identifiable health information is private. However, there are exceptions to this rule. In some cases, others may see your identifiable health information for purposes of research oversight, quality control, public health and safety, or law enforcement. We share your health information only when we must, and we ask anyone who receives it from us to protect your privacy.</p>
 
-              <p style='font-weight:bold'>We are protecting your data.</p>
+            <p style='font-weight:bold'>We are protecting your data.</p>
 
-              <p>The Partners HealthCare Research IT Facilities Security Center will host the data for MyApnea.Org. All study information will be stored on secure network servers.</p>
+            <p>The Partners HealthCare Research IT Facilities Security Center will host the data for MyApnea.Org. All study information will be stored on secure network servers.</p>
 
-              <p>Data and the web portal will be housed on the Partners HealthCare Research Computing Cloud Infrastructure. The Discovery Information Platform for Research (DIPR) provides a set of virtual services within the Partners HealthCare secure data center and within the Partners HealthCare network. All systems are secured behind the Partners HealthCare firewall and follow Partners HealthCare Information Security policies for authenticated, minimum access. All systems are patched, monitored and scanned routinely for vulnerabilities and intrusions by the systems administrator and PHS Information Security. Data is encrypted, where applicable, in compliance with state and federal government standards, regulations, and in accordance with Partners Security and Privacy policies. The web server and database server are hosted within the Partners Firewall, and make use of standard 256-bit encryption connection ciphers.</p>
+            <p>Data and the web portal will be housed on the Partners HealthCare Research Computing Cloud Infrastructure. The Discovery Information Platform for Research (DIPR) provides a set of virtual services within the Partners HealthCare secure data center and within the Partners HealthCare network. All systems are secured behind the Partners HealthCare firewall and follow Partners HealthCare Information Security policies for authenticated, minimum access. All systems are patched, monitored and scanned routinely for vulnerabilities and intrusions by the systems administrator and PHS Information Security. Data is encrypted, where applicable, in compliance with state and federal government standards, regulations, and in accordance with Partners Security and Privacy policies. The web server and database server are hosted within the Partners Firewall, and make use of standard 256-bit encryption connection ciphers.</p>
 
-              <p>If you have any questions about this information, please contact us by email at support@myapnea.org</p>
-            </div>
-            <div class="modal-footer">
-              <%= link_to 'More information', consent_path, class: 'btn btn-default' %>
-              <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-            </div>
+            <p>If you have any questions about this information, please contact us by email at support@myapnea.org</p>
+          </div>
+          <div class="modal-footer">
+            <%= link_to 'More information', consent_path, class: 'btn btn-default' %>
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
           </div>
         </div>
       </div>
+    </div>
 
-      <%= form_tag user_registration_path, method: :post do %>
-        <%= text_field_tag 'user[first_name]', nil, placeholder: 'First name', class: 'form-control' %>
-        <%= text_field_tag 'user[last_name]', nil, placeholder: 'Last name', class: 'form-control' %>
-        <%= select_tag 'user[year_of_birth]', options_for_select([['- Select your birth year -', nil]] + (1900..Date.today.year).to_a.reverse.collect{|i| [i,i]}), class: 'form-control' %>
-        <%= text_field_tag 'user[email]', nil, placeholder: 'Email address', class: 'form-control' %>
-        <%= password_field_tag 'user[password]', nil, placeholder: 'Password', class: 'form-control' %>
-        <%= submit_tag 'Sign up!', class: 'form-control', id: 'submit-join' %>
-      <% end %>
+    <%= form_tag user_registration_path, method: :post do %>
+      <%= text_field_tag 'user[first_name]', nil, placeholder: 'First name', class: 'form-control' %>
+      <%= text_field_tag 'user[last_name]', nil, placeholder: 'Last name', class: 'form-control' %>
+      <%= select_tag 'user[year_of_birth]', options_for_select([['- Select your birth year -', nil]] + (1900..Date.today.year).to_a.reverse.collect{|i| [i,i]}), class: 'form-control' %>
+      <%= text_field_tag 'user[email]', nil, placeholder: 'Email address', class: 'form-control' %>
+      <%= password_field_tag 'user[password]', nil, placeholder: 'Password', class: 'form-control' %>
+      <%= submit_tag 'Sign up!', class: 'form-control', id: 'submit-join' %>
+    <% end %>
 
-      </div>
-    </div> <!-- END COL-10 PANEL-->
+    </div>
+  </div> <!-- END COL-10 PANEL-->
 
-  </div><!-- END ROW -->
+</div><!-- END ROW -->

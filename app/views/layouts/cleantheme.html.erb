@@ -148,7 +148,9 @@
   <% end %>
 
 
+  <script src='//code.jquery.com/color/jquery.color-2.1.2.min.js'></script>
   <script>
+    // SIZING FOR ALL INTERNAL PAGES
 
     $(document).ready(function(){
       $(window).load(function() {
@@ -174,6 +176,101 @@
     });
 
 
+  </script>
+  <script>
+    // RANK THE RESEARCH UX
+
+    // UX for read more
+    $('.expand-topic').click(function() {
+      if ($(this).html()=='Read more') {
+        // $(this).parent().children('.collapse').fadeIn();
+        $(this).html('Read less');
+      } else {
+        // $(this).parent().children('.collapse').fadeOut();
+        $(this).html('Read more');
+      }
+    });
+
+    // UX for thumbs up
+    $('.fa-rank').click(function() {
+      var currentColor = $(this).css('color');
+      // If already clicked
+      if (currentColor == 'rgb(89, 153, 222)') {
+        $(this).animate({
+          color: 'rgba(0,0,0,.8)'
+        }, 400, function() {
+          console.log('animation to gray complete');
+        });
+      } else {
+        $(this).animate({
+          color: 'rgb(89, 153, 222)'
+        }, 400, function() {
+          console.log('animation to blue complete');
+
+          // Adjust value and animate progress bar
+          newWidth = parseFloat($('.progress-bar').attr('aria-valuenow')) + 1;
+          $('.progress-bar').width(newWidth+'%');
+          $('.progress-bar').html(newWidth+'%');
+        });
+      }
+    });
+  </script>
+
+
+  <script>
+    // STEERING PAGE UX
+
+    // Mouse-over effects for small images
+    $('.team-member-picture').hover(function() {
+      $(this).toggleClass('img-bw');
+      $(this).toggleClass('img-bw');$(this).toggleClass('img-bw-partial');
+    });
+
+    $('.team-member-picture').click(function() {
+      $('.team-member-picture').removeClass('img-color');
+      $(this).toggleClass('img-color');
+    })
+
+  </script>
+
+
+  <script type="text/javascript" src="//www.google.com/jsapi"></script>
+  <script type="text/javascript">
+    // SURVEY DATA MOCKUP
+    google.load("visualization", "1", {packages:["corechart"]});
+    google.setOnLoadCallback(drawChart);
+    function drawChart() {
+
+      var data = google.visualization.arrayToDataTable([
+        ['Task', 'Hours per Day'],
+        ['Work',     11],
+        ['Eat',      2],
+        ['Commute',  2],
+        ['Watch TV', 2],
+        ['Sleep',    7]
+      ]);
+
+      var options = {
+        title: 'My Daily Activities'
+      };
+
+      var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+      chart.draw(data, options);
+    }
+  </script>
+
+  <script>
+    $('#video-play').mouseleave(function() {
+      $(this).children('i').animate({
+        backgroundColor: 'rgba(250,250,250,.43)'
+      }, 300);
+    });
+    $('#video-play').mouseenter(function() {
+      $(this).children('i').animate({
+        backgroundColor: '#FFA400'
+      }, 300);
+    });
   </script>
 
   </body>

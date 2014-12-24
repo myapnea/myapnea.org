@@ -14,3 +14,6 @@
   # console.log(finalHighlightH)
 
   # $('.community-highlight').height(finalHighlightH)
+
+
+

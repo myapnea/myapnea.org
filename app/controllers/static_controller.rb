@@ -42,6 +42,14 @@ class StaticController < ApplicationController
   end
 
   def stealth_surveydisplay
+    if current_user
+      render layout: 'layouts/cleantheme'
+    else
+      redirect_to root_path
+    end
+  end
+
+  def stealth_providers
     render layout: 'layouts/cleantheme'
   end
 
