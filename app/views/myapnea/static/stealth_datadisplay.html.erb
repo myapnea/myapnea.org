@@ -1,88 +1,32 @@
-<!-- Turn off UserVoice -->
-<div style="display:none" data-object="no-user-voice"></div>
+<!-- HEADER BAR -->
+<div class='col-sm-10 col-sm-offset-1 primary-orange-bcg content-main-header'>
+  <h1 class='content-main-title'>Rank the Research</h1>
+</div>
 
-<div class='row'>
-<!-- SIDE NAVBAR -->
-  <div id='container-left' class='primary-blue-bcg'>
-    <!-- PSEUDO-ROW -->
-      <!-- USER IMAGE -->
-      <div class='col-lg-5 col-md-6 col-sm-8' id='user-profile-header-picture'>
-        <%= image_tag 'myapnea/testimonials/sRedline-cropped.png', class: 'user-picture' %>
-      </div>
-      <!-- USER NAME -->
-      <div class='col-md-6 col-sm-8' id='user-profile-header-text'>
-        <h4 class='user-name text-white'>Susan Redline</h4>
-      </div>
-    <!-- PSEUDO ROW -->
-      <div class='col-sm-12 reset-layout' id='user-profile-container' style='margin-top:30px;'>
-        <ul class="list-group">
-          <li class="list-group-item">Community Profile</li>
-          <li class="list-group-item">Forums</li>
-          <li class="list-group-item">Research Surveys</li>
-          <li class="list-group-item">Research Questions</li>
-        </ul>
-      </div>
-    <!-- PSEUDO ROW -->
-      <div class='col-sm-12 reset-layout' id='recent-news-container' style='margin-top:30px;'>
-        <ul class="list-group" id='recent-news' style='margin-bottom:0px; padding-bottom:0px;'>
-          <li class='list-group-item' style='border-top:3px solid white; border-bottom:3px solid white;'>
-            <h2 class='text-white'>Recent News</h2>
-          </li>
-          <li class="list-group-item">
-            <h5 class='f400'> Losing weight makes your lungs a potent CO2 emitter</h5>
-            <p class='f400 darkerer-blue' style='margin:0px 10px;'>Posted on Facebook by ASAA</p>
-            <p class='f300 lighterer-blue' style='margin:0px 10px;'>23 Dec 2014</p>
-            <p class='f300' style='margin:15px 10px;'>Planning to shed a few pounds after all the holiday excess is over? Better check your carbon footprint.</p>
-          </li>
-          <li class="list-group-item">
-            <h5 class='f400'> Losing weight makes your lungs a potent CO2 emitter</h5>
-            <p class='f400 darkerer-blue' style='margin:0px 10px;'>Posted on Facebook by ASAA</p>
-            <p class='f300 lighterer-blue' style='margin:0px 10px;'>23 Dec 2014</p>
-            <p class='f300' style='margin:15px 10px;'>Planning to shed a few pounds after all the holiday excess is over? Better check your carbon footprint.</p>
-          </li>
-          <li class="list-group-item">
-            <h5 class='f400'> Losing weight makes your lungs a potent CO2 emitter</h5>
-            <p class='f400 darkerer-blue' style='margin:0px 10px;'>Posted on Facebook by ASAA</p>
-            <p class='f300 lighterer-blue' style='margin:0px 10px;'>23 Dec 2014</p>
-            <p class='f300' style='margin:15px 10px;'>Planning to shed a few pounds after all the holiday excess is over? Better check your carbon footprint.</p>
-          </li>
-          <li class="list-group-item">
-            <h4>Read more...</h4>
-          </li>
-        </ul>
-      </div>
-  </div>
+<div class="panel panel-rank-research col-sm-10 col-sm-offset-1">
+  <!-- Table -->
+  <table class="table">
+    <tr>
+      <td>
+        <h1 data-toggle="collapse" data-target="#collapseProgress"><i class="fa fa-thumbs-o-up fa-rank"></i></h1>
+      </td>
+      <td>
+        <h4>How does long-term chronic apnea affect brain plasticity (memory, focus, and attention deficits)?</h4>
+        <p class='f300 collapse' id='collapseExample'>I'm 47 and recently diagnosed with severe sleep apnea. I remember my mother being concerned that she noticed I would stop breathing while I was asleep in my early teens, but we didn't know what to do. I have noticed over the years that my mental function has been declining. The doctor stated I stopped breathing an average of 119 times per hour. I'm very interested in how apnea has affected my life and am trying to work on regaining some, if not all, of my mental functions back to what they were.</p>
+        <p class='f300 expand-topic' data-toggle="collapse" data-target="#collapseExample">Read more</p>
+        <div class='collapse progress' id='collapseProgress' style='width:90%;'>
+          <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">
+              60%
+          </div>
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>
 
-<!-- MAIN CONTENT -->
-  <div id='container-right'>
-    <!-- HEADER BAR -->
-    <div class='col-sm-10 col-sm-offset-1 primary-orange-bcg content-main-header'>
-      <h1 class='content-main-title'>Rank the Research</h1>
-    </div>
 
-    <div class="panel panel-rank-research col-sm-10 col-sm-offset-1">
-      <!-- Table -->
-      <table class="table">
-        <tr>
-          <td>
-            <h1 data-toggle="collapse" data-target="#collapseProgress"><i class="fa fa-thumbs-o-up fa-rank"></i></h1>
-          </td>
-          <td>
-            <h4>How does long-term chronic apnea affect brain plasticity (memory, focus, and attention deficits)?</h4>
-            <p class='f300 collapse' id='collapseExample'>I'm 47 and recently diagnosed with severe sleep apnea. I remember my mother being concerned that she noticed I would stop breathing while I was asleep in my early teens, but we didn't know what to do. I have noticed over the years that my mental function has been declining. The doctor stated I stopped breathing an average of 119 times per hour. I'm very interested in how apnea has affected my life and am trying to work on regaining some, if not all, of my mental functions back to what they were.</p>
-            <p class='f300 expand-topic' data-toggle="collapse" data-target="#collapseExample">Read more</p>
-            <div class='collapse progress' id='collapseProgress' style='width:90%;'>
-              <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">
-                  60%
-              </div>
-            </div>
-          </td>
-        </tr>
-      </table>
-    </div>
+<!--
 
-  </div> <!-- END CONTAINTER RIGHT -->
-</div> <!-- END ROW -->
 
 <script src='//code.jquery.com/color/jquery.color-2.1.2.min.js'></script>
 <script>
@@ -121,3 +65,6 @@ $('.fa-rank').click(function() {
   }
 });
 </script>
+
+
+-->

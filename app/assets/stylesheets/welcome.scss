@@ -1,41 +1,5 @@
-/* DOCUMENT */
-
-body {
-  margin:0px;
-  padding:0px;
-  background-color: rgba(15, 18, 27, 1);
-  padding-top:81px;
-}
-
 .row-fullscreen {
   padding-bottom:70px;
-}
-
-/* NAVIGATION BAR */
-
-nav {
-  padding-top:20px;
-  background-color: rgba(15, 18, 27, 0.75); /* #0F121B; */
-}
-
-nav li {
-  background-color: #101B37; /*rgba(200,200,200,.8); */
-  border-radius: 7px 7px 0 0;
-  margin:0px 1px;
-  margin-bottom:0px;
-}
-
-nav li a {
-  color:white;
-}
-
-// Ensure proper logo size for large screens
-.navbar-header {
-  min-width:30%;
-  }
-
-.navbar-right {
-  margin-top:-5px;
 }
 
 
@@ -345,9 +309,6 @@ span#privacy-policy:hover {
   #btn-welcome-phone {
     width:30%;
     font-size:18px;
-  }
-
-  #navbar-myapnea-logo {
   }
 
 }
