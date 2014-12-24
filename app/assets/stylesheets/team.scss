@@ -19,14 +19,26 @@ nav {
   float:left;
   position:fixed;
   box-shadow: 3px 1px 5px #777;
-  z-index:100000;
-  min-height:1300px;
+  z-index:5000;
+  // min-height:1300px;
+  overflow-y:scroll;
 }
 
 #recent-news {
   position:relative;
-  max-height:700px;
+  // max-height:400px;
   overflow-y:scroll;
+}
+
+.footer {
+  border-top:3px solid orange;
+  background-color:white;
+  text-align:right;
+  padding-right:30px;
+}
+
+.footer ul {
+  list-style-type: none;
 }
 
 //Show users that they can scroll -- need to fix
@@ -43,7 +55,7 @@ nav {
 #container-right {
   width:80%;
   float:right;
-  min-height:2000px;
+  // min-height:2000px;
 }
 
 

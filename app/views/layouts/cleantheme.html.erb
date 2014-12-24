@@ -57,5 +57,64 @@
   <%= yield %>
   </div>
 
-</body>
+  <div class='footer row' style='width:81%; float:right;'>
+    <div class="col-sm-3">
+      <%= image_tag 'myapnea/welcome/img-small/asaa_logo.jpg', class: 'partners-img img-responsive', id: 'partner-AASA' %>
+    </div>
+    <div class="col-sm-3 ">
+      <%= image_tag 'myapnea/welcome/img-small/pcornet_logo.jpg', class: 'partners-img img-responsive', id: 'partner-PCORnet' %>
+    </div>
+    <div class="col-sm-3 ">
+      <%= image_tag 'myapnea/welcome/img-small/bwh_logo.jpg', class: 'partners-img img-responsive', id: 'partner-BWH'%>
+    </div>
+    <div class='col-sm-3 primary-orange'>
+      <ul>
+        <li>FAQs</li>
+        <li>MyApnea Team</li>
+        <li>Privacy Policy</li>
+      </ul>
+    </div>
+  </div>
+
+
+  <script>
+
+    $(document).ready(function(){
+      $(window).load(function() {
+
+        // Set minimum height of content container so document is height of viewport
+        navH = $('.navbar').outerHeight();
+        footerH = $('.footer').outerHeight();
+        windowH = $(window).outerHeight();
+        $('#container-right').css('min-height', windowH-footerH-navH);
+
+        // // Set the navbar height equal to the content height
+        // contentH = $('#container-right').outerHeight(1300);
+        // $('#container-left').outerHeight(contentH);
+        //     // !IMPORTANT this will break the recent news if content is longer than the viewport
+        //     $('#container-left').css('max-height', windowH-navH);
+        // if ($('#container-right').height() > windowH-footerH-navH) {
+        //   $('#container-left').outerHeight(windowH-navH);
+        // } else {
+        //   $('#container-left').outerHeight(contentH);
+        // }
+
+        // Simplify all of that ^^^ by hard-setting the left-nav height
+        $('#container-left').outerHeight(windowH-navH);
+
+        // Set Recent News to be contained within main content
+        headerPictureH = $('#user-profile-header-picture').outerHeight();
+        headerTextH = $('#user-profile-header-text').outerHeight();
+        profileH = $('#user-profile-container').outerHeight();
+        containerLeftH = $('#container-left').outerHeight();
+        recentNewsH = containerLeftH - profileH - headerPictureH - headerTextH - 20 - 30;
+        $('#recent-news').css('max-height', recentNewsH);
+        $('#recent-news-container').outerHeight(recentNewsH);
+      });
+    });
+
+
+  </script>
+
+  </body>
 </html>

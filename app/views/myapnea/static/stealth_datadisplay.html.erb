@@ -6,15 +6,15 @@
   <div id='container-left' class='primary-blue-bcg'>
     <!-- PSEUDO-ROW -->
       <!-- USER IMAGE -->
-      <div class='col-lg-5 col-md-6 col-sm-8'>
+      <div class='col-lg-5 col-md-6 col-sm-8' id='user-profile-header-picture'>
         <%= image_tag 'myapnea/testimonials/sRedline-cropped.png', class: 'user-picture' %>
       </div>
       <!-- USER NAME -->
-      <div class='col-md-6 col-sm-8'>
+      <div class='col-md-6 col-sm-8' id='user-profile-header-text'>
         <h4 class='user-name text-white'>Susan Redline</h4>
       </div>
     <!-- PSEUDO ROW -->
-      <div class='col-xs-12 reset-layout' style='margin-top:30px;'>
+      <div class='col-sm-12 reset-layout' id='user-profile-container' style='margin-top:30px;'>
         <ul class="list-group">
           <li class="list-group-item">Community Profile</li>
           <li class="list-group-item">Forums</li>
@@ -23,7 +23,7 @@
         </ul>
       </div>
     <!-- PSEUDO ROW -->
-      <div class='col-xs-12 reset-layout' id='recent-news-container' style='margin-top:70px;'>
+      <div class='col-sm-12 reset-layout' id='recent-news-container' style='margin-top:30px;'>
         <ul class="list-group" id='recent-news' style='margin-bottom:0px; padding-bottom:0px;'>
           <li class='list-group-item' style='border-top:3px solid white; border-bottom:3px solid white;'>
             <h2 class='text-white'>Recent News</h2>
@@ -84,10 +84,8 @@
   </div> <!-- END CONTAINTER RIGHT -->
 </div> <!-- END ROW -->
 
-
 <script src='//code.jquery.com/color/jquery.color-2.1.2.min.js'></script>
 <script>
-
 // UX for read more
 $('.expand-topic').click(function() {
   if ($(this).html()=='Read more') {
@@ -122,6 +120,4 @@ $('.fa-rank').click(function() {
     });
   }
 });
-
-
 </script>
