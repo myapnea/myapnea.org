@@ -29,23 +29,23 @@
     <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header" style="">
-          <%= link_to image_tag('myapnea/welcome/img-small/myApneaLogoOld.png', width: '100%', style: 'position:relative;top:-32px; left:0px;', id: 'navbar-myapnea-logo'), root_path, class: 'navbar-brand', style: 'width:70%; line-height:100%; min-width:160px; max-width:260px;' %>
+          <%= link_to image_tag('myapnea/welcome/img-small/myApneaLogoOld.png', width: "100%", style: "position:relative;top:-32px; left:0px;", id: "navbar-myapnea-logo"), root_path, class: "navbar-brand", style: "width:70%; line-height:100%; min-width:160px; max-width:260px;" %>
 
 
     <% if current_user %>
-        <div class='navbar-right text-white centered-text'>
-          <h4 id='btn-welcome-phone' style='font-weight:300'>Welcome, <span class='lighterer-blue'><%= current_user.first_name %></span>!</h4>
+        <div class="navbar-right text-white centered-text">
+          <h4 id="btn-welcome-phone" style="font-weight:300">Welcome, <span class="lighterer-blue"><%= current_user.first_name %></span>!</h4>
         </div>
       </div><!-- /.navbar-header -->
     <% else  %>
         <!-- Add a login for mobile devices -->
-        <%= link_to 'Login', new_user_session_path, class: 'btn primary-blue-bcg text-white visible-xs float-right', id: 'btn-login-phone' %>
+        <%= link_to "Login", new_user_session_path, class: "btn primary-blue-bcg text-white visible-xs float-right", id: "btn-login-phone" %>
       </div><!-- /.navbar-header -->
       <div class="collapse navbar-collapse navbar-right">
-        <%= form_tag user_session_path, method: :post, class: 'navbar-form' do %>
-          <%= text_field_tag 'user[email]', nil, placeholder: 'Email', class: 'form-control' %>
-          <%= password_field_tag 'user[password]', nil, placeholder: 'Password', class: 'form-control' %>
-          <%= submit_tag 'Login', class: 'btn btn-primary' %>
+        <%= form_tag user_session_path, method: :post, class: "navbar-form" do %>
+          <%= text_field_tag 'user[email]', nil, placeholder: 'Email', class: "form-control" %>
+          <%= password_field_tag 'user[password]', nil, placeholder: 'Password', class: "form-control" %>
+          <%= submit_tag 'Login', class: "btn btn-primary" %>
         <% end %>
       </div>
     <% end %>
@@ -53,26 +53,26 @@
     </div><!-- /.container-fluid -->
   </nav>
 
-  <div class='container-fluid'>
+  <div class="container-fluid">
     <!-- Turn off UserVoice -->
     <div style="display:none" data-object="no-user-voice"></div>
     <!-- LOAD INTERNAL NAVIGATION FOR ALL PAGES EXCEPT WELCOME -->
     <% if current_user %>
 
-    <div class='row'>
+    <div class="row">
     <!-- SIDE NAVBAR -->
-      <div id='container-left' class='primary-blue-bcg'>
+      <div id="container-left" class="primary-blue-bcg">
         <!-- PSEUDO-ROW -->
           <!-- USER IMAGE -->
-          <div class='col-lg-5 col-md-6 col-sm-8' id='user-profile-header-picture'>
-            <%= image_tag 'myapnea/testimonials/sRedline-cropped.png', class: 'user-picture' %>
+          <div class="col-lg-5 col-md-6 col-sm-8" id="user-profile-header-picture">
+            <%= image_tag 'myapnea/testimonials/sRedline-cropped.png', class: "user-picture" %>
           </div>
           <!-- USER NAME -->
-          <div class='col-md-6 col-sm-8' id='user-profile-header-text'>
-            <h4 class='user-name text-white'>Susan Redline</h4>
+          <div class="col-md-6 col-sm-8" id="user-profile-header-text">
+            <h4 class="user-name text-white">Susan Redline</h4>
           </div>
         <!-- PSEUDO ROW -->
-          <div class='col-sm-12 reset-layout' id='user-profile-container' style='margin-top:30px;'>
+          <div class="col-sm-12 reset-layout" id="user-profile-container" style="margin-top:30px;">
             <ul class="list-group">
               <li class="list-group-item">Community Profile</li>
               <li class="list-group-item">Forums</li>
@@ -81,28 +81,28 @@
             </ul>
           </div>
         <!-- PSEUDO ROW -->
-          <div class='col-sm-12 reset-layout' id='recent-news-container' style='margin-top:30px;'>
-            <ul class="list-group" id='recent-news' style='margin-bottom:0px; padding-bottom:0px;'>
-              <li class='list-group-item' style='border-top:3px solid white; border-bottom:3px solid white;'>
-                <h2 class='text-white'>Recent News</h2>
+          <div class="col-sm-12 reset-layout" id="recent-news-container" style="margin-top:30px;">
+            <ul class="list-group" id="recent-news" style="margin-bottom:0px; padding-bottom:0px;">
+              <li class="list-group-item" style="border-top:3px solid white; border-bottom:3px solid white;">
+                <h2 class="text-white">Recent News</h2>
               </li>
               <li class="list-group-item">
-                <h5 class='f400'> Losing weight makes your lungs a potent CO2 emitter</h5>
-                <p class='f400 darkerer-blue' style='margin:0px 10px;'>Posted on Facebook by ASAA</p>
-                <p class='f300 lighterer-blue' style='margin:0px 10px;'>23 Dec 2014</p>
-                <p class='f300' style='margin:15px 10px;'>Planning to shed a few pounds after all the holiday excess is over? Better check your carbon footprint.</p>
+                <h5 class="f400"> Losing weight makes your lungs a potent CO2 emitter</h5>
+                <p class="f400 darkerer-blue" style="margin:0px 10px;">Posted on Facebook by ASAA</p>
+                <p class="f300 lighterer-blue" style="margin:0px 10px;">23 Dec 2014</p>
+                <p class="f300" style="margin:15px 10px;">Planning to shed a few pounds after all the holiday excess is over? Better check your carbon footprint.</p>
               </li>
               <li class="list-group-item">
-                <h5 class='f400'> Losing weight makes your lungs a potent CO2 emitter</h5>
-                <p class='f400 darkerer-blue' style='margin:0px 10px;'>Posted on Facebook by ASAA</p>
-                <p class='f300 lighterer-blue' style='margin:0px 10px;'>23 Dec 2014</p>
-                <p class='f300' style='margin:15px 10px;'>Planning to shed a few pounds after all the holiday excess is over? Better check your carbon footprint.</p>
+                <h5 class="f400"> Losing weight makes your lungs a potent CO2 emitter</h5>
+                <p class="f400 darkerer-blue" style="margin:0px 10px;">Posted on Facebook by ASAA</p>
+                <p class="f300 lighterer-blue" style="margin:0px 10px;">23 Dec 2014</p>
+                <p class="f300" style="margin:15px 10px;">Planning to shed a few pounds after all the holiday excess is over? Better check your carbon footprint.</p>
               </li>
               <li class="list-group-item">
-                <h5 class='f400'> Losing weight makes your lungs a potent CO2 emitter</h5>
-                <p class='f400 darkerer-blue' style='margin:0px 10px;'>Posted on Facebook by ASAA</p>
-                <p class='f300 lighterer-blue' style='margin:0px 10px;'>23 Dec 2014</p>
-                <p class='f300' style='margin:15px 10px;'>Planning to shed a few pounds after all the holiday excess is over? Better check your carbon footprint.</p>
+                <h5 class="f400"> Losing weight makes your lungs a potent CO2 emitter</h5>
+                <p class="f400 darkerer-blue" style="margin:0px 10px;">Posted on Facebook by ASAA</p>
+                <p class="f300 lighterer-blue" style="margin:0px 10px;">23 Dec 2014</p>
+                <p class="f300" style="margin:15px 10px;">Planning to shed a few pounds after all the holiday excess is over? Better check your carbon footprint.</p>
               </li>
               <li class="list-group-item">
                 <h4>Read more...</h4>
@@ -112,7 +112,7 @@
       </div>
 
       <!-- MAIN CONTENT -->
-      <div id='container-right'>
+      <div id="container-right">
     <% end %>
 
   <%= yield %>
@@ -127,17 +127,17 @@
 
   <!-- ONLY FOOTER ON INTERNAL SITE -->
   <% if current_user %>
-  <div class='footer row'>
+  <div class="footer row">
     <div class="col-xs-3">
-      <%= image_tag 'myapnea/welcome/img-small/asaa_logo.jpg', class: 'partners-img img-responsive', id: 'partner-AASA' %>
+      <%= image_tag "myapnea/welcome/img-small/asaa_logo.jpg", class: "partners-img img-responsive", id: "partner-AASA" %>
     </div>
     <div class="col-xs-3">
-      <%= image_tag 'myapnea/welcome/img-small/pcornet_logo.jpg', class: 'partners-img img-responsive', id: 'partner-PCORnet' %>
+      <%= image_tag "myapnea/welcome/img-small/pcornet_logo.jpg", class: "partners-img img-responsive", id: "partner-PCORnet" %>
     </div>
     <div class="col-xs-3">
-      <%= image_tag 'myapnea/welcome/img-small/bwh_logo.jpg', class: 'partners-img img-responsive', id: 'partner-BWH'%>
+      <%= image_tag "myapnea/welcome/img-small/bwh_logo.jpg", class: "partners-img img-responsive", id: "partner-BWH"%>
     </div>
-    <div class='col-xs-3 primary-orange'>
+    <div class="col-xs-3 primary-orange">
       <ul>
         <li>FAQs</li>
         <li>MyApnea Team</li>
