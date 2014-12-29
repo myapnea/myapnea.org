@@ -57,7 +57,17 @@
   -webkit-backface-visibility: hidden; /* Fix for transition flickering */
 }
 
+.img-centerer {
+  display:inline-block;
+  vertical-align:middle;
+  height:100%;
+}
 
+.partners-logo-square {
+  display:inline-block;
+  vertical-align:middle;
+  max-width:80%;
+}
 
 
 /* RESPONSIVE */
