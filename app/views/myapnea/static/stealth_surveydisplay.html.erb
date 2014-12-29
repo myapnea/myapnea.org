@@ -15,100 +15,19 @@
   </div>
 </div>
 
-<!-- SURVEY QUESTIONS AND DATA -->
-<div class="rectangle-speech-border rectangle-speech-border-left rectangle-speech-border-orange col-sm-9 col-sm-offset-1">
-  <h4>Have you ever taken part in research projects related to your health or the health of a family member?</h4>
-</div>
-<div class="rectangle-speech-border rectangle-speech-border-right rectangle-speech-border-blue col-sm-9 col-sm-offset-2">
-  <h5 class="f300" style='margin-bottom:30px;'>My answer: <span class='primary-blue'>Yes</span></h5>
-  <h5>Compare your answers to the rest of the community</h5>
-  <div class="col-sm-4" style='margin:20px auto;'>
-    <table class='table-bordered' style='padding:10px; width:100%'>
-      <tr>
-        <th style='text-align:center;'>Option</th>
-        <th style='text-align:center;'>Frequency</th>
-      </tr>
-      <tr style='background-color:rgba(245,245,245,.7)'>
-        <td>Yes</td>
-        <td>25%</td>
-      </tr>
-      <tr>
-        <td>No</td>
-        <td>75%</td>
-      </tr>
-    </table>
-  </div>
-  <div class='col-sm-8'>
-    <div id="piechart" style="width:100%;"></div>
-  </div>
-</div>
+<% @survey = Survey.complete(current_user).first %>
 
-<div class="rectangle-speech-border rectangle-speech-border-left rectangle-speech-border-orange col-sm-9 col-sm-offset-1">
-  <h4>In general, you would say your quality of life is...</h4>
-</div>
-<div class="rectangle-speech-border rectangle-speech-border-right rectangle-speech-border-blue col-sm-9 col-sm-offset-2">
-  <h5 class="f300" style='margin-bottom:30px;'>My answer: <span class='primary-blue'>Excellent</span></h5>
-  <h5>Compare your answers to the rest of the community</h5>
-  <div class="col-sm-4" style='margin:20px auto;'>
-    <table class='table-bordered' style='padding:10px; width:100%'>
-      <tr>
-        <th style='text-align:center;'>Option</th>
-        <th style='text-align:center;'>Frequency</th>
-      </tr>
-      <tr style='background-color:rgba(245,245,245,.7)'>
-        <td>Excellent</td>
-        <td>15%</td>
-      </tr>
-      <tr>
-        <td>Very Good</td>
-        <td>34%</td>
-      </tr>
-      <tr>
-        <td>Good</td>
-        <td>35%</td>
-      </tr>
-      <tr>
-        <td>Fair</td>
-        <td>14%</td>
-      </tr>
-      <tr>
-        <td>Poor</td>
-        <td>3%</td>
-      </tr>
-    </table>
-  </div>
-  <div class='col-sm-8'>
-    <div id="piechart" style="width:100%;"></div>
-  </div>
-</div>
+<% if @survey %>
+  <% answer_session = AnswerSession.most_recent(@survey.id, current_user.id) %>
 
+  <% @survey.all_questions.each do |question| %>
+    <% answer = question.user_answer(answer_session)  %>
+    <%= render partial: 'surveys/reports/question_and_answer', locals: { question: question, answer: answer } %>
 
-<div class="rectangle-speech-border rectangle-speech-border-left rectangle-speech-border-orange col-sm-9 col-sm-offset-1">
-  <h4>Give a blood sample?</h4>
-</div>
-<div class="rectangle-speech-border rectangle-speech-border-right rectangle-speech-border-blue col-sm-9 col-sm-offset-2">
-  <h5 class="f300" style='margin-bottom:30px;'>My answer: <span class='primary-blue'>Yes</span></h5>
-  <h5>Compare your answers to the rest of the community</h5>
-  <div class="col-sm-4" style='margin:20px auto;'>
-    <table class='table-bordered' style='padding:10px; width:100%'>
-      <tr>
-        <th style='text-align:center;'>Option</th>
-        <th style='text-align:center;'>Frequency</th>
-      </tr>
-      <tr>
-        <td>Hello</td>
-        <td>World</td>
-      </tr>
-      <tr style='background-color:rgba(245,245,245,.7)'>
-        <td>Hello</td>
-        <td>World</td>
-      </tr>
-    </table>
-  </div>
-  <div class='col-sm-8'>
-    <div id="piechart" style="width:100%;"></div>
-  </div>
-</div>
+  <% end %>
+
+<% end %>
+
 
 
 <!--

@@ -56,13 +56,13 @@ nav {
   background-image: asset-url('myapnea/welcome/textures/grey.png');
 }
 
-#container-left {
-  padding-top:30px;
-  width:20%;
-  float:left;
+#container-right {
+  padding-top: 30px;
+  width: 20%;
   position:fixed;
+  right:0;
   box-shadow: 3px 1px 5px #777;
-  z-index:5000;
+  // z-index: 5000;
   overflow-y:scroll;
 }
 
@@ -75,9 +75,8 @@ nav {
   border-top:3px solid orange;
   background-color:white;
   text-align:right;
-  padding-right:30px;
-  width:81%;
-  float:right;
+  width:81.5%;
+  float:left;
   padding-top:10px;
 }
 
@@ -96,9 +95,9 @@ nav {
   background-color:rgba(245,245,245,.7);
 }
 
-#container-right {
+#container-left {
   width:80%;
-  float:right;
+  float:left;
 }
 
 
@@ -115,11 +114,11 @@ nav {
   font-weight:300;
 }
 
-#container-left .list-group {
+#container-right .list-group {
   border-bottom:1px solid rgba(255,255,255,.4);
 }
 
-#container-left .list-group-item {
+#container-right .list-group-item {
   color:rgba(255,255,255,.9);
   background-color:transparent;
   border:none;
@@ -129,7 +128,7 @@ nav {
   font-weight:300;
 }
 
-#container-left .list-group-item:hover {
+#container-right .list-group-item:hover {
   position:relative;
   top:-2px;
   border-top:1px solid rgba(255,255,255,.3);
@@ -162,11 +161,11 @@ nav {
 
 @media (max-width: 768px) {
   // put side navbar into an off-screen div
-  #container-left {
+  #container-right {
     display:none;
   }
 
-  #container-right {
+  #container-left {
     width:100%;
   }
 
