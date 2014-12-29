@@ -1,7 +1,7 @@
 .panel-primary {
   .panel-heading {
     .h1 {
-      color: white //$ma-white-yellow
+      color: white; //$ma-white-yellow
     }
   }
 }
@@ -49,7 +49,7 @@
 //}
 //
 //ul {
-//  list-style-image: url('#{$assets-path}/myapnea/icons/myapnea-logo-list-style-image.png');
+//  list-style-image: asset-url('myapnea/icons/myapnea-logo-list-style-image.png');
 //}
 //
 //ul.unstyled {
