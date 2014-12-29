@@ -7,7 +7,7 @@ gem 'thin'
 gem 'airbrake'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.0.rc1'
+gem 'rails', '4.2.0'
 # Use postgresql as the database for Active Record
 gem 'pg'
 # User HAML for views
@@ -39,7 +39,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring', group: :development
 
 # Bootstrap and Styles
-gem 'sass-rails', '~> 5.0.0.beta1'
+gem 'sass-rails', '~> 5.0'
 gem 'bootstrap-sass'
 gem 'autoprefixer-rails'
 gem 'font-awesome-rails'
