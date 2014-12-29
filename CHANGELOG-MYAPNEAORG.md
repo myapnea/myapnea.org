@@ -19,6 +19,7 @@
   - Blog posts link now correctly goes to the news forum
 - **Gem Changes**
   - Updated to rails 4.2.0
+  - Updated to ruby 2.2.0
 
 ## 3.0.0 (December 16, 2014)
 
