@@ -40,8 +40,11 @@ class SurveysController < ApplicationController
   def show_report
     @answer_session = AnswerSession.find(params[:answer_session_id])
     @question_flow = @answer_session.question_flow
+    @survey = @question_flow
 
-
+    if current_user.has_role?(:admin)
+      render 'surveys/show_report-new', layout: 'layouts/cleantheme'
+    end
   end
 
   def process_answer

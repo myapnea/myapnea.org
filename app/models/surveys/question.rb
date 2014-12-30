@@ -76,7 +76,7 @@ class Question < ActiveRecord::Base
     #raise StandardError, "#{self.text_en} #{answer_templates.first.display_type.name}"
     if answer_templates.length == 1 and ["multiple_choice", "check_box"].include? answer_templates.first.display_type.name
       at = answer_templates.first
-      all_options = at.answer_options.to_a.sort_by!{|ao| ao.value }
+      all_options = at.answer_options.to_a
 
       groups = []
 

@@ -96,7 +96,10 @@ $.rails.allowAction = (element) ->
   mainLoader()
   consentReady()
   surveysReady()
-  slidesReady() if slidesReady?
+  landingReady() if landingReady?
+  rankingUXReady() if rankingUXReady?
+  teamReady() if teamReady?
+  providersReady() if providersReady?
 
 $(document).ready(loaders)
 $(document).on('page:load', loaders)

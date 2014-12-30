@@ -1,0 +1,16 @@
+.col-sm-10.col-sm-offset-1.primary-orange-bcg.content-main-header
+  %h1.content-main-title Survey Results
+.col-sm-10.col-sm-offset-1.panel
+  .panel-body
+    %h3.f400 Thank you for completing the survey!
+    %h5.f400.lighter-blue{style: 'margin-bottom:30px;'} Congratulations, you have received one entry into the next monthly drawing!
+    %h4.f300.spaced Now take some time to review your answers and see how they compare to other members of the community. If you want to continue the discussion, bring any questions or concerns to the forums to hear from doctors, researchers, and other people with sleep apnea.
+  .panel-footer.f400
+    We would love your feedback
+    %span.primary-blue{style:'text-decoration:underline'} Get in touch with us.
+
+- if @survey
+  - answer_session = AnswerSession.most_recent(@survey.id, current_user.id)
+  - @survey.all_questions.each do |question|
+    - answer = question.user_answer(answer_session)
+    = render partial: 'surveys/reports/question_and_answer', locals: { question: question, answer: answer }

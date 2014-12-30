@@ -22,7 +22,7 @@ update_frequency_table = () ->
     user_answer = json_data.user_answer
     ua.html(user_answer)
 
-    console.log json_data
+    # console.log json_data
     data = json_data.frequencies.map((f) -> { label: f.label, frequency: (Math.round(f.frequency * 100) + "%") })
 
     rows = tbody.selectAll("tr").data(data)
