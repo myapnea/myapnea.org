@@ -11,7 +11,7 @@ Forem.per_page = 20
 module Forem
   class NilUser
     def photo_url
-      "//www.gravatar.com/avatar/#{Digest::MD5.hexdigest("NilUser")}?d=identicon"
+      'default-user.jpg'
     end
   end
 end

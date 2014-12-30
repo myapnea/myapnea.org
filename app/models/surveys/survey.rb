@@ -1,0 +1,3 @@
+class Survey < QuestionFlow
+
+end

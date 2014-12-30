@@ -1,5 +1,9 @@
 
-%h3 Member Management
+%h3
+  Member Management
+  = link_to export_users_path( format: 'csv' ), class: 'btn btn-xs btn-default' do
+    .fa.fa-file-excel-o
+    Export CSV
 
 .panel.panel-default#admin-dashboard
   .panel-heading

@@ -26,14 +26,29 @@
   #posts
     = render :partial => "forem/posts/post", :collection => @posts
 
-  %hr/
+  - if current_user and current_user.can?(:participate_in_social)
+    .row
+      .col-xs-1
+        = render partial: 'forem/forums/user_image', locals: { user: current_user, size: 50 }
+      .col-md-11.col-xs-10.col-xs-offset-1.col-md-offset-0
+        = form_for [forem, @topic.forum, @topic, @post] do |f|
+          = render :partial => "forem/posts/form", :locals => { :f => f }
 
-  = form_for [forem, @topic.forum, @topic, @post] do |f|
-    = render :partial => "forem/posts/form", :locals => { :f => f }
+          = hidden_field_tag :source, "topic"
+          = f.button :class => "btn btn-primary btn-block btn-sm" do
+            %i.fa.fa-plus
+            Submit your comment
+  - else
+    .well
+      %p.lead{ style: 'text-align:center;margin-bottom:0px' }
+        Please
+        - if current_user
+          = link_to 'create a social profile', main_app.social_profile_path, class: 'content-link'
+        - else
+          = link_to 'sign in', main_app.social_profile_path, class: 'content-link'
+        to post on the forum.
 
-    = hidden_field_tag :source, "topic"
-    = f.button :class => "btn btn-primary btn-block btn-sm" do
-      %i.fa.fa-plus
-      \&nbsp; Submit your comment
+
+
 
   = forem_pages_widget(@posts)

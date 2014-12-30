@@ -36,6 +36,32 @@ class AdminControllerTest < ActionController::TestCase
     assert_authorization_exception
   end
 
+  test "should export users as administrator" do
+    login(users(:admin))
+    get :export_users, format: 'csv'
+    assert_not_nil assigns(:csv_string)
+    assert_response :success
+  end
+
+  test "should not export users as moderator" do
+    login(users(:moderator_1))
+    get :export_users, format: 'csv'
+    assert_nil assigns(:csv_string)
+    assert_redirected_to root_path
+  end
+
+  test "should not export users as unauthorized users" do
+    login(users(:user_1))
+    get :export_users, format: 'csv'
+    assert_nil assigns(:csv_string)
+  end
+
+  test "should not export users for logged out users" do
+    get :export_users, format: 'csv'
+    assert_nil assigns(:csv_string)
+    assert_response :unauthorized
+  end
+
   test "should allow owner to add and remove user roles" do
     login(users(:owner))
 

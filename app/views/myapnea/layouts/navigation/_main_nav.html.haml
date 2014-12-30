@@ -1,16 +1,21 @@
 .list-group
   %a.list-group-item{href: main_app.root_path, class: "#{"active" if action_name == "home"}"}
     .fa.fa-home
-    &nbsp;
     Home
   %a.list-group-item{href: forem.root_path, class: "#{"active" if controller_path =~ /forem/}"}
     .fa.fa-comments-o
-    &nbsp; Forums
-  %a.list-group-item{href: main_app.surveys_path, class: "#{"active" if action_name == "research_surveys"}" } Surveys
+    Forums
+  %a.list-group-item{href: main_app.surveys_path, class: "#{"active" if action_name == "research_surveys"}" }
+    .fa.fa-bar-chart
+    Surveys
   - if false
     %a.list-group-item{href: main_app.blog_path, class: "#{"active" if action_name == "blog"}"} In The News
-  %a.list-group-item{href: main_app.research_topics_path, class: "#{"active" if controller_path =~ /research_topics/}"} Research Questions
-  %a.list-group-item{href: main_app.social_path, class: "#{"active" if action_name == "overview"}"} Our Community
+  %a.list-group-item{href: main_app.research_topics_path, class: "#{"active" if controller_path =~ /research_topics/}"}
+    .fa.fa-check-square-o
+    Research Questions
+  %a.list-group-item{href: main_app.social_path, class: "#{"active" if action_name == "overview"}"}
+    .fa.fa-map-marker
+    Our Community
 
 %hr/
 = link_to main_app.blog_path do

@@ -1,5 +1,5 @@
 class StaticController < ApplicationController
-  before_action :load_pc, only: [:about, :intro, :learn, :share, :research, :team, :faqs, :landing]
+  before_action :load_pc, only: [:about, :intro, :learn, :share, :research, :team, :faqs]
   before_action :about_layout, only: [:about, :intro, :learn, :share, :research, :team, :faqs]
 
   def content
@@ -8,16 +8,48 @@ class StaticController < ApplicationController
   end
 
   def home
-    @active_top_nav_link = :home
-    @posts = Post.blog_posts.viewable
-    render layout: "main"
+    if current_user
+      @active_top_nav_link = :home
+      @posts = Post.blog_posts.viewable
+      render layout: "main"
+    else
+      render 'landing', layout: 'layouts/cleantheme'
+    end
   end
 
   def theme
     render layout: "layouts/theme"
   end
 
-  def stealth
+  def landing
+    if current_user
+      redirect_to root_path
+    else
+      render layout: 'layouts/cleantheme'
+    end
+  end
+
+  def stealth_steering
+    render layout: 'layouts/cleantheme'
+  end
+
+  def stealth_forums
+    render layout: 'layouts/cleantheme'
+  end
+
+  def stealth_datadisplay
+    render layout: 'layouts/cleantheme'
+  end
+
+  def stealth_surveydisplay
+    if current_user
+      render layout: 'layouts/cleantheme'
+    else
+      redirect_to root_path
+    end
+  end
+
+  def stealth_providers
     render layout: 'layouts/cleantheme'
   end
 

@@ -1,8 +1,32 @@
-## 3.0.0
+## 3.1.0
+
+### Enhancements
+- **Home Page Changes**
+  - Surveys linked on the home page have been updated to better show a member's progress through the available surveys
+  - Landing page now loads for non-logged in users
+- **Registration Changes**
+  - Year of Birth is now a drop down list to avoid confusion between entering Birth Date instead of Year of Birth
+- **Forum Changes**
+  - Forum index no longer shows quoted text in forum replies
+  - Improved the user interface for the forum index and the forum widget on the home page
+  - Forum topics now have an updated interface that focuses on easier readability
+- **General Changes**
+  - Minor text and content updates throughout the site
+  - Fixed an issue where long links and title would run into the page from the Recent News bar
+  - Updated timezone for forum to use Eastern Time Zone
+- **Administrative Changes**
+  - Administrators can export users to update MailChimp lists and segments
+  - Blog posts link now correctly goes to the news forum
+- **Gem Changes**
+  - Updated to rails 4.2.0
+  - Updated to ruby 2.2.0
+
+## 3.0.0 (December 16, 2014)
 
 ### Enhancements
 - **General Changes**
   - Added lottery language to the Informed Consent to Question 14.
+  - Split existing survey into three smaller surveys
   - Added new landing page prototype
 
 ## 2.1.0 (December 10, 2014)

@@ -7,8 +7,16 @@ class StaticControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should get stealth" do
-    get :stealth
+  test "should get landing when logged out" do
+    get :home
+    assert_template 'landing'
+    assert_response :success
+  end
+
+  test "should get home page when logged in" do
+    login(users(:user_1))
+    get :home
+    assert_template 'home'
     assert_response :success
   end
 

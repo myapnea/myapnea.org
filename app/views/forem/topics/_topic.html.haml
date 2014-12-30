@@ -1,3 +1,5 @@
+- first_relevant_post = relevant_posts(topic).first
+
 %tr{:class => "topic #{cycle('odd', 'even')} #{topic.locked? ? 'locked' : 'unlocked'}", :data => {href: forem.forum_topic_path(@forum, topic)}}
   %td.icon
     - if topic.locked?
@@ -12,10 +14,12 @@
   %td.byline
     = new_since_last_view_text(topic)
     .subject= forem_emojify(topic.subject)
-    .started-by
-      = t "started_by"
-      = relevant_posts(topic).first.user.forem_name
+    - if first_relevant_post and first_relevant_post.user
+      .started-by
+        = t "started_by"
+        = first_relevant_post.user.forem_name
   %td.latest-post.text-center
-    = link_to_latest_post(topic)
+    - if first_relevant_post
+      = link_to_latest_post(topic)
   %td.posts-count.text-center= relevant_posts(topic).count
   %td.views-count.text-center= topic.views_count

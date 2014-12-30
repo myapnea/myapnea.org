@@ -1,0 +1,4 @@
+.row
+  - Survey.viewable.each do |survey|
+    .col-sm-4
+      = render partial: 'surveys/survey_widget', locals: { survey: survey }

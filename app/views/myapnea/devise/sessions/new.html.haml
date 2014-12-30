@@ -9,8 +9,7 @@
           .col-md-6
             %p.pull-right
               Not yet a Member?
-              %a{:href => new_user_registration_path}
-                Join!
+              = link_to 'Join', new_user_registration_path, class: 'content-link'
 
       .panel-body
         = form_for(resource, as: resource_name, url: session_path(resource_name), html: { role: "form" }) do |f|
@@ -23,7 +22,7 @@
           .form-group
             - if devise_mapping.recoverable?
               %small.forgot
-                = link_to "Forgot Password?", new_user_password_path
+                = link_to "Forgot Password?", new_user_password_path, class: 'content-link'
             - if devise_mapping.rememberable?
               .pull-right
                 = f.check_box :remember_me

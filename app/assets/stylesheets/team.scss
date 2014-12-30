@@ -1,0 +1,74 @@
+/* CAROUSEL */
+
+#carousel-steering-committee {
+  clear:both;
+  position:relative;
+  border-radius:20px ;
+}
+
+#carousel-steering-committee .item {
+  min-height:465px;
+}
+
+#carousel-steering-committee .item .row h5 {
+  margin-top:30px;
+  font-weight:300;
+}
+
+#steering-committee-list li {
+  display:inline-block;
+  list-style-type:none;
+  width:14%;
+  max-width:200px;
+  height:auto;
+  margin-left:2.5%;
+  margin-right:2.5%;
+}
+
+.team-member-picture {
+  width:100%;
+  border-radius:100%;
+  border:2px solid orange;
+  margin-right:20px;
+}
+
+.team-member-picture-large {
+  width:100%;
+  height:auto;
+  border-radius:100%;
+  border:2px solid orange;
+}
+
+.img-bw {
+  -webkit-filter: grayscale(100%); /* Chrome 19+ & Safari 6+ */
+  -webkit-transition: all .4s ease; /* Fade to color for Chrome and Safari */
+  -webkit-backface-visibility: hidden; /* Fix for transition flickering */
+}
+
+.img-bw-partial {
+  -webkit-filter: grayscale(50%); /* Chrome 19+ & Safari 6+ */
+  -webkit-transition: all .4s ease; /* Fade to color for Chrome and Safari */
+  -webkit-backface-visibility: hidden; /* Fix for transition flickering */
+}
+
+.img-color {
+  -webkit-filter: grayscale(0%); /* Chrome 19+ & Safari 6+ */
+  -webkit-transition: all .4s ease; /* Fade to color for Chrome and Safari */
+  -webkit-backface-visibility: hidden; /* Fix for transition flickering */
+}
+
+
+
+
+/* RESPONSIVE */
+
+@media (max-width: 992px) {
+  .team-member-picture-large {
+    width:40%;
+    margin-left:30%;
+    margin-right:30%;
+  }
+  #steering-committee-list {
+  padding-left:0px;
+  }
+}

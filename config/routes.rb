@@ -20,8 +20,12 @@ Rails.application.routes.draw do
   get 'faqs' => 'static#faqs'
   get 'team' => 'static#team'
   match 'user_dashboard', to: 'account#dashboard', as: :user_dashboard, via: :get
-  get 'landing' => 'static#landing'
   get 'stealth' => 'static#stealth'
+  get 'stealth_steering' => 'static#stealth_steering'
+  get 'stealth_forums' => 'static#stealth_forums'
+  get 'stealth_datadisplay' => 'static#stealth_datadisplay'
+  get 'stealth_surveydisplay' => 'static#stealth_surveydisplay'
+  get 'stealth_providers' => 'static#stealth_providers'
 
   get 'privacy_policy_document' => 'static#content', :page => "privacy_policy"
   get 'terms_of_service' => 'static#content', :page => "terms_of_service"
@@ -86,6 +90,7 @@ Rails.application.routes.draw do
   # Admin Section
   get 'admin' => 'admin#users'
   match 'admin/users', to: 'admin#users', as: 'admin_users', via: [:get, :post]
+  get 'admin/export_users', to: 'admin#export_users', as: 'export_users'
   get 'admin/surveys' => 'admin#surveys', as: 'admin_surveys'
   get 'admin/blog' => 'admin#blog', as: 'admin_blog'
   get 'admin/notifications' => 'admin#notifications', as: 'admin_notifications'

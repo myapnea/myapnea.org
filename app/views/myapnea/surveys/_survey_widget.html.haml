@@ -1,0 +1,36 @@
+.panel.panel-default
+  .panel-heading
+    .fa.fa-bar-chart
+    = survey.name
+  .panel-body
+    %p
+      %b= pluralize(survey.total_questions, 'Question')
+    = markdown survey.short_description
+    - if survey.incomplete?(current_user)
+      - stats = survey.completion_stats(current_user)
+      .progress{ style: 'margin-bottom: 11px' }
+        .progress-bar.progress-bar-info{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => stats[:percent_completed], :role => "progressbar", :style => "width: #{stats[:percent_completed]}%"}
+          %span.sr-only
+            = stats[:percent_completed]
+            \% Complete
+      %p
+        You've completed
+        = stats[:completed_questions]
+        of
+        = stats[:total_questions]
+        questions.
+      %div{ style: 'text-align:center' }
+        = link_to start_or_resume_survey(survey, survey.most_recent_answer_session(current_user)), class: 'btn btn-xs btn-success' do
+          Resume
+          .fa.fa-arrow-right
+
+    - elsif survey.unstarted?(current_user)
+      %div{ style: 'text-align:center' }
+        = link_to start_or_resume_survey(survey), class: 'btn btn-xs btn-success' do
+          Start
+          .fa.fa-arrow-right
+    - elsif survey.complete?(current_user)
+      %div{ style: 'text-align:center' }
+        = link_to survey_report_path(answer_session_id: survey.most_recent_answer_session(current_user).id), class: 'btn btn-xs btn-default' do
+          .fa.fa-bar-chart
+          Review My Answers
