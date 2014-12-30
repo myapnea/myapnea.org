@@ -16,7 +16,7 @@
   $("#recent-news").css("max-height", recentNewsH)
   $("#recent-news-container").outerHeight(recentNewsH)
 
-  console.log "success"
+  # console.log "success"
 
     # .on("[data-object~="hello"]", "click", () ->
     #   alert "hello"
