@@ -26,7 +26,7 @@
   }
 
   #signup{
-    background-image: url('#{$assets-path}/sign-up.png');
+    background-image: asset-url('myapnea/icons/sign-up.png');
     display: inline-block;
     float: right;
     height: 195px;
