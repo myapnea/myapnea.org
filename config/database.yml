@@ -59,6 +59,7 @@ test:
   <<: *default
   database: myapnea_test
   username: postgres
+  password: password
   host: localhost
 
 # As with config/secrets.yml, you never want to store sensitive information,

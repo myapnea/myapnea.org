@@ -9,7 +9,9 @@
     </h4>
   </div>
   <div class="rectangle-speech-border rectangle-speech-border-right rectangle-speech-border-blue col-sm-9 col-sm-offset-2">
-    <h5 class="f300" style='margin-bottom:30px;'>My answer: <span class='primary-blue'><%= answer.show_value %></span></h5>
+    <h5 class="f300" style='margin-bottom:30px;'>My answer: <span class='primary-blue'>
+      <%= answer.show_value unless answer.nil? %>
+    </span></h5>
     <h5>Compare your answers to the rest of the community</h5>
     <div class="col-sm-4" style='margin:20px auto;'>
       <table class='table-bordered' style='padding:10px; width:100%'>
