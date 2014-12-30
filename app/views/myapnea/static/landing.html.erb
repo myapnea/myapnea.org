@@ -73,7 +73,7 @@
     <div class="col-md-3 col-xs-12 col-button community-highlight" id='community-highlight-2'>
       <h3 class="text-white">Research Surveys</h3>
       <p class='lead'>Answer a series of questions about symptoms, treatment, and related health conditions.  Your answers will help the sleep apnea community better understand the disorder and where future research efforts should be directed.</p>
-      <p class='lead' id='survey-drawing-highlight'>Each completed survey earns you an entry into our monthly drawing for a <span id='visa-gift-card' class='text-white'>$250 Visa Gift card.</span></p>
+      <p class='lead'>Each completed survey earns you an entry into our monthly drawing for a <span id='visa-gift-card' class='text-white'>$250 Visa Gift card.</span></p>
     </div>
   <% end %>
   <%= link_to research_topics_path, class: 'community-highlight-links' do %>
@@ -105,6 +105,21 @@
     <h4>By joining, you gain access to a unique group of resources and a growing research community. It's fast, simple, and completely free of cost to join and start making a difference!</br></br>
     And, of course, all of your information is completely protected! <span id='privacy-policy' class='lighter-blue' data-toggle="modal" data-target="#myModal">See our privacy policy.</span>
     </h4>
+
+    <%= form_tag user_registration_path, method: :post do %>
+      <%= text_field_tag 'user[first_name]', nil, placeholder: 'First name', class: 'form-control' %>
+      <%= text_field_tag 'user[last_name]', nil, placeholder: 'Last name', class: 'form-control' %>
+      <%= select_tag 'user[year_of_birth]', options_for_select([['- Select your birth year -', nil]] + (1900..Date.today.year).to_a.reverse.collect{|i| [i,i]}), class: 'form-control' %>
+      <%= text_field_tag 'user[email]', nil, placeholder: 'Email address', class: 'form-control' %>
+      <%= password_field_tag 'user[password]', nil, placeholder: 'Password', class: 'form-control' %>
+      <%= submit_tag 'Sign up!', class: 'form-control', id: 'submit-join' %>
+    <% end %>
+
+    </div>
+  </div> <!-- END COL-10 PANEL-->
+
+</div><!-- END ROW -->
+
 
     <!-- Modal -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -163,17 +178,3 @@
         </div>
       </div>
     </div>
-
-    <%= form_tag user_registration_path, method: :post do %>
-      <%= text_field_tag 'user[first_name]', nil, placeholder: 'First name', class: 'form-control' %>
-      <%= text_field_tag 'user[last_name]', nil, placeholder: 'Last name', class: 'form-control' %>
-      <%= select_tag 'user[year_of_birth]', options_for_select([['- Select your birth year -', nil]] + (1900..Date.today.year).to_a.reverse.collect{|i| [i,i]}), class: 'form-control' %>
-      <%= text_field_tag 'user[email]', nil, placeholder: 'Email address', class: 'form-control' %>
-      <%= password_field_tag 'user[password]', nil, placeholder: 'Password', class: 'form-control' %>
-      <%= submit_tag 'Sign up!', class: 'form-control', id: 'submit-join' %>
-    <% end %>
-
-    </div>
-  </div> <!-- END COL-10 PANEL-->
-
-</div><!-- END ROW -->

@@ -15,5 +15,12 @@
 
   # $('.community-highlight').height(finalHighlightH)
 
+@landingReady = () ->
+  console.log 'landing ready'
 
+$(document)
+  .on('[data-object~="hello"]', 'click', () ->
+    alert 'hello'
+    false
+  )
 

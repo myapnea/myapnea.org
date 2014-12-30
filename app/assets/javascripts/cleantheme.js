@@ -32,4 +32,4 @@
 //= require surveys
 //= require fb
 //= require forem/topics
-//= require slide_sizing
+//= require cleantheme/landing

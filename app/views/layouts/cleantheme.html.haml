@@ -1,0 +1,66 @@
+!!!
+%html
+  %head
+    %meta{charset: 'utf-8'}
+    %meta{content: 'IE=Edge,chrome=1', http: {equiv: 'X-UA-Compatible'}}
+    %meta{name: 'viewport', content: 'width=device-width, initial-scale=1.0'}
+    %title='MyApnea.Org'
+    %link{href: ''}
+    %link{href:'//fonts.googleapis.com/css?family=Dosis:400,700|Cabin:400,700', rel:'stylesheet', type:'text/css'}
+    %link{href:'//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css', rel:'stylesheet'}
+    = favicon_link_tag
+    = csrf_meta_tags
+    = stylesheet_link_tag 'cleantheme', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag "cleantheme", "data-turbolinks-track" => true
+    = javascript_tag "var root_url='#{request.script_name + '/'}';var auth_token='#{form_authenticity_token}';"
+  %body
+    %nav.navbar.navbar-fixed-top{role:'navigation'}
+      .container-fluid
+        .navbar-header
+          = link_to image_tag('myapnea/welcome/img-small/myApneaLogoOld.png', width: "100%", style: "position:relative;top:-32px; left:0px;", id: "navbar-myapnea-logo"), root_path, class: "navbar-brand", style: "width:70%; line-height:100%; min-width:160px; max-width:260px;"
+          - if params[:action] == 'home' and !current_user
+            = link_to "Login", new_user_session_path, class: "btn primary-blue-bcg text-white visible-xs float-right", id: "btn-login-phone"
+            .collapse.navbar-collapse.navbar-right
+              = form_tag user_session_path, method: :post, class: "navbar-form" do
+                = text_field_tag 'user[email]', nil, placeholder: 'Email', class: "form-control"
+                = password_field_tag 'user[password]', nil, placeholder: 'Password', class: "form-control"
+                = submit_tag 'Login', class: "btn btn-primary"
+    .container-fluid
+      - if params[:action] == 'home' and !current_user
+        = yield
+      - else
+        .row
+          #container-left
+            = yield
+          #container-right.primary-blue-bcg
+            -if current_user
+              .col-lg-5.col-md-6.col-sm-8#user-profile-header-picture
+                = image_tag 'myapnea/testimonials/sRedline-cropped.png', class: "user-picture"
+              .col-md-6.col-sm-8#user-profile-header-text
+                %h4.user-name.text-white Michael Rueschman
+            -else
+              .col-md-8.col-md-offset-2.centered-text
+                .btn.btn-warning
+                  %h4 Log in!
+            .col-sm-12.reset-layout#user-profile-container{style:'margin-top:30px;'}
+              %ul.list-group
+                %li.list-group-item Community Profile
+                %li.list-group-item Forums
+                %li.list-group-item Research Surveys
+                %li.list-group-item Rate the Research
+        .footer.row
+          .col-sm-3.col-xs-5.primary-orange
+            %ul
+              %li
+                = link_to 'FAQs', faqs_path
+              %li
+                = link_to 'Team', team_path
+              %li
+                = link_to'Privacy', privacy_path
+          .col-sm-3.col-xs-7.pull-right
+            = image_tag "myapnea/welcome/img-small/asaa_logo.jpg", class: 'partners-img img-responsive', id: 'partner-AASA'
+          .col-sm-3.col-xs-7.pull-right
+            = image_tag "myapnea/welcome/img-small/pcornet_logo.jpg", class: "partners-img img-responsive", id: "partner-PCORnet"
+          .col-sm-3.col-xs-7.pull-right
+            = image_tag "myapnea/welcome/img-small/bwh_logo.jpg", class: "partners-img img-responsive", id: "partner-BWH"
+

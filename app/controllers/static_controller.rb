@@ -21,14 +21,6 @@ class StaticController < ApplicationController
     render layout: "layouts/theme"
   end
 
-  def landing
-    if current_user
-      redirect_to root_path
-    else
-      render layout: 'layouts/cleantheme'
-    end
-  end
-
   def stealth_steering
     render layout: 'layouts/cleantheme'
   end
