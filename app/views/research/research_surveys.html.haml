@@ -41,6 +41,8 @@
     %h3.panel-title New Surveys
     .req surveys_ready_for_completion (title of survey, url to survey)
   .list-group
+    .list-group-item.list-group-item-info
+      .text-center We’ve recently redesigned our surveys! Don’t worry- if you previously completed our one longer survey your data is safely stored and you earned three entries into our January lottery. If you are new to the site, we now have three shorter surveys for you to complete and you’ll earn a lottery entry for each completed survey.
     - if current_user.incomplete_surveys.empty? and current_user.unstarted_surveys.empty?
       .list-group-item
         %span.text-info No new surveys available. Check back later!

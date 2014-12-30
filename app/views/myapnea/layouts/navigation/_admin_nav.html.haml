@@ -11,9 +11,7 @@
 
 .list-group
   %a.list-group-item.list-group-item-warning{href: "https://myapnea1.uservoice.com/admin", :target => "_blank"} UserVoice
-  %a.list-group-item.list-group-item-warning{href: "https://www.google.com/analytics/web/?hl=en#report/visitors-overview/#{"keeey"}/", :target => "_blank"} Google Analytics
-
-
+  %a.list-group-item.list-group-item-warning{href: "https://www.google.com/analytics/web/?hl=en#report/visitors-overview/#{ENV["google_analytics_report_id"]}/", :target => "_blank"} Google Analytics
 
 -# Description of this section
 %p.small This admin panel gives admins control over users and content on the site.

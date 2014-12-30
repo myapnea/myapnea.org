@@ -60,10 +60,6 @@ class ApplicationController < ActionController::Base
     render layout: false
   end
 
-  def facebook_access_token
-
-  end
-
   def authenticate_research
     raise Authority::SecurityViolation.new(current_user, 'research', action_name) unless current_user.can?(:participate_in_research)
   end

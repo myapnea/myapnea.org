@@ -30,6 +30,11 @@ Rails.application.routes.draw do
   get 'privacy_policy_document' => 'static#content', :page => "privacy_policy"
   get 'terms_of_service' => 'static#content', :page => "terms_of_service"
 
+  # Facebook Real Updates
+  # match "update_fb_feed", to: "posts#receive_update", as: :update_fb_feed, via: :post
+  # match "verify_fb_subscription", to: "posts#verify_subscription", as: :verify_fb_subscription, via: :get
+
+
 
 
   # Research Topics

@@ -12,6 +12,8 @@ end
 
 begin
   FB_API = Koala::Facebook::API.new(Koala::Facebook::OAuth.new.get_app_access_token)
+  FB_UPDATES = Koala::Facebook::RealtimeUpdates.new(app_access_token: Koala::Facebook::OAuth.new.get_app_access_token, app_id: ENV['fb_app_id'])
+  FB_CACHE_LOCATION = Rails.root.join('lib', 'koala', 'fb_cache.json')
 rescue
   FB_API = nil
 end
