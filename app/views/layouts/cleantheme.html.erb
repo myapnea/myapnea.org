@@ -97,24 +97,72 @@
   <!-- ONLY FOOTER ON INTERNAL SITE -->
   <% if current_user %>
   <div class="footer row">
-    <div class="col-xs-3">
-      <%= image_tag "myapnea/welcome/img-small/asaa_logo.jpg", class: 'partners-img img-responsive', id: 'partner-AASA', style: 'padding-left:10px;' %>
+    <div class="col-sm-3 col-xs-5 primary-orange" style="">
+      <ul>
+        <li>
+          <%= link_to 'FAQs', faqs_path %>
+        </li>
+        <li>
+          <%= link_to 'Team', team_path %>
+        </li>
+        <li>
+          <%= link_to'Privacy', privacy_path %>
+        </li>
+      </ul>
     </div>
-    <div class="col-xs-3">
+    <div class="col-sm-3 col-xs-7 pull-right">
+      <%= image_tag "myapnea/welcome/img-small/asaa_logo.jpg", class: 'partners-img img-responsive', id: 'partner-AASA' %>
+    </div>
+    <div class="col-sm-3 col-xs-7 pull-right">
       <%= image_tag "myapnea/welcome/img-small/pcornet_logo.jpg", class: "partners-img img-responsive", id: "partner-PCORnet" %>
     </div>
-    <div class="col-xs-3">
+    <div class="col-sm-3 col-xs-7 pull-right">
       <%= image_tag "myapnea/welcome/img-small/bwh_logo.jpg", class: "partners-img img-responsive", id: "partner-BWH"%>
-    </div>
-    <div class="col-xs-3 primary-orange" style="padding-right:15px;">
-      <ul>
-        <li>FAQs</li>
-        <li>MyApnea Team</li>
-        <li>Privacy Policy</li>
-      </ul>
     </div>
   </div>
   <% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

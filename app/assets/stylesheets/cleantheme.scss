@@ -74,15 +74,30 @@ nav {
 .footer {
   border-top:3px solid orange;
   background-color:white;
-  text-align:right;
-  width:81.5%;
   float:left;
   padding-top:10px;
+  width:80%;
+  margin:0;
 }
 
-.footer ul {
-  list-style-type: none;
-}
+  .footer ul {
+    list-style-type: none;
+    margin-left:0px;
+  }
+
+  .footer ul li {
+    text-indent:5px;
+  }
+
+  .footer ul li a {
+    color:#ffa400;
+  }
+
+  .footer ul li:before {
+    content:"-";
+    position:relative;
+    left:-5px;
+  }
 
 //Show users that they can scroll -- need to fix
 #recent-news-container:after {
@@ -174,7 +189,12 @@ nav {
     margin:0px;
   }
 
+  .footer ul {
+    margin-top:50px;
+  }
   .footer ul li {
-    font-size:10px;
+    position:relative;
+    left:-30px;
+    font-size:18px;
   }
 }
