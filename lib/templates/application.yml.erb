@@ -11,28 +11,29 @@
 #   stripe_publishable_key: pk_live_9lcthxpSIHbGwmdO941O1XVU
 
 ## PPRN-specific
-pprn_title:           "<%= print "Enter PPRN title: "; ga = gets.chomp; ga %>"
-pprn_support_email:   "<%= print "Enter support email address: "; ga = gets.chomp; ga %>"
+pprn_title:                   "<%= print "Enter PPRN title: "; ga = gets.chomp; ga %>"
+pprn_support_email:           "<%= print "Enter support email address: "; ga = gets.chomp; ga %>"
 
 ## Other Settings
-website_url:          "<%= print "Enter Website URL: "; gets.chomp.gsub(/(\/)*$/, '') %>"
-website_name:         "<%= print "Enter Website Name/Title: "; gets.chomp %>"
+website_url:                  "<%= print "Enter Website URL: "; gets.chomp.gsub(/(\/)*$/, '') %>"
+website_name:                 "<%= print "Enter Website Name/Title: "; gets.chomp %>"
 
-smtp_address:         "<%= print "Enter SMTP Address [localhost]: "; s = gets.chomp; s == '' ? 'localhost' : s %>"
-smtp_port:            "<%= print "Enter SMTP Port [25]: "; s = gets.chomp; s == '' ? '25' : s %>"
-smtp_authentication:  "<%= print "Enter SMTP Authentication [plain]: "; s = gets.chomp; s == '' ? 'plain' : s %>"
-smtp_email:           "<%= print "Enter SMTP Email Address: "; gets.chomp %>"
-smtp_user_name:       "<%= print "Enter SMTP User Name [username]: "; s = gets.chomp.gsub('"', '\"').gsub("\\", "\\\\"); s == '' ? 'username' : s %>"
-smtp_password:        "<%= print "Enter SMTP Password [password]: "; s = gets.chomp.gsub('"', '\"').gsub("\\", "\\\\"); s == '' ? 'password' : s %>"
+smtp_address:                 "<%= print "Enter SMTP Address [localhost]: "; s = gets.chomp; s == '' ? 'localhost' : s %>"
+smtp_port:                    "<%= print "Enter SMTP Port [25]: "; s = gets.chomp; s == '' ? '25' : s %>"
+smtp_authentication:          "<%= print "Enter SMTP Authentication [plain]: "; s = gets.chomp; s == '' ? 'plain' : s %>"
+smtp_email:                   "<%= print "Enter SMTP Email Address: "; gets.chomp %>"
+smtp_user_name:               "<%= print "Enter SMTP User Name [username]: "; s = gets.chomp.gsub('"', '\"').gsub("\\", "\\\\"); s == '' ? 'username' : s %>"
+smtp_password:                "<%= print "Enter SMTP Password [password]: "; s = gets.chomp.gsub('"', '\"').gsub("\\", "\\\\"); s == '' ? 'password' : s %>"
 
-uservoice_id:         "<%= print "Enter uservoice ID: "; gets.chomp %>"
-google_analytics_id:  "<%= print "Google Analytics ID: "; gets.chomp %>"
-database_url:         "<%= print "Enter Database URL: "; gets.chomp %>"
+uservoice_id:                 "<%= print "Enter uservoice ID: "; gets.chomp %>"
+google_analytics_id:          "<%= print "Google Analytics ID: "; gets.chomp %>"
+google_analytics_report_id:   "<%= print "Google Analytics Report ID: "; gets.chomp %>"
+database_url:                 "<%= print "Enter Database URL: "; gets.chomp %>"
 
 # Facebook Integration
-fb_app_id:            "<%= print "Enter the facebook app ID: "; gets.chomp %>"
-fb_app_secret:        "<%= print "Enter the facebook app secret: "; gets.chomp %>"
+fb_app_id:                    "<%= print "Enter the facebook app ID: "; gets.chomp %>"
+fb_app_secret:                "<%= print "Enter the facebook app secret: "; gets.chomp %>"
 
 # External Accounts
-oodt_enabled:         "<%= print "Enable OODT? Y/N: "; ga = gets.chomp; ga == "Y" %>"
-validic_enabled:      "<%= print "Enable Validic? Y/N: "; ga = gets.chomp; ga == "Y" %>"
+oodt_enabled:                 "<%= print "Enable OODT? Y/N: "; ga = gets.chomp; ga == "Y" %>"
+validic_enabled:              "<%= print "Enable Validic? Y/N: "; ga = gets.chomp; ga == "Y" %>"
