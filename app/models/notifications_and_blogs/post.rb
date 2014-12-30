@@ -20,26 +20,27 @@ class Post < ActiveRecord::Base
 
     # Facebook
     if FB_API
-      fb_posts = FB_API.get_connections("sleepapneaassn", "feed", {limit: 15, fields: "id,from,story,picture,link,name,caption,description,icon,created_time"})
-      fb_poster =  FB_API.get_object("sleepapneaassn")
-      fb_picture = FB_API.get_connections("sleepapneaassn", "picture", {redirect: false})["data"]["url"]
 
-      fb_posts.each do |fb_post|
-        posts << {
-            type: :facebook,
-            user_photo: fb_picture,
-            title: fb_post["name"],
-            title_link: fb_post["link"],
-            user: fb_poster["name"],
-            user_link: fb_poster["link"],
-            created_at: Time.zone.parse(fb_post["created_time"]),
-            content_picture: fb_post["picture"],
-            content_description: fb_post["description"],
-            caption: fb_post[:caption]
-        }
+      self.fb_posts.each do |fb_post|
+        unless fb_post["type"] == "status"
+          posts << {
+              type: :facebook,
+              user_photo: fb_picture,
+              title: fb_post["name"],
+              title_link: fb_post["link"],
+              user: fb_poster["name"],
+              user_link: fb_poster["link"],
+              created_at: Time.zone.parse(fb_post["created_time"]),
+              content_picture: fb_post["picture"],
+              content_description: fb_post["description"],
+              caption: fb_post[:caption]
+          }
+        end
       end
 
+      posts
     end
+
 
     # Forem
     news_forum = Forem::Forum.find_by_name("News")
@@ -76,6 +77,30 @@ class Post < ActiveRecord::Base
 
     posts
   end
+
+
+  ## Cached API
+  def self.fb_posts
+    Rails.cache.fetch("facebook/posts", expires_in: 3.hours) do
+      FB_API.get_connections("sleepapneaassn", "feed", {limit: 15, fields: "id,from,story,picture,link,name,caption,description,icon,created_time,type"})
+    end
+  end
+
+  def self.fb_poster
+    Rails.cache.fetch("facebook/poster", expires_in: 3.hours) do
+      FB_API.get_object("sleepapneaassn")
+    end
+
+  end
+
+  def self.fb_picture
+    Rails.cache.fetch("facebook/picture", expires_in: 3.hours) do
+      FB_API.get_connections("sleepapneaassn", "picture", {redirect: false})["data"]["url"]
+    end
+  end
+
+
+
 
   def tags=(val)
     tag_list.add(val)
