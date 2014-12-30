@@ -51,21 +51,22 @@
                 %li.list-group-item Forums
                 %li.list-group-item Research Surveys
                 %li.list-group-item Rate the Research
-        .row#footer{style: 'margin:0px;'}
-          .col-sm-3.col-xs-5.primary-orange
-            %ul
-              %li
-                = link_to 'FAQs', faqs_path
-              %li
-                = link_to 'Team', team_path
-              %li
-                = link_to'Privacy', privacy_path
-          .col-sm-3.col-xs-7.pull-right
-            = image_tag "myapnea/welcome/img-small/asaa_logo.jpg", class: 'partners-img img-responsive', id: 'partner-AASA'
-          .col-sm-3.col-xs-7.pull-right
-            = image_tag "myapnea/welcome/img-small/pcornet_logo.jpg", class: "partners-img img-responsive", id: "partner-PCORnet"
-          .col-sm-3.col-xs-7.pull-right
-            = image_tag "myapnea/welcome/img-small/bwh_logo.jpg", class: "partners-img img-responsive", id: "partner-BWH"
+    - unless params[:action] == 'home' and !current_user
+      .footer
+        .col-sm-3.col-xs-5.primary-orange
+          %ul
+            %li
+              = link_to 'FAQs', faqs_path
+            %li
+              = link_to 'Team', team_path
+            %li
+              = link_to'Privacy', privacy_path
+        .col-sm-3.col-xs-7.pull-right
+          = image_tag "myapnea/welcome/img-small/asaa_logo.jpg", class: 'partners-img img-responsive', id: 'partner-AASA'
+        .col-sm-3.col-xs-7.pull-right
+          = image_tag "myapnea/welcome/img-small/pcornet_logo.jpg", class: "partners-img img-responsive", id: "partner-PCORnet"
+        .col-sm-3.col-xs-7.pull-right
+          = image_tag "myapnea/welcome/img-small/bwh_logo.jpg", class: "partners-img img-responsive", id: "partner-BWH"
     / Modal
     - if params[:action] == 'home' and !current_user
       .modal.fade#myModal{ tabindex:'-1', role:'dialog', aria: { labelledby: 'myModalLabel', hidden: 'true' } }
