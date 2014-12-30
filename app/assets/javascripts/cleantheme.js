@@ -36,3 +36,4 @@
 //= require cleantheme/rankingUX
 //= require cleantheme/team
 //= require cleantheme/providers
+//= require cleantheme/jquery.placeholder

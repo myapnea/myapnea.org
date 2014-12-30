@@ -70,7 +70,7 @@ nav {
   right:0;
   box-shadow: -3px 1px 5px #777;
   // z-index: 5000;
-  overflow-y:scroll;
+  // overflow-y:scroll;
 }
 
 #recent-news {
@@ -111,9 +111,11 @@ nav {
   content:' v v v v ';
   font-size:10px;
   text-align:center;
+  color:rgb(0,0,0);
   color:rgba(0,0,0,.4);
   display:inline-block;
   width:100%;
+  background-color:rgb(245,245,245);
   background-color:rgba(245,245,245,.7);
 }
 
@@ -128,6 +130,7 @@ nav {
 .user-picture {
   width:100%;
   border-radius: 100%;
+  border:2px solid rgb(255,255,255);
   border:2px solid rgba(255,255,255,.8);
   margin-left:15px;
 }
@@ -137,14 +140,17 @@ nav {
 }
 
 #container-right .list-group {
+  border-bottom:1px solid rgb(255,255,255);
   border-bottom:1px solid rgba(255,255,255,.4);
 }
 
 #container-right .list-group-item {
+  color:rgb(255,255,255);
   color:rgba(255,255,255,.9);
   background-color:transparent;
   border:none;
   border-radius:0px;
+  border-top:1px solid rgb(255,255,255);
   border-top:1px solid rgba(255,255,255,.4);
   font-size:16px;
   font-weight:300;
@@ -153,7 +159,9 @@ nav {
 #container-right .list-group-item:hover {
   position:relative;
   top:-2px;
+  border-top:1px solid rgb(255,255,255);
   border-top:1px solid rgba(255,255,255,.3);
+  box-shadow:1px 2px 5px rgb(255,255,255);
   box-shadow:1px 2px 5px rgba(255,255,255,.4);
   font-weight:400;
 }
@@ -162,6 +170,7 @@ nav {
 /* MAIN CONTENT */
 
 .content-main-header {
+  box-shadow:0px 1px 5px rgb(0,0,0);
   box-shadow:0px 1px 5px rgba(0,0,0,.5);
   min-height:150px;
   // Materials
@@ -173,6 +182,7 @@ nav {
 
 .content-main-title {
   font-family: 'Lato', sans-serif;
+  color: rgb(255,255,255);
   color: rgba(255,255,255,.85);
   position:absolute;
   bottom:20px;

@@ -107,9 +107,16 @@
     </h4>
 
     <%= form_tag user_registration_path, method: :post do %>
-      <%= text_field_tag 'user[first_name]', nil, placeholder: 'First name', class: 'form-control' %>
-      <%= text_field_tag 'user[last_name]', nil, placeholder: 'Last name', class: 'form-control' %>
-      <%= select_tag 'user[year_of_birth]', options_for_select([['- Select your birth year -', nil]] + (1900..Date.today.year).to_a.reverse.collect{|i| [i,i]}), class: 'form-control' %>
+      <!-- <div class='input-group'> -->
+        <!-- <span class="input-group-addon" id="in1">First name</span> -->
+        <%= text_field_tag 'user[first_name]', nil, placeholder: 'First name', class: 'form-control', aria: { describedby: 'in1' } %>
+      <!-- </div> -->
+      <!-- <div class='input-group'> -->
+        <!-- <span class="input-group-addon" id="in2">Last name</span> -->
+        <%= text_field_tag 'user[last_name]', nil, placeholder: 'Last name', class: 'form-control', aria: { describedby: 'in2' } %>
+      <!-- </div> -->
+      <!-- <span class="input-group-addon" id="in3">Birth year:</span> -->
+      <%= select_tag 'user[year_of_birth]', options_for_select([['- Select your birth year -', nil]] + (1900..Date.today.year).to_a.reverse.collect{|i| [i,i]}), class: 'form-control', aria: { describedby: 'in3' } %>
       <%= text_field_tag 'user[email]', nil, placeholder: 'Email address', class: 'form-control' %>
       <%= password_field_tag 'user[password]', nil, placeholder: 'Password', class: 'form-control' %>
       <%= submit_tag 'Sign up!', class: 'form-control', id: 'submit-join' %>
@@ -119,3 +126,9 @@
   </div> <!-- END COL-10 PANEL-->
 
 </div><!-- END ROW -->
+
+
+
+<script>
+  $('input, textarea').placeholder();
+</script>

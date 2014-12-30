@@ -16,6 +16,10 @@
   $("#recent-news").css("max-height", recentNewsH)
   $("#recent-news-container").outerHeight(recentNewsH)
 
+
+  # Fix for ie6-9 issues with placeholders
+  $('input, textarea').placeholder()
+
   # console.log "success"
 
     # .on("[data-object~="hello"]", "click", () ->
