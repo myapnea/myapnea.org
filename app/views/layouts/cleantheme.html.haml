@@ -17,14 +17,15 @@
     %nav.navbar.navbar-fixed-top{role:'navigation'}
       .container-fluid
         .navbar-header
-          = link_to image_tag('myapnea/welcome/img-small/myApneaLogoOld.png', width: "100%", style: "position:relative;top:-32px; left:0px;", id: "navbar-myapnea-logo"), root_path, class: "navbar-brand", style: "width:70%; line-height:100%; min-width:160px; max-width:260px;"
+          = link_to image_tag('myapnea/welcome/img-small/myApneaLogoOld.png', width: "100%", style: "position:relative;top:-32px; left:0px;", id: "navbar-myapnea-logo"), root_path, class: "navbar-brand", style: "width:70%; line-height:100%; min-width:260px; max-width:260px;"
           - if params[:action] == 'home' and !current_user
             = link_to "Login", new_user_session_path, class: "btn primary-blue-bcg text-white visible-xs float-right", id: "btn-login-phone"
-            .collapse.navbar-collapse.navbar-right
-              = form_tag user_session_path, method: :post, class: "navbar-form" do
-                = text_field_tag 'user[email]', nil, placeholder: 'Email', class: "form-control"
-                = password_field_tag 'user[password]', nil, placeholder: 'Password', class: "form-control"
-                = submit_tag 'Login', class: "btn btn-primary"
+        - if params[:action] == 'home' and !current_user
+          .collapse.navbar-collapse.navbar-right.float-right
+            = form_tag user_session_path, method: :post, class: "navbar-form" do
+              = text_field_tag 'user[email]', nil, placeholder: 'Email', class: "form-control"
+              = password_field_tag 'user[password]', nil, placeholder: 'Password', class: "form-control"
+              = submit_tag 'Login', class: "btn btn-primary"
     .container-fluid
       - if params[:action] == 'home' and !current_user
         = yield
@@ -50,7 +51,7 @@
                 %li.list-group-item Forums
                 %li.list-group-item Research Surveys
                 %li.list-group-item Rate the Research
-        .footer.row
+        .row#footer{style: 'margin:0px;'}
           .col-sm-3.col-xs-5.primary-orange
             %ul
               %li

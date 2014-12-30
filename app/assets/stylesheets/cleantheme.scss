@@ -46,7 +46,7 @@ nav {
 // Ensure proper logo size for large screens
 .navbar-header {
   min-width:30%;
-  }
+}
 
 .navbar-right {
   margin-top:-5px;
@@ -71,7 +71,7 @@ nav {
   overflow-y:scroll;
 }
 
-.footer {
+#footer {
   border-top:3px solid orange;
   background-color:white;
   float:left;
@@ -80,20 +80,20 @@ nav {
   margin:0;
 }
 
-  .footer ul {
+  #footer ul {
     list-style-type: none;
     margin-left:0px;
   }
 
-  .footer ul li {
+  #footer ul li {
     text-indent:5px;
   }
 
-  .footer ul li a {
+  #footer ul li a {
     color:#ffa400;
   }
 
-  .footer ul li:before {
+  #footer ul li:before {
     content:"-";
     position:relative;
     left:-5px;
