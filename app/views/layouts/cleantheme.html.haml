@@ -13,7 +13,7 @@
     = stylesheet_link_tag 'cleantheme', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag "cleantheme", "data-turbolinks-track" => true
     = javascript_tag "var root_url='#{request.script_name + '/'}';var auth_token='#{form_authenticity_token}';"
-  %body
+  %body{ data: { object: 'no-user-voice' } }
     %nav.navbar.navbar-fixed-top{role:'navigation'}
       .container-fluid
         .navbar-header
@@ -35,13 +35,15 @@
           #container-right.primary-blue-bcg
             -if current_user
               .col-lg-5.col-md-6.col-sm-8#user-profile-header-picture
-                = image_tag 'myapnea/testimonials/sRedline-cropped.png', class: "user-picture"
+                = link_to social_profile_path do
+                  = image_tag current_user.photo_url, class: "user-picture", size: "75x75", style: 'width:75px;height:75px'
               .col-md-6.col-sm-8#user-profile-header-text
-                %h4.user-name.text-white Michael Rueschman
+                %h4.user-name.text-white
+                  = current_user.name
             -else
-              .col-md-8.col-md-offset-2.centered-text
-                .btn.btn-warning
-                  %h4 Log in!
+              .col-md-8.col-md-offset-2
+                .centered-text
+                  = link_to 'Log in!', new_user_session_path, class: 'btn btn-warning btn-lg'
             .col-sm-12.reset-layout#user-profile-container{style:'margin-top:30px;'}
               %ul.list-group
                 %li.list-group-item Community Profile
