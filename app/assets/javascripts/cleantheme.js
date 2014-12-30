@@ -33,3 +33,6 @@
 //= require fb
 //= require forem/topics
 //= require cleantheme/landing
+//= require cleantheme/rankingUX
+//= require cleantheme/team
+//= require cleantheme/providers
