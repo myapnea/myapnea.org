@@ -39,3 +39,6 @@
 //= require cleantheme/jquery.placeholder.js
 //= require external/highcharts-4.0.4.src.js
 //= require cleantheme/questions
+//= require external/highmaps-1.0.4-modules-map.src.js
+//= require external/highmaps-1.0.4-modules-data.js
+//= require cleantheme/maps
