@@ -14,6 +14,8 @@
     = javascript_include_tag "cleantheme", "data-turbolinks-track" => true
     = javascript_tag "var root_url='#{request.script_name + '/'}';var auth_token='#{form_authenticity_token}';"
   %body{ data: { object: 'no-user-voice' } }
+    // Fixed div's for layout of right container
+    %div{ style: 'background-color:black; width:100%; height:81px; position:absolute; top:0; z-index:1000;'}
     %nav.navbar.navbar-fixed-top{role:'navigation'}
       .container-fluid
         .navbar-header
@@ -34,23 +36,62 @@
           #container-left
             = yield
           #container-right.primary-blue-bcg
-            -if current_user
-              .col-lg-5.col-md-6.col-sm-8#user-profile-header-picture
-                = link_to social_profile_path do
-                  = image_tag current_user.photo_url, class: "user-picture", size: "75x75", style: 'width:75px;height:75px'
-              .col-md-6.col-sm-8#user-profile-header-text
-                %h4.user-name.text-white
-                  = current_user.name
-            -else
-              .col-md-8.col-md-offset-2
-                .centered-text
-                  = link_to 'Log in!', new_user_session_path, class: 'btn btn-warning btn-lg'
-            .col-sm-12.reset-layout#user-profile-container{style:'margin-top:30px;'}
-              %ul.list-group
-                %li.list-group-item Community Profile
-                %li.list-group-item Forums
-                %li.list-group-item Research Surveys
-                %li.list-group-item Rate the Research
+            #container-right-fixed
+              -if current_user
+                .col-lg-5.col-md-6.col-sm-8#user-profile-header-picture
+                  = link_to social_profile_path do
+                    = image_tag current_user.photo_url, class: "user-picture", size: "75x75", style: 'width:75px;height:75px'
+                .col-lg-6.col-md-6.col-sm-8#user-profile-header-text
+                  %h4.user-name.text-white
+                    = current_user.name
+              -else
+                .col-sm-12
+                  .centered-text
+                    = form_tag user_session_path, method: :post do
+                      = text_field_tag 'user[email]', nil, placeholder: 'Email', class: "form-control"
+                      = password_field_tag 'user[password]', nil, placeholder: 'Password', class: "form-control"
+                      = submit_tag 'Login', class: "btn btn-warning ", style: 'width:70%'
+              .col-sm-12.reset-layout#user-profile-container{style:'margin-top:30px;'}
+                %ul.list-group
+                  %li.list-group-item.hover
+                    = link_to 'Forums', forem_path, style: 'color:white; color: rgba(255,255,255,.8); text-decoration: none; '
+                  %li.list-group-item.hover
+                    = link_to 'Research Surveys', surveys_path,  style: 'color:white; color: rgba(255,255,255,.8); text-decoration: none;'
+                  %li.list-group-item.hover
+                    = link_to 'Rate the Research', research_topics_path,  style: 'color:white; color: rgba(255,255,255,.8); text-decoration: none;'
+                %ul.list-group{ style: 'margin-bottom:0px; padding-top:50px;' }
+                  %li.list-group-item{ style: 'border-top:3px solid white; ' }
+                    %h4.text-white Recent News
+            #container-right-scroll
+              .col-sm-12.reset-layout#recent-news-container{ style: '' }
+                %ul.list-group#recent-news{ style: 'margin-bottom:0px; padding-bottom:0px;' }
+                  %li.list-group-item{ style: 'background-color: #7FB2EB;' }
+                    %h5.f300{ style: 'color: white; color: rgba(255,255,255,.8)' }
+                      Losing weight makes your lungs a potent CO2 emitter
+                    %p.f400.darkerer-blue{ style: 'margin:0px 10px; ' }
+                      Posted on Facebook by ASAA
+                    %p.f300.darkerer-blue{ style: 'margin:0px 10px; ' }
+                      23 Dec 2014
+                    %p{ style: 'margin:10px 10px; color: white; color: rgba(255,255,255,.8) ' }
+                      Lorem ipsum sleep apnea snoring loud noises wake up feeling better to a better future Lorem ipsum sleep apnea snoring loud noises wake up feeling better to a better future Lorem ipsum sleep apnea snoring loud noises wake up feeling better to a better future
+                  %li.list-group-item{ style: 'background-color: #7FB2EB;' }
+                    %h5.f300{ style: 'color: white; color: rgba(255,255,255,.8)' }
+                      Losing weight makes your lungs a potent CO2 emitter
+                    %p.f400.darkerer-blue{ style: 'margin:0px 10px; ' }
+                      Posted on Facebook by ASAA
+                    %p.f300.darkerer-blue{ style: 'margin:0px 10px; ' }
+                      23 Dec 2014
+                    %p{ style: 'margin:10px 10px; color: white; color: rgba(255,255,255,.8) ' }
+                      Lorem ipsum sleep apnea snoring loud noises wake up feeling better to a better future Lorem ipsum sleep apnea snoring loud noises wake up feeling better to a better future Lorem ipsum sleep apnea snoring loud noises wake up feeling better to a better future
+                  %li.list-group-item{ style: 'background-color: #7FB2EB;' }
+                    %h5.f300{ style: 'color: white; color: rgba(255,255,255,.8)' }
+                      Losing weight makes your lungs a potent CO2 emitter
+                    %p.f400.darkerer-blue{ style: 'margin:0px 10px; ' }
+                      Posted on Facebook by ASAA
+                    %p.f300.darkerer-blue{ style: 'margin:0px 10px; color: white; color: rgba(255,255,255,.8)' }
+                      23 Dec 2014
+                    %p{ style: 'margin:10px 10px; color: white; color: rgba(255,255,255,.8) ' }
+                      Lorem ipsum sleep apnea snoring loud noises wake up feeling better to a better future Lorem ipsum sleep apnea snoring loud noises wake up feeling better to a better future Lorem ipsum sleep apnea snoring loud noises wake up feeling better to a better future
     - unless params[:action] == 'home' and !current_user
       .footer
         .col-sm-3.col-xs-5.primary-orange
