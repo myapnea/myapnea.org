@@ -39,7 +39,7 @@
   - 25
 - id: 20491
   text_en: |
-    Where do you recieve your health care?
+    Where do you receive your health care?
   time_estimate: 0.5
   answer_template_ids:
   - 25
@@ -267,7 +267,7 @@
   answer_template_ids:
   - 14
 - id: 10500
-  text_en: Have you ever recieved treatment for sleep apnea?
+  text_en: Have you ever received treatment for sleep apnea?
   time_estimate: 0.2
   answer_template_ids:
   - 13
@@ -988,7 +988,7 @@
   time_estimate: .4
   answer_templates:
   - id: 91011
-    display_type_id: 3
+    display_type_id: 4
     data_type: answer_option_id
     answer_option_ids:
     - 297
