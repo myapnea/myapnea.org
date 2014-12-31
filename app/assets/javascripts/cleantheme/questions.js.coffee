@@ -11,47 +11,34 @@
   $(element).highcharts(
     chart:
       type: json['type'] || 'bar'
+      height: json['chartHeight'] || null
     title:
       text: json['title']
     subtitle:
       text: json['subtitle']
     xAxis:
-      # categories: ['Africa', 'America', 'Asia', 'Europe', 'Oceania']
       type: 'category'
       title:
         text: null
     yAxis:
       min: 0
+      allowDecimals: false
       title:
-        text: 'People'
-        align: 'high'
+        text: 'Members'
+        margin: 15
       labels:
         overflow: 'justify'
+      offset: 5
     tooltip:
-      valueSuffix: ' people'
+      valueSuffix: ' members'
     plotOptions:
       bar:
         dataLabels:
           enabled: true
+        pointWidth: 20
     legend:
-      # layout: 'vertical'
-      # align: 'right'
-      # verticalAlign: 'top'
-      # x: -40
-      # y: 10,
-      # floating: true
-      # borderWidth: 1
-      # # backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF')
-      # shadow: true
       enabled: false
     credits:
       enabled: false
-    # series: [{
-    #   name: 'Question One'
-    #   data: [
-    #     ['label1', 12],
-    #     ['label2', 11]
-    #   ]
-    # }]
     series: json['series']
   )
