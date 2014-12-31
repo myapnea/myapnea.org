@@ -100,6 +100,7 @@ $.rails.allowAction = (element) ->
   rankingUXReady() if rankingUXReady?
   teamReady() if teamReady?
   providersReady() if providersReady?
+  questionsReady() if questionsReady?
 
 $(document).ready(loaders)
 $(document).on('page:load', loaders)

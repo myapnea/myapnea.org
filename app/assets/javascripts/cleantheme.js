@@ -36,4 +36,6 @@
 //= require cleantheme/rankingUX
 //= require cleantheme/team
 //= require cleantheme/providers
-//= require cleantheme/jquery.placeholder
+//= require cleantheme/jquery.placeholder.js
+//= require external/highcharts-4.0.4.src.js
+//= require cleantheme/questions
