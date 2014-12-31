@@ -17,6 +17,10 @@ class StaticController < ApplicationController
     end
   end
 
+  def team
+    render "static/stealth_steering", layout: 'layouts/cleantheme' if params[:redesign] == '1'
+  end
+
   def theme
     render layout: "layouts/theme"
   end
@@ -56,7 +60,7 @@ class StaticController < ApplicationController
   end
 
   def about_layout
-    render layout: "layouts/about"
+    render layout: "layouts/about" unless params[:redesign] == '1'
   end
 
 end
