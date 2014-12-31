@@ -17,6 +17,8 @@ class ResearchTopicsController < ApplicationController
 
   def index
     @research_topics = ResearchTopic.accepted
+
+    render "static/stealth_datadisplay", layout: 'layouts/cleantheme' if params[:redesign] == '1'
   end
 
   def show

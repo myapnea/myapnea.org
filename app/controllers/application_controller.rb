@@ -35,7 +35,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-
   def set_active_top_nav_link_to_research
     @active_top_nav_link = :research_questions
   end

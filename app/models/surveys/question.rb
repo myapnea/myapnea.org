@@ -106,4 +106,13 @@ class Question < ActiveRecord::Base
     groups = answers.group_by{|answer| answer.value}
     groups.inject({}) {|h, (k,v)| h[k] = v.length; h}
   end
+
+  def applicable_to_user?(user, answer_session)
+    false
+  end
+
+  def user_skipped_question?(user, answer_session)
+    false
+  end
+
 end

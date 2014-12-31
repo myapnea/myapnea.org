@@ -1,0 +1,48 @@
+- if answer_frequencies = question.answer_frequencies
+  .col-sm-9.col-sm-offset-1.rectangle-speech-border.rectangle-speech-border-left.rectangle-speech-border-orange
+    %h4
+      = simple_markdown(question.text)
+  .col-sm-9.col-sm-offset-2.rectangle-speech-border.rectangle-speech-border-right.rectangle-speech-border-blue
+    %h5.f300{ style: ' margin-bottom:30px; ' }
+      My answer:
+      %span.primary-blue
+        - if question.applicable_to_user?(current_user, answer)
+          You were unable to answer this question due to previous responses!
+        - elsif question.user_skipped_question?(current_user, answer)
+          Oops, it looks like you didn't answer this question.
+          = link_to 'Answer now!', surveys_path
+        - else
+          = answer.show_value unless answer.nil?
+    %h5
+      - if question.applicable_to_user?(current_user, answer) or question.user_skipped_question?(current_user, answer)
+        See how the community answered!
+      - else
+        Compare your answers to the rest of the community!
+    .col-sm-4{ style: 'margin:20px auto; ' }
+      %table.table-bordered{ style: 'padding:10px; width:100%; ' }
+        %thead
+          %th{ style: 'text-align:center;' } Option
+          %th{ style: 'text-align:center;' } Frequency
+        %tbody
+          /- user_selected = answer_frequencies[:label].to_s.strip.include? answer.show_value.to_s.strip.split(', ')
+          - user_selected = []
+          - answer_frequencies.each do |answer_frequency|
+            - if !answer.nil? and answer.show_value.to_s.strip.split(', ').include? answer_frequency[:label].to_s.strip
+              - user_selected << 1
+              %tr{ style: 'background-color:rgba(245,245,245,.7)' }
+                %td
+                  = answer_frequency[:label]
+                %td
+                  = (answer_frequency[:frequency] * 100).round
+            - else
+              - user_selected << 0
+              %tr
+                %td
+                  = answer_frequency[:label]
+                %td
+                  = (answer_frequency[:frequency] * 100).round
+    .col-sm-7{ style: 'margin:20px auto; ' }
+      - data = answer_frequencies.each_with_index.map{ |af,i| { name: af[:label].to_s.strip, y: af[:count], color: (user_selected[i] == 1 ? '#7FB2EB' : '#FFB839') } }
+      - if answer_frequencies.length == 2
+        - chartHeight = 200
+      %div{ data: { object: 'draw-chart', name: 'abc', info: { chartHeight: chartHeight, series: [{ name: 'question', data: data }] }.to_json } }

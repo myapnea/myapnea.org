@@ -26,18 +26,18 @@
       %li
         %a{href: main_app.account_path}
           %i.fa.fa-user
-          &nbsp; Account Settings
+          Account Settings
       - if current_user.can?(:view_admin_dashboard)
         %li
           %a{href: current_user.has_role?(:owner) ? main_app.admin_users_path : main_app.admin_surveys_path, :title => "Admin Panel"}
             %i.fa.fa-wrench
-            &nbsp; Admin Panel
+            Admin Panel
       %li
         = link_to main_app.destroy_user_session_path, :method => :delete do
           %i.fa.fa-sign-out
-          &nbsp; Sign out
+          Sign out
 - else
   %li
     %a{:href => main_app.new_user_session_path}
       %i.fa.fa-sign-in
-      &nbsp; Sign In
+      Sign In
