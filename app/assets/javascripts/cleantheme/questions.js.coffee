@@ -11,6 +11,7 @@
   $(element).highcharts(
     chart:
       type: json['type'] || 'bar'
+      height: json['chartHeight'] || null
     title:
       text: json['title']
     subtitle:
@@ -21,13 +22,15 @@
         text: null
     yAxis:
       min: 0
+      allowDecimals: false
       title:
-        text: 'People'
-        align: 'high'
+        text: 'Members'
+        margin: 15
       labels:
         overflow: 'justify'
+      offset: 5
     tooltip:
-      valueSuffix: ' people'
+      valueSuffix: ' members'
     plotOptions:
       bar:
         dataLabels:

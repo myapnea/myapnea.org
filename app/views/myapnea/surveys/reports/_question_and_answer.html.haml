@@ -39,4 +39,8 @@
                   = (answer_frequency[:frequency] * 100).round
     .col-sm-7{ style: 'margin:20px auto; ' }
       - data = answer_frequencies.collect{ |af| [ af[:label].to_s.strip, af[:count] ] }
-      %div{ data: { object: 'draw-chart', name: 'abc', info: { title: '', series: [{ name: 'question', data: data }] }.to_json } }
+      - if answer_frequencies.length == 2
+        - chartHeight = 200
+      / - else
+      /   - chartHeight = null
+      %div{ data: { object: 'draw-chart', name: 'abc', info: { chartHeight: chartHeight, series: [{ name: 'question', data: data }] }.to_json } }
