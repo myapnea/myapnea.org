@@ -139,8 +139,11 @@ nav {
 /* USER SIDEBAR */
 
 .form-control {
-  margin:10px auto;
   font-size:16px;
+}
+
+#container-right .form-control {
+  margin:10px auto;
 }
 
 .user-picture {
