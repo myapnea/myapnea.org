@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
   # Enable User Connection to External API Accounts
   include ExternalUsers
 
+  include Deletable
+
 
   self.authorizer_name = "UserAuthorizer"
 
@@ -21,12 +23,12 @@ class User < ActiveRecord::Base
   validates_numericality_of :year_of_birth, allow_nil: false, only_integer: true, less_than_or_equal_to: -> (user){ Date.today.year - 18 }, greater_than_or_equal_to: -> (user){ 1900 }
 
   # Model Relationships
-  has_many :answer_sessions
-  has_many :answers
+  has_many :answer_sessions, -> { where deleted: false }
+  has_many :answers, -> { where deleted: false }
   has_many :votes
-  has_one :social_profile
-  has_many :posts
-  has_many :research_topics
+  has_one :social_profile, -> { where deleted: false }
+  has_many :posts, -> { where deleted: false }
+  has_many :research_topics, -> { where deleted: false }
 
   # Named Scopes
   scope :search_by_email, ->(terms) { where("LOWER(#{self.table_name}.email) LIKE ?", terms.to_s.downcase.gsub(/^| |$/, '%')) }
@@ -36,7 +38,7 @@ class User < ActiveRecord::Base
   end
 
   def self.scoped_users(email=nil, role=nil)
-    users = all
+    users = current
 
     users = users.search_by_email(email) if email.present?
     users = users.with_role(role) if role.present?
@@ -182,4 +184,9 @@ class User < ActiveRecord::Base
 
     (todays_votes.length < vote_quota) or (rating < 1)
   end
+
+  def active_for_authentication?
+    super and not self.deleted?
+  end
+
 end

@@ -1,4 +1,6 @@
 class Answer < ActiveRecord::Base
+  include Deletable
+
   has_many :answer_values, dependent: :destroy
   belongs_to :question
   belongs_to :answer_option

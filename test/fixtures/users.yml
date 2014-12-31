@@ -96,3 +96,24 @@ has_unstarted_survey:
   accepted_privacy_policy_at: <%= 6.day.ago.to_s(:db) %>
   year_of_birth: 1980
   encrypted_password: <%= pw %>
+
+deleted_admin:
+  first_name: Deleted
+  last_name: Admin
+  email: nosupport@myapnea.org
+  roles: admin
+  zip_code: 12345
+  year_of_birth: 1980
+  encrypted_password: <%= pw %>
+  deleted: true
+
+deleted_user:
+  first_name: Zombie
+  last_name: Boy
+  email: zombieboy@gmail.com
+  accepted_consent_at: <%= 10.day.ago.to_s(:db) %>
+  accepted_privacy_policy_at: <%= 10.day.ago.to_s(:db) %>
+  zip_code: 66666
+  year_of_birth: 1930
+  encrypted_password: <%= pw %>
+  deleted: true

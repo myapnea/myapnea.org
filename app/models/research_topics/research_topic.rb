@@ -1,5 +1,6 @@
 class ResearchTopic < ActiveRecord::Base
-  include Votable
+  include Votable, Deletable
+
   has_many :votes
 
   include Authority::Abilities
