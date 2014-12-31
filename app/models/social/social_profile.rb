@@ -13,6 +13,10 @@ class SocialProfile < ActiveRecord::Base
     res.map{|geo| {latitude: geo.latitude, longitude: geo.longitude} }
   end
 
+  def self.states_for_map
+    states = [ "us-ma", "us-wa", "us-ca", "us-or", "us-wi", "us-me", "us-mi", "us-nv", "us-nm", "us-co", "us-wy", "us-ks", "us-ne", "us-ok", "us-mo", "us-il", "us-in", "us-vt", "us-az", "us-ar", "us-tx", "us-ri", "us-al", "us-ga", "us-ms", "us-sc", "us-nc", "us-va", "us-ia", "us-md", "us-de", "us-nj", "us-pa", "us-ny", "us-id", "us-sd", "us-ct", "us-nh", "us-ky", "us-oh", "us-tn", "us-wv", "us-dc", "us-la", "us-fl", "us-mn", "us-mt", "us-nd", "us-ut", "us-hi", "us-ak" ]
+    states.collect{|s| { "hc-key" => s, value: rand(50) }} + [ value: 51 ]
+  end
 
   def show_publicly?
     make_public?
