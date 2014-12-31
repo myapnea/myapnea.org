@@ -18,6 +18,7 @@
   # $("#recent-news-container").outerHeight(recentNewsH)
   containerRightFixedH = $('#container-right-fixed').outerHeight()
   $('#container-right-scroll').css('margin-top', containerRightFixedH)
+  $('#container-right-scroll').css('min-height', windowH-footerH-navH)
 
 
   # Fix for ie6-9 issues with placeholders
