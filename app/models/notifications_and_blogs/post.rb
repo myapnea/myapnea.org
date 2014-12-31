@@ -16,54 +16,57 @@ class Post < ActiveRecord::Base
   has_many :votes
 
   def self.all_posts(short = false)
-    posts = []
+    posts = Rails.cache.fetch("all_posts", expires_in: 15.minutes) do
 
-    # Facebook
-    if FB_API
+      posts = []
 
-      self.fb_posts.each do |fb_post|
-        unless fb_post["type"] == "status"
+      # Facebook
+      if FB_API
+
+        self.fb_posts.each do |fb_post|
+          unless fb_post["type"] == "status"
+            posts << {
+                type: :facebook,
+                user_photo: fb_picture,
+                title: fb_post["name"],
+                title_link: fb_post["link"],
+                user: fb_poster["name"],
+                user_link: fb_poster["link"],
+                created_at: Time.zone.parse(fb_post["created_time"]),
+                content_picture: fb_post["picture"],
+                content_description: fb_post["description"],
+                caption: fb_post[:caption]
+            }
+          end
+        end
+
+        posts
+      end
+
+
+      # Forem
+      news_forum = Forem::Forum.find_by_name("News")
+      if news_forum.present?
+        forum_posts = news_forum.topics
+
+        forum_posts.each do |forem_post|
           posts << {
-              type: :facebook,
-              user_photo: fb_picture,
-              title: fb_post["name"],
-              title_link: fb_post["link"],
-              user: fb_poster["name"],
-              user_link: fb_poster["link"],
-              created_at: Time.zone.parse(fb_post["created_time"]),
-              content_picture: fb_post["picture"],
-              content_description: fb_post["description"],
-              caption: fb_post[:caption]
+              type: :forum,
+              user_photo: forem_post.user.photo_url,
+              title: forem_post.subject,
+              #title_link: forem.forum_topic_path(forem_post.forum, forem_post),
+              user: forem_post.user.forem_name,
+              user_link: "",
+              created_at: forem_post.created_at,
+              content: forem_post.posts.first.text,
+              post: forem_post
           }
         end
       end
 
-      posts
-    end
-
-
-    # Forem
-    news_forum = Forem::Forum.find_by_name("News")
-    if news_forum.present?
-      forum_posts = news_forum.topics
-
-      forum_posts.each do |forem_post|
-        posts << {
-            type: :forum,
-            user_photo: forem_post.user.photo_url,
-            title: forem_post.subject,
-            #title_link: forem.forum_topic_path(forem_post.forum, forem_post),
-            user: forem_post.user.forem_name,
-            user_link: "",
-            created_at: forem_post.created_at,
-            content: forem_post.posts.first.text,
-            post: forem_post
-        }
+      posts.sort! do |a, b|
+        b[:created_at] <=> a[:created_at]
       end
-    end
-
-    posts.sort! do |a, b|
-      b[:created_at] <=> a[:created_at]
     end
 
     if short
@@ -76,6 +79,7 @@ class Post < ActiveRecord::Base
     end
 
     posts
+
   end
 
 

@@ -37,3 +37,11 @@ fb_app_secret:                "<%= print "Enter the facebook app secret: "; gets
 # External Accounts
 oodt_enabled:                 "<%= print "Enable OODT? Y/N: "; ga = gets.chomp; ga == "Y" %>"
 validic_enabled:              "<%= print "Enable Validic? Y/N: "; ga = gets.chomp; ga == "Y" %>"
+
+# Prevent API and other requests in testing environment
+test:
+  uservoice_id:                 ~
+  google_analytics_id:          ~
+  google_analytics_report_id:   ~
+  fb_app_id:                    ~
+  fb_app_secret:                ~
