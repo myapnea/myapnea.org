@@ -1,4 +1,4 @@
-# OpenPPRN
+# OpenPPRN - MyApnea.Org
 
 [![Build Status](https://travis-ci.org/myapnea/www_myapnea_org.svg?branch=master)](https://travis-ci.org/myapnea/www_myapnea_org)
 [![Dependency Status](https://gemnasium.com/myapnea/www_myapnea_org.svg)](https://gemnasium.com/myapnea/www_myapnea_org)
