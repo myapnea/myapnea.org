@@ -1,4 +1,4 @@
-## 3.1.0
+## 3.1.0 (January 2, 2015)
 
 ### Enhancements
 - **Home Page Changes**
