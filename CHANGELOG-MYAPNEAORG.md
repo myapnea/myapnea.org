@@ -1,9 +1,13 @@
-## 3.1.0
+## 3.2.0
+
+## 3.1.0 (January 2, 2015)
 
 ### Enhancements
 - **Home Page Changes**
+  - New landing page added that shows total member count
+    - The new landing page is the first in a series of parts of the website that will receive a user interface update
+    - Landing page now loads for non-logged in users
   - Surveys linked on the home page have been updated to better show a member's progress through the available surveys
-  - Landing page now loads for non-logged in users
 - **Registration Changes**
   - Year of Birth is now a drop down list to avoid confusion between entering Birth Date instead of Year of Birth
 - **Forum Changes**
@@ -14,12 +18,26 @@
   - Minor text and content updates throughout the site
   - Fixed an issue where long links and title would run into the page from the Recent News bar
   - Updated timezone for forum to use Eastern Time Zone
+  - Session timeout was increased to allow members to be logged out less frequently
 - **Administrative Changes**
   - Administrators can export users to update MailChimp lists and segments
   - Blog posts link now correctly goes to the news forum
 - **Gem Changes**
   - Updated to rails 4.2.0
   - Updated to ruby 2.2.0
+
+### Upcoming Changes
+- Added redesign preview of the following pages:
+  - Forum index page
+  - About Team page
+  - Survey Report page
+  - Rank the Research page
+  - Community Map page
+  - Providers Sign Up page
+
+### Bug Fixes
+- Fixed a survey question being select one, instead of select any
+- Fixed some minor spelling errors in survey questions
 
 ## 3.0.0 (December 16, 2014)
 

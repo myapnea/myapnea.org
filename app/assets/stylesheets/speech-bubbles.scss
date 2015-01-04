@@ -7,6 +7,7 @@
   border-width:3px;
   border-style: solid;
   background:#fff;
+  color:rgb(0,0,0);
   color:rgba(0,0,0,.7);
   /* css3 */
   -webkit-border-radius:20px;
@@ -16,16 +17,16 @@
 
 .rectangle-speech-border-orange {
   border-color: #FFC864;
+  box-shadow:0px 3px 5px rgb(0,0,0);
   box-shadow:0px 3px 5px rgba(0,0,0,.2);
   margin-bottom:10px;
-  left:15px
 }
 
 .rectangle-speech-border-blue {
   border-color: #B1D2F6;
+  box-shadow:0px 3px 5px rgb(0,0,0);
   box-shadow:0px 3px 5px rgba(0,0,0,.3);
   margin-bottom:30px;
-  right:15px;
 }
 
 /* creates larger curve */

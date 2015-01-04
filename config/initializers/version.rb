@@ -1,7 +1,7 @@
 module WwwMyapneaOrg
   module VERSION #:nodoc:
     MAJOR = 3
-    MINOR = 1
+    MINOR = 2
     TINY = 0
     BUILD = "pre" # nil, "pre", "beta1", "beta2", "rc", "rc2"
 

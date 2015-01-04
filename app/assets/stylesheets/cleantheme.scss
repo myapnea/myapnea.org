@@ -31,8 +31,15 @@
 body {
   margin:0px;
   padding:0px;
-  background-color: rgba(15, 18, 27, 1);
   padding-top:81px;
+  // proof for when footer goes awry
+  background: -moz-linear-gradient(top, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 44%, rgba(0,0,0,0.63) 65%, rgba(255,255,255,0.54) 70%, rgba(255,255,255,0) 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,1)), color-stop(44%,rgba(0,0,0,1)), color-stop(65%,rgba(0,0,0,0.63)), color-stop(70%,rgba(255,255,255,0.54)), color-stop(100%,rgba(255,255,255,0))); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, rgba(0,0,0,1) 0%,rgba(0,0,0,1) 44%,rgba(0,0,0,0.63) 65%,rgba(255,255,255,0.54) 70%,rgba(255,255,255,0) 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, rgba(0,0,0,1) 0%,rgba(0,0,0,1) 44%,rgba(0,0,0,0.63) 65%,rgba(255,255,255,0.54) 70%,rgba(255,255,255,0) 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, rgba(0,0,0,1) 0%,rgba(0,0,0,1) 44%,rgba(0,0,0,0.63) 65%,rgba(255,255,255,0.54) 70%,rgba(255,255,255,0) 100%); /* IE10+ */
+  background: linear-gradient(to bottom, rgba(0,0,0,1) 0%,rgba(0,0,0,1) 44%,rgba(0,0,0,0.63) 65%,rgba(255,255,255,0.54) 70%,rgba(255,255,255,0) 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#00ffffff',GradientType=0 ); /* IE6-9 */
 }
 
 nav {
@@ -46,7 +53,7 @@ nav {
 // Ensure proper logo size for large screens
 .navbar-header {
   min-width:30%;
-  }
+}
 
 .navbar-right {
   margin-top:-5px;
@@ -56,20 +63,6 @@ nav {
   background-image: asset-url('myapnea/welcome/textures/grey.png');
 }
 
-#container-right {
-  padding-top: 30px;
-  width: 20%;
-  position:fixed;
-  right:0;
-  box-shadow: 3px 1px 5px #777;
-  // z-index: 5000;
-  overflow-y:scroll;
-}
-
-#recent-news {
-  position:relative;
-  overflow-y:scroll;
-}
 
 .footer {
   border-top:3px solid orange;
@@ -78,6 +71,7 @@ nav {
   padding-top:10px;
   width:80%;
   margin:0;
+  z-index:2;
 }
 
   .footer ul {
@@ -100,27 +94,62 @@ nav {
   }
 
 //Show users that they can scroll -- need to fix
-#recent-news-container:after {
-  content:' v v v v ';
-  font-size:10px;
-  text-align:center;
-  color:rgba(0,0,0,.4);
-  display:inline-block;
+// #recent-news-container:after {
+//   content:' v v v v ';
+//   font-size:10px;
+//   text-align:center;
+//   color:rgb(0,0,0);
+//   color:rgba(0,0,0,.4);
+//   display:inline-block;
+//   width:100%;
+//   background-color:rgb(245,245,245);
+//   background-color:rgba(245,245,245,.7);
+// }
+
+
+
+#container-right {
+  width: 20%;
+  float:right;
+  box-shadow: -3px 1px 5px #777;
+}
+
+#container-right-fixed:before {
+  content:'';
+  height:81px;
   width:100%;
-  background-color:rgba(245,245,245,.7);
+  background-color:inherit;
+  display:inline-block;
+  position: absolute;
+  top:-81px;
 }
 
-#container-left {
-  width:80%;
-  float:left;
+#container-right-fixed {
+  position:fixed;
+  z-index:100;
+  background-color: #5999DE;
+  padding-top: 30px;
+  width: inherit;
+  box-shadow:0px 3px 3px #ddd;
 }
 
+#container-right-scroll {
+}
 
 /* USER SIDEBAR */
+
+.form-control {
+  font-size:16px;
+}
+
+#container-right .form-control {
+  margin:10px auto;
+}
 
 .user-picture {
   width:100%;
   border-radius: 100%;
+  border:2px solid rgb(255,255,255);
   border:2px solid rgba(255,255,255,.8);
   margin-left:15px;
 }
@@ -130,23 +159,28 @@ nav {
 }
 
 #container-right .list-group {
+  border-bottom:1px solid rgb(255,255,255);
   border-bottom:1px solid rgba(255,255,255,.4);
 }
 
 #container-right .list-group-item {
+  color:rgb(255,255,255);
   color:rgba(255,255,255,.9);
   background-color:transparent;
   border:none;
   border-radius:0px;
+  border-top:1px solid rgb(255,255,255);
   border-top:1px solid rgba(255,255,255,.4);
   font-size:16px;
   font-weight:300;
 }
 
-#container-right .list-group-item:hover {
+#container-right .list-group-item.hover:hover {
   position:relative;
   top:-2px;
+  border-top:1px solid rgb(255,255,255);
   border-top:1px solid rgba(255,255,255,.3);
+  box-shadow:1px 2px 5px rgb(255,255,255);
   box-shadow:1px 2px 5px rgba(255,255,255,.4);
   font-weight:400;
 }
@@ -154,7 +188,13 @@ nav {
 
 /* MAIN CONTENT */
 
+#container-left {
+  width:80%;
+  float:left;
+}
+
 .content-main-header {
+  box-shadow:0px 1px 5px rgb(0,0,0);
   box-shadow:0px 1px 5px rgba(0,0,0,.5);
   min-height:150px;
   // Materials
@@ -166,6 +206,7 @@ nav {
 
 .content-main-title {
   font-family: 'Lato', sans-serif;
+  color: rgb(255,255,255);
   color: rgba(255,255,255,.85);
   position:absolute;
   bottom:20px;

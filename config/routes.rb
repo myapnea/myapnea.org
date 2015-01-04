@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   get 'stealth_datadisplay' => 'static#stealth_datadisplay'
   get 'stealth_surveydisplay' => 'static#stealth_surveydisplay'
   get 'stealth_providers' => 'static#stealth_providers'
+  get 'stealth_map' => 'static#stealth_map'
 
   get 'privacy_policy_document' => 'static#content', :page => "privacy_policy"
   get 'terms_of_service' => 'static#content', :page => "terms_of_service"

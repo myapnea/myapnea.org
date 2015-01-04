@@ -3,7 +3,6 @@ class SurveysController < ApplicationController
   before_action :set_active_top_nav_link_to_surveys
   before_action :authenticate_research
 
-
   layout "main"
 
   def start_survey
@@ -42,9 +41,7 @@ class SurveysController < ApplicationController
     @question_flow = @answer_session.question_flow
     @survey = @question_flow
 
-    if current_user.has_role?(:admin)
-      render 'surveys/show_report-new', layout: 'layouts/cleantheme'
-    end
+    render "show_report-new", layout: 'layouts/cleantheme' if params[:redesign] == '1'
   end
 
   def process_answer
