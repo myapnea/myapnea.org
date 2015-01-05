@@ -2,32 +2,23 @@
 /* many classes make use of existing styling for the landing page */
 
 #slide-1p {
-  background-image: asset-url('myapnea/welcome/img-large/unsplash-standing-colors.jpg');
+  background-image: asset-url('myapnea/welcome/img-large/seattle2.jpg');
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: center ;
   background-size: cover;
   -ms-behavior: asset-url('ie8/backgroundsize.min.htc');
   background-color: rgb(15, 18, 27);
   position:relative;
   min-height:800px;
   padding-bottom:100px;
+  font-family: 'Dosis', sans-serif;
 }
 
 #slide-2p {
   position:relative;
   overflow:hidden;
-  padding-top:100px;
 }
 
-#slide-2p:before {
-  content: ' ';
-  display:block; z-index:0;
-  position:absolute; left:0; top:0px;
-  width:100%; height: 100%;
-  opacity:1;
-  background-image: asset-url('myapnea/welcome/transitions/dot_backdrop_top_color.png');
-  background-repeat: repeat-x;
-}
 
 #slide-2p img {
   margin-top:150px;
@@ -58,8 +49,24 @@
 
 
 
+/* PROVIDER SPECIFIC */
 
+#provider-header {
+  background-image: asset-url('myapnea/welcome/img-large/SplitShire-starry-night.jpg');
+  background-size: cover;
+  background-position:center;
+  min-height:600px;
+  font-family: 'Dosis', sans-serif;
+}
 
+#provider-intro {
+  background-image: none;
+  background-color: white;
+  min-height:200px;
+  padding:25px;
+  border-top: 5px solid #B1D2F6;
+  border-bottom: 5px solid #B1D2F6;
+}
 
 
 

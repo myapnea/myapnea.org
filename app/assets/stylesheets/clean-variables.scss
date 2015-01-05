@@ -8,8 +8,8 @@
 .primary-orange { color: #FFA400; } // ORANGE
 .lighter-orange { color: #FFB839; }
 .lighterer-orange { color: #FFC864; }
-.darker-orange { color: #C67F00; }
-.darkerer-orange { color: #9B6400; }
+.darker-orange { color: #EF9A00; }
+.darkerer-orange { color: #E29100; }
 
 .primary-blue-bcg { background-color: #5999DE; }
 .lighter-blue-bcg { background-color: #7FB2EB; }
@@ -19,14 +19,35 @@
 .primary-orange-bcg { background-color: #FFA400; }
 .lighter-orange-bcg { background-color: #FFB839; }
 .lighterer-orange-bcg { background-color: #FFC864; }
-.darker-orange-bcg { background-color: #C67F00; }
-.darkerer-orange-bcg { background-color: #9B6400; }
+.darker-orange-bcg { background-color: #EF9A00; }
+.darkerer-orange-bcg { background-color: #E29100; }
 
 .text-white { color: #fff; }
+.text-light9 { color: #fff; color: rgba(255, 255, 255, .9); }
+.text-light8 { color: #fff; color: rgba(255, 255, 255, .8); }
+.text-light7 { color: #fff; color: rgba(255, 255, 255, .7); }
+.text-light6 { color: #fff; color: rgba(255, 255, 255, .6); }
+.text-light5 { color: #fff; color: rgba(255, 255, 255, .5); }
+.text-light4 { color: #fff; color: rgba(255, 255, 255, .4); }
+.text-light3 { color: #fff; color: rgba(255, 255, 255, .3); }
+.text-light2 { color: #fff; color: rgba(255, 255, 255, .2); }
+.text-light1 { color: #fff; color: rgba(255, 255, 255, .1); }
 
-.centered-text {
-  text-align:center;
-}
+.text-black { color: #000; }
+.text-dark9 { color: #000; color: rgba(0, 0, 0, .9); }
+.text-dark8 { color: #000; color: rgba(0, 0, 0, .8); }
+.text-dark7 { color: #000; color: rgba(0, 0, 0, .7); }
+.text-dark6 { color: #000; color: rgba(0, 0, 0, .6); }
+.text-dark5 { color: #000; color: rgba(0, 0, 0, .5); }
+.text-dark4 { color: #000; color: rgba(0, 0, 0, .4); }
+.text-dark3 { color: #000; color: rgba(0, 0, 0, .3); }
+.text-dark2 { color: #000; color: rgba(0, 0, 0, .2); }
+.text-dark1 { color: #000; color: rgba(0, 0, 0, .1); }
+
+
+.centered-text { text-align:center; }
+.right-text { text-align: right; }
+.left-text { text-align: left; }
 
 
 
