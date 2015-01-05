@@ -1,5 +1,8 @@
 ## 4.0.0
 
+### Enhancements
+- Changed image sizes to speed up loading on mobile browsers
+
 ## 3.1.0 (January 2, 2015)
 
 ### Enhancements
