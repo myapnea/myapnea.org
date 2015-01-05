@@ -59,18 +59,22 @@
   font-family: 'Dosis', sans-serif;
 }
 
-#provider-intro {
+#provider-banner {
+  background-color:white;
   background-image: none;
-  background-color: white;
-  min-height:200px;
-  padding:25px;
-  border-top: 5px solid #B1D2F6;
-  border-bottom: 5px solid #B1D2F6;
+  min-height:115px;
+  border-top: 5px solid #FFA400;
+  border-bottom:5px solid #5999DE;
+  padding:25px 0px;
 }
 
-
-
-
+#community-tracker-provider {
+  text-align:center;
+  background-color: #B1D2F6;
+  border-bottom:5px solid #5999DE;
+  background-image: none;
+  padding:15px;
+}
 
 
 .row-fullscreen {
