@@ -28,6 +28,10 @@
               = text_field_tag 'user[email]', nil, placeholder: 'Email', class: "form-control"
               = password_field_tag 'user[password]', nil, placeholder: 'Password', class: "form-control"
               = submit_tag 'Login', class: "btn btn-primary"
+        - else
+          .collapse.navbar-collapse.navbar-right.float-right
+            = link_to image_tag('myapnea/icons/twitter_icon.png', style: 'width:50px; height:50px; border-radius:100%;'), 'http://ctt.ec/Qeg7f'
+            = link_to image_tag('myapnea/icons/facebook_icon.png', style: 'width:50px; height:50px; border-radius:100%;'), 'http://www.facebook.com/share.php?u=https://myapnea.org/'
     .container-fluid
       / Page contents with or without navigation
       - if (params[:action] == 'home' and !current_user) or params[:action] == 'stealth_providers' or params[:action] == 'stealth_provider1'
