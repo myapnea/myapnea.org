@@ -44,3 +44,5 @@
 //= require external/highmaps-1.0.4-modules-data.js
 //= require external/us-all.js
 //= require cleantheme/maps
+//= require cleantheme/navigationUX
+

@@ -102,6 +102,7 @@ $.rails.allowAction = (element) ->
   questionsReady() if questionsReady?
   landingReady() if landingReady?
   mapsReady() if mapsReady?
+  navigationUXReady() if navigationUXReady?
 
 $(document).ready(loaders)
 $(document).on('page:load', loaders)

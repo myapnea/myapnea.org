@@ -159,8 +159,8 @@ nav {
 }
 
 #container-right .list-group {
-  border-bottom:1px solid rgb(255,255,255);
-  border-bottom:1px solid rgba(255,255,255,.4);
+  // border-bottom:1px solid rgb(255,255,255);
+  // border-bottom:1px solid rgba(255,255,255,.4);
 }
 
 #container-right .list-group-item {
@@ -173,6 +173,25 @@ nav {
   border-top:1px solid rgba(255,255,255,.4);
   font-size:16px;
   font-weight:300;
+}
+
+#user-profile-container .list-group-item {
+  background-color: #387fcf;
+  border:none;
+  border-radius:20px 0 0 20px;
+  font-size:16px;
+  font-weight:300;
+  margin:10px auto;
+}
+
+.list-shrink {
+  width:95%;
+  float:right;
+}
+
+.list-expand {
+  width:100%;
+  float:right;
 }
 
 #container-right .list-group-item.hover:hover {

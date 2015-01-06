@@ -13,6 +13,7 @@
     = stylesheet_link_tag 'cleantheme', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag "cleantheme", "data-turbolinks-track" => true
     = javascript_tag "var root_url='#{request.script_name + '/'}';var auth_token='#{form_authenticity_token}';"
+    = javascript_include_tag "//code.jquery.com/ui/1.11.2/jquery-ui.min.js"
   %body{ data: { object: 'no-user-voice' } }
     // Fixed div's for layout of right container
     %div{ style: 'background-color:black; width:100%; height:81px; position:absolute; top:0; z-index:1000;'}
@@ -32,6 +33,7 @@
           .collapse.navbar-collapse.navbar-right.float-right
             = link_to image_tag('myapnea/icons/twitter_icon.png', style: 'width:50px; height:50px; border-radius:100%;'), 'http://ctt.ec/Qeg7f'
             = link_to image_tag('myapnea/icons/facebook_icon.png', style: 'width:50px; height:50px; border-radius:100%;'), 'http://www.facebook.com/share.php?u=https://myapnea.org/'
+            = link_to image_tag('myapnea/icons/gplus_icon.png', style: 'width:50px; height:50px; border-radius:100%;'), 'https://plusone.google.com/_/+1/confirm?hl=en&url=http%3A%2F%2F%20https://myapnea.org/'
     .container-fluid
       / Page contents with or without navigation
       - if (params[:action] == 'home' and !current_user) or params[:action] == 'stealth_providers' or params[:action] == 'stealth_provider1'
@@ -43,12 +45,12 @@
           #container-right.primary-blue-bcg
             #container-right-fixed
               -if current_user
-                .col-lg-5.col-md-6.col-sm-8#user-profile-header-picture
+                .col-lg-5.col-md-5.col-sm-8#user-profile-header-picture{ style:'' }
                   = link_to social_profile_path do
-                    = image_tag current_user.photo_url, class: "user-picture", size: "75x75", style: 'width:75px;height:75px'
-                .col-lg-6.col-md-6.col-sm-8#user-profile-header-text
+                    = image_tag current_user.photo_url, class: "user-picture", size: "65x65", style: 'width:65px; height:65px; float:right;'
+                .col-lg-6.col-md-6.col-sm-8#user-profile-header-text{ style:'padding:0;' }
                   %h4.user-name.text-white
-                    = current_user.name
+                    Michael Rueschman
               -else
                 .col-sm-12
                   .centered-text
@@ -56,20 +58,19 @@
                       = text_field_tag 'user[email]', nil, placeholder: 'Email', class: "form-control"
                       = password_field_tag 'user[password]', nil, placeholder: 'Password', class: "form-control"
                       = submit_tag 'Login', class: "btn btn-warning ", style: 'width:70%'
-              .col-sm-12.reset-layout#user-profile-container{style:'margin-top:30px;'}
+              .col-sm-11.col-sm-offset-1#user-profile-container{style:'margin-top:30px; margin-right:0; padding-right:0; margin-bottom:20px;'}
                 %ul.list-group
-                  %li.list-group-item.hover
+                  %li.list-group-item.hover-slide-left.list-shrink
                     = link_to 'Forums', forem_path, style: 'color:white; color: rgba(255,255,255,.8); text-decoration: none; '
-                  %li.list-group-item.hover
+                  %li.list-group-item.hover-slide-left.list-shrink
                     = link_to 'Research Surveys', surveys_path,  style: 'color:white; color: rgba(255,255,255,.8); text-decoration: none;'
-                  %li.list-group-item.hover
+                  %li.list-group-item.hover-slide-left.list-shrink
                     = link_to 'Rate the Research', research_topics_path,  style: 'color:white; color: rgba(255,255,255,.8); text-decoration: none;'
-                %ul.list-group{ style: 'margin-bottom:0px; padding-top:50px;' }
-                  %li.list-group-item{ style: 'border-top:3px solid white; ' }
-                    %h4.text-white Recent News
             #container-right-scroll
               .col-sm-12.reset-layout#recent-news-container{ style: '' }
                 %ul.list-group#recent-news{ style: 'margin-bottom:0px; padding-bottom:0px;' }
+                  %li.list-group-item{ style: 'border-top:3px solid white; ' }
+                    %h4.text-white Recent News
                   %li.list-group-item{ style: 'background-color: #7FB2EB;' }
                     %h5.f300{ style: 'color: white; color: rgba(255,255,255,.8)' }
                       Losing weight makes your lungs a potent CO2 emitter
