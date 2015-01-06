@@ -14,6 +14,7 @@
     = javascript_include_tag "cleantheme", "data-turbolinks-track" => true
     = javascript_tag "var root_url='#{request.script_name + '/'}';var auth_token='#{form_authenticity_token}';"
     = javascript_include_tag "//code.jquery.com/ui/1.11.2/jquery-ui.min.js"
+    = javascript_include_tag "//www.bitstorm.org/jquery/shadow-animation/jquery.animate-shadow-min.js"
   %body{ data: { object: 'no-user-voice' } }
     // Fixed div's for layout of right container
     %div{ style: 'background-color:black; width:100%; height:81px; position:absolute; top:0; z-index:1000;'}
@@ -31,9 +32,9 @@
               = submit_tag 'Login', class: "btn btn-primary"
         - else
           .collapse.navbar-collapse.navbar-right.float-right
-            = link_to image_tag('myapnea/icons/twitter_icon.png', style: 'width:50px; height:50px; border-radius:100%;'), 'http://ctt.ec/Qeg7f'
-            = link_to image_tag('myapnea/icons/facebook_icon.png', style: 'width:50px; height:50px; border-radius:100%;'), 'http://www.facebook.com/share.php?u=https://myapnea.org/'
-            = link_to image_tag('myapnea/icons/gplus_icon.png', style: 'width:50px; height:50px; border-radius:100%;'), 'https://plusone.google.com/_/+1/confirm?hl=en&url=http%3A%2F%2F%20https://myapnea.org/'
+            = link_to image_tag('myapnea/icons/twitter_icon.png', class: 'share-icons-animate', style: 'width:50px; height:50px; border-radius:100%;'), 'http://ctt.ec/Qeg7f'
+            = link_to image_tag('myapnea/icons/facebook_icon.png', class: 'share-icons-animate', style: 'width:50px; height:50px; border-radius:100%;'), 'http://www.facebook.com/share.php?u=https://myapnea.org/'
+            = link_to image_tag('myapnea/icons/gplus_icon.png', class: 'share-icons-animate', style: 'width:50px; height:50px; border-radius:100%;'), 'https://plusone.google.com/_/+1/confirm?hl=en&url=http%3A%2F%2F%20https://myapnea.org/'
     .container-fluid
       / Page contents with or without navigation
       - if (params[:action] == 'home' and !current_user) or params[:action] == 'stealth_providers' or params[:action] == 'stealth_provider1'
@@ -50,7 +51,7 @@
                     = image_tag current_user.photo_url, class: "user-picture", size: "65x65", style: 'width:65px; height:65px; float:right;'
                 .col-lg-6.col-md-6.col-sm-8#user-profile-header-text{ style:'padding:0;' }
                   %h4.user-name.text-white
-                    Michael Rueschman
+                    = current_user.name
               -else
                 .col-sm-12
                   .centered-text

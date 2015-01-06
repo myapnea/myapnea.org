@@ -53,6 +53,10 @@ class StaticController < ApplicationController
     render layout: 'layouts/cleantheme'
   end
 
+  def stealth_share
+    render layout: 'layouts/cleantheme'
+  end
+
   def stealth_map
     render layout: 'layouts/cleantheme'
   end
