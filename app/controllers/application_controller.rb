@@ -63,4 +63,17 @@ class ApplicationController < ActionController::Base
     raise Authority::SecurityViolation.new(current_user, 'research', action_name) unless current_user.can?(:participate_in_research)
   end
 
+  def empty_response_or_root_path(path = root_path)
+    respond_to do |format|
+      format.html { redirect_to path }
+      format.js { render nothing: true }
+      format.json { head :no_content }
+      format.text { render nothing: true }
+    end
+  end
+
+  def check_system_admin
+    redirect_to root_path, alert: "You do not have sufficient privileges to access that page." unless current_user.has_role? :owner
+  end
+
 end

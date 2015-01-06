@@ -30,6 +30,7 @@ class User < ActiveRecord::Base
   has_one :social_profile
   has_many :posts
   has_many :research_topics
+  has_many :forums
 
   # Named Scopes
   scope :search_by_email, ->(terms) { where("LOWER(#{self.table_name}.email) LIKE ?", terms.to_s.downcase.gsub(/^| |$/, '%')) }

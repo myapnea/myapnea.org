@@ -121,6 +121,8 @@ Rails.application.routes.draw do
 
   devise_for :user, controllers: { registrations: 'registrations' }
 
+  resources :forums, path: 'newforums'
+
   # This line mounts Forem's routes at /forums by default.
   # This means, any requests to the /forums URL of your application will go to Forem::ForumsController#index.
   # If you would like to change where this extension is mounted, simply change the :at option to something different.

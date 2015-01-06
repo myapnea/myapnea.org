@@ -1,0 +1,25 @@
+.col-sm-10.col-sm-offset-1.primary-orange-bcg.content-main-header
+  %h1.content-main-title
+    Welcome to the Forums!
+    .small
+      = link_to 'New Forum', new_forum_path if current_user and current_user.has_role? :owner
+
+- @forums.each do |forum|
+  .col-sm-10.col-sm-offset-1.panel.panel-forums.panel-hover
+    .panel-heading
+      %h3.panel-title{style:'color:rgba(0,0,0,.7)'}
+        = link_to forum.name, "#{ENV['website_url']}/newforums/#{forum.slug}"
+      %h4.lighter-blue
+        = forum.description
+    .panel-body{style:'padding:0 auto'}
+      - forum.topics.order(pinned: :desc).limit(4).each do |topic|
+        - if post = topic.posts.first
+          .row{style:'padding:15px; border-bottom:1px solid black; border-bottom:1px solid rgba(0,0,0,.2);'}
+            .col-xs-2
+              = image_tag topic.user.photo_url, size: '75x75', class: 'img-rounded img-responsive', style: 'margin:10px auto; display:block;', title: topic.user.forem_name, data: { toggle: 'tooltip', container: 'body', placement: 'top' } if post.user and not post.user.is_a?(Forem::NilUser)
+            .col-xs-10
+              %p.lead
+                - link_string = "&nbsp;" + link_to('more...'.html_safe, forem.forum_topic_post_path(post.forum, post.topic, post), class: 'content-link-primary small')
+                = strip_tags(strip_quote(post.text)).truncate(110 + link_string.size, separator: ' ', omission: link_string ).html_safe
+              %p
+                = post.created_at.strftime("%-d %B %Y, %-l:%M %p")
