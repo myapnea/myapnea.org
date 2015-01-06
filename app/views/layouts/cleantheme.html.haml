@@ -51,8 +51,8 @@
                     = image_tag current_user.photo_url, class: "user-picture", size: "65x65", style: 'width:65px; height:65px;'
                 .col-lg-6.col-md-6.col-md-offset-0.col-sm-8.col-sm-offset-2#user-profile-header-text{ style:'padding:0;' }
                   %h4.user-name.text-white
-                    / = current_user.name
-                    Michael Rueschman
+                    = current_user.name
+                    / Michael Rueschman
               -else
                 .col-sm-12
                   .centered-text
