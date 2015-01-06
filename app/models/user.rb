@@ -8,6 +8,9 @@ class User < ActiveRecord::Base
   # Enable User Connection to External API Accounts
   include ExternalUsers
 
+  # Map to PCORNET Common Data Model
+  include CommonDataModel
+
 
   self.authorizer_name = "UserAuthorizer"
 

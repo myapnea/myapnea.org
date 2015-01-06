@@ -1,5 +1,9 @@
 ## 4.0.0
 
+### Enhancements
+- **PCORNET Updates**
+  - Added script that extracts data into the PCORNET Common Data Model 2.0
+
 ## 3.2.0
 
 ### Bug Fixes
