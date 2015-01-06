@@ -1,4 +1,6 @@
 class Post < ActiveRecord::Base
+  include Deletable
+
   include Authority::Abilities
 
   require 'acts-as-taggable-on'

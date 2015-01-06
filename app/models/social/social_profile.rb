@@ -1,4 +1,6 @@
 class SocialProfile < ActiveRecord::Base
+  include Deletable
+
   mount_uploader :photo, PhotoUploader
   belongs_to :user
 

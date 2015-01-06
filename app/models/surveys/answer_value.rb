@@ -1,4 +1,6 @@
 class AnswerValue < ActiveRecord::Base
+  include Deletable
+
   belongs_to :answer
   belongs_to :answer_option
   belongs_to :answer_template
