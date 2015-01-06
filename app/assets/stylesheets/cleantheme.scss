@@ -50,6 +50,19 @@ nav {
   z-index:2;
 }
 
+#testnavbar {
+}
+
+#testnavbar > li {
+  padding:10px 20px 20px 20px;
+  background-color:#387fcf;
+  border-left: 1px solid #387fcf;
+  border-top: 1px solid #387fcf;
+  border-right: 1px solid #387fcf;
+  margin:0 1px;
+  border-radius: 5px 5px 0 0;
+}
+
 // Ensure proper logo size for large screens
 .navbar-header {
   min-width:30%;
