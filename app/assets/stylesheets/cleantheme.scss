@@ -93,19 +93,6 @@ nav {
     left:-5px;
   }
 
-//Show users that they can scroll -- need to fix
-// #recent-news-container:after {
-//   content:' v v v v ';
-//   font-size:10px;
-//   text-align:center;
-//   color:rgb(0,0,0);
-//   color:rgba(0,0,0,.4);
-//   display:inline-block;
-//   width:100%;
-//   background-color:rgb(245,245,245);
-//   background-color:rgba(245,245,245,.7);
-// }
-
 
 
 #container-right {
@@ -151,11 +138,12 @@ nav {
   border-radius: 100%;
   border:2px solid rgb(255,255,255);
   border:2px solid rgba(255,255,255,.8);
-  margin-left:15px;
+  float:right;
 }
 
 .user-name {
   font-weight:300;
+  padding:0;
 }
 
 #container-right .list-group {
@@ -233,7 +221,19 @@ nav {
 }
 
 
-
+@media (max-width: 992px) {
+  #user-profile-header-picture {
+    text-align:center;
+    padding-left:0;
+    padding-right:0;
+  }
+  .user-picture {
+    float: none;
+  }
+  .user-name {
+    text-align:center;
+  }
+}
 @media (max-width: 768px) {
   // put side navbar into an off-screen div
   #container-right {

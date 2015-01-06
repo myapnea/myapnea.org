@@ -46,12 +46,13 @@
           #container-right.primary-blue-bcg
             #container-right-fixed
               -if current_user
-                .col-lg-5.col-md-5.col-sm-8#user-profile-header-picture{ style:'' }
+                .col-lg-5.col-md-5.col-md-offset-0.col-sm-8.col-sm-offset-2#user-profile-header-picture{ style:'' }
                   = link_to social_profile_path do
-                    = image_tag current_user.photo_url, class: "user-picture", size: "65x65", style: 'width:65px; height:65px; float:right;'
-                .col-lg-6.col-md-6.col-sm-8#user-profile-header-text{ style:'padding:0;' }
+                    = image_tag current_user.photo_url, class: "user-picture", size: "65x65", style: 'width:65px; height:65px;'
+                .col-lg-6.col-md-6.col-md-offset-0.col-sm-8.col-sm-offset-2#user-profile-header-text{ style:'padding:0;' }
                   %h4.user-name.text-white
-                    = current_user.name
+                    / = current_user.name
+                    Michael Rueschman
               -else
                 .col-sm-12
                   .centered-text
