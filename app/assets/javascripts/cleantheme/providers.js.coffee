@@ -10,7 +10,7 @@
       backgroundColor: "#FFA400"
       , 300
     return
-
+  # allow provider quote to stay static at top
   $(window).scroll ->
     if $(this).scrollTop() > 600
       $("#provider-banner").addClass "fixed-under-nav"

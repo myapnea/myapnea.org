@@ -14,24 +14,30 @@
         %iframe{:allowscriptaccess => "always", :allowFullScreen => "true", :frameborder => "", :src => "//player.vimeo.com/video/104640787", style: "border:15px solid white; border-radius:20px;height:400px; width:100%;"}
 
 .row.row-fullscreen{id:"slide-2p"}
-  .col-md-6.col-md-offset-1
+  .col-md-6.col-md-offset-1.col-sm-8
     %h1.primary-blue{style: "margin-top:150px;"} Get your patients involved
     %h3{style: "color:rgba(0,0,0,.7)"}
       MyApnea.Org is what’s called
       %span.lighter-blue patient-powered research.
       We're creating a platform that allows people with sleep apnea to have a direct impact on research priorities, in order to give them faster improvements in treatment methods. Input from people with sleep apnea is crucial to seeing how we can care for them better. By giving your provider page to your patients, you're joining an important movement to stop this disorder.
-  .col-md-4
-    = image_tag 'myapnea/welcome/img-small/team-hands-cropped.jpg', class: "hidden-sm hidden-xs"
-
-.row.row-fullscreen{id: "slide-3p"}
-  .col-md-3.col-md-offset-1
-    = image_tag 'myapnea/welcome/img-large/unsplash-dont-stand-there.jpg', class: "hidden-sm hidden-xs"
-  .col-md-6.col-md-offset-1
+  .col-sm-4{ style: 'text-align:center;' }
+    / = image_tag 'myapnea/welcome/img-small/team-hands-cropped.jpg', class: "hidden-sm hidden-xs"
+    = image_tag 'myapnea/welcome/img-small/first35_orange.png', class: 'hidden-xs'
+    / %div
+    /   Icons made by
+    /   %a{ href: "http://www.freepik.com", title: "Freepik" } Freepik
+    /   from
+    /   %a{ href:"http://www.flaticon.com", title:'Flaticon' } www.flaticon.com
+    /   is licensed by
+    /   %a{ href:'http://creativecommons.org/licenses/by/3.0/', title:'Creative Commons BY 3.0' }CC BY 3.0
+.row.row-fullscreen#slide-3p{ style: 'padding-bottom:170px;'}
+  .col-sm-4.col-md-offset-1{ style: 'text-align:center;' }
+    / = image_tag 'myapnea/welcome/img-large/unsplash-dont-stand-there.jpg', class: "hidden-sm hidden-xs"
+    = image_tag 'myapnea/welcome/img-small/heart258_orange.png', class: 'hidden-xs'
+  .col-md-6.col-sm-8
     %h1.primary-blue Provide better care
     %h3{style: "color:rgba(0,0,0,.7)"}
       By offering this network to your patients, and engaging with them actively outside of the office, they begin to feel a uniquely incredible quality of care. This community easily shows people with sleep apnea the amount of support they have from an international group of researchers, care providers, and fellow patients.
-
-
 .row#partners-banner
   .col-sm-12.col-md-4.col-lg-4.col-lg-offset-1
     = image_tag 'myapnea/welcome/img-small/asaa_logo.jpg', class: "partners-img img-responsive", id: "partner-AASA"
