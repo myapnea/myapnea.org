@@ -153,7 +153,11 @@ class QuestionFlow < ActiveRecord::Base
 
 
   def all_questions
+    Question.joins('LEFT OUTER JOIN "questions" "descendants_questions" ON "descendants_questions"."id" = "question_edges"."child_question_id"').where(id: source.id)
+
     ([source] + source.descendants)
+
+    #joins(:question_edges).where
     #QuestionEdge.where(question_flow_id: self.id).map(&:child_question).uniq + [first_question]
   end
 
