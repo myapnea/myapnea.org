@@ -21,11 +21,11 @@
       \- Michael Rueschman
 .row.row-fullscreen#community-tracker-provider
   .col-xs-8.col-xs-offset-2
-    %h2.text-white{ style: 'margin-top:5px;' }
+    %h2.lighterer-blue{ style: 'margin-top:5px;' }
       Current Community:
-      %span.text-light9
+      %span.primary-blue
         = number_with_delimiter User.all.count
-        members
+      members
 .row.row-fullscreen#slide-2p
   .col-md-6.col-md-offset-1
     %h1.primary-blue{style: 'margin-top:150px; '} Our Mission
@@ -89,57 +89,4 @@
         = text_field_tag 'user[email]', nil, placeholder: 'Email address', class: "form-control"
         = password_field_tag 'user[password]', nil, placeholder: 'Password', class: "form-control"
         = submit_tag 'Sign up!', class: "form-control", id: "submit-join"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

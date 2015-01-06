@@ -14,10 +14,10 @@
   font-family: 'Dosis', sans-serif;
 }
 
-#slide-2p {
-  position:relative;
-  overflow:hidden;
-}
+// #slide-2p {
+//   position:relative;
+//   overflow:hidden;
+// }
 
 
 #slide-2p img {
@@ -68,13 +68,21 @@
   padding:25px 0px;
 }
 
+.fixed-under-nav {
+  position:fixed;
+  top:82px;
+  left:0;
+  z-index:100;
+}
+
 #community-tracker-provider {
   text-align:center;
-  background-color: #B1D2F6;
+  background-color: rgba(32,43,55,.9); /* #B1D2F6; */
   border-bottom:5px solid #5999DE;
   background-image: none;
   padding:15px;
 }
+
 
 
 .row-fullscreen {

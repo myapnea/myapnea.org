@@ -29,6 +29,7 @@
               = password_field_tag 'user[password]', nil, placeholder: 'Password', class: "form-control"
               = submit_tag 'Login', class: "btn btn-primary"
     .container-fluid
+      / Page contents with or without navigation
       - if (params[:action] == 'home' and !current_user) or params[:action] == 'stealth_providers' or params[:action] == 'stealth_provider1'
         = yield
       - else
@@ -92,6 +93,7 @@
                       23 Dec 2014
                     %p{ style: 'margin:10px 10px; color: white; color: rgba(255,255,255,.8) ' }
                       Lorem ipsum sleep apnea snoring loud noises wake up feeling better to a better future Lorem ipsum sleep apnea snoring loud noises wake up feeling better to a better future Lorem ipsum sleep apnea snoring loud noises wake up feeling better to a better future
+    / Footer
     - unless (params[:action] == 'home' and !current_user) or params[:action] == 'stealth_providers' or params[:action] == 'stealth_provider1'
       .footer
         .col-sm-3.col-xs-5.primary-orange
