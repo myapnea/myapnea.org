@@ -22,12 +22,17 @@ namespace :data do
       end
     end
 
+    encounterid = 'BASELINE'
+
     # VITAL
     export_csv = File.join(tmp_folder, 'vital.csv')
     CSV.open(export_csv, "wb") do |csv|
-      csv << ['PATID', 'VITAL_SOURCE', 'HT', 'WT']
+      csv << ['PATID', 'ENCOUNTERID', 'MEASURE_DATE', 'MEASURE_TIME', 'VITAL_SOURCE', 'HT', 'WT']
       users.each do |u|
         csv << [u.pcornet_patid,
+                encounterid,
+                u.pcornet_ht_measure_date,
+                u.pcornet_ht_measure_time,
                 u.pcornet_vital_source,
                 u.pcornet_ht,
                 u.pcornet_wt]
@@ -37,7 +42,7 @@ namespace :data do
     # PRO_CM
     export_csv = File.join(tmp_folder, 'pro_cm.csv')
     CSV.open(export_csv, "wb") do |csv|
-      csv << ['PATID', 'CM_ITEM', 'CM_LOINC', 'CM_DATE', 'CM_TIME', 'CM_RESPONSE', 'CM_METHOD', 'CM_MODE']
+      csv << ['PATID', 'ENCOUNTERID', 'CM_ITEM', 'CM_LOINC', 'CM_DATE', 'CM_TIME', 'CM_RESPONSE', 'CM_METHOD', 'CM_MODE']
 
       users.each do |u|
         [['PN_0001', '61577-3'],
@@ -52,11 +57,12 @@ namespace :data do
           answer = u.send("pcornet_#{cm_item.downcase}")
           if answer and answer.answer_values.pluck(:answer_option_id).first != nil
             cm_date = answer.created_at.strftime("%Y-%m-%d")
-            cm_time = answer.created_at.strftime("%H%M")
+            cm_time = answer.created_at.strftime("%H:%M")
             cm_response = "#{answer.answer_values.pluck(:answer_option_id).first}:#{answer.show_value}"
             cm_method = 'EC'
             cm_mode = 'SF'
             csv << [u.pcornet_patid,
+                    encounterid,
                     cm_item,
                     cm_loinc,
                     cm_date,

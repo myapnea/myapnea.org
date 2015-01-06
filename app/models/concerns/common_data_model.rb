@@ -81,6 +81,22 @@ module CommonDataModel
     end
   end
 
+  def pcornet_ht_measure_date
+    if answer = pcornet_get_answer(16, 547)
+      answer.created_at.strftime("%Y-%m-%d")
+    else
+      nil
+    end
+  end
+
+  def pcornet_ht_measure_time
+    if answer = pcornet_get_answer(16, 547)
+      answer.created_at.strftime("%H:%M")
+    else
+      nil
+    end
+  end
+
   # NUMBER(8) Weight in pounds
   def pcornet_wt
     pcornet_get_response(16, 548)
