@@ -4,10 +4,11 @@
     %meta{ charset: 'utf-8'}
     %meta{ content: 'IE=Edge,chrome=1', http: {equiv: 'X-UA-Compatible'}}
     %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1.0'}
-    %meta{ name: 'description', content: 'Improving sleep apnea through information, support, and research' }
+    %meta{ property: 'og:url', content: ENV['website_url'] }
+    %meta{ property: 'og:title', content: ENV['website_name'] }
+    %meta{ property: 'og:description', content: 'Improving sleep apnea through information, support, and research' }
+    %meta{ property: 'og:image', content: asset_path('myapnea/MyApneaLogo_border_whitesub_square.png') }
     %title='MyApnea.Org'
-    / Facebook image source
-    %link{rel:'image_src', href: asset_path('myapnea/MyApneaLogo_border_whitesub.png')}
     %link{href:'//fonts.googleapis.com/css?family=Dosis:400,700|Cabin:400,700', rel:'stylesheet', type:'text/css'}
     %link{href:'//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css', rel:'stylesheet'}
     = favicon_link_tag
