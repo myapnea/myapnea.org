@@ -48,6 +48,29 @@
 }
 
 
+/* ABOUT US */
+.about-links {
+  padding:15px;
+  border:1px solid #ffc864;
+}
+
+.about-links:hover {
+  background-color: #ffc864;
+}
+
+.about-links a {
+  font-size: 22px;
+  color: #555;
+  display:block;
+  width:100%;
+}
+
+.about-links:hover a {
+  color: #777;
+  text-decoration:none;
+  font-weight:500;
+}
+
 
 /* UX */
 
