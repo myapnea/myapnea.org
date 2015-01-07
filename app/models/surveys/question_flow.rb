@@ -89,7 +89,7 @@ class QuestionFlow < ActiveRecord::Base
 
     end
 
-    JSON::parse(self[:tsorted_edges])
+    JSON::parse(self[:tsorted_nodes])
   end
 
   def total_time
@@ -240,7 +240,7 @@ class QuestionFlow < ActiveRecord::Base
 
   def find_longest_path_length(source, destination)
     # Cached
-    topological_order = tsorted_nodes[tsorted_edges.find_index(source.id)..tsorted_edges.find_index(destination.id)]
+    topological_order = tsorted_nodes[tsorted_nodes.find_index(source.id)..tsorted_nodes.find_index(destination.id)]
 
 
     # Set to -Inifinity
