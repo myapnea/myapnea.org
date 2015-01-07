@@ -36,10 +36,34 @@
             = link_to image_tag('myapnea/icons/twitter_icon.png', class: 'share-icons-animate', style: 'width:50px; height:50px; border-radius:100%; '), 'http://ctt.ec/Qeg7f'
             = link_to image_tag('myapnea/icons/gplus_icon.png', class: 'share-icons-animate', style: 'width:50px; height:50px; border-radius:100%;'), 'https://plusone.google.com/_/+1/confirm?hl=en&url=http%3A%2F%2F%20https://myapnea.org/'
             %ul.nav.navbar-nav#testnavbar{ style:'color:white; position:absolute; right:20%; bottom:0;' }
-              %li.active Home
-              %li About Us
-              %li Community
-              %li Help
+              %li.active
+                = link_to 'Home', root_path
+              %li.dropdown
+                %a.dropdown-toggle{ href:'#', data:{ toggle: 'dropdown'} }
+                  About Us
+                  %span.caret
+                %ul.dropdown-menu{ role:'menu' }
+                  %li
+                    = link_to 'Introduction', intro_path
+                  %li
+                    = link_to 'Our Team', stealth_steering_path
+                  %li
+                    = link_to 'FAQs', faqs_path
+              %li.dropdown
+                %a.dropdown-toggle{ href:'#', data:{ toggle: 'dropdown'} }
+                  Participate
+                  %span.caret
+                %ul.dropdown-menu{ role:'menu' }
+                  %li
+                    = link_to 'Community', social_path
+                  %li
+                    = link_to 'Forums', stealth_forums_path
+                  %li
+                    = link_to 'Research Surveys', stealth_surveydisplay_path
+                  %li
+                    = link_to 'Rate the Research', stealth_datadisplay_path
+                  %li
+                    = link_to 'Become a Provider', stealth_providers_path
     .container-fluid
       / Page contents with or without navigation
       - if (params[:action] == 'home' and !current_user) or params[:action] == 'stealth_providers' or params[:action] == 'stealth_provider1'
@@ -73,10 +97,10 @@
                     = link_to 'Research Surveys', surveys_path,  style: 'color:white; color: rgba(255,255,255,.8); text-decoration: none;'
                   %li.list-group-item.hover-slide-left.list-shrink
                     = link_to 'Rate the Research', research_topics_path,  style: 'color:white; color: rgba(255,255,255,.8); text-decoration: none;'
-              .col-sm-12.col-sm-offset-0{ style:'text-align:center; margin-bottom:20px;' }
-                = link_to image_tag('myapnea/icons/facebook_icon.png', class: 'share-icons-animate', style: 'width:50px; height:50px; border-radius:100%;'), 'http://www.facebook.com/share.php?u=https://myapnea.org/'
-                = link_to image_tag('myapnea/icons/twitter_icon.png', class: 'share-icons-animate', style: 'width:50px; height:50px; border-radius:100%; '), 'http://ctt.ec/Qeg7f'
-                = link_to image_tag('myapnea/icons/gplus_icon.png', class: 'share-icons-animate', style: 'width:50px; height:50px; border-radius:100%;'), 'https://plusone.google.com/_/+1/confirm?hl=en&url=http%3A%2F%2F%20https://myapnea.org/'
+              / .col-sm-12.col-sm-offset-0{ style:'text-align:center; margin-bottom:20px;' }
+              /   = link_to image_tag('myapnea/icons/facebook_icon.png', class: 'share-icons-animate', style: 'width:50px; height:50px; border-radius:100%;'), 'http://www.facebook.com/share.php?u=https://myapnea.org/'
+              /   = link_to image_tag('myapnea/icons/twitter_icon.png', class: 'share-icons-animate', style: 'width:50px; height:50px; border-radius:100%; '), 'http://ctt.ec/Qeg7f'
+              /   = link_to image_tag('myapnea/icons/gplus_icon.png', class: 'share-icons-animate', style: 'width:50px; height:50px; border-radius:100%;'), 'https://plusone.google.com/_/+1/confirm?hl=en&url=http%3A%2F%2F%20https://myapnea.org/'
             #container-right-scroll
               .col-sm-12.reset-layout#recent-news-container{ style: '' }
                 %ul.list-group#recent-news{ style: 'margin-bottom:0px; padding-bottom:0px;' }

@@ -44,6 +44,7 @@ body {
 
 nav {
   padding-top:20px;
+  background-color:rgb(36,50,100); // NEW LOGO
   background-color:rgba(36,50,100,.75); // NEW LOGO
   padding-bottom:10px;
   box-shadow: 1px 3px 5px #444;
@@ -51,17 +52,43 @@ nav {
 }
 
 #testnavbar {
+  position:relative;
 }
 
 #testnavbar > li {
-  padding:10px 20px 20px 20px;
-  background-color:#387fcf;
-  border-left: 1px solid #387fcf;
-  border-top: 1px solid #387fcf;
-  border-right: 1px solid #387fcf;
+  font-size:18px;
   margin:0 1px;
-  border-radius: 5px 5px 0 0;
 }
+
+/* Reset bootstrap defaults */
+  #testnavbar > li > a{
+    padding:10px 20px 15px 20px;
+    color: white;
+    display: block;
+    background-color: inherit;
+  }
+  #testnavbar > li > a:hover {
+    background-color: inherit;
+  }
+  #testnavbar > li.dropdown.open a.dropdown-toggle {
+    background-color:inherit;
+  }
+
+#testnavbar >li.active {
+  border-bottom:5px solid #5999de;
+}
+
+#testnavbar > li:hover {
+  border-bottom:5px solid rgb(89, 153, 222);
+}
+
+#testnavbar .dropdown-menu {
+  border-radius: 0 0 5px 5px;
+}
+#testnavbar .dropdown-menu li {
+  margin:2px;
+}
+
 
 // Ensure proper logo size for large screens
 .navbar-header {
