@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Forum:</strong>
+  <%= @topic.forum_id %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @topic.user_id %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @topic.name %>
+</p>
+
+<p>
+  <strong>Locked:</strong>
+  <%= @topic.locked %>
+</p>
+
+<p>
+  <strong>Pinned:</strong>
+  <%= @topic.pinned %>
+</p>
+
+<p>
+  <strong>Last post at:</strong>
+  <%= @topic.last_post_at %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @topic.state %>
+</p>
+
+<p>
+  <strong>Views count:</strong>
+  <%= @topic.views_count %>
+</p>
+
+<p>
+  <strong>Slug:</strong>
+  <%= @topic.slug %>
+</p>
+
+<%= link_to 'Edit', edit_topic_path(@topic) %> |
+<%= link_to 'Back', topics_path %>

@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Topics</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Forum</th>
+      <th>User</th>
+      <th>Name</th>
+      <th>Locked</th>
+      <th>Pinned</th>
+      <th>Last post at</th>
+      <th>State</th>
+      <th>Views count</th>
+      <th>Slug</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @topics.each do |topic| %>
+      <tr>
+        <td><%= topic.forum_id %></td>
+        <td><%= topic.user_id %></td>
+        <td><%= topic.name %></td>
+        <td><%= topic.locked %></td>
+        <td><%= topic.pinned %></td>
+        <td><%= topic.last_post_at %></td>
+        <td><%= topic.state %></td>
+        <td><%= topic.views_count %></td>
+        <td><%= topic.slug %></td>
+        <td><%= link_to 'Show', [@forum, topic] %></td>
+        <td><%= link_to 'Edit', edit_topic_path(topic) %></td>
+        <td><%= link_to 'Destroy', topic, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Topic', new_topic_path %>

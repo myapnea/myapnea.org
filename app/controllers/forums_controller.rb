@@ -1,13 +1,14 @@
 class ForumsController < ApplicationController
 
   before_action :authenticate_user!,      only: [:new, :create, :edit, :update, :destroy]
-  before_action :check_system_admin,      only: [:new, :create, :edit, :update, :destroy]
+  before_action :check_owner,             only: [:new, :create, :edit, :update, :destroy]
 
   before_action :set_forum,               only: [:show, :edit, :update, :destroy]
   before_action :redirect_without_forum,  only: [:show, :edit, :update, :destroy]
 
   respond_to :html
 
+  # TODO remove when new layout is default
   layout 'layouts/cleantheme'
 
   def index

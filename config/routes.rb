@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :topics
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -121,7 +123,9 @@ Rails.application.routes.draw do
 
   devise_for :user, controllers: { registrations: 'registrations' }
 
-  resources :forums, path: 'newforums'
+  resources :forums, path: 'newforums' do
+    resources :topics
+  end
 
   # This line mounts Forem's routes at /forums by default.
   # This means, any requests to the /forums URL of your application will go to Forem::ForumsController#index.

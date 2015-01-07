@@ -31,9 +31,18 @@ class User < ActiveRecord::Base
   has_many :posts
   has_many :research_topics
   has_many :forums
+  has_many :topics
 
   # Named Scopes
   scope :search_by_email, ->(terms) { where("LOWER(#{self.table_name}.email) LIKE ?", terms.to_s.downcase.gsub(/^| |$/, '%')) }
+
+  def all_topics
+    if self.has_role? :owner or self.has_role? :moderator
+      Topic.current
+    else
+      self.topics
+    end
+  end
 
   def name
     "#{first_name} #{last_name}"

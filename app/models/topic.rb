@@ -1,4 +1,4 @@
-class Forum < ActiveRecord::Base
+class Topic < ActiveRecord::Base
 
   # Concerns
   # include Deletable
@@ -10,15 +10,19 @@ class Forum < ActiveRecord::Base
   end
 
   # Model Validation
-  validates_presence_of :name, :slug, :user_id
+  validates_presence_of :name, :slug, :user_id, :forum_id
   validates_uniqueness_of :slug, scope: [ :deleted ]
   validates_format_of :slug, with: /\A[a-z][a-z0-9\-]*\Z/
 
   # Model Relationships
   belongs_to :user
-  has_many :topics, -> { where(deleted: false).order(:pinned, last_post_at: :desc) }
+  belongs_to :forum
+  # has_many :posts
+  def posts
+    Forem::Post.limit(10)
+  end
 
-  # Forum Methods
+  # Topic Methods
 
   def to_param
     slug

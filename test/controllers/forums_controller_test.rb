@@ -3,7 +3,7 @@ require "test_helper"
 class ForumsControllerTest < ActionController::TestCase
 
   setup do
-    @system_admin = users(:owner)
+    @owner = users(:owner)
     @valid_user = users(:user_1)
   end
 
@@ -24,8 +24,8 @@ class ForumsControllerTest < ActionController::TestCase
     assert_not_nil assigns(:forums)
   end
 
-  test "should get index for system admin" do
-    login(@system_admin)
+  test "should get index for owner" do
+    login(@owner)
     get :index
     assert_response :success
     assert_not_nil assigns(:forums)
@@ -43,8 +43,8 @@ class ForumsControllerTest < ActionController::TestCase
     assert_redirected_to root_path
   end
 
-  test "should get new for system admin" do
-    login(@system_admin)
+  test "should get new for owner" do
+    login(@owner)
     get :new
     assert_response :success
   end
@@ -68,15 +68,15 @@ class ForumsControllerTest < ActionController::TestCase
     assert_redirected_to root_path
   end
 
-  test "should create forum for system admin" do
-    login(@system_admin)
+  test "should create forum for owner" do
+    login(@owner)
 
     assert_difference('Forum.count') do
       post :create, forum: { name: "Sleep Habits", description: "Discuss your sleep habits.", slug: 'sleep-habits', position: 2 }
     end
 
     assert_not_nil assigns(:forum)
-    assert_equal assigns(:forum).user, @system_admin
+    assert_equal assigns(:forum).user, @owner
 
     assert_redirected_to forum_path(assigns(:forum))
   end
@@ -92,8 +92,8 @@ class ForumsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should show forum for system admin" do
-    login(@system_admin)
+  test "should show forum for owner" do
+    login(@owner)
     get :show, id: forum
     assert_response :success
   end
@@ -110,8 +110,8 @@ class ForumsControllerTest < ActionController::TestCase
     assert_redirected_to root_path
   end
 
-  test "should get edit for system admin" do
-    login(@system_admin)
+  test "should get edit for owner" do
+    login(@owner)
     get :edit, id: forum
     assert_response :success
   end
@@ -128,8 +128,8 @@ class ForumsControllerTest < ActionController::TestCase
     assert_redirected_to root_path
   end
 
-  test "should update forum for system admin" do
-    login(@system_admin)
+  test "should update forum for owner" do
+    login(@owner)
     put :update, id: forum, forum: { name: 'Intro', description: 'Tell Us an Intro', slug: 'intro', position: 1 }
     assert_redirected_to forum_path(assigns(:forum))
   end
@@ -152,8 +152,8 @@ class ForumsControllerTest < ActionController::TestCase
   end
 
 
-  test "should destroy forum for system admin" do
-    login(@system_admin)
+  test "should destroy forum for owner" do
+    login(@owner)
     assert_difference('Forum.current.count', -1) do
       delete :destroy, id: forum
     end
