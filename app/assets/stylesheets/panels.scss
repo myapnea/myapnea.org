@@ -43,6 +43,10 @@
   border-radius:20px;
 }
 
+.panel-body .row:last-of-type {
+  border-bottom-width:0px;
+}
+
 
 
 /* UX */
@@ -83,6 +87,9 @@
   border-bottom:1px solid rgba(0,0,0,.3);
   min-height:225px;
 }
+  .panel-partners .row:last-of-type {
+    border-bottom-width:0px;
+  }
 
   .panel-partners .col-md-4.left {
     position:absolute; top:0; left:0; bottom:0;

@@ -243,7 +243,7 @@ nav {
 .content-main-header {
   box-shadow:0px 1px 5px rgb(0,0,0);
   box-shadow:0px 1px 5px rgba(0,0,0,.5);
-  min-height:150px;
+  height:120px;
   // Materials
     border-radius:20px;
     margin-top:40px;
@@ -273,6 +273,10 @@ nav {
   .user-name {
     text-align:center;
   }
+  #recent-news-container ul li p {
+    margin:0px 2px;
+  }
+
 }
 @media (max-width: 768px) {
   // put side navbar into an off-screen div
@@ -282,6 +286,10 @@ nav {
 
   #container-left {
     width:100%;
+  }
+
+  .content-main-header {
+    max-height: 100px;
   }
 
   .footer {
