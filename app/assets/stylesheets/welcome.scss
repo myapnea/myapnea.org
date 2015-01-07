@@ -2,58 +2,51 @@
 /* many classes make use of existing styling for the landing page */
 
 #slide-1p {
-  background-image: asset-url('myapnea/welcome/img-large/unsplash-standing-colors.jpg');
+  background-image: asset-url('myapnea/welcome/img-large/seattle2.jpg');
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: center ;
   background-size: cover;
   -ms-behavior: asset-url('ie8/backgroundsize.min.htc');
   background-color: rgb(15, 18, 27);
   position:relative;
   min-height:800px;
   padding-bottom:100px;
+  font-family: 'Dosis', sans-serif;
 }
 
-#slide-2p {
-  position:relative;
-  overflow:hidden;
-  padding-top:100px;
-}
+// #slide-2p {
+//   position:relative;
+//   overflow:hidden;
+// }
 
-#slide-2p:before {
-  content: ' ';
-  display:block; z-index:0;
-  position:absolute; left:0; top:0px;
-  width:100%; height: 100%;
-  opacity:1;
-  background-image: asset-url('myapnea/welcome/transitions/dot_backdrop_top_color.png');
-  background-repeat: repeat-x;
-}
 
 #slide-2p img {
-  margin-top:150px;
-  margin-left:20%;
-  width:60%;
-  max-height: 400px;
+  margin-top:210px;
+  width:100%;
+  max-height: 300px;
   max-width: 300px;
+  padding:20px;
   border-radius:30px;
   border:5px solid #FFB839;
+  background-color: white;
 }
 
 #slide-3p img {
   margin-top:70px;
   width:100%;
-  max-height: 400px;
-  max-width: 600px;
+  max-height: 300px;
+  max-width: 300px;
+  padding:20px;
   border-radius:30px;
   border:5px solid #FFB839;
-  margin-bottom:40px;
+  background-color: white;
 }
 
 #slide-5p {
   background-image: asset-url('myapnea/welcome/img-large/unsplash_tree_nofocus.jpg');
   background-repeat: no-repeat;
   background-position: bottom;
-  background-size: 100% auto;
+  background-size: cover;
 }
 
 
@@ -63,12 +56,64 @@
 
 
 
+
+
+
+/* PROVIDER SPECIFIC */
+
+#provider-header {
+  background-image: asset-url('myapnea/welcome/img-large/SplitShire-starry-night.jpg');
+  background-size: cover;
+  background-position:center;
+  min-height:600px;
+  font-family: 'Dosis', sans-serif;
+}
+
+#provider-banner {
+  background-color:white;
+  background-image: none;
+  min-height:115px;
+  border-top: 5px solid #FFA400;
+  border-bottom:5px solid #5999DE;
+  padding:25px 0px;
+}
+
+.fixed-under-nav {
+  position:fixed;
+  top:82px;
+  left:10px;
+  z-index:100;
+}
+
+.fixed-under-nav img {
+  width:50%;
+}
+
+.fixed-under-nav h4 {
+  font-size:14px;
+}
+
+#community-tracker-provider {
+  text-align:center;
+  background-color: rgba(32,43,55,.9); /* #B1D2F6; */
+  border-bottom:5px solid #5999DE;
+  background-image: none;
+  padding:15px;
+}
 
 
 
 .row-fullscreen {
   padding-bottom:70px;
 }
+
+
+
+
+
+
+
+
 
 
 /* WELCOME */
@@ -316,6 +361,27 @@ span#privacy-policy:hover {
   background-color: #5999DE;
   color:white;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

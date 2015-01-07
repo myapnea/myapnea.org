@@ -21,7 +21,7 @@
 @import "team";
 @import "panels";
 @import "speech-bubbles";
-
+@import "share-icons";
 
 
 
@@ -44,11 +44,51 @@ body {
 
 nav {
   padding-top:20px;
+  background-color:rgb(36,50,100); // NEW LOGO
   background-color:rgba(36,50,100,.75); // NEW LOGO
   padding-bottom:10px;
   box-shadow: 1px 3px 5px #444;
   z-index:2;
 }
+
+#testnavbar {
+  position:relative;
+}
+
+#testnavbar > li {
+  font-size:18px;
+  margin:0 1px;
+}
+
+/* Reset bootstrap defaults */
+  #testnavbar > li > a{
+    padding:10px 20px 15px 20px;
+    color: white;
+    display: block;
+    background-color: inherit;
+  }
+  #testnavbar > li > a:hover {
+    background-color: inherit;
+  }
+  #testnavbar > li.dropdown.open a.dropdown-toggle {
+    background-color:inherit;
+  }
+
+#testnavbar >li.active {
+  border-bottom:5px solid #5999de;
+}
+
+#testnavbar > li:hover {
+  border-bottom:5px solid rgb(89, 153, 222);
+}
+
+#testnavbar .dropdown-menu {
+  border-radius: 0 0 5px 5px;
+}
+#testnavbar .dropdown-menu li {
+  margin:2px;
+}
+
 
 // Ensure proper logo size for large screens
 .navbar-header {
@@ -92,19 +132,6 @@ nav {
     position:relative;
     left:-5px;
   }
-
-//Show users that they can scroll -- need to fix
-// #recent-news-container:after {
-//   content:' v v v v ';
-//   font-size:10px;
-//   text-align:center;
-//   color:rgb(0,0,0);
-//   color:rgba(0,0,0,.4);
-//   display:inline-block;
-//   width:100%;
-//   background-color:rgb(245,245,245);
-//   background-color:rgba(245,245,245,.7);
-// }
 
 
 
@@ -151,16 +178,17 @@ nav {
   border-radius: 100%;
   border:2px solid rgb(255,255,255);
   border:2px solid rgba(255,255,255,.8);
-  margin-left:15px;
+  float:right;
 }
 
 .user-name {
   font-weight:300;
+  padding:0;
 }
 
 #container-right .list-group {
-  border-bottom:1px solid rgb(255,255,255);
-  border-bottom:1px solid rgba(255,255,255,.4);
+  // border-bottom:1px solid rgb(255,255,255);
+  // border-bottom:1px solid rgba(255,255,255,.4);
 }
 
 #container-right .list-group-item {
@@ -173,6 +201,25 @@ nav {
   border-top:1px solid rgba(255,255,255,.4);
   font-size:16px;
   font-weight:300;
+}
+
+#user-profile-container .list-group-item {
+  background-color: #387fcf;
+  border:none;
+  border-radius:20px 0 0 20px;
+  font-size:16px;
+  font-weight:300;
+  margin:10px auto;
+}
+
+.list-shrink {
+  width:95%;
+  float:right;
+}
+
+.list-expand {
+  width:100%;
+  float:right;
 }
 
 #container-right .list-group-item.hover:hover {
@@ -214,7 +261,19 @@ nav {
 }
 
 
-
+@media (max-width: 992px) {
+  #user-profile-header-picture {
+    text-align:center;
+    padding-left:0;
+    padding-right:0;
+  }
+  .user-picture {
+    float: none;
+  }
+  .user-name {
+    text-align:center;
+  }
+}
 @media (max-width: 768px) {
   // put side navbar into an off-screen div
   #container-right {

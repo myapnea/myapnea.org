@@ -32,6 +32,7 @@
 //= require surveys
 //= require fb
 //= require forem/topics
+//= require cleantheme/jquery.color.min.js
 //= require cleantheme/landing
 //= require cleantheme/rankingUX
 //= require cleantheme/team
@@ -43,3 +44,5 @@
 //= require external/highmaps-1.0.4-modules-data.js
 //= require external/us-all.js
 //= require cleantheme/maps
+//= require cleantheme/navigationUX
+

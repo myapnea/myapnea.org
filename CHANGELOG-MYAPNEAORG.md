@@ -5,6 +5,8 @@
   - Added script that extracts data into the PCORNET Common Data Model 2.0
 - **Forum Updates**
   - Redesigned internal forums engine
+- **General Changes**
+  - Changed image sizes to speed up loading on mobile browsers
 
 ## 3.2.0
 
