@@ -45,9 +45,17 @@ class Question < ActiveRecord::Base
   end
 
   def user_answer(answer_session)
-    answers.where(answer_session_id: answer_session.id).first
+    # answers.where(answer_session_id: answer_session.id).first
   end
 
+
+  def is_branchpoint?(question_flow)
+    QuestionEdge.where(parent_question_id: self[:id], question_flow_id: question_flow.id, direct: true).length > 1
+  end
+
+  def parent
+    parents.first unless parents.blank?
+  end
 
   def part_of_group?
     group.present?
@@ -75,7 +83,9 @@ class Question < ActiveRecord::Base
   def answer_frequencies
     #raise StandardError, "#{self.text_en} #{answer_templates.first.display_type.name}"
     if answer_templates.length == 1 and ["multiple_choice", "check_box"].include? answer_templates.first.display_type.name
-      at = answer_templates.first
+
+
+      at = answer_templates.includes(:answer_options).first
       all_options = at.answer_options.to_a
 
       groups = []
@@ -84,8 +94,9 @@ class Question < ActiveRecord::Base
         groups << {label: o.value, answers: [], count: 0, frequency: 0.0}
       end
 
-      valid_answers = answers.map(&:answer_values).flatten.select{|av| av.value.present?}
-      total_answers = valid_answers.map(&:show_value).length
+      valid_answers = answers
+        .includes(answer_values: :answer_option).includes(answer_values: :answer_template)
+      total_answers = valid_answers.count
 
       valid_answers.group_by{|av| av.show_value}.each_pair do |key, array|
         g = groups.find{|x| x[:label] == key }
@@ -107,12 +118,14 @@ class Question < ActiveRecord::Base
     groups.inject({}) {|h, (k,v)| h[k] = v.length; h}
   end
 
-  def applicable_to_user?(user, answer_session)
-    false
+  def applicable_to_user?(answer_session)
+    answer_session.applicable_questions.where(id: self.id).exists?
   end
 
-  def user_skipped_question?(user, answer_session)
-    false
+
+
+  def user_skipped_question?(answer_session)
+    answer_session.answers.where
   end
 
 end

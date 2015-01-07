@@ -15,6 +15,8 @@ class QuestionFlow < ActiveRecord::Base
   belongs_to :first_question, class_name: "Question"
   has_many :answer_sessions
   has_many :question_edges
+  has_many :survey_question_orders, -> { order "question_number asc" }
+  has_many :ordered_questions, through: :survey_question_orders, foreign_key: "question_id", class_name: "Question", source: :question
 
   scope :viewable, -> { where(status: "show") }
 
@@ -65,7 +67,7 @@ class QuestionFlow < ActiveRecord::Base
 
   # Instance Methods
   def tsort_each_node(&block)
-    all_questions.each(&block)
+    all_questions_descendants.each(&block)
   end
 
   def tsort_each_child(node, &block)
@@ -74,11 +76,24 @@ class QuestionFlow < ActiveRecord::Base
 
   def tsorted_edges
     if self[:tsorted_edges].blank?
+
       update_attribute(:tsorted_edges, tsort.reverse.map(&:id).to_json)
+
+
     end
 
     JSON::parse(self[:tsorted_edges])
   end
+
+  def load_ordering
+    survey_question_orders.destroy_all
+
+    tsort.reverse.each_with_index do |question, order|
+      SurveyQuestionOrder.create(question_id: question.id, question_flow_id: self.id, question_number: order + 1)
+    end
+  end
+
+
 
   def total_time
     if self[:longest_time].blank?
@@ -122,6 +137,7 @@ class QuestionFlow < ActiveRecord::Base
 
 
   def find_longest_path(source, destination, by = :time)
+    # Cached
     topological_order = tsorted_edges[tsorted_edges.find_index(source.id)..tsorted_edges.find_index(destination.id)]
 
 
@@ -153,12 +169,23 @@ class QuestionFlow < ActiveRecord::Base
 
 
   def all_questions
-    Question.joins('LEFT OUTER JOIN "questions" "descendants_questions" ON "descendants_questions"."id" = "question_edges"."child_question_id"').where(id: source.id)
+    Question
+        .distinct
+        .joins('left join question_edges parent_qe on parent_qe.child_question_id = "questions".id')
+        .joins('left join question_edges child_qe on child_qe.parent_question_id = "questions".id')
+        .where("child_qe.question_flow_id = ? or child_qe.question_flow_id is null", self.id)
+        .where("parent_qe.question_flow_id = ? or parent_qe.question_flow_id is null", self.id)
+        .where("parent_qe.child_question_id is not null or child_qe.parent_question_id is not null")
+        .where("parent_qe.direct = 't' and child_qe.direct = 't'")
+  end
 
+  def all_questions_descendants
+    # source .descendants is very fast with no db hits! why? How can we use it? It's type is ActiveRecord::Association::CollectionProxy
     ([source] + source.descendants)
+  end
 
-    #joins(:question_edges).where
-    #QuestionEdge.where(question_flow_id: self.id).map(&:child_question).uniq + [first_question]
+  def sorted_questions
+
   end
 
   def source

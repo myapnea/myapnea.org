@@ -34,11 +34,13 @@ class AnswerSession < ActiveRecord::Base
   end
 
   def completed_answers
-    if first_answer
-      Answer.joins(:in_edge).where(answer_session_id: self.id).select{|a| a.in_edge.present? }.append(first_answer)
-    else
-      []
-    end
+    answers
+
+    # if first_answer
+    #   Answer.joins(:in_edge).where(answer_session_id: self.id).select{|a| a.in_edge.present? }.append(first_answer)
+    # else
+    #   []
+    # end
   end
 
   def completed?
@@ -167,21 +169,23 @@ class AnswerSession < ActiveRecord::Base
   end
 
   def all_answers
-    if first_answer
-      [first_answer] + first_answer.descendants
-    end
+    answers
+
   end
 
   def all_reportable_answers
-    all_answers.select {|answer| answer.answer_values.map{|av| av.answer_template.data_type }.include? "answer_option_id" and answer.show_value.present? } if all_answers
+    #all_answers.select {|answer| answer.answer_values.map{|av| av.answer_template.data_type }.include? "answer_option_id" and answer.show_value.present? } if all_answers
+    answers.distinct.joins(answer_values: :answer_template).where("\"answer_templates\".data_type = 'answer_option_id'").where('"answer_values".answer_option_id is not null')
+
   end
 
   def grouped_reportable_answers
-    all_reportable_answers.group_by{|a| a.question.question_help_message ? a.question.question_help_message.message : ""}
+    all_reportable_answers.includes(question: :question_help_message).group_by{|a| a.question.question_help_message ? a.question.question_help_message.message : ""}
+
   end
 
   def get_answer(question_id)
-    Question.find(question_id).answers.where(answer_session_id: self.id).first
+    Answer.joins(:question).where(questions: {id: question_id}).where(answer_session_id: self.id).order("updated_at desc").limit(1).first
   end
 
   def started?
@@ -200,6 +204,8 @@ class AnswerSession < ActiveRecord::Base
   end
 
   def path_until_answer(answer)
+    raise StandardError
+
     if last_answer.blank?
       coll = []
       current_answer = answer
@@ -220,6 +226,25 @@ class AnswerSession < ActiveRecord::Base
   end
 
 
+  def applicable_questions
+    # all questions in answer session's answers
+    Question
+        .joins(:answers)
+        .joins('left join answer_edges parent_ae on parent_ae.child_answer_id = "answers".id')
+        .joins('left join answer_edges child_ae on child_ae.parent_answer_id = "answers".id')
+        .where(answers: { answer_session_id: self.id} )
+        .where("parent_ae.child_answer_id is not null or child_ae.parent_answer_id is not null")
+  end
+
+
+  def answers
+    Answer
+        .joins('left join answer_edges parent_ae on parent_ae.child_answer_id = "answers".id')
+        .joins('left join answer_edges child_ae on child_ae.parent_answer_id = "answers".id')
+        .where(answer_session_id: self.id)
+        .where("parent_ae.child_answer_id is not null or child_ae.parent_answer_id is not null")
+
+  end
   ## Reports
 
 
@@ -227,16 +252,20 @@ class AnswerSession < ActiveRecord::Base
   private
 
   def completed_path
-    time = completed_answers.map(&:question).map(&:time_estimate).reduce(:+) || 0.0
-    distance = completed_answers.length
+
+    comp = completed_answers.includes(:question)
+    time = comp.map(&:question).map(&:time_estimate).reduce(:+) || 0.0
+    distance = comp.count
 
     {time: time, distance: distance}
   end
 
 
   def remaining_path
+    # TODO: NEEDS OPTIMIZATION
 
     if last_answer.blank?
+      # Not started
       {time: question_flow.total_time, distance: question_flow.total_questions}
     else
       source = last_answer.next_question

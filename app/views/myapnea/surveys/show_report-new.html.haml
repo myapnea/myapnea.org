@@ -11,6 +11,6 @@
 
 - if @survey
   - answer_session = AnswerSession.most_recent(@survey.id, current_user.id)
-  - @survey.all_questions.each do |question|
-    - answer = question.user_answer(answer_session)
+  - @survey.all_questions.includes(answers: :answer_values, answer_templates: :answer_options).each do |question|
+    - answer = answer_session.user.answer_for(answer_session, question)
     = render partial: 'surveys/reports/question_and_answer', locals: { question: question, answer: answer }
