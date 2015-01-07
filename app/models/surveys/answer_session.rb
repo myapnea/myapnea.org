@@ -168,6 +168,27 @@ class AnswerSession < ActiveRecord::Base
     answer
   end
 
+  ## Optimized (mostly)
+  def applicable_questions
+    # all questions in answer session's answers
+    Question
+        .joins(:answers)
+        .joins('left join answer_edges parent_ae on parent_ae.child_answer_id = "answers".id')
+        .joins('left join answer_edges child_ae on child_ae.parent_answer_id = "answers".id')
+        .where(answers: { answer_session_id: self.id} )
+        .where("parent_ae.child_answer_id is not null or child_ae.parent_answer_id is not null")
+  end
+
+
+  def answers
+    Answer
+        .joins('left join answer_edges parent_ae on parent_ae.child_answer_id = "answers".id')
+        .joins('left join answer_edges child_ae on child_ae.parent_answer_id = "answers".id')
+        .where(answer_session_id: self.id)
+        .where("parent_ae.child_answer_id is not null or child_ae.parent_answer_id is not null")
+
+  end
+
   def all_answers
     answers
 
@@ -204,8 +225,6 @@ class AnswerSession < ActiveRecord::Base
   end
 
   def path_until_answer(answer)
-    raise StandardError
-
     if last_answer.blank?
       coll = []
       current_answer = answer
@@ -226,25 +245,7 @@ class AnswerSession < ActiveRecord::Base
   end
 
 
-  def applicable_questions
-    # all questions in answer session's answers
-    Question
-        .joins(:answers)
-        .joins('left join answer_edges parent_ae on parent_ae.child_answer_id = "answers".id')
-        .joins('left join answer_edges child_ae on child_ae.parent_answer_id = "answers".id')
-        .where(answers: { answer_session_id: self.id} )
-        .where("parent_ae.child_answer_id is not null or child_ae.parent_answer_id is not null")
-  end
 
-
-  def answers
-    Answer
-        .joins('left join answer_edges parent_ae on parent_ae.child_answer_id = "answers".id')
-        .joins('left join answer_edges child_ae on child_ae.parent_answer_id = "answers".id')
-        .where(answer_session_id: self.id)
-        .where("parent_ae.child_answer_id is not null or child_ae.parent_answer_id is not null")
-
-  end
   ## Reports
 
 

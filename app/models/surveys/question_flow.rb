@@ -48,6 +48,8 @@ class QuestionFlow < ActiveRecord::Base
     res
   end
 
+
+  ## Need to be fast
   def complete?(user)
     false unless user.present?
     answer_session = self.answer_sessions.where( user_id: user.id ).order( updated_at: :desc ).first
@@ -65,7 +67,7 @@ class QuestionFlow < ActiveRecord::Base
     self.answer_sessions.where( user_id: user.id ).empty?
   end
 
-  # Instance Methods
+  ## Needed for topographic sort, which is not very fast
   def tsort_each_node(&block)
     all_questions_descendants.each(&block)
   end
@@ -74,6 +76,10 @@ class QuestionFlow < ActiveRecord::Base
     node.children.each(&block)
   end
 
+  ## Cached in database, need to be refreshed on change (when questions are updated!!)
+  # TODO: Put in survey rake task
+
+  # TODO: Rename - it's not tsorted edges but tsorted questions (nodes)
   def tsorted_edges
     if self[:tsorted_edges].blank?
 
@@ -84,16 +90,6 @@ class QuestionFlow < ActiveRecord::Base
 
     JSON::parse(self[:tsorted_edges])
   end
-
-  def load_ordering
-    survey_question_orders.destroy_all
-
-    tsort.reverse.each_with_index do |question, order|
-      SurveyQuestionOrder.create(question_id: question.id, question_flow_id: self.id, question_number: order + 1)
-    end
-  end
-
-
 
   def total_time
     if self[:longest_time].blank?
@@ -127,15 +123,30 @@ class QuestionFlow < ActiveRecord::Base
     self[:longest_path]
   end
 
+  ## Cache ordering in database and allow quick lookup of questions. Need to be run on reload!!
+  # TODO: Put in survey rake task
+  def load_ordering
+    survey_question_orders.destroy_all
+
+    tsort.reverse.each_with_index do |question, order|
+      SurveyQuestionOrder.create(question_id: question.id, question_flow_id: self.id, question_number: order + 1)
+    end
+  end
+
+
+  # Instance methods
   def most_recent_answer_session(user)
     answer_sessions.where(user_id: user.id).order(updated_at: :desc).first
   end
 
+  ## WORK IN PROGRESS
   def completion_stats(user)
     most_recent_answer_session(user).calculate_status_stats
   end
 
 
+  ### Used in calculating remaining path.
+  # TODO: Optimize
   def find_longest_path(source, destination, by = :time)
     # Cached
     topological_order = tsorted_edges[tsorted_edges.find_index(source.id)..tsorted_edges.find_index(destination.id)]
@@ -167,7 +178,9 @@ class QuestionFlow < ActiveRecord::Base
     {time: times[destination.id].to_f, distance: distances[destination.id]}
   end
 
+  ###
 
+  # Efficient lookup of questions (1 query), returns relation
   def all_questions
     Question
         .distinct
@@ -179,19 +192,20 @@ class QuestionFlow < ActiveRecord::Base
         .where("parent_qe.direct = 't' and child_qe.direct = 't'")
   end
 
+  # Fast (uses descendant cache?), returns array
   def all_questions_descendants
     # source .descendants is very fast with no db hits! why? How can we use it? It's type is ActiveRecord::Association::CollectionProxy
     ([source] + source.descendants)
   end
 
-  def sorted_questions
-
-  end
-
+  # Alias
   def source
     first_question
   end
 
+
+  ## Might need optimization, can be cached in new table, as can MIN DISTANCE TO LEAF!!!
+  # TODO: Optimize
   def leaf
     if first_question.descendants.length > 0
       leaves = first_question.descendants.select {|q| q.leaf?}
@@ -219,8 +233,19 @@ class QuestionFlow < ActiveRecord::Base
 
   end
 
+  ## THIS SHOULD RESTET AND RELOAD ALL CHACHED/PRE-LOADED DATA
   def reset_paths
     update_attributes(tsorted_edges: nil, longest_time: nil, longest_path: nil)
+  end
+
+
+  ## New Answer Frequencies for whole question flow
+  def report_statistics
+    # question id
+    # answer value
+    # count
+    # frequency
+
   end
 
   private
