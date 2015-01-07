@@ -5,32 +5,11 @@ class AnswerSession < ActiveRecord::Base
   belongs_to :user
   has_many :answer_edges
 
+  # Class Methods
+
   def self.most_recent(question_flow_id, user_id)
     answer_sessions = AnswerSession.where(question_flow_id: question_flow_id, user_id: user_id).order(updated_at: :desc)
     answer_sessions.empty? ? nil : answer_sessions.first
-  end
-
-  def calculate_status_stats(answer=nil)
-    completed = completed_path
-    remaining = remaining_path
-
-    if answer.present?
-      current_path = path_until_answer(answer)
-      percent_completed =  (current_path.sum{|x| x.question.time_estimate}.to_f / (completed[:time] + remaining[:time])) * 100
-    else
-      percent_completed = (completed[:time] / (completed[:time] + remaining[:time])) * 100
-    end
-
-    {
-        percent_completed: percent_completed,
-        completed_questions: completed[:distance],
-        remaining_questions: remaining[:distance],
-        total_questions: completed[:distance] + remaining[:distance],
-        completed_time: completed[:time],
-        remaining_time: remaining[:time],
-        total_time: completed[:time] + remaining[:time]
-
-    }
   end
 
   def completed_answers
@@ -44,7 +23,7 @@ class AnswerSession < ActiveRecord::Base
   end
 
   def completed?
-    remaining_path[:distance] == 0
+    remaining_path_length = 0
   end
 
   def process_answer(question, params)
@@ -225,77 +204,50 @@ class AnswerSession < ActiveRecord::Base
   end
 
   def path_until_answer(answer)
-    if last_answer.blank?
-      coll = []
-      current_answer = answer
-    elsif answer.new_record?
-      coll = [answer]
-      current_answer = last_answer
-    else
-      current_answer = answer.clone
-      coll = []
-    end
-
-    while current_answer
-      coll << current_answer
-      current_answer = current_answer.previous_answer
-    end
-
-    coll
+    # if last_answer.blank?
+    #   coll = []
+    #   current_answer = answer
+    # elsif answer.new_record?
+    #   coll = [answer]
+    #   current_answer = last_answer
+    # else
+    #   current_answer = answer.clone
+    #   coll = []
+    # end
+    #
+    # while current_answer
+    #   coll << current_answer
+    #   current_answer = current_answer.previous_answer
+    # end
+    #
+    # coll
   end
 
 
 
-  ## Reports
 
+  def completed_path_length
+    completed_answers.count
+  end
+
+
+  def remaining_path_length
+    if last_answer.blank?
+      question_flow.longest_path_length
+    else
+      question_flow.path_length(last_answer.next_question)
+    end
+  end
+
+  def total_path_length
+    completed_path_length + remaining_path_length
+  end
+
+  def percent_completed
+    completed_path_length.to_f / total_path_length.to_f
+  end
 
 
   private
-
-  def completed_path
-
-    comp = completed_answers.includes(:question)
-    time = comp.map(&:question).map(&:time_estimate).reduce(:+) || 0.0
-    distance = comp.count
-
-    {time: time, distance: distance}
-  end
-
-
-  def remaining_path
-    # TODO: NEEDS OPTIMIZATION
-
-    if last_answer.blank?
-      # Not started
-      {time: question_flow.total_time, distance: question_flow.total_questions}
-    else
-      source = last_answer.next_question
-
-      if source
-        leaves = question_flow.leaves
-
-        max_dist = 0
-        result = nil
-
-        leaves.each do |oneleaf|
-
-
-          temp_result = question_flow.find_longest_path(source,oneleaf)
-          max_dist = [max_dist, temp_result[:distance]].max if temp_result[:distance]
-
-          result = temp_result if max_dist == temp_result[:distance]
-
-
-        end
-
-        corrections = {time: 0.0, distance: 0}
-
-        {time: result[:time] - corrections[:time], distance: result[:distance] - corrections[:distance]}
-      else
-        {time: 0.0, distance: 0}
-      end
-    end
-  end
-
 
 end

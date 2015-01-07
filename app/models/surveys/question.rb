@@ -3,6 +3,8 @@ class Question < ActiveRecord::Base
   belongs_to :group
   has_many :answers
   belongs_to :question_help_message
+  has_many :survey_answer_frequencies
+
 
   include Localizable
   include Votable

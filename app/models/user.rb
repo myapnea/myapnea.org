@@ -184,6 +184,6 @@ class User < ActiveRecord::Base
   end
 
   def answer_for(answer_session, question)
-    Answer.where(answer_session_id: answer_session.id, question_id: question.id).order("updated_at desc").limit(1).first
+    Answer.where(answer_session_id: answer_session.id, question_id: question.id).order("updated_at desc").includes(answer_values: :answer_template).limit(1).first
   end
 end

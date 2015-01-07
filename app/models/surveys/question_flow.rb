@@ -17,6 +17,7 @@ class QuestionFlow < ActiveRecord::Base
   has_many :question_edges
   has_many :survey_question_orders, -> { order "question_number asc" }
   has_many :ordered_questions, through: :survey_question_orders, foreign_key: "question_id", class_name: "Question", source: :question
+  has_many :survey_answer_frequencies
 
   scope :viewable, -> { where(status: "show") }
 
@@ -80,10 +81,10 @@ class QuestionFlow < ActiveRecord::Base
   # TODO: Put in survey rake task
 
   # TODO: Rename - it's not tsorted edges but tsorted questions (nodes)
-  def tsorted_edges
-    if self[:tsorted_edges].blank?
+  def tsorted_nodes
+    if self[:tsored_nodes].blank?
 
-      update_attribute(:tsorted_edges, tsort.reverse.map(&:id).to_json)
+      update_attribute(:tsorted_nodes, tsort.reverse.map(&:id).to_json)
 
 
     end
@@ -92,44 +93,66 @@ class QuestionFlow < ActiveRecord::Base
   end
 
   def total_time
-    if self[:longest_time].blank?
-      lp = 0
-
-      leaves.each do |oneleaf|
-        lp = [lp, find_longest_path(source,oneleaf)[:time]].max
-      end
-
-
-      update_attribute(:longest_time, lp)
-
-
-
-    end
-
-    self[:longest_time]
+    ActiveSupport::Deprecation.warn("Time estimates disabled until they are further developed.")
+    nil
+    # if self[:longest_time].blank?
+    #   lp = 0
+    #
+    #   leaves.each do |oneleaf|
+    #     lp = [lp, find_longest_path(source,oneleaf)[:time]].max
+    #   end
+    #
+    #
+    #   update_attribute(:longest_time, lp)
+    #
+    #
+    #
+    # end
+    #
+    # self[:longest_time]
   end
 
+  # Alias
   def total_questions
-    if self[:longest_path].blank?
-      ld = 0
+    longest_path_length
+  end
 
-      leaves.each do |oneleaf|
-        ld = [ld, find_longest_path(source,oneleaf)[:distance]].max
-      end
+  def longest_path_length
+    path_length(source)
+    #
+    # if self[:longest_path].blank?
+    #   ld = 0
+    #
+    #   leaves.each do |oneleaf|
+    #     ld = [ld, find_longest_path(source,oneleaf)[:distance]].max
+    #   end
+    #
+    #   update_attribute(:longest_path, ld)
+    # end
+    #
+    # self[:longest_path]
+  end
 
-      update_attribute(:longest_path, ld)
-    end
-
-    self[:longest_path]
+  def path_length(current_question)
+    survey_question_orders.where(question_id: current_question.id).remaining_distance
   end
 
   ## Cache ordering in database and allow quick lookup of questions. Need to be run on reload!!
   # TODO: Put in survey rake task
-  def load_ordering
+  def refresh_precomputations
+    # tsort nodes
+    update_attribute(:tsorted_nodes, nil)
+
+    # survey_question_order
+    load_survey_question_order
+  end
+
+
+  def load_survey_question_order
     survey_question_orders.destroy_all
 
     tsort.reverse.each_with_index do |question, order|
-      SurveyQuestionOrder.create(question_id: question.id, question_flow_id: self.id, question_number: order + 1)
+      SurveyQuestionOrder.create(question_id: question.id, question_flow_id: self.id, question_number: order + 1, remaining_distance: find_longest_path_length_to_leaf(question) )
     end
   end
 
@@ -145,38 +168,7 @@ class QuestionFlow < ActiveRecord::Base
   end
 
 
-  ### Used in calculating remaining path.
-  # TODO: Optimize
-  def find_longest_path(source, destination, by = :time)
-    # Cached
-    topological_order = tsorted_edges[tsorted_edges.find_index(source.id)..tsorted_edges.find_index(destination.id)]
 
-
-    distances = Hash[topological_order.map {|q| [q,-1*Float::INFINITY]}]
-    times = distances.clone
-
-    times[source.id] = source.time_estimate
-    distances[source.id] = 1
-
-    topological_order.each do |question_id|
-      question = Question.find(question_id)
-
-      question.children.each do |child|
-        if by == :time
-          eq_test = (times[child.id].to_f < times[question.id].to_f + child.time_estimate.to_f)
-        else
-          eq_test = distances[child.id] < distances[question.id] + 1
-        end
-
-        if eq_test
-          distances[child.id] = distances[question.id] + 1
-          times[child.id] = times[question.id] + child.time_estimate.to_d
-        end
-      end
-    end
-
-    {time: times[destination.id].to_f, distance: distances[destination.id]}
-  end
 
   ###
 
@@ -203,10 +195,10 @@ class QuestionFlow < ActiveRecord::Base
     first_question
   end
 
+  private
 
-  ## Might need optimization, can be cached in new table, as can MIN DISTANCE TO LEAF!!!
-  # TODO: Optimize
-  def leaf
+  # Should only be called when precomputing
+  def find_leaf
     if first_question.descendants.length > 0
       leaves = first_question.descendants.select {|q| q.leaf?}
 
@@ -221,7 +213,7 @@ class QuestionFlow < ActiveRecord::Base
 
   end
 
-  def leaves
+  def find_leaves
     if first_question.descendants.length > 0
       first_question.descendants.select {|q| q.leaf?}
 
@@ -233,22 +225,43 @@ class QuestionFlow < ActiveRecord::Base
 
   end
 
-  ## THIS SHOULD RESTET AND RELOAD ALL CHACHED/PRE-LOADED DATA
-  def reset_paths
-    update_attributes(tsorted_edges: nil, longest_time: nil, longest_path: nil)
+  ### Used in calculating remaining path.
+  def find_longest_path_length_to_leaf(source)
+    longest = 0
+
+    find_leaves.each do |a_leaf|
+      temp_result = find_longest_path_length(source,a_leaf)
+
+      longest = [longest, temp_result].max if temp_result
+    end
+
+    longest
   end
 
+  def find_longest_path_length(source, destination)
+    # Cached
+    topological_order = tsorted_nodes[tsorted_edges.find_index(source.id)..tsorted_edges.find_index(destination.id)]
 
-  ## New Answer Frequencies for whole question flow
-  def report_statistics
-    # question id
-    # answer value
-    # count
-    # frequency
 
+    # Set to -Inifinity
+    distances = Hash[topological_order.map {|q| [q,-1*Float::INFINITY]}]
+
+    distances[source.id] = 1
+
+    topological_order.each do |question_id|
+      question = Question.find(question_id)
+
+      question.children.each do |child|
+
+        eq_test = distances[child.id] < distances[question.id] + 1
+
+        if eq_test
+          distances[child.id] = distances[question.id] + 1
+        end
+      end
+    end
+
+    distances[destination.id]
   end
-
-  private
-
 
 end
