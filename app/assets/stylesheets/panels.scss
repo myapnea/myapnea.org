@@ -43,6 +43,33 @@
   border-radius:20px;
 }
 
+.panel-body .row:last-of-type {
+  border-bottom-width:0px;
+}
+
+
+/* ABOUT US */
+.about-links {
+  padding:15px;
+  border:1px solid #ffc864;
+}
+
+.about-links:hover {
+  background-color: #ffc864;
+}
+
+.about-links a {
+  font-size: 22px;
+  color: #555;
+  display:block;
+  width:100%;
+}
+
+.about-links:hover a {
+  color: #777;
+  text-decoration:none;
+  font-weight:500;
+}
 
 
 /* UX */
@@ -83,6 +110,9 @@
   border-bottom:1px solid rgba(0,0,0,.3);
   min-height:225px;
 }
+  .panel-partners .row:last-of-type {
+    border-bottom-width:0px;
+  }
 
   .panel-partners .col-md-4.left {
     position:absolute; top:0; left:0; bottom:0;
