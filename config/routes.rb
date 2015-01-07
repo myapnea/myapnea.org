@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  resources :topics
-
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -82,7 +80,6 @@ Rails.application.routes.draw do
   match 'locations', via: :get, as: :locations, format: :json, to: 'social#locations'
   get 'social/discussion', to: redirect("forums")
   get 'social/discussion(/*path)', to: redirect("forums/%{path}")
-  get 'forum', to: redirect("forums")
 
   # Blog Section
   get 'in_the_news' => 'blog#blog', as: :blog
@@ -129,10 +126,12 @@ Rails.application.routes.draw do
     resources :topics
   end
 
+  get 'forum', to: redirect("forums")
+
   # This line mounts Forem's routes at /forums by default.
   # This means, any requests to the /forums URL of your application will go to Forem::ForumsController#index.
   # If you would like to change where this extension is mounted, simply change the :at option to something different.
-  #
+
   # We ask that you don't use the :as option here, as Forem relies on it being the default of "forem"
   mount Forem::Engine, :at => '/forums'
 

@@ -35,12 +35,13 @@ class User < ActiveRecord::Base
 
   # Named Scopes
   scope :search_by_email, ->(terms) { where("LOWER(#{self.table_name}.email) LIKE ?", terms.to_s.downcase.gsub(/^| |$/, '%')) }
+  scope :current, -> { where('1 = 1') }
 
   def all_topics
-    if self.has_role? :owner or self.has_role? :moderator
+    if self.has_role? :moderator
       Topic.current
     else
-      self.topics
+      self.topics.where(locked: false)
     end
   end
 

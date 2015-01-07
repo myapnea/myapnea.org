@@ -11,7 +11,7 @@ class ForumsControllerTest < ActionController::TestCase
     @forum ||= forums :one
   end
 
-  test "should get index for anonymous user" do
+  test "should get index for logged out user" do
     get :index
     assert_response :success
     assert_not_nil assigns(:forums)
@@ -31,7 +31,7 @@ class ForumsControllerTest < ActionController::TestCase
     assert_not_nil assigns(:forums)
   end
 
-  test "should not get new for anonymous user" do
+  test "should not get new for logged out user" do
     get :new
     assert_redirected_to new_user_session_path
   end
@@ -49,7 +49,7 @@ class ForumsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should not create forum for anonymous" do
+  test "should not create forum for logged out" do
     assert_difference('Forum.count', 0) do
       post :create, forum: { name: "Sleep Habits", description: "Discuss your sleep habits.", slug: 'sleep-habits', position: 2 }
     end
@@ -76,12 +76,12 @@ class ForumsControllerTest < ActionController::TestCase
     end
 
     assert_not_nil assigns(:forum)
-    assert_equal assigns(:forum).user, @owner
+    assert_equal @owner, assigns(:forum).user
 
     assert_redirected_to forum_path(assigns(:forum))
   end
 
-  test "should show forum for anonymous user" do
+  test "should show forum for logged out user" do
     get :show, id: forum
     assert_response :success
   end
@@ -98,7 +98,7 @@ class ForumsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should not get edit for anonymous user" do
+  test "should not get edit for logged out user" do
     get :edit, id: forum
     assert_redirected_to new_user_session_path
   end
@@ -116,7 +116,7 @@ class ForumsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should not update forum for anonymous user" do
+  test "should not update forum for logged out user" do
     put :update, id: forum, forum: { name: 'Intro', description: 'Tell Us an Intro', slug: 'intro', position: 1 }
     assert_redirected_to new_user_session_path
   end
@@ -134,7 +134,7 @@ class ForumsControllerTest < ActionController::TestCase
     assert_redirected_to forum_path(assigns(:forum))
   end
 
-  test "should not destroy forum for anonymous user" do
+  test "should not destroy forum for logged out user" do
     assert_difference('Forum.current.count', 0) do
       delete :destroy, id: forum
     end

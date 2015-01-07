@@ -1,19 +1,50 @@
-<%= simple_form_for(@topic) do |f| %>
-  <%= f.error_notification %>
+<% @title = @topic.new_record? ? 'New Topic' : 'Edit Topic' %>
 
-  <div class="form-inputs">
-    <%= f.input :forum_id %>
-    <%= f.input :user_id %>
-    <%= f.input :name %>
-    <%= f.input :locked %>
-    <%= f.input :pinned %>
-    <%= f.input :last_post_at %>
-    <%= f.input :state %>
-    <%= f.input :views_count %>
-    <%= f.input :slug %>
+<div class="page-header">
+  <h1>
+    <%= link_to 'Forums', forums_path %> &middot;
+    <%= link_to @forum.name, @forum %> &middot;
+    <% unless @topic.new_record? %>
+      <%= link_to @topic.name, [@forum, @topic] %> &middot;
+    <% end %>
+    <%= @title %>
+  </h1>
+</div>
+
+<%= form_for [@forum, @topic], html: { class: 'form-horizontal' } do |f| %>
+  <% if @topic.errors.any? %>
+    <div id="error_explanation" class="bs-callout bs-callout-danger">
+      <h4><%= pluralize(@topic.errors.count, "error") %> prohibited this topic from being saved</h4>
+
+      <ul>
+      <% @topic.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :name, nil, class: 'col-md-2 control-label' %>
+    <div class="col-md-10">
+      <%= f.text_field :name, class: 'form-control', autocomplete: 'off' %>
+    </div>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
+  <% if @topic.new_record? %>
+    <div class="form-group">
+      <%= f.label :description, nil, class: 'col-md-2 control-label' %>
+      <div class="col-md-10">
+        <%= f.text_area :description, rows: 7, class: 'form-control' %>
+      </div>
+    </div>
+  <% end %>
+
+
+  <div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+      <%= f.submit nil, class: 'btn btn-primary' %>
+      <%= link_to 'Cancel', (@topic.new_record? ? @forum : [@forum, @topic]), class: 'btn btn-danger' %>
+    </div>
   </div>
 <% end %>
