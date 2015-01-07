@@ -26,7 +26,7 @@
       %span.f500 we can't do this without you!
       %ul.text-dark7{ style: 'margin-top:40px; ' }
         %li{ style: 'margin:15px' }
-          %a.open-tab Print one of our flyers
+          = link_to 'Print one of our flyers', "#{ENV['website_url']}/pdfs/myapnea_flyer.pdf", class: 'open-tab'
           and post it at work or school, or ask your care provider if they will hang it in their offices - let's get more public exposure on sleep apnea!
         %li{ style: 'margin:15px' }
           Share our pages using one of the
