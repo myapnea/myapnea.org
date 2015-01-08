@@ -20,7 +20,7 @@ namespace :surveys do
     end
   end
 
-  desc "Update all survey models except for question endges."
+  desc "Update all survey models except for question edges."
   task :update_questions => :environment do
     if warn_user
       tables_to_update = [
@@ -107,12 +107,14 @@ namespace :surveys do
   task :update => :environment do
     Rake::Task["surveys:update_questions"].invoke
     Rake::Task["surveys:update_question_edges"].invoke
+    QuestionFlow.refresh_all_question_flows
   end
 
   desc "Updates questions and question edges."
   task :create => :environment do
     Rake::Task["surveys:setup_db"].invoke
     Rake::Task["surveys:update"].invoke
+    QuestionFlow.refresh_all_question_flows
   end
 
 
@@ -150,41 +152,42 @@ namespace :surveys do
   end
 
 
-  # desc ""
-  # task :fix_about_me_survey_migration => :environment do
-  #   user_count = User.count
-  #   question_flow = QuestionFlow.find(16)
-  #   User.order("created_at asc").each_with_index do |user, index|
-  #     puts "Migrating user (#{index+1} of #{user_count}) #{user.email}"
-  #     old_answer_session = user.answer_sessions.where(question_flow_id: 13).first
-  #
-  #     if old_answer_session
-  #
-  #         puts "Migrating survey #{question_flow.name}"
-  #
-  #         answer_session = AnswerSession.find_by(user_id: user.id, question_flow_id: question_flow.id)
-  #
-  #         question = question_flow.first_question
-  #
-  #         until answer_session.completed? or false # reach end of survey
-  #           new_answer = question.answers.where(answer_session_id: answer_session.id).first
-  #           old_answer = question.answers.where(answer_session_id: old_answer_session.id).first
-  #
-  #           unless new_answer
-  #             if old_answer and old_answer.string_value.present?
-  #               new_answer = answer_session.process_answer(question, {question.id.to_s => old_answer.string_value})
-  #             else
-  #               new_answer = answer_session.process_answer(question, {})
-  #             end
-  #           end
-  #           question = new_answer.next_question
-  #         end
-  #
-  #       end
-  #     end
-  #   end
-  #
-  # end
+  desc "Migrate over answers from old survey to one afflicted with bug"
+  task :fix_about_me_survey_migration => :environment do
+    user_count = User.count
+    question_flow = QuestionFlow.find(16)
+    User.order("created_at asc").each_with_index do |user, index|
+      puts "Migrating user (#{index+1} of #{user_count}) #{user.email}"
+      old_answer_session = user.answer_sessions.where(question_flow_id: 13).first
+
+      if old_answer_session
+
+          puts "Migrating survey #{question_flow.name}"
+
+          answer_session = AnswerSession.find_by(user_id: user.id, question_flow_id: question_flow.id)
+
+          question = answer_session.last_answer.next_question
+
+          until question.present?
+            new_answer = question.answers.where(answer_session_id: answer_session.id).first
+            old_answer = question.answers.where(answer_session_id: old_answer_session.id).first
+
+            if new_answer.blank?
+              if old_answer and old_answer.string_value.present?
+                new_answer = answer_session.process_answer(question, {question.id.to_s => old_answer.string_value})
+              else
+                new_answer = answer_session.process_answer(question, {})
+              end
+            end
+            
+            question = new_answer.next_question
+          end
+
+        end
+      end
+    end
+
+  end
 
 
   def clean_tables(tables)

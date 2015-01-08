@@ -23,7 +23,11 @@ class AnswerSession < ActiveRecord::Base
   end
 
   def completed?
-    remaining_path_length = 0
+    unless self[:completed]
+      update_attribute(:completed, total_remaining_path_length == 0)
+    end
+
+    self[:completed]
   end
 
   def process_answer(question, params)
@@ -203,24 +207,24 @@ class AnswerSession < ActiveRecord::Base
     end
   end
 
-  def path_until_answer(answer)
-    # if last_answer.blank?
-    #   coll = []
-    #   current_answer = answer
-    # elsif answer.new_record?
-    #   coll = [answer]
-    #   current_answer = last_answer
-    # else
-    #   current_answer = answer.clone
-    #   coll = []
-    # end
-    #
-    # while current_answer
-    #   coll << current_answer
-    #   current_answer = current_answer.previous_answer
-    # end
-    #
-    # coll
+  def path_length_to_answer(answer)
+    if last_answer.blank?
+      coll = []
+      current_answer = answer
+    elsif answer.nil? or answer.new_record?
+      coll = [answer]
+      current_answer = last_answer
+    else
+      current_answer = answer.clone
+      coll = []
+    end
+
+    while current_answer
+      coll << current_answer
+      current_answer = current_answer.previous_answer
+    end
+
+    coll.length
   end
 
 
@@ -230,17 +234,29 @@ class AnswerSession < ActiveRecord::Base
     completed_answers.count
   end
 
+  def remaining_path_length(from_answer)
+    if from_answer.nil?
+      total_remaining_path_length
+    elsif from_answer.next_question.present?
+      question_flow.path_length(from_answer.next_question)
+    else
+      0
+    end
 
-  def remaining_path_length
+  end
+
+  def total_remaining_path_length
     if last_answer.blank?
       question_flow.longest_path_length
+    elsif last_answer.next_question.nil?
+      0
     else
       question_flow.path_length(last_answer.next_question)
     end
   end
 
   def total_path_length
-    completed_path_length + remaining_path_length
+    completed_path_length + remaining_path_length(last_answer)
   end
 
   def percent_completed

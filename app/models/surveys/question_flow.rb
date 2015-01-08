@@ -49,6 +49,12 @@ class QuestionFlow < ActiveRecord::Base
     res
   end
 
+  def self.refresh_all_question_flows
+    QuestionFlow.all.each do |qf|
+      qf.refresh_precomputations
+    end
+  end
+
 
   ## Need to be fast
   def complete?(user)
@@ -81,7 +87,7 @@ class QuestionFlow < ActiveRecord::Base
   # TODO: Put in survey rake task
 
   # TODO: Rename - it's not tsorted edges but tsorted questions (nodes)
-  def tsorted_nodes
+  def tsorted_question_ids
     if self[:tsored_nodes].blank?
 
       update_attribute(:tsorted_nodes, tsort.reverse.map(&:id).to_json)
@@ -134,7 +140,7 @@ class QuestionFlow < ActiveRecord::Base
   end
 
   def path_length(current_question)
-    survey_question_orders.where(question_id: current_question.id).remaining_distance
+    survey_question_orders.where(question_id: current_question.id).first.remaining_distance
   end
 
   ## Cache ordering in database and allow quick lookup of questions. Need to be run on reload!!
@@ -142,6 +148,7 @@ class QuestionFlow < ActiveRecord::Base
   def refresh_precomputations
     # tsort nodes
     update_attribute(:tsorted_nodes, nil)
+    tsorted_question_ids
 
     # survey_question_order
     load_survey_question_order
@@ -152,7 +159,9 @@ class QuestionFlow < ActiveRecord::Base
     survey_question_orders.destroy_all
 
     tsort.reverse.each_with_index do |question, order|
+
       SurveyQuestionOrder.create(question_id: question.id, question_flow_id: self.id, question_number: order + 1, remaining_distance: find_longest_path_length_to_leaf(question) )
+
     end
   end
 
@@ -195,7 +204,7 @@ class QuestionFlow < ActiveRecord::Base
     first_question
   end
 
-  private
+  # private
 
   # Should only be called when precomputing
   def find_leaf
@@ -230,7 +239,11 @@ class QuestionFlow < ActiveRecord::Base
     longest = 0
 
     find_leaves.each do |a_leaf|
-      temp_result = find_longest_path_length(source,a_leaf)
+      begin
+        temp_result = find_longest_path_length(source,a_leaf)
+      rescue
+        temp_result = 0
+      end
 
       longest = [longest, temp_result].max if temp_result
     end
@@ -240,7 +253,7 @@ class QuestionFlow < ActiveRecord::Base
 
   def find_longest_path_length(source, destination)
     # Cached
-    topological_order = tsorted_nodes[tsorted_nodes.find_index(source.id)..tsorted_nodes.find_index(destination.id)]
+    topological_order = tsorted_question_ids[tsorted_question_ids.find_index(source.id)..tsorted_question_ids.find_index(destination.id)]
 
 
     # Set to -Inifinity
