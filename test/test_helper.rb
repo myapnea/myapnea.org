@@ -13,6 +13,8 @@ require "minitest/rails/capybara"
 require "minitest/pride"
 
 class ActiveSupport::TestCase
+  setup :global_setup
+
   ActiveRecord::Migration.check_pending!
 
   # Setup all fixtures in test/fixtures/*.(yml|csv) for all tests in alphabetical order.
@@ -21,6 +23,9 @@ class ActiveSupport::TestCase
   # -- they do not yet inherit this setting
   fixtures :all
 
+  def global_setup
+    QuestionFlow.refresh_all_question_flows
+  end
   # Add more helper methods to be used by all tests here...
 end
 

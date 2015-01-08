@@ -1,3 +1,3 @@
-json.user_answer @question.user_answer(@answer_session).show_value
+json.user_answer @user_answer.show_value if @user_answer
 
-json.frequencies @question.answer_frequencies
+json.frequencies @answer_frequencies

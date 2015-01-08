@@ -2,7 +2,7 @@
   .panel.panel-default
     .panel-heading
       = render partial: 'surveys/partials/header', locals: { question_flow: @question_flow }
-      = render partial: 'surveys/partials/session_progress', locals: { stats: @answer_session.calculate_status_stats, answer: nil }
+      = render partial: 'surveys/partials/session_progress', locals: { answer_session: @answer_session, answer: nil }
     .panel-body
       %p
         = markdown @question_flow.description

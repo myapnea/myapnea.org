@@ -11,6 +11,10 @@
 
 - if @survey
   - answer_session = AnswerSession.most_recent(@survey.id, current_user.id)
-  - @survey.all_questions.each do |question|
-    - answer = question.user_answer(answer_session)
-    = render partial: 'surveys/reports/question_and_answer', locals: { question: question, answer: answer }
+  - all_answer_frequencies = @survey.survey_answer_frequencies
+  - @survey.ordered_questions.each do |question|
+
+    - answer_frequencies = all_answer_frequencies.select {|af| af.question_id == question.id} #@survey.survey_answer_frequencies.where(question_id: question.id)
+    - if answer_frequencies.present?
+      - answer = answer_session.user.answer_for(answer_session, question)
+      = render partial: 'surveys/reports/question_and_answer', locals: { survey: @survey, question: question, answer: answer, answer_session: @answer_session, answer_frequencies: answer_frequencies}
