@@ -51,6 +51,12 @@ nav {
   z-index:2;
 }
 
+.navbar-collapse {
+  float:right;
+  width:20%;
+  margin-right:-15px;
+}
+
 #testnavbar {
   position:relative;
 }

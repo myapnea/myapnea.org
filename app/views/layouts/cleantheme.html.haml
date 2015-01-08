@@ -4,10 +4,15 @@
     %meta{ charset: 'utf-8'}
     %meta{ content: 'IE=Edge,chrome=1', http: {equiv: 'X-UA-Compatible'}}
     %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1.0'}
+    / For Facebook
     %meta{ property: 'og:url', content: ENV['website_url'] + '/' }
     %meta{ property: 'og:title', content: ENV['website_name'] }
     %meta{ property: 'og:description', content: 'Improving sleep apnea through information, support, and research' }
     %meta{ property: 'og:image', content: ENV['website_url'] + '/assets/' + asset_path('myapnea/MyApneaLogo_border_whitesub_square.png').split('/assets/').last }
+    / For Google+
+    %meta{ itemprop: 'name', content: 'MyApnea.Org' }
+    %meta{ itemprop: 'description', content: 'Improving sleep apnea through information, support, and research' }
+    %meta{ itemprop: 'image', content: ENV['website_url'] + '/assets/' + asset_path('myapnea/MyApneaLogo_border_whitesub_square.png').split('/assets/').last }
     %title='MyApnea.Org'
     %link{href:'//fonts.googleapis.com/css?family=Dosis:400,700|Cabin:400,700', rel:'stylesheet', type:'text/css'}
     %link{href:'//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css', rel:'stylesheet'}
@@ -24,8 +29,16 @@
       .container-fluid
         .navbar-header
           = link_to image_tag('myapnea/MyApneaLogo_border_whitesub_300x80.png', width: "100%", style: "position:relative; top:-25px; left:0px;", id: "navbar-myapnea-logo"), root_path, class: "navbar-brand", style: "width:70%; line-height:100%; min-width:260px; max-width:260px;"
-          - if (params[:action] == 'home' and !current_user) or params[:action] == 'stealth_providers' or params[:action] == 'stealth_provider1'
+          - if !current_user
             = link_to "Login", new_user_session_path, class: "btn primary-blue-bcg text-white visible-xs float-right", id: "btn-login-phone"
+          - else
+            = link_to account_path do
+              .navbar-right.text-white.centered-text.visible-xs
+                %h4.f300#btn-welcome-phone
+                  Welcome,
+                  %br
+                  %span.lighterer-blue
+                    = current_user.first_name
         - if (params[:action] == 'home' and !current_user) or params[:action] == 'stealth_providers' or params[:action] == 'stealth_provider1'
           .collapse.navbar-collapse.navbar-right.float-right
             = form_tag user_session_path, method: :post, class: "navbar-form" do
@@ -33,10 +46,10 @@
               = password_field_tag 'user[password]', nil, placeholder: 'Password', class: "form-control"
               = submit_tag 'Login', class: "btn btn-primary"
         - else
-          .collapse.navbar-collapse{ style:' float:right; padding-right:3%' }
-            = link_to image_tag('myapnea/icons/facebook_icon.png', class: 'share-icons-animate', style: 'width:50px; height:50px; border-radius:100%;'), 'http://www.facebook.com/share.php?u=https://myapnea.org/'
-            = link_to image_tag('myapnea/icons/twitter_icon.png', class: 'share-icons-animate', style: 'width:50px; height:50px; border-radius:100%; '), 'http://ctt.ec/Qeg7f'
-            = link_to image_tag('myapnea/icons/gplus_icon.png', class: 'share-icons-animate', style: 'width:50px; height:50px; border-radius:100%;'), 'https://plusone.google.com/_/+1/confirm?hl=en&url=http%3A%2F%2F%20https://myapnea.org/'
+          .collapse.navbar-collapse.centered-text
+            = link_to image_tag('myapnea/icons/facebook_icon.png', class: 'share-icons-animate share-icons-md'), "http://www.facebook.com/share.php?u=#{ENV['website_url']}"
+            = link_to image_tag('myapnea/icons/twitter_icon.png', class: 'share-icons-animate share-icons-md'), 'http://ctt.ec/Qeg7f'
+            = link_to image_tag('myapnea/icons/gplus_icon.png', class: 'share-icons-animate share-icons-md'), "https://plusone.google.com/_/+1/confirm?hl=en&url=#{ENV['website_url']}"
             %ul.nav.navbar-nav#testnavbar{ style:'color:white; position:absolute; right:20%; bottom:0;' }
               %li.active
                 = link_to 'Home', root_path
@@ -83,7 +96,6 @@
                 .col-lg-6.col-md-6.col-md-offset-0.col-sm-8.col-sm-offset-2#user-profile-header-text{ style:'padding:0;' }
                   %h4.user-name.text-white
                     = current_user.name
-                    / Michael Rueschman
               -else
                 .col-sm-12
                   .centered-text

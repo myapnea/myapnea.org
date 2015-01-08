@@ -3,6 +3,15 @@
   box-shadow: 0px 3px 5px #888;
 }
 
+.share-icons-md {
+  width:20%;
+  max-height:50px;
+  max-width: 50px;
+  border-radius:100%;
+  margin-left: 2%;
+  margin-right: 2%;
+}
+
 .share-icons-animate {
   position:relative;
 }
@@ -15,4 +24,11 @@ a.open-tab {
 a.open-tab:hover {
   color: #1765bc;
   cursor: pointer;
+}
+
+@media (max-width: 992px) {
+  .share-icons-md {
+    position:relative;
+    top:10px;
+  }
 }
