@@ -22,7 +22,7 @@
     = javascript_include_tag "cleantheme", "data-turbolinks-track" => true
     = javascript_tag "var root_url='#{request.script_name + '/'}';var auth_token='#{form_authenticity_token}';"
     = javascript_include_tag "//code.jquery.com/ui/1.11.2/jquery-ui.min.js"
-  %body{ data: { object: 'no-user-voice' } }
+  %body{ class: "#{true ? 'night-mode' : 'day-mode'}", data: { object: 'no-user-voice' } }
     // Fixed div's for layout of right container
     %div{ style: 'background-color:black; width:100%; height:81px; position:absolute; top:0; z-index:1000;'}
     %nav.navbar.navbar-fixed-top{role:'navigation'}
@@ -96,6 +96,9 @@
                 .col-lg-6.col-md-6.col-md-offset-0.col-sm-8.col-sm-offset-2#user-profile-header-text{ style:'padding:0;' }
                   %h4.user-name.text-white
                     = current_user.name
+                  = link_to account_path, style: 'color:white; color:rgba(255,255,255,.8); text-decoration:none;' do
+                    %span.glyphicon.glyphicon-cog
+                    Settings
               -else
                 .col-sm-12
                   .centered-text
@@ -106,11 +109,11 @@
               .col-sm-11.col-sm-offset-1#user-profile-container{style:'margin-top:30px; margin-right:0; padding-right:0; margin-bottom:20px;'}
                 %ul.list-group
                   %li.list-group-item.hover-slide-left.list-shrink
-                    = link_to 'Forums', forem_path, style: 'color:white; color: rgba(255,255,255,.8); text-decoration: none; '
+                    = link_to 'Forums', forem_path, style: 'color:white; color: rgba(255,255,255,.8); text-decoration: none;'
                   %li.list-group-item.hover-slide-left.list-shrink
                     = link_to 'Research Surveys', surveys_path,  style: 'color:white; color: rgba(255,255,255,.8); text-decoration: none;'
                   %li.list-group-item.hover-slide-left.list-shrink
-                    = link_to 'Rate the Research', research_topics_path,  style: 'color:white; color: rgba(255,255,255,.8); text-decoration: none;'
+                    = link_to 'Rank the Research', research_topics_path,  style: 'color:white; color: rgba(255,255,255,.8); text-decoration: none;'
             #container-right-scroll
               .col-sm-12.reset-layout.hidden-sm#recent-news-container{ style: '' }
                 %ul.list-group#recent-news{ style: 'margin-bottom:0px; padding-bottom:0px;' }

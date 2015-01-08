@@ -80,7 +80,7 @@
       = f.submit "Save Changes", class: 'btn btn-primary pull-right'
 .col-xs-10.col-xs-offset-1.panel
   .panel-heading
-    %h4.f300 Password
+    %h4.f300 Change Password
   .panel-body
     = form_for current_user, url: change_password_path do |f|
       .form-group
@@ -89,7 +89,7 @@
       .form-group
         = f.label :password, class: 'sr-only'
         = f.password_field :password, class: 'form-control input-lg', placeholder: "New Password"
-      = f.submit "Change my password", class: 'btn btn-primary pull-right'
+      = f.submit "Change My Password", class: 'btn btn-primary pull-right'
 .col-xs-5.col-xs-offset-1.panel
   .panel-heading
     %h4.f300 Member Stats
@@ -118,8 +118,9 @@
     %h4.f300 Leave Research Study
   .panel-body
     %p="You may choose to leave the research study at any time. We will no longer collect any information from you and we will stop all communication. However, as stated in the informed consent, the information that you have already provided to #{ENV['pprn_title']} will remain within the study results."
-    = link_to 'View Consent', consent_path, class: 'btn btn-primary btn-block'
-    = link_to 'Leave Research Study', consent_path(consent_revoked: true), method: :post, class: 'btn btn-warning btn-block'
+    = link_to 'View Consent', stealth_consent_path, class: 'btn btn-primary', style: 'width: 49%; margin:.5%; float:left;'
+    = link_to 'View Privacy Policy', stealth_privacy_path, class: 'btn btn-primary', style: 'width: 49%; margin:.5%; float:left;'
+    = link_to 'Leave Research Study', consent_path(consent_revoked: true), method: :post, class: 'btn btn-warning', style: 'width: 99%; margin: .5%; float:left;'
 
 
   / .panel.panel-default
