@@ -42,7 +42,4 @@ Rails.application.configure do
 
   # Set the relative root, if it exists
   config.action_controller.relative_url_root  = URI.parse(ENV['website_url']).path rescue nil
-
-  config.middleware.delete "ActiveRecord::QueryCache"
-
 end

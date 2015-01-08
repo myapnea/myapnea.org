@@ -96,9 +96,6 @@ namespace :surveys do
         puts("Creating edge #{i+1} of #{yaml_data.length} between #{q1.id} and #{q2.id}")
         raise StandardError, qe.errors.full_messages unless qe.save
       end
-
-      QuestionFlow.all.each {|qf| qf.reset_paths }
-
     end
 
   end
