@@ -9,10 +9,6 @@
 // @import "myapnea/bootstrap-custom";
 
 
-// @import "welcome";
-
-
-
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
@@ -23,7 +19,9 @@
 @import "speech-bubbles";
 @import "share-icons";
 
+body, html { height: 100%; }
 
+.height100 { height: 100%; }
 
 // Clean theme document
 /* DOCUMENT LAYOUT */
@@ -32,7 +30,9 @@ body {
   margin:0px;
   padding:0px;
   padding-top:81px;
-  // proof for when footer goes awry
+}
+
+body.day-mode {
   background: -moz-linear-gradient(top, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 44%, rgba(0,0,0,0.63) 65%, rgba(255,255,255,0.54) 70%, rgba(255,255,255,0) 100%); /* FF3.6+ */
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,1)), color-stop(44%,rgba(0,0,0,1)), color-stop(65%,rgba(0,0,0,0.63)), color-stop(70%,rgba(255,255,255,0.54)), color-stop(100%,rgba(255,255,255,0))); /* Chrome,Safari4+ */
   background: -webkit-linear-gradient(top, rgba(0,0,0,1) 0%,rgba(0,0,0,1) 44%,rgba(0,0,0,0.63) 65%,rgba(255,255,255,0.54) 70%,rgba(255,255,255,0) 100%); /* Chrome10+,Safari5.1+ */
@@ -40,6 +40,11 @@ body {
   background: -ms-linear-gradient(top, rgba(0,0,0,1) 0%,rgba(0,0,0,1) 44%,rgba(0,0,0,0.63) 65%,rgba(255,255,255,0.54) 70%,rgba(255,255,255,0) 100%); /* IE10+ */
   background: linear-gradient(to bottom, rgba(0,0,0,1) 0%,rgba(0,0,0,1) 44%,rgba(0,0,0,0.63) 65%,rgba(255,255,255,0.54) 70%,rgba(255,255,255,0) 100%); /* W3C */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#00ffffff',GradientType=0 ); /* IE6-9 */
+}
+
+body.night-mode {
+  opacity:.3;
+  background-color: orange;
 }
 
 nav {
@@ -115,7 +120,7 @@ nav {
   background-color:white;
   float:left;
   padding-top:10px;
-  width:80%;
+  width:100%;
   margin:0;
   z-index:2;
 }
@@ -143,8 +148,11 @@ nav {
 
 #container-right {
   width: 20%;
-  float:right;
+  // float:right;
   box-shadow: -3px 1px 5px #777;
+  float:none;
+  display:table-cell;
+  vertical-align:top;
 }
 
 #container-right-fixed:before {
@@ -310,5 +318,9 @@ nav {
     position:relative;
     left:-30px;
     font-size:18px;
+  }
+
+  .footer .col-xs-7 {
+    float:right;
   }
 }
