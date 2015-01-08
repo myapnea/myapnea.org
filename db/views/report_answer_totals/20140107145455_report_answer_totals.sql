@@ -1,3 +1,4 @@
+create or replace view report_answer_totals as
 select qf.id as question_flow_id, q.id as question_id, count(av_ao.id) as total_count
 from questions q
 

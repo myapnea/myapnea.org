@@ -1,3 +1,4 @@
+create or replace view report_answer_options as
 select qf.id as question_flow_id, q.id as question_id, q_ao.id as answer_option_id, q_ao.text_value_en as answer_option
 from questions q
 

@@ -1,3 +1,4 @@
+create or replace view report_answer_counts as
 select qf.id as question_flow_id, q.id as question_id, av_ao.id as answer_option_id, count(av_ao.text_value_en) as answer_count
 from questions q
 

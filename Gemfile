@@ -10,8 +10,6 @@ gem 'airbrake'
 gem 'rails', '4.2.0'
 # Use postgresql as the database for Active Record
 gem 'pg'
-# Schema Enhancements
-gem 'schema_plus'
 
 # User HAML for views
 gem 'haml'
