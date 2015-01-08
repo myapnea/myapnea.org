@@ -169,9 +169,11 @@ namespace :surveys do
 
           answer_session = AnswerSession.find_by(user_id: user.id, question_flow_id: question_flow.id)
 
-          question = answer_session.last_answer.next_question
+          if answer_session.started?
+            question = answer_session.last_answer.next_question
+          end
 
-          until question.present?
+          while question.present?
             new_answer = question.answers.where(answer_session_id: answer_session.id).first
             old_answer = question.answers.where(answer_session_id: old_answer_session.id).first
 

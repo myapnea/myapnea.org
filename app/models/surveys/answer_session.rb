@@ -260,7 +260,7 @@ class AnswerSession < ActiveRecord::Base
   end
 
   def percent_completed
-    completed_path_length.to_f / total_path_length.to_f
+    (completed_path_length.to_f / total_path_length.to_f) * 100.0
   end
 
 
