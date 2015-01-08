@@ -55,7 +55,7 @@
             Resume
             &nbsp;
             .fa.fa-arrow-right
-          = render partial: 'surveys/partials/session_progress', locals: {stats: survey.completion_stats(current_user), question_flow: survey, answer: nil}
+          = render partial: 'surveys/partials/session_progress', locals: {answer_session: survey.most_recent_answer_session(current_user), answer: nil}
     - current_user.unstarted_surveys.each do |survey|
       = link_to start_or_resume_survey(survey), class: 'list-group-item' do
         %h3
@@ -67,9 +67,7 @@
         %p Survey not yet started.
         %p
           %strong
-            Estimated time commitment:
-            = survey.total_time.ceil
-            minutes for
+            Estimated survey length:
             = survey.all_questions.length
             questions.
           //= link_to "Complete Survey", start_or_resume_survey(survey), class: "btn btn-success btn-sm"

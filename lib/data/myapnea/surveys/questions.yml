@@ -1108,10 +1108,10 @@
   - 30
 
 - id: 578
-  text_en: What is your date of birth?
+  text_en: What is your date of birth, in the mm/dd/yyyy format?
   time_estimate: .5
   answer_template_ids:
-  - 3
+  - 1
 
 - id: 579
   text_en: |

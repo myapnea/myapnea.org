@@ -1,24 +1,31 @@
 %p
+  - completed_path_length = answer_session.path_length_to_answer(answer)
+  - remaining_path_length = answer_session.remaining_path_length(answer)
+
+  - total_path_length = completed_path_length + remaining_path_length
+  - percent_completed = (completed_path_length.to_f / total_path_length) * 100.0
+
   - if answer.present?
     - if answer.question.part_of_group?
-      - from = answer_session.path_until_answer(answer).length
-      - to = from + answer.question.group.questions.length - 1
       You're currently working on questions
-      = "#{from} to #{to}"
+      = "#{completed_path_length} to #{completed_path_length + answer.question.group.questions.length - 1}"
     - else
       You're currently working on question
-      = answer_session.path_until_answer(answer).length
+      = completed_path_length
     of
-    = stats[:total_questions]
+    = total_path_length
     \.
   - else
     You've completed
-    = stats[:completed_questions]
+    = completed_path_length
     of
-    = stats[:total_questions]
+    = total_path_length
     questions.
 .progress
-  .progress-bar.progress-bar-info{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => stats[:percent_completed], :role => "progressbar", :style => "width: #{stats[:percent_completed]}%"}
+  .progress-bar.progress-bar-info{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => percent_completed, :role => "progressbar", :style => "width: #{percent_completed}%"}
     %span.sr-only
-      = stats[:percent_completed]
+      = percent_completed
       \% Complete
+
+
+

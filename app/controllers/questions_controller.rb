@@ -9,8 +9,9 @@ class QuestionsController < ApplicationController
 
 
   def frequencies
-    @question = Question.find(params[:question_id])
-    @answer_session = AnswerSession.find(params[:answer_session_id])
+    question = Question.find(params[:question_id])
+    @user_answer = question.user_answer(@answer_session)
+    @answer_frequencies = question.answer_frequencies
   end
 
   def typeahead

@@ -8,10 +8,21 @@
 - **General Changes**
   - Changed image sizes to speed up loading on mobile browsers
 
-## 3.2.0
+## 3.2.1 (January 8, 2015)
 
 ### Bug Fixes
-- Fixed progression bug in the About Me survey
+- Fixed report view bug for reports with no answers
+- Removed dependency on schema_plus gem
+
+## 3.2.0 (January 8, 2015)
+
+### Enhancements
+- **Survey Changes**
+  - Improved the performance and speed of surveys and survey reports
+
+### Bug Fixes
+- Fixed a bug that prevented users from progressing past question 12 in the About Me survey
+- Fixed a bug preventing users from entering a date using older browsers in the About Me survey
 
 ## 3.1.0 (January 2, 2015)
 

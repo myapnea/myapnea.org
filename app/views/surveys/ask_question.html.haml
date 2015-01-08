@@ -3,7 +3,7 @@
     .panel.panel-default
       .panel-heading
         = render partial: 'surveys/partials/header', locals: {question_flow: @answer_session.question_flow}
-        = render partial: 'surveys/partials/session_progress', locals: {stats: @answer_session.calculate_status_stats(@answer), answer: @answer, answer_session: @answer_session }
+        = render partial: 'surveys/partials/session_progress', locals: {answer: @answer, answer_session: @answer_session }
         = link_to 'Previous Question', previous_question_path(@answer), class: 'btn btn-default', tabindex: -1
         %button.btn.btn-primary.pull-right{:name => "direction", :type => "submit", :value => "next"} Next Question
         = hidden_field_tag :answer_session_id, @answer_session.id
