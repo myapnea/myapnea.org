@@ -107,13 +107,19 @@ namespace :surveys do
   task :update => :environment do
     Rake::Task["surveys:update_questions"].invoke
     Rake::Task["surveys:update_question_edges"].invoke
-    QuestionFlow.refresh_all_question_flows
+    Rake::Task["surveys:refresh"].invoke
   end
 
   desc "Updates questions and question edges."
   task :create => :environment do
     Rake::Task["surveys:setup_db"].invoke
     Rake::Task["surveys:update"].invoke
+    Rake::Task["surveys:refresh"].invoke
+
+  end
+
+  desc "Refresh Precalculated data"
+  task :refresh => :environment do
     QuestionFlow.refresh_all_question_flows
   end
 
@@ -179,11 +185,9 @@ namespace :surveys do
                 new_answer = answer_session.process_answer(question, {})
               end
             end
-            
+
             question = new_answer.next_question
           end
-
-        end
       end
     end
 
