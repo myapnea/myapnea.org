@@ -169,7 +169,7 @@ namespace :surveys do
 
           answer_session = AnswerSession.find_by(user_id: user.id, question_flow_id: question_flow.id)
 
-          if answer_session.started?
+          if answer_session and answer_session.started?
             question = answer_session.last_answer.next_question
           end
 
