@@ -1,7 +1,11 @@
 ## 3.2.0
 
+
 ### Bug Fixes
 - Fixed progression bug in the About Me survey
+
+### Enhancements
+- Survey performance optimizations
 
 ## 3.1.0 (January 2, 2015)
 
