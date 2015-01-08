@@ -1,11 +1,12 @@
 ## 3.2.0
 
+### Enhancements
+- **Survey Changes**
+  - Improved the performance and speed of surveys and survey reports
 
 ### Bug Fixes
-- Fixed progression bug in the About Me survey
-
-### Enhancements
-- Survey performance optimizations
+- Fixed a bug that prevented users from progressing past question 12 in the About Me survey
+- Fixed a bug preventing users from entering a date using older browsers in the About Me survey
 
 ## 3.1.0 (January 2, 2015)
 
