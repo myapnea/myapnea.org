@@ -1,4 +1,4 @@
-## 3.2.0
+## 3.2.0 (January 8, 2015)
 
 ### Enhancements
 - **Survey Changes**
