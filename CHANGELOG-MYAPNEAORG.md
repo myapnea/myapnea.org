@@ -1,4 +1,4 @@
-## 3.2.1
+## 3.2.1 (January 8, 2015)
 
 ### Bug Fixes
 - Fixed report view bug for reports with no answers
