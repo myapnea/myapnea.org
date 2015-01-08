@@ -1,7 +1,8 @@
 ## 3.2.1
+
 ### Bug Fixes
-- Fixed report view bug for reports with no answers.
-- Removed dependency on schema_plus gem.
+- Fixed report view bug for reports with no answers
+- Removed dependency on schema_plus gem
 
 ## 3.2.0 (January 8, 2015)
 
