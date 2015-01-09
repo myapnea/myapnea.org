@@ -60,3 +60,13 @@ six:
   deleted: false
   last_moderated_by: moderator_1
   last_moderated_at: 2015-01-09 12:40:50
+
+# on_topic_two:
+#   topic: two
+#   description: On Topic Two
+#   user: user_1
+#   status: approved
+#   hidden: false
+#   deleted: false
+#   last_moderated_by: moderator_1
+#   last_moderated_at: 2015-01-09 12:40:50

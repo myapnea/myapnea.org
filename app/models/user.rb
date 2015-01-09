@@ -79,11 +79,15 @@ class User < ActiveRecord::Base
     end
   end
 
+  def forum_name
+    self.forem_name
+  end
+
   def forem_name
     if social_profile
       social_profile.public_nickname
     else
-      "Anonymous User #{Digest::MD5.hexdigest(email.to_s)[0,5]}"
+      SocialProfile.get_anonymous_name(email)
     end
   end
 
