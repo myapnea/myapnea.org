@@ -18,10 +18,9 @@
 @import "panels";
 @import "speech-bubbles";
 @import "share-icons";
+@import "responsive";
 
 body, html { height: 100%; }
-
-.height100 { height: 100%; }
 
 // Clean theme document
 /* DOCUMENT LAYOUT */
@@ -33,17 +32,19 @@ body {
 }
 
 body.day-mode {
-  background: -moz-linear-gradient(top, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 44%, rgba(0,0,0,0.63) 65%, rgba(255,255,255,0.54) 70%, rgba(255,255,255,0) 100%); /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,1)), color-stop(44%,rgba(0,0,0,1)), color-stop(65%,rgba(0,0,0,0.63)), color-stop(70%,rgba(255,255,255,0.54)), color-stop(100%,rgba(255,255,255,0))); /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(top, rgba(0,0,0,1) 0%,rgba(0,0,0,1) 44%,rgba(0,0,0,0.63) 65%,rgba(255,255,255,0.54) 70%,rgba(255,255,255,0) 100%); /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(top, rgba(0,0,0,1) 0%,rgba(0,0,0,1) 44%,rgba(0,0,0,0.63) 65%,rgba(255,255,255,0.54) 70%,rgba(255,255,255,0) 100%); /* Opera 11.10+ */
-  background: -ms-linear-gradient(top, rgba(0,0,0,1) 0%,rgba(0,0,0,1) 44%,rgba(0,0,0,0.63) 65%,rgba(255,255,255,0.54) 70%,rgba(255,255,255,0) 100%); /* IE10+ */
-  background: linear-gradient(to bottom, rgba(0,0,0,1) 0%,rgba(0,0,0,1) 44%,rgba(0,0,0,0.63) 65%,rgba(255,255,255,0.54) 70%,rgba(255,255,255,0) 100%); /* W3C */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#00ffffff',GradientType=0 ); /* IE6-9 */
+  background-color: black;
 }
 
 body.night-mode {
-  opacity:.3;
+    /* IE 8 */
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=65)";
+  /* IE 5-7 */
+  filter: alpha(opacity=65);
+  /* Netscape */
+  -moz-opacity: 0.65;
+  /* Safari 1.x */
+  -khtml-opacity: 0.65;
+  opacity:.65;
   background-color: orange;
 }
 
@@ -148,7 +149,6 @@ nav {
 
 #container-right {
   width: 20%;
-  // float:right;
   box-shadow: -3px 1px 5px #777;
   float:none;
   display:table-cell;
@@ -236,16 +236,6 @@ nav {
   float:right;
 }
 
-#container-right .list-group-item.hover:hover {
-  position:relative;
-  top:-2px;
-  border-top:1px solid rgb(255,255,255);
-  border-top:1px solid rgba(255,255,255,.3);
-  box-shadow:1px 2px 5px rgb(255,255,255);
-  box-shadow:1px 2px 5px rgba(255,255,255,.4);
-  font-weight:400;
-}
-
 
 /* MAIN CONTENT */
 
@@ -293,13 +283,15 @@ nav {
 
 }
 @media (max-width: 768px) {
-  // put side navbar into an off-screen div
+
   #container-right {
-    display:none;
+    position:absolute;
+    left: 100%;
   }
 
   #container-left {
     width:100%;
+    position:relative;
   }
 
   .content-main-header {

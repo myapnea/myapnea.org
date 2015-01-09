@@ -22,23 +22,26 @@
     = javascript_include_tag "cleantheme", "data-turbolinks-track" => true
     = javascript_tag "var root_url='#{request.script_name + '/'}';var auth_token='#{form_authenticity_token}';"
     = javascript_include_tag "//code.jquery.com/ui/1.11.2/jquery-ui.min.js"
-  %body{ class: "#{false ? 'night-mode' : 'day-mode'}", data: { object: 'no-user-voice' } }
-    // Fixed div's for layout of right container
-    %div{ style: 'background-color:black; width:100%; height:81px; position:absolute; top:0; z-index:1000;'}
+  %body{ class: "#{params[:night] == '1' ? 'night-mode' : 'day-mode'}", data: { object: 'no-user-voice' } }
     %nav.navbar.navbar-fixed-top{role:'navigation'}
       .container-fluid
-        .navbar-header
-          = link_to image_tag('myapnea/MyApneaLogo_border_whitesub_300x80.png', width: "100%", style: "position:relative; top:-25px; left:0px;", id: "navbar-myapnea-logo"), root_path, class: "navbar-brand", style: "width:70%; line-height:100%; min-width:260px; max-width:260px;"
-          - if !current_user
-            = link_to "Login", new_user_session_path, class: "btn primary-blue-bcg text-white visible-xs float-right", id: "btn-login-phone"
-          - else
-            = link_to account_path do
-              .navbar-right.text-white.centered-text.visible-xs
-                %h4.f300#btn-welcome-phone
-                  Welcome,
-                  %br
-                  %span.lighterer-blue
-                    = current_user.first_name
+        / #slidemenu
+        = link_to image_tag('myapnea/MyApneaLogo_border_whitesub_300x80.png', width: "100%", style: "position:relative; top:-25px; left:0px;", id: "navbar-myapnea-logo"), root_path, class: "navbar-brand", style: "width:70%; line-height:100%; min-width:260px; max-width:260px;"
+        - if !current_user
+          = link_to "Login", new_user_session_path, class: "btn primary-blue-bcg text-white visible-xs float-right", id: "btn-login-phone"
+        - else
+          = link_to account_path do
+            .navbar-right.text-white.centered-text.visible-xs
+              .navbar-header.pull-right#slide-nav
+                / %h4.f300#btn-welcome-phone
+                /   Welcome,
+                /   %br
+                /   %span.lighterer-blue
+                /     = current_user.first_name
+                %a.navbar-toggle.pull-right
+                  %span.icon-bar
+                  %span.icon-bar
+                  %span.icon-bar
         - if (params[:action] == 'home' and !current_user) or params[:action] == 'stealth_providers' or params[:action] == 'stealth_provider1'
           .collapse.navbar-collapse.navbar-right.float-right
             = form_tag user_session_path, method: :post, class: "navbar-form" do
@@ -84,7 +87,7 @@
       - if (params[:action] == 'home' and !current_user) or params[:action] == 'stealth_providers' or params[:action] == 'stealth_provider1'
         = yield
       - else
-        .row{ style: 'display: table;' }
+        .row{ style: 'display: table; position:relative;' }
           #container-left{ style: 'float:none; display:table-cell; vertical-align:top' }
             = yield
           #container-right.primary-blue-bcg
