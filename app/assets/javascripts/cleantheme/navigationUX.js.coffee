@@ -26,51 +26,23 @@
   navbarToggle = false
   $('.navbar-toggle').click ->
     if navbarToggle
+      $('body, .navbar-toggle').toggleClass "slide-active"
       $('#container-right').animate left: "100%", 150
       $('#container-left').animate right: "0%", 150
+      $('.navbar').animate right: "0%", 150
+      $('.navbar-brand').animate left: "0px", 150, ->
+        $('.navbar-brand, nav').toggleClass "slide-active"
+        return
       navbarToggle = false
     else
+      $('body, .navbar-toggle, nav, .navbar-brand').toggleClass "slide-active"
       $('#container-right').animate left: "40%", width: "60%", 150
       $('#container-left').animate right: "65%", 150
+      $('.navbar-brand').animate left: "-400px", 150
+      $('.navbar').animate right: "60%", 150
       navbarToggle = true
+    return
 
   # $(window).resize ->
   #   if $(window).width > 767 and $(".navbar-toggle") is ":hidden"
   #     $(selected).removeClass "slide-active"
-
-  # # Mobile navigation
-  # $("#slide-nav.navbar-inverse").after ->
-  #   $("<div class='inverse' id='navbar-height-col'></div>")
-  #   return
-
-  # $("#slide-nav.navbar-default").after ->
-  #   $("<div id='navbar-height-col'></div>")
-  #   return
-
-  # toggler = ".navbar-toggle"
-  # pageWrapper = "#page-content"
-  # navigationWrapper = ".navbar-header"
-  # menuWidth = "100%"
-  # slideWidth = "80%"
-  # menuNeg = "-100%"
-  # slideNeg = "-80%"
-
-  # $("#slide-nav").click ->
-  #   console.log "clicked!"
-  #   selected = $(this).hasClass("slide-active")
-  #   console.log selected
-
-  #   $("#slidemenu").filter(':not(:animated)').animate left: selected ? menuNeg : "0px"
-  #   $("#navbar-height-col").filter(':not(:animated)').animate  left: selected ? slideNeg : "0px"
-  #   $(pageWrapper).stop().animate left: selected ? "0px" : slideWidth
-  #   $(navigationWrapper).filter(':not(:animated)').animate left: selected ? "0px" : slideWidth
-
-  #   $(this).toggleClass "slide-active", !selected
-  #   $("#slidemenu").toggleClass "slide-active"
-
-  #   $("#page-content, body, .navbar-toggle").toggleClass "slide-active"
-  #   return
-  # #   return
-
-  # # selected = "slide-menu, #page-content, body, .navbar, .navbar-header"
-

@@ -2,11 +2,6 @@ body.slide-active {
   overflow-x: hidden;
 }
 
-#page-content {
-  position:relative;
-  left:0;
-}
-
 #slide-nav .navbar-toggle {
     cursor: pointer;
     position: relative;
@@ -22,105 +17,82 @@ body.slide-active {
     background: transparent;
 }
 
-.icon-bar {
+#slide-nav .navbar-toggle .icon-bar {
     width: 100%;
     display: block;
-    height: 5px;
+    height: 3px;
     background-color: white;
 }
 
 #slide-nav .navbar-toggle.slide-active .icon-bar {
-    background: orange
+  background-color: orange;
 }
 
 .navbar-header {
     position: relative
 }
 
-.navbar.navbar-fixed-top.slide-active {
-    position: relative
+nav.slide-active {
+  padding-top: 25px;
+  padding-bottom:15px;
 }
 
-@media (max-width:767px) {
-  #slide-nav .container {
-      margin: 0!important;
-      padding: 0!important;
-      height:100%;
-  }
-  #slide-nav .navbar-header {
-      margin: 0 auto;
-      padding: 0 15px;
-  }
-  #slide-nav .navbar.slide-active {
-      position: absolute;
-      width: 80%;
-      top: -1px;
-      z-index: 1000;
-  }
-  #slide-nav #slidemenu {
-      background: #f7f7f7;
-      left: -100%;
-      width: 80%;
-      min-width: 0;
-      position: absolute;
-      padding-left: 0;
-      z-index: 2;
-      top: -8px;
-      margin: 0;
-  }
-  #slide-nav #slidemenu .navbar-nav {
-      min-width: 0;
-      width: 100%;
-      margin: 0;
-  }
-  #slide-nav #slidemenu .navbar-nav .dropdown-menu li a {
-      min-width: 0;
-      width: 80%;
-      white-space: normal;
-  }
-  #slide-nav {
-      border-top: 0
-  }
-  #slide-nav.navbar-inverse #slidemenu {
-      background: #333
-  }
-  /* this is behind the navigation but the navigation is not inside it so that the navigation is accessible and scrolls*/
-  #navbar-height-col {
-      position: fixed;
-      top: 0;
-      height: 100%;
-      bottom:0;
-      width: 80%;
-      left: -80%;
-      background: #f7f7f7;
-  }
-  #navbar-height-col.inverse {
-      background: #333;
-      z-index: 1;
-      border: 0;
-  }
-  #slide-nav .navbar-form {
-      width: 100%;
-      margin: 8px 0;
-      text-align: center;
-      overflow: hidden;
-      /*fast clearfixer*/
-  }
-  #slide-nav .navbar-form .form-control {
-      text-align: center
-  }
-  #slide-nav .navbar-form .btn {
-      width: 100%
-  }
+.navbar-brand.slide-active {
+  position:absolute;
 }
-@media (min-width:768px) {
-  #page-content {
-      left: 0!important
+
+
+@media (max-width: 992px) {
+  #user-profile-header-picture {
+    text-align:center;
+    padding-left:0;
+    padding-right:0;
   }
-  .navbar.navbar-fixed-top.slide-active {
-      position: fixed
+  .user-picture {
+    float: none;
   }
-  .navbar-header {
-      left: 0!important
+  .user-name {
+    text-align:center;
+  }
+  #recent-news-container ul li p {
+    margin:0px 2px;
+  }
+
+}
+@media (max-width: 768px) {
+
+  #container-right {
+    position:absolute;
+    left: 100%;
+  }
+
+  #container-left {
+    width:100%;
+    position:relative;
+  }
+
+  .navbar {
+  }
+
+  .content-main-header {
+    max-height: 100px;
+  }
+
+  .footer {
+    width:100%;
+    margin:0px;
+  }
+
+  .footer ul {
+    margin-top:50px;
+  }
+  .footer ul li {
+    position:relative;
+    left:-30px;
+    font-size:18px;
+  }
+
+  .footer .col-xs-7 {
+    float:right;
   }
 }
