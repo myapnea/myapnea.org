@@ -22,23 +22,27 @@
     = javascript_include_tag "cleantheme", "data-turbolinks-track" => true
     = javascript_tag "var root_url='#{request.script_name + '/'}';var auth_token='#{form_authenticity_token}';"
     = javascript_include_tag "//code.jquery.com/ui/1.11.2/jquery-ui.min.js"
-  %body{ data: { object: 'no-user-voice' } }
-    // Fixed div's for layout of right container
-    %div{ style: 'background-color:black; width:100%; height:81px; position:absolute; top:0; z-index:1000;'}
+  %body{ class: "#{params[:night] == '1' ? 'night-mode' : 'day-mode'}", data: { object: 'no-user-voice' } }
+    %div#social-backdrop{ style: 'background-color:black; width:100%; height:81px; position:absolute; top:0; z-index:1000;' }
     %nav.navbar.navbar-fixed-top{role:'navigation'}
       .container-fluid
-        .navbar-header
-          = link_to image_tag('myapnea/MyApneaLogo_border_whitesub_300x80.png', width: "100%", style: "position:relative; top:-25px; left:0px;", id: "navbar-myapnea-logo"), root_path, class: "navbar-brand", style: "width:70%; line-height:100%; min-width:260px; max-width:260px;"
-          - if !current_user
-            = link_to "Login", new_user_session_path, class: "btn primary-blue-bcg text-white visible-xs float-right", id: "btn-login-phone"
-          - else
-            = link_to account_path do
-              .navbar-right.text-white.centered-text.visible-xs
-                %h4.f300#btn-welcome-phone
-                  Welcome,
-                  %br
-                  %span.lighterer-blue
-                    = current_user.first_name
+        / #slidemenu
+        = link_to image_tag('myapnea/MyApneaLogo_border_whitesub_300x80.png', width: "100%", style: "position:relative; top:-25px; left:0px;", id: "navbar-myapnea-logo"), root_path, class: "navbar-brand", style: "width:70%; line-height:100%; min-width:260px; max-width:260px;"
+        - if !current_user
+          = link_to "Login", new_user_session_path, class: "btn primary-blue-bcg text-white visible-xs float-right", id: "btn-login-phone"
+        - else
+          = link_to account_path do
+            .navbar-right.text-white.centered-text.visible-xs
+              .navbar-header.pull-right#slide-nav
+                / %h4.f300#btn-welcome-phone
+                /   Welcome,
+                /   %br
+                /   %span.lighterer-blue
+                /     = current_user.first_name
+                %a.navbar-toggle.pull-right
+                  %span.icon-bar
+                  %span.icon-bar
+                  %span.icon-bar
         - if (params[:action] == 'home' and !current_user) or params[:action] == 'stealth_providers' or params[:action] == 'stealth_provider1'
           .collapse.navbar-collapse.navbar-right.float-right
             = form_tag user_session_path, method: :post, class: "navbar-form" do
@@ -84,18 +88,21 @@
       - if (params[:action] == 'home' and !current_user) or params[:action] == 'stealth_providers' or params[:action] == 'stealth_provider1'
         = yield
       - else
-        .row
-          #container-left
+        .row{ style: 'display: table; position:relative;' }
+          #container-left{ style: 'float:none; display:table-cell; vertical-align:top' }
             = yield
           #container-right.primary-blue-bcg
             #container-right-fixed
               -if current_user
-                .col-lg-5.col-md-5.col-md-offset-0.col-sm-8.col-sm-offset-2#user-profile-header-picture{ style:'' }
+                .col-lg-5.col-md-5.col-md-offset-0.col-xs-8.col-xs-offset-2#user-profile-header-picture{ style:'' }
                   = link_to social_profile_path do
                     = image_tag current_user.photo_url, class: "user-picture", size: "65x65", style: 'width:65px; height:65px;'
                 .col-lg-6.col-md-6.col-md-offset-0.col-sm-8.col-sm-offset-2#user-profile-header-text{ style:'padding:0;' }
                   %h4.user-name.text-white
                     = current_user.name
+                  = link_to account_path, style: 'color:white; color:rgba(255,255,255,.8); text-decoration:none;' do
+                    %span.glyphicon.glyphicon-cog
+                    Settings
               -else
                 .col-sm-12
                   .centered-text
@@ -103,14 +110,14 @@
                       = text_field_tag 'user[email]', nil, placeholder: 'Email', class: "form-control"
                       = password_field_tag 'user[password]', nil, placeholder: 'Password', class: "form-control"
                       = submit_tag 'Login', class: "btn btn-warning ", style: 'width:70%'
-              .col-sm-11.col-sm-offset-1#user-profile-container{style:'margin-top:30px; margin-right:0; padding-right:0; margin-bottom:20px;'}
+              .col-xs-11.col-xs-offset-1#user-profile-container{style:'margin-top:30px; margin-right:0; padding-right:0; margin-bottom:20px;'}
                 %ul.list-group
                   %li.list-group-item.hover-slide-left.list-shrink
-                    = link_to 'Forums', forem_path, style: 'color:white; color: rgba(255,255,255,.8); text-decoration: none; '
+                    = link_to 'Forums', forem_path, style: 'color:white; color: rgba(255,255,255,.8); text-decoration: none;'
                   %li.list-group-item.hover-slide-left.list-shrink
                     = link_to 'Research Surveys', surveys_path,  style: 'color:white; color: rgba(255,255,255,.8); text-decoration: none;'
                   %li.list-group-item.hover-slide-left.list-shrink
-                    = link_to 'Rate the Research', research_topics_path,  style: 'color:white; color: rgba(255,255,255,.8); text-decoration: none;'
+                    = link_to 'Rank the Research', research_topics_path,  style: 'color:white; color: rgba(255,255,255,.8); text-decoration: none;'
             #container-right-scroll
               .col-sm-12.reset-layout.hidden-sm#recent-news-container{ style: '' }
                 %ul.list-group#recent-news{ style: 'margin-bottom:0px; padding-bottom:0px;' }
@@ -154,12 +161,12 @@
               = link_to 'Team', team_path
             %li
               = link_to'Privacy', privacy_path
-        .col-sm-3.col-xs-7.pull-right
+        .col-sm-3.col-xs-7
           = image_tag "myapnea/welcome/img-small/asaa_logo.jpg", class: 'partners-img img-responsive', id: 'partner-AASA'
-        .col-sm-3.col-xs-7.pull-right
-          = image_tag "myapnea/welcome/img-small/pcornet_logo.jpg", class: "partners-img img-responsive", id: "partner-PCORnet"
-        .col-sm-3.col-xs-7.pull-right
-          = image_tag "myapnea/welcome/img-small/bwh_logo.jpg", class: "partners-img img-responsive", id: "partner-BWH"
+        .col-sm-2.col-xs-7
+          = image_tag "myapnea/welcome/img-small/pcornet_logo_3x1.png", class: "partners-img img-responsive", id: "partner-PCORnet"
+        .col-sm-2.col-xs-7
+          = image_tag "myapnea/welcome/img-small/bwh-logo_3x1.png", class: "partners-img img-responsive", id: "partner-BWH"
     / Modal
     - if params[:action] == 'home' and !current_user
       .modal.fade#myModal{ tabindex:'-1', role:'dialog', aria: { labelledby: 'myModalLabel', hidden: 'true' } }

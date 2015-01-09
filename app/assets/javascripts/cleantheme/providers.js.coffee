@@ -6,7 +6,7 @@
     return
 
   $("#video-play").mouseenter ->
-    $(this).children("i").animate
+    $(this).children("i").filter(':not(:animated)').animate
       backgroundColor: "#FFA400"
       , 300
     return

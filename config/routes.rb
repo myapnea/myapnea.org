@@ -30,6 +30,9 @@ Rails.application.routes.draw do
   get 'stealth_provider1' => 'static#stealth_provider1'
   get 'stealth_share' => 'static#stealth_share'
   get 'stealth_account' => 'static#stealth_account'
+  get 'stealth_consent' => 'static#stealth_consent'
+  get 'stealth_privacy' => 'static#stealth_privacy'
+  get 'stealth_terms' => 'static#stealth_terms'
 
   get 'privacy_policy_document' => 'static#content', :page => "privacy_policy"
   get 'terms_of_service' => 'static#content', :page => "terms_of_service"

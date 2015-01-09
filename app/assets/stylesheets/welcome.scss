@@ -71,7 +71,7 @@
 
 #provider-banner {
   background-color:white;
-  background-image: none;
+  background-image:none;
   min-height:115px;
   border-top: 5px solid #FFA400;
   border-bottom:5px solid #5999DE;
@@ -81,7 +81,7 @@
 .fixed-under-nav {
   position:fixed;
   top:82px;
-  left:10px;
+  width:100%;
   z-index:100;
 }
 

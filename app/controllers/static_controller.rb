@@ -61,6 +61,20 @@ class StaticController < ApplicationController
     render layout: 'layouts/cleantheme'
   end
 
+  def stealth_consent
+    @pc = page_content('consent')
+    render layout: 'layouts/cleantheme'
+  end
+
+  def stealth_privacy
+    @pc = page_content('privacy_policy')
+    render layout: 'layouts/cleantheme'
+  end
+
+  def stealth_terms
+    render layout: 'layouts/cleantheme'
+  end
+
   def stealth
     render layout: 'layouts/cleantheme'
   end
