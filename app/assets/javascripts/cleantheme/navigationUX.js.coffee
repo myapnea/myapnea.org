@@ -12,29 +12,21 @@
   $(".share-icons-animate").mouseleave ->
     $(this).animate boxShadow: "0 3px 5px #888", top: "0px", 150
     return
-  # Navigation hover
-  # $("#testnavbar").children("li").mouseenter ->
-  #   $(this).animate borderBottomColor: "#5999de", 150
-  #   $(this).animate borderBottomWidth: "5px", 150
-  #   return
-  # $("#testnavbar").children("li").mouseleave ->
-  #   unless $(this).hasClass("active")
-  #     $(this).animate borderBottomColor: "rgba(36,50,100,0)", 300
-  #     $(this).animate borderBottomWidth: "-5px", 300
-  #   return
 
   navbarToggle = false
   $('.navbar-toggle').click ->
     if navbarToggle
       $('body, .navbar-toggle').toggleClass "slide-active"
-      $('#container-right').animate left: "100%", 150
+      $('#container-right').animate left: "100%", width: "20%", 150
       $('#container-left').animate right: "0%", 150
       $('.navbar').animate right: "0%", 150
       $('.navbar-brand').animate left: "0px", 150, ->
         $('.navbar-brand, nav').toggleClass "slide-active"
+        $('#social-backdrop').show()
         return
       navbarToggle = false
     else
+      $('#social-backdrop').hide()
       $('body, .navbar-toggle, nav, .navbar-brand').toggleClass "slide-active"
       $('#container-right').animate left: "40%", width: "60%", 150
       $('#container-left').animate right: "65%", 150
@@ -43,6 +35,17 @@
       navbarToggle = true
     return
 
-  # $(window).resize ->
-  #   if $(window).width > 767 and $(".navbar-toggle") is ":hidden"
-  #     $(selected).removeClass "slide-active"
+  $(window).resize ->
+    if $(window).width() < 767 and navbarToggle
+      console.log "Back to browswer!"
+      $('body, .navbar-toggle').toggleClass "slide-active"
+      $('#container-right').animate left: "100%", width: "20%", 150
+      $('#container-left').animate right: "0%", 150
+      $('.navbar').animate right: "0%", 150
+      $('.navbar-brand').animate left: "0px", 150, ->
+        $('.navbar-brand, nav').toggleClass "slide-active"
+        $('#social-backdrop').show()
+        return
+      navbarToggle = false
+    return
+

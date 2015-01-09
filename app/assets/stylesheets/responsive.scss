@@ -48,9 +48,6 @@ nav.slide-active {
     padding-left:0;
     padding-right:0;
   }
-  .user-picture {
-    float: none;
-  }
   .user-name {
     text-align:center;
   }
@@ -60,12 +57,17 @@ nav.slide-active {
 
 }
 @media (max-width: 768px) {
-
+  #user-profile-header-picture {
+    text-align:center;
+    float:none;
+  }
   #container-right {
     position:absolute;
     left: 100%;
   }
-
+  .user-picture {
+    float: none;
+  }
   #container-left {
     width:100%;
     position:relative;
