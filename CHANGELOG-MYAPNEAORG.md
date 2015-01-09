@@ -8,6 +8,11 @@
 - **General Changes**
   - Changed image sizes to speed up loading on mobile browsers
 
+### Refactoring
+- Internal `post` model changed to `notification`
+  - Old `Post` class has to do with **Site Notifications** and **Blog Posts**
+  - New `Post` class will be specific to **Forum Topics**
+
 ## 3.2.1 (January 8, 2015)
 
 ### Bug Fixes

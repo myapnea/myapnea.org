@@ -147,7 +147,7 @@ class AdminControllerTest < ActionController::TestCase
     get :notifications
 
     assert_response :success
-    assert_equal Post.where(post_type: "notification"), assigns(:posts)
+    assert_equal Notification.where(post_type: "notification"), assigns(:posts)
   end
 
   test "should not show notification administration to normal user" do
@@ -184,7 +184,7 @@ class AdminControllerTest < ActionController::TestCase
     get :blog
 
     assert_response :success
-    assert_equal Post.where(post_type: "blog"), assigns(:posts)
+    assert_equal Notification.where(post_type: "blog"), assigns(:posts)
 
   end
 

@@ -1,4 +1,4 @@
-class PostAuthorizer < ApplicationAuthorizer
+class NotificationAuthorizer < ApplicationAuthorizer
   def self.creatable_by?(user)
     user.has_role? :moderator
   end

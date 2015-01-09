@@ -10,7 +10,7 @@ class StaticController < ApplicationController
   def home
     if current_user
       @active_top_nav_link = :home
-      @posts = Post.blog_posts.viewable
+      @posts = Notification.blog_posts.viewable
       render layout: "main"
     else
       render 'landing', layout: 'layouts/cleantheme'

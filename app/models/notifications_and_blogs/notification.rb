@@ -1,4 +1,4 @@
-class Post < ActiveRecord::Base
+class Notification < ActiveRecord::Base
   include Authority::Abilities
 
   require 'acts-as-taggable-on'

@@ -5,7 +5,7 @@ class Vote < ActiveRecord::Base
   # Can only belong to ONE of the following
   belongs_to :question
   belongs_to :comment
-  belongs_to :post
+  belongs_to :notification
   belongs_to :research_topic
 
 

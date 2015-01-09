@@ -119,7 +119,7 @@ Rails.application.routes.draw do
   match 'vote', to: 'research_topics#index', via: :get, as: :vote_fake
 
   # Blog and Notification Posts
-  resources :posts, except: [:show, :index]
+  resources :notifications, except: [:show, :index]
 
   devise_for :user, controllers: { registrations: 'registrations' }
 

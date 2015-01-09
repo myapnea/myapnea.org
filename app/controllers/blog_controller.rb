@@ -9,7 +9,7 @@ class BlogController < ApplicationController
 
     @active_top_nav_link = "blog"
 
-    @posts = Post.all_posts(false)
+    @posts = Notification.all_posts(false)
 
 
 

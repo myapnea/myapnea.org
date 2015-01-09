@@ -9,8 +9,8 @@
 -#        .col-md-11
 -#          - if current_user
 -#            .btn-group.pull-right
--#              = link_to "Edit", edit_post_path(post), class: "btn btn-warning btn-xs" if current_user.can_update?(post)
--#              = link_to "Delete", main_app.post_path(post), method: :delete, class: "btn btn-danger btn-xs", data: { confirm: "Are you sure?" } if current_user.can_delete?(post)
+-#              = link_to "Edit", edit_notification_path(post), class: "btn btn-warning btn-xs" if current_user.can_update?(post)
+-#              = link_to "Delete", main_app.notification_path(post), method: :delete, class: "btn btn-danger btn-xs", data: { confirm: "Are you sure?" } if current_user.can_delete?(post)
 -#          =link_to main_app.  blog_path do
 -#            %h4.media-heading= post.title
 -#          %small
@@ -34,7 +34,7 @@
 -#    .panel-heading
 -#      %h3 Create new blog post
 -#    .panel-body
--#      = render partial: 'posts/form', locals: { post: new_blog_post }
+-#      = render partial: 'notifications/form', locals: { notification: new_blog_post }
 
 - posts.each do |post|
   - if post[:type] == :facebook

@@ -28,7 +28,7 @@ class User < ActiveRecord::Base
   has_many :answers
   has_many :votes
   has_one :social_profile
-  has_many :posts
+  has_many :notifications
   has_many :research_topics
   has_many :forums
   has_many :topics

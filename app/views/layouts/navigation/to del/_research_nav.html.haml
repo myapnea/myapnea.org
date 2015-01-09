@@ -13,7 +13,7 @@
 
 
 - if current_user
-  = render :partial => "shared/notifications", :locals => { notifications: Post.notifications.viewable, new_notification: Post.new(post_type: :notification) }
+  = render :partial => "shared/notifications", :locals => { notifications: Notification.notifications.viewable, new_notification: Notification.new(post_type: :notification) }
 
 
 -# Description of this section
