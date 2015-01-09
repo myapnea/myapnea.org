@@ -30,12 +30,17 @@ class User < ActiveRecord::Base
   has_one :social_profile
   has_many :notifications
   has_many :research_topics
-  has_many :forums
-  has_many :topics
+  has_many :forums, -> { where(deleted: false) }
+  has_many :topics, -> { where(deleted: false) }
+  has_many :posts, -> { where(deleted: false) }
 
   # Named Scopes
   scope :search_by_email, ->(terms) { where("LOWER(#{self.table_name}.email) LIKE ?", terms.to_s.downcase.gsub(/^| |$/, '%')) }
   scope :current, -> { where('1 = 1') }
+
+  def deleted?
+    false
+  end
 
   def all_topics
     if self.has_role? :moderator

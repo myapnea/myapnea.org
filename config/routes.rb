@@ -124,7 +124,9 @@ Rails.application.routes.draw do
   devise_for :user, controllers: { registrations: 'registrations' }
 
   resources :forums, path: 'newforums' do
-    resources :topics
+    resources :topics do
+      resources :posts
+    end
   end
 
   get 'forum', to: redirect("forums")

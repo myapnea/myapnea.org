@@ -20,6 +20,6 @@
             .col-xs-10
               %p.lead
                 - link_string = "&nbsp;" + link_to('more...'.html_safe, forem.forum_topic_post_path(post.forum, post.topic, post), class: 'content-link-primary small')
-                = strip_tags(strip_quote(post.text)).truncate(110 + link_string.size, separator: ' ', omission: link_string ).html_safe
+                = strip_tags(strip_quote(post.description)).truncate(110 + link_string.size, separator: ' ', omission: link_string ).html_safe
               %p
                 = post.created_at.strftime("%-d %B %Y, %-l:%M %p")

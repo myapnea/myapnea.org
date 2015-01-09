@@ -1,0 +1,62 @@
+# Read about fixtures at
+# http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  topic: one
+  description: Welcome to Topic One!
+  user: moderator_1
+  status: approved
+  hidden: false
+  deleted: false
+  last_moderated_by: moderator_1
+  last_moderated_at: 2015-01-09 12:40:50
+
+two:
+  topic: one
+  description: This is my reply to topic one
+  user: user_1
+  status: pending_review
+  hidden: false
+  deleted: false
+  last_moderated_by: moderator_1
+  last_moderated_at: 2015-01-09 12:40:50
+
+three:
+  topic: locked
+  description: I made the first comment on this topic.
+  user: user_1
+  status: pending_review
+  hidden: false
+  deleted: false
+  last_moderated_by: moderator_1
+  last_moderated_at: 2015-01-09 12:40:50
+
+four:
+  topic: locked
+  description: This is the last comment on the locked topic.
+  user: moderator_1
+  status: pending_review
+  hidden: false
+  deleted: false
+  last_moderated_by: moderator_1
+  last_moderated_at: 2015-01-09 12:40:50
+
+# banned:
+#   topic: one
+#   description: This comment got me banned.
+#   user: banned
+#   status: pending_review
+#   hidden: false
+#   deleted: false
+#   last_moderated_by: moderator_1
+#   last_moderated_at: 2015-01-09 12:40:50
+
+six:
+  topic: one
+  description: Removed the comment above.
+  user: user_1
+  status: pending_review
+  hidden: false
+  deleted: false
+  last_moderated_by: moderator_1
+  last_moderated_at: 2015-01-09 12:40:50

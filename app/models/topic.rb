@@ -1,6 +1,6 @@
 class Topic < ActiveRecord::Base
 
-  attr_accessor :description
+  attr_accessor :description, :migration_flag
 
   # Concerns
   # include Deletable
@@ -19,15 +19,12 @@ class Topic < ActiveRecord::Base
   validates_presence_of :name, :user_id, :forum_id
   validates_uniqueness_of :slug, scope: [ :deleted, :forum_id ], allow_blank: true
   validates_format_of :slug, with: /\A([a-z][a-z0-9\-]*)?\Z/
-  validates_presence_of :description, if: :new_record?
+  validates_presence_of :description, if: :requires_description?
 
   # Model Relationships
   belongs_to :user
   belongs_to :forum
-  # has_many :posts
-  def posts
-    Forem::Post.limit(10)
-  end
+  has_many :posts, -> { order(:created_at) }
 
   # Topic Methods
 
@@ -52,6 +49,10 @@ class Topic < ActiveRecord::Base
         self.save
       end
     end
+  end
+
+  def requires_description?
+    self.new_record? and self.migration_flag != '1'
   end
 
 end

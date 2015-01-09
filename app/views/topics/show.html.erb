@@ -1,3 +1,18 @@
+<% @title = @topic.name %>
+
+<div class="page-header">
+  <h1>
+    <%= link_to 'Forums', forums_path %> &middot;
+    <%= link_to @forum.name, @forum %> &middot;
+    <%= @title %>
+  </h1>
+</div>
+
+
+<%= render @topic.posts %>
+
+
+<% if false %>
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -45,5 +60,4 @@
   <%= @topic.slug %>
 </p>
 
-<%= link_to 'Edit', edit_forum_topic_path(@forum, @topic) %> |
-<%= link_to 'Back', @forum %>
+<% end %>
