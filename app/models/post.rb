@@ -1,11 +1,14 @@
 class Post < ActiveRecord::Base
 
+  STATUS = [['Approved', 'approved'], ['Pending Review', 'pending_review'], ['Marked as Spam', 'spam']]
+
   # Concerns
   # include Deletable
 
   # Callbacks
 
   # Named Scopes
+  scope :with_unlocked_topic, -> { where("posts.topic_id in (select topics.id from topics where topics.locked = ?)", false).references(:topics) }
   scope :current, -> { where( deleted: false ) }
   def destroy
     update_column :deleted, true
@@ -35,7 +38,7 @@ class Post < ActiveRecord::Base
   end
 
   def number
-    self.topic.comments.order(:id).pluck(:id).index(self.id) + 1 rescue 0
+    self.topic.posts.order(:id).pluck(:id).index(self.id) + 1 rescue 0
   end
 
   def pending_review?

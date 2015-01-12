@@ -32,6 +32,14 @@ class Topic < ActiveRecord::Base
     slug
   end
 
+  def get_or_create_subscription(current_user)
+    # Placeholder
+  end
+
+  def subscribed?(current_user)
+    true
+  end
+
   private
 
   def create_first_post
