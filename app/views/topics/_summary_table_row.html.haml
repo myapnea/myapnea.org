@@ -1,0 +1,15 @@
+- if post = topic.posts.last
+  %tr
+    %td
+      = image_tag topic.user.photo_url, size: '30x30', class: "img-thumbnail", style: "min-height:#{30+5}px;min-width:#{30+5}px;", title: topic.user.forum_name, data: { toggle: 'tooltip', container: 'body', placement: 'top' }
+    %td{ class: "#{topic.pinned? ? "f500" : "f300"}" }
+      %p
+        - if topic.pinned?
+          %span.glyphicon.glyphicon-star.primary-orange
+        = link_to topic.name, [topic.forum, topic]
+    %td.text-muted.hidden-xs{ class: "#{topic.pinned? ? "f500" : "f300"}" }
+      %div{ style: 'white-space:nowrap;overflow-x:hidden;max-width:150px' }
+        = image_tag post.user.photo_url, size: '18x18'
+        = post.user.forum_name
+    %td.text-muted.hidden-xs{ class: "#{topic.pinned? ? "f500" : "f300"}" }
+      = post.created_at.strftime("%-m/%-d/%Y at %-l:%M %p")

@@ -1,5 +1,7 @@
 class Topic < ActiveRecord::Base
 
+  STATUS = [['Approved', 'approved'], ['Pending Review', 'pending_review'], ['Marked as Spam', 'spam']]
+
   attr_accessor :description, :migration_flag
 
   # Concerns
@@ -30,6 +32,19 @@ class Topic < ActiveRecord::Base
 
   def to_param
     slug
+  end
+
+  def editable_by?(current_user)
+    # not self.locked? and not self.user.banned? and (self.user == current_user or current_user.has_role?(:moderator))
+    not self.locked? and (self.user == current_user or current_user.has_role?(:moderator))
+  end
+
+  def get_or_create_subscription(current_user)
+    # Placeholder
+  end
+
+  def subscribed?(current_user)
+    true
   end
 
   private

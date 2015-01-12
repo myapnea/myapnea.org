@@ -1,65 +1,7 @@
-.primary-orange-bcg.content-main-header
+.content-main-header
   %h1
     Welcome to the Forums!
-
-.small
-  = link_to 'New Forum', new_forum_path if current_user and current_user.has_role? :owner
-
+  = link_to 'New Forum', new_forum_path, class: 'btn btn-xs btn-primary' if current_user and current_user.has_role? :owner
 
 - @forums.order(:position).each do |forum|
-  .panel.panel-forums
-    .panel-heading.panel-title
-      %h2.f300
-        = link_to forum.name, forum
-    .panel-body
-      %table.table
-        %col{ width: "50px" }
-        %col
-        %col{ width: "150px" }
-        %col{ width: "170px" }
-        %thead
-          %tr
-            %th
-            %th
-            %th.hidden-xs
-              Last Post By
-            %th.hidden-xs
-              Time
-        %tbody
-          - forum.topics.limit(10).each do |topic|
-            - if post = topic.posts.last
-              %tr
-                %td
-                  = image_tag topic.user.photo_url, size: '30x30', class: "img-thumbnail", style: "min-height:#{30+5}px;min-width:#{30+5}px;", title: topic.user.forum_name, data: { toggle: 'tooltip', container: 'body', placement: 'top' }
-                %td{ class: "#{topic.pinned? ? "f500" : "f300"}" }
-                  %p
-                    - if topic.pinned?
-                      %span.glyphicon.glyphicon-star-empty.text-muted
-                    = link_to topic.name, [topic.forum, topic]
-                %td.text-muted.hidden-xs{ class: "#{topic.pinned? ? "f500" : "f300"}" }
-                  %div{style: 'white-space:nowrap;overflow-x:hidden;max-width:150px'}
-                    = image_tag post.user.photo_url, size: '18x18'
-                    = post.user.forum_name
-                %td.text-muted.hidden-xs{ class: "#{topic.pinned? ? "f500" : "f300"}" }
-                  = post.created_at.strftime("%-m/%-d/%Y at %-l:%M %p")
-
--if false
-  - @forums.each do |forum|
-    .panel.panel-forums.panel-hover
-      .panel-heading
-        %h3.panel-title{style:'color:rgba(0,0,0,.7)'}
-          = link_to forum.name, forum
-        %h4.lighter-blue
-          = forum.description
-      .panel-body{style:'padding:0 auto'}
-        - forum.topics.order(pinned: :desc).limit(4).each do |topic|
-          - if post = topic.posts.first
-            .row{style:'padding:15px; border-bottom:1px solid black; border-bottom:1px solid rgba(0,0,0,.2);'}
-              .col-xs-2
-                = image_tag topic.user.photo_url, size: '75x75', class: 'img-rounded img-responsive', style: 'margin:10px auto; display:block;', title: topic.user.forem_name, data: { toggle: 'tooltip', container: 'body', placement: 'top' } if topic.user and not topic.user.is_a?(Forem::NilUser)
-              .col-xs-10
-                %p.lead
-                  - link_string = "&nbsp;" + link_to('more...'.html_safe, forem.forum_topic_post_path(post.forum, post.topic, post), class: 'content-link-primary small')
-                  = strip_tags(strip_quote(post.description)).truncate(110 + link_string.size, separator: ' ', omission: link_string ).html_safe
-                %p
-                  = post.created_at.strftime("%-d %B %Y, %-l:%M %p")
+  = render partial: 'forums/show', locals: { forum: forum, topic_limit: 10 }

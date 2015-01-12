@@ -17,7 +17,7 @@ class TopicsController < ApplicationController
   layout 'layouts/cleantheme'
 
   def moderate
-    @topic.update(topic_moderator_params)
+    @topic.update(topic_params)
     redirect_to topics_path
   end
 
@@ -81,11 +81,11 @@ class TopicsController < ApplicationController
     end
 
     def topic_params
-      params.require(:topic).permit(:name, :description)
-    end
-
-    def topic_moderator_params
-      params.require(:topic).permit(:locked, :pinned, :state)
+      if current_user.has_role? :moderator
+        params.require(:topic).permit(:name, :description, :hidden, :locked, :pinned, :status)
+      else
+        params.require(:topic).permit(:name, :description)
+      end
     end
 
 end

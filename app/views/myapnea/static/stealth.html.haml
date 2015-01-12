@@ -1,16 +1,17 @@
-- if false
+.content-main-header
   %h1 Redesigned Links
 
-  %ul
-    %li= link_to "Steering Page", root_path + 'stealth_steering'
-    %li= link_to "Providers Page", root_path + 'stealth_providers'
-    %li= link_to "Sample Provider Page", root_path + 'stealth_provider1'
-    %li= link_to "Share Page", root_path + 'stealth_share'
-    %li= link_to "Community Page", root_path + 'stealth_map'
-    %li= link_to "Forums Page", root_path + 'stealth_forums'
-    %li= link_to "Survey Report Page", root_path + 'stealth_surveydisplay'
-    %li= link_to "Account Settings", root_path + 'stealth_account'
-    %li= link_to "Consent", root_path + 'stealth_consent'
-    %li= link_to "Privacy Policy", root_path + 'stealth_privacy'
-    %li= link_to "Terms and Conditions", root_path + 'stealth_terms'
-    / %li= link_to "", root_path + 'stealth_'
+.panel
+  .panel-body
+    %ul
+      %li= link_to "Team Page", team_path(beta: '1')
+      %li= link_to "Providers Page", root_path + 'stealth_providers'
+      %li= link_to "Sample Provider Page", root_path + 'stealth_provider1'
+      %li= link_to "Share Page", root_path + 'stealth_share'
+      %li= link_to "Community Page", root_path + 'stealth_map'
+      %li= link_to "Forums Page", root_path + 'stealth_forums'
+      %li= link_to "Survey Report Page", root_path + 'stealth_surveydisplay'
+      %li= link_to "Account Settings", root_path + 'stealth_account'
+      %li= link_to "Consent", root_path + 'stealth_consent'
+      %li= link_to "Privacy Policy", root_path + 'stealth_privacy'
+      %li= link_to "Terms and Conditions", root_path + 'stealth_terms'

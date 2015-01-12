@@ -1,7 +1,1 @@
-.col-sm-10.col-sm-offset-1.primary-orange-bcg.content-main-header
-  = image_tag 'myapnea/welcome/people-standing-hi.png', class: 'img-responsive hidden-sm hidden-xs', style: 'float:right; max-width:400px; padding:30px 0;'
-  %h1.content-main-title Our Community
-
-
-%div{ style: "height: 500px; min-width: 310px; max-width: 600px; margin: 0 auto", data: { object: 'draw-map', membership: SocialProfile.states_for_map.to_json } }
-
+= render partial: 'static/beta/community'

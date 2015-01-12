@@ -51,6 +51,14 @@ class User < ActiveRecord::Base
     end
   end
 
+  def all_posts
+    if self.has_role? :moderator
+      Post.current.with_unlocked_topic
+    else
+      self.posts.where(hidden: false).with_unlocked_topic
+    end
+  end
+
   def name
     "#{first_name} #{last_name}"
   end

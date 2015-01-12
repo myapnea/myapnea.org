@@ -5,24 +5,15 @@ class PostsControllerTest < ActionController::TestCase
   setup do
     @moderator = users(:moderator_1)
     @valid_user = users(:user_1)
-  end
-
-  def post
-    @post ||= posts :one
-  end
-
-  def topic
-    @topic ||= topics :one
-  end
-
-  def forum
-    @forum ||= forums :one
+    @post = posts(:one)
+    @topic = topics(:one)
+    @forum = forums(:one)
   end
 
   # test "should create post and not update existing subscription" do
   #   login(users(:user_2))
   #   assert_difference('Post.count') do
-  #     post :create, forum_id: forum, topic_id: topic, post: { description: "This is my contribution to the discussion." }
+  #     post :create, forum_id: @forum, topic_id: @topic, post: { description: "This is my contribution to the discussion." }
   #   end
 
   #   assert_equal "This is my contribution to the discussion.", assigns(:topic).posts.last.description
@@ -46,9 +37,8 @@ class PostsControllerTest < ActionController::TestCase
   # end
 
   test "should not create post as logged out user" do
-    skip
     assert_difference('Post.count', 0) do
-      post :create, forum_id: forum, topic_id: topic, post: { description: "I'm not logged in." }
+      post :create, forum_id: @forum, topic_id: @topic, post: { description: "I'm not logged in." }
     end
 
     assert_redirected_to new_user_session_path
@@ -67,20 +57,23 @@ class PostsControllerTest < ActionController::TestCase
   # end
 
   test "should not create post on locked topic" do
-    skip
     login(@valid_user)
     assert_difference('Post.count', 0) do
       post :create, forum_id: topics(:locked).forum, topic_id: topics(:locked), post: { description: "Adding a post to a locked topic." }
     end
 
-    assert_redirected_to topics_path
+    assert_not_nil assigns(:forum)
+    assert_not_nil assigns(:topic)
+    assert_nil assigns(:post)
+
+    assert_redirected_to forum_topic_path(assigns(:forum), assigns(:topic))
   end
 
   test "should get edit" do
-    skip
     login(@valid_user)
-    xhr :get, :edit, forum_id: forum, topic_id: topic, id: post, format: 'js'
+    xhr :get, :edit, forum_id: @forum, topic_id: @topic, id: @post, format: 'js'
 
+    assert_not_nil assigns(:forum)
     assert_not_nil assigns(:topic)
     assert_not_nil assigns(:post)
 
@@ -89,21 +82,21 @@ class PostsControllerTest < ActionController::TestCase
   end
 
   test "should not get edit for post on locked topic" do
-    skip
     login(@valid_user)
-    xhr :get, :edit, forum_id: forum, topic_id: topics(:locked), id: posts(:three), format: 'js'
+    xhr :get, :edit, forum_id: @forum, topic_id: topics(:locked), id: posts(:three), format: 'js'
 
-    assert_nil assigns(:topic)
+    assert_not_nil assigns(:forum)
+    assert_not_nil assigns(:topic)
     assert_nil assigns(:post)
 
     assert_response :success
   end
 
   test "should not get edit as another user" do
-    skip
     login(users(:user_2))
-    xhr :get, :edit, topic_id: @post.topic_id, id: @post, format: 'js'
+    xhr :get, :edit, forum_id: @forum, topic_id: @topic, id: @post, format: 'js'
 
+    assert_not_nil assigns(:forum)
     assert_not_nil assigns(:topic)
     assert_nil assigns(:post)
 
@@ -121,17 +114,17 @@ class PostsControllerTest < ActionController::TestCase
   # end
 
   test "should update post" do
-    skip
     login(@valid_user)
-    patch :update, topic_id: @post.topic_id, id: @post, post: { description: "Updated Description" }
+    patch :update, forum_id: @forum, topic_id: @topic, id: @post, post: { description: "Updated Description" }
 
+    assert_not_nil assigns(:forum)
     assert_not_nil assigns(:topic)
     assert_not_nil assigns(:post)
     assert_equal "Updated Description", assigns(:post).description
 
-    assert_equal true, assigns(:topic).subscribed?(users(:valid))
+    assert_equal true, assigns(:topic).subscribed?(@valid_user)
 
-    assert_redirected_to topic_path(assigns(:topic)) + "#c1"
+    assert_redirected_to forum_topic_path(assigns(:forum), assigns(:topic)) + "#c1"
   end
 
   # test "should update post but not reset subscription" do
@@ -148,14 +141,14 @@ class PostsControllerTest < ActionController::TestCase
   # end
 
   test "should not update post on locked topic" do
-    skip
     login(@valid_user)
-    patch :update, topic_id: topics(:locked), id: posts(:three), post: { description: "Updated Description on Locked" }
+    patch :update, forum_id: topics(:locked).forum, topic_id: topics(:locked), id: posts(:three), post: { description: "Updated Description on Locked" }
 
-    assert_nil assigns(:topic)
+    assert_not_nil assigns(:forum)
+    assert_not_nil assigns(:topic)
     assert_nil assigns(:post)
 
-    assert_redirected_to topics_path
+    assert_redirected_to forum_topic_path(assigns(:forum), assigns(:topic))
   end
 
   # test "should not update post as banned user" do
@@ -169,55 +162,63 @@ class PostsControllerTest < ActionController::TestCase
   # end
 
   test "should not update as another user" do
-    skip
     login(users(:user_2))
-    patch :update, topic_id: @post.topic_id, id: @post, post: { description: "Updated Description" }
+    patch :update, forum_id: @forum, topic_id: @topic, id: @post, post: { description: "Updated Description" }
 
+    assert_not_nil assigns(:forum)
     assert_not_nil assigns(:topic)
     assert_nil assigns(:post)
 
-    assert_redirected_to topics_path
+    assert_redirected_to forum_topic_path(assigns(:forum), assigns(:topic))
   end
 
-  test "should destroy post as system admin" do
-    skip
-    login(users(:admin))
+  test "should destroy post as moderator" do
+    login(users(:moderator_1))
     assert_difference('Post.current.count', -1) do
-      delete :destroy, topic_id: @post.topic, id: @post
+      delete :destroy, forum_id: @forum, topic_id: @topic, id: @post
     end
 
+    assert_not_nil assigns(:forum)
     assert_not_nil assigns(:topic)
+    assert_not_nil assigns(:post)
 
-    assert_redirected_to topic_path(assigns(:topic)) + "#c1"
+    assert_redirected_to forum_topic_path(assigns(:forum), assigns(:topic)) + "#c1"
   end
 
   test "should destroy post as post author" do
-    skip
     login(@valid_user)
     assert_difference('Post.current.count', -1) do
-      delete :destroy, topic_id: @post.topic, id: @post
+      delete :destroy, forum_id: @forum, topic_id: @topic, id: @post
     end
 
+    assert_not_nil assigns(:forum)
     assert_not_nil assigns(:topic)
+    assert_not_nil assigns(:post)
 
-    assert_redirected_to topic_path(assigns(:topic)) + "#c1"
+    assert_redirected_to forum_topic_path(assigns(:forum), assigns(:topic)) + "#c1"
   end
 
   test "should not destroy post as another user" do
-    skip
     login(users(:user_2))
     assert_difference('Post.current.count', 0) do
-      delete :destroy, topic_id: @post.topic, id: @post
+      delete :destroy, forum_id: @forum, topic_id: @topic, id: @post
     end
 
-    assert_redirected_to topics_path
+    assert_not_nil assigns(:forum)
+    assert_not_nil assigns(:topic)
+    assert_nil assigns(:post)
+
+    assert_redirected_to forum_topic_path(assigns(:forum), assigns(:topic))
   end
 
   test "should not destroy post as logged out user" do
-    skip
     assert_difference('Post.current.count', 0) do
-      delete :destroy, topic_id: @post.topic, id: @post
+      delete :destroy, forum_id: @forum, topic_id: @topic, id: @post
     end
+
+    assert_nil assigns(:forum)
+    assert_nil assigns(:topic)
+    assert_nil assigns(:post)
 
     assert_redirected_to new_user_session_path
   end

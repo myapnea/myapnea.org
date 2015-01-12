@@ -1,0 +1,61 @@
+- @title = @topic.name
+
+.content-main-header
+  %h1
+    = link_to 'Forums', forums_path
+    &middot;
+    = link_to @forum.name, @forum
+    &middot;
+    = @title
+  - if current_user and @topic.editable_by?(current_user)
+    = link_to 'Edit Topic', edit_forum_topic_path(@forum, @topic), class: 'btn btn-xs btn-primary'
+
+= render @topic.posts
+
+- if false
+  %p{ id: "notice" }= notice
+
+  %p
+    %strong
+      Forum:
+      = @topic.forum_id
+
+  %p
+    %strong
+      User:
+      = @topic.user_id
+
+  %p
+    %strong
+      Name:
+      = @topic.name
+
+  %p
+    %strong
+      Locked:
+      = @topic.locked
+
+  %p
+    %strong
+      Pinned:
+      = @topic.pinned
+
+  %p
+    %strong
+      Last post at:
+      = @topic.last_post_at
+
+  %p
+    %strong
+      State:
+      = @topic.state
+
+  %p
+    %strong
+      Views count:
+      = @topic.views_count
+
+  %p
+    %strong
+      Slug:
+      = @topic.slug

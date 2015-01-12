@@ -1,0 +1,44 @@
+- @title = @post.new_record? ? 'New Post' : 'Edit Post'
+
+.content-main-header
+  %h1
+    = link_to 'Forums', forums_path
+    &middot;
+    = link_to @forum.name, @forum
+    &middot;
+    = link_to @topic.name, [@forum, @topic]
+    &middot;
+    = @title
+
+= form_for [@forum, @topic, @post], html: { class: 'form-horizontal' } do |f|
+  - if @post.errors.any?
+    #error_explanation.bs-callout.bs-callout-danger
+      %h4
+        = pluralize(@post.errors.count, "error")
+        prohibited this post from being saved
+      %ul
+        - @post.errors.full_messages.each do |msg|
+          %li= msg
+
+  .form-group
+    = f.label :description, nil, class: 'col-md-2 control-label'
+    .col-md-10
+      = f.text_area :description, rows: 14, class: 'form-control'
+
+  - if current_user.has_role? :moderator
+    .form-group
+      = f.label :status, nil, class: 'col-md-2 control-label'
+      .col-md-10
+        = f.select :status, [['---', nil]] + Post::STATUS, {}, class: 'form-control'
+
+    .form-group
+      .col-md-offset-2.col-md-10
+        .checkbox
+          %label
+            = f.check_box :hidden
+            Post Hidden
+
+  .form-group
+    .col-md-offset-2.col-md-10
+      = f.submit nil, class: 'btn btn-primary'
+      = link_to 'Cancel', (@post.new_record? ? [@forum, @topic] : [@forum, @topic, @post]), class: 'btn btn-default'
