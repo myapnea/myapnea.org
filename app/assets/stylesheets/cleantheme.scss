@@ -25,7 +25,7 @@
 @import "myapnea/components/topics";
 
 
-body, html { height: 100%; }
+// body, html { height: 100%; }
 
 // Clean theme document
 /* DOCUMENT LAYOUT */
@@ -129,6 +129,7 @@ nav {
   width:100%;
   margin:0;
   z-index:2;
+  clear:both;
 }
 
   .footer ul {
