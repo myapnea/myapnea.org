@@ -83,7 +83,7 @@
                     = link_to 'Rate the Research', stealth_datadisplay_path
                   %li
                     = link_to 'Become a Provider', stealth_providers_path
-    .container-fluid{style: 'margin-left:-15px; margin-right:-15px;'}
+    .container-fluid.reset-layout
       / Page contents with or without navigation
       - if (params[:action] == 'home' and !current_user) or params[:action] == 'stealth_providers' or params[:action] == 'stealth_provider1'
         = yield
