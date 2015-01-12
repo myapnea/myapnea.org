@@ -1,10 +1,8 @@
-.primary-orange-bcg.content-main-header
+.content-main-header
   %h1
     Welcome to the Forums!
-
-.small
-  = link_to 'New Forum', new_forum_path if current_user and current_user.has_role? :owner
-
+  .small
+    = link_to 'New Forum', new_forum_path if current_user and current_user.has_role? :owner
 
 - @forums.order(:position).each do |forum|
   .panel.panel-forums
@@ -34,7 +32,7 @@
                 %td{ class: "#{topic.pinned? ? "f500" : "f300"}" }
                   %p
                     - if topic.pinned?
-                      %span.glyphicon.glyphicon-star-empty.text-muted
+                      %span.glyphicon.glyphicon-star.primary-orange
                     = link_to topic.name, [topic.forum, topic]
                 %td.text-muted.hidden-xs{ class: "#{topic.pinned? ? "f500" : "f300"}" }
                   %div{style: 'white-space:nowrap;overflow-x:hidden;max-width:150px'}
