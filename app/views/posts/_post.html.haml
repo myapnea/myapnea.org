@@ -11,13 +11,17 @@
           = "##{current_index}"
         %i.text-muted
           Post Deleted
-  - elsif post.hidden?
+  - elsif post.hidden? or (post.spam? and not (current_user and current_user.has_role? :moderator))
     .col-xs-12{ style: 'display:none' }
       .post-container.post-deleted
         .post-container-right-middle-after
           = "##{current_index}"
         %i.text-muted
-          Post Hidden
+          Post
+          - if post.hidden?
+            Hidden
+          - elsif post.spam?
+            Marked as Spam
   - elsif post.spam? and current_user and current_user.has_role? :moderator
     .col-xs-1
       = render partial: 'forem/forums/user_image', locals: { user: post.user, size: 50 }

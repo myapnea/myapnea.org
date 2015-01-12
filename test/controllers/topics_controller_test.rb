@@ -51,7 +51,7 @@ class TopicsControllerTest < ActionController::TestCase
     login(@valid_user)
     # assert_difference('Post.count') do
       assert_difference('Topic.count') do
-        post :create, forum_id: forum, topic: { name: "New Topic Name", description: "First Post on New Topic" }
+        post :create, forum_id: forum, topic: { name: "New Topic Name", description: "First Post on New Topic", hidden: '1' }
       end
     # end
 
@@ -59,6 +59,7 @@ class TopicsControllerTest < ActionController::TestCase
     assert_not_nil assigns(:topic)
     assert_equal "New Topic Name", assigns(:topic).name
     assert_equal @valid_user, assigns(:topic).user
+    assert_equal false, assigns(:topic).hidden?
     # assert_equal "First Comment on New Topic", assigns(:topic).posts.first.description
     # assert_equal @valid_user, assigns(:topic).posts.first.user
     # assert_not_nil assigns(:topic).last_post_at
