@@ -14,13 +14,16 @@
     if currentColor is "rgb(89, 153, 222)"
       $(this).animate
         color: "rgba(0,0,0,.8)"
-
+        ,400
+        , ->
+          $(".progress-bar").width 0 + "%"
+          $(".progress-bar").html 0 + "%"
     else
       $(this).animate
         color: "rgb(89, 153, 222)"
-
-        # Adjust value and animate progress bar
-        newWidth = parseFloat($(".progress-bar").attr("aria-valuenow")) + 1
-        $(".progress-bar").width newWidth + "%"
-        $(".progress-bar").html newWidth + "%"
+        ,400
+        , ->
+          newWidth = parseFloat($(".progress-bar").attr("aria-valuenow")) + 1
+          $(".progress-bar").width newWidth + "%"
+          $(".progress-bar").html newWidth + "%"
     return

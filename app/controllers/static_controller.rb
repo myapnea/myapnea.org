@@ -10,7 +10,7 @@ class StaticController < ApplicationController
   def home
     if current_user
       @active_top_nav_link = :home
-      @posts = Post.blog_posts.viewable
+      @posts = Notification.blog_posts.viewable
       render layout: "main"
     else
       render 'landing', layout: 'layouts/cleantheme'
@@ -38,18 +38,44 @@ class StaticController < ApplicationController
   end
 
   def stealth_surveydisplay
-    if current_user
-      render layout: 'layouts/cleantheme'
-    else
-      redirect_to root_path
-    end
+    render layout: 'layouts/cleantheme'
   end
 
   def stealth_providers
     render layout: 'layouts/cleantheme'
   end
 
+  def stealth_provider1
+    render layout: 'layouts/cleantheme'
+  end
+
+  def stealth_share
+    render layout: 'layouts/cleantheme'
+  end
+
   def stealth_map
+    render layout: 'layouts/cleantheme'
+  end
+
+  def stealth_account
+    render layout: 'layouts/cleantheme'
+  end
+
+  def stealth_consent
+    @pc = page_content('consent')
+    render layout: 'layouts/cleantheme'
+  end
+
+  def stealth_privacy
+    @pc = page_content('privacy_policy')
+    render layout: 'layouts/cleantheme'
+  end
+
+  def stealth_terms
+    render layout: 'layouts/cleantheme'
+  end
+
+  def stealth
     render layout: 'layouts/cleantheme'
   end
 

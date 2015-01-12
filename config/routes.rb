@@ -27,6 +27,12 @@ Rails.application.routes.draw do
   get 'stealth_surveydisplay' => 'static#stealth_surveydisplay'
   get 'stealth_providers' => 'static#stealth_providers'
   get 'stealth_map' => 'static#stealth_map'
+  get 'stealth_provider1' => 'static#stealth_provider1'
+  get 'stealth_share' => 'static#stealth_share'
+  get 'stealth_account' => 'static#stealth_account'
+  get 'stealth_consent' => 'static#stealth_consent'
+  get 'stealth_privacy' => 'static#stealth_privacy'
+  get 'stealth_terms' => 'static#stealth_terms'
 
   get 'privacy_policy_document' => 'static#content', :page => "privacy_policy"
   get 'terms_of_service' => 'static#content', :page => "terms_of_service"
@@ -78,7 +84,6 @@ Rails.application.routes.draw do
   match 'locations', via: :get, as: :locations, format: :json, to: 'social#locations'
   get 'social/discussion', to: redirect("forums")
   get 'social/discussion(/*path)', to: redirect("forums/%{path}")
-  get 'forum', to: redirect("forums")
 
   # Blog Section
   get 'in_the_news' => 'blog#blog', as: :blog
@@ -117,14 +122,22 @@ Rails.application.routes.draw do
   match 'vote', to: 'research_topics#index', via: :get, as: :vote_fake
 
   # Blog and Notification Posts
-  resources :posts, except: [:show, :index]
+  resources :notifications, except: [:show, :index]
 
   devise_for :user, controllers: { registrations: 'registrations' }
+
+  resources :forums, path: 'newforums' do
+    resources :topics do
+      resources :posts
+    end
+  end
+
+  get 'forum', to: redirect("forums")
 
   # This line mounts Forem's routes at /forums by default.
   # This means, any requests to the /forums URL of your application will go to Forem::ForumsController#index.
   # If you would like to change where this extension is mounted, simply change the :at option to something different.
-  #
+
   # We ask that you don't use the :as option here, as Forem relies on it being the default of "forem"
   mount Forem::Engine, :at => '/forums'
 

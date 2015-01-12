@@ -7,44 +7,29 @@ class AnswerSession < ActiveRecord::Base
   belongs_to :user
   has_many :answer_edges
 
+  # Class Methods
+
   def self.most_recent(question_flow_id, user_id)
     answer_sessions = AnswerSession.where(question_flow_id: question_flow_id, user_id: user_id).order(updated_at: :desc)
     answer_sessions.empty? ? nil : answer_sessions.first
   end
 
-  def calculate_status_stats(answer=nil)
-    completed = completed_path
-    remaining = remaining_path
-
-    if answer.present?
-      current_path = path_until_answer(answer)
-      percent_completed =  (current_path.sum{|x| x.question.time_estimate}.to_f / (completed[:time] + remaining[:time])) * 100
-    else
-      percent_completed = (completed[:time] / (completed[:time] + remaining[:time])) * 100
-    end
-
-    {
-        percent_completed: percent_completed,
-        completed_questions: completed[:distance],
-        remaining_questions: remaining[:distance],
-        total_questions: completed[:distance] + remaining[:distance],
-        completed_time: completed[:time],
-        remaining_time: remaining[:time],
-        total_time: completed[:time] + remaining[:time]
-
-    }
-  end
-
   def completed_answers
-    if first_answer
-      Answer.joins(:in_edge).where(answer_session_id: self.id).select{|a| a.in_edge.present? }.append(first_answer)
-    else
-      []
-    end
+    answers
+
+    # if first_answer
+    #   Answer.joins(:in_edge).where(answer_session_id: self.id).select{|a| a.in_edge.present? }.append(first_answer)
+    # else
+    #   []
+    # end
   end
 
   def completed?
-    remaining_path[:distance] == 0
+    unless self[:completed]
+      update_attribute(:completed, total_remaining_path_length == 0)
+    end
+
+    self[:completed]
   end
 
   def process_answer(question, params)
@@ -168,22 +153,45 @@ class AnswerSession < ActiveRecord::Base
     answer
   end
 
+  ## Optimized (mostly)
+  def applicable_questions
+    # all questions in answer session's answers
+    Question
+        .joins(:answers)
+        .joins('left join answer_edges parent_ae on parent_ae.child_answer_id = "answers".id')
+        .joins('left join answer_edges child_ae on child_ae.parent_answer_id = "answers".id')
+        .where(answers: { answer_session_id: self.id} )
+        .where("parent_ae.child_answer_id is not null or child_ae.parent_answer_id is not null")
+  end
+
+
+  def answers
+    Answer
+        .joins('left join answer_edges parent_ae on parent_ae.child_answer_id = "answers".id')
+        .joins('left join answer_edges child_ae on child_ae.parent_answer_id = "answers".id')
+        .where(answer_session_id: self.id)
+        .where("parent_ae.child_answer_id is not null or child_ae.parent_answer_id is not null")
+
+  end
+
   def all_answers
-    if first_answer
-      [first_answer] + first_answer.descendants
-    end
+    answers
+
   end
 
   def all_reportable_answers
-    all_answers.select {|answer| answer.answer_values.map{|av| av.answer_template.data_type }.include? "answer_option_id" and answer.show_value.present? } if all_answers
+    #all_answers.select {|answer| answer.answer_values.map{|av| av.answer_template.data_type }.include? "answer_option_id" and answer.show_value.present? } if all_answers
+    answers.distinct.joins(answer_values: :answer_template).where("\"answer_templates\".data_type = 'answer_option_id'").where('"answer_values".answer_option_id is not null')
+
   end
 
   def grouped_reportable_answers
-    all_reportable_answers.group_by{|a| a.question.question_help_message ? a.question.question_help_message.message : ""}
+    all_reportable_answers.includes(question: :question_help_message).group_by{|a| a.question.question_help_message ? a.question.question_help_message.message : ""}
+
   end
 
   def get_answer(question_id)
-    Question.find(question_id).answers.where(answer_session_id: self.id).first
+    Answer.joins(:question).where(questions: {id: question_id}).where(answer_session_id: self.id).order("updated_at desc").limit(1).first
   end
 
   def started?
@@ -201,11 +209,11 @@ class AnswerSession < ActiveRecord::Base
     end
   end
 
-  def path_until_answer(answer)
+  def path_length_to_answer(answer)
     if last_answer.blank?
       coll = []
       current_answer = answer
-    elsif answer.new_record?
+    elsif answer.nil? or answer.new_record?
       coll = [answer]
       current_answer = last_answer
     else
@@ -218,56 +226,46 @@ class AnswerSession < ActiveRecord::Base
       current_answer = current_answer.previous_answer
     end
 
-    coll
+    coll.length
   end
 
 
-  ## Reports
 
 
-
-  private
-
-  def completed_path
-    time = completed_answers.map(&:question).map(&:time_estimate).reduce(:+) || 0.0
-    distance = completed_answers.length
-
-    {time: time, distance: distance}
+  def completed_path_length
+    completed_answers.count
   end
 
-
-  def remaining_path
-
-    if last_answer.blank?
-      {time: question_flow.total_time, distance: question_flow.total_questions}
+  def remaining_path_length(from_answer)
+    if from_answer.nil?
+      total_remaining_path_length
+    elsif from_answer.next_question.present?
+      question_flow.path_length(from_answer.next_question)
     else
-      source = last_answer.next_question
+      0
+    end
 
-      if source
-        leaves = question_flow.leaves
+  end
 
-        max_dist = 0
-        result = nil
-
-        leaves.each do |oneleaf|
-
-
-          temp_result = question_flow.find_longest_path(source,oneleaf)
-          max_dist = [max_dist, temp_result[:distance]].max if temp_result[:distance]
-
-          result = temp_result if max_dist == temp_result[:distance]
-
-
-        end
-
-        corrections = {time: 0.0, distance: 0}
-
-        {time: result[:time] - corrections[:time], distance: result[:distance] - corrections[:distance]}
-      else
-        {time: 0.0, distance: 0}
-      end
+  def total_remaining_path_length
+    if last_answer.blank?
+      question_flow.longest_path_length
+    elsif last_answer.next_question.nil?
+      0
+    else
+      question_flow.path_length(last_answer.next_question)
     end
   end
 
+  def total_path_length
+    completed_path_length + remaining_path_length(last_answer)
+  end
+
+  def percent_completed
+    (completed_path_length.to_f / total_path_length.to_f) * 100.0
+  end
+
+
+  private
 
 end

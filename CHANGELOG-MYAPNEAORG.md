@@ -1,9 +1,33 @@
 ## 4.0.0
 
-## 3.2.0
+### Enhancements
+- **PCORNET Updates**
+  - Added script that extracts data into the PCORNET Common Data Model 2.0
+- **Forum Updates**
+  - Redesigned internal forums engine
+- **General Changes**
+  - Changed image sizes to speed up loading on mobile browsers
+
+### Refactoring
+- Internal `post` model changed to `notification`
+  - Old `Post` class has to do with **Site Notifications** and **Blog Posts**
+  - New `Post` class will be specific to **Forum Topics**
+
+## 3.2.1 (January 8, 2015)
 
 ### Bug Fixes
-- Fixed progression bug in the About Me survey
+- Fixed report view bug for reports with no answers
+- Removed dependency on schema_plus gem
+
+## 3.2.0 (January 8, 2015)
+
+### Enhancements
+- **Survey Changes**
+  - Improved the performance and speed of surveys and survey reports
+
+### Bug Fixes
+- Fixed a bug that prevented users from progressing past question 12 in the About Me survey
+- Fixed a bug preventing users from entering a date using older browsers in the About Me survey
 
 ## 3.1.0 (January 2, 2015)
 

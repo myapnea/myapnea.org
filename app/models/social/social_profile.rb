@@ -44,7 +44,7 @@ class SocialProfile < ActiveRecord::Base
     if show_publicly? and name.present?
       name
     else
-      "Anonymous User #{Digest::MD5.hexdigest(user.email.to_s)[0,5]}"
+      SocialProfile.get_anonymous_name(user.email)
     end
   end
 
@@ -54,5 +54,9 @@ class SocialProfile < ActiveRecord::Base
     else
       nil
     end
+  end
+
+  def self.get_anonymous_name(input)
+    "Member#{Digest::MD5.hexdigest(input.to_s).hex.to_s[0..5]}"
   end
 end

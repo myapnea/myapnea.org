@@ -9,10 +9,6 @@
 // @import "myapnea/bootstrap-custom";
 
 
-// @import "welcome";
-
-
-
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
@@ -21,9 +17,15 @@
 @import "team";
 @import "panels";
 @import "speech-bubbles";
+@import "share-icons";
+@import "responsive";
+
+@import "myapnea/components/callouts";
+@import "myapnea/components/posts";
+@import "myapnea/components/topics";
 
 
-
+body, html { height: 100%; }
 
 // Clean theme document
 /* DOCUMENT LAYOUT */
@@ -32,27 +34,82 @@ body {
   margin:0px;
   padding:0px;
   padding-top:81px;
-  // proof for when footer goes awry
-  background: -moz-linear-gradient(top, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 44%, rgba(0,0,0,0.63) 65%, rgba(255,255,255,0.54) 70%, rgba(255,255,255,0) 100%); /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,1)), color-stop(44%,rgba(0,0,0,1)), color-stop(65%,rgba(0,0,0,0.63)), color-stop(70%,rgba(255,255,255,0.54)), color-stop(100%,rgba(255,255,255,0))); /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(top, rgba(0,0,0,1) 0%,rgba(0,0,0,1) 44%,rgba(0,0,0,0.63) 65%,rgba(255,255,255,0.54) 70%,rgba(255,255,255,0) 100%); /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(top, rgba(0,0,0,1) 0%,rgba(0,0,0,1) 44%,rgba(0,0,0,0.63) 65%,rgba(255,255,255,0.54) 70%,rgba(255,255,255,0) 100%); /* Opera 11.10+ */
-  background: -ms-linear-gradient(top, rgba(0,0,0,1) 0%,rgba(0,0,0,1) 44%,rgba(0,0,0,0.63) 65%,rgba(255,255,255,0.54) 70%,rgba(255,255,255,0) 100%); /* IE10+ */
-  background: linear-gradient(to bottom, rgba(0,0,0,1) 0%,rgba(0,0,0,1) 44%,rgba(0,0,0,0.63) 65%,rgba(255,255,255,0.54) 70%,rgba(255,255,255,0) 100%); /* W3C */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#00ffffff',GradientType=0 ); /* IE6-9 */
+}
+
+body.day-mode {
+  background-color: black;
+}
+
+body.night-mode {
+    /* IE 8 */
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=65)";
+  /* IE 5-7 */
+  filter: alpha(opacity=65);
+  /* Netscape */
+  -moz-opacity: 0.65;
+  /* Safari 1.x */
+  -khtml-opacity: 0.65;
+  opacity:.65;
+  background-color: orange;
 }
 
 nav {
   padding-top:20px;
+  background-color:rgb(36,50,100); // NEW LOGO
   background-color:rgba(36,50,100,.75); // NEW LOGO
   padding-bottom:10px;
   box-shadow: 1px 3px 5px #444;
   z-index:2;
 }
 
+#navbar-social {
+  float:right;
+  width:20%;
+  margin-right:-15px;
+}
+
+#testnavbar {
+  position:relative;
+}
+
+#testnavbar > li {
+  font-size:18px;
+  margin:0 1px;
+}
+
+/* Reset bootstrap defaults */
+  #testnavbar > li > a{
+    padding:10px 20px 15px 20px;
+    color: white;
+    display: block;
+    background-color: inherit;
+  }
+  #testnavbar > li > a:hover {
+    background-color: inherit;
+  }
+  #testnavbar > li.dropdown.open a.dropdown-toggle {
+    background-color:inherit;
+  }
+
+#testnavbar >li.active {
+  border-bottom:5px solid #5999de;
+}
+
+#testnavbar > li:hover {
+  border-bottom:5px solid rgb(89, 153, 222);
+}
+
+#testnavbar .dropdown-menu {
+  border-radius: 0 0 5px 5px;
+}
+#testnavbar .dropdown-menu li {
+  margin:2px;
+}
+
+
 // Ensure proper logo size for large screens
 .navbar-header {
-  min-width:30%;
+  // min-width:30%;
 }
 
 .navbar-right {
@@ -69,7 +126,7 @@ nav {
   background-color:white;
   float:left;
   padding-top:10px;
-  width:80%;
+  width:100%;
   margin:0;
   z-index:2;
 }
@@ -93,25 +150,14 @@ nav {
     left:-5px;
   }
 
-//Show users that they can scroll -- need to fix
-// #recent-news-container:after {
-//   content:' v v v v ';
-//   font-size:10px;
-//   text-align:center;
-//   color:rgb(0,0,0);
-//   color:rgba(0,0,0,.4);
-//   display:inline-block;
-//   width:100%;
-//   background-color:rgb(245,245,245);
-//   background-color:rgba(245,245,245,.7);
-// }
-
 
 
 #container-right {
   width: 20%;
-  float:right;
   box-shadow: -3px 1px 5px #777;
+  float:none;
+  display:table-cell;
+  vertical-align:top;
 }
 
 #container-right-fixed:before {
@@ -133,7 +179,8 @@ nav {
   box-shadow:0px 3px 3px #ddd;
 }
 
-#container-right-scroll {
+#user-profile-header-text {
+  text-align:center;
 }
 
 /* USER SIDEBAR */
@@ -151,16 +198,17 @@ nav {
   border-radius: 100%;
   border:2px solid rgb(255,255,255);
   border:2px solid rgba(255,255,255,.8);
-  margin-left:15px;
+  float:right;
 }
 
 .user-name {
   font-weight:300;
+  padding:0;
 }
 
 #container-right .list-group {
-  border-bottom:1px solid rgb(255,255,255);
-  border-bottom:1px solid rgba(255,255,255,.4);
+  // border-bottom:1px solid rgb(255,255,255);
+  // border-bottom:1px solid rgba(255,255,255,.4);
 }
 
 #container-right .list-group-item {
@@ -175,14 +223,23 @@ nav {
   font-weight:300;
 }
 
-#container-right .list-group-item.hover:hover {
-  position:relative;
-  top:-2px;
-  border-top:1px solid rgb(255,255,255);
-  border-top:1px solid rgba(255,255,255,.3);
-  box-shadow:1px 2px 5px rgb(255,255,255);
-  box-shadow:1px 2px 5px rgba(255,255,255,.4);
-  font-weight:400;
+#user-profile-container .list-group-item {
+  background-color: #387fcf;
+  border:none;
+  border-radius:20px 0 0 20px;
+  font-size:16px;
+  font-weight:300;
+  margin:10px auto;
+}
+
+.list-shrink {
+  width:95%;
+  float:right;
+}
+
+.list-expand {
+  width:100%;
+  float:right;
 }
 
 
@@ -196,7 +253,7 @@ nav {
 .content-main-header {
   box-shadow:0px 1px 5px rgb(0,0,0);
   box-shadow:0px 1px 5px rgba(0,0,0,.5);
-  min-height:150px;
+  height:120px;
   // Materials
     border-radius:20px;
     margin-top:40px;
@@ -213,29 +270,3 @@ nav {
   left:40px;
 }
 
-
-
-@media (max-width: 768px) {
-  // put side navbar into an off-screen div
-  #container-right {
-    display:none;
-  }
-
-  #container-left {
-    width:100%;
-  }
-
-  .footer {
-    width:100%;
-    margin:0px;
-  }
-
-  .footer ul {
-    margin-top:50px;
-  }
-  .footer ul li {
-    position:relative;
-    left:-30px;
-    font-size:18px;
-  }
-}

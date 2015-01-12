@@ -4,8 +4,8 @@
       %li.list-group-item
         - if current_user
           .btn-group.pull-right
-            = link_to "Edit", edit_post_path(notification), class: "btn btn-warning btn-xs" if current_user.can_update?(notification)
-            = link_to "Delete", post_path(notification), method: :delete, class: "btn btn-danger btn-xs", data: { confirm: "Are you sure?" } if current_user.can_delete?(notification)
+            = link_to "Edit", edit_notification_path(notification), class: "btn btn-warning btn-xs" if current_user.can_update?(notification)
+            = link_to "Delete", notification_path(notification), method: :delete, class: "btn btn-danger btn-xs", data: { confirm: "Are you sure?" } if current_user.can_delete?(notification)
         %small
           %strong= notification.created_at
         %br/
@@ -18,7 +18,7 @@
     - if current_user and current_user.can_create?(new_notification)
       %li.list-group-item.list-group-item-warning
         %h5 Add a New Notification
-        = render partial: 'posts/form', locals: { post: new_notification }
+        = render partial: 'notifications/form', locals: { notification: new_notification }
         .clearfix
 
 

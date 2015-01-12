@@ -1,0 +1,18 @@
+# Read about fixtures at
+# http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: Introductions
+  description: Share your apnea story
+  views_count: 1
+  slug: introductions
+  position: 0
+  user: owner
+
+two:
+  name: News
+  description: Share sleep in the news
+  views_count: 1
+  slug: news
+  position: 1
+  user: owner

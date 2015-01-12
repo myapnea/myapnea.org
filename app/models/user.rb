@@ -7,8 +7,10 @@ class User < ActiveRecord::Base
 
   # Enable User Connection to External API Accounts
   include ExternalUsers
-
   include Deletable
+
+  # Map to PCORNET Common Data Model
+  include CommonDataModel
 
 
   self.authorizer_name = "UserAuthorizer"
@@ -27,14 +29,25 @@ class User < ActiveRecord::Base
   has_many :answers, -> { where deleted: false }
   has_many :votes
   has_one :social_profile, -> { where deleted: false }
-  has_many :posts, -> { where deleted: false }
+  has_many :notifications, -> { where deleted: false }
   has_many :research_topics, -> { where deleted: false }
-
+  has_many :forums, -> { where(deleted: false) }
+  has_many :topics, -> { where(deleted: false) }
+  has_many :posts, -> { where(deleted: false) }
+  
   # Named Scopes
   scope :search_by_email, ->(terms) { where("LOWER(#{self.table_name}.email) LIKE ?", terms.to_s.downcase.gsub(/^| |$/, '%')) }
 
   def name
     "#{first_name} #{last_name}"
+  end
+
+  def all_topics
+    if self.has_role? :moderator
+      Topic.current
+    else
+      self.topics.where(locked: false)
+    end
   end
 
   def self.scoped_users(email=nil, role=nil)
@@ -184,9 +197,4 @@ class User < ActiveRecord::Base
 
     (todays_votes.length < vote_quota) or (rating < 1)
   end
-
-  def active_for_authentication?
-    super and not self.deleted?
-  end
-
 end

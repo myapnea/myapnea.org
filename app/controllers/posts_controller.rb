@@ -1,70 +1,105 @@
 class PostsController < ApplicationController
-  authorize_actions_for Post
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [ :new, :create, :edit, :update, :destroy, :preview ]
+  before_action :set_topic, only: [ :show, :destroy ]
+  before_action :set_postable_topic, only: [ :create, :edit, :update, :preview ]
+  before_action :redirect_without_topic, only: [ :show, :create, :edit, :update, :preview, :destroy ]
 
-  before_action :set_post
+  before_action :check_banned, only: [ :create, :edit, :update ]
+  before_action :check_last_post_by, only: [ :create ]
+  before_action :set_post, only: [ :show ]
+  before_action :set_editable_post, only: [ :edit, :update ]
+  before_action :set_deletable_post, only: [ :destroy ]
+  before_action :redirect_without_post, only: [ :show, :edit, :update, :destroy ]
 
-  def create
-    @post = current_user.posts.new(post_params)
 
-    if @post.save
-      redirect_post @post
-    end
-  end
-
-  def update
-    if @post.update(post_params)
-      redirect_post @post
-    end
-  end
-
+  # GET /posts/1/edit
   def edit
   end
 
-  def new
-    @post = Post.new
-  end
+  # POST /posts
+  # POST /posts.json
+  def create
+    @post = current_user.posts.where(topic_id: @topic.id).posts.new(post_params)
 
-  def destroy
-    @post.destroy
-
-    redirect_post @post
-
-  end
-
-  private
-
-  def post_params
-    params.require(:post).permit(:title, :body, :post_type, :state, :author, :introduction, tags: [])
-  end
-
-  def set_post
-    @post = Post.find_by_id(params[:id])
-  end
-
-  def redirect_post(post)
-    if post.is_notification?
-      redirect_to admin_notifications_path
-    else
-      redirect_to admin_blog_path
+    respond_to do |format|
+      if @post.save
+        @topic.get_or_create_subscription(current_user)
+        format.html { redirect_to topic_path(@topic) + "#c#{@post.number}", notice: 'Post was successfully created.' }
+        format.json { render action: 'show', status: :created, location: @post }
+      else
+        format.html { redirect_to topic_path(@topic, error: @errors) }
+        format.json { render json: @post.errors, status: :unprocessable_entity }
+      end
     end
   end
 
-  ## TODO: Integrate with next step
+  def preview
+    @post = @topic.posts.new(post_params)
+  end
 
-  # def receive_update
-  #   if @oauth.validate_update(request.body, headers)
-  #     File.open(FB_CACHE_LOCATION, mode='rw')
-  #     File.write(request.body)
-  #
-  #     # process update from request.body
-  #   else
-  #     render text: "not authorized", status: 401
-  #   end
-  # end
-  #
-  #
-  # def verify_subscription
-  #   Koala::Facebook::RealtimeUpdates.meet_challenge(@params, YOUR_VERIFY_TOKEN)
-  # end
+  def show
+  end
+
+  # PUT /posts/1
+  # PUT /posts/1.json
+  def update
+    respond_to do |format|
+      if @post.update(post_params)
+        format.html { redirect_to topic_path(@topic) + "#c#{@post.number}", notice: 'Post was successfully updated.' }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to topic_path(@topic) + "#c#{@post.number}", warning: 'Post can\'t be blank.' }
+        format.json { render json: @post.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # DELETE /posts/1
+  # DELETE /posts/1.json
+  def destroy
+    @post.destroy
+
+    respond_to do |format|
+      format.html { redirect_to topic_path(@topic) + "#c#{@post.number}" }
+      format.json { head :no_content }
+    end
+  end
+
+  private
+    def set_topic
+      @topic = Topic.current.find_by_id(params[:topic_id])
+    end
+
+    def set_postable_topic
+      @topic = Topic.current.where(locked: false).find_by_id(params[:topic_id])
+    end
+
+    def redirect_without_topic
+      empty_response_or_root_path(topics_path) unless @topic
+    end
+
+    def set_post
+      @post = Post.current.find_by_id(params[:id])
+    end
+
+    def set_editable_post
+      @post = current_user.all_posts.with_unlocked_topic.find_by_id(params[:id])
+    end
+
+    def set_deletable_post
+      @post = current_user.all_posts.find_by_id(params[:id])
+    end
+
+    def redirect_without_post
+      empty_response_or_root_path( topics_path ) unless @post
+    end
+
+    def check_last_post_by
+      empty_response_or_root_path( @topic ) if @topic.user_posted_recently?(current_user)
+    end
+
+    def post_params
+      # params.require(:post).permit(:topic_id, :description, :user_id, :status, :hidden, :deleted, :last_moderated_by_id, :last_moderated_at)
+      params.require(:post).permit(:description, :user_id)
+    end
 end

@@ -1,6 +1,4 @@
-class Post < ActiveRecord::Base
-  include Deletable
-
+class Notification < ActiveRecord::Base
   include Authority::Abilities
 
   require 'acts-as-taggable-on'

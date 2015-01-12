@@ -21,7 +21,7 @@
 = link_to main_app.blog_path do
   %h4 Recent News
 
-= render partial: "shared/blog_posts", locals: { posts: Post.all_posts(true) }
+= render partial: "shared/blog_posts", locals: { posts: Notification.all_posts(true) }
 .text-muted.small
   = link_to main_app.blog_path do
     View more stories &nbsp;
