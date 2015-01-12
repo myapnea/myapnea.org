@@ -14,6 +14,8 @@ class PostsController < ApplicationController
   before_action :set_deletable_post, only: [ :destroy ]
   before_action :redirect_without_post, only: [ :show, :edit, :update, :destroy ]
 
+  # TODO remove when new layout is default
+  layout 'layouts/cleantheme'
 
   # GET /posts/1/edit
   def edit

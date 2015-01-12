@@ -24,7 +24,7 @@ namespace :forums do
           locked: old_topic.locked,
           pinned: old_topic.pinned,
           last_post_at: old_topic.last_post_at,
-          state: old_topic.state,
+          status: old_topic.state,
           views_count: old_topic.views_count,
           created_at: old_topic.created_at,
           updated_at: old_topic.updated_at,
