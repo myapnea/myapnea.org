@@ -43,11 +43,18 @@ nav.slide-active {
 }
 
 #container-left {
-  width:80%;
-  float:left;
-}
+    width:80%;
+    float:left;
+    padding: 70px;
+  }
 
+@media (max-width: 1600px) {
+}
 @media (max-width: 992px) {
+  #container-left {
+    padding: 40px;
+  }
+
   #user-profile-header-picture {
     text-align:center;
     padding-left:0;
@@ -69,6 +76,7 @@ nav.slide-active {
   #container-left {
     width:100%;
     margin:0px;
+    padding: 25px;
   }
   #container-right {
     position:absolute;
@@ -80,7 +88,7 @@ nav.slide-active {
     float: none;
   }
   .content-main-header {
-    max-height: 100px;
+    padding: 25px 15px 15px 15px;
   }
   .footer ul {
     margin-top:50px;
