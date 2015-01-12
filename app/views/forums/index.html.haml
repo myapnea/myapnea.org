@@ -8,8 +8,8 @@
 
 - @forums.order(:position).each do |forum|
   .panel.panel-forums
-    .panel-heading.panel-title
-      %h2.f300
+    .panel-heading
+      %h3.f300
         = link_to forum.name, forum
     .panel-body
       %table.table
