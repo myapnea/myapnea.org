@@ -25,9 +25,7 @@ Rails.application.routes.draw do
   get 'stealth_forums' => 'static#stealth_forums'
   get 'stealth_datadisplay' => 'static#stealth_datadisplay'
   get 'stealth_surveydisplay' => 'static#stealth_surveydisplay'
-  get 'stealth_providers' => 'static#stealth_providers'
   get 'stealth_map' => 'static#stealth_map'
-  get 'stealth_provider1' => 'static#stealth_provider1'
   get 'stealth_share' => 'static#stealth_share'
   get 'stealth_account' => 'static#stealth_account'
   get 'stealth_consent' => 'static#stealth_consent'
@@ -97,6 +95,12 @@ Rails.application.routes.draw do
   match 'privacy_policy', to: "account#privacy_policy", as: :privacy, via: [:get, :post]
   match 'update_account', to: 'account#update', as: 'update_account', via: :patch
   match 'change_password', to: 'account#change_password', as: 'change_password', via: :patch
+  get 'stealth_provider1' => 'static#stealth_provider1'
+
+  devise_scope :user do
+    match 'provider_registration', to: 'providers#new', via: :get
+    match 'create_provider', to: 'providers#create', via: :post
+  end
 
   # Admin Section
   get 'admin' => 'admin#users'

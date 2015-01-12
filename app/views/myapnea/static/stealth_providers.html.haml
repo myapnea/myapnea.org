@@ -53,18 +53,20 @@
     .panel-body#panel-sign-up
       %h1.darker-blue.centered-text Help us now!
       %h4.centered-text By joining, you are creating the foundation for people with sleep apnea to receive better care and support.
-      = form_tag user_registration_path, method: :post do
-        = text_field_tag 'user[first_name]', nil, placeholder: 'First name', class: "form-control"
-        = text_field_tag 'user[last_name]', nil, placeholder: 'Last name', class: "form-control"
-        = text_field_tag 'user[address1]', nil, placeholder: 'Address line 1', class: "form-control"
-        = text_field_tag 'user[address2]', nil, placeholder: 'Address line 2', class: "form-control"
-        = text_field_tag 'user[city]', nil, placeholder: 'City', class: "form-control"
-        = text_field_tag 'user[state]', nil, placeholder: 'State', class: "form-control"
-        = text_field_tag 'user[zipcode]', nil, placeholder: 'Zip code', class: "form-control"
-        = select_tag 'user[year_of_birth]', options_for_select([['- Select your birth year -', nil]] + (1900..Date.today.year).to_a.reverse.collect{|i| [i,i]}), class: "form-control"
-        = text_field_tag 'user[email]', nil, placeholder: 'Email address', class: "form-control"
-        = password_field_tag 'user[password]', nil, placeholder: 'Password', class: "form-control"
-        = submit_tag 'Sign up!', class: "form-control", id: "submit-join"
+
+      = form_for(resource, as: resource_name, url: provider_registration_path(resource_name), class: "form-horizontal", method: :post) do |f|
+        = f.text_field :first_name, placeholder: 'First name', class: "form-control"
+        = f.text_field :last_name, placeholder: 'Last name', class: "form-control"
+        = f.text_field :address_1, placeholder: 'Address line 1', class: "form-control"
+        = f.text_field :address_1, placeholder: 'Address line 2', class: "form-control"
+        = f.text_field :address_1, placeholder: 'City', class: "form-control"
+        = f.text_field :address_1, placeholder: 'State', class: "form-control"
+        = f.text_field :address_1, placeholder: 'Zip code', class: "form-control"
+        = f.text_field :address_1, options_for_select([['- Select your birth year -', nil]] + (1900..Date.today.year).to_a.reverse.collect{|i| [i,i]}), class: "form-control"
+        = f.email_field :email, placeholder: 'Email address', class: "form-control"
+        = f.password_field :password, nil, placeholder: 'Password', class: "form-control"
+        = f.password_field :password_confirmation, placeholder: 'Password Confirmation', class: "form-control"
+        = f.submit 'Sign up!', class: "form-control", id: "submit-join"
 
 
 / .row.row-fullscreen
