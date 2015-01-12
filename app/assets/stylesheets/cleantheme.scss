@@ -19,6 +19,7 @@
 @import "speech-bubbles";
 @import "share-icons";
 @import "responsive";
+@import "page-content";
 
 @import "myapnea/components/callouts";
 @import "myapnea/components/posts";
@@ -151,8 +152,6 @@ nav {
     left:-5px;
   }
 
-
-
 #container-right {
   width: 20%;
   box-shadow: -3px 1px 5px #777;
@@ -244,30 +243,5 @@ nav {
 }
 
 
-/* MAIN CONTENT */
 
-#container-left {
-  width:80%;
-  float:left;
-}
-
-.content-main-header {
-  box-shadow:0px 1px 5px rgb(0,0,0);
-  box-shadow:0px 1px 5px rgba(0,0,0,.5);
-  height:120px;
-  // Materials
-    border-radius:20px;
-    margin-top:40px;
-    margin-bottom:0px;
-
-}
-
-.content-main-title {
-  font-family: 'Lato', sans-serif;
-  color: rgb(255,255,255);
-  color: rgba(255,255,255,.85);
-  position:absolute;
-  bottom:20px;
-  left:40px;
-}
 

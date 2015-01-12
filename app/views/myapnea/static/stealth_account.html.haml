@@ -1,8 +1,8 @@
-.col-sm-10.col-sm-offset-1.primary-orange-bcg.content-main-header
-  %h1.content-main-title Account Settings
+.content-main-header
+  %h1 Account Settings
 // Social Profile
 = form_for current_user.social_profile, html: {role: "form", class: 'form-horizontal'}, url: social_profile_path do |f|
-  .col-xs-10.col-xs-offset-1.panel
+  .panel
     .panel-body.text-dark8
       %h3.f300.col-xs-12.centered-text.text-dark9{ style: 'margin-bottom:30px;'} My Social Profile
       .form-group
@@ -52,7 +52,7 @@
           %ul
             - current_user.social_profile.errors.full_messages.each do |msg|
               %li= msg.html_safe
-.col-xs-10.col-xs-offset-1.panel
+.panel
   .panel-heading
     %h4.f300 Basic Information
   .panel-body
@@ -78,7 +78,7 @@
         .col-sm-10
           = f.text_field :year_of_birth, class: 'form-control input-lg', placeholder: User.human_attribute_name(:year_of_birth), autocomplete: :off
       = f.submit "Save Changes", class: 'btn btn-primary pull-right'
-.col-xs-10.col-xs-offset-1.panel
+.panel
   .panel-heading
     %h4.f300 Change Password
   .panel-body
@@ -90,7 +90,7 @@
         = f.label :password, class: 'sr-only'
         = f.password_field :password, class: 'form-control input-lg', placeholder: "New Password"
       = f.submit "Change My Password", class: 'btn btn-primary pull-right'
-.col-xs-5.col-xs-offset-1.panel
+.panel
   .panel-heading
     %h4.f300 Member Stats
   %table.table
@@ -100,7 +100,7 @@
     %tr
       %td Member Number
       %td= "##{current_user.id}"
-.col-xs-4.col-xs-offset-1.panel
+.panel
   .panel-heading
     %h4.f300 Notification Preferences
   .panel-body
@@ -113,7 +113,7 @@
         %label
           %input#optionsRadios2{name: "optionsRadios", type: "radio", value: "option2"}/
           Don't Email Me
-.col-xs-10.col-xs-offset-1.panel
+.panel
   .panel-heading
     %h4.f300 Leave Research Study
   .panel-body

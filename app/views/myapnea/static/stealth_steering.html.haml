@@ -1,9 +1,9 @@
 / HEADER BAR
-.col-sm-10.col-sm-offset-1.primary-orange-bcg.content-main-header
-  %h1.content-main-title Meet the Team!
+.content-main-header
+  %h1 Meet the Team!
 
 / STEERING COMMITTEE PANEL
-.panel.col-sm-10.col-sm-offset-1
+.panel
   .panel-body.carousel.slide#carousel-steering-committee
     .carousel-inner{role: "listbox"}
       .item.active
@@ -64,22 +64,21 @@
             %h5.spaced{style: 'clear:both'}
               Dr. Kapur, University of Washington Professor of Medicine, is the founder of the UW Medicine Sleep Center and an active educator and researcher. He directs the UW Medicine Sleep Laboratory and the UW Sleep Medicine Fellowship. Dr. Kapur is a fellow of the American Academy of Sleep Medicine and has board certifications in sleep medicine and pulmonary medicine. He lectures nationally on a variety of topics related to sleep disordered breathing and is an associate editor for the Journal of Clinical Sleep Medicine and the journal SLEEP.
   .panel-footer
-    .col-sm-12
-      %ul#steering-committee-list
-        %li.active{data: {target: "#carousel-steering-committee", slide: {to: "0"}}}
-          = image_tag 'myapnea/team/redline_200x200.jpg', class: 'team-member-picture img-bw img-color'
-        %li{data: {target: "#carousel-steering-committee", slide: {to: "1"}}}
-          = image_tag 'myapnea/team/amdur_crop.jpg', class: 'team-member-picture img-bw'
-        %li{data: {target: "#carousel-steering-committee", slide: {to: "2"}}}
-          = image_tag 'myapnea/team/owens_crop.jpg', class: 'team-member-picture img-bw'
-        %li{data: {target: "#carousel-steering-committee", slide: {to: "3"}}}
-          = image_tag 'myapnea/team/headapohl_headshot_400x400.jpeg', class: 'team-member-picture img-bw'
-        %li{data: {target: "#carousel-steering-committee", slide: {to: "4"}}}
-          = image_tag 'myapnea/team/kapur_crop.jpg', class: 'team-member-picture img-bw'
+    %ul#steering-committee-list
+      %li.active{data: {target: "#carousel-steering-committee", slide: {to: "0"}}}
+        = image_tag 'myapnea/team/redline_200x200.jpg', class: 'team-member-picture img-bw img-color'
+      %li{data: {target: "#carousel-steering-committee", slide: {to: "1"}}}
+        = image_tag 'myapnea/team/amdur_crop.jpg', class: 'team-member-picture img-bw'
+      %li{data: {target: "#carousel-steering-committee", slide: {to: "2"}}}
+        = image_tag 'myapnea/team/owens_crop.jpg', class: 'team-member-picture img-bw'
+      %li{data: {target: "#carousel-steering-committee", slide: {to: "3"}}}
+        = image_tag 'myapnea/team/headapohl_headshot_400x400.jpeg', class: 'team-member-picture img-bw'
+      %li{data: {target: "#carousel-steering-committee", slide: {to: "4"}}}
+        = image_tag 'myapnea/team/kapur_crop.jpg', class: 'team-member-picture img-bw'
 
 / myapnea/partners/asaa_logo_square_copy.jpg
 / PARTNERS
-.panel.panel-partners.col-sm-10.col-sm-offset-1
+.panel.panel-partners
   .panel-heading.panel-heading-orange
     %h4{style: 'margin-bottom:0px;'} Our Partners
   .panel-body

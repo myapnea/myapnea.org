@@ -42,6 +42,10 @@ nav.slide-active {
   position:absolute;
 }
 
+#container-left {
+  width:80%;
+  float:left;
+}
 
 @media (max-width: 992px) {
   #user-profile-header-picture {
@@ -64,6 +68,7 @@ nav.slide-active {
   }
   #container-left {
     width:100%;
+    margin:0px;
   }
   #container-right {
     position:absolute;
