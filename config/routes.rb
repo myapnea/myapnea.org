@@ -97,10 +97,10 @@ Rails.application.routes.draw do
   match 'change_password', to: 'account#change_password', as: 'change_password', via: :patch
   get 'stealth_provider1' => 'static#stealth_provider1'
 
-  devise_scope :user do
-    match 'provider_registration', to: 'providers#new', via: :get
-    match 'create_provider', to: 'providers#create', via: :post
-  end
+  # devise_scope :user do
+  #   match 'provider_registration', to: 'providers#new', via: :get
+  #   match 'create_provider', to: 'providers#create', via: :post
+  # end
 
   # Admin Section
   get 'admin' => 'admin#users'
@@ -128,7 +128,8 @@ Rails.application.routes.draw do
   # Blog and Notification Posts
   resources :notifications, except: [:show, :index]
 
-  devise_for :user, controllers: { registrations: 'registrations' }
+  devise_for :users, controllers: { registrations: 'registrations' }
+  devise_for :providers, controllers: { registrations: 'providers' }, skip: [:passwords, :confirmations, :sessions]
 
   resources :forums, path: 'newforums' do
     resources :topics do
