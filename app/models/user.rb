@@ -37,6 +37,7 @@ class User < ActiveRecord::Base
   # Named Scopes
   scope :search_by_email, ->(terms) { where("LOWER(#{self.table_name}.email) LIKE ?", terms.to_s.downcase.gsub(/^| |$/, '%')) }
   scope :current, -> { where('1 = 1') }
+  scope :providers, -> { where(type: 'provider')}
 
   def deleted?
     false
