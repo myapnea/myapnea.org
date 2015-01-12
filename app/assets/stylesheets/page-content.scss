@@ -1,0 +1,21 @@
+/* MAIN CONTENT */
+
+.content-main-header {
+  height:120px;
+  background-color: #ffa400;
+    border-radius:20px;
+    box-shadow:0px 1px 5px rgb(0,0,0);
+    box-shadow:0px 1px 5px rgba(0,0,0,.5);
+    position:relative;
+}
+
+.content-main-header h1 {
+  font-family: 'Lato', sans-serif;
+  color: rgb(255,255,255);
+  color: rgba(255,255,255,.85);
+  position:absolute;
+  bottom:5px;
+  left:15px;
+}
+
+.content-body {}

@@ -1,6 +1,6 @@
-.col-sm-10.col-sm-offset-1.primary-orange-bcg.content-main-header
-  %h1.content-main-title About Us
-.col-xs-10.col-xs-offset-1.panel
+.content-main-header
+  %h1 About Us
+.panel
   .panel-heading{ style: 'background-color: white; padding: 0' }
     = image_tag 'myapnea/welcome/img-small/finding_answers_together.png', style: 'width:100%; border-radius: 20px 20px 0 0;'
   .panel-body{ style: 'padding:20px;' }
@@ -10,7 +10,7 @@
       Join a new patient-led community created to fight sleep apnea. MyApnea.Org is a network created by people with sleep apnea to empower others and to help get needed answers.
       We are inviting thousands of people with sleep apnea and their caregivers to come together at MyApnea.Org to learn more about symptoms and treatment, to share their experiences with others within the community, and to become part of a national research network to improve lives. It’s a whole new way of finding help—for you and for millions of people with sleep apnea.
       MyApnea.Org is what’s called patient-powered research. Together, members share health information, discuss experiences regarding treatment, and express views directly to researchers and sleep experts on future research projects that can make a difference. In return, you will get easy-to-use tools to track your health and will be able to learn from others about treatments, symptoms, and coping with sleep apnea to take control of your life. And we will report back on all interesting research findings, in language you don’t have to be a scientist to understand.
-  .panel-footer.centered-text.f300{ style: 'padding:0; margin: 0;' }
+  .panel-footer.centered-text.f300.row{ style: 'padding:0; margin: 0;' }
     .col-xs-4.about-links{ style:'border-radius:0 0 0 20px;' }
       %h4.f300
         = link_to 'Learn', learn_path
@@ -20,7 +20,7 @@
     .col-xs-4.about-links{ style:'border-radius:0 0 20px 0;' }
       %h4.f300
         = link_to 'Participate', research_path
-.col-xs-10.col-xs-offset-1.panel{ style: 'margin-bottom:30px;' }
+.panel{ style: 'margin-bottom:30px;' }
   .panel-heading.panel-heading-orange
     %h3 Help us advertise!
   .panel-body
@@ -38,14 +38,14 @@
         %li{ style: 'margin:15px' }
           Email your peers, professional networks, and alumni groups. We've made it easy by drafting an email -
           %a.open-tab click here to quickly send it!
-.col-xs-8.col-xs-offset-2.panel{ style: 'margin-top:50px; margin-bottom:30px; padding-top: 20px; padding-bottom:20px; ' }
+.panel.row{ style: 'margin-top:50px; margin-bottom:30px; padding-top: 20px; padding-bottom:20px; margin-left:0px; margin-right:0px;' }
   .col-xs-4{ style: 'text-align:center;' }
     = link_to image_tag('myapnea/icons/facebook_icon.png', class: 'share-icons-lg share-icons-animate' ,style: 'width:60%; height:60%; border-radius:100%;'), "http://www.facebook.com/share.php?u=#{ENV['website_url']}"
   .col-xs-4{ style: 'text-align:center;' }
     = link_to image_tag('myapnea/icons/twitter_icon.png', class: 'share-icons-lg share-icons-animate' ,style: 'width:60%; height:60%; border-radius:100%;'), 'http://ctt.ec/Qeg7f'
   .col-xs-4{ style: 'text-align:center;' }
     = link_to image_tag('myapnea/icons/gplus_icon.png', class: 'share-icons-lg share-icons-animate' ,style: 'width:60%; height:60%; border-radius:100%;'), "https://plusone.google.com/_/+1/confirm?hl=en&url=http%3A%2F%2F%20#{ENV['website_url']}"
-.col-xs-10.col-xs-offset-1.panel{ style: 'margin-bottom:30px;' }
+.panel{ style: 'margin-bottom:30px;' }
   .panel-heading.panel-heading-orange
     %h3 Join as a Provider!
   .panel-body{ style: 'padding-bottom: 30px;' }
