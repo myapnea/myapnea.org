@@ -1,0 +1,141 @@
+.content-main-header
+  %h1 Account Settings
+// Social Profile
+= form_for current_user.social_profile, html: {role: "form", class: 'form-horizontal'}, url: social_profile_path do |f|
+  .panel
+    .panel-body.text-dark8
+      %h3.f300.col-xs-12.centered-text.text-dark9{ style: 'margin-bottom:30px;'} My Social Profile
+      .form-group
+        %label.col-sm-3.col-sm-offset-3.control-label
+          = image_tag current_user.photo_url, :class => "img-responsive img-thumbnail"
+        .col-sm-6
+          %h4.f300 Change Photo
+          =f.file_field :photo
+      .form-group{ style: 'margin-top:20px;' }
+        %label.col-sm-3.control-label Nickname
+        .col-sm-6
+          =f.text_field(:name, class: 'form-control' )
+      .form-group
+        %label.col-sm-3.control-label City
+        .col-sm-6
+          =f.text_field(:location, autocomplete: 'off', id: 'location', class: 'form-control')
+          =f.hidden_field :latitude
+          =f.hidden_field :longitude
+          =f.hidden_field :location_id
+      .form-group
+        %label.col-sm-3.control-label Age
+        .col-sm-6
+          =f.number_field(:age, class: 'form-control')
+      .form-group
+        %label.col-sm-3.control-label Sex
+        .col-sm-6
+          =f.select(:sex, ["Male", "Female", "Other"], {}, class: 'form-control')
+      =f.submit("Save Changes", class: 'btn btn-primary col-sm-6 col-sm-offset-3 centered-text')
+    .panel-footer.text-dark9
+      %h4.f300 Do you want other patients on MyApnea.Org to see you?
+      .radio
+        %label
+          = f.radio_button :show_location, true, id: 'optionsRadios2'
+          %strong
+            Show me.
+          %span.small Add a marker for me on the map that shows information from my social profile.
+      .radio
+        %label
+          = f.radio_button :show_location, false, id: 'optionsRadios1'
+          %strong
+            Don't show me.
+          %span.small Don't let other patients on this site see any map marker for me.
+      - if current_user.social_profile.errors.any?
+        .alert.alert-danger.alert-dismissable
+          %button.close{"aria-hidden" => "true", "data-dismiss" => "alert", :type => "button"} &times;
+          %strong Profile Errors
+          %ul
+            - current_user.social_profile.errors.full_messages.each do |msg|
+              %li= msg.html_safe
+.panel
+  .panel-heading
+    %h4.f300 Basic Information
+  .panel-body
+    = form_for current_user, url: update_account_path, html: { class: 'form-horizontal' } do |f|
+      .form-group
+        = f.label :first_name, class: 'col-sm-2 control-label input-lg'
+        .col-sm-10
+          = f.text_field :first_name, class: 'form-control input-lg', placeholder: User.human_attribute_name(:first_name), autocomplete: :off
+      .form-group
+        = f.label :last_name, class: 'col-sm-2 control-label input-lg'
+        .col-sm-10
+          = f.text_field :last_name, class: 'form-control input-lg', placeholder: User.human_attribute_name(:last_name), autocomplete: :off
+      .form-group
+        = f.label :email, class: 'col-sm-2 control-label input-lg'
+        .col-sm-10
+          = f.email_field :email, class: 'form-control input-lg', placeholder: User.human_attribute_name(:email), autocomplete: :off
+      .form-group
+        = f.label :zip_code, class: 'col-sm-2 control-label input-lg'
+        .col-sm-10
+          = f.text_field :zip_code, class: 'form-control input-lg', placeholder: User.human_attribute_name(:zip_code), autocomplete: :off
+      .form-group
+        = f.label :year_of_birth, class: 'col-sm-2 control-label input-lg'
+        .col-sm-10
+          = f.text_field :year_of_birth, class: 'form-control input-lg', placeholder: User.human_attribute_name(:year_of_birth), autocomplete: :off
+      = f.submit "Save Changes", class: 'btn btn-primary pull-right'
+.panel
+  .panel-heading
+    %h4.f300 Change Password
+  .panel-body
+    = form_for current_user, url: change_password_path do |f|
+      .form-group
+        = f.label :current_password, class: "sr-only"
+        = f.password_field :current_password, class: 'form-control input-lg', placeholder: 'Current Password'
+      .form-group
+        = f.label :password, class: 'sr-only'
+        = f.password_field :password, class: 'form-control input-lg', placeholder: "New Password"
+      = f.submit "Change My Password", class: 'btn btn-primary pull-right'
+.panel
+  .panel-heading
+    %h4.f300 Member Stats
+  %table.table
+    %tr
+      %td Member Since
+      %td= current_user.created_at.strftime("%b %e, %Y")
+    %tr
+      %td Member Number
+      %td= "##{current_user.id}"
+.panel
+  .panel-heading
+    %h4.f300 Notification Preferences
+  .panel-body
+    %form.form-horizontal{role: "form"}
+      .radio
+        %label
+          %input#optionsRadios1{checked: "checked", name: "optionsRadios", type: "radio", value: "option1"}/
+          Email Me
+      .radio
+        %label
+          %input#optionsRadios2{name: "optionsRadios", type: "radio", value: "option2"}/
+          Don't Email Me
+.panel
+  .panel-heading
+    %h4.f300 Leave Research Study
+  .panel-body
+    %p="You may choose to leave the research study at any time. We will no longer collect any information from you and we will stop all communication. However, as stated in the informed consent, the information that you have already provided to #{ENV['pprn_title']} will remain within the study results."
+    = link_to 'View Consent', stealth_consent_path, class: 'btn btn-primary', style: 'width: 49%; margin:.5%; float:left;'
+    = link_to 'View Privacy Policy', stealth_privacy_path, class: 'btn btn-primary', style: 'width: 49%; margin:.5%; float:left;'
+    = link_to 'Leave Research Study', consent_path(consent_revoked: true), method: :post, class: 'btn btn-warning', style: 'width: 99%; margin: .5%; float:left;'
+
+
+  / .panel.panel-default
+  /   .panel-heading
+  /     %h4.panel-title Language
+  /   .panel-body
+  /     %form.form-horizontal{:role => "form"}
+  /       .form-group
+  /         / %label.control-label.col-md-6{for: "inputPassword3"}
+  /         /   %i.fa.fa-globe &nbsp; Language:
+  /         .col-md-6
+  /           %select.form-control
+  /             %option
+  /               %i.fa.fa-globe
+  /               English
+  /             %option Spanish
+
+
