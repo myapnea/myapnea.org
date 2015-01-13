@@ -58,6 +58,12 @@ class User < ActiveRecord::Base
     end
   end
 
+  def smart_forum
+    forum_id = self.posts.group_by{|p| p.forum.id}.collect{|forum_id, posts| [forum_id, posts.count]}.sort{|a,b| b[1] <=> a[1]}.collect{|a| a[0]}.first
+    forum = Forum.current.find_by_id(forum_id)
+    forum ? forum : Forum.current.order(:position).first
+  end
+
   def name
     "#{first_name} #{last_name}"
   end
