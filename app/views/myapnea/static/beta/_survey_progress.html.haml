@@ -1,0 +1,21 @@
+- @percentComplete = percent
+- @surveyName = name
+- @surveyNumber = number
+
+.radial-progress{ style: 'display:block; margin: 20px auto' }
+  .circle{ id: "#{'progressCircle'+@surveyNumber}" }
+    .mask.left
+      .fill
+    .mask.right
+      .fill
+      .fill.fix
+    .shadow
+  .inset
+    .percentage
+      .numbers
+        %br
+        .span{ id: "#{'survey'+@surveyNumber}", data: "#{@percentComplete}" }
+          = @percentComplete + '%'
+%h4.f300.centered-text
+  = @surveyName
+
