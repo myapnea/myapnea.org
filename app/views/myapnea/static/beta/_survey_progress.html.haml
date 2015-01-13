@@ -1,3 +1,5 @@
+- percent = survey.completion_percent(current_user).round
+
 .radial-progress{ style: 'display:block; margin: 20px auto' }
   .circle{ data: { object: "circle_percentage", percent: "#{percent}", survey_id: survey.id } }
     .mask.left
@@ -11,7 +13,7 @@
       .numbers
         %br
         .span{ data: { object: "circle_percentage_display", survey_id: survey.id } }
-          = percent + '%'
+          = percent.to_s + '%'
 %h4.f300.centered-text
   = survey.name
 

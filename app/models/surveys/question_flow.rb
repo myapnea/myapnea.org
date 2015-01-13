@@ -83,11 +83,15 @@ class QuestionFlow < ActiveRecord::Base
     node.children.each(&block)
   end
 
-  # def completion_percent(user)
-  #   0 if self.unstarted(user)?
-  #   100 if self.complete(user)?
-  #   self.
-  # end
+  def completion_percent(user)
+    if self.unstarted?(user)
+      0
+    elsif self.complete?(user)
+      100
+    else
+      self.most_recent_answer_session(user).percent_completed
+    end
+  end
 
   ## Cached in database, need to be refreshed on change (when questions are updated!!)
   # TODO: Put in survey rake task
