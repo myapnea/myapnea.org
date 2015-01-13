@@ -41,7 +41,7 @@ class SurveysController < ApplicationController
     @question_flow = @answer_session.question_flow
     @survey = @question_flow
 
-    render "show_report-new", layout: 'layouts/cleantheme' if params[:redesign] == '1'
+    render "show_report-new", layout: 'layouts/cleantheme' if current_user.beta_opt_in?
   end
 
   def process_answer
