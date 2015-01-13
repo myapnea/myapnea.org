@@ -1,19 +1,20 @@
 class ProvidersController < Devise::RegistrationsController
-  def new
+  layout 'layouts/cleantheme'
 
+
+  def new
     build_resource({})
+
     @validatable = devise_mapping.validatable?
     if @validatable
       @minimum_password_length = resource_class.password_length.min
     end
 
 
-    render "myapnea/devise/registrations/new_provider"
+    respond_with self.resource
   end
 
   def create
-    raise StandardError
-    super.create
 
     #
     # build_resource(sign_up_params)
@@ -38,7 +39,7 @@ class ProvidersController < Devise::RegistrationsController
     #   end
     #   respond_with resource
     # end
-
+    super
 
   end
 
@@ -47,7 +48,7 @@ class ProvidersController < Devise::RegistrationsController
 
 
   def sign_up_params
-    params.require(:user).permit(:first_name, :last_name, :year_of_birth, :zip_code, :email, :password, :password_confirmation)
+    params.require(:provider).permit(:first_name, :last_name, :provider_name, :slug, :address_1, :address_2, :city, :state_code, :zip_code, :email, :password, :password_confirmation)
 
   end
 end

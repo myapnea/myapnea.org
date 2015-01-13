@@ -38,7 +38,7 @@
                   %span.icon-bar
                   %span.icon-bar
                   %span.icon-bar
-        - if (params[:action] == 'home' and !current_user) or params[:action] == 'stealth_providers' or params[:action] == 'stealth_provider1' or params[:action] == 'providers' or params[:action] == 'provider1'
+        - if (params[:action] == 'home' and !current_user) or params[:action] == 'stealth_providers' or params[:action] == 'stealth_provider1' or params[:action] == 'providers' or params[:action] == 'provider1' or params[:controller] == 'providers'
           .collapse.navbar-collapse.navbar-right.float-right
             = form_tag user_session_path, method: :post, class: "navbar-form" do
               = text_field_tag 'user[email]', nil, placeholder: 'Email', class: "form-control"
@@ -80,7 +80,7 @@
                     = link_to 'Become a Provider', stealth_providers_path
     .container-fluid.reset-layout
       / Page contents with or without navigation
-      - if (params[:action] == 'home' and !current_user) or params[:action] == 'stealth_providers' or params[:action] == 'stealth_provider1' or params[:action] == 'providers' or params[:action] == 'provider1'
+      - if (params[:action] == 'home' and !current_user) or params[:action] == 'stealth_providers' or params[:action] == 'stealth_provider1' or params[:action] == 'providers' or params[:action] == 'provider1' or params[:controller] == 'providers'
         = yield
       - else
         .row{ style: 'display: table; position:relative;min-width:100%; margin-left:0px; margin-right:0px;' }
@@ -158,7 +158,7 @@
                     %p{ style: 'margin:10px 10px; color: white; color: rgba(255,255,255,.8) ' }
                       Lorem ipsum sleep apnea snoring loud noises wake up feeling better to a better future Lorem ipsum sleep apnea snoring loud noises wake up feeling better to a better future Lorem ipsum sleep apnea snoring loud noises wake up feeling better to a better future
     / Footer
-    - unless (params[:action] == 'home' and !current_user) or params[:action] == 'stealth_providers' or params[:action] == 'stealth_provider1' or params[:action] == 'providers' or params[:action] == 'provider1'
+    - unless (params[:action] == 'home' and !current_user) or params[:action] == 'stealth_providers' or params[:action] == 'stealth_provider1' or params[:action] == 'providers' or params[:action] == 'provider1' or params[:controller] == 'providers'
       .footer
         .col-sm-3.col-xs-5.primary-orange
           %ul
