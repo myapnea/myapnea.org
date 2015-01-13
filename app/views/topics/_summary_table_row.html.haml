@@ -8,6 +8,8 @@
           %span.glyphicon.glyphicon-star.primary-orange
         - if topic.hidden?
           %i.fa.fa-eye-slash
+        - if topic.locked?
+          %span.glyphicon.glyphicon-lock.text-muted
         = link_to topic.name, [topic.forum, topic]
         - if topic.status == 'pending_review'
           Pending Review

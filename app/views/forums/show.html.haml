@@ -5,7 +5,10 @@
     = link_to 'Forums', forums_path
     &middot;
     = @title
-  = link_to 'New Topic', new_forum_topic_path(@forum), class: 'btn btn-xs btn-primary'
+  - if current_user
+    = link_to 'Start a New Topic', new_forum_topic_path(@forum), class: 'btn btn-xs btn-primary'
+  - else
+    = link_to 'Sign in to Start a New Topic', new_forum_topic_path(@forum), class: 'btn btn-xs btn-primary'
   - if current_user and current_user.has_role? :moderator
     = link_to 'Edit Forum', edit_forum_path(@forum), class: 'btn btn-xs btn-primary'
 
