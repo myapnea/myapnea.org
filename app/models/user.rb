@@ -216,6 +216,10 @@ class User < ActiveRecord::Base
     QuestionFlow.unstarted(self)
   end
 
+  def smart_surveys
+    self.incomplete_surveys + self.unstarted_surveys + self.complete_surveys
+  end
+
   def research_topics_with_vote
     ResearchTopic.voted_by(self)
   end

@@ -6,12 +6,12 @@
 
 .panel
   .panel-body.row
-    .col-xs-4.centered-text
-      = render partial: 'static/beta/survey_progress', locals: { name: 'Survey One', percent: '80', number: '1'}
-    .col-xs-4.centered-text
-      = render partial: 'static/beta/survey_progress', locals: { name: 'Survey Two', percent: '90', number: '2'}
-    .col-xs-4.centered-text
-      = render partial: 'static/beta/survey_progress', locals: { name: 'Survey Three', percent: '70', number: '3'}
+    .col-sm-4.centered-text
+      = render partial: 'static/beta/survey_progress', locals: { survey: current_user.smart_surveys[0] }
+    .col-sm-4.centered-text
+      = render partial: 'static/beta/survey_progress', locals: { survey: current_user.smart_surveys[1] }
+    .col-sm-4.centered-text
+      = render partial: 'static/beta/survey_progress', locals: { survey: current_user.smart_surveys[2] }
 
 .panel
   .panel-heading

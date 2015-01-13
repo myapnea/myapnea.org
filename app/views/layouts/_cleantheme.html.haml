@@ -177,7 +177,7 @@
     / Modal
     - if params[:action] == 'home' and !current_user
       .modal.fade#myModal{ tabindex:'-1', role:'dialog', aria: { labelledby: 'myModalLabel', hidden: 'true' } }
-        .modal-dialog.modal-lg
+        .modal-dialog.modal-lg{ style: 'z-index:1050' }
           .modal-content
             .modal-header
               %button.close{ type: 'button', data: { dismiss: 'modal' } }

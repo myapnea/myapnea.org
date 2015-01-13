@@ -9,6 +9,9 @@
   - Changed image sizes to speed up loading on mobile browsers
   - Members of MyApnea.Org may opt into upcoming design changes and provide feedback directly to the MyApnea.Org team
 
+### Bug Fixes
+- Confirmation boxes now properly display when deleting or removing posts
+
 ### Refactoring
 - Internal `post` model changed to `notification`
   - Old `Post` class has to do with **Site Notifications** and **Blog Posts**
