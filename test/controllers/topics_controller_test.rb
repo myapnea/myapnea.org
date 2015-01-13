@@ -92,6 +92,61 @@ class TopicsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should not show topic marked as spam for logged out user" do
+    get :show, forum_id: topics(:spam).forum, id: topics(:spam)
+    assert_not_nil assigns(:forum)
+    assert_nil assigns(:topic)
+    assert_redirected_to assigns(:forum)
+  end
+
+  test "should not show topic marked as spam for valid user" do
+    login(@valid_user)
+    get :show, forum_id: topics(:spam).forum, id: topics(:spam)
+    assert_not_nil assigns(:forum)
+    assert_nil assigns(:topic)
+    assert_redirected_to assigns(:forum)
+  end
+
+  test "should show topic marked as spam for moderator" do
+    login(@moderator)
+    get :show, forum_id: topics(:spam).forum, id: topics(:spam)
+    assert_not_nil assigns(:forum)
+    assert_not_nil assigns(:topic)
+    assert_response :success
+  end
+
+  test "should not show hidden topic for logged out user" do
+    get :show, forum_id: topics(:hidden).forum, id: topics(:hidden)
+    assert_not_nil assigns(:forum)
+    assert_nil assigns(:topic)
+    assert_redirected_to assigns(:forum)
+  end
+
+  test "should not show hidden topic for valid user" do
+    login(@valid_user)
+    get :show, forum_id: topics(:hidden).forum, id: topics(:hidden)
+    assert_not_nil assigns(:forum)
+    assert_nil assigns(:topic)
+    assert_redirected_to assigns(:forum)
+  end
+
+  test "should show pending review topic for topic creator" do
+    login(@valid_user)
+    get :show, forum_id: topics(:two).forum, id: topics(:two)
+    assert_not_nil assigns(:forum)
+    assert_not_nil assigns(:topic)
+    assert_response :success
+  end
+
+  test "should show hidden topic for moderator" do
+    login(@moderator)
+    get :show, forum_id: topics(:hidden).forum, id: topics(:hidden)
+    assert_not_nil assigns(:forum)
+    assert_not_nil assigns(:topic)
+    assert_response :success
+  end
+
+
   test "should not get edit for logged out user" do
     get :edit, forum_id: forum, id: topics(:one)
     assert_redirected_to new_user_session_path

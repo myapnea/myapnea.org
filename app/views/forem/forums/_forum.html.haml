@@ -28,7 +28,7 @@
       .topic-container
         .row
           .col-xs-1{ style: 'text-align:right' }
-            = render partial: 'forem/forums/user_image', locals: { user: topic.user, size: 25 }
+            = render partial: 'forums/user_image', locals: { user: topic.user, size: 25 }
           .col-md-11.col-xs-10.col-xs-offset-1.col-md-offset-0{ style: 'border-left: 1px solid #5999de;' }
             %p.lead{ style: 'margin-bottom:10px' }= link_to topic, forem.forum_topic_path(forum, topic), class: 'content-link-primary', style: 'text-decoration:none'
         - number_of_previous_posts = topic.posts.where(state: 'approved').count - 1
@@ -45,7 +45,7 @@
             .col-md-11.col-xs-10.col-xs-offset-1.col-md-offset-0{ style: 'border-left: 1px solid #5999de;padding-bottom:0px;margin-bottom:10px' }
               .row
                 .col-xs-2.col-sm-1
-                  = render partial: 'forem/forums/user_image', locals: { user: post.user, size: 20 }
+                  = render partial: 'forums/user_image', locals: { user: post.user, size: 20 }
                 .col-xs-10.col-sm-11
                   %p
                     - link_string = "&nbsp;" + link_to('more...'.html_safe, forem.forum_topic_post_path(post.forum, post.topic, post), class: 'content-link-primary small')

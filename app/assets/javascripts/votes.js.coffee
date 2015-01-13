@@ -68,15 +68,17 @@ $(document).on "click", ".research_topics a.disabled", (event) ->
   event.preventDefault()
 
 
-$(document).on "show.bs.tab", 'a[data-toggle="tab"]', (event) ->
+# This slows down jumping between Write and Preview pane on the new forum interface
+# Removing for the time being
+# $(document).on "show.bs.tab", 'a[data-toggle="tab"]', (event) ->
 
-  target_path = $(event.target).data("target-path")
-  target_pane = $($(event.target).attr("href"))
-  target_pane.hide()
+#   target_path = $(event.target).data("target-path")
+#   target_pane = $($(event.target).attr("href"))
+#   target_pane.hide()
 
-  id = target_pane.attr("id")
+#   id = target_pane.attr("id")
 
-  $.get(target_path, { id: id}, (data) ->
-    target_pane.html(data)
-    target_pane.show()
-  )
+#   $.get(target_path, { id: id}, (data) ->
+#     target_pane.html(data)
+#     target_pane.show()
+#   )

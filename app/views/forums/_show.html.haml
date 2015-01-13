@@ -18,7 +18,11 @@
           %th.hidden-xs
             Time
       %tbody
-        - forum.topics.limit(topic_limit).each do |topic|
+        - topics = if current_user and current_user.has_role? :moderator
+          - forum.topics
+        - else
+          - forum.topics.viewable_by_user(current_user ? current_user.id : nil)
+        - topics.limit(topic_limit).each do |topic|
           = render partial: 'topics/summary_table_row', locals: { topic: topic }
 
 -if false

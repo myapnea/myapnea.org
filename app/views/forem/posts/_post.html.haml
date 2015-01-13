@@ -13,7 +13,7 @@
           Post Deleted
   - elsif post.spam? and forem_admin_or_moderator?(post.topic.forum)
     .col-xs-1
-      = render partial: 'forem/forums/user_image', locals: { user: post.user, size: 50 }
+      = render partial: 'forums/user_image', locals: { user: post.user, size: 50 }
     .col-md-11.col-xs-10.col-xs-offset-1.col-md-offset-0
       .post-container.post-spam
         .post-container-right-after
@@ -39,7 +39,7 @@
   - elsif post.pending_review?
     - if current_user == post.user or forem_admin_or_moderator?(post.topic.forum)
       .col-xs-1
-        = render partial: 'forem/forums/user_image', locals: { user: post.user, size: 50 }
+        = render partial: 'forums/user_image', locals: { user: post.user, size: 50 }
       .col-md-11.col-xs-10.col-xs-offset-1.col-md-offset-0
         .post-container.post-under-review
           .post-container-right-after
@@ -67,7 +67,7 @@
               = post.created_at.strftime("%-d %B %Y, %-l:%M %p")
   - else
     .col-xs-1
-      = render partial: 'forem/forums/user_image', locals: { user: post.user, size: 50 }
+      = render partial: 'forums/user_image', locals: { user: post.user, size: 50 }
 
     .col-md-11.col-xs-10.col-xs-offset-1.col-md-offset-0
       .post-container

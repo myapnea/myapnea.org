@@ -50,6 +50,14 @@ class User < ActiveRecord::Base
     end
   end
 
+  def viewable_topics
+    if self.has_role? :moderator
+      Topic.current
+    else
+      Topic.viewable_by_user(self.id)
+    end
+  end
+
   def all_posts
     if self.has_role? :moderator
       Post.current.with_unlocked_topic

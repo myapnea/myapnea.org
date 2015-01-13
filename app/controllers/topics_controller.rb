@@ -67,8 +67,11 @@ class TopicsController < ApplicationController
     end
 
     def set_viewable_topic
-      # @topic = Topic.current.not_banned.find_by_slug(params[:id])
-      @topic = @forum.topics.find_by_slug(params[:id])
+      @topic = if current_user
+        current_user.viewable_topics.where(forum_id: @forum.id).find_by_slug(params[:id])
+      else
+        @forum.topics.viewable_by_user(current_user ? current_user.id : nil).find_by_slug(params[:id])
+      end
     end
 
     def set_editable_topic
