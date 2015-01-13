@@ -1,17 +1,17 @@
-%li{class: ("active" if action_name == 'home')}
-  = link_to main_app.root_path do
+%li{class: ("active" if current_page?(root_path))}
+  = link_to root_path do
     .fa.fa-home
     Home
-%li{class: ("active" if controller_name == 'forums')}
-  = link_to forem.root_path do
+%li{class: ("active" if params[:controller] == 'forums')}
+  = link_to forums_path do
     .fa.fa-comments-o
     Forums
 %li{class: ("active" if action_name == 'intro')}
-  = link_to main_app.intro_path do
+  = link_to intro_path do
     .fa.fa-book
     About
 %li{class: ("active" if action_name == 'faqs')}
-  = link_to main_app.faqs_path do
+  = link_to faqs_path do
     .fa.fa-question
     Help
 
@@ -24,20 +24,20 @@
       = current_user.first_name
     %ul.dropdown-menu
       %li
-        %a{href: main_app.account_path}
+        %a{href: account_path}
           %i.fa.fa-user
           Account Settings
       - if current_user.can?(:view_admin_dashboard)
         %li
-          %a{href: current_user.has_role?(:owner) ? main_app.admin_users_path : main_app.admin_surveys_path, :title => "Admin Panel"}
+          %a{href: current_user.has_role?(:owner) ? admin_users_path : admin_surveys_path, :title => "Admin Panel"}
             %i.fa.fa-wrench
             Admin Panel
       %li
-        = link_to main_app.destroy_user_session_path, :method => :delete do
+        = link_to destroy_user_session_path, :method => :delete do
           %i.fa.fa-sign-out
           Sign out
 - else
   %li
-    %a{:href => main_app.new_user_session_path}
+    %a{:href => new_user_session_path}
       %i.fa.fa-sign-in
       Sign In

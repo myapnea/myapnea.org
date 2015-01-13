@@ -1,29 +1,33 @@
-.panel.panel-forums
-  - if topic_limit
-    .panel-heading
-      %h3.f300
-        = link_to forum.name, forum
-  .panel-body
-    %table.table
-      %col{ width: "50px" }
-      %col
-      %col{ width: "150px" }
-      %col{ width: "170px" }
-      %thead
-        %tr
-          %th
-          %th
-          %th.hidden-xs
-            Last Post By
-          %th.hidden-xs
-            Time
-      %tbody
-        - topics = if current_user and current_user.has_role? :moderator
-          - forum.topics
-        - else
-          - forum.topics.viewable_by_user(current_user ? current_user.id : nil)
-        - topics.limit(topic_limit).each do |topic|
-          = render partial: 'topics/summary_table_row', locals: { topic: topic }
+- topics = if current_user and current_user.has_role? :moderator
+  - forum.topics
+- else
+  - forum.topics.viewable_by_user(current_user ? current_user.id : nil)
+- topics = topics.search(params[:s]) if params[:s].present?
+- topics = topics.where(status: params[:status]) if params[:status].present?
+
+- if topics.count > 0 or (params[:s].blank? and params[:status].blank?)
+  .panel.panel-forums
+    - if topic_limit
+      .panel-heading
+        %h3.f300
+          = link_to forum.name, forum
+    .panel-body
+      %table.table
+        %col{ width: "50px" }
+        %col
+        %col{ width: "150px" }
+        %col{ width: "170px" }
+        %thead
+          %tr
+            %th
+            %th
+            %th.hidden-xs
+              Last Post By
+            %th.hidden-xs
+              Time
+        %tbody
+          - topics.limit(topic_limit).each do |topic|
+            = render partial: 'topics/summary_table_row', locals: { topic: topic }
 
 -if false
   - @forums.each do |forum|

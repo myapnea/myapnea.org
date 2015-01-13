@@ -20,7 +20,8 @@
     = stylesheet_link_tag 'cleantheme', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag "cleantheme", "data-turbolinks-track" => true
     = javascript_tag "var root_url='#{request.script_name + '/'}';var auth_token='#{form_authenticity_token}';"
-    / = javascript_include_tag "//code.jquery.com/ui/1.11.2/jquery-ui.min.js"
+    - if false
+      = javascript_include_tag "//code.jquery.com/ui/1.11.2/jquery-ui.min.js"
   %body{ class: "#{params[:night] == '1' ? 'night-mode' : 'day-mode'}", data: { object: 'no-user-voice' } }
     %div#social-backdrop{ style: 'background-color:black; width:100%; height:81px; position:absolute; top:0; z-index:1000;' }
     %nav.navbar.navbar-fixed-top{role:'navigation'}
@@ -113,7 +114,7 @@
                   %li.list-group-item.hover-slide-left.list-shrink
                     = link_to 'Home', root_path, style: 'color:white; color: rgba(255,255,255,.8); text-decoration: none;'
                   %li.list-group-item.hover-slide-left.list-shrink
-                    = link_to 'Forums', forem_path, style: 'color:white; color: rgba(255,255,255,.8); text-decoration: none;'
+                    = link_to 'Forums', forums_path, style: 'color:white; color: rgba(255,255,255,.8); text-decoration: none;'
                   %li.list-group-item.hover-slide-left.list-shrink
                     = link_to 'Research Surveys', surveys_path,  style: 'color:white; color: rgba(255,255,255,.8); text-decoration: none;'
                   %li.list-group-item.hover-slide-left.list-shrink
@@ -180,7 +181,7 @@
     / Modal
     - if params[:action] == 'home' and !current_user
       .modal.fade#myModal{ tabindex:'-1', role:'dialog', aria: { labelledby: 'myModalLabel', hidden: 'true' } }
-        .modal-dialog.modal-lg
+        .modal-dialog.modal-lg{ style: 'z-index:1050' }
           .modal-content
             .modal-header
               %button.close{ type: 'button', data: { dismiss: 'modal' } }

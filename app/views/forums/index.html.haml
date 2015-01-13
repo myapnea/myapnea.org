@@ -3,5 +3,13 @@
     Welcome to the Forums!
   = link_to 'New Forum', new_forum_path, class: 'btn btn-xs btn-primary' if current_user and current_user.has_role? :owner
 
+= form_tag forums_path, method: :get, class: 'form-inline', style: 'margin-bottom:20px' do
+  .input-group
+    = text_field_tag 's', params[:s], class: 'form-control'
+    %span.input-group-btn
+      = submit_tag 'Search', class: 'btn btn-primary', name: nil
+      = link_to 'Reset', forums_path, class: 'btn btn-default'
+      = link_to 'Pending Review', forums_path(status: (params[:status] == 'pending_review' ? nil : 'pending_review')), class: "btn btn-default #{'active' if params[:status] == 'pending_review'}" if current_user and current_user.has_role? :owner
+
 - @forums.order(:position).each do |forum|
   = render partial: 'forums/show', locals: { forum: forum, topic_limit: 10 }
