@@ -1,5 +1,5 @@
 class Provider < User
-  after_create set_type
+  after_create :set_type
 
 
 

@@ -18,6 +18,7 @@
               - resource.errors.full_messages.each do |msg|
                 %li= msg.html_safe
         = form_for(resource, :as => resource_name, :url => registration_path(resource_name), html: {}) do |f|
+          - raise StandardError
           .form-group
             = label "#{resource_name}[first_name]", :first_name, class: 'sr-only'
             = text_field_tag "#{resource_name}[first_name]", (params[resource_name] ? params[resource_name][:first_name] : ''), class: 'form-control input-lg', placeholder: User.human_attribute_name(:first_name), autocomplete: :off
