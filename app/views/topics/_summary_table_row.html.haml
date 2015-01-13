@@ -1,12 +1,21 @@
 - if post = topic.posts.last
-  %tr
+  %tr{ class: "#{"topic-#{topic.status.dasherize}"}"}
     %td
-      = image_tag topic.user.photo_url, size: '30x30', class: "img-thumbnail", style: "min-height:#{30+5}px;min-width:#{30+5}px;", title: topic.user.forum_name, data: { toggle: 'tooltip', container: 'body', placement: 'top' }
+      = image_tag topic.user.photo_url, size: '30x30', class: "img-thumbnail", alt: '', style: "min-height:#{30+5}px;min-width:#{30+5}px;", title: topic.user.forum_name, data: { toggle: 'tooltip', container: 'body', placement: 'top' }
     %td{ class: "#{topic.pinned? ? "f500" : "f300"}" }
       %p
         - if topic.pinned?
           %span.glyphicon.glyphicon-star.primary-orange
+        - if topic.hidden?
+          %i.fa.fa-eye-slash
+        - if topic.locked?
+          %span.glyphicon.glyphicon-lock.text-muted
         = link_to topic.name, [topic.forum, topic]
+        - if topic.status == 'pending_review'
+          Pending Review
+        - if topic.status == 'spam'
+          Marked as Spam
+
     %td.text-muted.hidden-xs{ class: "#{topic.pinned? ? "f500" : "f300"}" }
       %div{ style: 'white-space:nowrap;overflow-x:hidden;max-width:150px' }
         = image_tag post.user.photo_url, size: '18x18'

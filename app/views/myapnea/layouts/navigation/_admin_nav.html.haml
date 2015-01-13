@@ -1,12 +1,11 @@
 .list-group
   - if current_user.has_role? :owner
-    %a.list-group-item{href: main_app.admin_users_path, class: "#{"active" if action_name == "users"}"} Members
-  %a.list-group-item{href: main_app.admin_surveys_path, class: "#{"active" if action_name == "surveys"}"} Surveys
-  %a.list-group-item{href: forem.admin_root_path, class: "#{ 'active' if controller_path =~ /forem/ }"} Forums
-  - if forum = Forem::Forum.find_by_name('News')
-    %a.list-group-item{href: forem.forum_path(forum), class: "#{"active" if action_name == "blog"}"} Blog Posts
-  %a.list-group-item{href: main_app.admin_notifications_path, class: "#{"active" if action_name == "notifications"}"} Notifications
-  %a.list-group-item{href: main_app.admin_research_topics_path, class: "#{"active" if /research_topic/ =~ action_name }"} Research Topics
+    %a.list-group-item{href: admin_users_path, class: "#{"active" if action_name == "users"}"} Members
+  %a.list-group-item{href: admin_surveys_path, class: "#{"active" if action_name == "surveys"}"} Surveys
+  %a.list-group-item{href: forums_path, class: "#{ 'active' if params[:controller] == 'forums' }"} Forums
+  - if forum = Forum.find_by_name('News')
+    %a.list-group-item{href: forum_path(forum), class: "#{"active" if action_name == "blog"}"} Blog Posts
+  %a.list-group-item{href: admin_research_topics_path, class: "#{"active" if /research_topic/ =~ action_name }"} Research Topics
 
 
 .list-group

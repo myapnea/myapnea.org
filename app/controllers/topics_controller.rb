@@ -67,8 +67,11 @@ class TopicsController < ApplicationController
     end
 
     def set_viewable_topic
-      # @topic = Topic.current.not_banned.find_by_slug(params[:id])
-      @topic = @forum.topics.find_by_slug(params[:id])
+      @topic = if current_user
+        current_user.viewable_topics.where(forum_id: @forum.id).find_by_slug(params[:id])
+      else
+        @forum.topics.viewable_by_user(current_user ? current_user.id : nil).find_by_slug(params[:id])
+      end
     end
 
     def set_editable_topic
@@ -82,7 +85,7 @@ class TopicsController < ApplicationController
 
     def topic_params
       if current_user.has_role? :moderator
-        params.require(:topic).permit(:name, :description, :hidden, :locked, :pinned, :status)
+        params.require(:topic).permit(:name, :description, :slug, :hidden, :locked, :pinned, :status)
       else
         params.require(:topic).permit(:name, :description)
       end

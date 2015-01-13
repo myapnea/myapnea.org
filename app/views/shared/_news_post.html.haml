@@ -4,13 +4,13 @@
       - if short
         .col-lg-12
           .pull-right
-            = link_to forem.forums_path do
+            = link_to forums_path do
               .fa.fa-comments-o
-          =link_to forem.forum_topic_path(post[:post].forum, post[:post]) do
+          =link_to forum_topic_path(post[:post].forum, post[:post]) do
             %h4.media-heading= post[:title]
           %p.caption= post["caption"]
           %small
-            = link_to "Posted in News by #{post[:user]}", forem.forum_path(post[:post].forum)
+            = link_to "Posted in News by #{post[:user]}", forum_path(post[:post].forum)
           %br
           %small
             %strong= post[:created_at].strftime("%m/%d/%Y")
@@ -18,11 +18,11 @@
         .col-lg-1
           = image_tag post[:user_photo], :class => "img-responsive img-thumbnail"
         .col-lg-10
-          =link_to forem.forum_topic_path(post[:post].forum, post[:post]) do
+          =link_to forum_topic_path(post[:post].forum, post[:post]) do
             %h4.media-heading= post[:title]
           %p.caption= post["caption"]
           %small
-            = link_to "Posted in News by #{post[:user]}", forem.forum_path(post[:post].forum)
+            = link_to "Posted in News by #{post[:user]}", forum_path(post[:post].forum)
           %br
           %small
             %strong= post[:created_at].strftime("%m/%d/%Y")
@@ -38,4 +38,4 @@
         - else
           %p= markdown post[:content]
 
-    %p= link_to "Read more...", forem.forum_topic_path(post[:post].forum, post[:post])
+    %p= link_to "Read more...", forum_topic_path(post[:post].forum, post[:post])

@@ -35,6 +35,7 @@ Rails.application.routes.draw do
   get 'stealth_consent' => 'static#stealth_consent'
   get 'stealth_privacy' => 'static#stealth_privacy'
   get 'stealth_terms' => 'static#stealth_terms'
+  get 'stealth_home' => 'static#stealth_home'
 
   get 'privacy_policy_document' => 'static#content', :page => "privacy_policy"
   get 'terms_of_service' => 'static#content', :page => "terms_of_service"
@@ -135,7 +136,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'registrations' }
   devise_for :providers, controllers: { registrations: 'providers' }, skip: [:passwords, :confirmations, :sessions]
 
-  resources :forums, path: 'newforums' do
+  resources :forums do
     resources :topics do
       resources :posts
     end
@@ -143,12 +144,12 @@ Rails.application.routes.draw do
 
   get 'forum', to: redirect("forums")
 
-  # This line mounts Forem's routes at /forums by default.
-  # This means, any requests to the /forums URL of your application will go to Forem::ForumsController#index.
-  # If you would like to change where this extension is mounted, simply change the :at option to something different.
+  # # This line mounts Forem's routes at /forums by default.
+  # # This means, any requests to the /forums URL of your application will go to Forem::ForumsController#index.
+  # # If you would like to change where this extension is mounted, simply change the :at option to something different.
 
-  # We ask that you don't use the :as option here, as Forem relies on it being the default of "forem"
-  mount Forem::Engine, :at => '/forums'
+  # # We ask that you don't use the :as option here, as Forem relies on it being the default of "forem"
+  # mount Forem::Engine, :at => '/forums'
 
 # # Authentication
 #   devise_for :user, skip: [:sessions, :passwords, :confirmations, :registrations]

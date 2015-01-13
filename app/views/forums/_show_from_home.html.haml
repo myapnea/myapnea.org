@@ -1,0 +1,21 @@
+.panel-body
+  %table.table
+    %col{ width: "50px" }
+    %col
+    %col{ width: "150px" }
+    %col{ width: "170px" }
+    %thead
+      %tr
+        %th
+        %th
+        %th.hidden-xs
+          Last Post By
+        %th.hidden-xs
+          Time
+    %tbody
+      - if smart_forum = current_user.smart_forum
+        - smart_forum.topics.limit(topic_limit).each do |topic|
+          = render partial: 'topics/summary_table_row', locals: { topic: topic }
+      -else
+        / - smart_forum.topics.limit(topic_limit).each do |topic|
+        / = render partial: 'topics/summary_table_row', locals: { topic: topic }
