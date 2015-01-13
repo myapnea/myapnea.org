@@ -4,6 +4,7 @@
 .panel
   .panel-body
     %ul
+      %li= link_to "Home Page", home_path(beta: '1')
       %li= link_to "Team Page", team_path(beta: '1')
       %li= link_to "Providers Page", root_path + 'stealth_providers'
       %li= link_to "Sample Provider Page", root_path + 'stealth_provider1'
