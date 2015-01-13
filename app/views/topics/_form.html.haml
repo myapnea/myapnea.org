@@ -31,7 +31,7 @@
     .form-group
       = f.label :description, nil, class: 'col-md-2 control-label'
       .col-md-10
-        = f.text_area :description, rows: 7, class: 'form-control'
+        = f.text_area :description, rows: 14, class: 'form-control'
 
   - if current_user.has_role? :moderator
     .form-group

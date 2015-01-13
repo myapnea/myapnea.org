@@ -10,11 +10,23 @@
   - if current_user and @topic.editable_by?(current_user)
     = link_to 'Edit Topic', edit_forum_topic_path(@forum, @topic), class: 'btn btn-xs btn-primary'
 
-- if current_user and current_user.has_role? :moderator and (@topic.hidden? or @topic.locked?)
+- if current_user and current_user.has_role? :moderator and (@topic.hidden? or @topic.locked? or ['pending_review', 'spam'].include?(@topic.status))
   .panel.panel-primary
     .panel-heading
       %h4.f300 Moderator Information
     .panel-body
+      - if @topic.status == 'pending_review'
+        %i.fa.fa-eye-slash
+        This topic is currently pending review. You can either
+        = link_to 'approve', forum_topic_path(@forum, @topic, topic: { status: 'approved' }), method: :patch, class: 'btn btn-success btn-xs'
+        this topic or
+        = link_to 'mark the topic as spam', forum_topic_path(@forum, @topic, topic: { status: 'spam' }), method: :patch, class: 'btn btn-danger btn-xs'
+        \.
+      - if @topic.status == 'spam'
+        %i.fa.fa-eye-slash
+        This topic is marked as spam. If this was a mistake, you can
+        = link_to 'undo', forum_topic_path(@forum, @topic, topic: { status: 'pending_review' }), method: :patch, class: 'btn btn-danger btn-xs'
+        this and set the topic back to pending review.
       - if @topic.hidden?
         %i.fa.fa-eye-slash
         This topic has been hidden, and is not viewable to regular forum members. You can
