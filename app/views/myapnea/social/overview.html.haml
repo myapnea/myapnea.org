@@ -1,61 +1,64 @@
-- content_for :community_contributions do
-  .panel.panel-primary
+- if beta_enabled?(current_user, params)
+  = render partial: 'static/beta/community'
+- else
+  - content_for :community_contributions do
+    .panel.panel-primary
+      .panel-heading
+        Community Contributions
+      .panel-body.text-right
+        .row
+          .col-md-4
+            Members Joined
+            %br/
+            %span.h0 560
+          .col-md-4
+            Profiles Created
+            %br/
+            %span.h0 1.3k
+          .col-md-4
+            Locations shared
+            %br/
+            %span.h0 350
+  - content_for :your_contributions do
+    = render partial: "shared/badge_list", :locals => {badges: [{title:"Map Maker",body:"You shared your location", earned:true, icon: "fa-question-circle"},
+                                                                {title:"Socializer",body:"You created a social profile", icon: "fa-check-circle-o"} ]}
+
+
+  .panel.panel-default
     .panel-heading
-      Community Contributions
-    .panel-body.text-right
       .row
-        .col-md-4
-          Members Joined
-          %br/
-          %span.h0 560
-        .col-md-4
-          Profiles Created
-          %br/
-          %span.h0 1.3k
-        .col-md-4
-          Locations shared
-          %br/
-          %span.h0 350
-- content_for :your_contributions do
-  = render partial: "shared/badge_list", :locals => {badges: [{title:"Map Maker",body:"You shared your location", earned:true, icon: "fa-question-circle"},
-                                                              {title:"Socializer",body:"You created a social profile", icon: "fa-check-circle-o"} ]}
+        .col-md-6
+          %h3.panel-title Map
+
+        .col-md-6
 
 
-.panel.panel-default
-  .panel-heading
-    .row
-      .col-md-6
-        %h3.panel-title Map
+          .btn-group.btn-group-sm.pull-right{data: {toggle: "buttons"}}
+            %label.btn.btn-default#city-view
+              %input{type: "radio", name: "zoomLevel"}
+              City
+            %label.btn.btn-default#state-view
+              %input{type: "radio", name: "zoomLevel"}
+              State
+            %label.btn.btn-default#country-view.active
+              %input{type: "radio", name: "zoomLevel", checked: 'checked'}
+              Country
+            %label.btn.btn-default#world-view
+              %input{type: "radio", name: "zoomLevel"}
+              World
 
-      .col-md-6
+    #user_map{data: {path: locations_path}}
 
+    .panel-footer.small
+      - if current_user and current_user.social_profile and current_user.social_profile.location
+        .pull-right
+          You are currently living in
+          = current_user.social_profile.location
+          = link_to "Update this.", social_profile_path
+        .clearfix
+      - else
+        Where do you live?
+        = link_to "Add yourself to this map.", social_profile_path
 
-        .btn-group.btn-group-sm.pull-right{data: {toggle: "buttons"}}
-          %label.btn.btn-default#city-view
-            %input{type: "radio", name: "zoomLevel"}
-            City
-          %label.btn.btn-default#state-view
-            %input{type: "radio", name: "zoomLevel"}
-            State
-          %label.btn.btn-default#country-view.active
-            %input{type: "radio", name: "zoomLevel", checked: 'checked'}
-            Country
-          %label.btn.btn-default#world-view
-            %input{type: "radio", name: "zoomLevel"}
-            World
-
-  #user_map{data: {path: locations_path}}
-
-  .panel-footer.small
-    - if current_user and current_user.social_profile and current_user.social_profile.location
-      .pull-right
-        You are currently living in
-        = current_user.social_profile.location
-        = link_to "Update this.", social_profile_path
-      .clearfix
-    - else
-      Where do you live?
-      = link_to "Add yourself to this map.", social_profile_path
-
-= javascript_include_tag "//maps.googleapis.com/maps/api/js?key=AIzaSyBB91qMUvtmPzct9z7slTqm-lTUEVuYjKo"
-= javascript_include_tag 'social/maps'
+  = javascript_include_tag "//maps.googleapis.com/maps/api/js?key=AIzaSyBB91qMUvtmPzct9z7slTqm-lTUEVuYjKo"
+  = javascript_include_tag 'social/maps'
