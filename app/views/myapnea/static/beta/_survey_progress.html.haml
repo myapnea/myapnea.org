@@ -1,6 +1,6 @@
 - percent = survey.completion_percent(current_user).round
 
-.radial-progress{ style: 'display:block; margin: 20px auto' }
+.radial-progress.hidden-xs{ style: 'display:block; margin: 20px auto' }
   .circle{ data: { object: "circle_percentage", percent: "#{percent}", survey_id: survey.id } }
     .mask.left
       .fill
@@ -16,4 +16,18 @@
           = percent.to_s + '%'
 %h4.f300.centered-text
   = survey.name
+// Mobile display
+%h5.f300.visible-xs.text-muted
+  = percent.to_s + '% completed'
+%h5.f300.visible-xs.primary-blue{ style: 'margin-bottom:30px;' }
+  - if survey.complete?(current_user)
+    = link_to 'View report', survey_report_path(answer_session_id: survey.most_recent_answer_session(current_user).id)
+  - elsif survey.incomplete?(current_user) and percent==0
+    = link_to 'Work on this survey now!', start_or_resume_survey(survey, survey.most_recent_answer_session(current_user))
+  -elsif survey.incomplete?(current_user) and percent!=0
+    = link_to 'Start this survey now!', start_or_resume_survey(survey, survey.most_recent_answer_session(current_user))
+    // TODO This still isn't quite redirecting as desired
+  - else
+    = link_to 'Start this survey now!', start_or_resume_survey(survey)
+
 
