@@ -1,5 +1,5 @@
 !!!
-- if params[:beta] == '1'
+- if beta_enabled?(current_user, params)
   = render 'layouts/cleantheme'
 - else
   %html{lang: "en"}
