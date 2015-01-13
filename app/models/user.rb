@@ -20,8 +20,11 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :timeoutable, :lockable
 
   # Model Validation
-  validates_presence_of :first_name, :last_name, :year_of_birth
-  validates_numericality_of :year_of_birth, allow_nil: false, only_integer: true, less_than_or_equal_to: -> (user){ Date.today.year - 18 }, greater_than_or_equal_to: -> (user){ 1900 }
+  validates_presence_of :first_name, :last_name
+
+  with_options unless: :is_provider? do |user|
+    user.validates :year_of_birth, presence: true, numericality: {only_integer: true, allow_nil: false, less_than_or_equal_to: -> (user){ Date.today.year - 18 }, greater_than_or_equal_to: -> (user){ 1900 }}
+  end
 
   # Model Relationships
   has_many :answer_sessions
@@ -41,6 +44,11 @@ class User < ActiveRecord::Base
 
   def deleted?
     false
+  end
+
+
+  def is_provider?
+    self.type == "Provider"
   end
 
   def all_topics
