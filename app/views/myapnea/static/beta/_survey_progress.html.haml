@@ -1,9 +1,5 @@
-- @percentComplete = percent
-- @surveyName = name
-- @surveyNumber = number
-
 .radial-progress{ style: 'display:block; margin: 20px auto' }
-  .circle{ id: "#{'progressCircle'+@surveyNumber}" }
+  .circle{ data: { object: "circle_percentage", percent: "#{percent}", survey_id: survey.id } }
     .mask.left
       .fill
     .mask.right
@@ -14,8 +10,8 @@
     .percentage
       .numbers
         %br
-        .span{ id: "#{'survey'+@surveyNumber}", data: "#{@percentComplete}" }
-          = @percentComplete + '%'
+        .span{ data: { object: "circle_percentage_display", survey_id: survey.id } }
+          = percent + '%'
 %h4.f300.centered-text
-  = @surveyName
+  = survey.name
 

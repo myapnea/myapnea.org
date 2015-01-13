@@ -47,4 +47,5 @@
 //= require cleantheme/maps
 //= require cleantheme/navigationUX
 //= require cleantheme/navigationToggle.js
-//= require cleantheme/surveyProgress.js
+// require cleantheme/surveyProgress.js
+//= require cleantheme/circle.coffee

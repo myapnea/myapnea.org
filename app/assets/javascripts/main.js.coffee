@@ -103,6 +103,7 @@ $.rails.allowAction = (element) ->
   landingReady() if landingReady?
   mapsReady() if mapsReady?
   navigationUXReady() if navigationUXReady?
+  drawSurveyProgressReady() if drawSurveyProgressReady?
 
 $(document).ready(loaders)
 $(document).on('page:load', loaders)
