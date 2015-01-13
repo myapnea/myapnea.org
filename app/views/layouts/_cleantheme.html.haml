@@ -38,7 +38,7 @@
                   %span.icon-bar
                   %span.icon-bar
                   %span.icon-bar
-        - if (params[:action] == 'home' and !current_user) or params[:action] == 'stealth_providers' or params[:action] == 'stealth_provider1' or params[:action] == 'providers' or params[:action] == 'provider1'
+        - if ((params[:action] == 'home' or params[:action] == 'stealth_providers' or params[:action] == 'stealth_provider1' or params[:action] == 'providers' or params[:action] == 'provider1') and !current_user)
           .collapse.navbar-collapse.navbar-right.float-right
             = form_tag user_session_path, method: :post, class: "navbar-form" do
               = text_field_tag 'user[email]', nil, placeholder: 'Email', class: "form-control"
@@ -60,7 +60,7 @@
                   %li
                     = link_to 'Introduction', intro_path
                   %li
-                    = link_to 'Our Team', stealth_steering_path
+                    = link_to 'Our Team', team_path
                   %li
                     = link_to 'FAQs', faqs_path
               %li.dropdown
@@ -71,13 +71,13 @@
                   %li
                     = link_to 'Community', social_path
                   %li
-                    = link_to 'Forums', stealth_forums_path
+                    = link_to 'Forums', forums_path
                   %li
-                    = link_to 'Research Surveys', stealth_surveydisplay_path
+                    = link_to 'Research Surveys', surveys_path
                   %li
-                    = link_to 'Rate the Research', stealth_datadisplay_path
+                    = link_to 'Rate the Research', research_topics_path
                   %li
-                    = link_to 'Become a Provider', stealth_providers_path
+                    = link_to 'Become a Provider', providers_path
     .container-fluid.reset-layout
       / Page contents with or without navigation
       - if (params[:action] == 'home' and !current_user) or params[:action] == 'stealth_providers' or params[:action] == 'stealth_provider1' or params[:action] == 'providers' or params[:action] == 'provider1'
@@ -122,7 +122,7 @@
                   %li.list-group-item.hover-slide-left.list-shrink.visible-xs{style: 'margin-top:50px;'}
                     = link_to 'Introduction', intro_path, style: 'color:white; color: rgba(255,255,255,.8); text-decoration: none;'
                   %li.list-group-item.hover-slide-left.list-shrink.visible-xs
-                    = link_to 'Our Team', stealth_steering_path, style: 'color:white; color: rgba(255,255,255,.8); text-decoration: none;'
+                    = link_to 'Our Team', team_path, style: 'color:white; color: rgba(255,255,255,.8); text-decoration: none;'
                   %li.list-group-item.hover-slide-left.list-shrink.visible-xs
                     = link_to 'FAQs', faqs_path, style: 'color:white; color: rgba(255,255,255,.8); text-decoration: none;'
                   %li.list-group-item.hover-slide-left.list-shrink.visible-xs
