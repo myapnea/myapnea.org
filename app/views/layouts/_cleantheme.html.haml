@@ -94,9 +94,13 @@
                 .col-lg-6.col-md-6.col-md-offset-0.col-sm-8.col-sm-offset-2#user-profile-header-text{ style:'padding:0;' }
                   %h4.user-name.text-white
                     = current_user.name
-                  = link_to account_path, style: 'color:white; color:rgba(255,255,255,.8); text-decoration:none;' do
-                    %span.glyphicon.glyphicon-cog
+                  = link_to account_path, style: 'color:white; color:rgba(255,255,255,.8); text-decoration:none;', class: 'f300' do
+                    %span.glyphicon.glyphicon-cog{ style: 'margin-bottom:10px' }
                     Settings
+                  %br
+                  = link_to main_app.destroy_user_session_path, style: 'color:white; color:rgba(255,255,255,.8); text-decoration:none;', class: 'f300', :method => :delete do
+                    %i.fa.fa-sign-out
+                    Sign out
               -else
                 .col-sm-12
                   .centered-text
