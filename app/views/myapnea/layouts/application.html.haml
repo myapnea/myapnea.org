@@ -1,35 +1,37 @@
 !!!
+- if beta_enabled?(current_user, params)
+  = render 'layouts/cleantheme'
+- else
+  %html{lang: "en"}
+    %head
 
-%html{lang: "en"}
-  %head
+      %title= yield(:title) + " " + ENV["pprn_title"]
+      = render "layouts/before_scripts"
 
-    %title= yield(:title) + " " + ENV["pprn_title"]
-    = render "layouts/before_scripts"
-
-  %body#MyApnea{screen_capture_injected: "true",  data: { email: "#{current_user.email if current_user}", fullname: "#{current_user.name if current_user}" } }
-    #fb-root
-    .container{role: "main"}
-      .row.row-offcanvas.row-offcanvas-left.row-offcanvas-right
-        - if content_for(:sidenav)
-          #sidebar.visible-xs-block.visible-sm-block.col-sm-6.sidebar-offcanvas.sidebar-offcanvas-left{role: "navigation"}
-            = yield :sidenav
-            .clearfix
-        %div.col-sm-12
-          = render "layouts/navigation/top_navigation_bar"
-          = render "layouts/flash_messages"
-          - if content_for(:sublayout)
-            = yield :sublayout
-            %br/
-          .row
-            - if content_for(:sidenav)
-              .col-md-3.visible-md-block.visible-lg-block{role: "navigation"}
-                = yield :sidenav
-            %div.content{class: (content_for(:sidenav) ? "col-md-9" : "col-md-12")}
-              = yield
+    %body#MyApnea{screen_capture_injected: "true",  data: { email: "#{current_user.email if current_user}", fullname: "#{current_user.name if current_user}" } }
+      #fb-root
+      .container{role: "main"}
+        .row.row-offcanvas.row-offcanvas-left.row-offcanvas-right
+          - if content_for(:sidenav)
+            #sidebar.visible-xs-block.visible-sm-block.col-sm-6.sidebar-offcanvas.sidebar-offcanvas-left{role: "navigation"}
+              = yield :sidenav
+              .clearfix
+          %div.col-sm-12
+            = render "layouts/navigation/top_navigation_bar"
+            = render "layouts/flash_messages"
+            - if content_for(:sublayout)
+              = yield :sublayout
+              %br/
+            .row
+              - if content_for(:sidenav)
+                .col-md-3.visible-md-block.visible-lg-block{role: "navigation"}
+                  = yield :sidenav
+              %div.content{class: (content_for(:sidenav) ? "col-md-9" : "col-md-12")}
+                = yield
 
 
-          = render "layouts/footer"
-          = render "layouts/after_scripts"
-        #options.visible-xs-block.visible-sm-block.col-sm-6.sidebar-offcanvas.sidebar-offcanvas-right{role: "navigation"}
-          %ul.nav.nav-pills.nav-stacked
-            = render partial: "layouts/navigation/options_nav"
+            = render "layouts/footer"
+            = render "layouts/after_scripts"
+          #options.visible-xs-block.visible-sm-block.col-sm-6.sidebar-offcanvas.sidebar-offcanvas-right{role: "navigation"}
+            %ul.nav.nav-pills.nav-stacked
+              = render partial: "layouts/navigation/options_nav"

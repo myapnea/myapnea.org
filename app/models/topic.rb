@@ -1,5 +1,7 @@
 class Topic < ActiveRecord::Base
 
+  STATUS = [['Approved', 'approved'], ['Pending Review', 'pending_review'], ['Marked as Spam', 'spam']]
+
   attr_accessor :description, :migration_flag
 
   # Concerns
@@ -11,6 +13,8 @@ class Topic < ActiveRecord::Base
 
   # Named Scopes
   scope :current, -> { where( deleted: false ) }
+  scope :viewable_by_user, lambda { |arg| where(hidden: false).where('topics.user_id = ? or topics.status = ?', arg, 'approved') }
+  scope :search, lambda { |arg| where('topics.name ~* ? or topics.id in (select posts.topic_id from posts where posts.deleted = ? and posts.description ~* ?)', arg.to_s.split(/\s/).collect{|l| l.to_s.gsub(/[^\w\d%]/, '')}.collect{|l| "(\\m#{l})"}.join("|"), false, arg.to_s.split(/\s/).collect{|l| l.to_s.gsub(/[^\w\d%]/, '')}.collect{|l| "(\\m#{l})"}.join("|") ) }
   def destroy
     update_column :deleted, true
   end
@@ -32,10 +36,23 @@ class Topic < ActiveRecord::Base
     slug
   end
 
+  def editable_by?(current_user)
+    # not self.locked? and not self.user.banned? and (self.user == current_user or current_user.has_role?(:moderator))
+    (not self.locked? and self.user == current_user) or current_user.has_role?(:moderator)
+  end
+
+  def get_or_create_subscription(current_user)
+    # Placeholder
+  end
+
+  def subscribed?(current_user)
+    true
+  end
+
   private
 
   def create_first_post
-    # self.posts.create( description: self.description, user_id: self.user_id )
+    self.posts.create( description: self.description, user_id: self.user_id )
     # self.get_or_create_subscription( self.user )
   end
 

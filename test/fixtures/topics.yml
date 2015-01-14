@@ -8,7 +8,7 @@ one:
   locked: false
   pinned: false
   last_post_at: 2015-01-06 15:26:03
-  state: approved
+  status: approved
   views_count: 1
   slug: my-topic
 
@@ -19,7 +19,7 @@ two:
   locked: false
   pinned: false
   last_post_at: 2015-01-06 15:26:03
-  state: pending_review
+  status: pending_review
   views_count: 1
   slug: another-topic
 
@@ -30,6 +30,29 @@ locked:
   locked: true
   pinned: false
   last_post_at: 2015-01-06 15:26:03
-  state: approved
+  status: approved
   views_count: 1
   slug: locked-topic
+
+spam:
+  forum: one
+  user: user_2
+  name: Spam Topic
+  locked: false
+  pinned: false
+  last_post_at: 2015-01-06 15:26:03
+  status: spam
+  views_count: 1
+  slug: spam-topic
+
+hidden:
+  forum: one
+  user: user_1
+  name: Hidden Topic
+  locked: false
+  pinned: false
+  hidden: true
+  last_post_at: 2015-01-06 15:26:03
+  status: approved
+  views_count: 1
+  slug: hidden-topic

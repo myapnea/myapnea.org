@@ -1,3 +1,7 @@
-- title("Terms")
+- if beta_enabled?(current_user, params)
+  = render partial: 'static/beta/terms'
+- else
 
-.req All Page Content and Imagery
+  - title("Terms")
+
+  .req All Page Content and Imagery

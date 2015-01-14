@@ -17,7 +17,7 @@ class TopicsController < ApplicationController
   layout 'layouts/cleantheme'
 
   def moderate
-    @topic.update(topic_moderator_params)
+    @topic.update(topic_params)
     redirect_to topics_path
   end
 
@@ -67,8 +67,11 @@ class TopicsController < ApplicationController
     end
 
     def set_viewable_topic
-      # @topic = Topic.current.not_banned.find_by_slug(params[:id])
-      @topic = @forum.topics.find_by_slug(params[:id])
+      @topic = if current_user
+        current_user.viewable_topics.where(forum_id: @forum.id).find_by_slug(params[:id])
+      else
+        @forum.topics.viewable_by_user(current_user ? current_user.id : nil).find_by_slug(params[:id])
+      end
     end
 
     def set_editable_topic
@@ -81,11 +84,11 @@ class TopicsController < ApplicationController
     end
 
     def topic_params
-      params.require(:topic).permit(:name, :description)
-    end
-
-    def topic_moderator_params
-      params.require(:topic).permit(:locked, :pinned, :state)
+      if current_user.has_role? :moderator
+        params.require(:topic).permit(:name, :description, :slug, :hidden, :locked, :pinned, :status)
+      else
+        params.require(:topic).permit(:name, :description)
+      end
     end
 
 end

@@ -1,63 +1,67 @@
-#home
-  .panel.panel-success#surveys
-    .panel-heading
-      Surveys - Participate in Research
+- if beta_enabled?(current_user, params)
+  = render partial: 'static/beta/home'
+- else
+  #home
+    .panel.panel-success#surveys
+      .panel-heading
+        Surveys - Participate in Research
 
-    .panel-body
-      - if current_user
-        - if current_user.complete_surveys.select{|s| s.status == 'show'}.count == Survey.viewable.count
-          - # All Done
-          = render partial: 'surveys/drawings_text_all_completed'
+      .panel-body
+        - if current_user
+          - if current_user.complete_surveys.select{|s| s.status == 'show'}.count == Survey.viewable.count
+            - # All Done
+            = render partial: 'surveys/drawings_text_all_completed'
+          - else
+            - # Surveys in Progress
+            = render partial: 'surveys/drawings_text'
+          = render partial: 'surveys/viewable_surveys_widget'
         - else
-          - # Surveys in Progress
+          - # Not Signed In
           = render partial: 'surveys/drawings_text'
-        = render partial: 'surveys/viewable_surveys_widget'
-      - else
-        - # Not Signed In
-        = render partial: 'surveys/drawings_text'
-        %div{ style: 'text-align:center' }
-          = link_to new_user_registration_path, class: 'btn btn-lg btn-success' do
-            Sign Up and Get Started
-            .fa.fa-arrow-right
+          %div{ style: 'text-align:center' }
+            = link_to new_user_registration_path, class: 'btn btn-lg btn-success' do
+              Sign Up and Get Started
+              .fa.fa-arrow-right
 
-#forums_container
-  .panel.panel-primary
-    .panel-heading
-      Forums - Share with the Community
-    .panel-body
-      - if most_recent_approved_post = Forem::Post.order(created_at: :desc).where(state: 'approved').first
-        = render partial: "forem/forums/forum", locals: { forum: most_recent_approved_post.forum, location: 'home' }
-        %h3= link_to 'More Forums', forem.root_path
+  #forums_container
+    .panel.panel-primary
+      .panel-heading
+        Forums - Share with the Community
+      .panel-body
+        - forum = Forum.current.order(:position).first
+        = render partial: 'forums/show', locals: { forum: forum, topic_limit: 10 }
+        %h3= link_to 'More Forums', forums_path
         .row
-        - Forem::Forum.where.not(id: most_recent_approved_post.forum.id).sort{|f| f.topics.count}.each do |forum|
-          .col-sm-4
-            .panel.panel-primary
-              .panel-heading
-                = link_to forum, forem.forum_path(forum), style: 'color:white'
-              .panel-body
-                %strong= link_to pluralize(forum.topics.where(state: 'approved').count, 'topic'), forem.forum_path(forum)
-                %p= forum.description
+        - Forum.current.order(:position).each_with_index do |forum, index|
+          - unless index == 0
+            .col-sm-4
+              .panel.panel-primary
+                .panel-heading
+                  = link_to forum.name, forum, style: 'color:white'
+                .panel-body
+                  %strong= link_to pluralize(forum.topics.where(status: 'approved', hidden: false).count, 'topic'), forum
+                  %p= forum.description
 
-.panel.panel-default
-  .panel-heading
-    Research Questions - Vote on the Future of Sleep Apnea Research
-  .panel-body
-    %p.lead
-      Help direct the future of sleep apnea research. Below are questions
-      important to network members. Every month, you can cast up to five
-      votes. Top rated questions will be explored within the Forum. If
-      data is lacking, the topic will be endorsed as an important
-      direction for future research. Let your voice be heard, vote now!
-  = render partial: "research_topics/research_topics", locals: { research_topics: ResearchTopic.popular.take(5), editable: false, disabled: true }
-  .list-group
-    %a.list-group-item.text-right{ href: research_topics_path }
-      View and vote on all submitted questions and pose your own
-      .fa.fa-arrow-right
+  .panel.panel-default
+    .panel-heading
+      Research Questions - Vote on the Future of Sleep Apnea Research
+    .panel-body
+      %p.lead
+        Help direct the future of sleep apnea research. Below are questions
+        important to network members. Every month, you can cast up to five
+        votes. Top rated questions will be explored within the Forum. If
+        data is lacking, the topic will be endorsed as an important
+        direction for future research. Let your voice be heard, vote now!
+    = render partial: "research_topics/research_topics", locals: { research_topics: ResearchTopic.popular.take(5), editable: false, disabled: true }
+    .list-group
+      %a.list-group-item.text-right{ href: research_topics_path }
+        View and vote on all submitted questions and pose your own
+        .fa.fa-arrow-right
 
-.panel.panel-warning
-  .panel-heading
-    The MyApnea.Org Community
-  #user_map{ data: { path: locations_path } }
+  .panel.panel-warning
+    .panel-heading
+      The MyApnea.Org Community
+    #user_map{ data: { path: locations_path } }
 
-= javascript_include_tag "//maps.googleapis.com/maps/api/js?key=AIzaSyBB91qMUvtmPzct9z7slTqm-lTUEVuYjKo"
-= javascript_include_tag 'social/maps'
+  = javascript_include_tag "//maps.googleapis.com/maps/api/js?key=AIzaSyBB91qMUvtmPzct9z7slTqm-lTUEVuYjKo"
+  = javascript_include_tag 'social/maps'

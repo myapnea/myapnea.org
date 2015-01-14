@@ -21,8 +21,11 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :timeoutable, :lockable
 
   # Model Validation
-  validates_presence_of :first_name, :last_name, :year_of_birth
-  validates_numericality_of :year_of_birth, allow_nil: false, only_integer: true, less_than_or_equal_to: -> (user){ Date.today.year - 18 }, greater_than_or_equal_to: -> (user){ 1900 }
+  validates_presence_of :first_name, :last_name
+
+  with_options unless: :is_provider? do |user|
+    user.validates :year_of_birth, presence: true, numericality: {only_integer: true, allow_nil: false, less_than_or_equal_to: -> (user){ Date.today.year - 18 }, greater_than_or_equal_to: -> (user){ 1900 }}
+  end
 
   # Model Relationships
   has_many :answer_sessions, -> { where deleted: false }
@@ -37,9 +40,10 @@ class User < ActiveRecord::Base
   
   # Named Scopes
   scope :search_by_email, ->(terms) { where("LOWER(#{self.table_name}.email) LIKE ?", terms.to_s.downcase.gsub(/^| |$/, '%')) }
+  scope :providers, -> { where(type: 'provider')}
 
-  def name
-    "#{first_name} #{last_name}"
+  def is_provider?
+    self.type == "Provider"
   end
 
   def all_topics
@@ -48,6 +52,32 @@ class User < ActiveRecord::Base
     else
       self.topics.where(locked: false)
     end
+  end
+
+  def viewable_topics
+    if self.has_role? :moderator
+      Topic.current
+    else
+      Topic.viewable_by_user(self.id)
+    end
+  end
+
+  def all_posts
+    if self.has_role? :moderator
+      Post.current.with_unlocked_topic
+    else
+      self.posts.where(hidden: false).with_unlocked_topic
+    end
+  end
+
+  def smart_forum
+    forum_id = self.posts.group_by{|p| p.forum.id}.collect{|forum_id, posts| [forum_id, posts.count]}.sort{|a,b| b[1] <=> a[1]}.collect{|a| a[0]}.first
+    forum = Forum.current.find_by_id(forum_id)
+    forum ? forum : Forum.current.order(:position).first
+  end
+
+  def name
+    "#{first_name} #{last_name}"
   end
 
   def self.scoped_users(email=nil, role=nil)
@@ -75,11 +105,15 @@ class User < ActiveRecord::Base
     end
   end
 
+  def forum_name
+    self.forem_name
+  end
+
   def forem_name
     if social_profile
       social_profile.public_nickname
     else
-      "Anonymous User #{Digest::MD5.hexdigest(email.to_s)[0,5]}"
+      SocialProfile.get_anonymous_name(email)
     end
   end
 
@@ -177,6 +211,10 @@ class User < ActiveRecord::Base
     QuestionFlow.unstarted(self)
   end
 
+  def smart_surveys
+    self.incomplete_surveys + self.unstarted_surveys + self.complete_surveys
+  end
+
   def research_topics_with_vote
     ResearchTopic.voted_by(self)
   end
@@ -196,5 +234,9 @@ class User < ActiveRecord::Base
   def has_votes_remaining?(rating = 1)
 
     (todays_votes.length < vote_quota) or (rating < 1)
+  end
+
+  def answer_for(answer_session, question)
+    Answer.where(answer_session_id: answer_session.id, question_id: question.id).order("updated_at desc").includes(answer_values: :answer_template).limit(1).first
   end
 end

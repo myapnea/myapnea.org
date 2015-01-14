@@ -1,0 +1,34 @@
+.content-main-header
+  %h1 Consent
+.panel
+  .panel-heading
+    - if current_user
+      .before.lead.f500= @pc['before']['head']
+    %p.lead
+      = @pc['before']['content']['text_1']
+      = link_to "privacy policy", privacy_path, target: '_blank'
+      = @pc['before']['content']['text_2']
+  .panel-body
+    .row
+      .col-md-12
+        #print-area
+          = render partial: 'account/consent_body'
+          - if current_user.present? and !current_user.accepted_consent_at.present?
+            = markdown "If you wish to be in this study, please click the button that says **“I have read the consent”**"
+        %br/
+        = link_to "#", id: "print-link", class: 'print-link pull-right btn btn-xs btn-primary' do
+          %i.fa.fa-print
+          Print Consent
+  - if current_user
+    .text-center.panel-footer
+      - if current_user.can? :participate_in_research
+        = link_to :back, class: 'btn btn-lg btn-default' do
+          .fa.fa-arrow-left
+          &nbsp;
+          Go Back
+        / = link_to "View Privacy Policy", privacy_path, class: 'btn btn-lg btn-info'
+        = link_to "Leave Research Study", account_path, class: 'btn btn-warning btn-lg'
+      - else
+        = form_tag consent_path do
+          %input.btn.btn-primary.btn-lg{:name => "consent_read", :type => "submit", value: "I have read the consent#{current_user.accepted_privacy_policy? ? ' and I agree to participate' : ''}"}
+          %input.btn.btn-danger.btn-lg{:name => "declined_to_participate", :type => "submit", :value => 'I decline'}

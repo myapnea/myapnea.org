@@ -63,7 +63,7 @@
   <div class="col-md-1">
     <!-- PSEUDO-END ROW -->
   </div>
-  <%= link_to forem.forums_path, class: 'community-highlight-links ' do %>
+  <%= link_to forums_path, class: 'community-highlight-links ' do %>
     <div class='col-md-3 col-md-offset-1 col-xs-12 col-button community-highlight' id='community-highlight-1'>
       <h3 class="text-white">Active Forums</h3>
       <p class='lead'>Discuss with others about living with sleep apnea and what is important to you.  Share ideas on how to promote the website to others.  The more members we have, the more we can learn from each other and contribute to future research.</p>
@@ -104,7 +104,7 @@
     <h1 class="darker-blue">Wake up to a better future!</h1>
     <h4>By joining, you gain access to a unique group of resources and a growing research community. It's fast, simple, and completely free of cost to join and start making a difference!</br></br>
     And, of course, all of your information is completely protected!
-    <% if false %>
+    <% if true %>
       <span id='privacy-policy' class='lighter-blue' data-toggle="modal" data-target="#myModal">See our privacy policy.</span>
     <% else %>
       <%= link_to 'See our privacy policy.', privacy_path, target: '_blank' %>

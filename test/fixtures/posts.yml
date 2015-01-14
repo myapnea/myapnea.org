@@ -4,22 +4,22 @@
 one:
   topic: one
   description: Welcome to Topic One!
-  user: moderator_1
+  user: user_1
   status: approved
   hidden: false
   deleted: false
   last_moderated_by: moderator_1
-  last_moderated_at: 2015-01-09 12:40:50
+  last_moderated_at: 2015-01-09 12:40:00
 
 two:
-  topic: one
-  description: This is my reply to topic one
+  topic: two
+  description: This is my reply to topic two
   user: user_1
   status: pending_review
   hidden: false
   deleted: false
   last_moderated_by: moderator_1
-  last_moderated_at: 2015-01-09 12:40:50
+  last_moderated_at: 2015-01-09 12:40:01
 
 three:
   topic: locked
@@ -29,7 +29,7 @@ three:
   hidden: false
   deleted: false
   last_moderated_by: moderator_1
-  last_moderated_at: 2015-01-09 12:40:50
+  last_moderated_at: 2015-01-09 12:40:02
 
 four:
   topic: locked
@@ -39,27 +39,27 @@ four:
   hidden: false
   deleted: false
   last_moderated_by: moderator_1
-  last_moderated_at: 2015-01-09 12:40:50
+  last_moderated_at: 2015-01-09 12:40:03
 
 # banned:
-#   topic: one
+#   topic: two
 #   description: This comment got me banned.
 #   user: banned
 #   status: pending_review
 #   hidden: false
 #   deleted: false
 #   last_moderated_by: moderator_1
-#   last_moderated_at: 2015-01-09 12:40:50
+#   last_moderated_at: 2015-01-09 12:40:04
 
 six:
-  topic: one
+  topic: two
   description: Removed the comment above.
   user: user_1
   status: pending_review
   hidden: false
   deleted: false
   last_moderated_by: moderator_1
-  last_moderated_at: 2015-01-09 12:40:50
+  last_moderated_at: 2015-01-09 12:40:05
 
 # on_topic_two:
 #   topic: two
@@ -69,4 +69,4 @@ six:
 #   hidden: false
 #   deleted: false
 #   last_moderated_by: moderator_1
-#   last_moderated_at: 2015-01-09 12:40:50
+#   last_moderated_at: 2015-01-09 12:40:06

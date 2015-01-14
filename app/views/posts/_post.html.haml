@@ -11,32 +11,35 @@
           = "##{current_index}"
         %i.text-muted
           Post Deleted
-  - if post.hidden?
+  - elsif post.hidden? or (post.spam? and not (current_user and current_user.has_role? :moderator))
     .col-xs-12{ style: 'display:none' }
       .post-container.post-deleted
         .post-container-right-middle-after
           = "##{current_index}"
         %i.text-muted
-          Post Hidden
+          Post
+          - if post.hidden?
+            Hidden
+          - elsif post.spam?
+            Marked as Spam
   - elsif post.spam? and current_user and current_user.has_role? :moderator
     .col-xs-1
-      = render partial: 'forem/forums/user_image', locals: { user: post.user, size: 50 }
+      = render partial: 'forums/user_image', locals: { user: post.user, size: 50 }
     .col-md-11.col-xs-10.col-xs-offset-1.col-md-offset-0
       .post-container.post-spam
         .post-container-right-after
           Marked as Spam
           - if current_user.has_role? :moderator
-            =# link_to forem.forum_topic_post_path(post.forum, post.topic, post, post: { state: 'pending_review' }), method: :patch, class: 'btn btn-xs btn-default' do
-            = link_to root_path do
+            = link_to forum_topic_post_path(post.forum, post.topic, post, post: { status: 'pending_review' }), method: :patch, class: 'btn btn-xs btn-default' do
               %i.fa.fa-undo
-              UndoCHANGEPATH
+              Undo
           = "##{current_index}"
         - if post.topic.user == post.user
           .post-container-right-bottom-after.original-poster-badge
             Original Poster
         %div{ id: "post_#{post.id}_container" }
           .post-user-name-container
-            = post.user.forem_name
+            = post.user.forum_name
           %p{ style: 'font-style:italic' }
             %i.fa.fa-eye-slash
             Post Is Hidden
@@ -47,27 +50,25 @@
   - elsif post.pending_review?
     - if current_user == post.user or (current_user and current_user.has_role? :moderator)
       .col-xs-1
-        = render partial: 'forem/forums/user_image', locals: { user: post.user, size: 50 }
+        = render partial: 'forums/user_image', locals: { user: post.user, size: 50 }
       .col-md-11.col-xs-10.col-xs-offset-1.col-md-offset-0
         .post-container.post-under-review
           .post-container-right-after
             Under Review
             - if current_user.has_role? :moderator
-              =# link_to forem.forum_moderate_posts_path(post.forum, posts: { post.id.to_s.to_sym => { moderation_option: 'approve' } } ), method: :put, class: 'btn btn-xs btn-success' do
-              = link_to root_path do
+              = link_to forum_topic_post_path(post.forum, post.topic, post, post: { status: 'approved' }), method: :patch, class: 'btn btn-xs btn-default' do
                 %i.fa.fa-thumbs-up
-                ApproveCHANGEPATH
-              =# link_to forem.forum_moderate_posts_path(post.forum, posts: { post.id.to_s.to_sym => { moderation_option: 'spam' } }), data: { confirm: t("are_you_sure") }, method: :put, class: 'btn btn-xs btn-danger' do
-              = link_to root_path do
+                Approve
+              = link_to forum_topic_post_path(post.forum, post.topic, post, post: { status: 'spam' }), method: :patch, class: 'btn btn-xs btn-default' do
                 %i.fa.fa-thumbs-down
-                Mark As SpamCHANGEPATH
+                Mark As Spam
             = "##{current_index}"
           - if post.topic.user == post.user
             .post-container-right-bottom-after.original-poster-badge
               Original Poster
           %div{ id: "post_#{post.id}_container" }
             .post-user-name-container
-              = post.user.forem_name
+              = post.user.forum_name
             %p{ style: 'font-style:italic' }
               %i.fa.fa-eye
               = 'Your' if current_user == post.user
@@ -77,21 +78,17 @@
               = post.created_at.strftime("%-d %B %Y, %-l:%M %p")
   - else
     .col-xs-1
-      = render partial: 'forem/forums/user_image', locals: { user: post.user, size: 50 }
+      = render partial: 'forums/user_image', locals: { user: post.user, size: 50 }
 
     .col-md-11.col-xs-10.col-xs-offset-1.col-md-offset-0
       .post-container
         .post-container-right-after
           - if current_user and post.editable_by?(current_user)
-            =# link_to forem.edit_forum_topic_post_path(post.forum, post.topic, post), data: { toggle: 'tooltip', container: 'body' }, title: 'Edit Post', class: 'btn btn-xs btn-default' do
-            = link_to root_path do
+            = link_to edit_forum_topic_post_path(post.forum, post.topic, post), data: { toggle: 'tooltip', container: 'body' }, title: 'Edit Post', class: 'btn btn-xs btn-default' do
               %i.fa.fa-pencil
-              ROOT_PATH
           - if current_user and post.deletable_by?(current_user)
-            =# link_to forem.forum_topic_post_path(post.forum, post.topic, post), method: :delete, data: { confirm: t("are_you_sure"), toggle: 'tooltip', container: 'body' }, class: 'btn btn-xs btn-danger', title: t('delete', scope: 'forem.topic') do
-            = link_to root_path do
+            = link_to forum_topic_post_path(post.forum, post.topic, post), method: :delete, data: { confirm: "Are you sure?", toggle: 'tooltip', container: 'body' }, class: 'btn btn-xs btn-danger', title: 'Delete Post' do
               %i.fa.fa-trash
-              ROOT_PATH
           %a{ href: "#c#{current_index}" }
             = "##{current_index}"
         - if post.topic.user == post.user
@@ -99,7 +96,7 @@
             Original Poster
         %div{ id: "post_#{post.id}_container" }
           .post-user-name-container
-            = post.user.forem_name
+            = post.user.forum_name
           = simple_markdown(post.description, post.user.can_post_links?)
           .small.text-muted{ style: 'font-weight: 300' }
             = post.created_at.strftime("%-d %B %Y, %-l:%M %p")
