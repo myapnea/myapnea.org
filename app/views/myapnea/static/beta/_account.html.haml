@@ -1,57 +1,9 @@
 .content-main-header
   %h1 Account Settings
-// Social Profile
-= form_for current_user.social_profile, html: {role: "form", class: 'form-horizontal'}, url: social_profile_path do |f|
-  .panel
-    .panel-body.text-dark8
-      %h3.f300.col-xs-12.centered-text.text-dark9{ style: 'margin-bottom:30px;'} My Social Profile
-      .form-group
-        %label.col-sm-3.col-sm-offset-3.control-label
-          = image_tag current_user.photo_url, :class => "img-responsive img-thumbnail"
-        .col-sm-6
-          %h4.f300 Change Photo
-          =f.file_field :photo
-      .form-group{ style: 'margin-top:20px;' }
-        %label.col-sm-3.control-label Nickname
-        .col-sm-6
-          =f.text_field(:name, class: 'form-control' )
-      .form-group
-        %label.col-sm-3.control-label City
-        .col-sm-6
-          =f.text_field(:location, autocomplete: 'off', id: 'location', class: 'form-control')
-          =f.hidden_field :latitude
-          =f.hidden_field :longitude
-          =f.hidden_field :location_id
-      .form-group
-        %label.col-sm-3.control-label Age
-        .col-sm-6
-          =f.number_field(:age, class: 'form-control')
-      .form-group
-        %label.col-sm-3.control-label Sex
-        .col-sm-6
-          =f.select(:sex, ["Male", "Female", "Other"], {}, class: 'form-control')
-      =f.submit("Save Changes", class: 'btn btn-primary col-sm-6 col-sm-offset-3 centered-text')
-    .panel-footer.text-dark9
-      %h4.f300 Do you want other patients on MyApnea.Org to see you?
-      .radio
-        %label
-          = f.radio_button :show_location, true, id: 'optionsRadios2'
-          %strong
-            Show me.
-          %span.small Add a marker for me on the map that shows information from my social profile.
-      .radio
-        %label
-          = f.radio_button :show_location, false, id: 'optionsRadios1'
-          %strong
-            Don't show me.
-          %span.small Don't let other patients on this site see any map marker for me.
-      - if current_user.social_profile.errors.any?
-        .alert.alert-danger.alert-dismissable
-          %button.close{"aria-hidden" => "true", "data-dismiss" => "alert", :type => "button"} &times;
-          %strong Profile Errors
-          %ul
-            - current_user.social_profile.errors.full_messages.each do |msg|
-              %li= msg.html_safe
+- if current_user.is_provider?
+  = render partial: 'static/beta/providers_profile'
+-else
+  = render partial: 'static/beta/social_profile'
 .panel
   .panel-heading
     %h4.f300 Basic Information
