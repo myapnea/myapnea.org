@@ -22,7 +22,7 @@ class ForumsController < ApplicationController
   end
 
   def new
-    @forum = Forum.new
+    @forum = Forum.new(position: (Forum.count + 1) * 10)
     respond_with(@forum)
   end
 
