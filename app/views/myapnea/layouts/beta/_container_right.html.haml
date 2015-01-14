@@ -9,6 +9,15 @@
             %strong Welcome to the beta version of the site!
             You can go back to the previous layout any time by going to your
             = link_to 'account settings.', account_path
+        - else current_user.beta_opt_in?
+          .alert.alert-info{ role: 'alert', style: 'margin-top:5px; margin-bottom:10px' }
+            %btn{ type: 'button', class: 'close', data: { dismiss: 'alert' }, aria: { label: 'Close'} }
+              %span{ aria: { hidden: 'true'} } &times;
+            %strong We've released a new version of this site!
+            %br
+            You can join the new version now and help us improve by going to your
+            = link_to 'account settings', account_path, style: 'text-decoration:underline;'
+            and clicking 'Enable Beta'.
       .col-lg-5.col-md-5.col-md-offset-0.col-xs-8.col-xs-offset-2#user-profile-header-picture{ style:'' }
         = link_to social_profile_path do
           = image_tag current_user.photo_url, class: "user-picture", size: "65x65", style: 'width:65px; height:65px;'
