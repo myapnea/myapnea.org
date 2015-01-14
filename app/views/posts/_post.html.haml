@@ -84,7 +84,7 @@
               %i.fa.fa-eye
               = 'Your' if current_user == post.user
               Post Is Under Review
-            = simple_markdown(post.description, post.user.can_post_links?)
+            = render partial: 'posts/formatted', locals: { post: post }
             .small.text-muted{ style: 'font-weight: 300' }
               = post.created_at.strftime("%-d %B %Y, %-l:%M %p")
   - else
@@ -106,6 +106,8 @@
           .post-container-right-bottom-after.original-poster-badge
             Original Poster
         %div{ id: "post_#{post.id}_container" }
-          = render partial: 'posts/formatted', locals: { post: post }
+        .post-user-name-container
+          = post.user.forum_name
+        = render partial: 'posts/formatted', locals: { post: post }
         .small.text-muted{ style: 'font-weight: 300' }
           = post.created_at.strftime("%-d %B %Y, %-l:%M %p")
