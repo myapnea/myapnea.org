@@ -45,6 +45,7 @@ class AccountController < ApplicationController
 
   def account
     @user = current_user
+    @social_profile = current_user.social_profile || current_user.create_social_profile
   end
 
 
