@@ -9,6 +9,7 @@
 - **General Changes**
   - Changed image sizes to speed up loading on mobile browsers
   - Members of MyApnea.Org may opt into upcoming design changes and provide feedback directly to the MyApnea.Org team
+  - Readded the MyApnea.Org favicon to quickly identify the website when it is pinned in the browser
 
 ### Bug Fixes
 - Confirmation boxes now properly display when deleting or removing posts
