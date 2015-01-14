@@ -1,0 +1,23 @@
+= form_for current_user, html: {role: "form", class: 'form-horizontal'}, url: update_account_path do |f|
+  .panel
+    .panel-body.text-dark8
+      %h3.f300.col-xs-12.centered-text.text-dark9{ style: 'margin-bottom:30px;'} My Provider Profile
+      .form-group
+        %label.col-sm-3.col-sm-offset-3.control-label
+          = image_tag current_user.photo_url, :class => "img-responsive img-thumbnail"
+        .col-sm-6
+          %h4.f300 Change Photo
+          =f.file_field :photo
+      .form-group{ style: 'margin-top:20px;' }
+        %label.col-sm-3.control-label Official Provider Name
+        .col-sm-6
+          =f.text_field(:provider_name, class: 'form-control' )
+      .form-group{ style: 'margin-top:20px;' }
+        %label.col-sm-3.control-label Welcome Message
+        .col-sm-6
+          =f.text_area :welcome_message, class: 'form-control', value: current_user.get_welcome_message, rows: '3'
+      =f.submit("Save Changes", class: 'btn btn-primary col-sm-6 col-sm-offset-3 centered-text')
+    .panel-footer
+      %h4.f400
+        Your personal url:
+        = 'www.myapnea.org/p/' + current_user.slug

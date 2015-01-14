@@ -53,6 +53,7 @@
       %h1.darker-blue.centered-text Help us now!
       %h4.centered-text By joining, you are creating the foundation for people with sleep apnea to receive better care and support.
       = form_for(resource, as: resource_name, url: registration_path(resource_name), class: "form-horizontal", method: :post) do |f|
+        = hidden_field_tag "#{resource_name}[welcome_message]", "Welcome to my page!"
         = f.text_field :first_name, placeholder: 'First name', class: "form-control"
         = f.text_field :last_name, placeholder: 'Last name', class: "form-control"
         = f.text_field :provider_name, placeholder: "Official provider name", class: "form-control"
@@ -66,18 +67,3 @@
         = f.password_field :password, placeholder: 'Password', class: "form-control"
         = f.password_field :password_confirmation, placeholder: 'Password Confirmation', class: "form-control"
         = f.submit 'Sign up!', class: "form-control", id: "submit-join"
-
-
-/ .row.row-fullscreen
-/   .col-md-6
-/     .lighterer-blue-bcg{ style: 'height:50px;' }
-/     .lighter-blue-bcg{ style: 'height:50px;' }
-/     .primary-blue-bcg{ style: 'height:50px;' }
-/     .darker-blue-bcg{ style: 'height:50px;' }
-/     .darkerer-blue-bcg{ style: 'height:50px;' }
-/   .col-md-6
-/     .lighterer-orange-bcg{ style: 'height:50px;' }
-/     .lighter-orange-bcg{ style: 'height:50px;' }
-/     .primary-orange-bcg{ style: 'height:50px;' }
-/     .darker-orange-bcg{ style: 'height:50px;' }
-/     .darkerer-orange-bcg{ style: 'height:50px;' }
