@@ -88,21 +88,3 @@
       Preview upcoming changes to MyApnea.Org and help us iron out the kinks in our new upcoming layout of the site!
       %div{ style: 'text-align:center;margin-top:10px' }
         = link_to 'Enable Beta', update_account_path(user: { beta_opt_in: '1' }), method: :patch, class: 'btn btn-primary'
-
-
-  / .panel.panel-default
-  /   .panel-heading
-  /     %h4.panel-title Language
-  /   .panel-body
-  /     %form.form-horizontal{:role => "form"}
-  /       .form-group
-  /         / %label.control-label.col-md-6{for: "inputPassword3"}
-  /         /   %i.fa.fa-globe &nbsp; Language:
-  /         .col-md-6
-  /           %select.form-control
-  /             %option
-  /               %i.fa.fa-globe
-  /               English
-  /             %option Spanish
-
-
