@@ -45,6 +45,10 @@ class Topic < ActiveRecord::Base
     true
   end
 
+  def increase_views!(current_user)
+    self.update views_count: self.views_count + 1
+  end
+
   private
 
   def create_first_post

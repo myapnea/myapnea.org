@@ -26,6 +26,7 @@ class TopicsController < ApplicationController
   end
 
   def show
+    @topic.increase_views!(current_user)
     respond_with(@topic)
   end
 
