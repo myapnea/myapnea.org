@@ -83,11 +83,29 @@
           %span.lighter-blue#privacy-policy{ data:{ toggle: 'modal', target:'#myModal'} }
         - else
           = link_to 'See our privacy policy.', privacy_path, target: '_blank'
-      = form_tag user_registration_path, method: :post do
-        = text_field_tag 'user[first_name]', nil, placeholder: 'First name', class: "form-control"
-        = text_field_tag 'user[last_name]', nil, placeholder: 'Last name', class: "form-control"
-        = select_tag 'user[year_of_birth]', options_for_select([['- Select your birth year -', nil]] + (1900..Date.today.year).to_a.reverse.collect{|i| [i,i]}), class: "form-control"
-        = text_field_tag 'user[email]', nil, placeholder: 'Email address', class: "form-control"
-        = password_field_tag 'user[password]', nil, placeholder: 'Password', class: "form-control"
-        = submit_tag 'Sign up!', class: "form-control", id: "submit-join"
+      = form_for(resource, :as => resource_name, :url => registration_path(resource_name), html: {}) do |f|
+        = hidden_field_tag "#{resource_name}[provider_id]", @provider.id
+        .form-group
+          = label "#{resource_name}[first_name]", :first_name, class: 'sr-only'
+          = text_field_tag "#{resource_name}[first_name]", (params[resource_name] ? params[resource_name][:first_name] : ''), class: 'form-control input-lg', placeholder: User.human_attribute_name(:first_name), autocomplete: :off
+        .form-group
+          = label "#{resource_name}[last_name]", :last_name, class: 'sr-only'
+          = text_field_tag "#{resource_name}[last_name]", (params[resource_name] ? params[resource_name][:last_name] : ''), class: 'form-control input-lg', placeholder: User.human_attribute_name(:last_name), autocomplete: :off
+        .form-group
+          = label "#{resource_name}[year_of_birth]", :year_of_birth, class: 'sr-only'
+          = select_tag "#{resource_name}[year_of_birth]", options_for_select([['Year of Birth', nil]] + (1900..Date.today.year).to_a.reverse.collect{|i| [i,i]}, (params[resource_name] ? params[resource_name][:year_of_birth] : '')), class: 'form-control input-lg'
+        .form-group
+          = f.label :email, class: 'sr-only'
+          = f.email_field :email, class: 'form-control input-lg', placeholder: User.human_attribute_name(:email), autocomplete: :off
+        .form-group
+          = f.label :password, class: 'sr-only'
+          = f.password_field :password, class: 'form-control input-lg', placeholder: User.human_attribute_name(:password)
+
+
+        -#= text_field_tag 'user[first_name]', nil, placeholder: 'First name', class: "form-control"
+        -#= text_field_tag 'user[last_name]', nil, placeholder: 'Last name', class: "form-control"
+        -#= select_tag 'user[year_of_birth]', options_for_select([['- Select your birth year -', nil]] + (1900..Date.today.year).to_a.reverse.collect{|i| [i,i]}), class: "form-control"
+        -#= text_field_tag 'user[email]', nil, placeholder: 'Email address', class: "form-control"
+        -#= password_field_tag 'user[password]', nil, placeholder: 'Password', class: "form-control"
+        -#= submit_tag 'Sign up!', class: "form-control", id: "submit-join"
 
