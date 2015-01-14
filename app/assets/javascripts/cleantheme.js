@@ -27,6 +27,7 @@
 //= require placeholders.jquery.min
 //= require main
 //= require pages
+//= require posts
 //= require admin
 //= require votes
 //= require surveys

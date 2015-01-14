@@ -106,8 +106,6 @@
           .post-container-right-bottom-after.original-poster-badge
             Original Poster
         %div{ id: "post_#{post.id}_container" }
-          .post-user-name-container
-            = post.user.forum_name
-          = simple_markdown(post.description, post.user.can_post_links?)
-          .small.text-muted{ style: 'font-weight: 300' }
-            = post.created_at.strftime("%-d %B %Y, %-l:%M %p")
+          = render partial: 'posts/formatted', locals: { post: post }
+        .small.text-muted{ style: 'font-weight: 300' }
+          = post.created_at.strftime("%-d %B %Y, %-l:%M %p")

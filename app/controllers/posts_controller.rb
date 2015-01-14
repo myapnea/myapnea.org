@@ -39,7 +39,7 @@ class PostsController < ApplicationController
   end
 
   def preview
-    @post = @topic.posts.new(post_params)
+    @post = current_user.posts.where(topic_id: @topic.id).new(post_params)
   end
 
   def show
