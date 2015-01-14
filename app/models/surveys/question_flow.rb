@@ -8,7 +8,7 @@ class QuestionFlow < ActiveRecord::Base
   localize :short_description
 
   include Authority::Abilities
-  self.authorizer_name = "AdminAuthorizer"
+  self.authorizer_name = "OwnerAuthorizer"
 
 
   # Associations

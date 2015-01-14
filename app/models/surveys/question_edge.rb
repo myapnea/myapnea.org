@@ -4,7 +4,7 @@ class QuestionEdge < ActiveRecord::Base
   belongs_to :child_question, class_name: "Question"
 
   include Authority::Abilities
-  self.authorizer_name = "AdminAuthorizer"
+  self.authorizer_name = "OwnerAuthorizer"
 
   acts_as_dag_links node_class_name: 'Question', ancestor_id_column: 'parent_question_id', descendant_id_column: 'child_question_id'
 

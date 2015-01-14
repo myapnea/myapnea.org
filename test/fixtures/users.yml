@@ -22,16 +22,6 @@ social:
   year_of_birth: 1980
   encrypted_password: <%= pw %>
 
-
-admin:
-  first_name: Ad
-  last_name: Min
-  email: support@myapnea.org
-  roles: admin
-  zip_code: 12345
-  year_of_birth: 1980
-  encrypted_password: <%= pw %>
-
 moderator_1:
   first_name: Mod
   last_name: Erator1
@@ -99,11 +89,11 @@ has_unstarted_survey:
   year_of_birth: 1980
   encrypted_password: <%= pw %>
 
-deleted_admin:
+deleted_moderator:
   first_name: Deleted
-  last_name: Admin
+  last_name: Mod
   email: nosupport@myapnea.org
-  roles: admin
+  roles: moderator
   zip_code: 12345
   year_of_birth: 1980
   encrypted_password: <%= pw %>

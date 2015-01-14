@@ -16,7 +16,7 @@ class Question < ActiveRecord::Base
   localize :text
   has_dag_links :link_class_name => 'QuestionEdge'
 
-  self.authorizer_name = "AdminAuthorizer"
+  self.authorizer_name = "OwnerAuthorizer"
 
   # DAG
 

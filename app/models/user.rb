@@ -161,7 +161,7 @@ class User < ActiveRecord::Base
   end
 
   def forem_admin?
-    self.has_role? :admin
+    self.has_role? :moderator
   end
 
   def can_create_forem_topics?(forum)
@@ -182,7 +182,7 @@ class User < ActiveRecord::Base
 
 
   def can_moderate_forem_forum?(forum)
-    self.has_role? :forum_moderator or self.has_role? :admin
+    self.has_role? :forum_moderator or self.has_role? :moderator
   end
 
   def todays_votes
@@ -197,12 +197,8 @@ class User < ActiveRecord::Base
     self.has_role? :owner
   end
 
-  def is_admin?
-    self.has_role? :admin or is_owner?
-  end
-
   def is_moderator?
-    self.has_role? :moderator or is_admin?
+    self.has_role? :moderator
   end
 
   def incomplete_surveys

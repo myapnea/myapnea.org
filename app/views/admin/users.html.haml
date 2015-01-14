@@ -15,8 +15,6 @@
             %label.btn.btn-default
               %input{type: 'radio', name: 'search_role', value: ''} All Members
             %label.btn.btn-default
-              %input{type: 'radio', name: 'search_role', value: 'admin'} Admins
-            %label.btn.btn-default
               %input{type: 'radio', name: 'search_role', value: 'owner'} Owners
             %label.btn.btn-default
               %input{type: 'radio', name: 'search_role', value: 'moderator'} Moderators
@@ -60,8 +58,6 @@
                   Action
                   %span.caret
                 %ul.dropdown-menu{role: "menu"}
-                  %li
-                    %a.add-role{href: "#", data: {role: 'admin'}} Make Admin
                   %li
                     %a.add-role{href: "#", data: {role: 'owner'}} Make Owner
                   %li
