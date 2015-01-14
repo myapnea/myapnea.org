@@ -31,11 +31,13 @@ class User < ActiveRecord::Base
   has_many :answers
   has_many :votes
   has_one :social_profile
+  belongs_to :provider, class_name: "Provider", foreign_key: 'provider_id'
   has_many :notifications
   has_many :research_topics
   has_many :forums, -> { where(deleted: false) }
   has_many :topics, -> { where(deleted: false) }
   has_many :posts, -> { where(deleted: false) }
+
 
   # Named Scopes
   scope :search_by_email, ->(terms) { where("LOWER(#{self.table_name}.email) LIKE ?", terms.to_s.downcase.gsub(/^| |$/, '%')) }
