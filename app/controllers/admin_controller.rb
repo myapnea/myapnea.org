@@ -48,7 +48,7 @@ class AdminController < ApplicationController
     @csv_string = CSV.generate do |csv|
       csv << ['Email', 'First Name', 'Last Name', 'Number of Surveys Completed']
 
-      User.all.each do |user|
+      User.current.each do |user|
         row = [
           user.email,
           user.first_name,

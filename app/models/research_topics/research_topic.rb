@@ -1,5 +1,6 @@
 class ResearchTopic < ActiveRecord::Base
-  include Votable
+  include Votable, Deletable
+
   has_many :votes
 
   include Authority::Abilities
@@ -13,29 +14,30 @@ class ResearchTopic < ActiveRecord::Base
 
   def self.popular(user_id = nil)
 
-    viewable_by(user_id).includes(:votes).sort do |rt1, rt2|
+    current.viewable_by(user_id).includes(:votes).sort do |rt1, rt2|
       sort_topics(rt1, rt2)
     end
   end
 
   def self.voted_by(user)
-    accepted.joins(:votes).where(votes: {user_id: user.id, rating: 1} ).sort do |rt1, rt2|
+    current.accepted.joins(:votes).where(votes: {user_id: user.id, rating: 1} ).sort do |rt1, rt2|
       sort_topics(rt1, rt2)
     end
   end
 
   def self.created_by(user)
-    where(user_id: user.id)
+    current.where(user_id: user.id)
   end
 
   def self.newest(user_id = nil)
-    viewable_by(user_id).order("created_at DESC")
+    current.viewable_by(user_id).order("created_at DESC")
   end
 
 
   def accepted?
     state == 'accepted'
   end
+
   private
 
   def self.sort_topics(rt1, rt2)

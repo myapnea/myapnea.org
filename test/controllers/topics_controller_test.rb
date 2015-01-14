@@ -69,6 +69,14 @@ class TopicsControllerTest < ActionController::TestCase
     assert_redirected_to [assigns(:forum), assigns(:topic)]
   end
 
+  test "should show topic and increase views count" do
+    get :show, forum_id: forum, id: topic
+    assert_not_nil assigns(:forum)
+    assert_not_nil assigns(:topic)
+    assert_equal 2, assigns(:topic).views_count
+    assert_response :success
+  end
+
   test "should show topic for logged out user" do
     get :show, forum_id: forum, id: topic
     assert_not_nil assigns(:forum)

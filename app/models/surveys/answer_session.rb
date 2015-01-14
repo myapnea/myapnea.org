@@ -1,4 +1,6 @@
 class AnswerSession < ActiveRecord::Base
+  include Deletable
+
   belongs_to :question_flow
   belongs_to :first_answer, class_name: "Answer", foreign_key: "first_answer_id"
   belongs_to :last_answer, class_name: "Answer", foreign_key: "last_answer_id"
@@ -8,7 +10,7 @@ class AnswerSession < ActiveRecord::Base
   # Class Methods
 
   def self.most_recent(question_flow_id, user_id)
-    answer_sessions = AnswerSession.where(question_flow_id: question_flow_id, user_id: user_id).order(updated_at: :desc)
+    answer_sessions = AnswerSession.current.where(question_flow_id: question_flow_id, user_id: user_id).order(updated_at: :desc)
     answer_sessions.empty? ? nil : answer_sessions.first
   end
 
@@ -40,7 +42,7 @@ class AnswerSession < ActiveRecord::Base
 
 
     # Create new or find old answer object
-    answer = Answer.where(question_id: question.id, answer_session_id: self.id).first || Answer.new(question_id: question.id, answer_session_id: self.id)
+    answer = Answer.current.where(question_id: question.id, answer_session_id: self.id).first || Answer.new(question_id: question.id, answer_session_id: self.id)
 
     # Options:
     # If new, create answer values and save
@@ -164,7 +166,7 @@ class AnswerSession < ActiveRecord::Base
 
 
   def answers
-    Answer
+    Answer.current
         .joins('left join answer_edges parent_ae on parent_ae.child_answer_id = "answers".id')
         .joins('left join answer_edges child_ae on child_ae.parent_answer_id = "answers".id')
         .where(answer_session_id: self.id)
@@ -189,21 +191,22 @@ class AnswerSession < ActiveRecord::Base
   end
 
   def get_answer(question_id)
-    Answer.joins(:question).where(questions: {id: question_id}).where(answer_session_id: self.id).order("updated_at desc").limit(1).first
+    Answer.current.joins(:question).where(questions: {id: question_id}).where(answer_session_id: self.id).order("updated_at desc").limit(1).first
   end
 
   def started?
     last_answer.present?
   end
 
-  def reset_answers
+  def reset_completion
     if first_answer.present?
-      connected_answers = all_answers
+      #connected_answers = all_answers
       first_answer.destroy_descendant_edges
       self.first_answer = nil
       self.last_answer = nil
+      self.completed = false
       save
-      connected_answers.each(&:destroy)
+      #connected_answers.each(&:destroy)
     end
   end
 
@@ -263,6 +266,12 @@ class AnswerSession < ActiveRecord::Base
     (completed_path_length.to_f / total_path_length.to_f) * 100.0
   end
 
+  def destroy
+    update_column :deleted, true
+    all_answers.each do |a|
+      a.destroy
+    end
+  end
 
   private
 

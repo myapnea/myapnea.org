@@ -139,7 +139,11 @@ Rails.application.routes.draw do
 
   resources :forums do
     resources :topics do
-      resources :posts
+      resources :posts do
+        collection do
+          post :preview
+        end
+      end
     end
   end
 

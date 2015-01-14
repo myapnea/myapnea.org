@@ -9,7 +9,7 @@ class ResearchController < ApplicationController
   layout "main"
 
   def fetch_notifications
-    @posts = Notification.notifications.viewable.all
+    @posts = Notification.notifications.viewable.current
   end
 
 

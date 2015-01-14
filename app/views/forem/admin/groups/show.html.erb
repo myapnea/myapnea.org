@@ -6,7 +6,7 @@
 </div>
 <%= form_tag add_admin_group_members_url(@group), class: '' do %>
   <div class="form-group">
-    <%= select_tag :user_id, options_from_collection_for_select(User.all.order(:email), :id, :email), {multiple:true, rel: 'chosen', class: 'form-control'} %>
+    <%= select_tag :user_id, options_from_collection_for_select(User.current.order(:email), :id, :email), {multiple:true, rel: 'chosen', class: 'form-control'} %>
   </div>
   <%= submit_tag "Update", :class => "btn btn-primary pull-right" %>
 <% end %>

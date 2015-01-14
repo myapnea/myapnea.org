@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
 
   # Enable User Connection to External API Accounts
   include ExternalUsers
+  include Deletable
 
   # Map to PCORNET Common Data Model
   include CommonDataModel
@@ -27,27 +28,25 @@ class User < ActiveRecord::Base
   end
 
   # Model Relationships
-  has_many :answer_sessions
-  has_many :answers
-  has_many :votes
-  has_one :social_profile
   belongs_to :provider, class_name: "Provider", foreign_key: 'provider_id'
-  has_many :notifications
-  has_many :research_topics
+  has_many :answer_sessions, -> { where deleted: false }
+  has_many :answers, -> { where deleted: false }
+  has_many :votes
+  has_one :social_profile, -> { where deleted: false }
+  has_many :notifications, -> { where deleted: false }
+  has_many :research_topics, -> { where deleted: false }
   has_many :forums, -> { where(deleted: false) }
   has_many :topics, -> { where(deleted: false) }
   has_many :posts, -> { where(deleted: false) }
 
-
   # Named Scopes
   scope :search_by_email, ->(terms) { where("LOWER(#{self.table_name}.email) LIKE ?", terms.to_s.downcase.gsub(/^| |$/, '%')) }
-  scope :current, -> { where('1 = 1') }
   scope :providers, -> { where(type: 'provider')}
 
-  def deleted?
-    false
+  # Overriding Devise built-in active_for_authentication? method
+  def active_for_authentication?
+    super and not self.deleted?
   end
-
 
   def is_provider?
     self.type == "Provider"
@@ -88,7 +87,7 @@ class User < ActiveRecord::Base
   end
 
   def self.scoped_users(email=nil, role=nil)
-    users = all
+    users = current
 
     users = users.search_by_email(email) if email.present?
     users = users.with_role(role) if role.present?
@@ -162,7 +161,7 @@ class User < ActiveRecord::Base
   end
 
   def forem_admin?
-    self.has_role? :admin
+    self.has_role? :moderator
   end
 
   def can_create_forem_topics?(forum)
@@ -183,7 +182,7 @@ class User < ActiveRecord::Base
 
 
   def can_moderate_forem_forum?(forum)
-    self.has_role? :forum_moderator or self.has_role? :admin
+    self.has_role? :forum_moderator or self.has_role? :moderator
   end
 
   def todays_votes
@@ -198,12 +197,8 @@ class User < ActiveRecord::Base
     self.has_role? :owner
   end
 
-  def is_admin?
-    self.has_role? :admin or is_owner?
-  end
-
   def is_moderator?
-    self.has_role? :moderator or is_admin?
+    self.has_role? :moderator
   end
 
   def incomplete_surveys
@@ -244,6 +239,6 @@ class User < ActiveRecord::Base
   end
 
   def answer_for(answer_session, question)
-    Answer.where(answer_session_id: answer_session.id, question_id: question.id).order("updated_at desc").includes(answer_values: :answer_template).limit(1).first
+    Answer.current.where(answer_session_id: answer_session.id, question_id: question.id).order("updated_at desc").includes(answer_values: :answer_template).limit(1).first
   end
 end

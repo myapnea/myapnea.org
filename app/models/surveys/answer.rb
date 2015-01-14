@@ -1,5 +1,7 @@
 class Answer < ActiveRecord::Base
-  has_many :answer_values, dependent: :destroy
+  include Deletable
+
+  has_many :answer_values, -> { where deleted: false }, dependent: :destroy
   belongs_to :question
   belongs_to :answer_option
   belongs_to :answer_session
@@ -8,7 +10,7 @@ class Answer < ActiveRecord::Base
   belongs_to :user # When necessary
 
   def self.first_answer(question, answer_session)
-    Answer.where(question_id: question.id, answer_session_id: answer_session.id).first
+    Answer.current.where(question_id: question.id, answer_session_id: answer_session.id).first
   end
 
   ## Different options:

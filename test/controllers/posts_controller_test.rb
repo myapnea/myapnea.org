@@ -10,30 +10,60 @@ class PostsControllerTest < ActionController::TestCase
     @forum = forums(:one)
   end
 
-  # test "should create post and not update existing subscription" do
-  #   login(users(:user_2))
-  #   assert_difference('Post.count') do
-  #     post :create, forum_id: @forum, topic_id: @topic, post: { description: "This is my contribution to the discussion." }
-  #   end
+  test "should get post preview" do
+    login(users(:user_2))
+    assert_difference('Post.count', 0) do
+      xhr :post, :preview, forum_id: @forum, topic_id: @topic, post: { description: "This is my contribution to the discussion." }
+    end
 
-  #   assert_equal "This is my contribution to the discussion.", assigns(:topic).posts.last.description
-  #   assert_not_nil assigns(:topic).last_post_at
-  #   assert_equal false, assigns(:topic).subscribed?(users(:two))
+    assert_not_nil assigns(:forum)
+    assert_not_nil assigns(:topic)
+    assert_not_nil assigns(:post)
 
-  #   assert_redirected_to topic_path(assigns(:topic)) + "#c4"
-  # end
+    assert_template 'preview'
+    assert_response :success
+  end
+
+  test "should not get post preview as logged out user" do
+    assert_difference('Post.count', 0) do
+      xhr :post, :preview, forum_id: @forum, topic_id: @topic, post: { description: "This is my contribution to the discussion." }
+    end
+
+    assert_nil assigns(:forum)
+    assert_nil assigns(:topic)
+    assert_nil assigns(:post)
+
+    assert_response 401
+  end
+
+  test "should create post and not update existing subscription" do
+    login(users(:user_2))
+    assert_difference('Post.count') do
+      post :create, forum_id: @forum, topic_id: @topic, post: { description: "This is my contribution to the discussion." }
+    end
+
+    assert_not_nil assigns(:forum)
+    assert_not_nil assigns(:topic)
+    assert_not_nil assigns(:post)
+
+    assert_equal "This is my contribution to the discussion.", assigns(:topic).posts.last.description
+    assert_not_nil assigns(:topic).last_post_at
+    # assert_equal false, assigns(:topic).subscribed?(users(:two))
+
+    assert_redirected_to forum_topic_path(assigns(:forum), assigns(:topic)) + "#c2"
+  end
 
   # test "should create post and add subscription" do
   #   login(@moderator)
   #   assert_difference('Post.count') do
-  #     post :create, topic_id: @topic, post: { description: "With this post I'm subscribing to the discussion." }
+  #     post :create, forum_id: @forum, topic_id: @topic, post: { description: "With this post I'm subscribing to the discussion." }
   #   end
 
   #   assert_equal "With this post I'm subscribing to the discussion.", assigns(:topic).posts.last.description
   #   assert_not_nil assigns(:topic).last_post_at
   #   assert_equal true, assigns(:topic).subscribed?(users(:admin))
 
-  #   assert_redirected_to topic_path(assigns(:topic)) + "#c4"
+  #   assert_redirected_to forum_topic_path(assigns(:forum), assigns(:topic)) + "#c2"
   # end
 
   test "should not create post as logged out user" do

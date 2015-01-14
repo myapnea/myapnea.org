@@ -5,19 +5,15 @@ class Topic < ActiveRecord::Base
   attr_accessor :description, :migration_flag
 
   # Concerns
-  # include Deletable
+  include Deletable
 
   # Callbacks
   after_save :set_slug
   after_create :create_first_post
 
   # Named Scopes
-  scope :current, -> { where( deleted: false ) }
   scope :viewable_by_user, lambda { |arg| where(hidden: false).where('topics.user_id = ? or topics.status = ?', arg, 'approved') }
   scope :search, lambda { |arg| where('topics.name ~* ? or topics.id in (select posts.topic_id from posts where posts.deleted = ? and posts.description ~* ?)', arg.to_s.split(/\s/).collect{|l| l.to_s.gsub(/[^\w\d%]/, '')}.collect{|l| "(\\m#{l})"}.join("|"), false, arg.to_s.split(/\s/).collect{|l| l.to_s.gsub(/[^\w\d%]/, '')}.collect{|l| "(\\m#{l})"}.join("|") ) }
-  def destroy
-    update_column :deleted, true
-  end
 
   # Model Validation
   validates_presence_of :name, :user_id, :forum_id
@@ -47,6 +43,10 @@ class Topic < ActiveRecord::Base
 
   def subscribed?(current_user)
     true
+  end
+
+  def increase_views!(current_user)
+    self.update views_count: self.views_count + 1
   end
 
   private

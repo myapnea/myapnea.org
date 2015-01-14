@@ -14,7 +14,7 @@
   <div class="row" id="community-tracker">
     <div class="col-md-5 col-md-offset-1 col-sm-5 col-sm-offset-1">
       <h2 class="lighterer-blue">Current community:</br>
-        <span class="primary-blue"><%= number_with_delimiter User.all.count %> </span>members
+        <span class="primary-blue"><%= number_with_delimiter User.current.count %> </span>members
       </h2>
     </div>
     <div class="col-md-6 col-sm-6">

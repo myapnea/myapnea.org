@@ -81,31 +81,43 @@ class ForumsControllerTest < ActionController::TestCase
     assert_redirected_to forum_path(assigns(:forum))
   end
 
+  test "should show forum and increase views count" do
+    get :show, id: forum
+    assert_not_nil assigns(:forum)
+    assert_equal 2, assigns(:forum).views_count
+    assert_response :success
+  end
+
   test "should show forum for logged out user" do
     get :show, id: forum
+    assert_not_nil assigns(:forum)
     assert_response :success
   end
 
   test "should show forum for valid user" do
     login(@valid_user)
     get :show, id: forum
+    assert_not_nil assigns(:forum)
     assert_response :success
   end
 
   test "should show forum for owner" do
     login(@owner)
     get :show, id: forum
+    assert_not_nil assigns(:forum)
     assert_response :success
   end
 
   test "should not get edit for logged out user" do
     get :edit, id: forum
+    assert_nil assigns(:forum)
     assert_redirected_to new_user_session_path
   end
 
   test "should not get edit for valid user" do
     login(@valid_user)
     get :edit, id: forum
+    assert_nil assigns(:forum)
     assert_equal flash[:alert], 'You do not have sufficient privileges to access that page.'
     assert_redirected_to root_path
   end
@@ -113,6 +125,7 @@ class ForumsControllerTest < ActionController::TestCase
   test "should get edit for owner" do
     login(@owner)
     get :edit, id: forum
+    assert_not_nil assigns(:forum)
     assert_response :success
   end
 

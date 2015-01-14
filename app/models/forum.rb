@@ -1,13 +1,7 @@
 class Forum < ActiveRecord::Base
 
   # Concerns
-  # include Deletable
-
-  # Named Scopes
-  scope :current, -> { where( deleted: false ) }
-  def destroy
-    update_column :deleted, true
-  end
+  include Deletable
 
   # Model Validation
   validates_presence_of :name, :slug, :user_id
@@ -22,6 +16,10 @@ class Forum < ActiveRecord::Base
 
   def to_param
     slug
+  end
+
+  def increase_views!(current_user)
+    self.update views_count: self.views_count + 1
   end
 
 end

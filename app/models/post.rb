@@ -3,16 +3,12 @@ class Post < ActiveRecord::Base
   STATUS = [['Approved', 'approved'], ['Pending Review', 'pending_review'], ['Marked as Spam', 'spam']]
 
   # Concerns
-  # include Deletable
+  include Deletable
 
   # Callbacks
 
   # Named Scopes
   scope :with_unlocked_topic, -> { where("posts.topic_id in (select topics.id from topics where topics.locked = ?)", false).references(:topics) }
-  scope :current, -> { where( deleted: false ) }
-  def destroy
-    update_column :deleted, true
-  end
 
   # Model Validation
   validates_presence_of :description, :user_id, :topic_id

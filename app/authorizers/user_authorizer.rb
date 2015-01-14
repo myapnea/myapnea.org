@@ -4,7 +4,7 @@ class UserAuthorizer < ApplicationAuthorizer
   end
 
   def self.readable_by?(user)
-    user.has_role?(:admin) || user.has_role?(:owner)
+    user.has_role?(:owner)
   end
 
   def self.deletable_by?(user)

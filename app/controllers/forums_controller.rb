@@ -17,11 +17,12 @@ class ForumsController < ApplicationController
   end
 
   def show
+    @forum.increase_views!(current_user)
     respond_with(@forum)
   end
 
   def new
-    @forum = Forum.new
+    @forum = Forum.new(position: (Forum.count + 1) * 10)
     respond_with(@forum)
   end
 

@@ -118,6 +118,8 @@ namespace :surveys do
   desc "Refresh Precalculated data"
   task :refresh => :environment do
     QuestionFlow.refresh_all_question_flows
+
+    AnswerSession.current.each {|as| as.completed? }
   end
 
 

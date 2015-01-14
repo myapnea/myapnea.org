@@ -34,16 +34,9 @@ table.topics tr {
 }
 
 .post-deleted {
-  padding: 1px 34px 3px 3px;
+  padding: 4px 34px 4px 8px;
   font-weight: 200;
-}
-
-.post-deleted {
   background-color: #efefef;
-  .post-container-right-middle-after {
-    text-decoration: line-through;
-    bottom: 1px;
-  }
 }
 
 .post-under-review {
@@ -97,7 +90,7 @@ table.topics tr {
   top: -1px;
 }
 
-.post-container-right-bottom-after {
+.post-container-right-bottom-after, .post-container-right-middle-after {
   bottom: -1px;
 }
 

@@ -10,14 +10,6 @@ class AdminControllerTest < ActionController::TestCase
 
   end
 
-  test "Admins should GET user administration" do
-    login(users(:admin))
-
-    get :users
-    assert_response :success
-
-  end
-
   test "Moderators should not GET user administration" do
     login(users(:moderator_1))
 
@@ -36,8 +28,8 @@ class AdminControllerTest < ActionController::TestCase
     assert_authorization_exception
   end
 
-  test "should export users as administrator" do
-    login(users(:admin))
+  test "should export users as owner" do
+    login(users(:owner))
     get :export_users, format: 'csv'
     assert_not_nil assigns(:csv_string)
     assert_response :success
@@ -65,35 +57,35 @@ class AdminControllerTest < ActionController::TestCase
   test "should allow owner to add and remove user roles" do
     login(users(:owner))
 
-    post :add_role_to_user, format: :js, user_id: users(:user_1).id, role: roles(:admin).name
+    post :add_role_to_user, format: :js, user_id: users(:user_1).id, role: roles(:moderator).name
     assert_response :success
-    assert users(:user_1).has_role? :admin
+    assert users(:user_1).has_role? :moderator
 
-    post :remove_role_from_user, user_id: users(:admin).id, role: roles(:admin).name, format: :js
+    post :remove_role_from_user, user_id: users(:moderator_1).id, role: roles(:moderator).name, format: :js
     assert_response :success
-    refute users(:admin).has_role? :admin
+    refute users(:moderator_1).has_role? :moderator
   end
 
   test "should not allow a non-owner to add and remove user roles" do
-    login(users(:admin))
+    login(users(:moderator_1))
 
-    post :add_role_to_user, format: :js, user_id: users(:user_1).id, role: roles(:admin).name
+    post :add_role_to_user, format: :js, user_id: users(:user_1).id, role: roles(:moderator).name
     assert_authorization_exception
-    refute users(:user_1).has_role? :admin
+    refute users(:user_1).has_role? :moderator
 
-    post :remove_role_from_user, user_id: users(:admin).id, role: roles(:admin).name, format: :js
+    post :remove_role_from_user, user_id: users(:moderator_1).id, role: roles(:moderator).name, format: :js
     assert_authorization_exception
-    assert users(:admin).has_role? :admin
+    assert users(:moderator_1).has_role? :moderator
 
     login(users(:user_1))
 
-    post :add_role_to_user, format: :js, user_id: users(:user_1).id, role: roles(:admin).name
+    post :add_role_to_user, format: :js, user_id: users(:user_1).id, role: roles(:moderator).name
     assert_authorization_exception
-    refute users(:user_1).has_role? :admin
+    refute users(:user_1).has_role? :moderator
 
-    post :remove_role_from_user, user_id: users(:admin).id, role: roles(:admin).name, format: :js
+    post :remove_role_from_user, user_id: users(:moderator_1).id, role: roles(:moderator).name, format: :js
     assert_authorization_exception
-    assert users(:admin).has_role? :admin
+    assert users(:moderator_1).has_role? :moderator
 
 
   end
@@ -102,11 +94,11 @@ class AdminControllerTest < ActionController::TestCase
     login(users(:owner))
     post :destroy_user, user_id: users(:user_1).id, format: :js
     assert_response :success
-    refute User.find_by_id(users(:user_1).id)
+    assert User.find_by_id(users(:user_1).id).deleted?
 
-    post :destroy_user, user_id: users(:admin).id, format: :js
+    post :destroy_user, user_id: users(:moderator_1).id, format: :js
     assert_response :success
-    refute User.find_by_id(users(:admin).id)
+    assert User.find_by_id(users(:moderator_1).id).deleted?
 
   end
 
@@ -121,13 +113,13 @@ class AdminControllerTest < ActionController::TestCase
   end
 
   test "should not allow non-owner to delete users" do
-    login(users(:admin))
+    login(users(:moderator_1))
 
     post :destroy_user, user_id: users(:user_1).id, format: :js
     assert_authorization_exception
     post :destroy_user, user_id: users(:owner).id, format: :js
     assert_authorization_exception
-    post :destroy_user, user_id: users(:admin).id, format: :js
+    post :destroy_user, user_id: users(:moderator_1).id, format: :js
     assert_authorization_exception
 
     login(users(:user_5))
@@ -135,7 +127,7 @@ class AdminControllerTest < ActionController::TestCase
     assert_authorization_exception
     post :destroy_user, user_id: users(:owner).id, format: :js
     assert_authorization_exception
-    post :destroy_user, user_id: users(:admin).id, format: :js
+    post :destroy_user, user_id: users(:moderator_1).id, format: :js
     assert_authorization_exception
 
   end
