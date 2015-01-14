@@ -42,7 +42,7 @@ Rails.application.routes.draw do
 
   # Provider Pages
   devise_scope :user do
-    match "healthcare_partners/:slug/sign_up", to: "registrations#new", via: :get
+    match "p/:slug/sign_up", to: "registrations#new", via: :get
 
   end
 
