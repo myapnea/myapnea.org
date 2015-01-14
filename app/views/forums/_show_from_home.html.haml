@@ -1,3 +1,9 @@
+- if smart_forum = current_user.smart_forum
+  - topics = if current_user and current_user.has_role? :moderator
+    - smart_forum.topics
+  - else
+    - smart_forum.topics.viewable_by_user(current_user ? current_user.id : nil)
+
 .panel-body
   %table.table
     %col{ width: "50px" }
@@ -13,8 +19,8 @@
         %th.hidden-xs
           Time
     %tbody
-      - if smart_forum = current_user.smart_forum
-        - smart_forum.topics.limit(topic_limit).each do |topic|
+      - if topics
+        - topics.limit(topic_limit).each do |topic|
           = render partial: 'topics/summary_table_row', locals: { topic: topic }
       -else
         / - smart_forum.topics.limit(topic_limit).each do |topic|
