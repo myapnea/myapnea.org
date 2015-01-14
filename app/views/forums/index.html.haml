@@ -3,7 +3,7 @@
     Welcome to the Forums!
   = link_to 'New Forum', new_forum_path, class: 'btn btn-xs btn-primary' if current_user and current_user.has_role? :owner
 
-- unless current_user.beta_opt_in?
+- unless current_user and current_user.beta_opt_in?
   %div{ style: 'padding: 15px 0;' }
     .alert.alert-info{ role: 'alert', style: 'margin-top:10px; margin-bottom:5px' }
       %btn{ type: 'button', class: 'close', data: { dismiss: 'alert' }, aria: { label: 'Close'} }

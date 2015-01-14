@@ -19,7 +19,7 @@
           %div.col-sm-12
             = render "layouts/navigation/top_navigation_bar"
             = render "layouts/flash_messages"
-            - unless current_user.beta_opt_in?
+            - unless current_user and current_user.beta_opt_in?
               .alert.alert-info{ role: 'alert', style: 'margin-top:5px; margin-bottom:10px' }
                 %btn{ type: 'button', class: 'close', data: { dismiss: 'alert' }, aria: { label: 'Close'} }
                   %span{ aria: { hidden: 'true'} } &times;
