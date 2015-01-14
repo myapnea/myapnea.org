@@ -94,6 +94,9 @@ Rails.application.routes.draw do
   get 'social/discussion', to: redirect("forums")
   get 'social/discussion(/*path)', to: redirect("forums/%{path}")
 
+  # Provider Section
+  get 'provider_profile' => 'static#provider_profile'
+
   # Blog Section
   get 'in_the_news' => 'blog#blog', as: :blog
   get 'blog_findings' => 'blog#blog_findings'
