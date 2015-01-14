@@ -20,26 +20,37 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :timeoutable, :lockable
 
   # Model Validation
-  validates_presence_of :first_name, :last_name, :year_of_birth
-  validates_numericality_of :year_of_birth, allow_nil: false, only_integer: true, less_than_or_equal_to: -> (user){ Date.today.year - 18 }, greater_than_or_equal_to: -> (user){ 1900 }
+  validates_presence_of :first_name, :last_name
+
+  with_options unless: :is_provider? do |user|
+    user.validates :year_of_birth, presence: true, numericality: {only_integer: true, allow_nil: false, less_than_or_equal_to: -> (user){ Date.today.year - 18 }, greater_than_or_equal_to: -> (user){ 1900 }}
+  end
 
   # Model Relationships
   has_many :answer_sessions
   has_many :answers
   has_many :votes
   has_one :social_profile
+  belongs_to :provider, class_name: "Provider", foreign_key: 'provider_id'
   has_many :notifications
   has_many :research_topics
   has_many :forums, -> { where(deleted: false) }
   has_many :topics, -> { where(deleted: false) }
   has_many :posts, -> { where(deleted: false) }
 
+
   # Named Scopes
   scope :search_by_email, ->(terms) { where("LOWER(#{self.table_name}.email) LIKE ?", terms.to_s.downcase.gsub(/^| |$/, '%')) }
   scope :current, -> { where('1 = 1') }
+  scope :providers, -> { where(type: 'provider')}
 
   def deleted?
     false
+  end
+
+
+  def is_provider?
+    self.type == "Provider"
   end
 
   def all_topics
