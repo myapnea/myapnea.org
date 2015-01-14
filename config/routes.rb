@@ -95,12 +95,11 @@ Rails.application.routes.draw do
   get 'social/discussion(/*path)', to: redirect("forums/%{path}")
 
   # Provider Section
-  get 'provider_profile' => 'static#provider_profile'
+  match 'provider/profile/:id', to: 'providers#profile', via: :get, as: :provider_profile
 
   # Blog Section
   get 'in_the_news' => 'blog#blog', as: :blog
   get 'blog_findings' => 'blog#blog_findings'
-
 
   # Account Section
   get 'account' => 'account#account'

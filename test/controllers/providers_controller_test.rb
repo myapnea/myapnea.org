@@ -18,7 +18,7 @@ class ProvidersControllerTest < ActionController::TestCase
     assert_equal 'health-associates', assigns(:provider).slug
     assert_equal 'new_user@example.com', assigns(:provider).email
 
-    assert_redirected_to home_path
+    assert_redirected_to provider_profile_path(assigns(:provider))
   end
 
   test "an invalid provider should should not be able to sign up" do
