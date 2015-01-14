@@ -33,7 +33,6 @@ class SurveysController < ApplicationController
     else
       @answer = Answer.current.where(question_id: @question.id, answer_session_id: @answer_session.id).first || Answer.new(question_id: @question.id, answer_session_id: @answer_session.id)
     end
-
   end
 
   def show_report

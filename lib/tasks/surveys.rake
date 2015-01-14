@@ -119,7 +119,7 @@ namespace :surveys do
   task :refresh => :environment do
     QuestionFlow.refresh_all_question_flows
 
-    AnswerSession.all.each {|as| as.completed? }
+    AnswerSession.current.each {|as| as.completed? }
   end
 
 

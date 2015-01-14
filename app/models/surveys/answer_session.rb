@@ -198,14 +198,15 @@ class AnswerSession < ActiveRecord::Base
     last_answer.present?
   end
 
-  def reset_answers
+  def reset_completion
     if first_answer.present?
-      connected_answers = all_answers
+      #connected_answers = all_answers
       first_answer.destroy_descendant_edges
       self.first_answer = nil
       self.last_answer = nil
+      self.completed = false
       save
-      connected_answers.each(&:destroy)
+      #connected_answers.each(&:destroy)
     end
   end
 
@@ -265,6 +266,12 @@ class AnswerSession < ActiveRecord::Base
     (completed_path_length.to_f / total_path_length.to_f) * 100.0
   end
 
+  def destroy
+    update_column :deleted, true
+    all_answers.each do |a|
+      a.destroy
+    end
+  end
 
   private
 
