@@ -24,4 +24,8 @@ class Forum < ActiveRecord::Base
     slug
   end
 
+  def increase_views!(current_user)
+    self.update views_count: self.views_count + 1
+  end
+
 end

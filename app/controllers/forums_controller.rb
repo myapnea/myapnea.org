@@ -17,6 +17,7 @@ class ForumsController < ApplicationController
   end
 
   def show
+    @forum.increase_views!(current_user)
     respond_with(@forum)
   end
 
