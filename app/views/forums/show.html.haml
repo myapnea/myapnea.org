@@ -9,7 +9,7 @@
     = link_to 'Start a New Topic', new_forum_topic_path(@forum), class: 'btn btn-xs btn-primary'
   - else
     = link_to 'Sign in to Start a New Topic', new_forum_topic_path(@forum), class: 'btn btn-xs btn-primary'
-  - if current_user and current_user.has_role? :moderator
+  - if current_user and current_user.has_role? :owner
     = link_to 'Edit Forum', edit_forum_path(@forum), class: 'btn btn-xs btn-primary'
 
 = render partial: 'forums/show', locals: { forum: @forum, topic_limit: nil }
