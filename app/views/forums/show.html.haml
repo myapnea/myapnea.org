@@ -12,6 +12,14 @@
   - if current_user and current_user.has_role? :owner
     = link_to 'Edit Forum', edit_forum_path(@forum), class: 'btn btn-xs btn-primary'
 
+= form_tag @forum, method: :get, class: 'form-inline', style: 'margin-bottom:20px' do
+  .input-group
+    = text_field_tag 's', params[:s], class: 'form-control'
+    %span.input-group-btn
+      = submit_tag 'Search', class: 'btn btn-primary', name: nil
+      = link_to 'Reset', @forum, class: 'btn btn-default'
+      = link_to 'Pending Review', forum_path(@forum, status: (params[:status] == 'pending_review' ? nil : 'pending_review')), class: "btn btn-default #{'active' if params[:status] == 'pending_review'}" if current_user and current_user.has_role? :moderator
+
 = render partial: 'forums/show', locals: { forum: @forum, topic_limit: nil }
 
 
