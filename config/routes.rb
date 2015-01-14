@@ -40,6 +40,12 @@ Rails.application.routes.draw do
   get 'privacy_policy_document' => 'static#content', :page => "privacy_policy"
   get 'terms_of_service' => 'static#content', :page => "terms_of_service"
 
+  # Provider Pages
+  devise_scope :user do
+    match "healthcare_partners/:slug/sign_up", to: "registrations#new", via: :get
+
+  end
+
   # Facebook Real Updates
   # match "update_fb_feed", to: "posts#receive_update", as: :update_fb_feed, via: :post
   # match "verify_fb_subscription", to: "posts#verify_subscription", as: :verify_fb_subscription, via: :get
@@ -102,11 +108,6 @@ Rails.application.routes.draw do
   match 'change_password', to: 'account#change_password', as: 'change_password', via: :patch
   get 'stealth_provider1' => 'static#stealth_provider1'
 
-  # devise_scope :user do
-  #   match 'provider_registration', to: 'providers#new', via: :get
-  #   match 'create_provider', to: 'providers#create', via: :post
-  # end
-
   # Admin Section
   get 'admin' => 'admin#users'
   match 'admin/users', to: 'admin#users', as: 'admin_users', via: [:get, :post]
@@ -149,7 +150,7 @@ Rails.application.routes.draw do
   # # If you would like to change where this extension is mounted, simply change the :at option to something different.
 
   # # We ask that you don't use the :as option here, as Forem relies on it being the default of "forem"
-  # mount Forem::Engine, :at => '/forums'
+  mount Forem::Engine, :at => '/old_forums'
 
 # # Authentication
 #   devise_for :user, skip: [:sessions, :passwords, :confirmations, :registrations]

@@ -28,6 +28,7 @@ class User < ActiveRecord::Base
   end
 
   # Model Relationships
+  belongs_to :provider, class_name: "Provider", foreign_key: 'provider_id'
   has_many :answer_sessions, -> { where deleted: false }
   has_many :answers, -> { where deleted: false }
   has_many :votes
@@ -37,7 +38,7 @@ class User < ActiveRecord::Base
   has_many :forums, -> { where(deleted: false) }
   has_many :topics, -> { where(deleted: false) }
   has_many :posts, -> { where(deleted: false) }
-  
+
   # Named Scopes
   scope :search_by_email, ->(terms) { where("LOWER(#{self.table_name}.email) LIKE ?", terms.to_s.downcase.gsub(/^| |$/, '%')) }
   scope :providers, -> { where(type: 'provider')}

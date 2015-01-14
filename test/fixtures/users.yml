@@ -129,5 +129,6 @@ provider_1:
   address_1: 11 Healthy Way
   city: Boston
   state_code: MA
+  type: Provider
   zip_code: 12345
   encrypted_password: <%= pw %>
