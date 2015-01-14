@@ -32,7 +32,6 @@ class RegistrationsControllerTest < ActionController::TestCase
     assert_equal ["can't be blank"], assigns(:user).errors[:first_name]
     assert_equal ["can't be blank"], assigns(:user).errors[:last_name]
     assert_equal ["can't be blank", "is not a number"], assigns(:user).errors[:year_of_birth]
-    assert_equal ["can't be blank"], assigns(:user).errors[:zip_code]
 
     assert_template 'devise/registrations/new'
     assert_response :success

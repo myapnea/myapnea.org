@@ -9,7 +9,7 @@ class SocialProfile < ActiveRecord::Base
   validates :sex, inclusion: { in: %w(Male Female Other), allow_nil: true}
 
   def self.locations_for_map(user=nil)
-    res = select(:latitude, :longitude).where(show_location: true)
+    res = current.select(:latitude, :longitude).where(show_location: true)
     res = res.where.not(id: user.social_profile.id) if user and user.social_profile
 
     res.map{|geo| {latitude: geo.latitude, longitude: geo.longitude} }

@@ -42,6 +42,11 @@ class User < ActiveRecord::Base
   scope :search_by_email, ->(terms) { where("LOWER(#{self.table_name}.email) LIKE ?", terms.to_s.downcase.gsub(/^| |$/, '%')) }
   scope :providers, -> { where(type: 'provider')}
 
+  # Overriding Devise built-in active_for_authentication? method
+  def active_for_authentication?
+    super and not self.deleted?
+  end
+
   def is_provider?
     self.type == "Provider"
   end
@@ -237,6 +242,6 @@ class User < ActiveRecord::Base
   end
 
   def answer_for(answer_session, question)
-    Answer.where(answer_session_id: answer_session.id, question_id: question.id).order("updated_at desc").includes(answer_values: :answer_template).limit(1).first
+    Answer.current.where(answer_session_id: answer_session.id, question_id: question.id).order("updated_at desc").includes(answer_values: :answer_template).limit(1).first
   end
 end

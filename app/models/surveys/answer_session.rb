@@ -10,7 +10,7 @@ class AnswerSession < ActiveRecord::Base
   # Class Methods
 
   def self.most_recent(question_flow_id, user_id)
-    answer_sessions = AnswerSession.where(question_flow_id: question_flow_id, user_id: user_id).order(updated_at: :desc)
+    answer_sessions = AnswerSession.current.where(question_flow_id: question_flow_id, user_id: user_id).order(updated_at: :desc)
     answer_sessions.empty? ? nil : answer_sessions.first
   end
 
@@ -42,7 +42,7 @@ class AnswerSession < ActiveRecord::Base
 
 
     # Create new or find old answer object
-    answer = Answer.where(question_id: question.id, answer_session_id: self.id).first || Answer.new(question_id: question.id, answer_session_id: self.id)
+    answer = Answer.current.where(question_id: question.id, answer_session_id: self.id).first || Answer.new(question_id: question.id, answer_session_id: self.id)
 
     # Options:
     # If new, create answer values and save
@@ -166,7 +166,7 @@ class AnswerSession < ActiveRecord::Base
 
 
   def answers
-    Answer
+    Answer.current
         .joins('left join answer_edges parent_ae on parent_ae.child_answer_id = "answers".id')
         .joins('left join answer_edges child_ae on child_ae.parent_answer_id = "answers".id')
         .where(answer_session_id: self.id)
@@ -191,7 +191,7 @@ class AnswerSession < ActiveRecord::Base
   end
 
   def get_answer(question_id)
-    Answer.joins(:question).where(questions: {id: question_id}).where(answer_session_id: self.id).order("updated_at desc").limit(1).first
+    Answer.current.joins(:question).where(questions: {id: question_id}).where(answer_session_id: self.id).order("updated_at desc").limit(1).first
   end
 
   def started?

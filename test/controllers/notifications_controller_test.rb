@@ -22,7 +22,7 @@ class NotificationsControllerTest < ActionController::TestCase
   test "Moderator can delete notification" do
     login(users(:moderator_1))
 
-    assert_difference "Notification.count", -1 do
+    assert_difference "Notification.current.count", -1 do
       delete :destroy, id: notifications(:accepted_blog_post).id
     end
   end

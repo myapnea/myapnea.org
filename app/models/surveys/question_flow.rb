@@ -13,7 +13,7 @@ class QuestionFlow < ActiveRecord::Base
 
   # Associations
   belongs_to :first_question, class_name: "Question"
-  has_many :answer_sessions
+  has_many :answer_sessions, -> { where deleted: false }
   has_many :question_edges
   has_many :survey_question_orders, -> { order "question_number asc" }
   has_many :ordered_questions, through: :survey_question_orders, foreign_key: "question_id", class_name: "Question", source: :question

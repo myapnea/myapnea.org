@@ -102,11 +102,11 @@ class AdminControllerTest < ActionController::TestCase
     login(users(:owner))
     post :destroy_user, user_id: users(:user_1).id, format: :js
     assert_response :success
-    refute User.find_by_id(users(:user_1).id)
+    assert User.find_by_id(users(:user_1).id).deleted?
 
     post :destroy_user, user_id: users(:admin).id, format: :js
     assert_response :success
-    refute User.find_by_id(users(:admin).id)
+    assert User.find_by_id(users(:admin).id).deleted?
 
   end
 

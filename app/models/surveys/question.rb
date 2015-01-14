@@ -1,7 +1,7 @@
 class Question < ActiveRecord::Base
   has_and_belongs_to_many :answer_templates
   belongs_to :group
-  has_many :answers
+  has_many :answers, -> { where deleted: false }
   belongs_to :question_help_message
   has_many :survey_answer_frequencies
 
@@ -127,7 +127,7 @@ class Question < ActiveRecord::Base
 
 
   def user_skipped_question?(answer_session)
-    answer_session.answers.where
+    applicable_to_user?(answer_session) and (answer_session.answers.where(question_id: self.id).select{|answer| answer.show_value.blank?}.exists?)
   end
 
 end
