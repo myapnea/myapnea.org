@@ -51,6 +51,22 @@
     .col-md-6
       .panel.panel-default
         .panel-heading
+          %h4.panel-title Beta Settings
+        .panel-body
+          - user_class_sym = current_user.class.name.downcase.to_sym
+          - if current_user.beta_opt_in?
+            You currently have the <strong>Beta Settings Enabled</strong>. You may opt out of the beta. If you ran into issues that forced you to cancel, consider
+            = link_to 'contacting us', "mailto:#{ENV['pprn_support_email']}", class: 'content-link'
+            so that we can address any issues before launching the new site changes to a larger audience!
+            %div{ style: 'text-align:center;margin-top:10px' }
+              = link_to 'Disable Beta', update_account_path(user_class_sym => { beta_opt_in: '0' }), method: :patch, class: 'btn btn-primary'
+          - else
+            Preview upcoming changes to MyApnea.Org and help us iron out the kinks in our new upcoming layout of the site!
+            %div{ style: 'text-align:center;margin-top:10px' }
+              = link_to 'Enable Beta', update_account_path(user_class_sym => { beta_opt_in: '1' }), method: :patch, class: 'btn btn-primary'
+
+      .panel.panel-default
+        .panel-heading
           %h4.panel-title Member Stats
         %table.table
           %tr
@@ -100,18 +116,4 @@
           = link_to "View Privacy Policy", privacy_path, class: 'btn btn-info btn-block'
           = link_to 'Leave Research Study', consent_path(declined_to_participate: true), method: :post, class: 'btn btn-warning btn-block'
 
-      .panel.panel-default
-        .panel-heading
-          %h4.panel-title Beta Settings
-        .panel-body
-          - user_class_sym = current_user.class.name.downcase.to_sym
-          - if current_user.beta_opt_in?
-            You currently have the <strong>Beta Settings Enabled</strong>. You may opt out of the beta. If you ran into issues that forced you to cancel, consider
-            = link_to 'contacting us', "mailto:#{ENV['pprn_support_email']}", class: 'content-link'
-            so that we can address any issues before launching the new site changes to a larger audience!
-            %div{ style: 'text-align:center;margin-top:10px' }
-              = link_to 'Disable Beta', update_account_path(user_class_sym => { beta_opt_in: '0' }), method: :patch, class: 'btn btn-primary'
-          - else
-            Preview upcoming changes to MyApnea.Org and help us iron out the kinks in our new upcoming layout of the site!
-            %div{ style: 'text-align:center;margin-top:10px' }
-              = link_to 'Enable Beta', update_account_path(user_class_sym => { beta_opt_in: '1' }), method: :patch, class: 'btn btn-primary'
+

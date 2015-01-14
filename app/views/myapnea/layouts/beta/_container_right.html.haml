@@ -1,6 +1,14 @@
 #container-right.primary-blue-bcg{ style: 'float:none; display:table-cell; vertical-align:top' }
   #container-right-fixed
     -if current_user
+      %div{ style: 'padding: 15px 0;' }
+        - if current_user.beta_opt_in?
+          .alert.alert-info{ role: 'alert', style: 'margin-top:10px; margin-bottom:5px' }
+            %btn{ type: 'button', class: 'close', data: { dismiss: 'alert' }, aria: { label: 'Close'} }
+              %span{ aria: { hidden: 'true'} } &times;
+            %strong Welcome to the beta version of the site!
+            You can go back to the previous layout any time by going to your
+            = link_to 'account settings.', account_path
       .col-lg-5.col-md-5.col-md-offset-0.col-xs-8.col-xs-offset-2#user-profile-header-picture{ style:'' }
         = link_to social_profile_path do
           = image_tag current_user.photo_url, class: "user-picture", size: "65x65", style: 'width:65px; height:65px;'
@@ -40,7 +48,7 @@
         %li.list-group-item.hover-slide-left.list-shrink.visible-xs
           = link_to 'Community', social_path, style: 'color:white; color: rgba(255,255,255,.8); text-decoration: none;'
         %li.list-group-item.hover-slide-left.list-shrink.visible-xs
-          = link_to 'Become a Provider', stealth_providers_path , style: 'color:white; color: rgba(255,255,255,.8); text-decoration: none;'
+          = link_to 'Become a Provider', providers_path , style: 'color:white; color: rgba(255,255,255,.8); text-decoration: none;'
   #container-right-scroll.hidden-xs
     .col-md-12.reset-layout.hidden-sm#recent-news-container{ style: '' }
       %ul.list-group#recent-news{ style: 'margin-bottom:0px; padding-bottom:0px;' }
