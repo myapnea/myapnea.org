@@ -5,7 +5,7 @@
     &nbsp;
     Home
   %a.list-group-item{href: account_path, class: "#{"active" if action_name == "account"}"} My Account Settings
-  - if current_user.is_provider?
+  - if current_user and current_user.is_provider?
     %a.list-group-item{href: provider_profile_path, class: "#{"active" if action_name == "profile"}"} My Provider Profile
   -else
     %a.list-group-item{href: social_profile_path, class: "#{"active" if action_name == "profile"}"} My Social Profile
