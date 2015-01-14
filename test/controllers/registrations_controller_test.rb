@@ -113,6 +113,7 @@ class RegistrationsControllerTest < ActionController::TestCase
     assert_equal 'new_user@example.com', assigns(:provider).email
 
     assert_redirected_to provider_profile_path
+
   end
 
   test "an invalid provider should should not be able to sign up" do

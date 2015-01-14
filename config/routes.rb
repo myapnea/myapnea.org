@@ -43,7 +43,7 @@ Rails.application.routes.draw do
   # Provider Pages
   devise_scope :user do
     match "p/:slug/sign_up", to: "registrations#new", via: :get
-
+    match "providers/sign_up", to: "registrations#new", via: :get, defaults: {type: :provider}
   end
   match 'provider_profile', to: 'providers#profile', via: :get, as: :provider_profile
 
@@ -137,7 +137,9 @@ Rails.application.routes.draw do
   resources :notifications, except: [:show, :index]
 
   devise_for :users, controllers: { registrations: 'registrations' }
-  devise_for :providers, controllers: { registrations: 'registrations' }, skip: [:passwords, :confirmations, :sessions]
+  #devise_for :providers, controllers: { registrations: 'registrations' }, skip: [:passwords, :confirmations]
+
+
 
   resources :forums do
     resources :topics do

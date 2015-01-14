@@ -1,6 +1,6 @@
 - if @referring_provider
   = render partial: 'static/beta/provider1'
-- elsif @provider
+- elsif params[:type] == "provider"
   = render partial: "myapnea/static/beta/providers"
 - else
   .row

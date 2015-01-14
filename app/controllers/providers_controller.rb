@@ -1,6 +1,9 @@
 class ProvidersController < ApplicationController
   layout 'layouts/cleantheme'
 
+  #before_action :authenticate_user!
+  before_action :authenticate_provider
+
   def provider
 
   end
