@@ -57,13 +57,13 @@ class AdminControllerTest < ActionController::TestCase
   test "should allow owner to add and remove user roles" do
     login(users(:owner))
 
-    post :add_role_to_user, format: :js, user_id: users(:user_1).id, role: roles(:admin).name
+    post :add_role_to_user, format: :js, user_id: users(:user_1).id, role: roles(:moderator).name
     assert_response :success
-    assert users(:user_1).has_role? :admin
+    assert users(:user_1).has_role? :moderator
 
-    post :remove_role_from_user, user_id: users(:admin).id, role: roles(:admin).name, format: :js
+    post :remove_role_from_user, user_id: users(:moderator_1).id, role: roles(:moderator).name, format: :js
     assert_response :success
-    refute users(:admin).has_role? :admin
+    refute users(:moderator_1).has_role? :moderator
   end
 
   test "should not allow a non-owner to add and remove user roles" do
@@ -73,7 +73,7 @@ class AdminControllerTest < ActionController::TestCase
     assert_authorization_exception
     refute users(:user_1).has_role? :moderator
 
-    post :remove_role_from_user, user_id: users(:admin).id, role: roles(:admin).name, format: :js
+    post :remove_role_from_user, user_id: users(:moderator_1).id, role: roles(:moderator).name, format: :js
     assert_authorization_exception
     assert users(:moderator_1).has_role? :moderator
 
@@ -83,7 +83,7 @@ class AdminControllerTest < ActionController::TestCase
     assert_authorization_exception
     refute users(:user_1).has_role? :moderator
 
-    post :remove_role_from_user, user_id: users(:moderator_1).id, role: roles(:moderator_1).name, format: :js
+    post :remove_role_from_user, user_id: users(:moderator_1).id, role: roles(:moderator).name, format: :js
     assert_authorization_exception
     assert users(:moderator_1).has_role? :moderator
 
