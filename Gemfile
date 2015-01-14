@@ -41,7 +41,8 @@ gem 'jbuilder', '~> 2.0'
 # Bootstrap and Styles
 gem 'sass-rails', '~> 5.0'
 gem 'bootstrap-sass'
-gem 'autoprefixer-rails'
+# autoprefixer-rails 5.0.0 breaks, locking autoprefixer-rails to 4.0.2.2 for the time being
+gem 'autoprefixer-rails', '4.0.2.2'
 gem 'font-awesome-rails'
 
 # Authentication
