@@ -104,15 +104,21 @@
   .panel-heading
     %h4.f300 Notification Preferences
   .panel-body
-    %form.form-horizontal{role: "form"}
-      .radio
-        %label
-          %input#optionsRadios1{checked: "checked", name: "optionsRadios", type: "radio", value: "option1"}/
-          Email Me
-      .radio
-        %label
-          %input#optionsRadios2{name: "optionsRadios", type: "radio", value: "option2"}/
-          Don't Email Me
+
+    - if current_user.emails_enabled?
+      You are currently set to receive emails from
+      = ENV['pprn_title']
+      %br
+      If you prefer, you can
+      = link_to 'unsubscribe', update_account_path(user: { emails_enabled: '0' }), method: :patch, class: 'btn btn-primary btn-xs'
+      from emails.
+    - else
+      You are currently unsubscribed from emails from
+      = ENV['pprn_title']
+      %br
+      If you prefer, you can
+      = link_to 'enable', update_account_path(user: { emails_enabled: '1' }), method: :patch, class: 'btn btn-primary btn-xs'
+      emails.
 .panel
   .panel-heading
     %h4.f300 Leave Research Study
