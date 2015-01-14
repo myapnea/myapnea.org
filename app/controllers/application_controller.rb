@@ -17,7 +17,8 @@ class ApplicationController < ActionController::Base
 
 
   def after_sign_in_path_for(resource)
-    request.env['omniauth.origin'] || stored_location_for(resource) || home_path
+    redirect_path = (resource.class == Provider ? provider_profile_path : home_path)
+    request.env['omniauth.origin'] || stored_location_for(resource) || redirect_path
   end
 
   # Send 'em back where they came from with a slap on the wrist

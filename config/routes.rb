@@ -45,6 +45,7 @@ Rails.application.routes.draw do
     match "p/:slug/sign_up", to: "registrations#new", via: :get
 
   end
+  match 'provider_profile', to: 'providers#profile', via: :get, as: :provider_profile
 
   # Facebook Real Updates
   # match "update_fb_feed", to: "posts#receive_update", as: :update_fb_feed, via: :post
@@ -95,7 +96,6 @@ Rails.application.routes.draw do
   get 'social/discussion(/*path)', to: redirect("forums/%{path}")
 
   # Provider Section
-  match 'provider/profile/:id', to: 'providers#profile', via: :get, as: :provider_profile
 
   # Blog Section
   get 'in_the_news' => 'blog#blog', as: :blog
@@ -137,7 +137,7 @@ Rails.application.routes.draw do
   resources :notifications, except: [:show, :index]
 
   devise_for :users, controllers: { registrations: 'registrations' }
-  devise_for :providers, controllers: { registrations: 'providers' }, skip: [:passwords, :confirmations, :sessions]
+  devise_for :providers, controllers: { registrations: 'registrations' }, skip: [:passwords, :confirmations, :sessions]
 
   resources :forums do
     resources :topics do

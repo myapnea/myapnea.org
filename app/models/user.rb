@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   include Authority::Abilities
 
   # Enable User Connection to External API Accounts
-  include ExternalUsers
+  #include ExternalUsers
   include Deletable
 
   # Map to PCORNET Common Data Model

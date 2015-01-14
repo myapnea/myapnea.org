@@ -1,5 +1,7 @@
-- if @provider
+- if @referring_provider
   = render partial: 'static/beta/provider1'
+- elsif @provider
+  = render partial: "myapnea/static/beta/providers"
 - else
   .row
     .col-md-8.col-md-offset-2
