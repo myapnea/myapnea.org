@@ -1,9 +1,0 @@
-p1:
-  first_name: Some
-  last_name: Hospital
-  email: healthy@me.com
-
-
-  zip_code: 12345
-  year_of_birth: 1980
-  encrypted_password: <%= pw %>

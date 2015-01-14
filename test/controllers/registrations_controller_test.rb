@@ -42,8 +42,6 @@ class RegistrationsControllerTest < ActionController::TestCase
   end
 
   test "a new user needs to meet the age requirements" do
-    skip "No year of birth in OPN sign up form"
-
     assert_difference('User.count', 0) do
       post :create, user: { first_name: 'First Name', last_name: 'Last Name', year_of_birth: "#{Date.today.year - 17}", zip_code: '12345', email: 'new_user@example.com', password: 'password', password_confirmation: 'password' }
     end
@@ -58,8 +56,6 @@ class RegistrationsControllerTest < ActionController::TestCase
   end
 
   test "a new user needs to be born after 1900" do
-    skip "No year of birth in OPN sign up form"
-
     assert_difference('User.count', 0) do
       post :create, user: { first_name: 'First Name', last_name: 'Last Name', year_of_birth: "1899", zip_code: '12345', email: 'new_user@example.com', password: 'password', password_confirmation: 'password' }
     end
