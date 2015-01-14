@@ -76,6 +76,15 @@ class User < ActiveRecord::Base
     end
   end
 
+  # All comments created in the last day, or over the weekend if it is Monday
+  # Ex: On Monday, returns tasks created since Friday morning (Time.now - 3.day)
+  # Ex: On Tuesday, returns tasks created since Monday morning (Time.now - 1.day)
+  def digest_posts
+    # Comment.digest_visible.where( topic_id: self.subscribed_topics.pluck(:id) ).where("created_at > ?", (Time.now.monday? ? Time.now.midnight - 3.day : Time.now.midnight - 1.day))
+    # Post.digest_visible.where( topic_id: self.subscribed_topics.pluck(:id) ).where("created_at > ?", (Time.now.monday? ? Time.now.midnight - 3.day : Time.now.midnight - 1.day))
+    Post.current.where(status: 'approved', hidden: false).where("created_at > ?", (Time.now.monday? ? Time.now.midnight - 3.day : Time.now.midnight - 1.day))
+  end
+
   def smart_forum
     forum_id = self.posts.group_by{|p| p.forum.id}.collect{|forum_id, posts| [forum_id, posts.count]}.sort{|a,b| b[1] <=> a[1]}.collect{|a| a[0]}.first
     forum = Forum.current.find_by_id(forum_id)

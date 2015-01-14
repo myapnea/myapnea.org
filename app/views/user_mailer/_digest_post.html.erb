@@ -1,0 +1,5 @@
+<td style="padding-left:10px;padding-right:10px;vertical-align:top">
+  <%= link_to "##{post.number}", "#{ENV['website_url']}/forums/#{post.topic.forum.to_param}/topics/#{post.topic.to_param}?page=#{((post.number - 1) / Post::POSTS_PER_PAGE)+1}#c#{post.number}", style: "color: #428bca;" %>
+</td>
+<td style="padding-right:10px;vertical-align:top"><%= strip_tags(simple_markdown post.description).truncate(100, separator: ' ').html_safe %></td>
+<td style="padding-right:10px;white-space:nowrap;text-align:right;vertical-align:top"><%= post.user.forum_name %></td>

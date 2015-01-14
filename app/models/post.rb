@@ -2,6 +2,8 @@ class Post < ActiveRecord::Base
 
   STATUS = [['Approved', 'approved'], ['Pending Review', 'pending_review'], ['Marked as Spam', 'spam']]
 
+  POSTS_PER_PAGE = 20
+
   # Concerns
   include Deletable
 

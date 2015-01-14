@@ -6,6 +6,7 @@
 - **Forum Updates**
   - Redesigned internal forums engine
   - Posts can now be previewed before being submitted
+  - Added a forum digest email along with the ability to opt out of all email communication
 - **General Changes**
   - Changed image sizes to speed up loading on mobile browsers
   - Members of MyApnea.Org may opt into upcoming design changes and provide feedback directly to the MyApnea.Org team
