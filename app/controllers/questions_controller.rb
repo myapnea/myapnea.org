@@ -3,8 +3,6 @@ class QuestionsController < ApplicationController
     Question
   end
 
-  include Scaffoldable
-
   before_filter :authenticate_user!
 
 

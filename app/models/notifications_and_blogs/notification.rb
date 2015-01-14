@@ -5,6 +5,7 @@ class Notification < ActiveRecord::Base
   require "kaminari"
 
   include ::ActionView::Helpers::TextHelper
+  include Deletable
 
   scope :blog_posts, -> { where(post_type: "blog") }
   scope :notifications, -> { where(post_type: "notification") }

@@ -22,9 +22,6 @@ class RegistrationsControllerTest < ActionController::TestCase
   end
 
   test "a new user should not be able to sign up without required fields" do
-    skip "No requirements in OPN sign up form"
-
-
     assert_difference('User.count', 0) do
       post :create, user: { first_name: '', last_name: '', year_of_birth: '', zip_code: '', email: 'new_user@example.com', password: 'password', password_confirmation: 'password' }
     end
@@ -35,14 +32,12 @@ class RegistrationsControllerTest < ActionController::TestCase
     assert_equal ["can't be blank"], assigns(:user).errors[:first_name]
     assert_equal ["can't be blank"], assigns(:user).errors[:last_name]
     assert_equal ["can't be blank", "is not a number"], assigns(:user).errors[:year_of_birth]
-    assert_equal ["can't be blank"], assigns(:user).errors[:zip_code]
 
     assert_template 'devise/registrations/new'
     assert_response :success
   end
 
   test "a new user needs to meet the age requirements" do
-    skip "No year of birth in OPN sign up form"
 
     assert_difference('User.count', 0) do
       post :create, user: { first_name: 'First Name', last_name: 'Last Name', year_of_birth: "#{Date.today.year - 17}", zip_code: '12345', email: 'new_user@example.com', password: 'password', password_confirmation: 'password' }
@@ -58,7 +53,6 @@ class RegistrationsControllerTest < ActionController::TestCase
   end
 
   test "a new user needs to be born after 1900" do
-    skip "No year of birth in OPN sign up form"
 
     assert_difference('User.count', 0) do
       post :create, user: { first_name: 'First Name', last_name: 'Last Name', year_of_birth: "1899", zip_code: '12345', email: 'new_user@example.com', password: 'password', password_confirmation: 'password' }
@@ -73,4 +67,27 @@ class RegistrationsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "a user can sign up with a custom provider" do
+    assert_difference('User.count') do
+      post :create, user: { first_name: 'First Name', last_name: 'Last Name', year_of_birth: '1980', zip_code: '12345', email: 'new_user@example.com', password: 'password', password_confirmation: 'password', provider_name: 'Custom Name' }
+    end
+
+    assert_not_nil assigns(:user)
+    assert_equal "Custom Name", assigns(:user).provider_name
+    assert_redirected_to home_path
+
+  end
+
+  test "a user can sign up with an existing provider" do
+    assert_difference('User.count') do
+      post :create, user: { first_name: 'First Name', last_name: 'Last Name', year_of_birth: '1980', zip_code: '12345', email: 'new_user@example.com', password: 'password', password_confirmation: 'password', provider_id: users(:provider_1).id }
+
+    end
+
+
+    assert_not_nil assigns(:user)
+    assert_equal users(:provider_1), assigns(:user).provider
+    assert_redirected_to home_path
+
+  end
 end

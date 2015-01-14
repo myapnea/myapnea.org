@@ -10,14 +10,14 @@
             .pull-right
               %strong Total MyApnea.Org members:
           .col-md-2
-            .text-info= User.all.count
+            .text-info= User.current.count
           .clearfix
         .row
           .col-md-10
             .pull-right
               %strong Members with signed consent:
           .col-md-2
-            .text-info= User.where("accepted_consent_at is not null").count
+            .text-info= User.current.where("accepted_consent_at is not null").count
           .clearfix
   .panel-body
     = render partial: "surveys/partials/list"

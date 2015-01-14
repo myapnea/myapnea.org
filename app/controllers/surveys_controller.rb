@@ -7,7 +7,7 @@ class SurveysController < ApplicationController
 
   def start_survey
     @question_flow = QuestionFlow.find(params[:question_flow_id])
-    @answer_session =  AnswerSession.find_by(user_id: current_user.id, question_flow_id: @question_flow.id)
+    @answer_session =  AnswerSession.current.find_by(user_id: current_user.id, question_flow_id: @question_flow.id)
 
     if @answer_session
       if false# params[:reset_survey]
@@ -29,11 +29,10 @@ class SurveysController < ApplicationController
     if @question.part_of_group?
       @group = @question.group
       @questions = @group.minimum_set(@answer_session.question_flow)
-      @answer = Answer.where(question_id: @questions.first.id, answer_session_id: @answer_session.id).first || Answer.new(question_id: @questions.first.id, answer_session_id: @answer_session.id)
+      @answer = Answer.current.where(question_id: @questions.first.id, answer_session_id: @answer_session.id).first || Answer.new(question_id: @questions.first.id, answer_session_id: @answer_session.id)
     else
-      @answer = Answer.where(question_id: @question.id, answer_session_id: @answer_session.id).first || Answer.new(question_id: @question.id, answer_session_id: @answer_session.id)
+      @answer = Answer.current.where(question_id: @question.id, answer_session_id: @answer_session.id).first || Answer.new(question_id: @question.id, answer_session_id: @answer_session.id)
     end
-
   end
 
   def show_report
