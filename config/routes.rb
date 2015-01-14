@@ -28,7 +28,6 @@ Rails.application.routes.draw do
   get 'stealth_providers' => 'static#stealth_providers'
   get 'providers' => 'static#providers'
   get 'stealth_provider1' => 'static#stealth_provider1'
-  get 'provider1' => 'static#provider1'
   get 'stealth_map' => 'static#stealth_map'
   get 'stealth_share' => 'static#stealth_share'
   get 'stealth_account' => 'static#stealth_account'
@@ -42,7 +41,7 @@ Rails.application.routes.draw do
 
   # Provider Pages
   devise_scope :user do
-    match "p/:slug/sign_up", to: "registrations#new", via: :get
+    match "p/:slug", to: "registrations#new", via: :get
 
   end
 

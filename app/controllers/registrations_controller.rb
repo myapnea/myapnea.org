@@ -1,5 +1,8 @@
 class RegistrationsController < Devise::RegistrationsController
 
+  # TODO remove when new layout is default
+  layout 'layouts/cleantheme'
+
   def new
     @provider = Provider.find_by_slug(params[:slug])
     super

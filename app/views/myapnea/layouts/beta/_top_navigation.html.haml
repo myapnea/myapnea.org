@@ -1,0 +1,46 @@
+%nav.navbar.navbar-fixed-top{role:'navigation'}
+  .container-fluid
+    / #slidemenu
+    = link_to image_tag('myapnea/MyApneaLogo_border_whitesub_300x80.png', width: "100%", style: "position:relative; top:-25px; left:0px;", id: "navbar-myapnea-logo"), root_path, class: "navbar-brand", style: "width:70%; line-height:100%; min-width:260px; max-width:260px;"
+    - if !current_user
+      = link_to "Login", new_user_session_path, class: "btn primary-blue-bcg text-white visible-xs float-right", id: "btn-login-phone"
+    - else
+      = link_to account_path do
+        .navbar-right.text-white.centered-text.visible-xs
+          .navbar-header.pull-right#slide-nav
+            %a.navbar-toggle.pull-right
+              %span.icon-bar
+              %span.icon-bar
+              %span.icon-bar
+    - if ((params[:action] == 'home' or params[:action] == 'stealth_providers' or params[:action] == 'stealth_provider1' or params[:action] == 'providers' or @provider) and !current_user)
+      .collapse.navbar-collapse.navbar-right.float-right
+        = form_tag user_session_path, method: :post, class: "navbar-form" do
+          = text_field_tag 'user[email]', nil, placeholder: 'Email', class: "form-control"
+          = password_field_tag 'user[password]', nil, placeholder: 'Password', class: "form-control"
+          = submit_tag 'Login', class: "btn btn-primary"
+    - else
+      .collapse.navbar-collapse.centered-text#navbar-social
+        = link_to image_tag('myapnea/icons/facebook_icon.png', class: 'share-icons-animate share-icons-md'), "http://www.facebook.com/share.php?u=#{ENV['website_url']}"
+        = link_to image_tag('myapnea/icons/twitter_icon.png', class: 'share-icons-animate share-icons-md'), 'http://ctt.ec/Qeg7f'
+        = link_to image_tag('myapnea/icons/gplus_icon.png', class: 'share-icons-animate share-icons-md'), "https://plusone.google.com/_/+1/confirm?hl=en&url=#{ENV['website_url']}"
+        %ul.nav.navbar-nav#testnavbar{ style:'color:white; position:absolute; right:20%; bottom:0;' }
+          %li.active
+            = link_to 'Home', root_path
+          %li.dropdown
+            %a.dropdown-toggle{ href:'#', data:{ toggle: 'dropdown'} }
+              About Us
+              %span.caret
+            %ul.dropdown-menu{ role:'menu' }
+              %li= link_to 'Introduction', intro_path
+              %li= link_to 'Our Team', team_path
+              %li= link_to 'FAQs', faqs_path
+          %li.dropdown
+            %a.dropdown-toggle{ href:'#', data:{ toggle: 'dropdown'} }
+              Participate
+              %span.caret
+            %ul.dropdown-menu{ role:'menu' }
+              %li= link_to 'Community', social_path
+              %li= link_to 'Forums', forums_path
+              %li= link_to 'Research Surveys', surveys_path
+              %li= link_to 'Rate the Research', research_topics_path
+              %li= link_to 'Become a Provider', providers_path

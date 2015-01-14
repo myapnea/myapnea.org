@@ -13,12 +13,12 @@
       = image_tag "myapnea/welcome/img-small/bwh-logo_3x1.png", class: "partners-img img-responsive", id: "partner-BWH"
 .row.row-fullscreen#provider-banner{style: 'margin-left:0px; margin-right:0px;'}
   .col-lg-2.col-lg-offset-1.col-md-3.col-md-offset-1.col-xs-4
-    = image_tag 'myapnea/team/redline_200x200.jpg', class: 'team-member-picture-md', style: 'float: right;'
+    = image_tag @provider.photo_url, class: 'team-member-picture-md', style: 'float: right;'
   .col-lg-8.col-md-7.col-xs-7{ style: 'padding-left:20px;' }
     %h4.text-dark7
-      "We are happy to team up with MyApnea.Org to provide you better access to your health care data. Joining with us will allow us to see how our community is doing as a whole and provide YOU better health care services! Thank you for making this possible!"
+      = @provider.get_welcome_message
     %h4.primary-orange
-      \- Michael Rueschman
+      = '-' + @provider.provider_name
   .col-lg-1{ style: 'background-color: white;' }
 .row.row-fullscreen#community-tracker-provider
   .col-xs-8.col-xs-offset-2

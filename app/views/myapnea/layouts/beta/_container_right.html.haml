@@ -1,0 +1,58 @@
+#container-right.primary-blue-bcg{ style: 'float:none; display:table-cell; vertical-align:top' }
+  #container-right-fixed
+    -if current_user
+      .col-lg-5.col-md-5.col-md-offset-0.col-xs-8.col-xs-offset-2#user-profile-header-picture{ style:'' }
+        = link_to social_profile_path do
+          = image_tag current_user.photo_url, class: "user-picture", size: "65x65", style: 'width:65px; height:65px;'
+      .col-lg-6.col-md-6.col-md-offset-0.col-sm-8.col-sm-offset-2#user-profile-header-text{ style:'padding:0;' }
+        %h4.user-name.text-white
+          = current_user.name
+        = link_to account_path, style: 'color:white; color:rgba(255,255,255,.8); text-decoration:none;', class: 'f300' do
+          %span.glyphicon.glyphicon-cog{ style: 'margin-bottom:10px' }
+          Settings
+        %br
+        = link_to main_app.destroy_user_session_path, style: 'color:white; color:rgba(255,255,255,.8); text-decoration:none;', class: 'f300', :method => :delete do
+          %i.fa.fa-sign-out
+          Sign out
+    -else
+      .col-sm-12
+        .centered-text
+          = form_tag user_session_path, method: :post do
+            = text_field_tag 'user[email]', nil, placeholder: 'Email', class: "form-control"
+            = password_field_tag 'user[password]', nil, placeholder: 'Password', class: "form-control"
+            = submit_tag 'Login', class: "btn btn-warning ", style: 'width:70%'
+    .col-xs-11.col-xs-offset-1#user-profile-container{style:'margin-top:30px; margin-right:0; padding-right:0; margin-bottom:20px;'}
+      %ul.list-group
+        %li.list-group-item.hover-slide-left.list-shrink
+          = link_to 'Home', root_path, style: 'color:white; color: rgba(255,255,255,.8); text-decoration: none;'
+        %li.list-group-item.hover-slide-left.list-shrink
+          = link_to 'Forums', forums_path, style: 'color:white; color: rgba(255,255,255,.8); text-decoration: none;'
+        %li.list-group-item.hover-slide-left.list-shrink
+          = link_to 'Research Surveys', surveys_path,  style: 'color:white; color: rgba(255,255,255,.8); text-decoration: none;'
+        %li.list-group-item.hover-slide-left.list-shrink
+          = link_to 'Rank the Research', research_topics_path,  style: 'color:white; color: rgba(255,255,255,.8); text-decoration: none;'
+        %li.list-group-item.hover-slide-left.list-shrink.visible-xs{style: 'margin-top:50px;'}
+          = link_to 'Introduction', intro_path, style: 'color:white; color: rgba(255,255,255,.8); text-decoration: none;'
+        %li.list-group-item.hover-slide-left.list-shrink.visible-xs
+          = link_to 'Our Team', team_path, style: 'color:white; color: rgba(255,255,255,.8); text-decoration: none;'
+        %li.list-group-item.hover-slide-left.list-shrink.visible-xs
+          = link_to 'FAQs', faqs_path, style: 'color:white; color: rgba(255,255,255,.8); text-decoration: none;'
+        %li.list-group-item.hover-slide-left.list-shrink.visible-xs
+          = link_to 'Community', social_path, style: 'color:white; color: rgba(255,255,255,.8); text-decoration: none;'
+        %li.list-group-item.hover-slide-left.list-shrink.visible-xs
+          = link_to 'Become a Provider', stealth_providers_path , style: 'color:white; color: rgba(255,255,255,.8); text-decoration: none;'
+  #container-right-scroll.hidden-xs
+    .col-md-12.reset-layout.hidden-sm#recent-news-container{ style: '' }
+      %ul.list-group#recent-news{ style: 'margin-bottom:0px; padding-bottom:0px;' }
+        %li.list-group-item{ style: 'border-top:3px solid white; ' }
+          %h4.text-white Recent News
+        %li.list-group-item{ style: 'background-color: #7FB2EB;' }
+          %h5.f300{ style: 'color: white; color: rgba(255,255,255,.8)' }
+            Losing weight makes your lungs a potent CO2 emitter
+          %p.f400.darkerer-blue{ style: 'margin:0px 10px; ' }
+            Posted on Facebook by ASAA
+          %p.f300.darkerer-blue{ style: 'margin:0px 10px; ' }
+            23 Dec 2014
+          %p{ style: 'margin:10px 10px; color: white; color: rgba(255,255,255,.8) ' }
+            Lorem ipsum sleep apnea snoring loud noises wake up feeling better to a better future Lorem ipsum sleep apnea snoring loud noises wake up feeling better to a better future Lorem ipsum sleep apnea snoring loud noises wake up feeling better to a better future
+
