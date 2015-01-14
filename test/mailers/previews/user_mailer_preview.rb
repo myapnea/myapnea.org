@@ -6,4 +6,16 @@ class UserMailerPreview < ActionMailer::Preview
     UserMailer.forum_digest(user)
   end
 
+  def post_approved
+    post = Post.first
+    moderator = User.first
+    UserMailer.post_approved(post, moderator)
+  end
+
+  def post_replied
+    post = Post.first
+    user = User.first
+    UserMailer.post_replied(post, user)
+  end
+
 end

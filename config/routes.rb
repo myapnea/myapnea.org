@@ -139,6 +139,9 @@ Rails.application.routes.draw do
 
   resources :forums do
     resources :topics do
+      member do
+        post :subscription
+      end
       resources :posts do
         collection do
           post :preview

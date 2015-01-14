@@ -47,6 +47,18 @@ class Post < ActiveRecord::Base
     self.status == 'spam'
   end
 
+  def approved_email(current_user)
+    # self.add_event!('Post approved.', current_user, 'approved')
+    # self.post_events.create event_type: 'moderator_approved', user_id: current_user.id, event_at: Time.now
+    UserMailer.post_approved(self, current_user).deliver_later if Rails.env.production?
+  end
+
+  def reply_emails
+    self.topic.subscribers.each do |u|
+      UserMailer.post_replied(self, u).deliver_later if Rails.env.production? and u.email_enabled? and u != self.user
+    end
+  end
+
   private
 
   def touch_topic

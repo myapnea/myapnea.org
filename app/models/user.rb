@@ -35,9 +35,10 @@ class User < ActiveRecord::Base
   has_one :social_profile, -> { where deleted: false }
   has_many :notifications, -> { where deleted: false }
   has_many :research_topics, -> { where deleted: false }
-  has_many :forums, -> { where(deleted: false) }
-  has_many :topics, -> { where(deleted: false) }
-  has_many :posts, -> { where(deleted: false) }
+  has_many :forums, -> { where deleted: false }
+  has_many :topics, -> { where deleted: false }
+  has_many :posts, -> { where deleted: false }
+  has_many :subscriptions
 
   # Named Scopes
   scope :search_by_email, ->(terms) { where("LOWER(#{self.table_name}.email) LIKE ?", terms.to_s.downcase.gsub(/^| |$/, '%')) }

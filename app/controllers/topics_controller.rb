@@ -1,12 +1,11 @@
 class TopicsController < ApplicationController
 
-  before_action :authenticate_user!,      only: [ :new, :create, :edit, :update, :destroy, :moderate, :subscription ]
-  before_action :check_moderator,         only: [ :moderate ]
+  before_action :authenticate_user!,      only: [ :new, :create, :edit, :update, :destroy, :subscription ]
 
   before_action :set_viewable_forum
   before_action :redirect_without_forum
 
-  before_action :set_viewable_topic,      only: [ :show, :destroy, :moderate, :subscription ]
+  before_action :set_viewable_topic,      only: [ :show, :destroy, :subscription ]
   before_action :set_editable_topic,      only: [ :edit, :update, :destroy ]
 
   before_action :redirect_without_topic,  only: [ :show, :edit, :update, :destroy, :subscription ]
@@ -16,9 +15,9 @@ class TopicsController < ApplicationController
   # TODO remove when new layout is default
   layout 'layouts/cleantheme'
 
-  def moderate
-    @topic.update(topic_params)
-    redirect_to topics_path
+  def subscription
+    @topic.set_subscription!(params[:notify].to_s == '1', current_user)
+    redirect_to [@forum, @topic]
   end
 
   def index

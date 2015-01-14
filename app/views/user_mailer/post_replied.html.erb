@@ -1,0 +1,7 @@
+<b>Dear <%= @user.first_name %>,</b><br />
+<br />
+Someone posted a reply to the following topic:<br />
+<br />
+<center><%= link_to @post.topic.name, "#{ENV['website_url']}/forums/#{@post.forum.to_param}/topics/#{@post.topic.to_param}?page=#{((@post.number - 1) / Post::POSTS_PER_PAGE)+1}#c#{@post.number}", style: "color: #428bca" %></center><br />
+<br />
+<strong><%= @post.user.forum_name %></strong>: <%= strip_tags(simple_markdown @post.description).truncate(100, separator: ' ').html_safe %> <%= link_to "Post ##{@post.number}", "#{ENV['website_url']}/forums/#{@post.forum.to_param}/topics/#{@post.topic.to_param}?page=#{((@post.number - 1) / Post::POSTS_PER_PAGE)+1}#c#{@post.number}", style: "color: #428bca" %>

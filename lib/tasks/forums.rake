@@ -48,6 +48,13 @@ namespace :forums do
       end
     end
 
+    puts "Setting Subscribers"
+    Topic.all.each do |topic|
+      topic.posts.each do |post|
+        topic.get_or_create_subscription(post.user)
+      end
+    end
+
   end
 
 end

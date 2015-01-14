@@ -1,0 +1,8 @@
+Dear <%= @post.user.first_name %>,
+
+Your forum post has been approved. You can view the post under the following topic:
+
+
+  <%= @post.topic.name %>
+
+  <%= "#{ENV['website_url']}/forums/#{@post.forum.to_param}/topics/#{@post.topic.to_param}?page=#{((@post.number - 1) / Post::POSTS_PER_PAGE)+1}#c#{@post.number}" %>

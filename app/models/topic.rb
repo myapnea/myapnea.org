@@ -25,6 +25,8 @@ class Topic < ActiveRecord::Base
   belongs_to :user
   belongs_to :forum
   has_many :posts, -> { order(:created_at) }
+  has_many :subscriptions
+  has_many :subscribers, -> { where(deleted: false) }, through: :subscriptions, source: :user
 
   # Topic Methods
 
@@ -38,11 +40,33 @@ class Topic < ActiveRecord::Base
   end
 
   def get_or_create_subscription(current_user)
-    # Placeholder
+    current_user.subscriptions.where( topic_id: self.id ).first_or_create
+  end
+
+  def set_subscription!(notify, current_user)
+    get_or_create_subscription(current_user).update subscribed: notify
   end
 
   def subscribed?(current_user)
-    true
+    subscription = current_user.subscriptions.where( topic_id: self.id ).first
+    subscription && subscription.subscribed? ? true : false
+  end
+
+  def subscription_type(current_user)
+    subscription = current_user.subscriptions.where( topic_id: self.id ).first
+    if subscription and subscription.subscribed == true
+      'subscribed'
+    elsif subscription and subscription.subscribed == false
+      'muted'
+    # elsif current_user.auto_subscribe?
+    #   'auto-subscribed'
+    else
+      'auto-muted'
+    end
+  end
+
+  def subscribers
+    self.subscriptions.where(subscribed: true).select{|s| s.user.emails_enabled?}.collect{|s| s.user}.uniq
   end
 
   def increase_views!(current_user)
@@ -53,7 +77,7 @@ class Topic < ActiveRecord::Base
 
   def create_first_post
     self.posts.create( description: self.description, user_id: self.user_id )
-    # self.get_or_create_subscription( self.user )
+    self.get_or_create_subscription( self.user )
   end
 
   def set_slug
