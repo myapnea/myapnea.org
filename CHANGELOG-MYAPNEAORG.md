@@ -1,4 +1,4 @@
-## 4.0.0
+## 4.0.0 (January 15, 2015)
 
 ### Enhancements
 - **PCORNET Updates**
