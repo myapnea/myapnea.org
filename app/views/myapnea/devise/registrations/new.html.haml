@@ -1,4 +1,4 @@
-- if @provider
+- if @provider and !params[:action] == 'providers'
   = render partial: 'static/beta/provider1'
 - elsif params[:type] == :provider or (params[:user] and params[:user][:type] == "Provider")
   = render partial: "myapnea/static/beta/providers"

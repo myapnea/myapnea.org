@@ -36,6 +36,7 @@
 //= require external/jquery.color.min.js
 //= require external/jquery.placeholder.js
 //= require external/jquery.animate-shadow-min.js
+//= require external/froogaloop2.min.js
 //= require cleantheme/landing
 //= require cleantheme/rankingUX
 //= require cleantheme/team
@@ -51,3 +52,4 @@
 // require cleantheme/surveyProgress.js
 //= require cleantheme/circle.coffee
 //= require cookies
+//= require video_controls

@@ -1,6 +1,6 @@
-- if params[:action] == 'providers' and !current_user
-  .modal.fade.col-sm-8.col-sm-offset-2{id:"welcomeVideoModal", tabindex: '-1', role:'dialog'}
-    .modal-dialog{:style=>"margin-top:200px"}
-      %button{:style=>"width:50px; height:50px; color:white; background-color: black; border:5px solid white; border-radius:25px; position:absolute; top:2%; left:98%;", data: {dismiss: 'modal'}}
+- if (params[:action] == 'providers' or params[:action] == 'new') and !current_user
+  .modal.fade.col-sm-8.col-sm-offset-2{id: 'welcomeVideoModal', tabindex: '-1', role:'dialog'}
+    .modal-dialog{style: 'margin-top:200px; z-index:1050' }
+      %button{style: 'width:50px; height:50px; color:white; background-color: black; border:5px solid white; border-radius:25px; position:absolute; top:2%; left:98%;', data: { object: 'stop-video', dismiss: 'modal'}}
         X
-      %iframe{:allowscriptaccess => "always", :allowFullScreen => "true", :frameborder => "", :src => "//player.vimeo.com/video/104640787", style: "border:15px solid white; border-radius:20px;height:400px; width:100%;"}
+      %iframe#testframe{allowscriptaccess: 'always', allowFullScreen: 'true', frameborder: '', src: '//player.vimeo.com/video/104640787?api=1', style: "border:15px solid white; border-radius:20px;height:400px; width:100%;"}
