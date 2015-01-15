@@ -26,8 +26,7 @@
                     %span{ aria: { hidden: 'true'} } &times;
                   %strong We've released a new version of this site!
                   You can join the new version now and help us improve!
-                  - user_class_sym = current_user.class.name.downcase.to_sym
-                  = link_to 'Enable Beta', update_account_path(user_class_sym =>   { beta_opt_in: '1' }), method: :patch, class: 'btn btn-primary'
+                  = link_to 'Enable Beta', update_account_path(user: { beta_opt_in: '1' }), method: :patch, class: 'btn btn-primary'
             - if content_for(:sublayout)
               = yield :sublayout
               %br/

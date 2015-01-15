@@ -39,6 +39,8 @@ Rails.application.routes.draw do
   get 'privacy_policy_document' => 'static#content', :page => "privacy_policy"
   get 'terms_of_service' => 'static#content', :page => "terms_of_service"
 
+  get 'p/:slug', to: 'static#provider_page'
+
   # Provider Pages
   devise_scope :user do
     match "p/:slug/sign_up", to: "registrations#new", via: :get
