@@ -61,16 +61,4 @@
           %li.list-group-item.hover-slide-left.list-shrink.visible-xs{ style: 'color:white; color: rgba(255,255,255,.8); text-decoration: none;' } Become a Provider
   #container-right-scroll.hidden-xs
     .col-md-12.reset-layout.hidden-sm#recent-news-container{ style: '' }
-      %ul.list-group#recent-news{ style: 'margin-bottom:0px; padding-bottom:0px;' }
-        %li.list-group-item{ style: 'border-top:3px solid white; ' }
-          %h4.text-white Recent News
-        %li.list-group-item{ style: 'background-color: #7FB2EB;' }
-          %h5.f300{ style: 'color: white; color: rgba(255,255,255,.8)' }
-            Losing weight makes your lungs a potent CO2 emitter
-          %p.f400.darkerer-blue{ style: 'margin:0px 10px; ' }
-            Posted on Facebook by ASAA
-          %p.f300.darkerer-blue{ style: 'margin:0px 10px; ' }
-            23 Dec 2014
-          %p{ style: 'margin:10px 10px; color: white; color: rgba(255,255,255,.8) ' }
-            Lorem ipsum sleep apnea snoring loud noises wake up feeling better to a better future Lorem ipsum sleep apnea snoring loud noises wake up feeling better to a better future Lorem ipsum sleep apnea snoring loud noises wake up feeling better to a better future
-
+      = render partial: 'layouts/beta/recent_news_posts'
