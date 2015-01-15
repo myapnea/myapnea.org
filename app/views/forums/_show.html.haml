@@ -4,7 +4,7 @@
 - else
   - forum.topics.viewable_by_user(current_user ? current_user.id : nil)
 - topics = topics.search(params[:s]) if params[:s].present?
-- topics = topics.where(status: params[:status]) if params[:status].present?
+- topics = topics.pending_review if params[:status] == 'pending_review'
 
 - if topics.count > 0 or (params[:s].blank? and params[:status].blank?)
   .panel.panel-forums

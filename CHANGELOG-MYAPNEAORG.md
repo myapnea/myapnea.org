@@ -3,6 +3,8 @@
 ### Enhancements
 - **General Changes**
   - Minor changes to UI (links, text, sizing)
+- **Forum Changes**
+  - Topics with posts that are pending review now show up as well when a moderator filters by topics that are pending review
 
 ## 4.0.0 (January 15, 2015)
 
