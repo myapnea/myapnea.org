@@ -32,3 +32,4 @@
 //= require surveys
 //= require fb
 //= require forem/topics
+//= require cookies

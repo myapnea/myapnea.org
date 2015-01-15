@@ -1,54 +1,35 @@
-class ProvidersController < Devise::RegistrationsController
+class ProvidersController < ApplicationController
   layout 'layouts/cleantheme'
 
-
-  def new
-    build_resource({})
-
-    @validatable = devise_mapping.validatable?
-    if @validatable
-      @minimum_password_length = resource_class.password_length.min
-    end
+  before_action :authenticate_user!
+  before_action :authenticate_provider
 
 
-    respond_with self.resource
+  def profile
+
   end
 
-  def create
+  def update
 
-    #
-    # build_resource(sign_up_params)
-    #
-    # resource_saved = resource.save
-    # yield resource if block_given?
-    # if resource_saved
-    #   if resource.active_for_authentication?
-    #     set_flash_message :notice, :signed_up if is_flashing_format?
-    #     sign_up(resource_name, resource)
-    #     respond_with resource, location: after_sign_up_path_for(resource)
-    #   else
-    #     set_flash_message :notice, :"signed_up_but_#{resource.inactive_message}" if is_flashing_format?
-    #     expire_data_after_sign_in!
-    #     respond_with resource, location: after_inactive_sign_up_path_for(resource)
-    #   end
-    # else
-    #   clean_up_passwords resource
-    #   @validatable = devise_mapping.validatable?
-    #   if @validatable
-    #     @minimum_password_length = resource_class.password_length.min
-    #   end
-    #   respond_with resource
-    # end
-    super
+    @provider = Provider.find(current_user.id)
 
+    if @provider.update(provider_params)
+      redirect_to provider_profile_path, notice: "Your account settings have been successfully changed."
+    else
+      render :profile
+    end
   end
 
   protected
 
 
-
-  def sign_up_params
-    params.require(:provider).permit(:first_name, :last_name, :provider_name, :slug, :address_1, :address_2, :city, :state_code, :zip_code, :email, :password, :password_confirmation)
+  def authenticate_provider
+    raise Authority::SecurityViolation.new(current_user, 'act as provider', action_name) unless current_user.can?(:act_as_provider)
 
   end
+
+  def provider_params
+    params.required(:provider).permit(:provider_name, :welcome_message, :photo)
+  end
+
 end

@@ -19,14 +19,15 @@
           %div.col-sm-12
             = render "layouts/navigation/top_navigation_bar"
             = render "layouts/flash_messages"
-            - unless current_user and current_user.beta_opt_in?
-              .alert.alert-info{ role: 'alert', style: 'margin-top:5px; margin-bottom:10px' }
-                %btn{ type: 'button', class: 'close', data: { dismiss: 'alert' }, aria: { label: 'Close'} }
-                  %span{ aria: { hidden: 'true'} } &times;
-                %strong We've released a new version of this site!
-                You can join the new version now and help us improve!
-                - user_class_sym = current_user.class.name.downcase.to_sym
-                = link_to 'Enable Beta', update_account_path(user_class_sym =>   { beta_opt_in: '1' }), method: :patch, class: 'btn btn-primary'
+            - unless cookies[:acknowledged_beta_open] == '1'
+              - unless current_user and current_user.beta_opt_in?
+                .alert.alert-info{ role: 'alert', style: 'margin-top:5px; margin-bottom:10px' }
+                  %btn{ type: 'button', class: 'close', data: { dismiss: 'alert', object: 'set-cookie', cookie_key: 'acknowledged_beta_open', cookie_value: '1'  }, aria: { label: 'Close'} }
+                    %span{ aria: { hidden: 'true'} } &times;
+                  %strong We've released a new version of this site!
+                  You can join the new version now and help us improve!
+                  - user_class_sym = current_user.class.name.downcase.to_sym
+                  = link_to 'Enable Beta', update_account_path(user_class_sym =>   { beta_opt_in: '1' }), method: :patch, class: 'btn btn-primary'
             - if content_for(:sublayout)
               = yield :sublayout
               %br/

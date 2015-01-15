@@ -2,11 +2,10 @@ require 'test_helper'
 
 class RegistrationsControllerTest < ActionController::TestCase
 
-  setup do
-    request.env["devise.mapping"] = Devise.mappings[:user]
-  end
 
   test "a new user should be able to sign up" do
+    request.env["devise.mapping"] = Devise.mappings[:user]
+
     assert_difference('User.count') do
       post :create, user: { first_name: 'First Name', last_name: 'Last Name', year_of_birth: '1980', zip_code: '12345', email: 'new_user@example.com', password: 'password', password_confirmation: 'password' }
     end
@@ -22,6 +21,8 @@ class RegistrationsControllerTest < ActionController::TestCase
   end
 
   test "a new user should not be able to sign up without required fields" do
+    request.env["devise.mapping"] = Devise.mappings[:user]
+
     assert_difference('User.count', 0) do
       post :create, user: { first_name: '', last_name: '', year_of_birth: '', zip_code: '', email: 'new_user@example.com', password: 'password', password_confirmation: 'password' }
     end
@@ -38,6 +39,7 @@ class RegistrationsControllerTest < ActionController::TestCase
   end
 
   test "a new user needs to meet the age requirements" do
+    request.env["devise.mapping"] = Devise.mappings[:user]
 
     assert_difference('User.count', 0) do
       post :create, user: { first_name: 'First Name', last_name: 'Last Name', year_of_birth: "#{Date.today.year - 17}", zip_code: '12345', email: 'new_user@example.com', password: 'password', password_confirmation: 'password' }
@@ -53,6 +55,7 @@ class RegistrationsControllerTest < ActionController::TestCase
   end
 
   test "a new user needs to be born after 1900" do
+    request.env["devise.mapping"] = Devise.mappings[:user]
 
     assert_difference('User.count', 0) do
       post :create, user: { first_name: 'First Name', last_name: 'Last Name', year_of_birth: "1899", zip_code: '12345', email: 'new_user@example.com', password: 'password', password_confirmation: 'password' }
@@ -68,6 +71,8 @@ class RegistrationsControllerTest < ActionController::TestCase
   end
 
   test "a user can sign up with a custom provider" do
+    request.env["devise.mapping"] = Devise.mappings[:user]
+
     assert_difference('User.count') do
       post :create, user: { first_name: 'First Name', last_name: 'Last Name', year_of_birth: '1980', zip_code: '12345', email: 'new_user@example.com', password: 'password', password_confirmation: 'password', provider_name: 'Custom Name' }
     end
@@ -79,6 +84,8 @@ class RegistrationsControllerTest < ActionController::TestCase
   end
 
   test "a user can sign up with an existing provider" do
+    request.env["devise.mapping"] = Devise.mappings[:user]
+
     assert_difference('User.count') do
       post :create, user: { first_name: 'First Name', last_name: 'Last Name', year_of_birth: '1980', zip_code: '12345', email: 'new_user@example.com', password: 'password', password_confirmation: 'password', provider_id: users(:provider_1).id }
 
@@ -90,4 +97,44 @@ class RegistrationsControllerTest < ActionController::TestCase
     assert_redirected_to home_path
 
   end
+
+  test "a new provider should be able to sign up" do
+    request.env["devise.mapping"] = Devise.mappings[:user]
+
+    assert_difference('User.count') do
+      post :create, user: { first_name: 'First Name', last_name: 'Last Name', provider_name: "Health Associates", slug: "health-associates", email: 'new_user@example.com', password: 'password', password_confirmation: 'password', type: "Provider" }
+    end
+
+    assert_redirected_to provider_profile_path
+
+    assert_not_nil assigns(:user)
+    assert_equal 'First Name', assigns(:user).first_name
+    assert_equal 'Last Name', assigns(:user).last_name
+    assert_equal "Health Associates", assigns(:user).provider_name
+    assert_equal 'health-associates', assigns(:user).slug
+    assert_equal 'new_user@example.com', assigns(:user).email
+
+
+  end
+
+  test "an invalid provider should should not be able to sign up" do
+    request.env["devise.mapping"] = Devise.mappings[:user]
+
+    assert_difference('User.count', 0) do
+      post :create, user: { first_name: '', last_name: '', provider_name: "", slug: "", zip_code: '', email: 'new_user@example.com', password: 'password', password_confirmation: 'password', type: "Provider" }
+    end
+
+    assert_not_nil assigns(:user)
+
+    assert assigns(:user).errors.size > 0
+    assert_equal ["can't be blank"], assigns(:user).errors[:first_name]
+    assert_equal ["can't be blank"], assigns(:user).errors[:last_name]
+    assert_equal ["can't be blank"], assigns(:user).errors[:slug]
+    assert_equal ["can't be blank"], assigns(:user).errors[:provider_name]
+
+
+    assert_template 'myapnea/static/beta/_providers'
+    assert_response :success
+  end
+
 end

@@ -2,22 +2,23 @@
   #container-right-fixed
     -if current_user
       %div{ style: 'padding: 15px 0;' }
-        - if current_user.beta_opt_in?
-          .alert.alert-info{ role: 'alert', style: 'margin-top:10px; margin-bottom:5px' }
-            %btn{ type: 'button', class: 'close', data: { dismiss: 'alert' }, aria: { label: 'Close'} }
-              %span{ aria: { hidden: 'true'} } &times;
-            %strong Welcome to the beta version of the site!
-            You can go back to the previous layout any time by going to your
-            = link_to 'account settings.', account_path
-        - else current_user.beta_opt_in?
-          .alert.alert-info{ role: 'alert', style: 'margin-top:5px; margin-bottom:10px' }
-            %btn{ type: 'button', class: 'close', data: { dismiss: 'alert' }, aria: { label: 'Close'} }
-              %span{ aria: { hidden: 'true'} } &times;
-            %strong We've released a new version of this site!
-            %br
-            You can join the new version now and help us improve by going to your
-            = link_to 'account settings', account_path, style: 'text-decoration:underline;'
-            and clicking 'Enable Beta'.
+        - unless cookies[:acknowledged_beta_message] == '1'
+          - if current_user.beta_opt_in?
+            .alert.alert-info{ role: 'alert', style: 'margin-top:10px; margin-bottom:5px' }
+              %btn{ type: 'button', class: 'close', data: { dismiss: 'alert', object: 'set-cookie', cookie_key: 'acknowledged_beta_message', cookie_value: '1' }, aria: { label: 'Close'} }
+                %span{ aria: { hidden: 'true'} } &times;
+              %strong Welcome to the beta version of the site!
+              You can go back to the previous layout any time by going to your
+              = link_to 'account settings.', account_path
+          - else current_user.beta_opt_in?
+            .alert.alert-info{ role: 'alert', style: 'margin-top:5px; margin-bottom:10px' }
+              %btn{ type: 'button', class: 'close', data: { dismiss: 'alert', object: 'set-cookie', cookie_key: 'acknowledged_beta_message', cookie_value: '1' }, aria: { label: 'Close'} }
+                %span{ aria: { hidden: 'true'} } &times;
+              %strong We've released a new version of this site!
+              %br
+              You can join the new version now and help us improve by going to your
+              = link_to 'account settings', account_path, style: 'text-decoration:underline;'
+              and clicking 'Enable Beta'.
       .col-lg-5.col-md-5.col-md-offset-0.col-sm-offset-2.col-xs-5#user-profile-header-picture{ style:'' }
         = link_to social_profile_path do
           = image_tag current_user.photo_url, class: "user-picture", size: "65x65", style: 'width:65px; height:65px;'
@@ -61,16 +62,4 @@
           %li.list-group-item.hover-slide-left.list-shrink.visible-xs{ style: 'color:white; color: rgba(255,255,255,.8); text-decoration: none;' } Become a Provider
   #container-right-scroll.hidden-xs
     .col-md-12.reset-layout.hidden-sm#recent-news-container{ style: '' }
-      %ul.list-group#recent-news{ style: 'margin-bottom:0px; padding-bottom:0px;' }
-        %li.list-group-item{ style: 'border-top:3px solid white; ' }
-          %h4.text-white Recent News
-        %li.list-group-item{ style: 'background-color: #7FB2EB;' }
-          %h5.f300{ style: 'color: white; color: rgba(255,255,255,.8)' }
-            Losing weight makes your lungs a potent CO2 emitter
-          %p.f400.darkerer-blue{ style: 'margin:0px 10px; ' }
-            Posted on Facebook by ASAA
-          %p.f300.darkerer-blue{ style: 'margin:0px 10px; ' }
-            23 Dec 2014
-          %p{ style: 'margin:10px 10px; color: white; color: rgba(255,255,255,.8) ' }
-            Lorem ipsum sleep apnea snoring loud noises wake up feeling better to a better future Lorem ipsum sleep apnea snoring loud noises wake up feeling better to a better future Lorem ipsum sleep apnea snoring loud noises wake up feeling better to a better future
-
+      = render partial: 'layouts/beta/recent_news_posts'
