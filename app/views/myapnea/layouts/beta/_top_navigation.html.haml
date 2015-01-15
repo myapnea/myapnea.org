@@ -24,9 +24,9 @@
         = link_to image_tag('myapnea/icons/twitter_icon.png', class: 'share-icons-animate share-icons-md'), 'http://ctt.ec/Qeg7f'
         = link_to image_tag('myapnea/icons/email_icon.png', class: 'share-icons-animate share-icons-md'), "mailto:?subject=Check out MyApnea.Org&amp;body=Check out this group that's working to help people with sleep apnea! https://www.myapnea.org."
         %ul.nav.navbar-nav#testnavbar{ style:'color:white; position:absolute; right:20%; bottom:0;' }
-          %li.active
+          %li{:class => "#{"active" if @active_top_nav_link == :home}"}
             = link_to 'Home', root_path
-          %li.dropdown
+          %li.dropdown{:class => "#{"active" if @active_top_nav_link == :about}"}
             %a.dropdown-toggle{ href:'#', data:{ toggle: 'dropdown'} }
               About Us
               %span.caret
@@ -34,7 +34,7 @@
               %li= link_to 'Introduction', intro_path
               %li= link_to 'Our Team', team_path
               %li= link_to 'FAQs', faqs_path
-          %li.dropdown
+          %li.dropdown{:class => "#{"active" if @active_top_nav_link == :participate}"}
             %a.dropdown-toggle{ href:'#', data:{ toggle: 'dropdown'} }
               Participate
               %span.caret
