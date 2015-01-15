@@ -43,6 +43,14 @@
         = f.label :year_of_birth, class: 'col-sm-2 control-label input-lg'
         .col-sm-10
           = f.text_field :year_of_birth, class: 'form-control input-lg', placeholder: User.human_attribute_name(:year_of_birth), autocomplete: :off
+      .form-group{ style: 'clear:both;' }
+        = f.label :country_code, 'Country', class: 'col-sm-2 control-label input-lg'
+        .col-sm-10
+          = f.select :country_code, [['---', nil]] + Map::MAP_COUNTRIES_AND_CODES, {}, class: 'form-control input-lg'
+      .form-group
+        = f.label :state_code, 'State', class: 'col-sm-2 control-label input-lg'
+        .col-sm-10
+          = f.select :state_code, [['---', nil]] + Map::MAP_STATES_AND_CODES, {}, class: 'form-control input-lg'
       = f.submit "Save Changes", class: 'btn btn-primary pull-right'
 .panel
   .panel-heading

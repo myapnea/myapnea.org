@@ -37,24 +37,6 @@
             %strong
               Don't show me.
             %span.small Don't let other members on this site see any map marker for me.
-      .form-group{ style: 'clear:both;' }
-        %label.col-sm-3.control-label Country
-        .col-sm-7
-          // Change :location to :country
-          = select_tag :location, nil, class: 'form-control', aria: { describedby: 'in3' }
-          / =f.text_field(:location, autocomplete: 'off', id: 'country', class: 'form-control')
-          =f.hidden_field :latitude
-          =f.hidden_field :longitude
-          =f.hidden_field :location_id
-      / - if f.country == "United States"
-      .form-group
-        %label.col-sm-3.control-label City
-        .col-sm-7
-          = select_tag :location, nil, class: 'form-control', aria: { describedby: 'in3' }
-          / =f.text_field(:location, autocomplete: 'off', id: 'location', class: 'form-control')
-          =f.hidden_field :latitude
-          =f.hidden_field :longitude
-          =f.hidden_field :location_id
       =f.submit("Save Changes", class: 'btn btn-primary col-sm-4 col-sm-offset-4 centered-text')
       - if current_user.social_profile.errors.any?
         .alert.alert-danger.alert-dismissable
