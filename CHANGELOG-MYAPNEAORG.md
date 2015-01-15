@@ -5,9 +5,11 @@
   - Minor changes to UI (links, text, sizing)
   - Fixed display of personal provider page to have fullscreen/landing layout
   - Fixed display of video and added autoplay/autopause features
-  - Community map now displays US and World membership counts
 - **Forum Changes**
   - Topics with posts that are pending review now show up as well when a moderator filters by topics that are pending review
+- **Community Page**
+  - Added quick link to change your account settings to be included in the map
+  - Community map now displays US and World membership counts
 
 ## 4.0.0 (January 15, 2015)
 
