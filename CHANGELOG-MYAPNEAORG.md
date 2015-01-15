@@ -14,6 +14,16 @@
   - Changed image sizes to speed up loading on mobile browsers
   - Members of MyApnea.Org may opt into upcoming design changes and provide feedback directly to the MyApnea.Org team
   - Readded the MyApnea.Org favicon to quickly identify the website when it is pinned in the browser
+  - The new UI better handles text sizes on mobile devices
+  - Links are now easier to distinguish in the new UI
+- **Administrative Changes**
+  - Admin Survey overview now correctly shows the number of completed surveys
+  - Website roles have been simplified
+- **Provider Updates**
+  - Providers can now sign up and create a unique URL that they can share with their members
+  - Members of MyApnea.Org can visit existing provider pages and add themselves as one of the provider members
+- **Survey Changes**
+  - The new UI redesign includes a new survey report overview to better display a member's survey answers compared with others
 
 ### Bug Fixes
 - Confirmation boxes now properly display when deleting or removing posts
