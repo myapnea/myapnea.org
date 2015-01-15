@@ -1,6 +1,13 @@
 .content-main-header
   %h1.content-main-title Our Community
 
+- if current_user and !current_user.set_location?
+  .alert.alert-info.centered-text{ role: 'alert', style: 'margin-top:5px; margin-bottom:10px' }
+    %btn{ type: 'button', class: 'close', data: { dismiss: 'alert', object: 'set-cookie', cookie_key: 'acknowledged_beta_open', cookie_value: '1'  }, aria: { label: 'Close'} }
+      %span{ aria: { hidden: 'true'} } &times;
+    %strong You must input your location to see yourself on this map!
+    Don't worry, all of your information is kept private.
+    = link_to 'Account Settings', account_path, class: 'btn btn-primary btn-block', style: 'width:40%; margin: 15px 30% 0 30%;'
 
 %div{ style: "height: 500px; min-width: 310px; max-width: 600px; margin: 0 auto", data: { object: 'draw-map', membership: SocialProfile.states_for_map.to_json } }
 

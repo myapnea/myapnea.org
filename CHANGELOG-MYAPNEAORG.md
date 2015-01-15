@@ -5,6 +5,8 @@
   - Minor changes to UI (links, text, sizing)
   - Fixed display of personal provider page to have fullscreen/landing layout
   - Fixed display of video and added autoplay/autopause features
+- **Community Page**
+  - Added quick link to change your account settings to be included in the map
 
 
 ## 4.0.0 (January 15, 2015)

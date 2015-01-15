@@ -158,6 +158,14 @@ class User < ActiveRecord::Base
     #self.oodt_status
   end
 
+  def set_location?
+    if zip_code != ""
+      true
+    else
+      false
+    end
+  end
+
   def accepted_privacy_policy?
     self.accepted_privacy_policy_at.present?
 
