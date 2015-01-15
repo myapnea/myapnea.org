@@ -34,6 +34,8 @@ class StaticController < ApplicationController
     render layout: 'layouts/cleantheme'
   end
 
+
+# Stealth Pages
   def stealth_steering
     render layout: 'layouts/cleantheme'
   end

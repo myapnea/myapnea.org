@@ -1,4 +1,5 @@
 - if beta_enabled?(current_user, params)
+  - @active_top_nav_link = :participate
   = render partial: 'static/beta/community'
 - else
   - content_for :community_contributions do
