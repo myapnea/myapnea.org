@@ -34,7 +34,7 @@ class ActionController::TestCase
 
   def login(resource)
     @request.env["devise.mapping"] = Devise.mappings[resource]
-    sign_in(resource.class.name.downcase.to_sym, resource)
+    sign_in(:user, resource)
   end
 
   def assert_authorization_exception

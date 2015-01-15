@@ -7,7 +7,7 @@
     %h4.f300.spaced Now take some time to review your answers and see how they compare to other members of the community. If you want to continue the discussion, bring any questions or concerns to the forums to hear from doctors, researchers, and other people with sleep apnea.
   .panel-footer.f400
     We would love your feedback
-    %span.primary-blue{style:'text-decoration:underline'} Get in touch with us.
+    %a.u-voice.primary-blue{style:'text-decoration:underline'} Get in touch with us.
 
 - if @survey
   - answer_session = AnswerSession.most_recent(@survey.id, current_user.id)

@@ -41,7 +41,8 @@
         %label.col-sm-3.control-label Country
         .col-sm-7
           // Change :location to :country
-          =f.text_field(:location, autocomplete: 'off', id: 'country', class: 'form-control')
+          = select_tag :location, nil, class: 'form-control', aria: { describedby: 'in3' }
+          / =f.text_field(:location, autocomplete: 'off', id: 'country', class: 'form-control')
           =f.hidden_field :latitude
           =f.hidden_field :longitude
           =f.hidden_field :location_id
@@ -49,7 +50,8 @@
       .form-group
         %label.col-sm-3.control-label City
         .col-sm-7
-          =f.text_field(:location, autocomplete: 'off', id: 'location', class: 'form-control')
+          = select_tag :location, nil, class: 'form-control', aria: { describedby: 'in3' }
+          / =f.text_field(:location, autocomplete: 'off', id: 'location', class: 'form-control')
           =f.hidden_field :latitude
           =f.hidden_field :longitude
           =f.hidden_field :location_id

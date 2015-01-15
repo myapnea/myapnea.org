@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   include Authority::Abilities
 
   # Enable User Connection to External API Accounts
-  include ExternalUsers
+  #include ExternalUsers
   include Deletable
 
   # Map to PCORNET Common Data Model
@@ -25,6 +25,11 @@ class User < ActiveRecord::Base
 
   with_options unless: :is_provider? do |user|
     user.validates :year_of_birth, presence: true, numericality: {only_integer: true, allow_nil: false, less_than_or_equal_to: -> (user){ Date.today.year - 18 }, greater_than_or_equal_to: -> (user){ 1900 }}
+  end
+
+  with_options if: :is_provider? do |user|
+    user.validates :provider_name, presence: true, uniqueness: true
+    user.validates :slug, presence: true, uniqueness: true
   end
 
   # Model Relationships

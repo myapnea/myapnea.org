@@ -2,43 +2,41 @@ require 'test_helper'
 
 class ProvidersControllerTest < ActionController::TestCase
 
-  setup do
-    request.env["devise.mapping"] = Devise.mappings[:provider]
-  end
 
-  test "a new provider should be able to sign up" do
-    assert_difference('User.count') do
-      post :create, provider: { first_name: 'First Name', last_name: 'Last Name', provider_name: "Health Associates", slug: "health-associates", email: 'new_user@example.com', password: 'password', password_confirmation: 'password' }
-    end
+  test "provider can see their profile page" do
+    assert users(:provider_1).can?(:act_as_provider)
+    login(users(:provider_1))
 
-    assert_not_nil assigns(:provider)
-    assert_equal 'First Name', assigns(:provider).first_name
-    assert_equal 'Last Name', assigns(:provider).last_name
-    assert_equal "Health Associates", assigns(:provider).provider_name
-    assert_equal 'health-associates', assigns(:provider).slug
-    assert_equal 'new_user@example.com', assigns(:provider).email
+    get :profile
 
-    assert_redirected_to home_path
-  end
-
-  test "an invalid provider should should not be able to sign up" do
-
-    assert_difference('User.count', 0) do
-      post :create, provider: { first_name: '', last_name: '', provider_name: "", slug: "", zip_code: '', email: 'new_user@example.com', password: 'password', password_confirmation: 'password' }
-    end
-
-    assert_not_nil assigns(:provider)
-
-    assert assigns(:provider).errors.size > 0
-    assert_equal ["can't be blank"], assigns(:provider).errors[:first_name]
-    assert_equal ["can't be blank"], assigns(:provider).errors[:last_name]
-    assert_equal ["can't be blank"], assigns(:provider).errors[:slug]
-    assert_equal ["can't be blank"], assigns(:provider).errors[:provider_name]
-
-
-    assert_template 'providers/new'
     assert_response :success
+
+
   end
 
+  test "normal user cannot see the provider profile page" do
+    login(users(:user_1))
+
+    get :profile
+
+    assert_authorization_exception
+  end
+
+
+  test "provider can update their profile" do
+    login(users(:provider_1))
+    profile_params = {provider: {welcome_message: "New Message", photo: fixture_file_upload('../../test/support/rails.png'), provider_name: "New Name"}}
+
+    post :update, profile_params
+
+    assert_not_nil assigns(:provider)
+
+    users(:provider_1).reload
+
+    assert_equal File.join(CarrierWave::Uploader::Base.root.call, 'uploads', 'provider', 'photo', assigns(:provider).id.to_s, 'rails.png'), assigns(:provider).photo.path
+
+    assert_equal profile_params[:provider][:welcome_message], users(:provider_1).welcome_message
+    assert_equal profile_params[:provider][:provider_name], users(:provider_1).provider_name
+  end
 
 end

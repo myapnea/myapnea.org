@@ -26,5 +26,8 @@ class ApplicationAuthorizer < Authority::Authorizer
     user.social_profile.present? and user.social_profile.name.present?
   end
 
+  def self.authorizes_to_act_as_provider?(user, options={})
+    user.is_provider?
+  end
 
 end
