@@ -1,0 +1,11 @@
+Dear <%= @user.first_name %>,
+
+Someone posted a reply to the following topic:
+
+
+  <%= @post.topic.name %>
+
+  <%= "#{ENV['website_url']}/forums/#{@post.forum.to_param}/topics/#{@post.topic.to_param}?page=#{((@post.number - 1) / Post::POSTS_PER_PAGE)+1}#c#{@post.number}" %>
+
+
+    #<%= @post.number %>  <%= strip_tags(simple_markdown @post.description).truncate(100) %>    - <%= @post.user.forum_name %>

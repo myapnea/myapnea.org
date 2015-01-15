@@ -48,23 +48,28 @@ class PostsControllerTest < ActionController::TestCase
 
     assert_equal "This is my contribution to the discussion.", assigns(:topic).posts.last.description
     assert_not_nil assigns(:topic).last_post_at
-    # assert_equal false, assigns(:topic).subscribed?(users(:two))
+    assert_equal false, assigns(:topic).subscribed?(users(:user_2))
 
     assert_redirected_to forum_topic_path(assigns(:forum), assigns(:topic)) + "#c2"
   end
 
-  # test "should create post and add subscription" do
-  #   login(@moderator)
-  #   assert_difference('Post.count') do
-  #     post :create, forum_id: @forum, topic_id: @topic, post: { description: "With this post I'm subscribing to the discussion." }
-  #   end
+  test "should create post and add subscription" do
+    login(users(:moderator_1))
 
-  #   assert_equal "With this post I'm subscribing to the discussion.", assigns(:topic).posts.last.description
-  #   assert_not_nil assigns(:topic).last_post_at
-  #   assert_equal true, assigns(:topic).subscribed?(users(:admin))
+    assert_difference('Post.count') do
+      post :create, forum_id: @forum, topic_id: @topic, post: { description: "With this post I'm subscribing to the discussion." }
+    end
 
-  #   assert_redirected_to forum_topic_path(assigns(:forum), assigns(:topic)) + "#c2"
-  # end
+    assert_not_nil assigns(:forum)
+    assert_not_nil assigns(:topic)
+    assert_not_nil assigns(:post)
+
+    assert_equal "With this post I'm subscribing to the discussion.", assigns(:topic).posts.last.description
+    assert_not_nil assigns(:topic).last_post_at
+    assert_equal true, assigns(:topic).subscribed?(users(:moderator_1))
+
+    assert_redirected_to forum_topic_path(assigns(:forum), assigns(:topic)) + "#c2"
+  end
 
   test "should not create post as logged out user" do
     assert_difference('Post.count', 0) do
@@ -157,18 +162,18 @@ class PostsControllerTest < ActionController::TestCase
     assert_redirected_to forum_topic_path(assigns(:forum), assigns(:topic)) + "#c1"
   end
 
-  # test "should update post but not reset subscription" do
-  #   login(users(:user_2))
-  #   patch :update, topic_id: posts(:two).topic_id, id: posts(:two), post: { description: "Updated Description" }
+  test "should update post but not reset subscription" do
+    login(users(:user_2))
+    patch :update, forum_id: posts(:six).forum, topic_id: posts(:six).topic, id: posts(:six), post: { description: "Updated Description" }
 
-  #   assert_not_nil assigns(:topic)
-  #   assert_not_nil assigns(:post)
-  #   assert_equal "Updated Description", assigns(:post).description
+    assert_not_nil assigns(:topic)
+    assert_not_nil assigns(:post)
+    assert_equal "Updated Description", assigns(:post).description
 
-  #   assert_equal false, assigns(:topic).subscribed?(users(:two))
+    assert_equal false, assigns(:topic).subscribed?(users(:user_2))
 
-  #   assert_redirected_to topic_path(assigns(:topic)) + "#c1"
-  # end
+    assert_redirected_to forum_topic_path(assigns(:forum), assigns(:topic)) + "#c1"
+  end
 
   test "should not update post on locked topic" do
     login(@valid_user)

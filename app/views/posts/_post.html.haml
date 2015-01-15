@@ -1,4 +1,4 @@
-- current_index = post_counter + 1
+- current_index = post.number
 %a{ name: "post-#{post.id}" }
 %a{ name: "c#{current_index}" }
 
@@ -62,7 +62,7 @@
     - if current_user == post.user or (current_user and current_user.has_role? :moderator)
       .col-xs-1
         = render partial: 'forums/user_image', locals: { user: post.user, size: 50 }
-      .col-md-11.col-xs-10.col-xs-offset-1.col-md-offset-0
+      .col-md-11.col-xs-10.col-sm-offset-1.col-md-offset-0.pull-right
         .post-container.post-under-review
           .post-container-right-after
             Under Review

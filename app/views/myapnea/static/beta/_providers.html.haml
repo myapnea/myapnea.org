@@ -52,8 +52,10 @@
     .panel-body#panel-sign-up
       %h1.darker-blue.centered-text Help us now!
       %h4.centered-text By joining, you are creating the foundation for people with sleep apnea to receive better care and support.
-      = form_for(resource, as: resource_name, url: registration_path(resource_name), class: "form-horizontal", method: :post) do |f|
-        = hidden_field_tag "#{resource_name}[welcome_message]", "Welcome to my page!"
+      - resource = Provider.new
+      - resource_name = resource.class
+      = form_for(resource, url: provider_registration_path, class: "form-horizontal", method: :post) do |f|
+        = hidden_field_tag "#provider[welcome_message]", "Welcome to my page!"
         = f.text_field :first_name, placeholder: 'First name', class: "form-control"
         = f.text_field :last_name, placeholder: 'Last name', class: "form-control"
         = f.text_field :provider_name, placeholder: "Official provider name", class: "form-control"

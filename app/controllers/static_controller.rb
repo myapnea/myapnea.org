@@ -25,6 +25,10 @@ class StaticController < ApplicationController
     render layout: "layouts/theme"
   end
 
+  def providers
+    render layout: 'layouts/cleantheme'
+  end
+
   def stealth_steering
     render layout: 'layouts/cleantheme'
   end
@@ -42,10 +46,6 @@ class StaticController < ApplicationController
   end
 
   def stealth_providers
-    render layout: 'layouts/cleantheme'
-  end
-
-  def stealth_provider1
     render layout: 'layouts/cleantheme'
   end
 

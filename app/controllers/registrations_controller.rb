@@ -1,6 +1,9 @@
 class RegistrationsController < Devise::RegistrationsController
   layout 'layouts/cleantheme'
 
+  # TODO remove when new layout is default
+  layout 'layouts/cleantheme'
+
   def new
 
     @referring_provider = Provider.find_by_slug(params[:slug])

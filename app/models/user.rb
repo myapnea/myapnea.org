@@ -35,9 +35,10 @@ class User < ActiveRecord::Base
   has_one :social_profile, -> { where deleted: false }
   has_many :notifications, -> { where deleted: false }
   has_many :research_topics, -> { where deleted: false }
-  has_many :forums, -> { where(deleted: false) }
-  has_many :topics, -> { where(deleted: false) }
-  has_many :posts, -> { where(deleted: false) }
+  has_many :forums, -> { where deleted: false }
+  has_many :topics, -> { where deleted: false }
+  has_many :posts, -> { where deleted: false }
+  has_many :subscriptions
 
   # Named Scopes
   scope :search_by_email, ->(terms) { where("LOWER(#{self.table_name}.email) LIKE ?", terms.to_s.downcase.gsub(/^| |$/, '%')) }
@@ -74,6 +75,15 @@ class User < ActiveRecord::Base
     else
       self.posts.where(hidden: false).with_unlocked_topic
     end
+  end
+
+  # All comments created in the last day, or over the weekend if it is Monday
+  # Ex: On Monday, returns tasks created since Friday morning (Time.now - 3.day)
+  # Ex: On Tuesday, returns tasks created since Monday morning (Time.now - 1.day)
+  def digest_posts
+    # Comment.digest_visible.where( topic_id: self.subscribed_topics.pluck(:id) ).where("created_at > ?", (Time.now.monday? ? Time.now.midnight - 3.day : Time.now.midnight - 1.day))
+    # Post.digest_visible.where( topic_id: self.subscribed_topics.pluck(:id) ).where("created_at > ?", (Time.now.monday? ? Time.now.midnight - 3.day : Time.now.midnight - 1.day))
+    Post.current.where(status: 'approved', hidden: false).where("created_at > ?", (Time.now.monday? ? Time.now.midnight - 3.day : Time.now.midnight - 1.day))
   end
 
   def smart_forum

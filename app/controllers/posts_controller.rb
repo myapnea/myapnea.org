@@ -24,11 +24,26 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    @post = current_user.all_posts.where(topic_id: @topic.id).new(post_params)
+    @post = current_user.posts.where(topic_id: @topic.id).new(post_params)
 
     respond_to do |format|
       if @post.save
         @topic.get_or_create_subscription(current_user)
+
+        if @post.status == 'approved'
+          unless Rails.env.test?
+            pid = Process.fork
+            if pid.nil? then
+              # In child
+              @post.reply_emails
+              Kernel.exit!
+            else
+              # In parent
+              Process.detach(pid)
+            end
+          end
+        end
+
         format.html { redirect_to forum_topic_path(@forum, @topic) + "#c#{@post.number}", notice: 'Post was successfully created.' }
         format.json { render action: 'show', status: :created, location: @post }
       else
@@ -42,14 +57,37 @@ class PostsController < ApplicationController
     @post = current_user.posts.where(topic_id: @topic.id).new(post_params)
   end
 
+  def index
+    redirect_to [@forum, @topic]
+  end
+
   def show
+    redirect_to [@forum, @topic]
   end
 
   # PUT /posts/1
   # PUT /posts/1.json
   def update
+    original_status = @post.status
     respond_to do |format|
       if @post.update(post_params)
+        if original_status == 'pending_review' and @post.status == 'approved'
+
+          unless Rails.env.test?
+            pid = Process.fork
+            if pid.nil? then
+              # In child
+              @post.approved_email(current_user)
+              @post.reply_emails
+              Kernel.exit!
+            else
+              # In parent
+              Process.detach(pid)
+            end
+          end
+
+
+        end
         format.html { redirect_to forum_topic_path(@forum, @topic) + "#c#{@post.number}", notice: 'Post was successfully updated.' }
         format.json { head :no_content }
       else

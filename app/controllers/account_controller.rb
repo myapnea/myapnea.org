@@ -85,7 +85,7 @@ class AccountController < ApplicationController
     else
       :user
     end
-    params.required(key).permit(:email, :first_name, :last_name, :zip_code, :year_of_birth, :password, :password_confirmation, :current_password, :beta_opt_in, :state_code, :country_code, :provider_id, :welcome_message, :photo)
+    params.required(key).permit(:email, :first_name, :last_name, :zip_code, :year_of_birth, :password, :password_confirmation, :current_password, :beta_opt_in, :state_code, :country_code, :provider_id, :welcome_message, :photo, :emails_enabled)
   end
 
   def load_content

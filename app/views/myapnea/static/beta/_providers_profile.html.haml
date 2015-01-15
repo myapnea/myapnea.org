@@ -19,5 +19,5 @@
       =f.submit("Save Changes", class: 'btn btn-primary col-sm-6 col-sm-offset-3 centered-text')
     .panel-footer
       %h4.f400
-        Your personal url:
-        = 'www.myapnea.org/p/' + current_user.slug
+        %strong Your personal url:
+        %span.lighter-blue.wrapword= link_to ENV['website_url'] + '/p/' + current_user.slug, ENV['website_url'] + '/p/'+ current_user.slug

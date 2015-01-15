@@ -1,0 +1,18 @@
+Dear <%= @user.first_name %>,
+
+<% if @user.digest_posts.size > 0 %>
+Forum Updates
+
+<% @user.digest_posts.group_by{|s| s.topic_id}.each do |topic_id, posts| %>
+----------------------------
+
+<%= ((topic = Topic.find_by_id(topic_id)) ? "#{topic.name} #{ENV['website_url']}/forums/#{topic.forum.to_param}/topics/#{topic.to_param}" : 'No Topic') %>
+
+  <% posts.sort_by(&:id).each do |post| %>
+  <%= render partial: 'digest_post', locals: { post: post } %>
+  <% end %>
+
+<% end %>
+<% end %>
+
+<%= "#{ENV['website_url']}/forums"%>

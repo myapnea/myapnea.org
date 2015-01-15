@@ -54,7 +54,7 @@ four:
 six:
   topic: two
   description: Removed the comment above.
-  user: user_1
+  user: user_2
   status: pending_review
   hidden: false
   deleted: false

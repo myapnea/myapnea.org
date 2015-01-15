@@ -1,5 +1,20 @@
 .content-main-header
   %h1 Account Settings
+.panel
+  .panel-heading
+    %h4.f300 Beta Settings
+  .panel-body
+    - user_class_sym = current_user.class.name.downcase.to_sym
+    - if current_user.beta_opt_in?
+      You currently have the <strong>Beta Settings Enabled</strong>. You may opt out of the beta. If you ran into issues that forced you to cancel, consider
+      = link_to 'contacting us', "mailto:#{ENV['pprn_support_email']}"
+      so that we can address any issues before launching the new site changes to a larger audience!
+      %div{ style: 'text-align:center;margin-top:10px' }
+        = link_to 'Disable Beta', update_account_path(user_class_sym => { beta_opt_in: '0' }), method: :patch, class: 'btn btn-primary'
+    - else
+      Preview upcoming changes to MyApnea.Org and help us iron out the kinks in our new upcoming layout of the site!
+      %div{ style: 'text-align:center;margin-top:10px' }
+        = link_to 'Enable Beta', update_account_path(user_class_sym =>   { beta_opt_in: '1' }), method: :patch, class: 'btn btn-primary'
 - if current_user.is_provider?
   = render partial: 'static/beta/providers_profile'
 -else
@@ -56,15 +71,21 @@
   .panel-heading
     %h4.f300 Notification Preferences
   .panel-body
-    %form.form-horizontal{role: "form"}
-      .radio
-        %label
-          %input#optionsRadios1{checked: "checked", name: "optionsRadios", type: "radio", value: "option1"}/
-          Email Me
-      .radio
-        %label
-          %input#optionsRadios2{name: "optionsRadios", type: "radio", value: "option2"}/
-          Don't Email Me
+    - user_class_sym = current_user.class.name.downcase.to_sym
+    - if current_user.emails_enabled?
+      You are currently set to receive emails from
+      = ENV['pprn_title']
+      %br
+      If you prefer, you can
+      = link_to 'unsubscribe', update_account_path(user_class_sym => { emails_enabled: '0' }), method: :patch, class: 'btn btn-warning btn-xs'
+      from emails.
+    - else
+      You are currently unsubscribed from emails from
+      = ENV['pprn_title']
+      %br
+      If you prefer, you can
+      = link_to 'enable', update_account_path(user_class_sym => { emails_enabled: '1' }), method: :patch, class: 'btn btn-primary btn-xs'
+      emails.
 .panel
   .panel-heading
     %h4.f300 Leave Research Study
@@ -73,19 +94,3 @@
     = link_to 'View Consent', stealth_consent_path, class: 'btn btn-primary', style: 'width: 49%; margin:.5%; float:left;'
     = link_to 'View Privacy Policy', stealth_privacy_path, class: 'btn btn-primary', style: 'width: 49%; margin:.5%; float:left;'
     = link_to 'Leave Research Study', consent_path(consent_revoked: true), method: :post, class: 'btn btn-warning', style: 'width: 99%; margin: .5%; float:left;'
-
-.panel
-  .panel-heading
-    %h4.f300 Beta Settings
-  .panel-body
-    - user_class_sym = current_user.class.name.downcase.to_sym
-    - if current_user.beta_opt_in?
-      You currently have the <strong>Beta Settings Enabled</strong>. You may opt out of the beta. If you ran into issues that forced you to cancel, consider
-      = link_to 'contacting us', "mailto:#{ENV['pprn_support_email']}"
-      so that we can address any issues before launching the new site changes to a larger audience!
-      %div{ style: 'text-align:center;margin-top:10px' }
-        = link_to 'Disable Beta', update_account_path(user_class_sym => { beta_opt_in: '0' }), method: :patch, class: 'btn btn-primary'
-    - else
-      Preview upcoming changes to MyApnea.Org and help us iron out the kinks in our new upcoming layout of the site!
-      %div{ style: 'text-align:center;margin-top:10px' }
-        = link_to 'Enable Beta', update_account_path(user_class_sym =>   { beta_opt_in: '1' }), method: :patch, class: 'btn btn-primary'

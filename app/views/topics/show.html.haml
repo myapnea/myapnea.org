@@ -6,7 +6,7 @@
     &middot;
     = link_to @forum.name, @forum
     &middot;
-    = @title
+    %span.wrapword= @title
   - if current_user and @topic.editable_by?(current_user)
     = link_to 'Edit Topic', edit_forum_topic_path(@forum, @topic), class: 'btn btn-xs btn-primary'
 
@@ -41,13 +41,23 @@
         = link_to 'edit this topic', edit_forum_topic_path(@forum, @topic)
         to unlock it.
 
+- @posts = @topic.posts.page(params[:page]).per( Post::POSTS_PER_PAGE )
 
-= render @topic.posts
+= render @posts
+
+%div{ style: 'text-align:center' }= paginate @posts, theme: 'bootstrap-small'
 
 - if @topic.locked?
   .text-muted{ style: 'text-align:center' }
     This topic is locked
     %span.glyphicon.glyphicon-lock
+- elsif @topic.status == 'pending_review'
+  .text-muted{ style: 'text-align:center' }
+    This topic is currently under review.
+    %i.fa.fa-eye
+    - if current_user == @topic.user
+      %br
+      You will be notified by email when your topic has been approved.
 
 - else
   - if current_user
@@ -86,7 +96,7 @@
         .col-md-11.col-xs-10.col-xs-offset-1.col-md-offset-0
           = f.submit "Comment", class: 'btn btn-primary'
 
-    =# render partial: 'topics/subscribe_unsubscribe', locals: { topic: @topic }
+    = render partial: 'topics/subscribe_unsubscribe', locals: { topic: @topic }
   - else
     .well{ style: 'text-align:center' }
       You may
