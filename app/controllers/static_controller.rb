@@ -26,7 +26,7 @@ class StaticController < ApplicationController
   end
 
   def providers
-    render layout: 'layouts/cleantheme'
+    redirect_to providers_sign_up_path
   end
 
   def provider_page
