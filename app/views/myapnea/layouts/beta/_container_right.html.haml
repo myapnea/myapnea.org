@@ -18,10 +18,10 @@
             You can join the new version now and help us improve by going to your
             = link_to 'account settings', account_path, style: 'text-decoration:underline;'
             and clicking 'Enable Beta'.
-      .col-lg-5.col-md-5.col-md-offset-0.col-xs-8.col-xs-offset-2#user-profile-header-picture{ style:'' }
+      .col-lg-5.col-md-5.col-md-offset-0.col-sm-offset-2.col-xs-5#user-profile-header-picture{ style:'' }
         = link_to social_profile_path do
           = image_tag current_user.photo_url, class: "user-picture", size: "65x65", style: 'width:65px; height:65px;'
-      .col-lg-6.col-md-6.col-md-offset-0.col-sm-8.col-sm-offset-2#user-profile-header-text{ style:'padding:0;' }
+      .col-lg-6.col-md-6.col-md-offset-0.col-sm-8.col-sm-offset-2.col-xs-6#user-profile-header-text{ style:'padding:0;' }
         %h4.user-name.text-white
           = current_user.name
         = link_to account_path, style: 'color:white; color:rgba(255,255,255,.8); text-decoration:none;', class: 'f300' do
