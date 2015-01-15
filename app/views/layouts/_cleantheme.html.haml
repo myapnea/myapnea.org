@@ -26,7 +26,7 @@
     %div#social-backdrop{ style: 'background-color:black; width:100%; height:81px; position:absolute; top:0; z-index:1000;' }
     = render partial: 'layouts/beta/top_navigation'
     .container-fluid.reset-layout
-      - if (params[:action] == 'home' and !current_user) or params[:action] == 'stealth_providers' or params[:action] == 'stealth_provider1' or params[:controller] == 'registrations' or params[:action] == 'providers'
+      - if (params[:action] == 'home' and !current_user) or params[:action] == 'stealth_providers' or params[:action] == 'stealth_provider1' or params[:controller] == 'registrations' or params[:action] == 'providers' or @provider
         = yield
       - else
         .row{ style: 'display: table; position:relative;min-width:100%; margin-left:0px; margin-right:0px;' }
