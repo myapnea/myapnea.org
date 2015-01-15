@@ -29,6 +29,11 @@ class StaticController < ApplicationController
     render layout: 'layouts/cleantheme'
   end
 
+  def provider_page
+    @provider = Provider.find_by_slug(params[:slug])
+    render layout: 'layouts/cleantheme'
+  end
+
   def stealth_steering
     render layout: 'layouts/cleantheme'
   end

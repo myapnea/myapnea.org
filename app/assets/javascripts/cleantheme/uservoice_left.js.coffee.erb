@@ -1,6 +1,7 @@
 # Or, use your own custom trigger:
 #UserVoice.push(['addTrigger', '#u-voice', { mode: 'contact' }]);
 $(document).on "click", ".u-voice", ->
+  console.log "user voice clicked"
   UserVoice = window.UserVoice or []
   UserVoice.push [
     "show"

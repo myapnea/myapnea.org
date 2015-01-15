@@ -41,7 +41,9 @@ Rails.application.routes.draw do
 
   # Provider Pages
   devise_scope :user do
-    match "p/:slug", to: "registrations#new", via: :get
+    # match "p/:slug", to: "registrations#new", via: :get
+    match "p/:slug", to: "static#provider_page", via: :get
+    # get "p/:slug" => "static#provider_page"
 
     match "p/:slug/sign_up", to: "registrations#new", via: :get
     match "providers/sign_up", to: "registrations#new", via: :get, defaults: {type: :provider}
