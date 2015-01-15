@@ -58,16 +58,6 @@
       = f.submit "Change My Password", class: 'btn btn-primary pull-right'
 .panel
   .panel-heading
-    %h4.f300 Member Stats
-  %table.table
-    %tr
-      %td Member Since
-      %td= current_user.created_at.strftime("%b %e, %Y")
-    %tr
-      %td Member Number
-      %td= "##{current_user.id}"
-.panel
-  .panel-heading
     %h4.f300 Notification Preferences
   .panel-body
     - if current_user.emails_enabled?
