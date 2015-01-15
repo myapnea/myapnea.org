@@ -41,20 +41,16 @@ Rails.application.routes.draw do
 
   # Provider Pages
   devise_scope :user do
-    # match "p/:slug", to: "registrations#new", via: :get
-    match "p/:slug", to: "static#provider_page", via: :get
-    # get "p/:slug" => "static#provider_page"
-
     match "p/:slug/sign_up", to: "registrations#new", via: :get
     match "providers/sign_up", to: "registrations#new", via: :get, defaults: {type: :provider}
   end
+
   match 'provider_profile', to: 'providers#profile', via: :get, as: :provider_profile
+  match 'update_provider_profile', to: 'providers#update', via: :patch
 
   # Facebook Real Updates
   # match "update_fb_feed", to: "posts#receive_update", as: :update_fb_feed, via: :post
   # match "verify_fb_subscription", to: "posts#verify_subscription", as: :verify_fb_subscription, via: :get
-
-
 
 
   # Research Topics
@@ -98,8 +94,6 @@ Rails.application.routes.draw do
   get 'social/discussion', to: redirect("forums")
   get 'social/discussion(/*path)', to: redirect("forums/%{path}")
 
-  # Provider Section
-
   # Blog Section
   get 'in_the_news' => 'blog#blog', as: :blog
   get 'blog_findings' => 'blog#blog_findings'
@@ -140,9 +134,6 @@ Rails.application.routes.draw do
   resources :notifications, except: [:show, :index]
 
   devise_for :users, controllers: { registrations: 'registrations' }
-  #devise_for :providers, controllers: { registrations: 'registrations' }, skip: [:passwords, :confirmations]
-
-
 
   resources :forums do
     resources :topics do

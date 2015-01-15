@@ -1,11 +1,23 @@
 class ProvidersController < ApplicationController
   layout 'layouts/cleantheme'
 
-  #before_action :authenticate_user!
+  before_action :authenticate_user!
   before_action :authenticate_provider
 
-  def provider
 
+  def profile
+
+  end
+
+  def update
+
+    @provider = Provider.find(current_user.id)
+
+    if @provider.update(provider_params)
+      redirect_to provider_profile_path, notice: "Your account settings have been successfully changed."
+    else
+      render :profile
+    end
   end
 
   protected
@@ -16,5 +28,8 @@ class ProvidersController < ApplicationController
 
   end
 
+  def provider_params
+    params.required(:provider).permit(:provider_name, :welcome_message, :photo)
+  end
 
 end

@@ -4,21 +4,20 @@ class ValidicUserTest < ActiveSupport::TestCase
 
 
   def setup
-    skip_if_disabled
+    skip
     @user = users(:user_1)
     @user.delete_all_validic_users
   end
 
 
   def teardown
-    skip_if_disabled
+    skip
     @user.delete_all_validic_users
   end
 
 
   def check_alive
-    skip_if_disabled
-
+    skip
     assert User.check_validic_alive
   end
 

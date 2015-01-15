@@ -27,6 +27,11 @@ class User < ActiveRecord::Base
     user.validates :year_of_birth, presence: true, numericality: {only_integer: true, allow_nil: false, less_than_or_equal_to: -> (user){ Date.today.year - 18 }, greater_than_or_equal_to: -> (user){ 1900 }}
   end
 
+  with_options if: :is_provider? do |user|
+    user.validates :provider_name, presence: true, uniqueness: true
+    user.validates :slug, presence: true, uniqueness: true
+  end
+
   # Model Relationships
   belongs_to :provider, class_name: "Provider", foreign_key: 'provider_id'
   has_many :answer_sessions, -> { where deleted: false }
