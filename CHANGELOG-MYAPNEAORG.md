@@ -3,6 +3,9 @@
 ### Enhancements
 - **General Changes**
   - Minor changes to UI (links, text, sizing)
+  - Fixed display of personal provider page to have fullscreen/landing layout
+  - Fixed display of video and added autoplay/autopause features
+
 
 ## 4.0.0 (January 15, 2015)
 
