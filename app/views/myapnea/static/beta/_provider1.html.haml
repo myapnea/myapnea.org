@@ -12,17 +12,24 @@
     .col-sm-4.col-xs-7.pull-right
       = image_tag "myapnea/welcome/img-small/bwh-logo_3x1.png", class: "partners-img img-responsive", id: "partner-BWH"
 .row.row-fullscreen#provider-banner{style: 'margin-left:0px; margin-right:0px;'}
-  .col-lg-2.col-lg-offset-1.col-md-3.col-md-offset-1.col-xs-4
-    = image_tag @provider.photo_url, class: 'team-member-picture-md', style: 'float: right;'
-  .col-lg-8.col-md-7.col-xs-7{ style: 'padding-left:20px;' }
-    %h4.text-dark7
-      = @provider.get_welcome_message
-    %h4.primary-orange
-      = '-' + @provider.provider_name
+  - if @provider.photo_url != 'default-user.jpg'
+    .col-lg-2.col-lg-offset-1.col-md-3.col-md-offset-1.col-xs-4
+      = image_tag @provider.photo_url, class: 'team-member-picture-md', style: 'float: right;'
+    .col-lg-8.col-md-7.col-xs-7{ style: 'padding-left:20px;' }
+      %h4.text-dark7
+        = @provider.get_welcome_message
+      %h4.primary-orange
+        = '-' + @provider.provider_name
+  - else
+    .col-xs-10.col-xs-offset-1{ style: 'padding-left:20px;' }
+      %h4.text-dark7.centered-text
+        = @provider.get_welcome_message
+      %h4.primary-orange.centered-text
+        = '-' + @provider.provider_name
   .col-lg-1{ style: 'background-color: white;' }
 .row.row-fullscreen#community-tracker-provider
-  .col-xs-8.col-xs-offset-2
-    %h2.lighterer-blue{ style: 'margin-top:5px;' }
+  .col-xs-10.col-xs-offset-1
+    %h2.lighterer-blue.centered-text{ style: 'margin-top:5px;' }
       Current Community:
       %span.primary-blue
         = number_with_delimiter User.current.count
@@ -48,7 +55,7 @@
     %h1.primary-blue.f500.centered-text Our Community
     %h3 MyApnea.org is a community built by people with sleep apnea, family members, providers, and researchers to share and learn from one another.
   .col-md-1
-  = link_to forem.forums_path, class: 'community-highlight-links ' do
+  = link_to forums_path, class: 'community-highlight-links ' do
     .col-md-3.col-md-offset-1.col-xs-12.col-button.community-highlight.centered-text#community-highlight-1
       %h3.text-white Active Forums
       %p.lead Discuss with others about living with sleep apnea and what is important to you.  Share ideas on how to promote the website to others.  The more members we have, the more we can learn from each other and contribute to future research.
@@ -75,37 +82,62 @@
 .row.row-fullscreen{id: "slide-5"}
   .col-md-10.col-md-offset-1.col-lg-8.col-lg-offset-2.panel.panel-signup
     .panel-body#panel-sign-up
-      %h1.darker-blue.centered-text Wake up to a better future!
-      %h4 By joining, you gain access to a unique group of resources and a growing research community. It's fast, simple, and completely free of cost to join and start making a difference!
-      %h4
-        And, of course, all of your information is completely protected!
-        - if false
-          %span.lighter-blue#privacy-policy{ data:{ toggle: 'modal', target:'#myModal'} }
+      - if current_user
+        - if false and current_user.provider_id == @provider.id
+          %h3.f300.centered-text
+            Hi there,
+            = current_user.first_name + '!'
+            It looks like
+            = @provider.first_name
+            is your provider.
+          %h4.f300.centered-text
+            If you want to get in touch with him, feel free to
+            = link_to 'send him an email', "mailto:#{@provider.email}"
         - else
-          = link_to 'See our privacy policy.', privacy_path, target: '_blank'
-      = form_for(resource, :as => resource_name, :url => registration_path(resource_name), html: {}) do |f|
-        = hidden_field_tag "#{resource_name}[provider_id]", @provider.id
-        .form-group
-          = label "#{resource_name}[first_name]", :first_name, class: 'sr-only'
-          = text_field_tag "#{resource_name}[first_name]", (params[resource_name] ? params[resource_name][:first_name] : ''), class: 'form-control input-lg', placeholder: User.human_attribute_name(:first_name), autocomplete: :off
-        .form-group
-          = label "#{resource_name}[last_name]", :last_name, class: 'sr-only'
-          = text_field_tag "#{resource_name}[last_name]", (params[resource_name] ? params[resource_name][:last_name] : ''), class: 'form-control input-lg', placeholder: User.human_attribute_name(:last_name), autocomplete: :off
-        .form-group
-          = label "#{resource_name}[year_of_birth]", :year_of_birth, class: 'sr-only'
-          = select_tag "#{resource_name}[year_of_birth]", options_for_select([['Year of Birth', nil]] + (1900..Date.today.year).to_a.reverse.collect{|i| [i,i]}, (params[resource_name] ? params[resource_name][:year_of_birth] : '')), class: 'form-control input-lg'
-        .form-group
-          = f.label :email, class: 'sr-only'
-          = f.email_field :email, class: 'form-control input-lg', placeholder: User.human_attribute_name(:email), autocomplete: :off
-        .form-group
-          = f.label :password, class: 'sr-only'
-          = f.password_field :password, class: 'form-control input-lg', placeholder: User.human_attribute_name(:password)
+          %h3.f300.centered-text
+            Hi there,
+            = current_user.first_name + '!'
+            It looks like
+            = @provider.first_name
+            is not your provider.
+          %h4.f300.centered-text
+            Do you want to list him as your primary care provider?
+          = link_to 'Yes', update_account_path(:user => { provider_id: @provider.id }), method: :patch, class: 'btn btn-primary'
+      - else
+        %h1.darker-blue.centered-text Wake up to a better future!
+        %h4 By joining, you gain access to a unique group of resources and a growing research community. It's fast, simple, and completely free of cost to join and start making a difference!
+        %h4
+          And, of course, all of your information is completely protected!
+          - if false
+            %span.lighter-blue#privacy-policy{ data:{ toggle: 'modal', target:'#myModal'} }
+          - else
+            = link_to 'See our privacy policy.', privacy_path, target: '_blank'
+        - resource = User.new
+        - resource_name = :user
+        = form_for(resource, :url => registration_path(resource_name), html: {}) do |f|
+          = hidden_field_tag "#{resource_name}[provider_id]", @provider.id
+          .form-group
+            = label "#{resource_name}[first_name]", :first_name, class: 'sr-only'
+            = text_field_tag "#{resource_name}[first_name]", (params[resource_name] ? params[resource_name][:first_name] : ''), class: 'form-control input-lg', placeholder: User.human_attribute_name(:first_name), autocomplete: :off
+          .form-group
+            = label "#{resource_name}[last_name]", :last_name, class: 'sr-only'
+            = text_field_tag "#{resource_name}[last_name]", (params[resource_name] ? params[resource_name][:last_name] : ''), class: 'form-control input-lg', placeholder: User.human_attribute_name(:last_name), autocomplete: :off
+          .form-group
+            = label "#{resource_name}[year_of_birth]", :year_of_birth, class: 'sr-only'
+            = select_tag "#{resource_name}[year_of_birth]", options_for_select([['Year of Birth', nil]] + (1900..Date.today.year).to_a.reverse.collect{|i| [i,i]}, (params[resource_name] ? params[resource_name][:year_of_birth] : '')), class: 'form-control input-lg'
+          .form-group
+            = f.label :email, class: 'sr-only'
+            = f.email_field :email, class: 'form-control input-lg', placeholder: User.human_attribute_name(:email), autocomplete: :off
+          .form-group
+            = f.label :password, class: 'sr-only'
+            = f.password_field :password, class: 'form-control input-lg', placeholder: User.human_attribute_name(:password)
+          = submit_tag 'Sign up!', class: "form-control", id: "submit-join"
 
 
-        -#= text_field_tag 'user[first_name]', nil, placeholder: 'First name', class: "form-control"
-        -#= text_field_tag 'user[last_name]', nil, placeholder: 'Last name', class: "form-control"
-        -#= select_tag 'user[year_of_birth]', options_for_select([['- Select your birth year -', nil]] + (1900..Date.today.year).to_a.reverse.collect{|i| [i,i]}), class: "form-control"
-        -#= text_field_tag 'user[email]', nil, placeholder: 'Email address', class: "form-control"
-        -#= password_field_tag 'user[password]', nil, placeholder: 'Password', class: "form-control"
-        -#= submit_tag 'Sign up!', class: "form-control", id: "submit-join"
+          -#= text_field_tag 'user[first_name]', nil, placeholder: 'First name', class: "form-control"
+          -#= text_field_tag 'user[last_name]', nil, placeholder: 'Last name', class: "form-control"
+          -#= select_tag 'user[year_of_birth]', options_for_select([['- Select your birth year -', nil]] + (1900..Date.today.year).to_a.reverse.collect{|i| [i,i]}), class: "form-control"
+          -#= text_field_tag 'user[email]', nil, placeholder: 'Email address', class: "form-control"
+          -#= password_field_tag 'user[password]', nil, placeholder: 'Password', class: "form-control"
+          -#= submit_tag 'Sign up!', class: "form-control", id: "submit-join"
 
