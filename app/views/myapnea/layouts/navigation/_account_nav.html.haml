@@ -5,7 +5,10 @@
     &nbsp;
     Home
   %a.list-group-item{href: account_path, class: "#{"active" if action_name == "account"}"} My Account Settings
-  %a.list-group-item{href: social_profile_path, class: "#{"active" if action_name == "profile"}"} My Social Profile
+  - if current_user and current_user.is_provider?
+    %a.list-group-item{href: provider_profile_path, class: "#{"active" if action_name == "profile"}"} My Provider Profile
+  -else
+    %a.list-group-item{href: social_profile_path, class: "#{"active" if action_name == "profile"}"} My Social Profile
   %a.list-group-item{href: consent_path, class: "#{"active" if action_name == "consent"}"} Research Consent
   %a.list-group-item{href: privacy_path, class: "#{"active" if action_name == "privacy_policy"}"} Privacy Policy
   %a.list-group-item{href: terms_and_conditions_path, class: "#{"active" if action_name == "terms_and_conditions"}"} Forum Terms & Conditions

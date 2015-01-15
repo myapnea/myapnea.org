@@ -19,6 +19,15 @@
           %div.col-sm-12
             = render "layouts/navigation/top_navigation_bar"
             = render "layouts/flash_messages"
+            - unless current_user and current_user.beta_opt_in?
+              .alert.alert-info{ role: 'alert', style: 'margin-top:5px; margin-bottom:10px' }
+                %btn{ type: 'button', class: 'close', data: { dismiss: 'alert' }, aria: { label: 'Close'} }
+                  %span{ aria: { hidden: 'true'} } &times;
+                %strong We've released a new version of this site!
+                %br
+                You can join the new version now and help us improve by going to your
+                = link_to 'account settings', account_path, style: 'text-decoration:underline;'
+                and clicking 'Enable Beta'.
             - if content_for(:sublayout)
               = yield :sublayout
               %br/

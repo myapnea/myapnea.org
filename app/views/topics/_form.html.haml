@@ -27,6 +27,12 @@
     .col-md-10
       = f.text_field :name, class: 'form-control', autocomplete: 'off'
 
+  - if @topic.new_record?
+    .form-group
+      = f.label :description, nil, class: 'col-md-2 control-label'
+      .col-md-10
+        = f.text_area :description, rows: 14, class: 'form-control'
+
   - if current_user.has_role? :moderator
     .form-group
       = f.label :slug, nil, class: 'col-md-2 control-label'
@@ -39,13 +45,6 @@
             %li Must be a lowercase letter <code>a-z</code> followed by lowercase letters <code>a-z</code>, numbers<code>0-9</code>, or dashes<code>-</code>.
           Ex: <code>meetings-1-on-1</code>
 
-  - if @topic.new_record?
-    .form-group
-      = f.label :description, nil, class: 'col-md-2 control-label'
-      .col-md-10
-        = f.text_area :description, rows: 14, class: 'form-control'
-
-  - if current_user.has_role? :moderator
     .form-group
       = f.label :status, nil, class: 'col-md-2 control-label'
       .col-md-10

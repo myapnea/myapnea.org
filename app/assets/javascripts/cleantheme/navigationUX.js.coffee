@@ -1,9 +1,9 @@
 @navigationUXReady = () ->
   $(".hover-slide-left").mouseenter ->
-    $(this).filter(':not(:animated)').switchClass "list-shrink", "list-expand", 150
+    $(this).filter(':not(:animated)').animate width: "100%", 150
     return
   $(".hover-slide-left").mouseleave ->
-    $(this).switchClass "list-expand", "list-shrink", 150
+    $(this).animate width: "95%", 150
     return
 
   $(".share-icons-animate").mouseenter ->

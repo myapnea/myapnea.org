@@ -6,7 +6,7 @@
     &middot;
     = link_to @forum.name, @forum
     &middot;
-    = @title
+    %span.wrapword= @title
   - if current_user and @topic.editable_by?(current_user)
     = link_to 'Edit Topic', edit_forum_topic_path(@forum, @topic), class: 'btn btn-xs btn-primary'
 
