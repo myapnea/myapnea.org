@@ -1,3 +1,9 @@
+## 4.1.0
+
+### Enhancements
+- **General Changes**
+  - Minor changes to UI (links, text, sizing)
+
 ## 4.0.0 (January 15, 2015)
 
 ### Enhancements

@@ -4,13 +4,8 @@
     %h3.text-dark6.f500 We are working directly with researchers and providers to treat this illness. By creating your own provider page, you can make an important impact.
     = link_to 'Create your page', '#signup', class: "btn btn-primary", id: "btn-join", style: "font-weight: bold; border-radius:100px; margin-top:50px;"
   .col-md-3.col-md-offset-1{style: "margin-top:120px;"}
-    .thumbnail#video-play{:style=>"background-color:rgba(250,250,250,.43); padding:30px; text-align:center; border:none; cursor:pointer; border-radius:20px", data:{toggle:"modal", target:'#myModal'}}
+    .thumbnail#video-play{:style=>"background-color:rgba(250,250,250,.43); padding:30px; text-align:center; border:none; cursor:pointer; border-radius:20px", data:{toggle:"modal", target:'#welcomeVideoModal'}}
       %i.fa.fa-play-circle{style:"color:#BFD9F3; font-size:147px; line-height:118px; border-radius:100%;"}
-    .modal.fade.col-sm-8.col-sm-offset-2{id:"myModal", tabindex: '-1', role:'dialog'}
-      .modal-dialog{:style=>"margin-top:200px"}
-        %button{:style=>"width:50px; height:50px; color:white; background-color: black; border:5px solid white; border-radius:25px; position:absolute; top:2%; left:98%;", data: {dismiss: 'modal'}}
-          X
-        %iframe{:allowscriptaccess => "always", :allowFullScreen => "true", :frameborder => "", :src => "//player.vimeo.com/video/104640787", style: "border:15px solid white; border-radius:20px;height:400px; width:100%;"}
 
 .row.row-fullscreen{id:"slide-2p"}
   .col-md-6.col-md-offset-1.col-sm-8
