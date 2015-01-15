@@ -57,6 +57,7 @@
   mapsReady() if mapsReady?
   navigationUXReady() if navigationUXReady?
   drawSurveyProgressReady() if drawSurveyProgressReady?
+  videoControlsReady() if videoControlsReady?
 
 $(document).ready(loaders)
 $(document).on('page:load', loaders)
