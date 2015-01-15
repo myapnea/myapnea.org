@@ -5,18 +5,18 @@
   %h5.f300{ style: ' margin-bottom:30px; ' }
     My answer:
     %span.primary-blue
-  -#    - if question.applicable_to_user?(answer_session)
-  -#      You were unable to answer this question due to previous responses!
-  -#    - elsif question.user_skipped_question?(answer_session)
-  -#      Oops, it looks like you didn't answer this question.
-  -#      = link_to 'Answer now!', surveys_path
-  -#    - else
-  -#      = answer.show_value unless answer.nil?
-  -#%h5
-  -#  - if question.applicable_to_user?(answer_session) or question.user_skipped_question?(answer_session)
-  -#    See how the community answered!
-  -#  - else
-  -#    Compare your answers to the rest of the community!
+      - if question.applicable_to_user?(answer_session)
+        = answer.show_value unless answer.nil?
+      - elsif question.user_skipped_question?(answer_session)
+        Oops, it looks like you didn't answer this question.
+        = link_to 'Answer now!', surveys_path
+      - else
+        You were unable to answer this question due to previous responses!
+  %h5
+    - if question.applicable_to_user?(answer_session) or question.user_skipped_question?(answer_session)
+      See how the community answered!
+    - else
+      Compare your answers to the rest of the community!
   .col-sm-4{ style: 'margin:20px auto; ' }
     %table.table-bordered{ style: 'padding:10px; width:100%; ' }
       %thead
