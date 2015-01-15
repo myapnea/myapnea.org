@@ -12,6 +12,12 @@
       text: null
     legend:
       enabled: false
+      # layout: 'horizontal'
+      # borderWidth: 0
+      # backgroundColor: 'rgba(255,255,255,0.85)'
+      # floating: true
+      # verticalAlign: 'top'
+      # y: 25
     credits:
       enabled: false
     mapNavigation:
@@ -27,7 +33,7 @@
         hover:
           color: '#BADA55'
       dataLabels:
-        enabled: true
+        enabled: false # true
         format: '{point.name}'
       tooltip:
         headerFormat: ''
