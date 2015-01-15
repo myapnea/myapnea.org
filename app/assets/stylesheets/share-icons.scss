@@ -26,6 +26,14 @@ a.open-tab:hover {
   cursor: pointer;
 }
 
+a.home-news-link:hover {
+  text-decoration:none;
+  h4 {
+    text-decoration:none;
+    color: #ffc864;
+  }
+}
+
 @media (max-width: 992px) {
   .share-icons-md {
     position:relative;
