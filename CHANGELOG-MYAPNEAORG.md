@@ -10,6 +10,8 @@
 - **Community Page**
   - Added quick link to change your account settings to be included in the map
   - Community map now displays US and World membership counts
+- **User Interface Changes**
+  - Added user stats to side navigation bar
 
 ### Bug Fixes
 - Reformatted beta alerts so they would be dismissable on mobile devices

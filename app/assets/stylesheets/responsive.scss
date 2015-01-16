@@ -48,19 +48,17 @@ nav.slide-active {
     padding: 70px;
   }
 
-@media (max-width: 1600px) {
+@media (min-width: 1600px) {
+  .user-picture {
+    float:right;
+    margin-right:15px;
+  }
 }
 @media (max-width: 992px) {
   #container-left {
     padding: 40px;
   }
-
-  #user-profile-header-picture {
-    text-align:center;
-    padding-left:0;
-    padding-right:0;
-  }
-  .user-name {
+  #user-profile-header-text {
     text-align:center;
   }
   #recent-news-container ul li p {
@@ -69,9 +67,9 @@ nav.slide-active {
 
 }
 @media (max-width: 768px) {
-  #user-profile-header-picture {
-    text-align:center;
-  }
+  // #user-profile-header-picture {
+  //   text-align:center;
+  // }
   #container-left {
     width:100%;
     margin:0px;
@@ -82,9 +80,6 @@ nav.slide-active {
     left: 100%;
     float:right;
     margin:0px;
-  }
-  .user-picture {
-    float: none;
   }
   .content-main-header {
     padding: 25px 15px 15px 15px;
@@ -97,7 +92,6 @@ nav.slide-active {
     left:-30px;
     font-size:18px;
   }
-
   .footer .col-xs-7 {
     float:right;
   }

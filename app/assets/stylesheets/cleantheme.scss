@@ -160,6 +160,7 @@ nav {
   float:none;
   display:table-cell;
   vertical-align:top;
+  position:relative
 }
 
 #container-right-fixed:before {
@@ -178,10 +179,8 @@ nav {
   background-color: #5999DE;
   width: inherit;
   box-shadow:0px 3px 3px #ddd;
-}
-
-#user-profile-header-text {
-  text-align:center;
+  padding-top:20px;
+  padding-bottom:20px;
 }
 
 /* USER SIDEBAR */
@@ -199,12 +198,22 @@ nav {
   border-radius: 100%;
   border:2px solid rgb(255,255,255);
   border:2px solid rgba(255,255,255,.8);
-  float:right;
+  // float:right;
 }
 
-.user-name {
-  font-weight:300;
-  padding:0;
+.user-stats {
+  position: relative;
+  top:20px;
+  :hover {
+    background-color:#b1d2f6;
+  }
+  .col-xs-4 {
+    text-align:center;
+    background-color: #7fb2eb;
+    color: white;
+    font-weight:300;
+    padding:5px;
+  }
 }
 
 #container-right .list-group {
