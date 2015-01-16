@@ -10,6 +10,17 @@ class PostsControllerTest < ActionController::TestCase
     @forum = forums(:one)
   end
 
+  test "should get show and redirect to specific page and location on topic" do
+    login(users(:user_2))
+    get :show, forum_id: posts(:six).forum, topic_id: posts(:six).topic, id: posts(:six)
+
+    assert_not_nil assigns(:forum)
+    assert_not_nil assigns(:topic)
+    assert_not_nil assigns(:post)
+
+    assert_redirected_to forum_topic_path(assigns(:forum), assigns(:topic)) + "?page=1#c2"
+  end
+
   test "should get post preview" do
     login(users(:user_2))
     assert_difference('Post.count', 0) do
@@ -216,7 +227,7 @@ class PostsControllerTest < ActionController::TestCase
 
     assert_equal false, assigns(:topic).subscribed?(users(:user_2))
 
-    assert_redirected_to forum_topic_path(assigns(:forum), assigns(:topic)) + "#c1"
+    assert_redirected_to forum_topic_path(assigns(:forum), assigns(:topic)) + "#c2"
   end
 
   test "should not update post on locked topic" do

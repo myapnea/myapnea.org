@@ -12,7 +12,7 @@ class UserMailer < ApplicationMailer
     @post = post
     @email_to = post.user.email
     @moderator = moderator
-    mail(to: @email_to, subject: "Your Forum Post has been Approved")
+    mail(to: @email_to, subject: "Forum Post Approved: #{@post.topic.name}")
   end
 
   def post_replied(post, user)
@@ -20,7 +20,7 @@ class UserMailer < ApplicationMailer
     @post = post
     @user = user
     @email_to = user.email
-    mail(to: @email_to, subject: "Someone Posted a Reply to one of Your Subscribed Topics")
+    mail(to: @email_to, subject: "New Forum Reply: #{@post.topic.name}")
   end
 
   protected

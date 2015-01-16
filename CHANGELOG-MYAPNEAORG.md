@@ -11,6 +11,8 @@
     - Moderators will see the last post made that's pending moderation
     - Regular members will see the last approved post in the forums index
   - Moderator posts are now automatically approved
+  - Post links in emails now directly reference the post and are the server will redirect these links to the correct topic page
+  - Post Approval and Reply emails now reference the title of the topic so that email clients can group these together more naturally
 - **Community Page**
   - Added quick link to change your account settings to be included in the map
   - Community map now displays US and World membership counts

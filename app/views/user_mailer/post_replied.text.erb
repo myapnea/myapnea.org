@@ -5,7 +5,12 @@ Someone posted a reply to the following topic:
 
   <%= @post.topic.name %>
 
-  <%= "#{ENV['website_url']}/forums/#{@post.forum.to_param}/topics/#{@post.topic.to_param}?page=#{((@post.number - 1) / Post::POSTS_PER_PAGE)+1}#c#{@post.number}" %>
+  <%= "#{ENV['website_url']}/forums/#{@post.forum.to_param}/topics/#{@post.topic.to_param}/posts/#{@post.to_param}" %>
 
 
     #<%= @post.number %>  <%= strip_tags(simple_markdown @post.description).truncate(100) %>    - <%= @post.user.forum_name %>
+
+
+You may also visit the topic to unsubscribe and stop receiving future replies to this topic.
+
+  <%= "#{ENV['website_url']}/forums/#{@post.forum.to_param}/topics/#{@post.topic.to_param}" %>

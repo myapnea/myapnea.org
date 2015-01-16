@@ -5,4 +5,4 @@ Your forum post has been approved. You can view the post under the following top
 
   <%= @post.topic.name %>
 
-  <%= "#{ENV['website_url']}/forums/#{@post.forum.to_param}/topics/#{@post.topic.to_param}?page=#{((@post.number - 1) / Post::POSTS_PER_PAGE)+1}#c#{@post.number}" %>
+  <%= "#{ENV['website_url']}/forums/#{@post.forum.to_param}/topics/#{@post.topic.to_param}/posts/#{@post.to_param}" %>

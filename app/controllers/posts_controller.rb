@@ -62,7 +62,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    redirect_to [@forum, @topic]
+    redirect_to forum_topic_path(@forum, @topic) + "?page=#{((@post.number - 1) / Post::POSTS_PER_PAGE)+1}#c#{@post.number}"
   end
 
   # PUT /posts/1
@@ -130,7 +130,7 @@ class PostsController < ApplicationController
     end
 
     def set_post
-      @post = @topic.posts.current.find_by_id(params[:id])
+      @post = @topic.posts.find_by_id(params[:id])
     end
 
     def set_editable_post
