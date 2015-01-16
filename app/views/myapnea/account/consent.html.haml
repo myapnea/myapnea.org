@@ -1,4 +1,4 @@
-- if current_user.beta_opt_in?
+- if current_user and current_user.beta_opt_in?
   = render partial: 'static/beta/consent'
 - else
   #consent.row
