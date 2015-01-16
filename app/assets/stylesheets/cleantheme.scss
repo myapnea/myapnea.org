@@ -184,17 +184,19 @@ nav {
 
 .user-stats {
   position: relative;
-  top:20px;
-  :hover {
-    background-color:#b1d2f6;
+  background-color: #7fb2eb;
+  color: white;
+  font-weight:300;
+  padding:5px;
+  line-height:100%;
+  p.small {
+    margin-bottom:3px;
   }
-  .col-xs-4 {
-    text-align:center;
-    background-color: #7fb2eb;
-    color: white;
-    font-weight:300;
-    padding:5px;
+  h5 {
+    margin-top:0px;
+    margin-bottom:0px;
   }
+  padding-left:20px;
 }
 
 #container-right .list-group-item {
@@ -209,7 +211,7 @@ nav {
   font-weight:300;
 }
 
-#user-profile-container .list-group-item {
+#nav-right .list-group-item {
   background-color: #387fcf;
   border:none;
   border-radius:20px 0 0 20px;
