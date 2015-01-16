@@ -18,12 +18,14 @@
   - Community map now displays US and World membership counts
 - **User Interface Changes**
   - Added user stats to side navigation bar
+  - Added link to admin panel for beta users
+  - Added beta versions of terms of service, privacy policy, and consent pages
 
 ### Bug Fixes
 - Reformatted beta alerts so they would be dismissable on mobile devices
 - Fixed sidebar on mobile devices
   - Now only relying on javascript for class changes (instead of framed animations)
-  - Only fixed user/nav for medium and large screens
+  - Only using fixed-positioning for the user sidebar on medium and large screens
 
 ### Bug Fixes
 - Removed provider name as a field on the member registration page
