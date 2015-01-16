@@ -22,9 +22,9 @@
     return
 
   $('.navbar-toggle').click ->
-    $('#container-right, #container-left, .navbar-toggle, #container_main').toggleClass "active-sidebar"
+    $('#container-right, #container-left, .navbar-toggle, #container-main').toggleClass "active-sidebar"
   $(window).resize ->
-    $('#container-right, #container-left, .navbar-toggle, #container_main').removeClass "active-sidebar"
+    $('#container-right, #container-left, .navbar-toggle, #container-main').removeClass "active-sidebar"
 
   # navbarToggle = false
   # $('.navbar-toggle').click ->

@@ -64,6 +64,19 @@ nav {
   z-index:2;
 }
 
+.navbar-brand {
+  width:70%;
+  line-height:100%;
+  min-width:160px;
+  max-width:260px;
+  padding:0;
+  img {
+    width: 100%;
+    position:relative;
+    top:-15px;
+  }
+}
+
 #navbar-social {
   float:right;
   width:20%;
@@ -133,26 +146,22 @@ nav {
   margin:0;
   z-index:2;
   clear:both;
-}
-
-  .footer ul {
+  ul {
     list-style-type: none;
     margin-left:0px;
+    li {
+      text-indent:5px;
+      a {
+        color: #ffa400;
+      }
+      :before {
+        content:"-";
+        position:relative;
+        left:-5px;
+      }
+    }
   }
-
-  .footer ul li {
-    text-indent:5px;
-  }
-
-  .footer ul li a {
-    color:#ffa400;
-  }
-
-  .footer ul li:before {
-    content:"-";
-    position:relative;
-    left:-5px;
-  }
+}
 
 
 /* USER SIDEBAR */
@@ -188,11 +197,6 @@ nav {
   }
 }
 
-#container-right .list-group {
-  // border-bottom:1px solid rgb(255,255,255);
-  // border-bottom:1px solid rgba(255,255,255,.4);
-}
-
 #container-right .list-group-item {
   color:rgb(255,255,255);
   color:rgba(255,255,255,.9);
@@ -224,6 +228,10 @@ nav {
   float:right;
 }
 
-
+@media (max-width: 768px) {
+  .navbar-brand img {
+    top: -10;
+  }
+}
 
 

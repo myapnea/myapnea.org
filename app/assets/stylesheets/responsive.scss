@@ -28,6 +28,14 @@
     position: relative
 }
 
+#container-main {
+  display: table;
+  position:relative;
+  min-width:100%;
+  margin-left:0px;
+  margin-right:0px;
+  overflow:hidden;
+}
 
 #container-left {
     width:80%;
@@ -125,7 +133,7 @@
     }
   }
 
-  #container_main.active-sidebar:before {
+  #container-main.active-sidebar:before {
     width: 60%;
     position:absolute;
     box-shadow: -3px 1px 5px #777;
