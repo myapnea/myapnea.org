@@ -48,6 +48,7 @@
 
 #container-right {
   width: 20%;
+  min-width:150px;
   box-shadow: -3px 1px 5px #777;
   background-color: #5999DE;
   float:none;
@@ -96,8 +97,16 @@
   #user-profile-header-text {
     text-align:center;
   }
-  #recent-news-container ul li p {
-    margin:0px 2px;
+  #recent-news-container {
+    h4 {
+      padding: 0 2px;
+    }
+    ul li {
+      h5, p {
+        margin:0px 2px;
+        padding: 0 2px;
+      }
+    }
   }
 
 }
