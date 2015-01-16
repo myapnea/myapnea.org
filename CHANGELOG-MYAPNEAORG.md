@@ -16,6 +16,14 @@
 - **Community Page**
   - Added quick link to change your account settings to be included in the map
   - Community map now displays US and World membership counts
+- **User Interface Changes**
+  - Added user stats to side navigation bar
+
+### Bug Fixes
+- Reformatted beta alerts so they would be dismissable on mobile devices
+- Fixed sidebar on mobile devices
+  - Now only relying on javascript for class changes (instead of framed animations)
+  - Only fixed user/nav for medium and large screens
 
 ### Bug Fixes
 - Removed provider name as a field on the member registration page

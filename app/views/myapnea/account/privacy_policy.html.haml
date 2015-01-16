@@ -1,25 +1,28 @@
-%section#privacy-policy
-  .row
-    .col-md-12
-      .panel.panel-default
-        .panel-body
-          #print-area
-            %h2= @pc['title']
-            = markdown @pc['privacy_policy']
-          %br/
-          = link_to "#", id: "print-link", class: 'print-link pull-right btn btn-xs btn-info' do
-            %i.fa.fa-print
-            Print Privacy Policy
-        - if current_user
-          .text-center.panel-footer
-            - if current_user.can? :participate_in_research
-              = link_to :back, class: 'btn btn-lg btn-success' do
-                .fa.fa-arrow-left
-                &nbsp;
-                Go Back
-              = link_to "View Consent", consent_path, class: 'btn btn-lg btn-info'
-              = link_to "Leave Research Study", account_path, class: 'btn btn-warning btn-lg'
-            - else
-              = form_tag privacy_path do
-                %input.btn.btn-primary.btn-lg{:name => "privacy_policy_read", :type => "submit", :value => "I have read the privacy policy#{current_user.signed_consent? ? ' and I agree to participate' : ''}"}
-                %input.btn.btn-danger.btn-lg{:name => "declined_to_participate", :type => "submit", :value => 'I decline'}
+- if current_user.beta_opt_in?
+  = render partial: 'static/beta/privacy'
+- else
+  %section#privacy-policy
+    .row
+      .col-md-12
+        .panel.panel-default
+          .panel-body
+            #print-area
+              %h2= @pc['title']
+              = markdown @pc['privacy_policy']
+            %br/
+            = link_to "#", id: "print-link", class: 'print-link pull-right btn btn-xs btn-info' do
+              %i.fa.fa-print
+              Print Privacy Policy
+          - if current_user
+            .text-center.panel-footer
+              - if current_user.can? :participate_in_research
+                = link_to :back, class: 'btn btn-lg btn-success' do
+                  .fa.fa-arrow-left
+                  &nbsp;
+                  Go Back
+                = link_to "View Consent", consent_path, class: 'btn btn-lg btn-info'
+                = link_to "Leave Research Study", account_path, class: 'btn btn-warning btn-lg'
+              - else
+                = form_tag privacy_path do
+                  %input.btn.btn-primary.btn-lg{:name => "privacy_policy_read", :type => "submit", :value => "I have read the privacy policy#{current_user.signed_consent? ? ' and I agree to participate' : ''}"}
+                  %input.btn.btn-danger.btn-lg{:name => "declined_to_participate", :type => "submit", :value => 'I decline'}

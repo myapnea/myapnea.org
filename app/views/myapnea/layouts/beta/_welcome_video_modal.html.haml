@@ -1,5 +1,5 @@
 - if (params[:action] == 'providers' or params[:action] == 'new') and !current_user
-  .modal.fade.col-sm-8.col-sm-offset-2{id: 'welcomeVideoModal', tabindex: '-1', role:'dialog'}
+  .modal.fade{id: 'welcomeVideoModal', tabindex: '-1', role:'dialog'}
     .modal-dialog{style: 'margin-top:200px; z-index:1050' }
       %button{style: 'width:50px; height:50px; color:white; background-color: black; border:5px solid white; border-radius:25px; position:absolute; top:2%; left:98%;', data: { object: 'stop-video', dismiss: 'modal'}}
         X

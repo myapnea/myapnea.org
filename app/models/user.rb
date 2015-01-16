@@ -1,3 +1,4 @@
+
 class User < ActiveRecord::Base
   rolify role_join_table_name: 'roles_users'
 
@@ -43,6 +44,7 @@ class User < ActiveRecord::Base
   has_many :forums, -> { where deleted: false }
   has_many :topics, -> { where deleted: false }
   has_many :posts, -> { where deleted: false }
+  has_many :approved_posts, -> { where deleted: false, status: 'approved' }, through: :posts, source: :topic
   has_many :subscriptions
 
   # Named Scopes
@@ -228,6 +230,10 @@ class User < ActiveRecord::Base
     QuestionFlow.unstarted(self)
   end
 
+  def not_complete_surveys
+    self.incomplete_surveys + self.unstarted_surveys
+  end
+
   def smart_surveys
     self.incomplete_surveys + self.unstarted_surveys + self.complete_surveys
   end
@@ -246,6 +252,10 @@ class User < ActiveRecord::Base
 
   def share_research_topics?
     social_profile.present? and social_profile.show_publicly?
+  end
+
+  def number_votes_remaining
+    vote_quota - todays_votes.length
   end
 
   def has_votes_remaining?(rating = 1)

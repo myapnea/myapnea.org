@@ -1,5 +1,4 @@
 @landingReady = () ->
-
   containerRightFixedH = $('#container-right-fixed').outerHeight()
   $('#container-right-scroll').css('margin-top', containerRightFixedH)
 

@@ -29,7 +29,7 @@
       - if (params[:action] == 'home' and !current_user) or params[:action] == 'stealth_providers' or params[:action] == 'stealth_provider1' or params[:controller] == 'registrations' or params[:action] == 'providers' or @provider
         = yield
       - else
-        .row{ style: 'display: table; position:relative;min-width:100%; margin-left:0px; margin-right:0px;' }
+        .row#container-main
           = render partial: 'layouts/beta/container_left'
           = render partial: 'layouts/beta/container_right'
     = render partial: 'layouts/beta/footer'
