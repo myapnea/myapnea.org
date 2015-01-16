@@ -11,6 +11,9 @@
   - Added quick link to change your account settings to be included in the map
   - Community map now displays US and World membership counts
 
+### Bug Fixes
+- Removed provider name as a field on the member registration page
+
 ## 4.0.0 (January 15, 2015)
 
 ### Enhancements
