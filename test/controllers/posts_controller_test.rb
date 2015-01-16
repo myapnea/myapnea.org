@@ -110,7 +110,7 @@ class PostsControllerTest < ActionController::TestCase
     assert_not_nil assigns(:topic)
     assert_not_nil assigns(:post)
 
-    assert_equal assigns(:post).created_at, assigns(:post).topic.last_post_at
+    assert_equal assigns(:post).created_at.strftime("%-m/%-d/%Y at %-l:%M %p"), assigns(:post).topic.last_post_at.strftime("%-m/%-d/%Y at %-l:%M %p")
 
     assert_redirected_to forum_topic_path(assigns(:forum), assigns(:topic)) + "#c2"
   end
