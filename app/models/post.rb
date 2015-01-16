@@ -55,7 +55,14 @@ class Post < ActiveRecord::Base
 
   def reply_emails
     self.topic.subscribers.each do |u|
-      UserMailer.post_replied(self, u).deliver_later if Rails.env.production? and u.email_enabled? and u != self.user
+      if u.emails_enabled? and u != self.user
+        Rails.logger.info "Topic ##{self.topic.id} Post ##{self.id} Reply Email To User ##{u.id} - #{u.email} - EMAIL SENT"
+      elsif u.emails_enabled?
+        Rails.logger.info "Topic ##{self.topic.id} Post ##{self.id} Reply Email To User ##{u.id} - #{u.email} - ORIGINAL USER NO EMAIL SENT"
+      else
+        Rails.logger.info "Topic ##{self.topic.id} Post ##{self.id} Reply Email To User ##{u.id} - #{u.email} - NO EMAIL SENT - EMAIL DISABLED"
+      end
+      UserMailer.post_replied(self, u).deliver_later if Rails.env.production? and u.emails_enabled? and u != self.user
     end
   end
 
