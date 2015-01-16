@@ -15,6 +15,9 @@
 
 ### Bug Fixes
 - Reformatted beta alerts so they would be dismissable on mobile devices
+- Fixed sidebar on mobile devices
+  - Now only relying on javascript for class changes (instead of framed animations)
+  - Only fixed user/nav for medium and large screens
 
 ## 4.0.0 (January 15, 2015)
 
