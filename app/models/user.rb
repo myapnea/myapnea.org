@@ -127,15 +127,15 @@ class User < ActiveRecord::Base
   end
 
   def forum_name
-    self.forem_name
-  end
-
-  def forem_name
     if social_profile
       social_profile.public_nickname
     else
       SocialProfile.get_anonymous_name(email)
     end
+  end
+
+  def can_post_links?
+    self.has_role? :moderator or self.has_role? :owner
   end
 
   def to_s
@@ -171,49 +171,12 @@ class User < ActiveRecord::Base
     accepted_privacy_policy? and signed_consent?
   end
 
-  def can_post_links?
-    self.forem_admin?
-  end
-
-  def forem_admin?
-    self.has_role? :moderator
-  end
-
-  def can_create_forem_topics?(forum)
-    self.can?(:participate_in_social)
-  end
-
-  def can_reply_to_forem_topic?(topic)
-    self.can?(:participate_in_social)
-  end
-
-  def can_edit_forem_posts?(forum)
-    self.can?(:participate_in_social)
-  end
-
-  def can_destroy_forem_posts?(forum)
-    self.can?(:participate_in_social)
-  end
-
-
-  def can_moderate_forem_forum?(forum)
-    self.has_role? :forum_moderator or self.has_role? :moderator
-  end
-
   def todays_votes
     votes.select{|vote| vote.updated_at.today? and vote.rating != 0 and vote.research_topic_id.present?}
   end
 
   def available_votes_percent
     (todays_votes.length.to_f / vote_quota) * 100.0
-  end
-
-  def is_owner?
-    self.has_role? :owner
-  end
-
-  def is_moderator?
-    self.has_role? :moderator
   end
 
   def incomplete_surveys

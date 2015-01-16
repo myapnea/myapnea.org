@@ -16,7 +16,7 @@ class BlogController < ApplicationController
 =begin
 Type
   - facebook
-  - forem
+  - forum
   - *blog
   - *notification
 User Photo

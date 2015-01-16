@@ -3,18 +3,9 @@ class ApplicationController < ActionController::Base
   # Add theme folder to view path
   self.view_paths.unshift(*Rails.root.join('app', 'views', 'myapnea'))
 
-
-  def forem_user
-    current_user
-  end
-
-  helper_method :forem_user
-
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-
-
 
   def after_sign_in_path_for(resource)
     redirect_path = (resource.class == Provider ? provider_profile_path : home_path)
