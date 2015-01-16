@@ -53,6 +53,34 @@ class PostsControllerTest < ActionController::TestCase
     assert_redirected_to forum_topic_path(assigns(:forum), assigns(:topic)) + "#c2"
   end
 
+  test "should create pending_review post as regular user" do
+    login(users(:user_1))
+    assert_difference('Post.count') do
+      post :create, forum_id: @forum, topic_id: @topic, post: { description: "I'm trying to approve my own post.", status: 'approved' }
+    end
+
+    assert_not_nil assigns(:forum)
+    assert_not_nil assigns(:topic)
+    assert_not_nil assigns(:post)
+
+    assert_equal 'pending_review', assigns(:post).status
+    assert_redirected_to forum_topic_path(assigns(:forum), assigns(:topic)) + "#c2"
+  end
+
+  test "should create approved post as moderator" do
+    login(users(:moderator_1))
+    assert_difference('Post.count') do
+      post :create, forum_id: @forum, topic_id: @topic, post: { description: "I'm trying to approve my own post.", status: 'approved' }
+    end
+
+    assert_not_nil assigns(:forum)
+    assert_not_nil assigns(:topic)
+    assert_not_nil assigns(:post)
+
+    assert_equal 'approved', assigns(:post).status
+    assert_redirected_to forum_topic_path(assigns(:forum), assigns(:topic)) + "#c2"
+  end
+
   test "should create post and add subscription" do
     login(users(:moderator_1))
 
@@ -67,6 +95,22 @@ class PostsControllerTest < ActionController::TestCase
     assert_equal "With this post I'm subscribing to the discussion.", assigns(:topic).posts.last.description
     assert_not_nil assigns(:topic).last_post_at
     assert_equal true, assigns(:topic).subscribed?(users(:moderator_1))
+
+    assert_redirected_to forum_topic_path(assigns(:forum), assigns(:topic)) + "#c2"
+  end
+
+  test "should create post and mark new last post at" do
+    login(users(:moderator_1))
+
+    assert_difference('Post.count') do
+      post :create, forum_id: @forum, topic_id: @topic, post: { description: "This post", status: 'approved' }
+    end
+
+    assert_not_nil assigns(:forum)
+    assert_not_nil assigns(:topic)
+    assert_not_nil assigns(:post)
+
+    assert_equal assigns(:post).created_at, assigns(:post).topic.last_post_at
 
     assert_redirected_to forum_topic_path(assigns(:forum), assigns(:topic)) + "#c2"
   end

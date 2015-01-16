@@ -1,6 +1,6 @@
 class Post < ActiveRecord::Base
 
-  STATUS = [['Approved', 'approved'], ['Pending Review', 'pending_review'], ['Marked as Spam', 'spam']]
+  STATUS = [['Approved', 'approved'], ['Pending Review', 'pending_review'], ['Marked as Spam', 'spam'], ['Hidden', 'hidden']]
 
   POSTS_PER_PAGE = 20
 
@@ -8,9 +8,11 @@ class Post < ActiveRecord::Base
   include Deletable
 
   # Callbacks
+  after_save :touch_topic
 
   # Named Scopes
   scope :with_unlocked_topic, -> { where("posts.topic_id in (select topics.id from topics where topics.locked = ?)", false).references(:topics) }
+  scope :visible_for_user, lambda { |arg| where("(posts.hidden = ? and posts.status = ?) or (posts.user_id = ?)", false, 'approved', arg) }
 
   # Model Validation
   validates_presence_of :description, :user_id, :topic_id
@@ -69,7 +71,7 @@ class Post < ActiveRecord::Base
   private
 
   def touch_topic
-    self.topic.update last_post_at: Time.now
+    self.topic.set_last_post_at!
   end
 
   # def email_mentioned_users

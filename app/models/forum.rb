@@ -10,7 +10,7 @@ class Forum < ActiveRecord::Base
 
   # Model Relationships
   belongs_to :user
-  has_many :topics, -> { where(deleted: false).order(pinned: :desc, last_post_at: :desc) }
+  has_many :topics, -> { where(deleted: false).order(pinned: :desc, last_post_at: :desc, id: :desc) }
 
   # Forum Methods
 

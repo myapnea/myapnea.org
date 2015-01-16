@@ -1,6 +1,6 @@
 class Topic < ActiveRecord::Base
 
-  STATUS = [['Approved', 'approved'], ['Pending Review', 'pending_review'], ['Marked as Spam', 'spam']]
+  STATUS = [['Approved', 'approved'], ['Pending Review', 'pending_review'], ['Marked as Spam', 'spam'], ['Hidden', 'hidden']]
 
   attr_accessor :description, :migration_flag
 
@@ -72,6 +72,26 @@ class Topic < ActiveRecord::Base
 
   def increase_views!(current_user)
     self.update views_count: self.views_count + 1
+  end
+
+  def set_last_post_at!
+    if last_post = self.posts.where(status: 'approved', hidden: false).last
+      self.update last_post_at: last_post.created_at
+    else
+      self.update last_post_at: nil
+    end
+  end
+
+  def last_visible_post(current_user)
+    if current_user and current_user.has_role? :moderator
+      self.posts.last
+    else
+      self.posts.visible_for_user(current_user ? current_user.id : nil).last
+    end
+  end
+
+  def has_posts_pending_review?
+    self.posts.where(status: 'pending_review').count > 0
   end
 
   private

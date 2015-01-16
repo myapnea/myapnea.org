@@ -7,6 +7,10 @@
   - Fixed display of video and added autoplay/autopause features
 - **Forum Changes**
   - Topics with posts that are pending review now show up as well when a moderator filters by topics that are pending review
+  - Topics are now sorted by their last visible post, and the last post by field is also filtered by the last visible post for the user
+    - Moderators will see the last post made that's pending moderation
+    - Regular members will see the last approved post in the forums index
+  - Moderator posts are now automatically approved
 - **Community Page**
   - Added quick link to change your account settings to be included in the map
   - Community map now displays US and World membership counts

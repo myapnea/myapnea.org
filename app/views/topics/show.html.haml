@@ -1,5 +1,9 @@
 - @title = @topic.name
 
+%div{ style: 'display:none' }
+  Last Post At:
+  = @topic.last_post_at.inspect
+
 .content-main-header
   %h1
     = link_to 'Forums', forums_path
@@ -71,6 +75,9 @@
           %ul
           - @post.errors.full_messages.each do |msg|
             %li= msg
+
+      - if current_user.has_role? :moderator
+        = f.hidden_field :status, value: 'approved'
 
       .form-group
         .col-xs-1
