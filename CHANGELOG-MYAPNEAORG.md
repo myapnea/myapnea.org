@@ -11,6 +11,9 @@
   - Added quick link to change your account settings to be included in the map
   - Community map now displays US and World membership counts
 
+### Bug Fixes
+- Reformatted beta alerts so they would be dismissable on mobile devices
+
 ## 4.0.0 (January 15, 2015)
 
 ### Enhancements
