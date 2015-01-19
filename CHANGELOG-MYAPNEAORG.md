@@ -5,6 +5,7 @@
   - Minor changes to UI (links, text, sizing)
   - Fixed display of personal provider page to have fullscreen/landing layout
   - Fixed display of video and added autoplay/autopause features
+  - Recent News posts now link directly back to the topics
 - **Forum Changes**
   - Topics with posts that are pending review now show up as well when a moderator filters by topics that are pending review
   - Topics are now sorted by their last visible post, and the last post by field is also filtered by the last visible post for the user

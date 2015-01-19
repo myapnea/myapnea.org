@@ -6,11 +6,11 @@
           .pull-right
             = link_to forums_path do
               .fa.fa-comments-o
-          =link_to forum_topic_path(post[:post].forum, post[:post]) do
+          = link_to forum_topic_path(post[:post].forum, post[:post].topic) do
             %h4.media-heading= post[:title]
           %p.caption= post["caption"]
           %small
-            = link_to "Posted in News by #{post[:user]}", forum_path(post[:post].forum)
+            = link_to "Posted in News by #{post[:user]}", forum_topic_path(post[:post].forum, post[:post].topic)
           %br
           %small
             %strong= post[:created_at].strftime("%m/%d/%Y")
@@ -22,7 +22,7 @@
             %h4.media-heading= post[:title]
           %p.caption= post["caption"]
           %small
-            = link_to "Posted in News by #{post[:user]}", forum_path(post[:post].forum)
+            = link_to "Posted in News by #{post[:user]}", forum_topic_path(post[:post].forum, post[:post].topic)
           %br
           %small
             %strong= post[:created_at].strftime("%m/%d/%Y")
@@ -38,4 +38,4 @@
         - else
           %p= markdown post[:content]
 
-    %p= link_to "Read more...", forum_topic_path(post[:post].forum, post[:post])
+    %p= link_to "Read more...", forum_topic_path(post[:post].forum, post[:post].topic)

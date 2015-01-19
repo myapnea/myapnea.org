@@ -59,7 +59,7 @@ class Notification < ActiveRecord::Base
                 user_link: "",
                 created_at: topic.created_at,
                 content: post.description,
-                post: topic
+                post: post
             }
           end
         end

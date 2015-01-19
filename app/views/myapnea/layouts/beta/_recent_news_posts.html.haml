@@ -8,7 +8,7 @@
         = post[:title]
       %p.f400.darkerer-blue{ style: 'margin:0px 10px;font-size:14px' }
         - post_in = (post[:type] == :facebook ? 'Facebook' : 'News')
-        - post_url = (post[:type] == :facebook ? post[:user_link] : forum_path(post[:post].forum))
+        - post_url = (post[:type] == :facebook ? post[:user_link] : forum_topic_path(post[:post].forum, post[:post].topic))
         = link_to "Posted in #{post_in} by #{post[:user]}", post_url
       %p.f300.darkerer-blue{ style: 'margin:0px 10px;font-size:14px' }
         = post[:created_at].strftime("%d %b %Y")
