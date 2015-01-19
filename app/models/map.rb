@@ -4,15 +4,24 @@ class Map
 
   # JSON.stringify(Highcharts.maps["countries/us/us-all"]["features"].map(function(object) { return [object['properties']['hc-key'], object['properties']['name']]; }))
   def self.states_for_map
-    states = MAP_STATES_AND_CODES.collect{|name, code| code}
-    max_value = 0
-    states.collect{|s| user_count = User.current.where(state_code: s).count; max_value = [max_value, user_count].max; { "hc-key" => s, value: user_count }} + [ value: max_value + 1 ]
+    filter_by_key(:state_code, MAP_STATES_AND_CODES)
   end
 
   # JSON.stringify(Highcharts.maps["custom/world"]["features"].map(function(object) { return [object['properties']['hc-key'], object['properties']['name']]; }))
   def self.countries_for_map
-    states = MAP_COUNTRIES_AND_CODES.collect{|name, code| code}
+    filter_by_key(:country_code, MAP_COUNTRIES_AND_CODES)
+  end
+
+  private
+
+  def self.filter_by_key(key, names_and_codes)
+    codes = names_and_codes.collect{|name, code| code}
     max_value = 0
-    states.collect{|s| user_count = User.current.where(country_code: s).count; max_value = [max_value, user_count].max; { "hc-key" => s, value: user_count }} + [ value: max_value + 1 ]
+    membership = codes.collect do |c|
+      user_count = User.current.where(key => c).count
+      max_value = [max_value, user_count].max
+      { "hc-key" => c, value: user_count }
+    end
+    membership + [ value: max_value + 1 ]
   end
 end
