@@ -23,10 +23,4 @@ class UserMailer < ApplicationMailer
     mail(to: @email_to, subject: "New Forum Reply: #{@post.topic.name}")
   end
 
-  protected
-
-  def setup_email
-    attachments.inline['myapnea-logo.png'] = File.read('app/assets/images/myapnea/MyApneaLogo_border_whitesub_300x80.png') rescue nil
-  end
-
 end
