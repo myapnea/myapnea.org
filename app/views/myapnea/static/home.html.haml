@@ -40,7 +40,7 @@
                   .panel-heading
                     = link_to forum.name, forum, style: 'color:white'
                   .panel-body
-                    %strong= link_to pluralize(forum.topics.where(status: 'approved', hidden: false).count, 'topic'), forum
+                    %strong= link_to pluralize(forum.topics.where(status: 'approved').count, 'topic'), forum
                     %p= forum.description
         - else
           The forums are currently unavailable.

@@ -12,7 +12,7 @@ class Topic < ActiveRecord::Base
   after_create :create_first_post
 
   # Named Scopes
-  scope :viewable_by_user, lambda { |arg| where(hidden: false).where('topics.user_id = ? or topics.status = ?', arg, 'approved') }
+  scope :viewable_by_user, lambda { |arg| where('topics.status = ? or topics.user_id = ?', 'approved', arg) }
   scope :search, lambda { |arg| where('topics.name ~* ? or topics.id in (select posts.topic_id from posts where posts.deleted = ? and posts.description ~* ?)', arg.to_s.split(/\s/).collect{|l| l.to_s.gsub(/[^\w\d%]/, '')}.collect{|l| "(\\m#{l})"}.join("|"), false, arg.to_s.split(/\s/).collect{|l| l.to_s.gsub(/[^\w\d%]/, '')}.collect{|l| "(\\m#{l})"}.join("|") ) }
   scope :pending_review, -> { where('topics.status = ? or topics.id IN (select posts.topic_id from posts where posts.deleted = ? and posts.status = ?)', 'pending_review', false, 'pending_review') }
 
@@ -33,6 +33,10 @@ class Topic < ActiveRecord::Base
 
   def to_param
     slug
+  end
+
+  def hidden?
+    self.status == 'hidden'
   end
 
   def editable_by?(current_user)

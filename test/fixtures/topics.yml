@@ -51,8 +51,7 @@ hidden:
   name: Hidden Topic
   locked: false
   pinned: false
-  hidden: true
   last_post_at: 2015-01-06 15:26:03
-  status: approved
+  status: hidden
   views_count: 1
   slug: hidden-topic
