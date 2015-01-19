@@ -26,6 +26,7 @@
   - The terms of service, privacy policy, and consent pages have been updated to match the new UI
 - **Email Changes**
   - Updated styling on Password Reset and Account Unlock emails to match new MyApnea.Org themed email layout
+  - Started work on new registration welcome email
 - **Administrative Changes**
   - Member management page has been updated and now proplery paginates members
 

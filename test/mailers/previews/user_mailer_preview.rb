@@ -18,4 +18,9 @@ class UserMailerPreview < ActionMailer::Preview
     UserMailer.post_replied(post, user)
   end
 
+  def welcome
+    user = User.first
+    UserMailer.welcome(user)
+  end
+
 end

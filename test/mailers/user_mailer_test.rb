@@ -40,4 +40,17 @@ class UserMailerTest < ActionMailer::TestCase
     assert_equal "New Forum Reply: #{post.topic.name}", email.subject
     assert_match(/Someone posted a reply to the following topic:/, email.encoded)
   end
+
+  test "welcome email" do
+    valid = users(:user_1)
+
+    email = UserMailer.welcome(valid).deliver_now
+    assert !ActionMailer::Base.deliveries.empty?
+
+    assert_equal [valid.email], email.to
+    assert_equal "Welcome to MyApnea.Org!", email.subject
+    assert_match(/Dear #{valid.first_name},/, email.encoded)
+  end
+
+
 end
