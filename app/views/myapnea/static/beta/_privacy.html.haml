@@ -3,6 +3,8 @@
     #print-area
       %h2.f300= @pc['title']
       = markdown @pc['privacy_policy']
+      - if current_user and current_user.accepted_privacy_policy_at.blank?
+        = markdown 'If you wish to be in this study please click the button that says **"I agree to participate"**'
     %br/
     = link_to "#", id: "print-link", class: 'print-link pull-right btn btn-xs btn-primary' do
       %i.fa.fa-print

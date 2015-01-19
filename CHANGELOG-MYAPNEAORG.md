@@ -1,6 +1,8 @@
 ## 4.1.0
 
 ### Enhancements
+- **Consent and Privacy Policy Changes**
+  - **The Consent and Privacy Policy were updated to reflect the latest IRB-approved documents**
 - **General Changes**
   - Minor changes to UI (links, text, sizing)
   - Fixed display of personal provider page to have fullscreen/landing layout
