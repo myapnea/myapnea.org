@@ -116,12 +116,6 @@ Rails.application.routes.draw do
   get 'admin/research_topics' => 'admin#research_topics', as: 'admin_research_topics'
   get 'admin/research_topic/:id' => 'admin#research_topic', as: 'admin_research_topic'
 
-  resources :users do
-    collection do
-      get :export
-    end
-  end
-
   # Development/System
   get 'pprn' => 'application#toggle_pprn_cookie'
 
@@ -134,6 +128,12 @@ Rails.application.routes.draw do
   resources :notifications, except: [:show, :index]
 
   devise_for :users, controllers: { registrations: 'registrations' }
+
+  resources :users do
+    collection do
+      get :export
+    end
+  end
 
   resources :forums do
     resources :topics do
