@@ -1,0 +1,28 @@
+<% @title = @user.name %>
+<div class="page-header">
+  <h1>
+    <%= link_to_if current_user.has_role?(:owner), "Users", users_path %> &middot; <%= @title %>
+  </h1>
+  <% if current_user.has_role? :owner %>
+    <%= link_to "Edit User", edit_user_path(@user), class: 'btn btn-default btn-xs' %>
+    <%= link_to 'Delete User', @user, method: :delete, class: 'btn btn-xs btn-danger', data: { confirm: "Are you sure you want to delete User #{@user.name}?" } unless current_user == @user %>
+  <% end %>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Email</dt>
+  <dd><%= @user.email %></dd>
+
+  <dt>Forum Username</dt>
+  <dd><%= link_to @user.forum_name, forums_path(a: @user.forum_name) if @user.forum_name.present? %></dd>
+
+  <dt>Owner</dt>
+  <dd><%= simple_check @user.has_role? :owner %></dd>
+
+  <dt>Moderator</dt>
+  <dd><%= simple_check @user.has_role? :moderator %></dd>
+
+  <dt>User Avatar</dt>
+  <dd><%= render partial: 'forums/user_image', locals: { user: @user, size: 50 } %></dd>
+</dl>
+

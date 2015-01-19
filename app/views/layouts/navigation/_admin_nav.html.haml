@@ -1,5 +1,5 @@
 .list-group
-  %a.list-group-item{href: admin_users_path, class: "#{"active" if action_name == "users"}"} Users
+  %a.list-group-item{href: users_path, class: "#{"active" if action_name == "users"}"} Users
   %a.list-group-item{href: admin_surveys_path, class: "#{"active" if action_name == "surveys"}"} Surveys
   -#%a.list-group-item{href: forums_path, class: "#{ 'active' if controller_path =~ /forums/ }"} Forums
   %a.list-group-item{href: admin_blog_path, class: "#{"active" if action_name == "blog"}"} Blog Posts

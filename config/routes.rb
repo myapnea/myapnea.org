@@ -109,19 +109,18 @@ Rails.application.routes.draw do
   get 'stealth_provider1' => 'static#stealth_provider1'
 
   # Admin Section
-  get 'admin' => 'admin#users'
-  match 'admin/users', to: 'admin#users', as: 'admin_users', via: [:get, :post]
-  get 'admin/export_users', to: 'admin#export_users', as: 'export_users'
+  get 'admin' => 'admin#surveys'
   get 'admin/surveys' => 'admin#surveys', as: 'admin_surveys'
   get 'admin/blog' => 'admin#blog', as: 'admin_blog'
   get 'admin/notifications' => 'admin#notifications', as: 'admin_notifications'
   get 'admin/research_topics' => 'admin#research_topics', as: 'admin_research_topics'
   get 'admin/research_topic/:id' => 'admin#research_topic', as: 'admin_research_topic'
 
-
-  match 'add_role', to: "admin#add_role_to_user", via: :post, as: :add_role, format: :js
-  match 'remove_role', to: "admin#remove_role_from_user", via: :post, as: :remove_role, format: :js
-  match 'destroy_user', to: "admin#destroy_user", via: :post, as: :destroy_user, format: :js
+  resources :users do
+    collection do
+      get :export
+    end
+  end
 
   # Development/System
   get 'pprn' => 'application#toggle_pprn_cookie'

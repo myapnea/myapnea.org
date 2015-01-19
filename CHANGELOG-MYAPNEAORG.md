@@ -22,6 +22,8 @@
   - Added user stats to side navigation bar
   - Administrative link added into the new UI menu
   - The terms of service, privacy policy, and consent pages have been updated to match the new UI
+- **Administrative Changes**
+  - Member management page has been updated and now proplery paginates members
 
 ### Bug Fixes
 - Reformatted beta alerts so they would be dismissable on mobile devices

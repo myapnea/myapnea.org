@@ -1,4 +1,3 @@
-
 class User < ActiveRecord::Base
   rolify role_join_table_name: 'roles_users'
 
@@ -49,6 +48,7 @@ class User < ActiveRecord::Base
 
   # Named Scopes
   scope :search_by_email, ->(terms) { where("LOWER(#{self.table_name}.email) LIKE ?", terms.to_s.downcase.gsub(/^| |$/, '%')) }
+  scope :search, lambda { |arg| where( 'LOWER(first_name) LIKE ? or LOWER(last_name) LIKE ? or LOWER(email) LIKE ?', arg.to_s.downcase.gsub(/^| |$/, '%'), arg.to_s.downcase.gsub(/^| |$/, '%'), arg.to_s.downcase.gsub(/^| |$/, '%') ) }
   scope :providers, -> { where(type: 'provider')}
 
   # Overriding Devise built-in active_for_authentication? method

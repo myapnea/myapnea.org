@@ -29,7 +29,7 @@
           Account Settings
       - if current_user.can?(:view_admin_dashboard)
         %li
-          %a{href: current_user.has_role?(:owner) ? admin_users_path : admin_surveys_path, :title => "Admin Panel"}
+          %a{href: current_user.has_role?(:owner) ? users_path : admin_surveys_path, title: "Admin Panel"}
             %i.fa.fa-wrench
             Admin Panel
       %li

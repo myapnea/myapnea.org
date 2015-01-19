@@ -2,137 +2,66 @@ require 'test_helper.rb'
 
 class AdminControllerTest < ActionController::TestCase
 
-  test "Owners should GET user administration" do
+  test "Owners should GET survey overview" do
     login(users(:owner))
 
-    get :users
+    get :surveys
     assert_response :success
-
   end
 
-  test "Moderators should not GET user administration" do
+  test "Moderators should GET survey overview" do
     login(users(:moderator_1))
 
-    get :users
-
-    assert_authorization_exception
-
+    get :surveys
+    assert_response :success
   end
 
 
   test "should raise SecurityViolation for unauthorized users" do
     login(users(:user_1))
 
-    get :users
+    get :surveys
 
     assert_authorization_exception
   end
 
-  test "should export users as owner" do
-    login(users(:owner))
-    get :export_users, format: 'csv'
-    assert_not_nil assigns(:csv_string)
-    assert_response :success
-  end
+  # test "should allow owner to add and remove user roles" do
+  #   login(users(:owner))
 
-  test "should not export users as moderator" do
-    login(users(:moderator_1))
-    get :export_users, format: 'csv'
-    assert_nil assigns(:csv_string)
-    assert_redirected_to root_path
-  end
+  #   post :add_role_to_user, format: :js, user_id: users(:user_1).id, role: roles(:moderator).name
+  #   assert_response :success
+  #   assert users(:user_1).has_role? :moderator
 
-  test "should not export users as unauthorized users" do
-    login(users(:user_1))
-    get :export_users, format: 'csv'
-    assert_nil assigns(:csv_string)
-  end
+  #   post :remove_role_from_user, user_id: users(:moderator_1).id, role: roles(:moderator).name, format: :js
+  #   assert_response :success
+  #   refute users(:moderator_1).has_role? :moderator
+  # end
 
-  test "should not export users for logged out users" do
-    get :export_users, format: 'csv'
-    assert_nil assigns(:csv_string)
-    assert_response :unauthorized
-  end
+  # test "should not allow a non-owner to add and remove user roles" do
+  #   login(users(:moderator_1))
 
-  test "should allow owner to add and remove user roles" do
-    login(users(:owner))
+  #   post :add_role_to_user, format: :js, user_id: users(:user_1).id, role: roles(:moderator).name
+  #   assert_authorization_exception
+  #   refute users(:user_1).has_role? :moderator
 
-    post :add_role_to_user, format: :js, user_id: users(:user_1).id, role: roles(:moderator).name
-    assert_response :success
-    assert users(:user_1).has_role? :moderator
+  #   post :remove_role_from_user, user_id: users(:moderator_1).id, role: roles(:moderator).name, format: :js
+  #   assert_authorization_exception
+  #   assert users(:moderator_1).has_role? :moderator
 
-    post :remove_role_from_user, user_id: users(:moderator_1).id, role: roles(:moderator).name, format: :js
-    assert_response :success
-    refute users(:moderator_1).has_role? :moderator
-  end
+  #   login(users(:user_1))
 
-  test "should not allow a non-owner to add and remove user roles" do
-    login(users(:moderator_1))
+  #   post :add_role_to_user, format: :js, user_id: users(:user_1).id, role: roles(:moderator).name
+  #   assert_authorization_exception
+  #   refute users(:user_1).has_role? :moderator
 
-    post :add_role_to_user, format: :js, user_id: users(:user_1).id, role: roles(:moderator).name
-    assert_authorization_exception
-    refute users(:user_1).has_role? :moderator
-
-    post :remove_role_from_user, user_id: users(:moderator_1).id, role: roles(:moderator).name, format: :js
-    assert_authorization_exception
-    assert users(:moderator_1).has_role? :moderator
-
-    login(users(:user_1))
-
-    post :add_role_to_user, format: :js, user_id: users(:user_1).id, role: roles(:moderator).name
-    assert_authorization_exception
-    refute users(:user_1).has_role? :moderator
-
-    post :remove_role_from_user, user_id: users(:moderator_1).id, role: roles(:moderator).name, format: :js
-    assert_authorization_exception
-    assert users(:moderator_1).has_role? :moderator
+  #   post :remove_role_from_user, user_id: users(:moderator_1).id, role: roles(:moderator).name, format: :js
+  #   assert_authorization_exception
+  #   assert users(:moderator_1).has_role? :moderator
 
 
-  end
+  # end
 
-  test "should allow owner to delete users" do
-    login(users(:owner))
-    post :destroy_user, user_id: users(:user_1).id, format: :js
-    assert_response :success
-    assert User.find_by_id(users(:user_1).id).deleted?
-
-    post :destroy_user, user_id: users(:moderator_1).id, format: :js
-    assert_response :success
-    assert User.find_by_id(users(:moderator_1).id).deleted?
-
-  end
-
-  test "should not allow owner to delete himself" do
-    login(users(:owner))
-    post :destroy_user, user_id: users(:owner).id, format: :js
-
-
-    assert_response :success
-    assert User.find_by_id(users(:owner).id)
-
-  end
-
-  test "should not allow non-owner to delete users" do
-    login(users(:moderator_1))
-
-    post :destroy_user, user_id: users(:user_1).id, format: :js
-    assert_authorization_exception
-    post :destroy_user, user_id: users(:owner).id, format: :js
-    assert_authorization_exception
-    post :destroy_user, user_id: users(:moderator_1).id, format: :js
-    assert_authorization_exception
-
-    login(users(:user_5))
-    post :destroy_user, user_id: users(:user_1).id, format: :js
-    assert_authorization_exception
-    post :destroy_user, user_id: users(:owner).id, format: :js
-    assert_authorization_exception
-    post :destroy_user, user_id: users(:moderator_1).id, format: :js
-    assert_authorization_exception
-
-  end
-
-# Notifications
+  # Notifications
   test "should show notification administration to moderator" do
     login(users(:moderator_1))
 
