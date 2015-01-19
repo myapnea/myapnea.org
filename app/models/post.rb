@@ -12,7 +12,7 @@ class Post < ActiveRecord::Base
 
   # Named Scopes
   scope :with_unlocked_topic, -> { where("posts.topic_id in (select topics.id from topics where topics.locked = ?)", false).references(:topics) }
-  scope :visible_for_user, lambda { |arg| where("(posts.hidden = ? and posts.status = ?) or (posts.user_id = ?)", false, 'approved', arg) }
+  scope :visible_for_user, lambda { |arg| where("posts.status = ? or posts.user_id = ?", 'approved', arg) }
 
   # Model Validation
   validates_presence_of :description, :user_id, :topic_id
@@ -47,6 +47,10 @@ class Post < ActiveRecord::Base
 
   def spam?
     self.status == 'spam'
+  end
+
+  def hidden?
+    self.status == 'hidden'
   end
 
   def approved_email(current_user)

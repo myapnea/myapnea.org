@@ -80,7 +80,7 @@ class User < ActiveRecord::Base
     if self.has_role? :moderator
       Post.current.with_unlocked_topic
     else
-      self.posts.where(hidden: false).with_unlocked_topic
+      self.posts.with_unlocked_topic
     end
   end
 
@@ -90,7 +90,7 @@ class User < ActiveRecord::Base
   def digest_posts
     # Comment.digest_visible.where( topic_id: self.subscribed_topics.pluck(:id) ).where("created_at > ?", (Time.now.monday? ? Time.now.midnight - 3.day : Time.now.midnight - 1.day))
     # Post.digest_visible.where( topic_id: self.subscribed_topics.pluck(:id) ).where("created_at > ?", (Time.now.monday? ? Time.now.midnight - 3.day : Time.now.midnight - 1.day))
-    Post.current.where(status: 'approved', hidden: false).where("created_at > ?", (Time.now.monday? ? Time.now.midnight - 3.day : Time.now.midnight - 1.day))
+    Post.current.where(status: 'approved').where("created_at > ?", (Time.now.monday? ? Time.now.midnight - 3.day : Time.now.midnight - 1.day))
   end
 
   def smart_forum

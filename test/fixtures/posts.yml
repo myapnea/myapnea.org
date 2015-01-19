@@ -6,7 +6,6 @@ one:
   description: Welcome to Topic One!
   user: user_1
   status: approved
-  hidden: false
   deleted: false
   last_moderated_by: moderator_1
   last_moderated_at: 2015-01-09 12:40:00
@@ -16,7 +15,6 @@ two:
   description: This is my reply to topic two
   user: user_1
   status: pending_review
-  hidden: false
   deleted: false
   last_moderated_by: moderator_1
   last_moderated_at: 2015-01-09 12:40:01
@@ -27,7 +25,6 @@ three:
   description: I made the first comment on this topic.
   user: user_1
   status: pending_review
-  hidden: false
   deleted: false
   last_moderated_by: moderator_1
   last_moderated_at: 2015-01-09 12:40:02
@@ -37,7 +34,6 @@ four:
   description: This is the last comment on the locked topic.
   user: moderator_1
   status: pending_review
-  hidden: false
   deleted: false
   last_moderated_by: moderator_1
   last_moderated_at: 2015-01-09 12:40:03
@@ -47,7 +43,6 @@ four:
 #   description: This comment got me banned.
 #   user: banned
 #   status: pending_review
-#   hidden: false
 #   deleted: false
 #   last_moderated_by: moderator_1
 #   last_moderated_at: 2015-01-09 12:40:04
@@ -57,7 +52,6 @@ six:
   description: Removed the comment above.
   user: user_2
   status: pending_review
-  hidden: false
   deleted: false
   last_moderated_by: moderator_1
   last_moderated_at: 2015-01-09 12:40:05
@@ -68,7 +62,6 @@ six:
 #   description: On Topic Two
 #   user: user_1
 #   status: approved
-#   hidden: false
 #   deleted: false
 #   last_moderated_by: moderator_1
 #   last_moderated_at: 2015-01-09 12:40:06

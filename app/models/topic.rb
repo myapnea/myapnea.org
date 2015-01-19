@@ -75,7 +75,7 @@ class Topic < ActiveRecord::Base
   end
 
   def set_last_post_at!
-    if last_post = self.posts.where(status: 'approved', hidden: false).last
+    if last_post = self.posts.where(status: 'approved').last
       self.update last_post_at: last_post.created_at
     else
       self.update last_post_at: nil
@@ -84,9 +84,9 @@ class Topic < ActiveRecord::Base
 
   def last_visible_post(current_user)
     if current_user and current_user.has_role? :moderator
-      self.posts.last
+      self.posts.where(status: ['approved', 'pending_review']).last
     else
-      self.posts.visible_for_user(current_user ? current_user.id : nil).last
+      self.posts.visible_for_user(current_user ? current_user.id : nil).where(status: ['approved', 'pending_review']).last
     end
   end
 
