@@ -14,7 +14,6 @@
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require chosen.jquery
-//= require forem
 //= require jquery.slimscroll
 //= require jquery.PrintArea
 //= require d3.min
@@ -31,5 +30,4 @@
 //= require votes
 //= require surveys
 //= require fb
-//= require forem/topics
 //= require cookies

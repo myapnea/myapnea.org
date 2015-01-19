@@ -3,7 +3,6 @@ Rails.application.config.assets.paths << Rails.root.join('vendor', 'assets', 'fo
 
 # Had to add these here to get in Precompile Package
 Rails.application.config.assets.precompile += %w( pages.css )
-Rails.application.config.assets.precompile += %w( forem.css forem.js )
 Rails.application.config.assets.precompile += %w( social/maps.js social/places.js typeahead-addresspicker.js google_analytics.js uservoice.js )
 Rails.application.config.assets.precompile += %w( .svg .eot .woff .ttf)
 Rails.application.config.assets.precompile += %w( bootswatch.js )

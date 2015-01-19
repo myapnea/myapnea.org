@@ -65,7 +65,6 @@ gem 'authority'
 gem 'koala'
 
 # Forum
-gem 'forem', :github => "openpprn/forem", :branch => "rails-4.2"
 gem 'kaminari', '~> 0.16.1'
 
 # Blogs and Notifications

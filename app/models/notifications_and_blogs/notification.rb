@@ -45,23 +45,23 @@ class Notification < ActiveRecord::Base
       end
 
 
-      # Forem
-      news_forum = Forem::Forum.find_by_name("News")
+      news_forum = Forum.find_by_name("News")
       if news_forum.present?
-        forum_posts = news_forum.topics
+        topics = news_forum.topics.where(status: 'approved')
 
-        forum_posts.each do |forem_post|
-          posts << {
-              type: :forum,
-              user_photo: forem_post.user.photo_url,
-              title: forem_post.subject,
-              #title_link: forem.forum_topic_path(forem_post.forum, forem_post),
-              user: forem_post.user.forem_name,
-              user_link: "",
-              created_at: forem_post.created_at,
-              content: forem_post.posts.first.text,
-              post: forem_post
-          }
+        topics.each do |topic|
+          if post = topic.posts.where(status: 'approved').first
+            posts << {
+                type: :forum,
+                user_photo: topic.user.photo_url,
+                title: topic.name,
+                user: topic.user.forum_name,
+                user_link: "",
+                created_at: topic.created_at,
+                content: post.description,
+                post: topic
+            }
+          end
         end
       end
 

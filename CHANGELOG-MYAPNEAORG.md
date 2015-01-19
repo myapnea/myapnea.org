@@ -30,6 +30,9 @@
 - Removed provider name as a field on the member registration page
 - Fixed a bug that prevented topic replies from being sent out to email subscribers
 
+### Refactoring
+- Removed all remaining `forem` gem code
+
 ## 4.0.0 (January 15, 2015)
 
 ### Enhancements
