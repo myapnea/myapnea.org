@@ -4,24 +4,21 @@
   - else
     - smart_forum.topics.viewable_by_user(current_user ? current_user.id : nil)
 
-.panel-body
-  %table.table
-    %col{ width: "50px" }
-    %col
-    %col{ width: "150px" }
-    %col{ width: "170px" }
-    %thead
-      %tr
-        %th
-        %th
-        %th.hidden-xs
-          Last Post By
-        %th.hidden-xs
-          Time
-    %tbody
-      - if topics
+- if topics.count > 0
+  .panel-body
+    %table.table
+      %col{ width: "50px" }
+      %col
+      %col{ width: "150px" }
+      %col{ width: "170px" }
+      %thead
+        %tr
+          %th
+          %th
+          %th.hidden-xs
+            Last Post By
+          %th.hidden-xs
+            Time
+      %tbody
         - topics.limit(topic_limit).each do |topic|
           = render partial: 'topics/summary_table_row', locals: { topic: topic }
-      -else
-        / - smart_forum.topics.limit(topic_limit).each do |topic|
-        / = render partial: 'topics/summary_table_row', locals: { topic: topic }
