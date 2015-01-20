@@ -1,0 +1,22 @@
+.content-main-header
+  %h1 Learn more about sleep apnea!
+
+.panel{ style: 'padding: 5px;' }
+  .video-player
+    .video-player-inner
+      .embed-responsive.embed-responsive-16by9{ style: 'border-radius:20px;' }
+        %iframe.embed-responsive-item{ 'src' => '//www.youtube.com/embed/4JkiWvWn2aU?rel=0&modestbranding=1&autohide=1&showinfo=0&controls=0', 'webkitallowfullscreen' => 'true', 'mozallowfullscreen' => 'true', 'allowfullscreen' => 'true' }
+    .video-image.learn-image
+
+
+.panel.row
+  .panel-heading.col-sm-12
+    %p.lead{ style: 'margin-top:20px;' }= @pc['content']
+  .panel-body.col-sm-12
+    - @pc['questions'].each do |question|
+      %h4.f300= question['question']
+      %h5.f300.spaced{ style: 'margin-bottom:20px;'}= question['answer']
+    %ul
+      - @pc['resources'].each do |resource|
+        %li.f300= markdown resource['description']
+    %br/
