@@ -1,7 +1,8 @@
 - if @provider and !params[:action] == 'providers'
   = render partial: 'static/beta/provider1'
-- elsif params[:type] == :provider or (params[:user] and params[:user][:type] == "Provider")
-  = render partial: "myapnea/static/beta/providers"
+- elsif params[:user] and params[:user][:user_type] == 'provider'
+  =# render partial: "myapnea/static/beta/providers"
+  = render partial: 'providers/form'
 - else
   .row
     .col-md-8.col-md-offset-2

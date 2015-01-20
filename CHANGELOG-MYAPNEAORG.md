@@ -8,6 +8,13 @@
   - Fixed display of personal provider page to have fullscreen/landing layout
   - Fixed display of video and added autoplay/autopause features
   - Recent News posts now link directly back to the topics
+  - Started work on allowing members to identify themselves as one of the following:
+    - Diagnosed With Sleep Apnea
+    - Concern That I May Have Sleep Apnea
+    - Family Member of an Adult with Sleep Apnea
+    - Family Member of a Child with Sleep Apnea
+    - Provider
+    - Researcher
 - **Forum Changes**
   - Topics with posts that are pending review now show up as well when a moderator filters by topics that are pending review
   - Topics are now sorted by their last visible post, and the last post by field is also filtered by the last visible post for the user

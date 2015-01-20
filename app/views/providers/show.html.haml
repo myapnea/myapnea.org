@@ -1,0 +1,135 @@
+.row.row-fullscreen#provider-header
+  .col-md-7.col-md-offset-5.darker-blue-bcg{ style: 'border-radius: 30px 0 0 30px; margin-top:50px; padding:25px; background-color: #387FCF; background-color: rgba(56, 127, 207, 0.7)' }
+    %h1.centered-text.text-white Wake up to a better future
+  .col-md-7.col-md-offset-5.darker-blue-bcg{ style: 'border-radius: 30px 0 0 30px; margin-top:20px; padding:25px; background-color: #387FCF; background-color: rgba(56, 127, 207, 0.7)' }
+    %h3.text-light9.f600.spaced Let's work together to find a cure for sleep apnea
+    %h4.text-light7 Join my network of care providers, researchers, and people with sleep apnea to work together and help us improve treament outcomes, etc.
+  .col-md-7.col-md-offset-5{ style: 'margin-top:70px' }
+    .col-sm-4.col-xs-7.pull-right
+      = image_tag "myapnea/welcome/img-small/asaa-logo_white_3x1.png", class: 'partners-img img-responsive', id: 'partner-AASA'
+    .col-sm-4.col-xs-7.pull-right
+      = image_tag "myapnea/welcome/img-small/pcornet_logo_3x1.png", class: "partners-img img-responsive", id: "partner-PCORnet"
+    .col-sm-4.col-xs-7.pull-right
+      = image_tag "myapnea/welcome/img-small/bwh-logo_3x1.png", class: "partners-img img-responsive", id: "partner-BWH"
+.row.row-fullscreen#provider-banner{style: 'margin-left:0px; margin-right:0px;'}
+  - if @provider.photo_url != 'default-user.jpg'
+    .col-lg-2.col-lg-offset-1.col-md-3.col-md-offset-1.col-xs-4
+      = image_tag @provider.photo_url, class: 'team-member-picture-md', style: 'float: right;'
+    .col-lg-8.col-md-7.col-xs-7{ style: 'padding-left:20px;' }
+      %h4.text-dark7
+        = @provider.get_welcome_message
+      %h4.primary-orange
+        = '-' + @provider.provider_name
+  - else
+    .col-xs-10.col-xs-offset-1{ style: 'padding-left:20px;' }
+      %h4.text-dark7.centered-text
+        = @provider.get_welcome_message
+      %h4.primary-orange.centered-text
+        = '-' + @provider.provider_name
+  .col-lg-1{ style: 'background-color: white;' }
+.row.row-fullscreen#community-tracker-provider
+  .col-xs-10.col-xs-offset-1
+    %h2.lighterer-blue.centered-text{ style: 'margin-top:5px;' }
+      Current Community:
+      %span.primary-blue
+        = number_with_delimiter User.current.count
+      members
+.row.row-fullscreen#slide-2p
+  .col-md-6.col-md-offset-1
+    %h1.primary-blue{style: 'margin-top:150px; '} Our Mission
+    %h3{style: 'color:rgba(0,0,0,.7);' }
+      The mission of MyApnea.Org is to improve the diagnosis and treatment of sleep apnea through the
+      %span.lighter-blue active engagement
+      of patients, families, researchers, and healthcare providers in a community that facilitates patient-centered research.
+  .col-md-4
+    = image_tag 'myapnea/welcome/img-small/team-hands-cropped.jpg', class: 'hidden-sm hidden-xs'
+.row.row-fullscreen#slide-3
+  .col-md-3.col-md-offset-1
+    = image_tag 'myapnea/welcome/img-large/unsplash-dont-stand-there.jpg', class: 'hidden-sm hidden-xs'
+  .col-md-6.col-md-offset-1
+    %h1.primary-blue Our Goal
+    %h3{style: 'color:rgba(0,0,0,.7)' }
+      By offering this network to your patients, and engaging with them actively outside of the office, they begin to feel a uniquely incredible quality of care. This community easily shows people with sleep apnea the amount of support they have from an international group of researchers, care providers, and fellow patients.
+.row.row-fullscreen#slide-4
+  .col-md-10.col-md-offset-1
+    %h1.primary-blue.f500.centered-text Our Community
+    %h3 MyApnea.org is a community built by people with sleep apnea, family members, providers, and researchers to share and learn from one another.
+  .col-md-1
+  = link_to forums_path, class: 'community-highlight-links ' do
+    .col-md-3.col-md-offset-1.col-xs-12.col-button.community-highlight.centered-text#community-highlight-1
+      %h3.text-white Active Forums
+      %p.lead Discuss with others about living with sleep apnea and what is important to you.  Share ideas on how to promote the website to others.  The more members we have, the more we can learn from each other and contribute to future research.
+  = link_to surveys_path, class: 'community-highlight-links' do
+    .col-md-3.col-xs-12.col-button.community.highlight.centered-text#community-highlight-2
+      %h3.text-white Research Surveys
+      %p.lead Answer a series of questions about symptoms, treatment, and related health conditions.  Your answers will help the sleep apnea community better understand the disorder and where future research efforts should be directed.
+      %p.lead
+        Each completed survey earns you an entry into our monthly drawing for a
+        %span.text-white#visa-gift-card $250 Visa Gift card.
+  = link_to research_topics_path, class: 'community-highlight-links' do
+    .col-md-3.col-xs-12.col-button.community.highlight.centered-text#community-highlight-2
+      %h3.text-white Impact Questions
+      %p.lead Cast your vote on which research questions matter to you most. Providers and researchers will share what is known about the highest ranked topics and if data is lacking they will endorse the topic as an important direction for future research.
+.row#partners-banner
+  .col-sm-12.col-md-4.col-lg-4.col-lg-offset-1
+    = image_tag 'myapnea/welcome/img-small/asaa_logo.jpg', class: "partners-img img-responsive", id: "partner-AASA"
+  .col-sm-12.col-md-4.col-lg-3
+    = image_tag 'myapnea/welcome/img-small/pcornet_logo.jpg', class: "partners-img img-responsive", id: "partner-PCORnet"
+  .col-sm-12.col-md-4.col-lg-3
+    = image_tag 'myapnea/welcome/img-small/bwh_logo.jpg', class: "partners-img img-responsive", id: "partner-BWH"
+/ Signup sheet
+%a{:name=>'signup'}
+.row.row-fullscreen{id: "slide-5"}
+  .col-md-10.col-md-offset-1.col-lg-8.col-lg-offset-2.panel.panel-signup
+    .panel-body#panel-sign-up
+      - if current_user
+        - if false and current_user.provider_id == @provider.id
+          %h3.f300.centered-text
+            Hi there,
+            = current_user.first_name + '!'
+            It looks like
+            = @provider.first_name
+            is your provider.
+          %h4.f300.centered-text
+            If you want to get in touch with them, feel free to
+            = link_to 'send them an email', "mailto:#{@provider.email}"
+        - else
+          %h3.f300.centered-text
+            Hi there,
+            = current_user.first_name + '!'
+            It looks like
+            = @provider.first_name
+            is not your provider.
+          %h4.f300.centered-text
+            Do you want to list them as your primary care provider?
+          = link_to 'Yes', update_account_path(:user => { provider_id: @provider.id }), method: :patch, class: 'btn btn-primary'
+      - else
+        %h1.darker-blue.centered-text Wake up to a better future!
+        %h4 By joining, you gain access to a unique group of resources and a growing research community. It's fast, simple, and completely free of cost to join and start making a difference!
+        %h4
+          And, of course, all of your information is completely protected!
+          - if false
+            %span.lighter-blue#privacy-policy{ data:{ toggle: 'modal', target:'#myModal'} }
+          - else
+            = link_to 'See our privacy policy.', privacy_path, target: '_blank'
+        - resource = User.new
+        - resource_name = :user
+        = form_for(resource, :url => registration_path(resource_name), html: {}) do |f|
+          = hidden_field_tag "#{resource_name}[provider_id]", @provider.id
+          .form-group
+            = label "#{resource_name}[first_name]", :first_name, class: 'sr-only'
+            = text_field_tag "#{resource_name}[first_name]", (params[resource_name] ? params[resource_name][:first_name] : ''), class: 'form-control input-lg', placeholder: User.human_attribute_name(:first_name), autocomplete: :off
+          .form-group
+            = label "#{resource_name}[last_name]", :last_name, class: 'sr-only'
+            = text_field_tag "#{resource_name}[last_name]", (params[resource_name] ? params[resource_name][:last_name] : ''), class: 'form-control input-lg', placeholder: User.human_attribute_name(:last_name), autocomplete: :off
+          .form-group
+            = label "#{resource_name}[year_of_birth]", :year_of_birth, class: 'sr-only'
+            = select_tag "#{resource_name}[year_of_birth]", options_for_select([['Year of Birth', nil]] + (1900..Date.today.year).to_a.reverse.collect{|i| [i,i]}, (params[resource_name] ? params[resource_name][:year_of_birth] : '')), class: 'form-control input-lg'
+          .form-group
+            = f.label :email, class: 'sr-only'
+            = f.email_field :email, class: 'form-control input-lg', placeholder: User.human_attribute_name(:email), autocomplete: :off
+          .form-group
+            = f.label :password, class: 'sr-only'
+            = f.password_field :password, class: 'form-control input-lg', placeholder: User.human_attribute_name(:password)
+          = submit_tag 'Sign up!', class: "form-control", id: "submit-join"
+

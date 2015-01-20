@@ -7,7 +7,7 @@ class RegistrationsController < Devise::RegistrationsController
 
 
 
-    @provider = Provider.find_by_slug(params[:slug])
+    @provider = User.providers.find_by_slug(params[:slug])
 
 
     #
@@ -50,8 +50,8 @@ class RegistrationsController < Devise::RegistrationsController
   private
 
   def sign_up_params
-    if params[:user][:type] == "Provider"
-      params.require(:user).permit(:first_name, :last_name, :provider_name, :slug, :address_1, :address_2, :city, :state_code, :zip_code, :email, :password, :password_confirmation, :type, :welcome_message)
+    if params[:user][:user_type] == "provider"
+      params.require(:user).permit(:first_name, :last_name, :provider_name, :slug, :address_1, :address_2, :city, :state_code, :zip_code, :email, :password, :password_confirmation, :user_type, :welcome_message)
     else
       params.require(:user).permit(:first_name, :last_name, :year_of_birth, :zip_code, :email, :password, :password_confirmation, :provider_name, :provider_id)
     end

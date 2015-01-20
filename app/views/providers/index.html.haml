@@ -1,0 +1,22 @@
+.content-main-header
+  %h1
+    Providers on
+    = ENV['pprn_title']
+
+.row
+  - @providers.each do |provider|
+    .col-xs-12.col-sm-6.col-md-4
+      .panel
+        .panel-heading{ style: "overflow:hidden;" }
+          %h3.f300{ style: "white-space:nowrap;position:relative" }
+            = link_to provider.provider_name, provider_path(provider.slug)
+        .panel-body
+          %div{ style: "text-align:center;padding-bottom:5px;height:145px;line-height:145px" }
+            = link_to image_tag( provider.photo_url, style: 'max-width:100%;max-height:140px' ), provider_path(provider.slug)
+  .col-xs-12.col-sm-6.col-md-4
+    .panel
+      .panel-heading
+        %h3.f300= link_to 'Become a Provider', new_provider_path
+      .panel-body
+        %div{ style: "text-align:center;padding-bottom:5px;height:145px;line-height:145px" }
+          = link_to image_tag( 'default-user.jpg', style: 'max-width:100%;max-height:140px' ), new_provider_path

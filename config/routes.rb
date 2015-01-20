@@ -25,7 +25,6 @@ Rails.application.routes.draw do
   get 'stealth_datadisplay' => 'static#stealth_datadisplay'
   get 'stealth_surveydisplay' => 'static#stealth_surveydisplay'
   get 'stealth_providers' => 'static#stealth_providers'
-  get 'providers' => 'static#providers'
   get 'stealth_provider1' => 'static#stealth_provider1'
   get 'stealth_map' => 'static#stealth_map'
   get 'stealth_share' => 'static#stealth_share'
@@ -40,14 +39,17 @@ Rails.application.routes.draw do
 
   get 'p/:slug', to: 'static#provider_page'
 
-  # Provider Pages
-  devise_scope :user do
-    match "p/:slug/sign_up", to: "registrations#new", via: :get
-    match "providers/sign_up", to: "registrations#new", via: :get, defaults: {type: :provider}
-  end
 
-  match 'provider_profile', to: 'providers#profile', via: :get, as: :provider_profile
-  match 'update_provider_profile', to: 'providers#update', via: :patch
+  resources :providers
+
+  # # Provider Pages
+  # devise_scope :user do
+  #   match "p/:slug/sign_up", to: "registrations#new", via: :get
+  #   match "providers/sign_up", to: "registrations#new", via: :get, defaults: {type: :provider}
+  # end
+  # match 'provider_profile', to: 'providers#profile', via: :get, as: :provider_profile
+  # match 'update_provider_profile', to: 'providers#update', via: :patch
+
 
   # Facebook Real Updates
   # match "update_fb_feed", to: "posts#receive_update", as: :update_fb_feed, via: :post
