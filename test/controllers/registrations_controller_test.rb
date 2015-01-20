@@ -102,10 +102,8 @@ class RegistrationsControllerTest < ActionController::TestCase
     request.env["devise.mapping"] = Devise.mappings[:user]
 
     assert_difference('User.count') do
-      post :create, user: { first_name: 'First Name', last_name: 'Last Name', provider_name: "Health Associates", slug: "health-associates", email: 'new_user@example.com', password: 'password', password_confirmation: 'password', type: "Provider" }
+      post :create, user: { first_name: 'First Name', last_name: 'Last Name', provider_name: "Health Associates", slug: "health-associates", email: 'new_user@example.com', password: 'password', password_confirmation: 'password', user_type: "provider" }
     end
-
-    assert_redirected_to provider_profile_path
 
     assert_not_nil assigns(:user)
     assert_equal 'First Name', assigns(:user).first_name
@@ -114,14 +112,14 @@ class RegistrationsControllerTest < ActionController::TestCase
     assert_equal 'health-associates', assigns(:user).slug
     assert_equal 'new_user@example.com', assigns(:user).email
 
-
+    assert_redirected_to home_path
   end
 
   test "an invalid provider should should not be able to sign up" do
     request.env["devise.mapping"] = Devise.mappings[:user]
 
     assert_difference('User.count', 0) do
-      post :create, user: { first_name: '', last_name: '', provider_name: "", slug: "", zip_code: '', email: 'new_user@example.com', password: 'password', password_confirmation: 'password', type: "Provider" }
+      post :create, user: { first_name: '', last_name: '', provider_name: "", slug: "", zip_code: '', email: 'new_user@example.com', password: 'password', password_confirmation: 'password', user_type: "provider" }
     end
 
     assert_not_nil assigns(:user)
@@ -129,11 +127,9 @@ class RegistrationsControllerTest < ActionController::TestCase
     assert assigns(:user).errors.size > 0
     assert_equal ["can't be blank"], assigns(:user).errors[:first_name]
     assert_equal ["can't be blank"], assigns(:user).errors[:last_name]
-    # assert_equal ["can't be blank"], assigns(:user).errors[:slug]
-    # assert_equal ["can't be blank"], assigns(:user).errors[:provider_name]
 
 
-    assert_template 'myapnea/static/beta/_providers'
+    assert_template partial: 'providers/_form' # Could be changed to providers/new
     assert_response :success
   end
 

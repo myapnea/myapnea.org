@@ -1,24 +1,36 @@
 class User < ActiveRecord::Base
-  rolify role_join_table_name: 'roles_users'
+  mount_uploader :photo, PhotoUploader
 
+  rolify role_join_table_name: 'roles_users'
 
   include Authority::UserAbilities
   include Authority::Abilities
 
-  # Enable User Connection to External API Accounts
-  #include ExternalUsers
-  include Deletable
-
-  # Map to PCORNET Common Data Model
-  include CommonDataModel
-
-
   self.authorizer_name = "UserAuthorizer"
+
 
   # Include default devise modules. Others available are:
   # :confirmable, :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :timeoutable, :lockable
+
+  # Callbacks
+  after_create :send_welcome_email
+
+  TYPE = [['Diagnosed With Sleep Apnea', 'patient_diagnosed'],
+          ['Concern That I May Have Sleep Apnea', 'patient_at_risk'],
+          ['Family Member of an Adult with Sleep Apnea', 'family_member_adult'],
+          ['Family Member of a Child with Sleep Apnea', 'family_member_child'],
+          ['Provider', 'provider'],
+          ['Researcher', 'researcher']]
+
+  # Concerns
+  include CommonDataModel, Deletable
+
+  # Named Scopes
+  scope :search_by_email, ->(terms) { where("LOWER(#{self.table_name}.email) LIKE ?", terms.to_s.downcase.gsub(/^| |$/, '%')) }
+  scope :search, lambda { |arg| where( 'LOWER(first_name) LIKE ? or LOWER(last_name) LIKE ? or LOWER(email) LIKE ?', arg.to_s.downcase.gsub(/^| |$/, '%'), arg.to_s.downcase.gsub(/^| |$/, '%'), arg.to_s.downcase.gsub(/^| |$/, '%') ) }
+  scope :providers, -> { where user_type: 'provider' }
 
   # Model Validation
   validates_presence_of :first_name, :last_name
@@ -28,13 +40,12 @@ class User < ActiveRecord::Base
   end
 
   with_options if: :is_provider? do |user|
-    # user.validates :provider_name, presence: true, uniqueness: true
-    # user.validates :slug, presence: true, uniqueness: true
-    # user.validates :slug, format: { with: /\A[a-z\-]+[a-z]+\z/, message: "only allows lower-case words and letters separated by hyphens (eg. john-smith-medical)" }
+    user.validates :provider_name, allow_blank: true, uniqueness: true
+    user.validates :slug, allow_blank: true, uniqueness: true, format: { with: /\A[a-z][a-z0-9\-]*[a-z0-9]\Z/ }
   end
 
   # Model Relationships
-  belongs_to :provider, class_name: "Provider", foreign_key: 'provider_id'
+  belongs_to :provider, class_name: "User", foreign_key: 'provider_id'
   has_many :answer_sessions, -> { where deleted: false }
   has_many :answers, -> { where deleted: false }
   has_many :votes
@@ -46,19 +57,20 @@ class User < ActiveRecord::Base
   has_many :posts, -> { where deleted: false }
   has_many :approved_posts, -> { where deleted: false, status: 'approved' }, through: :posts, source: :topic
   has_many :subscriptions
-
-  # Named Scopes
-  scope :search_by_email, ->(terms) { where("LOWER(#{self.table_name}.email) LIKE ?", terms.to_s.downcase.gsub(/^| |$/, '%')) }
-  scope :search, lambda { |arg| where( 'LOWER(first_name) LIKE ? or LOWER(last_name) LIKE ? or LOWER(email) LIKE ?', arg.to_s.downcase.gsub(/^| |$/, '%'), arg.to_s.downcase.gsub(/^| |$/, '%'), arg.to_s.downcase.gsub(/^| |$/, '%') ) }
-  scope :providers, -> { where(type: 'provider')}
+  has_many :users, class_name: "User", foreign_key: "provider_id"
 
   # Overriding Devise built-in active_for_authentication? method
   def active_for_authentication?
     super and not self.deleted?
   end
 
+  # Alias to be deprecated
   def is_provider?
-    self.type == "Provider"
+    self.provider?
+  end
+
+  def provider?
+    self.user_type == 'provider'
   end
 
   def all_topics
@@ -120,6 +132,15 @@ class User < ActiveRecord::Base
       'default-user.jpg'
     end
   end
+
+  # Should change to this
+  # def photo_url
+  #   if photo.present?
+  #     photo.url
+  #   else
+  #     'default-user.jpg'
+  #   end
+  # end
 
   def my_photo_url
     if social_profile and social_profile.photo
@@ -229,5 +250,22 @@ class User < ActiveRecord::Base
 
   def answer_for(answer_session, question)
     Answer.current.where(answer_session_id: answer_session.id, question_id: question.id).order("updated_at desc").includes(answer_values: :answer_template).limit(1).first
+  end
+
+  ## Provider Methods
+
+  def get_welcome_message
+    if welcome_message.present?
+      welcome_message
+    else
+      "Welcome to my provider page!"
+    end
+  end
+
+
+  private
+
+  def send_welcome_email
+    # UserMailer.welcome(self).deliver if Rails.env.production?
   end
 end
