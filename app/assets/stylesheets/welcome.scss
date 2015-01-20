@@ -345,10 +345,17 @@ span#privacy-policy:hover {
   padding:0 10px;
 }
 
-#panel-sign-up .form-control {
-  width:98%;
-  margin:10px;
-  font-size:16px;
+#panel-sign-up {
+  .input-group {
+    width:100%;
+    margin-top:10px;
+    margin-bottom:10px;
+    font-size:16px;
+    .signup-error {
+      color: #FCF2F2;
+      background-color: #DF7667;
+    }
+  }
 }
 
 /* If input groups are needed */

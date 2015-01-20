@@ -28,8 +28,9 @@ class User < ActiveRecord::Base
   end
 
   with_options if: :is_provider? do |user|
-    user.validates :provider_name, presence: true, uniqueness: true
-    user.validates :slug, presence: true, uniqueness: true
+    # user.validates :provider_name, presence: true, uniqueness: true
+    # user.validates :slug, presence: true, uniqueness: true
+    # user.validates :slug, format: { with: /\A[a-z\-]+[a-z]+\z/, message: "only allows lower-case words and letters separated by hyphens (eg. john-smith-medical)" }
   end
 
   # Model Relationships

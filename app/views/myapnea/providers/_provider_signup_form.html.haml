@@ -1,0 +1,48 @@
+.row.row-fullscreen{id: "slide-5p"}
+  .col-md-10.col-md-offset-1.col-lg-8.col-lg-offset-2.panel.panel-signup
+    .panel-body#panel-sign-up
+      %h1.darker-blue.centered-text Help us now!
+      %h4.centered-text By joining, you are creating the foundation for people with sleep apnea to receive better care and support.
+      =# resource.errors.full_messages
+
+      = form_for(resource, as: :user,  url: registration_path(resource), class: "form-horizontal", method: :post) do |f|
+        - if @user.errors.any?
+          .bs-callout.bs-callout-danger#error_explanation
+            %h4
+              = pluralize(@user.errors.count, "error")
+              prohibited this user from being saved
+            %ul
+              - @user.errors.full_messages.each do |msg|
+                %li= msg
+        = hidden_field_tag "user[type]", "Provider"
+        = hidden_field_tag "user[welcome_message]", "Welcome to my page!"
+        .input-group
+          = f.text_field :first_name, placeholder: 'First name', class: "form-control"
+          - if @user.errors.any? and @user.errors[:first_name].present?
+            %span.input-group-addon.signup-error !
+        .input-group
+          = f.text_field :last_name, placeholder: 'Last name', class: "form-control"
+          - if @user.errors.any? and @user.errors[:last_name].present?
+            %span.input-group-addon.signup-error !
+        / .input-group
+        /   = f.text_field :provider_name, placeholder: "Official provider name (example: JohnSmithMedical)", class: "form-control"
+        /   - if @user.errors.any? and @user.errors[:provider_name].present?
+        /     %span.input-group-addon.signup-error !
+        / .input-group
+        /   = f.text_field :slug, placeholder: 'Unique url name (example: john-smith-medical)', class: "form-control"
+        /   - if @user.errors.any? and @user.errors[:slug].present?
+        /     %span.input-group-addon.signup-error !
+        .input-group
+          = f.email_field :email, placeholder: 'Email address', class: "form-control"
+          - if @user.errors.any? and @user.errors[:email].present?
+            %span.input-group-addon.signup-error !
+        .input-group
+          = f.password_field :password, placeholder: 'Password', class: "form-control"
+          - if @user.errors.any? and @user.errors[:password].present?
+            %span.input-group-addon.signup-error !
+        .input-group
+          = f.password_field :password_confirmation, placeholder: 'Password Confirmation', class: "form-control"
+          - if @user.errors.any? and @user.errors[:password_confirmation].present?
+            %span.input-group-addon.signup-error !
+        .input-group
+          = f.submit 'Sign up!', class: "form-control", id: "submit-join"
