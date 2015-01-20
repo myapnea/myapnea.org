@@ -21,9 +21,12 @@
   - Added quick link to change your account settings to be included in the map
   - Community map now displays US and World membership counts
 - **User Interface Changes**
-  - Added user stats to side navigation bar
-  - Administrative link added into the new UI menu
-  - The terms of service, privacy policy, and consent pages have been updated to match the new UI
+  - Added user stats to side navigation bar (beta version)
+  - Administrative link added into the new UI menu (beta version)
+  - The terms of service, privacy policy, and consent pages have been updated to match the new UI (beta version)
+  - Learn page added as a quick link beneath the 'About Us' dropdown, and updated to fit new UI (beta version)
+  - Rank the Research updated with new UI and UX (beta version)
+    - Removed ability for members to see number of votes on each topic until **after** they vote
 - **Email Changes**
   - Updated styling on Password Reset and Account Unlock emails to match new MyApnea.Org themed email layout
   - Started work on new registration welcome email

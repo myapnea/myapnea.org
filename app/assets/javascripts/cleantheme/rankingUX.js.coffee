@@ -24,6 +24,7 @@
         ,400
         , ->
           newWidth = parseFloat($(".progress-bar").attr("aria-valuenow")) + 1
+          console.log newWidth
           $(".progress-bar").width newWidth + "%"
           $(".progress-bar").html newWidth + "%"
     return

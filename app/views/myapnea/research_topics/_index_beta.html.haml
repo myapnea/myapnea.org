@@ -1,0 +1,31 @@
+- @research_topics = ResearchTopic.all
+.content-main-header
+  %h1.f300 Rank the Research
+
+.panel{ style: 'padding: 15px;'}
+  %p.lead
+    At MyApnea.Org you can help direct the future of sleep apnea research.
+    Below are questions important to network members. Every month, you can
+    cast up to five votes (and don't forget to suggest your own questions by
+    clicking the
+    = link_to 'Add a new research question', new_research_topic_path, class: 'btn btn-xs btn-primary'
+    ). Top rated questions will be explored within the Forum. If data is
+    lacking, the topic will be endorsed as an important direction for future
+    research. Let your voice be heard, vote now!
+
+- if current_user
+  .panel.panel-rank-research
+    %table.table
+      - @research_topics.each do |research_topic|
+        %tr
+          %td
+            %h1{ data: { toggle:'collapse', target:"#{'#progress'+research_topic.id.to_s}" } }
+              %i.fa.fa-thumbs-o-up.fa-rank
+          %td
+            %h4= research_topic.text
+            %p.f300.collapse{ id: "#{'ranking'+research_topic.id.to_s}" }
+              = research_topic.description
+            %p.f300.expand-topic{ data: { toggle:'collapse', target:"#{'#ranking'+research_topic.id.to_s}" } } Read more
+            .collapse.progress{ style: 'width:90%;', id:"#{'progress'+research_topic.id.to_s}" }
+              .progress-bar{ role:'progressbar', aria:{ valuenow:"#{research_topic.rating}", valuemin:'0', valuemax:'100' } }
+                = research_topic.rating
