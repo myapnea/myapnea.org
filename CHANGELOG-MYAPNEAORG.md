@@ -32,6 +32,10 @@
   - Started work on new registration welcome email
 - **Administrative Changes**
   - Member management page has been updated and now proplery paginates members
+- **Provider Changes**
+  - Providers are able to sign up with minimal information
+    - Only require name, email, and password to create account
+    - Will input slug, provider name, location, etc. in provider_profile page
 
 ### Bug Fixes
 - Reformatted beta alerts so they would be dismissable on mobile devices
