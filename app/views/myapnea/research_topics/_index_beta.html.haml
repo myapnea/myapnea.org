@@ -17,15 +17,6 @@
   .panel.panel-rank-research
     %table.table
       - @research_topics.each do |research_topic|
-        %tr
-          %td
-            %h1{ data: { toggle:'collapse', target:"#{'#progress'+research_topic.id.to_s}" } }
-              %i.fa.fa-thumbs-o-up.fa-rank
-          %td
-            %h4= research_topic.text
-            %p.f300.collapse{ id: "#{'ranking'+research_topic.id.to_s}" }
-              = research_topic.description
-            %p.f300.expand-topic{ data: { toggle:'collapse', target:"#{'#ranking'+research_topic.id.to_s}" } } Read more
-            .collapse.progress{ style: 'width:90%;', id:"#{'progress'+research_topic.id.to_s}" }
-              .progress-bar{ role:'progressbar', aria:{ valuenow:"#{research_topic.rating}", valuemin:'0', valuemax:'100' } }
-                = research_topic.rating
+        %tr{ id: "#{'update_link'+research_topic.id.to_s}" }
+          = render partial: 'votes/voting_link', locals: { research_topic: research_topic}
+

@@ -8,6 +8,10 @@ class Vote < ActiveRecord::Base
   belongs_to :notification
   belongs_to :research_topic
 
+  # Vote.voting_users_count
+  def self.total_number_voters
+    self.uniq.pluck(:user_id).count
+  end
 
   def self.popular_research_questions
     res = Vote.select("questions.id as question_id, sum(votes.rating) as rating").where("groups.name = 'Research Questions'").joins("full outer join questions on votes.question_id = questions.id").joins("full outer join groups on questions.group_id = groups.id").group("questions.id")
