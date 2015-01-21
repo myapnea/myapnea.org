@@ -32,7 +32,7 @@ module SurveysHelper
         ask_question_path(answer_session_id: answer_session.id, question_id: question_flow.first_question.id)
       end
     else
-      start_survey_path(question_flow_id: question_flow.id)
+      intro_survey_path(question_flow_id: question_flow.id)
     end
   end
 
