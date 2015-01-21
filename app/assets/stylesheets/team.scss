@@ -21,7 +21,25 @@
 }
 
 .advisory-small:hover {
+  cursor: pointer;
   background-color: #b1d2f6;
+  h5 {
+    color: white;
+    span {
+      color: rgba(255,255,255, .9);
+    }
+  }
+  h6 {
+    color: white;
+    color: rgba(255,255,255, .9);
+  }
+  p {
+    color: rgba(0,0,0,.7);
+  }
+}
+
+.advisory-small:active {
+  // background-color: #a0c0f6;
 }
 
 
