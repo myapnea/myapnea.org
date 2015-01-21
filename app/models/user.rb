@@ -260,6 +260,6 @@ class User < ActiveRecord::Base
   private
 
   def send_welcome_email
-    # UserMailer.welcome(self).deliver if Rails.env.production?
+    UserMailer.welcome(self).deliver if Rails.env.production? and !self.provider?
   end
 end

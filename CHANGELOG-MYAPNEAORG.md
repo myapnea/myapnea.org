@@ -38,7 +38,7 @@
     - Industry relation text added
 - **Email Changes**
   - Updated styling on Password Reset and Account Unlock emails to match new MyApnea.Org themed email layout
-  - Started work on new registration welcome email
+  - Added a new member welcome email
 - **Administrative Changes**
   - Member management page has been updated and now proplery paginates members
   - Moderators can now create approved Research Topics
