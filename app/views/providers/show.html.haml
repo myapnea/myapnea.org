@@ -83,7 +83,7 @@
   .col-md-10.col-md-offset-1.col-lg-8.col-lg-offset-2.panel.panel-signup
     .panel-body#panel-sign-up
       - if current_user
-        - if false and current_user.provider_id == @provider.id
+        - if current_user.provider_id == @provider.id
           %h3.f300.centered-text
             Hi there,
             = current_user.first_name + '!'
@@ -92,7 +92,7 @@
             is your provider.
           %h4.f300.centered-text
             If you want to get in touch with them, feel free to
-            = link_to 'send them an email', "mailto:#{@provider.email}"
+            = link_to('send them an email', "mailto:#{@provider.email}")+"."
         - else
           %h3.f300.centered-text
             Hi there,
