@@ -33,6 +33,7 @@ Rails.application.routes.draw do
   get 'stealth_privacy' => 'static#stealth_privacy'
   get 'stealth_terms' => 'static#stealth_terms'
   get 'stealth_home' => 'static#stealth_home'
+  get 'advisory' => 'static#advisory'
 
   get 'privacy_policy_document' => 'static#content', :page => "privacy_policy"
   get 'terms_of_service' => 'static#content', :page => "terms_of_service"

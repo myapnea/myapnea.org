@@ -36,6 +36,7 @@
   - Rank the Research updated with new UI and UX (beta version)
     - Removed ability for members to see number of votes on each topic until **after** they vote
     - Showing percentage of votes received
+  - SAPCON Advisory Council added
 - **Email Changes**
   - Updated styling on Password Reset and Account Unlock emails to match new MyApnea.Org themed email layout
   - Started work on new registration welcome email

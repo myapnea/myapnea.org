@@ -1,0 +1,16 @@
+.content-main-header
+  %h1.f300 Advisory Council
+
+.panel{ style: 'margin-bottom: 30px' }
+  .panel-body
+    %p.lead
+      The Sleep Apnea Patient Centered Outcomes Network (SAPCON) Advisory Council brings together a range of professionals and researchers to help us develop our platform. Each member has been active in the field of sleep research and treatment.
+
+- @pc["members"].each do |member|
+  .panel.advisory-small{ data: { toggle: 'collapse', target: "#collapse#{member['name'].gsub(/\s+/, '')}" } }
+    %h5
+      = member["name"]
+      - if member["title"]
+        %span= member["title"]
+    %h6= member["loc"]
+    %p.collapse{ id: "collapse#{member['name'].gsub(/\s+/, '')}"}= member["bio"]
