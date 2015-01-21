@@ -1,4 +1,4 @@
-<% pw = User.new(:password => 'password').encrypted_password %>
+<% pw = User.new(password: 'password').encrypted_password %>
 
 # $2a$10$8uaSUgIGTmueQtYP0yFTv.rs98cbkWhNS75Pdk3vvPXnQPIBmkszW
 
@@ -17,6 +17,17 @@ social:
   first_name: Tommy
   last_name: Boy
   email: tommyboy@gmail.com
+  accepted_consent_at: <%= 5.day.ago.to_s(:db) %>
+  accepted_privacy_policy_at: <%= 6.day.ago.to_s(:db) %>
+  zip_code: 12345
+  year_of_birth: 1980
+  user_type: patient_diagnosed
+  encrypted_password: <%= pw %>
+
+participant:
+  first_name: Research
+  last_name: Participant
+  email: research_participant@example.com
   accepted_consent_at: <%= 5.day.ago.to_s(:db) %>
   accepted_privacy_policy_at: <%= 6.day.ago.to_s(:db) %>
   zip_code: 12345

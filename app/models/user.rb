@@ -166,7 +166,7 @@ class User < ActiveRecord::Base
     email
   end
 
-  def revoke_consent
+  def revoke_consent!
     update_attribute :accepted_consent_at, nil
     update_attribute :accepted_privacy_policy_at, nil
   end

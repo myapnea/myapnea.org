@@ -15,13 +15,12 @@ class AccountController < ApplicationController
         redirect_to consent_path, notice: "Please read over and accept the research consent before participating in research."
       end
     elsif params[:declined_to_participate]
-      current_user.revoke_consent
+      current_user.revoke_consent!
       redirect_to home_path, notice: "You are not enrolled in research. If you ever change your mind, just visit your account settings to view the research consent and privacy policy again."
     else
       load_content
     end
   end
-
 
   def consent
     if params[:consent_read]
@@ -32,11 +31,16 @@ class AccountController < ApplicationController
         redirect_to privacy_path, notice: "Please read over and accept the privacy policy before participating in research. You can opt out any time by visiting your user account settings."
       end
     elsif params[:declined_to_participate]
-      current_user.revoke_consent
+      current_user.revoke_consent!
       redirect_to home_path, notice: "You are not enrolled in research. If you ever change your mind, just visit your account settings to view the research consent and privacy policy again."
     else
       load_content
     end
+  end
+
+  def revoke_consent
+    current_user.revoke_consent!
+    redirect_to account_path, notice: "You have successfully left the research study. If you ever change your mind, just visit your account settings to view the research consent and privacy policy again."
   end
 
   def dashboard

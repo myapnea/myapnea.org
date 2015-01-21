@@ -44,6 +44,7 @@
   - Only using fixed-positioning for the user sidebar on medium and large screens
 - Removed provider name as a field on the member registration page
 - Fixed a bug that prevented topic replies from being sent out to email subscribers
+- Clicking Leave the Research Study now properly reflects the member's choice on the account page
 
 ### Refactoring
 - Removed all remaining `forem` gem code

@@ -1,6 +1,12 @@
 require 'test_helper.rb'
 
 class AccountControllerTest < ActionController::TestCase
+
+  setup do
+    @regular_user = users(:user_1)
+    @participant = users(:participant)
+  end
+
   test "Logged in user should get account settings" do
     login(users(:user_1))
 
@@ -19,6 +25,21 @@ class AccountControllerTest < ActionController::TestCase
   test "should get consent" do
     get :consent
     assert_response :success
+  end
+
+  test "should revoke consent for research participant" do
+    assert_not_nil @participant.accepted_consent_at
+    assert_not_nil @participant.accepted_privacy_policy_at
+    login(@participant)
+    post :revoke_consent
+    @participant.reload
+    assert_nil @participant.accepted_consent_at
+    assert_nil @participant.accepted_privacy_policy_at
+    assert_not_nil flash[:notice]
+    assert_redirected_to account_path
+  end
+
+  test "should not revoke consent for logged out user" do
   end
 
   test "User should be able to sign consent" do

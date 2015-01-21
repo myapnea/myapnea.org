@@ -94,4 +94,4 @@
         %h3 Leave Research Study
         %p.small= "You may choose to leave the research study at any time. We will no longer collect any information from you and we will stop all communication. However, as stated in the informed consent, the information that you have already provided to #{ENV['pprn_title']} will remain within the study results."
         = link_to 'View Consent', consent_path, class: 'btn btn-info btn-block'
-        = link_to 'Leave Research Study', consent_path(consent_revoked: true), method: :post, class: 'btn btn-warning btn-block'
+        = link_to 'Leave Research Study', revoke_consent_path, method: :post, class: 'btn btn-warning btn-block'
