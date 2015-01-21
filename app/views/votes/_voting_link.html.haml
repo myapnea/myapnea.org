@@ -1,0 +1,14 @@
+%td
+  %h1
+    = link_to vote_path(vote: { research_topic_id: research_topic.id, rating: (research_topic.received_vote_from?(current_user) ? '0' : '1') }), method: :post, remote: true do
+      %i.fa.fa-thumbs-o-up.fa-rank{ id:"#{'voting_icon'+research_topic.id.to_s}", class: "#{research_topic.received_vote_from?(current_user) ? 'voted' : 'disabled'}", data: { toggle:'collapse', target:"#{'#progress'+research_topic.id.to_s}" } }
+%td
+  %h4= research_topic.text
+  %p.f300.collapse{ id: "#{'ranking'+research_topic.id.to_s}" }
+    = research_topic.description
+  %p.f300.expand-topic{ data: { toggle:'collapse', target:"#{'#ranking'+research_topic.id.to_s}" } } Read more
+  .progress{ style: 'width:90%;', id:"#{'progress'+research_topic.id.to_s}", class: "#{research_topic.received_vote_from?(current_user) ? 'collapse in' : 'collapse'}" }
+    .progress-bar{ role:'progressbar', aria:{ valuenow:"#{research_topic.voted_on_percentage}", valuemin:'0', valuemax:'100' } }
+      = research_topic.voted_on_percentage
+
+

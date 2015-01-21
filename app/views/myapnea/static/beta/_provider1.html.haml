@@ -101,7 +101,7 @@
             = @provider.first_name
             is not your provider.
           %h4.f300.centered-text
-            Do you want to list him as your primary care provider?
+            Do you want to list them as your primary care provider?
           = link_to 'Yes', update_account_path(:user => { provider_id: @provider.id }), method: :patch, class: 'btn btn-primary'
       - else
         %h1.darker-blue.centered-text Wake up to a better future!

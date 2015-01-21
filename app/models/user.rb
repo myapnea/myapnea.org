@@ -30,7 +30,7 @@ class User < ActiveRecord::Base
   # Named Scopes
   scope :search_by_email, ->(terms) { where("LOWER(#{self.table_name}.email) LIKE ?", terms.to_s.downcase.gsub(/^| |$/, '%')) }
   scope :search, lambda { |arg| where( 'LOWER(first_name) LIKE ? or LOWER(last_name) LIKE ? or LOWER(email) LIKE ?', arg.to_s.downcase.gsub(/^| |$/, '%'), arg.to_s.downcase.gsub(/^| |$/, '%'), arg.to_s.downcase.gsub(/^| |$/, '%') ) }
-  scope :providers, -> { where user_type: 'provider' }
+  scope :providers, -> { current.where(user_type: 'provider') }
 
   # Model Validation
   validates_presence_of :first_name, :last_name
@@ -40,8 +40,8 @@ class User < ActiveRecord::Base
   end
 
   with_options if: :is_provider? do |user|
-    user.validates :provider_name, presence: true, uniqueness: true
-    user.validates :slug, presence: true, uniqueness: true, format: { with: /\A[a-z][a-z0-9\-]*\Z/ }
+    user.validates :provider_name, allow_blank: true, uniqueness: true
+    user.validates :slug, allow_blank: true, uniqueness: true, format: { with: /\A[a-z][a-z0-9\-]*[a-z0-9]\Z/ }
   end
 
   # Model Relationships

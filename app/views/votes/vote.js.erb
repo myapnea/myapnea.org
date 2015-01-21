@@ -1,0 +1,3 @@
+animateRankBar("#voting_icon<%= @vote.research_topic_id %>", "#progress<%= @vote.research_topic_id %>");
+
+$("#update_link<%= @vote.research_topic_id %>").html("<%= escape_javascript(render partial: 'votes/voting_link', locals: { research_topic: @vote.research_topic } ) %>");

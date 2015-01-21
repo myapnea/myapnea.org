@@ -33,6 +33,13 @@ class ResearchTopic < ActiveRecord::Base
     current.viewable_by(user_id).order("created_at DESC")
   end
 
+  def voted_on_percentage
+    (self.votes.where(rating: 1).count/Vote.total_number_voters)*100 rescue 0
+  end
+
+  def received_vote_from?(user)
+    self.votes.where(user_id: user.id, rating: 1).present? ? true : false
+  end
 
   def accepted?
     state == 'accepted'
