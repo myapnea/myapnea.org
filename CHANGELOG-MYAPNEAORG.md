@@ -1,3 +1,5 @@
+## 4.2.0
+
 ## 4.1.0 (January 21, 2015)
 
 ### Enhancements
