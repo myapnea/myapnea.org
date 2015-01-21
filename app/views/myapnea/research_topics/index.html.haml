@@ -1,4 +1,4 @@
-- if current_user and current_user.beta_opt_in?
+- if current_user and current_user.beta_opt_in? and false
   = render partial: 'index_beta'
 - else
   - content_for :community_contributions do
