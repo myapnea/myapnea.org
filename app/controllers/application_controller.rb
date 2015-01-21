@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def after_sign_in_path_for(resource)
-    redirect_path = (resource.class == Provider ? provider_profile_path : home_path)
+    redirect_path = (resource.class == Provider ? account_path : home_path)
     request.env['omniauth.origin'] || stored_location_for(resource) || redirect_path
   end
 

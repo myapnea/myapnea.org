@@ -6,7 +6,7 @@ class ProvidersController < ApplicationController
 
 
   def index
-    @providers = User.where(user_type: 'provider').where.not(slug: nil, provider_name: nil).page(params[:page]).per( 8 )
+    @providers = User.where(user_type: 'provider').where.not(slug: [nil,''], provider_name: [nil,'']).page(params[:page]).per( 8 )
   end
 
 
@@ -27,7 +27,7 @@ class ProvidersController < ApplicationController
   #   @provider = Provider.find(current_user.id)
 
   #   if @provider.update(provider_params)
-  #     redirect_to provider_profile_path, notice: "Your account settings have been successfully changed."
+  #     redirect_to account_path, notice: "Your account settings have been successfully changed."
   #   else
   #     render :profile
   #   end

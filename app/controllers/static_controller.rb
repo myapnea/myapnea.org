@@ -8,6 +8,7 @@ class StaticController < ApplicationController
   end
 
   def home
+    flash.delete(:notice)
     if current_user
       @active_top_nav_link = :home
       @posts = Notification.blog_posts.viewable
@@ -30,8 +31,12 @@ class StaticController < ApplicationController
   end
 
   def provider_page
-    @provider = Provider.find_by_slug(params[:slug])
-    render layout: 'layouts/cleantheme'
+    @provider = User.current.where(user_type: 'provider').find_by_slug(params[:slug])
+    if @provider and @provider.slug.present?
+      redirect_to provider_path(@provider.slug)
+    else
+      redirect_to providers_path
+    end
   end
 
 

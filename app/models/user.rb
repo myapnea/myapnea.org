@@ -126,7 +126,9 @@ class User < ActiveRecord::Base
   end
 
   def photo_url
-    if social_profile
+    if photo.present?
+      photo.url
+    elsif social_profile
       social_profile.photo_url
     else
       'default-user.jpg'
@@ -141,14 +143,6 @@ class User < ActiveRecord::Base
   #     'default-user.jpg'
   #   end
   # end
-
-  def my_photo_url
-    if social_profile and social_profile.photo
-      social_profile.photo.url
-    else
-      photo_url
-    end
-  end
 
   def forum_name
     if social_profile

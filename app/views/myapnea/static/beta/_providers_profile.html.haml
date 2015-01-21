@@ -1,4 +1,4 @@
-= form_for current_user, html: {role: "form", class: 'form-horizontal'}, url: update_provider_profile_path do |f|
+= form_for current_user, html: { role: "form", class: 'form-horizontal' }, url: update_account_path, method: :patch do |f|
   .panel
     .panel-body.text-dark8
       %h3.f300.col-xs-12.centered-text.text-dark9{ style: 'margin-bottom:30px;'} My Provider Profile
@@ -11,13 +11,27 @@
       .form-group{ style: 'margin-top:20px;' }
         %label.col-sm-3.control-label Official Provider Name
         .col-sm-6
-          =f.text_field(:provider_name, class: 'form-control' )
+          =f.text_field :provider_name, class: 'form-control', placeholder: 'Your official name (eg. John Smith Medical)'
+      .form-group{ style: 'margin-top:20px;' }
+        %label.col-sm-3.control-label Custom URL Name
+        .col-sm-6
+          =f.text_field :slug, class: 'form-control', placeholder: 'Your unique url (eg. john-smith-medical)'
       .form-group{ style: 'margin-top:20px;' }
         %label.col-sm-3.control-label Welcome Message
         .col-sm-6
           =f.text_area :welcome_message, class: 'form-control', value: current_user.get_welcome_message, rows: '3'
       =f.submit("Save Changes", class: 'btn btn-primary col-sm-6 col-sm-offset-3 centered-text')
     .panel-footer
-      %h4.f400
-        %strong Your personal url:
-        %span.lighter-blue.wrapword= link_to ENV['website_url'] + '/p/' + current_user.slug, ENV['website_url'] + '/p/'+ current_user.slug
+      - if current_user.provider_name.present? and current_user.slug.present?
+        %h4.f400
+          %strong Your personal url:
+          %span.lighter-blue.wrapword= link_to ENV['website_url'] + '/p/' + current_user.slug, ENV['website_url'] + '/p/'+ current_user.slug
+      - else
+        Please enter your
+        - if current_user.provider_name.blank? and current_user.slug.blank?
+          <code>Official Provider Name</code> and <code>Custom URL Name</code>
+        - elsif current_user.provider_name.blank?
+          <code>Official Provider Name</code>
+        - else
+          <code>Custom URL Name</code>
+        above to generate the link you can share with your members.

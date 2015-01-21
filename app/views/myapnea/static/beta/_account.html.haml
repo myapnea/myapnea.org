@@ -1,19 +1,7 @@
 .content-main-header
   %h1 Account Settings
-.panel
-  .panel-heading
-    %h4.f300 Beta Settings
-  .panel-body
-    - if current_user.beta_opt_in?
-      You currently have the <strong>Beta Settings Enabled</strong>. You may opt out of the beta. If you ran into issues that forced you to cancel, consider
-      = link_to 'contacting us', "mailto:#{ENV['pprn_support_email']}"
-      so that we can address any issues before launching the new site changes to a larger audience!
-      %div{ style: 'text-align:center;margin-top:10px' }
-        = link_to 'Disable Beta', update_account_path(user: { beta_opt_in: '0' }), method: :patch, class: 'btn btn-primary'
-    - else
-      Preview upcoming changes to MyApnea.Org and help us iron out the kinks in our new upcoming layout of the site!
-      %div{ style: 'text-align:center;margin-top:10px' }
-        = link_to 'Enable Beta', update_account_path(user: { beta_opt_in: '1' }), method: :patch, class: 'btn btn-primary'
+- unless current_user.ready_for_research?
+  = render partial: 'static/beta/join_leave_research_study'
 - if current_user.is_provider?
   = render partial: 'static/beta/providers_profile'
 -else
@@ -64,6 +52,17 @@
         = f.label :password, class: 'sr-only'
         = f.password_field :password, class: 'form-control input-lg', placeholder: "New Password"
       = f.submit "Change My Password", class: 'btn btn-primary pull-right'
+- if current_user.provider
+  .panel
+    .panel-heading
+      %h4.f300 My Listed Provider
+    .panel-body
+      You have listed
+      %strong= current_user.provider.provider_name
+      as your preferred provider.
+      If you wish, you may
+      = link_to 'unlist', update_account_path(user: { provider_id: nil }), method: :patch, class: 'btn btn-warning btn-xs'
+      yourself from this provider's network.
 .panel
   .panel-heading
     %h4.f300 Notification Preferences
@@ -83,27 +82,18 @@
       = link_to 'enable', update_account_path(user: { emails_enabled: '1' }), method: :patch, class: 'btn btn-primary btn-xs'
       emails.
 - if current_user.ready_for_research?
-  .panel
-    .panel-heading
-      %h4.f300 Leave Research Study
-    .panel-body
-      %p
-        You may choose to leave the research study at any time. We will no longer collect any information from you and we will stop all communication. However, as stated in the informed consent, the information that you have already provided to
-        = ENV['pprn_title']
-        will remain within the study results.
-      = link_to 'View Consent', consent_path, class: 'btn btn-primary', style: 'width: 49%; margin:.5%; float:left;'
-      = link_to 'View Privacy Policy', privacy_path, class: 'btn btn-primary', style: 'width: 49%; margin:.5%; float:left;'
-      = link_to 'Leave Research Study', revoke_consent_path, method: :post, class: 'btn btn-warning', style: 'width: 99%; margin: .5%; float:left;'
-- else
-  .panel
-    .panel-heading
-      %h4.f300 Join Research Study
-    .panel-body
-      %p
-        You need to read and accept the
-        = link_to 'Consent', consent_path
-        and
-        = link_to 'Privacy Policy', privacy_path
-        in order to join the research study and fill out surveys.
-      = link_to 'Review Consent', consent_path, class: 'btn btn-primary', style: 'width: 49%; margin:.5%; float:left;'
-      = link_to 'Review Privacy Policy', privacy_path, class: 'btn btn-primary', style: 'width: 49%; margin:.5%; float:left;'
+  = render partial: 'static/beta/join_leave_research_study'
+.panel
+  .panel-heading
+    %h4.f300 Beta Settings
+  .panel-body
+    - if current_user.beta_opt_in?
+      You currently have the <strong>Beta Settings Enabled</strong>. You may opt out of the beta. If you ran into issues that forced you to cancel, consider
+      = link_to 'contacting us', "mailto:#{ENV['pprn_support_email']}"
+      so that we can address any issues before launching the new site changes to a larger audience!
+      %div{ style: 'text-align:center;margin-top:10px' }
+        = link_to 'Disable Beta', update_account_path(user: { beta_opt_in: '0' }), method: :patch, class: 'btn btn-primary'
+    - else
+      Preview upcoming changes to MyApnea.Org and help us iron out the kinks in our new upcoming layout of the site!
+      %div{ style: 'text-align:center;margin-top:10px' }
+        = link_to 'Enable Beta', update_account_path(user: { beta_opt_in: '1' }), method: :patch, class: 'btn btn-primary'
