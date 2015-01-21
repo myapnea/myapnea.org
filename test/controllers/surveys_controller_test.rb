@@ -6,20 +6,24 @@ class SurveysControllerTest < ActionController::TestCase
 
     get :start_survey, question_flow_id: question_flows(:survey_1).id
 
-    assert_response :success
+    assert_redirected_to ask_question_path(question_id: question_flows(:survey_1).first_question_id, answer_session_id: AnswerSession.most_recent(question_flows(:survey_1).id, users(:social).id).id)
+  end
 
+  test "User can view survey intro" do
+    login(users(:social))
 
+    get :intro, question_flow_id: question_flows(:survey_1).id
+
+    assert_equal question_flows(:survey_1), assigns(:question_flow)
+    refute assigns(:answer_session)
+    assert_nil AnswerSession.most_recent(assigns(:question_flow).id, users(:social).id)
+    assert_template "surveys/intro"
   end
 
   test "User can view question on survey" do
-    login(users(:social))
+    login(users(:has_unstarted_survey))
 
-    get :start_survey, question_flow_id: question_flows(:survey_1).id
-
-    assert assigns(:answer_session)
-    assert_response :success
-
-    get :ask_question, question_id: question_flows(:survey_1).first_question.id, answer_session_id: assigns(:answer_session).id
+    get :ask_question, question_id: question_flows(:survey_1).first_question.id, answer_session_id: answer_sessions(:unstarted)
     assert_response :success
     assert_not_nil assigns(:answer)
 
@@ -79,6 +83,21 @@ class SurveysControllerTest < ActionController::TestCase
 
     assert_response 302
     assert_equal users(:has_completed_survey).complete_surveys.length, 1
+
+  end
+
+  test "Answer Session should be created only **after** user has progressed to the first question." do
+    login(users(:social))
+
+    get :intro, question_flow_id: question_flows(:survey_1).id
+
+    refute assigns(:answer_session)
+    refute AnswerSession.most_recent(question_flows(:survey_1), users(:social))
+
+    get :start_survey, question_flow_id: question_flows(:survey_1).id
+
+    assert_redirected_to ask_question_path(question_id: question_flows(:survey_1).first_question_id, answer_session_id: AnswerSession.most_recent(question_flows(:survey_1).id, users(:social).id).id)
+    assert AnswerSession.most_recent(question_flows(:survey_1), users(:social))
 
   end
 end

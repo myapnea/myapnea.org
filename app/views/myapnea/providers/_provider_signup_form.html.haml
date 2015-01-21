@@ -14,7 +14,7 @@
             %ul
               - @user.errors.full_messages.each do |msg|
                 %li= msg
-        = hidden_field_tag "user[type]", "Provider"
+        = hidden_field_tag "user[user_type]", "provider"
         = hidden_field_tag "user[welcome_message]", "Welcome to my page!"
         .input-group
           = f.text_field :first_name, placeholder: 'First name', class: "form-control"

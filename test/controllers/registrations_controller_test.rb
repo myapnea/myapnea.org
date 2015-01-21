@@ -129,7 +129,7 @@ class RegistrationsControllerTest < ActionController::TestCase
     assert_equal ["can't be blank"], assigns(:user).errors[:last_name]
 
 
-    assert_template partial: 'providers/_form' # Could be changed to providers/new
+    assert_template partial: 'providers/_provider_signup_form'
     assert_response :success
   end
 
