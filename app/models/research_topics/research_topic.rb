@@ -34,7 +34,7 @@ class ResearchTopic < ActiveRecord::Base
   end
 
   def voted_on_percentage
-    (self.votes.where(rating: 1).count/Vote.total_number_voters)*100 rescue 0
+    ( self.votes.where(rating: 1).count * 100) / ( Vote.total_number_voters.nonzero? || 1 )
   end
 
   def received_vote_from?(user)
@@ -43,6 +43,10 @@ class ResearchTopic < ActiveRecord::Base
 
   def accepted?
     state == 'accepted'
+  end
+
+  def proposed_by
+    User.where(id: self.user_id).first
   end
 
   private

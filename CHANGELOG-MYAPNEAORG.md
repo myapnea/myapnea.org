@@ -1,5 +1,11 @@
 ## 4.2.0
 
+### Enhancements
+- ** Rank the Research **
+  - New UI/UX built
+  - Statistic shown is now percentage of voters, rather than vote count
+  - Reduced complexity by displaying all data on one page (with possible need for pagination)
+
 ## 4.1.0 (January 21, 2015)
 
 ### Enhancements
