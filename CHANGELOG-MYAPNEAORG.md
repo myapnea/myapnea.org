@@ -32,6 +32,7 @@
   - Administrative link added into the new UI menu (beta version)
   - The terms of service, privacy policy, and consent pages have been updated to match the new UI (beta version)
   - Learn page added as a quick link beneath the 'About Us' dropdown, and updated to fit new UI (beta version)
+    - Added 'additional resources' to learn page
   - Rank the Research updated with new UI and UX (beta version)
     - Removed ability for members to see number of votes on each topic until **after** they vote
     - Showing percentage of votes received
