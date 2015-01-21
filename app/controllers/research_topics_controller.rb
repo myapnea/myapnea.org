@@ -1,8 +1,8 @@
 class ResearchTopicsController < ApplicationController
   before_action :authenticate_user!
 
-  before_action :no_layout, :only => [:research_topics, :vote_counter]
-  before_action :set_research_topic, only: [:show, :update, :edit, :destroy]
+  before_action :no_layout,                           only: [ :research_topics, :vote_counter ]
+  before_action :set_research_topic,                  only: [ :show, :update, :edit, :destroy ]
   before_action :set_active_top_nav_link_to_research
 
 
@@ -38,10 +38,6 @@ class ResearchTopicsController < ApplicationController
 
   def update
     authorize_action_for @research_topic
-
-    if current_user.can_moderate?(@research_topic)
-      @research_topic.update(research_topic_moderator_params)
-    end
 
     if @research_topic.update(research_topic_params)
       if current_user.can_moderate?(@research_topic)
@@ -85,11 +81,11 @@ class ResearchTopicsController < ApplicationController
   private
 
   def research_topic_params
-    params.require(:research_topic).permit(:text, :description)
-  end
-
-  def research_topic_moderator_params
-    params.require(:research_topic).permit(:state)
+    if current_user.has_role? :moderator
+      params.require(:research_topic).permit(:text, :description, :state)
+    else
+      params.require(:research_topic).permit(:text, :description)
+    end
   end
 
   def set_research_topic

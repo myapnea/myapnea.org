@@ -36,6 +36,7 @@
   - Started work on new registration welcome email
 - **Administrative Changes**
   - Member management page has been updated and now proplery paginates members
+  - Moderators can now create approved Research Topics
 
 ### Bug Fixes
 - Reformatted beta alerts so they would be dismissable on mobile devices

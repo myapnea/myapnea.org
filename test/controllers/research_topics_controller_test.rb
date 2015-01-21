@@ -1,6 +1,43 @@
 require 'test_helper'
 
 class ResearchTopicsControllerTest < ActionController::TestCase
+
+  setup do
+    @regular_user = users(:user_1)
+    @moderator = users(:moderator_1)
+  end
+
+  test "should create under review research topic as regular user" do
+    login(@regular_user)
+    assert_difference('ResearchTopic.count') do
+      post :create, research_topic: { text: 'Some new research topic', description: 'Why I think this is important', state: 'approved' }
+    end
+    assert_not_nil assigns(:research_topic)
+    assert_equal 'under_review', assigns(:research_topic).state
+    assert_redirected_to research_topics_path
+  end
+
+  test "should create approved research topic as moderator" do
+    login(@moderator)
+    assert_difference('ResearchTopic.count') do
+      post :create, research_topic: { text: 'Some new research topic', description: 'Why I think this is important', state: 'approved' }
+    end
+    assert_not_nil assigns(:research_topic)
+    assert_equal 'approved', assigns(:research_topic).state
+    assert_redirected_to research_topics_path
+  end
+
+  test "should not create research topic as logged out user" do
+    assert_difference('ResearchTopic.count', 0) do
+      post :create, research_topic: { text: 'Some new research topic', description: 'Why I think this is important', state: 'approved' }
+    end
+    assert_nil assigns(:research_topic)
+    assert_redirected_to new_user_session_path
+  end
+
+
+  # Older tests
+
   test "User can view accepted research topics" do
     login(users(:user_1))
 
