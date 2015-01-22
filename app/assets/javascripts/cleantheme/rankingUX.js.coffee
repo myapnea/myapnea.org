@@ -20,7 +20,6 @@
       ,400
       , ->
         newWidth = parseFloat($(element2).find(".progress-bar").attr("aria-valuenow"))
-        console.log newWidth
         $(element1).removeClass "disabled"
         $(element1).addClass "voted"
         $(element2).addClass "in"
@@ -33,7 +32,6 @@
         ,100
         , ->
           newWidth = parseFloat($(element2).find(".progress-bar").attr("aria-valuenow"))
-          console.log newWidth
           $(element2).addClass "in"
           $(element2).find(".progress-bar").width newWidth + "%"
           $(element2).find(".progress-bar").html newWidth + "%"
@@ -42,7 +40,7 @@
 
 @userHasNoVotes = (element) ->
   alert = "<div class='alert alert-danger', style='width:90%;'> You have used all of your votes! Come back tomorrow to vote more.</div>"
-  $(element).after alert
+  $(element).before alert
 
 
 
