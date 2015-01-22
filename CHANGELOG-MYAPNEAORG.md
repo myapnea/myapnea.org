@@ -1,7 +1,11 @@
 ## 4.2.0
 
 ### Enhancements
-- ** Rank the Research **
+- **Provider Changes**
+  - The provider sign up page now better indicates what users can do who are already signed in
+    - Allows users to contact support to become a provider
+    - Allows providers a link to their account settings to set up their custom pages
+- **Rank the Research**
   - New UI/UX built and is now enabled for all members regardless of beta opt in status
   - Statistic shown is now percentage of voters, rather than vote count
   - Reduced complexity by displaying all data on one page (with possible need for pagination)
