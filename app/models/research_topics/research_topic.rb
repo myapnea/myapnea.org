@@ -53,10 +53,6 @@ class ResearchTopic < ActiveRecord::Base
     state == 'accepted'
   end
 
-  def proposed_by
-    User.where(id: self.user_id).first
-  end
-
   private
 
   def self.sort_topics(rt1, rt2)

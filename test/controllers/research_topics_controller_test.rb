@@ -15,14 +15,6 @@ class ResearchTopicsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should get index for beta user" do
-    login(users(:beta_user_1))
-    get :index
-    assert_not_nil assigns(:research_topics)
-    assert_equal ['accepted'], assigns(:research_topics).pluck(:state).uniq
-    assert_response :success
-  end
-
   test "should create under review research topic as regular user" do
     login(@regular_user)
     assert_difference('ResearchTopic.count') do

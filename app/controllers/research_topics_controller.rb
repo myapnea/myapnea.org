@@ -17,6 +17,7 @@ class ResearchTopicsController < ApplicationController
 
   def index
     @research_topics = ResearchTopic.accepted
+    render layout: 'layouts/cleantheme'
   end
 
   def show

@@ -13,16 +13,6 @@ user_<%= i %>:
   encrypted_password: <%= pw %>
 <% end %>
 
-beta_user_1:
-  email: beta_user_1@mail.com
-  first_name: Beta User
-  last_name: Omega
-  zip_code: 12345
-  year_of_birth: 1950
-  user_type: patient_diagnosed
-  encrypted_password: <%= pw %>
-  beta_opt_in: true
-
 social:
   first_name: Tommy
   last_name: Boy

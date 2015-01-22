@@ -2,7 +2,7 @@
 
 ### Enhancements
 - ** Rank the Research **
-  - New UI/UX built
+  - New UI/UX built and is now enabled for all members regardless of beta opt in status
   - Statistic shown is now percentage of voters, rather than vote count
   - Reduced complexity by displaying all data on one page (with possible need for pagination)
   - Users are able to see statistic for any questions, but will be alerted if they have used all of their votes already

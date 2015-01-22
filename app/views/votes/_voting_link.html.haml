@@ -6,7 +6,7 @@
   %h4{ style: 'padding-left: 0px; '}= research_topic.text
   .row.collapse{ id: "#{'ranking'+research_topic.id.to_s}" }
     %div{ style: 'text-align: center; width: 15%; float:left; ' }
-      = render partial: 'forums/user_image', locals: { user: research_topic.proposed_by, size: 50 }
+      = render partial: 'forums/user_image', locals: { user: research_topic.user, size: 50 }
     .col-xs-9.reset-layout
       %p.f300
         = research_topic.description
