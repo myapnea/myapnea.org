@@ -41,6 +41,14 @@ class ResearchTopic < ActiveRecord::Base
     self.votes.where(user_id: user.id, rating: 1).present? ? true : false
   end
 
+  def user_removed_vote?(user)
+    self.votes.where(user_id: user.id, rating: 0).present? ? true : false
+  end
+
+  # def vote_created_today?(user)
+  #   self.votes.where(user_id: user.id).first.created_at.today?
+  # end
+
   def accepted?
     state == 'accepted'
   end

@@ -5,6 +5,7 @@
   - New UI/UX built
   - Statistic shown is now percentage of voters, rather than vote count
   - Reduced complexity by displaying all data on one page (with possible need for pagination)
+  - Users are able to see statistic for any questions, but will be alerted if they have used all of their votes already
 
 ## 4.1.0 (January 21, 2015)
 
