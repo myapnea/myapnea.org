@@ -18,6 +18,7 @@
         console.log newWidth
         $(element1).removeClass "voted"
         $(element1).addClass "voted"
+        $(element2).addClass "in"
         $(element2).find(".progress-bar").width newWidth + "%"
         $(element2).find(".progress-bar").html newWidth + "%"
 
