@@ -40,6 +40,7 @@
   .col-sm-12.col-md-4.col-lg-3
     = image_tag 'myapnea/welcome/img-small/bwh_logo.jpg', class: "partners-img img-responsive", id: "partner-BWH"
 
+%a{ name: 'signup' }
 - if current_user
   %div{ style: 'height:75vh;background-color:white;text-align:center;padding-top:25vh' }
     - if current_user.provider?
@@ -61,7 +62,5 @@
         If you are a provider and want to set up a custom page, you can email us at
         = mail_to(ENV['pprn_support_email']) + "."
 - else
-  / Signup sheet
-  %a{ name: 'signup' }
   - @user = @provider
   = render partial: "providers/provider_signup_form", locals: { resource: @provider }
