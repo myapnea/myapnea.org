@@ -9,6 +9,7 @@ class StaticController < ApplicationController
 
   def home
     flash.delete(:notice)
+    flash.delete(:alert)
     if current_user
       @active_top_nav_link = :home
       @posts = Notification.blog_posts.viewable
