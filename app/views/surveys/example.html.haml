@@ -1,21 +1,76 @@
-.survey-container.active
-  .btn.btn-primary.next-question
-    Go to next question
-.survey-container
-  .btn.btn-primary.next-question
-    Go to next question
-.survey-container
-  .btn.btn-primary.next-question
-    Go to next question
-.survey-container
-  .btn.btn-primary.next-question
-    Go to next question
-.survey-container
-  .btn.btn-primary.next-question
-    Go to next question
-.survey-container
-  .btn.btn-primary.next-question
-    Go to next question
-.survey-container
-  .btn.btn-primary.next-question
-    Go to next question
+/ Short input text
+.panel.survey-container.progress-w-enter.active
+  .question-container
+    %h3.f300 How many hours of sleep did you get last night?
+  .input-container
+    = text_field_tag 'hours', nil, maxlength: 2, class: 'survey-short-text survey-short-number'
+  .button-container
+    .btn.btn-primary.next-question
+      Go to next question
+    %p.text-muted Or press ENTER
+
+/ Multiple Options
+.panel.survey-container.progress-w-letter
+  .question-container
+    %h3.f300 When would you prefer to wake up?
+  .input-container
+    - input_name = 'wakeup'
+    = radio_button_tag input_name, 'A'
+    %label.survey-multiple-input-button{ for: "#{input_name+'_A'}" }
+      %span A
+      %p 5 - 6:30am
+    = radio_button_tag input_name, 'B'
+    %label.survey-multiple-input-button{ for: "#{input_name+'_B'}" }
+      %span B
+      %p 6:30 - 8am
+    = radio_button_tag input_name, 'C'
+    %label.survey-multiple-input-button{ for: "#{input_name+'_C'}" }
+      %span C
+      %p 8 - 10am
+    = radio_button_tag input_name, 'D'
+    %label.survey-multiple-input-button{ for: "#{input_name+'_D'}" }
+      %span D
+      %p After 10am
+
+
+/ Multiple Options, Multiple Questions
+.panel.survey-container
+  .button-container
+    .btn.btn-primary.next-question
+      Go to next question
+    %p.text-muted Or press ENTER
+.panel.survey-container
+  .button-container
+    .btn.btn-primary.next-question
+      Go to next question
+    %p.text-muted Or press ENTER
+.panel.survey-container
+  .button-container
+    .btn.btn-primary.next-question
+      Go to next question
+    %p.text-muted Or press ENTER
+.panel.survey-container
+  .button-container
+    .btn.btn-primary.next-question
+      Go to next question
+    %p.text-muted Or press ENTER
+.panel.survey-container
+  .button-container
+    .btn.btn-primary.next-question
+      Go to next question
+    %p.text-muted Or press ENTER
+.panel.survey-container
+  .button-container
+    .btn.btn-primary.next-question
+      Go to next question
+    %p.text-muted Or press ENTER
+.panel.survey-container
+  .button-container
+    .btn.btn-primary.next-question
+      Go to next question
+    %p.text-muted Or press ENTER
+.panel.survey-container
+  .button-container
+    .btn.btn-primary.next-question
+      Go to next question
+    %p.text-muted Or press ENTER

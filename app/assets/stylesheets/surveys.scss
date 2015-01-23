@@ -5,12 +5,86 @@
 }
 
 .survey-container {
-  background-color: grey;
-  height:400px;
+  background-color: rgb(240,240,240);
   width:100%;
-  border:1px solid white;
+  padding: 50px 20px 20px 20px;
+  .question-container {
+    width:100%;
+    text-align: center;
+    h3 {
+      color: black; color: rgba(0,0,0,.7);
+    }
+  }
+  .input-container {
+    display:inline-block;
+    width:100%;
+    margin-top:30px;
+    text-align: center;
+    margin-bottom:50px;
+  }
+  .button-container {
+    display:none;
+  }
 }
 
 .survey-container.active {
-  background-color: blue;
+  background-color: white;
+  .button-container {
+    display: block;
+    text-align:center;
+    .next-question {
+      display:inline-block;
+    }
+    p {
+      margin-left:20px;
+      display: inline-block;
+    }
+  }
 }
+
+/*
+TYPES OF QUESTIONS
+*/
+// Short text field
+.survey-short-text {
+  font-size:50px;
+  border-radius:20px;
+  border-color: #b1d2f6;
+}
+
+.survey-short-number {
+  text-align: right;
+}
+
+// Multiple Options
+.input-container .survey-multiple-input-button {
+  display: inline-block;
+  padding:20px;
+  background-color: #b1d2f6;
+  border:3px solid #b1d2f6;
+  border-radius: 20px;
+  span {
+    font-size:20px;
+    font-weight:300;
+    color:white
+  }
+  p {
+    font-size:18px;
+    font-weight:300;
+    color:black; color: rgba(0,0,0,.6);
+  }
+}
+
+.input-container .survey-multiple-input-button:hover {
+  cursor: pointer;
+}
+
+.input-container input[type=radio] {
+  display: none;
+}
+
+.input-container input[type=radio]:checked + .survey-multiple-input-button{
+  background-color: #7fb2eb;
+}
+
+
