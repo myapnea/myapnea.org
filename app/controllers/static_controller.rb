@@ -15,6 +15,7 @@ class StaticController < ApplicationController
       @posts = Notification.blog_posts.viewable
       render layout: "main"
     else
+      @pc = page_content('privacy_policy')
       render 'landing', layout: 'layouts/cleantheme'
     end
   end
