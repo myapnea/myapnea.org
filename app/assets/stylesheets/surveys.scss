@@ -3,3 +3,14 @@
     position: relative;
   }
 }
+
+.survey-container {
+  background-color: grey;
+  height:400px;
+  width:100%;
+  border:1px solid white;
+}
+
+.survey-container.active {
+  background-color: blue;
+}

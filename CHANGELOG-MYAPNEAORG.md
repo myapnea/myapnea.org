@@ -1,4 +1,8 @@
 ## 5.0.0
+### Enhancements
+- **Survey UI**
+  - Users are able to scroll through survey by using keystrokes
+  - Animated scrolling now used to move between questions
 
 ## 4.1.0 (January 21, 2015)
 

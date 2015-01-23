@@ -74,6 +74,7 @@ Rails.application.routes.draw do
   get 'data_connections' => 'research#data_connections'
 
   # Surveys
+  get 'research_surveys/example', to: 'surveys#example'
   get 'research_surveys/report/:answer_session_id', to: 'surveys#show_report', as: :survey_report
   get 'research_surveys/:question_flow_id', to: 'surveys#start_survey', as: :start_survey
   get 'research_surveys/intro/:question_flow_id', to: 'surveys#intro', as: :intro_survey
