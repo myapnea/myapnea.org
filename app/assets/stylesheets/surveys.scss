@@ -5,7 +5,8 @@
 }
 
 .survey-container {
-  background-color: rgb(240,240,240);
+  background-color: transparent;
+  box-shadow: none;
   width:100%;
   padding: 50px 20px 20px 20px;
   .question-container {
@@ -29,6 +30,8 @@
 
 .survey-container.active {
   background-color: white;
+  box-shadow:0px 3px 5px rgb(0,0,0);
+  box-shadow:0px 3px 5px rgba(0,0,0,.5);
   .button-container {
     display: block;
     text-align:center;
@@ -64,12 +67,12 @@ TYPES OF QUESTIONS
   border:3px solid #b1d2f6;
   border-radius: 20px;
   span {
-    font-size:20px;
+    font-size:18px;
     font-weight:300;
     color:white
   }
   p {
-    font-size:18px;
+    font-size:20px;
     font-weight:300;
     color:black; color: rgba(0,0,0,.6);
   }
@@ -86,5 +89,105 @@ TYPES OF QUESTIONS
 .input-container input[type=radio]:checked + .survey-multiple-input-button{
   background-color: #7fb2eb;
 }
+
+
+// Multiple Options, Multiple Questions
+$danger: #e54835;
+$warning: #fed976;
+$moderate: #ffffb2;
+$good: #c5eab6;
+$great: #78c679;
+
+.survey-container.active .input-container .multiple-question-container.current {
+  background-color: transparentize(#b1d2f6, .7);
+  padding:5px;
+  border-radius:20px;
+}
+
+.input-container .multiple-question-container {
+  margin-bottom:25px;
+  .col-sm-3 {
+  }
+  .col-sm-2 {
+    padding-left: 5px;
+    padding-right:5px;
+  }
+  h4 {
+    color: black; color: rgba(0,0,0,.7);
+  }
+  .survey-scale {
+    vertical-align: middle;
+    display: inline-block;
+    padding: 5px;
+    border-radius:20px;
+    width:100%;
+    box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+    border:6px double transparent;
+  }
+  .survey-scale-danger {
+    background-color: transparentize($danger, .5);
+  }
+  .survey-scale-warning {
+    background-color: transparentize($warning, .5);
+  }
+  .survey-scale-good {
+    background-color: transparentize($good, .5);
+  }
+  .survey-scale-great {
+    background-color: transparentize($great, .5);
+  }
+  span {
+    font-size:18px;
+    font-weight:500;
+    color:white; color: rgba(0,0,0,.4);
+  }
+  p {
+    font-size:20px;
+    font-weight:300;
+    color:black; color: rgba(0,0,0,.6);
+  }
+}
+
+.input-container .survey-scale:hover {
+  cursor: pointer;
+}
+
+.input-container input[type=radio] {
+  display: none;
+}
+
+
+.input-container input[type=radio]:checked {
+  + .survey-scale-danger {
+    background-color: transparentize($danger, .1);
+    border: 6px double white;
+  }
+  + .survey-scale-warning {
+    background-color: transparentize($warning, .1);
+    border: 6px double white;
+  }
+  + .survey-scale-good {
+    background-color: transparentize($good, .1);
+    border: 6px double white;
+  }
+  + .survey-scale-great {
+    background-color: transparentize($great, .1);
+    border: 6px double white;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 

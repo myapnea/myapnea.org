@@ -2,12 +2,12 @@
 
   # Scroll to active question
   @nextQuestionScroll = (element) ->
-    body = $("body")
-    currentHeight = element.offset().top - 81 - 30
-    addedHeight = element.outerHeight()
-    newHeight = currentHeight + addedHeight
-    body.animate
-      scrollTop: currentHeight
+    currentHeight = element.offset().top
+    elementOffsetHeight = element.outerHeight() / 2
+    offsetHeight = $(window).outerHeight() / 2
+    newHeight = currentHeight - offsetHeight + elementOffsetHeight
+    $("body").animate
+      scrollTop: newHeight
     , 400
     , "swing"
     , ->
@@ -23,7 +23,17 @@
       newActiveQuestion = $(".survey-container.active")
       nextQuestionScroll(newActiveQuestion)
 
-  # Respond to user clicking on different options
+  # Progress to next part in multiple-part question
+  @assignNextMultipleQuestion = () ->
+    activeQuestion = $(".multiple-question-container.current")
+    if activeQuestion.next().length
+      activeQuestion.removeClass "current"
+      activeQuestion.next().addClass "current"
+      newActiveQuestion = $(".multiple-question-container.current")
+      nextQuestionScroll(newActiveQuestion)
+
+
+  # Respond to user clicking different questions
   $('.survey-container').click (e) ->
     if $(e.target).hasClass "next-question"
       assignNextQuestion()
@@ -42,17 +52,26 @@
         else
           nextQuestionScroll(newActiveQuestion)
 
+
+
   # Respond to keystrokes
   $("body").keydown (e) ->
     if $(".survey-container.active").hasClass "progress-w-enter"
       if e.keyCode is 13
         assignNextQuestion()
-    else if $(".survey-container.active").hasClass "progress-w-letter"
+    if $(".survey-container.active").hasClass "progress-w-letter"
       inputs = $(".survey-container.active").find("input:radio")
       inputs.each (index) ->
         key = inputs[index].value.charCodeAt(0)
         if e.keyCode is key
           $(inputs[index]).prop "checked", true
           assignNextQuestion()
+    if $(".survey-container.active").hasClass "progress-w-number"
+      inputs = $(".survey-container.active .multiple-question-container.current").find("input:radio")
+      inputs.each (index) ->
+        key = inputs[index].value.charCodeAt(0)
+        if e.keyCode is key
+          $(inputs[index]).prop "checked", true
+          assignNextMultipleQuestion()
 
 
