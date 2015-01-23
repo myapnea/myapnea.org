@@ -3,11 +3,10 @@ require "test_helper"
 class PostTest < ActiveSupport::TestCase
 
   def post
-    @post ||= Post.new
+    @post ||= users(:user_1).posts.where(topic_id: topics(:one).id).new(description: "Post on Topic One")
   end
 
   def test_valid
-    skip
     assert post.valid?
   end
 
