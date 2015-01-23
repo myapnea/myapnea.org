@@ -98,4 +98,4 @@ group :development, :test do
   gem 'selenium-webdriver'
 end
 
-gem 'simplecov', :require => false, :group => :test
+gem 'simplecov', require: false, group: :test
