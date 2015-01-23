@@ -12,6 +12,7 @@
   - Users are able to see statistic for any questions, but will be alerted if they have used all of their votes already
 - **General Changes**
   - The Privacy Policy popup now uses the identical text to the Privacy Policy page
+  - Shortened the length of news posts description shown in the right hand side bar
 
 ### Bug Fixes
 - Fixed the providers "Create Your Page" button not working for logged in users
