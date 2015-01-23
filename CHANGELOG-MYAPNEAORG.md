@@ -13,6 +13,7 @@
 
 ### Bug Fixes
 - Fixed the providers "Create Your Page" button not working for logged in users
+- Fixed a bug that prevented linking a provider to a newly registered user if the user ran into other registration validation errors during the sign up process
 
 ## 4.1.0 (January 21, 2015)
 

@@ -62,5 +62,4 @@
         If you are a provider and want to set up a custom page, you can email us at
         = mail_to(ENV['pprn_support_email']) + "."
 - else
-  - @user = @provider
-  = render partial: "providers/provider_signup_form", locals: { resource: @provider }
+  = render partial: "providers/signup_form", locals: { resource: @provider }

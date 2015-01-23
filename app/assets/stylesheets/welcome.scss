@@ -47,6 +47,7 @@
   background-repeat: no-repeat;
   background-position: bottom;
   background-size: cover;
+  font-family: 'Dosis', sans-serif;
 }
 
 
@@ -328,12 +329,16 @@
   font-family: 'Dosis', sans-serif;
 }
 
-#slide-5 h1 {
+#slide-5 h1, #slide-5p h1 {
 
   text-align:center;
   margin-bottom:20px;
   font-weight:600;
   font-size:40px;
+}
+
+#slide-5 li, #slide-5p li {
+  font-size: 18px;
 }
 
 span#privacy-policy:hover {
