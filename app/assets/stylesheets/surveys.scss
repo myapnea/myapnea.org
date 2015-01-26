@@ -67,7 +67,6 @@ TYPES OF QUESTIONS
 
 .survey-text-small {
   font-size: 18px;
-  width:80%;
 }
 
 // Multiple Options
@@ -191,6 +190,7 @@ $great: #78c679;
 
 // Multiple checks
 .input-container input[type=checkbox] {
+  display:none;
 }
 
 .check-box-container:not(#foo) > input[type=checkbox] > input {
@@ -205,11 +205,39 @@ $great: #78c679;
   font-weight:300;
   font-size: 18px;
   vertical-align: middle;
+  position:relative;
+  min-height: 70px;
+  span {
+    position:absolute;
+    top:50%;
+    margin-top: -25px;
+    width: 50px;
+    height:50px;
+    line-height:50px;
+    text-align:center;
+    font-size:14px;
+    font-weight:500;
+    color:white; color: rgba(0,0,0,.4);
+    border:2px solid #7fb2eb;
+    border-radius:3px;
+  }
+  p {
+    position: relative;
+    left: 70px;
+    width:90%;
+    display: inline-block;
+    font-size:18px;
+    margin: 0px;
+  }
 }
 
 .check-box-container:not(#foo) > input[type=checkbox]:checked + label {
-  background-color: transparentize(#b1d2f6, .7);
+  // background-color: transparentize(#b1d2f6, .7);
   border-radius:20px;
+  span {
+    background-color: #7fb2eb;
+    color: white;
+  }
 }
 
 // Question scale
@@ -226,6 +254,7 @@ $great: #78c679;
 }
 .reveal-next-input:checked ~ .hidden-input {
   display: inline-block;
+  min-width:50%;
 }
 
 /* Thanks to help from

@@ -74,7 +74,7 @@
       if e.keyCode is 13
         assignNextQuestion()
     if $(".survey-container.active").hasClass "progress-w-letter"
-      inputs = $(".survey-container.active").find("input:radio")
+      inputs = $(".survey-container.active").find("input:radio input:checkbox")
       inputs.each (index) ->
         key = inputs[index].value.charCodeAt(0)
         if e.keyCode is key
@@ -87,5 +87,14 @@
         if e.keyCode is key
           $(inputs[index]).prop "checked", true
           assignNextMultipleQuestion()
+    if $(".survey-container.active").hasClass "check-w-letter"
+      inputs = $(".survey-container.active .input-container").find("input:checkbox")
+      inputs.each (index) ->
+        key = inputs[index].value.charCodeAt(0)
+        if e.keyCode is key
+          if $(inputs[index]).prop "checked"
+            $(inputs[index]).prop "checked", false
+          else
+            $(inputs[index]).prop "checked", true
 
 

@@ -10,7 +10,7 @@
     %p.text-muted Or press ENTER
 
 / Multiple Checks
-.panel.survey-container.progress-w-enter
+.panel.survey-container.progress-w-enter.check-w-letter
   .question-container
     %h3.f300 What is your race?
     %h5.f300.reset-layout (Check all that apply)
@@ -19,40 +19,49 @@
     .check-box-container
       = check_box_tag input_name, 'A', nil, id: 'A'
       %label{ for: 'A' }
-        Asian (i.e. Asian Indian, Chinese, Filipino, Japanese, Korean, Vietnamese, Hmong, Laotian, Thai, Pakistani, Cambodian, etc.)
+        %span A
+        %p Asian (i.e. Asian Indian, Chinese, Filipino, Japanese, Korean, Vietnamese, Hmong, Laotian, Thai, Pakistani, Cambodian, etc.)
     .check-box-container
       = check_box_tag input_name, 'B', nil, id: 'B'
       %label{ for: 'B' }
-        Black, African American, African, or Afro-Caribbean (i.e. African American, Haitian, Nigerian, etc.)
+        %span B
+        %p Black, African American, African, or Afro-Caribbean (i.e. African American, Haitian, Nigerian, etc.)
     .check-box-container
       = check_box_tag input_name, 'C', nil, id: 'C'
       %label{ for: 'C' }
-        Hispanic, Latino, or Spanish origin (i.e. Mexican, Mexican American, Puerto Rican, Cuban, Argentinian, Colombian, Dominican, Nicaraguan, Salvadorian, Spaniard, etc.)
+        %span C
+        %p Hispanic, Latino, or Spanish origin (i.e. Mexican, Mexican American, Puerto Rican, Cuban, Argentinian, Colombian, Dominican, Nicaraguan, Salvadorian, Spaniard, etc.)
     .check-box-container
       = check_box_tag input_name, 'D', nil, id: 'D'
       %label{ for: 'D' }
-        Middle Eastern/North African
+        %span D
+        %p Middle Eastern/North African
     .check-box-container
       = check_box_tag input_name, 'E', nil, id: 'E'
       %label{ for: 'E' }
-        Native American, American Indian or Alaskan Native (i.e. Navajo, Mayan, Tingt, etc.)
+        %span E
+        %p Native American, American Indian or Alaskan Native (i.e. Navajo, Mayan, Tingt, etc.)
     .check-box-container
       = check_box_tag input_name, 'F', nil, id: 'F'
       %label{ for: 'F' }
-        Native Hawaiian or Other Pacific Islander (i.e. Native Hawaiian, Guamanian or Chamorro, Samoan, Fijian, Tongan, etc.)
+        %span F
+        %p Native Hawaiian or Other Pacific Islander (i.e. Native Hawaiian, Guamanian or Chamorro, Samoan, Fijian, Tongan, etc.)
     .check-box-container
       = check_box_tag input_name, 'G', nil, id: 'G'
       %label{ for: 'G' }
-        White (i.e. German, Irish, Lebanese, Egyptian etc.)
+        %span G
+        %p White (i.e. German, Irish, Lebanese, Egyptian etc.)
     .check-box-container
       = check_box_tag input_name, 'H', nil, id: 'H', class: 'reveal-next-input'
       %label{ for: 'H' }
-        Some other race or origin (please specify)
+        %span H
+        %p Some other race or origin (please specify)
       = text_field_tag 'hours', nil, class: 'survey-short-text survey-text-small hidden-input', style: 'margin-bottom:20px;'
     .check-box-container
       = check_box_tag input_name, 'I', nil, id: 'I'
       %label{ for: 'I' }
-        Prefer not to answer
+        %span I
+        %p Prefer not to answer
   .button-container
     .btn.btn-primary.next-question
       Go to next question
