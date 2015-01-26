@@ -1,21 +1,10 @@
-- if beta_enabled?(current_user, params)
+- if true
   - @active_top_nav_link = :about
   = render partial: 'static/beta/share'
 - else
   - @title = ""
 
   = render partial: 'layouts/page_header_image', locals: { image: 'myapnea/headers/home.jpg', signup_id: "signup" }
-
-  -#.row.page-header-image
-  -#  .col-lg-12
-  -#    = link_to "Sign Up Today", new_user_registration_path, class: 'sign', id: "innerSignup"
-  -#    #carousel
-  -#      = image_tag 'myapnea/headers/home.jpg', class: 'header'
-  -#      .film-strip{ style: 'position:absolute;top:17px;right:5px' }
-  -#        - ['susan', 'darrel', 'adam'].each do |person|
-  -#          = link_to team_path, style: 'text-decoration:none' do
-  -#            .film-strip-panel.hidden-xs
-  -#              = image_tag "myapnea/team/#{person}.png", class: 'img-thumbnail'
 
   #about-page
     .row
@@ -24,13 +13,6 @@
         %p.sub-header= @pc['sub_header']
       .col-md-10
         = markdown @pc['content']
-      -#.col-md-2.text-center
-      -#  %br.hidden-xs/
-      -#  %br.hidden-xs/
-      -#  #memberCount
-      -#    .countHeader= @pc['goal']['header']
-      -#    .countGoal= @pc['goal']['number']
-      -#    .goalSuffix= @pc['goal']['members']
     %br/
     %br/
     .row

@@ -3,6 +3,7 @@
 ### Refactoring
 - Removed OODT and Validic integration
 - Removed blog controller and views, this functionality is currently being handled by the "News Forum"
+- Cleaned up the static controller and added appropriate tests
 
 ## 4.1.0 (January 21, 2015)
 

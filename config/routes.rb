@@ -4,59 +4,33 @@ Rails.application.routes.draw do
 
   # Static Pages
   root 'static#home'
-  get 'about' => 'static#intro', as: :intro
-  get 'external_link_warning' => 'static#external_link_warning'
-  get 'theme' => 'static#theme'
-  get 'version' => 'static#version'
-  get 'home' => 'static#home'
-  #Content Pages
-  match 'content/:page', to: 'static#content', as: :content, via: :get
-  #get 'content/' => 'static#content'
+  get 'home'      => 'static#home'
+  get 'about'     => 'static#about'
+  get 'share'     => 'static#share' # Alias of About
+  get 'team'      => 'static#team'
+  get 'advisory'  => 'static#advisory'
+  get 'partners'  => 'static#partners'
+  get 'learn'     => 'static#learn'
+  get 'faqs'      => 'static#faqs'
+  get 'research'  => 'static#research'
+  get 'theme'     => 'static#theme'
+  get 'version'   => 'static#version'
+
+  # Provider Pages
+  get 'p(/:slug)', to: 'static#provider_page'
+  resources :providers
+
 
   # MyApnea Specific
-  get 'learn' => 'static#learn'
-  get 'share' => 'static#share'
-  get 'research' => 'static#research'
-  get 'faqs' => 'static#faqs'
-  get 'team' => 'static#team'
   match 'user_dashboard', to: 'account#dashboard', as: :user_dashboard, via: :get
-  get 'stealth' => 'static#stealth'
-  get 'stealth_steering' => 'static#stealth_steering'
-  get 'stealth_datadisplay' => 'static#stealth_datadisplay'
-  get 'stealth_surveydisplay' => 'static#stealth_surveydisplay'
-  get 'stealth_providers' => 'static#stealth_providers'
-  get 'stealth_provider1' => 'static#stealth_provider1'
-  get 'stealth_map' => 'static#stealth_map'
-  get 'stealth_share' => 'static#stealth_share'
-  get 'stealth_account' => 'static#stealth_account'
-  get 'stealth_consent' => 'static#stealth_consent'
-  get 'stealth_privacy' => 'static#stealth_privacy'
-  get 'stealth_terms' => 'static#stealth_terms'
-  get 'stealth_home' => 'static#stealth_home'
-  get 'advisory' => 'static#advisory'
-  get 'partners' => 'static#partners'
 
   get 'privacy_policy_document' => 'static#content', :page => "privacy_policy"
   get 'terms_of_service' => 'static#content', :page => "terms_of_service"
-
-  get 'p/:slug', to: 'static#provider_page'
-
-
-  resources :providers
-
-  # # Provider Pages
-  # devise_scope :user do
-  #   match "p/:slug/sign_up", to: "registrations#new", via: :get
-  #   match "providers/sign_up", to: "registrations#new", via: :get, defaults: {type: :provider}
-  # end
-  # match 'provider_profile', to: 'providers#profile', via: :get, as: :provider_profile
-  # match 'update_provider_profile', to: 'providers#update', via: :patch
 
 
   # Facebook Real Updates
   # match "update_fb_feed", to: "posts#receive_update", as: :update_fb_feed, via: :post
   # match "verify_fb_subscription", to: "posts#verify_subscription", as: :verify_fb_subscription, via: :get
-
 
   # Research Topics
   #match 'research_topic/:id', to: "research_topics#show", as: :research_topic, via: :get
@@ -102,7 +76,6 @@ Rails.application.routes.draw do
   match 'privacy_policy', to: "account#privacy_policy", as: :privacy, via: [:get, :post]
   match 'update_account', to: 'account#update', as: 'update_account', via: :patch
   match 'change_password', to: 'account#change_password', as: 'change_password', via: :patch
-  get 'stealth_provider1' => 'static#stealth_provider1'
 
   # Admin Section
   get 'admin' => 'admin#surveys'
