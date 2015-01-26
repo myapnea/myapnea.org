@@ -22,11 +22,6 @@ class AdminController < ApplicationController
   #   render "update_users"
   # end
 
-  def blog
-    @posts = Notification.blog_posts
-    @new_post = Notification.new(post_type: :blog)
-  end
-
   def research_topics
     @research_topics = ResearchTopic.all.order("created_at desc")
   end

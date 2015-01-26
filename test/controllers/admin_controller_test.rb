@@ -97,25 +97,4 @@ class AdminControllerTest < ActionController::TestCase
     assert_authorization_exception
   end
 
-  # Blog
-  test "should get blog admin for moderator" do
-    skip "Re-engineering of blog"
-    login(users(:moderator_2))
-
-    get :blog
-
-    assert_response :success
-    assert_equal Notification.where(post_type: "blog"), assigns(:posts)
-
-  end
-
-  test "should not get blog admin for normal user" do
-    login(users(:social))
-
-    get :blog
-
-    assert_authorization_exception
-  end
-
-  # Helpers
 end

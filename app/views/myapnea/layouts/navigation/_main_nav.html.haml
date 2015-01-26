@@ -8,8 +8,6 @@
   %a.list-group-item{href: surveys_path, class: "#{"active" if action_name == "research_surveys"}" }
     .fa.fa-bar-chart
     Surveys
-  - if false
-    %a.list-group-item{href: blog_path, class: "#{"active" if action_name == "blog"}"} In The News
   %a.list-group-item{href: research_topics_path, class: "#{"active" if controller_path =~ /research_topics/}"}
     .fa.fa-check-square-o
     Research Questions
@@ -18,14 +16,10 @@
     Our Community
 
 %hr/
-= link_to blog_path do
-  %h4 Recent News
+
+%h4 Recent News
 
 = render partial: "shared/blog_posts", locals: { posts: Notification.all_posts(true) }
-.text-muted.small
-  = link_to blog_path do
-    View more stories &nbsp;
-    .fa.fa-arrow-right
 
 %hr/
 

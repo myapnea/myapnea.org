@@ -93,10 +93,6 @@ Rails.application.routes.draw do
   get 'social/discussion', to: redirect("forums")
   get 'social/discussion(/*path)', to: redirect("forums/%{path}")
 
-  # Blog Section
-  get 'in_the_news' => 'blog#blog', as: :blog
-  get 'blog_findings' => 'blog#blog_findings'
-
   # Account Section
   get 'account' => 'account#account'
   get 'account_export' => 'account#account_export'
@@ -111,7 +107,6 @@ Rails.application.routes.draw do
   # Admin Section
   get 'admin' => 'admin#surveys'
   get 'admin/surveys' => 'admin#surveys', as: 'admin_surveys'
-  get 'admin/blog' => 'admin#blog', as: 'admin_blog'
   get 'admin/notifications' => 'admin#notifications', as: 'admin_notifications'
   get 'admin/research_topics' => 'admin#research_topics', as: 'admin_research_topics'
   get 'admin/research_topic/:id' => 'admin#research_topic', as: 'admin_research_topic'
@@ -124,7 +119,7 @@ Rails.application.routes.draw do
   match 'vote', to: 'votes#vote', via: :post, as: :vote
   match 'vote', to: 'research_topics#index', via: :get, as: :vote_fake
 
-  # Blog and Notification Posts
+  # Notification Posts
   resources :notifications, except: [:show, :index]
 
   devise_for :users, controllers: { registrations: 'registrations' }

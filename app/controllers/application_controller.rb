@@ -39,10 +39,6 @@ class ApplicationController < ActionController::Base
     @active_top_nav_link = :surveys
   end
 
-  def set_active_top_nav_link_to_blog
-    @active_top_nav_link = :blog
-  end
-
   def no_layout
     render layout: false
   end
