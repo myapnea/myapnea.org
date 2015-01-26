@@ -41,6 +41,9 @@ class StaticController < ApplicationController
     end
   end
 
+  def partners
+    render layout: 'layouts/cleantheme'
+  end
 
 # Stealth Pages
   def stealth_steering
