@@ -5,9 +5,16 @@
 
   # Scroll to active question
   @nextQuestionScroll = (element1, element2) ->
-    currentHeight = element2.offset().top
-    elementOffsetHeight = element2.outerHeight() / 2
+    # Check for multiple questions, and position the first question in the center
+    if element2.find('.current').length > 0
+      currentHeight = element2.find('.current').offset().top
+      elementOffsetHeight = element2.find('.current').outerHeight() / 2
+      console.log "found multiple questions"
+    else
+      currentHeight = element2.offset().top
+      elementOffsetHeight = element2.outerHeight() / 2
     offsetHeight = $(window).outerHeight() / 2
+    # Check for large questions on small screens
     if elementOffsetHeight > offsetHeight
       newHeight = currentHeight - 91
     else
@@ -27,32 +34,39 @@
     $(question2).find("input").focus()
 
   # Progress to next question
-  @assignNextQuestion = () ->
+  @assignQuestion = (next, prev) ->
     activeQuestion = $(".survey-container.active")
-    if activeQuestion.next().length
+    if (next and activeQuestion.next().length) or (prev and activeQuestion.prev().length)
       activeQuestion.removeClass "active"
-      activeQuestion.next().addClass "active"
+      if next
+        activeQuestion.next().addClass "active"
+      else if prev
+        activeQuestion.prev().addClass "active"
       newActiveQuestion = $(".survey-container.active")
       nextQuestionScroll(activeQuestion, newActiveQuestion)
 
 
   # Progress to next part in multiple-part question
-  @assignNextMultipleQuestion = () ->
+  @assignMultipleQuestion = (next, prev) ->
     activeQuestion = $(".multiple-question-container.current")
-    if activeQuestion.next().length
+    if (next and activeQuestion.next().length) or (prev and activeQuestion.prev().length)
       activeQuestion.removeClass "current"
-      activeQuestion.next().addClass "current"
+      if next
+        activeQuestion.next().addClass "current"
+      else if prev
+        activeQuestion.prev().addClass "current"
       newActiveQuestion = $(".multiple-question-container.current")
       nextQuestionScroll(activeQuestion, newActiveQuestion)
-    else
-      activeQuestion.removeClass "current"
-      assignNextQuestion()
+    else if (next and !activeQuestion.next().length)
+      assignQuestion(true, false)
+    else if (prev and !activeQuestion.prev().length)
+      assignQuestion(false, true)
 
 
   # Respond to user clicking different questions
   $('.survey-container').click (e) ->
     if $(e.target).hasClass "next-question"
-      assignNextQuestion()
+      assignQuestion(true, false)
     else
       unless $(this).hasClass "active"
         activeQuestion = $(".survey-container.active")
@@ -66,36 +80,46 @@
           , 400
           , "swing"
         else
-          nextQuestionScroll(newActiveQuestion)
+          nextQuestionScroll(activeQuestion, newActiveQuestion)
 
 
   # Respond to keystrokes
   $("body").keydown (e) ->
-    if $(".survey-container.active").hasClass "progress-w-enter"
-      if e.keyCode is 13
-        assignNextQuestion()
-    if $(".survey-container.active").hasClass "progress-w-letter"
-      inputs = $(".survey-container.active").find("input:radio")
-      inputs.each (index) ->
-        key = inputs[index].value.charCodeAt(0)
-        if e.keyCode is key
-          $(inputs[index]).prop "checked", true
-          assignNextQuestion()
     if $(".survey-container.active").hasClass "progress-w-number"
-      inputs = $(".survey-container.active .multiple-question-container.current").find("input:radio")
-      inputs.each (index) ->
-        key = inputs[index].value.charCodeAt(0)
-        if e.keyCode is key
-          $(inputs[index]).prop "checked", true
-          assignNextMultipleQuestion()
-    if $(".survey-container.active").hasClass "check-w-letter"
-      inputs = $(".survey-container.active .input-container").find("input:checkbox")
-      inputs.each (index) ->
-        key = inputs[index].value.charCodeAt(0)
-        if e.keyCode is key
-          if $(inputs[index]).prop "checked"
-            $(inputs[index]).prop "checked", false
-          else
+        inputs = $(".survey-container.active .multiple-question-container.current").find("input:radio")
+        if e.keyCode is 38
+          assignMultipleQuestion(false, true)
+        else if e.keyCode is 40
+          assignMultipleQuestion(true, false)
+        else
+          inputs.each (index) ->
+            key = inputs[index].value.charCodeAt(0)
+            if e.keyCode is key
+              $(inputs[index]).prop "checked", true
+              assignMultipleQuestion(true, false)
+    else if e.keyCode is 38
+      assignQuestion(false, true)
+    else if e.keyCode is 40
+      assignQuestion(true, false)
+    else
+      if $(".survey-container.active").hasClass "progress-w-enter"
+        if e.keyCode is 13
+          assignQuestion(true, false)
+      if $(".survey-container.active").hasClass "progress-w-letter"
+        inputs = $(".survey-container.active").find("input:radio")
+        inputs.each (index) ->
+          key = inputs[index].value.charCodeAt(0)
+          if e.keyCode is key
             $(inputs[index]).prop "checked", true
+            assignQuestion(true, false)
+      if $(".survey-container.active").hasClass "check-w-letter"
+        inputs = $(".survey-container.active .input-container").find("input:checkbox")
+        inputs.each (index) ->
+          key = inputs[index].value.charCodeAt(0)
+          if e.keyCode is key
+            if $(inputs[index]).prop "checked"
+              $(inputs[index]).prop "checked", false
+            else
+              $(inputs[index]).prop "checked", true
 
 
