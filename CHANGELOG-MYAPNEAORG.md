@@ -1,5 +1,8 @@
 ## 5.0.0
 
+### Refactoring
+- Removed OODT and Validic integration
+
 ## 4.1.0 (January 21, 2015)
 
 ### Enhancements

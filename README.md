@@ -49,17 +49,10 @@ Add the following lines to the /config/application.yml file it generates, comple
 ```
 uservoice_api_key:
 google_analytics_web_property_id:
-
-validic_access_token:
-validic_organization_id:
-
-oodt_username:
-oodt_password:
 ```
 
 Open PPRN.rb to
 - Configure the basic information about your PPRN
-- Enable or Disable Validic and OODT
 
 Run Rails Server (or use Apache or nginx)
 

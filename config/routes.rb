@@ -82,13 +82,6 @@ Rails.application.routes.draw do
   get 'questions/frequencies(/:question_id/:answer_session_id)', to: "questions#frequencies", as: :question_frequencies, format: :json
   get 'questions/typeahead/:question_id', to: "questions#typeahead", as: :question_typeahead, format: :json
 
-
-  # Health Data Section
-  get 'data_explore' => 'health_data#explore'
-  get 'data_reports' => 'health_data#reports'
-  get 'data_medications' => 'health_data#medications'
-  get 'data_intro' => 'health_data#intro'
-
   # Discussion
   match 'forums/terms_and_conditions', to: 'account#terms_and_conditions', via: :get, as: :terms_and_conditions
 

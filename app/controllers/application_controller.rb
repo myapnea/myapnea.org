@@ -31,10 +31,6 @@ class ApplicationController < ActionController::Base
     @active_top_nav_link = :research_questions
   end
 
-  def set_active_top_nav_link_to_health_data
-    @active_top_nav_link = :health_data
-  end
-
   def set_active_top_nav_link_to_social
     @active_top_nav_link = :home
   end

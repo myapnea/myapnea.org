@@ -79,7 +79,6 @@ gem 'mini_magick'
 gem 'merit'
 
 # For Third-Party API Connections
-gem 'validic'
 gem 'faraday'
 
 # Development
