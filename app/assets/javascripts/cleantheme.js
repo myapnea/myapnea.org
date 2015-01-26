@@ -52,3 +52,4 @@
 //= require cleantheme/circle.coffee
 //= require cookies
 //= require video_controls
+//= require cleantheme/surveyAnimation
