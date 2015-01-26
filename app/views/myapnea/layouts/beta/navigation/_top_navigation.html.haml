@@ -12,7 +12,7 @@
               %span.icon-bar
               %span.icon-bar
               %span.icon-bar
-    - if ((params[:action] == 'home' or params[:action] == 'stealth_providers' or params[:action] == 'stealth_provider1' or params[:action] == 'providers' or @provider) and !current_user)
+    - if ((params[:action] == 'home' or params[:action] == 'providers' or @provider) and !current_user)
       .collapse.navbar-collapse.navbar-right.float-right
         = form_tag user_session_path, method: :post, class: "navbar-form" do
           = text_field_tag 'user[email]', nil, placeholder: 'Email', class: "form-control"
