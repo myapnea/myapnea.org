@@ -13,6 +13,7 @@
 - **General Changes**
   - The Privacy Policy popup now uses the identical text to the Privacy Policy page
   - Shortened the length of news posts description shown in the right hand side bar
+  - Added The Health eHeart Study under Promotional Partners
 
 ### Bug Fixes
 - Fixed the providers "Create Your Page" button not working for logged in users
