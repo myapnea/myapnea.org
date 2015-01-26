@@ -103,9 +103,9 @@ TYPES OF QUESTIONS
 
 // Multiple Options, Multiple Questions
 $danger: #e54835;
-$warning: #fed976;
-$moderate: #ffffb2;
-$good: #c5eab6;
+$warning: #f4b46d;
+$moderate: #fedf9c;
+$good: #fedf9c;
 $great: #78c679;
 
 .survey-container.active .input-container .multiple-question-container.current {
@@ -240,6 +240,15 @@ $great: #78c679;
   }
 }
 
+.reveal-next-input ~ .hidden-input {
+  display:none;
+}
+.reveal-next-input:checked ~ .hidden-input {
+  display: inline-block;
+  min-width:50%;
+}
+
+
 // Question scale
 .input-container input[type=range] {
   -webkit-appearance: none;
@@ -249,12 +258,25 @@ $great: #78c679;
   outline: none;
 }
 
-.reveal-next-input ~ .hidden-input {
-  display:none;
+.input-container input[type=range] ~ .range-text {
+  width:33.3%;
+  float:left;
+  margin-top: 10px;
+  font-size:18px;
+  font-weight:500;
+  color:white; color: rgba(0,0,0,.4);
 }
-.reveal-next-input:checked ~ .hidden-input {
-  display: inline-block;
-  min-width:50%;
+.survey-container.active .input-container input[type=range] ~ .range-text {
+  color: black; color: rgba(0,0,0,.7);
+}
+.input-container input[type=range] ~ .range-left {
+  text-align:left;
+}
+.input-container input[type=range] ~ .range-center {
+  text-align:center;
+}
+.input-container input[type=range] ~ .range-right {
+  text-align:right;
 }
 
 /* Thanks to help from

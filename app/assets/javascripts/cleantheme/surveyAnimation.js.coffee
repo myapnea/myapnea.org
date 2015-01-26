@@ -4,24 +4,27 @@
   $(".survey-first-question").focus()
 
   # Scroll to active question
-  @nextQuestionScroll = (element) ->
-    currentHeight = element.offset().top
-    elementOffsetHeight = element.outerHeight() / 2
+  @nextQuestionScroll = (element1, element2) ->
+    currentHeight = element2.offset().top
+    elementOffsetHeight = element2.outerHeight() / 2
     offsetHeight = $(window).outerHeight() / 2
-    newHeight = currentHeight - offsetHeight + elementOffsetHeight
+    if elementOffsetHeight > offsetHeight
+      newHeight = currentHeight - 91
+    else
+      newHeight = currentHeight - offsetHeight + elementOffsetHeight
     $("body").animate
       scrollTop: newHeight
     , 400
     , "swing"
     , ->
       console.log "Scrolled!"
+      changeFocus(element1, element2)
       return
 
   # Change focus
   @changeFocus = (question1, question2) ->
     $(question1).find("input").blur()
     $(question2).find("input").focus()
-    console.log "changed focus"
 
   # Progress to next question
   @assignNextQuestion = () ->
@@ -30,8 +33,7 @@
       activeQuestion.removeClass "active"
       activeQuestion.next().addClass "active"
       newActiveQuestion = $(".survey-container.active")
-      changeFocus(activeQuestion, newActiveQuestion)
-      nextQuestionScroll(newActiveQuestion)
+      nextQuestionScroll(activeQuestion, newActiveQuestion)
 
 
   # Progress to next part in multiple-part question
@@ -41,8 +43,7 @@
       activeQuestion.removeClass "current"
       activeQuestion.next().addClass "current"
       newActiveQuestion = $(".multiple-question-container.current")
-      changeFocus(activeQuestion, newActiveQuestion)
-      nextQuestionScroll(newActiveQuestion)
+      nextQuestionScroll(activeQuestion, newActiveQuestion)
     else
       activeQuestion.removeClass "current"
       assignNextQuestion()
@@ -74,7 +75,7 @@
       if e.keyCode is 13
         assignNextQuestion()
     if $(".survey-container.active").hasClass "progress-w-letter"
-      inputs = $(".survey-container.active").find("input:radio input:checkbox")
+      inputs = $(".survey-container.active").find("input:radio")
       inputs.each (index) ->
         key = inputs[index].value.charCodeAt(0)
         if e.keyCode is key
