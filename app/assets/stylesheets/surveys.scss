@@ -65,6 +65,11 @@ TYPES OF QUESTIONS
   text-align: right;
 }
 
+.survey-text-small {
+  font-size: 18px;
+  width:80%;
+}
+
 // Multiple Options
 .input-container .survey-multiple-input-button {
   display: inline-block;
@@ -184,6 +189,28 @@ $great: #78c679;
   }
 }
 
+// Multiple checks
+.input-container input[type=checkbox] {
+}
+
+.check-box-container:not(#foo) > input[type=checkbox] > input {
+  width:10%;
+  vertical-align:center;
+}
+
+.check-box-container:not(#foo) > input + label {
+  width:90%;
+  padding: 10px;
+  text-align: left;
+  font-weight:300;
+  font-size: 18px;
+  vertical-align: middle;
+}
+
+.check-box-container:not(#foo) > input[type=checkbox]:checked + label {
+  background-color: transparentize(#b1d2f6, .7);
+  border-radius:20px;
+}
 
 // Question scale
 .input-container input[type=range] {
@@ -192,6 +219,13 @@ $great: #78c679;
 
 .input-container input[type=range]:focus {
   outline: none;
+}
+
+.reveal-next-input ~ .hidden-input {
+  display:none;
+}
+.reveal-next-input:checked ~ .hidden-input {
+  display: inline-block;
 }
 
 /* Thanks to help from

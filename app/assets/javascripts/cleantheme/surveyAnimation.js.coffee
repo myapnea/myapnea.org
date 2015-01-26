@@ -68,7 +68,6 @@
           nextQuestionScroll(newActiveQuestion)
 
 
-
   # Respond to keystrokes
   $("body").keydown (e) ->
     if $(".survey-container.active").hasClass "progress-w-enter"
