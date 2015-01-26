@@ -3,11 +3,24 @@
   .question-container
     %h3.f300 How many hours of sleep did you get last night?
   .input-container
-    = text_field_tag 'hours', nil, maxlength: 2, class: 'survey-short-text survey-short-number'
+    = text_field_tag 'hours', nil, maxlength: 2, class: 'survey-short-text survey-short-number survey-first-question'
   .button-container
     .btn.btn-primary.next-question
       Go to next question
     %p.text-muted Or press ENTER
+
+
+/ Question Scale
+.panel.survey-container.progress-w-enter
+  .question-container
+    %h3.f300 In the past 7 days, how was your sleep quality?
+  .input-container
+    = range_field_tag 'quality', nil, in: 1...10, step: '0.1'
+  .button-container
+    .btn.btn-primary.next-question
+      Go to next question
+    %p.text-muted Or press ENTER
+
 
 / Multiple Options
 .panel.survey-container.progress-w-enter.progress-w-letter
@@ -34,7 +47,7 @@
 
 
 / Multiple Options, Multiple Questions
-.panel.survey-container.progress-w-number
+.panel.survey-container.progress-w-enter.progress-w-number
   .question-container
     %h3.f300 How likely are you to fall asleep during the following activities?
   .input-container
@@ -135,17 +148,6 @@
           %p High
           %span 4
 
-
-
-
-
-
-/ Dynamic Scale
-.panel.survey-container
-  .button-container
-    .btn.btn-primary.next-question
-      Go to next question
-    %p.text-muted Or press ENTER
 
 / Blank questions
 .panel.survey-container

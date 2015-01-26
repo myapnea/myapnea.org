@@ -1,5 +1,8 @@
 @surveyAnimationReady = () ->
 
+  # Initiate with focus on first question
+  $(".survey-first-question").focus()
+
   # Scroll to active question
   @nextQuestionScroll = (element) ->
     currentHeight = element.offset().top
@@ -14,6 +17,12 @@
       console.log "Scrolled!"
       return
 
+  # Change focus
+  @changeFocus = (question1, question2) ->
+    $(question1).find("input").blur()
+    $(question2).find("input").focus()
+    console.log "changed focus"
+
   # Progress to next question
   @assignNextQuestion = () ->
     activeQuestion = $(".survey-container.active")
@@ -21,7 +30,9 @@
       activeQuestion.removeClass "active"
       activeQuestion.next().addClass "active"
       newActiveQuestion = $(".survey-container.active")
+      changeFocus(activeQuestion, newActiveQuestion)
       nextQuestionScroll(newActiveQuestion)
+
 
   # Progress to next part in multiple-part question
   @assignNextMultipleQuestion = () ->
@@ -30,7 +41,11 @@
       activeQuestion.removeClass "current"
       activeQuestion.next().addClass "current"
       newActiveQuestion = $(".multiple-question-container.current")
+      changeFocus(activeQuestion, newActiveQuestion)
       nextQuestionScroll(newActiveQuestion)
+    else
+      activeQuestion.removeClass "current"
+      assignNextQuestion()
 
 
   # Respond to user clicking different questions
