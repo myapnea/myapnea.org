@@ -24,9 +24,6 @@ Rails.application.routes.draw do
   # MyApnea Specific
   match 'user_dashboard', to: 'account#dashboard', as: :user_dashboard, via: :get
 
-  get 'privacy_policy_document' => 'static#content', :page => "privacy_policy"
-  get 'terms_of_service' => 'static#content', :page => "terms_of_service"
-
 
   # Facebook Real Updates
   # match "update_fb_feed", to: "posts#receive_update", as: :update_fb_feed, via: :post

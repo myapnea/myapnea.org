@@ -52,8 +52,8 @@ class AccountController < ApplicationController
     @social_profile = current_user.social_profile || current_user.create_social_profile
   end
 
-
   def terms_and_conditions
+    render layout: 'layouts/cleantheme'
   end
 
   def update
