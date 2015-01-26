@@ -18,8 +18,8 @@
     Our Community
 
 %hr/
-= link_to blog_path do
-  %h4 Recent News
+
+%h4 Recent News
 
 = render partial: "shared/blog_posts", locals: { posts: Notification.all_posts(true) }
 .text-muted.small
