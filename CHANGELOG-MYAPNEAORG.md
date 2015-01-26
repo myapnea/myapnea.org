@@ -8,6 +8,7 @@
 - Removed OODT and Validic integration
 - Removed blog controller and views, this functionality is currently being handled by the "News Forum"
 - Cleaned up the static controller and added appropriate tests
+  - Moved `views/myapnea/static` files into `views/static` folder
 - The Forums Terms and Conditions now uses the new layout
 
 ## 4.1.0 (January 21, 2015)
