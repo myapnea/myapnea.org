@@ -5,6 +5,9 @@
   - Users are able to scroll through survey by using keystrokes
   - Animated scrolling now used to move between questions
 
+### Bug Fixes
+- Fixed a bug that prevented a user dashboard from displaying if no forum topics existed
+
 ### Refactoring
 - Removed OODT and Validic integration
 - Removed blog controller and views, this functionality is currently being handled by the "News Forum"
