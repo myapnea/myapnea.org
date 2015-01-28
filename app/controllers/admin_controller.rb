@@ -2,6 +2,10 @@ class AdminController < ApplicationController
   before_action :authenticate_user!
   before_action :check_owner_or_moderator
 
+  def dashboard
+
+  end
+
   def research_topics
     @research_topics = ResearchTopic.all.order("created_at desc")
   end

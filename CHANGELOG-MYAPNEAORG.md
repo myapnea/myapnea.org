@@ -4,6 +4,8 @@
 - **Survey UI**
   - Users are able to scroll through survey by using keystrokes
   - Animated scrolling now used to move between questions
+- **Administrative Changes**
+  - Added an admin dashboard to provide a central place to reach reports and research topic moderation
 
 ### Bug Fixes
 - Fixed a bug that prevented a user dashboard from displaying if no forum topics existed
