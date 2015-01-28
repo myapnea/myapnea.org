@@ -12,7 +12,7 @@
     %i.fa.fa-sign-out{ style: 'margin-bottom:10px' }
     Sign out
   %br
-  - if current_user.has_role? :owner
-    = link_to users_path, style: 'color:white; color:rgba(255,255,255,.8); text-decoration:none;', class: 'f300' do
+  - if current_user.has_role? :owner or current_user.has_role? :moderator
+    = link_to admin_path, style: 'color:white; color:rgba(255,255,255,.8); text-decoration:none;', class: 'f300' do
       %i.fa.fa-wrench
-      Admin Panel
+      Admin Dashboard

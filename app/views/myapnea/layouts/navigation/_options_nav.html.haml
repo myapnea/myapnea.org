@@ -29,7 +29,7 @@
           Account Settings
       - if current_user.has_role? :moderator or current_user.has_role? :owner
         %li
-          %a{href: current_user.has_role?(:owner) ? users_path : admin_surveys_path, title: "Admin Panel"}
+          %a{href: admin_path, title: "Admin Dashboard"}
             %i.fa.fa-wrench
             Admin Panel
       %li
