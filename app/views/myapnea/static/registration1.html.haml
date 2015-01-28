@@ -1,0 +1,22 @@
+#registration-progress
+  .circle-progress.viewed{ data: { target: '#registration-carousel', slide: { to: '0' } } }
+    %h3 1
+  .track-progress
+  .circle-progress{ data: { target: '#registration-carousel', slide: { to: '1' } } }
+    %h3 2
+  .track-progress
+  .circle-progress{ data: { target: '#registration-carousel', slide: { to: '2' } } }
+    %h3 3
+.carousel.slide#registration-carousel{ data: { ride: 'carousel', interval: 'false' } }
+  .carousel-inner{ role: 'listbox' }
+    .item.active
+      - @pc = @pc1
+      = render partial: 'static/beta/privacy'
+    .item
+      - @pc = @pc2
+      = render partial: 'static/beta/consent'
+    .item
+      = render partial: 'surveys/demographics'
+
+
+/ = render partial: 'layouts/beta/registration/privacy_modal'

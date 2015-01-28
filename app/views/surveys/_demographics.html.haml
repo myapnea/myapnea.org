@@ -9,18 +9,6 @@
       Go to next question
     %p.text-muted Or press ENTER
 
-
-/ Short input text
-.panel.survey-container.progress-w-enter.active
-  .question-container
-    %h3.f300 How many hours of sleep did you get last night?
-  .input-container
-    = text_field_tag 'hours', nil, maxlength: 2, class: 'survey-short-text survey-short-number survey-first-question'
-  .button-container
-    .btn.btn-primary.next-question
-      Go to next question
-    %p.text-muted Or press ENTER
-
 / Multiple Checks
 .panel.survey-container.progress-w-enter.check-w-letter
   .question-container

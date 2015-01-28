@@ -59,6 +59,7 @@
   drawSurveyProgressReady() if drawSurveyProgressReady?
   videoControlsReady() if videoControlsReady?
   surveyAnimationReady() if surveyAnimationReady?
+  registrationUX() if registrationUX?
 
 $(document).ready(loaders)
 $(document).on('page:load', loaders)

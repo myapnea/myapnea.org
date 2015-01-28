@@ -377,6 +377,47 @@ span#privacy-policy:hover {
 
 
 
+
+/* REGISTRATION */
+
+#registration-progress {
+  position:relative;
+  margin-bottom:50px;
+  text-align:center;
+  $viewedColor: #78c679;
+  $unviewedColor: #d5ecd2;
+  .circle-progress {
+    display:inline-block;
+    width: 100px;
+    height:100px;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    background-color: $unviewedColor;
+    text-align: center;
+    h3 {
+      line-height:100px;
+      color:white;
+      margin:0px;
+    }
+  }
+  .circle-progress.viewed {
+    background-color: $viewedColor;
+  }
+  .track-progress{
+    display:inline-block;
+    height:10px;
+    width:100px;
+    background-color: $unviewedColor;
+  }
+  .track-progress.viewed {
+    background-color: $viewedColor;
+  }
+}
+
+
+
+
 /* RESPONSIVE DESIGN */
 
 @media (max-width: 1600px) {

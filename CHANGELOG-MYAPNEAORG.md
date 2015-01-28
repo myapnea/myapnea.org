@@ -4,6 +4,10 @@
 - **Survey UI**
   - Users are able to scroll through survey by using keystrokes
   - Animated scrolling now used to move between questions
+- **Registration Process**
+  - Upon registration, user's are automatically sent through consent process
+    - Privacy policy, then consent, then brought to new demographics survey
+    - Process is simple and informative of why it is important
 - **Administrative Changes**
   - Added an admin dashboard to provide a central place to reach reports and research topic moderation
 - **Research Study Changes**

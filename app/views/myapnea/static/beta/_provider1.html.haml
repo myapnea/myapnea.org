@@ -19,7 +19,7 @@
       %h4.text-dark7
         = @provider.get_welcome_message
       %h4.primary-orange
-        = '- ' + @provider.provider_name
+        = '-' + @provider.provider_name
   - else
     .col-xs-10.col-xs-offset-1{ style: 'padding-left:20px;' }
       %h4.text-dark7.centered-text
@@ -83,27 +83,26 @@
   .col-md-10.col-md-offset-1.col-lg-8.col-lg-offset-2.panel.panel-signup
     .panel-body#panel-sign-up
       - if current_user
-        - if current_user.provider_id == @provider.id
+        - if false and current_user.provider_id == @provider.id
           %h3.f300.centered-text
             Hi there,
             = current_user.first_name + '!'
             It looks like
-            = @provider.provider_name
+            = @provider.first_name
             is your provider.
           %h4.f300.centered-text
-            If you want to get in touch with them, feel free to
-            = link_to('send them an email', "mailto:#{@provider.email}")+"."
+            If you want to get in touch with him, feel free to
+            = link_to 'send him an email', "mailto:#{@provider.email}"
         - else
           %h3.f300.centered-text
             Hi there,
             = current_user.first_name + '!'
             It looks like
-            = @provider.provider_name
+            = @provider.first_name
             is not your provider.
           %h4.f300.centered-text
             Do you want to list them as your primary care provider?
-          %div{ style: 'text-align:center' }
-            = link_to "Yes, list #{@provider.provider_name} as my provider!", update_account_path(:user => { provider_id: @provider.id }), method: :patch, class: 'btn btn-primary btn-lg'
+          = link_to 'Yes', update_account_path(:user => { provider_id: @provider.id }), method: :patch, class: 'btn btn-primary'
       - else
         %h1.darker-blue.centered-text Wake up to a better future!
         %h4 By joining, you gain access to a unique group of resources and a growing research community. It's fast, simple, and completely free of cost to join and start making a difference!

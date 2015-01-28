@@ -1,0 +1,9 @@
+.panel.survey-container.progress-w-enter.active
+  .question-container
+    %h3.f300 What is your date of birth?
+  .input-container
+    = date_field_tag 'dob', nil, class: 'survey-date'
+  .button-container
+    .btn.btn-primary.next-question
+      Go to next question
+    %p.text-muted Or press ENTER
