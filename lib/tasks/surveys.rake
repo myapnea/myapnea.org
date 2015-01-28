@@ -53,7 +53,7 @@ namespace :surveys do
           ["answer_templates.yml", AnswerTemplate],
           ["question_help_messages.yml", QuestionHelpMessage],
           ["questions.yml", Question],
-          ["question_flows.yml", QuestionFlow]
+          ["question_flows.yml", Survey]
       ]
 
 
@@ -117,7 +117,7 @@ namespace :surveys do
 
   desc "Refresh Precalculated data"
   task :refresh => :environment do
-    QuestionFlow.refresh_all_question_flows
+    Survey.refresh_all_question_flows
 
     AnswerSession.current.each {|as| as.completed? }
   end
@@ -131,7 +131,7 @@ namespace :surveys do
       old_answer_session = user.answer_sessions.where(question_flow_id: 13).first
 
       if old_answer_session
-        QuestionFlow.viewable.each do |question_flow|
+        Survey.viewable.each do |question_flow|
           puts "Migrating survey #{question_flow.name}"
 
           answer_session = AnswerSession.find_or_create_by(user_id: user.id, question_flow_id: question_flow.id)
@@ -160,7 +160,7 @@ namespace :surveys do
   desc "Migrate over answers from old survey to one afflicted with bug"
   task :fix_about_me_survey_migration => :environment do
     user_count = User.count
-    question_flow = QuestionFlow.find(16)
+    question_flow = Survey.find(16)
     User.order("created_at asc").each_with_index do |user, index|
       puts "Migrating user (#{index+1} of #{user_count}) #{user.email}"
       old_answer_session = user.answer_sessions.where(question_flow_id: 13).first

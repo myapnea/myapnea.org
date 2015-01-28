@@ -194,15 +194,15 @@ class User < ActiveRecord::Base
   end
 
   def incomplete_surveys
-    QuestionFlow.incomplete(self)
+    Survey.incomplete(self)
   end
 
   def complete_surveys
-    QuestionFlow.complete(self)
+    Survey.complete(self)
   end
 
   def unstarted_surveys
-    QuestionFlow.unstarted(self)
+    Survey.unstarted(self)
   end
 
   def not_complete_surveys

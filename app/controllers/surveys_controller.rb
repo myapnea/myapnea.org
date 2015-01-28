@@ -6,7 +6,7 @@ class SurveysController < ApplicationController
   layout "main"
 
   def start_survey
-    question_flow = QuestionFlow.find(params[:question_flow_id])
+    question_flow = Survey.find(params[:question_flow_id])
     answer_session =  AnswerSession.current.find_by(user_id: current_user.id, question_flow_id: question_flow.id)
 
     if answer_session
@@ -18,7 +18,7 @@ class SurveysController < ApplicationController
   end
 
   def intro
-    @question_flow = QuestionFlow.find(params[:question_flow_id])
+    @question_flow = Survey.find(params[:question_flow_id])
   end
 
   def ask_question

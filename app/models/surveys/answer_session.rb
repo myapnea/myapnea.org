@@ -1,7 +1,7 @@
 class AnswerSession < ActiveRecord::Base
   include Deletable
 
-  belongs_to :question_flow
+  belongs_to :survey
   belongs_to :first_answer, class_name: "Answer", foreign_key: "first_answer_id"
   belongs_to :last_answer, class_name: "Answer", foreign_key: "last_answer_id"
   belongs_to :user

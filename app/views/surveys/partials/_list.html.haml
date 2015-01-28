@@ -6,7 +6,7 @@
       %th Number Started
       %th Number Completed
   %tbody
-    - QuestionFlow.viewable.each do |qf|
+    - Survey.viewable.each do |qf|
       %tr
         %td= qf.name
         %td= qf.total_questions
