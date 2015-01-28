@@ -384,7 +384,8 @@ span#privacy-policy:hover {
   position:relative;
   margin-bottom:50px;
   text-align:center;
-  $progressColor: #78c679;
+  $viewedColor: #78c679;
+  $unviewedColor: #d5ecd2;
   .circle-progress {
     display:inline-block;
     width: 100px;
@@ -392,7 +393,7 @@ span#privacy-policy:hover {
     -moz-border-radius: 50%;
     -webkit-border-radius: 50%;
     border-radius: 50%;
-    background-color: transparentize($progressColor, .5);
+    background-color: $unviewedColor;
     text-align: center;
     h3 {
       line-height:100px;
@@ -401,16 +402,16 @@ span#privacy-policy:hover {
     }
   }
   .circle-progress.viewed {
-    background-color: $progressColor;
+    background-color: $viewedColor;
   }
   .track-progress{
     display:inline-block;
     height:10px;
     width:100px;
-    background-color: transparentize($progressColor, .5);
+    background-color: $unviewedColor;
   }
   .track-progress.viewed {
-    background-color: $progressColor;
+    background-color: $viewedColor;
   }
 }
 

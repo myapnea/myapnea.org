@@ -1,9 +1,9 @@
-/ Short input text
+/ Date input
 .panel.survey-container.progress-w-enter.active
   .question-container
-    %h3.f300 How many hours of sleep did you get last night?
+    %h3.f300 What is your date of birth?
   .input-container
-    = text_field_tag 'hours', nil, maxlength: 2, class: 'survey-short-text survey-short-number survey-first-question'
+    = date_field_tag 'dob', nil, class: 'survey-date survey-first-question'
   .button-container
     .btn.btn-primary.next-question
       Go to next question
