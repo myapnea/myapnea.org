@@ -1,0 +1,14 @@
+.panel.survey-container.progress-w-enter.progress-w-letter
+  .question-container
+    %h3.f300 When would you prefer to wake up?
+  .input-container
+    - input_name = 'wakeup'
+    = radio_button_tag input_name, 'A'
+    %label.survey-multiple-input-button{ for: "#{input_name+'_A'}" }
+      %p 5 - 6:30am
+      %span A
+    = radio_button_tag input_name, 'B'
+    %label.survey-multiple-input-button{ for: "#{input_name+'_B'}" }
+      %p 6:30 - 8am
+      %span B
+    = radio_button_tag input_name, 'C'
