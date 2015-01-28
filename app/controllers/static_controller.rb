@@ -39,6 +39,10 @@ class StaticController < ApplicationController
     end
   end
 
+  def registration1
+    @pc1 = page_content('privacy_policy')
+    @pc2 = page_content('consent')
+  end
 
 # Stealth Pages
   def stealth_steering

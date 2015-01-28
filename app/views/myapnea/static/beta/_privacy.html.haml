@@ -18,6 +18,7 @@
           Go Back
         / = link_to "View Consent", consent_path, class: 'btn btn-lg btn-primary'
         = link_to "Leave Research Study", account_path, class: 'btn btn-warning btn-lg'
+      - elsif params[:action] == 'registration1' and false
       - else
         = form_tag privacy_path do
           %input.btn.btn-primary.btn-lg{:name => "privacy_policy_read", :type => "submit", :value => "I have read the privacy policy#{current_user.signed_consent? ? ' and I agree to participate' : ''}"}

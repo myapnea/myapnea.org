@@ -1,12 +1,32 @@
-- if params[:action] == 'home' and !current_user
-  .modal.fade#myModal{ tabindex:'-1', role:'dialog', aria: { labelledby: 'myModalLabel', hidden: 'true' } }
+/ TODO make sure they're on privacy page and just got redirected
+- if current_user and params[:action] == 'registration1' and false
+  .modal.fade.in#introPrivacyModal{ tabindex:'-1', role:'dialog', aria: { labelledby: 'introPrivacyModalLabel', hidden: 'true' } }
     .modal-dialog.modal-lg{ style: 'z-index:1050' }
       .modal-content
         .modal-header
           %button.close{ type: 'button', data: { dismiss: 'modal' } }
             %span{ aria: { hidden: 'true' } } &times;
             %span.sr-only Close
-          %h4.modal-title#myModalLabel Privacy Policy and Data Security Measures
+          %h4.modal-title#introPrivacyModalLabel Welcome to MyApnea.Org!
+        .modal-body{ style: 'overflow-y:scroll; max-height:600px; font-size:20px;' }
+          %h4.f300.spaced
+            Before you get started, there are a few short steps to take before you can become a fully active member in the MyApnea community.
+          %h5.f300.spaced
+            Since we want to use your valuable input to help steer the direction of apnea research outcomes, we need your permission to collect information and data that can be used in our research.
+            Once you complete this process, you will be entered into our monthly prize drawing, and can get involved in all aspects of the community!
+          %h5.f300.spaced
+            Please note: You can sign the consent at any time. Forums are available to all users, even those who haven't signed the consent
+        .modal-footer
+          %button.btn.btn-primary{ type: 'button', data: { dismiss: 'modal' } } Close
+- else
+  .modal.fade#privacyModal{ tabindex:'-1', role:'dialog', aria: { labelledby: 'privacyModalLabel', hidden: 'true' } }
+    .modal-dialog.modal-lg{ style: 'z-index:1050' }
+      .modal-content
+        .modal-header
+          %button.close{ type: 'button', data: { dismiss: 'modal' } }
+            %span{ aria: { hidden: 'true' } } &times;
+            %span.sr-only Close
+          %h4.modal-title#privacyModalLabel Privacy Policy and Data Security Measures
         .modal-body{ style: 'overflow-y:scroll; max-height:600px; font-size:20px;' }
           %p{ style:'font-size:18px' }
             We at MyApnea.Org have taken many steps to protect your privacy. Health information is private under federal law. However, by joining MyApnea.Org’s research portal and agreeing to our informed consent form, you are giving permission for the following people and groups to see, use, and share your identifiable health information:
@@ -48,4 +68,4 @@
             =  mail_to 'support@myapnea.org', nil, class: 'lighter-blue'
         .modal-footer
           = link_to 'More information', consent_path, class: 'btn btn-default'
-          %button.btn.btn-primary{ type: 'button', data: { dismiss: 'modal' } } Close
+          %button.btn.btn-primary{ type: 'button', data: { dismiss: '#privacyModal' } } Close

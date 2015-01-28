@@ -110,7 +110,7 @@
         %h4
           And, of course, all of your information is completely protected!
           - if false
-            %span.lighter-blue#privacy-policy{ data:{ toggle: 'modal', target:'#myModal'} }
+            %span.lighter-blue#privacy-policy{ data:{ toggle: 'modal', target:'#privacyModal'} }
           - else
             = link_to 'See our privacy policy.', privacy_path, target: '_blank'
         - resource = User.new
