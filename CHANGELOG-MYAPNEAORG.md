@@ -21,6 +21,7 @@
 - The Forums Terms and Conditions now uses the new layout
 - Reduced dependency on `authority` gem
 - Cleaned up the account controller and updated tests
+- Removed unused `pprn.rb` initializer file
 
 ## 4.1.0 (January 21, 2015)
 

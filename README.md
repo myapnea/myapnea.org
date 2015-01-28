@@ -38,21 +38,7 @@ bundle exec rake db:migrate RAILS_ENV=production
 bundle exec rake assets:precompile RAILS_ENV=production
 ```
 
-To set up your secret keys, run
-
-```
-figaro install
-```
-
-Add the following lines to the /config/application.yml file it generates, complete with appropriate keys you've gotten from the third party developers. For any service you aren't using, you can leave the lines out:
-
-```
-uservoice_api_key:
-google_analytics_web_property_id:
-```
-
-Open PPRN.rb to
-- Configure the basic information about your PPRN
+Edit the `/config/application.yml` file it generates, and enter any keys you've gotten from the third party developers. For any service you aren't using, you can leave the lines out.
 
 Run Rails Server (or use Apache or nginx)
 
