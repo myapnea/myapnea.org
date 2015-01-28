@@ -13,8 +13,4 @@ class ApplicationAuthorizer < Authority::Authorizer
     false
   end
 
-  def self.authorizes_to_view_admin_dashboard?(user, options = {})
-    user.has_role?(:owner) || user.has_role?(:moderator)
-  end
-
 end

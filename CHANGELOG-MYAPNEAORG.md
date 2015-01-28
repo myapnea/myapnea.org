@@ -6,6 +6,9 @@
   - Animated scrolling now used to move between questions
 - **Administrative Changes**
   - Added an admin dashboard to provide a central place to reach reports and research topic moderation
+- **Research Study Changes**
+  - Clicking "Leave Research Study" on the Consent or Privacy Policy pages now removes the member from the study
+    - In the past, the member would be redirected to the account page where this question would be asked one more time
 
 ### Bug Fixes
 - Fixed a bug that prevented a user dashboard from displaying if no forum topics existed
