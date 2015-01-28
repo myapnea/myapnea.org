@@ -17,7 +17,7 @@
               Print Privacy Policy
           - if current_user
             .text-center.panel-footer
-              - if current_user.can? :participate_in_research
+              - if current_user.ready_for_research?
                 = link_to :back, class: 'btn btn-lg btn-success' do
                   .fa.fa-arrow-left
                   &nbsp;

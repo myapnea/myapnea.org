@@ -27,7 +27,7 @@
         %a{href: account_path}
           %i.fa.fa-user
           Account Settings
-      - if current_user.can?(:view_admin_dashboard)
+      - if current_user.has_role? :moderator or current_user.has_role? :owner
         %li
           %a{href: current_user.has_role?(:owner) ? users_path : admin_surveys_path, title: "Admin Panel"}
             %i.fa.fa-wrench

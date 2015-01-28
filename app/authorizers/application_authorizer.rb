@@ -13,21 +13,8 @@ class ApplicationAuthorizer < Authority::Authorizer
     false
   end
 
-
   def self.authorizes_to_view_admin_dashboard?(user, options = {})
     user.has_role?(:owner) || user.has_role?(:moderator)
-  end
-
-  def self.authorizes_to_participate_in_research?(user, options={})
-    user.ready_for_research?
-  end
-
-  def self.authorizes_to_participate_in_social?(user, options={})
-    user.social_profile.present? and user.social_profile.name.present?
-  end
-
-  def self.authorizes_to_act_as_provider?(user, options={})
-    user.is_provider?
   end
 
 end
