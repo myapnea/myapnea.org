@@ -1,14 +1,14 @@
 # OpenPPRN - MyApnea.Org
 
-[![Build Status](https://travis-ci.org/myapnea/www_myapnea_org.svg?branch=master)](https://travis-ci.org/myapnea/www_myapnea_org)
-[![Dependency Status](https://gemnasium.com/myapnea/www_myapnea_org.svg)](https://gemnasium.com/myapnea/www_myapnea_org)
-[![Code Climate](https://codeclimate.com/github/myapnea/www_myapnea_org/badges/gpa.svg)](https://codeclimate.com/github/myapnea/www_myapnea_org)
+[![Build Status](https://travis-ci.org/myapnea/www.myapnea.org.svg?branch=master)](https://travis-ci.org/myapnea/www.myapnea.org)
+[![Dependency Status](https://gemnasium.com/myapnea/www.myapnea.org.svg)](https://gemnasium.com/myapnea/www.myapnea.org)
+[![Code Climate](https://codeclimate.com/github/myapnea/www.myapnea.org/badges/gpa.svg)](https://codeclimate.com/github/myapnea/www.myapnea.org)
 
 A collaboration to build an open-source solution for creating patient-powered research networks.
 
 ## Before Starting Installation
 
-Make sure you have reviewed and installed any [prerequisites](https://github.com/myapnea/www_myapnea_org/blob/master/PREREQUISITES.md).
+Make sure you have reviewed and installed any [prerequisites](https://github.com/myapnea/www.myapnea.org/blob/master/PREREQUISITES.md).
 
 ## Installation
 
@@ -16,14 +16,14 @@ Make sure you have reviewed and installed any [prerequisites](https://github.com
 gem install bundler
 ```
 
-This README assumes the following installation directory: /var/www/www_myapnea_org
+This README assumes the following installation directory: /var/www/www.myapnea.org
 
 ```
 cd /var/www
 
-git clone https://github.com/myapnea/www_myapnea_org.git
+git clone https://github.com/myapnea/www.myapnea.org.git
 
-cd www_myapnea_org
+cd www.myapnea.org
 
 bundle install
 ```
