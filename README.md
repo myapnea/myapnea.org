@@ -16,7 +16,7 @@ Make sure you have reviewed and installed any [prerequisites](https://github.com
 gem install bundler
 ```
 
-This README assumes the following installation directory: /var/www/www.myapnea.org
+This README assumes the following installation directory: `/var/www/www.myapnea.org`
 
 ```
 cd /var/www
