@@ -54,6 +54,7 @@ TYPES OF QUESTIONS
   border-radius:20px;
   border-color: #b1d2f6;
   padding:7px;
+  max-width:100%;
 }
 
 .survey-short-text:focus {
@@ -63,6 +64,7 @@ TYPES OF QUESTIONS
 
 .survey-short-number {
   text-align: right;
+  width:150px;
 }
 
 .survey-text-small {

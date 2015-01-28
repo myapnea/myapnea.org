@@ -1,7 +1,13 @@
 @surveyAnimationReady = () ->
 
   # Initiate with focus on first question
-  $(".survey-first-question").focus()
+  $(document).ready ->
+    $(".survey-first-question").focus()
+    $(this).scrollTop 0
+    return
+  $(window).on "beforeunload", ->
+    $(window).scrollTop 0
+    return
 
   # Scroll to active question
   @nextQuestionScroll = (element1, element2) ->
@@ -88,8 +94,10 @@
     if $(".survey-container.active").hasClass "progress-w-number"
         inputs = $(".survey-container.active .multiple-question-container.current").find("input:radio")
         if e.keyCode is 38
+          e.preventDefault()
           assignMultipleQuestion(false, true)
         else if e.keyCode is 40
+          e.preventDefault()
           assignMultipleQuestion(true, false)
         else
           inputs.each (index) ->
@@ -98,8 +106,10 @@
               $(inputs[index]).prop "checked", true
               assignMultipleQuestion(true, false)
     else if e.keyCode is 38
+      e.preventDefault()
       assignQuestion(false, true)
     else if e.keyCode is 40
+      e.preventDefault()
       assignQuestion(true, false)
     else
       if $(".survey-container.active").hasClass "progress-w-enter"
@@ -122,4 +132,8 @@
             else
               $(inputs[index]).prop "checked", true
 
+  # Respond to conditional inputs
+  # https://github.com/remomueller/slice/blob/master/app/assets/javascripts/global.js.coffee#L164
+  $(".reveal-next-input").click (e) ->
+    changeFocus($(this), $(this).next('.hidden-input'))
 
