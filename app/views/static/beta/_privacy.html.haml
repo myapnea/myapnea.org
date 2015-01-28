@@ -21,4 +21,4 @@
       - else
         = form_tag privacy_path do
           %input.btn.btn-primary.btn-lg{:name => "privacy_policy_read", :type => "submit", :value => "I have read the privacy policy#{current_user.signed_consent? ? ' and I agree to participate' : ''}"}
-          %input.btn.btn-danger.btn-lg{:name => "declined_to_participate", :type => "submit", :value => 'I decline'}
+          = link_to "I decline", revoke_consent_path, method: :post, class: 'btn btn-danger btn-lg'

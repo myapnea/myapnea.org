@@ -17,6 +17,7 @@
   - Moved `views/myapnea/static` files into `views/static` folder
 - The Forums Terms and Conditions now uses the new layout
 - Reduced dependency on `authority` gem
+- Cleaned up the account controller and updated tests
 
 ## 4.1.0 (January 21, 2015)
 
