@@ -4,6 +4,24 @@
 - **Survey UI**
   - Users are able to scroll through survey by using keystrokes
   - Animated scrolling now used to move between questions
+- **Administrative Changes**
+  - Added an admin dashboard to provide a central place to reach reports and research topic moderation
+- **Research Study Changes**
+  - Clicking "Leave Research Study" on the Consent or Privacy Policy pages now removes the member from the study
+    - In the past, the member would be redirected to the account page where this question would be asked one more time
+
+### Bug Fixes
+- Fixed a bug that prevented a user dashboard from displaying if no forum topics existed
+
+### Refactoring
+- Removed OODT and Validic integration
+- Removed blog controller and views, this functionality is currently being handled by the "News Forum"
+- Cleaned up the static controller and added appropriate tests
+  - Moved `views/myapnea/static` files into `views/static` folder
+- The Forums Terms and Conditions now uses the new layout
+- Reduced dependency on `authority` gem
+- Cleaned up the account controller and updated tests
+- Removed unused `pprn.rb` initializer file
 
 ## 4.2.0 (January 29, 2015)
 

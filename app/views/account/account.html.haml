@@ -1,97 +1,103 @@
-- @title = "Account"
+- if beta_enabled?(current_user, params)
+  = render partial: 'static/beta/account'
+- else
+  - @title = "Account"
 
-%h3 Account Settings
-%br/
+  %h3 Account Settings
+  %br/
 
-.row
-  .col-md-6
-    .panel.panel-default
-      .panel-heading
-        %h4.panel-title User Information
-      .panel-body
-        - if @user.errors.any? and @update_for == :user_info
-          = render partial: "shared/form_errors", locals: {resource: @user, message: "Your account settings could not be saved."}
-        = form_for @user, url: update_account_path do |f|
-          .form-group
-            = f.label :first_name, class: 'sr-only'
-            = f.text_field :first_name, class: 'form-control input-lg', placeholder: User.human_attribute_name(:first_name), autocomplete: :off
-          .form-group
-            = f.label :last_name, class: 'sr-only'
-            = f.text_field :last_name, class: 'form-control input-lg', placeholder: User.human_attribute_name(:last_name), autocomplete: :off
-          .form-group
-            = f.label :email, class: 'sr-only'
-            = f.email_field :email, class: 'form-control input-lg', placeholder: User.human_attribute_name(:email), autocomplete: :off
-          .form-group
-            = f.label :zip_code, class: 'sr-only'
-            = f.text_field :zip_code, class: 'form-control input-lg', placeholder: User.human_attribute_name(:zip_code), autocomplete: :off
-          .form-group
-            = f.label :year_of_birth, class: 'sr-only'
-            = f.text_field :year_of_birth, class: 'form-control input-lg', placeholder: User.human_attribute_name(:year_of_birth), autocomplete: :off
-          = f.submit "Save Changes", class: 'btn btn-primary pull-right'
-    .panel.panel-default
-      .panel-heading
-        %h4.panel-title Password
-      .panel-body
-        - if @user.errors.any? and @update_for == :password
-          = render partial: "shared/form_errors", locals: {resource: @user, message: "Your new password could not be saved."}
-        = form_for @user, url: change_password_path do |f|
-          .form-group
-            = f.label :current_password, class: "sr-only"
-            = f.password_field :current_password, class: 'form-control input-lg', placeholder: 'Current Password'
-          .form-group
-            = f.label :password, class: 'sr-only'
-            = f.password_field :password, class: 'form-control input-lg', placeholder: "New Password"
-          = f.submit "Change my password", class: 'btn btn-warning pull-right'
-
-
-
-  .col-md-6
-    .panel.panel-default
-      .panel-heading
-        %h4.panel-title Member Stats
-      %table.table
-        %tr
-          %td Member Since
-          %td= current_user.created_at.strftime("%b %e, %Y")
-        %tr
-          %td Member Number
-          %td= "##{current_user.id}"
-    .panel.panel-default
-      .panel-heading
-        %h4.panel-title Notification Preferences
-      .panel-body
-        %form.form-horizontal{role: "form"}
-          .radio
-            %label
-              %input#optionsRadios1{checked: "checked", name: "optionsRadios", type: "radio", value: "option1"}/
-              Email Me
-          .radio
-            %label
-              %input#optionsRadios2{name: "optionsRadios", type: "radio", value: "option2"}/
-              Don't Email Me
+  .row
+    .col-md-6
+      .panel.panel-default
+        .panel-heading
+          %h4.panel-title User Information
+        .panel-body
+          - if current_user.errors.any? and @update_for == :user_info
+            = render partial: "shared/form_errors", locals: {resource: current_user, message: "Your account settings could not be saved."}
+          = form_for current_user, url: update_account_path do |f|
+            .form-group
+              = f.label :first_name, class: 'sr-only'
+              = f.text_field :first_name, class: 'form-control input-lg', placeholder: User.human_attribute_name(:first_name), autocomplete: :off
+            .form-group
+              = f.label :last_name, class: 'sr-only'
+              = f.text_field :last_name, class: 'form-control input-lg', placeholder: User.human_attribute_name(:last_name), autocomplete: :off
+            .form-group
+              = f.label :email, class: 'sr-only'
+              = f.email_field :email, class: 'form-control input-lg', placeholder: User.human_attribute_name(:email), autocomplete: :off
+            .form-group
+              = f.label :zip_code, class: 'sr-only'
+              = f.text_field :zip_code, class: 'form-control input-lg', placeholder: User.human_attribute_name(:zip_code), autocomplete: :off
+            .form-group
+              = f.label :year_of_birth, class: 'sr-only'
+              = f.text_field :year_of_birth, class: 'form-control input-lg', placeholder: User.human_attribute_name(:year_of_birth), autocomplete: :off
+            = f.submit "Save Changes", class: 'btn btn-primary pull-right'
+      .panel.panel-default
+        .panel-heading
+          %h4.panel-title Password
+        .panel-body
+          - if current_user.errors.any? and @update_for == :password
+            = render partial: "shared/form_errors", locals: {resource: current_user, message: "Your new password could not be saved."}
+          = form_for current_user, url: change_password_path do |f|
+            .form-group
+              = f.label :current_password, class: "sr-only"
+              = f.password_field :current_password, class: 'form-control input-lg', placeholder: 'Current Password'
+            .form-group
+              = f.label :password, class: 'sr-only'
+              = f.password_field :password, class: 'form-control input-lg', placeholder: "New Password"
+            = f.submit "Change my password", class: 'btn btn-warning pull-right'
 
 
 
-    .panel.panel-default
-      .panel-heading
-        %h4.panel-title Language
-      .panel-body
-        %form.form-horizontal{:role => "form"}
-          .form-group
-            / %label.control-label.col-md-6{for: "inputPassword3"}
-            /   %i.fa.fa-globe &nbsp; Language:
-            .col-md-6
-              %select.form-control
-                %option
-                  %i.fa.fa-globe
-                  English
-                %option Spanish
+    .col-md-6
+      .panel.panel-default
+        .panel-heading
+          %h4.panel-title Beta Settings
+        .panel-body
+          - if current_user.beta_opt_in?
+            You currently have the <strong>Beta Settings Enabled</strong>. You may opt out of the beta. If you ran into issues that forced you to cancel, consider
+            = link_to 'contacting us', "mailto:#{ENV['pprn_support_email']}", class: 'content-link'
+            so that we can address any issues before launching the new site changes to a larger audience!
+            %div{ style: 'text-align:center;margin-top:10px' }
+              = link_to 'Disable Beta', update_account_path(user: { beta_opt_in: '0' }), method: :patch, class: 'btn btn-primary'
+          - else
+            Preview upcoming changes to MyApnea.Org and help us iron out the kinks in our new upcoming layout of the site!
+            %div{ style: 'text-align:center;margin-top:10px' }
+              = link_to 'Enable Beta', update_account_path(user: { beta_opt_in: '1' }), method: :patch, class: 'btn btn-primary'
 
-    .panel.panel-default
-      .panel-heading
-        %h4.panel-title Account Settings
-      .panel-body
-        %h3 Leave Research Study
-        %p.small= "You may choose to leave the research study at any time. We will no longer collect any information from you and we will stop all communication. However, as stated in the informed consent, the information that you have already provided to #{ENV['pprn_title']} will remain within the study results."
-        = link_to 'View Consent', consent_path, class: 'btn btn-info btn-block'
-        = link_to 'Leave Research Study', revoke_consent_path, method: :post, class: 'btn btn-warning btn-block'
+      .panel.panel-default
+        .panel-heading
+          %h4.panel-title Member Stats
+        %table.table
+          %tr
+            %td Member Since
+            %td= current_user.created_at.strftime("%b %e, %Y")
+          %tr
+            %td Member Number
+            %td= "##{current_user.id}"
+
+      -#.panel.panel-default
+      -#  .panel-heading
+      -#    %h4.panel-title Language
+      -#  .panel-body
+      -#    %form.form-horizontal{:role => "form"}
+      -#      .form-group
+      -#        / %label.control-label.col-md-6{for: "inputPassword3"}
+      -#        /   %i.fa.fa-globe &nbsp; Language:
+      -#        .col-md-6
+      -#          %select.form-control
+      -#            %option
+      -#              %i.fa.fa-globe
+      -#              English
+      -#            %option Spanish
+
+      .panel.panel-default
+        .panel-heading
+          %h4.panel-title Account Settings
+        .panel-body
+          %h3 Leave Research Study
+          %p.small= "You may choose to leave the research study at any time. We will no longer collect any information from you and we will stop all communication. However, as stated in the informed consent, the information that you have already provided to #{ENV["pprn_title"]} will remain within the study results."
+          = link_to 'View Consent', consent_path, class: 'btn btn-info btn-block'
+          = link_to "View Privacy Policy", privacy_path, class: 'btn btn-info btn-block'
+          = link_to 'Leave Research Study', revoke_consent_path, method: :post, class: 'btn btn-warning btn-block'
+
+

@@ -67,7 +67,7 @@ class ResearchTopicsController < ApplicationController
 
     @research_topic.destroy
 
-    if current_user.can?(:view_admin_dashboard)
+    if current_user.has_role? :moderator
       redirect_to admin_research_topics_path, notice: "Research topic deleted!"
     else
       redirect_to research_topics_path, notice: "Research topic deleted!"

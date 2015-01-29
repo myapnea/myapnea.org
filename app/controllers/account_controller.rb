@@ -14,9 +14,6 @@ class AccountController < ApplicationController
       else
         redirect_to consent_path, notice: "Please read over and accept the research consent before participating in research."
       end
-    elsif params[:declined_to_participate]
-      current_user.revoke_consent!
-      redirect_to home_path, notice: "You are not enrolled in research. If you ever change your mind, just visit your account settings to view the research consent and privacy policy again."
     else
       load_content
     end
@@ -30,9 +27,6 @@ class AccountController < ApplicationController
       else
         redirect_to privacy_path, notice: "Please read over and accept the privacy policy before participating in research. You can opt out any time by visiting your user account settings."
       end
-    elsif params[:declined_to_participate]
-      current_user.revoke_consent!
-      redirect_to home_path, notice: "You are not enrolled in research. If you ever change your mind, just visit your account settings to view the research consent and privacy policy again."
     else
       load_content
     end
@@ -48,18 +42,15 @@ class AccountController < ApplicationController
   end
 
   def account
-    @user = current_user
     @social_profile = current_user.social_profile || current_user.create_social_profile
   end
 
-
   def terms_and_conditions
+    render layout: 'layouts/cleantheme'
   end
 
   def update
-    @user = User.find(current_user.id)
-
-    if @user.update(user_params)
+    if current_user.update(user_params)
       redirect_to account_path, notice: "Your account settings have been successfully changed."
     else
       @update_for = :user_info
@@ -68,11 +59,9 @@ class AccountController < ApplicationController
   end
 
   def change_password
-    @user = User.find(current_user.id)
-
-    if @user.update_with_password(user_params)
-      # Sign in the user by passing validation in case his password changed
-      sign_in @user, :bypass => true
+    if current_user.update_with_password(user_params)
+      # Sign in the user by passing validation in case the user's password changed
+      sign_in current_user, bypass: true
       redirect_to account_path, alert: "Your password has been changed."
     else
       @update_for = :password

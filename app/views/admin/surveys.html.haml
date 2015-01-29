@@ -1,4 +1,12 @@
 - @active_top_nav_link = :participate
+
+- @title = 'Surveys'
+.content-main-header
+  %h1
+    = link_to 'Admin Dashboard', admin_path
+    &middot;
+    = @title
+
 .panel.panel-default
   .panel-heading
     .row

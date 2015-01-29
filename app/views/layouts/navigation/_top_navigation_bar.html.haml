@@ -25,9 +25,9 @@
               %li
                 %a{href: account_path}
                   %i.fa.fa-user &nbsp; Account Settings
-              - if current_user.can?(:view_admin_dashboard)
+              - if current_user.has_role? :moderator or current_user.has_role? :owner
                 %li
-                  %a{href: admin_path, :title => "Admin Panel"}
+                  %a{href: admin_path, title: "Admin Panel"}
                     %i.fa.fa-wrench &nbsp; Admin Panel
               %li
                 = link_to "<i class='fa fa-sign-out'></i> Sign out".html_safe, main_app.destroy_user_session_path, :method => :delete

@@ -3,6 +3,8 @@
     - smart_forum.topics
   - else
     - smart_forum.topics.viewable_by_user(current_user ? current_user.id : nil)
+- else
+  - topics = Topic.none
 
 - if topics.count > 0
   .panel-body

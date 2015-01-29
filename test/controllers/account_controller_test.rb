@@ -7,17 +7,15 @@ class AccountControllerTest < ActionController::TestCase
     @participant = users(:participant)
   end
 
-  test "Logged in user should get account settings" do
-    login(users(:user_1))
-
+  test "should get account for regular user" do
+    login(@regular_user)
     get :account
 
-    assert_response :success
-    assert_not_nil assigns(:user)
     assert_template layout: "account"
+    assert_response :success
   end
 
-  test "should get privacy_policy" do
+  test "should get privacy policy" do
     get :privacy_policy
     assert_response :success
   end
@@ -40,12 +38,25 @@ class AccountControllerTest < ActionController::TestCase
   end
 
   test "should not revoke consent for logged out user" do
+    post :revoke_consent
+    assert_redirected_to new_user_session_path
   end
 
-  test "User should be able to sign consent" do
-    login(users(:user_1))
+  test "should get terms and conditions for logged out user" do
+    get :terms_and_conditions
+    assert_response :success
+  end
 
-    refute users(:user_1).ready_for_research?
+  test "should get terms and conditions for regular user" do
+    login(@regular_user)
+    get :terms_and_conditions
+    assert_response :success
+  end
+
+  test "should mark consent and then privacy policy as read for user" do
+    login(@regular_user)
+
+    refute @regular_user.ready_for_research?
 
     get :consent
 
@@ -54,7 +65,7 @@ class AccountControllerTest < ActionController::TestCase
 
 
     post :consent, consent_read: true
-    refute users(:user_1).reload.ready_for_research?
+    refute @regular_user.reload.ready_for_research?
 
     get :privacy_policy
 
@@ -62,29 +73,52 @@ class AccountControllerTest < ActionController::TestCase
     assert_template "privacy_policy"
 
     post :privacy_policy, privacy_policy_read: true
-    assert users(:user_1).reload.ready_for_research?
+    assert @regular_user.reload.ready_for_research?
 
     assert_redirected_to home_path
-
-
   end
 
-  test "User should be able to revoke consent" do
-    login(users(:social))
+  test "should mark privacy and then consent as read for user" do
+    login(@regular_user)
 
-    assert users(:social).accepted_consent_at
+    get :privacy_policy
 
-    post :consent, declined_to_participate: true
+    assert_response :success
+    assert_template "privacy_policy"
 
-    refute users(:user_1).reload.accepted_consent_at
-    refute users(:user_1).reload.ready_for_research?
+    post :privacy_policy, privacy_policy_read: true
+    refute @regular_user.reload.ready_for_research?
+
+    get :consent
+
+    assert_response :success
+    assert_template "consent"
+
+    post :consent, consent_read: true
+    assert @regular_user.reload.ready_for_research?
 
     assert_redirected_to home_path
-
-
   end
 
-  test "User should be able to change account information" do
+  test "should mark privacy policy as read and go to consent for user if consent is not read" do
+    login(@regular_user)
+    post :privacy_policy, privacy_policy_read: true
+    @regular_user.reload
+    assert_not_nil @regular_user.accepted_privacy_policy_at
+    assert_not_nil flash[:notice]
+    assert_redirected_to consent_path
+  end
+
+  test "should mark consent as read and go to privacy policy for user if privacy policy has not been read" do
+    login(@regular_user)
+    post :consent, consent_read: true
+    @regular_user.reload
+    assert_not_nil @regular_user.accepted_consent_at
+    assert_not_nil flash[:notice]
+    assert_redirected_to privacy_path
+  end
+
+  test "should update account information for user" do
     login(users(:social))
     new_last = "Boylston"
     new_first = "Jimmy"
@@ -98,7 +132,7 @@ class AccountControllerTest < ActionController::TestCase
     refute_equal new_zip_code, users(:social).zip_code
     refute_equal new_yob, users(:social).year_of_birth
 
-    patch :update, user: {first_name: new_first, last_name: new_last, email: new_email, zip_code: new_zip_code, year_of_birth: new_yob}
+    patch :update, user: { first_name: new_first, last_name: new_last, email: new_email, zip_code: new_zip_code, year_of_birth: new_yob }
 
     users(:social).reload
 
@@ -109,24 +143,32 @@ class AccountControllerTest < ActionController::TestCase
     assert_equal new_yob, users(:social).year_of_birth
   end
 
-  test "Invalid user information should render page with errors" do
-    login(users(:social))
-    new_yob = 1191
+  test "should not update account for regular user with invalid user information" do
+    login(@regular_user)
 
-    patch :update, user: {year_of_birth: new_yob}
-
-    assert_template "account"
+    patch :update, user: { year_of_birth: 1899 }
 
     assert_equal :user_info, assigns(:update_for)
-    assert_not_nil assigns(:user)
-    assert_not_empty assigns(:user).errors
 
+    assert_template "account"
   end
 
-  test "Terms and conditions should be visible to all without requiring login" do
-    get :terms_and_conditions
+  test "should change password for regular user" do
+    login(@regular_user)
 
-    assert_response :success
+    patch :change_password, user: { current_password: 'password', password: 'newpassword' }
+
+    assert_equal 'Your password has been changed.', flash[:alert]
+    assert_redirected_to account_path
+  end
+
+  test "should not change password for regular user with invalid current password" do
+    login(@regular_user)
+
+    patch :change_password, user: { current_password: 'invalid', password: 'newpassword' }
+
+    assert_equal :password, assigns(:update_for)
+    assert_template "account"
   end
 
 end

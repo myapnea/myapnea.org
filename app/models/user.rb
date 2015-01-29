@@ -170,15 +170,11 @@ class User < ActiveRecord::Base
   end
 
   def signed_consent?
-    # Local Consent Storage
     self.accepted_consent_at.present?
-    # OODT Consent Storage
-    #self.oodt_status
   end
 
   def accepted_privacy_policy?
     self.accepted_privacy_policy_at.present?
-
   end
 
   def accepted_terms_conditions?

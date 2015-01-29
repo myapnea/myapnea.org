@@ -79,7 +79,6 @@ gem 'mini_magick'
 gem 'merit'
 
 # For Third-Party API Connections
-gem 'validic'
 gem 'faraday'
 
 # Development
@@ -98,4 +97,4 @@ group :development, :test do
   gem 'selenium-webdriver'
 end
 
-gem 'simplecov', :require => false, :group => :test
+gem 'simplecov', require: false, group: :test

@@ -31,10 +31,6 @@ class ApplicationController < ActionController::Base
     @active_top_nav_link = :research_questions
   end
 
-  def set_active_top_nav_link_to_health_data
-    @active_top_nav_link = :health_data
-  end
-
   def set_active_top_nav_link_to_social
     @active_top_nav_link = :home
   end
@@ -43,16 +39,12 @@ class ApplicationController < ActionController::Base
     @active_top_nav_link = :surveys
   end
 
-  def set_active_top_nav_link_to_blog
-    @active_top_nav_link = :blog
-  end
-
   def no_layout
     render layout: false
   end
 
   def authenticate_research
-    raise Authority::SecurityViolation.new(current_user, 'research', action_name) unless current_user.can?(:participate_in_research)
+    raise Authority::SecurityViolation.new(current_user, 'research', action_name) unless current_user.ready_for_research?
   end
 
   def empty_response_or_root_path(path = root_path)
@@ -62,6 +54,10 @@ class ApplicationController < ActionController::Base
       format.json { head :no_content }
       format.text { render nothing: true }
     end
+  end
+
+  def check_owner_or_moderator
+    redirect_to root_path, alert: "You do not have sufficient privileges to access that page." unless current_user.has_role? :owner or current_user.has_role? :moderator
   end
 
   def check_owner
