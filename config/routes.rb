@@ -20,15 +20,6 @@ Rails.application.routes.draw do
   get 'p(/:slug)', to: 'static#provider_page'
   resources :providers
 
-  # # Provider Pages
-  # devise_scope :user do
-  #   match "p/:slug/sign_up", to: "registrations#new", via: :get
-  #   match "providers/sign_up", to: "registrations#new", via: :get, defaults: {type: :provider}
-  # end
-  # match 'provider_profile', to: 'providers#profile', via: :get, as: :provider_profile
-  # match 'update_provider_profile', to: 'providers#update', via: :patch
-
-
   # Facebook Real Updates
   # match "update_fb_feed", to: "posts#receive_update", as: :update_fb_feed, via: :post
   # match "verify_fb_subscription", to: "posts#verify_subscription", as: :verify_fb_subscription, via: :get
@@ -79,7 +70,6 @@ Rails.application.routes.draw do
   match 'privacy_policy', to: "account#privacy_policy", as: :privacy, via: [:get, :post]
   match 'update_account', to: 'account#update', as: 'update_account', via: :patch
   match 'change_password', to: 'account#change_password', as: 'change_password', via: :patch
-  get 'stealth_provider1' => 'static#stealth_provider1'
 
   # Admin Section
   get 'admin' => 'admin#dashboard'

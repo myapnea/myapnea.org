@@ -26,7 +26,6 @@ feature "CanAccessHome" do
   end
 
   scenario "user can log out" do
-    skip "This test should be run after 4.2.0 changes are merged into current branch"
     login_as(@user, scope: :user)
     visit research_topics_path
     page.must_have_content "you can cast up to"
@@ -34,7 +33,4 @@ feature "CanAccessHome" do
     page.must_have_content "Login"
   end
 
-
 end
-
-

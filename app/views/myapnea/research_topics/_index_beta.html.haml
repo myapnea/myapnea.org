@@ -1,17 +1,25 @@
-- @research_topics = ResearchTopic.all
 .content-main-header
   %h1.f300 Rank the Research
 
-.panel{ style: 'padding: 15px;'}
-  %p.lead
-    At MyApnea.Org you can help direct the future of sleep apnea research.
-    Below are questions important to network members. Every month, you can
-    cast up to five votes (and don't forget to suggest your own questions by
-    clicking the
-    = link_to 'Add a new research question', new_research_topic_path, class: 'btn btn-xs btn-primary'
-    ). Top rated questions will be explored within the Forum. If data is
-    lacking, the topic will be endorsed as an important direction for future
-    research. Let your voice be heard, vote now!
+- unless cookies[:acknowledged_beta_rank_the_research] == '1'
+  - if current_user and !current_user.beta_opt_in?
+    = render partial: 'layouts/beta/alerts/rank_the_research_opt_in'
+
+.panel
+  .panel-heading
+    %h4.f300
+      At MyApnea.Org you can help direct the future of sleep apnea research.
+  .panel-body
+    %h5.f300
+      Below are questions important to network members. Every month, you can cast up to five votes on approved research questions, and you can suggest your own  as well.
+      %div.centered-text{ style: 'margin: 15px;' }
+        = link_to 'Add a new research question', new_research_topic_path, class: 'btn btn-sm btn-primary', style: 'margin-right: 15px;'
+        / = link_to 'Discuss other research questions', new_research_topic_path, class: 'btn btn-sm btn-info'
+    %h5.f300
+      For each question you vote on, you will be able to see what proportion of other members have also voted on that question. If a question is highly popular, and if data is lacking, the topic will be endorsed as an important direction for future research, and we'll get to work in figuring out how to deliver you the knowledge you need.
+  .panel-footer
+    %h4.f300.centered-text Let your voice be heard, vote now!
+
 
 - if current_user
   .panel.panel-rank-research

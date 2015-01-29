@@ -8,3 +8,7 @@
     $(".team-member-picture").removeClass "img-color"
     $(this).toggleClass "img-color"
     return
+
+  $(".advisory-small").click ->
+    $(this).find(".collapse").collapse "toggle"
+    console.log "collapsed"

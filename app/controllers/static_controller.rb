@@ -1,9 +1,10 @@
 class StaticController < ApplicationController
-  before_action :load_pc, only: [:about, :intro, :learn, :share, :research, :team, :faqs, :advisory]
-  before_action :about_layout, only: [:about, :intro, :learn, :share, :research, :team, :faqs]
+  before_action :load_pc, only: [ :about, :share, :team, :advisory, :learn, :faqs, :research ]
+  before_action :about_layout, only: [ :research ]
 
   def home
     flash.delete(:notice)
+    flash.delete(:alert)
     if current_user
       @active_top_nav_link = :home
       @posts = Notification.blog_posts.viewable
@@ -67,65 +68,6 @@ class StaticController < ApplicationController
     @pc1 = page_content('privacy_policy')
     @pc2 = page_content('consent')
   end
-
-
-
-
-# Stealth Pages
-  def stealth_steering
-    render layout: 'layouts/cleantheme'
-  end
-
-  def stealth_forums
-    render layout: 'layouts/cleantheme'
-  end
-
-  def stealth_datadisplay
-    render layout: 'layouts/cleantheme'
-  end
-
-  def stealth_surveydisplay
-    render layout: 'layouts/cleantheme'
-  end
-
-  def stealth_providers
-    render layout: 'layouts/cleantheme'
-  end
-
-  def stealth_share
-    render layout: 'layouts/cleantheme'
-  end
-
-  def stealth_map
-    render layout: 'layouts/cleantheme'
-  end
-
-  def stealth_account
-    render layout: 'layouts/cleantheme'
-  end
-
-  def stealth_consent
-    @pc = page_content('consent')
-    render layout: 'layouts/cleantheme'
-  end
-
-  def stealth_privacy
-    @pc = page_content('privacy_policy')
-    render layout: 'layouts/cleantheme'
-  end
-
-  def stealth_terms
-    render layout: 'layouts/cleantheme'
-  end
-
-  def stealth
-    render layout: 'layouts/cleantheme'
-  end
-
-  def stealth_home
-    render layout: 'layouts/cleantheme'
-  end
-
 
   private
 

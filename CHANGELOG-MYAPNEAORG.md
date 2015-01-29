@@ -4,15 +4,15 @@
 - **Survey UI**
   - Users are able to scroll through survey by using keystrokes
   - Animated scrolling now used to move between questions
-- **Registration Process**
-  - Upon registration, user's are automatically sent through consent process
-    - Privacy policy, then consent, then brought to new demographics survey
-    - Process is simple and informative of why it is important
 - **Administrative Changes**
   - Added an admin dashboard to provide a central place to reach reports and research topic moderation
 - **Research Study Changes**
   - Clicking "Leave Research Study" on the Consent or Privacy Policy pages now removes the member from the study
     - In the past, the member would be redirected to the account page where this question would be asked one more time
+- **Registration Process**
+  - Upon registration, user's are automatically sent through consent process
+    - Privacy policy, then consent, then brought to new demographics survey
+    - Process is simple and informative of why it is important
 
 ### Bug Fixes
 - Fixed a bug that prevented a user dashboard from displaying if no forum topics existed
@@ -27,6 +27,31 @@
 - Cleaned up the account controller and updated tests
 - Removed unused `pprn.rb` initializer file
 - Renamed `QuestionFlow` to `Survey`
+
+## 4.2.0 (January 29, 2015)
+
+### Enhancements
+- **Provider Changes**
+  - The provider sign up page now better indicates what users can do who are already signed in
+    - Allows users to contact support to become a provider
+    - Allows providers a link to their account settings to set up their custom pages
+- **Rank the Research**
+  - New UI/UX built and is now enabled for all members regardless of beta opt in status
+  - Statistic shown is now percentage of voters, rather than vote count
+  - Reduced complexity by displaying all data on one page (with possible need for pagination)
+  - Users are able to see statistic for any questions, but will be alerted if they have used all of their votes already
+- **General Changes**
+  - The Privacy Policy popup now uses the identical text to the Privacy Policy page
+  - Shortened the length of news posts description shown in the right hand side bar
+  - Added The Health eHeart Study under Promotional Partners
+  - The Partners page now uses the new layout exclusively
+
+### Bug Fixes
+- Fixed the providers "Create Your Page" button not working for logged in users
+- Fixed a bug that prevented linking a provider to a newly registered user if the user ran into other registration validation errors during the sign up process
+- Fixed link to CMB Solutions
+- Removed link from Recent News in old layout as the page no longer exists
+- Advisory member bios now open correctly on mobile devices
 
 ## 4.1.0 (January 21, 2015)
 

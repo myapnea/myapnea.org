@@ -27,4 +27,12 @@ module ApplicationHelper
     checked ? '<span class="glyphicon glyphicon-ok"></span>'.html_safe : '<span class="glyphicon glyphicon-unchecked"></span>'.html_safe
   end
 
+  def load_pc
+    @pc = page_content(params[:action].to_s)
+  end
+
+  def page_content(name)
+    YAML.load_file(Rails.root.join('lib', 'data', 'myapnea', 'content', "#{name}.#{I18n.locale}.yml"))[I18n.locale.to_s][name]
+  end
+
 end

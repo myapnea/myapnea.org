@@ -17,14 +17,20 @@ class ResearchTopicsController < ApplicationController
 
   def index
     @research_topics = ResearchTopic.accepted
-
-    render "static/stealth_datadisplay", layout: 'layouts/cleantheme' if params[:redesign] == '1'
+    render layout: 'layouts/cleantheme'
   end
 
   def show
     authorize_action_for @research_topic
   end
 
+  def new
+    @research_topic = current_user.research_topics.new
+  end
+
+  def edit
+    authorize_action_for @research_topic
+  end
 
   def create
     @research_topic = current_user.research_topics.new(research_topic_params)
@@ -54,15 +60,6 @@ class ResearchTopicsController < ApplicationController
       end
 
     end
-  end
-
-  def edit
-    authorize_action_for @research_topic
-
-  end
-
-  def new
-    @research_topic = ResearchTopic.new
   end
 
   def destroy

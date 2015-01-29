@@ -8,12 +8,12 @@
   / = link_to surveys_path, class: 'user-stats' do
   .col-xs-4.user-stats.hidden-sm
     %p.small.f500.text-dark5
-      = "Survey".pluralize(current_user.complete_surveys.count).upcase
+      = "SURVEY".pluralize(current_user.complete_surveys.count).upcase
     %h5.text-white5
       = current_user.complete_surveys.count
   / = link_to research_topics_path, class: 'user-stats' do
   .col-xs-4.user-stats.hidden-sm
     %p.small.f500.text-dark5
-      = "Vote".pluralize(current_user.number_votes_remaining).upcase
+      = "VOTE".pluralize(current_user.positive_votes.count).upcase
     %h5.large.text-white5
-      = current_user.votes.count
+      = current_user.positive_votes.count
