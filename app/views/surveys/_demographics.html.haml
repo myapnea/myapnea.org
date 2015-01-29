@@ -16,19 +16,19 @@
   .input-container
     - input_name = 'sex'
     = radio_button_tag input_name, 'M'
-    %label.label-med.survey-multiple-input-button{ for: "#{input_name+'_A'}" }
+    %label.label-med.survey-multiple-input-button{ for: "#{input_name+'_M'}" }
       %p Male
       %span M
     = radio_button_tag input_name, 'F'
-    %label.label-med.survey-multiple-input-button{ for: "#{input_name+'_B'}" }
+    %label.label-med.survey-multiple-input-button{ for: "#{input_name+'_F'}" }
       %p Female
       %span F
     = radio_button_tag input_name, 'O'
-    %label.label-med.survey-multiple-input-button{ for: "#{input_name+'_C'}" }
+    %label.label-med.survey-multiple-input-button{ for: "#{input_name+'_O'}" }
       %p Other
       %span O
     = radio_button_tag input_name, 'P'
-    %label.label-med.survey-multiple-input-button{ for: "#{input_name+'_D'}" }
+    %label.label-med.survey-multiple-input-button{ for: "#{input_name+'_P'}" }
       %p Prefer not to answer
       %span P
 
@@ -113,14 +113,66 @@
       %p Some college or 2-year degree
       %span D
     = radio_button_tag input_name, 'E'
-    %label.label-large.survey-multiple-input-button{ for: "#{input_name+'_D'}" }
+    %label.label-large.survey-multiple-input-button{ for: "#{input_name+'_E'}" }
       %p 4-year college graduate
       %span E
     = radio_button_tag input_name, 'F'
-    %label.label-large.survey-multiple-input-button{ for: "#{input_name+'_D'}" }
+    %label.label-large.survey-multiple-input-button{ for: "#{input_name+'_F'}" }
       %p More than 4-year college degree
       %span F
     = radio_button_tag input_name, 'G'
-    %label.label-large.survey-multiple-input-button{ for: "#{input_name+'_D'}" }
+    %label.label-large.survey-multiple-input-button{ for: "#{input_name+'_G'}" }
       %p Prefer not to answer
       %span G
+
+/ Multiple Options
+.panel.survey-container.progress-w-enter.progress-w-letter
+  .question-container
+    %h3.f300 Last year, what was your total household income from all sources, before taxes?
+  .input-container
+    - input_name = 'income'
+    = radio_button_tag input_name, 'A'
+    %label.label-large.survey-multiple-input-button{ for: "#{input_name+'_A'}" }
+      %p Less than $10,000 (USD)
+      %span A
+    = radio_button_tag input_name, 'B'
+    %label.label-large.survey-multiple-input-button{ for: "#{input_name+'_B'}" }
+      %p $10,000 - $49,999
+      %span B
+    = radio_button_tag input_name, 'C'
+    %label.label-large.survey-multiple-input-button{ for: "#{input_name+'_C'}" }
+      %p $50,000 - $99,999
+      %span C
+    = radio_button_tag input_name, 'D'
+    %label.label-large.survey-multiple-input-button{ for: "#{input_name+'_D'}" }
+      %p $100,000 - $149,999
+      %span D
+    = radio_button_tag input_name, 'E'
+    %label.label-large.survey-multiple-input-button{ for: "#{input_name+'_E'}" }
+      %p $150,000 - $199,999
+      %span E
+    = radio_button_tag input_name, 'F'
+    %label.label-large.survey-multiple-input-button{ for: "#{input_name+'_F'}" }
+      %p $200,000 - $249,999
+      %span F
+    = radio_button_tag input_name, 'G'
+    %label.label-large.survey-multiple-input-button{ for: "#{input_name+'_G'}" }
+      %p $250,000 and above
+      %span G
+    = radio_button_tag input_name, 'H'
+    %label.label-large.survey-multiple-input-button{ for: "#{input_name+'_H'}" }
+      %p Unknown
+      %span H
+    = radio_button_tag input_name, 'I'
+    %label.label-large.survey-multiple-input-button{ for: "#{input_name+'_I'}" }
+      %p Prefer not to answer
+      %span I
+
+/ End of Survey
+.panel.survey-container
+  .question-container
+    %h3.f300 Congratulations! You've reached the end of the survey, and will gain an entry into our monthly prize drawing!
+  .button-container
+    .btn.btn-primary.next-question
+      Submit
+    %p.text-muted Or press ENTER

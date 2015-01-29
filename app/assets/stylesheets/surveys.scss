@@ -64,6 +64,10 @@ input[type=date] {
   -webkit-appearance: none;
   margin: 0;
 }
+.survey-date:focus {
+  outline:none;
+  box-shadow:0 0 10px #b1d2f6;
+}
 
 // Short text field
 .survey-short-text {

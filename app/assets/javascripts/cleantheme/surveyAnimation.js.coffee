@@ -1,13 +1,14 @@
 @surveyAnimationReady = () ->
 
   # Initiate with focus on first question
-  $(document).ready ->
-    $(".survey-first-question").focus()
-    $(this).scrollTop 0
-    return
-  $(window).on "beforeunload", ->
-    $(window).scrollTop 0
-    return
+  if $(".survey-first-question").length
+    $(document).ready ->
+      $(".survey-first-question").focus()
+      $(this).scrollTop 0
+      return
+    $(window).on "beforeunload", ->
+      $(window).scrollTop 0
+      return
 
   # Scroll to active question
   @nextQuestionScroll = (element1, element2) ->
@@ -69,18 +70,34 @@
       assignQuestion(false, true)
 
 
+  # Respond to label clicks for radio/checkbox inputs
+  @labelClicked = (label, event) ->
+    event.preventDefault()
+    # (if e.stopPropagation then e.stopPropagation() else (e.cancelBubble = true))
+    event.stopPropagation()
+    labelID = $(label).attr("for")
+    $("#"+labelID).trigger("click")
+
+
   # Respond to user clicking different questions
-  $('.survey-container').click (e) ->
-    if $(e.target).hasClass "next-question"
+  $('.survey-container').click (event) ->
+    if $(event.target).hasClass "next-question"
       assignQuestion(true, false)
     else
-      unless $(this).hasClass "active"
+      if $(this).hasClass "active"
+        if $(event.target).closest("label").length
+          labelClicked($(event.target).closest("label"), event)
+          activeQuestion = $(".survey-container.active")
+          activeQuestion.removeClass "active"
+          $(this).next().addClass "active"
+          newActiveQuestion = $(".survey-container.active")
+          nextQuestionScroll(activeQuestion, newActiveQuestion)
+      else
         activeQuestion = $(".survey-container.active")
         activeQuestion.removeClass "active"
         $(this).addClass "active"
         newActiveQuestion = $(".survey-container.active")
         if $(this).prev().length == 0
-          console.log "clicked first question"
           $("body").animate
             scrollTop: 0
           , 400
