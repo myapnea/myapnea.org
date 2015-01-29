@@ -34,12 +34,20 @@ class ResearchTopic < ActiveRecord::Base
   end
 
   def voted_on_percentage
-    (self.votes.where(rating: 1).count/Vote.total_number_voters)*100 rescue 0
+    ( self.votes.where(rating: 1).count * 100) / ( Vote.total_number_voters.nonzero? || 1 )
   end
 
   def received_vote_from?(user)
     self.votes.where(user_id: user.id, rating: 1).present? ? true : false
   end
+
+  def user_removed_vote?(user)
+    self.votes.where(user_id: user.id, rating: 0).present? ? true : false
+  end
+
+  # def vote_created_today?(user)
+  #   self.votes.where(user_id: user.id).first.created_at.today?
+  # end
 
   def accepted?
     state == 'accepted'

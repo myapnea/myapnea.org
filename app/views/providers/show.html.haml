@@ -79,10 +79,12 @@
     = image_tag 'myapnea/welcome/img-small/bwh_logo.jpg', class: "partners-img img-responsive", id: "partner-BWH"
 / Signup sheet
 %a{:name=>'signup'}
-.row.row-fullscreen{id: "slide-5"}
-  .col-md-10.col-md-offset-1.col-lg-8.col-lg-offset-2.panel.panel-signup
-    .panel-body#panel-sign-up
-      - if current_user
+- unless current_user
+  = render partial: 'users/signup_form', locals: { resource: User.new( provider_id: @provider.id ) }
+- else
+  .row.row-fullscreen{id: "slide-5"}
+    .col-md-10.col-md-offset-1.col-lg-8.col-lg-offset-2.panel.panel-signup
+      .panel-body#panel-sign-up
         - if current_user.provider_id == @provider.id
           %h3.f300.centered-text
             Hi there,
@@ -104,33 +106,3 @@
             Do you want to list them as your primary care provider?
           %div{ style: 'text-align:center' }
             = link_to "Yes, list #{@provider.provider_name} as my provider!", update_account_path(:user => { provider_id: @provider.id }), method: :patch, class: 'btn btn-primary btn-lg'
-      - else
-        %h1.darker-blue.centered-text Wake up to a better future!
-        %h4 By joining, you gain access to a unique group of resources and a growing research community. It's fast, simple, and completely free of cost to join and start making a difference!
-        %h4
-          And, of course, all of your information is completely protected!
-          - if false
-            %span.lighter-blue#privacy-policy{ data:{ toggle: 'modal', target:'#myModal'} }
-          - else
-            = link_to 'See our privacy policy.', privacy_path, target: '_blank'
-        - resource = User.new
-        - resource_name = :user
-        = form_for(resource, :url => registration_path(resource_name), html: {}) do |f|
-          = hidden_field_tag "#{resource_name}[provider_id]", @provider.id
-          .form-group
-            = label "#{resource_name}[first_name]", :first_name, class: 'sr-only'
-            = text_field_tag "#{resource_name}[first_name]", (params[resource_name] ? params[resource_name][:first_name] : ''), class: 'form-control input-lg', placeholder: User.human_attribute_name(:first_name), autocomplete: :off
-          .form-group
-            = label "#{resource_name}[last_name]", :last_name, class: 'sr-only'
-            = text_field_tag "#{resource_name}[last_name]", (params[resource_name] ? params[resource_name][:last_name] : ''), class: 'form-control input-lg', placeholder: User.human_attribute_name(:last_name), autocomplete: :off
-          .form-group
-            = label "#{resource_name}[year_of_birth]", :year_of_birth, class: 'sr-only'
-            = select_tag "#{resource_name}[year_of_birth]", options_for_select([['Year of Birth', nil]] + (1900..Date.today.year).to_a.reverse.collect{|i| [i,i]}, (params[resource_name] ? params[resource_name][:year_of_birth] : '')), class: 'form-control input-lg'
-          .form-group
-            = f.label :email, class: 'sr-only'
-            = f.email_field :email, class: 'form-control input-lg', placeholder: User.human_attribute_name(:email), autocomplete: :off
-          .form-group
-            = f.label :password, class: 'sr-only'
-            = f.password_field :password, class: 'form-control input-lg', placeholder: User.human_attribute_name(:password)
-          = submit_tag 'Sign up!', class: "form-control", id: "submit-join"
-

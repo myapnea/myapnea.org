@@ -4,6 +4,11 @@
     = link_to image_tag('myapnea/MyApneaLogo_border_whitesub_300x80.png'), root_path, class: "navbar-brand"
     - if !current_user
       = link_to "Login", new_user_session_path, class: "btn primary-blue-bcg text-white visible-xs float-right", id: "btn-login-phone"
+    - elsif @provider
+      = link_to home_path do
+        .navbar-right.text-white.centered-text.visible-xs
+          .navbar-header.pull-right#slide-nav
+            %i.fa.fa-home{ style:'font-size:40px' }
     - else
       = link_to account_path do
         .navbar-right.text-white.centered-text.visible-xs

@@ -11,7 +11,7 @@ class ProvidersController < ApplicationController
 
 
   def new
-    @provider = User.new(user_type: 'provider', welcome_message: 'Welcome to my page!')
+    @provider = User.new
   end
 
   # before_action :authenticate_user!

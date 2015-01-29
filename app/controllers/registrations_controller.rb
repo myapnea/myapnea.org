@@ -2,24 +2,17 @@ class RegistrationsController < Devise::RegistrationsController
   # TODO remove when new layout is default
   layout 'layouts/cleantheme'
 
-  def new
-
-
-
-
-    @provider = User.providers.find_by_slug(params[:slug])
-
-
-    #
-    # build_resource({})
-    # @validatable = devise_mapping.validatable?
-    # if @validatable
-    #   @minimum_password_length = resource_class.password_length.min
-    # end
-    # respond_with self.resource
-    #
-    super
-  end
+  # def new
+  #   #
+  #   # build_resource({})
+  #   # @validatable = devise_mapping.validatable?
+  #   # if @validatable
+  #   #   @minimum_password_length = resource_class.password_length.min
+  #   # end
+  #   # respond_with self.resource
+  #   #
+  #   super
+  # end
 
   # def create
   #   raise StandardError
@@ -51,9 +44,9 @@ class RegistrationsController < Devise::RegistrationsController
 
   def sign_up_params
     if params[:user][:user_type] == "provider"
-      params.require(:user).permit(:first_name, :last_name, :provider_name, :slug, :address_1, :address_2, :city, :state_code, :zip_code, :email, :password, :password_confirmation, :user_type, :welcome_message)
+      params.require(:user).permit(:first_name, :last_name,                 :email, :password, :beta_opt_in, :user_type, :welcome_message)
     else
-      params.require(:user).permit(:first_name, :last_name, :year_of_birth, :zip_code, :email, :password, :password_confirmation, :provider_name, :provider_id)
+      params.require(:user).permit(:first_name, :last_name, :year_of_birth, :email, :password, :beta_opt_in, :provider_id)
     end
 
   end

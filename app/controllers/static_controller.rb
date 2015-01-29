@@ -9,11 +9,13 @@ class StaticController < ApplicationController
 
   def home
     flash.delete(:notice)
+    flash.delete(:alert)
     if current_user
       @active_top_nav_link = :home
       @posts = Notification.blog_posts.viewable
       render layout: "main"
     else
+      @pc = page_content('privacy_policy')
       render 'landing', layout: 'layouts/cleantheme'
     end
   end
@@ -39,6 +41,9 @@ class StaticController < ApplicationController
     end
   end
 
+  def partners
+    render layout: 'layouts/cleantheme'
+  end
 
 # Stealth Pages
   def stealth_steering
