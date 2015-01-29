@@ -1,0 +1,9 @@
+- name_en: Sign Up Demographics
+  description:
+  status: visible
+  questions:
+  - text: |
+      What is your date of birth?
+    answer_templates:
+    - generic_data
+  
