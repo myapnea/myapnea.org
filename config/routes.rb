@@ -38,7 +38,7 @@ Rails.application.routes.draw do
   get 'research_topics' => 'research#research_topics'
   get 'research_karma' => 'research#research_karma'
   get 'research_today' => 'research#research_today'
-  get 'research_surveys' => 'research#research_surveys', as: :surveys
+  get 'research_surveys' => 'research#research_surveys', as: :common
   get 'data_connections' => 'research#data_connections'
 
   # Surveys
