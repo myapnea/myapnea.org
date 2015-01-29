@@ -9,7 +9,7 @@ namespace :surveys do
         "display_types",
         "groups",
         "questions",
-        "question_flows",
+        "surveys",
         "question_help_messages",
         "units"
     ]
@@ -31,7 +31,7 @@ namespace :surveys do
           "display_types",
           "groups",
           "questions",
-          "question_flows",
+          "surveys",
           "question_help_messages",
           "units"
       ]
@@ -53,7 +53,7 @@ namespace :surveys do
           ["answer_templates.yml", AnswerTemplate],
           ["question_help_messages.yml", QuestionHelpMessage],
           ["questions.yml", Question],
-          ["question_flows.yml", Survey]
+          ["surveys.yml", Survey]
       ]
 
 
@@ -91,7 +91,7 @@ namespace :surveys do
         q1 = Question.find(attrs['parent_question_id'])
         q2 = Question.find(attrs['child_question_id'])
 
-        qe = QuestionEdge.build_edge(q1, q2, attrs['condition'], attrs['question_flow_id'])
+        qe = QuestionEdge.build_edge(q1, q2, attrs['condition'], attrs['survey_id'])
 
         puts("Creating edge #{i+1} of #{yaml_data.length} between #{q1.id} and #{q2.id}")
         raise StandardError, qe.errors.full_messages unless qe.save
@@ -117,7 +117,7 @@ namespace :surveys do
 
   desc "Refresh Precalculated data"
   task :refresh => :environment do
-    Survey.refresh_all_question_flows
+    Survey.refresh_all_surveys
 
     AnswerSession.current.each {|as| as.completed? }
   end
@@ -128,16 +128,16 @@ namespace :surveys do
     user_count = User.count
     User.order("created_at asc").each_with_index do |user, index|
       puts "Migrating user (#{index+1} of #{user_count}) #{user.email}"
-      old_answer_session = user.answer_sessions.where(question_flow_id: 13).first
+      old_answer_session = user.answer_sessions.where(survey_id: 13).first
 
       if old_answer_session
-        Survey.viewable.each do |question_flow|
-          puts "Migrating survey #{question_flow.name}"
+        Survey.viewable.each do |survey|
+          puts "Migrating survey #{survey.name}"
 
-          answer_session = AnswerSession.find_or_create_by(user_id: user.id, question_flow_id: question_flow.id)
+          answer_session = AnswerSession.find_or_create_by(user_id: user.id, survey_id: survey.id)
           answer_session.reset_answers if answer_session.completed?
 
-          question = question_flow.first_question
+          question = survey.first_question
 
           until answer_session.completed?
             old_answer = question.answers.where(answer_session_id: old_answer_session.id).first
@@ -160,16 +160,16 @@ namespace :surveys do
   desc "Migrate over answers from old survey to one afflicted with bug"
   task :fix_about_me_survey_migration => :environment do
     user_count = User.count
-    question_flow = Survey.find(16)
+    survey = Survey.find(16)
     User.order("created_at asc").each_with_index do |user, index|
       puts "Migrating user (#{index+1} of #{user_count}) #{user.email}"
-      old_answer_session = user.answer_sessions.where(question_flow_id: 13).first
+      old_answer_session = user.answer_sessions.where(survey_id: 13).first
 
       if old_answer_session
 
-          puts "Migrating survey #{question_flow.name}"
+          puts "Migrating survey #{survey.name}"
 
-          answer_session = AnswerSession.find_by(user_id: user.id, question_flow_id: question_flow.id)
+          answer_session = AnswerSession.find_by(user_id: user.id, survey_id: survey.id)
 
           if answer_session and answer_session.started?
             question = answer_session.last_answer.next_question

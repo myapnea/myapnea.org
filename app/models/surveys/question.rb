@@ -20,28 +20,28 @@ class Question < ActiveRecord::Base
 
   # DAG
 
-  def next_question(question_flow)
-    candidate_edges = QuestionEdge.where(parent_question_id: self[:id], question_flow_id: question_flow.id, direct: true)
+  def next_question(survey)
+    candidate_edges = QuestionEdge.where(parent_question_id: self[:id], survey_id: survey.id, direct: true)
     candidate_edges.first
   end
 
-  def previous_question(question_flow)
-    candidate_edges = QuestionEdge.where(child_question_id: self[:id], question_flow_id: question_flow.id, direct: true)
+  def previous_question(survey)
+    candidate_edges = QuestionEdge.where(child_question_id: self[:id], survey_id: survey.id, direct: true)
     candidate_edges.first
   end
 
-  def default_next_question(question_flow)
-    candidate_edges = QuestionEdge.where(parent_question_id: self[:id], question_flow_id: question_flow.id, direct: true)
+  def default_next_question(survey)
+    candidate_edges = QuestionEdge.where(parent_question_id: self[:id], survey_id: survey.id, direct: true)
     candidate_edges.present? ? candidate_edges.select {|edge| edge.condition.blank? }.first.descendant : nil
   end
 
-  def default_previous_question(question_flow)
-    candidate_edges = QuestionEdge.where(child_question_id: self[:id], question_flow_id: question_flow.id, direct: true)
+  def default_previous_question(survey)
+    candidate_edges = QuestionEdge.where(child_question_id: self[:id], survey_id: survey.id, direct: true)
     candidate_edges.present? ? candidate_edges.select {|edge| edge.condition.blank? }.first.ancestor : nil
   end
 
-  def conditional_children(question_flow)
-    candidate_edges = QuestionEdge.where(parent_question_id: self[:id], question_flow_id: question_flow.id, direct: true)
+  def conditional_children(survey)
+    candidate_edges = QuestionEdge.where(parent_question_id: self[:id], survey_id: survey.id, direct: true)
     candidate_edges.select {|edge| edge.condition.present? }.map(&:descendant)
 
   end
@@ -51,8 +51,8 @@ class Question < ActiveRecord::Base
   end
 
 
-  def is_branchpoint?(question_flow)
-    QuestionEdge.where(parent_question_id: self[:id], question_flow_id: question_flow.id, direct: true).length > 1
+  def is_branchpoint?(survey)
+    QuestionEdge.where(parent_question_id: self[:id], survey_id: survey.id, direct: true).length > 1
   end
 
   def parent

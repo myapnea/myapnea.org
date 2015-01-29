@@ -9,8 +9,8 @@ class AnswerSession < ActiveRecord::Base
 
   # Class Methods
 
-  def self.most_recent(question_flow_id, user_id)
-    answer_sessions = AnswerSession.current.where(question_flow_id: question_flow_id, user_id: user_id).order(updated_at: :desc)
+  def self.most_recent(survey_id, user_id)
+    answer_sessions = AnswerSession.current.where(survey_id: survey_id, user_id: user_id).order(updated_at: :desc)
     answer_sessions.empty? ? nil : answer_sessions.first
   end
 
@@ -241,7 +241,7 @@ class AnswerSession < ActiveRecord::Base
     if from_answer.nil?
       total_remaining_path_length
     elsif from_answer.next_question.present?
-      question_flow.path_length(from_answer.next_question)
+      survey.path_length(from_answer.next_question)
     else
       0
     end
@@ -250,11 +250,11 @@ class AnswerSession < ActiveRecord::Base
 
   def total_remaining_path_length
     if last_answer.blank?
-      question_flow.longest_path_length
+      survey.longest_path_length
     elsif last_answer.next_question.nil?
       0
     else
-      question_flow.path_length(last_answer.next_question)
+      survey.path_length(last_answer.next_question)
     end
   end
 

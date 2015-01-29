@@ -5,7 +5,7 @@
   .panel-heading
     %h2
       Thank you for completing the
-      %strong= @question_flow.name
+      %strong= @survey.name
       Survey!
   .panel-body
     %p.lead Congratulations, you have received one entry into the next monthly drawing!
@@ -15,6 +15,6 @@
         %a.u-voice your suggestions!
 
 
-    = render partial: "surveys/reports/report_#{@question_flow.id}" rescue nil
+    = render partial: "surveys/reports/report_#{@survey.id}" rescue nil
 
     = render partial: "surveys/reports/default"

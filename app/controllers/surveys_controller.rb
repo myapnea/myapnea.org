@@ -6,19 +6,19 @@ class SurveysController < ApplicationController
   layout "main"
 
   def start_survey
-    question_flow = Survey.find(params[:question_flow_id])
-    answer_session =  AnswerSession.current.find_by(user_id: current_user.id, question_flow_id: question_flow.id)
+    survey = Survey.find(params[:survey_id])
+    answer_session =  AnswerSession.current.find_by(user_id: current_user.id, survey_id: survey.id)
 
     if answer_session
       redirect_to surveys_path
     else
-      answer_session = AnswerSession.create(user_id: current_user.id, question_flow_id: question_flow.id)
-      redirect_to ask_question_path(question_id: question_flow.first_question_id, answer_session_id: answer_session.id)
+      answer_session = AnswerSession.create(user_id: current_user.id, survey_id: survey.id)
+      redirect_to ask_question_path(question_id: survey.first_question_id, answer_session_id: answer_session.id)
     end
   end
 
   def intro
-    @question_flow = Survey.find(params[:question_flow_id])
+    @survey = Survey.find(params[:survey_id])
   end
 
   def ask_question
@@ -27,7 +27,7 @@ class SurveysController < ApplicationController
 
     if @question.part_of_group?
       @group = @question.group
-      @questions = @group.minimum_set(@answer_session.question_flow)
+      @questions = @group.minimum_set(@answer_session.survey)
       @answer = Answer.current.where(question_id: @questions.first.id, answer_session_id: @answer_session.id).first || Answer.new(question_id: @questions.first.id, answer_session_id: @answer_session.id)
     else
       @answer = Answer.current.where(question_id: @question.id, answer_session_id: @answer_session.id).first || Answer.new(question_id: @question.id, answer_session_id: @answer_session.id)
@@ -36,8 +36,7 @@ class SurveysController < ApplicationController
 
   def show_report
     @answer_session = AnswerSession.find(params[:answer_session_id])
-    @question_flow = @answer_session.question_flow
-    @survey = @question_flow
+    @survey = @answer_session.survey
 
     render "show_report-new", layout: 'layouts/cleantheme' if current_user.beta_opt_in?
   end

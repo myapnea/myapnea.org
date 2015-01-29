@@ -49,7 +49,7 @@ class Survey < ActiveRecord::Base
     res
   end
 
-  def self.refresh_all_question_flows
+  def self.refresh_all_surveys
     Survey.all.each do |qf|
       qf.refresh_precomputations
     end
@@ -170,7 +170,7 @@ class Survey < ActiveRecord::Base
 
     tsort.reverse.each_with_index do |question, order|
 
-      SurveyQuestionOrder.create(question_id: question.id, question_flow_id: self.id, question_number: order + 1, remaining_distance: find_longest_path_length_to_leaf(question) )
+      SurveyQuestionOrder.create(question_id: question.id, survey_id: self.id, question_number: order + 1, remaining_distance: find_longest_path_length_to_leaf(question) )
 
     end
   end
@@ -197,8 +197,8 @@ class Survey < ActiveRecord::Base
         .distinct
         .joins('left join question_edges parent_qe on parent_qe.child_question_id = "questions".id')
         .joins('left join question_edges child_qe on child_qe.parent_question_id = "questions".id')
-        .where("child_qe.question_flow_id = ? or child_qe.question_flow_id is null", self.id)
-        .where("parent_qe.question_flow_id = ? or parent_qe.question_flow_id is null", self.id)
+        .where("child_qe.survey_id = ? or child_qe.survey_id is null", self.id)
+        .where("parent_qe.survey_id = ? or parent_qe.survey_id is null", self.id)
         .where("parent_qe.child_question_id is not null or child_qe.parent_question_id is not null")
         .where("parent_qe.direct = 't' and child_qe.direct = 't'")
   end

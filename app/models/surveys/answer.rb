@@ -138,7 +138,7 @@ class Answer < ActiveRecord::Base
   end
 
   def next_question
-    candidate_edges = QuestionEdge.where(parent_question_id: question.id, direct: true, question_flow_id: answer_session.question_flow.id)
+    candidate_edges = QuestionEdge.where(parent_question_id: question.id, direct: true, survey_id: answer_session.survey.id)
 
     if candidate_edges.empty?
       nil

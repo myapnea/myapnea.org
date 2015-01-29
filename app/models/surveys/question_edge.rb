@@ -15,7 +15,7 @@ class QuestionEdge < ActiveRecord::Base
     conditions[:condition] = condition
     path = self.new(conditions)
     path.make_direct
-    path.question_flow_id = qf_id
+    path.survey_id = qf_id
     path
   end
 
