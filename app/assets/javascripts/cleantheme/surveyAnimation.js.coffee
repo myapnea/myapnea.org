@@ -40,6 +40,11 @@
     $(question1).find("input").blur()
     $(question2).find("input").focus()
 
+  @changeFocusDirect = (input1, input2) ->
+    $(input1).blur()
+    $(input2).focus()
+
+
   # Progress to next question
   @assignQuestion = (next, prev) ->
     activeQuestion = $(".survey-container.active")
@@ -107,7 +112,7 @@
 
 
   # Respond to keystrokes
-  $("body").keydown (e) ->
+  $("body").keyup (e) ->
     if $(".survey-container.active").hasClass "progress-w-number"
         inputs = $(".survey-container.active .multiple-question-container.current").find("input:radio")
         if e.keyCode is 38
@@ -140,17 +145,20 @@
             $(inputs[index]).prop "checked", true
             assignQuestion(true, false)
       if $(".survey-container.active").hasClass "check-w-letter"
-        inputs = $(".survey-container.active .input-container").find("input:checkbox")
-        inputs.each (index) ->
-          key = inputs[index].value.charCodeAt(0)
-          if e.keyCode is key
-            if $(inputs[index]).prop "checked"
-              $(inputs[index]).prop "checked", false
-            else
-              $(inputs[index]).prop "checked", true
+        unless $(".survey-container.active .hidden-input").is ":focus"
+          inputs = $(".survey-container.active .input-container").find("input:checkbox")
+          inputs.each (index) ->
+            key = inputs[index].value.charCodeAt(0)
+            if e.keyCode is key
+              if $(inputs[index]).prop "checked"
+                $(inputs[index]).prop "checked", false
+              else
+                $(inputs[index]).prop "checked", true
+              if $(inputs[index]).hasClass "reveal-next-input"
+                e.preventDefault()
+                changeFocusDirect($(this), $(this).nextAll('.hidden-input'))
 
-  # Respond to conditional inputs
-  # https://github.com/remomueller/slice/blob/master/app/assets/javascripts/global.js.coffee#L164
+  # Respond to conditional inputs - click events
   $(".reveal-next-input").click (e) ->
-    changeFocus($(this), $(this).next('.hidden-input'))
+    changeFocusDirect($(this), $(this).nextAll('.hidden-input'))
 
