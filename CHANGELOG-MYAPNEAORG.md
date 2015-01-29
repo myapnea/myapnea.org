@@ -21,6 +21,7 @@
 - Fixed a bug that prevented linking a provider to a newly registered user if the user ran into other registration validation errors during the sign up process
 - Fixed link to CMB Solutions
 - Removed link from Recent News in old layout as the page no longer exists
+- Advisory member bios now open correctly on mobile devices
 
 ## 4.1.0 (January 21, 2015)
 
