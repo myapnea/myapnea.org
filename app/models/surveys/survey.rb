@@ -1,12 +1,17 @@
 class Survey < ActiveRecord::Base
+  # Constants
+  SURVEY_DATA_LOCATION = ['lib', 'data', 'myapnea', 'surveys', 'surveys']
+
   # Concerns
   include Localizable
   include TSort
 
+  # Translations
   localize :name
   localize :description
   localize :short_description
 
+  # Authorization
   include Authority::Abilities
   self.authorizer_name = "OwnerAuthorizer"
 
@@ -19,6 +24,7 @@ class Survey < ActiveRecord::Base
   has_many :ordered_questions, through: :survey_question_orders, foreign_key: "question_id", class_name: "Question", source: :question
   has_many :survey_answer_frequencies
 
+  # Named scopes
   scope :viewable, -> { where(status: "show") }
 
   # Class Methods
@@ -55,6 +61,14 @@ class Survey < ActiveRecord::Base
     end
   end
 
+  def self.load_survey(survey_name)
+    ## Possible additions to DATABASE:
+    # survey load file location??
+    # survey questions and edges in the same file??
+    # 
+    data_file_path = Rails.root.join(*(SURVEY_DATA_LOCATION + ["#{survey_name}.yml"]))
+
+  end
 
   ## Need to be fast
   def complete?(user)
