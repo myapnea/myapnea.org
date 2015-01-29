@@ -11,6 +11,7 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "font-awesome";
 
 @import "clean-variables";
 @import "welcome";
@@ -29,7 +30,17 @@
 @import "myapnea/components/topics";
 @import "radial-progress";
 
-// body, html { height: 100%; }
+/* FONTS */
+@font-face {
+  font-family: 'Dosis';
+  src: asset-url('myapnea/fonts/Dosis-Regular.otf') format("opentype");
+}
+
+@font-face {
+  font-family: 'Dosis';
+  font-weight: 600;
+  src: asset-url('myapnea/fonts/Dosis-Bold.otf') format("opentype");
+}
 
 // Clean theme document
 /* DOCUMENT LAYOUT */

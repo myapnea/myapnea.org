@@ -13,8 +13,6 @@
     %meta{ itemprop: 'description', content: 'Improving sleep apnea through information, support, and research' }
     %meta{ itemprop: 'image', content: ENV['website_url'] + '/assets/' + asset_path('myapnea/MyApneaLogo_border_whitesub_square.png').split('/assets/').last }
     %title=ENV['pprn_title']
-    %link{href:'//fonts.googleapis.com/css?family=Dosis:400,700|Cabin:400,700', rel:'stylesheet', type:'text/css'}
-    %link{href:'//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css', rel:'stylesheet'}
     = favicon_link_tag
     = csrf_meta_tags
     = stylesheet_link_tag 'cleantheme', media: 'all', 'data-turbolinks-track' => true
