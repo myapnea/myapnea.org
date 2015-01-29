@@ -1,5 +1,4 @@
 - percent = survey.completion_percent(current_user).round
-
 .radial-progress.hidden-xs{ style: 'display:block; margin: 20px auto' }
   .circle{ data: { object: "circle_percentage", percent: "#{percent}", survey_id: survey.id } }
     .mask.left

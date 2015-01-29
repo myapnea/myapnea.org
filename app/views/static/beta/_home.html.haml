@@ -12,12 +12,9 @@
 .panel
   .panel-body
     .row
-      .col-sm-4.centered-text
-        = render partial: 'static/beta/survey_progress', locals: { survey: current_user.smart_surveys[0] }
-      .col-sm-4.centered-text
-        = render partial: 'static/beta/survey_progress', locals: { survey: current_user.smart_surveys[1] }
-      .col-sm-4.centered-text
-        = render partial: 'static/beta/survey_progress', locals: { survey: current_user.smart_surveys[2] }
+      - current_user.smart_surveys.each do |survey|
+        .col-sm-4.centered-text
+          = render partial: 'static/beta/survey_progress', locals: { survey: survey }
 
 .panel
   .panel-heading
