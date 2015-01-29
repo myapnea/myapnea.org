@@ -13,6 +13,7 @@
 
 ### Bug Fixes
 - Fixed the providers "Create Your Page" button not working for logged in users
+- Fixed the collapsable divs on the advisory page that were not working on mobile
 
 ## 4.1.0 (January 21, 2015)
 
