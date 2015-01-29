@@ -2,6 +2,7 @@
   .panel-body
     #print-area
       %h2.f300= @pc['title']
+      - @pc = page_content('privacy_policy')
       = markdown @pc['privacy_policy']
       - if current_user and current_user.accepted_privacy_policy_at.blank?
         = markdown 'If you wish to be in this study please click the button that says **"I agree to participate"**'

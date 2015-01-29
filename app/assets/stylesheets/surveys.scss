@@ -48,12 +48,30 @@
 /*
 TYPES OF QUESTIONS
 */
+// Date
+input[type=date] {
+  line-height: normal;
+}
+.survey-date {
+  font-size:35px;
+  border-radius:20px;
+  border-color: #b1d2f6;
+  padding:7px;
+  max-width:100%;
+}
+.survey-date::-webkit-inner-spin-button,
+.survey-date::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 // Short text field
 .survey-short-text {
   font-size:50px;
   border-radius:20px;
   border-color: #b1d2f6;
   padding:7px;
+  max-width:100%;
 }
 
 .survey-short-text:focus {
@@ -63,6 +81,7 @@ TYPES OF QUESTIONS
 
 .survey-short-number {
   text-align: right;
+  width:150px;
 }
 
 .survey-text-small {
@@ -88,6 +107,18 @@ TYPES OF QUESTIONS
   }
 }
 
+.input-container .label-med {
+  width:50%;
+  margin-left: 25%;
+  margin-right:25%;
+}
+
+.input-container .label-large {
+  width: 80%;
+  margin-left:10%;
+  margin-right:10%;
+}
+
 .input-container .survey-multiple-input-button:hover {
   cursor: pointer;
 }
@@ -110,7 +141,6 @@ $great: #78c679;
 
 .survey-container.active .input-container .multiple-question-container.current {
   background-color: transparentize(#b1d2f6, .7);
-  padding:5px;
   border-radius:20px;
 }
 
@@ -392,8 +422,19 @@ http://brennaobrien.com/blog/2014/05/style-input-type-range-in-every-browser.htm
 
 
 
-
-
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .survey-date,
+  .survey-short-text {
+    font-size: 20px;
+  }
+  .input-container {
+    label span {
+      display: none;
+      // TODO add a class to all of these spans
+    }
+  }
+}
 
 
 

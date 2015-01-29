@@ -10,7 +10,6 @@ class StaticController < ApplicationController
       @posts = Notification.blog_posts.viewable
       render layout: "main"
     else
-      @pc = page_content('privacy_policy')
       render 'landing', layout: 'layouts/cleantheme'
     end
   end
@@ -63,6 +62,11 @@ class StaticController < ApplicationController
     else
       redirect_to providers_path
     end
+  end
+
+  def registration1
+    @pc1 = page_content('privacy_policy')
+    @pc2 = page_content('consent')
   end
 
   private

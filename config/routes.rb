@@ -20,10 +20,8 @@ Rails.application.routes.draw do
   get 'p(/:slug)', to: 'static#provider_page'
   resources :providers
 
-
   # MyApnea Specific
   match 'user_dashboard', to: 'account#dashboard', as: :user_dashboard, via: :get
-
 
   # Facebook Real Updates
   # match "update_fb_feed", to: "posts#receive_update", as: :update_fb_feed, via: :post

@@ -9,6 +9,10 @@
 - **Research Study Changes**
   - Clicking "Leave Research Study" on the Consent or Privacy Policy pages now removes the member from the study
     - In the past, the member would be redirected to the account page where this question would be asked one more time
+- **Registration Process**
+  - Upon registration, user's are automatically sent through consent process
+    - Privacy policy, then consent, then brought to new demographics survey
+    - Process is simple and informative of why it is important
 
 ### Bug Fixes
 - Fixed a bug that prevented a user dashboard from displaying if no forum topics existed
