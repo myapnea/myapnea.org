@@ -1,6 +1,5 @@
 class ResearchTopicAuthorizer < ApplicationAuthorizer
   def self.creatable_by?(user)
-    # user.can?(:participate_in_social)
     true
   end
 

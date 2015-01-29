@@ -14,4 +14,4 @@
         = post[:created_at].strftime("%d %b %Y")
       %p{ style: 'margin:10px 10px; color: white; color: rgba(255,255,255,.8); font-size:14px' }
         - content = (post[:type] == :facebook ? post[:content_description] : post[:content])
-        = content
+        = strip_tags(simple_markdown content).truncate(100, separator: ' ').html_safe

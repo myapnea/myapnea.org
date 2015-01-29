@@ -1,0 +1,48 @@
+#slide-5.row.row-fullscreen
+  .col-md-10.col-md-offset-1.col-lg-8.col-lg-offset-2.panel.panel-signup
+    #panel-sign-up.panel-body
+      %h1.darker-blue Wake up to a better future!
+      %h4
+        By joining, you gain access to a unique group of resources and a growing research community. It's fast, simple, and completely free of cost to join and start making a difference!
+        %br
+        %br
+        And, of course, all of your information is completely protected!
+        - if current_page?(root_path)
+          %span#privacy-policy.lighter-blue{ data: { toggle: 'modal', target: '#myModal' } } See our privacy policy.
+        - else # current_page?(new_user_registration_path)
+          = link_to 'See our privacy policy.', privacy_path, target: '_blank'
+
+      = form_for(resource, url: registration_path(resource), class: 'form-horizontal', method: :post) do |f|
+        - if resource.errors.any?
+          .bs-callout.bs-callout-danger#error_explanation
+            %h4
+              = pluralize(resource.errors.count, "error")
+              prohibited this user from being saved
+            %ul
+              - resource.errors.full_messages.each do |msg|
+                %li= msg
+        = f.hidden_field :beta_opt_in, value: true
+        = f.hidden_field :provider_id
+        .input-group
+          = f.text_field :first_name, placeholder: 'First name', class: 'form-control'
+          - if resource.errors.any? and resource.errors[:first_name].present?
+            %span.input-group-addon.signup-error !
+        .input-group
+          = f.text_field :last_name, placeholder: 'Last name', class: 'form-control'
+          - if resource.errors.any? and resource.errors[:last_name].present?
+            %span.input-group-addon.signup-error !
+        .input-group
+          = f.select :year_of_birth, [['- Select your birth year -', nil]] + (1900..Date.today.year).to_a.reverse.collect{|i| [i,i]}, {}, class: 'form-control', aria: { describedby: 'in3' }
+          - if resource.errors.any? and resource.errors[:year_of_birth].present?
+            %span.input-group-addon.signup-error !
+        .input-group
+          = f.email_field :email, placeholder: 'Email address', class: 'form-control'
+          - if resource.errors.any? and resource.errors[:email].present?
+            %span.input-group-addon.signup-error !
+        .input-group
+          = f.password_field :password, placeholder: 'Password', class: 'form-control'
+          - if resource.errors.any? and resource.errors[:password].present?
+            %span.input-group-addon.signup-error !
+        .input-group
+          = f.submit 'Sign up!', class: 'form-control', id: 'submit-join'
+

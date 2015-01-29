@@ -24,7 +24,7 @@ class ActiveSupport::TestCase
   fixtures :all
 
   def global_setup
-    QuestionFlow.refresh_all_question_flows
+    Survey.refresh_all_surveys
   end
   # Add more helper methods to be used by all tests here...
 end

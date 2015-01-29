@@ -43,11 +43,7 @@ class NotificationsController < ApplicationController
   end
 
   def redirect_notification(notification)
-    if notification.is_notification?
-      redirect_to admin_notifications_path
-    else
-      redirect_to admin_blog_path
-    end
+    redirect_to admin_notifications_path
   end
 
   ## TODO: Integrate with next step

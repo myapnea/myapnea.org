@@ -170,15 +170,11 @@ class User < ActiveRecord::Base
   end
 
   def signed_consent?
-    # Local Consent Storage
     self.accepted_consent_at.present?
-    # OODT Consent Storage
-    #self.oodt_status
   end
 
   def accepted_privacy_policy?
     self.accepted_privacy_policy_at.present?
-
   end
 
   def accepted_terms_conditions?
@@ -198,15 +194,15 @@ class User < ActiveRecord::Base
   end
 
   def incomplete_surveys
-    QuestionFlow.incomplete(self)
+    Survey.incomplete(self)
   end
 
   def complete_surveys
-    QuestionFlow.complete(self)
+    Survey.complete(self)
   end
 
   def unstarted_surveys
-    QuestionFlow.unstarted(self)
+    Survey.unstarted(self)
   end
 
   def not_complete_surveys
@@ -240,6 +236,10 @@ class User < ActiveRecord::Base
   def has_votes_remaining?(rating = 1)
 
     (todays_votes.length < vote_quota) or (rating < 1)
+  end
+
+  def positive_votes
+    self.votes.where(rating: '1')
   end
 
   def answer_for(answer_session, question)

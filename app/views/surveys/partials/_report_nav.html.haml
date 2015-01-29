@@ -3,8 +3,8 @@
     = link_to surveys_path, class: 'btn btn-md btn-default' do
       %i.fa.fa-arrow-left
       Return to My Dashboard
-  - if next_survey?(@question_flow)
+  - if next_survey?(@survey)
     %div
-      = link_to go_to_next_survey(current_user, @question_flow), class: 'btn btn-md btn-primary' do
+      = link_to go_to_next_survey(current_user, @survey), class: 'btn btn-md btn-primary' do
         Start Next Survey
         %i.fa.fa-arrow-right

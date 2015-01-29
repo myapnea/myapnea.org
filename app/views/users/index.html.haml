@@ -1,6 +1,8 @@
 - @title = 'Users'
 .content-main-header
   %h1
+    = link_to 'Admin Dashboard', admin_path
+    &middot;
     = @title
 
 = form_tag users_path, method: :get, class: 'form-inline' do

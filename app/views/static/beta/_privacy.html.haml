@@ -1,0 +1,25 @@
+.panel
+  .panel-body
+    #print-area
+      %h2.f300= @pc['title']
+      - @pc = page_content('privacy_policy')
+      = markdown @pc['privacy_policy']
+      - if current_user and current_user.accepted_privacy_policy_at.blank?
+        = markdown 'If you wish to be in this study please click the button that says **"I agree to participate"**'
+    %br/
+    = link_to "#", id: "print-link", class: 'print-link pull-right btn btn-xs btn-primary' do
+      %i.fa.fa-print
+      Print Privacy Policy
+  - if current_user
+    .text-center.panel-footer
+      - if current_user.ready_for_research?
+        = link_to :back, class: 'btn btn-lg btn-default' do
+          .fa.fa-arrow-left
+          &nbsp;
+          Go Back
+        / = link_to "View Consent", consent_path, class: 'btn btn-lg btn-primary'
+        = link_to "Leave Research Study", revoke_consent_path, method: :post, class: 'btn btn-warning btn-lg'
+      - else
+        = form_tag privacy_path do
+          %input.btn.btn-primary.btn-lg{:name => "privacy_policy_read", :type => "submit", :value => "I have read the privacy policy#{current_user.signed_consent? ? ' and I agree to participate' : ''}"}
+          = link_to "I decline", revoke_consent_path, method: :post, class: 'btn btn-danger btn-lg'

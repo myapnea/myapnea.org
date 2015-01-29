@@ -7,6 +7,14 @@ class ResearchTopicsControllerTest < ActionController::TestCase
     @moderator = users(:moderator_1)
   end
 
+  test "should get index for regular user" do
+    login(@regular_user)
+    get :index
+    assert_not_nil assigns(:research_topics)
+    assert_equal ['accepted'], assigns(:research_topics).pluck(:state).uniq
+    assert_response :success
+  end
+
   test "should create under review research topic as regular user" do
     login(@regular_user)
     assert_difference('ResearchTopic.count') do
@@ -35,17 +43,14 @@ class ResearchTopicsControllerTest < ActionController::TestCase
     assert_redirected_to new_user_session_path
   end
 
+  test "should get new for regular user" do
+    login(@regular_user)
+    get :new
+    assert_not_nil assigns(:research_topic)
+    assert_response :success
+  end
 
   # Older tests
-
-  test "User can view accepted research topics" do
-    login(users(:user_1))
-
-    get :index
-
-    assert_response :success
-    assert_equal ResearchTopic.accepted, assigns(:research_topics)
-  end
 
   test "User can edit own research topic" do
     login(users(:user_2))
@@ -54,14 +59,6 @@ class ResearchTopicsControllerTest < ActionController::TestCase
 
     assert_response :success
     assert_equal assigns(:research_topic), research_topics(:rt2)
-  end
-
-  test "New" do
-    login(users(:user_3))
-
-    get :new
-
-    assert_response :success
   end
 
   test "User can view accepted research topic" do

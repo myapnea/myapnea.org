@@ -2,7 +2,7 @@
   = form_tag(process_answer_path, {role: "form"}) do
     .panel.panel-default
       .panel-heading
-        = render partial: 'surveys/partials/header', locals: {question_flow: @answer_session.question_flow}
+        = render partial: 'surveys/partials/header', locals: {survey: @answer_session.survey}
         = render partial: 'surveys/partials/session_progress', locals: {answer: @answer, answer_session: @answer_session }
         = link_to 'Previous Question', previous_question_path(@answer), class: 'btn btn-default', tabindex: -1
         %button.btn.btn-primary.pull-right{:name => "direction", :type => "submit", :value => "next"} Next Question

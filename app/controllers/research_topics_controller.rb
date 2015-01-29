@@ -17,14 +17,20 @@ class ResearchTopicsController < ApplicationController
 
   def index
     @research_topics = ResearchTopic.accepted
-
-    render "static/stealth_datadisplay", layout: 'layouts/cleantheme' if params[:redesign] == '1'
+    render layout: 'layouts/cleantheme'
   end
 
   def show
     authorize_action_for @research_topic
   end
 
+  def new
+    @research_topic = current_user.research_topics.new
+  end
+
+  def edit
+    authorize_action_for @research_topic
+  end
 
   def create
     @research_topic = current_user.research_topics.new(research_topic_params)
@@ -56,21 +62,12 @@ class ResearchTopicsController < ApplicationController
     end
   end
 
-  def edit
-    authorize_action_for @research_topic
-
-  end
-
-  def new
-    @research_topic = ResearchTopic.new
-  end
-
   def destroy
     authorize_action_for @research_topic
 
     @research_topic.destroy
 
-    if current_user.can?(:view_admin_dashboard)
+    if current_user.has_role? :moderator
       redirect_to admin_research_topics_path, notice: "Research topic deleted!"
     else
       redirect_to research_topics_path, notice: "Research topic deleted!"
