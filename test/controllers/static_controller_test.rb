@@ -65,6 +65,11 @@ class StaticControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should get registration" do
+    get :registration1
+    assert_response :success
+  end
+
   test "should redirect to a provider show page" do
     get :provider_page, slug: 'health-hospital'
 

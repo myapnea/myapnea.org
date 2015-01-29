@@ -85,7 +85,7 @@
       assignQuestion(true, false)
     else
       if $(this).hasClass "active"
-        if $(event.target).closest("label").length
+        if $(event.target).closest("label").prev("input").is(":radio")
           labelClicked($(event.target).closest("label"), event)
           activeQuestion = $(".survey-container.active")
           activeQuestion.removeClass "active"
