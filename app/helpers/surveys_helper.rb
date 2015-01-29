@@ -1,7 +1,7 @@
 module SurveysHelper
   def previous_question_path(answer)
     if answer.answer_session.first_answer.nil? or answer.answer_session.first_answer == answer
-      start_survey_path(question_flow_id: answer.answer_session.question_flow.id)
+      start_survey_path(survey_id: answer.answer_session.survey.id)
     elsif answer.previous_answer.present?
       ask_question_path(question_id: answer.previous_answer.question.id, answer_session_id: answer.answer_session.id)
     else
@@ -24,28 +24,28 @@ module SurveysHelper
 
   end
 
-  def start_or_resume_survey(question_flow, answer_session = nil)
+  def start_or_resume_survey(survey, answer_session = nil)
     if answer_session.present?
       if answer_session.started? and answer_session.last_answer.next_question.present?
         ask_question_path(answer_session_id: answer_session.id, question_id: answer_session.last_answer.next_question.id)
       else
-        ask_question_path(answer_session_id: answer_session.id, question_id: question_flow.first_question.id)
+        ask_question_path(answer_session_id: answer_session.id, question_id: survey.first_question.id)
       end
     else
-      intro_survey_path(question_flow_id: question_flow.id)
+      intro_survey_path(survey_id: survey.id)
     end
   end
 
   def next_survey?(current_qf)
-    QuestionFlow.where(status: "show").select{|qf| qf.id != current_qf.id }.first.present?
+    Survey.where(status: "show").select{|qf| qf.id != current_qf.id }.first.present?
 
   end
 
   def go_to_next_survey(user, current_qf)
-    next_qf = QuestionFlow.where(status: "show").select{|qf| qf.id != current_qf.id }.first
-    as = user.answer_sessions.where(question_flow_id: next_qf.id)
+    next_survey = Survey.where(status: "show").select{|qf| qf.id != current_qf.id }.first
+    as = user.answer_sessions.where(survey_id: next_survey.id)
 
-    start_or_resume_survey(next_qf, as)
+    start_or_resume_survey(next_survey, as)
   end
 
   def bmi(height, weight)

@@ -20,12 +20,10 @@ Rails.application.routes.draw do
   get 'p(/:slug)', to: 'static#provider_page'
   resources :providers
 
-  # MyApnea Specific
-  match 'user_dashboard', to: 'account#dashboard', as: :user_dashboard, via: :get
-
   # Facebook Real Updates
   # match "update_fb_feed", to: "posts#receive_update", as: :update_fb_feed, via: :post
   # match "verify_fb_subscription", to: "posts#verify_subscription", as: :verify_fb_subscription, via: :get
+
 
   # Research Topics
   #match 'research_topic/:id', to: "research_topics#show", as: :research_topic, via: :get
@@ -45,8 +43,8 @@ Rails.application.routes.draw do
   # Surveys
   get 'research_surveys/example', to: 'surveys#example'
   get 'research_surveys/report/:answer_session_id', to: 'surveys#show_report', as: :survey_report
-  get 'research_surveys/:question_flow_id', to: 'surveys#start_survey', as: :start_survey
-  get 'research_surveys/intro/:question_flow_id', to: 'surveys#intro', as: :intro_survey
+  get 'research_surveys/:survey_id', to: 'surveys#start_survey', as: :start_survey
+  get 'research_surveys/intro/:survey_id', to: 'surveys#intro', as: :intro_survey
   get 'research_surveys/:answer_session_id/:question_id', to: 'surveys#ask_question', as: :ask_question
   match 'research_surveys/process_answer', to: 'surveys#process_answer', via: :post, as: :process_answer
   get 'questions/frequencies(/:question_id/:answer_session_id)', to: "questions#frequencies", as: :question_frequencies, format: :json

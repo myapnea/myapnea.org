@@ -1,10 +1,10 @@
 #answer-session
   .panel.panel-default
     .panel-heading
-      = render partial: 'surveys/partials/header', locals: { question_flow: @question_flow }
+      = render partial: 'surveys/partials/header', locals: { survey: @survey }
     .panel-body
       %p
-        = markdown @question_flow.description
+        = markdown @survey.description
     .panel-footer
       %div
-        = link_to "Lets Start!", start_survey_path(question_flow_id: @question_flow.id), class: 'btn btn-primary btn-lg'
+        = link_to "Lets Start!", start_survey_path(survey_id: @survey.id), class: 'btn btn-primary btn-lg'

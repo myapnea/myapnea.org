@@ -26,6 +26,7 @@
 - Reduced dependency on `authority` gem
 - Cleaned up the account controller and updated tests
 - Removed unused `pprn.rb` initializer file
+- Renamed `QuestionFlow` to `Survey`
 
 ## 4.2.0 (January 29, 2015)
 
