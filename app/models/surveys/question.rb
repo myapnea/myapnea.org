@@ -5,7 +5,6 @@ class Question < ActiveRecord::Base
   belongs_to :question_help_message
   has_many :survey_answer_frequencies
 
-
   include Localizable
   include Votable
 
@@ -74,10 +73,6 @@ class Question < ActiveRecord::Base
       nil
     end
 
-  end
-
-  def display_type
-    answer_templates.first.display_type
   end
 
   def answer_templates=(attribute_list)

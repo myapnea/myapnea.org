@@ -1,130 +1,134 @@
-- name: Sign Up Demographics
-  slug: sign-up-demographics
-  description:
-  status: visible
-  questions:
-  - text: |
-      What is your date of birth?
-    answer_templates:
-    - name: birth_date
-      display_type: date_input
-      data_type: time_value
-  - text: |
-      What is your sex?
-    answer_templates:
-    - name: sex
-      display_type: radio_input
-      data_type: answer_option_id
-      answer_options:
-      - text: Male
-        hotkey: M
-        value: M
-      - text: Female
-        hotkey: F
-        value: F
-      - text: Other
-        hotkey: O
-        value: O
-      - text: Prefer not to answer
-        hotkey: P
-        value: P
-  - text: |
-      What is your race?
-    answer_templates:
-    - name: race
-      display_type: checkbox_input
-      data_type: answer_option_id
-      answer_options:
-      - text: Asian (i.e. Asian Indian, Chinese, Filipino, Japanese, Korean, Vietnamese, Hmong, Laotian, Thai, Pakistani, Cambodian, etc.)
-        hotkey: A
-        value: 1
-      - text: Black, African American, African, or Afro-Caribbean (i.e. African American, Haitian, Nigerian, etc.)
-        hotkey: B
-        value: 2
-      - text: Hispanic, Latino, or Spanish origin (i.e. Mexican, Mexican American, Puerto Rican, Cuban, Argentinian, Colombian, Dominican, Nicaraguan, Salvadorian, Spaniard, etc.)
-        hotkey: C
-        value: 3
-      - text: Middle Eastern/North African
-        hotkey: D
-        value: 3
-      - text: Native American, American Indian or Alaskan Native (i.e. Navajo, Mayan, Tingt, etc.)
-        hotkey: E
-        value: 4
-      - text: Native Hawaiian or Other Pacific Islander (i.e. Native Hawaiian, Guamanian or Chamorro, Samoan, Fijian, Tongan, etc.)
-        hotkey: F
-        value: 5
-      - text: White (i.e. German, Irish, Lebanese, Egyptian etc.)
-        hotkey: G
-        value: 6
-      - text: Some other race or origin (please specify)
-        hotkey: H
-        value: 7
-      - text: Prefer not to answer
-        hotkey: I
-        value: 8
-    - name: specified_race
-      display_type: simple_text_input
-      data_type: text_value
-      target_answer_option: 7
-  - text: |
-      What is the highest degree or level of school you have completed?
-    answer_templates:
-    - name: education_level
-      display_type: radio_input
-      data_type: answer_option_id
-      answer_options:
-      - text: 8th grade or less
-        hotkey: A
-        value: 1
-      - text: Some high school, but did not graduate
-        hotkey: B
-        value: 2
-      - text: High school graduate or GED
-        hotkey: C
-        value: 3
-      - text: Some college or 2-year degree
-        hotkey: D
-        value: 4
-      - text:  4-year college graduate
-        hotkey: E
-        value: 5
-      - text:  More than 4-year college degree
-        hotkey: F
-        value: 6
-      - text: Prefer not to answer
-        hotkey: G
-        value: 7
-  - text: |
-      Last year, what was your total hosehold income from all source, before taxes?
-    answer_templates:
-    - name: income_level
-      display_type: radio_input
-      data_type: answer_option_id
-      answer_options:
-      - text: Less than $10,000 (USD)
-        hotkey: A
-        value: 1
-      - text: $10,000 - $49,999
-        hotkey: B
-        value: 2
-      - text:  $50,000 - $99,999
-        hotkey: C
-        value: 3
-      - text: $100,000 - $149,999
-        hotkey: D
-        value: 4
-      - text:  $150,000 - $199,999
-        hotkey: E
-        value: 5
-      - text:  $200,000 - $249,999
-        hotkey: F
-        value: 6
-      - text: $250,000 and above
-        hotkey: G
-        value: 7
-      - text: Unknown
-        hotkey: H
-        value: 8
-      - text: Prefer not to answer
-        hotkey: I
-        value: 9
+## PROBLEM with not specifying IDs - no way to match up updated questions (text, etc.) with older versions when reloading
+## the data files.
+
+## DISCUSS
+
+name: Sign Up Demographics
+slug: sign-up-demographics
+description:
+status: visible
+questions:
+- text: |
+    What is your date of birth?
+  display_type: date_input
+  answer_templates:
+  - name: birth_date
+    data_type: time_value
+- text: |
+    What is your sex?
+  display_type: radio_input
+  answer_templates:
+  - name: sex
+    data_type: answer_option_id
+    answer_options:
+    - text: Male
+      hotkey: M
+      value: 1
+    - text: Female
+      hotkey: F
+      value: 2
+    - text: Other
+      hotkey: O
+      value: 3
+    - text: Prefer not to answer
+      hotkey: P
+      value: 4
+- text: |
+    What is your race?
+  display_type: checkbox_input
+  answer_templates:
+  - name: race
+    data_type: answer_option_id
+    answer_options:
+    - text: Asian (i.e. Asian Indian, Chinese, Filipino, Japanese, Korean, Vietnamese, Hmong, Laotian, Thai, Pakistani, Cambodian, etc.)
+      hotkey: A
+      value: 1
+    - text: Black, African American, African, or Afro-Caribbean (i.e. African American, Haitian, Nigerian, etc.)
+      hotkey: B
+      value: 2
+    - text: Hispanic, Latino, or Spanish origin (i.e. Mexican, Mexican American, Puerto Rican, Cuban, Argentinian, Colombian, Dominican, Nicaraguan, Salvadorian, Spaniard, etc.)
+      hotkey: C
+      value: 3
+    - text: Middle Eastern/North African
+      hotkey: D
+      value: 3
+    - text: Native American, American Indian or Alaskan Native (i.e. Navajo, Mayan, Tingt, etc.)
+      hotkey: E
+      value: 4
+    - text: Native Hawaiian or Other Pacific Islander (i.e. Native Hawaiian, Guamanian or Chamorro, Samoan, Fijian, Tongan, etc.)
+      hotkey: F
+      value: 5
+    - text: White (i.e. German, Irish, Lebanese, Egyptian etc.)
+      hotkey: G
+      value: 6
+    - text: Some other race or origin (please specify)
+      hotkey: H
+      value: 7
+    - text: Prefer not to answer
+      hotkey: I
+      value: 8
+  - name: specified_race
+    data_type: text_value
+    target_answer_option: 7
+- text: |
+    What is the highest degree or level of school you have completed?
+  display_type: radio_input
+  answer_templates:
+  - name: education_level
+    data_type: answer_option_id
+    answer_options:
+    - text: 8th grade or less
+      hotkey: A
+      value: 1
+    - text: Some high school, but did not graduate
+      hotkey: B
+      value: 2
+    - text: High school graduate or GED
+      hotkey: C
+      value: 3
+    - text: Some college or 2-year degree
+      hotkey: D
+      value: 4
+    - text:  4-year college graduate
+      hotkey: E
+      value: 5
+    - text:  More than 4-year college degree
+      hotkey: F
+      value: 6
+    - text: Prefer not to answer
+      hotkey: G
+      value: 7
+- text: |
+    Last year, what was your total hosehold income from all source, before taxes?
+  display_type: radio_input
+  answer_templates:
+  - name: income_level
+    data_type: answer_option_id
+    answer_options:
+    - text: Less than $10,000 (USD)
+      hotkey: A
+      value: 1
+    - text: $10,000 - $49,999
+      hotkey: B
+      value: 2
+    - text:  $50,000 - $99,999
+      hotkey: C
+      value: 3
+    - text: $100,000 - $149,999
+      hotkey: D
+      value: 4
+    - text:  $150,000 - $199,999
+      hotkey: E
+      value: 5
+    - text:  $200,000 - $249,999
+      hotkey: F
+      value: 6
+    - text: $250,000 and above
+      hotkey: G
+      value: 7
+    - text: Unknown
+      hotkey: H
+      value: 8
+    - text: Prefer not to answer
+      hotkey: I
+      value: 9

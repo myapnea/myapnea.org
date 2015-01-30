@@ -1,6 +1,6 @@
 class Survey < ActiveRecord::Base
   # Constants
-  SURVEY_DATA_LOCATION = ['lib', 'data', 'myapnea', 'surveys', 'surveys']
+  SURVEY_DATA_LOCATION = ['lib', 'data', 'myapnea', 'surveys']
 
   # Concerns
   include Localizable
@@ -56,18 +56,48 @@ class Survey < ActiveRecord::Base
   end
 
   def self.refresh_all_surveys
-    Survey.all.each do |qf|
-      qf.refresh_precomputations
+    Survey.all.each do |survey|
+      survey.refresh_precomputations
     end
   end
 
-  def self.load_survey(survey_name)
-    ## Possible additions to DATABASE:
-    # survey load file location??
-    # survey questions and edges in the same file??
-    # 
-    data_file_path = Rails.root.join(*(SURVEY_DATA_LOCATION + ["#{survey_name}.yml"]))
+  def self.load_survey(name)
+    ## CREATES A NEW SURVEY
 
+    data_file = YAML.load_file(Rails.root.join(*(SURVEY_DATA_LOCATION + ["#{name}.yml"])))
+
+    survey = Survey.create(name_en: data_file["name"], slug: data_file["slug"], description_en: data_file[:description], status: data_file[:status])
+
+    latest_question = nil
+    data_file["questions"].each do |question_attributes|
+      question = Question.create(text_en: question_attributes["text"], display_type: question_attributes["display_type"])
+
+      question_attributes["answer_templates"].each do |answer_template_attributes|
+        answer_template = AnswerTemplate.create(name: answer_template_attributes["name"], data_type: answer_template_attributes["data_type"])
+
+        if answer_template_attributes.has_key?("answer_options")
+          answer_template_attributes["answer_options"].each do |answer_option_attributes|
+            answer_template.answer_options.create(text: answer_option_attributes["text"], hotkey: answer_option_attributes["hotkey"], value: answer_option_attributes["value"])
+          end
+        end
+
+        question.answer_templates << answer_template
+      end
+
+
+      survey.first_question_id = question.id if survey.first_question_id.blank?
+
+      if latest_question.present?
+        qe = QuestionEdge.build_edge(latest_question, question, nil, survey.id)
+
+        puts("Creating edge between #{latest_question.id} and #{question.id}")
+
+        raise StandardError, qe.errors.full_messages unless qe.save
+      end
+      latest_question = question
+    end
+
+    survey.refresh_precomputations
   end
 
   ## Need to be fast
@@ -207,6 +237,7 @@ class Survey < ActiveRecord::Base
 
   # Efficient lookup of questions (1 query), returns relation
   def all_questions
+
     Question
         .distinct
         .joins('left join question_edges parent_qe on parent_qe.child_question_id = "questions".id')
