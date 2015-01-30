@@ -1,0 +1,11 @@
+.survey-container.progress-w-enter
+  .panel
+    .question-container
+      %h3.f300 What is your date of birth?
+      %h5.f300.text-muted Just start typing!
+    .input-container
+      = text_field_tag 'hours', nil, maxlength: 10, class: 'survey-short-text survey-text-date', placeholder: 'MM/DD/YYYY'
+    .button-container
+      .btn.btn-primary.next-question
+        Go to next question
+      %p.text-muted Or press ENTER
