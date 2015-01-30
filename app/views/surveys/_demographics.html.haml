@@ -5,13 +5,14 @@
   = render partial: "surveys/question_templates/#{question.display_type}", locals: { question: question }
 
 / End of Survey
-.panel.survey-container
-  .question-container
-    %h3.f300 Congratulations! You've reached the end of the survey, and will gain an entry into our monthly prize drawing!
-  .button-container
-    .btn.btn-primary.next-question
-      Submit
-    %p.text-muted Or press ENTER
+.survey-container
+  .panel
+    .question-container
+      %h3.f300 Congratulations! You've reached the end of the survey, and will gain an entry into our monthly prize drawing!
+    .button-container
+      .btn.btn-primary.next-question
+        Submit
+      %p.text-muted Or press ENTER
 
 
 -#/ Date input

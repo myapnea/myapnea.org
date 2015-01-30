@@ -1,13 +1,11 @@
 @surveyAnimationReady = () ->
 
   # Initiate with focus on first question
-  if $(".survey-first-question").length
+  if $(".survey-container").length
     $(document).ready ->
+      $("#container-left").find(".survey-container").first().addClass "active"
+      $(".survey-container.active").find("input:not([type=hidden])").first().addClass "survey-first-question"
       $(".survey-first-question").focus()
-      $(this).scrollTop 0
-      return
-    $(window).on "beforeunload", ->
-      $(window).scrollTop 0
       return
 
   # Scroll to active question
@@ -114,7 +112,7 @@
   # Respond to keystrokes
   $("body").keyup (e) ->
     if $(".survey-container.active").hasClass "progress-w-number"
-        inputs = $(".survey-container.active .multiple-question-container.current").find("input:radio")
+        inputs = $(".survey-container.active .panel .multiple-question-container.current").find("input:radio")
         if e.keyCode is 38
           e.preventDefault()
           assignMultipleQuestion(false, true)
@@ -128,9 +126,11 @@
               $(inputs[index]).prop "checked", true
               assignMultipleQuestion(true, false)
     else if e.keyCode is 38
+      console.log "up arrow"
       e.preventDefault()
       assignQuestion(false, true)
     else if e.keyCode is 40
+      console.log "down arrow"
       e.preventDefault()
       assignQuestion(true, false)
     else
@@ -145,8 +145,8 @@
             $(inputs[index]).prop "checked", true
             assignQuestion(true, false)
       if $(".survey-container.active").hasClass "check-w-letter"
-        unless $(".survey-container.active .hidden-input").is ":focus"
-          inputs = $(".survey-container.active .input-container").find("input:checkbox")
+        unless $(".survey-container.active .panel .hidden-input").is ":focus"
+          inputs = $(".survey-container.active .panel .input-container").find("input:checkbox")
           inputs.each (index) ->
             key = $(inputs[index]).data("hotkey").charCodeAt(0)
             if e.keyCode is key

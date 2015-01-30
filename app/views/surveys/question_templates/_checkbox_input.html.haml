@@ -1,7 +1,7 @@
 / Must be provided a question object: question
-= form_tag(process_answer_path, {role: "form"}) do
+= form_tag(process_answer_path, {role: "form", class: 'survey-container progress-w-enter check-w-letter'}) do
   = hidden_field_tag "question_id[]", question.id
-  .panel.survey-container.progress-w-enter.check-w-letter
+  .panel
     .question-container
       %h3.f300= question.text
       %h5.f300.reset-layout (Check all that apply)
