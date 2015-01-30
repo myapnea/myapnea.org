@@ -9,7 +9,7 @@
       - answer_template = question.answer_templates.first
       - answer_template.answer_options.distinct.each do |answer_option|
         .check-box-container
-          = check_box_tag "#{question.id}[#{answer_template.id}][]", answer_option.id, nil, id: "question_#{question.id}_#{answer_template.id}_#{answer_option.new_value}"
+          = check_box_tag "#{question.id}[#{answer_template.id}][]", answer_option.id, nil, id: "question_#{question.id}_#{answer_template.id}_#{answer_option.new_value}", data: { hotkey: answer_option.hotkey }
           %label{ for: "question_#{question.id}_#{answer_template.id}_#{answer_option.new_value}" }
             %span=answer_option.hotkey
             %p=answer_option.text

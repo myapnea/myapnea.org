@@ -123,7 +123,7 @@
           assignMultipleQuestion(true, false)
         else
           inputs.each (index) ->
-            key = inputs[index].value.charCodeAt(0)
+            key = $(inputs[index]).data("hotkey").charCodeAt(0)
             if e.keyCode is key
               $(inputs[index]).prop "checked", true
               assignMultipleQuestion(true, false)
@@ -140,7 +140,7 @@
       if $(".survey-container.active").hasClass "progress-w-letter"
         inputs = $(".survey-container.active").find("input:radio")
         inputs.each (index) ->
-          key = inputs[index].value.charCodeAt(0)
+          key = $(inputs[index]).data("hotkey").charCodeAt(0)
           if e.keyCode is key
             $(inputs[index]).prop "checked", true
             assignQuestion(true, false)
@@ -148,7 +148,7 @@
         unless $(".survey-container.active .hidden-input").is ":focus"
           inputs = $(".survey-container.active .input-container").find("input:checkbox")
           inputs.each (index) ->
-            key = inputs[index].value.charCodeAt(0)
+            key = $(inputs[index]).data("hotkey").charCodeAt(0)
             if e.keyCode is key
               if $(inputs[index]).prop "checked"
                 $(inputs[index]).prop "checked", false
