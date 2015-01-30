@@ -1,21 +1,18 @@
-## PROBLEM with not specifying IDs - no way to match up updated questions (text, etc.) with older versions when reloading
-## the data files.
-
-## DISCUSS
-
-name: Sign Up Demographics
-slug: sign-up-demographics
+name: About Me
+slug: about-me
 description:
 status: visible
 questions:
 - text: |
     What is your date of birth?
+  slug: date-of-birth
   display_type: date_input
   answer_templates:
   - name: birth_date
     data_type: time_value
 - text: |
     What is your sex?
+  slug: sex
   display_type: radio_input
   answer_templates:
   - name: sex
@@ -35,6 +32,7 @@ questions:
       value: 4
 - text: |
     What is your race?
+  slug: race
   display_type: checkbox_input
   answer_templates:
   - name: race
@@ -72,6 +70,7 @@ questions:
     target_answer_option: 7
 - text: |
     What is the highest degree or level of school you have completed?
+  slug: education-level
   display_type: radio_input
   answer_templates:
   - name: education_level
@@ -100,6 +99,7 @@ questions:
       value: 7
 - text: |
     Last year, what was your total hosehold income from all source, before taxes?
+  slug: income-level
   display_type: radio_input
   answer_templates:
   - name: income_level

@@ -32,6 +32,11 @@
     , "swing"
     , ->
       console.log "Scrolled!"
+
+      # Submit Previous Question
+      if prev
+        submitAnswer(element1)
+
       changeFocus(element1, element2)
       return
 
@@ -47,6 +52,8 @@
 
   # Progress to next question
   @assignQuestion = (next, prev) ->
+
+
     activeQuestion = $(".survey-container.active")
     if (next and activeQuestion.next().length) or (prev and activeQuestion.prev().length)
       activeQuestion.removeClass "active"
@@ -83,6 +90,10 @@
     labelID = $(label).attr("for")
     $("#"+labelID).trigger("click")
 
+
+  # Submit a survey answer
+  @submitAnswer = (question) ->
+    console.log question
 
   # Respond to user clicking different questions
   $('.survey-container').click (event) ->

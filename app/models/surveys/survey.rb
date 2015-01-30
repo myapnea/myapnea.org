@@ -19,7 +19,7 @@ class Survey < ActiveRecord::Base
   # Associations
   belongs_to :first_question, class_name: "Question"
   has_many :answer_sessions, -> { where deleted: false }
-  has_many :question_edges
+  has_many :question_edges, dependent: :delete_all
   has_many :survey_question_orders, -> { order "question_number asc" }
   has_many :ordered_questions, through: :survey_question_orders, foreign_key: "question_id", class_name: "Question", source: :question
   has_many :survey_answer_frequencies
@@ -61,23 +61,48 @@ class Survey < ActiveRecord::Base
     end
   end
 
-  def self.load_survey(name)
+  def self.load_from_file(name)
     ## CREATES A NEW SURVEY
 
     data_file = YAML.load_file(Rails.root.join(*(SURVEY_DATA_LOCATION + ["#{name}.yml"])))
 
-    survey = Survey.create(name_en: data_file["name"], slug: data_file["slug"], description_en: data_file[:description], status: data_file[:status])
+    # Find or Create Survey
+    survey = Survey.find_by_slug(data_file["slug"])
+    if survey.blank?
+      survey = Survey.create(name_en: data_file["name"], slug: data_file["slug"], description_en: data_file[:description], status: data_file[:status])
+    else
+      survey.update_attributes(name_en: data_file["name"], slug: data_file["slug"], description_en: data_file[:description], status: data_file[:status], first_question_id: nil)
+      QuestionEdge.destroy_all(survey_id: survey.id)
+    end
 
     latest_question = nil
+
     data_file["questions"].each do |question_attributes|
-      question = Question.create(text_en: question_attributes["text"], display_type: question_attributes["display_type"])
+      question = Question.find_by_slug(question_attributes["slug"])
+      if question.blank?
+        question = Question.create(text_en: question_attributes["text"], display_type: question_attributes["display_type"], slug: question_attributes["slug"])
+      else
+        question.update_attributes(text_en: question_attributes["text"], display_type: question_attributes["display_type"], slug: question_attributes["slug"])
+      end
 
       question_attributes["answer_templates"].each do |answer_template_attributes|
-        answer_template = AnswerTemplate.create(name: answer_template_attributes["name"], data_type: answer_template_attributes["data_type"])
+        answer_template = AnswerTemplate.find_by_name(answer_template_attributes["name"])
+        if answer_template.blank?
+          answer_template = AnswerTemplate.create(name: answer_template_attributes["name"], data_type: answer_template_attributes["data_type"])
+        else
+          answer_template.update_attributes(name: answer_template_attributes["name"], data_type: answer_template_attributes["data_type"])
+        end
 
         if answer_template_attributes.has_key?("answer_options")
           answer_template_attributes["answer_options"].each do |answer_option_attributes|
-            answer_template.answer_options.create(text: answer_option_attributes["text"], hotkey: answer_option_attributes["hotkey"], value: answer_option_attributes["value"])
+            answer_option = answer_template.answer_options.find_by_value(answer_option_attributes["value"])
+
+            if answer_option.blank?
+              answer_template.answer_options.create(text: answer_option_attributes["text"], hotkey: answer_option_attributes["hotkey"], value: answer_option_attributes["value"])
+            else
+              answer_option.update_attributes(text: answer_option_attributes["text"], hotkey: answer_option_attributes["hotkey"], value: answer_option_attributes["value"])
+            end
+
           end
         end
 

@@ -221,11 +221,10 @@ namespace :surveys do
     end
   end
 
-  desc "Migrate over answers from old survey to one afflicted with bug"
-  task :load_all => :environment do
-    Dir[Rails.root.join('lib', 'data', 'myapnea', 'surveys','*.yml')].each do |survey_file|
+  desc "Load a specific survey"
+  task :load, [:survey_name] => :environment  do |t, args|
+    Survey.load_from_file(args[:survey_name])
 
-    end
   end
 
 end

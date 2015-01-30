@@ -14,6 +14,17 @@ class AnswerSession < ActiveRecord::Base
     answer_sessions.empty? ? nil : answer_sessions.first
   end
 
+  def self.find_or_create(user, survey)
+    answer_session = AnswerSession.current.find_by(user_id: user.id, survey_id: survey.id)
+
+    unless answer_session.present?
+      answer_session = AnswerSession.create(user_id: current_user.id, survey_id: survey.id)
+    end
+
+    answer_session
+  end
+  # Instance Methods
+
   def completed_answers
     answers
 

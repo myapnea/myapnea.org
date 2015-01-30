@@ -1,8 +1,8 @@
-/ Dynamically Loaded:
-- survey = Survey.find_by_name_en("Sign Up Demographics")
+/ Expects a @survey and @answer_session variable
 
-- survey.all_questions_descendants.each do |question|
-  = render partial: "surveys/question_templates/#{question.display_type}", locals: { question: question }
+/ Dynamically Loaded:
+- @survey.all_questions_descendants.each do |question|
+  = render partial: "surveys/question_templates/#{question.display_type}", locals: { question: question, answer_session: @answer_session }
 
 / End of Survey
 .panel.survey-container
