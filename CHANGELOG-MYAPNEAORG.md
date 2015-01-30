@@ -27,6 +27,7 @@
 - Cleaned up the account controller and updated tests
 - Removed unused `pprn.rb` initializer file
 - Renamed `QuestionFlow` to `Survey`
+- Simplified survey load files.
 
 ## 4.2.0 (January 29, 2015)
 

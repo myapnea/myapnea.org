@@ -1,9 +1,12 @@
-.panel.survey-container.progress-w-enter.active
-  .question-container
-    %h3.f300 What is your date of birth?
-  .input-container
-    = date_field_tag 'dob', nil, class: 'survey-date'
-  .button-container
-    .btn.btn-primary.next-question
-      Go to next question
-    %p.text-muted Or press ENTER
+/ Must be provided a question object: question
+= form_tag(process_answer_path, {role: "form"}) do
+  = hidden_field_tag "question_id[]", question.id
+  .panel.survey-container.progress-w-enter.active
+    .question-container
+      %h3.f300 question.text
+    .input-container
+      = date_field_tag "#{question.id}[#{question.answer_templates.first.id}]", nil, class: 'survey-date'
+    .button-container
+      .btn.btn-primary.next-question
+        Go to next question
+      %p.text-muted Or press ENTER

@@ -309,3 +309,10 @@
   - 267
 
 
+
+## New Answer Templates
+- id: 10031
+  name: birth_date
+  display_type: date_input
+  answer_option_ids:
+  -

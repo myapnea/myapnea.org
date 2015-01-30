@@ -76,6 +76,10 @@ class Question < ActiveRecord::Base
 
   end
 
+  def display_type
+    answer_templates.first.display_type
+  end
+
   def answer_templates=(attribute_list)
     attribute_list.each do |attrs|
       answer_templates.build(attrs)

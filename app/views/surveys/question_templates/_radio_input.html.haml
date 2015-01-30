@@ -1,14 +1,12 @@
-.panel.survey-container.progress-w-enter.progress-w-letter
-  .question-container
-    %h3.f300 When would you prefer to wake up?
-  .input-container
-    - input_name = 'wakeup'
-    = radio_button_tag input_name, 'A'
-    %label.survey-multiple-input-button{ for: "#{input_name+'_A'}" }
-      %p 5 - 6:30am
-      %span A
-    = radio_button_tag input_name, 'B'
-    %label.survey-multiple-input-button{ for: "#{input_name+'_B'}" }
-      %p 6:30 - 8am
-      %span B
-    = radio_button_tag input_name, 'C'
+/ Must be provided a question object: question
+= form_tag(process_answer_path, {role: "form"}) do
+  = hidden_field_tag "question_id[]", question.id
+  .panel.survey-container.progress-w-enter.progress-w-letter
+    .question-container
+      %h3.f300= question.text
+    .input-container
+      - question.answer_templates.first.answer_options.distinct.each do |answer_option|
+      = radio_button_tag "#{question.id}[#{answer_template.id}]", answer_option.id, nil, id: "question_#{question.id}_#{answer_template.id}_#{answer_option.value}"
+      %label.survey-multiple-input-button{ for: "question_#{question.id}_#{answer_template.id}_#{answer_option.value}" }
+        %p answer_option.text
+        %span answer_option.hotkey
