@@ -1,20 +1,19 @@
-.panel.survey-container.progress-w-enter.check-w-letter
-  .question-container
-    %h3.f300 What is your race?
-    %h5.f300.reset-layout (Check all that apply)
-  .input-container
-    - input_name = 'race'
-    .check-box-container
-      = check_box_tag input_name, 'A', nil, id: 'A'
-      %label{ for: 'A' }
-        %span A
-        %p Asian (i.e. Asian Indian, Chinese, Filipino, Japanese, Korean, Vietnamese, Hmong, Laotian, Thai, Pakistani, Cambodian, etc.)
-    .check-box-container
-      = check_box_tag input_name, 'B', nil, id: 'B'
-      %label{ for: 'B' }
-        %span B
-        %p Black, African American, African, or Afro-Caribbean (i.e. African American, Haitian, Nigerian, etc.)
-  .button-container
-    .btn.btn-primary.next-question
-      Go to next question
-    %p.text-muted Or press ENTER
+/ Must be provided a question object: question
+= form_tag(process_answer_path, {role: "form"}) do
+  = hidden_field_tag "question_id[]", question.id
+  .panel.survey-container.progress-w-enter.check-w-letter
+    .question-container
+      %h3.f300= question.text
+      %h5.f300.reset-layout (Check all that apply)
+    .input-container
+      - answer_template = question.answer_templates.first
+      - answer_template.answer_options.distinct.each do |answer_option|
+        .check-box-container
+          = check_box_tag "#{question.id}[#{answer_template.id}][]", answer_option.id, nil, id: "question_#{question.id}_#{answer_template.id}_#{answer_option.new_value}"
+          %label{ for: "question_#{question.id}_#{answer_template.id}_#{answer_option.new_value}" }
+            %span=answer_option.hotkey
+            %p=answer_option.text
+    .button-container
+      .btn.btn-primary.next-question
+        Go to next question
+      %p.text-muted Or press ENTER

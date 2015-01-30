@@ -36,7 +36,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_active_top_nav_link_to_surveys
-    @active_top_nav_link = :surveys
+    @active_top_nav_link = :common
   end
 
   def no_layout

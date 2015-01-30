@@ -13,6 +13,10 @@
   - Upon registration, user's are automatically sent through consent process
     - Privacy policy, then consent, then brought to new demographics survey
     - Process is simple and informative of why it is important
+- **Survey Model**
+  - Slugs added for surveys
+  - Answer options now have hotkeys and values
+  - A single survey can be loaded individually
 
 ### Bug Fixes
 - Fixed a bug that prevented a user dashboard from displaying if no forum topics existed
@@ -27,6 +31,7 @@
 - Cleaned up the account controller and updated tests
 - Removed unused `pprn.rb` initializer file
 - Renamed `QuestionFlow` to `Survey`
+- Simplified survey load files
 
 ## 4.2.0 (January 29, 2015)
 

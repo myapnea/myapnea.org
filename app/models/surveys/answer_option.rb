@@ -5,10 +5,13 @@ class AnswerOption < ActiveRecord::Base
   has_many :answer_values
   has_many :survey_answer_frequencies
 
-
   localize :text_value
 
   def value
     text_value || time_value || numeric_value
+  end
+
+  def new_value
+    self[:value]
   end
 end

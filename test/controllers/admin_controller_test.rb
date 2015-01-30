@@ -35,14 +35,14 @@ class AdminControllerTest < ActionController::TestCase
   test "Owners should GET survey overview" do
     login(users(:owner))
 
-    get :surveys
+    get :common
     assert_response :success
   end
 
   test "Moderators should GET survey overview" do
     login(users(:moderator_1))
 
-    get :surveys
+    get :common
     assert_response :success
   end
 
@@ -50,7 +50,7 @@ class AdminControllerTest < ActionController::TestCase
   test "should raise SecurityViolation for unauthorized users" do
     login(users(:user_1))
 
-    get :surveys
+    get :common
 
     assert_authorization_exception
   end

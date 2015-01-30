@@ -9,9 +9,17 @@ class StaticControllerTest < ActionController::TestCase
   end
 
   test "should get home for regular user" do
-    login(users(:user_1))
+    login(users(:social))
     get :home
     assert_template 'home'
+    assert_response :success
+  end
+
+  test "should get home for regular user that opted in to Beta" do
+    login(users(:beta_social))
+    get :home
+    assert_template 'home'
+    assert_template '_survey_progress'
     assert_response :success
   end
 
