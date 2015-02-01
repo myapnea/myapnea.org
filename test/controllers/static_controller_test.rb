@@ -74,6 +74,8 @@ class StaticControllerTest < ActionController::TestCase
   end
 
   test "should get registration" do
+    Survey.load_from_file("about-me")
+    login(users(:social))
     get :registration1
     assert_response :success
   end

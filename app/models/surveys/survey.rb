@@ -115,7 +115,7 @@ class Survey < ActiveRecord::Base
       if latest_question.present?
         qe = QuestionEdge.build_edge(latest_question, question, nil, survey.id)
 
-        puts("Creating edge between #{latest_question.id} and #{question.id}")
+        logger.info("Creating edge between #{latest_question.id} and #{question.id}")
 
         raise StandardError, qe.errors.full_messages unless qe.save
       end
