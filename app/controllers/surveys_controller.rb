@@ -49,11 +49,17 @@ class SurveysController < ApplicationController
       @answer = @answer_session.process_answer(question, params)
     end
 
-    if @answer_session.completed?
-      redirect_to survey_report_path(@answer_session)
-    else
-      redirect_to ask_question_path(question_id: @answer.next_question.id, answer_session_id: @answer_session.id)
+    respond_to do |format|
+      format.html do
+        if @answer_session.completed?
+          redirect_to survey_report_path(@answer_session)
+        else
+          redirect_to ask_question_path(question_id: @answer.next_question.id, answer_session_id: @answer_session.id)
+        end
+      end
+      format.json { render json: {answer: @answer, value: @answer.string_value, errors: @answer.errors.full_messages } }
     end
+
   end
 
 

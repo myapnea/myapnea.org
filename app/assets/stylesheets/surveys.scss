@@ -5,6 +5,11 @@
 }
 
 .survey-container {
+  padding:0;
+  background-color: transparent;
+}
+
+.survey-container .panel {
   background-color: transparent;
   box-shadow: none;
   width:100%;
@@ -28,7 +33,7 @@
   }
 }
 
-.survey-container.active {
+.survey-container.active .panel {
   background-color: white;
   box-shadow:0px 3px 5px rgb(0,0,0);
   box-shadow:0px 3px 5px rgba(0,0,0,.5);
@@ -68,6 +73,24 @@ input[type=date] {
   outline:none;
   box-shadow:0 0 10px #b1d2f6;
 }
+
+.survey-text-date {
+  text-align: center;
+}
+.survey-text-date::-webkit-input-placeholder { color: #555; }
+.survey-text-date:-moz-placeholder { color: #333; }
+.survey-text-date::-moz-placeholder { color: #333; }
+.survey-text-date:-ms-placeholder { color: #333; }
+
+.survey-text-date:focus::-webkit-input-placeholder {
+  color: #555;
+}
+.survey-text-date:focus{
+  color: transparent;
+}
+.survey-text-date:focus:-moz-placeholder { color: #333; }
+.survey-text-date:focus::-moz-placeholder { color: #333; }
+.survey-text-date:focus:-ms-placeholder { color: #333; }
 
 // Short text field
 .survey-short-text {
@@ -143,7 +166,7 @@ $moderate: #fedf9c;
 $good: #fedf9c;
 $great: #78c679;
 
-.survey-container.active .input-container .multiple-question-container.current {
+.survey-container.active .panel .input-container .multiple-question-container.current {
   background-color: transparentize(#b1d2f6, .7);
   border-radius:20px;
 }
@@ -300,7 +323,7 @@ $great: #78c679;
   font-weight:500;
   color:white; color: rgba(0,0,0,.4);
 }
-.survey-container.active .input-container input[type=range] ~ .range-text {
+.survey-container.active .panel .input-container input[type=range] ~ .range-text {
   color: black; color: rgba(0,0,0,.7);
 }
 .input-container input[type=range] ~ .range-left {

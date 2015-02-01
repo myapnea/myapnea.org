@@ -9,9 +9,16 @@ class Answer < ActiveRecord::Base
   has_one :out_edge, class_name: "AnswerEdge", foreign_key: "parent_answer_id", dependent: :destroy
   belongs_to :user # When necessary
 
+  # Class Methods
   def self.first_answer(question, answer_session)
     Answer.current.where(question_id: question.id, answer_session_id: answer_session.id).first
   end
+
+  def self.first_or_new(question, answer_session)
+    self.first_answer(question, answer_session) || Answer.new(question_id: question.id, answer_session_id: answer_session.id)
+  end
+
+  # Instance Methods
 
   ## Different options:
   # It gets complicated with many answer templates

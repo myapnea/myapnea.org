@@ -1,17 +1,19 @@
 / Expects a @survey and @answer_session variable
-
+%h1= @answer_session.id
 / Dynamically Loaded:
 - @survey.all_questions_descendants.each do |question|
-  = render partial: "surveys/question_templates/#{question.display_type}", locals: { question: question, answer_session: @answer_session }
+  %h2= "#{Answer.first_or_new(question, @answer_session).id} #{Answer.first_or_new(question, @answer_session).show_value}"
+  = render partial: "surveys/question_templates/#{question.display_type}", locals: { question: question, answer_session: @answer_session, answer: Answer.first_or_new(question, @answer_session) }
 
 / End of Survey
-.panel.survey-container
-  .question-container
-    %h3.f300 Congratulations! You've reached the end of the survey, and will gain an entry into our monthly prize drawing!
-  .button-container
-    .btn.btn-primary.next-question
-      Submit
-    %p.text-muted Or press ENTER
+.survey-container
+  .panel
+    .question-container
+      %h3.f300 Congratulations! You've reached the end of the survey, and will gain an entry into our monthly prize drawing!
+    .button-container
+      .btn.btn-primary.next-question
+        Submit
+      %p.text-muted Or press ENTER
 
 
 -#/ Date input

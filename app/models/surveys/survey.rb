@@ -29,11 +29,11 @@ class Survey < ActiveRecord::Base
 
   # Class Methods
   def self.complete(user)
-    res = joins(:answer_sessions).where(status: "show", answer_sessions: {user_id: user.id}).select do |qf|
-      as = qf.answer_sessions.where(user_id: user.id).order(updated_at: :desc).first
+    res = joins(:answer_sessions).where(status: "show", answer_sessions: {user_id: user.id, deleted: false}).select do |qf|
+      as = qf.answer_sessions.where(user_id: user.id, deleted: false).order(updated_at: :desc).first
 
 
-      as.present? and as.completed?
+      as.present? and as.completed? and !as.deleted?
     end
 
     res
@@ -41,16 +41,16 @@ class Survey < ActiveRecord::Base
 
   def self.unstarted(user)
     user_id = (user.present? ? user.id : nil)
-    res = includes(:answer_sessions).where(status: "show").select{ |qf| user_id.blank? or qf.answer_sessions.where(user_id: user.id).empty? }
+    res = includes(:answer_sessions).where(status: "show").select{ |qf| user_id.blank? or qf.answer_sessions.where(user_id: user.id, deleted: false).empty? }
 
     res
   end
 
   def self.incomplete(user)
-    res = joins(:answer_sessions).where(status: "show", answer_sessions: {user_id: user.id}).select do |qf|
+    res = joins(:answer_sessions).where(status: "show", answer_sessions: {user_id: user.id, deleted: false}).select do |qf|
       as = qf.answer_sessions.where(user_id: user.id).order(updated_at: :desc).first
 
-      as.present? and !as.completed?
+      as.present? and !as.completed? and !as.deleted?
     end
     res
   end
@@ -69,9 +69,9 @@ class Survey < ActiveRecord::Base
     # Find or Create Survey
     survey = Survey.find_by_slug(data_file["slug"])
     if survey.blank?
-      survey = Survey.create(name_en: data_file["name"], slug: data_file["slug"], description_en: data_file[:description], status: data_file[:status])
+      survey = Survey.create(name_en: data_file["name"], slug: data_file["slug"], description_en: data_file["description"], status: data_file["status"])
     else
-      survey.update_attributes(name_en: data_file["name"], slug: data_file["slug"], description_en: data_file[:description], status: data_file[:status], first_question_id: nil)
+      survey.update_attributes(name_en: data_file["name"], slug: data_file["slug"], description_en: data_file["description"], status: data_file["status"], first_question_id: nil)
       QuestionEdge.destroy_all(survey_id: survey.id)
     end
 
@@ -88,9 +88,9 @@ class Survey < ActiveRecord::Base
       question_attributes["answer_templates"].each do |answer_template_attributes|
         answer_template = AnswerTemplate.find_by_name(answer_template_attributes["name"])
         if answer_template.blank?
-          answer_template = AnswerTemplate.create(name: answer_template_attributes["name"], data_type: answer_template_attributes["data_type"])
+          answer_template = AnswerTemplate.create(name: answer_template_attributes["name"], data_type: answer_template_attributes["data_type"], display_type_id: answer_template_attributes["display_type_id"])
         else
-          answer_template.update_attributes(name: answer_template_attributes["name"], data_type: answer_template_attributes["data_type"])
+          answer_template.update_attributes(name: answer_template_attributes["name"], data_type: answer_template_attributes["data_type"], display_type_id: answer_template_attributes["display_type_id"])
         end
 
         if answer_template_attributes.has_key?("answer_options")
@@ -122,6 +122,7 @@ class Survey < ActiveRecord::Base
       latest_question = question
     end
 
+    survey.save
     survey.refresh_precomputations
   end
 

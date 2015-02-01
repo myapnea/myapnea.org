@@ -1,11 +1,13 @@
 / Must be provided a question object: question
-= form_tag(process_answer_path, {role: "form"}) do
+= form_tag(process_answer_path, {role: "form", class: 'survey-container progress-w-enter' }) do
   = hidden_field_tag "question_id[]", question.id
-  .panel.survey-container.progress-w-enter.active
+  = hidden_field_tag "answer_session_id", answer_session.id
+
+  .panel
     .question-container
       %h3.f300= question.text
     .input-container
-      = date_field_tag "#{question.id}[#{question.answer_templates.first.id}]", nil, class: 'survey-date'
+      = date_field_tag "#{question.id}[#{question.answer_templates.first.id}]", answer.value[question.answer_templates.first.id], class: 'survey-date'
     .button-container
       .btn.btn-primary.next-question
         Go to next question

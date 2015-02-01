@@ -1,7 +1,7 @@
 name: About Me
 slug: about-me
 description:
-status: visible
+status: show
 questions:
 - text: |
     What is your date of birth?
@@ -9,6 +9,7 @@ questions:
   display_type: date_input
   answer_templates:
   - name: birth_date
+    display_type_id: 5
     data_type: time_value
 - text: |
     What is your sex?
@@ -17,6 +18,7 @@ questions:
   answer_templates:
   - name: sex
     data_type: answer_option_id
+    display_type_id: 3
     answer_options:
     - text: Male
       hotkey: M
@@ -37,6 +39,7 @@ questions:
   answer_templates:
   - name: race
     data_type: answer_option_id
+    display_type_id: 4
     answer_options:
     - text: Asian (i.e. Asian Indian, Chinese, Filipino, Japanese, Korean, Vietnamese, Hmong, Laotian, Thai, Pakistani, Cambodian, etc.)
       hotkey: A
@@ -67,6 +70,7 @@ questions:
       value: 8
   - name: specified_race
     data_type: text_value
+    display_type_id: 1
     target_answer_option: 7
 - text: |
     What is the highest degree or level of school you have completed?
@@ -75,6 +79,7 @@ questions:
   answer_templates:
   - name: education_level
     data_type: answer_option_id
+    display_type_id: 3
     answer_options:
     - text: 8th grade or less
       hotkey: A
@@ -104,6 +109,7 @@ questions:
   answer_templates:
   - name: income_level
     data_type: answer_option_id
+    display_type_id: 3
     answer_options:
     - text: Less than $10,000 (USD)
       hotkey: A
