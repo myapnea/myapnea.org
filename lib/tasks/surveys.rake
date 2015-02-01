@@ -117,12 +117,6 @@ namespace :surveys do
 
     end
 
-    desc "Refresh Precalculated data"
-    task :refresh => :environment do
-      Survey.refresh_all_surveys
-
-      AnswerSession.current.each {|as| as.completed? }
-    end
 
 
     desc "Update links"
@@ -220,6 +214,14 @@ namespace :surveys do
 
     end
   end
+
+  desc "Refresh Precalculated data"
+  task :refresh => :environment do
+    Survey.refresh_all_surveys
+
+    AnswerSession.current.each {|as| as.completed? }
+  end
+
 
   desc "Load a specific survey"
   task :load, [:survey_name] => :environment  do |t, args|

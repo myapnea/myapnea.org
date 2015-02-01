@@ -34,7 +34,7 @@
       console.log "Scrolled!"
 
       # Submit Previous Question
-      if prev
+      if element1
         submitAnswer(element1)
 
       changeFocus(element1, element2)
@@ -124,27 +124,33 @@
 
   # Respond to keystrokes
   $("body").keyup (e) ->
+    console.log "Keyup Event: " + e.keyCode
+
     if $(".survey-container.active").hasClass "progress-w-number"
-        inputs = $(".survey-container.active .multiple-question-container.current").find("input:radio")
-        if e.keyCode is 38
-          e.preventDefault()
-          assignMultipleQuestion(false, true)
-        else if e.keyCode is 40
-          e.preventDefault()
-          assignMultipleQuestion(true, false)
-        else
-          inputs.each (index) ->
-            key = inputs[index].value.charCodeAt(0)
-            if e.keyCode is key
-              $(inputs[index]).prop "checked", true
-              assignMultipleQuestion(true, false)
+      console.log "Here: "
+      inputs = $(".survey-container.active .multiple-question-container.current").find("input:radio")
+      if e.keyCode is 38
+        e.preventDefault()
+        assignMultipleQuestion(false, true)
+      else if e.keyCode is 40
+        e.preventDefault()
+        assignMultipleQuestion(true, false)
+      else
+        inputs.each (index) ->
+          key = inputs[index].value.charCodeAt(0)
+          if e.keyCode is key
+            $(inputs[index]).prop "checked", true
+            assignMultipleQuestion(true, false)
     else if e.keyCode is 38
+      console.log "Here: "
       e.preventDefault()
       assignQuestion(false, true)
     else if e.keyCode is 40
+      console.log "Here: "
       e.preventDefault()
       assignQuestion(true, false)
     else
+      console.log "Here: "
       if $(".survey-container.active").hasClass "progress-w-enter"
         if e.keyCode is 13
           assignQuestion(true, false)

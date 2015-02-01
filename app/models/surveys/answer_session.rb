@@ -18,7 +18,7 @@ class AnswerSession < ActiveRecord::Base
     answer_session = AnswerSession.current.find_by(user_id: user.id, survey_id: survey.id)
 
     unless answer_session.present?
-      answer_session = AnswerSession.create(user_id: current_user.id, survey_id: survey.id)
+      answer_session = AnswerSession.create(user_id: user.id, survey_id: survey.id)
     end
 
     answer_session

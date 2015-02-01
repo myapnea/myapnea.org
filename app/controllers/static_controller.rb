@@ -69,7 +69,7 @@ class StaticController < ApplicationController
     @pc2 = page_content('consent')
 
     @survey = Survey.find_by_slug("about-me")
-    @answer_session = AnswerSession.find_or_create(current_user, survey)
+    @answer_session = AnswerSession.find_or_create(current_user, @survey)
   end
 
   private
