@@ -14,4 +14,8 @@ class AnswerOption < ActiveRecord::Base
   def new_value
     self[:value]
   end
+
+  def text
+    text_value || self[:text]
+  end
 end

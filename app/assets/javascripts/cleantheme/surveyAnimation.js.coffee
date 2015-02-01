@@ -10,6 +10,10 @@
 
   # Scroll to active question
   @nextQuestionScroll = (element1, element2) ->
+    # Submit Previous Question
+    if element1
+      submitAnswer(element1)
+
     # Check for multiple questions, and position the first question in the center
     if element2.find('.current').length > 0
       currentHeight = element2.find('.current').offset().top
@@ -30,11 +34,6 @@
     , "swing"
     , ->
       console.log "Scrolled!"
-
-      # Submit Previous Question
-      if element1
-        submitAnswer(element1)
-
       changeFocus(element1, element2)
       return
 
@@ -89,6 +88,7 @@
 
   # Submit a survey answer
   @submitAnswer = (questionForm) ->
+    console.log questionForm
     console.log questionForm.serialize()
     console.log questionForm.attr("action")
     $.post(questionForm.attr("action"), questionForm.serialize(), (data) ->
@@ -124,7 +124,6 @@
 
   # Respond to keystrokes
   $("body").keydown (e) ->
-    console.log e.keyCode
     if $(".survey-container.active").find(".survey-text-date").is(":focus")
       if e.metaKey
         console.log "meta key pressed"

@@ -43,9 +43,11 @@ class SurveysControllerTest < ActionController::TestCase
     login(users(:has_incomplete_survey))
     assert users(:has_incomplete_survey).ready_for_research?
 
-    post :process_answer, { 'question_id' => questions(:q3c).id, 'answer_session_id' => answer_sessions(:incomplete).id,  questions(:q3c).id.to_s => 22, "direction" => "next"}
+
+    post :process_answer, { 'question_id' => questions(:q3c).id, 'answer_session_id' => answer_sessions(:incomplete).id,  questions(:q3c).id.to_s => answer_options(:very_good).id, "direction" => "next"}
 
     assert_not_nil assigns(:answer_session)
+    assert_equal answer_options(:very_good).id, assigns(:answer_session).last_answer.answer_values.first.value
 
     assert_redirected_to survey_report_path(assigns(:answer_session))
   end
@@ -60,7 +62,6 @@ class SurveysControllerTest < ActionController::TestCase
 
   test "Survey report does not break when survey not started" do
     login(users(:has_unstarted_survey))
-
 
     get :show_report, answer_session_id: answer_sessions(:unstarted)
 
@@ -98,6 +99,14 @@ class SurveysControllerTest < ActionController::TestCase
 
     assert_redirected_to ask_question_path(question_id: surveys(:survey_1).first_question_id, answer_session_id: AnswerSession.most_recent(surveys(:survey_1).id, users(:social).id).id)
     assert AnswerSession.most_recent(surveys(:survey_1), users(:social))
+
+  end
+
+  # About Me - Registration Survey
+
+  test "User can answer questions on the registration mini-survey" do
+    Survey.load_from_file("about-me")
+
 
   end
 end
