@@ -14,7 +14,6 @@
     if element2.find('.current').length > 0
       currentHeight = element2.find('.current').offset().top
       elementOffsetHeight = element2.find('.current').outerHeight() / 2
-      console.log "found multiple questions"
     else
       currentHeight = element2.offset().top
       elementOffsetHeight = element2.outerHeight() / 2
@@ -29,7 +28,7 @@
     , 400
     , "swing"
     , ->
-      console.log "Scrolled!"
+      console.log "Scrolled!" # leaving this in here, as it captures most debugging problems
       changeFocus(element1, element2)
       return
 
@@ -69,17 +68,9 @@
       nextQuestionScroll(activeQuestion, newActiveQuestion)
     else if (next and !activeQuestion.next().length)
       assignQuestion(true, false)
+      console.log "reached end of multiple questions!"
     else if (prev and !activeQuestion.prev().length)
       assignQuestion(false, true)
-
-
-  # Respond to label clicks for radio/checkbox inputs
-  @labelClicked = (label, event) ->
-    event.preventDefault()
-    # (if e.stopPropagation then e.stopPropagation() else (e.cancelBubble = true))
-    event.stopPropagation()
-    labelID = $(label).attr("for")
-    $("#"+labelID).trigger("click")
 
 
   # Respond to user clicking different questions
@@ -89,13 +80,16 @@
     else
       if $(this).hasClass "active"
         if $(event.target).closest("label").prev("input").is(":radio")
-          labelClicked($(event.target).closest("label"), event)
-          activeQuestion = $(".survey-container.active")
-          activeQuestion.removeClass "active"
-          $(this).next().addClass "active"
-          newActiveQuestion = $(".survey-container.active")
-          nextQuestionScroll(activeQuestion, newActiveQuestion)
+          event.preventDefault()
+          if $(this).find('.multiple-question-container').length
+            if $(event.target).closest(".multiple-question-container").hasClass "current"
+              $(event.target).closest("label").prev("input").prop "checked", true
+              assignMultipleQuestion(true,false)
+          else
+            $(event.target).closest("label").prev("input").prop "checked", true
+            assignQuestion(true, false)
       else
+        # Use the clicked container, rather than calling the assignQuestion function
         activeQuestion = $(".survey-container.active")
         activeQuestion.removeClass "active"
         $(this).addClass "active"
@@ -136,7 +130,7 @@
 
   $("body").keyup (e) ->
     if $(".survey-container.active").find(".survey-text-date").is(":focus")
-      "no key up return for date input"
+      console.log "no key up return for date input"
       return
     if $(".survey-container.active").hasClass "progress-w-number"
         inputs = $(".survey-container.active .panel .multiple-question-container.current").find("input:radio")
@@ -160,6 +154,7 @@
       console.log "down arrow"
       e.preventDefault()
       assignQuestion(true, false)
+    # Respond to actual inputs
     else
       if $(".survey-container.active").hasClass "progress-w-enter"
         if e.keyCode is 13
@@ -187,6 +182,7 @@
 
   # Respond to conditional inputs - click events
   $(".reveal-next-input").click (e) ->
+    console.log "showing hidden input"
     changeFocusDirect($(this), $(this).nextAll('.hidden-input'))
 
 
