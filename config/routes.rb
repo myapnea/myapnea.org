@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   get 'research'  => 'static#research'
   get 'theme'     => 'static#theme'
   get 'version'   => 'static#version'
-  get 'registration' => 'static#registration1'
+  get 'get-started' => 'static#registration1'
 
   # Provider Pages
   get 'p(/:slug)', to: 'static#provider_page'

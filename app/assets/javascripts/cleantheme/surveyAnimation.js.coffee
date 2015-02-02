@@ -108,13 +108,23 @@
         activeQuestion.removeClass "active"
         $(this).addClass "active"
         newActiveQuestion = $(".survey-container.active")
-        if $(this).prev().length == 0
-          $("body").animate
-            scrollTop: 0
-          , 400
-          , "swing"
-        else
+        if $(event.target).closest("label").prev("input").is(":radio")
+          event.preventDefault()
+          $(event.target).closest("label").prev("input").prop "checked", true
+          submitAnswer(newActiveQuestion)
           nextQuestionScroll(activeQuestion, newActiveQuestion)
+          setTimeout ( ->
+            assignQuestion(true, false)
+            return
+          ), 1100
+        else
+          if $(this).prev().length == 0
+            $("body").animate
+              scrollTop: 0
+            , 400
+            , "swing"
+          else
+            nextQuestionScroll(activeQuestion, newActiveQuestion)
 
   # Respond to keystrokes
   $("body").keydown (e) ->
