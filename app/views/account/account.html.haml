@@ -1,7 +1,8 @@
+- @page_title = "Account"
 - if beta_enabled?(current_user, params)
   = render partial: 'static/beta/account'
 - else
-  - @title = "Account"
+  - @title = @page_title
 
   %h3 Account Settings
   %br/
