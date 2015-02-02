@@ -19,7 +19,7 @@ class Survey < ActiveRecord::Base
   # Associations
   belongs_to :first_question, class_name: "Question"
   has_many :answer_sessions, -> { where deleted: false }
-  has_many :question_edges
+  has_many :question_edges, dependent: :delete_all
   has_many :survey_question_orders, -> { order "question_number asc" }
   has_many :ordered_questions, through: :survey_question_orders, foreign_key: "question_id", class_name: "Question", source: :question
   has_many :survey_answer_frequencies
@@ -29,11 +29,11 @@ class Survey < ActiveRecord::Base
 
   # Class Methods
   def self.complete(user)
-    res = joins(:answer_sessions).where(status: "show", answer_sessions: {user_id: user.id}).select do |qf|
-      as = qf.answer_sessions.where(user_id: user.id).order(updated_at: :desc).first
+    res = joins(:answer_sessions).where(status: "show", answer_sessions: {user_id: user.id, deleted: false}).select do |qf|
+      as = qf.answer_sessions.where(user_id: user.id, deleted: false).order(updated_at: :desc).first
 
 
-      as.present? and as.completed?
+      as.present? and as.completed? and !as.deleted?
     end
 
     res
@@ -41,16 +41,16 @@ class Survey < ActiveRecord::Base
 
   def self.unstarted(user)
     user_id = (user.present? ? user.id : nil)
-    res = includes(:answer_sessions).where(status: "show").select{ |qf| user_id.blank? or qf.answer_sessions.where(user_id: user.id).empty? }
+    res = includes(:answer_sessions).where(status: "show").select{ |qf| user_id.blank? or qf.answer_sessions.where(user_id: user.id, deleted: false).empty? }
 
     res
   end
 
   def self.incomplete(user)
-    res = joins(:answer_sessions).where(status: "show", answer_sessions: {user_id: user.id}).select do |qf|
+    res = joins(:answer_sessions).where(status: "show", answer_sessions: {user_id: user.id, deleted: false}).select do |qf|
       as = qf.answer_sessions.where(user_id: user.id).order(updated_at: :desc).first
 
-      as.present? and !as.completed?
+      as.present? and !as.completed? and !as.deleted?
     end
     res
   end
@@ -61,23 +61,48 @@ class Survey < ActiveRecord::Base
     end
   end
 
-  def self.load_survey(name)
+  def self.load_from_file(name)
     ## CREATES A NEW SURVEY
 
     data_file = YAML.load_file(Rails.root.join(*(SURVEY_DATA_LOCATION + ["#{name}.yml"])))
 
-    survey = Survey.create(name_en: data_file["name"], slug: data_file["slug"], description_en: data_file[:description], status: data_file[:status])
+    # Find or Create Survey
+    survey = Survey.find_by_slug(data_file["slug"])
+    if survey.blank?
+      survey = Survey.create(name_en: data_file["name"], slug: data_file["slug"], description_en: data_file["description"], status: data_file["status"])
+    else
+      survey.update_attributes(name_en: data_file["name"], slug: data_file["slug"], description_en: data_file["description"], status: data_file["status"], first_question_id: nil)
+      QuestionEdge.destroy_all(survey_id: survey.id)
+    end
 
     latest_question = nil
+
     data_file["questions"].each do |question_attributes|
-      question = Question.create(text_en: question_attributes["text"], display_type: question_attributes["display_type"])
+      question = Question.find_by_slug(question_attributes["slug"])
+      if question.blank?
+        question = Question.create(text_en: question_attributes["text"], display_type: question_attributes["display_type"], slug: question_attributes["slug"])
+      else
+        question.update_attributes(text_en: question_attributes["text"], display_type: question_attributes["display_type"], slug: question_attributes["slug"])
+      end
 
       question_attributes["answer_templates"].each do |answer_template_attributes|
-        answer_template = AnswerTemplate.create(name: answer_template_attributes["name"], data_type: answer_template_attributes["data_type"])
+        answer_template = AnswerTemplate.find_by_name(answer_template_attributes["name"])
+        if answer_template.blank?
+          answer_template = AnswerTemplate.create(name: answer_template_attributes["name"], data_type: answer_template_attributes["data_type"], display_type_id: answer_template_attributes["display_type_id"], allow_multiple: answer_template_attributes["allow_multiple"].present?)
+        else
+          answer_template.update_attributes(name: answer_template_attributes["name"], data_type: answer_template_attributes["data_type"], display_type_id: answer_template_attributes["display_type_id"], allow_multiple: answer_template_attributes["allow_multiple"].present?)
+        end
 
         if answer_template_attributes.has_key?("answer_options")
           answer_template_attributes["answer_options"].each do |answer_option_attributes|
-            answer_template.answer_options.create(text: answer_option_attributes["text"], hotkey: answer_option_attributes["hotkey"], value: answer_option_attributes["value"])
+            answer_option = answer_template.answer_options.find_by_value(answer_option_attributes["value"])
+
+            if answer_option.blank?
+              answer_template.answer_options.create(text: answer_option_attributes["text"], hotkey: answer_option_attributes["hotkey"], value: answer_option_attributes["value"])
+            else
+              answer_option.update_attributes(text: answer_option_attributes["text"], hotkey: answer_option_attributes["hotkey"], value: answer_option_attributes["value"])
+            end
+
           end
         end
 
@@ -90,13 +115,14 @@ class Survey < ActiveRecord::Base
       if latest_question.present?
         qe = QuestionEdge.build_edge(latest_question, question, nil, survey.id)
 
-        puts("Creating edge between #{latest_question.id} and #{question.id}")
+        logger.info("Creating edge between #{latest_question.id} and #{question.id}")
 
         raise StandardError, qe.errors.full_messages unless qe.save
       end
       latest_question = question
     end
 
+    survey.save
     survey.refresh_precomputations
   end
 

@@ -1,16 +1,16 @@
 .panel
   .panel-heading
     - if current_user
-      .before.lead.f500= @pc['before']['head']
+      .before.lead.f500= consent_page_content['before']['head']
     %p.lead
-      = @pc['before']['content']['text_1']
+      = consent_page_content['before']['content']['text_1']
       = link_to "privacy policy", privacy_path, target: '_blank'
-      = @pc['before']['content']['text_2']
+      = consent_page_content['before']['content']['text_2']
   .panel-body
     .row
       .col-md-12
         #print-area
-          = render partial: 'account/consent_body'
+          = markdown consent_page_content['consent']
           - if current_user.present? and !current_user.accepted_consent_at.present?
             = markdown "If you wish to be in this study, please click the button that says **“I have read the consent”**"
         %br/

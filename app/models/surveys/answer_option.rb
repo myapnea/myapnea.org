@@ -8,10 +8,14 @@ class AnswerOption < ActiveRecord::Base
   localize :text_value
 
   def value
-    text_value || time_value || numeric_value
+    text_value || time_value || numeric_value || self[:value]
   end
 
   def new_value
     self[:value]
+  end
+
+  def text
+    text_value || self[:text]
   end
 end

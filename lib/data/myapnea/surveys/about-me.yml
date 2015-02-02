@@ -1,25 +1,24 @@
-## PROBLEM with not specifying IDs - no way to match up updated questions (text, etc.) with older versions when reloading
-## the data files.
-
-## DISCUSS
-
-name: Sign Up Demographics
-slug: sign-up-demographics
+name: About Me
+slug: about-me
 description:
-status: visible
+status: show
 questions:
 - text: |
     What is your date of birth?
+  slug: date-of-birth
   display_type: date_input
   answer_templates:
   - name: birth_date
-    data_type: time_value
+    display_type_id: 1
+    data_type: text_value
 - text: |
     What is your sex?
+  slug: sex
   display_type: radio_input
   answer_templates:
   - name: sex
     data_type: answer_option_id
+    display_type_id: 3
     answer_options:
     - text: Male
       hotkey: M
@@ -35,10 +34,13 @@ questions:
       value: 4
 - text: |
     What is your race?
+  slug: race
   display_type: checkbox_input
   answer_templates:
   - name: race
     data_type: answer_option_id
+    display_type_id: 4
+    allow_multiple: true
     answer_options:
     - text: Asian (i.e. Asian Indian, Chinese, Filipino, Japanese, Korean, Vietnamese, Hmong, Laotian, Thai, Pakistani, Cambodian, etc.)
       hotkey: A
@@ -69,13 +71,16 @@ questions:
       value: 8
   - name: specified_race
     data_type: text_value
+    display_type_id: 1
     target_answer_option: 7
 - text: |
     What is the highest degree or level of school you have completed?
+  slug: education-level
   display_type: radio_input
   answer_templates:
   - name: education_level
     data_type: answer_option_id
+    display_type_id: 3
     answer_options:
     - text: 8th grade or less
       hotkey: A
@@ -100,10 +105,12 @@ questions:
       value: 7
 - text: |
     Last year, what was your total hosehold income from all source, before taxes?
+  slug: income-level
   display_type: radio_input
   answer_templates:
   - name: income_level
     data_type: answer_option_id
+    display_type_id: 3
     answer_options:
     - text: Less than $10,000 (USD)
       hotkey: A

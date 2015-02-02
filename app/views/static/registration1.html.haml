@@ -9,13 +9,11 @@
     %h3 3
 .carousel.slide#registration-carousel{ data: { ride: 'carousel', interval: 'false' } }
   .carousel-inner{ role: 'listbox' }
+    .item
+      = render partial: 'static/beta/privacy', locals: {privacy_page_content: @pc1}
+    .item
+      = render partial: 'static/beta/consent', locals: {consent_page_content: @pc2}
     .item.active
-      - @pc = @pc1
-      = render partial: 'static/beta/privacy'
-    .item
-      - @pc = @pc2
-      = render partial: 'static/beta/consent'
-    .item
       = render partial: 'surveys/demographics'
 
 
