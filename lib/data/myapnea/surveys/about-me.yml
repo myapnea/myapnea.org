@@ -53,26 +53,26 @@ questions:
       value: 3
     - text: Middle Eastern/North African
       hotkey: D
-      value: 3
+      value: 4
     - text: Native American, American Indian or Alaskan Native (i.e. Navajo, Mayan, Tingt, etc.)
       hotkey: E
-      value: 4
+      value: 5
     - text: Native Hawaiian or Other Pacific Islander (i.e. Native Hawaiian, Guamanian or Chamorro, Samoan, Fijian, Tongan, etc.)
       hotkey: F
-      value: 5
+      value: 6
     - text: White (i.e. German, Irish, Lebanese, Egyptian etc.)
       hotkey: G
-      value: 6
+      value: 7
     - text: Some other race or origin (please specify)
       hotkey: H
-      value: 7
+      value: 8
     - text: Prefer not to answer
       hotkey: I
-      value: 8
+      value: 9
   - name: specified_race
     data_type: text_value
     display_type_id: 1
-    target_answer_option: 7
+    target_answer_option: 8
 - text: |
     What is the highest degree or level of school you have completed?
   slug: education-level
