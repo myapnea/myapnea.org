@@ -1,5 +1,5 @@
 class Question < ActiveRecord::Base
-  has_and_belongs_to_many :answer_templates
+  has_and_belongs_to_many :answer_templates, -> { order "created_at asc" }
   belongs_to :group
   has_many :answers, -> { where deleted: false }
   belongs_to :question_help_message
