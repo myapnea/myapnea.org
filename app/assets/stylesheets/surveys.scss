@@ -455,10 +455,20 @@ http://brennaobrien.com/blog/2014/05/style-input-type-range-in-every-browser.htm
   .survey-short-text {
     font-size: 20px;
   }
-  .input-container {
-    label span {
-      display: none;
-      // TODO add a class to all of these spans
+  .check-box-container:not(#foo) > input + label {
+    width:100%;
+    p {
+      left:40px;
+      width:90%;
+      padding: 5px;
+      font-size: 14px;
+    }
+    span {
+      width: 25px;
+      height:25px;
+      line-height:20px;
+      font-size:10px;
+      margin-top:-15px;
     }
   }
 }
