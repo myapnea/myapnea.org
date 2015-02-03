@@ -16,7 +16,7 @@ class RegistrationsControllerTest < ActionController::TestCase
     assert_equal 1980, assigns(:user).year_of_birth
     assert_equal 'new_user@example.com', assigns(:user).email
 
-    assert_redirected_to home_path
+    assert_redirected_to get_started_path
   end
 
   test "should not sign up new user without required fields" do
@@ -80,7 +80,7 @@ class RegistrationsControllerTest < ActionController::TestCase
 
     assert_not_nil assigns(:user)
     assert_equal users(:provider_1), assigns(:user).provider
-    assert_redirected_to home_path
+    assert_redirected_to get_started_path
   end
 
   test "should sign up provider" do
@@ -96,7 +96,7 @@ class RegistrationsControllerTest < ActionController::TestCase
     assert_equal 'new_provider@example.com', assigns(:user).email
     assert_equal 'provider', assigns(:user).user_type
 
-    assert_redirected_to home_path
+    assert_redirected_to get_started_path
   end
 
   test "should not sign up provider without required fields" do

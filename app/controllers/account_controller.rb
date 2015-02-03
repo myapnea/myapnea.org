@@ -47,6 +47,12 @@ class AccountController < ApplicationController
     redirect_to account_path, notice: "You have successfully left the research study. If you ever change your mind, just visit your account settings to view the research consent and privacy policy again."
   end
 
+  # TODO set to actual user_type input
+  def set_user_type
+    current_user.update user_type: 'Researcher'
+    redirect_to get_started_privacy_path
+  end
+
   def dashboard
 
   end

@@ -36,5 +36,4 @@
           %span F
           %p Caregiver of child(ren) diagnosed with or at-risk of sleep apnea
     .button-container
-      .btn.btn-primary
-        Submit
+      = link_to "Submit", set_user_type_path, method: :post, class: 'btn btn-primary btn-lg'
