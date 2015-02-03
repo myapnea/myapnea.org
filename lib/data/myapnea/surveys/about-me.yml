@@ -104,7 +104,7 @@ questions:
       hotkey: G
       value: 7
 - text: |
-    Last year, what was your total hosehold income from all source, before taxes?
+    Last year, what was your total household income from all source, before taxes?
   slug: income-level
   display_type: radio_input
   answer_templates:
