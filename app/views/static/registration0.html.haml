@@ -1,0 +1,40 @@
+.survey-container.check-w-letter
+  .panel
+    .question-container
+      %h3.f300 In the realm of sleep apnea, how do you best describe yourself?
+      %h5.f300.reset-layout (Check all that apply)
+    .input-container
+      - input_name = 'race'
+      .check-box-container
+        = check_box_tag input_name, 'A', nil, id: 'A', data: { hotkey: 'A' }
+        %label{ for: 'A' }
+          %span A
+          %p Provider
+      .check-box-container
+        = check_box_tag input_name, 'B', nil, id: 'B', data: { hotkey: 'B' }
+        %label{ for: 'B' }
+          %span B
+          %p Researcher
+      .check-box-container
+        = check_box_tag input_name, 'C', nil, id: 'C', data: { hotkey: 'C' }
+        %label{ for: 'C' }
+          %span C
+          %p Adult who has been diagnosed with sleep apnea
+      .check-box-container
+        = check_box_tag input_name, 'D', nil, id: 'D', data: { hotkey: 'D' }
+        %label{ for: 'D' }
+          %span D
+          %p Adult who is at-risk of sleep apnea
+      .check-box-container
+        = check_box_tag input_name, 'E', nil, id: 'E', data: { hotkey: 'E' }
+        %label{ for: 'E' }
+          %span E
+          %p Caregiver of adult diagnosed with or at-risk of sleep apnea
+      .check-box-container
+        = check_box_tag input_name, 'F', nil, id: 'F', data: { hotkey: 'F' }
+        %label{ for: 'F' }
+          %span F
+          %p Caregiver of child(ren) diagnosed with or at-risk of sleep apnea
+    .button-container
+      .btn.btn-primary
+        Submit

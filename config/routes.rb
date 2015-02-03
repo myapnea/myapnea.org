@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get 'research'  => 'static#research'
   get 'theme'     => 'static#theme'
   get 'version'   => 'static#version'
+  get 'get-started' => 'static#registration0'
   get 'get-started/privacy' => 'static#registration1'
   post 'accepts_privacy' => 'account#accepts_privacy'
   get 'get-started/consent' => 'static#registration2'

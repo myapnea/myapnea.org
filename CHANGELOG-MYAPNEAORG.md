@@ -10,6 +10,8 @@
   - Clicking "Leave Research Study" on the Consent or Privacy Policy pages now removes the member from the study
     - In the past, the member would be redirected to the account page where this question would be asked one more time
 - **Registration Process**
+  - Upon registration, user's are asked to immediately set their user_type
+    - Provider, researcher, adult diagnosed, adult at-risk, caregiver of adult, caregiver of child(ren)
   - Upon registration, user's are automatically sent through consent process
     - Privacy policy, then consent, then brought to new demographics survey
     - Process is simple and informative of why it is important
