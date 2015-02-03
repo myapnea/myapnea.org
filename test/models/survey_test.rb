@@ -23,7 +23,21 @@ class SurveyTest < ActiveSupport::TestCase
     assert_match /Asian/, cb_q.answer_templates.first.answer_options.first.text
     assert_equal "A", cb_q.answer_templates.first.answer_options.first.hotkey
     assert_equal 1, cb_q.answer_templates.first.answer_options.first.value
+    assert_equal 7, cb_q.answer_templates.last.target_answer_option
+    assert_equal 2, cb_q.answer_templates.count
+
+    assert_no_difference "Survey.count" do
+      Survey.load_from_file("about-me")
+    end
+
+    survey.reload
+    cb_q = survey.all_questions.where(slug: "race").first
+
+    assert_equal 2, cb_q.answer_templates.count
+
+
   end
+
 
 
 

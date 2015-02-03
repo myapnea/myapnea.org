@@ -37,7 +37,6 @@ class Answer < ActiveRecord::Base
 
   def value=(val)
     answer_values.clear
-
     question.answer_templates.each do |template|
       target_field = template.data_type
 

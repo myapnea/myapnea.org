@@ -44,6 +44,8 @@ class AnswerSession < ActiveRecord::Base
   end
 
   def process_answer(question, params)
+    #raise StandardError, params[question.id.to_s]
+
     # adding should always be at tail!
 
     # Create answer object

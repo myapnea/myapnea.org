@@ -86,11 +86,12 @@ class Survey < ActiveRecord::Base
       end
 
       question_attributes["answer_templates"].each do |answer_template_attributes|
-        answer_template = AnswerTemplate.find_by_name(answer_template_attributes["name"])
+        answer_template = question.answer_templates.find_by_name(answer_template_attributes["name"])
         if answer_template.blank?
-          answer_template = AnswerTemplate.create(name: answer_template_attributes["name"], data_type: answer_template_attributes["data_type"], display_type_id: answer_template_attributes["display_type_id"], allow_multiple: answer_template_attributes["allow_multiple"].present?)
+          answer_template = AnswerTemplate.create(name: answer_template_attributes["name"], data_type: answer_template_attributes["data_type"], display_type_id: answer_template_attributes["display_type_id"], allow_multiple: answer_template_attributes["allow_multiple"].present?, target_answer_option: answer_template_attributes["target_answer_option"])
+          question.answer_templates << answer_template
         else
-          answer_template.update_attributes(name: answer_template_attributes["name"], data_type: answer_template_attributes["data_type"], display_type_id: answer_template_attributes["display_type_id"], allow_multiple: answer_template_attributes["allow_multiple"].present?)
+          answer_template.update_attributes(name: answer_template_attributes["name"], data_type: answer_template_attributes["data_type"], display_type_id: answer_template_attributes["display_type_id"], allow_multiple: answer_template_attributes["allow_multiple"].present?, target_answer_option: answer_template_attributes["target_answer_option"])
         end
 
         if answer_template_attributes.has_key?("answer_options")
@@ -106,7 +107,6 @@ class Survey < ActiveRecord::Base
           end
         end
 
-        question.answer_templates << answer_template
       end
 
 

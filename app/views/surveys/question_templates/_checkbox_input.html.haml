@@ -1,5 +1,7 @@
 / Must be provided a question object: question
-= form_tag(process_answer_path, {role: "form", class: 'survey-container progress-w-enter check-w-letter'}) do
+-# raise StandardError
+
+= form_tag(process_answer_path, {role: "form", onsubmit: "return false;", class: 'survey-container progress-w-enter check-w-letter'}) do
   = hidden_field_tag "question_id[]", question.id
   = hidden_field_tag "answer_session_id", answer_session.id
 
@@ -9,12 +11,15 @@
       %h5.f300.reset-layout (Check all that apply)
     .input-container
       - answer_template = question.answer_templates.first
+      - secondary_template = question.answer_templates.last if question.answer_templates.length > 1
       - answer_template.answer_options.distinct.each do |answer_option|
         .check-box-container
-          = check_box_tag "#{question.id}[#{answer_template.id}][]", answer_option.id, have_checked?(answer, answer_template, answer_option.id), id: "question_#{question.id}_#{answer_template.id}_#{answer_option.new_value}", data: { hotkey: answer_option.hotkey }
+          = check_box_tag "#{question.id}[#{answer_template.id}][]", answer_option.id, have_checked?(answer, answer_template, answer_option.id), id: "question_#{question.id}_#{answer_template.id}_#{answer_option.new_value}", data: { hotkey: answer_option.hotkey }, class: ("reveal-next-input" if secondary_template.target_answer_option == answer_option.new_value)
           %label{ for: "question_#{question.id}_#{answer_template.id}_#{answer_option.new_value}" }
             %span=answer_option.hotkey
             %p=answer_option.text
+          - if secondary_template and secondary_template.target_answer_option == answer_option.new_value
+            = text_field_tag "#{question.id}[#{secondary_template.id}]", answer.value[secondary_template.id], class: 'survey-short-text survey-text-small hidden-input', style: 'margin-bottom:20px;'
     .button-container
       .btn.btn-primary.next-question
         Go to next question
