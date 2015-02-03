@@ -460,6 +460,39 @@ span#privacy-policy:hover {
     text-align:center;
   }
 
+  #registration-progress {
+  margin-bottom:20px;
+  $viewedColor: #78c679;
+  $unviewedColor: #d5ecd2;
+  .circle-progress {
+    display:inline-block;
+    width: 60px;
+    height:60px;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    background-color: $unviewedColor;
+    text-align: center;
+    h3 {
+      line-height:60px;
+      color:white;
+      margin:0px;
+    }
+  }
+  .circle-progress.viewed {
+    background-color: $viewedColor;
+  }
+  .track-progress{
+    display:inline-block;
+    height:10px;
+    width:30px;
+    background-color: $unviewedColor;
+  }
+  .track-progress.viewed {
+    background-color: $viewedColor;
+  }
+}
+
 }
 
 @media (max-width: 768px) {

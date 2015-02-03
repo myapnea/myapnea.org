@@ -77,8 +77,11 @@ class StaticController < ApplicationController
   end
 
   def registration3
-    @survey = Survey.find_by_slug("about-me")
-    @answer_session = AnswerSession.find_or_create(current_user, @survey)
+    if current_user
+      @survey = Survey.find_by_slug("about-me")
+      @answer_session = AnswerSession.find_or_create(current_user, @survey)
+    end
+    render layout: 'layouts/cleantheme'
   end
 
   private

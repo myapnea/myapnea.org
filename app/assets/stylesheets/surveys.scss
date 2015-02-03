@@ -134,10 +134,17 @@ input[type=date] {
   }
 }
 
+.input-container .label-sm {
+  width:20%;
+  margin-left: 2.5%;
+  margin-right: 2.5%;
+}
+
 .input-container .label-med {
-  width:50%;
-  margin-left: 25%;
-  margin-right:25%;
+  width:45%;
+  margin-left: 2.5%;
+  margin-right:2.5%;
+  float:left;
 }
 
 .input-container .label-large {
@@ -469,6 +476,20 @@ http://brennaobrien.com/blog/2014/05/style-input-type-range-in-every-browser.htm
       line-height:20px;
       font-size:10px;
       margin-top:-15px;
+    }
+  }
+  .input-container .label-med {
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+    padding: 7px;
+    p {
+      font-size: 18px;
+      margin: 0;
+      padding: 0;
+    }
+    span {
+      display: none;
     }
   }
 }

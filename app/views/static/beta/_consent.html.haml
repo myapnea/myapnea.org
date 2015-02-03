@@ -31,7 +31,7 @@
         = link_to "Leave Research Study", revoke_consent_path, method: :post, class: 'btn btn-warning btn-lg'
       - else
         - if part_of_registration
-          = link_to "I have read the consent and I accept", accepts_consent_path, method: :post, class: 'btn btn-primary btn-lg'
+          = link_to "I accept", accepts_consent_path, method: :post, class: 'btn btn-primary btn-lg'
           = link_to "I decline", revoke_consent_path, method: :post, class: 'btn btn-danger btn-lg'
         - else
           = form_tag consent_path do

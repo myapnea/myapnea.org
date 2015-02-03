@@ -10,5 +10,5 @@
   = link_to get_started_about_me_path do
     .circle-progress.viewed
       %h3 3
-.item
+- if current_user and @survey
   = render partial: 'surveys/demographics'
