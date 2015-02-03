@@ -73,10 +73,22 @@ class StaticControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should get registration" do
+  test "should get registration privacy page for logged in user" do
+    login(users(:user_1))
+    get :registration1
+    assert_response :success
+  end
+
+  test "should get registration consent for logged in user" do
+    login(users(:user_1))
+    get :registration2
+    assert_response :success
+  end
+
+  test "should get registration about-me survey for logged in user" do
     Survey.load_from_file("about-me")
     login(users(:social))
-    get :registration1
+    get :registration3
     assert_response :success
   end
 
