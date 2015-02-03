@@ -9,8 +9,7 @@
     .question-container
       %h3.f300 Congratulations! You've reached the end of the survey, and will gain an entry into our monthly prize drawing!
     .button-container
-      .btn.btn-primary.next-question
-        Submit
-      %p.text-muted Or press ENTER
+      = link_to "Continue to My Social Profile", account_path, class: 'btn btn-primary btn-lg'
+      = link_to "Go Home", home_path, class: 'btn btn-default btn-lg'
 
 

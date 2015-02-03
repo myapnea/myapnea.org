@@ -15,7 +15,11 @@ Rails.application.routes.draw do
   get 'research'  => 'static#research'
   get 'theme'     => 'static#theme'
   get 'version'   => 'static#version'
-  get 'get-started' => 'static#registration1'
+  get 'get-started/privacy' => 'static#registration1'
+  post 'accepts_privacy' => 'account#accepts_privacy'
+  get 'get-started/consent' => 'static#registration2'
+  post 'accepts_consent' => 'account#accepts_consent'
+  get 'get-started/about-me' => 'static#registration3'
 
   # Provider Pages
   get 'p(/:slug)', to: 'static#provider_page'

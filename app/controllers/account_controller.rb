@@ -8,7 +8,7 @@ class AccountController < ApplicationController
 
   def privacy_policy
     if params[:privacy_policy_read]
-      current_user.update_attribute(:accepted_privacy_policy_at, Time.zone.now)
+      current_user.update accepted_privacy_policy_at: Time.zone.now
       if current_user.ready_for_research?
         redirect_to (session[:return_to].present? ? session.delete(:return_to) : home_path), notice: "You have now signed the consent and are ready to participate in research. You can opt out any time by visiting your user account settings."
       else
@@ -17,6 +17,11 @@ class AccountController < ApplicationController
     else
       load_content
     end
+  end
+
+  def accepts_privacy
+    current_user.update accepted_privacy_policy_at: Time.zone.now
+    redirect_to get_started_consent_path
   end
 
   def consent
@@ -30,6 +35,11 @@ class AccountController < ApplicationController
     else
       load_content
     end
+  end
+
+  def accepts_consent
+    current_user.update accepted_consent_at: Time.zone.now
+    redirect_to get_started_about_me_path
   end
 
   def revoke_consent

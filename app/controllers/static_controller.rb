@@ -64,10 +64,7 @@ class StaticController < ApplicationController
     end
   end
 
-  def registration1
-    @pc1 = page_content('privacy_policy')
-    @pc2 = page_content('consent')
-
+  def registration3
     @survey = Survey.find_by_slug("about-me")
     @answer_session = AnswerSession.find_or_create(current_user, @survey)
   end

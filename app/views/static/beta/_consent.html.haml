@@ -1,3 +1,5 @@
+- consent_page_content = page_content('consent')
+
 .panel
   .panel-heading
     - if current_user
@@ -27,6 +29,10 @@
         / = link_to "View Privacy Policy", privacy_path, class: 'btn btn-lg btn-info'
         = link_to "Leave Research Study", revoke_consent_path, method: :post, class: 'btn btn-warning btn-lg'
       - else
-        = form_tag consent_path do
-          %input.btn.btn-primary.btn-lg{:name => "consent_read", :type => "submit", value: "I have read the consent#{current_user.accepted_privacy_policy? ? ' and I agree to participate' : ''}"}
+        - if part_of_registration
+          = link_to "I have read the consent and I accept", accepts_consent_path, method: :post, class: 'btn btn-primary btn-lg'
           = link_to "I decline", revoke_consent_path, method: :post, class: 'btn btn-danger btn-lg'
+        - else
+          = form_tag consent_path do
+            %input.btn.btn-primary.btn-lg{:name => "consent_read", :type => "submit", value: "I have read the consent#{current_user.accepted_privacy_policy? ? ' and I agree to participate' : ''}"}
+            = link_to "I decline", revoke_consent_path, method: :post, class: 'btn btn-danger btn-lg'
