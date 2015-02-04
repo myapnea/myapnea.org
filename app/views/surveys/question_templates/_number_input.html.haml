@@ -1,9 +1,14 @@
-.panel.survey-container.progress-w-enter.active
-  .question-container
-    %h3.f300 How many hours of sleep did you get last night?
-  .input-container
-    = text_field_tag 'hours', nil, maxlength: 2, class: 'survey-short-text survey-short-number'
-  .button-container
-    .btn.btn-primary.next-question
-      Go to next question
-    %p.text-muted Or press ENTER
+= form_tag(process_answer_path, {role: "form", class: 'survey-container progress-w-enter'}) do
+  = hidden_field_tag "question_id[]", question.id
+  = hidden_field_tag "answer_session_id", answer_session.id
+
+  .panel.survey-container.progress-w-enter.active
+    .question-container
+      %h3.f300= question.text
+    .input-container
+      - answer_template = question.answer_templates.first
+      = text_field_tag "#{question.id}[#{answer_template.id}]", answer.value[answer_template.id], class: 'survey-short-text survey-short-number'
+    .button-container
+      .btn.btn-primary.next-question
+        Go to next question
+      %p.text-muted Or press ENTER

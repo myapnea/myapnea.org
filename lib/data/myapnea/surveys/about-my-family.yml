@@ -72,7 +72,7 @@ questions:
   answer_templates:
   - name: household_members
     display_type_id: 6
-    data_type: number_value
+    data_type: text_value
 - text: |
     How many persons less than 18 years of age usually live in your home?
   slug: household-minors
@@ -80,9 +80,9 @@ questions:
   answer_templates:
   - name: household_minors
     display_type_id: 6
-    data_type: number_value
+    data_type: text_value
 - text: |
-    Have any of your family members been diagnosed with sleep apnea?
+    Have any of your biological family members been diagnosed with sleep apnea?
   slug: family-diagnoses
   display_type: checkbox_input
   answer_templates:
@@ -91,21 +91,94 @@ questions:
     display_type_id: 4
     allow_multiple: true
     answer_options:
-    - text: Mother(s)
+    - text: Mother
       hotkey: A
       value: 1
-    - text: Father(s)
+    - text: Father
       hotkey: B
       value: 2
-    - text: Brother(s)
+    - text: Brother(s) (specify how many)
       hotkey: C
       value: 3
-    - text: Sister(s)
+    - text: Sister(s) (specify how many)
       hotkey: D
       value: 4
-    - text: Son(s)
+    - text: Son(s) (specify how many)
       hotkey: E
       value: 5
-    - text: Daughter(s)
+    - text: Daughter(s) (specify how many)
       hotkey: F
       value: 6
+  - name: specified_brothers
+    data_type: text_value
+    display_type_id: 1
+    target_answer_option: 3
+  - name: specified_sisters
+    data_type: text_value
+    display_type_id: 1
+    target_answer_option: 4
+  - name: specified_sons
+    data_type: text_value
+    display_type_id: 1
+    target_answer_option: 5
+  - name: specified_daughters
+    data_type: text_value
+    display_type_id: 1
+    target_answer_option: 6
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
