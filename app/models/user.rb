@@ -30,7 +30,7 @@ class User < ActiveRecord::Base
   # Named Scopes
   scope :search_by_email, ->(terms) { where("LOWER(#{self.table_name}.email) LIKE ?", terms.to_s.downcase.gsub(/^| |$/, '%')) }
   scope :search, lambda { |arg| where( 'LOWER(first_name) LIKE ? or LOWER(last_name) LIKE ? or LOWER(email) LIKE ?', arg.to_s.downcase.gsub(/^| |$/, '%'), arg.to_s.downcase.gsub(/^| |$/, '%'), arg.to_s.downcase.gsub(/^| |$/, '%') ) }
-  scope :providers, -> { current.where(user_type: 'provider') }
+  scope :providers, -> { current.where(provider: true) }
 
   # Model Validation
   validates_presence_of :first_name, :last_name
@@ -45,7 +45,7 @@ class User < ActiveRecord::Base
   end
 
   # Model Relationships
-  belongs_to :provider, class_name: "User", foreign_key: 'provider_id'
+  belongs_to :my_provider, class_name: "User", foreign_key: 'provider_id'
   has_many :answer_sessions, -> { where deleted: false }
   has_many :answers, -> { where deleted: false }
   has_many :votes
@@ -69,9 +69,9 @@ class User < ActiveRecord::Base
     self.provider?
   end
 
-  def provider?
-    self.user_type == 'provider'
-  end
+  # def provider?
+  #   self.user_type == 'provider'
+  # end
 
   def all_topics
     if self.has_role? :moderator
