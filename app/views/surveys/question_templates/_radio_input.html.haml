@@ -12,4 +12,4 @@
         = radio_button_tag "#{question.id}[#{answer_template.id}]", answer_option.id, have_checked?(answer, answer_template, answer_option.id), id: "question_#{question.id}_#{answer_template.id}_#{answer_option.new_value}", data: { hotkey: answer_option.hotkey }
         %label.label-med.survey-multiple-input-button{ for: "question_#{question.id}_#{answer_template.id}_#{answer_option.new_value}" }
           %p= answer_option.text
-          %span= answer_option.hotkey
+          %span.hotkey= answer_option.hotkey
