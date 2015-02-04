@@ -18,4 +18,8 @@ class AnswerOption < ActiveRecord::Base
   def text
     text_value || self[:text]
   end
+
+  def to_s
+    self[:text] || self[:text_value_en]
+  end
 end

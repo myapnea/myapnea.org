@@ -4,6 +4,7 @@
 - **Survey UI**
   - Users are able to scroll through survey by using keystrokes
   - Animated scrolling now used to move between questions
+  - Survey urls simplified to use slugs
 - **Administrative Changes**
   - Added an admin dashboard to provide a central place to reach reports and research topic moderation
 - **Research Study Changes**
@@ -34,6 +35,7 @@
 - Removed unused `pprn.rb` initializer file
 - Renamed `QuestionFlow` to `Survey`
 - Simplified survey load files
+- Survey controller, views, and routes refactored and upgraded for beta design
 
 ## 4.2.0 (January 29, 2015)
 
