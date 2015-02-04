@@ -1,0 +1,111 @@
+name: About My Family
+slug: about-my-family
+description:
+status: show
+questions:
+- text: |
+    In what country were you born?
+  slug: origin-country
+  display_type: radio_input
+  answer_templates:
+  - name: origin_country
+    data_type: answer_option_id
+    display_type_id: 3
+    answer_options:
+    - text: U.S.A.
+      hotkey: 1
+      value: 1
+    - text: Canada
+      hotkey: 2
+      value: 2
+    - text: Mexico
+      hotkey: 3
+      value: 3
+    - text: China
+      hotkey: 4
+      value: 4
+    - text: India
+      hotkey: 5
+      value: 5
+    - text: Philippines
+      hotkey: 6
+      value: 6
+    - text: Other country (please specify)
+      hotkey: 7
+      value: 7
+  - name: specified_origin
+    data_type: text_value
+    display_type_id: 1
+    target_answer_option: 7
+- text: |
+    What language do you mainly speak at home?
+  slug: primary-language
+  display_type: radio_input
+  answer_templates:
+  - name: primary_language
+    data_type: answer_option_id
+    display_type_id: 3
+    answer_options:
+    - text: English
+      hotkey: A
+      value: 1
+    - text: Spanish
+      hotkey: B
+      value: 2
+    - text: Chinese
+      hotkey: C
+      value: 3
+    - text: Other language (please specify)
+      hotkey: D
+      value: 4
+    - text: Prefer not to answer
+      hotkey: E
+      value: 5
+  - name: specified_language
+    data_type: text_value
+    display_type_id: 1
+    target_answer_option: 4
+- text: |
+    How many people, other than you, live in your household most of the time?
+  slug: household-members
+  display_type: number_input
+  answer_templates:
+  - name: household_members
+    display_type_id: 6
+    data_type: number_value
+- text: |
+    How many persons less than 18 years of age usually live in your home?
+  slug: household-minors
+  display_type: number_input
+  answer_templates:
+  - name: household_minors
+    display_type_id: 6
+    data_type: number_value
+- text: |
+    Have any of your family members been diagnosed with sleep apnea?
+  slug: family-diagnoses
+  display_type: checkbox_input
+  answer_templates:
+  - name: family_diagnoses
+    data_type: answer_option_id
+    display_type_id: 4
+    allow_multiple: true
+    answer_options:
+    - text: Mother(s)
+      hotkey: A
+      value: 1
+    - text: Father(s)
+      hotkey: B
+      value: 2
+    - text: Brother(s)
+      hotkey: C
+      value: 3
+    - text: Sister(s)
+      hotkey: D
+      value: 4
+    - text: Son(s)
+      hotkey: E
+      value: 5
+    - text: Daughter(s)
+      hotkey: F
+      value: 6

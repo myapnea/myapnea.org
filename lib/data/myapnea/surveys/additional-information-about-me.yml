@@ -1,0 +1,100 @@
+name: Additional Information About Me
+slug: additional-information-about-me
+description:
+status: show
+questions:
+- text: |
+    What is your current marital status?
+  slug: marital-status
+  display_type: radio_input
+  answer_templates:
+  - name: marital_status
+    data_type: answer_option_id
+    display_type_id: 3
+    answer_options:
+    - text: Now married
+      hotkey: A
+      value: 1
+    - text: Unmarried, but living with a partner
+      hotkey: B
+      value: 2
+    - text: Widowed
+      hotkey: C
+      value: 3
+    - text: Divorced
+      hotkey: D
+      value: 4
+    - text: Separated
+      hotkey: E
+      value: 5
+    - text: Never married
+      hotkey: F
+      value: 6
+    - text: Prefer not to answer
+      hotkey: G
+      value: 7
+- text: |
+    What best describes your current main daily activities?
+  slug: daily-activities
+  display_type: radio_input
+  answer_templates:
+  - name: daily_activities
+    display_type_id: 3
+    answer_options:
+    - text: Working full time (day shifts)
+      hotkey: A
+      value: 1
+    - text: Working full time (rotating or night shifts)
+      hotkey: B
+      value: 2
+    - text: Working part time (day shifts)
+      hotkey: C
+      value: 3
+    - text: Working part time (rotating or night shifts)
+      hotkey: D
+      value: 4
+    - text: Unemployed, laid off, or looking for Working
+      hotkey: E
+      value: 5
+    - text: In school (full- or part-time student)
+      hotkey: F
+      value: 6
+    - text: Stay-at-home parent or keeping household
+      hotkey: G
+      value: 7
+    - text: Retired
+      hotkey: H
+      value: 8
+    - text: Disabled
+      hotkey: I
+      value: 9
+    - text: Prefer not to answer
+      hotkey: J
+      value: 10
+- text: |
+    How hard is it for you (and your family) to pay for basics like food, rent or mortgage, heating, etc.?
+  slug: affording-basics
+  display_type: radio_input
+  answer_templates:
+  - name: affording_basics
+    display_type_id: 3
+    answer_options"
+    - text: Very hard
+      hotkey: 1
+      value: 1
+    - text: Hard
+      hotkey: 2
+      value: 2
+    - text: Somewhat hard
+      hotkey: 3
+      value: 3
+    - text: Not very hard
+      hotkey: 4
+      value: 4
+    - text: Don't know
+      hotkey: 5
+      value: 5
+    - text: Prefer not to state
+      hotkey: 6
+      value: 6
+

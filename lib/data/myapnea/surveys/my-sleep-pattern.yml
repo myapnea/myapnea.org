@@ -1,0 +1,47 @@
+name: My Sleep Pattern
+slug: my-sleep-pattern
+description:
+status: show
+questions:
+- text: |
+    How many hours of sleep do you usually get per night on weekdays or workdays?
+  slug: sleep-hours-weekdays
+  display_type: number_input
+  answer_templates:
+  - name: sleep_hours_weekdays
+    display_type_id: 6
+    data_type: number_value
+- text: |
+    How many hours of sleep do you usually get per night on weekends or days off?
+  slug: sleep-hours-weekends
+  display_type: number_input
+  answer_templates:
+  - name: sleep_hours_weekends
+    display_type_id: 6
+    data_type: number_value
+- text: |
+    Consider your own "feeling best rhythym", at what time would you get up if you were entirely free to plan your day?
+  slug: ideal-wakeup
+  display_type: radio_input
+  answer_templates:
+  - name: ideal_wakeup
+    data_type: answer_option_id
+    display_type_id: 3
+    answer_options:
+    - text: 5:00 - 6:30 am
+      hotkey: 1
+      value: 1
+    - text: 6:30 - 7:45 am
+      hotkey: 2
+      value: 2
+    - text: 7:45 - 9:45 am
+      hotkey: 3
+      value: 3
+    - text: 9:45 - 11:00 am
+      hotkey: 4
+      value: 4
+    - text: After 11:00 am
+      hotkey: 5
+      value: 5
+
+
