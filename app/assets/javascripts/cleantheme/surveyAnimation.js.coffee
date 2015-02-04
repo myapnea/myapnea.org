@@ -61,19 +61,18 @@
 
   # Progress to next part in multiple-part question
   @assignMultipleQuestion = (next, prev) ->
-    activeQuestion = $(".multiple-question-container.current")
-    if (next and activeQuestion.next().length) or (prev and activeQuestion.prev().length)
+    activeQuestion = $(".survey-container.active .multiple-question-container.current")
+    if (next and activeQuestion.nextAll().length) or (prev and activeQuestion.prevAll().length)
       activeQuestion.removeClass "current"
       if next
-        activeQuestion.next().addClass "current"
+        activeQuestion.nextAll(".multiple-question-container").first().addClass "current"
       else if prev
-        activeQuestion.prev().addClass "current"
-      newActiveQuestion = $(".multiple-question-container.current")
+        activeQuestion.prevAll(".multiple-question-container").first().addClass "current"
+      newActiveQuestion = $(".survey-container.active .multiple-question-container.current")
       nextQuestionScroll(activeQuestion, newActiveQuestion)
-    else if (next and !activeQuestion.next().length)
+    else if (next and !activeQuestion.nextAll().length)
       assignQuestion(true, false)
-      console.log "reached end of multiple questions!"
-    else if (prev and !activeQuestion.prev().length)
+    else if (prev and !activeQuestion.prevAll().length)
       assignQuestion(false, true)
 
 
@@ -128,53 +127,54 @@
 
   # Respond to keystrokes
   $("body").keydown (e) ->
+    # Specifically targeting custom date input
+    if e.keyCode is 38 or e.keyCode is 40
+      e.preventDefault()
     if $(".survey-container.active").find(".survey-text-date").is(":focus")
       if e.metaKey
-        console.log "meta key pressed"
         return
       else if e.keyCode is 13
-        console.log "found enter key"
+        # enter key
         $(".survey-container.active").find(".survey-text-date").blur()
         return
       else if e.keyCode is 46 or e.keyCode is 8
-        console.log "Delete delete delete...delete delete...DELETE"
+        # delete key
         rewriteDatePlaceholder(e.keyCode)
         return
       else if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) is not -1) or (e.keyCode is 65 and e.ctrlKey is true) or (e.keyCode >= 35 and e.keyCode <= 40)
-        console.log "found escaped key"
         return
       else if (/^[a-zA-Z]*$/.test(+String.fromCharCode(e.keyCode)))
-        console.log "prevented letter"
+        # prevent letter from returning
         e.preventDefault()
       else if (/^[0-9]{1,10}$/.test(+String.fromCharCode(e.keyCode)))
-        console.log "was a number"
+        # allow number to be written
         e.preventDefault()
         rewriteDatePlaceholder(e.keyCode)
 
+  # Respond to completed keystrokes
   $("body").keyup (e) ->
+    # don't allow key up on custom date input
     if $(".survey-container.active").find(".survey-text-date").is(":focus")
-      console.log "no key up return for date input"
       return
+    # containers that can progress with a number input
     if $(".survey-container.active").hasClass "progress-w-number"
-        inputs = $(".survey-container.active .panel .multiple-question-container.current").find("input:radio")
-        if e.keyCode is 38
-          e.preventDefault()
-          assignMultipleQuestion(false, true)
-        else if e.keyCode is 40
-          e.preventDefault()
-          assignMultipleQuestion(true, false)
-        else
-          inputs.each (index) ->
-            key = $(inputs[index]).data("hotkey").charCodeAt(0)
-            if e.keyCode is key
-              $(inputs[index]).prop "checked", true
-              assignMultipleQuestion(true, false)
+      inputs = $(".survey-container.active .panel .multiple-question-container.current").find("input:radio")
+      if e.keyCode is 38
+        e.preventDefault()
+        assignMultipleQuestion(false, true)
+      else if e.keyCode is 40
+        e.preventDefault()
+        assignMultipleQuestion(true, false)
+      else
+        inputs.each (index) ->
+          key = $(inputs[index]).data("hotkey").charCodeAt(0)
+          if e.keyCode is key
+            $(inputs[index]).prop "checked", true
+            assignMultipleQuestion(true, false)
     else if e.keyCode is 38
-      console.log "up arrow"
       e.preventDefault()
       assignQuestion(false, true)
     else if e.keyCode is 40
-      console.log "down arrow"
       e.preventDefault()
       assignQuestion(true, false)
     # Respond to actual inputs

@@ -1,3 +1,273 @@
+/ Multiple Options, Multiple Questions
+.survey-container.progress-w-number
+  .panel
+    .question-container
+      %h3.f300 Thinking about your sleep in the past 7 days, please answer the following questions.
+    .input-container
+      .row.multiple-question-container.current
+        - input_name = 'sleepquality'
+        .col-md-3.col-sm-12
+          %h4.f300 My sleep quality was:
+        .col-md-9.col-sm-12
+          .row.reset-layout
+            .option-of-multiple.option-of-5
+              = radio_button_tag input_name, '1'
+              %label.survey-scale.survey-scale-danger{ for: "#{input_name+'_1'}" }
+                %p Very Poor
+                %span 1
+            .option-of-multiple.option-of-5
+              = radio_button_tag input_name, '2'
+              %label.survey-scale.survey-scale-warning{ for: "#{input_name+'_2'}" }
+                %p Poor
+                %span 2
+            .option-of-multiple.option-of-5
+              = radio_button_tag input_name, '3'
+              %label.survey-scale.survey-scale-moderate{ for: "#{input_name+'_3'}" }
+                %p Fair
+                %span 3
+            .option-of-multiple.option-of-5
+              = radio_button_tag input_name, '4'
+              %label.survey-scale.survey-scale-good{ for: "#{input_name+'_4'}" }
+                %p Good
+                %span 4
+            .option-of-multiple.option-of-5
+              = radio_button_tag input_name, '5'
+              %label.survey-scale.survey-scale-great{ for: "#{input_name+'_5'}" }
+                %p Very Good
+                %span 5
+      %h4.f500{ style: 'margin: 70px 0;'} How much do you agree with the following statements?
+      .row.multiple-question-container
+        - input_name = 'agree1'
+        .col-md-3.col-sm-12
+          %h4.f300 My sleep was refreshing.
+        .col-md-9.col-sm-12
+          .row.reset-layout
+            .option-of-multiple.option-of-5
+              = radio_button_tag input_name, '1'
+              %label.survey-scale.survey-scale-danger{ for: "#{input_name+'_1'}" }
+                %p Not at all
+                %span 1
+            .option-of-multiple.option-of-5
+              = radio_button_tag input_name, '2'
+              %label.survey-scale.survey-scale-warning{ for: "#{input_name+'_2'}" }
+                %p A little bit
+                %span 2
+            .option-of-multiple.option-of-5
+              = radio_button_tag input_name, '3'
+              %label.survey-scale.survey-scale-moderate{ for: "#{input_name+'_3'}" }
+                %p Fairly
+                %span 3
+            .option-of-multiple.option-of-5
+              = radio_button_tag input_name, '4'
+              %label.survey-scale.survey-scale-good{ for: "#{input_name+'_4'}" }
+                %p Quite a bit
+                %span 4
+            .option-of-multiple.option-of-5
+              = radio_button_tag input_name, '5'
+              %label.survey-scale.survey-scale-great{ for: "#{input_name+'_5'}" }
+                %p Very much
+                %span 5
+      .row.multiple-question-container
+        - input_name = 'agree2'
+        .col-md-3.col-sm-12
+          %h4.f300 I had a problem with my sleep.
+        .col-md-9.col-sm-12
+          .row.reset-layout
+            .option-of-multiple.option-of-5
+              = radio_button_tag input_name, '1'
+              %label.survey-scale.survey-scale-danger{ for: "#{input_name+'_1'}" }
+                %p Not at all
+                %span 1
+            .option-of-multiple.option-of-5
+              = radio_button_tag input_name, '2'
+              %label.survey-scale.survey-scale-warning{ for: "#{input_name+'_2'}" }
+                %p A little bit
+                %span 2
+            .option-of-multiple.option-of-5
+              = radio_button_tag input_name, '3'
+              %label.survey-scale.survey-scale-moderate{ for: "#{input_name+'_3'}" }
+                %p Fairly
+                %span 3
+            .option-of-multiple.option-of-5
+              = radio_button_tag input_name, '4'
+              %label.survey-scale.survey-scale-good{ for: "#{input_name+'_4'}" }
+                %p Quite a bit
+                %span 4
+            .option-of-multiple.option-of-5
+              = radio_button_tag input_name, '5'
+              %label.survey-scale.survey-scale-great{ for: "#{input_name+'_5'}" }
+                %p Very much
+                %span 5
+      .row.multiple-question-container
+        - input_name = 'agree3'
+        .col-md-3.col-sm-12
+          %h4.f300 I had difficulty falling asleep.
+        .col-md-9.col-sm-12
+          .row.reset-layout
+            .option-of-multiple.option-of-5
+              = radio_button_tag input_name, '1'
+              %label.survey-scale.survey-scale-danger{ for: "#{input_name+'_1'}" }
+                %p Not at all
+                %span 1
+            .option-of-multiple.option-of-5
+              = radio_button_tag input_name, '2'
+              %label.survey-scale.survey-scale-warning{ for: "#{input_name+'_2'}" }
+                %p A little bit
+                %span 2
+            .option-of-multiple.option-of-5
+              = radio_button_tag input_name, '3'
+              %label.survey-scale.survey-scale-moderate{ for: "#{input_name+'_3'}" }
+                %p Fairly
+                %span 3
+            .option-of-multiple.option-of-5
+              = radio_button_tag input_name, '4'
+              %label.survey-scale.survey-scale-good{ for: "#{input_name+'_4'}" }
+                %p Quite a bit
+                %span 4
+            .option-of-multiple.option-of-5
+              = radio_button_tag input_name, '5'
+              %label.survey-scale.survey-scale-great{ for: "#{input_name+'_5'}" }
+                %p Very much
+                %span 5
+
+/ Multiple Options, Multiple Questions
+.survey-container.progress-w-number
+  .panel
+    .question-container
+      %h3.f300 How likely are you to fall asleep during the following activities?
+    .input-container
+      .row.multiple-question-container.current
+        - input_name = 'likelihood1'
+        .col-md-3.col-sm-12
+          %h4.f300 Reading
+        .col-md-9.col-sm-12
+          .row.reset-layout
+            .option-of-multiple.option-of-4
+              = radio_button_tag input_name, '1'
+              %label.survey-scale.survey-scale-great{ for: "#{input_name+'_1'}" }
+                %p Never
+                %span 1
+            .option-of-multiple.option-of-4
+              = radio_button_tag input_name, '2'
+              %label.survey-scale.survey-scale-good{ for: "#{input_name+'_2'}" }
+                %p Slight
+                %span 2
+            .option-of-multiple.option-of-4
+              = radio_button_tag input_name, '3'
+              %label.survey-scale.survey-scale-warning{ for: "#{input_name+'_3'}" }
+                %p Moderate
+                %span 3
+            .option-of-multiple.option-of-4
+              = radio_button_tag input_name, '4'
+              %label.survey-scale.survey-scale-danger{ for: "#{input_name+'_4'}" }
+                %p High
+                %span 4
+      .row.multiple-question-container
+        - input_name = 'likelihood2'
+        .col-md-3.col-sm-12
+          %h4.f300 Watching TV
+        .col-md-9.col-sm-12
+          .row.reset-layout
+            .option-of-multiple.option-of-4
+              = radio_button_tag input_name, '1'
+              %label.survey-scale.survey-scale-great{ for: "#{input_name+'_1'}" }
+                %p Never
+                %span 1
+            .option-of-multiple.option-of-4
+              = radio_button_tag input_name, '2'
+              %label.survey-scale.survey-scale-good{ for: "#{input_name+'_2'}" }
+                %p Slight
+                %span 2
+            .option-of-multiple.option-of-4
+              = radio_button_tag input_name, '3'
+              %label.survey-scale.survey-scale-warning{ for: "#{input_name+'_3'}" }
+                %p Moderate
+                %span 3
+            .option-of-multiple.option-of-4
+              = radio_button_tag input_name, '4'
+              %label.survey-scale.survey-scale-danger{ for: "#{input_name+'_4'}" }
+                %p High
+                %span 4
+      .row.multiple-question-container
+        - input_name = 'likelihood3'
+        .col-md-3.col-sm-12
+          %h4.f300 Sitting, inactive, in a public place (like a movie theater or classroom)
+        .col-md-9.col-sm-12
+          .row.reset-layout
+            .option-of-multiple.option-of-4
+              = radio_button_tag input_name, '1'
+              %label.survey-scale.survey-scale-great{ for: "#{input_name+'_1'}" }
+                %p Never
+                %span 1
+            .option-of-multiple.option-of-4
+              = radio_button_tag input_name, '2'
+              %label.survey-scale.survey-scale-good{ for: "#{input_name+'_2'}" }
+                %p Slight
+                %span 2
+            .option-of-multiple.option-of-4
+              = radio_button_tag input_name, '3'
+              %label.survey-scale.survey-scale-warning{ for: "#{input_name+'_3'}" }
+                %p Moderate
+                %span 3
+            .option-of-multiple.option-of-4
+              = radio_button_tag input_name, '4'
+              %label.survey-scale.survey-scale-danger{ for: "#{input_name+'_4'}" }
+                %p High
+                %span 4
+      .row.multiple-question-container
+        - input_name = 'likelihood4'
+        .col-md-3.col-sm-12
+          %h4.f300 Riding as a passenger in a car for an hour without a break
+        .col-md-9.col-sm-12
+          .row.reset-layout
+            .option-of-multiple.option-of-4
+              = radio_button_tag input_name, '1'
+              %label.survey-scale.survey-scale-great{ for: "#{input_name+'_1'}" }
+                %p Never
+                %span 1
+            .option-of-multiple.option-of-4
+              = radio_button_tag input_name, '2'
+              %label.survey-scale.survey-scale-good{ for: "#{input_name+'_2'}" }
+                %p Slight
+                %span 2
+            .option-of-multiple.option-of-4
+              = radio_button_tag input_name, '3'
+              %label.survey-scale.survey-scale-warning{ for: "#{input_name+'_3'}" }
+                %p Moderate
+                %span 3
+            .option-of-multiple.option-of-4
+              = radio_button_tag input_name, '4'
+              %label.survey-scale.survey-scale-danger{ for: "#{input_name+'_4'}" }
+                %p High
+                %span 4
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 / Date input
 .survey-container.progress-w-enter
   .panel
@@ -123,114 +393,15 @@
         %span D
 
 
-/ Multiple Options, Multiple Questions
-.survey-container.progress-w-letter
-  .panel
-    .question-container
-      %h3.f300 How likely are you to fall asleep during the following activities?
-    .input-container
-      .row.multiple-question-container.current
-        - input_name = 'likelihood1'
-        .col-sm-3
-          %h4.f300 Reading
-        .col-sm-2
-          = radio_button_tag input_name, '1'
-          %label.survey-scale.survey-scale-great{ for: "#{input_name+'_1'}" }
-            %p Never
-            %span 1
-        .col-sm-2
-          = radio_button_tag input_name, '2'
-          %label.survey-scale.survey-scale-good{ for: "#{input_name+'_2'}" }
-            %p Slight
-            %span 2
-        .col-sm-2
-          = radio_button_tag input_name, '3'
-          %label.survey-scale.survey-scale-warning{ for: "#{input_name+'_3'}" }
-            %p Moderate
-            %span 3
-        .col-sm-2
-          = radio_button_tag input_name, '4'
-          %label.survey-scale.survey-scale-danger{ for: "#{input_name+'_4'}" }
-            %p High
-            %span 4
-      .row.multiple-question-container
-        - input_name = 'likelihood2'
-        .col-sm-3
-          %h4.f300 Watching TV
-        .col-sm-2
-          = radio_button_tag input_name, '1'
-          %label.survey-scale.survey-scale-great{ for: "#{input_name+'_1'}" }
-            %p Never
-            %span 1
-        .col-sm-2
-          = radio_button_tag input_name, '2'
-          %label.survey-scale.survey-scale-good{ for: "#{input_name+'_2'}" }
-            %p Slight
-            %span 2
-        .col-sm-2
-          = radio_button_tag input_name, '3'
-          %label.survey-scale.survey-scale-warning{ for: "#{input_name+'_3'}" }
-            %p Moderate
-            %span 3
-        .col-sm-2
-          = radio_button_tag input_name, '4'
-          %label.survey-scale.survey-scale-danger{ for: "#{input_name+'_4'}" }
-            %p High
-            %span 4
-      .row.multiple-question-container
-        - input_name = 'likelihood3'
-        .col-sm-3
-          %h4.f300 Sitting in a public place
-        .col-sm-2
-          = radio_button_tag input_name, '1'
-          %label.survey-scale.survey-scale-great{ for: "#{input_name+'_1'}" }
-            %p Never
-            %span 1
-        .col-sm-2
-          = radio_button_tag input_name, '2'
-          %label.survey-scale.survey-scale-good{ for: "#{input_name+'_2'}" }
-            %p Slight
-            %span 2
-        .col-sm-2
-          = radio_button_tag input_name, '3'
-          %label.survey-scale.survey-scale-warning{ for: "#{input_name+'_3'}" }
-            %p Moderate
-            %span 3
-        .col-sm-2
-          = radio_button_tag input_name, '4'
-          %label.survey-scale.survey-scale-danger{ for: "#{input_name+'_4'}" }
-            %p High
-            %span 4
-      .row.multiple-question-container
-        - input_name = 'likelihood4'
-        .col-sm-3
-          %h4.f300 Watching TV
-        .col-sm-2
-          = radio_button_tag input_name, '1'
-          %label.survey-scale.survey-scale-great{ for: "#{input_name+'_1'}" }
-            %p Never
-            %span 1
-        .col-sm-2
-          = radio_button_tag input_name, '2'
-          %label.survey-scale.survey-scale-good{ for: "#{input_name+'_2'}" }
-            %p Slight
-            %span 2
-        .col-sm-2
-          = radio_button_tag input_name, '3'
-          %label.survey-scale.survey-scale-warning{ for: "#{input_name+'_3'}" }
-            %p Moderate
-            %span 3
-        .col-sm-2
-          = radio_button_tag input_name, '4'
-          %label.survey-scale.survey-scale-danger{ for: "#{input_name+'_4'}" }
-            %p High
-            %span 4
-
-.survey-container.progress-w-enter
-  .panel
-    .question-container
-      %h3.f300 Congratulations! You've reached the end of the survey, and will gain an entry into our monthly prize drawing!
-    .button-container
-      .btn.btn-primary.next-question
-        Submit
-      %p.text-muted Or press ENTER
+.survey-end
+  .panel.centered-text{ style: "padding: 20px;"}
+    %h3.f300.primary-blue Congratulations!
+    %p.lead You've reached the end of the survey, and are already on your way to making an impact on sleep apnea research. You've also gained one entry into our monthly prize drawing!
+    %p.lead From here, we highly recommend you continue and answer a few more questions to help us learn more about you and your experience with sleep apnea.
+    .row{ style: 'margin-bottom:20px;' }
+      .btn.btn-success.col-xs-4.col-xs-offset-4 Continue
+    %p.lead{ style: 'font-size: 16px;'}
+      We also have an active community that you can
+      %span.lighter-blue join,
+      and begin participating in the
+      %span.lighter-blue forums.

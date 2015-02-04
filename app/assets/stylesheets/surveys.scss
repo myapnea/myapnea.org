@@ -170,87 +170,131 @@ input[type=date] {
 $danger: #e54835;
 $warning: #f4b46d;
 $moderate: #fedf9c;
-$good: #fedf9c;
+$good: #d9f0a3;
 $great: #78c679;
 
 .survey-container.active .panel .input-container .multiple-question-container.current {
-  background-color: transparentize(#b1d2f6, .7);
+  background-color: transparentize(#b1d2f6, .9);
   border-radius:20px;
 }
-
 .input-container .multiple-question-container {
   margin-bottom:25px;
-  .col-sm-3 {
+  .col-md-3 {
+    h4 {
+      color: black; color: rgba(0,0,0,.7);
+    }
   }
-  .col-sm-2 {
-    padding-left: 5px;
-    padding-right:5px;
-  }
-  h4 {
-    color: black; color: rgba(0,0,0,.7);
-  }
-  .survey-scale {
-    vertical-align: middle;
-    display: inline-block;
-    padding: 5px;
-    border-radius:20px;
-    width:100%;
-    box-sizing:border-box;
-    -moz-box-sizing:border-box;
-    -webkit-box-sizing:border-box;
-    border:6px double transparent;
-  }
-  .survey-scale-danger {
-    background-color: transparentize($danger, .5);
-  }
-  .survey-scale-warning {
-    background-color: transparentize($warning, .5);
-  }
-  .survey-scale-good {
-    background-color: transparentize($good, .5);
-  }
-  .survey-scale-great {
-    background-color: transparentize($great, .5);
-  }
-  span {
-    font-size:18px;
-    font-weight:500;
-    color:white; color: rgba(0,0,0,.4);
-  }
-  p {
-    font-size:20px;
-    font-weight:300;
-    color:black; color: rgba(0,0,0,.6);
+  .col-md-9 {
+    .option-of-multiple {
+      label {
+        span {
+          font-size:14px;
+          font-weight:500;
+          color:white; color: rgba(0,0,0,.4);
+          padding:0px;
+        }
+        p {
+          line-height:22px;
+          height: 45px;
+          vertical-align: middle;
+          font-size:18px;
+          font-weight:300;
+          color:black; color: rgba(0,0,0,.6);
+          padding: 0px;
+        }
+      }
+      .survey-scale {
+        vertical-align: middle;
+        display: inline-block;
+        padding: 5px;
+        border-radius:20px;
+        width:100%;
+        box-sizing:border-box;
+        -moz-box-sizing:border-box;
+        -webkit-box-sizing:border-box;
+        border:6px double transparent;
+      }
+      .survey-scale:hover {
+        cursor: pointer;
+      }
+      input[type=radio] {
+        display: none;
+      }
+      input[type=radio]:checked {
+        + .survey-scale-danger {
+          background-color: transparentize($danger, .1);
+          border: 6px double white;
+        }
+        + .survey-scale-warning {
+          background-color: transparentize($warning, .1);
+          border: 6px double white;
+        }
+        + .survey-scale-moderate {
+          background-color: transparentize($moderate, .1);
+          border: 6px double white;
+        }
+        + .survey-scale-good {
+          background-color: transparentize($good, .1);
+          border: 6px double white;
+        }
+        + .survey-scale-great {
+          background-color: transparentize($great, .1);
+          border: 6px double white;
+        }
+      }
+      .survey-scale-danger {
+        background-color: transparentize($danger, .7);
+      }
+      .survey-scale-warning {
+        background-color: transparentize($warning, .7);
+      }
+      .survey-scale-moderate {
+        background-color: transparentize($moderate, .7);
+      }
+      .survey-scale-good {
+        background-color: transparentize($good, .7);
+      }
+      .survey-scale-great {
+        background-color: transparentize($great, .7);
+      }
+    }
+    .option-of-5{
+      width:20%;
+      margin: 0px;
+      padding-left: 5px;
+      padding-right:5px;
+      display: inline-block;
+      float:left;
+    }
+    .option-of-4{
+      width:25%;
+      margin: 0px;
+      padding-left: 5px;
+      padding-right:5px;
+      display: inline-block;
+      float:left;
+    }
+    .option-of-3{
+      width:33%;
+      margin: 0px;
+      padding-left: 5px;
+      padding-right:5px;
+      display: inline-block;
+      float:left;
+    }
+    .option-of-2{
+      width:50%;
+      margin: 0px;
+      padding-left: 5px;
+      padding-right:5px;
+      display: inline-block;
+      float:left;
+    }
   }
 }
 
-.input-container .survey-scale:hover {
-  cursor: pointer;
-}
-
-.input-container input[type=radio] {
-  display: none;
-}
 
 
-.input-container input[type=radio]:checked {
-  + .survey-scale-danger {
-    background-color: transparentize($danger, .1);
-    border: 6px double white;
-  }
-  + .survey-scale-warning {
-    background-color: transparentize($warning, .1);
-    border: 6px double white;
-  }
-  + .survey-scale-good {
-    background-color: transparentize($good, .1);
-    border: 6px double white;
-  }
-  + .survey-scale-great {
-    background-color: transparentize($great, .1);
-    border: 6px double white;
-  }
-}
 
 // Multiple checks
 .input-container input[type=checkbox] {
