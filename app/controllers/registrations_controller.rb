@@ -49,8 +49,8 @@ class RegistrationsController < Devise::RegistrationsController
   private
 
   def sign_up_params
-    if params[:user][:user_type] == "provider"
-      params.require(:user).permit(:first_name, :last_name,                 :email, :password, :beta_opt_in, :user_type, :welcome_message)
+    if params[:user][:provider] == "1"
+      params.require(:user).permit(:first_name, :last_name,                 :email, :password, :beta_opt_in, :provider, :welcome_message)
     else
       params.require(:user).permit(:first_name, :last_name, :year_of_birth, :email, :password, :beta_opt_in, :provider_id)
     end

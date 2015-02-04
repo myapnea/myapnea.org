@@ -52,13 +52,13 @@
         = f.label :password, class: 'sr-only'
         = f.password_field :password, class: 'form-control input-lg', placeholder: "New Password"
       = f.submit "Change My Password", class: 'btn btn-primary pull-right'
-- if current_user.provider
+- if current_user.my_provider
   .panel
     .panel-heading
       %h4.f300 My Listed Provider
     .panel-body
       You have listed
-      %strong= current_user.provider.provider_name
+      %strong= current_user.my_provider.provider_name
       as your preferred provider.
       If you wish, you may
       = link_to 'unlist', update_account_path(user: { provider_id: nil }), method: :patch, class: 'btn btn-warning btn-xs'

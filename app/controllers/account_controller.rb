@@ -49,7 +49,8 @@ class AccountController < ApplicationController
 
   # TODO set to actual user_type input
   def set_user_type
-    current_user.update user_type: 'Researcher'
+    user_types = params.required(:user).permit(:provider, :researcher, :adult_diagnosed, :adult_at_risk, :caregiver_adult, :caregiver_child)
+    current_user.update user_types
     redirect_to get_started_privacy_path
   end
 

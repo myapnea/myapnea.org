@@ -18,7 +18,7 @@ Rails.application.routes.draw do
 
   # Registration flow
   get 'get-started' => 'static#registration0'
-  post 'set_user_type' => 'account#set_user_type'
+  patch 'set_user_type' => 'account#set_user_type'
   get 'get-started/privacy' => 'static#registration1'
   post 'accepts_privacy' => 'account#accepts_privacy'
   get 'get-started/consent' => 'static#registration2'

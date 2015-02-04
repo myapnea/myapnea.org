@@ -14,7 +14,7 @@
               - resource.errors.full_messages.each do |msg|
                 %li= msg
         = f.hidden_field :beta_opt_in,      value: true
-        = f.hidden_field :user_type,        value: 'provider'
+        = f.hidden_field :provider,         value: true
         = f.hidden_field :welcome_message,  value: 'Welcome to my page!'
         .input-group
           = f.text_field :first_name, placeholder: 'First name', class: "form-control"

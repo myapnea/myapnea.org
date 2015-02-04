@@ -1,5 +1,15 @@
 ## 5.0.0
 
+### New Features
+- **Member Roles**
+  - Members are able to define one or more of the following roles:
+    - Adult who has diagnosed sleep apnea
+    - Adult who is at-risk of sleep apnea
+    - Caregiver of adult diagnosed with or at-risk of sleep apnea
+    - Caregiver of child(ren) diagnosed with or at-risk of sleep apnea
+    - Provider
+    - Researcher
+
 ### Enhancements
 - **Survey UI**
   - Users are able to scroll through survey by using keystrokes
