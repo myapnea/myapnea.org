@@ -39,6 +39,7 @@ questions:
   display_type: radio_input
   answer_templates:
   - name: daily_activities
+    data_type: answer_option_id
     display_type_id: 3
     answer_options:
     - text: Working full time (day shifts)
@@ -77,8 +78,9 @@ questions:
   display_type: radio_input
   answer_templates:
   - name: affording_basics
+    data_type: answer_option_id
     display_type_id: 3
-    answer_options"
+    answer_options:
     - text: Very hard
       hotkey: 1
       value: 1
