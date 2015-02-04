@@ -36,7 +36,7 @@ class ProvidersController < ApplicationController
   protected
 
     def set_provider
-      @provider = User.current.where(user_type: 'provider').find_by_slug(params[:id])
+      @provider = User.current.providers.find_by_slug(params[:id])
     end
 
     def redirect_without_provider

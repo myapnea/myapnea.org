@@ -56,7 +56,7 @@ class StaticController < ApplicationController
   end
 
   def provider_page
-    @provider = User.current.where(user_type: 'provider').find_by_slug(params[:slug])
+    @provider = User.current.providers.find_by_slug(params[:slug])
     if @provider and @provider.slug.present?
       redirect_to provider_path(@provider.slug)
     else

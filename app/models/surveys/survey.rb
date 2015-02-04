@@ -68,6 +68,7 @@ class Survey < ActiveRecord::Base
 
     # Find or Create Survey
     survey = Survey.find_by_slug(data_file["slug"])
+
     if survey.blank?
       survey = Survey.create(name_en: data_file["name"], slug: data_file["slug"], description_en: data_file["description"], status: data_file["status"])
     else
@@ -257,6 +258,19 @@ class Survey < ActiveRecord::Base
   end
 
 
+  # Deprecated - Remove in Version 6.0.0
+
+  def slug
+    self[:slug] || self[:id]
+  end
+
+  def deprecated?
+    self[:slug].nil?
+  end
+
+  def self.find_by_slug(slug)
+    where(slug: slug).empty? ? find_by_id(slug) : where(slug: slug).first
+  end
 
 
   ###

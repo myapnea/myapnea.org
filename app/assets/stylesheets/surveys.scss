@@ -122,7 +122,7 @@ input[type=date] {
   background-color: #b1d2f6;
   border:3px solid #b1d2f6;
   border-radius: 20px;
-  span {
+  span.hotkey {
     font-size:18px;
     font-weight:300;
     color:white
@@ -187,7 +187,7 @@ $great: #78c679;
   .col-md-9 {
     .option-of-multiple {
       label {
-        span {
+        span.hotkey {
           font-size:14px;
           font-weight:500;
           color:white; color: rgba(0,0,0,.4);
@@ -315,7 +315,7 @@ $great: #78c679;
   vertical-align: middle;
   position:relative;
   min-height: 70px;
-  span {
+  span.hotkey {
     position:absolute;
     top:50%;
     margin-top: -25px;
@@ -342,7 +342,7 @@ $great: #78c679;
 .check-box-container:not(#foo) > input[type=checkbox]:checked + label {
   // background-color: transparentize(#b1d2f6, .7);
   border-radius:20px;
-  span {
+  span.hotkey {
     background-color: #7fb2eb;
     color: white;
   }
@@ -514,7 +514,7 @@ http://brennaobrien.com/blog/2014/05/style-input-type-range-in-every-browser.htm
       padding: 5px;
       font-size: 14px;
     }
-    span {
+    span.hotkey {
       width: 25px;
       height:25px;
       line-height:20px;
@@ -532,7 +532,7 @@ http://brennaobrien.com/blog/2014/05/style-input-type-range-in-every-browser.htm
       margin: 0;
       padding: 0;
     }
-    span {
+    span.hotkey {
       display: none;
     }
   }

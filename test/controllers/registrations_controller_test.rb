@@ -79,7 +79,7 @@ class RegistrationsControllerTest < ActionController::TestCase
     end
 
     assert_not_nil assigns(:user)
-    assert_equal users(:provider_1), assigns(:user).provider
+    assert_equal users(:provider_1), assigns(:user).my_provider
     assert_redirected_to get_started_path
   end
 
@@ -87,14 +87,14 @@ class RegistrationsControllerTest < ActionController::TestCase
     request.env["devise.mapping"] = Devise.mappings[:user]
 
     assert_difference('User.providers.count') do
-      post :create, user: { first_name: 'First Name', last_name: 'Last Name', email: 'new_provider@example.com', password: 'password', user_type: 'provider' }
+      post :create, user: { first_name: 'First Name', last_name: 'Last Name', email: 'new_provider@example.com', password: 'password', provider: '1' }
     end
 
     assert_not_nil assigns(:user)
     assert_equal 'First Name', assigns(:user).first_name
     assert_equal 'Last Name', assigns(:user).last_name
     assert_equal 'new_provider@example.com', assigns(:user).email
-    assert_equal 'provider', assigns(:user).user_type
+    assert_equal true, assigns(:user).provider?
 
     assert_redirected_to get_started_path
   end

@@ -1,0 +1,11 @@
+.panel
+  .panel-heading
+    %h3.f300 In the realm of sleep apnea, how do you best describe yourself?
+    %h5.f300
+      Check all that apply
+  .panel-body
+    = form_for(current_user, url: update_path, class: 'form-horizontal', method: :post) do |f|
+      .input-group
+        = f.text_field :user_type, placeholder: 'User type', class: 'form-control'
+      .input-group
+        = f.submit 'Sign up!', class: 'form-control', id: 'submit-join'

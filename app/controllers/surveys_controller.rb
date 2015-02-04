@@ -16,7 +16,12 @@ class SurveysController < ApplicationController
     @survey = Survey.find_by_slug(params["slug"])
     @answer_session = AnswerSession.find_or_create(current_user, @survey)
 
-    survey_layout
+    if @survey.deprecated?
+      redirect_to intro_survey_path(@survey.id)
+    else
+      survey_layout
+    end
+
   end
 
 
@@ -39,7 +44,7 @@ class SurveysController < ApplicationController
     respond_to do |format|
       format.html do
         if @answer_session.completed?
-          redirect_to survey_report_path(@answer_session)
+          redirect_to survey_report_path(slug: @answer_session.survey.slug)
         else
           redirect_to ask_question_path(question_id: @answer.next_question.id, answer_session_id: @answer_session.id)
         end
@@ -49,19 +54,18 @@ class SurveysController < ApplicationController
 
   end
 
-  ## Deprecated
+  ## Deprecated - to be removed in Version 6.0.0
 
 
   def start_survey
     survey = Survey.find(params[:survey_id])
-    answer_session =  AnswerSession.current.find_by(user_id: current_user.id, survey_id: survey.id)
+    answer_session = AnswerSession.find_or_create(current_user, survey)
 
-    if answer_session
-      # Do not restart a survey
+
+    if answer_session.completed?
       redirect_to surveys_path
     else
-      answer_session = AnswerSession.create(user_id: current_user.id, survey_id: survey.id)
-      redirect_to ask_question_path(question_id: survey.first_question_id, answer_session_id: answer_session.id)
+      redirect_to ask_question_path(question_id: answer_session.next_question.id, answer_session_id: answer_session.id)
     end
   end
 

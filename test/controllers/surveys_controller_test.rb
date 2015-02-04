@@ -84,7 +84,7 @@ class SurveysControllerTest < ActionController::TestCase
     assert_not_nil assigns(:answer_session)
     assert_equal answer_options(:very_good).id, assigns(:answer_session).last_answer.answer_values.first.value
 
-    assert_redirected_to survey_report_path(assigns(:answer_session))
+    assert_redirected_to survey_report_path(assigns(:answer_session).survey.slug)
   end
 
   test "User can view survey report" do

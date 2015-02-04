@@ -10,12 +10,12 @@
         = radio_button_tag input_name, '1'
         %label.survey-scale.survey-scale-great{ for: "#{input_name+'_1'}" }
           %p Never
-          %span 1
+          %span.hotkey 1
       .col-sm-4
         = radio_button_tag input_name, '2'
         %label.survey-scale.survey-scale-good{ for: "#{input_name+'_2'}" }
           %p Always
-          %span 2
+          %span.hotkey 2
     .row.multiple-question-container
       - input_name = 'likelihood2'
       .col-sm-3
@@ -24,19 +24,19 @@
         = radio_button_tag input_name, '1'
         %label.survey-scale.survey-scale-great{ for: "#{input_name+'_1'}" }
           %p Never
-          %span 1
+          %span.hotkey 1
       .col-sm-2
         = radio_button_tag input_name, '2'
         %label.survey-scale.survey-scale-good{ for: "#{input_name+'_2'}" }
           %p Slight
-          %span 2
+          %span.hotkey 2
       .col-sm-2
         = radio_button_tag input_name, '3'
         %label.survey-scale.survey-scale-warning{ for: "#{input_name+'_3'}" }
           %p Moderate
-          %span 3
+          %span.hotkey 3
       .col-sm-2
         = radio_button_tag input_name, '4'
         %label.survey-scale.survey-scale-danger{ for: "#{input_name+'_4'}" }
           %p High
-          %span 4
+          %span.hotkey 4
