@@ -127,9 +127,13 @@
 
   # Respond to keystrokes
   $("body").keydown (e) ->
-    # Specifically targeting custom date input
+    # Prevent default up and down
     if e.keyCode is 38 or e.keyCode is 40
       e.preventDefault()
+    # Prevent default enter
+    if e.keyCode is 13
+      e.preventDefault()
+    # Specifically targeting custom date input
     if $(".survey-container.active").find(".survey-text-date").is(":focus")
       if e.metaKey
         return
