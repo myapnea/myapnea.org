@@ -15,13 +15,13 @@ class AnswerSession < ActiveRecord::Base
   end
 
   def self.find_or_create(user, survey)
-    answer_session = AnswerSession.current.find_by(user_id: user.id, survey_id: survey.id)
+    answer_sessions = AnswerSession.current.where(user_id: user.id, survey_id: survey.id).order(updated_at: :desc)
 
-    unless answer_session.present?
-      answer_session = AnswerSession.create(user_id: user.id, survey_id: survey.id)
+    if answer_sessions.empty?
+      AnswerSession.create(user_id: user.id, survey_id: survey.id)
+    else
+      answer_sessions.first
     end
-
-    answer_session
   end
   # Instance Methods
 

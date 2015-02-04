@@ -10,7 +10,7 @@
     %p.lead You've reached the end of the survey, and are already on your way to making an impact on sleep apnea research. You've also gained one entry into our monthly prize drawing!
     %p.lead From here, we highly recommend you continue and answer a few more questions to help us learn more about you and your experience with sleep apnea.
     .row{ style: 'margin-bottom:20px;' }
-      .btn.btn-success.col-xs-4.col-xs-offset-4 Continue
+      = link_to "Continue", survey_report_path(@survey.slug), class: "btn btn-success col-xs-4 col-xs-offset-4"
     %p.lead{ style: 'font-size: 16px;'}
       We also have an active community that you can
       = link_to 'join', account_path, class: 'lighter-blue', style: 'text-underline: none;'

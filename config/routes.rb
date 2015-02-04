@@ -46,18 +46,23 @@ Rails.application.routes.draw do
   get 'research_topics' => 'research#research_topics'
   get 'research_karma' => 'research#research_karma'
   get 'research_today' => 'research#research_today'
-  get 'research_surveys' => 'research#research_surveys', as: :surveys
   get 'data_connections' => 'research#data_connections'
 
   # Surveys
-  get 'research_surveys/example', to: 'surveys#example'
-  get 'research_surveys/report/:answer_session_id', to: 'surveys#show_report', as: :survey_report
+  get 'surveys' => 'surveys#index', as: :surveys
+  get 'surveys/example', to: 'surveys#example'
+  get 'surveys/:slug/report(/:answer_session_id)', to: 'surveys#show_report', as: :survey_report
+  match 'surveys/:slug', to: 'surveys#show', as: :survey, via: :get
+  ## Answer Processing
+  match 'research_surveys/process_answer', to: 'surveys#process_answer', via: :post, as: :process_answer
+  ## JSON
+  get 'questions/frequencies(/:question_id/:answer_session_id)', to: "questions#frequencies", as: :question_frequencies, format: :json
+  get 'questions/typeahead/:question_id', to: "questions#typeahead", as: :question_typeahead, format: :json
+  ## Deprecated
   get 'research_surveys/:survey_id', to: 'surveys#start_survey', as: :start_survey
   get 'research_surveys/intro/:survey_id', to: 'surveys#intro', as: :intro_survey
   get 'research_surveys/:answer_session_id/:question_id', to: 'surveys#ask_question', as: :ask_question
-  match 'research_surveys/process_answer', to: 'surveys#process_answer', via: :post, as: :process_answer
-  get 'questions/frequencies(/:question_id/:answer_session_id)', to: "questions#frequencies", as: :question_frequencies, format: :json
-  get 'questions/typeahead/:question_id', to: "questions#typeahead", as: :question_typeahead, format: :json
+
 
   # Discussion
   match 'forums/terms_and_conditions', to: 'account#terms_and_conditions', via: :get, as: :terms_and_conditions

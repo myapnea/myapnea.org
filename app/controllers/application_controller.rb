@@ -68,4 +68,5 @@ class ApplicationController < ActionController::Base
     redirect_to root_path, alert: "You do not have sufficient privileges to access that page." unless current_user.has_role? :moderator
   end
 
+
 end

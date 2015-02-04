@@ -15,7 +15,7 @@ class AnswerValue < ActiveRecord::Base
 
   def show_value
     if answer_template.data_type == 'answer_option_id'
-      answer_option.present? ? answer_option.value : nil
+      answer_option.present? ? answer_option.to_s : nil
     else
       value
     end

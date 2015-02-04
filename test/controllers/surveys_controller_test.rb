@@ -1,6 +1,41 @@
 require 'test_helper.rb'
 
 class SurveysControllerTest < ActionController::TestCase
+  test "User needs to be logged in to see surveys" do
+    get :index
+
+    assert_response 302
+  end
+
+  test "User can see a list of unstarted surveys" do
+    login(users(:social))
+
+    get :index
+
+    assert_response :success
+  end
+
+
+
+  test "User can see a list of completed surveys" do
+    login(users(:has_completed_survey))
+
+    get :index
+
+    assert_response :success
+
+  end
+
+  test "User can see a list of incomplete surveys" do
+    login(users(:has_incomplete_survey))
+
+    get :index
+
+    assert_response :success
+  end
+
+
+
   test "User can start a survey" do
     login(users(:social))
 
@@ -55,7 +90,7 @@ class SurveysControllerTest < ActionController::TestCase
   test "User can view survey report" do
     login(users(:has_completed_survey))
 
-    get :show_report, answer_session_id: answer_sessions(:complete)
+    get :show_report, slug: answer_sessions(:complete).survey.slug
 
     assert_response :success
   end
@@ -63,7 +98,7 @@ class SurveysControllerTest < ActionController::TestCase
   test "Survey report does not break when survey not started" do
     login(users(:has_unstarted_survey))
 
-    get :show_report, answer_session_id: answer_sessions(:unstarted)
+    get :show_report, slug: answer_sessions(:unstarted).survey.slug
 
     assert_response :success
   end
@@ -99,14 +134,6 @@ class SurveysControllerTest < ActionController::TestCase
 
     assert_redirected_to ask_question_path(question_id: surveys(:survey_1).first_question_id, answer_session_id: AnswerSession.most_recent(surveys(:survey_1).id, users(:social).id).id)
     assert AnswerSession.most_recent(surveys(:survey_1), users(:social))
-
-  end
-
-  # About Me - Registration Survey
-
-  test "User can answer questions on the registration mini-survey" do
-    Survey.load_from_file("about-me")
-
 
   end
 end

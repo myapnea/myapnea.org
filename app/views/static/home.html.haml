@@ -10,14 +10,14 @@
         - if current_user
           - if current_user.complete_surveys.select{|s| s.status == 'show'}.count == Survey.viewable.count
             - # All Done
-            = render partial: 'surveys/drawings_text_all_completed'
+            = render partial: 'surveys/partials/drawings_text_all_completed'
           - else
             - # Surveys in Progress
-            = render partial: 'surveys/drawings_text'
-          = render partial: 'surveys/viewable_surveys_widget'
+            = render partial: 'surveys/partials/drawings_text'
+          = render partial: 'surveys/partials/viewable_surveys_widget'
         - else
           - # Not Signed In
-          = render partial: 'surveys/drawings_text'
+          = render partial: 'surveys/partials/drawings_text'
           %div{ style: 'text-align:center' }
             = link_to new_user_registration_path, class: 'btn btn-lg btn-success' do
               Sign Up and Get Started
