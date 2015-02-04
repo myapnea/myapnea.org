@@ -4,10 +4,15 @@
   = render partial: "surveys/question_templates/#{question.display_type}", locals: { question: question, answer_session: @answer_session, answer: Answer.first_or_new(question, @answer_session) }
 
 / End of Survey
-.survey-container.progress-w-enter
-  .panel
-    .question-container
-      %h3.f300 Congratulations! You've reached the end of the survey, and will gain an entry into our monthly prize drawing!
-    .button-container
-      = link_to "Continue to My Social Profile", account_path, class: 'btn btn-primary btn-lg'
-      = link_to "Go Home", home_path, class: 'btn btn-default btn-lg'
+.survey-container
+  .panel.centered-text{ style: "padding: 20px;"}
+    %h3.f300.primary-blue Congratulations!
+    %p.lead You've reached the end of the survey, and are already on your way to making an impact on sleep apnea research. You've also gained one entry into our monthly prize drawing!
+    %p.lead From here, we highly recommend you continue and answer a few more questions to help us learn more about you and your experience with sleep apnea.
+    .row{ style: 'margin-bottom:20px;' }
+      .btn.btn-success.col-xs-4.col-xs-offset-4 Continue
+    %p.lead{ style: 'font-size: 16px;'}
+      We also have an active community that you can
+      = link_to 'join', account_path, class: 'lighter-blue', style: 'text-underline: none;'
+      and begin participating in the
+      = link_to 'forums.', forums_path, class: 'lighter-blue', style: 'text-underline: none;'
