@@ -1,4 +1,4 @@
-/ Must be provided a question object: question
+-# Must be provided a question object: question
 = form_tag(process_answer_path, {role: "form", class: 'survey-container progress-w-enter progress-w-letter'}) do
   = hidden_field_tag "question_id[]", question.id
   = hidden_field_tag "answer_session_id", answer_session.id

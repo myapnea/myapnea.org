@@ -8,12 +8,18 @@
       $(".survey-first-question").focus()
       return
 
+  # Add event listener for all changes to inputs
+  $("input[type=radio]").change ->
+    alert "input changed"
+    return
+
   # Scroll to active question
   @nextQuestionScroll = (element1, element2) ->
     # Submit Previous Question
-    if element1
+    if element1 and !element2
       submitAnswer(element1)
-
+      console.log "no element2"
+      return
     # Check for multiple questions, and position the first question in the center
     if element2.find('.current').length > 0
       currentHeight = element2.find('.current').offset().top
@@ -110,12 +116,7 @@
         if $(event.target).closest("label").prev("input").is(":radio")
           event.preventDefault()
           $(event.target).closest("label").prev("input").prop "checked", true
-          submitAnswer(newActiveQuestion)
-          nextQuestionScroll(activeQuestion, newActiveQuestion)
-          setTimeout ( ->
-            assignQuestion(true, false)
-            return
-          ), 1100
+          nextQuestionScroll(newActiveQuestion, null)
         else
           if $(this).prev().length == 0
             $("body").animate
