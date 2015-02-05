@@ -10,30 +10,30 @@
           %h4.f300 My sleep quality was:
         .col-md-9.col-sm-12
           .row.reset-layout
-            .option-of-multiple.option-of-5
+            .option-of-multiple.option-of-5.survey-scale.survey-scale-danger
               = radio_button_tag input_name, '1'
-              %label.survey-scale.survey-scale-danger{ for: "#{input_name+'_1'}" }
-                %p Very Poor
+              %label{ for: "#{input_name+'_1'}" }
+                %p Not at all
                 %span.hotkey 1
-            .option-of-multiple.option-of-5
+            .option-of-multiple.option-of-5.survey-scale.survey-scale-warning
               = radio_button_tag input_name, '2'
-              %label.survey-scale.survey-scale-warning{ for: "#{input_name+'_2'}" }
-                %p Poor
+              %label{ for: "#{input_name+'_2'}" }
+                %p A little bit
                 %span.hotkey 2
-            .option-of-multiple.option-of-5
+            .option-of-multiple.option-of-5.survey-scale.survey-scale-moderate
               = radio_button_tag input_name, '3'
-              %label.survey-scale.survey-scale-moderate{ for: "#{input_name+'_3'}" }
-                %p Fair
+              %label{ for: "#{input_name+'_3'}" }
+                %p Fairly
                 %span.hotkey 3
-            .option-of-multiple.option-of-5
+            .option-of-multiple.option-of-5.survey-scale.survey-scale-good
               = radio_button_tag input_name, '4'
-              %label.survey-scale.survey-scale-good{ for: "#{input_name+'_4'}" }
-                %p Good
+              %label{ for: "#{input_name+'_4'}" }
+                %p Quite a bit
                 %span.hotkey 4
-            .option-of-multiple.option-of-5
+            .option-of-multiple.option-of-5.survey-scale.survey-scale-great
               = radio_button_tag input_name, '5'
-              %label.survey-scale.survey-scale-great{ for: "#{input_name+'_5'}" }
-                %p Very Good
+              %label{ for: "#{input_name+'_5'}" }
+                %p Very much
                 %span.hotkey 5
       %h4.f500{ style: 'margin: 70px 0;'} How much do you agree with the following statements?
       .row.multiple-question-container
@@ -42,29 +42,29 @@
           %h4.f300 My sleep was refreshing.
         .col-md-9.col-sm-12
           .row.reset-layout
-            .option-of-multiple.option-of-5
+            .option-of-multiple.option-of-5.survey-scale.survey-scale-danger
               = radio_button_tag input_name, '1'
-              %label.survey-scale.survey-scale-danger{ for: "#{input_name+'_1'}" }
+              %label{ for: "#{input_name+'_1'}" }
                 %p Not at all
                 %span.hotkey 1
-            .option-of-multiple.option-of-5
+            .option-of-multiple.option-of-5.survey-scale.survey-scale-warning
               = radio_button_tag input_name, '2'
-              %label.survey-scale.survey-scale-warning{ for: "#{input_name+'_2'}" }
+              %label{ for: "#{input_name+'_2'}" }
                 %p A little bit
                 %span.hotkey 2
-            .option-of-multiple.option-of-5
+            .option-of-multiple.option-of-5.survey-scale.survey-scale-moderate
               = radio_button_tag input_name, '3'
-              %label.survey-scale.survey-scale-moderate{ for: "#{input_name+'_3'}" }
+              %label{ for: "#{input_name+'_3'}" }
                 %p Fairly
                 %span.hotkey 3
-            .option-of-multiple.option-of-5
+            .option-of-multiple.option-of-5.survey-scale.survey-scale-good
               = radio_button_tag input_name, '4'
-              %label.survey-scale.survey-scale-good{ for: "#{input_name+'_4'}" }
+              %label{ for: "#{input_name+'_4'}" }
                 %p Quite a bit
                 %span.hotkey 4
-            .option-of-multiple.option-of-5
+            .option-of-multiple.option-of-5.survey-scale.survey-scale-great
               = radio_button_tag input_name, '5'
-              %label.survey-scale.survey-scale-great{ for: "#{input_name+'_5'}" }
+              %label{ for: "#{input_name+'_5'}" }
                 %p Very much
                 %span.hotkey 5
       .row.multiple-question-container
@@ -73,29 +73,29 @@
           %h4.f300 I had a problem with my sleep.
         .col-md-9.col-sm-12
           .row.reset-layout
-            .option-of-multiple.option-of-5
+            .option-of-multiple.option-of-5.survey-scale.survey-scale-danger
               = radio_button_tag input_name, '1'
-              %label.survey-scale.survey-scale-danger{ for: "#{input_name+'_1'}" }
+              %label{ for: "#{input_name+'_1'}" }
                 %p Not at all
                 %span.hotkey 1
-            .option-of-multiple.option-of-5
+            .option-of-multiple.option-of-5.survey-scale.survey-scale-warning
               = radio_button_tag input_name, '2'
-              %label.survey-scale.survey-scale-warning{ for: "#{input_name+'_2'}" }
+              %label{ for: "#{input_name+'_2'}" }
                 %p A little bit
                 %span.hotkey 2
-            .option-of-multiple.option-of-5
+            .option-of-multiple.option-of-5.survey-scale.survey-scale-moderate
               = radio_button_tag input_name, '3'
-              %label.survey-scale.survey-scale-moderate{ for: "#{input_name+'_3'}" }
+              %label{ for: "#{input_name+'_3'}" }
                 %p Fairly
                 %span.hotkey 3
-            .option-of-multiple.option-of-5
+            .option-of-multiple.option-of-5.survey-scale.survey-scale-good
               = radio_button_tag input_name, '4'
-              %label.survey-scale.survey-scale-good{ for: "#{input_name+'_4'}" }
+              %label{ for: "#{input_name+'_4'}" }
                 %p Quite a bit
                 %span.hotkey 4
-            .option-of-multiple.option-of-5
+            .option-of-multiple.option-of-5.survey-scale.survey-scale-great
               = radio_button_tag input_name, '5'
-              %label.survey-scale.survey-scale-great{ for: "#{input_name+'_5'}" }
+              %label{ for: "#{input_name+'_5'}" }
                 %p Very much
                 %span.hotkey 5
       .row.multiple-question-container
@@ -104,29 +104,29 @@
           %h4.f300 I had difficulty falling asleep.
         .col-md-9.col-sm-12
           .row.reset-layout
-            .option-of-multiple.option-of-5
+            .option-of-multiple.option-of-5.survey-scale.survey-scale-danger
               = radio_button_tag input_name, '1'
-              %label.survey-scale.survey-scale-danger{ for: "#{input_name+'_1'}" }
+              %label{ for: "#{input_name+'_1'}" }
                 %p Not at all
                 %span.hotkey 1
-            .option-of-multiple.option-of-5
+            .option-of-multiple.option-of-5.survey-scale.survey-scale-warning
               = radio_button_tag input_name, '2'
-              %label.survey-scale.survey-scale-warning{ for: "#{input_name+'_2'}" }
+              %label{ for: "#{input_name+'_2'}" }
                 %p A little bit
                 %span.hotkey 2
-            .option-of-multiple.option-of-5
+            .option-of-multiple.option-of-5.survey-scale.survey-scale-moderate
               = radio_button_tag input_name, '3'
-              %label.survey-scale.survey-scale-moderate{ for: "#{input_name+'_3'}" }
+              %label{ for: "#{input_name+'_3'}" }
                 %p Fairly
                 %span.hotkey 3
-            .option-of-multiple.option-of-5
+            .option-of-multiple.option-of-5.survey-scale.survey-scale-good
               = radio_button_tag input_name, '4'
-              %label.survey-scale.survey-scale-good{ for: "#{input_name+'_4'}" }
+              %label{ for: "#{input_name+'_4'}" }
                 %p Quite a bit
                 %span.hotkey 4
-            .option-of-multiple.option-of-5
+            .option-of-multiple.option-of-5.survey-scale.survey-scale-great
               = radio_button_tag input_name, '5'
-              %label.survey-scale.survey-scale-great{ for: "#{input_name+'_5'}" }
+              %label{ for: "#{input_name+'_5'}" }
                 %p Very much
                 %span.hotkey 5
 
@@ -142,24 +142,24 @@
           %h4.f300 Reading
         .col-md-9.col-sm-12
           .row.reset-layout
-            .option-of-multiple.option-of-4
+            .option-of-multiple.option-of-4.survey-scale.survey-scale-great
               = radio_button_tag input_name, '1'
-              %label.survey-scale.survey-scale-great{ for: "#{input_name+'_1'}" }
+              %label{ for: "#{input_name+'_1'}" }
                 %p Never
                 %span.hotkey 1
-            .option-of-multiple.option-of-4
+            .option-of-multiple.option-of-4.survey-scale.survey-scale-good
               = radio_button_tag input_name, '2'
-              %label.survey-scale.survey-scale-good{ for: "#{input_name+'_2'}" }
+              %label{ for: "#{input_name+'_2'}" }
                 %p Slight
                 %span.hotkey 2
-            .option-of-multiple.option-of-4
+            .option-of-multiple.option-of-4.survey-scale.survey-scale-warning
               = radio_button_tag input_name, '3'
-              %label.survey-scale.survey-scale-warning{ for: "#{input_name+'_3'}" }
+              %label{ for: "#{input_name+'_3'}" }
                 %p Moderate
                 %span.hotkey 3
-            .option-of-multiple.option-of-4
+            .option-of-multiple.option-of-4.survey-scale.survey-scale-danger
               = radio_button_tag input_name, '4'
-              %label.survey-scale.survey-scale-danger{ for: "#{input_name+'_4'}" }
+              %label{ for: "#{input_name+'_4'}" }
                 %p High
                 %span.hotkey 4
       .row.multiple-question-container
@@ -168,24 +168,24 @@
           %h4.f300 Watching TV
         .col-md-9.col-sm-12
           .row.reset-layout
-            .option-of-multiple.option-of-4
+            .option-of-multiple.option-of-4.survey-scale.survey-scale-great
               = radio_button_tag input_name, '1'
-              %label.survey-scale.survey-scale-great{ for: "#{input_name+'_1'}" }
+              %label{ for: "#{input_name+'_1'}" }
                 %p Never
                 %span.hotkey 1
-            .option-of-multiple.option-of-4
+            .option-of-multiple.option-of-4.survey-scale.survey-scale-good
               = radio_button_tag input_name, '2'
-              %label.survey-scale.survey-scale-good{ for: "#{input_name+'_2'}" }
+              %label{ for: "#{input_name+'_2'}" }
                 %p Slight
                 %span.hotkey 2
-            .option-of-multiple.option-of-4
+            .option-of-multiple.option-of-4.survey-scale.survey-scale-warning
               = radio_button_tag input_name, '3'
-              %label.survey-scale.survey-scale-warning{ for: "#{input_name+'_3'}" }
+              %label{ for: "#{input_name+'_3'}" }
                 %p Moderate
                 %span.hotkey 3
-            .option-of-multiple.option-of-4
+            .option-of-multiple.option-of-4.survey-scale.survey-scale-danger
               = radio_button_tag input_name, '4'
-              %label.survey-scale.survey-scale-danger{ for: "#{input_name+'_4'}" }
+              %label{ for: "#{input_name+'_4'}" }
                 %p High
                 %span.hotkey 4
       .row.multiple-question-container
@@ -194,24 +194,24 @@
           %h4.f300 Sitting, inactive, in a public place (like a movie theater or classroom)
         .col-md-9.col-sm-12
           .row.reset-layout
-            .option-of-multiple.option-of-4
+            .option-of-multiple.option-of-4.survey-scale.survey-scale-great
               = radio_button_tag input_name, '1'
-              %label.survey-scale.survey-scale-great{ for: "#{input_name+'_1'}" }
+              %label{ for: "#{input_name+'_1'}" }
                 %p Never
                 %span.hotkey 1
-            .option-of-multiple.option-of-4
+            .option-of-multiple.option-of-4.survey-scale.survey-scale-good
               = radio_button_tag input_name, '2'
-              %label.survey-scale.survey-scale-good{ for: "#{input_name+'_2'}" }
+              %label{ for: "#{input_name+'_2'}" }
                 %p Slight
                 %span.hotkey 2
-            .option-of-multiple.option-of-4
+            .option-of-multiple.option-of-4.survey-scale.survey-scale-warning
               = radio_button_tag input_name, '3'
-              %label.survey-scale.survey-scale-warning{ for: "#{input_name+'_3'}" }
+              %label{ for: "#{input_name+'_3'}" }
                 %p Moderate
                 %span.hotkey 3
-            .option-of-multiple.option-of-4
+            .option-of-multiple.option-of-4.survey-scale.survey-scale-danger
               = radio_button_tag input_name, '4'
-              %label.survey-scale.survey-scale-danger{ for: "#{input_name+'_4'}" }
+              %label{ for: "#{input_name+'_4'}" }
                 %p High
                 %span.hotkey 4
       .row.multiple-question-container
@@ -220,24 +220,24 @@
           %h4.f300 Riding as a passenger in a car for an hour without a break
         .col-md-9.col-sm-12
           .row.reset-layout
-            .option-of-multiple.option-of-4
+            .option-of-multiple.option-of-4.survey-scale.survey-scale-great
               = radio_button_tag input_name, '1'
-              %label.survey-scale.survey-scale-great{ for: "#{input_name+'_1'}" }
+              %label{ for: "#{input_name+'_1'}" }
                 %p Never
                 %span.hotkey 1
-            .option-of-multiple.option-of-4
+            .option-of-multiple.option-of-4.survey-scale.survey-scale-good
               = radio_button_tag input_name, '2'
-              %label.survey-scale.survey-scale-good{ for: "#{input_name+'_2'}" }
+              %label{ for: "#{input_name+'_2'}" }
                 %p Slight
                 %span.hotkey 2
-            .option-of-multiple.option-of-4
+            .option-of-multiple.option-of-4.survey-scale.survey-scale-warning
               = radio_button_tag input_name, '3'
-              %label.survey-scale.survey-scale-warning{ for: "#{input_name+'_3'}" }
+              %label{ for: "#{input_name+'_3'}" }
                 %p Moderate
                 %span.hotkey 3
-            .option-of-multiple.option-of-4
+            .option-of-multiple.option-of-4.survey-scale.survey-scale-danger
               = radio_button_tag input_name, '4'
-              %label.survey-scale.survey-scale-danger{ for: "#{input_name+'_4'}" }
+              %label{ for: "#{input_name+'_4'}" }
                 %p High
                 %span.hotkey 4
 

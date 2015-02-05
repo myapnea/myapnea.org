@@ -1,4 +1,4 @@
-/ Must be provided a question object: question
+-# Must be provided a question object: question
 = form_tag(process_answer_path, {role: "form", class: 'survey-container progress-w-enter progress-w-letter'}) do
   = hidden_field_tag "question_id[]", question.id
   = hidden_field_tag "answer_session_id", answer_session.id
@@ -10,6 +10,6 @@
       - answer_template = question.answer_templates.first
       - answer_template.answer_options.distinct.each do |answer_option|
         = radio_button_tag "#{question.id}[#{answer_template.id}]", answer_option.id, have_checked?(answer, answer_template, answer_option.id), id: "question_#{question.id}_#{answer_template.id}_#{answer_option.new_value}", data: { hotkey: answer_option.hotkey }
-        %label.label-med.survey-multiple-input-button{ for: "question_#{question.id}_#{answer_template.id}_#{answer_option.new_value}" }
+        %label.label-med.survey-multiple-input-button{ class: "#{answer_option.display_class}", for: "question_#{question.id}_#{answer_template.id}_#{answer_option.new_value}" }
           %p= answer_option.text
           %span.hotkey= answer_option.hotkey

@@ -100,9 +100,9 @@ class Survey < ActiveRecord::Base
             answer_option = answer_template.answer_options.find_by_value(answer_option_attributes["value"])
 
             if answer_option.blank?
-              answer_template.answer_options.create(text: answer_option_attributes["text"], hotkey: answer_option_attributes["hotkey"], value: answer_option_attributes["value"])
+              answer_template.answer_options.create(text: answer_option_attributes["text"], hotkey: answer_option_attributes["hotkey"], value: answer_option_attributes["value"], display_class: answer_option_attributes["display_class"])
             else
-              answer_option.update_attributes(text: answer_option_attributes["text"], hotkey: answer_option_attributes["hotkey"], value: answer_option_attributes["value"])
+              answer_option.update_attributes(text: answer_option_attributes["text"], hotkey: answer_option_attributes["hotkey"], value: answer_option_attributes["value"], display_class: answer_option_attributes["display_class"])
             end
 
           end
