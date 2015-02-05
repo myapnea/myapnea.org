@@ -211,59 +211,8 @@ $great: #78c679;
           padding: 0px;
         }
       }
-      .survey-scale {
-        vertical-align: middle;
-        display: inline-block;
-        padding: 5px;
-        border-radius:20px;
-        width:100%;
-        box-sizing:border-box;
-        -moz-box-sizing:border-box;
-        -webkit-box-sizing:border-box;
-        border:6px double transparent;
-      }
-      .survey-scale:hover {
-        cursor: pointer;
-      }
       input[type=radio] {
         display: none;
-      }
-      input[type=radio]:checked {
-        + .survey-scale-danger {
-          background-color: transparentize($danger, .1);
-          border: 6px double white;
-        }
-        + .survey-scale-warning {
-          background-color: transparentize($warning, .1);
-          border: 6px double white;
-        }
-        + .survey-scale-moderate {
-          background-color: transparentize($moderate, .1);
-          border: 6px double white;
-        }
-        + .survey-scale-good {
-          background-color: transparentize($good, .1);
-          border: 6px double white;
-        }
-        + .survey-scale-great {
-          background-color: transparentize($great, .1);
-          border: 6px double white;
-        }
-      }
-      .survey-scale-danger {
-        background-color: transparentize($danger, .7);
-      }
-      .survey-scale-warning {
-        background-color: transparentize($warning, .7);
-      }
-      .survey-scale-moderate {
-        background-color: transparentize($moderate, .7);
-      }
-      .survey-scale-good {
-        background-color: transparentize($good, .7);
-      }
-      .survey-scale-great {
-        background-color: transparentize($great, .7);
       }
     }
     .option-of-5{
@@ -297,6 +246,55 @@ $great: #78c679;
       padding-right:5px;
       display: inline-block;
       float:left;
+    }
+    .survey-scale label {
+      vertical-align: middle;
+      display: inline-block;
+      padding: 5px;
+      border-radius:20px;
+      width:100%;
+      box-sizing:border-box;
+      -moz-box-sizing:border-box;
+      -webkit-box-sizing:border-box;
+      border:6px double transparent;
+    }
+    .survey-scale:hover label {
+      cursor: pointer;
+    }
+    .survey-scale-danger label {
+      background-color: transparentize($danger, .7);
+    }
+    .survey-scale-danger input[type=radio]:checked ~ label {
+      background-color: transparentize($danger, .1);
+      border: 6px double white;
+    }
+    .survey-scale-warning label {
+      background-color: transparentize($warning, .7);
+    }
+    .survey-scale-warning input[type=radio]:checked ~ label {
+      background-color: transparentize($warning, .1);
+      border: 6px double white;
+    }
+    .survey-scale-moderate label {
+      background-color: transparentize($moderate, .7);
+    }
+    .survey-scale-moderate input[type=radio]:checked ~ label {
+      background-color: transparentize($moderate, .1);
+      border: 6px double white;
+    }
+    .survey-scale-good label {
+      background-color: transparentize($good, .7);
+    }
+    .survey-scale-good input[type=radio]:checked ~ label {
+      background-color: transparentize($good, .1);
+      border: 6px double white;
+    }
+    .survey-scale-great label {
+      background-color: transparentize($great, .7);
+    }
+    .survey-scale-great input[type=radio]:checked ~ label {
+      background-color: transparentize($great, .1);
+      border: 6px double white;
     }
   }
 }
