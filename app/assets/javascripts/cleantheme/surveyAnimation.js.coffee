@@ -16,31 +16,30 @@
   # Scroll to active question
   @nextQuestionScroll = (element1, element2) ->
     # Submit Previous Question
-    if element1 and !element2
-      submitAnswer(element1)
-      console.log "no element2"
+    submitAnswer(element1)
+    if element2 is null
       return
-    # Check for multiple questions, and position the first question in the center
-    if element2.find('.current').length > 0
-      currentHeight = element2.find('.current').offset().top
-      elementOffsetHeight = element2.find('.current').outerHeight() / 2
     else
-      currentHeight = element2.offset().top
-      elementOffsetHeight = element2.outerHeight() / 2
-    offsetHeight = $(window).outerHeight() / 2
-    # Check for large questions on small screens
-    if elementOffsetHeight > offsetHeight
-      newHeight = currentHeight - 91
-    else
-      newHeight = currentHeight - offsetHeight + elementOffsetHeight
-    $("body").animate
-      scrollTop: newHeight
-    , 400
-    , "swing"
-    , ->
-      console.log "Scrolled!" # leaving this in here, as it captures most debugging problems
-      changeFocus(element1, element2)
-      return
+      # Check for multiple questions, and position the first question in the center
+      if element2.find('.current').length > 0
+        currentHeight = element2.find('.current').offset().top
+        elementOffsetHeight = element2.find('.current').outerHeight() / 2
+      else
+        currentHeight = element2.offset().top
+        elementOffsetHeight = element2.outerHeight() / 2
+      offsetHeight = $(window).outerHeight() / 2
+      # Check for large questions on small screens
+      if elementOffsetHeight > offsetHeight
+        newHeight = currentHeight - 91
+      else
+        newHeight = currentHeight - offsetHeight + elementOffsetHeight
+      $("body").animate
+        scrollTop: newHeight
+      , 400
+      , "swing"
+      , ->
+        changeFocus(element1, element2)
+        return
 
   # Change focus
   @changeFocus = (question1, question2) ->
@@ -85,11 +84,8 @@
 
   # Submit a survey answer
   @submitAnswer = (questionForm) ->
-    console.log questionForm
-    console.log questionForm.serialize()
-    console.log questionForm.attr("action")
     $.post(questionForm.attr("action"), questionForm.serialize(), (data) ->
-      console.log data
+      return
     , 'json')
 
   # Respond to user clicking different questions
@@ -210,7 +206,6 @@
 
   # Respond to conditional inputs - click events
   $(".reveal-next-input").click (e) ->
-    console.log "showing hidden input"
     changeFocusDirect($(this), $(this).nextAll('.hidden-input'))
 
 
@@ -238,4 +233,3 @@
         newPlaceholder = inputString + remainingString
         $(".survey-text-date").attr("placeholder", newPlaceholder)
         date_index += 1
-    console.log date_index
