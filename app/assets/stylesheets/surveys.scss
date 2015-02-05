@@ -311,7 +311,9 @@ $great: #78c679;
   width:10%;
   vertical-align:center;
 }
-
+.check-box-container:not(#foo) > input + label:hover span.hotkey {
+  cursor:pointer;
+}
 .check-box-container:not(#foo) > input + label {
   width:90%;
   padding: 10px;
