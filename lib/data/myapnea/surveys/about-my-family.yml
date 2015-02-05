@@ -49,6 +49,7 @@ questions:
     - text: English
       hotkey: A
       value: 1
+      display_class: redborder
     - text: Spanish
       hotkey: B
       value: 2
@@ -125,60 +126,4 @@ questions:
     data_type: text_value
     display_type_id: 1
     target_answer_option: 6
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
