@@ -11,7 +11,7 @@ class SurveysController < ApplicationController
   end
 
   def show
-    redirect_to intro_survey_path(@survey) if @survey.deprecated?
+    redirect_to intro_survey_path(@survey) and return if @survey.deprecated?
 
     render layout: 'layouts/cleantheme'
   end
@@ -76,7 +76,7 @@ class SurveysController < ApplicationController
   private
 
   def set_survey
-    @survey = Survey.where("slug = ? or id = ?", params["slug"], params["slug"]).first
+    @survey = Survey.where("slug = ? or id = ?", params["slug"], params["slug"].to_i).first
     @answer_session = AnswerSession.find_or_create(current_user, @survey)
 
   end

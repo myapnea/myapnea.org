@@ -29,3 +29,11 @@ q3c:
   question_help_message: hm1
   answer_templates:
   - feeling
+
+# New
+new_q1:
+  text_en: What is your sex?
+  slug: sex
+  display_type: radio_input
+  answer_templates:
+  - sex

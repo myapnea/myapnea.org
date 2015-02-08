@@ -34,8 +34,6 @@ class SurveysControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-
-
   test "User can start a survey" do
     login(users(:social))
 
@@ -135,5 +133,24 @@ class SurveysControllerTest < ActionController::TestCase
     assert_redirected_to ask_question_path(question_id: surveys(:survey_1).first_question_id, answer_session_id: AnswerSession.most_recent(surveys(:survey_1).id, users(:social).id).id)
     assert AnswerSession.most_recent(surveys(:survey_1), users(:social))
 
+  end
+
+  # New
+
+  test "#show" do
+    login(users(:social))
+
+    get :show, slug: surveys(:survey_2)
+
+    assert_response :success
+    assert_equal surveys(:survey_2), assigns(:survey)
+  end
+
+  test "#index" do
+    login(users(:social))
+
+    get :index
+
+    assert_response :success
   end
 end

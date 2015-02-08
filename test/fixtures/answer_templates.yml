@@ -32,3 +32,12 @@ colors:
 #  - yellow
 #  - purple
 #  - brown
+
+sex:
+  name: sex
+  data_type: answer_option_id
+# answer_options
+# - male
+# - female
+# - other
+# - prefer not to answer
