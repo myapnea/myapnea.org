@@ -8,25 +8,22 @@ questions:
   slug: sleep-hours-weekdays
   display_type: number_input
   answer_templates:
-  - name: sleep_hours_weekdays
-    display_type_id: 6
+  - name: number_of_hours
     data_type: number_value
 - text: |
     How many hours of sleep do you usually get per night on weekends or days off?
   slug: sleep-hours-weekends
   display_type: number_input
   answer_templates:
-  - name: sleep_hours_weekends
-    display_type_id: 6
+  - name: number_of_hours
     data_type: number_value
 - text: |
-    Consider your own "feeling best rhythym", at what time would you get up if you were entirely free to plan your day?
+    Considering your own "feeling best rhythym", at what time would you get up if you were entirely free to plan your day?
   slug: ideal-wakeup
   display_type: radio_input
   answer_templates:
-  - name: ideal_wakeup
+  - name: time_of_day_list
     data_type: answer_option_id
-    display_type_id: 3
     answer_options:
     - text: 5:00 - 6:30 am
       hotkey: 1

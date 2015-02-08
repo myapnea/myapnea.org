@@ -33,7 +33,7 @@ q3c:
 # New
 new_q1:
   text_en: What is your sex?
-  slug: sex
+  slug: sex-selection
   display_type: radio_input
   answer_templates:
   - sex

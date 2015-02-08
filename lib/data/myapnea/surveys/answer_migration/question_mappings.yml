@@ -1,0 +1,69 @@
+# This file lists questions in the redesigned surveys and maps them to questions from the deprecated surveys.
+# The questions are mapped using old question ids and new question slugs
+
+# Redesigned Survey List:
+# - about-me
+# - about-my-family
+# - additional-information-about-me
+# - my-sleep-pattern
+
+# about-me
+- slug: date-of-birth
+  answer_template_name: birth_date
+  id: 578
+- slug: sex
+  answer_template_name: sex
+  id: 546
+- slug: race
+  answer_template_name: race
+  id: 551
+- slug: race
+  answer_template_name: specified_race
+  id: 1551
+- slug: education-level
+  answer_template_name: education_level
+  id: 553
+- slug: income-level
+  answer_template_name: income_level
+  id: 559
+# about-my-family
+- slug: origin-country
+  answer_template_name: country_list
+  id: 549
+- slug: origin-country
+  answer_template_name: specified_country
+  id: 550
+- slug: primary-language
+  answer_template_name: language_list
+  id: 579
+- slug: primary-language
+  answer_template_name: specified_language
+  id: 580
+- slug: household-members
+  answer_template_name: household_members
+  id: 556
+- slug: household-minors
+  answer_template_name: household_minors
+  id: 9556
+# additional-information-about-me
+- slug: marital-status
+  answer_template_name: marital_status_list
+  id: 554
+- slug: daily-activities
+  answer_template_name: daily_activities_list
+  id: 557
+- slug: affording-basics
+  answer_template_name: difficulty_scale
+  id: 558
+# my-sleep-pattern
+- slug: sleep-hours-weekdays
+  answer_template_name: number_of_hours
+  id: 509
+- slug: sleep-hours-weekends
+  answer_template_name: number_of_hours
+  id: 510
+- slug: ideal-wakeup
+  answer_template_name: time_of_day_list
+  id: 511
+
+
