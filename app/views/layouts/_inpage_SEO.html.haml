@@ -1,2 +1,24 @@
 - if params[:action]=='home'
   %meta{ name: 'description', content: 'Answer research surveys, submit and vote on new research questions, see the latest forum activity, and get involved in the sleep apnea community here at MyApnea.Org' }
+- elsif params[:action]=='about'
+  %meta{ name: 'description', content: "Can't sleep? Sleep apnea is one of the largest causes of chronic sleep deprivation. MyApnea.Org was created by people with sleep apnea, sleep researchers, and sleep doctors to help people with sleep apnea treat their sleep apnea symptoms." }
+- elsif params[:action]=='advisory'
+  %meta{ name: 'description', content: 'The MyApnea advisory council consists of sleep researchers, sleep apnea care providers, experts in CPAP and CPAP masks, and people with sleep apnea.' }
+- elsif params[:action]=='partners'
+  %meta{ name: 'description', content: 'MyApnea is proud to partner with organizations devoted to improving health and improving sleep quality.' }
+- elsif params[:action]=='learn'
+  %meta{ name: 'description', content: "If you can't sleep, are experiencing sleep apnea symptoms, have been diagnosed with obstructive sleep apnea or central sleep apnea, MyApnea wants to help you understand sleep apnea and sleep apnea causes." }
+- elsif params[:action]=='faqs'
+  %meta{ name: 'description', content: 'What is MyApnea? What is the difference between OSA and CSA? Where can you take sleep tests? If you are experiencing sleep deprivation or sleep apnea symptoms, MyApnea will explain the basics.' }
+- elsif params[:action]=='social'
+  %meta{ name: 'description', content: 'MyApnea is developing a growing sleep apnea community for sleep apnea patients, sleep researchers, and sleep care providers to discuss important topics about sleep apnea.' }
+- elsif params[:action]=='forums'
+  %meta{ name: 'description', content: 'Sleep apnea forums, discussions about CPAP machines, sleep deprivation symptoms, and more topics related to sleep apnea discussed on MyApnea.Org' }
+- elsif params[:action]=='surveys'
+  %meta{ name: 'description', content: 'Get paid to take research surveys about sleep apnea! Surveys ask for information about sleep quality, sleep apnea treatments, family involvement, and more.' }
+- elsif params[:action]=='research_topics'
+  %meta{ name: 'description', content: 'Vote on sleep apnea research and encourage sleep research to focus on patient outcomes! The next big sleep study could come from your interest in sleep apnea symptoms and treaments.' }
+- elsif params[:action]=='providers'
+  %meta{ name: 'description', content: 'Sleep apnea care providers can play a large role in improving quality of life for their patients with sleep apnea symptoms and diagnosed sleep apnea. ' }
+- elsif params[:action]=='account'
+  %meta{ name: 'description', content: 'Set your sleep apnea community profile, participate in sleep discussions, and join the MyApnea sleep study.' }

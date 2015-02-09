@@ -15,7 +15,7 @@
     / For Google
     %meta{ name: 'google-site-verification', content: 'RHApDe4I99r46ZVk4UVIbuJhXi2oIvUhKO0G7zlVHjo' }
     = render partial: 'layouts/inpage_SEO'
-    %title=[ENV['pprn_title'], @page_title].compact.join(' - ')
+    %title= @page_title
     = favicon_link_tag
     = csrf_meta_tags
     = stylesheet_link_tag 'cleantheme', media: 'all', 'data-turbolinks-track' => true
