@@ -106,6 +106,47 @@ class Survey < ActiveRecord::Base
     survey.refresh_precomputations
   end
 
+  def self.migrate_old_answers(slug)
+    # First pass:
+    # 1. Go through the answers for a given question
+    # 2. Find or create the answer session for the given user/survey combo
+    # 3. Clone the answer and associated answer values
+    # 4. Keep the same answer templates, etc.
+    # 5. Only update question id, answer session id
+    # 6. Set answer state == :migrated
+
+    ## This should allow all historical values to be saved, without
+    question_map = YAML::load(File.join(SURVEY_DATA_LOCATION + ["answer_migration", "question_mappings.yml"]))
+    survey = Survey.find_by(slug: slug)
+
+    survey.all_questions_descendants.each do |question|
+      question.answer_templates.each do |answer_template|
+        matched_mapping = question_map.select {|mapping| (mapping["slug"] == question.slug and mapping["answer_template_name"] == answer_template.name) }
+        if matched_mapping
+          matched_question = Question.find(matched_mapping["id"])
+
+          matched_question.answers.each do |matched_answer|
+            matched_user = matched_answer.answer_session.user
+            new_answer_session = AnswerSession.find_or_create(matched_user, survey)
+
+            cloned_answer = Answer.create(question_id: question.id, answer_session_id: new_answer_session.id)
+
+            matched_answer.answer_values.each do |matched_answer_value|
+              cloned_answer.answer_values.create(state: "migrated", answer_template_id: matched_answer_value.answer_template_id, answer_option_id: matched_answer_value.answer_option_id, numeric_value: matched_answer_value.numeric_value, text_value: matched_answer_value.text_value, time_value: matched_answer_value.time_value)
+            end
+
+
+          end
+
+
+        end
+
+      end
+    end
+
+
+  end
+
   # Instance Methods
   def to_param
     self[:slug] || self[:id].to_s

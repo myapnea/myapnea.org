@@ -1,6 +1,9 @@
 class Answer < ActiveRecord::Base
   include Deletable
 
+  STATE = %(migrated answered skipped unseen)
+
+
   has_many :answer_values, -> { where deleted: false }, dependent: :destroy
   belongs_to :question
   belongs_to :answer_option
