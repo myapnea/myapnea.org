@@ -53,10 +53,6 @@ class ResearchTopic < ActiveRecord::Base
     state == 'accepted'
   end
 
-  def to_param
-    slug
-  end
-
   private
 
   def self.sort_topics(rt1, rt2)

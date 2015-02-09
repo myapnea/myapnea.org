@@ -24,9 +24,6 @@ SitemapGenerator::Sitemap.create do
     add '/surveys/'+survey.to_param, lastmod: survey.updated_at
   end
   add '/research_topics', :changefreq => 'daily', :priority => 0.7
-  ResearchTopic.find_each do |research_topic|
-    add '/research_topics/'+research_topic.to_param, lastmod: research_topic.updated_at
-  end
   add '/providers', :changefreq => 'monthly', :priority => 0.6
 end
 # SitemapGenerator::Sitemap.ping_search_engines # Not needed if you use the rake tasks
