@@ -34,6 +34,11 @@
 ### Bug Fixes
 - Fixed a bug that prevented a user dashboard from displaying if no forum topics existed
 
+### Search Engine Optimization
+- Added sitemap_generator gem for dynamic SEO via sitemap creation
+- Added unique meta descriptions to each key page
+- Added unique page titles to each key page
+
 ### Refactoring
 - Removed OODT and Validic integration
 - Removed blog controller and views, this functionality is currently being handled by the "News Forum"

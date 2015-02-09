@@ -75,6 +75,8 @@ gem 'geocoder'
 gem 'carrierwave'
 gem 'mini_magick'
 
+# Search Engine Optimization (SEO)
+gem 'sitemap_generator'
 
 gem 'merit'
 
