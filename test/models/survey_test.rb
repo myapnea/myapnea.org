@@ -38,7 +38,10 @@ class SurveyTest < ActiveSupport::TestCase
 
   end
 
+  test "self.migrate_old_answers" do
 
+    Survey.migrate_old_answers("new-survey")
+  end
 
 
 

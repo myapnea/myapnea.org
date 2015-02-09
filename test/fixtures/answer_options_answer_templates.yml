@@ -64,3 +64,16 @@ aoat20:
 aoat21:
   answer_template: sex
   answer_option: prefer_not_to_answer
+
+aoat22:
+  answer_template: color_list
+  answer_option: orange
+aoat23:
+  answer_template: color_list
+  answer_option: cyan
+aoat24:
+  answer_template: color_list
+  answer_option: green2
+aoat25:
+  answer_template: color_list
+  answer_option: maroon

@@ -41,3 +41,7 @@ sex:
 # - female
 # - other
 # - prefer not to answer
+
+color_list:
+  name: color_list
+  data_type: answer_option_id

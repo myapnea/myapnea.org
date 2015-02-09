@@ -50,3 +50,19 @@ prefer_not_to_answer:
   text: Prefer not to answer
   hotkey: P
   value: 4
+orange:
+  text: Orange
+  hotkey: O
+  value: 1
+cyan:
+  text: Cyan
+  hotkey: C
+  value: 2
+green2:
+  text: Green
+  hotkey: G
+  value: 3
+maroon:
+  text: Maroon
+  hotkey: M
+  value: 4

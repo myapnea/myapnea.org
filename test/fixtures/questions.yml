@@ -37,3 +37,10 @@ new_q1:
   display_type: radio_input
   answer_templates:
   - sex
+
+new_q2:
+  text_en: What would your favorite color be?
+  slug: favorite-color
+  display_type: radio_input
+  answer_templates:
+  - color_list
