@@ -39,8 +39,25 @@ class SurveyTest < ActiveSupport::TestCase
   end
 
   test "self.migrate_old_answers" do
+    question_map = [{"slug" => "favorite-color", "answer_template_name" => "color_list", "id" => questions(:q1).id.to_s }]
+    survey = Survey.find_by_slug("new-survey")
 
-    Survey.migrate_old_answers("new-survey")
+    assert_difference "AnswerSession.count", 2 do
+      Survey.migrate_old_answers("new-survey", question_map)
+    end
+
+
+    unmapped_question = questions(:new_q1)
+    mapped_question = questions(:new_q2)
+
+    assert_equal 0, unmapped_question.answers.count
+    assert_equal 2, mapped_question.answers.count
+
+    assert_equal "migrated", mapped_question.answers.first.state
+
+    assert_includes mapped_question.answers.map{|a| a.show_value}, "red"
+    assert_includes mapped_question.answers.map{|a| a.show_value}, "blue"
+
   end
 
 
