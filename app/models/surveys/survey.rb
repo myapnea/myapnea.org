@@ -170,9 +170,9 @@ class Survey < ActiveRecord::Base
     self.answer_sessions.where( user_id: user.id ).empty?
   end
 
-  def to_param
-    slug
-  end
+  # def to_param
+  #   slug
+  # end
 
   ## Needed for topographic sort, which is not very fast
   def tsort_each_node(&block)

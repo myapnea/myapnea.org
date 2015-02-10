@@ -55,7 +55,8 @@ class SurveysController < ApplicationController
   end
 
   def intro
-    @survey = Survey.find(params[:slug])
+    # @survey = Survey.find(params[:slug])
+    @survey = Survey.where("slug = ? or id = ?", params["slug"], params["slug"].to_i).first
   end
 
 
