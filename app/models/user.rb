@@ -210,7 +210,7 @@ class User < ActiveRecord::Base
   end
 
   def smart_surveys
-    self.incomplete_surveys + self.unstarted_surveys + self.complete_surveys
+    (self.incomplete_surveys + self.unstarted_surveys + self.complete_surveys).select {|s| !s.deprecated?}
   end
 
   def research_topics_with_vote
