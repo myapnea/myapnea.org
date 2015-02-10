@@ -115,8 +115,13 @@ input[type=date] {
 }
 
 .survey-short-number {
-  text-align: right;
+  text-align: center;
   width:150px;
+}
+
+.survey-short-number {
+  text-align: center;
+  width:300px;
 }
 
 .survey-text-small {

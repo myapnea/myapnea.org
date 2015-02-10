@@ -1,7 +1,7 @@
 / Must be provided a question object: question
 -# raise StandardError
 
-= form_tag(process_answer_path, {role: "form", onsubmit: "return false;", class: 'survey-container progress-w-enter check-w-letter'}) do
+= form_tag(process_answer_path, {role: "form", onsubmit: "return false;", class: 'survey-container progress-w-enter check-w-hotkey'}) do
   = hidden_field_tag "question_id[]", question.id
   = hidden_field_tag "answer_session_id", answer_session.id
 

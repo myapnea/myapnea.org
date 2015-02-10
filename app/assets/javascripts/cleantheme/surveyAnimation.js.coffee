@@ -158,7 +158,7 @@
     if $(".survey-container.active").find(".survey-text-date").is(":focus")
       return
     # containers that can progress with a number input
-    if $(".survey-container.active").hasClass "progress-w-number"
+    if $(".survey-container.active").hasClass "multiple-question-parts"
       inputs = $(".survey-container.active .panel .multiple-question-container.current").find("input:radio")
       if e.keyCode is 38
         e.preventDefault()
@@ -180,17 +180,20 @@
       assignQuestion(true, false)
     # Respond to actual inputs
     else
+      # Progress to next question for enter
       if $(".survey-container.active").hasClass "progress-w-enter"
         if e.keyCode is 13
           assignQuestion(true, false)
-      if $(".survey-container.active").hasClass "progress-w-letter"
+      # Progress to next question if applicable
+      if $(".survey-container.active").hasClass "progress-w-hotkey"
         inputs = $(".survey-container.active").find("input:radio")
         inputs.each (index) ->
           key = $(inputs[index]).data("hotkey").charCodeAt(0)
           if e.keyCode is key
             $(inputs[index]).prop "checked", true
             assignQuestion(true, false)
-      if $(".survey-container.active").hasClass "check-w-letter"
+      # Check answer option if applicable
+      else if $(".survey-container.active").hasClass "check-w-hotkey"
         unless $(".survey-container.active .panel .hidden-input").is ":focus"
           inputs = $(".survey-container.active .panel .input-container").find("input:checkbox")
           inputs.each (index) ->
