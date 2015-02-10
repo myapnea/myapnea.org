@@ -10,7 +10,7 @@ questions:
   answer_templates:
   - name: sleep_hours_weekdays
     display_type_id: 6
-    data_type: number_value
+    data_type: text_value
 - text: |
     How many hours of sleep do you usually get per night on weekends or days off?
   slug: sleep-hours-weekends
@@ -18,7 +18,7 @@ questions:
   answer_templates:
   - name: sleep_hours_weekends
     display_type_id: 6
-    data_type: number_value
+    data_type: text_value
 - text: |
     Consider your own "feeling best rhythym", at what time would you get up if you were entirely free to plan your day?
   slug: ideal-wakeup
@@ -43,5 +43,30 @@ questions:
     - text: After 11:00 am
       hotkey: 5
       value: 5
+- text: |
+    How likely are you to doze off or fall asleep (not just "feel tired") in the following situations? Please choose one of the answers for each situation. If you are never or rarely in the situation, please give your best guess for that situation.
+  slug: epworth-sleepiness-scale
+  display_type: radio_input
+  answer_templates:
+  - name: epworth_sleepiness_scale
+    data_type: answer_option_id
+    display_type_id: 3
+    answer_options:
+    - text: High chance of dozing
+      hotkey: 1
+      value: 1
+      display_class: option-of-multiple option-of-4 survey-scale survey-scale-danger
+    - text: Moderate chance of dozing
+      hotkey: 2
+      value: 2
+      display_class: option-of-multiple option-of-4 survey-scale survey-scale-warning
+    - text: Slight chance of dozing
+      hotkey: 3
+      value: 3
+      display_class: option-of-multiple option-of-4 survey-scale survey-scale-good
+    - text: Would never doze
+      hotkey: 4
+      value: 4
+      display_class: option-of-multiple option-of-4 survey-scale survey-scale-great
 
 
