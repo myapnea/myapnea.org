@@ -1,11 +1,11 @@
 # Integration Checklist
 
 ## Setup
-1. [ ] `git pull`
+- [ ] `git pull`
 
-2. [ ] `bundle update`
+- [ ] `bundle update`
 
-3. [ ] Reset Database
+- [ ] Reset Database
 
    ```
    bundle exec rake db:drop
@@ -19,7 +19,7 @@
    bundle exec rake surveys:refresh
    ```
 
-4. [ ] Start (or restart) server
+- [ ] Start (or restart) server
 
 ## Registration
 
@@ -80,10 +80,51 @@
       - Non-existing email: `notexisting@gmail.com`
       - Incorrect password: `password1`
 4. [ ] **Successful sign in**
-   - Fill in email with `user_1@gmail.com`, and password with `password`
+   - Fill in email with `user_1@mail.com`, and password with `password`
    - Press `Enter` button
    - Ensure redirected to homepage and logged in
 
-##
+
 ## Surveys
-##
+Test using:
+- [ ] Internet explorer
+- [ ] Firefox
+- [ ] Google Chrome
+
+### Consent and Privacy
+- [ ] Sign in with `user_2@mail.com`, `password` combo
+- [ ] *Temporary* Enable beta by clicking on button
+- [ ] Return to home page
+- In survey section, click on `About Me` survey.
+*ERROR!*
+
+### New Survey Type
+- [ ] Sign in with `tommyboy@gmail.com`, `password`
+- [ ] Enable Beta and return to home page
+#### Main Flow
+- [ ] Click on `About Me` survey
+   - [ ] Fill in date question and refresh page. Answer should persist
+   - [ ] Fill in questions and check persistence:
+      - [ ] Clicking `Go to next question` button
+      - [ ] Hitting `Enter` key
+      - [ ] Setting focus, then clicking on an option.
+      - [ ] Setting focus, then using hotkeys.
+      - [ ] Clicking on and option on a question w/o any focus
+      - [ ] Clicking elsewhere on page to lose focus
+#### Nested inputs
+- [ ] In the `What is your race?` question, choose the `H` option.
+- [ ] Enter some custom race, and go to next question.
+- [ ] Ensure persistence.
+- [ ] Set focus to **Race** question by clicking in the question area.
+- [ ] Ensure focus *DOES NOT* switch to nested input.
+- [ ] Click on `Research Surveys` link in side bar.
+- [ ] Select `About my family` survey.
+- [ ] Ensure survey title and information are visible.
+- [ ] Click on `Other country` option in first question.
+- [ ] Ensure nested input renders properly.
+- [ ] Ensure typing hotkey values when focus is on nested input does not cause a loss of focus.
+- [ ] Proceed to next question with `Enter`.
+#### Survey Report
+
+
+
