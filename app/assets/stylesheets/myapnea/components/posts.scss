@@ -31,6 +31,27 @@ table.topics tr {
   border: 1px solid #cccccc;
   border-radius: 4px;
   margin-bottom: 20px;
+  .wrapword {
+    p {
+      padding: 0px;
+    }
+  }
+  blockquote {
+    color: $text-muted;
+    font-weight: 300;
+    border-left-width: 2px;
+  }
+  .table {
+    th[align=left] {
+      text-align: left;
+    }
+    th[align=right] {
+      text-align: right;
+    }
+    th[align=center] {
+      text-align: center;
+    }
+  }
 }
 
 .post-deleted {
@@ -57,19 +78,6 @@ table.topics tr {
 .post-user-name-container {
   padding-bottom: 10px;
   font-size: 20px;
-}
-
-
-.post-container .table th[align=left] {
-  text-align: left;
-}
-
-.post-container .table th[align=right] {
-  text-align: right;
-}
-
-.post-container .table th[align=center] {
-  text-align: center;
 }
 
 .post-container-after, .post-container-right-after, .post-container-right-bottom-after, .post-container-right-middle-after {
@@ -116,14 +124,44 @@ table.topics tr {
   border-radius: 0 4px 4px 0;
 }
 
-.post-container blockquote {
-  color: $text-muted;
-  font-weight: 300;
-  border-left-width: 2px;
-}
 
 .original-poster-badge {
   background-color: $ma-light-blue;
   color: white;
+}
+
+.user-thumbnail-forum {
+  width:100%;
+  height:100%;
+  border:5px solid white;
+  border-radius: 3px;
+  box-shadow: 0px 0px 3px #ccc;
+}
+
+@media (max-width: 1200px) {
+  /* MEDIUM SCREENS */
+}
+
+@media (max-width: 992px) {
+  /* SMALL SCREENS */
+  .user-thumbnail-forum {
+    border-width:4px;
+  }
+}
+
+@media (max-width: 768px) {
+  /* XSMALL SCREENS */
+  .user-thumbnail-forum {
+    border-width:3px;
+  }
+  .post-container {
+    padding:10px;
+    .wrapword {
+      p {
+        padding: 0px;
+      }
+    }
+  }
+
 }
 
