@@ -10,13 +10,11 @@
 
   # Add event listener for all changes to inputs
   $("input[type=radio]").change ->
-    alert "input changed"
     return
 
   # Scroll to active question
   @nextQuestionScroll = (element1, element2) ->
     # Submit Previous Question
-    submitAnswer(element1)
     if element2 is null
       return
     else
@@ -83,10 +81,15 @@
 
 
   # Submit a survey answer
-  @submitAnswer = (questionForm) ->
+  @submitAnswer = (inputElement) ->
+    questionForm = inputElement.closest("form")
     $.post(questionForm.attr("action"), questionForm.serialize(), (data) ->
       return
     , 'json')
+
+  @handleChangedValue = (inputElement) ->
+    submitAnswer(inputElement)
+
 
   # Respond to user clicking different questions
   $('.survey-container').click (event) ->
@@ -99,9 +102,11 @@
           if $(this).find('.multiple-question-container').length
             if $(event.target).closest(".multiple-question-container").hasClass "current"
               $(event.target).closest("label").prev("input").prop "checked", true
+              handleChangedValue($(event.target).closest("label").prev("input"))
               assignMultipleQuestion(true,false)
           else
             $(event.target).closest("label").prev("input").prop "checked", true
+            handleChangedValue($(event.target).closest("label").prev("input"))
             assignQuestion(true, false)
       else
         # Use the clicked container, rather than calling the assignQuestion function
@@ -112,6 +117,7 @@
         if $(event.target).closest("label").prev("input").is(":radio")
           event.preventDefault()
           $(event.target).closest("label").prev("input").prop "checked", true
+          handleChangedValue($(event.target).closest("label").prev("input"))
           nextQuestionScroll(newActiveQuestion, null)
         else
           if $(this).prev().length == 0
@@ -171,6 +177,7 @@
           key = $(inputs[index]).data("hotkey").charCodeAt(0)
           if e.keyCode is key
             $(inputs[index]).prop "checked", true
+            handleChangedValue($(inputs[index]))
             assignMultipleQuestion(true, false)
     else if e.keyCode is 38
       e.preventDefault()
@@ -188,9 +195,10 @@
       if $(".survey-container.active").hasClass "progress-w-hotkey"
         inputs = $(".survey-container.active").find("input:radio")
         inputs.each (index) ->
-          key = $(inputs[index]).data("hotkey").charCodeAt(0)
+          key = $(this).data("hotkey").toString().charCodeAt(0)
           if e.keyCode is key
             $(inputs[index]).prop "checked", true
+            handleChangedValue($(inputs[index]))
             assignQuestion(true, false)
       # Check answer option if applicable
       else if $(".survey-container.active").hasClass "check-w-hotkey"
@@ -201,8 +209,10 @@
             if e.keyCode is key
               if $(inputs[index]).prop "checked"
                 $(inputs[index]).prop "checked", false
+                handleChangedValue($(inputs[index]))
               else
                 $(inputs[index]).prop "checked", true
+                handleChangedValue($(inputs[index]))
               if $(inputs[index]).hasClass "reveal-next-input"
                 e.preventDefault()
                 changeFocusDirect($(this), $(this).nextAll('.hidden-input'))
@@ -210,6 +220,11 @@
   # Respond to conditional inputs - click events
   $(".reveal-next-input").click (e) ->
     changeFocusDirect($(this), $(this).nextAll('.hidden-input'))
+
+  # Attach change event handler to everything but radio button inputs. Radio button inputs are changed by JS, so each time
+  # the :checked property is changed, handleChangedValue has to be called.
+  $("input").change (event) ->
+    handleChangedValue($(event.target))
 
 
   # Custom date input

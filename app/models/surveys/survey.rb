@@ -67,48 +67,28 @@ class Survey < ActiveRecord::Base
     data_file = YAML.load_file(Rails.root.join(*(SURVEY_DATA_LOCATION + ["#{name}.yml"])))
 
     # Find or Create Survey
-    survey = Survey.find_by_slug(data_file["slug"])
-    if survey.blank?
-      survey = Survey.create(name_en: data_file["name"], slug: data_file["slug"], description_en: data_file["description"], status: data_file["status"])
-    else
-      survey.update_attributes(name_en: data_file["name"], slug: data_file["slug"], description_en: data_file["description"], status: data_file["status"], first_question_id: nil)
-      QuestionEdge.destroy_all(survey_id: survey.id)
-    end
+    survey = Survey.where(slug: data_file["slug"]).first_or_create
+    survey.update(name_en: data_file["name"], description_en: data_file["description"], status: data_file["status"], first_question_id: nil)
+    QuestionEdge.destroy_all(survey_id: survey.id)
+
 
     latest_question = nil
-
     data_file["questions"].each do |question_attributes|
-      question = Question.find_by_slug(question_attributes["slug"])
-      if question.blank?
-        question = Question.create(text_en: question_attributes["text"], display_type: question_attributes["display_type"], slug: question_attributes["slug"])
-      else
-        question.update_attributes(text_en: question_attributes["text"], display_type: question_attributes["display_type"], slug: question_attributes["slug"])
-      end
+      question = Question.where(slug: question_attributes["slug"]).first_or_create
+      question.update(text_en: question_attributes["text"], display_type: question_attributes["display_type"])
 
       question_attributes["answer_templates"].each do |answer_template_attributes|
-        answer_template = question.answer_templates.find_by_name(answer_template_attributes["name"])
-        if answer_template.blank?
-          answer_template = AnswerTemplate.create(name: answer_template_attributes["name"], data_type: answer_template_attributes["data_type"], display_type_id: answer_template_attributes["display_type_id"], allow_multiple: answer_template_attributes["allow_multiple"].present?, target_answer_option: answer_template_attributes["target_answer_option"])
-          question.answer_templates << answer_template
-        else
-          answer_template.update_attributes(name: answer_template_attributes["name"], data_type: answer_template_attributes["data_type"], display_type_id: answer_template_attributes["display_type_id"], allow_multiple: answer_template_attributes["allow_multiple"].present?, target_answer_option: answer_template_attributes["target_answer_option"])
-        end
+        answer_template = AnswerTemplate.where(name: answer_template_attributes["name"]).first_or_create
+        answer_template.update(data_type: answer_template_attributes["data_type"], display_type_id: answer_template_attributes["display_type_id"], allow_multiple: answer_template_attributes["allow_multiple"].present?, target_answer_option: answer_template_attributes["target_answer_option"])
+        (question.answer_templates << answer_template) unless question.answer_templates.exists?(answer_template.id)
 
         if answer_template_attributes.has_key?("answer_options")
           answer_template_attributes["answer_options"].each do |answer_option_attributes|
-            answer_option = answer_template.answer_options.find_by_value(answer_option_attributes["value"])
-
-            if answer_option.blank?
-              answer_template.answer_options.create(text: answer_option_attributes["text"], hotkey: answer_option_attributes["hotkey"], value: answer_option_attributes["value"], display_class: answer_option_attributes["display_class"])
-            else
-              answer_option.update_attributes(text: answer_option_attributes["text"], hotkey: answer_option_attributes["hotkey"], value: answer_option_attributes["value"], display_class: answer_option_attributes["display_class"])
-            end
-
+            answer_option = answer_template.answer_options.find_or_create_by(value: answer_option_attributes["value"])
+            answer_option.update(text: answer_option_attributes["text"], hotkey: answer_option_attributes["hotkey"], display_class: answer_option_attributes["display_class"])
           end
         end
-
       end
-
 
       survey.first_question_id = question.id if survey.first_question_id.blank?
 
@@ -124,6 +104,52 @@ class Survey < ActiveRecord::Base
 
     survey.save
     survey.refresh_precomputations
+  end
+
+  def self.migrate_old_answers(slug, question_map=nil)
+    # First pass:
+    # 1. Go through the answers for a given question
+    # 2. Find or create the answer session for the given user/survey combo
+    # 3. Clone the answer and associated answer values
+    # 4. Keep the same answer templates, etc.
+    # 5. Only update question id, answer session id
+    # 6. Set answer state == :migrated
+
+    ## This should allow all historical values to be saved, without
+    question_map ||= YAML::load_file(File.join(SURVEY_DATA_LOCATION + ["answer_migration", "question_mappings.yml"]))
+    survey = Survey.find_by(slug: slug)
+
+    survey.all_questions_descendants.each do |question|
+      question.answer_templates.each do |answer_template|
+        matched_mapping = question_map.select {|mapping| (mapping["slug"] == question.slug and mapping["answer_template_name"] == answer_template.name) }.first
+        if matched_mapping
+          matched_question = Question.find(matched_mapping["id"].to_i)
+
+          matched_question.answers.each do |matched_answer|
+            matched_user = matched_answer.answer_session.user
+            new_answer_session = AnswerSession.find_or_create(matched_user, survey)
+
+            cloned_answer = Answer.create(question_id: question.id, answer_session_id: new_answer_session.id, state: "migrated")
+
+            matched_answer.answer_values.each do |matched_answer_value|
+              cloned_answer.answer_values.create(answer_template_id: matched_answer_value.answer_template_id, answer_option_id: matched_answer_value.answer_option_id, numeric_value: matched_answer_value.numeric_value, text_value: matched_answer_value.text_value, time_value: matched_answer_value.time_value)
+            end
+
+
+          end
+
+
+        end
+
+      end
+    end
+
+
+  end
+
+  # Instance Methods
+  def to_param
+    self[:slug] || self[:id].to_s
   end
 
   ## Need to be fast
@@ -174,7 +200,7 @@ class Survey < ActiveRecord::Base
   def tsorted_question_ids
     if self[:tsored_nodes].blank?
 
-      update_attribute(:tsorted_nodes, tsort.reverse.map(&:id).to_json)
+      update(tsorted_nodes: tsort.reverse.map(&:id).to_json)
 
 
     end
@@ -185,21 +211,6 @@ class Survey < ActiveRecord::Base
   def total_time
     ActiveSupport::Deprecation.warn("Time estimates disabled until they are further developed.")
     nil
-    # if self[:longest_time].blank?
-    #   lp = 0
-    #
-    #   leaves.each do |oneleaf|
-    #     lp = [lp, find_longest_path(source,oneleaf)[:time]].max
-    #   end
-    #
-    #
-    #   update_attribute(:longest_time, lp)
-    #
-    #
-    #
-    # end
-    #
-    # self[:longest_time]
   end
 
   # Alias
@@ -209,18 +220,6 @@ class Survey < ActiveRecord::Base
 
   def longest_path_length
     path_length(source)
-    #
-    # if self[:longest_path].blank?
-    #   ld = 0
-    #
-    #   leaves.each do |oneleaf|
-    #     ld = [ld, find_longest_path(source,oneleaf)[:distance]].max
-    #   end
-    #
-    #   update_attribute(:longest_path, ld)
-    # end
-    #
-    # self[:longest_path]
   end
 
   def path_length(current_question)
@@ -231,7 +230,7 @@ class Survey < ActiveRecord::Base
   # TODO: Put in survey rake task
   def refresh_precomputations
     # tsort nodes
-    update_attribute(:tsorted_nodes, nil)
+    update(tsorted_nodes: nil)
     tsorted_question_ids
 
     # survey_question_order
@@ -261,6 +260,10 @@ class Survey < ActiveRecord::Base
   end
 
 
+  # Deprecated - Remove in Version 6.0.0
+  def deprecated?
+    self[:slug].nil?
+  end
 
 
   ###

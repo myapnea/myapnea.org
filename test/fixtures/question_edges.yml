@@ -59,3 +59,9 @@ qe10:
   child_question: q3c
   direct: FALSE
   count: 1
+qe11:
+  survey: survey_2
+  parent_question: new_q1
+  child_question: new_q2
+  direct: TRUE
+  count: 1

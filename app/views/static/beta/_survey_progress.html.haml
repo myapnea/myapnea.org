@@ -20,12 +20,12 @@
   = percent.to_s + '% completed'
 %h5.f300.primary-blue{ style: 'margin-bottom:30px;' }
   - if survey.complete?(current_user)
-    = link_to 'View report', survey_report_path(survey.slug)
+    = link_to 'View report', survey_report_path(slug: survey)
   - elsif survey.incomplete?(current_user) and percent!=0
-    = link_to 'Work on this survey now!', survey_path(survey.slug)
+    = link_to 'Work on this survey now!', survey_path(survey)
   -elsif survey.incomplete?(current_user) and percent==0
-    = link_to 'Start this survey now!', survey_path(survey.slug)
+    = link_to 'Start this survey now!', survey_path(survey)
   - else
-    = link_to 'Start this survey now!', survey_path(survey.slug)
+    = link_to 'Start this survey now!', survey_path(survey)
 
 

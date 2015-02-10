@@ -1,0 +1,5 @@
+- if targeted_template.present?
+  = text_field_tag "#{question.id}[#{targeted_template.id}]", answer.value[targeted_template.id], class: 'survey-short-text survey-text-small hidden-input', style: 'margin-bottom:20px;'
+
+-#- if secondary_template and secondary_template.target_answer_option == answer_option.new_value
+-#  = text_field_tag "#{question.id}[#{secondary_template.id}]", answer.value[secondary_template.id], class: 'survey-short-text survey-text-small hidden-input', style: 'margin-bottom:20px;'

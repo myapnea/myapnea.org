@@ -1,6 +1,6 @@
 av1:
   answer: a1
-  answer_template: text
+  answer_template: colors
   answer_option: red
 av2:
   answer: a2
@@ -16,8 +16,8 @@ av4:
   text_value: Again, no clue...
 av5:
   answer: a5
-  answer_template: text
-  answer_option: indigo
+  answer_template: colors
+  answer_option: blue
 av6:
   answer: a6
   answer_template: numeric

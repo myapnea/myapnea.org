@@ -58,9 +58,9 @@ Rails.application.routes.draw do
   ## JSON
   get 'questions/frequencies(/:question_id/:answer_session_id)', to: "questions#frequencies", as: :question_frequencies, format: :json
   get 'questions/typeahead/:question_id', to: "questions#typeahead", as: :question_typeahead, format: :json
-  ## Deprecated
-  get 'research_surveys/:survey_id', to: 'surveys#start_survey', as: :start_survey
-  get 'research_surveys/intro/:survey_id', to: 'surveys#intro', as: :intro_survey
+  ## Deprecated - Remove in Version 6.0.0
+  get 'research_surveys/:slug', to: 'surveys#start_survey', as: :start_survey
+  get 'research_surveys/intro/:slug', to: 'surveys#intro', as: :intro_survey
   get 'research_surveys/:answer_session_id/:question_id', to: 'surveys#ask_question', as: :ask_question
 
 

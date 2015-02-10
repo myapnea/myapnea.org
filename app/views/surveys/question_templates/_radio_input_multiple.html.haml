@@ -1,4 +1,7 @@
-.survey-container.multiple-question-parts
+-# Must be provided a question object: question
+= form_tag(process_answer_path, {role: "form", class: 'survey-container multiple-question-parts'}) do
+  = hidden_field_tag "question_id[]", question.id
+  = hidden_field_tag "answer_session_id", answer_session.id
   .panel
     .question-container
       %h3.f300 Thinking about your sleep in the past 7 days, please answer the following questions.

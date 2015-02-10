@@ -1,10 +1,13 @@
-.survey-container.progress-w-enter
+= form_tag(process_answer_path, {role: "form", class: 'survey-container progress-w-enter' }) do
+  = hidden_field_tag "question_id[]", question.id
+  = hidden_field_tag "answer_session_id", answer_session.id
+
   .panel
     .question-container
-      %h3.f300 What is your date of birth?
+      %h3.f300= question.text
       %h5.f300.text-muted Just start typing!
     .input-container
-      = text_field_tag 'hours', nil, maxlength: 10, class: 'survey-short-text survey-text-date', placeholder: 'MM/DD/YYYY'
+      = text_field_tag "#{question.id}[#{question.answer_templates.first.id}]", answer.value[question.answer_templates.first.id], maxlength: 10, class: 'survey-short-text survey-text-date', placeholder: 'MM/DD/YYYY'
     .button-container
       .btn.btn-primary.next-question
         Go to next question

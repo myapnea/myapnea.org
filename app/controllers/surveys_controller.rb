@@ -1,31 +1,23 @@
 class SurveysController < ApplicationController
-  before_filter :authenticate_user!
+  before_action :authenticate_user!
   before_action :set_active_top_nav_link_to_surveys
   before_action :authenticate_research
-
+  before_action :set_survey, only: [:show, :show_report, :start_survey]
 
 
 
   def index
-
+    render layout: 'layouts/cleantheme'
   end
 
   def show
+    redirect_to intro_survey_path(@survey) and return if @survey.deprecated?
 
-
-    @survey = Survey.find_by_slug(params["slug"])
-    @answer_session = AnswerSession.find_or_create(current_user, @survey)
-
-    survey_layout
+    render layout: 'layouts/cleantheme'
   end
 
-
-
   def show_report
-    @survey = Survey.find_by_slug(params["slug"])
-    @answer_session = AnswerSession.find_or_create(current_user, @survey)
-
-    render "show_report-new", layout: 'layouts/cleantheme' if current_user.beta_opt_in?
+    render layout: 'layouts/cleantheme'
   end
 
   def process_answer
@@ -38,35 +30,32 @@ class SurveysController < ApplicationController
 
     respond_to do |format|
       format.html do
+        ## Deprecated - to be removed in Version 6.0.0. Answers will only be processed using AJAX.
         if @answer_session.completed?
-          redirect_to survey_report_path(@answer_session)
+          #raise StandardError, @answer_session.survey.to_param
+          redirect_to survey_report_path(@answer_session.survey, @answer_session)
         else
           redirect_to ask_question_path(question_id: @answer.next_question.id, answer_session_id: @answer_session.id)
         end
+        ##
       end
       format.json { render json: {answer: @answer, value: @answer.string_value, errors: @answer.errors.full_messages } }
     end
 
   end
 
-  ## Deprecated
-
-
+  ## Deprecated - to be removed in Version 6.0.0d
   def start_survey
-    survey = Survey.find(params[:survey_id])
-    answer_session =  AnswerSession.current.find_by(user_id: current_user.id, survey_id: survey.id)
 
-    if answer_session
-      # Do not restart a survey
+    if @answer_session.completed?
       redirect_to surveys_path
     else
-      answer_session = AnswerSession.create(user_id: current_user.id, survey_id: survey.id)
-      redirect_to ask_question_path(question_id: survey.first_question_id, answer_session_id: answer_session.id)
+      redirect_to ask_question_path(question_id: @answer_session.next_question.id, answer_session_id: @answer_session.id)
     end
   end
 
   def intro
-    @survey = Survey.find(params[:survey_id])
+    @survey = Survey.find(params[:slug])
   end
 
 
@@ -82,17 +71,14 @@ class SurveysController < ApplicationController
       @answer = Answer.current.where(question_id: @question.id, answer_session_id: @answer_session.id).first || Answer.new(question_id: @question.id, answer_session_id: @answer_session.id)
     end
   end
-
+  ##
 
   private
 
-  def survey_layout
-    if current_user.beta_opt_in?
-      render layout: 'layouts/cleantheme'
+  def set_survey
+    @survey = Survey.where("slug = ? or id = ?", params["slug"], params["slug"].to_i).first
+    @answer_session = AnswerSession.find_or_create(current_user, @survey)
 
-    else
-      render layout: 'main'
-    end
   end
 
 end

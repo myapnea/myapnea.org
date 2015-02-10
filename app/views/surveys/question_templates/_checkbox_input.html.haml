@@ -11,15 +11,15 @@
       %h5.f300.reset-layout (Check all that apply)
     .input-container
       - answer_template = question.answer_templates.first
-      - secondary_template = question.answer_templates.last if question.answer_templates.length > 1
+      - secondary_templates = question.answer_templates[1..-1] if question.answer_templates.length > 1
       - answer_template.answer_options.distinct.each do |answer_option|
+        - targeted_template = secondary_templates.select{|t| t.target_answer_option == answer_option.new_value }.first if secondary_templates.present?
         .check-box-container
-          = check_box_tag "#{question.id}[#{answer_template.id}][]", answer_option.id, have_checked?(answer, answer_template, answer_option.id), id: "question_#{question.id}_#{answer_template.id}_#{answer_option.new_value}", data: { hotkey: answer_option.hotkey }, class: ("reveal-next-input" if secondary_template.target_answer_option == answer_option.new_value)
+          = check_box_tag "#{question.id}[#{answer_template.id}][]", answer_option.id, have_checked?(answer, answer_template, answer_option.id), id: "question_#{question.id}_#{answer_template.id}_#{answer_option.new_value}", data: { hotkey: answer_option.hotkey }, class: ("reveal-next-input" if targeted_template.present? )
           %label{ for: "question_#{question.id}_#{answer_template.id}_#{answer_option.new_value}" }
             %span.hotkey=answer_option.hotkey
             %p=answer_option.text
-          - if secondary_template and secondary_template.target_answer_option == answer_option.new_value
-            = text_field_tag "#{question.id}[#{secondary_template.id}]", answer.value[secondary_template.id], class: 'survey-short-text survey-text-small hidden-input', style: 'margin-bottom:20px;'
+          = render partial: "surveys/question_templates/secondary_input", locals: { targeted_template: targeted_template, answer_option: answer_option, question: question, answer: answer }
     .button-container
       .btn.btn-primary.next-question
         Go to next question

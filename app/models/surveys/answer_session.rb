@@ -210,6 +210,16 @@ class AnswerSession < ActiveRecord::Base
     last_answer.present?
   end
 
+  def next_question
+    if completed?
+      nil
+    elsif started?
+      last_answer.next_question
+    else
+      survey.first_question
+    end
+  end
+
   def reset_completion
     if first_answer.present?
       #connected_answers = all_answers

@@ -34,12 +34,10 @@ class SurveysControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-
-
   test "User can start a survey" do
     login(users(:social))
 
-    get :start_survey, survey_id: surveys(:survey_1).id
+    get :start_survey, slug: surveys(:survey_1)
 
     assert_redirected_to ask_question_path(question_id: surveys(:survey_1).first_question_id, answer_session_id: AnswerSession.most_recent(surveys(:survey_1).id, users(:social).id).id)
   end
@@ -47,7 +45,7 @@ class SurveysControllerTest < ActionController::TestCase
   test "User can view survey intro" do
     login(users(:social))
 
-    get :intro, survey_id: surveys(:survey_1).id
+    get :intro, slug: surveys(:survey_1)
 
     assert_equal surveys(:survey_1), assigns(:survey)
     refute assigns(:answer_session)
@@ -84,13 +82,13 @@ class SurveysControllerTest < ActionController::TestCase
     assert_not_nil assigns(:answer_session)
     assert_equal answer_options(:very_good).id, assigns(:answer_session).last_answer.answer_values.first.value
 
-    assert_redirected_to survey_report_path(assigns(:answer_session))
+    assert_redirected_to survey_report_path(slug: assigns(:answer_session).survey, answer_session_id: assigns(:answer_session))
   end
 
   test "User can view survey report" do
     login(users(:has_completed_survey))
 
-    get :show_report, slug: answer_sessions(:complete).survey.slug
+    get :show_report, slug: answer_sessions(:complete).survey
 
     assert_response :success
   end
@@ -98,7 +96,7 @@ class SurveysControllerTest < ActionController::TestCase
   test "Survey report does not break when survey not started" do
     login(users(:has_unstarted_survey))
 
-    get :show_report, slug: answer_sessions(:unstarted).survey.slug
+    get :show_report, slug: answer_sessions(:unstarted).survey
 
     assert_response :success
   end
@@ -106,7 +104,7 @@ class SurveysControllerTest < ActionController::TestCase
   test "Surveys cannot be restarted once they are completed without explicit warning" do
     login(users(:has_completed_survey))
 
-    get :start_survey, survey_id: surveys(:survey_1).id
+    get :start_survey, slug: surveys(:survey_1)
 
     assert_redirected_to surveys_path
 
@@ -115,7 +113,7 @@ class SurveysControllerTest < ActionController::TestCase
   test "Surveys cannot be restarted even when verified by user" do
     login(users(:has_completed_survey))
 
-    get :start_survey, survey_id: surveys(:survey_1).id, reset_survey: true
+    get :start_survey, slug: surveys(:survey_1), reset_survey: true
 
     assert_response 302
     assert_equal users(:has_completed_survey).complete_surveys.length, 1
@@ -125,15 +123,34 @@ class SurveysControllerTest < ActionController::TestCase
   test "Answer Session should be created only **after** user has progressed to the first question." do
     login(users(:social))
 
-    get :intro, survey_id: surveys(:survey_1).id
+    get :intro, slug: surveys(:survey_1)
 
     refute assigns(:answer_session)
     refute AnswerSession.most_recent(surveys(:survey_1), users(:social))
 
-    get :start_survey, survey_id: surveys(:survey_1).id
+    get :start_survey, slug: surveys(:survey_1)
 
     assert_redirected_to ask_question_path(question_id: surveys(:survey_1).first_question_id, answer_session_id: AnswerSession.most_recent(surveys(:survey_1).id, users(:social).id).id)
     assert AnswerSession.most_recent(surveys(:survey_1), users(:social))
 
+  end
+
+  # New
+
+  test "#show" do
+    login(users(:social))
+
+    get :show, slug: surveys(:survey_2)
+
+    assert_response :success
+    assert_equal surveys(:survey_2), assigns(:survey)
+  end
+
+  test "#index" do
+    login(users(:social))
+
+    get :index
+
+    assert_response :success
   end
 end

@@ -1,7 +1,7 @@
 module SurveysHelper
   def previous_question_path(answer)
     if answer.answer_session.first_answer.nil? or answer.answer_session.first_answer == answer
-      start_survey_path(survey_id: answer.answer_session.survey.id)
+      start_survey_path(slug: answer.answer_session.survey)
     elsif answer.previous_answer.present?
       ask_question_path(question_id: answer.previous_answer.question.id, answer_session_id: answer.answer_session.id)
     else
@@ -32,7 +32,7 @@ module SurveysHelper
         ask_question_path(answer_session_id: answer_session.id, question_id: survey.first_question.id)
       end
     else
-      intro_survey_path(survey_id: survey.id)
+      intro_survey_path(survey)
     end
   end
 

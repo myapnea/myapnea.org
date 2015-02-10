@@ -229,4 +229,9 @@ namespace :surveys do
 
   end
 
+  desc "Migrate old questions for a specific survey"
+  task :migrate_old_answers, [:survey_name] => :environment  do |t, args|
+    Survey.migrate_old_answers(args[:survey_name])
+  end
+
 end

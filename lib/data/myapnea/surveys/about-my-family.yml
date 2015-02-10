@@ -8,7 +8,7 @@ questions:
   slug: origin-country
   display_type: radio_input
   answer_templates:
-  - name: origin_country
+  - name: country_list
     data_type: answer_option_id
     display_type_id: 3
     answer_options:
@@ -33,7 +33,7 @@ questions:
     - text: Other country (please specify)
       hotkey: 7
       value: 7
-  - name: specified_origin
+  - name: specified_country
     data_type: text_value
     display_type_id: 1
     target_answer_option: 7
@@ -42,7 +42,7 @@ questions:
   slug: primary-language
   display_type: radio_input
   answer_templates:
-  - name: primary_language
+  - name: language_list
     data_type: answer_option_id
     display_type_id: 3
     answer_options:
@@ -72,7 +72,6 @@ questions:
   display_type: number_input
   answer_templates:
   - name: household_members
-    display_type_id: 6
     data_type: text_value
 - text: |
     How many persons less than 18 years of age usually live in your home?
@@ -80,7 +79,6 @@ questions:
   display_type: number_input
   answer_templates:
   - name: household_minors
-    display_type_id: 6
     data_type: text_value
 - text: |
     Have any of your biological family members been diagnosed with sleep apnea?
@@ -89,7 +87,6 @@ questions:
   answer_templates:
   - name: family_diagnoses
     data_type: answer_option_id
-    display_type_id: 4
     allow_multiple: true
     answer_options:
     - text: Mother
@@ -112,18 +109,14 @@ questions:
       value: 6
   - name: specified_brothers
     data_type: text_value
-    display_type_id: 1
     target_answer_option: 3
   - name: specified_sisters
     data_type: text_value
-    display_type_id: 1
     target_answer_option: 4
   - name: specified_sons
     data_type: text_value
-    display_type_id: 1
     target_answer_option: 5
   - name: specified_daughters
     data_type: text_value
-    display_type_id: 1
     target_answer_option: 6
 

@@ -8,9 +8,8 @@ questions:
   slug: marital-status
   display_type: radio_input
   answer_templates:
-  - name: marital_status
+  - name: marital_status_list
     data_type: answer_option_id
-    display_type_id: 3
     answer_options:
     - text: Now married
       hotkey: A
@@ -38,9 +37,8 @@ questions:
   slug: daily-activities
   display_type: radio_input
   answer_templates:
-  - name: daily_activities
+  - name: daily_activities_list
     data_type: answer_option_id
-    display_type_id: 3
     answer_options:
     - text: Working full time (day shifts)
       hotkey: A
@@ -77,9 +75,8 @@ questions:
   slug: affording-basics
   display_type: radio_input
   answer_templates:
-  - name: affording_basics
+  - name: difficulty_scale
     data_type: answer_option_id
-    display_type_id: 3
     answer_options:
     - text: Very hard
       hotkey: 1
