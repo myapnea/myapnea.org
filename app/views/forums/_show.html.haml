@@ -12,6 +12,14 @@
       .panel-heading
         %h3.f300
           = link_to forum.name, forum
+    -else
+      .panel-heading.centered-text.action-bar-forum-mobile
+        - if current_user
+          = link_to 'Start a New Topic', new_forum_topic_path(@forum), class: 'btn btn-primary btn-forum-header'
+        - else
+          = link_to 'Sign in to Start a New Topic', new_forum_topic_path(@forum), class: 'btn btn-primary btn-forum-header'
+        - if current_user and current_user.has_role? :owner
+          = link_to 'Edit Forum', edit_forum_path(@forum), class: 'btn btn-primary btn-forum-header'
     .panel-body
       %table.table
         %col{ width: "50px" }
