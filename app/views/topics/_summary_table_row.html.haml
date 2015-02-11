@@ -19,7 +19,8 @@
           Pending Review
         - if topic.status == 'spam'
           Marked as Spam
-
+    %td.text-muted{ class: "#{topic.pinned? ? "f500" : "f300"}" }
+      = topic.posts.count
     %td.text-muted.hidden-xs{ class: "#{topic.pinned? ? "f500" : "f300"}" }
       %div{ style: 'white-space:nowrap;overflow-x:hidden;max-width:150px' }
         = image_tag post.user.photo_url, size: '18x18'
