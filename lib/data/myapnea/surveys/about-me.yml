@@ -6,7 +6,7 @@ questions:
 - text: |
     What is your date of birth?
   slug: date-of-birth
-  display_type: custom_date_input
+  display_type: date_input
   answer_templates:
   - name: birth_date
     data_type: text_value

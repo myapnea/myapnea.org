@@ -84,7 +84,7 @@ gem 'merit'
 gem 'faraday'
 
 # Development
-group :development do
+group :development, :integration_test do
   gem "better_errors"
   gem "meta_request"
   gem "binding_of_caller"
