@@ -226,7 +226,8 @@
   # Attach change event handler to everything but radio button inputs. Radio button inputs are changed by JS, so each time
   # the :checked property is changed, handleChangedValue has to be called.
   $("input").change (event) ->
-    handleChangedValue($(event.target))
+    if $("input").parents(".survey-container").length
+      handleChangedValue($(event.target))
 
 
   # Custom date input

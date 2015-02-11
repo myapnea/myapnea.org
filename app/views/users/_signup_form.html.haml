@@ -11,7 +11,6 @@
           %span#privacy-policy.lighter-blue{ data: { toggle: 'modal', target: '#myModal' } } See our privacy policy.
         - else # current_page?(new_user_registration_path)
           = link_to 'See our privacy policy.', privacy_path, target: '_blank'
-
       = form_for(resource, url: registration_path(resource), class: 'form-horizontal', method: :post) do |f|
         - if resource.errors.any?
           .bs-callout.bs-callout-danger#error_explanation

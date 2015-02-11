@@ -103,7 +103,7 @@ class RegistrationsControllerTest < ActionController::TestCase
     request.env["devise.mapping"] = Devise.mappings[:user]
 
     assert_difference('User.count', 0) do
-      post :create, user: { first_name: '', last_name: '', email: 'new_provider@example.com', password: 'password', user_type: 'provider' }
+      post :create, user: { first_name: '', last_name: '', email: 'new_provider@example.com', password: 'password', provider: true }
     end
 
     assert_not_nil assigns(:user)

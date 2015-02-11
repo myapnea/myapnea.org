@@ -78,6 +78,12 @@ class StaticControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should get registration user_type page for logged in user" do
+    login(users(:user_1))
+    get :registration0
+    assert_response :success
+  end
+
   test "should get registration privacy page for logged in user" do
     login(users(:user_1))
     get :registration1
