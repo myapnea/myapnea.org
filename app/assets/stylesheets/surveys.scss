@@ -1,11 +1,3 @@
-.redborder {
-  border: 5px solid red !important;
-}
-
-.blackbackground {
-  background: black !important;
-}
-
 #answer-session {
   .rate-question {
     position: relative;
@@ -155,9 +147,9 @@ input[type=date] {
 
 .input-container .label-med {
   width:45%;
-  margin-left: 2.5%;
-  margin-right:2.5%;
-  float:left;
+  margin:4px 4px;
+  padding: 5px;
+  float: left;
 }
 
 .input-container .label-large {
@@ -366,7 +358,12 @@ $great: #78c679;
 }
 .reveal-next-input:checked ~ .hidden-input {
   display: inline-block;
-  min-width:50%;
+  margin: 7px 15%;
+  width: 70%;
+  float:left;
+}
+
+.reveal-next-input:checked ~ .hidden-input.hidden-input-md {
 }
 
 

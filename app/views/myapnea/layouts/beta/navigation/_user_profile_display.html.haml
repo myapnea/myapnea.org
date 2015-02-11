@@ -8,7 +8,7 @@
     %span.glyphicon.glyphicon-cog{ style: 'margin-bottom:10px' }
     Settings
   %br
-  = link_to main_app.destroy_user_session_path, style: 'color:white; color:rgba(255,255,255,.8); text-decoration:none;', class: 'f300', :method => :delete do
+  = link_to destroy_user_session_path, style: 'color:white; color:rgba(255,255,255,.8); text-decoration:none;', class: 'f300', :method => :delete do
     %i.fa.fa-sign-out{ style: 'margin-bottom:10px' }
     Sign out
   %br

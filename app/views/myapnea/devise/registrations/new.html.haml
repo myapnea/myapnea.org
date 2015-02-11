@@ -1,4 +1,4 @@
-- if params[:user] and params[:user][:user_type] == 'provider'
+- if params[:user] and params[:user][:provider]
   = render partial: 'providers/signup_form'
 - else
   = render partial: 'users/signup_form'

@@ -12,6 +12,12 @@
   margin-right: 2%;
 }
 
+.footer .share-icons-md {
+  height:40px;
+  width:40px;
+  margin:5px;
+}
+
 .share-icons-animate {
   position:relative;
 }
@@ -41,5 +47,8 @@ a.u-voice:hover {
   .share-icons-md {
     position:relative;
     top:10px;
+  }
+  .footer .share-icons-md {
+    top: 0px;
   }
 }

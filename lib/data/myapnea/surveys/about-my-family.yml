@@ -49,7 +49,6 @@ questions:
     - text: English
       hotkey: A
       value: 1
-      display_class: redborder
     - text: Spanish
       hotkey: B
       value: 2

@@ -1,13 +1,50 @@
 - unless (params[:action] == 'home' and !current_user) or params[:action] == 'providers' or @provider
   .footer
+    .col-sm-3.hidden-xs
+      %ul
+        %p &copy; 2015 MyApnea.Org
+        %p.address Division of Sleep Medicine
+        %p.address Brigham and Women's Hospital
+        %p.address 221 Longwood Avenue
+        %p.address Boston, MA 02115
+    .col-sm-2.col-xs-3
+      %ul
+        %p MyApnea
+        %li= link_to 'Learn', learn_path
+        %li= link_to 'Community', social_path
+        %li= link_to 'Forums', forums_path
+        %li= link_to 'Research', research_topics_path
+        %li= link_to 'Surveys', surveys_path
+        %li= link_to 'Providers', providers_path
+    .col-sm-2.col-xs-3
+      %ul
+        %p.small About
+        %li= link_to 'Team', team_path
+        %li= link_to 'Advisors', advisory_path
+        %li= link_to 'Partners', partners_path
+        %li= link_to 'Privacy Policy', privacy_path
+        %li= link_to 'Terms of Access', terms_and_conditions_path
+        %li= link_to 'FAQs', faqs_path
+    .col-sm-2.col-xs-6
+      %ul
+        %p.f300.small{style: 'margin-left:5px;'} Connect
+        = link_to image_tag('myapnea/icons/facebook_icon.png', class: 'share-icons-md'), "http://www.facebook.com/MyApnea"
+        = link_to image_tag('myapnea/icons/twitter_icon.png', class: 'share-icons-md'), 'http://www.twitter.com/myapneaorg'
+        = link_to image_tag('myapnea/icons/email_icon.png', class: 'share-icons-md'), "mailto:support@myapnea.org"
+    .col-md-2.col-md-offset-1.col-sm-3.col-sm-offset-0.hidden-xs
+      = link_to image_tag("myapnea/welcome/img-small/pcornet_logo_3x1.png", class: "partners-img-footer img-responsive", id: "partner-PCORnet"), 'http://www.pcornet.org/'
+      = link_to image_tag("myapnea/welcome/img-small/bwh-logo_3x1.png", class: "partners-img-footer img-responsive", id: "partner-BWH"), 'http://www.brighamandwomens.org/'
+      = link_to image_tag("myapnea/welcome/img-small/asaa-logo_white_3x1.png", class: 'partners-img-footer img-responsive', id: 'partner-AASA'), 'http://www.sleepapnea.org/'
+- if false
+  .footer
     .col-sm-3.col-xs-5.primary-orange
       %ul
         %li= link_to 'FAQs', faqs_path
         %li= link_to 'Team', team_path
         %li= link_to'Privacy', privacy_path
     .col-sm-3.col-xs-7
-      = image_tag "myapnea/welcome/img-small/asaa_logo.jpg", class: 'partners-img img-responsive', id: 'partner-AASA'
+      = image_tag "myapnea/welcome/img-small/asaa_logo.jpg", class: 'partners-img-footer img-responsive', id: 'partner-AASA'
     .col-sm-2.col-xs-7
-      = image_tag "myapnea/welcome/img-small/pcornet_logo_3x1.png", class: "partners-img img-responsive", id: "partner-PCORnet"
+      = image_tag "myapnea/welcome/img-small/pcornet_logo_3x1.png", class: "partners-img-footer img-responsive", id: "partner-PCORnet"
     .col-sm-2.col-xs-7
-      = image_tag "myapnea/welcome/img-small/bwh-logo_3x1.png", class: "partners-img img-responsive", id: "partner-BWH"
+      = image_tag "myapnea/welcome/img-small/bwh-logo_3x1.png", class: "partners-img-footer img-responsive", id: "partner-BWH"

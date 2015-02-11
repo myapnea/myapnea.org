@@ -6,7 +6,7 @@ class ProvidersController < ApplicationController
 
 
   def index
-    @providers = User.where(user_type: 'provider').where.not(slug: [nil,''], provider_name: [nil,'']).page(params[:page]).per( 8 )
+    @providers = User.where(provider: true).where.not(slug: [nil,''], provider_name: [nil,'']).page(params[:page]).per( 8 )
   end
 
 

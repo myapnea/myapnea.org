@@ -6,13 +6,14 @@
 - unless cookies[:acknowledged_beta_forums] == '1'
   - if current_user and !current_user.beta_opt_in?
     = render partial: 'layouts/beta/alerts/forums_opt_in'
-= form_tag forums_path, method: :get, class: 'form-inline', style: 'margin-bottom:20px' do
-  .input-group
-    = text_field_tag 's', params[:s], class: 'form-control'
-    %span.input-group-btn
-      = submit_tag 'Search', class: 'btn btn-primary', name: nil
-      = link_to 'Reset', forums_path, class: 'btn btn-default'
-      = link_to 'Pending Review', forums_path(status: (params[:status] == 'pending_review' ? nil : 'pending_review')), class: "btn btn-default #{'active' if params[:status] == 'pending_review'}" if current_user and current_user.has_role? :moderator
+.row.reset-layout{ style: 'margin-bottom:10px;'}
+  = form_tag forums_path, method: :get, class: 'form-inline col-md-12 search-bar-forum' do
+    .input-group
+      = text_field_tag 's', params[:s], class: 'form-control'
+      %span.input-group-btn{ style: 'width: 1%;' }
+        = submit_tag 'Search', class: 'btn btn-primary', name: nil
+        -#= link_to 'Reset', @forum, class: 'btn btn-default'
+        = link_to 'Pending Review', forums_path(status: (params[:status] == 'pending_review' ? nil : 'pending_review')), class: "btn btn-default #{'active' if params[:status] == 'pending_review'}" if current_user and current_user.has_role? :moderator
 
 - @forums.order(:position).each do |forum|
   = render partial: 'forums/show', locals: { forum: forum, topic_limit: 10 }
