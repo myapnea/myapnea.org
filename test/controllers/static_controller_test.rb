@@ -84,6 +84,12 @@ class StaticControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should get registration provider profile page for logged in provider" do
+    login(users(:provider_1))
+    get :registration1_providers
+    assert_response :success
+  end
+
   test "should get registration privacy page for logged in user" do
     login(users(:user_1))
     get :registration1

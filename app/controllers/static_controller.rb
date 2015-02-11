@@ -76,6 +76,10 @@ class StaticController < ApplicationController
     render layout: 'layouts/cleantheme'
   end
 
+  def registration1_providers
+    render layout: 'layouts/cleantheme'
+  end
+
   def registration2
     render layout: 'layouts/cleantheme'
   end
