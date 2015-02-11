@@ -222,6 +222,41 @@
 
 ## Rank the research
 
+1. Sign in with `tommyboy@gmail.com`, `password`
+2. Go to 'Rank the Research' page
+3. Check display:
+- [ ] Research questions should be randomized
+- [ ] Refreshing the page should show a new random order
+- [ ] Clicking on `Read more`
+   - [ ] Should **only** display for questions that contain extra details
+   - [ ] Should show image of user who submitted question, along with extra details
+   - [ ] Should display `Read less` after being clicked
+- [ ] Clicking on `Read less`
+   - [ ] Should **only** display after user clicks `Read more`
+   - [ ] Should hide image of user who submitted question, along with extra details
+
+### Voting
+- [ ] User should vote on question by clicking the `thumbs up` icon
+   ** If user has votes remaining
+      - [ ] Icon should animate and become blue
+      - [ ] Progress bar should appear that displays percentage of votes for that specific topic
+      - [ ] Vote counter in user_stats on right navigation should increase by 1
+   ** If user does not have any votes remaining
+      - [ ] Icon **should not** change
+      - [ ] Progress bar should appear that displays percentage of votes for that specific topic
+      - [ ] Alert displays explaining why the user's vote was not cast
+
+### Submitting new questions
+- [ ] Clicking on `add a research question` should redirect to research_topics/new
+- [ ] Fill out form, testing for missing fields and for invalid fields
+   - [ ] Attributes:
+      - [ ] Research question title
+      - [ ] Research question description
+   - [ ] Make sure clicking `Submit` and hitting `Enter` cause the form to submit.
+   - [ ] Make sure filled in data is persisted when validation fails
+- [ ] New research question **should not** display (must wait to be accepted by moderator)
+   - [ ] Messaging should explain why new topic will not yet be displayed
+
 
 
 ## Static Pages
