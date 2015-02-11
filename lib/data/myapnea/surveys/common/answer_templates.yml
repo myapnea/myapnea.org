@@ -313,6 +313,6 @@
 ## New Answer Templates
 - id: 10031
   name: birth_date
-  display_type: date_input
+  display_type: custom_date_input
   answer_option_ids:
   -

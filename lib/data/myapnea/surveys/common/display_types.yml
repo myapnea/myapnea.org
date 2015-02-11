@@ -22,6 +22,10 @@
   name: date
   tag: input
   input_type: date
+- id: 10
+  name: custom_date
+  tag: input
+  input_type: text
 - id: 6
   name: number
   tag: input
