@@ -55,6 +55,10 @@ class StaticController < ApplicationController
     render layout: 'layouts/cleantheme'
   end
 
+  def sitemap
+    render layout: 'layouts/cleantheme'
+  end
+
   def provider_page
     @provider = User.current.providers.find_by_slug(params[:slug])
     if @provider and @provider.slug.present?

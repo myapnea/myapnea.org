@@ -73,6 +73,11 @@ class StaticControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should get sitemap" do
+    get :sitemap
+    assert_response :success
+  end
+
   test "should get registration privacy page for logged in user" do
     login(users(:user_1))
     get :registration1

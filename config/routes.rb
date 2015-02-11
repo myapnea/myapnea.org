@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get 'research'  => 'static#research'
   get 'theme'     => 'static#theme'
   get 'version'   => 'static#version'
+  get 'sitemap'   => 'static#sitemap'
 
   # Registration flow
   get 'get-started' => 'static#registration0'
