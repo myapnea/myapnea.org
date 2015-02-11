@@ -3,6 +3,11 @@
 - @survey.all_questions_descendants.each do |question|
   = render partial: "surveys/question_templates/#{question.display_type}", locals: { question: question, answer_session: @answer_session, answer: Answer.first_or_new(question, @answer_session) }
 
+.survey-container
+  .panel.centered-text{ style: "padding: 20px;"}
+    %p.lead{ style: 'white-space: pre-wrap;' }
+      = @survey.description.html_safe
+
 / End of Survey
 .survey-container
   .panel.centered-text{ style: "padding: 20px;"}

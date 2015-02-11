@@ -1,6 +1,15 @@
 name: About Me
 slug: about-me
-description:
+description: |+
+  Certain factors about who you are may make it more or less likely for you to have sleep apnea. Some factors that you were born with may influence your risk of sleep apnea such as your facial structure and body composition while other factors, such as your income and education, may influence your ability to receive health care services.
+
+  Members of either sex can develop sleep apnea. Men are 2-to-3 times more likely to have sleep apnea, but as women reach menopause their risk increases.
+
+  Sleep apnea occurs in all races of people. There appear, however, to be racial differences in the occurrence of sleep apnea. For example, data show that sleep apnea is more common among African-American and Hispanic men.
+
+  It is possible to develop sleep apnea at any age. Children, from newborns to adolescents, may develop sleep apnea along with adults. Sleep apnea is typically diagnosed between the ages of 40 and 60 years old. Several studies have found that 60% or more of persons over 65 years old have sleep apnea.
+
+  Years in school and what you may earn does not directly determine whether or not you will have sleep apnea. However, education and income may affect whether or not you have access to health insurance and therefore medical care. People who can regularly access medical services are more likely to have their sleep apnea diagnosed early and therefore receive the treatment they may need.
 status: show
 questions:
 - text: |

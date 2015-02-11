@@ -1,6 +1,7 @@
 survey_1:
   name_en: Deprecated Survey
   first_question: q1
+  slug: deprecated-survey
   status: show
 survey_2:
   name_en: New Survey
