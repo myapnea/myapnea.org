@@ -78,5 +78,13 @@ test:
 #
 # You can use this database configuration with:
 #
+
+integration_test:
+  <<: *default
+  database: myapnea_integration_test
+  username: myapnea
+  password: myapnea
+  host: localhost
+
 production:
   url: <%= ENV['database_url'] %>
