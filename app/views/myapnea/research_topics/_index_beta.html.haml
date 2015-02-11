@@ -24,7 +24,7 @@
 - if current_user
   .panel.panel-rank-research
     %table.table
-      - @research_topics.each do |research_topic|
+      - @research_topics.shuffle.each do |research_topic|
         %tr{ id: "#{'update_link'+research_topic.id.to_s}" }
           = render partial: 'votes/voting_link', locals: { research_topic: research_topic}
 
