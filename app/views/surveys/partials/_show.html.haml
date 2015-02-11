@@ -6,7 +6,7 @@
 .survey-container
   .panel.centered-text{ style: "padding: 20px;"}
     %p.lead{ style: 'white-space: pre-wrap;' }
-      = @survey.description.html_safe
+      = @survey.description.html_safe if @survey.description.present?
 
 / End of Survey
 .survey-container

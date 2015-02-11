@@ -131,97 +131,99 @@
 
   # Respond to keystrokes
   $("body").keydown (e) ->
-    # Prevent default up and down
-    if e.keyCode is 38 or e.keyCode is 40
-      e.preventDefault()
-    # Prevent default enter
-    if e.keyCode is 13
-      e.preventDefault()
-    # Specifically targeting custom date input
-    if $(".survey-container.active").find(".survey-text-date").is(":focus")
-      if e.metaKey
-        return
-      else if e.keyCode is 13
-        # enter key
-        $(".survey-container.active").find(".survey-text-date").blur()
-        return
-      else if e.keyCode is 46 or e.keyCode is 8
-        # delete key
-        rewriteDatePlaceholder(e.keyCode)
-        return
-      else if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) is not -1) or (e.keyCode is 65 and e.ctrlKey is true) or (e.keyCode >= 35 and e.keyCode <= 40)
-        return
-      else if (/^[a-zA-Z]*$/.test(+String.fromCharCode(e.keyCode)))
-        # prevent letter from returning
+    if $('.survey-container').length
+      # Prevent default up and down
+      if e.keyCode is 38 or e.keyCode is 40
         e.preventDefault()
-      else if (/^[0-9]{1,10}$/.test(+String.fromCharCode(e.keyCode)))
-        # allow number to be written
+      # Prevent default enter
+      if e.keyCode is 13
         e.preventDefault()
-        rewriteDatePlaceholder(e.keyCode)
+      # Specifically targeting custom date input
+      if $(".survey-container.active").find(".survey-text-date").is(":focus")
+        if e.metaKey
+          return
+        else if e.keyCode is 13
+          # enter key
+          $(".survey-container.active").find(".survey-text-date").blur()
+          return
+        else if e.keyCode is 46 or e.keyCode is 8
+          # delete key
+          rewriteDatePlaceholder(e.keyCode)
+          return
+        else if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) is not -1) or (e.keyCode is 65 and e.ctrlKey is true) or (e.keyCode >= 35 and e.keyCode <= 40)
+          return
+        else if (/^[a-zA-Z]*$/.test(+String.fromCharCode(e.keyCode)))
+          # prevent letter from returning
+          e.preventDefault()
+        else if (/^[0-9]{1,10}$/.test(+String.fromCharCode(e.keyCode)))
+          # allow number to be written
+          e.preventDefault()
+          rewriteDatePlaceholder(e.keyCode)
 
   # Respond to completed keystrokes
   $("body").keyup (e) ->
-    # don't allow key up on custom date input
-    if $(".survey-container.active").find(".survey-text-date").is(":focus")
-      return
-    # containers that can progress with a number input
-    if $(".survey-container.active").hasClass "multiple-question-parts"
-      inputs = $(".survey-container.active .panel .multiple-question-container.current").find("input:radio")
-      if e.keyCode is 38
-        e.preventDefault()
-        assignMultipleQuestion(false, true)
-      else if e.keyCode is 40
-        e.preventDefault()
-        assignMultipleQuestion(true, false)
-      else
-        inputs.each (index) ->
-          key = $(inputs[index]).data("hotkey").toString().charCodeAt(0)
-          if e.keyCode is key
-            $(inputs[index]).prop "checked", true
-            handleChangedValue($(inputs[index]))
-            assignMultipleQuestion(true, false)
-    else if e.keyCode is 38
-      e.preventDefault()
-      assignQuestion(false, true)
-    else if e.keyCode is 40
-      e.preventDefault()
-      assignQuestion(true, false)
-    # Respond to actual inputs
-    else
-      # Progress to next question for enter
-      if $(".survey-container.active").hasClass "progress-w-enter"
-        if e.keyCode is 13
-          assignQuestion(true, false)
-      # Progress to next question if applicable
-      if $(".survey-container.active").hasClass "progress-w-hotkey"
-        unless $(".survey-container.active .panel .hidden-input").is ":focus"
-          inputs = $(".survey-container.active").find("input:radio")
-          inputs.each (index) ->
-            key = $(this).data("hotkey").toString().charCodeAt(0)
-            if e.keyCode is key
-              $(inputs[index]).prop "checked", true
-              handleChangedValue($(inputs[index]))
-              if $(inputs[index]).hasClass "reveal-next-input"
-                  e.preventDefault()
-                  changeFocusDirect($(this), $(this).nextAll('.hidden-input').first())
-              else
-                assignQuestion(true, false)
-      # Check answer option if applicable
-      else if $(".survey-container.active").hasClass "check-w-hotkey"
-        unless $(".survey-container.active .panel .hidden-input").is ":focus"
-          inputs = $(".survey-container.active .panel .input-container").find("input:checkbox")
+    if $('.survey-container').length
+      # don't allow key up on custom date input
+      if $(".survey-container.active").find(".survey-text-date").is(":focus")
+        return
+      # containers that can progress with a number input
+      if $(".survey-container.active").hasClass "multiple-question-parts"
+        inputs = $(".survey-container.active .panel .multiple-question-container.current").find("input:radio")
+        if e.keyCode is 38
+          e.preventDefault()
+          assignMultipleQuestion(false, true)
+        else if e.keyCode is 40
+          e.preventDefault()
+          assignMultipleQuestion(true, false)
+        else
           inputs.each (index) ->
             key = $(inputs[index]).data("hotkey").toString().charCodeAt(0)
             if e.keyCode is key
-              if $(inputs[index]).prop "checked"
-                $(inputs[index]).prop "checked", false
-                handleChangedValue($(inputs[index]))
-              else
+              $(inputs[index]).prop "checked", true
+              handleChangedValue($(inputs[index]))
+              assignMultipleQuestion(true, false)
+      else if e.keyCode is 38
+        e.preventDefault()
+        assignQuestion(false, true)
+      else if e.keyCode is 40
+        e.preventDefault()
+        assignQuestion(true, false)
+      # Respond to actual inputs
+      else
+        # Progress to next question for enter
+        if $(".survey-container.active").hasClass "progress-w-enter"
+          if e.keyCode is 13
+            assignQuestion(true, false)
+        # Progress to next question if applicable
+        if $(".survey-container.active").hasClass "progress-w-hotkey"
+          unless $(".survey-container.active .panel .hidden-input").is ":focus"
+            inputs = $(".survey-container.active").find("input:radio")
+            inputs.each (index) ->
+              key = $(this).data("hotkey").toString().charCodeAt(0)
+              if e.keyCode is key
                 $(inputs[index]).prop "checked", true
                 handleChangedValue($(inputs[index]))
-              if $(inputs[index]).hasClass "reveal-next-input"
-                e.preventDefault()
-                changeFocusDirect($(this), $(this).nextAll('.hidden-input').first())
+                if $(inputs[index]).hasClass "reveal-next-input"
+                    e.preventDefault()
+                    changeFocusDirect($(this), $(this).nextAll('.hidden-input').first())
+                else
+                  assignQuestion(true, false)
+        # Check answer option if applicable
+        else if $(".survey-container.active").hasClass "check-w-hotkey"
+          unless $(".survey-container.active .panel .hidden-input").is ":focus"
+            inputs = $(".survey-container.active .panel .input-container").find("input:checkbox")
+            inputs.each (index) ->
+              key = $(inputs[index]).data("hotkey").toString().charCodeAt(0)
+              if e.keyCode is key
+                if $(inputs[index]).prop "checked"
+                  $(inputs[index]).prop "checked", false
+                  handleChangedValue($(inputs[index]))
+                else
+                  $(inputs[index]).prop "checked", true
+                  handleChangedValue($(inputs[index]))
+                if $(inputs[index]).hasClass "reveal-next-input"
+                  e.preventDefault()
+                  changeFocusDirect($(this), $(this).nextAll('.hidden-input').first())
 
   # Attach change event handler to everything but radio button inputs. Radio button inputs are changed by JS, so each time
   # the :checked property is changed, handleChangedValue has to be called.

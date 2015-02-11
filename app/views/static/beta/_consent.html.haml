@@ -15,7 +15,7 @@
         #print-area
           = markdown consent_page_content['consent']
           - if current_user.present? and !current_user.accepted_consent_at.present?
-            = markdown "If you wish to be in this study, please click the button that says **“I have read the consent”**"
+            = markdown "If you wish to be in this study, please click the button that says **“I accept”**"
         %br/
         = link_to "#", id: "print-link", class: 'print-link pull-right btn btn-xs btn-primary' do
           %i.fa.fa-print

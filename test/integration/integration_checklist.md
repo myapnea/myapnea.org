@@ -86,9 +86,6 @@
 
 
 ## Surveys
-<<<<<<< HEAD
-##
-=======
 Test using:
 - [ ] Internet explorer
 - [ ] Firefox
@@ -131,4 +128,3 @@ Test using:
 
 
 
->>>>>>> 5-0-dev
