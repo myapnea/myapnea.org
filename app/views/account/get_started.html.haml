@@ -1,47 +1,48 @@
-= form_for current_user, url: set_user_type_path do |f|
+= form_for current_user, html: { data: { object: 'inline-validation-checklist' } }, url: set_user_type_path do |f|
   .survey-container.check-w-hotkey
     .panel
       .question-container
         %h3.f300 In the realm of sleep apnea, how do you best describe yourself?
         %h5.f300.reset-layout (Check all that apply)
       .input-container
+        .col-sm-6.hidden{ data: { object: 'checklist--error' } }
         .check-box-container
-          = f.check_box :adult_diagnosed, data: { hotkey: 'A' }
+          = f.check_box :adult_diagnosed, data: { hotkey: 'A', object: 'inline-validation-item', name: 'adult-diagnosed' }
           = f.label :adult_diagnosed do
             %span.hotkey A
             %p
               %span.f500 Adult who has been diagnosed with sleep apnea:
               An adult (18yrs+) who has been professionally diagnosed with sleep apnea.
         .check-box-container
-          = f.check_box :adult_at_risk, data: { hotkey: 'B' }
+          = f.check_box :adult_at_risk, data: { hotkey: 'B', object: 'inline-validation-item', name: 'adult-at-risk' }
           = f.label :adult_at_risk do
             %span.hotkey B
             %p
               %span.f500 Adult who is at-risk of sleep apnea:
               An adult (18+yrs) who has a concern that they may have undiagnosed sleep apnea based on symptoms of sleep apnea (such as snoring, daytime sleepiness, fatigue, poor sleep), related health conditions (such as high blood pressure, diabetes, obesity), or a family history of sleep apnea.
         .check-box-container
-          = f.check_box :caregiver_adult, data: { hotkey: 'C' }
+          = f.check_box :caregiver_adult, data: { hotkey: 'C', object: 'inline-validation-item', name: 'caregiver-adult' }
           = f.label :caregiver_adult do
             %span.hotkey C
             %p
               %span.f500 Caregiver of adult diagnosed with or at-risk of sleep apnea:
               A caregiver of an adult (18+yrs) with professionally diagnosed sleep apnea or who has a concern that they may have undiagnosed sleep apnea.
         .check-box-container
-          = f.check_box :caregiver_child, data: { hotkey: 'D' }
+          = f.check_box :caregiver_child, data: { hotkey: 'D', object: 'inline-validation-item', name: 'caregiver-child' }
           = f.label :caregiver_child do
             %span.hotkey D
             %p
               %span.f500 Caregiver of child(ren) diagnosed with or at-risk of sleep apnea:
               A caregiver of at least one minor (<18yrs) either with diagnosed sleep apnea or who is at-risk of sleep apnea. By “at risk” we mean a concern that one or more children may have undiagnosed sleep apnea based on concerns over symptoms of sleep apnea (such as snoring, daytime sleepiness, fatigue, poor sleep, behavioral issues), related health conditions (such as diabetes or obesity), or  a family history of sleep apnea.
         .check-box-container
-          = f.check_box :provider, data: { hotkey: 'E' }
+          = f.check_box :provider, data: { hotkey: 'E', object: 'inline-validation-item', name: 'provider' }
           = f.label :provider do
             %span.hotkey E
             %p
               %span.f500 Provider:
               A professional member of the sleep community who can refer or treat people with sleep apnea.
         .check-box-container
-          = f.check_box :researcher, data: { hotkey: 'F' }
+          = f.check_box :researcher, data: { hotkey: 'F', object: 'inline-validation-item', name: 'researcher' }
           = f.label :researcher do
             %span.hotkey F
             %p
