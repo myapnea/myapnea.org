@@ -29,6 +29,7 @@
     - Process is simple and informative of why it is important
 - **Forum Changes**
   - Added indication of additional posts on forum index and pagination on inidividual forums
+  - Forum post anchors now correctly offset based on the top navigation bar
 - **Survey Model**
   - Slugs added for surveys
   - Answer options now have hotkeys and values
