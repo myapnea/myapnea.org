@@ -88,7 +88,7 @@ class UsersControllerTest < ActionController::TestCase
     assert_redirected_to root_path
   end
 
-  test "should not edit user for loggout out user" do
+  test "should not edit user for logout out user" do
     get :edit, id: @user
     assert_nil assigns(:user)
     assert_redirected_to new_user_session_path

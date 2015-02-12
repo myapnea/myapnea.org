@@ -198,7 +198,7 @@ class AccountControllerTest < ActionController::TestCase
   test "should not update account for regular user with invalid user information" do
     login(@regular_user)
 
-    patch :update, user: { year_of_birth: 1899 }
+    patch :update, user: { email: "" }
 
     assert_equal :user_info, assigns(:update_for)
 
