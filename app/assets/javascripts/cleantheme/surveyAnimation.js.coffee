@@ -38,7 +38,7 @@
   # Change focus
   @changeFocus = (question1, question2) ->
     $(question1).find("input").blur()
-    $(question2).find("input").focus()
+    $(question2).find("input").first().focus()
 
   @changeFocusDirect = (input1, input2) ->
     $(input1).blur()
