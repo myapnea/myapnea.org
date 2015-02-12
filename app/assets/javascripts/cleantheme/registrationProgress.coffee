@@ -1,4 +1,4 @@
-@registrationUX = () ->
+@registrationUXReady = () ->
   $(".circle-progress").click (e) ->
     circle = $(this)
     if circle.prev().hasClass "track-progress"

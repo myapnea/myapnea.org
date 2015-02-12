@@ -54,3 +54,4 @@
 //= require video_controls
 //= require cleantheme/surveyAnimation
 //= require cleantheme/registrationProgress
+//= require validation
