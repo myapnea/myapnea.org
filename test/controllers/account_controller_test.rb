@@ -109,7 +109,7 @@ class AccountControllerTest < ActionController::TestCase
     post :privacy_policy, privacy_policy_read: true
     assert @regular_user.reload.ready_for_research?
 
-    assert_redirected_to home_path
+    assert_redirected_to surveys_path
   end
 
   test "should mark privacy and then consent as read for user" do
@@ -131,7 +131,7 @@ class AccountControllerTest < ActionController::TestCase
     post :consent, consent_read: true
     assert @regular_user.reload.ready_for_research?
 
-    assert_redirected_to home_path
+    assert_redirected_to surveys_path
   end
 
   test "should mark privacy policy as read and go to consent for user if consent is not read" do

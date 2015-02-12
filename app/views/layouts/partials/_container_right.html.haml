@@ -1,8 +1,7 @@
 #container-right.no-js
   #container-right-fixed
     -if current_user
-      = render partial: 'layouts/alerts/right_nav_opt_in'
-      .row.reset-layout{ style: 'padding-top: 20px;' }
+      .row.reset-layout{ style: 'padding-top: 10px;' }
         = render partial: 'layouts/navigation/user_profile_display'
     -else
       .col-sm-12{ style: 'padding-top: 20px;' }

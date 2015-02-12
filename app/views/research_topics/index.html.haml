@@ -1,10 +1,6 @@
 .content-main-header
   %h1.f300 Rank the Research
 
-- unless cookies[:acknowledged_beta_rank_the_research] == '1'
-  - if current_user and !current_user.beta_opt_in?
-    = render partial: 'layouts/alerts/rank_the_research_opt_in'
-
 .panel
   .panel-heading
     %h4.f300
