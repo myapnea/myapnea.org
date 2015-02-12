@@ -1,12 +1,23 @@
+.survey-container.progress-w-enter
+  .panel.centered-text{ style: "padding: 20px;" }
+    .question-container{ style: 'margin-bottom: 50px;' }
+      %h1.f300
+        Welcome to the
+        %span.darker-blue
+          = @survey.name.html_safe if @survey.name.present?
+        survey!
+      %p.lead{ style: 'white-space:pre-line;' }
+        = @survey.description.html_safe if @survey.description.present?
+    .button-container
+      .btn.btn-primary.next-question
+        Begin Survey
+      %p.text-muted
+        Or press ENTER
+
 / Expects a @survey and @answer_session variable
 / Dynamically Loaded:
 - @survey.all_questions_descendants.each do |question|
   = render partial: "surveys/question_templates/#{question.display_type}", locals: { question: question, answer_session: @answer_session, answer: Answer.first_or_new(question, @answer_session) }
-
-.survey-container
-  .panel.centered-text{ style: "padding: 20px;"}
-    %p.lead{ style: 'white-space: pre-wrap;' }
-      = @survey.description.html_safe if @survey.description.present?
 
 / End of Survey
 .survey-container
