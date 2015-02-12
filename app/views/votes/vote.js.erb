@@ -11,4 +11,4 @@
 <% end %>
 
 $("#update_link<%= @research_topic.id %>").html("<%= escape_javascript(render partial: 'votes/voting_link', locals: { research_topic: @research_topic } ) %>");
-$("#user-stats").html("<%= escape_javascript(render partial: 'layouts/beta/navigation/user_stats' ) %>");
+$("#user-stats").html("<%= escape_javascript(render partial: 'layouts/navigation/user_stats' ) %>");

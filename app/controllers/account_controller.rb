@@ -1,5 +1,5 @@
 class AccountController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:consent, :privacy_policy, :terms_and_conditions]
 
   def get_started
   end
@@ -52,7 +52,7 @@ class AccountController < ApplicationController
   end
 
   def accepts_consent
-    current_user.update accepted_consent_at: Time.zone.now
+    current_user.update(accepted_consent_at: Time.zone.now)
     redirect_to get_started_about_me_path
   end
 
@@ -80,7 +80,6 @@ class AccountController < ApplicationController
   end
 
   def terms_and_conditions
-    render layout: 'layouts/cleantheme'
   end
 
   def update

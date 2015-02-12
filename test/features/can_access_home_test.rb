@@ -18,8 +18,8 @@ feature "CanAccessHome" do
     visit new_user_session_path
     page.must_have_content "Not yet a Member?"
 
-    fill_in 'Email',    with: @user.email
-    fill_in 'Password', with: "password"
+    fill_in 'Email',    with: @user.email, match: :prefer_exact
+    fill_in 'Password', with: "password", match: :prefer_exact
     click_button 'Sign In'
 
     page.must_have_content "Sign out"

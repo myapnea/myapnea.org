@@ -23,5 +23,5 @@
     .row
       - current_user.smart_surveys.each do |survey|
         .col-sm-4.centered-text
-          = render partial: 'static/beta/survey_progress', locals: { survey: survey }
+          = render partial: 'surveys/partials/survey_progress', locals: { survey: survey }
 

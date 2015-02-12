@@ -5,7 +5,7 @@
 
 - unless cookies[:acknowledged_beta_forums] == '1'
   - if current_user and !current_user.beta_opt_in?
-    = render partial: 'layouts/beta/alerts/forums_opt_in'
+    = render partial: 'layouts/alerts/forums_opt_in'
 .row.reset-layout{ style: 'margin-bottom:10px;'}
   = form_tag forums_path, method: :get, class: 'form-inline col-md-12 search-bar-forum' do
     .input-group

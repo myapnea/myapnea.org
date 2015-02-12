@@ -83,7 +83,7 @@
       = link_to 'enable', update_account_path(user: { emails_enabled: '1' }), method: :patch, class: 'btn btn-primary btn-xs'
       emails.
 - if current_user.ready_for_research?
-  = render partial: 'static/beta/join_leave_research_study'
+  = render partial: 'account/join_leave_research_study'
 .panel
   .panel-heading
     %h4.f300 Beta Settings

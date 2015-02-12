@@ -7,11 +7,45 @@ class AccountControllerTest < ActionController::TestCase
     @participant = users(:participant)
   end
 
+
+  test "should get registration user_type page for logged in user" do
+    login(users(:user_1))
+    get :get_started
+    assert_response :success
+  end
+
+  test "should get registration provider profile page for logged in provider" do
+    login(users(:provider_1))
+    get :provider_profile
+    assert_response :success
+  end
+
+  test "should get registration privacy page for logged in user" do
+    login(users(:user_1))
+    get :get_started_privacy
+    assert_response :success
+  end
+
+  test "should get registration consent for logged in user" do
+    login(users(:user_1))
+    get :get_started_consent
+    assert_response :success
+  end
+
+  test "should get registration about-me survey for logged in user" do
+    Survey.load_from_file("about-me")
+    login(users(:social))
+    get :get_started_about_me
+    assert_response :success
+  end
+
+
+
+
   test "should get account for regular user" do
     login(@regular_user)
     get :account
 
-    assert_template layout: "account"
     assert_response :success
   end
 
