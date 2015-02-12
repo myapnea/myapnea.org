@@ -2,14 +2,10 @@ class SocialController < ApplicationController
   before_action :authenticate_user!, except: [:overview, :locations, :discussion]
   before_action :set_active_top_nav_link_to_social
 
-  layout 'main'
-
   def profile
     @social_profile = current_user.social_profile || current_user.create_social_profile
 
     session[:return_to] = request.referer if session.delete :return
-
-    render layout: "account"
   end
 
   def update_profile

@@ -189,31 +189,53 @@
 - [ ] User should be able to view privacy policy.
 - [ ] User should be able to click `Leave Research Study`.
 
-#### Main Flow
-- [ ] Click on `About Me` survey
-   - [ ] Fill in date question and refresh page. Answer should persist
-   - [ ] Fill in questions and check persistence:
-      - [ ] Clicking `Go to next question` button
-      - [ ] Hitting `Enter` key
-      - [ ] Setting focus, then clicking on an option.
-      - [ ] Setting focus, then using hotkeys.
-      - [ ] Clicking on and option on a question w/o any focus
-      - [ ] Clicking elsewhere on page to lose focus
+### Main Flow
+- [ ] Sign in with `tommyboy@gmail.com`, `password`
+
+- [ ] Go to homepage and test survey links.
+
+- [ ] Click on `Research Surveys` link on sidebar and test survey links on resulting page.
+
+- For each survey:
+   - [ ] Ensure surveys display survey title and description
+   - [ ] Ensure a `save my progress button` is easily available, saves survey progress, and forwards ==> survey index page.
+   - Survey progress should update by number of questions completed:
+      * [ ] On home page dashboard
+      * [ ] On research survey index page
+   - [ ] `Submit Survey` button should lead to survey report page and lock answered survey questions.
+   - [ ] Survey report should have option to go back and fill in unanswered questions.
+   - [ ] Survey index and survey dashboard area should give options to fill in unanswered questions for submitted surveys.
+   - [ ] Survey report should update with each answer to a categorical (radio button, multiple choice) question.
+
+For these each question type:
+   - [ ] Checkbox
+   - [ ] Radio Button
+   - [ ] Range
+   - [ ] Date
+   - [ ] Number
+   - [ ] Text
+   
+Fill in questions and check persistence:
+   - [ ] Clicking `Go to next question` button
+   - [ ] Hitting `Enter` key
+   - [ ] Setting focus, then clicking on an option.
+   - [ ] Setting focus, then using hotkeys.
+   - [ ] Clicking on and option on a question w/o any focus
+   - [ ] Clicking elsewhere on page to lose focus
+
 #### Nested inputs
-- [ ] In the `What is your race?` question, choose the `H` option.
-- [ ] Enter some custom race, and go to next question.
+Question types:
+   - [ ] Multiple choice question
+   - [ ] Radio button question
+
+Choose a nested question and select the nested option
+- [ ] Ensure nested input box renders correctly.
 - [ ] Ensure persistence.
-- [ ] Set focus to **Race** question by clicking in the question area.
-- [ ] Ensure focus *DOES NOT* switch to nested input.
-- [ ] Click on `Research Surveys` link in side bar.
-- [ ] Select `About my family` survey.
-- [ ] Ensure survey title and information are visible.
+- [ ] Ensure typing hotkey values when focus is on nested input does not cause a loss of focus.
+- [ ] Set focus to another question, then back to nested question by clicking in the question area, ensuring focus *DOES NOT* switch to nested input.
 - [ ] Click on `Other country` option in first question.
 - [ ] Ensure nested input renders properly.
-- [ ] Ensure typing hotkey values when focus is on nested input does not cause a loss of focus.
 - [ ] Proceed to next question with `Enter`.
-
-#### Survey Report
 
 
 

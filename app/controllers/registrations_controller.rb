@@ -1,7 +1,4 @@
 class RegistrationsController < Devise::RegistrationsController
-  # TODO remove when new layout is default
-  layout 'layouts/cleantheme'
-
   # def new
   #   #
   #   # build_resource({})

@@ -8,39 +8,31 @@ class StaticController < ApplicationController
     if current_user
       @active_top_nav_link = :home
       @posts = Notification.blog_posts.viewable
-      render layout: "main"
     else
-      render 'landing', layout: 'layouts/cleantheme'
+      render 'landing'
     end
   end
 
   def about
-    render layout: 'layouts/cleantheme'
   end
 
   # Alias for about
   def share
-    render layout: 'layouts/cleantheme'
   end
 
   def team
-    render layout: 'layouts/cleantheme'
   end
 
   def advisory
-    render layout: 'layouts/cleantheme'
   end
 
   def partners
-    render layout: 'layouts/cleantheme'
   end
 
   def learn
-    render layout: 'layouts/cleantheme'
   end
 
   def faqs
-    render layout: 'layouts/cleantheme'
   end
 
   def research
@@ -48,15 +40,12 @@ class StaticController < ApplicationController
   end
 
   def theme
-    render layout: 'layouts/cleantheme'
   end
 
   def version
-    render layout: 'layouts/cleantheme'
   end
 
   def sitemap
-    render layout: 'layouts/cleantheme'
   end
 
   def provider_page
@@ -69,19 +58,15 @@ class StaticController < ApplicationController
   end
 
   def registration0
-    render layout: 'layouts/cleantheme'
   end
 
   def registration1
-    render layout: 'layouts/cleantheme'
   end
 
   def registration1_providers
-    render layout: 'layouts/cleantheme'
   end
 
   def registration2
-    render layout: 'layouts/cleantheme'
   end
 
   def registration3
@@ -89,7 +74,6 @@ class StaticController < ApplicationController
       @survey = Survey.find_by_slug("about-me")
       @answer_session = AnswerSession.find_or_create(current_user, @survey)
     end
-    render layout: 'layouts/cleantheme'
   end
 
   private
@@ -103,7 +87,6 @@ class StaticController < ApplicationController
   end
 
   def about_layout
-    render layout: "layouts/about" unless params[:redesign] == '1'
   end
 
 end

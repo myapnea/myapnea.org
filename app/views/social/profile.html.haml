@@ -1,21 +1,22 @@
+- @title = "Your Social Profile"
 
 = form_for @social_profile, html: {role: "form", class: 'form-horizontal'}, url: social_profile_path do |f|
   .panel.panel-default
     .panel-heading
-      %h4 Do you want other patients on MyApnea.Org to see you?
+      %h4 Do you want want to publicly share the following information on MyApnea.Org?
       .radio
         %label
-          = f.radio_button :show_location, true, id: 'optionsRadios2'
+          = f.radio_button :make_public, true, id: 'optionsRadios2'
           %strong
-            Show me.
-          %span.small Add a marker for me on the map that shows the following info.
+            Yes&nbsp;&nbsp;-&nbsp;
+          %span Make my nickname, city, sex, and age publicly available.
 
       .radio
         %label
-          = f.radio_button :show_location, false, id: 'optionsRadios1'
+          = f.radio_button :make_public, false, id: 'optionsRadios1'
           %strong
-            Don't show me.
-          %span.small Don't let other patients on this site see any map marker for me.
+            No&nbsp;&nbsp;-&nbsp;
+          %span Let me participate as an anonymous user.
 
     .panel-body
       - if @social_profile.errors.any?
@@ -28,9 +29,15 @@
 
       .form-group
         %label.col-sm-3.control-label
-          = image_tag current_user.photo_url, :class => "img-responsive img-thumbnail"
+          - if current_user.social_profile and current_user.social_profile.photo.present?
+            = image_tag current_user.social_profile.photo_url, class: 'img-responsive img-thumbnail'
+          - else
+            = image_tag 'default-user.jpg', class: 'img-responsive img-thumbnail'
         .col-sm-9
-          %h3 Change Photo
+          - if @social_profile.photo.present?
+            %h3 Change Photo
+          - else
+            %h3 Upload Photo
           =f.file_field :photo
       .form-group
         %label.col-sm-3.control-label Nickname
@@ -51,36 +58,7 @@
         %label.col-sm-3.control-label Sex
         .col-sm-6
           =f.select(:sex, ["Male", "Female", "Other"], {}, class: 'form-control')
-
-      .form-group
-        .col-sm-3.control-label
-          .checkbox.pull-right
-            %label
-              =f.check_box :show_karma, id: 'checkbox'
-        .col-sm-6
-          %h4 Show me in the top karma earners list if I qualify.
       =f.submit("Save", class: 'btn btn-primary pull-right')
-
-
-
-.panel.panel-default
-  .panel-heading
-    %h4.panel-title Do you want people in the outside world to see you?
-    .radio
-      %label
-        = radio_button "show_location_public", true, id: 'optionsRadios2'
-        %strong
-          Show me.
-        %span.small Add a marker for me on the map that shows the following info.
-
-  .panel-body
-    This is what you'll look like to the outside world:
-    .text-center [map]
-    .text-center [photo]
-
-
-
-
 
 = javascript_include_tag "//maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places&key=AIzaSyBB91qMUvtmPzct9z7slTqm-lTUEVuYjKo"
 = javascript_include_tag 'typeahead-addresspicker'

@@ -1,19 +1,16 @@
+- @active_top_nav_link = :participate
 .col-md-12
   .well
     %i.fa.fa-check-square-o.pull-left{:style => "font-size: 60px;"}
 
     %h3
-      You have
-      = current_user.vote_quota
-      Votes to cast today.
-    %p
-      You have cast
-      = current_user.todays_votes.length
-      of them.
-
-
-    .progress
-      .progress-bar.progress-bar-info{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => current_user.available_votes_percent, :role => "progressbar", :style => "width: #{current_user.available_votes_percent}%"}
-        %span.sr-only
-          = current_user.available_votes_percent
-          \% Complete
+      Rank the Research
+    %p.lead
+      At MyApnea.Org you can help direct the future of sleep apnea research.
+      Below are questions important to network members. Every month, you can
+      cast up to five votes (and don't forget to suggest your own questions by
+      clicking the
+      = link_to 'Add a new research question', new_research_topic_path, class: 'btn btn-xs btn-primary'
+      ). Top rated questions will be explored within the Forum. If data is
+      lacking, the topic will be endorsed as an important direction for future
+      research. Let your voice be heard, vote now!

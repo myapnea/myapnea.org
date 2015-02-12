@@ -1,12 +1,8 @@
-- @title = "Admin Panel"
-- @intro = true
+- @title = "MyApnea.Org Administration"
+- @intro = false
+- @active_top_nav_link = "admin_panel"
 
-- content_for :sublayout do
-  .row
-    .col-md-3
-      = render :partial => "layouts/navigation/admin_nav"
-    .col-md-9#admin-content
-      = yield
-
+- content_for :sidenav do
+  = render partial: "layouts/navigation/admin_nav"
 
 = render template: "layouts/application"

@@ -7,17 +7,13 @@ class SurveysController < ApplicationController
 
 
   def index
-    render layout: 'layouts/cleantheme'
   end
 
   def show
     redirect_to intro_survey_path(@survey) and return if @survey.deprecated?
-
-    render layout: 'layouts/cleantheme'
   end
 
   def show_report
-    render layout: 'layouts/cleantheme'
   end
 
   def process_answer

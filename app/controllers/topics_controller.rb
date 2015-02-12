@@ -12,9 +12,6 @@ class TopicsController < ApplicationController
 
   respond_to :html
 
-  # TODO remove when new layout is default
-  layout 'layouts/cleantheme'
-
   def subscription
     @topic.set_subscription!(params[:notify].to_s == '1', current_user)
     redirect_to [@forum, @topic]

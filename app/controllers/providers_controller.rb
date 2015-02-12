@@ -1,9 +1,6 @@
 class ProvidersController < ApplicationController
-  layout 'layouts/cleantheme'
-
   before_action :set_provider,              only: [ :show ] # , :edit, :update, :destroy
   before_action :redirect_without_provider, only: [ :show ] # , :edit, :update, :destroy
-
 
   def index
     @providers = User.where(provider: true).where.not(slug: [nil,''], provider_name: [nil,'']).page(params[:page]).per( 8 )
