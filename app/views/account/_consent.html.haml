@@ -15,7 +15,7 @@
         #print-area
           = markdown consent_page_content['consent']
           - if current_user.present? and !current_user.accepted_consent_at.present?
-            = markdown "If you wish to be in this study, please click the button that says **“I accept”**"
+            = markdown "If you wish to be in this study, please click the button that says **“I agree and accept”**"
         %br/
         = link_to "#", id: "print-link", class: 'print-link pull-right btn btn-xs btn-primary' do
           %i.fa.fa-print
@@ -32,7 +32,7 @@
         = link_to "Leave Research Study", revoke_consent_path, method: :post, class: 'btn btn-warning btn-lg'
       - else
         - if part_of_registration
-          = link_to "I accept", accepts_consent_path, method: :post, class: 'btn btn-primary btn-lg'
+          = link_to "I agree and accept", accepts_consent_path, method: :post, class: 'btn btn-primary btn-lg'
           = link_to "I decline", home_path, method: :post, class: 'btn btn-danger btn-lg'
         - else
           = form_tag consent_path do

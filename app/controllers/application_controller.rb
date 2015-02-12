@@ -17,10 +17,10 @@ class ApplicationController < ActionController::Base
     Authority.logger.warn(error.message)
 
     if error.action == 'research'
-      session[:return_to] = request.referrer.presence
+      session[:return_to] = request.fullpath
       redirect_to consent_path, alert: "In order to participate in research, read and accept the consent and privacy policy."
     elsif error.resource.to_s == "ResearchTopic" and error.action == 'create'
-      session[:return_to] = request.referrer.presence
+      session[:return_to] = request.fullpath
       redirect_to social_profile_path, alert: "In order to create your own research questions, please create a social profile below."
     else
       redirect_to request.referrer.presence || root_path, :alert => "Sorry! You attempted to visit a page you do not have access to. If you believe this message to be unjustified, please contact us at [support@myapnea.org]."

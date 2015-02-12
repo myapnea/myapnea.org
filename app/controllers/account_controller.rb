@@ -24,7 +24,7 @@ class AccountController < ApplicationController
     if params[:privacy_policy_read]
       current_user.update accepted_privacy_policy_at: Time.zone.now
       if current_user.ready_for_research?
-        redirect_to (session[:return_to].present? ? session.delete(:return_to) : home_path), notice: "You have now signed the consent and are ready to participate in research. You can opt out any time by visiting your user account settings."
+        redirect_to (session[:return_to].present? ? session.delete(:return_to) : surveys_path), notice: "You have now signed the consent and are ready to participate in research. You can opt out any time by visiting your user account settings."
       else
         redirect_to consent_path, notice: "Please read over and accept the research consent before participating in research."
       end
@@ -42,7 +42,7 @@ class AccountController < ApplicationController
     if params[:consent_read]
       current_user.update_attribute(:accepted_consent_at, Time.zone.now)
       if current_user.ready_for_research?
-        redirect_to (session[:return_to].present? ? session.delete(:return_to) : home_path), notice: "You have now signed the consent and are ready to participate in research."
+        redirect_to (session[:return_to].present? ? session.delete(:return_to) : surveys_path), notice: "You have now signed the consent and are ready to participate in research."
       else
         redirect_to privacy_path, notice: "Please read over and accept the privacy policy before participating in research. You can opt out any time by visiting your user account settings."
       end
