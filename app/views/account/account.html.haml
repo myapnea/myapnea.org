@@ -2,11 +2,11 @@
 .content-main-header
   %h1 Account Settings
 - unless current_user.ready_for_research?
-  = render partial: 'static/beta/join_leave_research_study'
+  = render partial: 'account/join_leave_research_study'
 - if current_user.is_provider?
-  = render partial: 'static/beta/providers_profile'
+  = render partial: 'providers/providers_profile'
 -else
-  = render partial: 'static/beta/social_profile'
+  = render partial: 'social/social_profile'
 .panel
   .panel-heading
     %h4.f300 Basic Information

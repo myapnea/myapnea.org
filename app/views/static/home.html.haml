@@ -1,74 +1,44 @@
-- if beta_enabled?(current_user, params)
-  = render partial: 'static/beta/home'
-- else
-  #home
-    .panel.panel-success#surveys
-      .panel-heading
-        Surveys - Participate in Research
+- @page_title = 'Home'
+= render partial: 'layouts/registration/first_session_modal'
 
-      .panel-body
-        - if current_user
-          - if current_user.complete_surveys.select{|s| s.status == 'show'}.count == Survey.viewable.count
-            - # All Done
-            = render partial: 'surveys/partials/drawings_text_all_completed'
-          - else
-            - # Surveys in Progress
-            = render partial: 'surveys/partials/drawings_text'
-          = render partial: 'surveys/partials/viewable_surveys_widget'
-        - else
-          - # Not Signed In
-          = render partial: 'surveys/partials/drawings_text'
-          %div{ style: 'text-align:center' }
-            = link_to new_user_registration_path, class: 'btn btn-lg btn-success' do
-              Sign Up and Get Started
-              .fa.fa-arrow-right
+.content-main-header
+  %h1.f300
+    Welcome,
+    = current_user.first_name + '!'
 
-  #forums_container
-    .panel.panel-primary
-      .panel-heading
-        Forums - Share with the Community
-      .panel-body
-        - if Forum.current.count > 0
-          - forum = Forum.current.order(:position).first
-          = render partial: 'forums/show', locals: { forum: forum, topic_limit: 10 }
-          %h3= link_to 'More Forums', forums_path
-          .row
-          - Forum.current.order(:position).each_with_index do |forum, index|
-            - unless index == 0
-              .col-sm-4
-                .panel.panel-primary
-                  .panel-heading
-                    = link_to forum.name, forum, style: 'color:white'
-                  .panel-body
-                    %strong= link_to pluralize(forum.topics.where(status: 'approved').count, 'topic'), forum
-                    %p= forum.description
-        - else
-          The forums are currently unavailable.
-          - if current_user and current_user.has_role? :owner
-            As an owner, you may
-            = link_to "Create a New Forum", new_forum_path, class: 'btn btn-primary btn-xs'
-            \.
 
-  .panel.panel-default
-    .panel-heading
-      Research Questions - Vote on the Future of Sleep Apnea Research
-    .panel-body
-      %p.lead
-        Help direct the future of sleep apnea research. Below are questions
-        important to network members. Every month, you can cast up to five
-        votes. Top rated questions will be explored within the Forum. If
-        data is lacking, the topic will be endorsed as an important
-        direction for future research. Let your voice be heard, vote now!
-    = render partial: "research_topics/research_topics", locals: { research_topics: ResearchTopic.popular.take(5), editable: false, disabled: true }
-    .list-group
-      %a.list-group-item.text-right{ href: research_topics_path }
-        View and vote on all submitted questions and pose your own
-        .fa.fa-arrow-right
+.panel
+  .panel-body
+    .row
+      - current_user.smart_surveys.first(3).each do |survey|
+        .col-sm-4.centered-text
+          - if survey.to_param != nil
+            = render partial: 'surveys/partials/survey_progress', locals: { survey: survey }
 
-  .panel.panel-warning
-    .panel-heading
-      The MyApnea.Org Community
-    #user_map{ data: { path: locations_path } }
+.panel
+  .panel-heading
+    %h3.f300 News
+  .panel-body
+    .row
+      .col-sm-4{ style: 'margin-bottom:20px;' }
+        = link_to ENV['website_url']+'/forums/news/topics/patient-engagement-panel-description-and-application', class: 'home-news-link' do
+          = image_tag 'myapnea/welcome/img-small/unsplash-team_300x300.jpg', style: 'width:100%; height: auto;', class: 'img-rounded hidden-xs'
+          %h4.f300.primary-orange.centered-text Join as a member of the Patient Engagement Council!
+          %h5.f300.centered-text.visible-xs Help the community by providing critical reviews, and of the Network's activities and ensure that the patient's voice is reflected in major decisions and implementation.
+      .col-sm-4{ style: 'margin-bottom:20px;' }
+        = link_to ENV['website_url']+'/forums/news/topics/we-re-happy-to-announce-the-beta-release-of-our-new-and-improved-platform', class: 'home-news-link' do
+          = image_tag 'myapnea/welcome/img-small/unsplash-computer_300x300.jpg', style: 'width:100%; height: auto;', class: 'img-rounded hidden-xs'
+          %h4.f300.primary-orange.centered-text We're happy to announce the beta release of our new and improved platform!
+          %h5.f300.centered-text.visible-xs Click here to opt in and gain the ability to provide feedback and help us finish the last stages of development.
+      .col-sm-4{ style: 'margin-bottom:20px;' }
+        = link_to ENV['website_url']+'/forums/news/topics/introducing-provider-s-pages', class: 'home-news-link' do
+          = image_tag 'myapnea/welcome/img-small/snapwire-team_300x300.jpg', style: 'width:100%; height: auto;', class: 'img-rounded hidden-xs'
+          %h4.f300.primary-orange.centered-text Introducing: Provider's pages!
+          %h5.f300.centered-text.visible-xs Care providers can now join as an official Healthcare Partner, create their own custom page, and build a personal network.
 
-  = javascript_include_tag "//maps.googleapis.com/maps/api/js?key=AIzaSyBB91qMUvtmPzct9z7slTqm-lTUEVuYjKo"
-  = javascript_include_tag 'social/maps'
+.panel
+  .panel-heading
+    %h3.f300 Recent Forum Activity
+    / %h5.f300 It seems like you're most active on these forums, so we've filtered the content for you.
+  = render partial: './forums/show_from_home', locals: { topic_limit: '5' }
+

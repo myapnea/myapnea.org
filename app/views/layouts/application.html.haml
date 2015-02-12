@@ -1,40 +1,39 @@
 !!!
-- if beta_enabled?(current_user, params)
-  = render 'layouts/cleantheme'
-- else
-  %html{lang: "en"}
-    %head
-
-      %title= yield(:title) + " " + ENV["pprn_title"]
-      = render "layouts/before_scripts"
-
-    %body#MyApnea{screen_capture_injected: "true",  data: { email: "#{current_user.email if current_user}", fullname: "#{current_user.name if current_user}" } }
-      #fb-root
-      .container{role: "main"}
-        .row.row-offcanvas.row-offcanvas-left.row-offcanvas-right
-          - if content_for(:sidenav)
-            #sidebar.visible-xs-block.visible-sm-block.col-sm-6.sidebar-offcanvas.sidebar-offcanvas-left{role: "navigation"}
-              = yield :sidenav
-              .clearfix
-          %div.col-sm-12
-            = render "layouts/navigation/top_navigation_bar"
-            = render "layouts/flash_messages"
-            - unless cookies[:acknowledged_beta_open] == '1'
-              - unless current_user and current_user.beta_opt_in?
-                = render partial: 'layouts/beta/alerts/home_opt_in'
-            - if content_for(:sublayout)
-              = yield :sublayout
-              %br/
-            .row
-              - if content_for(:sidenav)
-                .col-md-3.visible-md-block.visible-lg-block{role: "navigation"}
-                  = yield :sidenav
-              %div.content{class: (content_for(:sidenav) ? "col-md-9" : "col-md-12")}
-                = yield
-
-
-            = render "layouts/footer"
-            = render "layouts/after_scripts"
-          #options.visible-xs-block.visible-sm-block.col-sm-6.sidebar-offcanvas.sidebar-offcanvas-right{role: "navigation"}
-            %ul.nav.nav-pills.nav-stacked
-              = render partial: "layouts/navigation/options_nav"
+%html
+  %head
+    %meta{ charset: 'utf-8'}
+    %meta{ content: 'IE=Edge,chrome=1', http: {equiv: 'X-UA-Compatible'}}
+    %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1.0'}
+    / For Facebook
+    %meta{ property: 'og:url', content: ENV['website_url'] + '/' }
+    %meta{ property: 'og:title', content: ENV['pprn_title'] }
+    %meta{ property: 'og:description', content: 'Improving sleep apnea through information, support, and research' }
+    %meta{ property: 'og:image', content: ENV['website_url'] + '/assets/' + asset_path('myapnea/MyApneaLogo_border_whitesub_square.png').split('/assets/').last }
+    / For Google+
+    %meta{ itemprop: 'name', content: ENV['pprn_title'] }
+    %meta{ itemprop: 'description', content: 'Improving sleep apnea through information, support, and research' }
+    %meta{ itemprop: 'image', content: ENV['website_url'] + '/assets/' + asset_path('myapnea/MyApneaLogo_border_whitesub_square.png').split('/assets/').last }
+    / For Google
+    %meta{ name: 'google-site-verification', content: 'RHApDe4I99r46ZVk4UVIbuJhXi2oIvUhKO0G7zlVHjo' }
+    = render partial: 'layouts/partials/inpage_SEO'
+    %title= @page_title
+    = favicon_link_tag
+    = csrf_meta_tags
+    = stylesheet_link_tag 'cleantheme', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag "cleantheme", "data-turbolinks-track" => true
+    = javascript_tag "var root_url='#{request.script_name + '/'}';var auth_token='#{form_authenticity_token}';"
+    - if false
+      = javascript_include_tag "//code.jquery.com/ui/1.11.2/jquery-ui.min.js"
+  %body{screen_capture_injected: "true", class: "#{params[:night] == '1' ? 'night-mode' : 'day-mode'}", data: { email: "#{current_user.email if current_user}", fullname: "#{current_user.name if current_user}" } }
+    %div#social-backdrop{ style: 'background-color:black; width:100%; height:81px; position:absolute; top:0; z-index:1000;' }
+    = render partial: 'layouts/navigation/top_navigation'
+    .container-fluid.reset-layout
+      - if (params[:action] == 'home' and !current_user) or params[:controller] == 'registrations' or (params[:controller] == 'providers' and params[:action].in?(['new', 'show']))
+        = yield
+      - else
+        #container-main
+          = render partial: 'layouts/partials/container_left'
+          = render partial: 'layouts/partials/container_right'
+    = render partial: 'layouts/partials/footer'
+    = render partial: 'layouts/registration/privacy_modal'
+    = render partial: 'layouts/partials/welcome_video_modal'

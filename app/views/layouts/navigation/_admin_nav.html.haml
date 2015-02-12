@@ -1,0 +1,17 @@
+.list-group
+  %a.list-group-item{href: users_path, class: "#{"active" if action_name == "users"}"} Users
+  %a.list-group-item{href: admin_surveys_path, class: "#{"active" if action_name == "surveys"}"} Surveys
+  -#%a.list-group-item{href: forums_path, class: "#{ 'active' if controller_path =~ /forums/ }"} Forums
+  %a.list-group-item{href: admin_blog_path, class: "#{"active" if action_name == "blog"}"} Blog Posts
+  %a.list-group-item{href: admin_notifications_path, class: "#{"active" if action_name == "notifications"}"} Notifications
+  %a.list-group-item{href: admin_research_topics_path, class: "#{"active" if /research_topic/ =~ action_name }"} Research Topics
+
+
+.list-group
+  %a.list-group-item.list-group-item-warning{href: "https://openpprn.uservoice.com/admin", :target => "_blank"} UserVoice
+  %a.list-group-item.list-group-item-warning{href: "https://www.google.com/analytics/web/?hl=en#report/visitors-overview/a53742602w86512802p89760206/", :target => "_blank"} Google Analytics
+
+
+
+-# Description of this section
+%p.small This admin panel gives admins control over content and publishings on the site.
