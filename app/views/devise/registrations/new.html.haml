@@ -1,44 +1,4 @@
-
-.row
-  .col-md-8.col-md-offset-2
-
-    %h3 Here's how it works
-    .req The explanatory content here, and imagery if applicable
-    %p
-      Lorem ipsum dolor sit amet, ius sonet veniam signiferumque eu, pri ad libris aperiam euripidis. Est ei ferri dolores, purto equidem ea eum. Latine tibique detracto cu pro. Usu movet oporteat apeirian no, te pri quis quando. Mandamus pertinacia mel in, in vim laoreet lucilius. Mundi repudiandae consectetuer et eos, nam ex sumo recusabo.
-    %p
-      Lorem ipsum dolor sit amet, ius sonet veniam signiferumque eu, pri ad libris aperiam euripidis. Est ei ferri dolores, purto equidem ea eum. Latine tibique detracto cu pro. Usu movet oporteat apeirian no, te pri quis quando. Mandamus pertinacia mel in, in vim laoreet lucilius. Mundi repudiandae consectetuer et eos, nam ex sumo recusabo.
-
-%br/
-%br/
-
-.row
-  .col-md-6.col-md-offset-3
-    .panel.panel-default
-      .panel-heading
-        .panel-title Join
-      .panel-body
-        = form_for(resource, as: resource_name, url: registration_path(resource_name), class: "form-horizontal") do |f|
-          = devise_error_messages!
-          .form-group
-            = f.label :email, :class => "control-label col-sm-5"
-            .col-sm-7
-              = f.email_field :email, autofocus: true, class: "form-control", placeholder: "Email"
-          .form-group
-            = f.label :password, :class => "control-label col-sm-5"
-            .col-sm-7
-              = f.password_field :password, autocomplete: "off", class: "form-control", placeholder: "Password"
-          .form-group
-            = f.label :password_confirmation, "Password Confirm", :class => "control-label col-sm-5"
-            .col-sm-7
-              = f.password_field :password_confirmation, autocomplete: "off", class: "form-control", placeholder: "Password Confirmation"
-          .form-group
-            = f.label :condition, :class => "control-label col-sm-5"
-          .form-group
-            .col-sm-offset-5.col-sm-7
-              = f.submit "Sign up", :class => "btn btn-primary"
-    %p.text-center
-      Already a Member
-      %a{:href => new_user_session_path} Sign in.
-
-
+- if params[:user] and params[:user][:provider]
+  = render partial: 'providers/signup_form'
+- else
+  = render partial: 'users/signup_form'
