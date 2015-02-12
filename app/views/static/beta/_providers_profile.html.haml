@@ -19,7 +19,7 @@
       .form-group{ style: 'margin-top:20px;' }
         %label.col-sm-3.control-label Welcome Message
         .col-sm-6
-          =f.text_area :welcome_message, class: 'form-control', value: current_user.get_welcome_message, rows: '3'
+          =f.text_area :welcome_message, class: 'form-control', placeholder: 'Welcome to my page!', value: current_user.welcome_message, rows: '3'
       =f.submit("Save Changes", class: 'btn btn-primary col-sm-6 col-sm-offset-3 centered-text')
     .panel-footer
       - if current_user.provider_name.present? and current_user.slug.present?

@@ -30,10 +30,10 @@
           = f.text_field :last_name, placeholder: 'Last name', class: 'form-control'
           - if resource.errors.any? and resource.errors[:last_name].present?
             %span.input-group-addon.signup-error !
-        .input-group
-          = f.select :year_of_birth, [['- Select your birth year -', nil]] + (1900..Date.today.year).to_a.reverse.collect{|i| [i,i]}, {}, class: 'form-control', aria: { describedby: 'in3' }
-          - if resource.errors.any? and resource.errors[:year_of_birth].present?
-            %span.input-group-addon.signup-error !
+        / .input-group
+        /   = f.select :year_of_birth, [['- Select your birth year -', nil]] + (1900..Date.today.year).to_a.reverse.collect{|i| [i,i]}, {}, class: 'form-control', aria: { describedby: 'in3' }
+        /   - if resource.errors.any? and resource.errors[:year_of_birth].present?
+        /     %span.input-group-addon.signup-error !
         .input-group
           = f.email_field :email, placeholder: 'Email address', class: 'form-control'
           - if resource.errors.any? and resource.errors[:email].present?
@@ -42,6 +42,9 @@
           = f.password_field :password, placeholder: 'Password', class: 'form-control'
           - if resource.errors.any? and resource.errors[:password].present?
             %span.input-group-addon.signup-error !
+        .input-group{ style: 'margin-left: 15px;' }
+          = f.check_box :year_of_birth
+          = f.label :year_of_birth, 'I am over the age of 18', style: 'margin-left: 15px;'
         .input-group
           = f.submit 'Sign up!', class: 'form-control', id: 'submit-join'
 

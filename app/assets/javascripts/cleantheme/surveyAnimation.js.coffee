@@ -131,6 +131,7 @@
 
   # Respond to keystrokes
   $("body").keydown (e) ->
+    # Respond to keystrokes only for survey pages
     if $('.survey-container').length
       # Prevent default up and down
       if e.keyCode is 38 or e.keyCode is 40
@@ -162,6 +163,7 @@
 
   # Respond to completed keystrokes
   $("body").keyup (e) ->
+    # Respond to completed keystrokes only for survey pages
     if $('.survey-container').length
       # don't allow key up on custom date input
       if $(".survey-container.active").find(".survey-text-date").is(":focus")

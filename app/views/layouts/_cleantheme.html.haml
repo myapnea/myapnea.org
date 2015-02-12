@@ -15,7 +15,7 @@
     / For Google
     %meta{ name: 'google-site-verification', content: 'RHApDe4I99r46ZVk4UVIbuJhXi2oIvUhKO0G7zlVHjo' }
     = render partial: 'layouts/inpage_SEO'
-    %title= @page_title
+    %title= @page_title || 'MyApnea'
     = favicon_link_tag
     = csrf_meta_tags
     = stylesheet_link_tag 'cleantheme', media: 'all', 'data-turbolinks-track' => true

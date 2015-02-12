@@ -251,8 +251,6 @@ class User < ActiveRecord::Base
   def get_welcome_message
     if welcome_message.present?
       welcome_message
-    else
-      "Welcome to my provider page!"
     end
   end
 
