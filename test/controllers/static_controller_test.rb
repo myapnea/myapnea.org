@@ -2,12 +2,7 @@ require 'test_helper.rb'
 
 class StaticControllerTest < ActionController::TestCase
 
-  test "should get landing for logged out user" do
-    get :home
-    assert_template 'landing'
-    assert_response :success
-  end
-
+  ## NON-STATIC
   test "should get home for regular user" do
     login(users(:social))
     get :home
@@ -15,11 +10,54 @@ class StaticControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should get home for regular user that opted in to Beta" do
-    login(users(:beta_social))
+  test "should get registration user_type page for logged in user" do
+    login(users(:user_1))
+    get :registration0
+    assert_response :success
+  end
+
+  test "should get registration provider profile page for logged in provider" do
+    login(users(:provider_1))
+    get :registration1_providers
+    assert_response :success
+  end
+
+  test "should get registration privacy page for logged in user" do
+    login(users(:user_1))
+    get :registration1
+    assert_response :success
+  end
+
+  test "should get registration consent for logged in user" do
+    login(users(:user_1))
+    get :registration2
+    assert_response :success
+  end
+
+  test "should get registration about-me survey for logged in user" do
+    Survey.load_from_file("about-me")
+    login(users(:social))
+    get :registration3
+    assert_response :success
+  end
+
+  test "should redirect to a provider show page" do
+    get :provider_page, slug: 'health-hospital'
+
+    assert_redirected_to provider_path(users(:provider_1).slug)
+  end
+
+  test "should redirect to a providers index with invalid slug" do
+    get :provider_page, slug: nil
+
+    assert_redirected_to providers_path
+  end
+
+  ## STATIC
+
+  test "should get landing for logged out user" do
     get :home
-    assert_template 'home'
-    assert_template '_survey_progress'
+    assert_template 'landing'
     assert_response :success
   end
 
@@ -78,47 +116,5 @@ class StaticControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should get registration user_type page for logged in user" do
-    login(users(:user_1))
-    get :registration0
-    assert_response :success
-  end
-
-  test "should get registration provider profile page for logged in provider" do
-    login(users(:provider_1))
-    get :registration1_providers
-    assert_response :success
-  end
-
-  test "should get registration privacy page for logged in user" do
-    login(users(:user_1))
-    get :registration1
-    assert_response :success
-  end
-
-  test "should get registration consent for logged in user" do
-    login(users(:user_1))
-    get :registration2
-    assert_response :success
-  end
-
-  test "should get registration about-me survey for logged in user" do
-    Survey.load_from_file("about-me")
-    login(users(:social))
-    get :registration3
-    assert_response :success
-  end
-
-  test "should redirect to a provider show page" do
-    get :provider_page, slug: 'health-hospital'
-
-    assert_redirected_to provider_path(users(:provider_1).slug)
-  end
-
-  test "should redirect to a providers index with invalid slug" do
-    get :provider_page, slug: nil
-
-    assert_redirected_to providers_path
-  end
 
 end

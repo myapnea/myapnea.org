@@ -18,14 +18,15 @@ Rails.application.routes.draw do
   get 'sitemap'   => 'static#sitemap'
 
   # Registration flow
-  get 'get-started' => 'static#registration0'
+  get 'get-started' => 'account#get_started'
+  get 'get-started/provider_profile' => 'account#provider_profile'
+  get 'get-started/privacy' => 'account#get_started_privacy'
+  get 'get-started/consent' => 'account#get_started_consent'
+  get 'get-started/about-me' => 'account#get_started_about_me'
+
   patch 'set_user_type' => 'account#set_user_type'
-  get 'get-started/provider_profile' => 'static#registration1_providers'
-  get 'get-started/privacy' => 'static#registration1'
   post 'accepts_privacy' => 'account#accepts_privacy'
-  get 'get-started/consent' => 'static#registration2'
   post 'accepts_consent' => 'account#accepts_consent'
-  get 'get-started/about-me' => 'static#registration3'
 
   # Provider Pages
   get 'p(/:slug)', to: 'static#provider_page'

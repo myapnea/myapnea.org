@@ -43,8 +43,8 @@
           - if resource.errors.any? and resource.errors[:password].present?
             %span.input-group-addon.signup-error !
         .input-group{ style: 'margin-left: 15px;' }
-          = f.check_box :year_of_birth
-          = f.label :year_of_birth, 'I am over the age of 18', style: 'margin-left: 15px;'
+          = f.check_box :over_eighteen
+          = f.label :over_eighteen, 'I am over the age of 18', style: 'margin-left: 15px;'
         .input-group
           = f.submit 'Sign up!', class: 'form-control', id: 'submit-join'
 

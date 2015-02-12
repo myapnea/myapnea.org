@@ -1,5 +1,24 @@
 class AccountController < ApplicationController
-  before_action :authenticate_user!, except: [:consent, :privacy_policy, :terms_and_conditions]
+  before_action :authenticate_user!
+
+  def get_started
+  end
+
+  def get_started_privacy
+  end
+
+  def provider_profile
+  end
+
+  def get_started_consent
+  end
+
+  def get_started_about_me
+    if current_user
+      @survey = Survey.find_by_slug("about-me")
+      @answer_session = AnswerSession.find_or_create(current_user, @survey)
+    end
+  end
 
   def privacy_policy
     if params[:privacy_policy_read]

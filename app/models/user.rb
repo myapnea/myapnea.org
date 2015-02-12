@@ -36,7 +36,8 @@ class User < ActiveRecord::Base
   validates_presence_of :first_name, :last_name
 
   with_options unless: :is_provider? do |user|
-    user.validates :year_of_birth, presence: true, numericality: {only_integer: true, allow_nil: false, less_than_or_equal_to: -> (user){ Date.today.year - 18 }, greater_than_or_equal_to: -> (user){ 1900 }}
+    user.validates :over_eighteen, inclusion: { in: [true] }
+    #user.validates :year_of_birth, presence: true, numericality: {only_integer: true, allow_nil: false, less_than_or_equal_to: -> (user){ Date.today.year - 18 }, greater_than_or_equal_to: -> (user){ 1900 }}
   end
 
   with_options if: :is_provider? do |user|

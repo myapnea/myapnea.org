@@ -2,17 +2,7 @@ class StaticController < ApplicationController
   before_action :load_pc, only: [ :about, :share, :team, :advisory, :learn, :faqs, :research ]
   before_action :about_layout, only: [ :research ]
 
-  def home
-    flash.delete(:notice)
-    flash.delete(:alert)
-    if current_user
-      @active_top_nav_link = :home
-      @posts = Notification.blog_posts.viewable
-    else
-      render 'landing'
-    end
-  end
-
+  ## Static
   def about
   end
 
@@ -48,31 +38,26 @@ class StaticController < ApplicationController
   def sitemap
   end
 
+  ## NON-STATIC
+
+  ## TODO: Move out of here
+  def home
+    flash.delete(:notice)
+    flash.delete(:alert)
+    if current_user
+      @active_top_nav_link = :home
+      @posts = Notification.blog_posts.viewable
+    else
+      render 'landing'
+    end
+  end
+
   def provider_page
     @provider = User.current.providers.find_by_slug(params[:slug])
     if @provider and @provider.slug.present?
       redirect_to provider_path(@provider.slug)
     else
       redirect_to providers_path
-    end
-  end
-
-  def registration0
-  end
-
-  def registration1
-  end
-
-  def registration1_providers
-  end
-
-  def registration2
-  end
-
-  def registration3
-    if current_user
-      @survey = Survey.find_by_slug("about-me")
-      @answer_session = AnswerSession.find_or_create(current_user, @survey)
     end
   end
 
