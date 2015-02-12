@@ -4,36 +4,17 @@
   = hidden_field_tag "answer_session_id", answer_session.id
   .panel
     .question-container
-      %h3.f300 Thinking about your sleep in the past 7 days, please answer the following questions.
+      %h3.f300= question.text
     .input-container
-      .row.multiple-question-container.current
-        - input_name = 'sleepquality'
-        .col-md-3.col-sm-12
-          %h4.f300 My sleep quality was:
-        .col-md-9.col-sm-12
-          .row.reset-layout
-            .option-of-multiple.option-of-5.survey-scale.survey-scale-danger
-              = radio_button_tag input_name, '1'
-              %label{ for: "#{input_name+'_1'}" }
-                %p Very Poor
-                %span.hotkey 1
-            .option-of-multiple.option-of-5.survey-scale.survey-scale-warning
-              = radio_button_tag input_name, '2'
-              %label{ for: "#{input_name+'_2'}" }
-                %p Poor
-                %span.hotkey 2
-            .option-of-multiple.option-of-5.survey-scale.survey-scale-moderate
-              = radio_button_tag input_name, '3'
-              %label{ for: "#{input_name+'_3'}" }
-                %p Fair
-                %span.hotkey 3
-            .option-of-multiple.option-of-5.survey-scale.survey-scale-good
-              = radio_button_tag input_name, '4'
-              %label{ for: "#{input_name+'_4'}" }
-                %p Good
-                %span.hotkey 4
-            .option-of-multiple.option-of-5.survey-scale.survey-scale-great
-              = radio_button_tag input_name, '5'
-              %label{ for: "#{input_name+'_5'}" }
-                %p Very Good
-                %span.hotkey 5
+      - question.answer_templates.each do |answer_template|
+        .row.multiple-question-container
+          .col-md-3.col-sm-12
+            %h4.f300= answer_template.text
+          .col-md-9.col-sm-12
+            .row.reset-layout
+              - answer_template.answer_options.distinct.each do |answer_option|
+                %div{ class: answer_option.display_class }
+                  = radio_button_tag "#{question.id}[#{answer_template.id}]", answer_option.id, have_checked?(answer, answer_template, answer_option.id), id: "question_#{question.id}_#{answer_template.id}_#{answer_option.new_value}", data: { hotkey: answer_option.hotkey }
+                  %label{ for: "question_#{question.id}_#{answer_template.id}_#{answer_option.new_value}" }
+                    %p= answer_option.text
+                    %span.hotkey= answer_option.hotkey

@@ -16,6 +16,7 @@
   - Animated scrolling now used to move between questions
   - Survey urls simplified to use slugs
   - Old surveys display using old UI, new surveys display using beta UI
+  - Surveys can display multiple-part radio button questions
 - **Administrative Changes**
   - Added an admin dashboard to provide a central place to reach reports and research topic moderation
 - **Research Study Changes**

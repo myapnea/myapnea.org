@@ -79,7 +79,7 @@ class Survey < ActiveRecord::Base
 
       question_attributes["answer_templates"].each do |answer_template_attributes|
         answer_template = AnswerTemplate.where(name: answer_template_attributes["name"]).first_or_create
-        answer_template.update(data_type: answer_template_attributes["data_type"], display_type_id: answer_template_attributes["display_type_id"], allow_multiple: answer_template_attributes["allow_multiple"].present?, target_answer_option: answer_template_attributes["target_answer_option"])
+        answer_template.update(data_type: answer_template_attributes["data_type"], text: answer_template_attributes["text"], display_type_id: answer_template_attributes["display_type_id"], allow_multiple: answer_template_attributes["allow_multiple"].present?, target_answer_option: answer_template_attributes["target_answer_option"])
         (question.answer_templates << answer_template) unless question.answer_templates.exists?(answer_template.id)
 
         if answer_template_attributes.has_key?("answer_options")
