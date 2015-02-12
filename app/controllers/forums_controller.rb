@@ -8,9 +8,6 @@ class ForumsController < ApplicationController
 
   respond_to :html
 
-  # TODO remove when new layout is default
-  layout 'layouts/cleantheme'
-
   def index
     @forums = Forum.current
     respond_with(@forums)

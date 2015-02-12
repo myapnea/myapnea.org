@@ -1,11 +1,6 @@
 class AccountController < ApplicationController
   before_action :authenticate_user!, except: [:consent, :privacy_policy, :terms_and_conditions]
 
-  # def view_consent
-  #   @pc = YAML.load_file(Rails.root.join('lib', 'data', 'content', "consent.#{I18n.locale}.yml"))
-  # end
-  layout 'account'
-
   def privacy_policy
     if params[:privacy_policy_read]
       current_user.update accepted_privacy_policy_at: Time.zone.now

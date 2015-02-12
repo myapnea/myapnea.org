@@ -5,9 +5,6 @@ class ResearchTopicsController < ApplicationController
   before_action :set_research_topic,                  only: [ :show, :update, :edit, :destroy ]
   before_action :set_active_top_nav_link_to_research
 
-
-  layout "main"
-
   authorize_actions_for ResearchTopic, only: [:index, :create, :new]
 
   def research_topics
@@ -17,7 +14,6 @@ class ResearchTopicsController < ApplicationController
 
   def index
     @research_topics = ResearchTopic.accepted
-    render layout: 'layouts/cleantheme'
   end
 
   def show

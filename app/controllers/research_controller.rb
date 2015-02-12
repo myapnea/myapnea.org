@@ -6,8 +6,6 @@ class ResearchController < ApplicationController
 
   before_action :fetch_notifications
 
-  layout "main"
-
   def fetch_notifications
     @posts = Notification.notifications.viewable.current
   end
