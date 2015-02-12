@@ -1,7 +1,10 @@
-= form_for research_topic do |f|
+= form_for research_topic, html: { data: { object: "inline-validation"} } do |f|
   .form-group
     = f.label :text, class: 'sr-only'
-    = f.text_area :text, class: 'form-control input-lg', placeholder: "Enter your research question here...", autocomplete: :off
+    = f.text_area :text, class: 'form-control input-lg', placeholder: "Enter your research question here...", autocomplete: :off, data: { object: 'inline-validation-item', name: 'research-topic-name' }
+    .col-sm-6.hidden{ style: 'margin-top: 15px; margin-bottom: 30px;', data: { object: 'research-topic-name--error' } }
+      %p.small.centered-text.inline-validation-error
+        Please enter a valid question or research topic!
   .form-group
     = f.label :author, class: 'sr-only'
     = f.text_area :description, placeholder: "Describe why you think this question is important...", class: 'form-control input-lg'
