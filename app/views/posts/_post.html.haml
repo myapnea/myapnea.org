@@ -1,6 +1,6 @@
 - current_index = post.number
-%a{ name: "post-#{post.id}" }
-%a{ name: "c#{current_index}" }
+%a.anchor-top{ name: "post-#{post.id}" }
+%a.anchor-top{ name: "c#{current_index}" }
 
 .row.reset-layout
   - if post.deleted? or post.user.deleted?
