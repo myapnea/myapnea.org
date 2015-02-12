@@ -34,7 +34,7 @@
           %p.small.centered-text.inline-validation-error
             Please enter a unique message for your incoming members!
 
-      =f.submit("Save Changes", class: 'btn btn-primary col-sm-6 col-sm-offset-3 centered-text')
+      =f.submit("Save and Preview Changes", class: 'btn btn-primary col-sm-6 col-sm-offset-3 centered-text')
     .panel-footer
       - if current_user.provider_name.present? and current_user.slug.present?
         %h4.f400

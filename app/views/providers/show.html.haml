@@ -85,7 +85,18 @@
   .row.row-fullscreen{id: "slide-5"}
     .col-md-10.col-md-offset-1.col-lg-8.col-lg-offset-2.panel.panel-signup
       .panel-body#panel-sign-up
-        - if current_user.provider_id == @provider.id
+        - if current_user.provider? and current_user.id == @provider.id
+          %h3.f300.centered-text
+            Hi there,
+            = current_user.first_name + '!'
+          %h4.f300.centered-text.spaced
+            This is what your provider profile looks like. You can share it with your patients and community members by using the link below. If you have any questions about this process or would like any help, please feel free to
+            %a{ href: "mailto:support@myapnea.org" } contact us.
+          %h4.f300.centered-text.spaced
+            %strong Your personal url:
+            %br
+            %span.lighter-blue.wrapword= link_to ENV['website_url'] + '/p/' + current_user.slug, ENV['website_url'] + '/p/'+ current_user.slug
+        - elsif current_user.provider_id == @provider.id
           %h3.f300.centered-text
             Hi there,
             = current_user.first_name + '!'

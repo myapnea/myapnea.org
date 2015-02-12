@@ -84,7 +84,11 @@ class AccountController < ApplicationController
 
   def update
     if current_user.update(user_params)
-      redirect_to account_path, notice: "Your account settings have been successfully changed."
+      if [:welcome_message, :slug, :provider_name].all? {|k| user_params.key? k}
+        redirect_to provider_path(current_user.slug)
+      else
+        redirect_to account_path, notice: "Your account settings have been successfully changed."
+      end
     else
       @update_for = :user_info
       render "account"
