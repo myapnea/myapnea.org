@@ -1,21 +1,29 @@
--# TODO create terms_of_acces.yml file and load that page_content in
-- terms_of_access_content = page_content('privacy_policy')
 - part_of_registration = false unless defined?(part_of_registration)
 
 .panel
+  .panel-heading
+    %h2.f300{ style: 'margin-bottom:20px;' } Terms of Access for MyApnea.Org
   .panel-body
     #print-area
-      %h2.f300= terms_of_access_content['title']
-      - terms_of_access_content = page_content('privacy_policy')
-      = markdown terms_of_access_content['privacy_policy']
-      - if current_user and true #current_user.accepted_terms_of_access.blank?
-        = markdown 'If you wish to be in this study please click the button that says **"I have read the privacy policy"**'
+      %p.lead
+        Aggregate research results from the MyApnea.Org research portal are available here to all registered users of MyApnea.Org for viewing.  Aggregate results consist of survey responses and other data provided by participants in MyApnea.Org research, presented in summary form (“Results”).
+      %p.lead
+        By clicking on the “I Agree" button below, you, the user (“You”) agree to the following Terms of Access to the MyApnea.Org research Results, which terms are in addition to any other applicable Terms of Use, Web Policy Statements, Disclaimers, or other terms applicable to Your use of the MyApnea.Org website:
+      %ul
+        %li You understand and agree that the Results are being provided to You solely for the purpose of stimulating interest in and awareness of sleep apnea among patients, clinicians, researchers, family and friends, and other individuals affected by the disorder.  Results are NOT being provided for the purpose of providing medical treatment or advice and should not be relied upon for such purposes.  Any use of the Results is at Your own risk, and We are not responsible for such use.
+        %li Results reflect self-reported information from participants in the Research portal of MyApnea.Org.   We believe that our summaries as presented on this website are generally accurate, but they have not to date been peer-reviewed or undergone rigorous scientific analysis.  The Results are updated periodically as new participants enroll in the Research Portal of MyApnea.Org and may not be current at the time of Your access.
+        %li You understand and agree that the Results are presented in an aggregate or summary form that is intended to avoid identification of any individual participants in the MyApnea.Org Research.  You will not use the Results to identify or attempt to identify any individual MyApnea.Org research participant(s).
+        %li Any use of the Results by you in any written publication, presentation, or analysis must acknowledge the MyApnea.Org Research portal as the source of the information with the following text: [“The results in this publication/presentation/analysis (choose one as appropriate) were accessed through the Sleep Apnea Patient Centered Outcomes Network (SAPCON)-MyApnea.Org website.”]
+      %p.lead
+        Individual de-identified participant-level data can be obtained but will require completion of a Data Use Agreement available on the Research Portal section of MyApnea.Org which will be made available at a later date.
+      - if current_user and !current_user.accepted_terms_of_access? and (current_user.is_provider? or current_user.is_only_researcher?)
+        = markdown 'If you wish to be in this study please click the button that says **"I Agree"**'
     %br/
     = link_to "#", id: "print-link", class: 'print-link pull-right btn btn-xs btn-primary' do
       %i.fa.fa-print
       Print Terms of Access
-  - if current_user
-    .text-center.panel-footer
+  - if current_user and (current_user.is_provider? or current_user.is_only_researcher?)
+    .panel-footer.centered-text
       - if current_user.accepted_terms_of_access?
         - unless part_of_registration
           = link_to :back, class: 'btn btn-lg btn-default' do
@@ -25,9 +33,10 @@
         = link_to "Leave Research Study", revoke_consent_path, method: :post, class: 'btn btn-warning btn-lg'
       - else
         - if part_of_registration
-          = link_to "I have read the terms of access", accepts_terms_of_access_path, method: :post, class: 'btn btn-primary btn-lg'
-          = link_to "I decline", get_started_provider_profile_path, class: 'btn btn-danger btn-lg'
-        -#/ - else
-        -#/   = form_tag privacy_path do
-        -#/     %input.btn.btn-primary.btn-lg{:name => "privacy_policy_read", :type => "submit", :value => "I have read the privacy policy#{current_user.signed_consent? ? ' and I agree to participate' : ''}"}
-        -#/     = link_to "I decline", revoke_consent_path, method: :post, class: 'btn btn-danger btn-lg'
+          = link_to "I Agree", accepts_terms_of_access_path, method: :post, class: 'btn btn-primary btn-lg'
+          = link_to "I Decline", current_user.is_provider? ? get_started_provider_profile_path : get_started_social_profile_path, class: 'btn btn-danger btn-lg'
+        - else
+          = form_tag terms_of_access_path do
+            %input.btn.btn-primary.btn-lg{:name => "terms_of_access_read", :type => "submit", :value => "I Agree"}
+            = link_to "I decline", revoke_consent_path, method: :post, class: 'btn btn-danger btn-lg'
+

@@ -192,7 +192,7 @@ class User < ActiveRecord::Base
   end
 
   def ready_for_research?
-    accepted_privacy_policy? and signed_consent?
+    is_nonacademic? ? (accepted_privacy_policy? and signed_consent?) : (accepted_privacy_policy? and accepted_terms_of_access?)
   end
 
   def accepted_terms_of_access?

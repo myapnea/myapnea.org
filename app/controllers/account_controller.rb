@@ -101,6 +101,15 @@ class AccountController < ApplicationController
   end
 
   def terms_of_access
+    if params[:terms_of_access_read]
+      current_user.update(accepted_terms_of_access_at: Time.zone.now)
+      if current_user.ready_for_research?
+        redirect_to (session[:return_to].present? ? session.delete(:return_to) : surveys_path), notice: "You have now signed the terms of access and are ready to participate in research."
+      else
+        redirect_to privacy_path, notice: "Please read over and accept the privacy policy before participating in research. You can opt out any time by visiting your user account settings."
+      end
+    else
+    end
   end
 
   def update

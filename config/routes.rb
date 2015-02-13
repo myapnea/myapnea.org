@@ -91,7 +91,7 @@ Rails.application.routes.draw do
   match 'update_account', to: 'account#update', as: 'update_account', via: :patch
   match 'change_password', to: 'account#change_password', as: 'change_password', via: :patch
 
-  match 'terms_of_access', to: 'account#terms_of_access', via: :get, as: :terms_of_access
+  match 'terms_of_access', to: 'account#terms_of_access', as: :terms_of_access, via: [:get, :post]
 
   # Admin Section
   get 'admin' => 'admin#dashboard'
