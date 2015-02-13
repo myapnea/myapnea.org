@@ -1,12 +1,10 @@
 @surveyAnimationReady = () ->
 
-  # Initiate with focus on first question
-  if $(".survey-container").length
-    $(document).ready ->
-      $("#container-left").find(".survey-container").first().addClass "active"
-      $(".survey-container.active").find("input:not([type=hidden])").first().addClass "survey-first-question"
-      $(".survey-first-question").focus()
-      return
+  # Initiate flow when survey is present
+  $(document).ready ->
+    if $("[data-object~='survey-introduction']").length > 0
+      $("[data-object~='radio-input-multiple']").children($("[data-object~='radio-input-multiple-container']")).first().addClass "current"
+    return
 
   # Scroll to active question
   @nextQuestionScroll = (element1, element2) ->
@@ -38,7 +36,7 @@
   # Change focus
   @changeFocus = (question1, question2) ->
     $(question1).find("input").blur()
-    $(question2).find("input").first().focus()
+    $(question2).find("input:not([type=hidden])").first().focus()
 
   @changeFocusDirect = (input1, input2) ->
     $(input1).blur()

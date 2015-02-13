@@ -5,9 +5,9 @@
   .panel
     .question-container
       %h3.f300= question.text
-    .input-container
+    .input-container{ data: { object: 'radio-input-multiple' } }
       - question.answer_templates.each do |answer_template|
-        .row.multiple-question-container
+        .row.multiple-question-container{ data: { object: 'radio-input-multiple-container' } }
           .col-md-3.col-sm-12
             %h4.f300= answer_template.text
           .col-md-9.col-sm-12
