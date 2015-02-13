@@ -9,7 +9,7 @@ user_<%= i %>:
   last_name: <%= i %>wski
   zip_code: 12345
   over_eighteen: true
-  user_type: patient_diagnosed
+  adult_diagnosed: true
   encrypted_password: <%= pw %>
 <% end %>
 
@@ -21,7 +21,7 @@ social:
   accepted_privacy_policy_at: <%= 6.day.ago.to_s(:db) %>
   zip_code: 12345
   over_eighteen: true
-  user_type: patient_diagnosed
+  adult_diagnosed: true
   encrypted_password: <%= pw %>
 
 participant:
@@ -32,7 +32,7 @@ participant:
   accepted_privacy_policy_at: <%= 6.day.ago.to_s(:db) %>
   zip_code: 12345
   over_eighteen: true
-  user_type: patient_diagnosed
+  adult_diagnosed: true
   encrypted_password: <%= pw %>
 
 moderator_1:
@@ -42,7 +42,7 @@ moderator_1:
   roles: moderator
   zip_code: 12345
   over_eighteen: true
-  user_type: patient_diagnosed
+  adult_diagnosed: true
   encrypted_password: <%= pw %>
 
 moderator_2:
@@ -52,7 +52,7 @@ moderator_2:
   roles: moderator
   zip_code: 12345
   over_eighteen: true
-  user_type: patient_diagnosed
+  adult_diagnosed: true
   encrypted_password: <%= pw %>
 
 owner:
@@ -62,7 +62,7 @@ owner:
   roles: owner
   zip_code: 12345
   over_eighteen: true
-  user_type: patient_diagnosed
+  adult_diagnosed: true
   encrypted_password: <%= pw %>
 
 has_completed_survey:
@@ -73,7 +73,7 @@ has_completed_survey:
   over_eighteen: true
   accepted_consent_at: <%= 5.day.ago.to_s(:db) %>
   accepted_privacy_policy_at: <%= 6.day.ago.to_s(:db) %>
-  user_type: patient_diagnosed
+  adult_diagnosed: true
   encrypted_password: <%= pw %>
 
 has_incomplete_survey:
@@ -84,7 +84,7 @@ has_incomplete_survey:
   accepted_consent_at: <%= 5.day.ago.to_s(:db) %>
   accepted_privacy_policy_at: <%= 6.day.ago.to_s(:db) %>
   over_eighteen: true
-  user_type: patient_diagnosed
+  adult_diagnosed: true
   encrypted_password: <%= pw %>
 
 has_unstarted_survey:
@@ -95,7 +95,7 @@ has_unstarted_survey:
   accepted_consent_at: <%= 5.day.ago.to_s(:db) %>
   accepted_privacy_policy_at: <%= 6.day.ago.to_s(:db) %>
   over_eighteen: true
-  user_type: patient_diagnosed
+  adult_diagnosed: true
   encrypted_password: <%= pw %>
 
 has_unstarted_survey:
@@ -106,7 +106,7 @@ has_unstarted_survey:
   accepted_consent_at: <%= 5.day.ago.to_s(:db) %>
   accepted_privacy_policy_at: <%= 6.day.ago.to_s(:db) %>
   over_eighteen: true
-  user_type: patient_diagnosed
+  adult_diagnosed: true
   encrypted_password: <%= pw %>
 
 deleted_moderator:
@@ -117,7 +117,7 @@ deleted_moderator:
   zip_code: 12345
   over_eighteen: true
   encrypted_password: <%= pw %>
-  user_type: patient_diagnosed
+  adult_diagnosed: true
   deleted: true
 
 deleted_user:
@@ -129,7 +129,7 @@ deleted_user:
   zip_code: 66666
   over_eighteen: true
   encrypted_password: <%= pw %>
-  user_type: patient_diagnosed
+  adult_diagnosed: true
   deleted: true
 
 provider_1:

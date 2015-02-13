@@ -17,10 +17,10 @@ class User < ActiveRecord::Base
   # Callbacks
   after_create :send_welcome_email
 
-  TYPE = [['Diagnosed With Sleep Apnea', 'patient_diagnosed'],
-          ['Concern That I May Have Sleep Apnea', 'patient_at_risk'],
-          ['Family Member of an Adult with Sleep Apnea', 'family_member_adult'],
-          ['Family Member of a Child with Sleep Apnea', 'family_member_child'],
+  TYPE = [['Diagnosed With Sleep Apnea', 'adult_diagnosed'],
+          ['Concern That I May Have Sleep Apnea', 'adult_at_risk'],
+          ['Family Member of an Adult with Sleep Apnea', 'caregiver_adult'],
+          ['Family Member of a Child with Sleep Apnea', 'caregiver_child'],
           ['Provider', 'provider'],
           ['Researcher', 'researcher']]
 
@@ -192,7 +192,11 @@ class User < ActiveRecord::Base
   end
 
   def ready_for_research?
-    is_nonacademic? ? (accepted_privacy_policy? and signed_consent?) : (accepted_privacy_policy? and accepted_terms_of_access?)
+    if is_nonacademic?
+      accepted_privacy_policy? and signed_consent?
+    else
+      accepted_privacy_policy? and accepted_terms_of_access?
+    end
   end
 
   def accepted_terms_of_access?

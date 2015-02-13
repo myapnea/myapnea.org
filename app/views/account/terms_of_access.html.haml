@@ -1,4 +1,4 @@
-- if current_user.is_nonacademic?
+- if current_user and current_user.is_nonacademic?
   .alert.alert-info
     These are required for researchers and care providers to accept in order to access aggregate data for academic purposes.
 = render partial: 'account/terms_of_access'
