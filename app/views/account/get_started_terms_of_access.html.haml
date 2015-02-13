@@ -1,0 +1,10 @@
+#registration-progress
+  = link_to get_started_provider_profile_path do
+    .circle-progress.viewed
+      %h3 1
+  .track-progress
+  = link_to get_started_terms_of_access_path do
+    .circle-progress
+      %h3 2
+.item.active
+  = render partial: 'account/terms_of_access', locals: {part_of_registration: true}

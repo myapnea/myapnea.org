@@ -7,6 +7,9 @@ class AccountController < ApplicationController
   def get_started_privacy
   end
 
+  def get_started_terms_of_access
+  end
+
   def provider_profile
   end
 
@@ -18,6 +21,11 @@ class AccountController < ApplicationController
       @survey = Survey.find_by_slug("about-me")
       @answer_session = AnswerSession.find_or_create(current_user, @survey)
     end
+  end
+
+  def accepts_terms_of_access
+    current_user.update accepted_terms_conditions_at: Time.zone.now
+    redirect_to get_started_provider_profile_path
   end
 
   def privacy_policy
@@ -65,7 +73,8 @@ class AccountController < ApplicationController
     user_types = params.required(:user).permit(:provider, :researcher, :adult_diagnosed, :adult_at_risk, :caregiver_adult, :caregiver_child)
     current_user.update user_types
     if current_user.provider?
-      redirect_to get_started_provider_profile_path
+      redirect_to get_started_terms_of_access_path
+      # redirect_to get_started_provider_profile_path
     else
       redirect_to get_started_privacy_path
     end

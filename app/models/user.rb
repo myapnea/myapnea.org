@@ -162,6 +162,7 @@ class User < ActiveRecord::Base
   end
 
   def revoke_consent!
+    update_attribute :accepted_terms_conditions_at, nil
     update_attribute :accepted_consent_at, nil
     update_attribute :accepted_privacy_policy_at, nil
   end
@@ -184,6 +185,10 @@ class User < ActiveRecord::Base
 
   def ready_for_research?
     accepted_privacy_policy? and signed_consent?
+  end
+
+  def accepted_terms_of_access?
+    self.accepted_terms_conditions_at.present?
   end
 
   def todays_votes

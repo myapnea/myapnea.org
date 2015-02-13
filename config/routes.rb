@@ -19,14 +19,16 @@ Rails.application.routes.draw do
 
   # Registration flow
   get 'get-started' => 'account#get_started'
-  get 'get-started/provider_profile' => 'account#provider_profile'
   get 'get-started/privacy' => 'account#get_started_privacy'
   get 'get-started/consent' => 'account#get_started_consent'
   get 'get-started/about-me' => 'account#get_started_about_me'
+  get 'get-started/terms-of-access' => 'account#get_started_terms_of_access'
+  get 'get-started/provider_profile' => 'account#provider_profile'
 
   patch 'set_user_type' => 'account#set_user_type'
   post 'accepts_privacy' => 'account#accepts_privacy'
   post 'accepts_consent' => 'account#accepts_consent'
+  post 'accepts_terms_of_access' => 'account#accepts_terms_of_access'
 
   # Provider Pages
   get 'p(/:slug)', to: 'static#provider_page'

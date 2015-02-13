@@ -1,0 +1,33 @@
+-# TODO create terms_of_acces.yml file and load that page_content in
+- terms_of_access_content = page_content('privacy_policy')
+- part_of_registration = false unless defined?(part_of_registration)
+
+.panel
+  .panel-body
+    #print-area
+      %h2.f300= terms_of_access_content['title']
+      - terms_of_access_content = page_content('privacy_policy')
+      = markdown terms_of_access_content['privacy_policy']
+      - if current_user and true #current_user.accepted_terms_of_access.blank?
+        = markdown 'If you wish to be in this study please click the button that says **"I have read the privacy policy"**'
+    %br/
+    = link_to "#", id: "print-link", class: 'print-link pull-right btn btn-xs btn-primary' do
+      %i.fa.fa-print
+      Print Terms of Access
+  - if current_user
+    .text-center.panel-footer
+      - if current_user.accepted_terms_of_access?
+        - unless part_of_registration
+          = link_to :back, class: 'btn btn-lg btn-default' do
+            .fa.fa-arrow-left
+            &nbsp;
+            Go Back
+        = link_to "Leave Research Study", revoke_consent_path, method: :post, class: 'btn btn-warning btn-lg'
+      - else
+        - if part_of_registration
+          = link_to "I have read the terms of access", accepts_terms_of_access_path, method: :post, class: 'btn btn-primary btn-lg'
+          = link_to "I decline", get_started_provider_profile_path, class: 'btn btn-danger btn-lg'
+        -#/ - else
+        -#/   = form_tag privacy_path do
+        -#/     %input.btn.btn-primary.btn-lg{:name => "privacy_policy_read", :type => "submit", :value => "I have read the privacy policy#{current_user.signed_consent? ? ' and I agree to participate' : ''}"}
+        -#/     = link_to "I decline", revoke_consent_path, method: :post, class: 'btn btn-danger btn-lg'
