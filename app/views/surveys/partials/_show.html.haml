@@ -1,9 +1,9 @@
 -# Set up survey indicators
--#.survey-indicator
--#  %span#title Question
--#  %ul
--#    - @survey.all_questions_descendants.each_with_index do |q, index|
--#      %li.incomplete{ data: { object: 'survey-indicator', target: "#{index}" } }= index + 1
+.survey-indicator
+  %span#title Question
+  %ul
+    - @survey.all_questions_descendants.each_with_index do |q, index|
+      %li.incomplete{ data: { object: 'survey-indicator', target: "#{index}" } }= index + 1
 
 .survey-container.active.progress-w-enter{ data: { object: 'survey-introduction' } }
   .panel.centered-text{ style: "padding: 20px;" }

@@ -6,6 +6,10 @@
       $("[data-object~='radio-input-multiple']").children($("[data-object~='radio-input-multiple-container']")).first().addClass "current"
     return
 
+  $("[data-object~='survey-indicator']").click (e) ->
+    target = 'question-container-' + $(this).data('target')
+    assignQuestionDirect($("[data-object~='"+target+"']"))
+
   # Scroll to active question
   @nextQuestionScroll = (element1, element2) ->
     # Submit Previous Question
@@ -43,6 +47,15 @@
     $(input2).focus()
 
 
+  @assignQuestionDirect = (element) ->
+    activeQuestion = $(".survey-container.active")
+    activeQuestion.removeClass "active"
+    $(element).addClass "active"
+    console.log activeQuestion
+    console.log newActiveQuestion
+    newActiveQuestion = $(".survey-container.active")
+    nextQuestionScroll(activeQuestion, newActiveQuestion)
+
   # Progress to next question
   @assignQuestion = (next, prev) ->
     activeQuestion = $(".survey-container.active")
@@ -78,7 +91,7 @@
   @submitAnswer = (inputElement) ->
     questionForm = inputElement.closest("form")
     $.post(questionForm.attr("action"), questionForm.serialize(), (data) ->
-      return
+      console.log data
     , 'json')
 
   @handleChangedValue = (inputElement) ->
