@@ -35,7 +35,7 @@ class SurveysController < ApplicationController
         end
         ##
       end
-      format.json { render json: {answer: @answer, value: @answer.string_value, errors: @answer.errors.full_messages } }
+      format.json { render json: {completed: @answer.complete?, answer: @answer, value: @answer.string_value, errors: @answer.errors.full_messages } }
     end
 
   end

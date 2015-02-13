@@ -78,6 +78,7 @@
   @submitAnswer = (inputElement) ->
     questionForm = inputElement.closest("form")
     $.post(questionForm.attr("action"), questionForm.serialize(), (data) ->
+      console.log data
       return
     , 'json')
 

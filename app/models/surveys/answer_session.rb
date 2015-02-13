@@ -25,14 +25,12 @@ class AnswerSession < ActiveRecord::Base
   end
   # Instance Methods
 
-  def completed_answers
-    answers
+  def incomplete_answers
+    answers.incomplete
+  end
 
-    # if first_answer
-    #   Answer.joins(:in_edge).where(answer_session_id: self.id).select{|a| a.in_edge.present? }.append(first_answer)
-    # else
-    #   []
-    # end
+  def completed_answers
+    answers.complete
   end
 
   def completed?
