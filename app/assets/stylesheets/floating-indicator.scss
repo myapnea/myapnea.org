@@ -7,8 +7,11 @@
   border-radius:0 5px 5px 0;
   background-color: #ffc864;
   color: #444;
-  font-size: 16px;
-  font-weight: 300;
+  span#title {
+    font-size: 16px;
+    font-weight: 500;
+    color: rgba(0,0,0,.7);
+  }
   ul {
     list-style-type: none;
     margin: 0 auto;
@@ -33,6 +36,8 @@
     li.active {
     }
     li.complete {
+      font-size:14px;
+      font-weight:300;
       border:2px solid white;
       background-color: #78c674;
       color: white;

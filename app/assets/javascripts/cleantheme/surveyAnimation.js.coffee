@@ -51,8 +51,6 @@
     activeQuestion = $(".survey-container.active")
     activeQuestion.removeClass "active"
     $(element).addClass "active"
-    console.log activeQuestion
-    console.log newActiveQuestion
     newActiveQuestion = $(".survey-container.active")
     nextQuestionScroll(activeQuestion, newActiveQuestion)
 
@@ -91,7 +89,16 @@
   @submitAnswer = (inputElement) ->
     questionForm = inputElement.closest("form")
     $.post(questionForm.attr("action"), questionForm.serialize(), (data) ->
-      console.log data
+      indicator = $(questionForm).data('object').slice(-1)
+      indicatorSelector = $("[data-object~='survey-indicator'][data-target~='"+indicator+"']")
+      if data['completed']
+        indicatorSelector.removeClass 'incomplete'
+        indicatorSelector.addClass 'complete'
+        indicatorSelector.html "&#10003;"
+      else
+        indicatorSelector.removeClass 'complete'
+        indicatorSelector.addClass 'incomplete'
+        indicatorSelector.html Number(indicator) + 1
     , 'json')
 
   @handleChangedValue = (inputElement) ->

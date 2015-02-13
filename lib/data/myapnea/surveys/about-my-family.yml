@@ -71,14 +71,14 @@ questions:
   display_type: number_input
   answer_templates:
   - name: household_members
-    data_type: text_value
+    data_type: numeric_value
 - text: |
     How many persons less than 18 years of age usually live in your home?
   slug: household-minors
   display_type: number_input
   answer_templates:
   - name: household_minors
-    data_type: text_value
+    data_type: numeric_value
 - text: |
     Have any of your biological family members been diagnosed with sleep apnea?
   slug: family-diagnoses
