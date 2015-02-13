@@ -1,6 +1,7 @@
-class UpdateSurveyReportViews3 < ActiveRecord::Migration
+class UpdateSurveyReportViews4 < ActiveRecord::Migration
   def up
-    timestamp = '20150212053201'
+    timestamp = '20150213082208'
+
     execute "drop view survey_answer_frequencies"
     execute "drop view report_answer_totals"
     execute "drop view report_answer_counts"
@@ -12,7 +13,7 @@ class UpdateSurveyReportViews3 < ActiveRecord::Migration
   end
 
   def down
-    timestamp = '20150204194444'
+    timestamp = '20150212053201'
     execute "drop view survey_answer_frequencies"
     execute "drop view report_answer_totals"
     execute "drop view report_answer_counts"

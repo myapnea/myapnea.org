@@ -1,8 +1,7 @@
 class Answer < ActiveRecord::Base
   include Deletable
 
-  STATE = %(migrated answered skipped unseen)
-
+  STATE = %(incomplete complete migrated)
 
   has_many :answer_values, -> { where deleted: false }, dependent: :destroy
   belongs_to :question
@@ -11,6 +10,11 @@ class Answer < ActiveRecord::Base
   has_one :in_edge, class_name: "AnswerEdge", foreign_key: "child_answer_id", dependent: :destroy
   has_one :out_edge, class_name: "AnswerEdge", foreign_key: "parent_answer_id", dependent: :destroy
   belongs_to :user # When necessary
+
+  # Scopes
+  scope :incomplete, -> { where(state: 'incomplete')}
+  scope :migrated, -> { where(state: 'migrated')}
+  scope :complete, -> { where(state: 'complete')}
 
   # Class Methods
   def self.first_answer(question, answer_session)
@@ -40,6 +44,11 @@ class Answer < ActiveRecord::Base
 
   def value=(val)
     answer_values.clear
+
+
+    template_completions = []
+    template_values = []
+
     question.answer_templates.each do |template|
       target_field = template.data_type
 
@@ -49,12 +58,30 @@ class Answer < ActiveRecord::Base
         val_for_template = val
       end
 
+      template_values << val_for_template
+
+      # Test for nested inputs. There is a dependency: all conditionals are one-level, and the first answer template in questions with nested inputs is a categorical question that spawns the nesting.
+      # TODO: Add Testing
+      if template.target_answer_option.present? and template_completions.first
+        answer_option_ids = template_values.first.kind_of?(Array) ? template_values.first : [template_values.first]
+        answer_options = answer_option_ids.map{ |ao_id| AnswerOption.find(ao_id) }
+        answer_option_values = answer_options.map(&:value)
+
+        template_completion = answer_option_values.include?(template.target_answer_option) ? val_for_template.present? : true
+      else
+        template_completion = val_for_template.present?
+      end
+
+      template_completions << template_completion
+
       if template.allow_multiple and val_for_template.kind_of?(Array)
         val_for_template.each {|v| answer_values.build(target_field => v, 'answer_template_id' => template.id) }
       else
         answer_values.build(target_field => val_for_template, 'answer_template_id' => template.id)
       end
     end
+
+    set_completion_state(template_completions)
 
     if self.persisted?
       self.save
@@ -171,5 +198,21 @@ class Answer < ActiveRecord::Base
 
   def multiple_options?
     question.links_as_parent.length > 1
+  end
+
+  def complete?
+    self[:state] == 'complete'
+  end
+
+  def incomplete?
+    self[:state] == 'incomplete'
+  end
+
+  private
+
+  def set_completion_state(template_completions)
+
+    self[:state] = (template_completions.all? ? 'complete' : 'incomplete')
+
   end
 end
