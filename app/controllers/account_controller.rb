@@ -1,5 +1,5 @@
 class AccountController < ApplicationController
-  before_action :authenticate_user!, except: [:consent, :privacy_policy, :terms_and_conditions]
+  before_action :authenticate_user!, except: [:consent, :privacy_policy, :terms_and_conditions, :terms_of_access]
 
   def get_started
   end
@@ -13,6 +13,10 @@ class AccountController < ApplicationController
   def provider_profile
   end
 
+  def get_started_social_profile
+    current_user.create_social_profile
+  end
+
   def get_started_consent
   end
 
@@ -24,8 +28,14 @@ class AccountController < ApplicationController
   end
 
   def accepts_terms_of_access
-    current_user.update accepted_terms_conditions_at: Time.zone.now
-    redirect_to get_started_provider_profile_path
+    current_user.update accepted_terms_of_access_at: Time.zone.now
+    if current_user.provider?
+      redirect_to get_started_provider_profile_path
+    elsif current_user.is_only_researcher?
+      redirect_to get_started_social_profile_path
+    else
+      redirect_to home_path
+    end
   end
 
   def privacy_policy
@@ -72,9 +82,8 @@ class AccountController < ApplicationController
   def set_user_type
     user_types = params.required(:user).permit(:provider, :researcher, :adult_diagnosed, :adult_at_risk, :caregiver_adult, :caregiver_child)
     current_user.update user_types
-    if current_user.provider?
+    if current_user.provider? or current_user.is_only_researcher?
       redirect_to get_started_terms_of_access_path
-      # redirect_to get_started_provider_profile_path
     else
       redirect_to get_started_privacy_path
     end
@@ -89,6 +98,9 @@ class AccountController < ApplicationController
   end
 
   def terms_and_conditions
+  end
+
+  def terms_of_access
   end
 
   def update

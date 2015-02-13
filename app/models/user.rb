@@ -70,9 +70,17 @@ class User < ActiveRecord::Base
     self.provider?
   end
 
-  # def provider?
-  #   self.user_type == 'provider'
-  # end
+  def is_only_provider?
+    self.provider? and !self.is_nonacademic?
+  end
+
+  def is_only_researcher?
+    self.researcher? and !self.is_nonacademic?
+  end
+
+  def is_nonacademic?
+    self.adult_diagnosed? or self.adult_at_risk? or self.caregiver_child? or self.caregiver_adult?
+  end
 
   def all_topics
     if self.has_role? :moderator
@@ -162,7 +170,7 @@ class User < ActiveRecord::Base
   end
 
   def revoke_consent!
-    update_attribute :accepted_terms_conditions_at, nil
+    update_attribute :accepted_terms_of_access_at, nil
     update_attribute :accepted_consent_at, nil
     update_attribute :accepted_privacy_policy_at, nil
   end
@@ -188,7 +196,7 @@ class User < ActiveRecord::Base
   end
 
   def accepted_terms_of_access?
-    self.accepted_terms_conditions_at.present?
+    self.accepted_terms_of_access_at.present?
   end
 
   def todays_votes

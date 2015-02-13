@@ -13,7 +13,7 @@ class RegistrationsControllerTest < ActionController::TestCase
     assert_not_nil assigns(:user)
     assert_equal 'First Name', assigns(:user).first_name
     assert_equal 'Last Name', assigns(:user).last_name
-    assert_equal true, assigns(:user).over_eighteen
+    assert_equal true, assigns(:user).over_eighteen?
     assert_equal 'new_user@example.com', assigns(:user).email
 
     assert_redirected_to get_started_path

@@ -23,7 +23,8 @@ Rails.application.routes.draw do
   get 'get-started/consent' => 'account#get_started_consent'
   get 'get-started/about-me' => 'account#get_started_about_me'
   get 'get-started/terms-of-access' => 'account#get_started_terms_of_access'
-  get 'get-started/provider_profile' => 'account#provider_profile'
+  get 'get-started/provider-profile' => 'account#provider_profile'
+  get 'get-started/social-profile' => 'account#get_started_social_profile'
 
   patch 'set_user_type' => 'account#set_user_type'
   post 'accepts_privacy' => 'account#accepts_privacy'
@@ -89,6 +90,8 @@ Rails.application.routes.draw do
   match 'privacy_policy', to: "account#privacy_policy", as: :privacy, via: [:get, :post]
   match 'update_account', to: 'account#update', as: 'update_account', via: :patch
   match 'change_password', to: 'account#change_password', as: 'change_password', via: :patch
+
+  match 'terms_of_access', to: 'account#terms_of_access', via: :get, as: :terms_of_access
 
   # Admin Section
   get 'admin' => 'admin#dashboard'

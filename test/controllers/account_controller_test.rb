@@ -87,6 +87,13 @@ class AccountControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should get terms of access for logged out user" do
+    get :terms_of_access
+    assert_response :success
+  end
+
+  # TODO add test for terms of access accept/refute, add test for registration path
+
   test "should mark consent and then privacy policy as read for user" do
     login(@regular_user)
 
