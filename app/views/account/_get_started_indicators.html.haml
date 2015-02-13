@@ -1,0 +1,44 @@
+- progress1 = false unless defined?(progress1)
+- progress2 = false unless defined?(progress2)
+- progress3 = false unless defined?(progress3)
+
+- if current_user.is_provider?
+  #registration-progress
+    = link_to get_started_privacy_path do
+      .circle-progress{ class: "#{'viewed' if progress1}" }
+        %h3 1
+    .track-progress{ class: "#{'viewed' if progress2}" }
+    = link_to get_started_terms_of_access_path do
+      .circle-progress{ class: "#{'viewed' if progress2}" }
+        %h3 2
+    .track-progress{ class: "#{'viewed' if progress3}" }
+    = link_to get_started_provider_profile_path do
+      .circle-progress{ class: "#{'viewed' if progress3}" }
+        %h3 3
+
+- elsif current_user.is_only_researcher?
+  #registration-progress
+    = link_to get_started_privacy_path do
+      .circle-progress{ class: "#{'viewed' if progress1}" }
+        %h3 1
+    .track-progress{ class: "#{'viewed' if progress2}" }
+    = link_to get_started_terms_of_access_path do
+      .circle-progress{ class: "#{'viewed' if progress2}" }
+        %h3 2
+    .track-progress{ class: "#{'viewed' if progress3}" }
+    = link_to get_started_social_profile_path do
+      .circle-progress{ class: "#{'viewed' if progress3}" }
+        %h3 3
+- else
+  #registration-progress
+    = link_to get_started_privacy_path do
+      .circle-progress{ class: "#{'viewed' if progress1}" }
+        %h3 1
+    .track-progress{ class: "#{'viewed' if progress2}" }
+    = link_to get_started_consent_path do
+      .circle-progress{ class: "#{'viewed' if progress2}" }
+        %h3 2
+    .track-progress{ class: "#{'viewed' if progress3}" }
+    = link_to get_started_about_me_path do
+      .circle-progress{ class: "#{'viewed' if progress3}" }
+        %h3 3

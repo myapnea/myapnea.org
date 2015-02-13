@@ -1,15 +1,3 @@
-#registration-progress
-  = link_to get_started_terms_of_access_path do
-    .circle-progress.viewed
-      %h3 1
-  .track-progress
-  - if current_user.provider?
-    = link_to get_started_provider_profile_path do
-      .circle-progress
-        %h3 2
-  - elsif current_user.is_only_researcher?
-    = link_to get_started_social_profile_path do
-      .circle-progress
-        %h3 2
+= render partial: 'account/get_started_indicators', locals: { progress1: true, progress2: true }
 .item.active
   = render partial: 'account/terms_of_access', locals: {part_of_registration: true}

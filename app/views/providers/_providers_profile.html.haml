@@ -1,4 +1,4 @@
-- validation = ( params[:action] == 'provider_profile' ? 'inline-validation' : '' )
+- validation = ( params[:action] == 'get_started_provider_profile' ? 'inline-validation' : '' )
 = form_for current_user, html: { role: "form", class: 'form-horizontal', data: { object: "#{validation}"} }, url: update_account_path, method: :patch do |f|
   .panel
     .panel-body.text-dark8

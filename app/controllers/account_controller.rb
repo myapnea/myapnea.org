@@ -10,7 +10,7 @@ class AccountController < ApplicationController
   def get_started_terms_of_access
   end
 
-  def provider_profile
+  def get_started_provider_profile
   end
 
   def get_started_social_profile
@@ -53,7 +53,11 @@ class AccountController < ApplicationController
 
   def accepts_privacy
     current_user.update accepted_privacy_policy_at: Time.zone.now
-    redirect_to get_started_consent_path
+    if current_user.is_only_researcher? or current_user.is_provider?
+      redirect_to get_started_terms_of_access_path
+    else
+      redirect_to get_started_consent_path
+    end
   end
 
   def consent
@@ -82,11 +86,7 @@ class AccountController < ApplicationController
   def set_user_type
     user_types = params.required(:user).permit(:provider, :researcher, :adult_diagnosed, :adult_at_risk, :caregiver_adult, :caregiver_child)
     current_user.update user_types
-    if current_user.provider? or current_user.is_only_researcher?
-      redirect_to get_started_terms_of_access_path
-    else
-      redirect_to get_started_privacy_path
-    end
+    redirect_to get_started_privacy_path
   end
 
   def dashboard

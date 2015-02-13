@@ -1,5 +1,15 @@
+.survey-indicator
+  %span#title Question
+  %ul
+    %li.incomplete{ data: { object: 'survey-indicator', target: '1' } } 1
+    %li.incomplete{ data: { object: 'survey-indicator', target: '2' } } 2
+    %li.incomplete{ data: { object: 'survey-indicator', target: '3' } } 3
+    %li.incomplete{ data: { object: 'survey-indicator', target: '4' } } 4
+    %li.incomplete{ data: { object: 'survey-indicator', target: '5' } } 5
+    %li.incomplete{ data: { object: 'survey-indicator', target: '6' } } 6
+    %li.incomplete{ data: { object: 'survey-indicator', target: '7' } } 7
 / Multiple Options, Multiple Questions
-.survey-container.multiple-question-parts
+.survey-container.multiple-question-parts{ data: { object: 'question-container-1' } }
   .panel
     .question-container
       %h3.f300 Thinking about your sleep in the past 7 days, please answer the following questions.
@@ -131,7 +141,7 @@
                 %span.hotkey 5
 
 / Multiple Options, Multiple Questions
-.survey-container.multiple-question-parts
+.survey-container.multiple-question-parts{ data: { object: 'question-container-2' } }
   .panel
     .question-container
       %h3.f300 How likely are you to fall asleep during the following activities?
@@ -269,7 +279,7 @@
 
 
 / Date input
-.survey-container.progress-w-enter
+.survey-container.progress-w-enter{ data: { object: 'question-container-3' } }
   .panel
     .question-container
       %h3.f300 What is your date of birth?
@@ -282,7 +292,7 @@
 
 
 / Short input text
-.survey-container.progress-w-enter
+.survey-container.progress-w-enter{ data: { object: 'question-container-4' } }
   .panel
     .question-container
       %h3.f300 How many hours of sleep did you get last night?
@@ -294,7 +304,7 @@
       %p.text-muted Or press ENTER
 
 / Multiple Checks
-.survey-container.progress-w-enter.check-w-letter
+.survey-container.progress-w-enter.check-w-letter{ data: { object: 'question-container-5' } }
   .panel
     .question-container
       %h3.f300 What is your race?
@@ -353,7 +363,7 @@
       %p.text-muted Or press ENTER
 
 / Question Scale
-.survey-container.progress-w-enter
+.survey-container.progress-w-enter{ data: { object: 'question-container-6' } }
   .panel
     .question-container
       %h3.f300 In the past 7 days, how was your sleep quality?
@@ -369,7 +379,7 @@
 
 
 / Multiple Options
-.survey-container.progress-w-enter.progress-w-letter
+.survey-container.progress-w-enter.progress-w-letter{ data: { object: 'question-container-7' } }
   .panel
     .question-container
       %h3.f300 When would you prefer to wake up?
@@ -393,7 +403,7 @@
         %span.hotkey D
 
 
-.survey-end
+.survey-container
   .panel.centered-text{ style: "padding: 20px;"}
     %h3.f300.primary-blue Congratulations!
     %p.lead You've reached the end of the survey, and are already on your way to making an impact on sleep apnea research. You've also gained one entry into our monthly prize drawing!

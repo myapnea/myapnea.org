@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   get 'get-started/consent' => 'account#get_started_consent'
   get 'get-started/about-me' => 'account#get_started_about_me'
   get 'get-started/terms-of-access' => 'account#get_started_terms_of_access'
-  get 'get-started/provider-profile' => 'account#provider_profile'
+  get 'get-started/provider-profile' => 'account#get_started_provider_profile'
   get 'get-started/social-profile' => 'account#get_started_social_profile'
 
   patch 'set_user_type' => 'account#set_user_type'

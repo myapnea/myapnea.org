@@ -1,14 +1,3 @@
-#registration-progress
-  = link_to get_started_privacy_path do
-    .circle-progress.viewed
-      %h3 1
-  .track-progress
-  = link_to get_started_consent_path do
-    .circle-progress
-      %h3 2
-  .track-progress
-  = link_to get_started_about_me_path do
-    .circle-progress
-      %h3 3
+= render partial: 'account/get_started_indicators', locals: { progress1: true }
 .item.active
-  = render partial: 'account/privacy', locals: {part_of_registration: true}
+  = render partial: 'account/privacy', locals: { part_of_registration: true }
