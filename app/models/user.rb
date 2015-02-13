@@ -42,7 +42,7 @@ class User < ActiveRecord::Base
 
   with_options if: :is_provider? do |user|
     user.validates :provider_name, allow_blank: true, uniqueness: true
-    user.validates :slug, allow_blank: true, uniqueness: true, format: { with: /\A[a-z][a-z0-9\-]*[a-z0-9]\Z/ }
+    user.validates :slug, allow_blank: true, uniqueness: true, format: { with: /\A[a-z][a-z0-9\-]*[a-z0-9]\Z/i }
   end
 
   # Model Relationships
