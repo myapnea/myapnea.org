@@ -16,7 +16,7 @@ class AccountControllerTest < ActionController::TestCase
 
   test "should get registration provider profile page for logged in provider" do
     login(users(:provider_1))
-    get :provider_profile
+    get :get_started_provider_profile
     assert_response :success
   end
 
