@@ -65,7 +65,8 @@
       .col-xs-11
         .post-container.post-under-review
           .post-container-right-after
-            Under Review
+            %span.f400
+              Under Review
             - if current_user.has_role? :moderator
               = link_to forum_topic_post_path(post.forum, post.topic, post, post: { status: 'approved' }), method: :patch, class: 'btn btn-xs btn-default' do
                 %i.fa.fa-thumbs-up
@@ -76,6 +77,8 @@
               = link_to forum_topic_post_path(post.forum, post.topic, post, post: { status: 'spam' }), method: :patch, class: 'btn btn-xs btn-default' do
                 %i.fa.fa-thumbs-down
                 Mark As Spam
+            = link_to edit_forum_topic_post_path(post.forum, post.topic, post), data: { toggle: 'tooltip', container: 'body'}, title: 'Edit Post', class: 'btn btn-xs btn-default' do
+              %i.fa.fa-pencil
             = "##{current_index}"
           - if post.topic.user == post.user
             .post-container-right-bottom-after.original-poster-badge

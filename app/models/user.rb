@@ -195,7 +195,7 @@ class User < ActiveRecord::Base
     if is_nonacademic?
       accepted_privacy_policy? and signed_consent?
     else
-      accepted_privacy_policy? and accepted_terms_of_access?
+      accepted_privacy_policy? and (accepted_terms_of_access? or signed_consent?)
     end
   end
 
@@ -203,12 +203,16 @@ class User < ActiveRecord::Base
     self.accepted_terms_of_access_at.present?
   end
 
+  def this_weeks_votes
+    self.votes.where("votes.updated_at >= ? ", Time.now.beginning_of_week(:sunday)).where.not(rating: '0', research_topic_id: nil)
+  end
+
   def todays_votes
     votes.select{|vote| vote.updated_at.today? and vote.rating != 0 and vote.research_topic_id.present?}
   end
 
   def available_votes_percent
-    (todays_votes.length.to_f / vote_quota) * 100.0
+    (this_weeks_votes.length.to_f / vote_quota) * 100.0
   end
 
   def incomplete_surveys
