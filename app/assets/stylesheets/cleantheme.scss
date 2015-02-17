@@ -31,6 +31,7 @@
 @import "myapnea/components/topics";
 @import "radial-progress";
 @import "floating-indicator";
+@import "SEO-content";
 
 /* FONTS */
 @font-face {
@@ -42,6 +43,11 @@
   font-family: 'Dosis';
   font-weight: 600;
   src: asset-url('myapnea/fonts/Dosis-Bold.otf') format("opentype");
+}
+
+@font-face {
+  font-family: 'Agenda Condensed';
+  src: asset-url('myapnea/fonts/Agenda-MediumCondensed.otf') format("opentype");
 }
 
 // Clean theme document

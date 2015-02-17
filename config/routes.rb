@@ -17,6 +17,9 @@ Rails.application.routes.draw do
   get 'version'   => 'static#version'
   get 'sitemap'   => 'static#sitemap'
 
+  # Sleep Tips
+  get 'sleep-tips'   => 'static#sleep_tips'
+
   # Registration flow
   get 'get-started' => 'account#get_started'
   get 'get-started/privacy' => 'account#get_started_privacy'

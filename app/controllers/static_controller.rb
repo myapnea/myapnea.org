@@ -38,6 +38,11 @@ class StaticController < ApplicationController
   def sitemap
   end
 
+  ## Sleep Tips
+  def sleep_tips
+    render 'static/sleep_tips/sleep_tips'
+  end
+
   ## NON-STATIC
 
   ## TODO: Move out of here

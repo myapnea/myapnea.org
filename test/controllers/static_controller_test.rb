@@ -86,5 +86,10 @@ class StaticControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should get sleep tips" do
+    get :sleep_tips
+    assert_response :success
+  end
+
 
 end

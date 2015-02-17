@@ -279,7 +279,7 @@ class AnswerSession < ActiveRecord::Base
   end
 
   def total_path_length
-    completed_path_length + remaining_path_length(last_answer)
+    survey.total_questions or completed_path_length + remaining_path_length(last_answer)
   end
 
   def percent_completed
