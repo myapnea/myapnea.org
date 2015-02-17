@@ -27,10 +27,8 @@ $text-muted:                  $ma-lighter-blue;
 @media (max-width: 992px) {
   /* SMALL SCREENS */
   .btn-forum-header {
-    padding:5px;
+    padding:10px;
     border-radius:5px;
-    background-color: #7FB2EB;
-    border-color: #7FB2EB;
   }
   .search-bar-forum {
     float: none;
