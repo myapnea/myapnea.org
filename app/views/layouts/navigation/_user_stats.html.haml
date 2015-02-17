@@ -2,18 +2,18 @@
   / = link_to forums_path, class: 'user-stats' do
   .col-xs-4.user-stats.hidden-sm
     %p.small.f500.text-dark5
-      = "POST".pluralize(current_user.approved_posts.count).upcase
+      POSTS
     %h5.text-white5
       = current_user.approved_posts.count
   / = link_to surveys_path, class: 'user-stats' do
   .col-xs-4.user-stats.hidden-sm
     %p.small.f500.text-dark5
-      = "SURVEY".pluralize(current_user.complete_surveys.count).upcase
+      SURVEYS
     %h5.text-white5
       = current_user.complete_surveys.count
   / = link_to research_topics_path, class: 'user-stats' do
   .col-xs-4.user-stats.hidden-sm
     %p.small.f500.text-dark5
-      = "VOTE".pluralize(current_user.positive_votes.count).upcase
+      VOTES
     %h5.large.text-white5
       = current_user.positive_votes.count
