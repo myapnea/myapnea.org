@@ -113,6 +113,7 @@
   $('.survey-container').click (event) ->
     # For click events on 'Next Question' button, just assign next question
     if $(event.target).hasClass "next-question"
+      event.stopPropagation()
       assignQuestion(true, false)
     else
       # Respond to input clicks on active questions
