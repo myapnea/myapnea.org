@@ -12,13 +12,17 @@
 .survey-container.active.progress-w-enter{ data: { object: 'survey-introduction' } }
   .panel.centered-text{ style: "padding: 20px;" }
     .question-container{ style: 'margin-bottom: 50px;' }
-      %h1.f300
+      %h2.f300
         Welcome to the
         %span.darker-blue
           = @survey.name.html_safe if @survey.name.present?
         survey!
-      %p.lead{ style: 'white-space:pre-line;' }
+      %p.lead
         = @survey.description.html_safe if @survey.description.present?
+      %p.f300
+        You may answer the following questions using your mouse or your keyboard, whichever you prefer! The
+        %span.lighter-orange orange progress sidebar
+        on the left side of the screen will show you how you are advancing, and easily let you jump to questions that you may have missed. Remember, you are allowed to navigate away at any time and your answers will automatically be saved, but you must finish the entire survey for an entry into the lottery!
     .button-container
       .btn.btn-primary.next-question
         Begin Survey
@@ -31,15 +35,19 @@
   = render partial: "surveys/question_templates/#{question.display_type}", locals: { question: question, answer_session: @answer_session, answer: Answer.first_or_new(question, @answer_session), question_number: index }
 
 / End of Survey
-.survey-container
+.survey-container{ data: { object: 'survey-submit' } }
   .panel.centered-text{ style: "padding: 20px;"}
-    %h3.f300.primary-blue Congratulations!
-    %p.lead You've reached the end of the survey, and are already on your way to making an impact on sleep apnea research. You've also gained one entry into our monthly prize drawing!
-    %p.lead From here, we highly recommend you continue and answer a few more questions to help us learn more about you and your experience with sleep apnea.
-    .row{ style: 'margin-bottom:20px;' }
-      = link_to "Continue", survey_report_path(@survey), class: "btn btn-success col-xs-4 col-xs-offset-4"
-    %p.lead{ style: 'font-size: 16px;'}
-      We also have an active community that you can
-      = link_to 'join', account_path, class: 'lighter-blue', style: 'text-underline: none;'
-      and begin participating in the
-      = link_to 'forums.', forums_path, class: 'lighter-blue', style: 'text-underline: none;'
+    .panel-heading{ style: 'background-color: transparent;', data: { object: 'survey-submit-btn-container' } }
+      .btn.btn-primary.btn-lg{ style: 'width:100%', data: { object: 'survey-submit-btn' } } Submit Answers!
+    .panel-body.hidden{ data: { object: 'survey-submit-congratulations-container' } }
+      %h3.f300.primary-blue Congratulations!
+      %p.lead You've reached the end of the survey, and are already on your way to making an impact on sleep apnea research. You've also gained one entry into our monthly prize drawing!
+      %p.lead From here, we highly recommend you continue and answer a few more questions to help us learn more about you and your experience with sleep apnea.
+      .row{ style: 'margin-bottom:20px; text-align: center;' }
+        = link_to "View Report", survey_report_path(@survey), class: "btn btn-success btn-lg"
+        = link_to "Continue", surveys_path, class: "btn btn-primary btn-lg"
+      %p.lead{ style: 'font-size: 16px;'}
+        We also have an active community that you can
+        = link_to 'join', account_path, class: 'lighter-blue', style: 'text-underline: none;'
+        and begin participating in the
+        = link_to 'forums.', forums_path, class: 'lighter-blue', style: 'text-underline: none;'

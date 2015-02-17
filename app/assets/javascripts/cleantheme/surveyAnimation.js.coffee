@@ -6,6 +6,7 @@
       $("[data-object~='radio-input-multiple']").children($("[data-object~='radio-input-multiple-container']")).first().addClass "current"
     return
 
+  # Navigation for survey indicators
   $("[data-object~='survey-indicator']").click (e) ->
     target = 'question-container-' + $(this).data('target')
     assignQuestionDirect($("[data-object~='"+target+"']"))
@@ -250,6 +251,27 @@
   $("input").change (event) ->
     if $("input").parents(".survey-container").length
       handleChangedValue($(event.target))
+
+  # Submit survey
+  $("[data-object~='survey-submit-btn']").click (e) ->
+    e.stopPropagation()
+    if checkCompletion()
+      $(this).addClass 'hidden'
+      $("[data-object~='survey-submit-congratulations-container']").removeClass 'hidden'
+    else
+      $("[data-object~='survey-indicator'].incomplete").addClass 'error'
+      target = 'question-container-' + $("[data-object~='survey-indicator'].incomplete").first().data('target')
+      assignQuestionDirect($("[data-object~='"+target+"']"))
+    return
+
+
+  @checkCompletion = () ->
+    numberSelectors = $("[data-object~='survey-indicator']").length
+    numberCompletedSelectors = $("[data-object~='survey-indicator'].complete").length
+    if numberSelectors == numberCompletedSelectors
+      return true
+    else
+      return false
 
 
   # Custom date input

@@ -33,7 +33,8 @@
       background-color: white;
       color: #444;
     }
-    li.active {
+    li.error {
+      border-color: #bd0026;
     }
     li.complete {
       font-size:14px;
