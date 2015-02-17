@@ -1,3 +1,8 @@
-%h3 Propose Research Question
+%h3.f500 Propose Research Question
+%p.lead Once you submit, the question will have to be accepted before it will appear on the Research Topics page. This process is generally very quick, and you should see your topic appear within 24 hours.
+%p.lead
+  If you have any questions, please email us at
+  = link_to 'support@myapnea.org', "mailto:#{ENV['pprn_support_email']}"
+%br
 = render partial: "research_topics/form", locals: {research_topic: @research_topic}
 

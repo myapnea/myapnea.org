@@ -252,12 +252,12 @@ class User < ActiveRecord::Base
   end
 
   def number_votes_remaining
-    vote_quota - todays_votes.length
+    vote_quota - this_weeks_votes.length
   end
 
   def has_votes_remaining?(rating = 1)
 
-    (todays_votes.length < vote_quota) or (rating < 1)
+    (this_weeks_votes.length < vote_quota) or (rating < 1)
   end
 
   def positive_votes
