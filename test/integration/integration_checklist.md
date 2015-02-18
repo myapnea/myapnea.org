@@ -214,7 +214,7 @@ For these each question type:
    - [ ] Date
    - [ ] Number
    - [ ] Text
-   
+
 Fill in questions and check persistence:
    - [ ] Clicking `Go to next question` button
    - [ ] Hitting `Enter` key
@@ -237,10 +237,40 @@ Choose a nested question and select the nested option
 - [ ] Ensure nested input renders properly.
 - [ ] Proceed to next question with `Enter`.
 
-
-
-
 ## Forum
+
+1. Sign in with `tommyboy@gmail.com`, `password`
+2. Go to 'Forums' page
+3. Go to 'Introductions' forum
+4. Check display:
+- [ ] Start a New Topic
+5. Click "Start a New Topic"
+6. Check display:
+- [ ] Title Box
+- [ ] Description Box
+7. Click 'Create Topic'
+8. Check display:
+- [ ] Errors displayed due to blank input
+9. Add a Title and a Description
+10. Click "Create Topic"
+11. Check the following:
+- [ ] Redirected to Topic show page
+- [ ] Post is under review
+12. Logout and check:
+- [ ] Post does not show up
+
+## Forum Moderate Topic
+
+1. Sign in with `moderator@example.com`, `password`
+2. Go to 'Forums' page
+3. Filter by "Pending Review"
+4. Click on New Topic Pending Review
+5. Approve Topic
+6. Approve First Post
+7. Check following:
+- [ ] Post no longer under review
+8. Logout and check:
+- [ ] Post shows up when logged out
 
 ## Rank the research
 
