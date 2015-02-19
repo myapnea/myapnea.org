@@ -1,0 +1,236 @@
+name: My Quality of Life
+slug: my-quality-of-life
+description: |+
+  MyApnea.Org is one of 11 patient-powered research networks (PPRNs). The following questions are asked by all PPRNs. Researchers can use this information to make comparisons between different illnesses and diseases.
+status: show
+questions:
+- text: |
+    In general, how would you rate your health?
+  slug: general-health-rate
+  display_type: radio_input
+  answer_templates:
+  - name: general_health_rating
+    data_type: answer_option_id
+    answer_options:
+    - text: Poor
+      hotkey: 1
+      value: 1
+    - text: Fair
+      hotkey: 2
+      value: 2
+    - text: Good
+      hotkey: 3
+      value: 3
+    - text: Very good
+      hotkey: 4
+      value: 4
+    - text: Excellent
+      hotkey: 5
+      value: 5
+- text: |
+    Compared to one year ago, how would you rate your health in general now?
+  slug: improved-health-rate
+  display_type: radio_input
+  answer_templates:
+  - name: improved_health_rating
+    data_type: answer_option_id
+    answer_options:
+    - text: Much worse than one year ago
+      hotkey: 1
+      value: 1
+    - text: Somewhat worse now than one year ago
+      hotkey: 2
+      value: 2
+    - text: About the same as one year ago
+      hotkey: 3
+      value: 3
+    - text: Somewhat better now than one year ago
+      hotkey: 4
+      value: 4
+    - text: Much better now than one year ago
+      hotkey: 5
+      value: 5
+- text: |
+    In general, how would you rate your quality of life?
+  slug: general-quality-life-rate
+  display_type: radio_input
+  answer_templates:
+  - name: general_quality_life_rating
+    data_type: answer_option_id
+    answer_options:
+    - text: Poor
+      hotkey: 1
+      value: 1
+    - text: Fair
+      hotkey: 2
+      value: 2
+    - text: Good
+      hotkey: 3
+      value: 3
+    - text: Very good
+      hotkey: 4
+      value: 4
+    - text: Excellent
+      hotkey: 5
+      value: 5
+- text: |
+    To what extent are you able to carry out your everyday physical activities such as walking, climbing stairs, carrying groceries, or moving a chair?
+  slug: everyday-physical-activities
+  display_type: radio_input
+  answer_templates:
+  - name: everyday_physical_activities
+    data_type: answer_option_id
+    answer_options:
+    - text: Not at all
+      hotkey: 1
+      value: 1
+    - text: A little
+      hotkey: 2
+      value: 2
+    - text: Moderately
+      hotkey: 3
+      value: 3
+    - text: Mostly
+      hotkey: 4
+      value: 4
+    - text: Completely
+      hotkey: 5
+      value: 5
+- text: |
+    How well are you able to run errands and shop?
+  slug: errands-and-shop
+  display_type: radio_input
+  answer_templates:
+  - name: errands_and_shop
+    data_type: answer_option_id
+    answer_options:
+    - text: Unable to do
+      hotkey: 1
+      value: 1
+    - text: With much difficulty
+      hotkey: 2
+      value: 2
+    - text: With some difficulty
+      hotkey: 3
+      value: 3
+    - text: With a little difficulty
+      hotkey: 4
+      value: 4
+    - text: Without any difficulty
+      hotkey: 5
+      value: 5
+- text: |
+    In the past 7 days, I felt depressed:
+  slug: last-week-depression
+  display_type: radio_input
+  answer_templates:
+  - name: last_week_depression
+    data_type: answer_option_id
+    answer_options:
+    - text: Always
+      hotkey: 1
+      value: 1
+    - text: Often
+      hotkey: 2
+      value: 2
+    - text: Sometimes
+      hotkey: 3
+      value: 3
+    - text: Rarely
+      hotkey: 4
+      value: 4
+    - text: Never
+      hotkey: 5
+      value: 5
+- text: |
+    During the past 7 days, I felt fatigued:
+  slug: last-week-fatigue
+  display_type: radio_input
+  answer_templates:
+  - name: last_week_fatigue
+    data_type: answer_option_id
+    answer_options:
+    - text: Very much
+      hotkey: 1
+      value: 1
+    - text: Quite a bit
+      hotkey: 2
+      value: 2
+    - text: Somewhat
+      hotkey: 3
+      value: 3
+    - text: A little bit
+      hotkey: 4
+      value: 4
+    - text: Not at all
+      hotkey: 5
+      value: 5
+- text: |
+    In the past 7 days, I had a problem with my sleep:
+  slug: last-week-problem-sleep
+  display_type: radio_input
+  answer_templates:
+  - name: last_week_problem_sleep
+    data_type: answer_option_id
+    answer_options:
+    - text: Very much
+      hotkey: 1
+      value: 1
+    - text: Quite a bit
+      hotkey: 2
+      value: 2
+    - text: Somewhat
+      hotkey: 3
+      value: 3
+    - text: A little bit
+      hotkey: 4
+      value: 4
+    - text: Not at all
+      hotkey: 5
+      value: 5
+- text: |
+    I have trouble doing all of my regular leisure activities with others
+  slug: trouble-with-leisure
+  display_type: radio_input
+  answer_templates:
+  - name: trouble_with_leisure
+    data_type: answer_option_id
+    answer_options:
+    - text: Always
+      hotkey: 1
+      value: 1
+    - text: Often
+      hotkey: 2
+      value: 2
+    - text: Sometimes
+      hotkey: 3
+      value: 3
+    - text: Rarely
+      hotkey: 4
+      value: 4
+    - text: Never
+      hotkey: 5
+      value: 5
+- text: |
+    In the past 7 days, how much did pain interfere with your day to day activities?
+  slug: last-week-pain-interference
+  display_type: radio_input
+  answer_templates:
+  - name: last_week_pain_interference
+    data_type: answer_option_id
+    answer_options:
+    - text: Very much
+      hotkey: 1
+      value: 1
+    - text: Quite a bit
+      hotkey: 2
+      value: 2
+    - text: Somewhat
+      hotkey: 3
+      value: 3
+    - text: A little bit
+      hotkey: 4
+      value: 4
+    - text: Not at all
+      hotkey: 5
+      value: 5

@@ -176,6 +176,8 @@ $warning: #f4b46d;
 $moderate: #fedf9c;
 $good: #d9f0a3;
 $great: #78c679;
+$neutral: #bbb;
+$blue: #7fb2eb;
 
 .survey-container.active .panel .input-container .multiple-question-container.current {
   background-color: transparentize(#b1d2f6, .9);
@@ -210,6 +212,14 @@ $great: #78c679;
       input[type=radio] {
         display: none;
       }
+    }
+    .option-of-6{
+      width: 16%;
+      margin: 0px;
+      padding-left:5px;
+      padding-right:5px;
+      display: inline-block;
+      float:left;
     }
     .option-of-5{
       width:20%;
@@ -253,9 +263,21 @@ $great: #78c679;
       -moz-box-sizing:border-box;
       -webkit-box-sizing:border-box;
       border:6px double transparent;
+      background-color: transparentize($neutral, .7);
     }
     .survey-scale:hover label {
       cursor: pointer;
+    }
+    .survey-scale input[type=radio]:checked ~ label {
+      background-color: transparentize($neutral, .1);
+      border: 6px double white;
+    }
+    .survey-scale-blue label {
+      background-color: transparentize($blue, .7);
+    }
+    .survey-scale-blue input[type=radio]:checked ~ label {
+      background-color: transparentize($blue, .1);
+      border: 6px double white;
     }
     .survey-scale-danger label {
       background-color: transparentize($danger, .7);

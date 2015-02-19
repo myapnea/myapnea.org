@@ -1,0 +1,265 @@
+name: My Interest in Research
+slug: my-interest-in-research
+description: |+
+  The main mission of MyApnea.Org is to improve sleep apnea outcomes through patient-powered research. In order to best engage patients we would like to know your experience in research studies and how you would like to participate in other MyAPnea.Org research efforts.
+status: show
+questions:
+- text: |
+    How did you hear about MyApnea.Org?
+  slug: referral-methods
+  display_type: checkbox_input
+  answer_templates:
+  - name: myapnea_referral_source
+    data_type: answer_option_id
+    allow_multiple: true
+    answer_options:
+    - text: American Sleep Apnea Association (ASAA)
+      hotkey: A
+      value: 1
+    - text: A.W.A.K.E. Group
+      hotkey: B
+      value: 2
+    - text: CPAP company
+      hotkey: C
+      value: 3
+    - text: Personal or family doctor
+      hotkey: D
+      value: 4
+    - text: Clinic or hospital
+      hotkey: E
+      value: 5
+    - text: CPAP provider
+      hotkey: F
+      value: 6
+    - text: Poster or other advertisement
+      hotkey: G
+      value: 7
+    - text: Facebook
+      hotkey: H
+      value: 8
+    - text: Twitter
+      hotkey: I
+      value: 9
+    - text: LinkedIn
+      hotkey: J
+      value: 10
+    - text: Google+
+      hotkey: K
+      value: 11
+    - text: Family member
+      hotkey: L
+      value: 12
+    - text: Friend
+      hotkey: M
+      value: 13
+    - text: Internet search
+      hotkey: N
+      value: 14
+    - text: Other patient-centered network
+      hotkey: O
+      value: 15
+    - text: Other
+      hotkey: P
+      value: 16
+- text: |
+    Have you ever taken part in research projects related to your health or the health of a family member?
+  slug: previous-research-participation
+  display_type: radio_input
+  answer_templates:
+  - name: previous_research_participation
+    data_type: answer_option_id
+    answer_options:
+    - text: 'Yes'
+      hotkey: 1
+      value: 1
+    - text: 'No'
+      hotkey: 2
+      value: 2
+    - text: 'Prefer not to answer'
+      hotkey: 3
+      value: 3
+- text: |
+    How would you prefer to be contacted to learn about potential research studies?
+  slug: preferred-method-of-contact
+  display_type: checkbox_input
+  answer_templates:
+  - name: preferred_method_of_contact
+    data_type: answer_option_id
+    allow_multiple: true
+    answer_options:
+    - text: E-mail
+      hotkey: A
+      value: 1
+    - text: Cell phone text messaging
+      hotkey: B
+      value: 2
+    - text: Social media (such as Facebook, Twitter, or Pinterest)
+      hotkey: C
+      value: 3
+    - text: Letter or post card in the mail
+      hotkey: D
+      value: 4
+    - text: A computer created phone message
+      hotkey: E
+      value: 5
+    - text: Personal phone call from research staff or my doctor
+      hotkey: F
+      value: 6
+    - text: Talking face-to-face with research staff or my doctor when I am visiting the clinic
+      hotkey: G
+      value: 7
+    - text: Other (please describe)
+      hotkey: H
+      value: 8
+    - text: I am not interested in being contacted about future research studies
+      hotkey: I
+      value: 9
+  - name: specified_contact_method
+    data_type: text_value
+    target_answer_option: 8
+- text: |
+    If a researcher was studying a condition or health problem that you cared about, how interested would you be in participating for the following study designs?
+  slug: interest-in-study-designs
+  display_type: radio_input_multiple
+  answer_templates:
+  - name: interest_in_surveys
+    data_type: answer_option_id
+    text: Completing a survey two or more times
+    answer_options:
+    - text: Not interested
+      hotkey: 1
+      value: 1
+      display_class: option-of-multiple option-of-4 survey-scale survey-scale-danger
+    - text: Somewhat interested
+      hotkey: 2
+      value: 2
+      display_class: option-of-multiple option-of-4 survey-scale survey-scale-moderate
+    - text: Very interested
+      hotkey: 3
+      value: 3
+      display_class: option-of-multiple option-of-4 survey-scale survey-scale-great
+    - text: Prefer not to answer
+      hotkey: 4
+      value: 4
+      display_class: option-of-multiple option-of-4 survey-scale
+  - name: interest_in_blood_sample
+    data_type: answer_option_id
+    text: Giving a blood sample
+    answer_options:
+    - text: Not interested
+      hotkey: 1
+      value: 1
+      display_class: option-of-multiple option-of-4 survey-scale survey-scale-danger
+    - text: Somewhat interested
+      hotkey: 2
+      value: 2
+      display_class: option-of-multiple option-of-4 survey-scale survey-scale-moderate
+    - text: Very interested
+      hotkey: 3
+      value: 3
+      display_class: option-of-multiple option-of-4 survey-scale survey-scale-great
+    - text: Prefer not to answer
+      hotkey: 4
+      value: 4
+      display_class: option-of-multiple option-of-4 survey-scale
+  - name: interest_in_conversation
+    data_type: answer_option_id
+    text: Taking part in a study that involves talking by phone or over the internet (for example, to get advice about your health)
+    answer_options:
+    - text: Not interested
+      hotkey: 1
+      value: 1
+      display_class: option-of-multiple option-of-4 survey-scale survey-scale-danger
+    - text: Somewhat interested
+      hotkey: 2
+      value: 2
+      display_class: option-of-multiple option-of-4 survey-scale survey-scale-moderate
+    - text: Very interested
+      hotkey: 3
+      value: 3
+      display_class: option-of-multiple option-of-4 survey-scale survey-scale-great
+    - text: Prefer not to answer
+      hotkey: 4
+      value: 4
+      display_class: option-of-multiple option-of-4 survey-scale
+  - name: interest_in_medication
+    data_type: answer_option_id
+    text: Taking part in a study where you have to take a medication
+    answer_options:
+    - text: Not interested
+      hotkey: 1
+      value: 1
+      display_class: option-of-multiple option-of-4 survey-scale survey-scale-danger
+    - text: Somewhat interested
+      hotkey: 2
+      value: 2
+      display_class: option-of-multiple option-of-4 survey-scale survey-scale-moderate
+    - text: Very interested
+      hotkey: 3
+      value: 3
+      display_class: option-of-multiple option-of-4 survey-scale survey-scale-great
+    - text: Prefer not to answer
+      hotkey: 4
+      value: 4
+      display_class: option-of-multiple option-of-4 survey-scale
+  - name: interest_in_meeting_local
+    data_type: answer_option_id
+    text: Taking part in a study that involves meeting at a local community center or school
+    answer_options:
+    - text: Not interested
+      hotkey: 1
+      value: 1
+      display_class: option-of-multiple option-of-4 survey-scale survey-scale-danger
+    - text: Somewhat interested
+      hotkey: 2
+      value: 2
+      display_class: option-of-multiple option-of-4 survey-scale survey-scale-moderate
+    - text: Very interested
+      hotkey: 3
+      value: 3
+      display_class: option-of-multiple option-of-4 survey-scale survey-scale-great
+    - text: Prefer not to answer
+      hotkey: 4
+      value: 4
+      display_class: option-of-multiple option-of-4 survey-scale
+  - name: interest_in_with_family
+    data_type: answer_option_id
+    text: Taking part in a study that involves you and other people in your family
+    answer_options:
+    - text: Not interested
+      hotkey: 1
+      value: 1
+      display_class: option-of-multiple option-of-4 survey-scale survey-scale-danger
+    - text: Somewhat interested
+      hotkey: 2
+      value: 2
+      display_class: option-of-multiple option-of-4 survey-scale survey-scale-moderate
+    - text: Very interested
+      hotkey: 3
+      value: 3
+      display_class: option-of-multiple option-of-4 survey-scale survey-scale-great
+    - text: Prefer not to answer
+      hotkey: 4
+      value: 4
+      display_class: option-of-multiple option-of-4 survey-scale
+  - name: interest_in_hospital_stay
+    data_type: answer_option_id
+    text: Taking part in a study in which you would stay in the hospital for 1 or more days
+    answer_options:
+    - text: Not interested
+      hotkey: 1
+      value: 1
+      display_class: option-of-multiple option-of-4 survey-scale survey-scale-danger
+    - text: Somewhat interested
+      hotkey: 2
+      value: 2
+      display_class: option-of-multiple option-of-4 survey-scale survey-scale-moderate
+    - text: Very interested
+      hotkey: 3
+      value: 3
+      display_class: option-of-multiple option-of-4 survey-scale survey-scale-great
+    - text: Prefer not to answer
+      hotkey: 4
+      value: 4
+      display_class: option-of-multiple option-of-4 survey-scale
+
