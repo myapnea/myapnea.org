@@ -60,4 +60,32 @@ class SurveyTest < ActiveSupport::TestCase
 
   end
 
+
+  test "#launch_single" do
+    u = users(:social)
+
+    assert_empty u.assigned_surveys
+
+    assert_difference "u.assigned_surveys.count" do
+      result = surveys(:new).launch_single(u, "baseline")
+      assert_nil result
+    end
+
+
+    assert_equal u.email, surveys(:new).launch_single(u, "baseline")
+
+
+
+  end
+
+  test "#launch_multiple" do
+
+    assert_difference "AnswerSession.where(encounter: 'baseline').count", User.current.where(adult_diagnosed: true).count do
+      result = surveys(:new_2).launch_multiple(User.current.where("adult_diagnosed = TRUE"), 'baseline')
+      assert_match /previously launched: 0/, result
+    end
+
+    assert_match /previously launched: 18/, surveys(:new_2).launch_multiple(User.current.where("adult_diagnosed = TRUE"), 'baseline')
+  end
+
 end

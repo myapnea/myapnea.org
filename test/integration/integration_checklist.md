@@ -190,9 +190,28 @@
 - [ ] User should be able to click `Leave Research Study`.
 
 ### Main Flow
+
 - [ ] Sign in with `tommyboy@gmail.com`, `password`
 
-- [ ] Go to homepage and test survey links.
+#### Survey Assignment
+
+- [ ] Go to homepage and make sure no surveys show up **since none have yet been assigned**. Make sure a friendly message appears informing users about lack of surveys.
+
+- [ ] Open console: `rails c integration_test`
+
+- [ ] Assign new survey to the user: `Survey.find_by_slug("new-survey").launch_single(User.find_by_email("tommyboy@gmail.com"), "baseline")`
+
+- [ ] Refresh page and make sure `New Survey` shows up in survey list.
+
+- [ ] Mass-assign another survey using rake task: `bundle exec rake surveys:launch['another-survey',"adult_diagnosed = TRUE","baseline"] RAILS_ENV=integration_test`
+
+- [ ] Refresh page and make sure `Another Survey` shows up in survey list.
+
+- Launch the following surveys for `tommyboy@gmail.com`:
+   - [ ] About Me
+   - [ ] About My Family
+   - [ ] Additional Information About Me
+   - [ ] My Sleep Pattern
 
 - [ ] Click on `Research Surveys` link on sidebar and test survey links on resulting page.
 

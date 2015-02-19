@@ -34,8 +34,8 @@ complete:
   last_answer:
   encounter: baseline
 
-
-launched2:
-  user: social
-  survey: new_2
-  encounter: baseline
+#
+#launched2:
+#  user: social
+#  survey: new_2
+#  encounter: baseline

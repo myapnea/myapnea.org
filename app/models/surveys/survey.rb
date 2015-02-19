@@ -28,6 +28,8 @@ class Survey < ActiveRecord::Base
   scope :viewable, -> { where(status: "show") }
 
   # Class Methods
+
+  ## Deprecated - remove in 6.0.0
   def self.complete(user)
     res = joins(:answer_sessions).where(status: "show", answer_sessions: {user_id: user.id, deleted: false}).select do |qf|
       as = qf.answer_sessions.where(user_id: user.id, deleted: false).order(updated_at: :desc).first
@@ -54,6 +56,7 @@ class Survey < ActiveRecord::Base
     end
     res
   end
+  ##
 
   def self.refresh_all_surveys
     Survey.all.each do |survey|
@@ -151,13 +154,38 @@ class Survey < ActiveRecord::Base
 
   # Instance Methods
   def launch_single(user, encounter)
-    AnswerSession.create(user_id: user.id, encounter: encounter, survey_id: self.id)
+    # If answer session already exists, returns the user's email address. Otherwise, returns nil
+
+    ## answer_session = AnswerSession.first_or_initialize(user_id: user.id, encounter: encounter, survey_id: self.id) For some reason, this creates and saves an AnswerSession object
+    # Temp fix:
+    answer_session = AnswerSession.find_or_initialize_by(user_id: user.id, encounter: encounter, survey_id: self.id)
+    #
+
+    return_status = answer_session.new_record? ? nil : user.email
+
+    answer_session.save!
+
+    return_status
+
+
+
   end
 
   def launch_multiple(users, encounter)
+    already_assigned = []
+
     users.each do |user|
-      launch_single(user, encounter)
+      already_assigned << launch_single(user, encounter)
     end
+
+    already_assigned.compact!
+
+    "
+      Total number of users in survey launch: #{users.length}\n
+      Users with survey previously launched: #{already_assigned.length}\n
+      List of users with survey previously launched:\n
+      #{already_assigned}
+    "
   end
 
   def to_param
