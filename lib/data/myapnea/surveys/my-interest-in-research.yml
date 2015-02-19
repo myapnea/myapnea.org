@@ -72,12 +72,15 @@ questions:
     - text: 'Yes'
       hotkey: 1
       value: 1
+      display_class: label-default label-med
     - text: 'No'
       hotkey: 2
       value: 2
+      display_class: label-default label-med
     - text: 'Prefer not to answer'
       hotkey: 3
       value: 3
+      display_class: label-default label-med
 - text: |
     How would you prefer to be contacted to learn about potential research studies?
   slug: preferred-method-of-contact

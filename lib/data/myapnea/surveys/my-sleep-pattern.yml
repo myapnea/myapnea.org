@@ -28,18 +28,23 @@ questions:
     - text: 5:00 - 6:30 am
       hotkey: 1
       value: 1
+      display_class: option-of-multiple option-of-5 label-default
     - text: 6:30 - 7:45 am
       hotkey: 2
       value: 2
+      display_class: option-of-multiple option-of-5 label-default
     - text: 7:45 - 9:45 am
       hotkey: 3
       value: 3
+      display_class: option-of-multiple option-of-5 label-default
     - text: 9:45 - 11:00 am
       hotkey: 4
       value: 4
+      display_class: option-of-multiple option-of-5 label-default
     - text: After 11:00 am
       hotkey: 5
       value: 5
+      display_class: option-of-multiple option-of-5 label-default
 - text: |
     How likely are you to doze off or fall asleep (not just "feel tired") in the following situations? Please choose one of the answers for each situation. If you are never or rarely in the situation, please give your best guess for that situation.
   slug: epworth-sleepiness-scale

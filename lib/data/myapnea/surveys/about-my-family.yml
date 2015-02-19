@@ -15,24 +15,31 @@ questions:
     - text: U.S.A.
       hotkey: 1
       value: 1
+      display_class: label-default label-med
     - text: Canada
       hotkey: 2
       value: 2
+      display_class: label-default label-med
     - text: Mexico
       hotkey: 3
       value: 3
+      display_class: label-default label-med
     - text: China
       hotkey: 4
       value: 4
+      display_class: label-default label-med
     - text: India
       hotkey: 5
       value: 5
+      display_class: label-default label-med
     - text: Philippines
       hotkey: 6
       value: 6
+      display_class: label-default label-med
     - text: Other country (please specify)
       hotkey: 7
       value: 7
+      display_class: label-default label-med
   - name: specified_country
     data_type: text_value
     display_type_id: 1
@@ -49,18 +56,23 @@ questions:
     - text: English
       hotkey: A
       value: 1
+      display_class: label-default label-med
     - text: Spanish
       hotkey: B
       value: 2
+      display_class: label-default label-med
     - text: Chinese
       hotkey: C
       value: 3
+      display_class: label-default label-med
     - text: Other language (please specify)
       hotkey: D
       value: 4
+      display_class: label-default label-med
     - text: Prefer not to answer
       hotkey: E
       value: 5
+      display_class: label-default label-med
   - name: specified_language
     data_type: text_value
     display_type_id: 1

@@ -15,18 +15,23 @@ questions:
     - text: Poor
       hotkey: 1
       value: 1
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-danger
     - text: Fair
       hotkey: 2
       value: 2
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-warning
     - text: Good
       hotkey: 3
       value: 3
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-moderate
     - text: Very good
       hotkey: 4
       value: 4
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-good
     - text: Excellent
       hotkey: 5
       value: 5
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-great
 - text: |
     Compared to one year ago, how would you rate your health in general now?
   slug: improved-health-rate
@@ -38,18 +43,23 @@ questions:
     - text: Much worse than one year ago
       hotkey: 1
       value: 1
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-danger
     - text: Somewhat worse now than one year ago
       hotkey: 2
       value: 2
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-warning
     - text: About the same as one year ago
       hotkey: 3
       value: 3
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-moderate
     - text: Somewhat better now than one year ago
       hotkey: 4
       value: 4
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-good
     - text: Much better now than one year ago
       hotkey: 5
       value: 5
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-great
 - text: |
     In general, how would you rate your quality of life?
   slug: general-quality-life-rate
@@ -61,18 +71,23 @@ questions:
     - text: Poor
       hotkey: 1
       value: 1
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-danger
     - text: Fair
       hotkey: 2
       value: 2
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-warning
     - text: Good
       hotkey: 3
       value: 3
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-moderate
     - text: Very good
       hotkey: 4
       value: 4
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-good
     - text: Excellent
       hotkey: 5
       value: 5
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-great
 - text: |
     To what extent are you able to carry out your everyday physical activities such as walking, climbing stairs, carrying groceries, or moving a chair?
   slug: everyday-physical-activities
@@ -84,18 +99,23 @@ questions:
     - text: Not at all
       hotkey: 1
       value: 1
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-danger
     - text: A little
       hotkey: 2
       value: 2
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-warning
     - text: Moderately
       hotkey: 3
       value: 3
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-moderate
     - text: Mostly
       hotkey: 4
       value: 4
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-good
     - text: Completely
       hotkey: 5
       value: 5
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-great
 - text: |
     How well are you able to run errands and shop?
   slug: errands-and-shop
@@ -107,18 +127,23 @@ questions:
     - text: Unable to do
       hotkey: 1
       value: 1
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-danger
     - text: With much difficulty
       hotkey: 2
       value: 2
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-warning
     - text: With some difficulty
       hotkey: 3
       value: 3
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-moderate
     - text: With a little difficulty
       hotkey: 4
       value: 4
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-good
     - text: Without any difficulty
       hotkey: 5
       value: 5
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-great
 - text: |
     In the past 7 days, I felt depressed:
   slug: last-week-depression
@@ -130,18 +155,23 @@ questions:
     - text: Always
       hotkey: 1
       value: 1
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-danger
     - text: Often
       hotkey: 2
       value: 2
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-warning
     - text: Sometimes
       hotkey: 3
       value: 3
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-moderate
     - text: Rarely
       hotkey: 4
       value: 4
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-good
     - text: Never
       hotkey: 5
       value: 5
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-great
 - text: |
     During the past 7 days, I felt fatigued:
   slug: last-week-fatigue
@@ -153,18 +183,23 @@ questions:
     - text: Very much
       hotkey: 1
       value: 1
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-danger
     - text: Quite a bit
       hotkey: 2
       value: 2
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-warning
     - text: Somewhat
       hotkey: 3
       value: 3
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-moderate
     - text: A little bit
       hotkey: 4
       value: 4
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-good
     - text: Not at all
       hotkey: 5
       value: 5
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-great
 - text: |
     In the past 7 days, I had a problem with my sleep:
   slug: last-week-problem-sleep
@@ -176,18 +211,23 @@ questions:
     - text: Very much
       hotkey: 1
       value: 1
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-danger
     - text: Quite a bit
       hotkey: 2
       value: 2
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-warning
     - text: Somewhat
       hotkey: 3
       value: 3
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-moderate
     - text: A little bit
       hotkey: 4
       value: 4
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-good
     - text: Not at all
       hotkey: 5
       value: 5
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-great
 - text: |
     I have trouble doing all of my regular leisure activities with others
   slug: trouble-with-leisure
@@ -199,18 +239,23 @@ questions:
     - text: Always
       hotkey: 1
       value: 1
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-danger
     - text: Often
       hotkey: 2
       value: 2
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-warning
     - text: Sometimes
       hotkey: 3
       value: 3
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-moderate
     - text: Rarely
       hotkey: 4
       value: 4
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-good
     - text: Never
       hotkey: 5
       value: 5
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-great
 - text: |
     In the past 7 days, how much did pain interfere with your day to day activities?
   slug: last-week-pain-interference
@@ -222,15 +267,20 @@ questions:
     - text: Very much
       hotkey: 1
       value: 1
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-danger
     - text: Quite a bit
       hotkey: 2
       value: 2
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-warning
     - text: Somewhat
       hotkey: 3
       value: 3
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-moderate
     - text: A little bit
       hotkey: 4
       value: 4
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-good
     - text: Not at all
       hotkey: 5
       value: 5
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-great
