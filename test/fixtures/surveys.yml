@@ -1,10 +1,24 @@
-survey_1:
+# To be removed in 6.0.0
+deprecated:
   name_en: Deprecated Survey
   first_question: q1
   slug: deprecated-survey
   status: show
-survey_2:
+
+new:
   name_en: New Survey
-  first_question: new_q1
+  first_question: radio1
   slug: new-survey
+  status: show
+
+hidden:
+  name_en: Hidden Survey
+  first_question: radio2
+  slug: hidden-survey
+  status: hide
+
+new_2:
+  name_en: Another Survey
+  first_question: date1
+  slug: another-survey
   status: show

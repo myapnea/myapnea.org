@@ -1,3 +1,4 @@
+# Deprecated - remove in 6.0.0
 aoat1:
   answer_template: how_much
   answer_option: all
@@ -77,3 +78,37 @@ aoat24:
 aoat25:
   answer_template: color_list
   answer_option: maroon
+
+aoat26:
+  answer_template: race_list
+  answer_option: wookie
+aoat27:
+  answer_template: race_list
+  answer_option: bith
+aoat28:
+  answer_template: race_list
+  answer_option: other_race
+aoat29:
+  answer_template: race_list
+  answer_option: prefer_not_to_answer
+
+aoat30:
+  answer_template: doze_sitting
+  answer_option: high_chance
+aoat31:
+  answer_template: doze_sitting
+  answer_option: low_chance
+
+aoat32:
+  answer_template: doze_tv
+  answer_option: high_chance
+aoat33:
+  answer_template: doze_tv
+  answer_option: low_chance
+
+aoat34:
+  answer_template: doze_public
+  answer_option: high_chance
+aoat35:
+  answer_template: doze_public
+  answer_option: low_chance

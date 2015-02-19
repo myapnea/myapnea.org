@@ -60,6 +60,4 @@ class SurveyTest < ActiveSupport::TestCase
 
   end
 
-
-
 end

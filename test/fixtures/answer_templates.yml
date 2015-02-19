@@ -1,3 +1,5 @@
+# Deprecated - remove in 6.0.0
+
 text:
   name: text
   display_type_id: 1
@@ -33,6 +35,9 @@ colors:
 #  - purple
 #  - brown
 
+# New
+
+
 sex:
   name: sex
   data_type: answer_option_id
@@ -45,3 +50,49 @@ sex:
 color_list:
   name: color_list
   data_type: answer_option_id
+
+
+race_list:
+  data_type: answer_option_id
+  allow_multiple: true
+  name: race
+# Wookie
+# Bith
+# Some other race
+# Prefer not to answer
+
+
+specified_race:
+  name: specified_race
+  data_type: text_value
+  target_answer_option: 3
+
+
+birth_date:
+  name: birth_date
+  data_type: text_value
+
+doze_sitting:
+  name: doze_sitting
+  data_type: answer_option_id
+  text: Sitting
+# High chance
+# Low chance
+
+doze_tv:
+  name: doze_tv
+  data_type: answer_option_id
+  text: TV
+# High chance
+# Low chance
+
+doze_public:
+  name: doze_public
+  data_type: answer_option_id
+  text: Public Sitting
+# High chance
+# Low chance
+
+number_of_hours:
+  name: number_of_hours
+  data_type: numeric_value

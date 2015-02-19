@@ -1,14 +1,20 @@
 class AnswerSession < ActiveRecord::Base
+  # Concerns
   include Deletable
 
+  # Associations
   belongs_to :survey
   belongs_to :first_answer, class_name: "Answer", foreign_key: "first_answer_id"
   belongs_to :last_answer, class_name: "Answer", foreign_key: "last_answer_id"
   belongs_to :user
   has_many :answer_edges
 
-  # Class Methods
 
+  # Validations
+  # Unique in terms of survey/encounter
+  validates :survey_id, uniqueness: { scope: [:encounter, :user_id] }
+
+  # Class Methods
   def self.most_recent(survey_id, user_id)
     answer_sessions = AnswerSession.current.where(survey_id: survey_id, user_id: user_id).order(updated_at: :desc)
     answer_sessions.empty? ? nil : answer_sessions.first
@@ -23,8 +29,8 @@ class AnswerSession < ActiveRecord::Base
       answer_sessions.first
     end
   end
-  # Instance Methods
 
+  # Instance Methods
   def incomplete_answers
     answers.incomplete
   end

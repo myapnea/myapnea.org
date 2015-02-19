@@ -215,6 +215,8 @@ class User < ActiveRecord::Base
     (this_weeks_votes.length.to_f / vote_quota) * 100.0
   end
 
+
+  # Deprecated - remove in 6.0.0
   def incomplete_surveys
     Survey.incomplete(self)
   end
@@ -234,6 +236,13 @@ class User < ActiveRecord::Base
   def smart_surveys
     (self.incomplete_surveys + self.unstarted_surveys + self.complete_surveys).select {|s| !s.deprecated?}
   end
+  #
+
+
+  def assigned_surveys
+    Survey.viewable.joins(:answer_sessions).where(answer_sessions: {user_id: self.id})
+  end
+
 
   def research_topics_with_vote
     ResearchTopic.voted_by(self)

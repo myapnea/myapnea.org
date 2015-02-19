@@ -150,6 +150,16 @@ class Survey < ActiveRecord::Base
   end
 
   # Instance Methods
+  def launch_single(user, encounter)
+    AnswerSession.create(user_id: user.id, encounter: encounter, survey_id: self.id)
+  end
+
+  def launch_multiple(users, encounter)
+    users.each do |user|
+      launch_single(user, encounter)
+    end
+  end
+
   def to_param
     self[:slug] || self[:id].to_s
   end

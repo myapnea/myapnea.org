@@ -34,7 +34,7 @@
             - if survey.to_param != nil
               = render partial: 'surveys/partials/survey_progress', locals: { survey: survey, can_complete_surveys: false }
       - else
-        - current_user.smart_surveys.each do |survey|
+        - current_user.assigned_surveys.each do |survey|
           .col-sm-4.centered-text
             = render partial: 'surveys/partials/survey_progress', locals: { survey: survey, can_complete_surveys: true }
 

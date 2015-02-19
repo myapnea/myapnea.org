@@ -1,3 +1,4 @@
+# Deprecated - remove in 6.0.0
 av1:
   answer: a1
   answer_template: colors
@@ -34,3 +35,20 @@ av9:
   answer: a9
   answer_template: feeling
   answer_option: fair
+
+
+# New
+av10:
+  answer: a10
+  answer_template: sex
+  answer_option: male
+
+av11:
+  answer: a11
+  answer_template: sex
+  answer_option: female
+
+av12:
+  answer: a12
+  answer_template: race_list
+  answer_option: bith
