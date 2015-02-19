@@ -136,6 +136,8 @@ class Survey < ActiveRecord::Base
             end
 
 
+            logger.debug cloned_answer.show_value
+
           end
 
 

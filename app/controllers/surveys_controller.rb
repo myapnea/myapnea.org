@@ -74,7 +74,9 @@ class SurveysController < ApplicationController
 
   def set_survey
     @survey = Survey.where("slug = ? or id = ?", params["slug"], params["slug"].to_i).first
-    @answer_session = AnswerSession.find_or_create(current_user, @survey)
+    @answer_session = AnswerSession.find_by(user_id: current_user.id, survey_id: @survey.id)
+
+    redirect_to surveys_path and return unless @answer_session.present?
 
   end
 
