@@ -110,6 +110,7 @@ class AccountController < ApplicationController
       end
     else
     end
+
   end
 
   def update

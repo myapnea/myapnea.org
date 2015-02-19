@@ -86,5 +86,12 @@ integration_test:
   password: myapnea
   host: localhost
 
+production_copy:
+  <<: *default
+  database: myapnea_production_copy
+  username: myapnea
+  password: myapnea
+  host: localhost
+
 production:
   url: <%= ENV['database_url'] %>
