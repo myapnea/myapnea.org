@@ -42,6 +42,9 @@
   - Answer options now have hotkeys and values
   - A single survey can be loaded individually
   - Answers to common questions from deprecated surveys can be migrated to new surveys
+  - Surveys can be launched for single users and groups of users
+  - Different groups of surveys can be launched on user registration depending on user roles
+  - Answer sessions are only created when surveys are launched, and encounter identifiers
 
 ### Bug Fixes
 - Fixed a bug that prevented a user dashboard from displaying if no forum topics existed

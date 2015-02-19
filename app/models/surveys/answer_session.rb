@@ -80,7 +80,7 @@ class AnswerSession < ActiveRecord::Base
     - set value
     - save
     - set to first answer
-    - set to last answer
+    - set to last answer                                  surveys/my-sleep-pattern
   new record in an existing answer session
     - set value
     - save
@@ -145,7 +145,7 @@ class AnswerSession < ActiveRecord::Base
     if answer.new_record? or answer.string_value != params[question.id.to_s]
       # Set Value and Save
       answer.value = params[question.id.to_s]
-      answer.save
+      answer.save                                          surveys/my-sleep-pattern
       answer_modified = true
     end
 
