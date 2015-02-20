@@ -92,3 +92,10 @@ qe14:
   direct: FALSE
   count: 1
 
+
+qe15:
+  survey: hidden
+  parent_question: radio2
+  child_question: number2
+  direct: TRUE
+  count: 1

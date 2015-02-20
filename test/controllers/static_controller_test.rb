@@ -14,7 +14,7 @@ class StaticControllerTest < ActionController::TestCase
   test "should redirect to a provider show page" do
     get :provider_page, slug: 'health-hospital'
 
-    assert_redirected_to provider_path(users(:provider_1).slug)
+    assert_redirected_to provider_path(users(:provider).slug)
   end
 
   test "should redirect to a providers index with invalid slug" do
@@ -83,6 +83,11 @@ class StaticControllerTest < ActionController::TestCase
 
   test "should get sitemap" do
     get :sitemap
+    assert_response :success
+  end
+
+  test "should get sleep tips" do
+    get :sleep_tips
     assert_response :success
   end
 

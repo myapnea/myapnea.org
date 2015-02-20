@@ -1,0 +1,261 @@
+name: My Sleep Apnea Treatment
+slug: my-sleep-apnea-treatment
+description: |+
+  MyApnea.Org members who have a diagnosis of sleep apnea and who are receiving treatment might be getting different kinds of treatment.   We are interested in your treatment type(s) and how satisfied you are with your treatment(s).  This will help us learn more about how members feel about different kinds of treatment and how well you think your treatment works for you.
+status: show
+questions:
+- text: |
+    What treatment(s) are you currently using for your sleep apnea?
+  slug: types-of-treatments
+  display_type: checkbox_input
+  answer_templates:
+  - name: types_of_treatments
+    data_type: answer_option_id
+    allow_multiple: true
+    answer_options:
+    - text: Never been treated
+      hotkey: A
+      value: 1
+    - text: CPAP (Continuous Positive Airway Pressure Machine)
+      hotkey: B
+      value: 2
+    - text: APAP (Auto Positive Airway Pressure Machine)
+      hotkey: C
+      value: 3
+    - text: BiPAP (Bi-level Airway Pressure Machine)
+      hotkey: D
+      value: 4
+    - text: Adaptive Servo-Ventilation (ASV)
+      hotkey: E
+      value: 5
+    - text: Oral appliance
+      hotkey: F
+      value: 6
+    - text: Behavioral therapy
+      hotkey: G
+      value: 7
+    - text: Tongue stimulation
+      hotkey: H
+      value: 8
+    - text: Tonsillectomy (removal of tonsils)
+      hotkey: I
+      value: 9
+    - text: UPPP (removal of palate and other tissue from the mouth)
+      hotkey: J
+      value: 10
+    - text: Nasal deviation surgery
+      hotkey: K
+      value: 11
+    - text: Tongue surgery
+      hotkey: L
+      value: 12
+    - text: Jaw surgery
+      hotkey: M
+      value: 13
+    - text: Bariatric surgery
+      hotkey: N
+      value: 14
+- text: |
+    Considering all past and present treatments that you have had, how satisfied were you with each treatment?
+  slug: satisfaction-with-treatments
+  display_type: radio_input_multiple
+  answer_templates:
+  - name: satisfaction_with_cpap
+    data_type: answer_option_id
+    text: CPAP
+    answer_options:
+    - text: Very dissatisfied
+      hotkey: 1
+      value: 1
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-danger
+    - text: Dissatisfied
+      hotkey: 2
+      value: 2
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-warning
+    - text: Satisfied
+      hotkey: 3
+      value: 3
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-good
+    - text: Very satisfied
+      hotkey: 4
+      value: 4
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-great
+    - text: Never used
+      hotkey: 5
+      value: 5
+      display_class: option-of-multiple option-of-5 survey-scale
+  - name: satisfaction_with_apap
+    data_type: answer_option_id
+    text: APAP
+    answer_options:
+    - text: Very dissatisfied
+      hotkey: 1
+      value: 1
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-danger
+    - text: Dissatisfied
+      hotkey: 2
+      value: 2
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-warning
+    - text: Satisfied
+      hotkey: 3
+      value: 3
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-good
+    - text: Very satisfied
+      hotkey: 4
+      value: 4
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-great
+    - text: Never used
+      hotkey: 5
+      value: 5
+      display_class: option-of-multiple option-of-5 survey-scale
+  - name: satisfaction_with_bipap
+    data_type: answer_option_id
+    text: BiPAP
+    answer_options:
+    - text: Very dissatisfied
+      hotkey: 1
+      value: 1
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-danger
+    - text: Dissatisfied
+      hotkey: 2
+      value: 2
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-warning
+    - text: Satisfied
+      hotkey: 3
+      value: 3
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-good
+    - text: Very satisfied
+      hotkey: 4
+      value: 4
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-great
+    - text: Never used
+      hotkey: 5
+      value: 5
+      display_class: option-of-multiple option-of-5 survey-scale
+- text: |
+    How do you think your sleep apnea treatment has influenced the following?
+  slug: treatment-outcomes-components
+  display_type: radio_input_multiple
+  answer_templates:
+  - name: treatment_outcome_sleepiness
+    data_type: answer_option_id
+    text: Sleepiness
+    answer_options:
+    - text: Much worse
+      hotkey: 1
+      value: 1
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-danger
+    - text: Mildly worse
+      hotkey: 2
+      value: 2
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-warning
+    - text: No change
+      hotkey: 3
+      value: 3
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-moderate
+    - text: Mildly better
+      hotkey: 4
+      value: 4
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-good
+    - text: Much better
+      hotkey: 5
+      value: 5
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-great
+  - name: treatment_outcome_sleep_quality
+    data_type: answer_option_id
+    text: Sleep quality
+    answer_options:
+    - text: Much worse
+      hotkey: 1
+      value: 1
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-danger
+    - text: Mildly worse
+      hotkey: 2
+      value: 2
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-warning
+    - text: No change
+      hotkey: 3
+      value: 3
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-moderate
+    - text: Mildly better
+      hotkey: 4
+      value: 4
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-good
+    - text: Much better
+      hotkey: 5
+      value: 5
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-great
+  - name: treatment_outcome_energy_level
+    data_type: answer_option_id
+    text: Energy level
+    answer_options:
+    - text: Much worse
+      hotkey: 1
+      value: 1
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-danger
+    - text: Mildly worse
+      hotkey: 2
+      value: 2
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-warning
+    - text: No change
+      hotkey: 3
+      value: 3
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-moderate
+    - text: Mildly better
+      hotkey: 4
+      value: 4
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-good
+    - text: Much better
+      hotkey: 5
+      value: 5
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-great
+  - name: treatment_outcome_alertness
+    data_type: answer_option_id
+    text: Alertness
+    answer_options:
+    - text: Much worse
+      hotkey: 1
+      value: 1
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-danger
+    - text: Mildly worse
+      hotkey: 2
+      value: 2
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-warning
+    - text: No change
+      hotkey: 3
+      value: 3
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-moderate
+    - text: Mildly better
+      hotkey: 4
+      value: 4
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-good
+    - text: Much better
+      hotkey: 5
+      value: 5
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-great
+  - name: treatment_outcome_attention
+    data_type: answer_option_id
+    text: Attention
+    answer_options:
+    - text: Much worse
+      hotkey: 1
+      value: 1
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-danger
+    - text: Mildly worse
+      hotkey: 2
+      value: 2
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-warning
+    - text: No change
+      hotkey: 3
+      value: 3
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-moderate
+    - text: Mildly better
+      hotkey: 4
+      value: 4
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-good
+    - text: Much better
+      hotkey: 5
+      value: 5
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-great
+
+

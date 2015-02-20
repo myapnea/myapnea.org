@@ -1,4 +1,15 @@
+=begin
+To reset database, since global migrate does not create views for test database
+```
+bundle exec rake db:drop RAILS_ENV=test
+bundle exec rake db:create RAILS_ENV=test
+bundle exec rake db:migrate RAILS_ENV=test
+
+```
+=end
+
 require 'simplecov'
+
 
 ENV["RAILS_ENV"] ||= "test"
 require File.expand_path("../../config/environment", __FILE__)
@@ -24,6 +35,7 @@ class ActiveSupport::TestCase
   fixtures :all
 
   def global_setup
+
     Survey.refresh_all_surveys
   end
   # Add more helper methods to be used by all tests here...

@@ -18,7 +18,7 @@ questions:
   - name: number_of_hours
     data_type: numeric_value
 - text: |
-    Considering your own "feeling best rhythym", at what time would you get up if you were entirely free to plan your day?
+    Considering your own "feeling best rhythm", at what time would you get up if you were entirely free to plan your day?
   slug: ideal-wakeup
   display_type: radio_input
   answer_templates:
@@ -28,18 +28,23 @@ questions:
     - text: 5:00 - 6:30 am
       hotkey: 1
       value: 1
+      display_class: option-of-multiple option-of-5 label-default
     - text: 6:30 - 7:45 am
       hotkey: 2
       value: 2
+      display_class: option-of-multiple option-of-5 label-default
     - text: 7:45 - 9:45 am
       hotkey: 3
       value: 3
+      display_class: option-of-multiple option-of-5 label-default
     - text: 9:45 - 11:00 am
       hotkey: 4
       value: 4
+      display_class: option-of-multiple option-of-5 label-default
     - text: After 11:00 am
       hotkey: 5
       value: 5
+      display_class: option-of-multiple option-of-5 label-default
 - text: |
     How likely are you to doze off or fall asleep (not just "feel tired") in the following situations? Please choose one of the answers for each situation. If you are never or rarely in the situation, please give your best guess for that situation.
   slug: epworth-sleepiness-scale
@@ -87,7 +92,7 @@ questions:
       display_class: option-of-multiple option-of-4 survey-scale survey-scale-great
   - name: doze_while_public_sitting
     data_type: answer_option_id
-    text: Sitting inactive in a public place.
+    text: Sitting inactive in a public place (like a movie theater or classroom)
     answer_options:
     - text: High chance of dozing
       hotkey: 1
@@ -105,5 +110,123 @@ questions:
       hotkey: 4
       value: 4
       display_class: option-of-multiple option-of-4 survey-scale survey-scale-great
-
-
+  - name: doze_while_passenger_in_car
+    data_type: answer_option_id
+    text: Riding as a passenger in a car for an hour without a break
+    answer_options:
+    - text: High chance of dozing
+      hotkey: 1
+      value: 1
+      display_class: option-of-multiple option-of-4 survey-scale survey-scale-danger
+    - text: Moderate chance of dozing
+      hotkey: 2
+      value: 2
+      display_class: option-of-multiple option-of-4 survey-scale survey-scale-warning
+    - text: Slight chance of dozing
+      hotkey: 3
+      value: 3
+      display_class: option-of-multiple option-of-4 survey-scale survey-scale-good
+    - text: Would never doze
+      hotkey: 4
+      value: 4
+      display_class: option-of-multiple option-of-4 survey-scale survey-scale-great
+  - name: doze_while_lying_down_afternoon
+    data_type: answer_option_id
+    text: Lying down to rest in the afternoon when time permits
+    answer_options:
+    - text: High chance of dozing
+      hotkey: 1
+      value: 1
+      display_class: option-of-multiple option-of-4 survey-scale survey-scale-danger
+    - text: Moderate chance of dozing
+      hotkey: 2
+      value: 2
+      display_class: option-of-multiple option-of-4 survey-scale survey-scale-warning
+    - text: Slight chance of dozing
+      hotkey: 3
+      value: 3
+      display_class: option-of-multiple option-of-4 survey-scale survey-scale-good
+    - text: Would never doze
+      hotkey: 4
+      value: 4
+      display_class: option-of-multiple option-of-4 survey-scale survey-scale-great
+  - name: doze_while_sitting_talking
+    data_type: answer_option_id
+    text: Sitting and talking to someone
+    answer_options:
+    - text: High chance of dozing
+      hotkey: 1
+      value: 1
+      display_class: option-of-multiple option-of-4 survey-scale survey-scale-danger
+    - text: Moderate chance of dozing
+      hotkey: 2
+      value: 2
+      display_class: option-of-multiple option-of-4 survey-scale survey-scale-warning
+    - text: Slight chance of dozing
+      hotkey: 3
+      value: 3
+      display_class: option-of-multiple option-of-4 survey-scale survey-scale-good
+    - text: Would never doze
+      hotkey: 4
+      value: 4
+      display_class: option-of-multiple option-of-4 survey-scale survey-scale-great
+  - name: doze_while_sitting_after_lunch
+    data_type: answer_option_id
+    text: Sitting quietly after lunch without alcohol
+    answer_options:
+    - text: High chance of dozing
+      hotkey: 1
+      value: 1
+      display_class: option-of-multiple option-of-4 survey-scale survey-scale-danger
+    - text: Moderate chance of dozing
+      hotkey: 2
+      value: 2
+      display_class: option-of-multiple option-of-4 survey-scale survey-scale-warning
+    - text: Slight chance of dozing
+      hotkey: 3
+      value: 3
+      display_class: option-of-multiple option-of-4 survey-scale survey-scale-good
+    - text: Would never doze
+      hotkey: 4
+      value: 4
+      display_class: option-of-multiple option-of-4 survey-scale survey-scale-great
+  - name: doze_while_in_car_stopped
+    data_type: answer_option_id
+    text: In a car, while stopped for a few minutes in traffic
+    answer_options:
+    - text: High chance of dozing
+      hotkey: 1
+      value: 1
+      display_class: option-of-multiple option-of-4 survey-scale survey-scale-danger
+    - text: Moderate chance of dozing
+      hotkey: 2
+      value: 2
+      display_class: option-of-multiple option-of-4 survey-scale survey-scale-warning
+    - text: Slight chance of dozing
+      hotkey: 3
+      value: 3
+      display_class: option-of-multiple option-of-4 survey-scale survey-scale-good
+    - text: Would never doze
+      hotkey: 4
+      value: 4
+      display_class: option-of-multiple option-of-4 survey-scale survey-scale-great
+  - name: doze_while_driving
+    data_type: answer_option_id
+    text: While driving
+    answer_options:
+    - text: High chance of dozing
+      hotkey: 1
+      value: 1
+      display_class: option-of-multiple option-of-4 survey-scale survey-scale-danger
+    - text: Moderate chance of dozing
+      hotkey: 2
+      value: 2
+      display_class: option-of-multiple option-of-4 survey-scale survey-scale-warning
+    - text: Slight chance of dozing
+      hotkey: 3
+      value: 3
+      display_class: option-of-multiple option-of-4 survey-scale survey-scale-good
+    - text: Would never doze
+      hotkey: 4
+      value: 4
+      display_class: option-of-multiple option-of-4 survey-scale survey-scale-great

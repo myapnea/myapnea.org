@@ -17,12 +17,20 @@ class User < ActiveRecord::Base
   # Callbacks
   after_create :send_welcome_email
 
+  # Mappings
   TYPE = [['Diagnosed With Sleep Apnea', 'adult_diagnosed'],
           ['Concern That I May Have Sleep Apnea', 'adult_at_risk'],
           ['Family Member of an Adult with Sleep Apnea', 'caregiver_adult'],
           ['Family Member of a Child with Sleep Apnea', 'caregiver_child'],
           ['Provider', 'provider'],
           ['Researcher', 'researcher']]
+
+  DEFAULT_SURVEYS = {
+    adult_diagnosed: ['about-me', 'additional-information-about-me', 'about-my-family', 'my-interest-in-research', 'my-sleep-pattern', 'my-sleep-quality', 'my-quality-of-life', 'my-health-conditions', 'my-sleep-apnea', 'my-sleep-apnea-treatment', 'my-risk-profile'],
+    adult_at_risk: ['about-me', 'additional-information-about-me', 'about-my-family', 'my-interest-in-research', 'my-sleep-pattern', 'my-sleep-quality', 'my-quality-of-life', 'my-health-conditions', 'my-risk-profile'],
+    caregiver_adult: ['about-me', 'additional-information-about-me', 'about-my-family', 'my-interest-in-research'],
+    caregiver_child: ['about-me', 'additional-information-about-me', 'about-my-family', 'my-interest-in-research']
+  }
 
   # Concerns
   include CommonDataModel, Deletable
@@ -215,6 +223,13 @@ class User < ActiveRecord::Base
     (this_weeks_votes.length.to_f / vote_quota) * 100.0
   end
 
+  # User Types
+  def update_user_types(user_types)
+    update user_types
+    assign_default_surveys
+
+  end
+
 
   # Deprecated - remove in 6.0.0
   def incomplete_surveys
@@ -290,5 +305,22 @@ class User < ActiveRecord::Base
 
   def send_welcome_email
     UserMailer.welcome(self).deliver if Rails.env.production? and !self.provider?
+  end
+
+  def assign_default_surveys
+    DEFAULT_SURVEYS.each do |user_type, survey_list|
+      if self[user_type]
+        return survey_list.map do |survey_slug|
+          survey = Survey.find_by_slug(survey_slug)
+          if survey
+            survey.launch_single(self, "registration")
+            survey
+          else
+            logger.error "Survey #{survey_slug} could not be assigned to user #{self.email} - Survey could not be found."
+            nil
+          end
+        end
+      end
+    end
   end
 end

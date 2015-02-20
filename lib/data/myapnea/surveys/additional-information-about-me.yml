@@ -14,24 +14,31 @@ questions:
     - text: Now married
       hotkey: A
       value: 1
+      display_class: label-default label-med
     - text: Unmarried, but living with a partner
       hotkey: B
       value: 2
+      display_class: label-default label-med
     - text: Widowed
       hotkey: C
       value: 3
+      display_class: label-default label-med
     - text: Divorced
       hotkey: D
       value: 4
+      display_class: label-default label-med
     - text: Separated
       hotkey: E
       value: 5
+      display_class: label-default label-med
     - text: Never married
       hotkey: F
       value: 6
+      display_class: label-default label-med
     - text: Prefer not to answer
       hotkey: G
       value: 7
+      display_class: label-default label-med
 - text: |
     What best describes your current main daily activities?
   slug: daily-activities
@@ -43,33 +50,43 @@ questions:
     - text: Working full time (day shifts)
       hotkey: A
       value: 1
+      display_class: label-default label-lg
     - text: Working full time (rotating or night shifts)
       hotkey: B
       value: 2
+      display_class: label-default label-lg
     - text: Working part time (day shifts)
       hotkey: C
       value: 3
+      display_class: label-default label-lg
     - text: Working part time (rotating or night shifts)
       hotkey: D
       value: 4
+      display_class: label-default label-lg
     - text: Unemployed, laid off, or looking for Working
       hotkey: E
       value: 5
+      display_class: label-default label-lg
     - text: In school (full- or part-time student)
       hotkey: F
       value: 6
+      display_class: label-default label-lg
     - text: Stay-at-home parent or keeping household
       hotkey: G
       value: 7
+      display_class: label-default label-lg
     - text: Retired
       hotkey: H
       value: 8
+      display_class: label-default label-lg
     - text: Disabled
       hotkey: I
       value: 9
+      display_class: label-default label-lg
     - text: Prefer not to answer
       hotkey: J
       value: 10
+      display_class: label-default label-lg
 - text: |
     How hard is it for you (and your family) to pay for basics like food, rent or mortgage, heating, etc.?
   slug: affording-basics
@@ -81,19 +98,25 @@ questions:
     - text: Very hard
       hotkey: 1
       value: 1
+      display_class: label-default label-med
     - text: Hard
       hotkey: 2
       value: 2
+      display_class: label-default label-med
     - text: Somewhat hard
       hotkey: 3
       value: 3
+      display_class: label-default label-med
     - text: Not very hard
       hotkey: 4
       value: 4
+      display_class: label-default label-med
     - text: Don't know
       hotkey: 5
       value: 5
+      display_class: label-default label-med
     - text: Prefer not to state
       hotkey: 6
       value: 6
+      display_class: label-default label-med
 

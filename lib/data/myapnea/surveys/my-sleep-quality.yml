@@ -1,0 +1,207 @@
+name: My Sleep Quality
+slug: my-sleep-quality
+description: |+
+  The following questions are from the PROMIS Sleep Disturbance Item Bank.
+status: show
+questions:
+- text: |
+    In the past 7 days, my sleep quality was:
+  slug: sleep-quality-week
+  display_type: radio_input
+  answer_templates:
+  - name: overall_sleep_quality
+    data_type: answer_option_id
+    answer_options:
+    - text: Very Poor
+      hotkey: 1
+      value: 1
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-danger
+    - text: Poor
+      hotkey: 2
+      value: 2
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-warning
+    - text: Fair
+      hotkey: 3
+      value: 3
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-moderate
+    - text: Good
+      hotkey: 4
+      value: 4
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-good
+    - text: Very Good
+      hotkey: 5
+      value: 5
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-great
+- text: |
+    Thinking about your sleep in the past 7 days, please answer the following questions.
+  slug: sleep-quality-week-components
+  display_type: radio_input_multiple
+  answer_templates:
+  - name: sleep_refreshing
+    data_type: answer_option_id
+    text: My sleep was refreshing.
+    answer_options:
+    - text: Not at all
+      hotkey: 1
+      value: 1
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-danger
+    - text: A little bit
+      hotkey: 2
+      value: 2
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-warning
+    - text: Somewhat
+      hotkey: 3
+      value: 3
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-moderate
+    - text: Quite a bit
+      hotkey: 4
+      value: 4
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-good
+    - text: Very much
+      hotkey: 5
+      value: 5
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-great
+  - name: problem_with_sleep
+    data_type: answer_option_id
+    text: I had a problem with my sleep.
+    answer_options:
+    - text: Not at all
+      hotkey: 1
+      value: 1
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-danger
+    - text: A little bit
+      hotkey: 2
+      value: 2
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-warning
+    - text: Somewhat
+      hotkey: 3
+      value: 3
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-moderate
+    - text: Quite a bit
+      hotkey: 4
+      value: 4
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-good
+    - text: Very much
+      hotkey: 5
+      value: 5
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-great
+  - name: difficulty_falling_asleep
+    data_type: answer_option_id
+    text: I had difficulty falling asleep.
+    answer_options:
+    - text: Not at all
+      hotkey: 1
+      value: 1
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-danger
+    - text: A little bit
+      hotkey: 2
+      value: 2
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-warning
+    - text: Somewhat
+      hotkey: 3
+      value: 3
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-moderate
+    - text: Quite a bit
+      hotkey: 4
+      value: 4
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-good
+    - text: Very much
+      hotkey: 5
+      value: 5
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-great
+  - name: restless_sleep
+    data_type: answer_option_id
+    text: My sleep was restless.
+    answer_options:
+    - text: Not at all
+      hotkey: 1
+      value: 1
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-danger
+    - text: A little bit
+      hotkey: 2
+      value: 2
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-warning
+    - text: Somewhat
+      hotkey: 3
+      value: 3
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-moderate
+    - text: Quite a bit
+      hotkey: 4
+      value: 4
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-good
+    - text: Very much
+      hotkey: 5
+      value: 5
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-great
+  - name: tried_hard_to_get_sleep
+    data_type: answer_option_id
+    text: I tried hard to get sleep.
+    answer_options:
+    - text: Not at all
+      hotkey: 1
+      value: 1
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-danger
+    - text: A little bit
+      hotkey: 2
+      value: 2
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-warning
+    - text: Somewhat
+      hotkey: 3
+      value: 3
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-moderate
+    - text: Quite a bit
+      hotkey: 4
+      value: 4
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-good
+    - text: Very much
+      hotkey: 5
+      value: 5
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-great
+  - name: worried_about_not_sleeping
+    data_type: answer_option_id
+    text: I worried about not being able to fall asleep.
+    answer_options:
+    - text: Not at all
+      hotkey: 1
+      value: 1
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-danger
+    - text: A little bit
+      hotkey: 2
+      value: 2
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-warning
+    - text: Somewhat
+      hotkey: 3
+      value: 3
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-moderate
+    - text: Quite a bit
+      hotkey: 4
+      value: 4
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-good
+    - text: Very much
+      hotkey: 5
+      value: 5
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-great
+  - name: satisfied_with_sleep
+    data_type: answer_option_id
+    text: I was satisfied with my sleep.
+    answer_options:
+    - text: Not at all
+      hotkey: 1
+      value: 1
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-danger
+    - text: A little bit
+      hotkey: 2
+      value: 2
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-warning
+    - text: Somewhat
+      hotkey: 3
+      value: 3
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-moderate
+    - text: Quite a bit
+      hotkey: 4
+      value: 4
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-good
+    - text: Very much
+      hotkey: 5
+      value: 5
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-great

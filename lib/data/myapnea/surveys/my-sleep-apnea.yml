@@ -1,0 +1,93 @@
+name: My Sleep Apnea
+slug: my-sleep-apnea
+description: |+
+  The following questions will ask about when and how you were diagnosed with sleep apnea. We will also ask about symptoms that might have led you to seek medical attention.
+status: show
+questions:
+- text: |
+    How old were you (in years) when you were first diagnosed with sleep apnea?
+  slug: age-of-diagnosis
+  display_type: number_input
+  answer_templates:
+  - name: age_of_diagnoses
+    data_type: numeric_value
+- text: |
+    What doctor first talked to you about sleep apnea?
+  slug: doctor-who-introduced-sa
+  display_type: radio_input
+  answer_templates:
+  - name: doctor_who_introduced_sa
+    data_type: answer_option_id
+    answer_options:
+    - text: Primary care or family doctor (PCP)
+      hotkey: 1
+      value: 1
+    - text: Cardiologist
+      hotkey: 2
+      value: 2
+    - text: Diabetes specialist
+      hotkey: 3
+      value: 3
+    - text: Sleep specialist
+      hotkey: 4
+      value: 4
+    - text: Other
+      hotkey: 5
+      value: 5
+- text: |
+    What type of sleep study did you have when first diagnosed with sleep apnea?
+  slug: diagnostic-study
+  display_type: radio_input
+  answer_templates:
+  - name: diagnostic_study_type
+    data_type: answer_option_id
+    answer_options:
+    - text: A sleep study at my home (portable sleep study)
+      hotkey: 1
+      value: 1
+    - text: A sleep study in a sleep lab/center
+      hotkey: 2
+      value: 2
+- text: |
+    How satisfied were you with the experience of getting a sleep study?
+  slug: sleep-study-satisfaction
+  display_type: radio_input
+  answer_templates:
+  - name: sleep_study_satisfaction
+    data_type: answer_option_id
+    answer_options:
+    - text: Very Dissatisfied
+      hotkey: 1
+      value: 1
+    - text:
+      hotkey: 2
+      value: 2
+    - text:
+      hotkey: 3
+      value: 3
+    - text:
+      hotkey: 4
+      value: 4
+    - text:
+      hotkey: 5
+      value: 5
+    - text:
+      hotkey: 6
+      value: 6
+    - text: Very Satisfied
+      hotkey: 7
+      value: 7
+- text: |
+    Do you have any kind of health care coverage, including health insurance, prepaid plans such as HMOs, or government plans such as Medicare?
+  slug: health-care-coverage
+  display_type: radio_input
+  answer_templates:
+  - name: health_care_coverage
+    data_type: answer_option_id
+    answer_options:
+    - text: Yes
+      hotkey: 1
+      value: 1
+    - text: No
+      hotkey: 2
+      value: 2

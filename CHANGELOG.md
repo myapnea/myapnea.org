@@ -43,7 +43,7 @@
   - A single survey can be loaded individually
   - Answers to common questions from deprecated surveys can be migrated to new surveys
   - Surveys can be launched for single users and groups of users
-  - Different groups of surveys can be launched on user registration depending on user roles
+  - Different groups of surveys can be launched for a user on user registration depending on user roles
   - Answer sessions are only created when surveys are launched, and encounter identifiers
 
 ### Bug Fixes
@@ -66,6 +66,7 @@
 - Renamed `QuestionFlow` to `Survey`
 - Simplified survey load files
 - Survey controller, views, and routes refactored and upgraded for beta design
+- Started to refactor and update tests to align with new survey flow
 
 ## 4.2.0 (January 29, 2015)
 

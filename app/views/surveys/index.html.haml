@@ -28,13 +28,7 @@
 .panel
   .panel-body
     .row
-      - if current_user.is_provider? or current_user.is_only_researcher?
-        - Survey.viewable.first(3).each do |survey|
-          .col-sm-4.centered-text
-            - if survey.to_param != nil
-              = render partial: 'surveys/partials/survey_progress', locals: { survey: survey, can_complete_surveys: false }
-      - else
-        - current_user.assigned_surveys.each do |survey|
-          .col-sm-4.centered-text
-            = render partial: 'surveys/partials/survey_progress', locals: { survey: survey, can_complete_surveys: true }
+      - @surveys.each do |survey|
+        .col-sm-4.centered-text
+          = render partial: 'surveys/partials/survey_progress', locals: { survey: survey, can_complete_surveys: !(current_user.is_provider? or current_user.is_only_researcher?) }
 

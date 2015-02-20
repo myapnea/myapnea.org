@@ -49,7 +49,7 @@ radio2:
 
 checkbox1:
   text_en: What is your race?
-  slug: race
+  slug: race-selection
   display_type: checkbox_input
   answer_templates:
   - race_list
@@ -57,7 +57,7 @@ checkbox1:
 
 date1:
   text_en: What is your date of birth?
-  slug: date-of-birth
+  slug: dob
   display_type: date_input
   answer_templates:
   - birth_date
@@ -74,6 +74,13 @@ radio_multiple1:
 number1:
   text_en: How many hours do you sleep?
   slug: sleep-hours
+  display_type: number_input
+  answer_templates:
+  - number_of_hours
+
+number2:
+  text_en: How long does it take you to get out of bed?
+  slug: crying
   display_type: number_input
   answer_templates:
   - number_of_hours

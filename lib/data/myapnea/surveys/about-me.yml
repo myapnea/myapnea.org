@@ -23,15 +23,19 @@ questions:
     - text: Male
       hotkey: M
       value: 1
+      display_class: label-default label-med
     - text: Female
       hotkey: F
       value: 2
+      display_class: label-default label-med
     - text: Other
       hotkey: O
       value: 3
+      display_class: label-default label-med
     - text: Prefer not to answer
       hotkey: P
       value: 4
+      display_class: label-default label-med
 - text: |
     What is your race?
   slug: race
@@ -82,24 +86,31 @@ questions:
     - text: 8th grade or less
       hotkey: A
       value: 1
+      display_class: label-default label-lg
     - text: Some high school, but did not graduate
       hotkey: B
       value: 2
+      display_class: label-default label-lg
     - text: High school graduate or GED
       hotkey: C
       value: 3
+      display_class: label-default label-lg
     - text: Some college or 2-year degree
       hotkey: D
       value: 4
+      display_class: label-default label-lg
     - text:  4-year college graduate
       hotkey: E
       value: 5
+      display_class: label-default label-lg
     - text:  More than 4-year college degree
       hotkey: F
       value: 6
+      display_class: label-default label-lg
     - text: Prefer not to answer
       hotkey: G
       value: 7
+      display_class: label-default label-lg
 - text: |
     Last year, what was your total household income from all source, before taxes?
   slug: income-level
@@ -111,27 +122,36 @@ questions:
     - text: Less than $10,000 (USD)
       hotkey: A
       value: 1
+      display_class: label-default label-lg
     - text: $10,000 - $49,999
       hotkey: B
       value: 2
+      display_class: label-default label-lg
     - text:  $50,000 - $99,999
       hotkey: C
       value: 3
+      display_class: label-default label-lg
     - text: $100,000 - $149,999
       hotkey: D
       value: 4
+      display_class: label-default label-lg
     - text:  $150,000 - $199,999
       hotkey: E
       value: 5
+      display_class: label-default label-lg
     - text:  $200,000 - $249,999
       hotkey: F
       value: 6
+      display_class: label-default label-lg
     - text: $250,000 and above
       hotkey: G
       value: 7
+      display_class: label-default label-lg
     - text: Unknown
       hotkey: H
       value: 8
+      display_class: label-default label-lg
     - text: Prefer not to answer
       hotkey: I
       value: 9
+      display_class: label-default label-lg

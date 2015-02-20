@@ -18,20 +18,20 @@ dep_unstarted:
 
 
 launched:
-  user: has_unstarted_survey
+  user: has_launched_survey
   survey: new
   encounter: baseline
 incomplete:
   user: has_incomplete_survey
   survey: new
-  first_answer:
-  last_answer:
+  first_answer: a10
+  last_answer: a10
   encounter: baseline
 complete:
   user: has_completed_survey
   survey: new
-  first_answer:
-  last_answer:
+  first_answer: a11
+  last_answer: a12
   encounter: baseline
 
 #

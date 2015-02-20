@@ -145,7 +145,7 @@ class AnswerSession < ActiveRecord::Base
     if answer.new_record? or answer.string_value != params[question.id.to_s]
       # Set Value and Save
       answer.value = params[question.id.to_s]
-      answer.save                                          surveys/my-sleep-pattern
+      answer.save
       answer_modified = true
     end
 
@@ -201,6 +201,7 @@ class AnswerSession < ActiveRecord::Base
 
   end
 
+  ## Deprecated - remove in 6.0.0
   def grouped_reportable_answers
     all_reportable_answers.includes(question: :question_help_message).group_by{|a| a.question.question_help_message ? a.question.question_help_message.message : ""}
 
@@ -285,7 +286,7 @@ class AnswerSession < ActiveRecord::Base
   end
 
   def total_path_length
-    completed_path_length + remaining_path_length(last_answer)
+    survey.total_questions or completed_path_length + remaining_path_length(last_answer)
   end
 
   def percent_completed

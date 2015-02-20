@@ -1,6 +1,7 @@
 class Survey < ActiveRecord::Base
   # Constants
   SURVEY_DATA_LOCATION = ['lib', 'data', 'myapnea', 'surveys']
+  SURVEY_LIST = ['about-me', 'additional-information-about-me', 'about-my-family', 'my-interest-in-research', 'my-sleep-pattern', 'my-sleep-quality', 'my-quality-of-life', 'my-health-conditions', 'my-sleep-apnea', 'my-sleep-apnea-treatment']
 
   # Concerns
   include Localizable
@@ -130,7 +131,9 @@ class Survey < ActiveRecord::Base
 
           matched_question.answers.each do |matched_answer|
             matched_user = matched_answer.answer_session.user
-            new_answer_session = AnswerSession.find_or_create(matched_user, survey)
+            new_answer_session = matched_user.answer_sessions.find_or_create_by(survey_id: survey.id, encounter: "migrated")
+
+           # raise StandardError, new_answer_session
 
             cloned_answer = Answer.create(question_id: question.id, answer_session_id: new_answer_session.id, state: "migrated")
 
@@ -138,7 +141,7 @@ class Survey < ActiveRecord::Base
               cloned_answer.answer_values.create(answer_template_id: matched_answer_value.answer_template_id, answer_option_id: matched_answer_value.answer_option_id, numeric_value: matched_answer_value.numeric_value, text_value: matched_answer_value.text_value, time_value: matched_answer_value.time_value)
             end
 
-
+            #puts cloned_answer.show_value
             logger.debug cloned_answer.show_value
 
           end
@@ -154,21 +157,12 @@ class Survey < ActiveRecord::Base
 
   # Instance Methods
   def launch_single(user, encounter)
-    # If answer session already exists, returns the user's email address. Otherwise, returns nil
 
-    ## answer_session = AnswerSession.first_or_initialize(user_id: user.id, encounter: encounter, survey_id: self.id) For some reason, this creates and saves an AnswerSession object
-    # Temp fix:
-    answer_session = AnswerSession.find_or_initialize_by(user_id: user.id, encounter: encounter, survey_id: self.id)
-    #
-
-    return_status = answer_session.new_record? ? nil : user.email
-
+    answer_session = user.answer_sessions.find_or_initialize_by(encounter: encounter, survey_id: self.id)
+    return_object = answer_session.new_record? ? nil : user
     answer_session.save!
 
-    return_status
-
-
-
+    return_object
   end
 
   def launch_multiple(users, encounter)
@@ -180,12 +174,7 @@ class Survey < ActiveRecord::Base
 
     already_assigned.compact!
 
-    "
-      Total number of users in survey launch: #{users.length}\n
-      Users with survey previously launched: #{already_assigned.length}\n
-      List of users with survey previously launched:\n
-      #{already_assigned}
-    "
+    already_assigned
   end
 
   def to_param

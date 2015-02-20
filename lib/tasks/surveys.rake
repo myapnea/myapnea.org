@@ -239,7 +239,12 @@ namespace :surveys do
     user_group = User.current.where(args[:where_clause])
     survey = Survey.find_by_slug(args[:survey_slug])
 
-    puts survey.launch_multiple(user_group, args[:encounter])
+    already_assigned = survey.launch_multiple(user_group, args[:encounter])
+
+    puts "Total number of users in survey launch: #{user_group.length}\n
+          Users with survey previously launched: #{already_assigned.length}\n
+          List of users with survey previously launched:\n
+          #{already_assigned}"
   end
 
 end

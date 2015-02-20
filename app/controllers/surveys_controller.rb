@@ -7,13 +7,16 @@ class SurveysController < ApplicationController
 
 
   def index
+    @surveys = (current_user.is_provider? or current_user.is_only_researcher?) ? @surveys = Survey.viewable.first(3) : current_user.assigned_surveys
   end
 
   def show
     redirect_to intro_survey_path(@survey) and return if @survey.deprecated?
+    redirect_to survey_report_path(@survey, @answer_session) and return if @answer_session.completed?
   end
 
   def show_report
+    redirect_to surveys_path and return unless @answer_session.completed?
   end
 
   def process_answer

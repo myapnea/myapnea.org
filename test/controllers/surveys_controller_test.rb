@@ -7,149 +7,99 @@ class SurveysControllerTest < ActionController::TestCase
     assert_response 302
   end
 
-  test "User can see a list of unstarted surveys" do
-    login(users(:social))
+  ## Assigned Surveys
+  test "User can view an assigned survey" do
+    login(users(:has_launched_survey))
 
-    get :index
+    get :show, slug: answer_sessions(:launched).survey
 
     assert_response :success
   end
 
-
-
-  test "User can see a list of completed surveys" do
-    login(users(:has_completed_survey))
-
-    get :index
-
-    assert_response :success
-
-  end
-
-  test "User can see a list of incomplete surveys" do
+  test "User can answer question on an assigned survey" do
     login(users(:has_incomplete_survey))
 
-    get :index
+    refute answer_sessions(:incomplete).completed?
 
-    assert_response :success
-  end
+    post :process_answer, { 'question_id' => [questions(:checkbox1).id.to_s], 'answer_session_id' => answer_sessions(:incomplete).id.to_s,  questions(:checkbox1).id.to_s => { answer_templates(:race_list).id.to_s => [answer_options(:wookie).id.to_s, answer_options(:other_race).id.to_s], answer_templates(:specified_race).id.to_s => "Polish"}}
+    created_answer = assigns(:answer_session).last_answer
 
-  test "User can start a survey" do
-    login(users(:social))
+    assert created_answer.persisted?
 
-    get :start_survey, slug: surveys(:survey_1)
+    assert_equal answer_options(:wookie).id, created_answer.answer_values.first.answer_option_id
+    assert_equal 3, created_answer.answer_values.count
+    assert_equal "Wookie", created_answer.answer_values.first.answer_option.text
+    assert_equal "Some other race", created_answer.answer_values.second.answer_option.text
+    assert_equal "Polish", created_answer.answer_values.last.text_value
 
-    assert_redirected_to ask_question_path(question_id: surveys(:survey_1).first_question_id, answer_session_id: AnswerSession.most_recent(surveys(:survey_1).id, users(:social).id).id)
-  end
-
-  test "User can view survey intro" do
-    login(users(:social))
-
-    get :intro, slug: surveys(:survey_1)
-
-    assert_equal surveys(:survey_1), assigns(:survey)
-    refute assigns(:answer_session)
-    assert_nil AnswerSession.most_recent(assigns(:survey).id, users(:social).id)
-    assert_template "surveys/intro"
-  end
-
-  test "User can view question on survey" do
-    login(users(:has_unstarted_survey))
-
-    get :ask_question, question_id: surveys(:survey_1).first_question.id, answer_session_id: answer_sessions(:unstarted)
-    assert_response :success
-    assert_not_nil assigns(:answer)
-
-  end
-
-  test "User can view grouped question on survey" do
-    login(users(:has_incomplete_survey))
-
-    get :ask_question, question_id: questions(:q3b).id, answer_session_id: answer_sessions(:incomplete).id
-
-    assert_response :success
-    assert_not_nil assigns(:group)
-    assert_not_nil assigns(:questions)
-  end
-
-  test "User can answer question on survey" do
-    login(users(:has_incomplete_survey))
-    assert users(:has_incomplete_survey).ready_for_research?
-
-
-    post :process_answer, { 'question_id' => questions(:q3c).id, 'answer_session_id' => answer_sessions(:incomplete).id,  questions(:q3c).id.to_s => answer_options(:very_good).id, "direction" => "next"}
-
-    assert_not_nil assigns(:answer_session)
-    assert_equal answer_options(:very_good).id, assigns(:answer_session).last_answer.answer_values.first.value
+    assert assigns(:answer_session).completed?
 
     assert_redirected_to survey_report_path(slug: assigns(:answer_session).survey, answer_session_id: assigns(:answer_session))
   end
 
-  test "User can view survey report" do
+  test "User can view survey report for completed survey" do
     login(users(:has_completed_survey))
+
+    assert answer_sessions(:complete).completed?
 
     get :show_report, slug: answer_sessions(:complete).survey
 
     assert_response :success
   end
 
-  test "Survey report does not break when survey not started" do
-    login(users(:has_unstarted_survey))
 
-    get :show_report, slug: answer_sessions(:unstarted).survey
 
-    assert_response :success
+  ## Unassigned Surveys
+
+  test "User cannot view an unassigned survey" do
+    login(users(:social))
+
+    get :show, slug: surveys(:new)
+
+    assert_redirected_to surveys_path
   end
 
-  test "Surveys cannot be restarted once they are completed without explicit warning" do
-    login(users(:has_completed_survey))
+  ## Incomplete Survey
 
-    get :start_survey, slug: surveys(:survey_1)
+  test "User cannot view survey report for assigned but unstarted survey" do
+    login(users(:has_launched_survey))
+
+    get :show_report, slug: answer_sessions(:launched).survey
 
     assert_redirected_to surveys_path
 
+
+
   end
 
-  test "Surveys cannot be restarted even when verified by user" do
+  test "User cannot view survey report for incomplete survey" do
+    login(users(:has_incomplete_survey))
+
+    get :show_report, slug: answer_sessions(:incomplete).survey
+
+    assert_redirected_to surveys_path
+  end
+
+
+  ## Complete Surveys
+  test "User cannot view a complete survey" do
     login(users(:has_completed_survey))
 
-    get :start_survey, slug: surveys(:survey_1), reset_survey: true
+    assert answer_sessions(:complete).completed?
 
-    assert_response 302
-    assert_equal users(:has_completed_survey).complete_surveys.length, 1
+    get :show, slug: surveys(:new)
 
-  end
-
-  test "Answer Session should be created only **after** user has progressed to the first question." do
-    login(users(:social))
-
-    get :intro, slug: surveys(:survey_1)
-
-    refute assigns(:answer_session)
-    refute AnswerSession.most_recent(surveys(:survey_1), users(:social))
-
-    get :start_survey, slug: surveys(:survey_1)
-
-    assert_redirected_to ask_question_path(question_id: surveys(:survey_1).first_question_id, answer_session_id: AnswerSession.most_recent(surveys(:survey_1).id, users(:social).id).id)
-    assert AnswerSession.most_recent(surveys(:survey_1), users(:social))
+    assert_redirected_to survey_report_path(surveys(:new), answer_sessions(:complete))
 
   end
 
-  # New
-
-  test "#show" do
-    login(users(:social))
-
-    get :show, slug: surveys(:survey_2)
-
-    assert_response :success
-    assert_equal surveys(:survey_2), assigns(:survey)
-  end
-
-  test "#index" do
-    login(users(:social))
+  ## Index
+  test "User can see index of surveys" do
+    login(users(:has_launched_survey))
 
     get :index
+    assert_equal 1, assigns(:surveys).length
+    assert_equal users(:has_launched_survey).assigned_surveys, assigns(:surveys)
 
     assert_response :success
   end
