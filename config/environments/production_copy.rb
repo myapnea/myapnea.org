@@ -8,7 +8,12 @@
   bundle exec rake surveys:load["about-my-family"] RAILS_ENV=production_copy
   bundle exec rake surveys:load["additional-information-about-me"] RAILS_ENV=production_copy
   bundle exec rake surveys:load["my-sleep-pattern"] RAILS_ENV=production_copy
-
+  bundle exec rake surveys:load["my-sleep-quality"] RAILS_ENV=production_copy
+  bundle exec rake surveys:load["my-health-conditions"] RAILS_ENV=production_copy
+  bundle exec rake surveys:load["my-interest-in-research"] RAILS_ENV=production_copy
+  bundle exec rake surveys:load["my-quality-of-life"] RAILS_ENV=production_copy
+  bundle exec rake surveys:load["my-sleep-apnea-treatment"] RAILS_ENV=production_copy
+  bundle exec rake surveys:load["my-sleep-apnea"] RAILS_ENV=production_copy
 =end
 
 Rails.application.configure do

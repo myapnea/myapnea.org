@@ -16,6 +16,12 @@
    bundle exec rake surveys:load["about-my-family"] RAILS_ENV=integration_test
    bundle exec rake surveys:load["additional-information-about-me"] RAILS_ENV=integration_test
    bundle exec rake surveys:load["my-sleep-pattern"] RAILS_ENV=integration_test
+   bundle exec rake surveys:load["my-sleep-quality"] RAILS_ENV=integration_test
+   bundle exec rake surveys:load["my-health-conditions"] RAILS_ENV=integration_test
+   bundle exec rake surveys:load["my-interest-in-research"] RAILS_ENV=integration_test
+   bundle exec rake surveys:load["my-quality-of-life"] RAILS_ENV=integration_test
+   bundle exec rake surveys:load["my-sleep-apnea-treatment"] RAILS_ENV=integration_test
+   bundle exec rake surveys:load["my-sleep-apnea"] RAILS_ENV=integration_test
    bundle exec rake surveys:refresh RAILS_ENV=integration_test
    ```
 - [ ] Start (or restart) server with the `integration_test` environment. For example: `rails s -e integration_test`.

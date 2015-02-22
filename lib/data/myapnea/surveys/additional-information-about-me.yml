@@ -92,7 +92,7 @@ questions:
   slug: affording-basics
   display_type: radio_input
   answer_templates:
-  - name: difficulty_scale
+  - name: afford_difficulty_scale
     data_type: answer_option_id
     answer_options:
     - text: Very hard

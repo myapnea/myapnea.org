@@ -9,7 +9,7 @@ questions:
   slug: age-of-diagnosis
   display_type: number_input
   answer_templates:
-  - name: age_of_diagnoses
+  - name: age_of_diagnosis
     data_type: numeric_value
 - text: |
     What doctor first talked to you about sleep apnea?

@@ -1,3 +1,9 @@
+=begin
+  am = AnswerMigration.new("lib/data/myapnea/surveys/answer_migration/question_mappings.yml")
+  am.validate_question_map
+    am.set_answer_option_mappings("/home/pwm4/Desktop")
+=end
+
 class AnswerMigration
 
   def initialize(question_map)
@@ -17,53 +23,87 @@ class AnswerMigration
 
   end
 
+  def validate_question_map
+    validation = true
+    @question_map.each do |question_mapping|
+      begin
+        new_question = Question.find_by!(slug: question_mapping["slug"])
+        new_question.answer_templates.find_by!(name: question_mapping["answer_template_name"])
+        Question.find(question_mapping["id"].to_i)
+      rescue => e
+        puts "#{e.message} | #{question_mapping["slug"]} | #{question_mapping["answer_template_name"]} | #{question_mapping["id"]}"
+        validation = false
+      end
 
-  def investigate_mappings(output_path)
-    CSV.open(output_path, 'w') do |csv_file|
-      csv_file << ['NEW_QUESTION', 'NEW_TEMPLATE', 'OLD_QUESTION_ID', 'NEW_TYPE', 'OLD_TYPE', 'RESOLVED?', 'OLD_VALUE', 'MATCHED_VALUE', 'EXACT?', 'NEW_LIST']
+    end
 
-      @question_map.each do |question_mapping|
-        new_question = Question.find_by_slug(question_mapping["slug"])
-        new_answer_template = new_question.answer_templates.find_by_name(question_mapping["answer_template_name"])
-        old_question = Question.find(question_mapping["id"].to_i)
+    validation
+  end
 
-        old_question.answer_templates.each do |old_answer_template|
-          if new_answer_template.data_type == "answer_option_id"
-            # CATEGORICAL - NEW ANSWER
-            if old_answer_template.data_type == "answer_option_id"
-              # CATEGORICAL - OLD ANSWER
+  def set_answer_option_mappings(output_dir)
+    csv_file = CSV.open(File.join(output_dir, "summary.csv"), 'w')
+    map_file = File.open(File.join(output_dir, "mappings.yml"), 'w')
 
-              # Both are categorical - let's try to match up
-              option_list = new_answer_template.answer_options.map(&:text)
-              option_matcher = FuzzyMatch.new(option_list)
+    csv_file << ['NEW_QUESTION', 'NEW_TEMPLATE', 'OLD_QUESTION_ID', 'NEW_TYPE', 'OLD_TYPE', 'RESOLVED?', 'OLD_VALUE', 'MATCHED_VALUE', 'EXACT?', 'NEW_LIST']
 
-              old_answer_template.answer_options.each do |answer_option|
-                matched_option = option_matcher.find(answer_option.text_value)
-                csv_file << [new_question.slug, new_answer_template.name, old_question.id, "categorical", "categorical", "yes", answer_option.text_value, matched_option, matched_option == answer_option.text_value] + option_list
-              end
-            else
-              csv_file << [new_question.slug, new_answer_template.name, old_question.id, "categorical", old_answer_template.data_type, "no"]
+    @question_map.each do |question_mapping|
+      new_question = Question.find_by_slug(question_mapping["slug"])
+      new_answer_template = new_question.answer_templates.find_by_name(question_mapping["answer_template_name"])
+      old_question = Question.find(question_mapping["id"].to_i)
+
+      old_question.answer_templates.each do |old_answer_template|
+        if new_answer_template.data_type == "answer_option_id"
+          # CATEGORICAL - NEW ANSWER
+          if old_answer_template.data_type == "answer_option_id"
+            # CATEGORICAL - OLD ANSWER
+
+            # Both are categorical - let's try to match up
+            option_list = new_answer_template.answer_options
+            option_text_list = option_list.map(&:text)
+            option_matcher = FuzzyMatch.new(option_text_list)
+
+            map_file.write "\n# #{new_question.slug} : #{old_question.id} \n# #{option_text_list.join(" | ")}\n"
+
+            old_answer_template.answer_options.each do |answer_option|
+              matched_option_text = option_matcher.find(answer_option.text_value)
+              puts "#{old_question.id} | #{answer_option.id} #{matched_option_text}"
+              matched_answer_option = option_list.where(text: matched_option_text).first
+
+              stripped_matched = matched_option_text.strip if matched_option_text
+              stripped_text = answer_option.text_value.strip if answer_option.text_value
+              same = stripped_matched == stripped_text
+
+              csv_file << [new_question.slug, new_answer_template.name, old_question.id, "categorical", "categorical", "yes", stripped_text, stripped_matched, same] + option_text_list
+
+
+              map_file.write "- old_option_id: #{answer_option.id} # #{answer_option.text_value.strip}\n"
+              map_file.write "  new_option_id: #{matched_answer_option.id if matched_answer_option} # #{matched_option_text.strip if matched_option_text}\n"
             end
-
           else
-            # CUSTOM VALUE - NEW ANSWER
-
-            if old_answer_template.data_type == new_answer_template.data_type
-              # Old and New match types
-              csv_file << [new_question.slug, new_answer_template.name, old_question.id, new_answer_template.data_type, old_answer_template.data_type, "yes"]
-            else
-              # Old and New do not match types
-              csv_file << [new_question.slug, new_answer_template.name, old_question.id, new_answer_template.data_type, old_answer_template.data_type, "no"]
-            end
-
-
+            csv_file << [new_question.slug, new_answer_template.name, old_question.id, "categorical", old_answer_template.data_type, "no"]
           end
+
+        else
+          # CUSTOM VALUE - NEW ANSWER
+
+          if old_answer_template.data_type == new_answer_template.data_type
+            # Old and New match types
+            csv_file << [new_question.slug, new_answer_template.name, old_question.id, new_answer_template.data_type, old_answer_template.data_type, "yes"]
+          else
+            # Old and New do not match types
+            csv_file << [new_question.slug, new_answer_template.name, old_question.id, new_answer_template.data_type, old_answer_template.data_type, "no"]
+          end
+
 
         end
 
       end
 
+
     end
+
+    csv_file.close
+    map_file.close
 
 
   end
