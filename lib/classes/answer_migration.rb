@@ -1,10 +1,71 @@
 class AnswerMigration
 
   def initialize(question_map)
-    if question_map.typeof?(Array)
+    if question_map.is_a?(Array)
+      @question_map = question_map
     else
+      @question_map = YAML::load_file(question_map)
+    end
+
+    # @unresolved_mappings = []
+    # @resolved_mappings = []
+    #
+    # @matches_found = []
+    # @unique_matches = []
+    # @unique_matches_not_found = []
+    # @matches_not_found = []
+
+  end
+
+
+  def investigate_mappings(output_path)
+    CSV.open(output_path, 'w') do |csv_file|
+      csv_file << ['NEW_QUESTION', 'NEW_TEMPLATE', 'OLD_QUESTION_ID', 'NEW_TYPE', 'OLD_TYPE', 'RESOLVED?', 'OLD_VALUE', 'MATCHED_VALUE', 'EXACT?', 'NEW_LIST']
+
+      @question_map.each do |question_mapping|
+        new_question = Question.find_by_slug(question_mapping["slug"])
+        new_answer_template = new_question.answer_templates.find_by_name(question_mapping["answer_template_name"])
+        old_question = Question.find(question_mapping["id"].to_i)
+
+        old_question.answer_templates.each do |old_answer_template|
+          if new_answer_template.data_type == "answer_option_id"
+            # CATEGORICAL - NEW ANSWER
+            if old_answer_template.data_type == "answer_option_id"
+              # CATEGORICAL - OLD ANSWER
+
+              # Both are categorical - let's try to match up
+              option_list = new_answer_template.answer_options.map(&:text)
+              option_matcher = FuzzyMatch.new(option_list)
+
+              old_answer_template.answer_options.each do |answer_option|
+                matched_option = option_matcher.find(answer_option.text_value)
+                csv_file << [new_question.slug, new_answer_template.name, old_question.id, "categorical", "categorical", "yes", answer_option.text_value, matched_option, matched_option == answer_option.text_value] + option_list
+              end
+            else
+              csv_file << [new_question.slug, new_answer_template.name, old_question.id, "categorical", old_answer_template.data_type, "no"]
+            end
+
+          else
+            # CUSTOM VALUE - NEW ANSWER
+
+            if old_answer_template.data_type == new_answer_template.data_type
+              # Old and New match types
+              csv_file << [new_question.slug, new_answer_template.name, old_question.id, new_answer_template.data_type, old_answer_template.data_type, "yes"]
+            else
+              # Old and New do not match types
+              csv_file << [new_question.slug, new_answer_template.name, old_question.id, new_answer_template.data_type, old_answer_template.data_type, "no"]
+            end
+
+
+          end
+
+        end
+
+      end
 
     end
+
+
   end
 
   def migrate_old_answers(question_map=nil)
@@ -17,15 +78,7 @@ class AnswerMigration
     # 6. Set answer state == :migrated
 
     ## This should allow all historical values to be saved, without
-    question_map ||= YAML::load_file(File.join(SURVEY_DATA_LOCATION + ["answer_migration", "question_mappings.yml"]))
 
-    unresolved_mappings = []
-    resolved_mappings = []
-
-    matches_found = []
-    unique_matches = []
-    unique_matches_not_found = []
-    matches_not_found = []
 
     SURVEY_LIST.each do |slug|
       survey = Survey.find_by(slug: slug)

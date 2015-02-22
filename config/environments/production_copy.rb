@@ -1,7 +1,7 @@
 =begin
   bundle exec rake db:drop RAILS_ENV=production_copy
   bundle exec rake db:create RAILS_ENV=production_copy
-  psql -U postgres -d myapnea_production_copy -f /home/pwm4/Desktop/myapnea_production_20150219.sql
+  psql -U postgres -d myapnea_production_copy -f /home/pwm4/Downloads/myapnea_production_20150219.sql
   bundle exec rake db:migrate RAILS_ENV=production_copy
   bundle exec rake surveys:refresh RAILS_ENV=production_copy
   bundle exec rake surveys:load["about-me"] RAILS_ENV=production_copy
