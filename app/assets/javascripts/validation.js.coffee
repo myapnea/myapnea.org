@@ -7,9 +7,11 @@
   $("[data-object~='inline-validation'] [data-object~='inline-validation-item'] ").blur () ->
     # Dynamically update custom url name during registration process ONLY
     if $(this).data('name') == 'provider-name'
-      $("[data-name~='provider-slug']").val $("[data-name~='provider-name']").val().replace(/ /g, "-")
+      $("[data-name~='provider-slug']").val $("[data-name~='provider-name']").val().replace(/ /g, "-").toLowerCase()
       checkForBlank($("[data-name~='provider-slug']"))
     checkForBlank(this)
+    if $(this).data('name') == 'provider-slug'
+      checkSlug($(this))
 
   # Catch errors on submission
   $("[data-object~='inline-validation']").submit (e) ->
@@ -22,11 +24,24 @@
   @checkForBlank = (element1) ->
     errorName = $(element1).data('name') + '--error'
     if $(element1).val() == ''
-      $("[data-object~='"+errorName+"']").removeClass("hidden")
+      $("[data-object~='"+errorName+"']").removeClass "hidden"
       errors[errorName]=true
     else
-      $("[data-object~='"+errorName+"']").addClass("hidden")
+      $("[data-object~='"+errorName+"']").addClass "hidden"
       errors[errorName]=false
+    return
+
+  @checkSlug = (element1) ->
+    regexSlug = new RegExp("^[a-z0-9]+(-[a-z0-9]+)*$")
+    errorName = 'provider-slug--error'
+    if regexSlug.test($(element1).val())
+      console.log "everything okay"
+      $("[data-object~='"+errorName+"']").addClass "hidden"
+      errors[errorName]=false
+    else
+      console.log "everything NOT okay"
+      $("[data-object~='"+errorName+"']").removeClass "hidden"
+      errors[errorName]=true
     return
 
   @checkForBlanks = () ->

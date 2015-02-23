@@ -276,8 +276,9 @@
 
 
   # Custom date input
-  date_index = $(".survey-text-date").val().length || 0
-  basePlaceholder = 'mm/dd/yyyy'
+  if $(".survey-text-date").length > 0
+    date_index = $(".survey-text-date").val().length || 0
+    basePlaceholder = 'mm/dd/yyyy'
   @rewriteDatePlaceholder = (keyCode) ->
     currentPlaceholder = $(".survey-text-date").val() || basePlaceholder
     if keyCode is 8
