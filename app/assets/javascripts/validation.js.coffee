@@ -60,3 +60,41 @@
       e.preventDefault()
       alert "Please select at least one option!"
     return
+
+
+  ########## DATES ##########
+  $("[data-object~='inline-validation-date'] [data-object~='inline-validation-item']").blur (e) ->
+    validationItem = $("[data-object~='inline-validation-date'] [data-object~='inline-validation-item']")
+    dateString = validationItem.val()
+    errorMessage = validateDate(dateString)
+    if errorMessage != ''
+      $("[data-object~='date--error']").removeClass("hidden")
+      $("[data-object~='date--error-message']").html errorMessage
+    else
+      $("[data-object~='date--error']").addClass("hidden")
+
+
+  @validateDate = (dateString) ->
+    if(!/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(dateString))
+      return "incorrect format"
+
+    parts = dateString.split("/")
+    month = parseInt(parts[0], 10)
+    day = parseInt(parts[1], 10)
+    year = parseInt(parts[2], 10)
+
+    if (year < 1900 or year > 2015)
+      return "incorrect year"
+    if (month < 1 or month > 12)
+      return "incorrect month"
+
+    monthLength = [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ]
+    if (year % 400 == 0 || (year % 100 != 0 && year % 4 == 0))
+        monthLength[1] = 29
+
+    unless (day > 0 && day <= monthLength[month - 1])
+      return "incorrect day"
+
+    return ""
+
+

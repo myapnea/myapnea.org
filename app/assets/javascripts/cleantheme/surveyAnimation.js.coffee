@@ -40,8 +40,8 @@
 
   # Change focus
   @changeFocus = (question1, question2) ->
-    $(question1).find("input").blur()
     $(question2).find("input:not([type=hidden])").first().focus()
+    $(question1).find("input").blur() if $(question1).is(":focus")
 
   @changeFocusDirect = (input1, input2) ->
     $(input1).blur()
@@ -277,17 +277,13 @@
 
   # Custom date input
   date_index = $(".survey-text-date").val().length || 0
-  basePlaceholder = 'MM/DD/YYYY'
+  basePlaceholder = 'mm/dd/yyyy'
   @rewriteDatePlaceholder = (keyCode) ->
     currentPlaceholder = $(".survey-text-date").val() || basePlaceholder
-    console.log currentPlaceholder
     if keyCode is 8
-      console.log date_index + ' before deleting'
       unless date_index is 0
         newPlaceholder = currentPlaceholder.slice(0, date_index)
         date_index -= 1
-        console.log date_index + ' after deleting'
-        console.log newPlaceholder + ' after deleting'
         $(".survey-text-date").val(newPlaceholder)
     else
       unless date_index >= 10
