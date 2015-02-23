@@ -7,7 +7,7 @@
   $("[data-object~='inline-validation'] [data-object~='inline-validation-item'] ").blur () ->
     # Dynamically update custom url name during registration process ONLY
     if $(this).data('name') == 'provider-name'
-      $("[data-name~='provider-slug']").val $("[data-name~='provider-name']").val().replace(/ /g, "-").toLowerCase()
+      $("[data-name~='provider-slug']").val $("[data-name~='provider-name']").val().replace(/[^\w]/g, "-").replace(/-+$/, "").toLowerCase()
       checkForBlank($("[data-name~='provider-slug']"))
     checkForBlank(this)
     if $(this).data('name') == 'provider-slug'
