@@ -1,0 +1,43 @@
+.user-type-container:not(#foo) > input + label {
+  font-weight:300;
+  border: 5px solid #b1d2f6;
+  background-color: white;
+  border-radius:10px;
+  vertical-align: middle;
+  text-align: center;
+  height:300px;
+  max-width:250px;
+  img {
+    border-radius: 5px;
+    margin: 0px auto;
+  }
+  p {
+    margin:auto 5px;
+    max-width:250px;
+  }
+}
+
+.user-type-container:not(#foo) > input[type=checkbox]:checked + label {
+  border-color: #1765bc;
+  background-color: transparentize(#b1d2f6, .5);
+}
+
+@media all and (max-width: 1200px) {
+  .user-type-container:not(#foo) {
+    input + label {
+    }
+  }
+}
+@media all and (max-width: 992px) {
+  .user-type-container:not(#foo) {
+    padding:5px;
+    input + label {
+      border-width: 2px;
+      height: 240px;
+      p {
+        font-size: 14px;
+        padding: 0px;
+      }
+    }
+  }
+}
