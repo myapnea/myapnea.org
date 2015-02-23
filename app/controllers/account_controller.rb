@@ -83,6 +83,9 @@ class AccountController < ApplicationController
     redirect_to account_path, notice: "You have successfully left the research study. If you ever change your mind, just visit your account settings to view the research consent and privacy policy again."
   end
 
+  def user_type
+  end
+
   def set_user_type
     user_types = params.required(:user).permit(:provider, :researcher, :adult_diagnosed, :adult_at_risk, :caregiver_adult, :caregiver_child)
     current_user.update user_types

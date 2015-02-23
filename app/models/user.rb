@@ -82,6 +82,18 @@ class User < ActiveRecord::Base
     self.adult_diagnosed? or self.adult_at_risk? or self.caregiver_child? or self.caregiver_adult?
   end
 
+  def has_user_type?
+    self.adult_diagnosed? or self.adult_at_risk? or self.caregiver_child? or self.caregiver_adult? or self.provider? or self.researcher?
+  end
+
+  def user_types
+    user_types = [('Adult diagnosed with sleep apnea' if self.adult_diagnosed?), ('Adult at-risk of sleep apnea' if self.adult_at_risk?), ('Caregiver of adult(s) with sleep apnea' if self.caregiver_adult?), ('Caregiver of child(ren) with sleep apnea' if self.caregiver_child?), ('Professional care provider' if self.provider?), ('Researcher' if self.researcher?) ].reject(&:blank?).join(', ')
+    if user_types.include? ','
+      user_types = user_types.reverse.sub(',', 'dna ,').reverse
+    end
+    return user_types.downcase
+  end
+
   def all_topics
     if self.has_role? :moderator
       Topic.current
