@@ -276,18 +276,22 @@
 
 
   # Custom date input
-  date_index = 0
+  date_index = $(".survey-text-date").val().length || 0
+  basePlaceholder = 'MM/DD/YYYY'
   @rewriteDatePlaceholder = (keyCode) ->
+    currentPlaceholder = $(".survey-text-date").val() || basePlaceholder
+    console.log currentPlaceholder
     if keyCode is 8
+      console.log date_index + ' before deleting'
       unless date_index is 0
-        date_index -= 1
-        currentPlaceholder = $(".survey-text-date").attr("placeholder")
         newPlaceholder = currentPlaceholder.slice(0, date_index)
-        $(".survey-text-date").attr("placeholder", newPlaceholder)
+        date_index -= 1
+        console.log date_index + ' after deleting'
+        console.log newPlaceholder + ' after deleting'
+        $(".survey-text-date").val(newPlaceholder)
     else
       unless date_index >= 10
         newKey = String.fromCharCode(keyCode)
-        currentPlaceholder = $(".survey-text-date").attr("placeholder")
         if date_index == 2 or date_index == 5
           currentPlaceholder += '/'
           date_index += 1
@@ -295,7 +299,6 @@
         if date_index == 1 or date_index == 4
           inputString += '/'
           date_index += 1
-        remainingString = currentPlaceholder.slice(date_index+1, currentPlaceholder.length)
-        newPlaceholder = inputString + remainingString
-        $(".survey-text-date").attr("placeholder", newPlaceholder)
+        newPlaceholder = inputString
+        $(".survey-text-date").val(newPlaceholder)
         date_index += 1

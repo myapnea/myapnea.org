@@ -73,9 +73,7 @@ input[type=date] {
   box-shadow:0 0 10px #b1d2f6;
 }
 
-.survey-text-date {
-  text-align: center;
-}
+.survey-text-date {}
 .survey-text-date::-webkit-input-placeholder { color: #555; }
 .survey-text-date:-moz-placeholder { color: #333; }
 .survey-text-date::-moz-placeholder { color: #333; }
@@ -84,9 +82,7 @@ input[type=date] {
 .survey-text-date:focus::-webkit-input-placeholder {
   color: #555;
 }
-.survey-text-date:focus{
-  color: transparent;
-}
+.survey-text-date:focus{}
 .survey-text-date:focus:-moz-placeholder { color: #333; }
 .survey-text-date:focus::-moz-placeholder { color: #333; }
 .survey-text-date:focus:-ms-placeholder { color: #333; }

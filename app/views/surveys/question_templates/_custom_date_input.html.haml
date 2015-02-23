@@ -5,7 +5,7 @@
   .panel
     .question-container
       %h3.f300= question.text
-      %h5.f300.text-muted Just start typing!
+      %h5.f300.text-muted Please enter as MM/DD/YYYY (e.g. 01/31/1990)
     .input-container
       = text_field_tag "#{question.id}[#{question.answer_templates.first.id}]", answer.value[question.answer_templates.first.id], maxlength: 10, class: 'survey-short-text survey-text-date', placeholder: 'MM/DD/YYYY'
     .button-container
