@@ -53,6 +53,26 @@
 // Clean theme document
 /* DOCUMENT LAYOUT */
 
+html, body {
+  height: 100%;
+}
+
+.wrapper {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -222px;
+}
+
+.wrapper:after {
+  height: 222px;
+}
+
+html {
+  background: white;
+  background-image: asset-url('myapnea/welcome/textures/grey.png');
+}
+
 body {
   margin:0px;
   padding:0px;
@@ -60,7 +80,7 @@ body {
 }
 
 body.day-mode {
-  background-color: black;
+  background-color: transparent;
 }
 
 body.night-mode {
@@ -154,12 +174,13 @@ nav {
   margin-top:-5px;
 }
 
-.container-fluid > .row {
-  background-image: asset-url('myapnea/welcome/textures/grey.png');
-}
+// .container-fluid > .row {
+//   background-image: asset-url('myapnea/welcome/textures/grey.png');
+// }
 
 
 .footer {
+  height:222px;
   border-top:3px solid orange;
   background-color:#1b244b;
   float:left;
@@ -202,6 +223,8 @@ nav {
     margin-left: auto;
     margin-right: auto;
     width:100%;
+    max-height:50px;
+    max-width:150px;
     background-color: rgb(90,100,138);
     border-radius: 10px;
     margin:3px auto;
@@ -285,10 +308,6 @@ nav {
           font-size:12px;
         }
       }
-    }
-    .partners-img-footer {
-      width:auto;
-      max-height:100px;
     }
   }
 }
