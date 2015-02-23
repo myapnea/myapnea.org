@@ -82,14 +82,16 @@ class SurveysControllerTest < ActionController::TestCase
 
 
   ## Complete Surveys
-  test "User cannot view a complete survey" do
+  test "should get completed survey for user" do
     login(users(:has_completed_survey))
 
     assert answer_sessions(:complete).completed?
 
     get :show, slug: surveys(:new)
 
-    assert_redirected_to survey_report_path(surveys(:new), answer_sessions(:complete))
+    assert_not_nil assigns(:survey)
+
+    assert_response :success
 
   end
 

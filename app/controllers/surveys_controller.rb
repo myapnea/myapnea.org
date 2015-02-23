@@ -12,7 +12,9 @@ class SurveysController < ApplicationController
 
   def show
     redirect_to intro_survey_path(@survey) and return if @survey.deprecated?
-    redirect_to survey_report_path(@survey, @answer_session) and return if @answer_session.completed?
+    # We do not want to redirect to survey report path if it's completed, we
+    # want to show the survey page, with locked questions instead. ~ Remo
+    # redirect_to survey_report_path(@survey, @answer_session) and return if @answer_session.completed?
   end
 
   def show_report
