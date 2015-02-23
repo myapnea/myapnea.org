@@ -51,7 +51,7 @@ questions:
       display_class: option-of-multiple option-of-4 survey-scale survey-scale-blue
   - name: conditions-add
     data_type: answer_option_id
-    text: Attention Deficiet Disorder (ADD)
+    text: Attention Deficit Disorder (ADD)
     answer_options:
     - text: 'Yes'
       hotkey: 1
