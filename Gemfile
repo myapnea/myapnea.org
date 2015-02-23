@@ -48,6 +48,9 @@ gem 'font-awesome-rails'
 # Authentication
 gem 'devise'
 
+# String Matching
+gem 'fuzzy_match'
+
 # Scaffold Generation
 gem 'bootstrap-generators', '~> 3.2.0'
 

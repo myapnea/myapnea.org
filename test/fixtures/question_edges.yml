@@ -1,67 +1,101 @@
+# Deprecated - to be removed in 6.0.0
+
 qe1:
-  survey: survey_1
+  survey: deprecated
   parent_question: q1
   child_question: q2
   direct: TRUE
   count: 1
 qe2:
-  survey: survey_1
+  survey: deprecated
   parent_question: q2
   child_question: q3a
   direct: TRUE
   count: 1
 qe3:
-  survey: survey_1
+  survey: deprecated
   parent_question: q3a
   child_question: q3b
   direct: TRUE
   count: 1
 qe4:
-  survey: survey_1
+  survey: deprecated
   parent_question: q3b
   child_question: q3c
   direct: TRUE
   count: 1
 
 qe5:
-  survey: survey_1
+  survey: deprecated
   parent_question: q1
   child_question: q3a
   direct: FALSE
   count: 1
 qe6:
-  survey: survey_1
+  survey: deprecated
   parent_question: q1
   child_question: q3b
   direct: FALSE
   count: 1
 qe7:
-  survey: survey_1
+  survey: deprecated
   parent_question: q1
   child_question: q3c
   direct: FALSE
   count: 1
 qe8:
-  survey: survey_1
+  survey: deprecated
   parent_question: q2
   child_question: q3b
   direct: FALSE
   count: 1
 qe9:
-  survey: survey_1
+  survey: deprecated
   parent_question: q2
   child_question: q3c
   direct: FALSE
   count: 1
 qe10:
-  survey: survey_1
+  survey: deprecated
   parent_question: q3a
   child_question: q3c
   direct: FALSE
   count: 1
+
+# New
+
 qe11:
-  survey: survey_2
-  parent_question: new_q1
-  child_question: new_q2
+  survey: new
+  parent_question: radio1
+  child_question: checkbox1
+  direct: TRUE
+  count: 1
+
+qe12:
+  survey: new_2
+  parent_question: date1
+  child_question: radio_multiple1
+  direct: TRUE
+  count: 1
+
+qe13:
+  survey: new_2
+  parent_question: radio_multiple1
+  child_question: number1
+  direct: TRUE
+  count: 1
+
+qe14:
+  survey: new_2
+  parent_question: date1
+  child_question: number1
+  direct: FALSE
+  count: 1
+
+
+qe15:
+  survey: hidden
+  parent_question: radio2
+  child_question: number2
   direct: TRUE
   count: 1

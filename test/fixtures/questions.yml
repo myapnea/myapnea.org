@@ -1,3 +1,5 @@
+# Deprecated - remove in 6.0.0
+
 q1:
   text_en: What are your favorite colors?
   time_estimate: 1.0
@@ -31,16 +33,54 @@ q3c:
   - feeling
 
 # New
-new_q1:
+radio1:
   text_en: What is your sex?
   slug: sex-selection
   display_type: radio_input
   answer_templates:
   - sex
 
-new_q2:
+radio2:
   text_en: What would your favorite color be?
   slug: favorite-color
   display_type: radio_input
   answer_templates:
   - color_list
+
+checkbox1:
+  text_en: What is your race?
+  slug: race-selection
+  display_type: checkbox_input
+  answer_templates:
+  - race_list
+  - specified_race
+
+date1:
+  text_en: What is your date of birth?
+  slug: dob
+  display_type: date_input
+  answer_templates:
+  - birth_date
+
+radio_multiple1:
+  text_en: How likely are you to doze off?
+  slug: ess
+  display_type: radio_input_multiple
+  answer_templates:
+  - doze_sitting
+  - doze_tv
+  - doze_public
+
+number1:
+  text_en: How many hours do you sleep?
+  slug: sleep-hours
+  display_type: number_input
+  answer_templates:
+  - number_of_hours
+
+number2:
+  text_en: How long does it take you to get out of bed?
+  slug: crying
+  display_type: number_input
+  answer_templates:
+  - number_of_hours

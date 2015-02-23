@@ -1,3 +1,5 @@
+# Deprecated - remove in 6.0.0
+
 all:
   text_value_en: All of the time
 most:
@@ -66,3 +68,30 @@ maroon:
   text: Maroon
   hotkey: M
   value: 4
+
+wookie:
+  text: Wookie
+  hotkey: W
+  value: 1
+
+bith:
+  text: Bith
+  hotkey: B
+  value: 2
+
+other_race:
+  text: Some other race
+  hotkey: O
+  value: 3
+
+high_chance:
+  text: High Chance
+  hotkey: H
+  value: 1
+  display_class: option-of-multiple option-of-2 survey-scale survey-scale-danger
+
+low_chance:
+  text: Low Chance
+  hotkey: L
+  value: 2
+  display_class: option-of-multiple option-of-2 survey-scale survey-scale-great

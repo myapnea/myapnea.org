@@ -6,6 +6,12 @@
 # - about-my-family
 # - additional-information-about-me
 # - my-sleep-pattern
+# - my-health-conditions.yml
+# - my-interest-in-research
+# - my-quality-of-life
+# - my-sleep-apnea-treatment
+# - my-sleep-apnea
+# - my-sleep-quality
 
 # about-me
 - slug: date-of-birth
@@ -53,7 +59,7 @@
   answer_template_name: daily_activities_list
   id: 557
 - slug: affording-basics
-  answer_template_name: difficulty_scale
+  answer_template_name: afford_difficulty_scale
   id: 558
 # my-sleep-pattern
 - slug: sleep-hours-weekdays
@@ -66,4 +72,160 @@
   answer_template_name: time_of_day_list
   id: 511
 
+# my-health-conditions
+- slug: health-conditions-list
+  answer_template_name: conditions-allergies
+  id: 531
+- slug: health-conditions-list
+  answer_template_name: conditions-asthma
+  id: 532
+- slug: health-conditions-list
+  answer_template_name: conditions-add
+  id: 533
+- slug: health-conditions-list
+  answer_template_name: conditions-cancer
+  id: 534
+- slug: health-conditions-list
+  answer_template_name: conditions-copd
+  id: 535
+- slug: health-conditions-list
+  answer_template_name: conditions-depression
+  id: 536
+- slug: health-conditions-list
+  answer_template_name: conditions-diabetes
+  id: 537
+- slug: health-conditions-list
+  answer_template_name: conditions-hbp
+  id: 538
+- slug: health-conditions-list
+  answer_template_name: conditions-heart-disease
+  id: 539
+- slug: health-conditions-list
+  answer_template_name: conditions-insomnia
+  id: 540
+- slug: health-conditions-list
+  answer_template_name: conditions-narcolepsy
+  id: 541
+- slug: health-conditions-list
+  answer_template_name: conditions-restless-legs
+  id: 542
+- slug: health-conditions-list
+  answer_template_name: conditions-stroke
+  id: 543
+
+# my-interest-in-research
+- slug: referral-methods
+  answer_template_name: myapnea_referral_source
+  id: 489
+- slug: previous-research-participation
+  answer_template_name: previous_research_participation
+  id: 560
+- slug: preferred-method-of-contact
+  answer_template_name: preferred_method_of_contact
+  id: 561
+- slug: preferred-method-of-contact
+  answer_template_name: specified_contact_method
+  id: 562
+- slug: interest-in-study-designs
+  answer_template_name: interest_in_surveys
+  id: 563
+- slug: interest-in-study-designs
+  answer_template_name: interest_in_blood_sample
+  id: 564
+- slug: interest-in-study-designs
+  answer_template_name: interest_in_conversation
+  id: 565
+- slug: interest-in-study-designs
+  answer_template_name: interest_in_medication
+  id: 566
+- slug: interest-in-study-designs
+  answer_template_name: interest_in_meeting_local
+  id: 567
+- slug: interest-in-study-designs
+  answer_template_name: interest_in_with_family
+  id: 568
+- slug: interest-in-study-designs
+  answer_template_name: interest_in_hospital_stay
+  id: 569
+
+
+# my-quality-of-life
+- slug: general-health-rate
+  answer_template_name: general_health_rating
+  id: 529
+- slug: improved-health-rate
+  answer_template_name: improved_health_rating
+  id: 530
+- slug: general-quality-life-rate
+  answer_template_name: general_quality_life_rating
+  id: 570
+- slug: everyday-physical-activities
+  answer_template_name: everyday_physical_activities
+  id: 571
+- slug: errands-and-shop
+  answer_template_name: errands_and_shop
+  id: 572
+- slug: last-week-depression
+  answer_template_name: last_week_depression
+  id: 573
+- slug: last-week-fatigue
+  answer_template_name: last_week_fatigue
+  id: 574
+- slug: last-week-problem-sleep
+  answer_template_name: last_week_problem_sleep
+  id: 575
+- slug: trouble-with-leisure
+  answer_template_name: trouble_with_leisure
+  id: 576
+- slug: last-week-pain-interference
+  answer_template_name: last_week_pain_interference
+  id: 577
+
+# my-sleep-apnea
+- slug: age-of-diagnosis
+  answer_template_name: age_of_diagnosis
+  id: 492
+- slug: doctor-who-introduced-sa
+  answer_template_name: doctor_who_introduced_sa
+  id: 497
+- slug: diagnostic-study
+  answer_template_name: diagnostic_study_type
+  id: 499
+- slug: sleep-study-satisfaction
+  answer_template_name: sleep_study_satisfaction
+  id: 500
+- slug: health-care-coverage
+  answer_template_name: health_care_coverage
+  id: 544
+
+# my-sleep-apnea-treatment
+- slug: types-of-treatments
+  answer_template_name: types_of_treatments
+  id: 501
+
+# my-sleep-quality
+- slug: sleep-quality-week
+  answer_template_name: overall_sleep_quality
+  id: 521
+- slug: sleep-quality-week-components
+  answer_template_name: sleep_refreshing
+  id: 522
+- slug: sleep-quality-week-components
+  answer_template_name: problem_with_sleep
+  id: 523
+- slug: sleep-quality-week-components
+  answer_template_name: difficulty_falling_asleep
+  id: 524
+- slug: sleep-quality-week-components
+  answer_template_name: restless_sleep
+  id: 525
+- slug: sleep-quality-week-components
+  answer_template_name: tried_hard_to_get_sleep
+  id: 526
+- slug: sleep-quality-week-components
+  answer_template_name: worried_about_not_sleeping
+  id: 527
+- slug: sleep-quality-week-components
+  answer_template_name: satisfied_with_sleep
+  id: 528
 

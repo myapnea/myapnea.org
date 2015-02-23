@@ -7,13 +7,18 @@ class SurveysController < ApplicationController
 
 
   def index
+    @surveys = (current_user.is_provider? or current_user.is_only_researcher?) ? @surveys = Survey.viewable.first(3) : current_user.assigned_surveys
   end
 
   def show
     redirect_to intro_survey_path(@survey) and return if @survey.deprecated?
+    # We do not want to redirect to survey report path if it's completed, we
+    # want to show the survey page, with locked questions instead. ~ Remo
+    # redirect_to survey_report_path(@survey, @answer_session) and return if @answer_session.completed?
   end
 
   def show_report
+    redirect_to surveys_path and return unless @answer_session.completed?
   end
 
   def process_answer
@@ -74,7 +79,9 @@ class SurveysController < ApplicationController
 
   def set_survey
     @survey = Survey.where("slug = ? or id = ?", params["slug"], params["slug"].to_i).first
-    @answer_session = AnswerSession.find_or_create(current_user, @survey)
+    @answer_session = AnswerSession.find_by(user_id: current_user.id, survey_id: @survey.id)
+
+    redirect_to surveys_path and return unless @answer_session.present?
 
   end
 

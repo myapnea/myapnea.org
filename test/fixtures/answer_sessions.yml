@@ -1,17 +1,41 @@
-incomplete:
+# Deprecated - remove in 6.0.0
+dep_incomplete:
   user: has_incomplete_survey
-  survey: survey_1
+  survey: deprecated
   first_answer: a1
   last_answer: a4
-complete:
+dep_complete:
   user: has_completed_survey
-  survey: survey_1
+  survey: deprecated
   first_answer: a5
   last_answer: a9
-unstarted:
+dep_unstarted:
   user: has_unstarted_survey
-  survey: survey_1
+  survey: deprecated
 
 
+# New
 
 
+launched:
+  user: has_launched_survey
+  survey: new
+  encounter: baseline
+incomplete:
+  user: has_incomplete_survey
+  survey: new
+  first_answer: a10
+  last_answer: a10
+  encounter: baseline
+complete:
+  user: has_completed_survey
+  survey: new
+  first_answer: a11
+  last_answer: a12
+  encounter: baseline
+
+#
+#launched2:
+#  user: social
+#  survey: new_2
+#  encounter: baseline

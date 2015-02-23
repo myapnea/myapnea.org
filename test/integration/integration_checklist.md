@@ -16,6 +16,12 @@
    bundle exec rake surveys:load["about-my-family"] RAILS_ENV=integration_test
    bundle exec rake surveys:load["additional-information-about-me"] RAILS_ENV=integration_test
    bundle exec rake surveys:load["my-sleep-pattern"] RAILS_ENV=integration_test
+   bundle exec rake surveys:load["my-sleep-quality"] RAILS_ENV=integration_test
+   bundle exec rake surveys:load["my-health-conditions"] RAILS_ENV=integration_test
+   bundle exec rake surveys:load["my-interest-in-research"] RAILS_ENV=integration_test
+   bundle exec rake surveys:load["my-quality-of-life"] RAILS_ENV=integration_test
+   bundle exec rake surveys:load["my-sleep-apnea-treatment"] RAILS_ENV=integration_test
+   bundle exec rake surveys:load["my-sleep-apnea"] RAILS_ENV=integration_test
    bundle exec rake surveys:refresh RAILS_ENV=integration_test
    ```
 - [ ] Start (or restart) server with the `integration_test` environment. For example: `rails s -e integration_test`.
@@ -190,9 +196,28 @@
 - [ ] User should be able to click `Leave Research Study`.
 
 ### Main Flow
+
 - [ ] Sign in with `tommyboy@gmail.com`, `password`
 
-- [ ] Go to homepage and test survey links.
+#### Survey Assignment
+
+- [ ] Go to homepage and make sure no surveys show up **since none have yet been assigned**. Make sure a friendly message appears informing users about lack of surveys.
+
+- [ ] Open console: `rails c integration_test`
+
+- [ ] Assign new survey to the user: `Survey.find_by_slug("new-survey").launch_single(User.find_by_email("tommyboy@gmail.com"), "baseline")`
+
+- [ ] Refresh page and make sure `New Survey` shows up in survey list.
+
+- [ ] Mass-assign another survey using rake task: `bundle exec rake surveys:launch['another-survey',"adult_diagnosed = TRUE","baseline"] RAILS_ENV=integration_test`
+
+- [ ] Refresh page and make sure `Another Survey` shows up in survey list.
+
+- Launch the following surveys for `tommyboy@gmail.com`:
+   - [ ] About Me
+   - [ ] About My Family
+   - [ ] Additional Information About Me
+   - [ ] My Sleep Pattern
 
 - [ ] Click on `Research Surveys` link on sidebar and test survey links on resulting page.
 
@@ -214,7 +239,7 @@ For these each question type:
    - [ ] Date
    - [ ] Number
    - [ ] Text
-   
+
 Fill in questions and check persistence:
    - [ ] Clicking `Go to next question` button
    - [ ] Hitting `Enter` key
@@ -237,10 +262,40 @@ Choose a nested question and select the nested option
 - [ ] Ensure nested input renders properly.
 - [ ] Proceed to next question with `Enter`.
 
-
-
-
 ## Forum
+
+1. Sign in with `tommyboy@gmail.com`, `password`
+2. Go to 'Forums' page
+3. Go to 'Introductions' forum
+4. Check display:
+- [ ] Start a New Topic
+5. Click "Start a New Topic"
+6. Check display:
+- [ ] Title Box
+- [ ] Description Box
+7. Click 'Create Topic'
+8. Check display:
+- [ ] Errors displayed due to blank input
+9. Add a Title and a Description
+10. Click "Create Topic"
+11. Check the following:
+- [ ] Redirected to Topic show page
+- [ ] Post is under review
+12. Logout and check:
+- [ ] Post does not show up
+
+## Forum Moderate Topic
+
+1. Sign in with `moderator@example.com`, `password`
+2. Go to 'Forums' page
+3. Filter by "Pending Review"
+4. Click on New Topic Pending Review
+5. Approve Topic
+6. Approve First Post
+7. Check following:
+- [ ] Post no longer under review
+8. Logout and check:
+- [ ] Post shows up when logged out
 
 ## Rank the research
 

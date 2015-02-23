@@ -70,7 +70,7 @@ questions:
       hotkey: 4
       value: 4
       display_class: option-of-multiple option-of-4 survey-scale survey-scale-great
-  - name: doze_while_sitting
+  - name: doze_while_watching_tv
     data_type: answer_option_id
     text: Watching TV
     answer_options:

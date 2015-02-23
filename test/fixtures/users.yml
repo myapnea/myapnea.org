@@ -87,18 +87,7 @@ has_incomplete_survey:
   adult_diagnosed: true
   encrypted_password: <%= pw %>
 
-has_unstarted_survey:
-  first_name: Unstarted
-  last_name: Survey
-  email: us@mail.com
-  zip_code: 12345
-  accepted_consent_at: <%= 5.day.ago.to_s(:db) %>
-  accepted_privacy_policy_at: <%= 6.day.ago.to_s(:db) %>
-  over_eighteen: true
-  adult_diagnosed: true
-  encrypted_password: <%= pw %>
-
-has_unstarted_survey:
+has_launched_survey:
   first_name: Unstarted
   last_name: Survey
   email: us@mail.com
@@ -132,7 +121,72 @@ deleted_user:
   adult_diagnosed: true
   deleted: true
 
-provider_1:
+
+
+# User Types
+
+## Unassigned User
+blank_slate:
+  first_name: Blank
+  last_name: Slate
+  email: blankslate@gmail.com
+  zip_code: 12345
+  over_eighteen: true
+  encrypted_password: <%= pw %>
+
+## Adult Diagnosed
+adult_diagnosed:
+  first_name: Adult
+  last_name: Diagnosed
+  email: adultdiagnosed@gmail.com
+  zip_code: 12345
+  over_eighteen: true
+  adult_diagnosed: true
+  encrypted_password: <%= pw %>
+
+## Adult At Risk
+adult_at_risk:
+  first_name: Adult
+  last_name: AtRisk
+  email: adultatrisk@gmail.com
+  zip_code: 12345
+  over_eighteen: true
+  adult_at_risk: true
+  encrypted_password: <%= pw %>
+
+## Caregiver Adult
+caregiver_adult:
+  first_name: Caregiver
+  last_name: Adult
+  email: caregiveradult@gmail.com
+  zip_code: 12345
+  over_eighteen: true
+  caregiver_adult: true
+  encrypted_password: <%= pw %>
+
+## Caregiver Child
+caregiver_child:
+  first_name: Caregiver
+  last_name: Child
+  email: caregiverchild@gmail.com
+  zip_code: 12345
+  over_eighteen: true
+  caregiver_child: true
+  encrypted_password: <%= pw %>
+
+## Researcher
+researcher:
+  first_name: Re
+  last_name: Searcher
+  email: researcher@gmail.com
+  zip_code: 12345
+  over_eighteen: true
+  researcher: true
+  encrypted_password: <%= pw %>
+
+
+## Provider
+provider:
   first_name: Some
   last_name: Hospital
   email: healthy@me.com
@@ -144,3 +198,4 @@ provider_1:
   provider: true
   zip_code: 12345
   encrypted_password: <%= pw %>
+

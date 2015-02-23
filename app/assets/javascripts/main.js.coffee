@@ -1,3 +1,5 @@
+Turbolinks.enableProgressBar();
+
 @mainLoader = () ->
   $("select[rel=chosen]").chosen
     allow_single_deselect: true

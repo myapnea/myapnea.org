@@ -230,8 +230,21 @@ namespace :surveys do
   end
 
   desc "Migrate old questions for a specific survey"
-  task :migrate_old_answers, [:survey_name] => :environment  do |t, args|
+  task :migrate_old_answers, [:survey_slug] => :environment  do |t, args|
     Survey.migrate_old_answers(args[:survey_name])
+  end
+
+  desc "Launch a survey for a given user group - [:survey_slug, :user_where_clause, :encounter]"
+  task :launch, [:survey_slug, :user_where_clause, :encounter] => :environment do |t, args|
+    user_group = User.current.where(args[:where_clause])
+    survey = Survey.find_by_slug(args[:survey_slug])
+
+    already_assigned = survey.launch_multiple(user_group, args[:encounter])
+
+    puts "Total number of users in survey launch: #{user_group.length}\n
+          Users with survey previously launched: #{already_assigned.length}\n
+          List of users with survey previously launched:\n
+          #{already_assigned}"
   end
 
 end

@@ -15,7 +15,7 @@ class AccountControllerTest < ActionController::TestCase
   end
 
   test "should get registration provider profile page for logged in provider" do
-    login(users(:provider_1))
+    login(users(:provider))
     get :get_started_provider_profile
     assert_response :success
   end
@@ -228,6 +228,117 @@ class AccountControllerTest < ActionController::TestCase
 
     assert_equal :password, assigns(:update_for)
     assert_template "account"
+  end
+
+  # User type creation and Survey assignment
+  test "should assign correct surveys for adult_diagnosed role" do
+    # Setup
+    load_survey_package
+    login(users(:blank_slate))
+
+    patch :set_user_type, user: { adult_diagnosed: true }
+
+    assert_equal 4, users(:blank_slate).assigned_surveys.count
+
+    assert_includes users(:blank_slate).assigned_surveys, Survey.find_by_slug('about-me')
+    assert_includes users(:blank_slate).assigned_surveys, Survey.find_by_slug('about-my-family')
+    assert_includes users(:blank_slate).assigned_surveys, Survey.find_by_slug('my-sleep-quality')
+    assert_includes users(:blank_slate).assigned_surveys, Survey.find_by_slug('my-sleep-apnea')
+  end
+
+  test "should assign correct surveys for adult_at_risk role" do
+    # Setup
+    load_survey_package
+    login(users(:blank_slate))
+
+    patch :set_user_type, user: { adult_at_risk: true }
+
+    assert_equal 3, users(:blank_slate).assigned_surveys.count
+
+    assert_includes users(:blank_slate).assigned_surveys, Survey.find_by_slug('about-me')
+    assert_includes users(:blank_slate).assigned_surveys, Survey.find_by_slug('about-my-family')
+    assert_includes users(:blank_slate).assigned_surveys, Survey.find_by_slug('my-sleep-quality')
+    refute_includes users(:blank_slate).assigned_surveys, Survey.find_by_slug('my-sleep-apnea')
+
+  end
+
+  test "should assign correct surveys for caregiver_adult role" do
+    # Setup
+    load_survey_package
+    login(users(:blank_slate))
+
+    patch :set_user_type, user: { caregiver_adult: true }
+
+    assert_equal 2, users(:blank_slate).assigned_surveys.count
+
+    assert_includes users(:blank_slate).assigned_surveys, Survey.find_by_slug('about-me')
+    assert_includes users(:blank_slate).assigned_surveys, Survey.find_by_slug('about-my-family')
+    refute_includes users(:blank_slate).assigned_surveys, Survey.find_by_slug('my-sleep-quality')
+    refute_includes users(:blank_slate).assigned_surveys, Survey.find_by_slug('my-sleep-apnea')
+  end
+
+  test "should assign correct surveys for caregiver_child role" do
+    # Setup
+    load_survey_package
+    login(users(:blank_slate))
+
+    patch :set_user_type, user: { caregiver_child: true }
+
+    assert_equal 2, users(:blank_slate).assigned_surveys.count
+
+    assert_includes users(:blank_slate).assigned_surveys, Survey.find_by_slug('about-me')
+    assert_includes users(:blank_slate).assigned_surveys, Survey.find_by_slug('about-my-family')
+    refute_includes users(:blank_slate).assigned_surveys, Survey.find_by_slug('my-sleep-quality')
+    refute_includes users(:blank_slate).assigned_surveys, Survey.find_by_slug('my-sleep-apnea')
+  end
+
+  test "should not assign any surveys for researcher" do
+    # Setup
+    load_survey_package
+    login(users(:blank_slate))
+
+    patch :set_user_type, user: { researcher: true }
+
+    assert_empty users(:blank_slate).assigned_surveys
+  end
+
+  test "should not assign any surveys for provider" do
+    # Setup
+    load_survey_package
+    login(users(:blank_slate))
+
+    patch :set_user_type, user: { provider: true }
+
+    assert_empty users(:blank_slate).assigned_surveys
+
+  end
+
+  test "should assign adult_diagnosed surveys for provider+adult_diagnosed" do
+    # Setup
+    load_survey_package
+    login(users(:blank_slate))
+
+    patch :set_user_type, user: { adult_diagnosed: true, provider: true }
+
+    assert_equal 4, users(:blank_slate).assigned_surveys.count
+
+    assert_includes users(:blank_slate).assigned_surveys, Survey.find_by_slug('about-me')
+    assert_includes users(:blank_slate).assigned_surveys, Survey.find_by_slug('about-my-family')
+    assert_includes users(:blank_slate).assigned_surveys, Survey.find_by_slug('my-sleep-quality')
+    assert_includes users(:blank_slate).assigned_surveys, Survey.find_by_slug('my-sleep-apnea')
+
+  end
+
+
+  private
+
+  def load_survey_package
+    assert_difference "Survey.count", 4 do
+      Survey.load_from_file("about-me")
+      Survey.load_from_file("about-my-family")
+      Survey.load_from_file("my-sleep-quality")
+      Survey.load_from_file("my-sleep-apnea")
+    end
   end
 
 end

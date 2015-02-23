@@ -12,11 +12,11 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require turbolinks
 //= require bootstrap-sprockets
 //= require chosen.jquery
 //= require jquery.slimscroll
 //= require jquery.PrintArea
-// require d3.min
 //= require bootbox.min
 //= require typeahead
 //= require cleantheme/uservoice_left

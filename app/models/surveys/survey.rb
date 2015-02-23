@@ -1,6 +1,7 @@
 class Survey < ActiveRecord::Base
   # Constants
   SURVEY_DATA_LOCATION = ['lib', 'data', 'myapnea', 'surveys']
+  SURVEY_LIST = ['about-me', 'additional-information-about-me', 'about-my-family', 'my-interest-in-research', 'my-sleep-pattern', 'my-sleep-quality', 'my-quality-of-life', 'my-health-conditions', 'my-sleep-apnea', 'my-sleep-apnea-treatment']
 
   # Concerns
   include Localizable
@@ -28,6 +29,8 @@ class Survey < ActiveRecord::Base
   scope :viewable, -> { where(status: "show") }
 
   # Class Methods
+
+  ## Deprecated - remove in 6.0.0
   def self.complete(user)
     res = joins(:answer_sessions).where(status: "show", answer_sessions: {user_id: user.id, deleted: false}).select do |qf|
       as = qf.answer_sessions.where(user_id: user.id, deleted: false).order(updated_at: :desc).first
@@ -54,6 +57,7 @@ class Survey < ActiveRecord::Base
     end
     res
   end
+  ##
 
   def self.refresh_all_surveys
     Survey.all.each do |survey|
@@ -106,48 +110,29 @@ class Survey < ActiveRecord::Base
     survey.refresh_precomputations
   end
 
-  def self.migrate_old_answers(slug, question_map=nil)
-    # First pass:
-    # 1. Go through the answers for a given question
-    # 2. Find or create the answer session for the given user/survey combo
-    # 3. Clone the answer and associated answer values
-    # 4. Keep the same answer templates, etc.
-    # 5. Only update question id, answer session id
-    # 6. Set answer state == :migrated
-
-    ## This should allow all historical values to be saved, without
-    question_map ||= YAML::load_file(File.join(SURVEY_DATA_LOCATION + ["answer_migration", "question_mappings.yml"]))
-    survey = Survey.find_by(slug: slug)
-
-    survey.all_questions_descendants.each do |question|
-      question.answer_templates.each do |answer_template|
-        matched_mapping = question_map.select {|mapping| (mapping["slug"] == question.slug and mapping["answer_template_name"] == answer_template.name) }.first
-        if matched_mapping
-          matched_question = Question.find(matched_mapping["id"].to_i)
-
-          matched_question.answers.each do |matched_answer|
-            matched_user = matched_answer.answer_session.user
-            new_answer_session = AnswerSession.find_or_create(matched_user, survey)
-
-            cloned_answer = Answer.create(question_id: question.id, answer_session_id: new_answer_session.id, state: "migrated")
-
-            matched_answer.answer_values.each do |matched_answer_value|
-              cloned_answer.answer_values.create(answer_template_id: matched_answer_value.answer_template_id, answer_option_id: matched_answer_value.answer_option_id, numeric_value: matched_answer_value.numeric_value, text_value: matched_answer_value.text_value, time_value: matched_answer_value.time_value)
-            end
-
-
-          end
-
-
-        end
-
-      end
-    end
-
-
-  end
 
   # Instance Methods
+  def launch_single(user, encounter)
+
+    answer_session = user.answer_sessions.find_or_initialize_by(encounter: encounter, survey_id: self.id)
+    return_object = answer_session.new_record? ? nil : user
+    answer_session.save!
+
+    return_object
+  end
+
+  def launch_multiple(users, encounter)
+    already_assigned = []
+
+    users.each do |user|
+      already_assigned << launch_single(user, encounter)
+    end
+
+    already_assigned.compact!
+
+    already_assigned
+  end
+
   def to_param
     self[:slug] || self[:id].to_s
   end
