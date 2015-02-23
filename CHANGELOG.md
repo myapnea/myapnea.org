@@ -45,6 +45,8 @@
   - Surveys can be launched for single users and groups of users
   - Different groups of surveys can be launched for a user on user registration depending on user roles
   - Answer sessions are only created when surveys are launched, and encounter identifiers
+- **Community Page Changes**
+  - Removed state labels from USA map to provide cleaner overview
 
 ### Bug Fixes
 - Fixed a bug that prevented a user dashboard from displaying if no forum topics existed
