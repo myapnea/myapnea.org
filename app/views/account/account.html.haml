@@ -41,6 +41,14 @@
         .col-sm-10
           = f.select :state_code, [['---', nil]] + Map::MAP_STATES_AND_CODES, {}, class: 'form-control input-lg'
       = f.submit "Save Changes", class: 'btn btn-primary pull-right'
+  .panel-footer.text-dark9{ style: 'margin:10px 0;'}
+    - if current_user.has_user_type?
+      %h4.f300.centered-text
+        You are listed as a(n)
+        %span.f500= current_user.user_types + '.'
+      %h5.f300.centered-text
+        If this is incorrect, please
+        = link_to 'change your user type.', user_type_path
 .panel
   .panel-heading
     %h4.f300 Change Password

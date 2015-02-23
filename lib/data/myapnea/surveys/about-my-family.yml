@@ -118,16 +118,60 @@ questions:
     - text: Daughter(s) (specify how many)
       hotkey: F
       value: 6
+    - text: None of my biological family members have been diagnosed with sleep apnea
+      hotkey: G
+      value: 7
   - name: specified_brothers
-    data_type: text_value
+    data_type: answer_option_id
+    display_type_id: 3
     target_answer_option: 3
+    answer_options:
+    - text: 1
+      value: 1
+      display_class: label-default label-med
+    - text: 2
+      value: 2
+      display_class: label-default label-med
+    - text: 3+
+      value: 3
+      display_class: label-default label-med
   - name: specified_sisters
     data_type: text_value
     target_answer_option: 4
+    answer_options:
+    - text: 1
+      value: 1
+      display_class: label-default label-med
+    - text: 2
+      value: 2
+      display_class: label-default label-med
+    - text: 3+
+      value: 3
+      display_class: label-default label-med
   - name: specified_sons
     data_type: text_value
     target_answer_option: 5
+    answer_options:
+    - text: 1
+      value: 1
+      display_class: label-default label-med
+    - text: 2
+      value: 2
+      display_class: label-default label-med
+    - text: 3+
+      value: 3
+      display_class: label-default label-med
   - name: specified_daughters
     data_type: text_value
     target_answer_option: 6
+    answer_options:
+    - text: 1
+      value: 1
+      display_class: label-default label-med
+    - text: 2
+      value: 2
+      display_class: label-default label-med
+    - text: 3+
+      value: 3
+      display_class: label-default label-med
 

@@ -1,13 +1,15 @@
-= form_tag(process_answer_path, {role: "form", class: 'survey-container progress-w-enter' }) do
+= form_tag(process_answer_path, {role: "form", class: 'survey-container progress-w-enter', data: { object: 'inline-validation-date' } }) do
   = hidden_field_tag "question_id[]", question.id
   = hidden_field_tag "answer_session_id", answer_session.id
 
   .panel
     .question-container
       %h3.f300= question.text
-      %h5.f300.text-muted Just start typing!
+      %h5.f300.text-muted Please enter as mm/dd/yyyy (e.g. 01/31/1990)
     .input-container
-      = text_field_tag "#{question.id}[#{question.answer_templates.first.id}]", answer.value[question.answer_templates.first.id], maxlength: 10, class: 'survey-short-text survey-text-date', placeholder: 'MM/DD/YYYY'
+      = text_field_tag "#{question.id}[#{question.answer_templates.first.id}]", answer.value[question.answer_templates.first.id], maxlength: 10, class: 'survey-short-text survey-text-date', placeholder: 'mm/dd/yyyy', data: { object: 'inline-validation-item' }
+    .col-sm-10.col-sm-offset-1.hidden{ style: 'margin-bottom:20px;', data: { object: 'date--error' } }
+      %p.small.centered-text.inline-validation-error{ data: { object: 'date--error-message' } }
     .button-container
       .btn.btn-primary.next-question
         Go to next question

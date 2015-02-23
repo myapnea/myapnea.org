@@ -63,7 +63,7 @@ questions:
       hotkey: D
       value: 4
       display_class: label-default label-lg
-    - text: Unemployed, laid off, or looking for Working
+    - text: Unemployed, laid off, or looking for work
       hotkey: E
       value: 5
       display_class: label-default label-lg

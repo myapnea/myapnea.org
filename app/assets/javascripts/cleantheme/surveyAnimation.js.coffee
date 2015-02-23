@@ -40,8 +40,8 @@
 
   # Change focus
   @changeFocus = (question1, question2) ->
-    $(question1).find("input").blur()
     $(question2).find("input:not([type=hidden])").first().focus()
+    $(question1).find("input").blur() if $(question1).is(":focus")
 
   @changeFocusDirect = (input1, input2) ->
     $(input1).blur()
@@ -276,18 +276,19 @@
 
 
   # Custom date input
-  date_index = 0
+  if $(".survey-text-date").length > 0
+    date_index = $(".survey-text-date").val().length || 0
+    basePlaceholder = 'mm/dd/yyyy'
   @rewriteDatePlaceholder = (keyCode) ->
+    currentPlaceholder = $(".survey-text-date").val() || basePlaceholder
     if keyCode is 8
       unless date_index is 0
-        date_index -= 1
-        currentPlaceholder = $(".survey-text-date").attr("placeholder")
         newPlaceholder = currentPlaceholder.slice(0, date_index)
-        $(".survey-text-date").attr("placeholder", newPlaceholder)
+        date_index -= 1
+        $(".survey-text-date").val(newPlaceholder)
     else
       unless date_index >= 10
         newKey = String.fromCharCode(keyCode)
-        currentPlaceholder = $(".survey-text-date").attr("placeholder")
         if date_index == 2 or date_index == 5
           currentPlaceholder += '/'
           date_index += 1
@@ -295,7 +296,6 @@
         if date_index == 1 or date_index == 4
           inputString += '/'
           date_index += 1
-        remainingString = currentPlaceholder.slice(date_index+1, currentPlaceholder.length)
-        newPlaceholder = inputString + remainingString
-        $(".survey-text-date").attr("placeholder", newPlaceholder)
+        newPlaceholder = inputString
+        $(".survey-text-date").val(newPlaceholder)
         date_index += 1
