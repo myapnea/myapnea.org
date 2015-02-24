@@ -1,8 +1,7 @@
 .panel
   .panel-heading
-    %h3.f300 In the realm of sleep apnea, how do you best describe yourself?
-    %h5.f300
-      Check all that apply
+    %h3.f300 How do you best describe yourself?
+    %h5.f300.reset-layout (You can select more than one, if needed!)
   .panel-body
     = form_for(current_user, url: update_path, class: 'form-horizontal', method: :post) do |f|
       .input-group

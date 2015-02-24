@@ -24,14 +24,6 @@
         = f.label :email, class: 'col-sm-2 control-label input-lg'
         .col-sm-10
           = f.email_field :email, class: 'form-control input-lg', placeholder: User.human_attribute_name(:email), autocomplete: :off
-      .form-group
-        = f.label :zip_code, class: 'col-sm-2 control-label input-lg'
-        .col-sm-10
-          = f.text_field :zip_code, class: 'form-control input-lg', placeholder: User.human_attribute_name(:zip_code), autocomplete: :off
-      .form-group
-        = f.label :year_of_birth, class: 'col-sm-2 control-label input-lg'
-        .col-sm-10
-          = f.text_field :year_of_birth, class: 'form-control input-lg', placeholder: User.human_attribute_name(:year_of_birth), autocomplete: :off
       .form-group{ style: 'clear:both;' }
         = f.label :country_code, 'Country', class: 'col-sm-2 control-label input-lg'
         .col-sm-10

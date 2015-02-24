@@ -263,7 +263,10 @@ class User < ActiveRecord::Base
   def smart_surveys
     (self.incomplete_surveys + self.unstarted_surveys + self.complete_surveys).select {|s| !s.deprecated?}
   end
-  #
+
+  def choose_next_survey(survey)
+    (self.assigned_surveys.where.not(id: survey.id).to_a - self.complete_surveys).first
+  end
 
 
   def assigned_surveys

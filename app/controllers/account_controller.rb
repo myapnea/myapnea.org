@@ -55,6 +55,8 @@ class AccountController < ApplicationController
     current_user.update accepted_privacy_policy_at: Time.zone.now
     if current_user.is_only_researcher? or current_user.is_provider?
       redirect_to get_started_terms_of_access_path
+    elsif current_user.ready_for_research?
+      redirect_to get_started_about_me_path
     else
       redirect_to get_started_consent_path
     end
@@ -75,7 +77,11 @@ class AccountController < ApplicationController
 
   def accepts_consent
     current_user.update(accepted_consent_at: Time.zone.now)
-    redirect_to get_started_about_me_path
+    if current_user.ready_for_research?
+      redirect_to get_started_about_me_path
+    else
+      redirect_to get_started_privacy_path
+    end
   end
 
   def revoke_consent
@@ -89,8 +95,11 @@ class AccountController < ApplicationController
   def set_user_type
     user_types = params.required(:user).permit(:provider, :researcher, :adult_diagnosed, :adult_at_risk, :caregiver_adult, :caregiver_child)
     current_user.update_user_types user_types
-
-    redirect_to get_started_privacy_path
+    if params[:registration_process] == '1'
+      redirect_to get_started_privacy_path
+    else
+      redirect_to account_path
+    end
   end
 
   def dashboard

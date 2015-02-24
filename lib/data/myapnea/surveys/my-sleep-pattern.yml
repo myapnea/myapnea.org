@@ -210,23 +210,3 @@ questions:
       hotkey: 4
       value: 4
       display_class: option-of-multiple option-of-4 survey-scale survey-scale-great
-  - name: doze_while_driving
-    data_type: answer_option_id
-    text: While driving
-    answer_options:
-    - text: High chance of dozing
-      hotkey: 1
-      value: 1
-      display_class: option-of-multiple option-of-4 survey-scale survey-scale-danger
-    - text: Moderate chance of dozing
-      hotkey: 2
-      value: 2
-      display_class: option-of-multiple option-of-4 survey-scale survey-scale-warning
-    - text: Slight chance of dozing
-      hotkey: 3
-      value: 3
-      display_class: option-of-multiple option-of-4 survey-scale survey-scale-good
-    - text: Would never doze
-      hotkey: 4
-      value: 4
-      display_class: option-of-multiple option-of-4 survey-scale survey-scale-great

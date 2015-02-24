@@ -3,7 +3,9 @@
   # Initiate flow when survey is present
   $(document).ready ->
     if $("[data-object~='survey-introduction']").length > 0
-      $("[data-object~='radio-input-multiple']").children($("[data-object~='radio-input-multiple-container']")).first().addClass "current"
+      multiple_radios = $("[data-object~='radio-input-multiple']")
+      multiple_radios.each (index) ->
+        $(multiple_radios[index]).children($("[data-object~='radio-input-multiple-container']")).first().addClass "current"
     return
 
   # Navigation for survey indicators
@@ -68,6 +70,8 @@
       nextQuestionScroll(activeQuestion, newActiveQuestion)
 
 
+  @assignMultipleQuestionDirect = (element) ->
+
   # Progress to next part in multiple-part question
   @assignMultipleQuestion = (next, prev) ->
     activeQuestion = $(".survey-container.active .multiple-question-container.current")
@@ -125,11 +129,13 @@
           if $(event.target).closest("label").prev("input").hasClass "reveal-next-input"
             targetInput = $(event.target).closest("label").prev("input")
             changeFocusDirect(targetInput, targetInput.nextAll('.hidden-input').first())
-          else if $(this).find('.multiple-question-container').length and $(event.target).closest(".multiple-question-container").hasClass "current"
-            assignMultipleQuestion(true,false)
+          else if $(this).find('.multiple-question-container').length
+            if $(event.target).closest(".multiple-question-container").hasClass "current"
+              assignMultipleQuestion(true,false)
           else
             assignQuestion(true, false)
       else
+        # Shift to clicked container
         # Use the clicked container, rather than calling the assignQuestion function
         activeQuestion = $(".survey-container.active")
         activeQuestion.removeClass "active"

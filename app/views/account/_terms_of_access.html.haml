@@ -24,13 +24,18 @@
       Print Terms of Access
   - if current_user and (current_user.is_provider? or current_user.is_only_researcher?)
     .panel-footer.centered-text
-      - if current_user.accepted_terms_of_access?
+      - if current_user.ready_for_research?
         - unless part_of_registration
           = link_to :back, class: 'btn btn-lg btn-default' do
             .fa.fa-arrow-left
             &nbsp;
             Go Back
         = link_to "Leave Research Study", revoke_consent_path, method: :post, class: 'btn btn-warning btn-lg'
+      - elsif current_user.accepted_terms_of_access_at.present?
+        - if part_of_registration
+          = link_to "Continue to review privacy policy", get_started_privacy_path, class: 'btn btn-primary btn-lg'
+        - else
+          = link_to "Continue to review privacy policy", privacy_path, class: 'btn btn-primary btn-lg'
       - else
         - if part_of_registration
           = link_to "I Agree", accepts_terms_of_access_path, method: :post, class: 'btn btn-primary btn-lg'

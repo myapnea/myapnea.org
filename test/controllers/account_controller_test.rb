@@ -8,6 +8,8 @@ class AccountControllerTest < ActionController::TestCase
   end
 
 
+
+
   test "should get registration user_type page for logged in user" do
     login(users(:user_1))
     get :get_started
@@ -41,6 +43,23 @@ class AccountControllerTest < ActionController::TestCase
 
 
 
+  test "should get user_type page for logged in user" do
+    login(users(:user_1))
+    get :user_type
+    assert_response :success
+  end
+
+  test "should set user_type page for logged in user and redirect to get started" do
+    login(users(:user_1))
+    post :set_user_type, user: { researcher: "1" }, registration_process: '1'
+    assert_redirected_to get_started_privacy_path
+  end
+
+  test "should change user_type page for logged in user and redirect to account" do
+    login(users(:user_1))
+    post :set_user_type, user: { researcher: "1" }
+    assert_redirected_to account_path
+  end
 
   test "should get account for regular user" do
     login(@regular_user)
@@ -168,12 +187,22 @@ class AccountControllerTest < ActionController::TestCase
     assert_redirected_to get_started_consent_path
   end
 
-  test "should accept consent during get-started for new user" do
+  test "should accept consent during get-started for new user and redirect to privacy if needed" do
     login(@regular_user)
+    assert_nil @regular_user.accepted_privacy_policy_at
     assert_nil @regular_user.accepted_consent_at
     post :accepts_consent
     @regular_user.reload
     assert_not_nil @regular_user.accepted_consent_at
+    assert_redirected_to get_started_privacy_path
+  end
+
+  test "should accept consent during get-started for new user and redirect to survey if ready for research" do
+    login(users(:has_accepted_privacy))
+    assert_not_nil users(:has_accepted_privacy).accepted_privacy_policy_at
+    assert_nil users(:has_accepted_privacy).accepted_consent_at
+    post :accepts_consent
+    users(:has_accepted_privacy).reload
     assert_redirected_to get_started_about_me_path
   end
 

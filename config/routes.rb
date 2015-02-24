@@ -31,6 +31,7 @@ Rails.application.routes.draw do
 
   get 'user_type' => 'account#user_type'
   patch 'set_user_type' => 'account#set_user_type'
+  patch 'set_user_type_and_redirect_to_account' => 'account#set_user_type_and_redirect_to_account'
   post 'accepts_privacy' => 'account#accepts_privacy'
   post 'accepts_consent' => 'account#accepts_consent'
   post 'accepts_terms_of_access' => 'account#accepts_terms_of_access'
