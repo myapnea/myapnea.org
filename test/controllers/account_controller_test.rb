@@ -8,6 +8,8 @@ class AccountControllerTest < ActionController::TestCase
   end
 
 
+
+
   test "should get registration user_type page for logged in user" do
     login(users(:user_1))
     get :get_started
@@ -41,6 +43,23 @@ class AccountControllerTest < ActionController::TestCase
 
 
 
+  test "should get user_type page for logged in user" do
+    login(users(:user_1))
+    get :user_type
+    assert_response :success
+  end
+
+  test "should set user_type page for logged in user and redirect to get started" do
+    login(users(:user_1))
+    post :set_user_type, user: { researcher: "1" }, registration_process: '1'
+    assert_redirected_to get_started_privacy_path
+  end
+
+  test "should change user_type page for logged in user and redirect to account" do
+    login(users(:user_1))
+    post :set_user_type, user: { researcher: "1" }
+    assert_redirected_to account_path
+  end
 
   test "should get account for regular user" do
     login(@regular_user)

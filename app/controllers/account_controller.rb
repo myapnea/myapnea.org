@@ -89,8 +89,11 @@ class AccountController < ApplicationController
   def set_user_type
     user_types = params.required(:user).permit(:provider, :researcher, :adult_diagnosed, :adult_at_risk, :caregiver_adult, :caregiver_child)
     current_user.update_user_types user_types
-
-    redirect_to get_started_privacy_path
+    if params[:registration_process] == '1'
+      redirect_to get_started_privacy_path
+    else
+      redirect_to account_path
+    end
   end
 
   def dashboard

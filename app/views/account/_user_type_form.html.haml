@@ -1,4 +1,6 @@
-= form_for current_user, html: { data: { object: 'inline-validation-checklist' } }, url: set_user_type_path do |f|
+- part_of_registration = false unless defined?(part_of_registration)
+- url_path = part_of_registration ? set_user_type_path(registration_process: '1') : set_user_type_path
+= form_for current_user, html: { data: { object: 'inline-validation-checklist' } }, url: url_path do |f|
   .survey-container.check-w-hotkey.active
     .panel
       .question-container
