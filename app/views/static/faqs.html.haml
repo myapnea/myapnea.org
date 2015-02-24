@@ -1,18 +1,19 @@
 - @title = ""
 - @page_title = 'Frequently Asked Questions about MyApnea, Sleep Apnea, and Getting Involved'
 - @active_top_nav_link = :about
-= render partial: 'layouts/partials/page_header_image', locals: { image: 'myapnea/headers/faqs.jpg', signup_id: "innerSignup" }
+
+.content-main-header
+  %h1.f300
+    Frequently Asked Questions
 
 #faqs.row
   .col-sm-12
-    %h1 Frequently Asked Questions
-  .col-sm-12
-    #accordion.panel-group
-      .panel.panel-default
-        #General.panel-heading
-          %h4.panel-title
-            %a{"data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapseOne"}
-              %h3 General
+    #accordion
+      .panel
+        #General.panel-heading{ style: 'border-radius:20px;'}
+          %h3.f300
+            %a{"data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapseOne", style: 'text-decoration: none; color: inherit; cursor: pointer;' }
+              General
         #collapseOne.panel-collapse.collapse.in
           .panel-body
             .col-md-10
@@ -36,11 +37,11 @@
                 with others within the MyApnea.Org community. The third section is a
                 = link_to "RESEARCH", research_path
                 portal, which allows consenting members to participate in research with the aim of improving sleep apnea care and treatments. To accomplish this research, you will be asked to take easy-to-complete surveys and to join other study activities. As we post new surveys, we’ll invite you to complete them, too. You’ll also receive special invitations (at least twice per year) to participate in other parts of the study. We will only ask for your participation in such a study after you've consented to that specific study. You will see all of your study activities and special invitations on your “dashboard” once you join the study.
-      .panel.panel-default
-        #Registration.panel-heading
-          %h4.panel-title
-            %a{"data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapseTwo"}
-              %h3 Registration
+      .panel
+        #Registration.panel-heading{ style: 'border-radius:20px;'}
+          %h3.f300
+            %a{"data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapseTwo", style: 'text-decoration: none; color: inherit; cursor: pointer'}
+              Registration
         #collapseTwo.panel-collapse.collapse
           .panel-body
             .col-md-10
@@ -70,11 +71,11 @@
               %h4 Why do I have to sign a consent form to participate in the research portal?
               %p The goal of MyApnea.Org is to actively engage thousands of people with sleep apnea to share health information needed for research to improve the health and wellbeing of people with apnea. To collect your information, we need your permission, which you give by signing the consent form.
 
-      .panel.panel-default
-        #Participation.panel-heading
-          %h4.panel-title
-            %a{"data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapseThree"}
-              %h3 Participating in the research portal
+      .panel
+        #Participation.panel-heading{ style: 'border-radius:20px;'}
+          %h3.f300
+            %a{"data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapseThree", style: 'text-decoration: none; color: inherit; cursor: pointer'}
+              Participating in the Research Portal
         #collapseThree.panel-collapse.collapse
           .panel-body
             .col-md-10
@@ -93,11 +94,11 @@
               %h4 How often do I take these surveys?
               %p You will be asked to update information on these surveys every 2 to 6 months, or as your health changes. You’ll also receive occasional special invitations to participate in other studies or take special surveys, depending on your specific health status. The surveys will usually give you an estimate of how long it’ll take to complete them, so you can choose to take them when most convenient for you.
 
-      .panel.panel-default
-        #Privacy.panel-heading
-          %h4.panel-title
-            %a{"data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapseFour"}
-              %h3 Privacy and Security
+      .panel
+        #Privacy.panel-heading{ style: 'border-radius:20px;'}
+          %h3.f300
+            %a{"data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapseFour", style: 'text-decoration: none; color: inherit; cursor: pointer'}
+              Privacy and Security
         #collapseFour.panel-collapse.collapse
           .panel-body
             %h4 Is my data safe?
@@ -107,7 +108,3 @@
               Please read our
               = link_to 'Privacy Policy', privacy_path
               for more information. We will never sell, rent, or lease your contact information. If information from the MyApnea.Org network is published or presented at scientific meetings, your name and other personal information will not be used.
-
-
-  / /.col
-/ /.row
