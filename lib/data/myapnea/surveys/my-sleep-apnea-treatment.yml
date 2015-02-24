@@ -16,13 +16,13 @@ questions:
     - text: Never been treated
       hotkey: A
       value: 1
-    - text: CPAP (Continuous Positive Airway Pressure Machine)
+    - text: Continuous Positive Airway Pressure Machine (CPAP)
       hotkey: B
       value: 2
-    - text: APAP (Auto Positive Airway Pressure Machine)
+    - text: Auto Positive Airway Pressure Machine (APAP)
       hotkey: C
       value: 3
-    - text: BiPAP (Bi-level Airway Pressure Machine)
+    - text: Bi-level Positive Airway Pressure Machine (BiPAP)
       hotkey: D
       value: 4
     - text: Adaptive Servo-Ventilation (ASV)
@@ -62,7 +62,7 @@ questions:
   answer_templates:
   - name: satisfaction_with_cpap
     data_type: answer_option_id
-    text: CPAP
+    text: Continuous Positive Airway Pressure Machine (CPAP)
     answer_options:
     - text: Very dissatisfied
       hotkey: 1
@@ -86,7 +86,7 @@ questions:
       display_class: option-of-multiple option-of-5 survey-scale
   - name: satisfaction_with_apap
     data_type: answer_option_id
-    text: APAP
+    text: Auto Positive Airway Pressure Machine (APAP)
     answer_options:
     - text: Very dissatisfied
       hotkey: 1
@@ -110,7 +110,247 @@ questions:
       display_class: option-of-multiple option-of-5 survey-scale
   - name: satisfaction_with_bipap
     data_type: answer_option_id
-    text: BiPAP
+    text: Bi-level Positive Airway Pressure Machine (BiPAP)
+    answer_options:
+    - text: Very dissatisfied
+      hotkey: 1
+      value: 1
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-danger
+    - text: Dissatisfied
+      hotkey: 2
+      value: 2
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-warning
+    - text: Satisfied
+      hotkey: 3
+      value: 3
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-good
+    - text: Very satisfied
+      hotkey: 4
+      value: 4
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-great
+    - text: Never used
+      hotkey: 5
+      value: 5
+      display_class: option-of-multiple option-of-5 survey-scale
+  - name: satisfaction_with_asv
+    data_type: answer_option_id
+    text: Adaptive Servo-Ventilation (ASV)
+    answer_options:
+    - text: Very dissatisfied
+      hotkey: 1
+      value: 1
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-danger
+    - text: Dissatisfied
+      hotkey: 2
+      value: 2
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-warning
+    - text: Satisfied
+      hotkey: 3
+      value: 3
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-good
+    - text: Very satisfied
+      hotkey: 4
+      value: 4
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-great
+    - text: Never used
+      hotkey: 5
+      value: 5
+      display_class: option-of-multiple option-of-5 survey-scale
+  - name: satisfaction_with_oral_appliance
+    data_type: answer_option_id
+    text: Oral appliance
+    answer_options:
+    - text: Very dissatisfied
+      hotkey: 1
+      value: 1
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-danger
+    - text: Dissatisfied
+      hotkey: 2
+      value: 2
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-warning
+    - text: Satisfied
+      hotkey: 3
+      value: 3
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-good
+    - text: Very satisfied
+      hotkey: 4
+      value: 4
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-great
+    - text: Never used
+      hotkey: 5
+      value: 5
+      display_class: option-of-multiple option-of-5 survey-scale
+  - name: satisfaction_with_behavioral_therapy
+    data_type: answer_option_id
+    text: Behavioral therapy
+    answer_options:
+    - text: Very dissatisfied
+      hotkey: 1
+      value: 1
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-danger
+    - text: Dissatisfied
+      hotkey: 2
+      value: 2
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-warning
+    - text: Satisfied
+      hotkey: 3
+      value: 3
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-good
+    - text: Very satisfied
+      hotkey: 4
+      value: 4
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-great
+    - text: Never used
+      hotkey: 5
+      value: 5
+      display_class: option-of-multiple option-of-5 survey-scale
+  - name: satisfaction_with_tongue_stimulation
+    data_type: answer_option_id
+    text: Tongue stimulation
+    answer_options:
+    - text: Very dissatisfied
+      hotkey: 1
+      value: 1
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-danger
+    - text: Dissatisfied
+      hotkey: 2
+      value: 2
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-warning
+    - text: Satisfied
+      hotkey: 3
+      value: 3
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-good
+    - text: Very satisfied
+      hotkey: 4
+      value: 4
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-great
+    - text: Never used
+      hotkey: 5
+      value: 5
+      display_class: option-of-multiple option-of-5 survey-scale
+  - name: satisfaction_with_tonsillectomy
+    data_type: answer_option_id
+    text: Tonsillectomy (removal of tonsils)
+    answer_options:
+    - text: Very dissatisfied
+      hotkey: 1
+      value: 1
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-danger
+    - text: Dissatisfied
+      hotkey: 2
+      value: 2
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-warning
+    - text: Satisfied
+      hotkey: 3
+      value: 3
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-good
+    - text: Very satisfied
+      hotkey: 4
+      value: 4
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-great
+    - text: Never used
+      hotkey: 5
+      value: 5
+      display_class: option-of-multiple option-of-5 survey-scale
+  - name: satisfaction_with_uppp
+    data_type: answer_option_id
+    text: UPPP (removal of palate and other tissue from the mouth)
+    answer_options:
+    - text: Very dissatisfied
+      hotkey: 1
+      value: 1
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-danger
+    - text: Dissatisfied
+      hotkey: 2
+      value: 2
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-warning
+    - text: Satisfied
+      hotkey: 3
+      value: 3
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-good
+    - text: Very satisfied
+      hotkey: 4
+      value: 4
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-great
+    - text: Never used
+      hotkey: 5
+      value: 5
+      display_class: option-of-multiple option-of-5 survey-scale
+  - name: satisfaction_with_naval_deviation
+    data_type: answer_option_id
+    text: Naval deviation surgery
+    answer_options:
+    - text: Very dissatisfied
+      hotkey: 1
+      value: 1
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-danger
+    - text: Dissatisfied
+      hotkey: 2
+      value: 2
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-warning
+    - text: Satisfied
+      hotkey: 3
+      value: 3
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-good
+    - text: Very satisfied
+      hotkey: 4
+      value: 4
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-great
+    - text: Never used
+      hotkey: 5
+      value: 5
+      display_class: option-of-multiple option-of-5 survey-scale
+  - name: satisfaction_with_tongue_surgery
+    data_type: answer_option_id
+    text: Tongue surgery
+    answer_options:
+    - text: Very dissatisfied
+      hotkey: 1
+      value: 1
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-danger
+    - text: Dissatisfied
+      hotkey: 2
+      value: 2
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-warning
+    - text: Satisfied
+      hotkey: 3
+      value: 3
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-good
+    - text: Very satisfied
+      hotkey: 4
+      value: 4
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-great
+    - text: Never used
+      hotkey: 5
+      value: 5
+      display_class: option-of-multiple option-of-5 survey-scale
+  - name: satisfaction_with_jaw_surgery
+    data_type: answer_option_id
+    text: Jaw surgery
+    answer_options:
+    - text: Very dissatisfied
+      hotkey: 1
+      value: 1
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-danger
+    - text: Dissatisfied
+      hotkey: 2
+      value: 2
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-warning
+    - text: Satisfied
+      hotkey: 3
+      value: 3
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-good
+    - text: Very satisfied
+      hotkey: 4
+      value: 4
+      display_class: option-of-multiple option-of-5 survey-scale survey-scale-great
+    - text: Never used
+      hotkey: 5
+      value: 5
+      display_class: option-of-multiple option-of-5 survey-scale
+  - name: satisfaction_with_bariatric_surgery
+    data_type: answer_option_id
+    text: Bariatric surgery
     answer_options:
     - text: Very dissatisfied
       hotkey: 1
