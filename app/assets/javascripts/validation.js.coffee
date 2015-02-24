@@ -78,10 +78,12 @@
 
 
   ########## DATES ##########
-  $("[data-object~='inline-validation-date'] [data-object~='inline-validation-item']").blur (e) ->
-    validationItem = $("[data-object~='inline-validation-date'] [data-object~='inline-validation-item']")
+  $("[data-validation~='inline-validation-date'] [data-object~='inline-validation-item']").blur (e) ->
+    validationItem = $("[data-validation~='inline-validation-date'] [data-object~='inline-validation-item']")
     dateString = validationItem.val()
     errorMessage = validateDate(dateString)
+    if validationItem.data('over18')
+      errorMessage += validateOver18(dateString)
     if errorMessage != ''
       $("[data-object~='date--error']").removeClass("hidden")
       $("[data-object~='date--error-message']").html errorMessage
@@ -99,17 +101,38 @@
     year = parseInt(parts[2], 10)
 
     if (year < 1900 or year > 2015)
-      return "incorrect year"
+      return "Invalid year. "
     if (month < 1 or month > 12)
-      return "incorrect month"
+      return "Invalid month. "
 
     monthLength = [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ]
     if (year % 400 == 0 || (year % 100 != 0 && year % 4 == 0))
         monthLength[1] = 29
 
     unless (day > 0 && day <= monthLength[month - 1])
-      return "incorrect day"
+      return "Invalid date. "
 
     return ""
+
+  @validateOver18 = (dateString) ->
+    parts = dateString.split("/")
+    month = parseInt(parts[0], 10)
+    day = parseInt(parts[1], 10)
+    year = parseInt(parts[2], 10)
+
+    birthDate = new Date(year, month-1, day)
+    minimumDate = new Date(year+18, month-1, day)
+    todaysDate = new Date()
+
+    if minimumDate > todaysDate
+      return "You must be over 18 to join MyApnea.Org."
+    return ""
+
+
+
+
+
+
+
 
 
