@@ -312,7 +312,20 @@ questions:
 - text: |
     Have you been diagnosed with other significant health conditions? If so, please list them here.
   slug: health-conditions-other
-  display_type: text_input
+  display_type: radio_input
   answer_templates:
   - name: other_health_conditions
+    data_type: answer_option_id
+    answer_options:
+    - text: 'Yes'
+      hotkey: Y
+      value: 1
+      display_class: label-default label-lg
+    - text: 'No'
+      hotkey: N
+      value: 2
+      display_class: label-default label-lg
+  - name: specified_health_condition
     data_type: text_value
+    target_answer_option: 1
+

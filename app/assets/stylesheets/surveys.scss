@@ -156,7 +156,12 @@ input[type=date] {
   float: left;
 }
 .label-lg {
-  width: 80%;
+  width: 70%;
+  margin-left:15%;
+  margin-right:15%;
+}
+.label-xl {
+  width: 85%;
   margin-left:10%;
   margin-right:10%;
 }
@@ -373,9 +378,10 @@ $blue: #7fb2eb;
 }
 .reveal-next-input:checked ~ .hidden-input {
   display: inline-block;
-  margin: 7px 15%;
-  width: 70%;
+  margin: 7px 5%;
+  width: 90%;
   float:left;
+  margin-bottom:30px;
 }
 
 
@@ -558,6 +564,19 @@ http://brennaobrien.com/blog/2014/05/style-input-type-range-in-every-browser.htm
     }
   }
   .input-container .label-lg {
+    width: 100%;
+    margin: 2px 0;
+    padding: 3px;
+    p {
+      font-size: 16px;
+      margin: 0;
+      padding: 0;
+    }
+    span.hotkey {
+      display: none;
+    }
+  }
+  .input-container .label-xl {
     width: 100%;
     margin: 2px 0;
     padding: 3px;
