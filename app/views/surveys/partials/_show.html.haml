@@ -29,12 +29,16 @@
       %p.text-muted
         Or press ENTER
 
-/ Expects a @survey and @answer_session variable
-/ Dynamically Loaded:
+-# Expects a @survey and @answer_session variable
+-# Dynamically Loaded:
 - @survey.all_questions_descendants.each_with_index do |question, index|
   = render partial: "surveys/question_templates/#{question.display_type}", locals: { question: question, answer_session: @answer_session, answer: Answer.first_or_new(question, @answer_session), question_number: index }
 
-/ End of Survey
+-# Select next survey for completion
+- next_survey = current_user.choose_next_survey(@survey)
+- continue_path = next_survey.present? ? survey_path(next_survey) : surveys_path
+
+-# End of Survey
 .survey-container{ data: { object: 'survey-submit' } }
   .panel.centered-text{ style: "padding: 20px;"}
     .panel-heading{ style: 'background-color: transparent;', data: { object: 'survey-submit-btn-container' } }
@@ -45,7 +49,7 @@
       %p.lead From here, we highly recommend you continue and answer a few more questions to help us learn more about you and your experience with sleep apnea.
       .row{ style: 'margin-bottom:20px; text-align: center;' }
         = link_to "View Report", survey_report_path(@survey), class: "btn btn-success btn-lg"
-        = link_to "Continue", surveys_path, class: "btn btn-primary btn-lg"
+        = link_to "Continue", continue_path, class: "btn btn-primary btn-lg"
       %p.lead{ style: 'font-size: 16px;'}
         We also have an active community that you can
         = link_to 'join', account_path, class: 'lighter-blue', style: 'text-underline: none;'
