@@ -13,6 +13,26 @@ user_<%= i %>:
   encrypted_password: <%= pw %>
 <% end %>
 
+has_accepted_privacy:
+  email: prviacy@mail.com
+  first_name: Tommy
+  last_name: Privacy
+  zip_code: 12345
+  over_eighteen: true
+  adult_diagnosed: true
+  encrypted_password: <%= pw %>
+  accepted_privacy_policy_at: <%= 6.day.ago.to_s(:db) %>
+
+has_accepted_consent:
+  email: consent@mail.com
+  first_name: Tommy
+  last_name: Consent
+  zip_code: 12345
+  over_eighteen: true
+  adult_diagnosed: true
+  encrypted_password: <%= pw %>
+  accepted_consent_at: <%= 6.day.ago.to_s(:db) %>
+
 social:
   first_name: Tommy
   last_name: Boy

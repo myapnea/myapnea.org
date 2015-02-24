@@ -30,6 +30,11 @@
             Go Back
         / = link_to "View Privacy Policy", privacy_path, class: 'btn btn-lg btn-info'
         = link_to "Leave Research Study", revoke_consent_path, method: :post, class: 'btn btn-warning btn-lg'
+      - elsif current_user.accepted_consent_at.present?
+        - if part_of_registration
+          = link_to "Continue to review privacy policy", get_started_privacy_path, class: 'btn btn-primary btn-lg'
+        - else
+          = link_to "Continue to review privacy policy", privacy_path, class: 'btn btn-primary btn-lg'
       - else
         - if part_of_registration
           = link_to "I agree and accept", accepts_consent_path, method: :post, class: 'btn btn-primary btn-lg'

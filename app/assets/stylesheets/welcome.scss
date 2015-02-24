@@ -391,6 +391,9 @@ span#privacy-policy:hover {
   text-align:center;
   $viewedColor: #78c679;
   $unviewedColor: #d5ecd2;
+  a, a:active {
+    text-decoration: none;
+  }
   .circle-progress {
     display:inline-block;
     width: 100px;
@@ -400,6 +403,7 @@ span#privacy-policy:hover {
     border-radius: 50%;
     background-color: $unviewedColor;
     text-align: center;
+    pointer-events: none;
     h3 {
       line-height:100px;
       color:white;
@@ -408,6 +412,8 @@ span#privacy-policy:hover {
   }
   .circle-progress.viewed {
     background-color: $viewedColor;
+    pointer-events: auto;
+    text-decoration: none;
   }
   .track-progress{
     display:inline-block;

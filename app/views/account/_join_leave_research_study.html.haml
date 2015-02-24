@@ -7,8 +7,11 @@
         You may choose to leave the research study at any time. We will no longer collect any information from you and we will stop all communication. However, as stated in the informed consent, the information that you have already provided to
         = ENV['pprn_title']
         will remain within the study results.
-      = link_to 'View Consent', consent_path, class: 'btn btn-primary', style: 'width: 49%; margin:.5%; float:left;'
-      = link_to 'View Privacy Policy', privacy_path, class: 'btn btn-primary', style: 'width: 49%; margin:.5%; float:left;'
+      - if (current_user.provider? or current_user.is_only_researcher?) and (current_user.accepted_consent_at.blank?)
+        = link_to 'Review Terms of Access', terms_of_access_path, class: 'btn btn-primary', style: 'width: 49%; margin:.5%; float:left;'
+      - else
+        = link_to 'Review Consent', consent_path, class: 'btn btn-primary', style: 'width: 49%; margin:.5%; float:left;'
+      = link_to 'Review Privacy Policy', privacy_path, class: 'btn btn-primary', style: 'width: 49%; margin:.5%; float:left;'
       = link_to 'Leave Research Study', revoke_consent_path, method: :post, class: 'btn btn-warning', style: 'width: 99%; margin: .5%; float:left;'
 - else
   .panel
@@ -17,9 +20,15 @@
     .panel-body
       %p
         You need to read and accept the
-        = link_to 'Consent', consent_path
+        - if (current_user.provider? or current_user.is_only_researcher?) and (current_user.accepted_consent_at.blank?)
+          = link_to 'Terms of Access', terms_of_access_path
+        - else
+          = link_to 'Consent', consent_path
         and
         = link_to 'Privacy Policy', privacy_path
         in order to join the research study and fill out surveys.
-      = link_to 'Review Consent', consent_path, class: 'btn btn-primary', style: 'width: 49%; margin:.5%; float:left;'
-      = link_to 'Review Privacy Policy', privacy_path, class: 'btn btn-primary', style: 'width: 49%; margin:.5%; float:left;'
+      - if (current_user.provider? or current_user.is_only_researcher?) and (current_user.accepted_consent_at.blank?)
+        = link_to 'Review Terms of Access', terms_of_access_path, class: 'btn btn-primary', style: 'width: 49%; margin:.5%; float:left;'
+      - else
+        = link_to 'Read the Consent', consent_path, class: 'btn btn-primary', style: 'width: 49%; margin:.5%; float:left;'
+      = link_to 'Read our Privacy Policy', privacy_path, class: 'btn btn-primary', style: 'width: 49%; margin:.5%; float:left;'
