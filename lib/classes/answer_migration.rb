@@ -1,7 +1,7 @@
 =begin
   am = AnswerMigration.new("lib/data/myapnea/surveys/answer_migration/question_mappings.yml")
   am.validate_question_map
-    am.set_answer_option_mappings("/home/pwm4/Desktop")
+  am.set_answer_option_mappings("/home/pwm4/Desktop")
 =end
 
 class AnswerMigration
@@ -62,11 +62,11 @@ class AnswerMigration
             option_text_list = option_list.map(&:text)
             option_matcher = FuzzyMatch.new(option_text_list)
 
-            map_file.write "\n# #{new_question.slug} : #{old_question.id} \n# #{option_text_list.join(" | ")}\n"
+            map_file.write "\n# #{new_question.slug} : #{old_question.id} : #{new_answer_template.name} \n# #{option_list.map{|o| "#{o.value} : #{o.text}"}.join(" | ")}\n"
 
             old_answer_template.answer_options.each do |answer_option|
               matched_option_text = option_matcher.find(answer_option.text_value)
-              puts "#{old_question.id} | #{answer_option.id} #{matched_option_text}"
+              puts "#{old_question.id} | #{new_answer_template.id} | #{answer_option.value} : #{matched_option_text}"
               matched_answer_option = option_list.where(text: matched_option_text).first
 
               stripped_matched = matched_option_text.strip if matched_option_text
@@ -77,7 +77,10 @@ class AnswerMigration
 
 
               map_file.write "- old_option_id: #{answer_option.id} # #{answer_option.text_value.strip}\n"
-              map_file.write "  new_option_id: #{matched_answer_option.id if matched_answer_option} # #{matched_option_text.strip if matched_option_text}\n"
+              map_file.write "  new_template_name: #{new_answer_template.name} # #{matched_option_text.strip if matched_option_text}\n"
+              map_file.write "  new_option_value: #{matched_answer_option.value if matched_answer_option}\n"
+
+              #map_file.write "  new_option_id: #{matched_answer_option.id if matched_answer_option} # #{matched_option_text.strip if matched_option_text}\n"
             end
           else
             csv_file << [new_question.slug, new_answer_template.name, old_question.id, "categorical", old_answer_template.data_type, "no"]
@@ -108,7 +111,7 @@ class AnswerMigration
 
   end
 
-  def migrate_old_answers(question_map=nil)
+  def migrate_survey(question_map, answer_option_map)
     # First pass:
     # 1. Go through the answers for a given question
     # 2. Find or create the answer session for the given user/survey combo
@@ -197,21 +200,6 @@ class AnswerMigration
         end
       end
     end
-
-    File.open("/home/pwm4/Desktop/resolved.yml", 'w') {|f| f.write resolved_mappings.to_yaml }
-    File.open("/home/pwm4/Desktop/unresolved.yml", 'w') {|f| f.write unresolved_mappings.to_yaml }
-    File.open("/home/pwm4/Desktop/matches_found.yml", 'w') {|f| f.write matches_found.to_yaml }
-    File.open("/home/pwm4/Desktop/matches_not_found.yml", 'w') {|f| f.write matches_not_found.to_yaml }
-    File.open("/home/pwm4/Desktop/unique_matches_found.yml", 'w') {|f| f.write unique_matches.to_yaml }
-    File.open("/home/pwm4/Desktop/unique_matches_not_found.yml", 'w') {|f| f.write unique_matches_not_found.to_yaml }
-
-
-    {resolved: resolved_mappings, unresolved: unresolved_mappings, found: matches_found, not_found: matches_not_found}
-  end
-
-
-  def categorical_mappings
-
   end
   
 end
