@@ -1,27 +1,21 @@
 =begin
-  am = AnswerMigration.new("lib/data/myapnea/surveys/answer_migration/question_mappings.yml")
-  am.validate_question_map
-  am.set_answer_option_mappings("/home/pwm4/Desktop")
+  am = AnswerMigration.new()
 =end
 
 class AnswerMigration
   MAP_DIRECTORY = File.join(Rails.root, "lib", "data", "myapnea", "surveys", "answer_migration")
 
-  def initialize(question_map)
-    if question_map.is_a?(Array)
-      @question_map = question_map
-    else
-      @question_map = YAML::load_file(question_map)
-    end
+  def initialize(question_map = nil, answer_option_map=nil)
+    @question_map = question_map if question_map and question_map.is_a?(Array)
+    @question_map = YAML::load_file(question_map) if question_map and question_map.is_a?(String)
+    @question_map ||= YAML.load_file(File.join(MAP_DIRECTORY, "question_mappings.yml"))
 
-    # @unresolved_mappings = []
-    # @resolved_mappings = []
-    #
-    # @matches_found = []
-    # @unique_matches = []
-    # @unique_matches_not_found = []
-    # @matches_not_found = []
+    @answer_option_map = answer_option_map if answer_option_map and answer_option_map.is_a?(Array)
+    @answer_option_map = YAML::load_file(answer_option_map) if answer_option_map and answer_option_map.is_a?(String)
+    @answer_option_map ||= YAML.load_file(File.join(MAP_DIRECTORY, "answer_option_mappings.yml"))
 
+    raise StandardError, "Invalid question map" unless validate_question_map
+    raise StandardError, "Invalid answer option map" unless validate_answer_option_map
   end
 
   def validate_question_map
@@ -36,6 +30,24 @@ class AnswerMigration
         validation = false
       end
 
+    end
+
+    validation
+  end
+
+  def validate_answer_option_map
+    validation = true
+
+    @answer_option_map.each do |ao_mapping|
+      begin
+        AnswerOption.find(ao_mapping["old_option_id"])
+        new_template = AnswerTemplate.find_by!(name: ao_mapping["new_template_name"])
+        new_template.answer_options.find_by!(value: ao_mapping["new_option_value"])
+
+      rescue => e
+        puts "#{e.message} | #{ao_mapping["old_option_id"]} | #{ao_mapping["new_template_name"]} | #{ao_mapping["new_option_value"]}"
+        validation = false
+      end
     end
 
     validation
@@ -112,7 +124,7 @@ class AnswerMigration
 
   end
 
-  def migrate_survey(survey_slug, question_map=nil, answer_option_map=nil)
+  def migrate_survey(survey_slug)
     # First pass:
     # 1. Go through the answers for a given question
     # 2. Find or create the answer session for the given user/survey combo
@@ -123,15 +135,13 @@ class AnswerMigration
 
     ## This should allow all historical values to be saved, without
 
-    question_map ||= YAML.load_file(File.join(MAP_DIRECTORY, "question_mappings.yml"))
-    answer_option_map ||= YAML.load_file(File.join(MAP_DIRECTORY, "answer_option_mappings.yml"))
 
 
     survey = Survey.find_by(slug: survey_slug)
 
     survey.all_questions_descendants.each do |question|
       question.answer_templates.each do |answer_template|
-        matched_mapping = question_map.select {|mapping| (mapping["slug"] == question.slug and mapping["answer_template_name"] == answer_template.name) }.first
+        matched_mapping = @question_map.select{|mapping| (mapping["slug"] == question.slug and mapping["answer_template_name"] == answer_template.name) }.first
 
         if matched_mapping
           matched_question = Question.find(matched_mapping["id"].to_i)
@@ -140,20 +150,19 @@ class AnswerMigration
             matched_user = matched_answer.answer_session.user
             new_answer_session = matched_user.answer_sessions.find_or_create_by(survey_id: survey.id, encounter: "migrated")
 
-            new_answer = Answer.new(question_id: question.id, answer_session_id: new_answer_session.id, state: "migrated")
-
-
-
             matched_answer.answer_values.each do |matched_answer_value|
               # Do not create empty answers!
               unless matched_answer_value.show_value.blank?
+                new_answer = Answer.find_or_create_by(question_id: question.id, answer_session_id: new_answer_session.id, state: "migrated")
+
+                puts "Migrating answer for #{matched_user.email} | #{question.slug}"
                 matched_answer_template = matched_answer_value.answer_template
 
                 if answer_template.data_type == 'answer_option_id' and matched_answer_template.data_type == 'answer_option_id'
                   # Target answer template is categorical and matched answer value is categorical
                   matched_option_id = matched_answer_value.answer_option_id
 
-                  matched_answer_option_mapping = answer_option_map.select {|mapping| (mapping["old_option_id"] == matched_option_id and mapping["new_template_name"] == answer_template.name)}.first
+                  matched_answer_option_mapping = @answer_option_map.select {|mapping| (mapping["old_option_id"] == matched_option_id and mapping["new_template_name"] == answer_template.name)}.first
 
                   if matched_answer_option_mapping
                     new_answer_option = answer_template.answer_options.find_by_value(matched_answer_option_mapping["new_option_value"])
@@ -168,7 +177,9 @@ class AnswerMigration
                   new_answer.answer_values.create(:answer_template_id => answer_template.id, answer_template.data_type => matched_answer_value.value)
                   new_answer.save!
                 else
-                  puts "Unresolved match! #{matched_mapping["slug"]} | #{matched_mapping["answer_template_name"]}"
+                  puts "Unresolved match! #{matched_mapping["slug"]} | #{matched_mapping["answer_template_name"]} | #{answer_template.data_type}:#{matched_answer_template.data_type}"
+                  new_answer.answer_values.create(:answer_template_id => answer_template.id, answer_template.data_type => matched_answer_value.value)
+                  new_answer.save!
                 end
               end
             end

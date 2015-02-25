@@ -100,9 +100,6 @@
 - old_option_id: 59 # $100,000 to under $150,000
   new_template_name: income_level # $100,000 - $149,999
   new_option_value: 4
-- old_option_id: 60 # More than $150,000
-  new_template_name: income_level 
-  new_option_value: 
 
 # origin-country : 549 : country_list 
 # 1 : U.S.A. | 2 : Canada | 3 : Mexico | 4 : China | 5 : India | 6 : Philippines | 7 : Other country (please specify)
