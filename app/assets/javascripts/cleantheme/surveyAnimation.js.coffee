@@ -166,14 +166,14 @@
       if e.keyCode is 13
         e.preventDefault()
       # Specifically targeting custom date input
-      if $(".survey-container.active").find(".survey-text-date").is(":focus")
+      if $(".survey-container.active").find(".survey-custom-date").is(":focus")
         if e.metaKey
           return
         else if e.keyCode is 37 or e.keyCode is 39
           return
         else if e.keyCode is 13
           # enter key
-          $(".survey-container.active").find(".survey-text-date").blur()
+          $(".survey-container.active").find(".survey-custom-date").blur()
           return
         else if e.keyCode is 46 or e.keyCode is 8
           # delete key
@@ -196,7 +196,7 @@
     # Respond to completed keystrokes only for survey pages
     if $('.survey-container').length
       # don't allow key up on custom date input
-      if $(".survey-container.active").find(".survey-text-date").is(":focus")
+      if $(".survey-container.active").find(".survey-custom-date").is(":focus")
         return
       # containers that can progress with a number input
       if $(".survey-container.active").hasClass "multiple-question-parts"
@@ -287,32 +287,27 @@
 
   # Custom date input - New version
   @writeDate = (keyCode) ->
-    date_index = $(".survey-text-date").val().length || 0
+    date_index = $(".survey-custom-date").val().length || 0
     if keyCode is 8
       return
     else if date_index == 2 or date_index == 5 #or date_index == 1 or date_index == 4
-      $(".survey-text-date").val($(".survey-text-date").val()+'/')
+      $(".survey-custom-date").val($(".survey-custom-date").val()+'/')
     else
       return
 
   @autocompleteDate = () ->
-    date_index = $(".survey-text-date").val().length || 0
-    dateVal = $(".survey-text-date").val()
+    date_index = $(".survey-custom-date").val().length || 0
+    dateVal = $(".survey-custom-date").val()
     if date_index == 1
-      $(".survey-text-date").val('0'+dateVal+'/')
+      $(".survey-custom-date").val('0'+dateVal+'/')
     else if date_index == 2
-      $(".survey-text-date").val(dateVal+'/')
+      $(".survey-custom-date").val(dateVal+'/')
     else if date_index == 4
-      $(".survey-text-date").val(dateVal[0..2]+'0'+dateVal[3]+'/')
+      $(".survey-custom-date").val(dateVal[0..2]+'0'+dateVal[3]+'/')
     else if date_index == 5
-      $(".survey-text-date").val(dateVal+'/')
+      $(".survey-custom-date").val(dateVal+'/')
     else
       return
-
-
-
-
-
 
 
 
