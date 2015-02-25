@@ -1,0 +1,44 @@
+input[type=date] {
+  line-height: normal;
+}
+.survey-date {
+  font-size:35px;
+  border-radius:20px;
+  border-color: #b1d2f6;
+  padding:7px;
+  max-width:100%;
+}
+.survey-date::-webkit-inner-spin-button,
+.survey-date::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.survey-date:focus {
+  outline:none;
+  box-shadow:0 0 10px #b1d2f6;
+}
+
+.survey-text-date {}
+.survey-text-date::-webkit-input-placeholder { color: #555; }
+.survey-text-date:-moz-placeholder { color: #333; }
+.survey-text-date::-moz-placeholder { color: #333; }
+.survey-text-date:-ms-placeholder { color: #333; }
+
+.survey-text-date:focus::-webkit-input-placeholder {
+  color: #555;
+}
+.survey-text-date:focus{}
+.survey-text-date:focus:-moz-placeholder { color: #333; }
+.survey-text-date:focus::-moz-placeholder { color: #333; }
+.survey-text-date:focus:-ms-placeholder { color: #333; }
+
+
+/* RESPONSIVE */
+@media all and (max-width: 1200px) {}
+@media all and (max-width: 992px) {
+  .survey-date,
+  .survey-short-text {
+    font-size: 20px;
+  }
+}
+@media all and (max-width: 768px) {}

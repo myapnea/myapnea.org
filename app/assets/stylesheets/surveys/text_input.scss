@@ -1,0 +1,31 @@
+// Short text field
+.survey-short-text {
+  font-size:50px;
+  border-radius:20px;
+  border-color: #b1d2f6;
+  padding:7px;
+  max-width:100%;
+}
+
+.survey-short-text:focus {
+  outline:none;
+  box-shadow:0 0 10px #b1d2f6;
+}
+
+.survey-short-number {
+  text-align: center;
+  width:150px;
+}
+
+.survey-short-number {
+  text-align: center;
+  width:300px;
+}
+
+.survey-text-small {
+  font-size: 18px;
+}
+
+@media all and (max-width: 1200px) {}
+@media all and (max-width: 992px) {}
+@media all and (max-width: 768px) {}

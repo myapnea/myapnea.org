@@ -22,7 +22,6 @@
 @import "page-content";
 @import "responsive";
 @import "ranking";
-@import "surveys";
 @import "modals";
 @import "validation";
 
@@ -34,6 +33,15 @@
 @import "turbolinks";
 @import "SEO-content";
 @import "user_types";
+
+@import "surveys/surveys";
+@import "surveys/checkbox_input";
+@import "surveys/date_input";
+@import "surveys/hidden_input";
+@import "surveys/label_display_class";
+@import "surveys/radio_input_multiple";
+@import "surveys/range_input";
+@import "surveys/text_input";
 
 /* FONTS */
 @font-face {
