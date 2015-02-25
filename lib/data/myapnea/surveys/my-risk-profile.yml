@@ -1,0 +1,299 @@
+name: My Risk Profile
+slug: my-risk-profile
+description: |+
+  Before being diagnosed with sleep apnea, many people experience a number of symptoms that prompt them to seek medical attention.
+status: show
+questions:
+- text: |
+    do you currently experience any of these symptoms? How long has each symptom been present?
+  slug: risk-symptoms
+  display_type: radio_input_multiple
+  answer_templates:
+  - name: snoring_risk_symptom
+    data_type: answer_option_id
+    text: Snoring
+    answer_options:
+    - text: 0-3 months
+      hotkey: 1
+      value: 1
+      display_class: option-of-multiple option-of-5 label-default
+    - text: 3-6 months
+      hotkey: 2
+      value: 2
+      display_class: option-of-multiple option-of-5 label-default
+    - text: 6-12 months
+      hotkey: 3
+      value: 3
+      display_class: option-of-multiple option-of-5 label-default
+    - text: 12+ months
+      hotkey: 4
+      value: 4
+      display_class: option-of-multiple option-of-5 label-default
+    - text: N/A
+      hotkey: 5
+      value: 5
+      display_class: option-of-multiple option-of-5 survey-scale
+  - name: sleepiness_risk_symptom
+    data_type: answer_option_id
+    text: Sleepiness
+    answer_options:
+    - text: 0-3 months
+      hotkey: 1
+      value: 1
+      display_class: option-of-multiple option-of-5 label-default
+    - text: 3-6 months
+      hotkey: 2
+      value: 2
+      display_class: option-of-multiple option-of-5 label-default
+    - text: 6-12 months
+      hotkey: 3
+      value: 3
+      display_class: option-of-multiple option-of-5 label-default
+    - text: 12+ months
+      hotkey: 4
+      value: 4
+      display_class: option-of-multiple option-of-5 label-default
+    - text: N/A
+      hotkey: 5
+      value: 5
+      display_class: option-of-multiple option-of-5 survey-scale
+  - name: tiredness_risk_symptom
+    data_type: answer_option_id
+    text: Tiredness
+    answer_options:
+    - text: 0-3 months
+      hotkey: 1
+      value: 1
+      display_class: option-of-multiple option-of-5 label-default
+    - text: 3-6 months
+      hotkey: 2
+      value: 2
+      display_class: option-of-multiple option-of-5 label-default
+    - text: 6-12 months
+      hotkey: 3
+      value: 3
+      display_class: option-of-multiple option-of-5 label-default
+    - text: 12+ months
+      hotkey: 4
+      value: 4
+      display_class: option-of-multiple option-of-5 label-default
+    - text: N/A
+      hotkey: 5
+      value: 5
+      display_class: option-of-multiple option-of-5 survey-scale
+  - name: accident_risk_symptom
+    data_type: answer_option_id
+    text: Driving or work accident
+    answer_options:
+    - text: 0-3 months
+      hotkey: 1
+      value: 1
+      display_class: option-of-multiple option-of-5 label-default
+    - text: 3-6 months
+      hotkey: 2
+      value: 2
+      display_class: option-of-multiple option-of-5 label-default
+    - text: 6-12 months
+      hotkey: 3
+      value: 3
+      display_class: option-of-multiple option-of-5 label-default
+    - text: 12+ months
+      hotkey: 4
+      value: 4
+      display_class: option-of-multiple option-of-5 label-default
+    - text: N/A
+      hotkey: 5
+      value: 5
+      display_class: option-of-multiple option-of-5 survey-scale
+  - name: shortness_breah_risk_symptom
+    data_type: answer_option_id
+    text: Shortness of breath during sleep
+    answer_options:
+    - text: 0-3 months
+      hotkey: 1
+      value: 1
+      display_class: option-of-multiple option-of-5 label-default
+    - text: 3-6 months
+      hotkey: 2
+      value: 2
+      display_class: option-of-multiple option-of-5 label-default
+    - text: 6-12 months
+      hotkey: 3
+      value: 3
+      display_class: option-of-multiple option-of-5 label-default
+    - text: 12+ months
+      hotkey: 4
+      value: 4
+      display_class: option-of-multiple option-of-5 label-default
+    - text: N/A
+      hotkey: 5
+      value: 5
+      display_class: option-of-multiple option-of-5 survey-scale
+  - name: stopped_breathing_risk_symptom
+    data_type: answer_option_id
+    text: Stopped breathing during sleep
+    answer_options:
+    - text: 0-3 months
+      hotkey: 1
+      value: 1
+      display_class: option-of-multiple option-of-5 label-default
+    - text: 3-6 months
+      hotkey: 2
+      value: 2
+      display_class: option-of-multiple option-of-5 label-default
+    - text: 6-12 months
+      hotkey: 3
+      value: 3
+      display_class: option-of-multiple option-of-5 label-default
+    - text: 12+ months
+      hotkey: 4
+      value: 4
+      display_class: option-of-multiple option-of-5 label-default
+    - text: N/A
+      hotkey: 5
+      value: 5
+      display_class: option-of-multiple option-of-5 survey-scale
+  - name: heart_disease_risk_symptom
+    data_type: answer_option_id
+    text: Heart disease
+    answer_options:
+    - text: 0-3 months
+      hotkey: 1
+      value: 1
+      display_class: option-of-multiple option-of-5 label-default
+    - text: 3-6 months
+      hotkey: 2
+      value: 2
+      display_class: option-of-multiple option-of-5 label-default
+    - text: 6-12 months
+      hotkey: 3
+      value: 3
+      display_class: option-of-multiple option-of-5 label-default
+    - text: 12+ months
+      hotkey: 4
+      value: 4
+      display_class: option-of-multiple option-of-5 label-default
+    - text: N/A
+      hotkey: 5
+      value: 5
+      display_class: option-of-multiple option-of-5 survey-scale
+  - name: hbp_risk_symptom
+    data_type: answer_option_id
+    text: High blood pressure
+    answer_options:
+    - text: 0-3 months
+      hotkey: 1
+      value: 1
+      display_class: option-of-multiple option-of-5 label-default
+    - text: 3-6 months
+      hotkey: 2
+      value: 2
+      display_class: option-of-multiple option-of-5 label-default
+    - text: 6-12 months
+      hotkey: 3
+      value: 3
+      display_class: option-of-multiple option-of-5 label-default
+    - text: 12+ months
+      hotkey: 4
+      value: 4
+      display_class: option-of-multiple option-of-5 label-default
+    - text: N/A
+      hotkey: 5
+      value: 5
+      display_class: option-of-multiple option-of-5 survey-scale
+  - name: depressed_risk_symptom
+    data_type: answer_option_id
+    text: Depressed mood
+    answer_options:
+    - text: 0-3 months
+      hotkey: 1
+      value: 1
+      display_class: option-of-multiple option-of-5 label-default
+    - text: 3-6 months
+      hotkey: 2
+      value: 2
+      display_class: option-of-multiple option-of-5 label-default
+    - text: 6-12 months
+      hotkey: 3
+      value: 3
+      display_class: option-of-multiple option-of-5 label-default
+    - text: 12+ months
+      hotkey: 4
+      value: 4
+      display_class: option-of-multiple option-of-5 label-default
+    - text: N/A
+      hotkey: 5
+      value: 5
+      display_class: option-of-multiple option-of-5 survey-scale
+  - name: irritability_risk_symptom
+    data_type: answer_option_id
+    text: Irritability
+    answer_options:
+    - text: 0-3 months
+      hotkey: 1
+      value: 1
+      display_class: option-of-multiple option-of-5 label-default
+    - text: 3-6 months
+      hotkey: 2
+      value: 2
+      display_class: option-of-multiple option-of-5 label-default
+    - text: 6-12 months
+      hotkey: 3
+      value: 3
+      display_class: option-of-multiple option-of-5 label-default
+    - text: 12+ months
+      hotkey: 4
+      value: 4
+      display_class: option-of-multiple option-of-5 label-default
+    - text: N/A
+      hotkey: 5
+      value: 5
+      display_class: option-of-multiple option-of-5 survey-scale
+  - name: concerned_friend_risk_symptom
+    data_type: answer_option_id
+    text: Concerned friend or spouse
+    answer_options:
+    - text: 0-3 months
+      hotkey: 1
+      value: 1
+      display_class: option-of-multiple option-of-5 label-default
+    - text: 3-6 months
+      hotkey: 2
+      value: 2
+      display_class: option-of-multiple option-of-5 label-default
+    - text: 6-12 months
+      hotkey: 3
+      value: 3
+      display_class: option-of-multiple option-of-5 label-default
+    - text: 12+ months
+      hotkey: 4
+      value: 4
+      display_class: option-of-multiple option-of-5 label-default
+    - text: N/A
+      hotkey: 5
+      value: 5
+      display_class: option-of-multiple option-of-5 survey-scale
+  - name: forgetfulness_risk_symptom
+    data_type: answer_option_id
+    text: Forgetfulness
+    answer_options:
+    - text: 0-3 months
+      hotkey: 1
+      value: 1
+      display_class: option-of-multiple option-of-5 label-default
+    - text: 3-6 months
+      hotkey: 2
+      value: 2
+      display_class: option-of-multiple option-of-5 label-default
+    - text: 6-12 months
+      hotkey: 3
+      value: 3
+      display_class: option-of-multiple option-of-5 label-default
+    - text: 12+ months
+      hotkey: 4
+      value: 4
+      display_class: option-of-multiple option-of-5 label-default
+    - text: N/A
+      hotkey: 5
+      value: 5
+      display_class: option-of-multiple option-of-5 survey-scale

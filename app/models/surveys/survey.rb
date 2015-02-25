@@ -1,7 +1,7 @@
 class Survey < ActiveRecord::Base
   # Constants
   SURVEY_DATA_LOCATION = ['lib', 'data', 'myapnea', 'surveys']
-  SURVEY_LIST = ['about-me', 'additional-information-about-me', 'about-my-family', 'my-interest-in-research', 'my-sleep-pattern', 'my-sleep-quality', 'my-quality-of-life', 'my-health-conditions', 'my-sleep-apnea', 'my-sleep-apnea-treatment']
+  SURVEY_LIST = ['about-me', 'additional-information-about-me', 'about-my-family', 'my-interest-in-research', 'my-sleep-pattern', 'my-sleep-quality', 'my-quality-of-life', 'my-health-conditions', 'my-sleep-apnea', 'my-sleep-apnea-treatment', 'my-risk-profile']
 
   # Concerns
   include Localizable
