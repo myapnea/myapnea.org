@@ -25,7 +25,14 @@
             = image_tag 'myapnea/user_types/role_confused.png', class: 'img-responsive', style: 'margin: 0 auto; width: 150px;'
             %h4.f300{ style: 'margin: 0 10px;' }
               You have not listed your role in the sleep apnea community. In order to participate in this part of the research community, please
-              = link_to 'select a role.', user_type_path
+              = link_to 'select a role.', user_type_path, style: 'text-decoration: none;'
+        - elsif current_user.assigned_surveys.count == current_user.complete_surveys.count
+          %h3.f300.centered-text.text-dark7
+            Congratulations! You have completed all of your surveys!
+          %h4.f300.centered-text.text-dark7{ style: 'margin: 20px 10px;' }
+            Since you're doing such a great job, why don't you
+            = link_to 'submit a research question', research_topics_path, style: 'text-decoration: none;'
+            to be discussed by the community?
         - else
           - current_user.assigned_surveys.first(3).each do |survey|
             .col-sm-4.centered-text

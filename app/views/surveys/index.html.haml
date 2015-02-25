@@ -46,6 +46,13 @@
               You have not listed your role in the sleep apnea community. In order to participate in this part of the research community, please
               = link_to 'select a role.', user_type_path
         - else
+          - if current_user.assigned_surveys.count == current_user.complete_surveys.count
+            %h3.f300.centered-text.darker-blue
+              Congratulations! You have completed all of your surveys!
+            %h4.f300.centered-text.text-dark7{ style: 'margin: 20px 10px;' }
+              Since you're doing such a great job, why don't you
+              = link_to 'submit a research question', research_topics_path, style: 'text-decoration: none;'
+              to be discussed by the community?
           - current_user.assigned_surveys.each do |survey|
             .col-sm-4.centered-text
               = render partial: 'surveys/partials/survey_progress', locals: { survey: survey, can_complete_surveys: true }
