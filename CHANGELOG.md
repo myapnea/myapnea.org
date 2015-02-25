@@ -37,6 +37,12 @@
 - **Forum Changes**
   - Added indication of additional posts on forum index and pagination on inidividual forums
   - Forum post anchors now correctly offset based on the top navigation bar
+  - Forum markdown has been improved and examples are provided under the Markup tab
+    - Blockquotes: `> This is quote`
+    - Highlight: `==This is highlighted==`
+    - Underline: `_This is underlined_`
+    - Superscript: `This is the 2^(nd) time`
+    - Strikethrough: `This is ~~removed~~`
 - **Survey Model**
   - Slugs added for surveys
   - Answer options now have hotkeys and values
