@@ -37,7 +37,6 @@ capybara-*.html
 rerun.txt
 pickle-email-*.html
 .project
-config/initializers/secret_token.rb
 **~
 /app/assets/images/avatars/sample
 /app/assets/images/avatars/sample_mosaics
@@ -47,8 +46,6 @@ config/initializers/secret_token.rb
 /.idea
 
 # Security Ignores
-/config/initializers/secret_token.rb
-/config/initializers/00_site_name.rb
 /config/initializers/db.rb
 /config/secrets.yml
 
@@ -62,5 +59,4 @@ config/initializers/secret_token.rb
 
 # Ignore application configuration
 /config/application.yml
-
-config/initializers/pprn.rb
+/config/database.yml

@@ -12,6 +12,32 @@ class Map
     filter_by_key(:country_code, MAP_COUNTRIES_AND_CODES)
   end
 
+  def self.update_existing_users!
+    User.all.each do |u|
+      if u.state_code.present? or u.country_code.present?
+        Rails.logger.debug "USER ##{u.id} EXISTS: '#{u.state_code}' '#{u.country_code}'"
+        next
+      end
+      results = Geocoder.search(u.current_sign_in_ip)
+      result = results.first
+      if result
+        state_pair = MAP_STATES_AND_CODES.select{|name, code| name.downcase == result.state.to_s.downcase}.first
+        country_pair = MAP_COUNTRIES_AND_CODES.select{|name, code| name.downcase == result.country.to_s.downcase}.first
+        if state_pair
+          u.update(state_code: state_pair[1], country_code: 'us')
+          Rails.logger.debug "USER ##{u.id} UPDATED: '#{u.state_code}' '#{u.country_code}' State: #{result.state}  Country: #{result.country}"
+        elsif country_pair
+          u.update(country_code: country_pair[1])
+          Rails.logger.debug "USER ##{u.id} UPDATED: '#{u.country_code}' State: #{result.state}  Country: #{result.country}"
+        else
+          Rails.logger.debug "User ##{u.id} did not find a match for\n    State: #{result.state}\n  Country: #{result.country}"
+        end
+      else
+        Rails.logger.debug "User ##{u.id} no result found for #{u.current_sign_in_ip}"
+      end
+    end
+  end
+
   private
 
   def self.filter_by_key(key, names_and_codes)

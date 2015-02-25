@@ -28,7 +28,7 @@ smtp_password:                "<%= print "Enter SMTP Password [password]: "; s =
 uservoice_id:                 "<%= print "Enter uservoice ID: "; gets.chomp %>"
 google_analytics_id:          "<%= print "Google Analytics ID: "; gets.chomp %>"
 google_analytics_report_id:   "<%= print "Google Analytics Report ID: "; gets.chomp %>"
-database_url:                 "<%= print "Enter Database URL: "; gets.chomp %>"
+# database_url:                 "<%#= print "Enter Database URL: "; gets.chomp %>"
 
 # Facebook Integration
 fb_app_id:                    "<%= print "Enter the facebook app ID: "; gets.chomp %>"
@@ -45,3 +45,6 @@ test:
   google_analytics_report_id:   ~
   fb_app_id:                    ~
   fb_app_secret:                ~
+
+devise_pepper:                "<%= SecureRandom.hex(64) %>"
+website_secret:               "<%= SecureRandom.hex(64) %>"
