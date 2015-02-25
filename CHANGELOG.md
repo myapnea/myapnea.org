@@ -47,6 +47,8 @@
   - Answer sessions are only created when surveys are launched, and encounter identifiers
 - **Community Page Changes**
   - Removed state labels from USA map to provide cleaner overview
+- **Lottery Updates**
+  - Lottery random drawing code has been added, and can be run using `Lottery.draw_winner`
 
 ### Bug Fixes
 - Fixed a bug that prevented a user dashboard from displaying if no forum topics existed
