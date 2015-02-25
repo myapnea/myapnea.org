@@ -10,8 +10,9 @@ template_folder = FileUtils.pwd
 puts template_folder
 puts root_folder
 
-files = [['config', 'application.yml'],
-  ['config/initializers', 'secret_token.rb']
+files = [
+  ['config', 'application.yml'],
+  ['config', 'database.yml']
 ]
 
 files.each do |folder_name, file_name|

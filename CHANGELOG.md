@@ -65,6 +65,7 @@
 - Reduced dependency on `authority` gem
 - Cleaned up the account controller and updated tests
 - Removed unused `pprn.rb` initializer file
+- Centralized application configuration further by using figaro environment variables
 - Renamed `QuestionFlow` to `Survey`
 - Simplified survey load files
 - Survey controller, views, and routes refactored and upgraded for beta design
