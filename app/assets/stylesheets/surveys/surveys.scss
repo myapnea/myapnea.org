@@ -45,5 +45,11 @@
 }
 
 @media all and (max-width: 1200px) {}
-@media all and (max-width: 992px) {}
+@media all and (max-width: 992px) {
+  .survey-intro {
+    h1, h2, h3, h4, h5, h6, p {
+      padding: 0px !important;
+    }
+  }
+}
 @media all and (max-width: 768px) {}
