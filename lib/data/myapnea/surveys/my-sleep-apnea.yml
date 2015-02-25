@@ -22,18 +22,23 @@ questions:
     - text: Primary care or family doctor (PCP)
       hotkey: 1
       value: 1
+      display_class: label-default label-lg
     - text: Cardiologist
       hotkey: 2
       value: 2
+      display_class: label-default label-lg
     - text: Diabetes specialist
       hotkey: 3
       value: 3
+      display_class: label-default label-lg
     - text: Sleep specialist
       hotkey: 4
       value: 4
+      display_class: label-default label-lg
     - text: Other
       hotkey: 5
       value: 5
+      display_class: label-default label-lg
 - text: |
     What type of sleep study did you have when first diagnosed with sleep apnea?
   slug: diagnostic-study
@@ -45,9 +50,11 @@ questions:
     - text: A sleep study at my home (portable sleep study)
       hotkey: 1
       value: 1
+      display_class: label-default label-lg
     - text: A sleep study in a sleep lab/center
       hotkey: 2
       value: 2
+      display_class: label-default label-lg
 - text: |
     How satisfied were you with the experience of getting a sleep study?
   slug: sleep-study-satisfaction
@@ -56,27 +63,34 @@ questions:
   - name: sleep_study_satisfaction
     data_type: answer_option_id
     answer_options:
-    - text: Very Dissatisfied
+    - text: Very Unsatisfied
       hotkey: 1
       value: 1
-    - text:
+      display_class: option-of-multiple option-of-7 survey-scale survey-scale-emergency
+    - text: Unsatisfied
       hotkey: 2
       value: 2
-    - text:
+      display_class: option-of-multiple option-of-7 survey-scale survey-scale-danger
+    - text: Slightly Unsatisfied
       hotkey: 3
       value: 3
-    - text:
+      display_class: option-of-multiple option-of-7 survey-scale survey-scale-warning
+    - text: Neutral
       hotkey: 4
       value: 4
-    - text:
+      display_class: option-of-multiple option-of-7 survey-scale survey-scale-moderate
+    - text: Slightly Satisfied
       hotkey: 5
       value: 5
-    - text:
+      display_class: option-of-multiple option-of-7 survey-scale survey-scale-good
+    - text: Satisfied
       hotkey: 6
       value: 6
+      display_class: option-of-multiple option-of-7 survey-scale survey-scale-great
     - text: Very Satisfied
       hotkey: 7
       value: 7
+      display_class: option-of-multiple option-of-7 survey-scale survey-scale-excellent
 - text: |
     Do you have any kind of health care coverage, including health insurance, prepaid plans such as HMOs, or government plans such as Medicare?
   slug: health-care-coverage
@@ -85,9 +99,11 @@ questions:
   - name: health_care_coverage
     data_type: answer_option_id
     answer_options:
-    - text: Yes
+    - text: 'Yes'
       hotkey: 1
       value: 1
-    - text: No
+      display_class: label-default label-med
+    - text: 'No'
       hotkey: 2
       value: 2
+      display_class: label-default label-med

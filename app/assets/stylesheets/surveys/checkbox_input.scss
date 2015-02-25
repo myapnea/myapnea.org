@@ -12,20 +12,19 @@
 }
 .check-box-container:not(#foo) > input + label {
   width:90%;
-  padding: 10px;
+  margin-bottom:15px;
   text-align: left;
   font-weight:300;
   font-size: 18px;
   vertical-align: middle;
   position:relative;
-  min-height: 70px;
   span.hotkey {
     position:absolute;
     top:50%;
-    margin-top: -25px;
-    width: 50px;
-    height:50px;
-    line-height:50px;
+    margin-top: -20px;
+    width: 40px;
+    height:40px;
+    line-height:40px;
     text-align:center;
     font-size:14px;
     font-weight:500;
@@ -39,7 +38,8 @@
     width:90%;
     display: inline-block;
     font-size:18px;
-    margin: 0px;
+    min-height:40px;
+    margin: auto;
   }
 }
 
@@ -58,18 +58,18 @@
 @media all and (max-width: 992px) {
   .check-box-container:not(#foo) > input + label {
     width:100%;
-    p {
-      left:40px;
-      width:90%;
-      padding: 5px;
-      font-size: 14px;
-    }
     span.hotkey {
-      width: 25px;
-      height:25px;
-      line-height:20px;
-      font-size:10px;
+      width: 30px;
+      height:30px;
+      line-height:25px;
+      font-size:14px;
       margin-top:-15px;
+    }
+    p {
+      left:20px;
+      width:90%;
+      font-size: 18px;
+      min-height: 25px;
     }
   }
 }

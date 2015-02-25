@@ -11,6 +11,7 @@
     width:100%;
     background-color: #b1d2f6;
     border:6px double transparent;
+    cursor: pointer;
     span.hotkey {
       font-size:18px;
       font-weight:300;
@@ -50,15 +51,23 @@
 }
 
 // SCALE OPTIONS FOR RADIO INPUTS
+$emergency: #E51519;
 $danger: #e54835;
 $warning: #f4b46d;
 $moderate: #fedf9c;
 $good: #d9f0a3;
 $great: #78c679;
+$excellent: #16C63C;
+
 $neutral: #bbb;
 $blue: #7fb2eb;
 
 .option-of-multiple {
+  margin: 0px;
+  padding-left:5px;
+  padding-right:5px;
+  display: inline-block;
+  float:left;
   label {
     span.hotkey {
       font-size:14px;
@@ -80,61 +89,27 @@ $blue: #7fb2eb;
     display: none;
   }
 }
-.option-of-6{
-  width: 16%;
-  margin: 0px;
-  padding-left:5px;
-  padding-right:5px;
-  display: inline-block;
-  float:left;
-}
-.option-of-5{
-  width:20%;
-  margin: 0px;
-  padding-left: 5px;
-  padding-right:5px;
-  display: inline-block;
-  float:left;
-}
-.option-of-4{
-  width:25%;
-  margin: 0px;
-  padding-left: 5px;
-  padding-right:5px;
-  display: inline-block;
-  float:left;
-}
-.option-of-3{
-  width:33%;
-  margin: 0px;
-  padding-left: 5px;
-  padding-right:5px;
-  display: inline-block;
-  float:left;
-}
-.option-of-2{
-  width:50%;
-  margin: 0px;
-  padding-left: 5px;
-  padding-right:5px;
-  display: inline-block;
-  float:left;
-}
+.option-of-7{ width: 14.2%; label p { font-size:15px; } }
+.option-of-6{ width: 16%; }
+.option-of-5{ width:20%; }
+.option-of-4{ width:25%; }
+.option-of-3{ width:33%; }
+.option-of-2{ width:50%; }
+
 .survey-scale label {
   vertical-align: middle;
   display: inline-block;
   padding: 5px;
   border-radius:20px;
   width:100%;
+  cursor: pointer;
   box-sizing:border-box;
   -moz-box-sizing:border-box;
   -webkit-box-sizing:border-box;
   border:6px double transparent;
   background-color: transparentize($neutral, .7);
 }
-.survey-scale:hover label {
-  cursor: pointer;
-}
+
 .survey-scale input[type=radio]:checked ~ label {
   background-color: transparentize($neutral, .1);
   border: 6px double white;
@@ -144,6 +119,13 @@ $blue: #7fb2eb;
 }
 .survey-scale-blue input[type=radio]:checked ~ label {
   background-color: transparentize($blue, .1);
+  border: 6px double white;
+}
+.survey-scale-emergency label {
+  background-color: transparentize($emergency, .7);
+}
+.survey-scale-emergency input[type=radio]:checked ~ label {
+  background-color: transparentize($emergency, .1);
   border: 6px double white;
 }
 .survey-scale-danger label {
@@ -181,47 +163,74 @@ $blue: #7fb2eb;
   background-color: transparentize($great, .1);
   border: 6px double white;
 }
+.survey-scale-excellent label {
+  background-color: transparentize($excellent, .7);
+}
+.survey-scale-excellent input[type=radio]:checked ~ label {
+  background-color: transparentize($excellent, .1);
+  border: 6px double white;
+}
 
 /* RESPONSIVE */
-@media all and (max-width: 1200px) {}
+@media all and (max-width: 1200px) {
+  .option-of-7 {
+    width: 100%;
+    label {
+      p {
+        height: auto;
+        vertical-align: middle;
+        color:black; color: rgba(0,0,0,.6);
+        padding: 0px;
+        margin: 0px;
+      }
+    }
+  }
+}
 @media all and (max-width: 992px) {
-  .input-container .label-med {
-    width: 80%;
-    margin: 2px 10%;
-    padding: 3px;
-    p {
-      font-size: 18px;
-      margin: 0;
-      padding: 0;
+  .input-container {
+    .label-med {
+      width: 80%;
+      margin: 2px 10%;
+      padding: 3px;
+      p {
+        font-size: 18px;
+        margin: 0;
+        padding: 0;
+      }
+      span.hotkey {
+        display: none;
+      }
     }
-    span.hotkey {
-      display: none;
+    .label-lg, .label-xl {
+      width: 100%;
+      margin: 2px 0;
+      padding: 3px;
+      p {
+        font-size: 16px;
+        margin: 0;
+        padding: 0;
+      }
+      span.hotkey {
+        display: none;
+      }
     }
   }
-  .input-container .label-lg {
+  .option-of-multiple {
     width: 100%;
-    margin: 2px 0;
-    padding: 3px;
-    p {
-      font-size: 16px;
-      margin: 0;
-      padding: 0;
-    }
-    span.hotkey {
-      display: none;
-    }
-  }
-  .input-container .label-xl {
-    width: 100%;
-    margin: 2px 0;
-    padding: 3px;
-    p {
-      font-size: 16px;
-      margin: 0;
-      padding: 0;
-    }
-    span.hotkey {
-      display: none;
+    label {
+      p {
+        height: auto;
+        vertical-align: middle;
+        font-size:18px;
+        line-height:18px;
+        font-weight:300;
+        color:black; color: rgba(0,0,0,.6);
+        padding: 0px;
+        margin: 0px;
+      }
+      span.hotkey {
+        display: none;
+      }
     }
   }
 }
