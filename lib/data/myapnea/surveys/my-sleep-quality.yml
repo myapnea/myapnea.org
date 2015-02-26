@@ -15,23 +15,27 @@ questions:
     - text: Very Poor
       hotkey: 1
       value: 1
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-danger
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-danger
     - text: Poor
       hotkey: 2
       value: 2
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-warning
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-warning
     - text: Fair
       hotkey: 3
       value: 3
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-moderate
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-moderate
     - text: Good
       hotkey: 4
       value: 4
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-good
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-good
     - text: Very Good
       hotkey: 5
       value: 5
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-great
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-great
+    - text: Prefer not to answer
+      hotkey: 6
+      value: 6
+      display_class: option-of-multiple option-of-6 survey-scale
 - text: |
     Thinking about your sleep in the past 7 days, please answer the following questions.
   slug: sleep-quality-week-components
@@ -44,23 +48,27 @@ questions:
     - text: Not at all
       hotkey: 1
       value: 1
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-danger
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-danger
     - text: A little bit
       hotkey: 2
       value: 2
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-warning
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-warning
     - text: Somewhat
       hotkey: 3
       value: 3
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-moderate
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-moderate
     - text: Quite a bit
       hotkey: 4
       value: 4
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-good
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-good
     - text: Very much
       hotkey: 5
       value: 5
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-great
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-great
+    - text: Prefer not to answer
+      hotkey: 6
+      value: 6
+      display_class: option-of-multiple option-of-6 survey-scale
   - name: problem_with_sleep
     data_type: answer_option_id
     text: I had a problem with my sleep.
@@ -68,23 +76,27 @@ questions:
     - text: Not at all
       hotkey: 1
       value: 1
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-danger
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-danger
     - text: A little bit
       hotkey: 2
       value: 2
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-warning
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-warning
     - text: Somewhat
       hotkey: 3
       value: 3
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-moderate
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-moderate
     - text: Quite a bit
       hotkey: 4
       value: 4
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-good
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-good
     - text: Very much
       hotkey: 5
       value: 5
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-great
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-great
+    - text: Prefer not to answer
+      hotkey: 6
+      value: 6
+      display_class: option-of-multiple option-of-6 survey-scale
   - name: difficulty_falling_asleep
     data_type: answer_option_id
     text: I had difficulty falling asleep.
@@ -92,23 +104,27 @@ questions:
     - text: Not at all
       hotkey: 1
       value: 1
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-danger
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-danger
     - text: A little bit
       hotkey: 2
       value: 2
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-warning
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-warning
     - text: Somewhat
       hotkey: 3
       value: 3
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-moderate
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-moderate
     - text: Quite a bit
       hotkey: 4
       value: 4
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-good
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-good
     - text: Very much
       hotkey: 5
       value: 5
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-great
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-great
+    - text: Prefer not to answer
+      hotkey: 6
+      value: 6
+      display_class: option-of-multiple option-of-6 survey-scale
   - name: restless_sleep
     data_type: answer_option_id
     text: My sleep was restless.
@@ -116,23 +132,27 @@ questions:
     - text: Not at all
       hotkey: 1
       value: 1
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-danger
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-danger
     - text: A little bit
       hotkey: 2
       value: 2
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-warning
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-warning
     - text: Somewhat
       hotkey: 3
       value: 3
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-moderate
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-moderate
     - text: Quite a bit
       hotkey: 4
       value: 4
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-good
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-good
     - text: Very much
       hotkey: 5
       value: 5
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-great
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-great
+    - text: Prefer not to answer
+      hotkey: 6
+      value: 6
+      display_class: option-of-multiple option-of-6 survey-scale
   - name: tried_hard_to_get_sleep
     data_type: answer_option_id
     text: I tried hard to get sleep.
@@ -140,23 +160,27 @@ questions:
     - text: Not at all
       hotkey: 1
       value: 1
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-danger
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-danger
     - text: A little bit
       hotkey: 2
       value: 2
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-warning
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-warning
     - text: Somewhat
       hotkey: 3
       value: 3
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-moderate
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-moderate
     - text: Quite a bit
       hotkey: 4
       value: 4
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-good
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-good
     - text: Very much
       hotkey: 5
       value: 5
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-great
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-great
+    - text: Prefer not to answer
+      hotkey: 6
+      value: 6
+      display_class: option-of-multiple option-of-6 survey-scale
   - name: worried_about_not_sleeping
     data_type: answer_option_id
     text: I worried about not being able to fall asleep.
@@ -164,23 +188,27 @@ questions:
     - text: Not at all
       hotkey: 1
       value: 1
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-danger
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-danger
     - text: A little bit
       hotkey: 2
       value: 2
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-warning
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-warning
     - text: Somewhat
       hotkey: 3
       value: 3
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-moderate
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-moderate
     - text: Quite a bit
       hotkey: 4
       value: 4
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-good
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-good
     - text: Very much
       hotkey: 5
       value: 5
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-great
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-great
+    - text: Prefer not to answer
+      hotkey: 6
+      value: 6
+      display_class: option-of-multiple option-of-6 survey-scale
   - name: satisfied_with_sleep
     data_type: answer_option_id
     text: I was satisfied with my sleep.
@@ -188,20 +216,24 @@ questions:
     - text: Not at all
       hotkey: 1
       value: 1
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-danger
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-danger
     - text: A little bit
       hotkey: 2
       value: 2
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-warning
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-warning
     - text: Somewhat
       hotkey: 3
       value: 3
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-moderate
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-moderate
     - text: Quite a bit
       hotkey: 4
       value: 4
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-good
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-good
     - text: Very much
       hotkey: 5
       value: 5
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-great
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-great
+    - text: Prefer not to answer
+      hotkey: 6
+      value: 6
+      display_class: option-of-multiple option-of-6 survey-scale

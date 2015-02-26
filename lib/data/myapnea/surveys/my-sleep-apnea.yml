@@ -44,6 +44,10 @@ questions:
       hotkey: 7
       value: 7
       display_class: option-of-multiple option-of-4 label-default
+    - text: Prefer not to answer
+      hotkey: 8
+      value: 8
+      display_class: label-default
 - text: |
     How long do you think you had sleep apnea before you were diagnosed?
   slug: apnea-before-diagnosis
@@ -492,7 +496,7 @@ questions:
     - text: Prefer not to answer
       hotkey: 8
       value: 8
-      display_class: label-default label-xl survey-scale
+      display_class: label-default survey-scale
 - text: |
     Do you have any kind of health care coverage, including health insurance, prepaid plans such as HMOs, or government plans such as Medicare?
   slug: health-care-coverage

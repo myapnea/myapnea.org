@@ -61,6 +61,9 @@ questions:
     - text: Other
       hotkey: P
       value: 16
+    - text: Prefer not to answer
+      hotkey: Q
+      value: 17
 - text: |
     Have you ever taken part in research projects related to your health or the health of a family member?
   slug: previous-research-participation

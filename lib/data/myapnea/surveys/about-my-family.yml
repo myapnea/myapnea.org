@@ -40,6 +40,10 @@ questions:
       hotkey: 7
       value: 7
       display_class: label-default label-med
+    - text: Prefer not to answer
+      hotkey: 8
+      value: 8
+      display_class: label-default label-med
   - name: specified_country
     data_type: text_value
     display_type_id: 1
@@ -80,17 +84,67 @@ questions:
 - text: |
     How many people, other than you, live in your household most of the time?
   slug: household-members
-  display_type: number_input
+  display_type: radio_input
   answer_templates:
   - name: household_members
-    data_type: numeric_value
+    data_type: radio_input
+    answer_options:
+    - text: 1 person
+      hotkey: 1
+      value: 1
+      display_class: option-of-multiple option-of-6 label-default
+    - text: 2 people
+      hotkey: 2
+      value: 2
+      display_class: option-of-multiple option-of-6 label-default
+    - text: 3 people
+      hotkey: 3
+      value: 3
+      display_class: option-of-multiple option-of-6 label-default
+    - text: 4 or more people
+      hotkey: 4
+      value: 4
+      display_class: option-of-multiple option-of-6 label-default
+    - text: I live alone
+      hotkey: 5
+      value: 5
+      display_class: option-of-multiple option-of-6 label-default
+    - text: Prefer not to answer
+      hotkey: 6
+      value: 6
+      display_class: option-of-multiple option-of-6 label-default
 - text: |
     How many persons less than 18 years of age usually live in your home?
   slug: household-minors
-  display_type: number_input
+  display_type: radio_input
   answer_templates:
   - name: household_minors
     data_type: numeric_value
+    answer_options:
+    - text: 1 person
+      hotkey: 1
+      value: 1
+      display_class: option-of-multiple option-of-6 label-default
+    - text: 2 people
+      hotkey: 2
+      value: 2
+      display_class: option-of-multiple option-of-6 label-default
+    - text: 3 people
+      hotkey: 3
+      value: 3
+      display_class: option-of-multiple option-of-6 label-default
+    - text: 4 or more people
+      hotkey: 4
+      value: 4
+      display_class: option-of-multiple option-of-6 label-default
+    - text: None
+      hotkey: 5
+      value: 5
+      display_class: option-of-multiple option-of-6 label-default
+    - text: Prefer not to answer
+      hotkey: 6
+      value: 6
+      display_class: option-of-multiple option-of-6 label-default
 - text: |
     Have any of your biological family members been diagnosed with sleep apnea?
   slug: family-diagnoses
@@ -121,6 +175,9 @@ questions:
     - text: None of my biological family members have been diagnosed with sleep apnea
       hotkey: G
       value: 7
+    - text: Prefer not to answer
+      hotkey: H
+      value: 8
   - name: specified_brothers
     data_type: answer_option_id
     target_answer_option: 3
