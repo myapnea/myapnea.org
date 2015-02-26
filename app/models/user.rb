@@ -270,7 +270,7 @@ class User < ActiveRecord::Base
 
 
   def assigned_surveys
-    Survey.viewable.joins(:answer_sessions).where(answer_sessions: {user_id: self.id})
+    Survey.viewable.joins(:answer_sessions).where(answer_sessions: {user_id: self.id}).distinct
   end
 
 

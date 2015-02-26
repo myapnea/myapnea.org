@@ -79,7 +79,7 @@ class SurveysController < ApplicationController
 
   def set_survey
     @survey = Survey.where("slug = ? or id = ?", params["slug"], params["slug"].to_i).first
-    @answer_session = AnswerSession.find_by(user_id: current_user.id, survey_id: @survey.id)
+    @answer_session = AnswerSession.where(user_id: current_user.id, survey_id: @survey.id).order("created_at desc").first
 
     redirect_to surveys_path and return unless @answer_session.present?
 
