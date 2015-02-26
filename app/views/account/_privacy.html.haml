@@ -31,7 +31,7 @@
       - else
         - if part_of_registration
           = link_to "I have read the privacy policy", accepts_privacy_path, method: :post, class: 'btn btn-primary btn-lg'
-          = link_to "I decline", home_path, method: :post, class: 'btn btn-danger btn-lg'
+          = link_to "I decline", home_path, class: 'btn btn-danger btn-lg'
         - else
           = form_tag privacy_path do
             %input.btn.btn-primary.btn-lg{:name => "privacy_policy_read", :type => "submit", :value => "I have read the privacy policy#{current_user.signed_consent? ? ' and I agree to participate' : ''}"}
