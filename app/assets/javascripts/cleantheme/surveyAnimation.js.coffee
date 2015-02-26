@@ -166,33 +166,37 @@
       if e.keyCode is 13
         e.preventDefault()
       # Specifically targeting custom date input
-      if $(".survey-container.active").find(".survey-text-date").is(":focus")
+      if $(".survey-container.active").find(".survey-custom-date").is(":focus")
         if e.metaKey
+          return
+        else if e.keyCode is 37 or e.keyCode is 39
           return
         else if e.keyCode is 13
           # enter key
-          $(".survey-container.active").find(".survey-text-date").blur()
+          $(".survey-container.active").find(".survey-custom-date").blur()
           return
         else if e.keyCode is 46 or e.keyCode is 8
           # delete key
-          rewriteDatePlaceholder(e.keyCode)
+          writeDate(e.keyCode)
           return
-        else if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) is not -1) or (e.keyCode is 65 and e.ctrlKey is true) or (e.keyCode >= 35 and e.keyCode <= 40)
+        else if e.keyCode is 9 or e.keyCode is 191
+          e.preventDefault()
+          autocompleteDate()
           return
         else if (/^[a-zA-Z]*$/.test(+String.fromCharCode(e.keyCode)))
           # prevent letter from returning
           e.preventDefault()
         else if (/^[0-9]{1,10}$/.test(+String.fromCharCode(e.keyCode)))
           # allow number to be written
-          e.preventDefault()
-          rewriteDatePlaceholder(e.keyCode)
+          # e.preventDefault()
+          writeDate(e.keyCode)
 
   # Respond to completed keystrokes
   $("body").keyup (e) ->
     # Respond to completed keystrokes only for survey pages
     if $('.survey-container').length
       # don't allow key up on custom date input
-      if $(".survey-container.active").find(".survey-text-date").is(":focus")
+      if $(".survey-container.active").find(".survey-custom-date").is(":focus")
         return
       # containers that can progress with a number input
       if $(".survey-container.active").hasClass "multiple-question-parts"
@@ -281,27 +285,39 @@
       return false
 
 
-  # Custom date input
-  if $(".survey-text-date").length > 0
-    date_index = $(".survey-text-date").val().length || 0
-    basePlaceholder = 'mm/dd/yyyy'
-  @rewriteDatePlaceholder = (keyCode) ->
-    currentPlaceholder = $(".survey-text-date").val() || basePlaceholder
+  # Custom date input - New version
+  @writeDate = (keyCode) ->
+    date_index = $(".survey-custom-date").val().length || 0
     if keyCode is 8
-      unless date_index is 0
-        newPlaceholder = currentPlaceholder.slice(0, date_index)
-        date_index -= 1
-        $(".survey-text-date").val(newPlaceholder)
+      return
+    else if date_index == 2 or date_index == 5 #or date_index == 1 or date_index == 4
+      $(".survey-custom-date").val($(".survey-custom-date").val()+'/')
     else
-      unless date_index >= 10
-        newKey = String.fromCharCode(keyCode)
-        if date_index == 2 or date_index == 5
-          currentPlaceholder += '/'
-          date_index += 1
-        inputString = currentPlaceholder.slice(0,date_index) + newKey
-        if date_index == 1 or date_index == 4
-          inputString += '/'
-          date_index += 1
-        newPlaceholder = inputString
-        $(".survey-text-date").val(newPlaceholder)
-        date_index += 1
+      return
+
+  @autocompleteDate = () ->
+    date_index = $(".survey-custom-date").val().length || 0
+    dateVal = $(".survey-custom-date").val()
+    if date_index == 1
+      $(".survey-custom-date").val('0'+dateVal+'/')
+    else if date_index == 2
+      $(".survey-custom-date").val(dateVal+'/')
+    else if date_index == 4
+      $(".survey-custom-date").val(dateVal[0..2]+'0'+dateVal[3]+'/')
+    else if date_index == 5
+      $(".survey-custom-date").val(dateVal+'/')
+    else
+      return
+
+
+
+
+
+
+
+
+
+
+
+
+

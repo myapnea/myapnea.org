@@ -62,6 +62,16 @@
 
 /* PROVIDER SPECIFIC */
 
+#provider-view-notice {
+  background-color: #c67f00;
+  color: rgba(255,255,255,.85);
+  padding: 5px 30px;
+  a {
+    font-weight: 400;
+    color: white;
+  }
+}
+
 #provider-header {
   background-image: asset-url('myapnea/welcome/img-large/SplitShire-starry-night.jpg');
   background-size: cover;

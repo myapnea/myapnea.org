@@ -10,7 +10,7 @@
         .row.multiple-question-container{ data: { object: 'radio-input-multiple-container' } }
           .col-md-3.col-sm-12
             %h4.f300= answer_template.text
-          .col-md-9.col-sm-12
+          .col-md-9.col-sm-12{ style: 'padding: 0px;'}
             .row.reset-layout
               - answer_template.answer_options.distinct.each do |answer_option|
                 %div{ class: answer_option.display_class }

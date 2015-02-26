@@ -300,7 +300,7 @@ class User < ActiveRecord::Base
   end
 
   def positive_votes
-    self.votes.where(rating: '1')
+    self.votes.where.not(research_topic_id: nil).where(rating: '1')
   end
 
   def answer_for(answer_session, question)
