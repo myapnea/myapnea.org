@@ -90,14 +90,18 @@
               %a{ href: '#write-new', data: { toggle: 'tab' } }
                 Write
             %li
-              %a{ href: '#preview-tab', data: { toggle: 'tab', forum_id: "#{@forum.to_param}", topic_id: "#{@topic.to_param}", object: 'preview-post', post_id: 'new' } }
+              %a{ href: '#preview-new', data: { toggle: 'tab', forum_id: "#{@forum.to_param}", topic_id: "#{@topic.to_param}", object: 'preview-post', post_id: 'new' } }
                 Preview
+            %li
+              = link_to 'Markup', '#markup-new', data: { toggle: 'tab' }
 
           .tab-content
             #write-new.tab-pane.active{ style: 'padding-top:23px' }
               = f.text_area :description, rows: 7, class: 'form-control', id: 'post_description_new'
-            #preview-tab.tab-pane{ style: 'min-height:177px;padding-top:23px' }
+            #preview-new.tab-pane{ style: 'min-height:177px;padding-top:23px' }
               #preview-new.post-container
+            #markup-new.tab-pane{ style: 'padding-top:23px' }
+              = render partial: 'topics/markup'
 
       .row.reset-layout{ style: 'margin-top: 15px;'}
         .col-xs-1
