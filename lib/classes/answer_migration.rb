@@ -18,6 +18,25 @@ class AnswerMigration
     raise StandardError, "Invalid answer option map" unless validate_answer_option_map
   end
 
+  def validate_mapping_coverage
+    Survey::SURVEY_LIST.each do |survey_slug|
+      survey = Survey.find_by_slug(survey_slug)
+      if survey
+        survey.all_questions_descendants.each do |question|
+          question.answer_templates.each do |answer_template|
+            found_mapping = @question_map.select{|qm| qm["slug"] == question.slug and qm["answer_template_name"] == answer_template.name }
+
+            if found_mapping.empty?
+              puts "The following question/answer template has no old question mapped for migration: #{survey.slug} | #{question.slug} | #{answer_template.name}"
+            end
+
+          end
+
+        end
+      end
+    end
+  end
+
   def validate_question_map
     validation = true
     @question_map.each do |question_mapping|
