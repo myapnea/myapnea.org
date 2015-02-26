@@ -115,7 +115,7 @@ questions:
       hotkey: 5
       value: 5
       display_class: label-default label-med
-    - text: Prefer not to state
+    - text: Prefer not to answer
       hotkey: 6
       value: 6
       display_class: label-default label-med

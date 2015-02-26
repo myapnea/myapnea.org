@@ -55,6 +55,9 @@ questions:
     - text: Bariatric surgery
       hotkey: N
       value: 14
+    - text: Prefer not to answer
+      hotkey: O
+      value: 15
 - text: |
     Considering all past and present treatments that you have had, how satisfied were you with each treatment?
   slug: satisfaction-with-treatments
@@ -67,23 +70,27 @@ questions:
     - text: Very dissatisfied
       hotkey: 1
       value: 1
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-danger
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-danger
     - text: Dissatisfied
       hotkey: 2
       value: 2
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-warning
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-warning
     - text: Satisfied
       hotkey: 3
       value: 3
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-good
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-good
     - text: Very satisfied
       hotkey: 4
       value: 4
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-great
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-great
     - text: Never used
       hotkey: 5
       value: 5
-      display_class: option-of-multiple option-of-5 survey-scale
+      display_class: option-of-multiple option-of-6 survey-scale
+    - text: Prefer not to answer
+      hotkey: 6
+      value: 6
+      display_class: option-of-multiple option-of-6 survey-scale
   - name: satisfaction_with_apap
     data_type: answer_option_id
     text: Auto Positive Airway Pressure Machine (APAP)
@@ -91,23 +98,27 @@ questions:
     - text: Very dissatisfied
       hotkey: 1
       value: 1
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-danger
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-danger
     - text: Dissatisfied
       hotkey: 2
       value: 2
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-warning
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-warning
     - text: Satisfied
       hotkey: 3
       value: 3
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-good
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-good
     - text: Very satisfied
       hotkey: 4
       value: 4
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-great
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-great
     - text: Never used
       hotkey: 5
       value: 5
-      display_class: option-of-multiple option-of-5 survey-scale
+      display_class: option-of-multiple option-of-6 survey-scale
+    - text: Prefer not to answer
+      hotkey: 6
+      value: 6
+      display_class: option-of-multiple option-of-6 survey-scale
   - name: satisfaction_with_bipap
     data_type: answer_option_id
     text: Bi-level Positive Airway Pressure Machine (BiPAP)
@@ -115,23 +126,27 @@ questions:
     - text: Very dissatisfied
       hotkey: 1
       value: 1
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-danger
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-danger
     - text: Dissatisfied
       hotkey: 2
       value: 2
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-warning
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-warning
     - text: Satisfied
       hotkey: 3
       value: 3
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-good
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-good
     - text: Very satisfied
       hotkey: 4
       value: 4
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-great
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-great
     - text: Never used
       hotkey: 5
       value: 5
-      display_class: option-of-multiple option-of-5 survey-scale
+      display_class: option-of-multiple option-of-6 survey-scale
+    - text: Prefer not to answer
+      hotkey: 6
+      value: 6
+      display_class: option-of-multiple option-of-6 survey-scale
   - name: satisfaction_with_asv
     data_type: answer_option_id
     text: Adaptive Servo-Ventilation (ASV)
@@ -139,23 +154,27 @@ questions:
     - text: Very dissatisfied
       hotkey: 1
       value: 1
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-danger
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-danger
     - text: Dissatisfied
       hotkey: 2
       value: 2
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-warning
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-warning
     - text: Satisfied
       hotkey: 3
       value: 3
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-good
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-good
     - text: Very satisfied
       hotkey: 4
       value: 4
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-great
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-great
     - text: Never used
       hotkey: 5
       value: 5
-      display_class: option-of-multiple option-of-5 survey-scale
+      display_class: option-of-multiple option-of-6 survey-scale
+    - text: Prefer not to answer
+      hotkey: 6
+      value: 6
+      display_class: option-of-multiple option-of-6 survey-scale
   - name: satisfaction_with_oral_appliance
     data_type: answer_option_id
     text: Oral appliance
@@ -163,23 +182,27 @@ questions:
     - text: Very dissatisfied
       hotkey: 1
       value: 1
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-danger
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-danger
     - text: Dissatisfied
       hotkey: 2
       value: 2
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-warning
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-warning
     - text: Satisfied
       hotkey: 3
       value: 3
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-good
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-good
     - text: Very satisfied
       hotkey: 4
       value: 4
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-great
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-great
     - text: Never used
       hotkey: 5
       value: 5
-      display_class: option-of-multiple option-of-5 survey-scale
+      display_class: option-of-multiple option-of-6 survey-scale
+    - text: Prefer not to answer
+      hotkey: 6
+      value: 6
+      display_class: option-of-multiple option-of-6 survey-scale
   - name: satisfaction_with_behavioral_therapy
     data_type: answer_option_id
     text: Behavioral therapy
@@ -187,23 +210,27 @@ questions:
     - text: Very dissatisfied
       hotkey: 1
       value: 1
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-danger
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-danger
     - text: Dissatisfied
       hotkey: 2
       value: 2
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-warning
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-warning
     - text: Satisfied
       hotkey: 3
       value: 3
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-good
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-good
     - text: Very satisfied
       hotkey: 4
       value: 4
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-great
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-great
     - text: Never used
       hotkey: 5
       value: 5
-      display_class: option-of-multiple option-of-5 survey-scale
+      display_class: option-of-multiple option-of-6 survey-scale
+    - text: Prefer not to answer
+      hotkey: 6
+      value: 6
+      display_class: option-of-multiple option-of-6 survey-scale
   - name: satisfaction_with_tongue_stimulation
     data_type: answer_option_id
     text: Tongue stimulation
@@ -211,23 +238,27 @@ questions:
     - text: Very dissatisfied
       hotkey: 1
       value: 1
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-danger
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-danger
     - text: Dissatisfied
       hotkey: 2
       value: 2
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-warning
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-warning
     - text: Satisfied
       hotkey: 3
       value: 3
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-good
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-good
     - text: Very satisfied
       hotkey: 4
       value: 4
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-great
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-great
     - text: Never used
       hotkey: 5
       value: 5
-      display_class: option-of-multiple option-of-5 survey-scale
+      display_class: option-of-multiple option-of-6 survey-scale
+    - text: Prefer not to answer
+      hotkey: 6
+      value: 6
+      display_class: option-of-multiple option-of-6 survey-scale
   - name: satisfaction_with_tonsillectomy
     data_type: answer_option_id
     text: Tonsillectomy (removal of tonsils)
@@ -235,23 +266,27 @@ questions:
     - text: Very dissatisfied
       hotkey: 1
       value: 1
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-danger
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-danger
     - text: Dissatisfied
       hotkey: 2
       value: 2
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-warning
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-warning
     - text: Satisfied
       hotkey: 3
       value: 3
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-good
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-good
     - text: Very satisfied
       hotkey: 4
       value: 4
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-great
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-great
     - text: Never used
       hotkey: 5
       value: 5
-      display_class: option-of-multiple option-of-5 survey-scale
+      display_class: option-of-multiple option-of-6 survey-scale
+    - text: Prefer not to answer
+      hotkey: 6
+      value: 6
+      display_class: option-of-multiple option-of-6 survey-scale
   - name: satisfaction_with_uppp
     data_type: answer_option_id
     text: UPPP (removal of palate and other tissue from the mouth)
@@ -259,23 +294,27 @@ questions:
     - text: Very dissatisfied
       hotkey: 1
       value: 1
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-danger
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-danger
     - text: Dissatisfied
       hotkey: 2
       value: 2
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-warning
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-warning
     - text: Satisfied
       hotkey: 3
       value: 3
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-good
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-good
     - text: Very satisfied
       hotkey: 4
       value: 4
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-great
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-great
     - text: Never used
       hotkey: 5
       value: 5
-      display_class: option-of-multiple option-of-5 survey-scale
+      display_class: option-of-multiple option-of-6 survey-scale
+    - text: Prefer not to answer
+      hotkey: 6
+      value: 6
+      display_class: option-of-multiple option-of-6 survey-scale
   - name: satisfaction_with_naval_deviation
     data_type: answer_option_id
     text: Naval deviation surgery
@@ -283,23 +322,27 @@ questions:
     - text: Very dissatisfied
       hotkey: 1
       value: 1
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-danger
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-danger
     - text: Dissatisfied
       hotkey: 2
       value: 2
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-warning
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-warning
     - text: Satisfied
       hotkey: 3
       value: 3
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-good
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-good
     - text: Very satisfied
       hotkey: 4
       value: 4
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-great
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-great
     - text: Never used
       hotkey: 5
       value: 5
-      display_class: option-of-multiple option-of-5 survey-scale
+      display_class: option-of-multiple option-of-6 survey-scale
+    - text: Prefer not to answer
+      hotkey: 6
+      value: 6
+      display_class: option-of-multiple option-of-6 survey-scale
   - name: satisfaction_with_tongue_surgery
     data_type: answer_option_id
     text: Tongue surgery
@@ -307,23 +350,27 @@ questions:
     - text: Very dissatisfied
       hotkey: 1
       value: 1
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-danger
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-danger
     - text: Dissatisfied
       hotkey: 2
       value: 2
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-warning
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-warning
     - text: Satisfied
       hotkey: 3
       value: 3
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-good
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-good
     - text: Very satisfied
       hotkey: 4
       value: 4
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-great
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-great
     - text: Never used
       hotkey: 5
       value: 5
-      display_class: option-of-multiple option-of-5 survey-scale
+      display_class: option-of-multiple option-of-6 survey-scale
+    - text: Prefer not to answer
+      hotkey: 6
+      value: 6
+      display_class: option-of-multiple option-of-6 survey-scale
   - name: satisfaction_with_jaw_surgery
     data_type: answer_option_id
     text: Jaw surgery
@@ -331,23 +378,27 @@ questions:
     - text: Very dissatisfied
       hotkey: 1
       value: 1
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-danger
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-danger
     - text: Dissatisfied
       hotkey: 2
       value: 2
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-warning
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-warning
     - text: Satisfied
       hotkey: 3
       value: 3
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-good
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-good
     - text: Very satisfied
       hotkey: 4
       value: 4
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-great
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-great
     - text: Never used
       hotkey: 5
       value: 5
-      display_class: option-of-multiple option-of-5 survey-scale
+      display_class: option-of-multiple option-of-6 survey-scale
+    - text: Prefer not to answer
+      hotkey: 6
+      value: 6
+      display_class: option-of-multiple option-of-6 survey-scale
   - name: satisfaction_with_bariatric_surgery
     data_type: answer_option_id
     text: Bariatric surgery
@@ -355,23 +406,27 @@ questions:
     - text: Very dissatisfied
       hotkey: 1
       value: 1
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-danger
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-danger
     - text: Dissatisfied
       hotkey: 2
       value: 2
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-warning
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-warning
     - text: Satisfied
       hotkey: 3
       value: 3
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-good
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-good
     - text: Very satisfied
       hotkey: 4
       value: 4
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-great
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-great
     - text: Never used
       hotkey: 5
       value: 5
-      display_class: option-of-multiple option-of-5 survey-scale
+      display_class: option-of-multiple option-of-6 survey-scale
+    - text: Prefer not to answer
+      hotkey: 6
+      value: 6
+      display_class: option-of-multiple option-of-6 survey-scale
 - text: |
     How do you think your sleep apnea treatment has influenced the following?
   slug: treatment-outcomes-components
@@ -384,23 +439,27 @@ questions:
     - text: Much worse
       hotkey: 1
       value: 1
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-danger
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-danger
     - text: Mildly worse
       hotkey: 2
       value: 2
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-warning
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-warning
     - text: No change
       hotkey: 3
       value: 3
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-moderate
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-moderate
     - text: Mildly better
       hotkey: 4
       value: 4
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-good
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-good
     - text: Much better
       hotkey: 5
       value: 5
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-great
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-great
+    - text: Prefer not to answer
+      hotkey: 6
+      value: 6
+      display_class: option-of-multiple option-of-6 survey-scale
   - name: treatment_outcome_sleep_quality
     data_type: answer_option_id
     text: Sleep quality
@@ -408,23 +467,27 @@ questions:
     - text: Much worse
       hotkey: 1
       value: 1
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-danger
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-danger
     - text: Mildly worse
       hotkey: 2
       value: 2
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-warning
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-warning
     - text: No change
       hotkey: 3
       value: 3
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-moderate
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-moderate
     - text: Mildly better
       hotkey: 4
       value: 4
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-good
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-good
     - text: Much better
       hotkey: 5
       value: 5
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-great
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-great
+    - text: Prefer not to answer
+      hotkey: 6
+      value: 6
+      display_class: option-of-multiple option-of-6 survey-scale
   - name: treatment_outcome_energy_level
     data_type: answer_option_id
     text: Energy level
@@ -432,23 +495,27 @@ questions:
     - text: Much worse
       hotkey: 1
       value: 1
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-danger
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-danger
     - text: Mildly worse
       hotkey: 2
       value: 2
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-warning
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-warning
     - text: No change
       hotkey: 3
       value: 3
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-moderate
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-moderate
     - text: Mildly better
       hotkey: 4
       value: 4
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-good
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-good
     - text: Much better
       hotkey: 5
       value: 5
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-great
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-great
+    - text: Prefer not to answer
+      hotkey: 6
+      value: 6
+      display_class: option-of-multiple option-of-6 survey-scale
   - name: treatment_outcome_alertness
     data_type: answer_option_id
     text: Alertness
@@ -456,23 +523,27 @@ questions:
     - text: Much worse
       hotkey: 1
       value: 1
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-danger
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-danger
     - text: Mildly worse
       hotkey: 2
       value: 2
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-warning
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-warning
     - text: No change
       hotkey: 3
       value: 3
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-moderate
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-moderate
     - text: Mildly better
       hotkey: 4
       value: 4
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-good
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-good
     - text: Much better
       hotkey: 5
       value: 5
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-great
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-great
+    - text: Prefer not to answer
+      hotkey: 6
+      value: 6
+      display_class: option-of-multiple option-of-6 survey-scale
   - name: treatment_outcome_attention
     data_type: answer_option_id
     text: Attention
@@ -480,22 +551,26 @@ questions:
     - text: Much worse
       hotkey: 1
       value: 1
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-danger
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-danger
     - text: Mildly worse
       hotkey: 2
       value: 2
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-warning
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-warning
     - text: No change
       hotkey: 3
       value: 3
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-moderate
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-moderate
     - text: Mildly better
       hotkey: 4
       value: 4
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-good
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-good
     - text: Much better
       hotkey: 5
       value: 5
-      display_class: option-of-multiple option-of-5 survey-scale survey-scale-great
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-great
+    - text: Prefer not to answer
+      hotkey: 6
+      value: 6
+      display_class: option-of-multiple option-of-6 survey-scale
 
 

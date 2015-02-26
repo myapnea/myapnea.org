@@ -152,7 +152,7 @@ $blue: #7fb2eb;
     }
     p {
       line-height:22px;
-      height: 45px;
+      height: 55px;
       vertical-align: middle;
       font-size:18px;
       font-weight:300;
@@ -166,7 +166,7 @@ $blue: #7fb2eb;
 }
 
 .option-of-7{ width: 14.2%; label p { font-size:15px; } }
-.option-of-6{ width: 16%; label { padding: 0px; } }
+.option-of-6{ width: 16.6%; padding: 0 2px; label { padding: 0px; p { font-size: 15px; } } }
 .option-of-5{ width:20%; label { padding: 0px; } }
 .option-of-4{ width:25%; }
 .option-of-3{ width:33%; }
