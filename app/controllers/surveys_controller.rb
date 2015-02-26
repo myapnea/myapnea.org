@@ -45,6 +45,21 @@ class SurveysController < ApplicationController
 
   end
 
+  def submit
+    @answer_session = AnswerSession.find(params[:answer_session_id])
+
+    respond_to do |format|
+      format.json do
+        if @answer_session.completed?
+          @answer_session.lock_answers
+        end
+
+        render json: { completed: @answer_session.completed? }
+
+      end
+    end
+  end
+
   ## Deprecated - to be removed in Version 6.0.0d
   def start_survey
 
@@ -75,11 +90,12 @@ class SurveysController < ApplicationController
   end
   ##
 
+
   private
 
   def set_survey
     @survey = Survey.where("slug = ? or id = ?", params["slug"], params["slug"].to_i).first
-    @answer_session = AnswerSession.find_by(user_id: current_user.id, survey_id: @survey.id)
+    @answer_session = AnswerSession.where(user_id: current_user.id, survey_id: @survey.id).order("created_at desc").first
 
     redirect_to surveys_path and return unless @answer_session.present?
 

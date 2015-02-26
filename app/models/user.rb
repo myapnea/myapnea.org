@@ -44,7 +44,7 @@ class User < ActiveRecord::Base
   validates_presence_of :first_name, :last_name
 
   with_options unless: :is_provider? do |user|
-    user.validates :over_eighteen, inclusion: { in: [true] }, allow_nil: true
+    user.validates :over_eighteen, inclusion: { in: [true], message: "You must be over 18 years of age to sign up." }, allow_nil: true
     #user.validates :year_of_birth, presence: true, numericality: {only_integer: true, allow_nil: false, less_than_or_equal_to: -> (user){ Date.today.year - 18 }, greater_than_or_equal_to: -> (user){ 1900 }}
   end
 
@@ -243,7 +243,7 @@ class User < ActiveRecord::Base
   end
 
 
-  # Deprecated - remove in 6.0.0
+  ## Deprecated - remove in 6.0.0
   def incomplete_surveys
     Survey.incomplete(self)
   end
@@ -267,10 +267,15 @@ class User < ActiveRecord::Base
   def choose_next_survey(survey)
     (self.assigned_surveys.where.not(id: survey.id).to_a - self.complete_surveys).first
   end
+  ## Deprecated ends
 
 
   def assigned_surveys
-    Survey.viewable.joins(:answer_sessions).where(answer_sessions: {user_id: self.id})
+    Survey.viewable.joins(:answer_sessions).where(answer_sessions: {user_id: self.id}).distinct
+  end
+
+  def completed_surveys
+    Survey.viewable.joins(:answer_sessions).where(answer_sessions: {user_id: self.id, completed: true}).distinct
   end
 
 

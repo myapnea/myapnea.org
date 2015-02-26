@@ -7,7 +7,7 @@
       %h3.f300= question.text
     .input-container
       - answer_template = question.answer_templates.first
-      = text_field_tag "#{question.id}[#{answer_template.id}]", answer.value[answer_template.id], class: 'survey-short-text'
+      = text_field_tag "#{question.id}[#{answer_template.id}]", answer.value[answer_template.id], class: 'survey-short-text', disabled: answer.locked?
     .button-container
       .btn.btn-primary.next-question
         Go to next question

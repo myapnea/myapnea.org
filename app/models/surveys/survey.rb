@@ -57,7 +57,12 @@ class Survey < ActiveRecord::Base
     end
     res
   end
-  ##
+  ## END DEPRECATED
+
+  def most_recent_encounter(user)
+    answer_sessions.where(user_id: user.id).order("created_at desc").first
+
+  end
 
   def self.refresh_all_surveys
     Survey.all.each do |survey|

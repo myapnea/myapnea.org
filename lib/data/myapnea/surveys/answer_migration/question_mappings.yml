@@ -71,6 +71,30 @@
 - slug: ideal-wakeup
   answer_template_name: time_of_day_list
   id: 511
+- slug: epworth-sleepiness-scale
+  answer_template_name: doze_while_sitting
+  id: 512
+- slug: epworth-sleepiness-scale
+  answer_template_name: doze_while_watching_tv
+  id: 513
+- slug: epworth-sleepiness-scale
+  answer_template_name: doze_while_public_sitting
+  id: 514
+- slug: epworth-sleepiness-scale
+  answer_template_name: doze_while_passenger_in_car
+  id: 515
+- slug: epworth-sleepiness-scale
+  answer_template_name: doze_while_lying_down_afternoon
+  id: 516
+- slug: epworth-sleepiness-scale
+  answer_template_name: doze_while_sitting_talking
+  id: 517
+- slug: epworth-sleepiness-scale
+  answer_template_name: doze_while_sitting_after_lunch
+  id: 518
+- slug: epworth-sleepiness-scale
+  answer_template_name: doze_while_in_car_stopped
+  id: 519
 
 # my-health-conditions
 - slug: health-conditions-list
@@ -202,6 +226,21 @@
 - slug: types-of-treatments
   answer_template_name: types_of_treatments
   id: 501
+- slug: treatment-outcomes-components
+  answer_template_name: treatment_outcome_sleepiness
+  id: 504
+- slug: treatment-outcomes-components
+  answer_template_name: treatment_outcome_sleep_quality
+  id: 505
+- slug: treatment-outcomes-components
+  answer_template_name: treatment_outcome_energy_level
+  id: 506
+- slug: treatment-outcomes-components
+  answer_template_name: treatment_outcome_alertness
+  id: 507
+- slug: treatment-outcomes-components
+  answer_template_name: treatment_outcome_attention
+  id: 508
 
 # my-sleep-quality
 - slug: sleep-quality-week
