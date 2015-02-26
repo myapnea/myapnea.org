@@ -5,7 +5,7 @@ class AnswerTemplate < ActiveRecord::Base
   belongs_to :display_type
   belongs_to :unit
 
-
+  validates :name, uniqueness: true
 
 
 end
