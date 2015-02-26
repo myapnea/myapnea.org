@@ -243,7 +243,7 @@ class User < ActiveRecord::Base
   end
 
 
-  # Deprecated - remove in 6.0.0
+  ## Deprecated - remove in 6.0.0
   def incomplete_surveys
     Survey.incomplete(self)
   end
@@ -267,10 +267,15 @@ class User < ActiveRecord::Base
   def choose_next_survey(survey)
     (self.assigned_surveys.where.not(id: survey.id).to_a - self.complete_surveys).first
   end
+  ## Deprecated ends
 
 
   def assigned_surveys
     Survey.viewable.joins(:answer_sessions).where(answer_sessions: {user_id: self.id}).distinct
+  end
+
+  def completed_surveys
+    Survey.viewable.joins(:answer_sessions).where(answer_sessions: {user_id: self.id, completed: true}).distinct
   end
 
 
