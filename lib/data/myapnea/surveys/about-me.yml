@@ -8,7 +8,7 @@ questions:
 - text: |
     What is your date of birth?
   slug: date-of-birth
-  display_type: date_input
+  display_type: custom_date_input
   answer_templates:
   - name: birth_date
     data_type: text_value
@@ -21,19 +21,19 @@ questions:
     data_type: answer_option_id
     answer_options:
     - text: Male
-      hotkey: M
+      hotkey: A
       value: 1
       display_class: label-default label-med
     - text: Female
-      hotkey: F
+      hotkey: B
       value: 2
       display_class: label-default label-med
     - text: Other
-      hotkey: O
+      hotkey: C
       value: 3
       display_class: label-default label-med
     - text: Prefer not to answer
-      hotkey: P
+      hotkey: D
       value: 4
       display_class: label-default label-med
 - text: |
@@ -57,7 +57,7 @@ questions:
     - text: Middle Eastern/North African
       hotkey: D
       value: 4
-    - text: Native American, American Indian or Alaskan Native (i.e. Navajo, Mayan, Tingt, etc.)
+    - text: Native American, American Indian or Alaskan Native (i.e. Navajo, Mayan, Tlingit, etc.)
       hotkey: E
       value: 5
     - text: Native Hawaiian or Other Pacific Islander (i.e. Native Hawaiian, Guamanian or Chamorro, Samoan, Fijian, Tongan, etc.)

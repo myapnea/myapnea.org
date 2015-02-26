@@ -5,15 +5,15 @@
   = @topic.last_post_at.inspect
 
 .content-main-header
-  %h3
+  %h1.f300.wrapword
+    = @title
+  %p.lead.text-light8{ style: 'margin-bottom: 0px;'}
     = link_to 'Forums', forums_path
-    %span.text-light7
+    &middot;
+    = link_to @forum.name, @forum
+    - if current_user and @topic.editable_by?(current_user)
       &middot;
-      = link_to @forum.name, @forum
-      &middot;
-      %span.wrapword= @title
-  - if current_user and @topic.editable_by?(current_user)
-    = link_to 'Edit Topic', edit_forum_topic_path(@forum, @topic), class: 'btn btn-xs btn-primary'
+      = link_to 'Edit Topic', edit_forum_topic_path(@forum, @topic), class: 'btn btn-xs btn-primary'
 
 - if current_user and current_user.has_role? :moderator and (@topic.hidden? or @topic.locked? or ['pending_review', 'spam'].include?(@topic.status))
   .panel.panel-primary

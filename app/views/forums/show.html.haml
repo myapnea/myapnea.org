@@ -1,11 +1,10 @@
 - @title = @forum.name
 
 .content-main-header
-  %h3
-    = link_to 'Forums', forums_path
-    %span.text-light8
-      &middot;
-      = @title
+  %h1.f300
+    = @title
+  %p.lead.text-light8{ style: 'margin-bottom: 0px;'}
+    = link_to 'Forums', forums_path, style: 'text-decoration: none;'
 .row.reset-layout{ style: 'margin-bottom:10px;'}
   = form_tag @forum, method: :get, class: 'form-inline col-md-8 search-bar-forum' do
     .input-group

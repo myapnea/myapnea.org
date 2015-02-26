@@ -1,0 +1,76 @@
+// Multiple checks
+.input-container input[type=checkbox] {
+  display:none;
+}
+
+.check-box-container:not(#foo) > input[type=checkbox] > input {
+  width:10%;
+  vertical-align:center;
+}
+.check-box-container:not(#foo) > input + label:hover span.hotkey {
+  cursor:pointer;
+}
+.check-box-container:not(#foo) > input + label {
+  width:90%;
+  margin-bottom:15px;
+  text-align: left;
+  font-weight:300;
+  font-size: 18px;
+  vertical-align: middle;
+  position:relative;
+  span.hotkey {
+    position:absolute;
+    top:50%;
+    margin-top: -20px;
+    width: 40px;
+    height:40px;
+    line-height:40px;
+    text-align:center;
+    font-size:14px;
+    font-weight:500;
+    color:white; color: rgba(0,0,0,.4);
+    border:2px solid #7fb2eb;
+    border-radius:3px;
+  }
+  p {
+    position: relative;
+    left: 70px;
+    width:90%;
+    display: inline-block;
+    font-size:18px;
+    min-height:40px;
+    margin: auto;
+  }
+}
+
+.check-box-container:not(#foo) > input[type=checkbox]:checked + label {
+  // background-color: transparentize(#b1d2f6, .7);
+  border-radius:20px;
+  span.hotkey {
+    background-color: #7fb2eb;
+    color: white;
+  }
+}
+
+
+/* RESPONSIVE */
+@media all and (max-width: 1200px) {}
+@media all and (max-width: 992px) {
+  .check-box-container:not(#foo) > input + label {
+    width:100%;
+    span.hotkey {
+      width: 30px;
+      height:30px;
+      line-height:25px;
+      font-size:14px;
+      margin-top:-15px;
+    }
+    p {
+      left:20px;
+      width:90%;
+      font-size: 18px;
+      min-height: 25px;
+    }
+  }
+}
+@media all and (max-width: 768px) {}

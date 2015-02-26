@@ -1,0 +1,237 @@
+// DEFAULTS FOR RADIO
+.input-container input[type=radio] { display: none; }
+
+.label-default {
+  background-color: transparent;
+  label {
+    vertical-align: middle;
+    display: inline-block;
+    padding: 10px;
+    border-radius:20px;
+    width:100%;
+    background-color: #b1d2f6;
+    border:6px double transparent;
+    cursor: pointer;
+    span.hotkey {
+      font-size:18px;
+      font-weight:300;
+      color:white
+    }
+    p {
+      font-size:20px;
+      font-weight:300;
+      color:black; color: rgba(0,0,0,.6);
+    }
+  }
+}
+.label-default input[type=radio]:checked ~ label {
+  background-color: #7fb2eb;
+  border:6px double white;
+}
+.label-sm {
+  width:20%;
+  margin-left: 2.5%;
+  margin-right: 2.5%;
+}
+.label-med {
+  width:45%;
+  margin:4px 4px;
+  padding: 5px;
+  float: left;
+}
+.label-lg {
+  width: 70%;
+  margin-left:15%;
+  margin-right:15%;
+}
+.label-xl {
+  width: 85%;
+  margin-left:10%;
+  margin-right:10%;
+}
+
+// SCALE OPTIONS FOR RADIO INPUTS
+$emergency: #E51519;
+$danger: #e54835;
+$warning: #f4b46d;
+$moderate: #fedf9c;
+$good: #d9f0a3;
+$great: #78c679;
+$excellent: #16C63C;
+
+$neutral: #bbb;
+$blue: #7fb2eb;
+
+.survey-scale label {
+  vertical-align: middle;
+  display: inline-block;
+  padding: 5px;
+  border-radius:20px;
+  width:100%;
+  cursor: pointer;
+  box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  -webkit-box-sizing:border-box;
+  border:6px double transparent;
+  background-color: transparentize($neutral, .7);
+}
+
+.survey-scale input[type=radio]:checked ~ label {
+  background-color: transparentize($neutral, .1);
+  border: 6px double white;
+}
+.survey-scale-blue label {
+  background-color: transparentize($blue, .7);
+}
+.survey-scale-blue input[type=radio]:checked ~ label {
+  background-color: transparentize($blue, .1);
+  border: 6px double white;
+}
+.survey-scale-emergency label {
+  background-color: transparentize($emergency, .7);
+}
+.survey-scale-emergency input[type=radio]:checked ~ label {
+  background-color: transparentize($emergency, .1);
+  border: 6px double white;
+}
+.survey-scale-danger label {
+  background-color: transparentize($danger, .7);
+}
+.survey-scale-danger input[type=radio]:checked ~ label {
+  background-color: transparentize($danger, .1);
+  border: 6px double white;
+}
+.survey-scale-warning label {
+  background-color: transparentize($warning, .7);
+}
+.survey-scale-warning input[type=radio]:checked ~ label {
+  background-color: transparentize($warning, .1);
+  border: 6px double white;
+}
+.survey-scale-moderate label {
+  background-color: transparentize($moderate, .7);
+}
+.survey-scale-moderate input[type=radio]:checked ~ label {
+  background-color: transparentize($moderate, .1);
+  border: 6px double white;
+}
+.survey-scale-good label {
+  background-color: transparentize($good, .7);
+}
+.survey-scale-good input[type=radio]:checked ~ label {
+  background-color: transparentize($good, .1);
+  border: 6px double white;
+}
+.survey-scale-great label {
+  background-color: transparentize($great, .7);
+}
+.survey-scale-great input[type=radio]:checked ~ label {
+  background-color: transparentize($great, .1);
+  border: 6px double white;
+}
+.survey-scale-excellent label {
+  background-color: transparentize($excellent, .7);
+}
+.survey-scale-excellent input[type=radio]:checked ~ label {
+  background-color: transparentize($excellent, .1);
+  border: 6px double white;
+}
+
+.option-of-multiple {
+  margin: 0px;
+  padding-left:5px;
+  padding-right:5px;
+  display: inline-block;
+  float:left;
+  label {
+    span.hotkey {
+      font-size:14px;
+      font-weight:500;
+      color:white; color: rgba(0,0,0,.4);
+      padding:0px;
+    }
+    p {
+      line-height:22px;
+      height: 45px;
+      vertical-align: middle;
+      font-size:18px;
+      font-weight:300;
+      color:black; color: rgba(0,0,0,.6);
+      padding: 0px;
+    }
+  }
+  input[type=radio] {
+    display: none;
+  }
+}
+
+.option-of-7{ width: 14.2%; label p { font-size:15px; } }
+.option-of-6{ width: 16%; label { padding: 0px; } }
+.option-of-5{ width:20%; label { padding: 0px; } }
+.option-of-4{ width:25%; }
+.option-of-3{ width:33%; }
+.option-of-2{ width:50%; }
+/* RESPONSIVE */
+@media all and (max-width: 1200px) {
+  .option-of-7 {
+    width: 100%;
+    label {
+      p {
+        height: auto;
+        vertical-align: middle;
+        color:black; color: rgba(0,0,0,.6);
+        padding: 0px;
+        margin: 0px;
+      }
+    }
+  }
+}
+@media all and (max-width: 992px) {
+  .input-container {
+    .label-med {
+      width: 80%;
+      margin: 2px 10%;
+      padding: 3px;
+      p {
+        font-size: 18px;
+        margin: 0;
+        padding: 0;
+      }
+      span.hotkey {
+        display: none;
+      }
+    }
+    .label-lg, .label-xl {
+      width: 100%;
+      margin: 2px 0;
+      padding: 3px;
+      p {
+        font-size: 16px;
+        margin: 0;
+        padding: 0;
+      }
+      span.hotkey {
+        display: none;
+      }
+    }
+  }
+  .option-of-multiple {
+    width: 100%;
+    label {
+      p {
+        height: auto;
+        vertical-align: middle;
+        font-size:18px;
+        line-height:18px;
+        font-weight:300;
+        color:black; color: rgba(0,0,0,.6);
+        padding: 0px;
+        margin: 0px;
+      }
+      span.hotkey {
+        display: none;
+      }
+    }
+  }
+}
+@media all and (max-width: 768px) {}
