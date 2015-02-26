@@ -37,6 +37,12 @@
 - **Forum Changes**
   - Added indication of additional posts on forum index and pagination on inidividual forums
   - Forum post anchors now correctly offset based on the top navigation bar
+  - Forum markdown has been improved and examples are provided under the Markup tab
+    - Blockquotes: `> This is quote`
+    - Highlight: `==This is highlighted==`
+    - Underline: `_This is underlined_`
+    - Superscript: `This is the 2^(nd) time`
+    - Strikethrough: `This is ~~removed~~`
 - **Survey Model**
   - Slugs added for surveys
   - Answer options now have hotkeys and values
@@ -47,6 +53,8 @@
   - Answer sessions are only created when surveys are launched, and encounter identifiers
 - **Community Page Changes**
   - Removed state labels from USA map to provide cleaner overview
+- **Lottery Updates**
+  - Lottery random drawing code has been added, and can be run using `Lottery.draw_winner`
 
 ### Bug Fixes
 - Fixed a bug that prevented a user dashboard from displaying if no forum topics existed
@@ -65,6 +73,7 @@
 - Reduced dependency on `authority` gem
 - Cleaned up the account controller and updated tests
 - Removed unused `pprn.rb` initializer file
+- Centralized application configuration further by using figaro environment variables
 - Renamed `QuestionFlow` to `Survey`
 - Simplified survey load files
 - Survey controller, views, and routes refactored and upgraded for beta design

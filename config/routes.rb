@@ -135,6 +135,9 @@ Rails.application.routes.draw do
         end
       end
     end
+    collection do
+      get :markup
+    end
   end
 
   get 'forum', to: redirect("forums")

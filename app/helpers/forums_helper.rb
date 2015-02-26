@@ -7,9 +7,9 @@ module ForumsHelper
 
   def simple_markdown(text, allow_links = true, target_blank = true, table_class = '')
     result = ''
-    markdown = Redcarpet::Markdown.new( Redcarpet::Render::HTML, no_intra_emphasis: true, fenced_code_blocks: true, autolink: true, strikethrough: true, superscript: true, tables: true )
+    markdown = Redcarpet::Markdown.new( Redcarpet::Render::HTML, no_intra_emphasis: true, fenced_code_blocks: true, autolink: true, strikethrough: true, superscript: true, tables: true, lax_spacing: true, space_after_headers: true, underline: true, highlight: true, footnotes: true )
     result = markdown.render(text.to_s)
-    # result = add_table_class(result, table_class) unless table_class.blank?
+    result = add_table_class(result, table_class) unless table_class.blank?
     # result = expand_relative_paths(result)
     # result = page_headers(result)
     result = replace_p_with_p_lead(result)
@@ -34,5 +34,9 @@ module ForumsHelper
   def replace_p_with_p_lead(text)
     text.to_s.gsub(/<p>/, '<p class="lead">').html_safe
   end
+
+  def add_table_class(text, table_class)
+      text.to_s.gsub(/<table>/, "<table class=\"#{table_class}\">").html_safe
+    end
 
 end
