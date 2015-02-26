@@ -69,6 +69,26 @@ questions:
       hotkey: 4
       value: 4
       display_class: option-of-multiple option-of-4 survey-scale survey-scale-blue
+  - name: conditions-adhd
+    data_type: answer_option_id
+    text: Attention Deficit Hyperactivity Disorder (ADHD)
+    answer_options:
+    - text: 'Yes'
+      hotkey: 1
+      value: 1
+      display_class: option-of-multiple option-of-4 survey-scale survey-scale-blue
+    - text: 'No'
+      hotkey: 2
+      value: 2
+      display_class: option-of-multiple option-of-4 survey-scale survey-scale-blue
+    - text: Don't know
+      hotkey: 3
+      value: 3
+      display_class: option-of-multiple option-of-4 survey-scale survey-scale-blue
+    - text: Prefer not to answer
+      hotkey: 4
+      value: 4
+      display_class: option-of-multiple option-of-4 survey-scale survey-scale-blue
   - name: conditions-cancer
     data_type: answer_option_id
     text: Cancer

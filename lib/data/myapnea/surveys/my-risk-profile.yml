@@ -5,7 +5,7 @@ description: |+
 status: show
 questions:
 - text: |
-    do you currently experience any of these symptoms? How long has each symptom been present?
+    Do you currently experience any of these symptoms? How long has each symptom been present?
   slug: risk-symptoms
   display_type: radio_input_multiple
   answer_templates:

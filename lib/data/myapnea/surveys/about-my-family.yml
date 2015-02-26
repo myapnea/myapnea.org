@@ -87,7 +87,7 @@ questions:
   display_type: radio_input
   answer_templates:
   - name: household_members
-    data_type: radio_input
+    data_type: answer_option_id
     answer_options:
     - text: 1 person
       hotkey: 1
