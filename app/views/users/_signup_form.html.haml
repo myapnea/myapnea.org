@@ -18,8 +18,11 @@
               = pluralize(resource.errors.count, "error")
               prohibited this user from being saved
             %ul
-              - resource.errors.full_messages.each do |msg|
-                %li= msg
+              - resource.errors.messages.each do |key, msg|
+                - if key == :over_eighteen
+                  %li= msg.join(", ")
+                - else
+                  %li= "#{key.to_s.titleize} #{msg.join(", ")}"
         = f.hidden_field :beta_opt_in, value: true
         = f.hidden_field :provider_id
         .input-group
