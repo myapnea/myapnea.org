@@ -39,7 +39,7 @@
             %h5.f300.primary-blue{ style: 'margin-bottom:30px;' }
               = link_to 'View Data', survey_report_path(slug: survey)
       - else
-        - if current_user.assigned_surveys.blank? and !current_user.has_user_type?
+        - if !current_user.has_user_type?
           .centered-text{ style: 'display:block' }
             = image_tag 'myapnea/user_types/role_confused.png', class: 'img-responsive', style: 'margin: 0 auto; width: 150px;'
             %h4.f300{ style: 'margin: 0 10px;' }
