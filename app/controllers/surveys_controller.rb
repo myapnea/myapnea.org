@@ -45,6 +45,21 @@ class SurveysController < ApplicationController
 
   end
 
+  def submit
+    @answer_session = AnswerSession.find(params[:answer_session_id])
+
+    respond_to do |format|
+      format.json do
+        if @answer_session.completed?
+          @answer_session.lock_answers
+        end
+
+        render json: { completed: @answer_session.completed? }
+
+      end
+    end
+  end
+
   ## Deprecated - to be removed in Version 6.0.0d
   def start_survey
 
@@ -74,6 +89,7 @@ class SurveysController < ApplicationController
     end
   end
   ##
+
 
   private
 

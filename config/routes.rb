@@ -66,6 +66,7 @@ Rails.application.routes.draw do
   match 'surveys/:slug', to: 'surveys#show', as: :survey, via: :get
   ## Answer Processing
   match 'research_surveys/process_answer', to: 'surveys#process_answer', via: :post, as: :process_answer
+  match 'surveys/submit', to: 'surveys#submit', via: :post, as: :submit_survey
   ## JSON
   get 'questions/frequencies(/:question_id/:answer_session_id)', to: "questions#frequencies", as: :question_frequencies, format: :json
   get 'questions/typeahead/:question_id', to: "questions#typeahead", as: :question_typeahead, format: :json
