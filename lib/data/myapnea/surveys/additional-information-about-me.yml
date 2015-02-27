@@ -10,6 +10,16 @@ questions:
   answer_templates:
   - name: height
     data_type: numeric_value
+    unit: inches
+    preprocess: height_conversion
+- text: |
+    How much do you weigh?
+  slug: weight
+  display_type: number_input
+  answer_templates:
+  - name: weight
+    data_type: numeric_value
+    unit: pounds
 - text: |
     What is your current marital status?
   slug: marital-status
