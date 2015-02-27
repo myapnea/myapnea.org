@@ -50,7 +50,7 @@ class AnswerSession < ActiveRecord::Base
   end
 
   def process_answer(question, params)
-    answer = answers.where(question_id: question.id).first || answers.initialize(question_id: question.id)
+    answer = answers.where(question_id: question.id).first || answers.build(question_id: question.id)
 
     if answer.locked?
       nil

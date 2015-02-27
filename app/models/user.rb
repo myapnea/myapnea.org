@@ -244,38 +244,44 @@ class User < ActiveRecord::Base
 
 
   ## Deprecated - remove in 6.0.0
-  def incomplete_surveys
-    Survey.incomplete(self)
-  end
+  # def incomplete_surveys
+  #   Survey.incomplete(self)
+  # end
+  #
+  # def complete_surveys
+  #   Survey.complete(self)
+  # end
+  #
+  # def unstarted_surveys
+  #   Survey.unstarted(self)
+  # end
+  #
+  # def not_complete_surveys
+  #   self.incomplete_surveys + self.unstarted_surveys
+  # end
+  #
+  # def smart_surveys
+  #   (self.incomplete_surveys + self.unstarted_surveys + self.complete_surveys).select {|s| !s.deprecated?}
+  # end
+  #
 
-  def complete_surveys
-    Survey.complete(self)
-  end
-
-  def unstarted_surveys
-    Survey.unstarted(self)
-  end
-
-  def not_complete_surveys
-    self.incomplete_surveys + self.unstarted_surveys
-  end
-
-  def smart_surveys
-    (self.incomplete_surveys + self.unstarted_surveys + self.complete_surveys).select {|s| !s.deprecated?}
-  end
-
-  def choose_next_survey(survey)
-    (self.assigned_surveys.where.not(id: survey.id).to_a - self.complete_surveys).first
-  end
   ## Deprecated ends
 
-
+  # Surveys
   def assigned_surveys
     Survey.viewable.joins(:answer_sessions).where(answer_sessions: {user_id: self.id}).distinct
   end
 
   def completed_surveys
     Survey.viewable.joins(:answer_sessions).where(answer_sessions: {user_id: self.id, completed: true}).distinct
+  end
+
+  def incomplete_surveys
+    Survey.viewable.joins(:answer_sessions).where(answer_sessions: {user_id: self.id, completed: false}).distinct
+  end
+
+  def choose_next_survey(survey)
+    incomplete_surveys.where("surveys.id != ?", survey.id).first
   end
 
 

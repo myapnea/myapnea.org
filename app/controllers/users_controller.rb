@@ -17,7 +17,7 @@ class UsersController < ApplicationController
           user.email,
           user.first_name,
           user.last_name,
-          user.complete_surveys.count
+          user.completed_surveys.count
         ]
         csv << row
       end
