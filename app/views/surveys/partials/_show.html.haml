@@ -40,6 +40,8 @@
 -# End of Survey
 .survey-container{ data: { object: 'survey-submit' } }
   .panel.centered-text{ style: "padding: 20px;"}
+    - if @survey.locked?
+      ilaushfalsdfijkla
     .panel-heading{ style: 'background-color: transparent;', data: { object: 'survey-submit-btn-container' } }
       .btn.btn-primary.btn-lg{ style: 'width:100%', data: { object: 'survey-submit-btn', path: submit_survey_path, answer_session_id: @answer_session.id } } Submit Answers!
     .panel-body.hidden{ data: { object: 'survey-submit-congratulations-container' } }
