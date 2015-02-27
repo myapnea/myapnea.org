@@ -166,7 +166,7 @@ class Answer < ActiveRecord::Base
       if candidate_edges.length == 1
         chosen_edge = candidate_edges.first
       else
-        chosen_edge = candidate_edges.select {|e| self.fits_condition?(e.condition)}.first || candidate_edges.select { |e| e.condition == nil }.first || candidate_edges.first
+        chosen_edge = candidate_edges.select {|e| fits_condition?(e.condition)}.first || candidate_edges.select { |e| e.condition == nil }.first || candidate_edges.first
       end
 
       chosen_edge.descendant
