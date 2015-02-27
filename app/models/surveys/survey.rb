@@ -167,29 +167,16 @@ class Survey < ActiveRecord::Base
   ##
 
 
-  # Efficient lookup of questions (1 query), returns relation
-  def all_questions
-
-    Question
-        .distinct
-        .joins('left join question_edges parent_qe on parent_qe.child_question_id = "questions".id')
-        .joins('left join question_edges child_qe on child_qe.parent_question_id = "questions".id')
-        .where("child_qe.survey_id = ? or child_qe.survey_id is null", self.id)
-        .where("parent_qe.survey_id = ? or parent_qe.survey_id is null", self.id)
-        .where("parent_qe.child_question_id is not null or child_qe.parent_question_id is not null")
-        .where("parent_qe.direct = 't' and child_qe.direct = 't'")
-  end
-
   # Fast (uses descendant cache?), returns array
   def all_questions_descendants
     # source .descendants is very fast with no db hits! why? How can we use it? It's type is ActiveRecord::Association::CollectionProxy
     ([source] + source.descendants)
   end
 
-
-
-
-
+  def questions
+    ordered_questions
+  end
+  ##
 
 
 

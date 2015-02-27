@@ -34,12 +34,15 @@
 a10:
   question: radio1
   answer_session: incomplete
+  state: complete
 
 a11:
   question: radio1
   answer_session: complete
+  state: complete
 
 a12:
   question: checkbox1
   answer_session: complete
+  state: complete
 

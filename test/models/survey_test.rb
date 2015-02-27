@@ -12,11 +12,11 @@ class SurveyTest < ActiveSupport::TestCase
     assert_not_nil survey
 
     assert_equal "about-me", survey.slug
-    assert_equal 5, survey.all_questions_descendants.length, "hmm: #{survey.all_questions_descendants.map(&:slug)}"
+    assert_equal 5, survey.questions.length, "hmm: #{survey.questions.map(&:slug)}"
 
-    assert_match /What is your date of birth?/, survey.all_questions_descendants.first.text
+    assert_match /What is your date of birth?/, survey.questions.first.text
 
-    cb_q = survey.all_questions.where(slug: "race").first
+    cb_q = survey.questions.where(slug: "race").first
 
     assert cb_q
     assert_equal 2, cb_q.answer_templates.length
@@ -31,7 +31,7 @@ class SurveyTest < ActiveSupport::TestCase
     end
 
     survey.reload
-    cb_q = survey.all_questions.where(slug: "race").first
+    cb_q = survey.questions.where(slug: "race").first
 
     assert_equal 2, cb_q.answer_templates.count
 
@@ -41,9 +41,26 @@ class SurveyTest < ActiveSupport::TestCase
   test "All defined surveys should load with no problem" do
     assert_difference "Survey.count", Survey::SURVEY_LIST.length do
       Survey::SURVEY_LIST.each {|survey_slug| Survey.load_from_file(survey_slug)}
+
+
     end
 
   end
+
+  test "Question list methods" do
+    assert_difference "Survey.count" do
+      Survey.load_from_file("about-me")
+    end
+
+    s = Survey.find_by_slug("about-me")
+
+    assert_equal s.all_questions_descendants, s.questions.to_a
+    assert_equal s.questions.count, s.ordered_questions.count
+    assert_equal s.questions, s.ordered_questions
+    assert_equal s.questions.length, s.questions.count
+
+  end
+
 
   # test "self.migrate_old_answers" do
   #

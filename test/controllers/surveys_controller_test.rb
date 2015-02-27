@@ -32,7 +32,7 @@ class SurveysControllerTest < ActionController::TestCase
     assert_equal "Some other race", created_answer.answer_values.second.answer_option.text
     assert_equal "Polish", created_answer.answer_values.last.text_value
 
-    assert assigns(:answer_session).completed?
+    assert assigns(:answer_session).completed?, "#{assigns(:answer_session).answers.complete.count} #{assigns(:answer_session).survey.questions.count} #{assigns(:answer_session).answers.to_a}"
 
     assert_response :success
   end

@@ -2,7 +2,7 @@
 .survey-indicator
   %span#title Progress
   %ul
-    - @survey.all_questions_descendants.each_with_index do |question, index|
+    - @survey.questions.each_with_index do |question, index|
       - loaded_answer = Answer.first_or_new(question, @answer_session)
       - if loaded_answer.complete?
         %li.complete{ data: { object: 'survey-indicator', target: "#{index}" } } &#10003;
@@ -31,7 +31,7 @@
 
 -# Expects a @survey and @answer_session variable
 -# Dynamically Loaded:
-- @survey.all_questions_descendants.each_with_index do |question, index|
+- @survey.questions.each_with_index do |question, index|
   = render partial: "surveys/question_templates/#{question.display_type}", locals: { question: question, answer_session: @answer_session, answer: Answer.first_or_new(question, @answer_session), question_number: index }
 
 -# End of Survey
