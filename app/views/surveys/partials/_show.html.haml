@@ -4,7 +4,10 @@
   %ul
     - @survey.questions.each_with_index do |question, index|
       - loaded_answer = Answer.first_or_new(question, @answer_session)
-      - if loaded_answer.complete?
+      - if loaded_answer.locked?
+        %li.locked{ data: { object: 'survey-indicator', target: "#{index}" } }
+          %span.glyphicon.glyphicon-lock{ 'aria-hidden'=>'true' }
+      - elsif loaded_answer.complete?
         %li.complete{ data: { object: 'survey-indicator', target: "#{index}" } } &#10003;
       - else
         %li.incomplete{ data: { object: 'survey-indicator', target: "#{index}" } }= index + 1

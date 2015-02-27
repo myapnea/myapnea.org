@@ -67,7 +67,7 @@ questions:
     - text: Prefer not to answer
       hotkey: 6
       value: 6
-      display_class: option-of-multiple option-of-5 survey-scale
+      display_class: option-of-multiple option-of-6 survey-scale
 - text: |
     In general, how would you rate your quality of life?
   slug: general-quality-life-rate
