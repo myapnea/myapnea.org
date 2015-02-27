@@ -4,6 +4,13 @@ description:
 status: show
 questions:
 - text: |
+    How tall are you?
+  slug: height
+  display_type: height_input
+  answer_templates:
+  - name: height
+    data_type: numeric_value
+- text: |
     What is your current marital status?
   slug: marital-status
   display_type: radio_input
