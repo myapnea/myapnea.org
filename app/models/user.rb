@@ -333,7 +333,7 @@ class User < ActiveRecord::Base
         return survey_list.map do |survey_slug|
           survey = Survey.find_by_slug(survey_slug)
           if survey
-            survey.launch_single(self, "registration")
+            survey.launch_single(self, "baseline")
             survey
           else
             logger.error "Survey #{survey_slug} could not be assigned to user #{self.email} - Survey could not be found."

@@ -14,6 +14,7 @@ class AnswerSession < ActiveRecord::Base
   # Validations
   # Unique in terms of survey/encounter
   validates :survey_id, uniqueness: { scope: [:encounter, :user_id] }
+  validates :encounter, presence: true
 
   # Class Methods
   def self.most_recent(survey_id, user_id)
