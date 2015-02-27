@@ -74,7 +74,6 @@
   @submitAnswer = (inputElement) ->
     questionForm = inputElement.closest("form")
     $.post(questionForm.attr("action"), questionForm.serialize(), (data) ->
-      console.log data
       indicator = $(questionForm).data('object').slice(-1)
       indicatorSelector = $("[data-object~='survey-indicator'][data-target~='"+indicator+"']")
       if data['completed']
