@@ -1,0 +1,18 @@
+= form_tag(process_answer_path, {role: "form", class: 'survey-container', data: { object: "#{'question-container-'+question_number.to_s}" } }) do
+  = hidden_field_tag "question_id[]", question.id
+  = hidden_field_tag "answer_session_id", answer_session.id
+
+  .panel
+    .question-container
+      %h3.f300= question.text
+    .input-container
+      - answer_template = question.answer_templates.first
+      = text_field_tag "#{question.id}[#{answer_template.id}]", answer.value[answer_template.id], class: 'survey-short-text', disabled: answer.locked?
+      = radio_button_tag "#{question.id}[#{answer_template.id}]", answer_option.id, have_checked?(answer, answer_template, answer_option.id), id: "question_#{question.id}_#{answer_template.id}_#{answer_option.new_value}", data: { hotkey: answer_option.hotkey }
+          %label{ for: "question_#{question.id}_#{answer_template.id}_#{answer_option.new_value}" }
+            %p= answer_option.text
+            %span.hotkey= answer_option.hotkey if answer_option.hotkey.present?
+    .button-container
+      .btn.btn-primary.next-question
+        Go to next question
+      %p.text-muted Or press ENTER
