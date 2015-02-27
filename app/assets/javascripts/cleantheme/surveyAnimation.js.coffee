@@ -121,7 +121,6 @@
     if $(event.target).hasClass "next-question"
       assignQuestion(true, false)
     else if !$(this).hasClass "active"
-      console.log "clicked on container that wasn't active"
       assignQuestionDirect($(this))
 
   #####################
@@ -199,7 +198,6 @@
           inputs.each (index) ->
             if e.keyCode is $(inputs[index]).data("hotkey").toString().charCodeAt(0)
               if !($(inputs[index]).prop "checked") and ($(inputs[index]).data('object') == "reveal-next-input")
-                console.log "about to error"
                 revealNextInput($(inputs[index]).data('target'))
               $(inputs[index]).prop "checked", !$(inputs[index]).prop("checked")
               handleChangedValue($(inputs[index]))

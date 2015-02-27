@@ -92,6 +92,8 @@
 
 
   @validateDate = (dateString) ->
+    if dateString.length == 0
+      return ""
     if(!/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(dateString))
       return "incorrect format"
 
