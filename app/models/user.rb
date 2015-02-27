@@ -246,42 +246,22 @@ class User < ActiveRecord::Base
 
   end
 
-
-  ## Deprecated - remove in 6.0.0
-  def incomplete_surveys
-    Survey.incomplete(self)
-  end
-
-  def complete_surveys
-    Survey.complete(self)
-  end
-
-  def unstarted_surveys
-    Survey.unstarted(self)
-  end
-
-  def not_complete_surveys
-    self.incomplete_surveys + self.unstarted_surveys
-  end
-
-  def smart_surveys
-    (self.incomplete_surveys + self.unstarted_surveys + self.complete_surveys).select {|s| !s.deprecated?}
-  end
-
-  def choose_next_survey(survey)
-    (self.assigned_surveys.where.not(id: survey.id).to_a - self.complete_surveys).first
-  end
-  ## Deprecated ends
-
-
+  # Surveys
   def assigned_surveys
     Survey.viewable.joins(:answer_sessions).where(answer_sessions: {user_id: self.id}).distinct
   end
 
   def completed_surveys
-    Survey.viewable.joins(:answer_sessions).where(answer_sessions: {user_id: self.id, completed: true}).distinct
+    Survey.viewable.joins(:answer_sessions).where(answer_sessions: {user_id: self.id}).distinct
   end
 
+  def incomplete_surveys
+    Survey.viewable.joins(:answer_sessions).where(answer_sessions: {user_id: self.id, locked: [false, nil]}).distinct
+  end
+
+  def choose_next_survey(survey)
+    incomplete_surveys.where("surveys.id != ?", survey.id).first
+  end
 
   def research_topics_with_vote
     ResearchTopic.voted_by(self)
@@ -337,7 +317,7 @@ class User < ActiveRecord::Base
         return survey_list.map do |survey_slug|
           survey = Survey.find_by_slug(survey_slug)
           if survey
-            survey.launch_single(self, "registration")
+            survey.launch_single(self, "baseline")
             survey
           else
             logger.error "Survey #{survey_slug} could not be assigned to user #{self.email} - Survey could not be found."

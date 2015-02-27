@@ -22,7 +22,7 @@ class AnswerMigration
     Survey::SURVEY_LIST.each do |survey_slug|
       survey = Survey.find_by_slug(survey_slug)
       if survey
-        survey.all_questions_descendants.each do |question|
+        survey.questions.each do |question|
           question.answer_templates.each do |answer_template|
             found_mapping = @question_map.select{|qm| qm["slug"] == question.slug and qm["answer_template_name"] == answer_template.name }
 
@@ -163,7 +163,7 @@ class AnswerMigration
 
     survey = Survey.find_by(slug: survey_slug)
 
-    survey.all_questions_descendants.each do |question|
+    survey.questions.each do |question|
       question.answer_templates.each do |answer_template|
         matched_mapping = @question_map.select{|mapping| (mapping["slug"] == question.slug and mapping["answer_template_name"] == answer_template.name) }.first
 
