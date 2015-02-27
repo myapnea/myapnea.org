@@ -108,6 +108,12 @@ class Survey < ActiveRecord::Base
   end
 
   ## Need to be fast
+  def locked?(user)
+    false unless user.present?
+    answer_session = self.answer_sessions.where( user_id: user.id ).order( updated_at: :desc ).first
+    answer_session.present? and answer_session.locked?
+  end
+
   def complete?(user)
     false unless user.present?
     answer_session = self.answer_sessions.where( user_id: user.id ).order( updated_at: :desc ).first

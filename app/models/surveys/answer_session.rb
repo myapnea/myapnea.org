@@ -43,7 +43,6 @@ class AnswerSession < ActiveRecord::Base
 
   def completed?
     answers.complete.count == survey.questions.count
-
   end
 
   def locked?

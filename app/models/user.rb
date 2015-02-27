@@ -252,7 +252,7 @@ class User < ActiveRecord::Base
   end
 
   def completed_surveys
-    Survey.viewable.joins(:answer_sessions).where(answer_sessions: {user_id: self.id}).distinct
+    Survey.viewable.joins(:answer_sessions).where(answer_sessions: {user_id: self.id, locked: true}).distinct
   end
 
   def incomplete_surveys

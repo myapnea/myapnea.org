@@ -37,7 +37,7 @@
           - current_user.assigned_surveys.first(3).each do |survey|
             .col-sm-4.centered-text
               - if survey.to_param != nil
-                = render partial: 'surveys/partials/survey_progress', locals: { survey: survey, can_complete_surveys: true }
+                = render partial: 'surveys/partials/survey_progress', locals: { survey: survey }
 
 .panel
   .panel-heading
