@@ -7,7 +7,7 @@ class SurveysController < ApplicationController
 
 
   def index
-    @surveys = (current_user.is_provider? or current_user.is_only_researcher?) ? @surveys = Survey.viewable.first(3) : current_user.assigned_surveys
+    @surveys = (current_user.is_only_academic?) ? @surveys = Survey.viewable : current_user.assigned_surveys
   end
 
   def show

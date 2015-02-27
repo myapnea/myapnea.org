@@ -5,7 +5,7 @@
 
 .panel
   .panel-body
-    - if current_user.is_provider? or current_user.is_only_researcher?
+    - if current_user.is_only_academic?
       %p.lead
         MyApnea.Org is part of a growing national network of patients, health care providers and researchers. This partnership is built upon the open exchange of information about sleep apnea. Here we provide a series of questions to help the sleep apnea community better understand the symptoms found in patients with sleep apnea or at risk for sleep apnea, their experiences with getting diagnosed, and their health conditions.
       %p.lead
@@ -28,7 +28,7 @@
 .panel
   .panel-body
     .row
-      - if current_user.is_provider? or current_user.is_only_researcher?
+      - if current_user.is_only_academic?
         - Survey.viewable.where.not(slug: nil).each_with_index do |survey, index|
           - if (index)%3==0
             %div{style: 'clear:both'}

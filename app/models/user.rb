@@ -86,6 +86,10 @@ class User < ActiveRecord::Base
     self.researcher? and !self.is_nonacademic?
   end
 
+  def is_only_academic?
+    (self.researcher? or self.provider?) and !self.is_nonacademic?
+  end
+
   def is_nonacademic?
     self.adult_diagnosed? or self.adult_at_risk? or self.caregiver_child? or self.caregiver_adult?
   end
