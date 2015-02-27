@@ -104,7 +104,7 @@ class Survey < ActiveRecord::Base
   end
 
   def to_param
-    self[:slug] || self[:id].to_s
+    self[:slug] # || self[:id].to_s
   end
 
   ## Need to be fast
