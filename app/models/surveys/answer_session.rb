@@ -8,7 +8,7 @@ class AnswerSession < ActiveRecord::Base
   belongs_to :last_answer, class_name: "Answer", foreign_key: "last_answer_id"
   belongs_to :user
   has_many :answer_edges
-  has_many :answers
+  has_many :answers, -> { where deleted: false }
 
 
   # Validations
@@ -50,34 +50,40 @@ class AnswerSession < ActiveRecord::Base
   end
 
   def process_answer(question, params)
-    # New Record: do everything
-    answer_modified = false
+    answer = answers.where(question_id: question.id).first || answers.initialize(question_id: question.id)
 
-    if answer.new_record? or answer.string_value != params[question.id.to_s]
-      # Set Value and Save
-      answer.value = params[question.id.to_s]
-      answer.save
-      answer_modified = true
+    if answer.locked?
+      nil
+    else
+      # New Record: do everything
+      answer_modified = false
+
+      if answer.new_record? or answer.string_value != params[question.id.to_s]
+        # Set Value and Save
+        answer.value = params[question.id.to_s]
+        answer.save
+        answer_modified = true
+      end
+
+      if first_answer_id.blank?
+        # if no first answer, set it!
+        self[:first_answer_id] = answer.id
+        self[:last_answer_id] = answer.id
+      elsif answer.in_edge.blank? and self[:first_answer_id] != answer.id
+        # No in edge (and not first answer)...you need to set it
+        answer_edges.create(parent_answer_id: last_answer.id, child_answer_id: answer.id)
+        self[:last_answer_id] = answer.id
+      end
+
+      if answer_modified and answer.multiple_options?
+        answer.destroy_descendant_edges
+        self[:last_answer_id] = answer.id
+      end
+
+      self.save
+
+      answer
     end
-
-    if first_answer_id.blank?
-      # if no first answer, set it!
-      self[:first_answer_id] = answer.id
-      self[:last_answer_id] = answer.id
-    elsif answer.in_edge.blank? and self[:first_answer_id] != answer.id
-      # No in edge (and not first answer)...you need to set it
-      answer_edges.create(parent_answer_id: last_answer.id, child_answer_id: answer.id)
-      self[:last_answer_id] = answer.id
-    end
-
-    if answer_modified and answer.multiple_options?
-      answer.destroy_descendant_edges
-      self[:last_answer_id] = answer.id
-    end
-
-    self.save
-
-    answer
   end
 
   def lock_answers
