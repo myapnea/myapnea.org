@@ -8,6 +8,7 @@
       %h3.f300= question.text
     .input-container
       = date_field_tag "#{question.id}[#{question.answer_templates.first.id}]", answer.value[question.answer_templates.first.id], class: 'survey-date'
+      = render partial: 'surveys/question_templates/prefer_not_to_answer_box', locals: {question: question, answer: answer}
     .button-container
       .btn.btn-primary.next-question
         Go to next question

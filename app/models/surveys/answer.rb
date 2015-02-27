@@ -51,6 +51,8 @@ class Answer < ActiveRecord::Base
       return nil
     end
 
+    self[:preferred_not_to_answer] = (val.delete('preferred_not_to_answer') ? true : false)
+
     answer_values.clear
 
     template_completions = []
@@ -62,7 +64,9 @@ class Answer < ActiveRecord::Base
       if val.kind_of?(Hash)
         val_for_template = val[template.id.to_s]
       else
-        val_for_template = val
+        # Temporary - remove this option! Always set with hash
+        raise StandardError
+        #val_for_template = val
       end
 
       template_values << val_for_template
@@ -193,9 +197,7 @@ class Answer < ActiveRecord::Base
   private
 
   def set_completion_state(template_completions)
-
-    self[:state] = (template_completions.all? ? 'complete' : 'incomplete')
-
+    self[:state] = ((template_completions.all? or preferred_not_to_answer)? 'complete' : 'incomplete')
   end
 
 

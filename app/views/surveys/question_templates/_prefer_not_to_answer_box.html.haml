@@ -1,0 +1,5 @@
+.input-group.preferred-not-to-answer.center-block
+  .checkbox
+    = check_box_tag "#{question.id}[preferred_not_to_answer]", "1", answer.preferred_not_to_answer?, disabled: answer.locked?
+    = label_tag "#{question.id}[preferred_not_to_answer]", 'Prefer not to answer'
+
