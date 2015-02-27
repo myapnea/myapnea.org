@@ -1,12 +1,16 @@
-.reveal-next-input ~ .hidden-input {
-  display:none;
-}
-.reveal-next-input:checked ~ .hidden-input {
-  display: inline-block;
-  margin: 7px 5%;
-  width: 90%;
-  float:left;
-  margin-bottom:30px;
+// .reveal-next-input ~ .hidden-input {
+//   display:none;
+// }
+// .reveal-next-input:checked ~ .hidden-input {
+//   display: inline-block;
+//   margin: 7px 5%;
+//   width: 90%;
+//   float:left;
+//   margin-bottom:30px;
+// }
+
+.hidden-input {
+  display: none;
 }
 
 

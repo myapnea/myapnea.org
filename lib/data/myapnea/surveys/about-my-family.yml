@@ -184,50 +184,50 @@ questions:
     answer_options:
     - text: 1
       value: 1
-      display_class: label-default label-med
+      display_class: option-of-multiple option-of-3 label-default
     - text: 2
       value: 2
-      display_class: label-default label-med
+      display_class: option-of-multiple option-of-3 label-default
     - text: 3+
       value: 3
-      display_class: label-default label-med
+      display_class: option-of-multiple option-of-3 label-default
   - name: specified_sisters
     data_type: answer_option_id
     target_answer_option: 4
     answer_options:
     - text: 1
       value: 1
-      display_class: label-default label-med
+      display_class: option-of-multiple option-of-3 label-default
     - text: 2
       value: 2
-      display_class: label-default label-med
+      display_class: option-of-multiple option-of-3 label-default
     - text: 3+
       value: 3
-      display_class: label-default label-med
+      display_class: option-of-multiple option-of-3 label-default
   - name: specified_sons
     data_type: answer_option_id
     target_answer_option: 5
     answer_options:
     - text: 1
       value: 1
-      display_class: label-default label-med
+      display_class: option-of-multiple option-of-3 label-default
     - text: 2
       value: 2
-      display_class: label-default label-med
+      display_class: option-of-multiple option-of-3 label-default
     - text: 3+
       value: 3
-      display_class: label-default label-med
+      display_class: option-of-multiple option-of-3 label-default
   - name: specified_daughters
     data_type: answer_option_id
     target_answer_option: 6
     answer_options:
     - text: 1
       value: 1
-      display_class: label-default label-med
+      display_class: option-of-multiple option-of-3 label-default
     - text: 2
       value: 2
-      display_class: label-default label-med
+      display_class: option-of-multiple option-of-3 label-default
     - text: 3+
       value: 3
-      display_class: label-default label-med
+      display_class: option-of-multiple option-of-3 label-default
 
