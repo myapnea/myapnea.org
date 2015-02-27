@@ -1,9 +1,9 @@
 # To be removed in 6.0.0
-deprecated:
-  name_en: Deprecated Survey
-  first_question: q1
-  slug: deprecated-survey
-  status: show
+#deprecated:
+#  name_en: Deprecated Survey
+#  first_question: q1
+#  slug: deprecated-survey
+#  status: show
 
 new:
   name_en: New Survey

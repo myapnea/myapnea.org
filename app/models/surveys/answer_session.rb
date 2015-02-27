@@ -167,8 +167,6 @@ class AnswerSession < ActiveRecord::Base
     Answer.current.joins(:question).where(questions: {id: question_id}).where(answer_session_id: self.id).order("updated_at desc").limit(1).first
   end
 
-
-
   def started?
     last_answer.present?
   end
@@ -182,11 +180,6 @@ class AnswerSession < ActiveRecord::Base
       survey.first_question
     end
   end
-
-
-
-
-
 
   def completed_path_length
     completed_answers.count
