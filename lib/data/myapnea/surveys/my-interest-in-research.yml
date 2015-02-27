@@ -40,30 +40,24 @@ questions:
     - text: Twitter
       hotkey: I
       value: 9
-    - text: LinkedIn
+    - text: Family member
       hotkey: J
       value: 10
-    - text: Google+
+    - text: Friend
       hotkey: K
       value: 11
-    - text: Family member
+    - text: Internet search
       hotkey: L
       value: 12
-    - text: Friend
+    - text: Other patient-centered network
       hotkey: M
       value: 13
-    - text: Internet search
+    - text: Other
       hotkey: N
       value: 14
-    - text: Other patient-centered network
+    - text: Prefer not to answer
       hotkey: O
       value: 15
-    - text: Other
-      hotkey: P
-      value: 16
-    - text: Prefer not to answer
-      hotkey: Q
-      value: 17
 - text: |
     Have you ever taken part in research projects related to your health or the health of a family member?
   slug: previous-research-participation
@@ -170,7 +164,7 @@ questions:
       display_class: option-of-multiple option-of-4 survey-scale
   - name: interest_in_conversation
     data_type: answer_option_id
-    text: Taking part in a study that involves talking by phone or over the internet (for example, to get advice about your health)
+    text: Talking by phone or over the internet
     answer_options:
     - text: Not interested
       hotkey: 1
@@ -190,7 +184,7 @@ questions:
       display_class: option-of-multiple option-of-4 survey-scale
   - name: interest_in_medication
     data_type: answer_option_id
-    text: Taking part in a study where you have to take a medication
+    text: Taking a medication
     answer_options:
     - text: Not interested
       hotkey: 1
@@ -210,7 +204,7 @@ questions:
       display_class: option-of-multiple option-of-4 survey-scale
   - name: interest_in_meeting_local
     data_type: answer_option_id
-    text: Taking part in a study that involves meeting at a local community center or school
+    text: Meeting at a local community center or school
     answer_options:
     - text: Not interested
       hotkey: 1
@@ -230,7 +224,7 @@ questions:
       display_class: option-of-multiple option-of-4 survey-scale
   - name: interest_in_with_family
     data_type: answer_option_id
-    text: Taking part in a study that involves you and other people in your family
+    text: Involving you and other people in your family
     answer_options:
     - text: Not interested
       hotkey: 1
@@ -250,7 +244,7 @@ questions:
       display_class: option-of-multiple option-of-4 survey-scale
   - name: interest_in_hospital_stay
     data_type: answer_option_id
-    text: Taking part in a study in which you would stay in the hospital for 1 or more days
+    text: Staying in the hospital for 1 or more days
     answer_options:
     - text: Not interested
       hotkey: 1

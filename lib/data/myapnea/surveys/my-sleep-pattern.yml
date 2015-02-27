@@ -11,31 +11,31 @@ questions:
   - name: number_of_hours_weekdays
     data_type: answer_option_id
     answer_options:
-    - text: 0-1 hours
+    - text: 0-4 hours
       hotkey: 1
       value: 1
       display_class: option-of-multiple option-of-4 label-default
-    - text: 2 hours
+    - text: 5-6 hours
       hotkey: 2
       value: 2
       display_class: option-of-multiple option-of-4 label-default
-    - text: 3 hours
+    - text: 7 hours
       hotkey: 3
       value: 3
       display_class: option-of-multiple option-of-4 label-default
-    - text: 4 hours
+    - text: 8 hours
       hotkey: 4
       value: 4
       display_class: option-of-multiple option-of-4 label-default
-    - text: 5 hours
+    - text: 9 hours
       hotkey: 5
       value: 5
       display_class: option-of-multiple option-of-4 label-default
-    - text: 6 hours
+    - text: 10 or more hours
       hotkey: 6
       value: 6
       display_class: option-of-multiple option-of-4 label-default
-    - text: 7 or more hours
+    - text: Unsure
       hotkey: 7
       value: 7
       display_class: option-of-multiple option-of-4 label-default
@@ -51,31 +51,31 @@ questions:
   - name: number_of_hours_weekends
     data_type: answer_option_id
     answer_options:
-    - text: 0-1 hours
+    - text: 0-4 hours
       hotkey: 1
       value: 1
       display_class: option-of-multiple option-of-4 label-default
-    - text: 2 hours
+    - text: 5-6 hours
       hotkey: 2
       value: 2
       display_class: option-of-multiple option-of-4 label-default
-    - text: 3 hours
+    - text: 7 hours
       hotkey: 3
       value: 3
       display_class: option-of-multiple option-of-4 label-default
-    - text: 4 hours
+    - text: 8 hours
       hotkey: 4
       value: 4
       display_class: option-of-multiple option-of-4 label-default
-    - text: 5 hours
+    - text: 9 hours
       hotkey: 5
       value: 5
       display_class: option-of-multiple option-of-4 label-default
-    - text: 6 hours
+    - text: 10 or more hours
       hotkey: 6
       value: 6
       display_class: option-of-multiple option-of-4 label-default
-    - text: 7 or more hours
+    - text: Unsure
       hotkey: 7
       value: 7
       display_class: option-of-multiple option-of-4 label-default

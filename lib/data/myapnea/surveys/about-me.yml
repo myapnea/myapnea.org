@@ -63,7 +63,7 @@ questions:
     - text: Native Hawaiian or Other Pacific Islander (i.e. Native Hawaiian, Guamanian or Chamorro, Samoan, Fijian, Tongan, etc.)
       hotkey: F
       value: 6
-    - text: White (i.e. German, Irish, Lebanese, Egyptian etc.)
+    - text: White (i.e. German, Irish, Lebanese etc.)
       hotkey: G
       value: 7
     - text: Some other race or origin (please specify)
