@@ -1,14 +1,67 @@
 module SurveysHelper
-  def previous_question_path(answer)
-    if answer.answer_session.first_answer.nil? or answer.answer_session.first_answer == answer
-      start_survey_path(slug: answer.answer_session.survey)
-    elsif answer.previous_answer.present?
-      ask_question_path(question_id: answer.previous_answer.question.id, answer_session_id: answer.answer_session.id)
-    else
-      ask_question_path(question_id: answer.answer_session.last_answer.question.id, answer_session_id: answer.answer_session.id)
-    end
-  end
 
+  ## Deprecated - remove in 6.0.0
+  # def previous_question_path(answer)
+  #   if answer.answer_session.first_answer.nil? or answer.answer_session.first_answer == answer
+  #     start_survey_path(slug: answer.answer_session.survey)
+  #   elsif answer.previous_answer.present?
+  #     ask_question_path(question_id: answer.previous_answer.question.id, answer_session_id: answer.answer_session.id)
+  #   else
+  #     ask_question_path(question_id: answer.answer_session.last_answer.question.id, answer_session_id: answer.answer_session.id)
+  #   end
+  # end
+
+  # def next_survey?(current_qf)
+  #   Survey.where(status: "show").select{|qf| qf.id != current_qf.id }.first.present?
+  #
+  # end
+  #
+  #
+  # def bmi(height, weight)
+  #   (weight/height**2 * 703).round
+  # end
+  #
+  # def bmi_category(bmi)
+  #   if bmi < 18.5
+  #     "Underweight"
+  #   elsif bmi < 25
+  #     "Normal"
+  #   elsif bmi < 30
+  #     "Overweight"
+  #   else
+  #     "Obese"
+  #   end
+  # end
+  #
+  #
+  # def conditional_tag(condition, tag, attributes, &block)
+  #   if condition
+  #     haml_tag :div, attributes, &block
+  #   else
+  #     haml_concat capture_haml(&block)
+  #   end
+  # end
+  #
+  # def show_questions
+  #   # show self
+  #
+  #   # show descendants
+  #
+  #
+  # end
+
+
+
+  # def go_to_next_survey(user, current_qf)
+  #   next_survey = Survey.where(status: "show").select{|qf| qf.id != current_qf.id }.first
+  #   as = user.answer_sessions.where(survey_id: next_survey.id)
+  #
+  #   start_or_resume_survey(next_survey, as)
+  # end
+
+
+
+  ##
   def have_checked?(answer, answer_template, val)
     if answer.present? and answer.value.present? and answer.value[answer_template.id].present?
       saved_val = answer.value[answer_template.id]
@@ -36,48 +89,10 @@ module SurveysHelper
     end
   end
 
-  def next_survey?(current_qf)
-    Survey.where(status: "show").select{|qf| qf.id != current_qf.id }.first.present?
-
-  end
-
-  def go_to_next_survey(user, current_qf)
-    next_survey = Survey.where(status: "show").select{|qf| qf.id != current_qf.id }.first
-    as = user.answer_sessions.where(survey_id: next_survey.id)
-
-    start_or_resume_survey(next_survey, as)
-  end
-
-  def bmi(height, weight)
-    (weight/height**2 * 703).round
-  end
-
-  def bmi_category(bmi)
-    if bmi < 18.5
-      "Underweight"
-    elsif bmi < 25
-      "Normal"
-    elsif bmi < 30
-      "Overweight"
-    else
-      "Obese"
-    end
+  def next_survey_path(survey)
+    next_survey = current_user.choose_next_survey(survey)
+    next_survey.present? ? survey_path(next_survey) : surveys_path
   end
 
 
-  def conditional_tag(condition, tag, attributes, &block)
-    if condition
-      haml_tag :div, attributes, &block
-    else
-      haml_concat capture_haml(&block)
-    end
-  end
-
-  def show_questions
-    # show self
-
-    # show descendants
-
-
-  end
 end

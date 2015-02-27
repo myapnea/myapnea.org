@@ -61,33 +61,33 @@ class SurveysController < ApplicationController
   end
 
   ## Deprecated - to be removed in Version 6.0.0d
-  def start_survey
+  # def start_survey
+  #
+  #   if @answer_session.completed?
+  #     redirect_to surveys_path
+  #   else
+  #     redirect_to ask_question_path(question_id: @answer_session.next_question.id, answer_session_id: @answer_session.id)
+  #   end
+  # end
 
-    if @answer_session.completed?
-      redirect_to surveys_path
-    else
-      redirect_to ask_question_path(question_id: @answer_session.next_question.id, answer_session_id: @answer_session.id)
-    end
-  end
-
-  def intro
-    # @survey = Survey.find(params[:slug])
-    @survey = Survey.where("slug = ? or id = ?", params["slug"], params["slug"].to_i).first
-  end
+  # def intro
+  #   # @survey = Survey.find(params[:slug])
+  #   @survey = Survey.where("slug = ? or id = ?", params["slug"], params["slug"].to_i).first
+  # end
 
 
-  def ask_question
-    @answer_session = AnswerSession.find(params[:answer_session_id])
-    @question = Question.find(params[:question_id])
-
-    if @question.part_of_group?
-      @group = @question.group
-      @questions = @group.minimum_set(@answer_session.survey)
-      @answer = Answer.current.where(question_id: @questions.first.id, answer_session_id: @answer_session.id).first || Answer.new(question_id: @questions.first.id, answer_session_id: @answer_session.id)
-    else
-      @answer = Answer.current.where(question_id: @question.id, answer_session_id: @answer_session.id).first || Answer.new(question_id: @question.id, answer_session_id: @answer_session.id)
-    end
-  end
+  # def ask_question
+  #   @answer_session = AnswerSession.find(params[:answer_session_id])
+  #   @question = Question.find(params[:question_id])
+  #
+  #   if @question.part_of_group?
+  #     @group = @question.group
+  #     @questions = @group.minimum_set(@answer_session.survey)
+  #     @answer = Answer.current.where(question_id: @questions.first.id, answer_session_id: @answer_session.id).first || Answer.new(question_id: @questions.first.id, answer_session_id: @answer_session.id)
+  #   else
+  #     @answer = Answer.current.where(question_id: @question.id, answer_session_id: @answer_session.id).first || Answer.new(question_id: @question.id, answer_session_id: @answer_session.id)
+  #   end
+  # end
   ##
 
 

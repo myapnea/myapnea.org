@@ -29,41 +29,6 @@ class Survey < ActiveRecord::Base
   scope :viewable, -> { where(status: "show") }
 
   # Class Methods
-
-  ## Deprecated - remove in 6.0.0
-  def self.complete(user)
-    res = joins(:answer_sessions).where(status: "show", answer_sessions: {user_id: user.id, deleted: false}).select do |qf|
-      as = qf.answer_sessions.where(user_id: user.id, deleted: false).order(updated_at: :desc).first
-
-
-      as.present? and as.completed? and !as.deleted?
-    end
-
-    res
-  end
-
-  def self.unstarted(user)
-    user_id = (user.present? ? user.id : nil)
-    res = includes(:answer_sessions).where(status: "show").select{ |qf| user_id.blank? or qf.answer_sessions.where(user_id: user.id, deleted: false).empty? }
-
-    res
-  end
-
-  def self.incomplete(user)
-    res = joins(:answer_sessions).where(status: "show", answer_sessions: {user_id: user.id, deleted: false}).select do |qf|
-      as = qf.answer_sessions.where(user_id: user.id).order(updated_at: :desc).first
-
-      as.present? and !as.completed? and !as.deleted?
-    end
-    res
-  end
-  ## END DEPRECATED
-
-  def most_recent_encounter(user)
-    answer_sessions.where(user_id: user.id).order("created_at desc").first
-
-  end
-
   def self.refresh_all_surveys
     Survey.all.each do |survey|
       survey.refresh_precomputations
@@ -139,7 +104,7 @@ class Survey < ActiveRecord::Base
   end
 
   def to_param
-    self[:slug] || self[:id].to_s
+    self[:slug] # || self[:id].to_s
   end
 
   ## Need to be fast
@@ -159,16 +124,8 @@ class Survey < ActiveRecord::Base
     false unless user.present?
     self.answer_sessions.where( user_id: user.id ).empty?
   end
+  ##
 
-
-  ## Needed for topographic sort, which is not very fast
-  def tsort_each_node(&block)
-    all_questions_descendants.each(&block)
-  end
-
-  def tsort_each_child(node, &block)
-    node.children.each(&block)
-  end
 
   def completion_percent(user)
     if self.unstarted?(user)
@@ -180,27 +137,7 @@ class Survey < ActiveRecord::Base
     end
   end
 
-  ## Cached in database, need to be refreshed on change (when questions are updated!!)
-  # TODO: Put in survey rake task
-
-  # TODO: Rename - it's not tsorted edges but tsorted questions (nodes)
-  def tsorted_question_ids
-    if self[:tsored_nodes].blank?
-
-      update(tsorted_nodes: tsort.reverse.map(&:id).to_json)
-
-
-    end
-
-    JSON::parse(self[:tsorted_nodes])
-  end
-
-  def total_time
-    ActiveSupport::Deprecation.warn("Time estimates disabled until they are further developed.")
-    nil
-  end
-
-  # Alias
+  ## Aliases
   def total_questions
     longest_path_length
   end
@@ -209,51 +146,26 @@ class Survey < ActiveRecord::Base
     path_length(source)
   end
 
+  def source
+    first_question
+  end
+  ## End Aliases
+
   def path_length(current_question)
     survey_question_orders.where(question_id: current_question.id).first.remaining_distance
   end
 
-  ## Cache ordering in database and allow quick lookup of questions. Need to be run on reload!!
-  # TODO: Put in survey rake task
-  def refresh_precomputations
-    # tsort nodes
-    update(tsorted_nodes: nil)
-    tsorted_question_ids
 
-    # survey_question_order
-    load_survey_question_order
-  end
-
-
-  def load_survey_question_order
-    survey_question_orders.destroy_all
-
-    tsort.reverse.each_with_index do |question, order|
-
-      SurveyQuestionOrder.create(question_id: question.id, survey_id: self.id, question_number: order + 1, remaining_distance: find_longest_path_length_to_leaf(question) )
-
-    end
-  end
-
-
-  # Instance methods
+  ## Same thing?
   def most_recent_answer_session(user)
     answer_sessions.where(user_id: user.id).order(updated_at: :desc).first
   end
 
-  ## WORK IN PROGRESS
-  def completion_stats(user)
-    most_recent_answer_session(user).calculate_status_stats
+  def most_recent_encounter(user)
+    answer_sessions.where(user_id: user.id).order("created_at desc").first
   end
+  ##
 
-
-  # Deprecated - Remove in Version 6.0.0
-  def deprecated?
-    self[:slug].nil?
-  end
-
-
-  ###
 
   # Efficient lookup of questions (1 query), returns relation
   def all_questions
@@ -274,12 +186,67 @@ class Survey < ActiveRecord::Base
     ([source] + source.descendants)
   end
 
-  # Alias
-  def source
-    first_question
-  end
+
+
+
+
+
+
 
   # private
+
+  ## Called on precomputation:
+
+  ## Cached in database, need to be refreshed on change (when questions are updated!!)
+  # TODO: Put in survey rake task
+
+  # TODO: Rename - it's not tsorted edges but tsorted questions (nodes)
+
+  ## Needed for topographic sort, which is not very fast
+  def tsort_each_node(&block)
+    all_questions_descendants.each(&block)
+  end
+
+  def tsort_each_child(node, &block)
+    node.children.each(&block)
+  end
+
+
+  def tsorted_question_ids
+    if self[:tsored_nodes].blank?
+
+      update(tsorted_nodes: tsort.reverse.map(&:id).to_json)
+
+
+    end
+
+    JSON::parse(self[:tsorted_nodes])
+  end
+
+
+
+
+
+  # Cache ordering in database and allow quick lookup of questions. Need to be run on reload!!
+  # TODO: Put in survey rake task
+  def refresh_precomputations
+    # tsort nodes
+    update(tsorted_nodes: nil)
+    tsorted_question_ids
+
+    # survey_question_order
+    load_survey_question_order
+  end
+
+  def load_survey_question_order
+    survey_question_orders.destroy_all
+
+    tsort.reverse.each_with_index do |question, order|
+
+      SurveyQuestionOrder.create(question_id: question.id, survey_id: self.id, question_number: order + 1, remaining_distance: find_longest_path_length_to_leaf(question) )
+
+    end
+  end
 
   # Should only be called when precomputing
   def find_leaf
@@ -297,6 +264,9 @@ class Survey < ActiveRecord::Base
 
   end
 
+
+
+
   def find_leaves
     if first_question.descendants.length > 0
       first_question.descendants.select {|q| q.leaf?}
@@ -308,6 +278,9 @@ class Survey < ActiveRecord::Base
     end
 
   end
+
+
+
 
   ### Used in calculating remaining path.
   def find_longest_path_length_to_leaf(source)
@@ -351,5 +324,47 @@ class Survey < ActiveRecord::Base
 
     distances[destination.id]
   end
+  ## End called on precomputation
+
+
+
+
+  ## Deprecated - remove in 6.0.0
+  # def self.complete(user)
+  #   res = joins(:answer_sessions).where(status: "show", answer_sessions: {user_id: user.id, deleted: false}).select do |qf|
+  #     as = qf.answer_sessions.where(user_id: user.id, deleted: false).order(updated_at: :desc).first
+  #
+  #
+  #     as.present? and as.completed? and !as.deleted?
+  #   end
+  #
+  #   res
+  # end
+  #
+  # def self.unstarted(user)
+  #   user_id = (user.present? ? user.id : nil)
+  #   res = includes(:answer_sessions).where(status: "show").select{ |qf| user_id.blank? or qf.answer_sessions.where(user_id: user.id, deleted: false).empty? }
+  #
+  #   res
+  # end
+  #
+  # def self.incomplete(user)
+  #   res = joins(:answer_sessions).where(status: "show", answer_sessions: {user_id: user.id, deleted: false}).select do |qf|
+  #     as = qf.answer_sessions.where(user_id: user.id).order(updated_at: :desc).first
+  #
+  #     as.present? and !as.completed? and !as.deleted?
+  #   end
+  #   res
+  # end
+  ## END DEPRECATED
+
+  # def completion_stats(user)
+  #   most_recent_answer_session(user).calculate_status_stats
+  # end
+
+  def deprecated?
+    self[:slug].nil?
+  end
+
 
 end

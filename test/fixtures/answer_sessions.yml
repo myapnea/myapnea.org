@@ -1,17 +1,17 @@
 # Deprecated - remove in 6.0.0
-dep_incomplete:
-  user: has_incomplete_survey
-  survey: deprecated
-  first_answer: a1
-  last_answer: a4
-dep_complete:
-  user: has_completed_survey
-  survey: deprecated
-  first_answer: a5
-  last_answer: a9
-dep_unstarted:
-  user: has_unstarted_survey
-  survey: deprecated
+#dep_incomplete:
+#  user: has_incomplete_survey
+#  survey: deprecated
+#  first_answer: a1
+#  last_answer: a4
+#dep_complete:
+#  user: has_completed_survey
+#  survey: deprecated
+#  first_answer: a5
+#  last_answer: a9
+#dep_unstarted:
+#  user: has_unstarted_survey
+#  survey: deprecated
 
 
 # New

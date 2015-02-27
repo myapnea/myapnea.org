@@ -25,7 +25,7 @@
       %td{ style: "text-align:center" }
         = simple_check user.has_role? :moderator
       %td
-        = user.complete_surveys.count
+        = user.completed_surveys.count
       %td{ style: 'white-space:nowrap' }
         = link_to 'Edit', edit_user_path(user), class: 'btn btn-default btn-xs'
         - unless current_user == user

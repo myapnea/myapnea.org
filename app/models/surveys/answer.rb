@@ -28,6 +28,8 @@ class Answer < ActiveRecord::Base
 
   # Instance Methods
 
+
+  ## Value Methods
   ## Different options:
   # It gets complicated with many answer templates
   #   at most basic, one answer template with not allowed multiple ==> target field gets value
@@ -99,32 +101,6 @@ class Answer < ActiveRecord::Base
     res.each_pair { |k, v| res[k] = v.first if v.length == 1 }
 
     res
-
-    # if question.present? and question.answer_templates.present?
-    #   val_container = {}
-    #
-    #   question.answer_templates.each do |template|
-    #     target_field = template.data_type
-    #     template_answer_values = answer_values.where(answer_template_id: template.id)
-    #
-    #     if template.allow_multiple and template_answer_values.length > 1
-    #       val_container[template.id] = template_answer_values.map{|av| av[target_field] }
-    #     elsif answer_values.length == 1
-    #       val_container[template.id] =  template_answer_values.first[target_field]
-    #     else
-    #       nil
-    #     end
-    #   end
-    #
-    #   if val_container.values.length == 1
-    #     val_container.values.first
-    #   else
-    #     val_container
-    #   end
-    #
-    # else
-    #   nil
-    # end
   end
 
   def string_value
@@ -146,7 +122,9 @@ class Answer < ActiveRecord::Base
       answer_values.map(&:show_value).join(", ")
     end
   end
+  ## End Value Methods
 
+  ## DAG methods
   def next_answer
     out_edge.present? ? out_edge.child_answer : nil
   end
@@ -173,6 +151,7 @@ class Answer < ActiveRecord::Base
       d.out_edge.destroy if d.out_edge
     end
   end
+  ## End DAG Methods
 
   def next_question
     candidate_edges = QuestionEdge.where(parent_question_id: question.id, direct: true, survey_id: answer_session.survey.id)
@@ -189,12 +168,6 @@ class Answer < ActiveRecord::Base
       chosen_edge.descendant
     end
 
-  end
-
-  def fits_condition?(condition)
-    all_values = answer_values.map(&:string_value)
-
-    all_values.include? condition
   end
 
   def multiple_options?
@@ -220,4 +193,12 @@ class Answer < ActiveRecord::Base
     self[:state] = (template_completions.all? ? 'complete' : 'incomplete')
 
   end
+
+
+  def fits_condition?(condition)
+    all_values = answer_values.map(&:string_value)
+
+    all_values.include? condition
+  end
+
 end
