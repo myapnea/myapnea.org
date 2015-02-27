@@ -325,6 +325,14 @@ questions:
       hotkey: N
       value: 2
       display_class: label-default label-lg
+    - text: Don't know
+      hotkey: 3
+      value: 3
+      display_class: label-default label-lg
+    - text: Prefer not to answer
+      hotkey: 4
+      value: 4
+      display_class: label-default label-lg
   - name: specified_health_condition
     data_type: text_value
     target_answer_option: 1
