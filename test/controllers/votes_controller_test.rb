@@ -6,25 +6,6 @@ class VotesControllerTest < ActionController::TestCase
     @regular_user = users(:user_1)
   end
 
-
-  # Deprecated - remove in 6.0.0
-  # test "should vote for survey question as regular user" do
-  #   login(users(:social))
-  #
-  #   old_rating = questions(:q1).rating
-  #
-  #   assert_equal old_rating, Vote.where(question_id: questions(:q1).id).count
-  #
-  #   assert_difference "Vote.count" do
-  #     xhr :post, :vote, vote: {question_id: questions(:q1).id, rating: '1'}, format: 'json'
-  #   end
-  #
-  #   assert_not_nil assigns(:vote)
-  #
-  #   assert_equal questions(:q1).rating, old_rating + 1
-  #
-  # end
-
   test "should vote for research topic as regular user" do
     login(@regular_user)
 

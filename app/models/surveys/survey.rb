@@ -326,42 +326,6 @@ class Survey < ActiveRecord::Base
   end
   ## End called on precomputation
 
-
-
-
-  ## Deprecated - remove in 6.0.0
-  # def self.complete(user)
-  #   res = joins(:answer_sessions).where(status: "show", answer_sessions: {user_id: user.id, deleted: false}).select do |qf|
-  #     as = qf.answer_sessions.where(user_id: user.id, deleted: false).order(updated_at: :desc).first
-  #
-  #
-  #     as.present? and as.completed? and !as.deleted?
-  #   end
-  #
-  #   res
-  # end
-  #
-  # def self.unstarted(user)
-  #   user_id = (user.present? ? user.id : nil)
-  #   res = includes(:answer_sessions).where(status: "show").select{ |qf| user_id.blank? or qf.answer_sessions.where(user_id: user.id, deleted: false).empty? }
-  #
-  #   res
-  # end
-  #
-  # def self.incomplete(user)
-  #   res = joins(:answer_sessions).where(status: "show", answer_sessions: {user_id: user.id, deleted: false}).select do |qf|
-  #     as = qf.answer_sessions.where(user_id: user.id).order(updated_at: :desc).first
-  #
-  #     as.present? and !as.completed? and !as.deleted?
-  #   end
-  #   res
-  # end
-  ## END DEPRECATED
-
-  # def completion_stats(user)
-  #   most_recent_answer_session(user).calculate_status_stats
-  # end
-
   def deprecated?
     self[:slug].nil?
   end

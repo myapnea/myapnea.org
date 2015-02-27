@@ -46,8 +46,12 @@ class Answer < ActiveRecord::Base
   # (not supported now) multiple values,
 
   def value=(val)
-    answer_values.clear
+    if locked?
+      logger.warn "Attempting to change value of locked answer: survey: #{answer_session.survey.slug} | question: #{question.slug} | user: #{answer_session.user.email} | encounter: #{answer_session.encounter}"
+      return nil
+    end
 
+    answer_values.clear
 
     template_completions = []
     template_values = []

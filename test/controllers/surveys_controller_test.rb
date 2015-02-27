@@ -21,7 +21,7 @@ class SurveysControllerTest < ActionController::TestCase
 
     refute answer_sessions(:incomplete).completed?
 
-    post :process_answer, { 'question_id' => [questions(:checkbox1).id.to_s], 'answer_session_id' => answer_sessions(:incomplete).id.to_s,  questions(:checkbox1).id.to_s => { answer_templates(:race_list).id.to_s => [answer_options(:wookie).id.to_s, answer_options(:other_race).id.to_s], answer_templates(:specified_race).id.to_s => "Polish"}}
+    xhr :post, :process_answer, { 'question_id' => [questions(:checkbox1).id.to_s], 'answer_session_id' => answer_sessions(:incomplete).id.to_s,  questions(:checkbox1).id.to_s => { answer_templates(:race_list).id.to_s => [answer_options(:wookie).id.to_s, answer_options(:other_race).id.to_s], answer_templates(:specified_race).id.to_s => "Polish"}}, format: 'json'
     created_answer = assigns(:answer_session).last_answer
 
     assert created_answer.persisted?
@@ -34,7 +34,7 @@ class SurveysControllerTest < ActionController::TestCase
 
     assert assigns(:answer_session).completed?
 
-    assert_redirected_to survey_report_path(slug: assigns(:answer_session).survey, answer_session_id: assigns(:answer_session))
+    assert_response :success
   end
 
   test "User can view survey report for completed survey" do
@@ -104,5 +104,20 @@ class SurveysControllerTest < ActionController::TestCase
     assert_equal users(:has_launched_survey).assigned_surveys, assigns(:surveys)
 
     assert_response :success
+  end
+
+  ## Survey Submition
+  test "User can submit survey, locking all completed answers" do
+    login(users(:has_completed_survey))
+    assert answer_sessions(:complete).completed?
+
+    xhr :post, :submit, answer_session_id: answer_sessions(:complete).id, format: 'json'
+
+    answer_sessions(:complete).answers.each do |answer|
+      assert answer.locked?
+      old_val = answer.value
+      answer.value = nil
+      assert old_val, answer.value
+    end
   end
 end

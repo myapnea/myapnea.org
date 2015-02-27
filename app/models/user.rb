@@ -242,31 +242,6 @@ class User < ActiveRecord::Base
 
   end
 
-
-  ## Deprecated - remove in 6.0.0
-  # def incomplete_surveys
-  #   Survey.incomplete(self)
-  # end
-  #
-  # def complete_surveys
-  #   Survey.complete(self)
-  # end
-  #
-  # def unstarted_surveys
-  #   Survey.unstarted(self)
-  # end
-  #
-  # def not_complete_surveys
-  #   self.incomplete_surveys + self.unstarted_surveys
-  # end
-  #
-  # def smart_surveys
-  #   (self.incomplete_surveys + self.unstarted_surveys + self.complete_surveys).select {|s| !s.deprecated?}
-  # end
-  #
-
-  ## Deprecated ends
-
   # Surveys
   def assigned_surveys
     Survey.viewable.joins(:answer_sessions).where(answer_sessions: {user_id: self.id}).distinct
@@ -283,6 +258,7 @@ class User < ActiveRecord::Base
   def choose_next_survey(survey)
     incomplete_surveys.where("surveys.id != ?", survey.id).first
   end
+  #
 
 
   def research_topics_with_vote

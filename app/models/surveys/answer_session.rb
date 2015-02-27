@@ -103,66 +103,6 @@ class AnswerSession < ActiveRecord::Base
         .where("parent_ae.child_answer_id is not null or child_ae.parent_answer_id is not null")
   end
 
-
-
-
-  ## Deprecated - remove in 6.0.0
-  # def all_reportable_answers
-  #   answers.joins(answer_values: :answer_template).where("\"answer_templates\".data_type = 'answer_option_id'").where('"answer_values".answer_option_id is not null')
-  # end
-
-
-  # TODO: Can we just use the association?
-  # def answers
-  #   Answer.current
-  #       .joins('left join answer_edges parent_ae on parent_ae.child_answer_id = "answers".id')
-  #       .joins('left join answer_edges child_ae on child_ae.parent_answer_id = "answers".id')
-  #       .where(answer_session_id: self.id)
-  #       .where("parent_ae.child_answer_id is not null or child_ae.parent_answer_id is not null")
-  #
-  # end
-
-
-  # def grouped_reportable_answers
-  #   all_reportable_answers.includes(question: :question_help_message).group_by{|a| a.question.question_help_message ? a.question.question_help_message.message : ""}
-  #
-  # end
-
-  # def reset_completion
-  #   if first_answer.present?
-  #     #connected_answers = all_answers
-  #     first_answer.destroy_descendant_edges
-  #     self.first_answer = nil
-  #     self.last_answer = nil
-  #     self.completed = false
-  #     save
-  #     #connected_answers.each(&:destroy)
-  #   end
-  # end
-
-  # def path_length_to_answer(answer)
-  #   if last_answer.blank?
-  #     coll = []
-  #     current_answer = answer
-  #   elsif answer.nil? or answer.new_record?
-  #     coll = [answer]
-  #     current_answer = last_answer
-  #   else
-  #     current_answer = answer.clone
-  #     coll = []
-  #   end
-  #
-  #   while current_answer
-  #     coll << current_answer
-  #     current_answer = current_answer.previous_answer
-  #   end
-  #
-  #   coll.length
-  # end
-
-
-  ##
-
   def get_answer(question_id)
     Answer.current.joins(:question).where(questions: {id: question_id}).where(answer_session_id: self.id).order("updated_at desc").limit(1).first
   end
