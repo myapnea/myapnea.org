@@ -90,10 +90,7 @@
     submitAnswer(inputElement)
 
   @revealNextInput = (targetInput) ->
-    $("[data-receiver~="+targetInput+"]").removeClass "hidden-input"
     $("[data-receiver~="+targetInput+"]").find("input").first().focus()
-  @hideNextInput = (targetInput) ->
-    $("[data-receiver~="+targetInput+"]").addClass "hidden-input"
 
 
 
@@ -103,7 +100,7 @@
 
   # Respond to click events on conditional events - note that this only works on checkbox inputs
   $("[data-object~='reveal-next-input']").click (e) ->
-    if this.checked then revealNextInput($(this).data('target')) else hideNextInput($(this).data('target'))
+    if this.checked then revealNextInput($(this).data('target'))
 
   $('input:radio').click (event) ->
     event.stopPropagation()
@@ -201,10 +198,9 @@
           inputs = $(".survey-container.active").find("input:checkbox")
           inputs.each (index) ->
             if e.keyCode is $(inputs[index]).data("hotkey").toString().charCodeAt(0)
-              if $(inputs[index]).prop "checked"
-                hideNextInput($(inputs[index]).data('target')) if $(inputs[index]).data('object') == "reveal-next-input"
-              else
-                revealNextInput($(inputs[index]).data('target')) if $(inputs[index]).data('object') == "reveal-next-input"
+              if !($(inputs[index]).prop "checked") and ($(inputs[index]).data('object') == "reveal-next-input")
+                console.log "about to error"
+                revealNextInput($(inputs[index]).data('target'))
               $(inputs[index]).prop "checked", !$(inputs[index]).prop("checked")
               handleChangedValue($(inputs[index]))
 
