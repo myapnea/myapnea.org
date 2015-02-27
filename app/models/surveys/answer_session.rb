@@ -43,11 +43,15 @@ class AnswerSession < ActiveRecord::Base
 
   def completed?
     answers.complete.count == survey.questions.count
-    # unless self[:completed]
-    #   update_attribute(:completed, total_remaining_path_length == 0)
-    # end
-    #
-    # self[:completed]
+
+  end
+
+  def locked?
+    unless self[:locked]
+      update(locked: (answers.locked.count == survey.questions.count))
+    end
+
+    self[:locked]
   end
 
   def process_answer(question, params)
@@ -152,7 +156,7 @@ class AnswerSession < ActiveRecord::Base
   # end
 
   def percent_completed
-    (answers.complete.count / survey.questions.count) * 100.0
+    (answers.complete.count / survey.questions.count.to_f) * 100.0
   end
 
   def destroy

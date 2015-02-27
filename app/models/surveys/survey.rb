@@ -133,7 +133,7 @@ class Survey < ActiveRecord::Base
     elsif self.complete?(user)
       100
     else
-      self.most_recent_answer_session(user).percent_completed
+      self.most_recent_encounter(user).percent_completed
     end
   end
 

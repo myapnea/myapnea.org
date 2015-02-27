@@ -44,7 +44,7 @@ class SurveysController < ApplicationController
           @answer_session.lock_answers
         end
 
-        render json: { completed: @answer_session.completed? }
+        render json: { locked: @answer_session.locked? }
 
       end
     end

@@ -14,7 +14,7 @@ class Answer < ActiveRecord::Base
   # Scopes
   scope :incomplete, -> { where(state: 'incomplete')}
   scope :migrated, -> { where(state: 'migrated')}
-  scope :complete, -> { where(state: 'complete')}
+  scope :complete, -> { where(state: ['complete', 'locked'])}
   scope :locked, -> { where(state: 'locked')}
 
   # Class Methods
@@ -179,7 +179,7 @@ class Answer < ActiveRecord::Base
   end
 
   def complete?
-    self[:state] == 'complete'
+    self[:state] == 'complete' or self[:state] == 'locked'
   end
 
   def incomplete?

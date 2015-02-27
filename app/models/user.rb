@@ -248,18 +248,16 @@ class User < ActiveRecord::Base
   end
 
   def completed_surveys
-    Survey.viewable.joins(:answer_sessions).where(answer_sessions: {user_id: self.id, completed: true}).distinct
+    Survey.viewable.joins(:answer_sessions).where(answer_sessions: {user_id: self.id}).distinct
   end
 
   def incomplete_surveys
-    Survey.viewable.joins(:answer_sessions).where(answer_sessions: {user_id: self.id, completed: false}).distinct
+    Survey.viewable.joins(:answer_sessions).where(answer_sessions: {user_id: self.id, locked: [false, nil]}).distinct
   end
 
   def choose_next_survey(survey)
     incomplete_surveys.where("surveys.id != ?", survey.id).first
   end
-  #
-
 
   def research_topics_with_vote
     ResearchTopic.voted_by(self)
