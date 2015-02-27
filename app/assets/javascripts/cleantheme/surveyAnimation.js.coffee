@@ -69,9 +69,6 @@
       newActiveQuestion = $(".survey-container.active")
       nextQuestionScroll(activeQuestion, newActiveQuestion)
 
-
-  @assignMultipleQuestionDirect = (element) ->
-
   # Progress to next part in multiple-part question
   @assignMultipleQuestion = (next, prev) ->
     activeQuestion = $(".survey-container.active .multiple-question-container.current")
@@ -110,8 +107,14 @@
     submitAnswer(inputElement)
 
   # Respond to click events on conditional events - note that this only works on checkbox inputs
-  $(".reveal-next-input").click (e) ->
-    changeFocusDirect($(this), $(this).nextAll('.hidden-input').first())
+  $("[data-object~='reveal-next-input']").click (e) ->
+    console.log "clicked reveal-next-input"
+    if this.checked
+      $("[data-receiver~="+$(this).data('target')+"]").removeClass("hidden-input")
+      # change focus if possible
+      changeFocusDirect($(this), $("[data-receiver~="+$(this).data('target')+"]") )
+    else
+      $("[data-receiver~="+$(this).data('target')+"]").addClass("hidden-input")
 
   # Respond to user clicking different questions
   $('.survey-container').click (event) ->
@@ -126,9 +129,10 @@
           event.preventDefault()
           $(event.target).closest("label").prev("input").prop "checked", true
           handleChangedValue($(event.target).closest("label").prev("input"))
-          if $(event.target).closest("label").prev("input").hasClass "reveal-next-input"
-            targetInput = $(event.target).closest("label").prev("input")
-            changeFocusDirect(targetInput, targetInput.nextAll('.hidden-input').first())
+          if $(event.target).closest("label").prev("input").data('object')=="reveal-next-input"
+            targetInput = $(event.target).closest("label").prev("input").data('target')
+            console.log targetInput
+            $("[data-receiver~="+targetInput+"]").removeClass "hidden-input"
           else if $(this).find('.multiple-question-container').length
             if $(event.target).closest(".multiple-question-container").hasClass "current"
               assignMultipleQuestion(true,false)
@@ -235,9 +239,10 @@
               if e.keyCode is key
                 $(inputs[index]).prop "checked", true
                 handleChangedValue($(inputs[index]))
-                if $(inputs[index]).hasClass "reveal-next-input"
-                    e.preventDefault()
-                    changeFocusDirect($(this), $(this).nextAll('.hidden-input').first())
+                if $(inputs[index]).data('object') == "reveal-next-input"
+                  e.preventDefault()
+                  targetInput = $(inputs[index]).data('target')
+                  $("[data-receiver~="+targetInput+"]").removeClass "hidden-input"
                 else
                   assignQuestion(true, false)
         # Check answer option if applicable
@@ -253,9 +258,10 @@
                 else
                   $(inputs[index]).prop "checked", true
                   handleChangedValue($(inputs[index]))
-                if $(inputs[index]).hasClass "reveal-next-input"
+                if $(inputs[index]).data('object') == "reveal-next-input"
                   e.preventDefault()
-                  changeFocusDirect($(this), $(this).nextAll('.hidden-input').first())
+                  targetInput = $(inputs[index]).data('target')
+                  $("[data-receiver~="+targetInput+"]").removeClass "hidden-input"
 
   # Attach change event handler to everything but radio button inputs. Radio button inputs are changed by JS, so each time
   # the :checked property is changed, handleChangedValue has to be called.

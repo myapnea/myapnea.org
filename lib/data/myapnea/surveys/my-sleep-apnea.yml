@@ -12,7 +12,6 @@ questions:
   - name: age_of_diagnosis
     data_type: answer_option_id
     answer_options:
-      display_class: option-of-multiple option-of-4 label-default
     - text: 0-19 years old
       hotkey: 1
       value: 1
