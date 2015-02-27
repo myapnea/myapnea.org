@@ -6,7 +6,7 @@
     %div.hidden-input{ data: { receiver: "#{('question_'+question.id.to_s+'_answer'+answer_option.id.to_s+'_secondary_'+targeted_template.data_type)}" } }
       - targeted_template.answer_options.distinct.each do |answer_option|
         %div{ class: answer_option.display_class }
-          = radio_button_tag "#{question.id}[#{targeted_template.id}]", answer_option.id, have_checked?(answer, targeted_template, answer_option.id), id: "question_#{question.id}_#{targeted_template.id}_#{answer_option.new_value}", data: { hotkey: answer_option.hotkey }
+          = radio_button_tag "#{question.id}[#{targeted_template.id}]", answer_option.id, have_checked?(answer, targeted_template, answer_option.id), id: "question_#{question.id}_#{targeted_template.id}_#{answer_option.new_value}", data: { hotkey: answer_option.hotkey, secondary: true }
           %label{ for: "question_#{question.id}_#{targeted_template.id}_#{answer_option.new_value}" }
             %p= answer_option.text
             %span.hotkey= answer_option.hotkey
