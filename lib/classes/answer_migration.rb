@@ -59,7 +59,12 @@ class AnswerMigration
 
     @answer_option_map.each do |ao_mapping|
       begin
-        AnswerOption.find(ao_mapping["old_option_id"])
+        old_ao = AnswerOption.find_by_id(ao_mapping["old_option_id"])
+
+        if old_ao.blank?
+          raise StandardError unless ao_mapping["old_value_min"] and ao_mapping["old_value_max"]
+        end
+
         new_template = AnswerTemplate.find_by!(name: ao_mapping["new_template_name"])
         new_template.answer_options.find_by!(value: ao_mapping["new_option_value"])
 

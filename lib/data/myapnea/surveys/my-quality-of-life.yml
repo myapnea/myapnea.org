@@ -165,6 +165,38 @@ questions:
       value: 6
       display_class: option-of-multiple option-of-6 survey-scale
 - text: |
+    In the past 7 days, how much did pain interfere with your day to day activities?
+  slug: last-week-pain-interference
+  display_type: radio_input
+  answer_templates:
+  - name: last_week_pain_interference
+    data_type: answer_option_id
+    answer_options:
+    - text: Very much
+      hotkey: 1
+      value: 1
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-danger
+    - text: Quite a bit
+      hotkey: 2
+      value: 2
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-warning
+    - text: Somewhat
+      hotkey: 3
+      value: 3
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-moderate
+    - text: A little bit
+      hotkey: 4
+      value: 4
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-good
+    - text: Not at all
+      hotkey: 5
+      value: 5
+      display_class: option-of-multiple option-of-6 survey-scale survey-scale-great
+    - text: Prefer not to answer
+      hotkey: 6
+      value: 6
+      display_class: option-of-multiple option-of-6 survey-scale
+- text: |
     In the past 7 days, I felt depressed:
   slug: last-week-depression
   display_type: radio_input
@@ -261,7 +293,7 @@ questions:
       value: 6
       display_class: option-of-multiple option-of-6 survey-scale
 - text: |
-    I have trouble doing all of my regular leisure activities with others
+    I have trouble doing all of my regular leisure activities with others:
   slug: trouble-with-leisure
   display_type: radio_input
   answer_templates:
@@ -285,38 +317,6 @@ questions:
       value: 4
       display_class: option-of-multiple option-of-6 survey-scale survey-scale-good
     - text: Never
-      hotkey: 5
-      value: 5
-      display_class: option-of-multiple option-of-6 survey-scale survey-scale-great
-    - text: Prefer not to answer
-      hotkey: 6
-      value: 6
-      display_class: option-of-multiple option-of-6 survey-scale
-- text: |
-    In the past 7 days, how much did pain interfere with your day to day activities?
-  slug: last-week-pain-interference
-  display_type: radio_input
-  answer_templates:
-  - name: last_week_pain_interference
-    data_type: answer_option_id
-    answer_options:
-    - text: Very much
-      hotkey: 1
-      value: 1
-      display_class: option-of-multiple option-of-6 survey-scale survey-scale-danger
-    - text: Quite a bit
-      hotkey: 2
-      value: 2
-      display_class: option-of-multiple option-of-6 survey-scale survey-scale-warning
-    - text: Somewhat
-      hotkey: 3
-      value: 3
-      display_class: option-of-multiple option-of-6 survey-scale survey-scale-moderate
-    - text: A little bit
-      hotkey: 4
-      value: 4
-      display_class: option-of-multiple option-of-6 survey-scale survey-scale-good
-    - text: Not at all
       hotkey: 5
       value: 5
       display_class: option-of-multiple option-of-6 survey-scale survey-scale-great

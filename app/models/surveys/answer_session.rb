@@ -169,6 +169,12 @@ class AnswerSession < ActiveRecord::Base
     answer
   end
 
+  def lock_answers
+    answers.each do |answer|
+      answer.update(state: "locked")
+    end
+  end
+
   ## Optimized (mostly)
   def applicable_questions
     # all questions in answer session's answers

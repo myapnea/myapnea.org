@@ -25,6 +25,8 @@
   - if can_complete_surveys
     - if survey.complete?(current_user)
       = link_to 'View report', survey_report_path(slug: survey)
+      %br/
+      = link_to 'Review answers', survey
     - elsif survey.incomplete?(current_user) and percent!=0
       = link_to 'Work on this survey now!', survey
     -elsif survey.incomplete?(current_user) and percent==0

@@ -1,8 +1,10 @@
 - if targeted_template.present?
   - if targeted_template.data_type == 'text_value'
     = text_field_tag "#{question.id}[#{targeted_template.id}]", answer.value[targeted_template.id], class: "survey-short-text survey-text-small hidden-input"
-  - elsif targeted_template.data_type == 'radio_input'
-    = 'Radio input!'
-
--#- if secondary_template and secondary_template.target_answer_option == answer_option.new_value
--#  = text_field_tag "#{question.id}[#{secondary_template.id}]", answer.value[secondary_template.id], class: 'survey-short-text survey-text-small hidden-input', style: 'margin-bottom:20px;'
+  - elsif targeted_template.data_type == 'answer_option_id'
+    - targeted_template.answer_options.distinct.each do |answer_option|
+      %div.hidden-input{ class: answer_option.display_class }
+        = radio_button_tag "#{question.id}[#{targeted_template.id}]", answer_option.id, have_checked?(answer, targeted_template, answer_option.id), id: "question_#{question.id}_#{targeted_template.id}_#{answer_option.new_value}", data: { hotkey: answer_option.hotkey }
+        %label{ for: "question_#{question.id}_#{targeted_template.id}_#{answer_option.new_value}" }
+          %p= answer_option.text
+          %span.hotkey= answer_option.hotkey

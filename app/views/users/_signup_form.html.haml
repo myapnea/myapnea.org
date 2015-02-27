@@ -18,8 +18,11 @@
               = pluralize(resource.errors.count, "error")
               prohibited this user from being saved
             %ul
-              - resource.errors.full_messages.each do |msg|
-                %li= msg
+              - resource.errors.messages.each do |key, msg|
+                - if key == :over_eighteen
+                  %li= msg.join(", ")
+                - else
+                  %li= "#{key.to_s.titleize} #{msg.join(", ")}"
         = f.hidden_field :beta_opt_in, value: true
         = f.hidden_field :provider_id
         .input-group
@@ -30,10 +33,6 @@
           = f.text_field :last_name, placeholder: 'Last name', class: 'form-control'
           - if resource.errors.any? and resource.errors[:last_name].present?
             %span.input-group-addon.signup-error !
-        / .input-group
-        /   = f.select :year_of_birth, [['- Select your birth year -', nil]] + (1900..Date.today.year).to_a.reverse.collect{|i| [i,i]}, {}, class: 'form-control', aria: { describedby: 'in3' }
-        /   - if resource.errors.any? and resource.errors[:year_of_birth].present?
-        /     %span.input-group-addon.signup-error !
         .input-group
           = f.email_field :email, placeholder: 'Email address', class: 'form-control'
           - if resource.errors.any? and resource.errors[:email].present?
@@ -43,8 +42,9 @@
           - if resource.errors.any? and resource.errors[:password].present?
             %span.input-group-addon.signup-error !
         .input-group{ style: 'margin-left: 15px;' }
-          = f.check_box :over_eighteen
-          = f.label :over_eighteen, 'I am over the age of 18', style: 'margin-left: 15px;'
+          .checkbox
+            = f.check_box :over_eighteen
+            = f.label :over_eighteen, 'I am over the age of 18', style: 'position:relative; top:-5px;'
         .input-group
           = f.submit 'Sign up!', class: 'form-control', id: 'submit-join'
 

@@ -266,6 +266,10 @@
   # Submit survey
   $("[data-object~='survey-submit-btn']").click (e) ->
     e.stopPropagation()
+    $.post($(this).data("path"),
+      {answer_session_id: $(this).data("answer-session-id")}, (data) ->
+        console.log data
+    )
     if checkCompletion()
       $(this).addClass 'hidden'
       $("[data-object~='survey-submit-congratulations-container']").removeClass 'hidden'
@@ -273,8 +277,8 @@
       $("[data-object~='survey-indicator'].incomplete").addClass 'error'
       target = 'question-container-' + $("[data-object~='survey-indicator'].incomplete").first().data('target')
       assignQuestionDirect($("[data-object~='"+target+"']"))
-    return
 
+    return
 
   @checkCompletion = () ->
     numberSelectors = $("[data-object~='survey-indicator']").length

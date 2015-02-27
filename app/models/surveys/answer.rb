@@ -1,7 +1,7 @@
 class Answer < ActiveRecord::Base
   include Deletable
 
-  STATE = %(incomplete complete migrated)
+  STATE = %(incomplete complete migrated locked)
 
   has_many :answer_values, -> { where deleted: false }, dependent: :destroy
   belongs_to :question
@@ -15,6 +15,7 @@ class Answer < ActiveRecord::Base
   scope :incomplete, -> { where(state: 'incomplete')}
   scope :migrated, -> { where(state: 'migrated')}
   scope :complete, -> { where(state: 'complete')}
+  scope :locked, -> { where(state: 'locked')}
 
   # Class Methods
   def self.first_answer(question, answer_session)
@@ -206,6 +207,10 @@ class Answer < ActiveRecord::Base
 
   def incomplete?
     self[:state] == 'incomplete'
+  end
+
+  def locked?
+    self[:state] == 'locked'
   end
 
   private
