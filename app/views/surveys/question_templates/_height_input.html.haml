@@ -7,7 +7,10 @@
       %h3.f300= question.text
     .input-container
       - answer_template = question.answer_templates.first
-      = text_field_tag "#{question.id}[#{answer_template.id}]", answer.value[answer_template.id], class: 'survey-short-text survey-short-number', disabled: answer.locked?
+      = select_tag "#{question.id}[#{answer_template.id}][feet]", options_for_select(0..10, selected: answer_template.postprocess_value(answer.value)["feet"].to_i)
+      = label_tag "#{question.id}[#{answer_template.id}][feet]", "feet"
+      = select_tag "#{question.id}[#{answer_template.id}][inches]", options_for_select(0..12, selected: answer_template.postprocess_value(answer.value)["inches"].to_i)
+      = label_tag "#{question.id}[#{answer_template.id}][inches]", "inches"
       = render partial: 'surveys/question_templates/prefer_not_to_answer_box', locals: {question: question, answer: answer}
 
     .button-container

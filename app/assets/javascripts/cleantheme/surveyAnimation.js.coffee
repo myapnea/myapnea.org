@@ -101,6 +101,7 @@
   # Handle 'prefer not to answer checkbox'
   $('.preferred-not-to-answer').click (e) ->
     $(this).find('input:checkbox').prop "checked", !$(this).find('input:checkbox').prop("checked")
+    handleChangedValue($(this))
     return
 
   # Respond to click events on conditional events - note that this only works on checkbox inputs
@@ -213,9 +214,11 @@
 
   # Attach change event handler to everything but radio button inputs. Radio button inputs are changed by JS, so each time
   # the :checked property is changed, handleChangedValue has to be called.
-  $("input").change (event) ->
-    if $("input").parents(".survey-container").length
-      handleChangedValue($(event.target))
+  $(".survey-container input").change (event) ->
+    handleChangedValue($(event.target))
+
+  $(".survey-container select").change (event) ->
+    handleChangedValue($(event.target))
 
   #####################
   # SURVEY SUBMISSION #

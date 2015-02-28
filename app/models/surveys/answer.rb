@@ -69,6 +69,10 @@ class Answer < ActiveRecord::Base
         #val_for_template = val
       end
 
+      if template.preprocess.present?
+        val_for_template = template.preprocess_value(val_for_template)
+      end
+
       template_values << val_for_template
 
       # Test for nested inputs. There is a dependency: all conditionals are one-level, and the first answer template in questions with nested inputs is a categorical question that spawns the nesting.

@@ -8,6 +8,7 @@
     .input-container
       - answer_template = question.answer_templates.first
       = text_field_tag "#{question.id}[#{answer_template.id}]", answer.value[answer_template.id], class: 'survey-short-text survey-short-number', disabled: answer.locked?
+      = answer_template.unit if answer_template.unit.present?
       = render partial: 'surveys/question_templates/prefer_not_to_answer_box', locals: {question: question, answer: answer}
 
     .button-container
