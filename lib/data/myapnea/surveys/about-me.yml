@@ -80,7 +80,7 @@ questions:
   - name: ethnicity
     data_type: answer_option_id
     answer_options:
-    - text: No
+    - text: 'No'
       hotkey: A
       value: 1
       display_class: label-default label-lg

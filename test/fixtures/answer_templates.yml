@@ -39,7 +39,7 @@
 
 
 sex:
-  name: sex
+  name: fixture_sex
   data_type: answer_option_id
 # answer_options
 # - male
@@ -48,14 +48,14 @@ sex:
 # - prefer not to answer
 
 color_list:
-  name: color_list
+  name: fixture_color_list
   data_type: answer_option_id
 
 
 race_list:
   data_type: answer_option_id
   allow_multiple: true
-  name: race
+  name: fixture_race
 # Wookie
 # Bith
 # Some other race
@@ -63,13 +63,13 @@ race_list:
 
 
 specified_race:
-  name: specified_race
+  name: fixture_specified_race
   data_type: text_value
   target_answer_option: 3
 
 
 birth_date:
-  name: birth_date
+  name: fixture_birth_date
   data_type: text_value
 
 doze_sitting:
@@ -94,5 +94,5 @@ doze_public:
 # Low chance
 
 number_of_hours:
-  name: number_of_hours
+  name: fixture_number_of_hours
   data_type: numeric_value

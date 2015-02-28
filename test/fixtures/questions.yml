@@ -38,7 +38,7 @@ radio1:
   slug: sex-selection
   display_type: radio_input
   answer_templates:
-  - sex
+  - fixture_sex
 
 radio2:
   text_en: What would your favorite color be?
@@ -52,15 +52,15 @@ checkbox1:
   slug: race-selection
   display_type: checkbox_input
   answer_templates:
-  - race_list
-  - specified_race
+  - fixture_race
+  - fixture_specified_race
 
 date1:
   text_en: What is your date of birth?
   slug: dob
   display_type: date_input
   answer_templates:
-  - birth_date
+  - fixture_birth_date
 
 radio_multiple1:
   text_en: How likely are you to doze off?
@@ -76,7 +76,7 @@ number1:
   slug: sleep-hours
   display_type: number_input
   answer_templates:
-  - number_of_hours
+  - fixture_number_of_hours
 
 number2:
   text_en: How long does it take you to get out of bed?
