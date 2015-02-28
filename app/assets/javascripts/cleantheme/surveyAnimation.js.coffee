@@ -98,6 +98,11 @@
   # SURVEY CLICKS #
   #################
 
+  # Handle 'prefer not to answer checkbox'
+  $('.preferred-not-to-answer').click (e) ->
+    $(this).find('input:checkbox').prop "checked", !$(this).find('input:checkbox').prop("checked")
+    return
+
   # Respond to click events on conditional events - note that this only works on checkbox inputs
   $("[data-object~='reveal-next-input']").click (e) ->
     if this.checked then revealNextInput($(this).data('target'))
@@ -173,6 +178,9 @@
         return
       # Handle hidden inputs first to prevent extra entering
       if $("input:focus").is(":text")
+        return
+      # Handle 'prefer not to answer checkbox'
+      else if $(this).find('.preferred-not-to-answer').length
         return
       # Handle radio_input_multiple
       else if $(".survey-container.active").hasClass "multiple-question-parts"
