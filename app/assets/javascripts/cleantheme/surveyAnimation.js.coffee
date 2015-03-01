@@ -118,8 +118,10 @@
       else if $(this).closest('.multiple-question-container').length
         if $(this).closest(".multiple-question-container").hasClass "current"
           assignMultipleQuestion(true,false)
-      else
+      else if $(this).closest('.survey-container').hasClass "active"
         assignQuestion(true,false)
+      else
+        assignQuestionDirect($(this).closest('.survey-container'))
 
   # Respond to user clicking different questions
   $('.survey-container').click (event) ->
@@ -127,6 +129,8 @@
     # For click events on 'Next Question' button, just assign next question
     if $(event.target).hasClass "next-question"
       assignQuestion(true, false)
+    else if $(event.target).is("input") or $(event.target).closest("label").siblings("input").length > 0
+      return
     else if !$(this).hasClass "active"
       assignQuestionDirect($(this))
 
