@@ -130,11 +130,19 @@
       return "You must be over 18 to join MyApnea.Org."
     return ""
 
-
-
-
-
-
-
-
-
+  $("[data-object~='number-validation']").keydown (e) ->
+    if $.inArray(e.keyCode, [
+        46
+        8
+        9
+        27
+        13
+        110
+        190
+      ]) != -1 or e.keyCode == 65 and e.ctrlKey == true or e.keyCode >= 35 and e.keyCode <= 40 or e.metaKey
+      # let it happen, don't do anything
+      return
+    # Ensure that it is a number and stop the keypress
+    if (e.shiftKey or e.keyCode < 48 or e.keyCode > 57) and (e.keyCode < 96 or e.keyCode > 105)
+      e.preventDefault()
+    return

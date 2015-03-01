@@ -7,9 +7,14 @@
       %h3.f300= question.text
     .input-container
       - answer_template = question.answer_templates.first
-      = text_field_tag "#{question.id}[#{answer_template.id}]", answer.value[answer_template.id], class: 'survey-short-text survey-short-number', disabled: answer.locked?
-      = answer_template.unit if answer_template.unit.present?
-      = render partial: 'surveys/question_templates/prefer_not_to_answer_box', locals: {question: question, answer: answer}
+      .row
+        .col-xs-6{ style: 'text-align:right'}
+          = text_field_tag "#{question.id}[#{answer_template.id}]", answer.value[answer_template.id], disabled: answer.locked?, class: 'number-input', maxlength: 5, data: { object: 'number-validation' }
+        .col-xs-6{ style: 'text-align:left'}
+          .number-label= answer_template.unit if answer_template.unit.present?
+      .row
+        .col-xs-8.col-xs-offset-2
+          = render partial: 'surveys/question_templates/prefer_not_to_answer_box', locals: {question: question, answer: answer}
 
     .button-container
       .btn.btn-primary.next-question
