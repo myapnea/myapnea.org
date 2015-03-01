@@ -7,11 +7,19 @@
       %h3.f300= question.text
     .input-container
       - answer_template = question.answer_templates.first
-      = select_tag "#{question.id}[#{answer_template.id}][feet]", options_for_select(0..10, selected: answer_template.postprocess_value(answer.value)["feet"].to_i)
-      = label_tag "#{question.id}[#{answer_template.id}][feet]", "feet"
-      = select_tag "#{question.id}[#{answer_template.id}][inches]", options_for_select(0..12, selected: answer_template.postprocess_value(answer.value)["inches"].to_i)
-      = label_tag "#{question.id}[#{answer_template.id}][inches]", "inches"
-      = render partial: 'surveys/question_templates/prefer_not_to_answer_box', locals: {question: question, answer: answer}
+      .row
+        .col-xs-6{ style: 'text-align:right'}
+          = select_tag "#{question.id}[#{answer_template.id}][feet]", options_for_select(0..8, selected: answer_template.postprocess_value(answer.value)["feet"].to_i), class: 'height_select'
+        .col-xs-6{ style: 'text-align:left'}
+          = label_tag "#{question.id}[#{answer_template.id}][feet]", "feet", class: 'height_label'
+      .row
+        .col-xs-6{ style: 'text-align:right'}
+          = select_tag "#{question.id}[#{answer_template.id}][inches]", options_for_select(0..11, selected: answer_template.postprocess_value(answer.value)["inches"].to_i), class: 'height_select'
+        .col-xs-6{ style: 'text-align:left'}
+          = label_tag "#{question.id}[#{answer_template.id}][inches]", "inches", class: 'height_label'
+      .row
+        .col-xs-8.col-xs-offset-2
+          = render partial: 'surveys/question_templates/prefer_not_to_answer_box', locals: {question: question, answer: answer}
 
     .button-container
       .btn.btn-primary.next-question

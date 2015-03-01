@@ -1,0 +1,27 @@
+select.height_select {
+  border: 1px solid #111;
+  background: transparent;
+  width: 150px;
+  padding: 5px;
+  font-size: 34px;
+  border: 1px solid #ccc;
+  height: 50px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: url("http://www.swopinfo.com/images/arrowdown.png") 96% / 15% no-repeat #fff;
+}
+
+.height_label {
+  font-size: 34px;
+  padding: 5px;
+}
+
+
+/*target Internet Explorer 9 and Internet Explorer 10:*/
+@media screen and (min-width:0\0) {
+  select {
+    background:none;
+    padding: 5px;
+  }
+}
