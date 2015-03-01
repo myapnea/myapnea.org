@@ -50,7 +50,6 @@ Rails.application.routes.draw do
   #match 'research_questions', to: 'research_topics#index', via: :get, as: :research_topics
   #match 'research_questions/new', to: 'research_topics#new', via: :get, as: :new_research_topic
   match 'research_topics_tab', to: "research_topics#research_topics", via: :get, as: :research_topics_ajax
-  get 'vote_counter' => 'research_topics#vote_counter'
   resources :research_topics
 
   # Research Section
