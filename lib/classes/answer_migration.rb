@@ -1,49 +1,5 @@
 =begin
   am = AnswerMigration.new()
-
-
-The following question/answer template has no old question mapped for migration: about-me | ethnicity | ethnicity
-The following question/answer template has no old question mapped for migration: additional-information-about-me | height | height
-The following question/answer template has no old question mapped for migration: additional-information-about-me | weight | weight
-The following question/answer template has no old question mapped for migration: about-my-family | family-diagnoses | family_diagnoses
-The following question/answer template has no old question mapped for migration: about-my-family | family-diagnoses | specified_brothers
-The following question/answer template has no old question mapped for migration: about-my-family | family-diagnoses | specified_sisters
-The following question/answer template has no old question mapped for migration: about-my-family | family-diagnoses | specified_sons
-The following question/answer template has no old question mapped for migration: about-my-family | family-diagnoses | specified_daughters
-The following question/answer template has no old question mapped for migration: my-health-conditions | health-conditions-list | conditions-adhd
-The following question/answer template has no old question mapped for migration: my-health-conditions | health-conditions-list | conditions-epilepsy
-The following question/answer template has no old question mapped for migration: my-health-conditions | health-conditions-list | conditions-pulmonary-fibrosis
-The following question/answer template has no old question mapped for migration: my-health-conditions | health-conditions-other | other_health_conditions
-The following question/answer template has no old question mapped for migration: my-health-conditions | health-conditions-other | specified_health_condition
-The following question/answer template has no old question mapped for migration: my-sleep-apnea | apnea-before-diagnosis | apnea_before_diagnosis
-The following question/answer template has no old question mapped for migration: my-sleep-apnea | symptoms-before-diagnosis | snoring_before_diagnosis
-The following question/answer template has no old question mapped for migration: my-sleep-apnea | symptoms-before-diagnosis | sleepiness_before_diagnosis
-The following question/answer template has no old question mapped for migration: my-sleep-apnea | symptoms-before-diagnosis | tiredness_before_diagnosis
-The following question/answer template has no old question mapped for migration: my-sleep-apnea | symptoms-before-diagnosis | accident_before_diagnosis
-The following question/answer template has no old question mapped for migration: my-sleep-apnea | symptoms-before-diagnosis | shortness_breah_before_diagnosis
-The following question/answer template has no old question mapped for migration: my-sleep-apnea | symptoms-before-diagnosis | stopped_breathing_before_diagnosis
-The following question/answer template has no old question mapped for migration: my-sleep-apnea | symptoms-before-diagnosis | heart_disease_before_diagnosis
-The following question/answer template has no old question mapped for migration: my-sleep-apnea | symptoms-before-diagnosis | hbp_before_diagnosis
-The following question/answer template has no old question mapped for migration: my-sleep-apnea | symptoms-before-diagnosis | depressed_before_diagnosis
-The following question/answer template has no old question mapped for migration: my-sleep-apnea | symptoms-before-diagnosis | irritability_before_diagnosis
-The following question/answer template has no old question mapped for migration: my-sleep-apnea | symptoms-before-diagnosis | concerned_friend_before_diagnosis
-The following question/answer template has no old question mapped for migration: my-sleep-apnea | symptoms-before-diagnosis | forgetfulness_before_diagnosis
-The following question/answer template has no old question mapped for migration: my-sleep-apnea | symptoms-before-diagnosis | provider_suggestion_before_diagnosis
-The following question/answer template has no old question mapped for migration: my-sleep-apnea-treatment | satisfaction-with-treatments | satisfaction_with_cpap
-The following question/answer template has no old question mapped for migration: my-sleep-apnea-treatment | satisfaction-with-treatments | satisfaction_with_apap
-The following question/answer template has no old question mapped for migration: my-sleep-apnea-treatment | satisfaction-with-treatments | satisfaction_with_bipap
-The following question/answer template has no old question mapped for migration: my-sleep-apnea-treatment | satisfaction-with-treatments | satisfaction_with_asv
-The following question/answer template has no old question mapped for migration: my-sleep-apnea-treatment | satisfaction-with-treatments | satisfaction_with_oral_appliance
-The following question/answer template has no old question mapped for migration: my-sleep-apnea-treatment | satisfaction-with-treatments | satisfaction_with_behavioral_therapy
-The following question/answer template has no old question mapped for migration: my-sleep-apnea-treatment | satisfaction-with-treatments | satisfaction_with_tongue_stimulation
-The following question/answer template has no old question mapped for migration: my-sleep-apnea-treatment | satisfaction-with-treatments | satisfaction_with_tonsillectomy
-The following question/answer template has no old question mapped for migration: my-sleep-apnea-treatment | satisfaction-with-treatments | satisfaction_with_uppp
-The following question/answer template has no old question mapped for migration: my-sleep-apnea-treatment | satisfaction-with-treatments | satisfaction_with_naval_deviation
-The following question/answer template has no old question mapped for migration: my-sleep-apnea-treatment | satisfaction-with-treatments | satisfaction_with_tongue_surgery
-The following question/answer template has no old question mapped for migration: my-sleep-apnea-treatment | satisfaction-with-treatments | satisfaction_with_jaw_surgery
-The following question/answer template has no old question mapped for migration: my-sleep-apnea-treatment | satisfaction-with-treatments | satisfaction_with_bariatric_surgery
-
-
 =end
 
 class AnswerMigration
@@ -58,8 +14,8 @@ class AnswerMigration
     @answer_option_map = YAML::load_file(answer_option_map) if answer_option_map and answer_option_map.is_a?(String)
     @answer_option_map ||= YAML.load_file(File.join(MAP_DIRECTORY, "answer_option_mappings.yml"))
 
-    #raise StandardError, "Invalid question map" unless validate_question_map
-    #raise StandardError, "Invalid answer option map" unless validate_answer_option_map
+    raise StandardError, "Invalid question map" unless validate_question_map
+    raise StandardError, "Invalid answer option map" unless validate_answer_option_map
   end
 
   def validate_mapping_coverage
