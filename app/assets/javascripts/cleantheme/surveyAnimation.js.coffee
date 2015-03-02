@@ -28,7 +28,7 @@
       newHeight = currentHeight - 91
     else
       newHeight = currentHeight - offsetHeight + elementOffsetHeight
-    $("body").animate
+    $("body,html").animate
       scrollTop: newHeight, 400, "swing"
     , ->
       changeFocus(element2)
