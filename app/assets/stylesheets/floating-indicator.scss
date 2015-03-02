@@ -43,6 +43,14 @@
       background-color: #78c674;
       color: white;
     }
+    li.locked {
+      font-size:12px;
+      font-weight:300;
+      border:2px solid #eee;
+      background-color: #78c674;
+      color: #eee;
+      span { left:1px }
+    }
   }
 }
 

@@ -21,10 +21,12 @@ class SurveysControllerTest < ActionController::TestCase
 
     refute answer_sessions(:incomplete).completed?
 
-    post :process_answer, { 'question_id' => [questions(:checkbox1).id.to_s], 'answer_session_id' => answer_sessions(:incomplete).id.to_s,  questions(:checkbox1).id.to_s => { answer_templates(:race_list).id.to_s => [answer_options(:wookie).id.to_s, answer_options(:other_race).id.to_s], answer_templates(:specified_race).id.to_s => "Polish"}}
+    xhr :post, :process_answer, { 'question_id' => [questions(:checkbox1).id.to_s], 'answer_session_id' => answer_sessions(:incomplete).id.to_s,  questions(:checkbox1).id.to_s => { answer_templates(:race_list).id.to_s => [answer_options(:wookie).id.to_s, answer_options(:other_race).id.to_s], answer_templates(:specified_race).id.to_s => "Polish"}}, format: 'json'
     created_answer = assigns(:answer_session).last_answer
 
     assert created_answer.persisted?
+    assert created_answer.complete?
+    refute created_answer.locked?
 
     assert_equal answer_options(:wookie).id, created_answer.answer_values.first.answer_option_id
     assert_equal 3, created_answer.answer_values.count
@@ -32,9 +34,26 @@ class SurveysControllerTest < ActionController::TestCase
     assert_equal "Some other race", created_answer.answer_values.second.answer_option.text
     assert_equal "Polish", created_answer.answer_values.last.text_value
 
-    assert assigns(:answer_session).completed?
+    assert assigns(:answer_session).completed?, "#{assigns(:answer_session).answers.complete.count} #{assigns(:answer_session).survey.questions.count} #{assigns(:answer_session).answers.to_a}"
 
-    assert_redirected_to survey_report_path(slug: assigns(:answer_session).survey, answer_session_id: assigns(:answer_session))
+    assert_response :success
+  end
+
+  test "User can prefer not to answer a question on an assigned survey" do
+    login(users(:has_incomplete_survey))
+
+    refute answer_sessions(:incomplete).completed?
+
+    xhr :post, :process_answer, { 'question_id' => [questions(:checkbox1).id.to_s], 'answer_session_id' => answer_sessions(:incomplete).id.to_s,  questions(:checkbox1).id.to_s => { preferred_not_to_answer: '1' } }, format: 'json'
+    created_answer = assigns(:answer_session).last_answer
+
+    assert created_answer.persisted?
+    assert created_answer.complete?
+
+    assert created_answer.preferred_not_to_answer?
+    assert assigns(:answer_session).completed?, "#{assigns(:answer_session).answers.complete.count} #{assigns(:answer_session).survey.questions.count} #{assigns(:answer_session).answers.to_a}"
+
+    assert_response :success
   end
 
   test "User can view survey report for completed survey" do
@@ -104,5 +123,20 @@ class SurveysControllerTest < ActionController::TestCase
     assert_equal users(:has_launched_survey).assigned_surveys, assigns(:surveys)
 
     assert_response :success
+  end
+
+  ## Survey Submition
+  test "User can submit survey, locking all completed answers" do
+    login(users(:has_completed_survey))
+    assert answer_sessions(:complete).completed?
+
+    xhr :post, :submit, answer_session_id: answer_sessions(:complete).id, format: 'json'
+
+    answer_sessions(:complete).answers.each do |answer|
+      assert answer.locked?
+      old_val = answer.value
+      answer.value = nil
+      assert old_val, answer.value
+    end
   end
 end

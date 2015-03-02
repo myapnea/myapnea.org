@@ -14,7 +14,7 @@ class Answer < ActiveRecord::Base
   # Scopes
   scope :incomplete, -> { where(state: 'incomplete')}
   scope :migrated, -> { where(state: 'migrated')}
-  scope :complete, -> { where(state: 'complete')}
+  scope :complete, -> { where(state: ['complete', 'locked'])}
   scope :locked, -> { where(state: 'locked')}
 
   # Class Methods
@@ -46,8 +46,14 @@ class Answer < ActiveRecord::Base
   # (not supported now) multiple values,
 
   def value=(val)
-    answer_values.clear
+    if locked?
+      logger.warn "Attempting to change value of locked answer: survey: #{answer_session.survey.slug} | question: #{question.slug} | user: #{answer_session.user.email} | encounter: #{answer_session.encounter}"
+      return nil
+    end
 
+    self[:preferred_not_to_answer] = (val.delete('preferred_not_to_answer') ? true : false)
+
+    answer_values.clear
 
     template_completions = []
     template_values = []
@@ -58,7 +64,13 @@ class Answer < ActiveRecord::Base
       if val.kind_of?(Hash)
         val_for_template = val[template.id.to_s]
       else
-        val_for_template = val
+        # Temporary - remove this option! Always set with hash
+        raise StandardError
+        #val_for_template = val
+      end
+
+      if template.preprocess.present?
+        val_for_template = template.preprocess_value(val_for_template)
       end
 
       template_values << val_for_template
@@ -162,7 +174,7 @@ class Answer < ActiveRecord::Base
       if candidate_edges.length == 1
         chosen_edge = candidate_edges.first
       else
-        chosen_edge = candidate_edges.select {|e| self.fits_condition?(e.condition)}.first || candidate_edges.select { |e| e.condition == nil }.first || candidate_edges.first
+        chosen_edge = candidate_edges.select {|e| fits_condition?(e.condition)}.first || candidate_edges.select { |e| e.condition == nil }.first || candidate_edges.first
       end
 
       chosen_edge.descendant
@@ -175,7 +187,7 @@ class Answer < ActiveRecord::Base
   end
 
   def complete?
-    self[:state] == 'complete'
+    self[:state] == 'complete' or self[:state] == 'locked'
   end
 
   def incomplete?
@@ -189,9 +201,7 @@ class Answer < ActiveRecord::Base
   private
 
   def set_completion_state(template_completions)
-
-    self[:state] = (template_completions.all? ? 'complete' : 'incomplete')
-
+    self[:state] = ((template_completions.all? or preferred_not_to_answer)? 'complete' : 'incomplete')
   end
 
 

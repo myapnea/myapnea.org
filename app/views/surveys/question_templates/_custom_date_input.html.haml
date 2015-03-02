@@ -1,4 +1,4 @@
-= form_tag(process_answer_path, {role: "form", class: 'survey-container progress-w-enter', data: { object: "#{'question-container-'+question_number.to_s}", validation: 'inline-validation-date' } }) do
+= form_tag(process_answer_path, {role: "form", class: 'survey-container', data: { object: "#{'question-container-'+question_number.to_s}", validation: 'inline-validation-date' } }) do
   = hidden_field_tag "question_id[]", question.id
   = hidden_field_tag "answer_session_id", answer_session.id
 
@@ -7,7 +7,8 @@
       %h3.f300= question.text
       %h5.f300.text-muted Please enter as mm/dd/yyyy (e.g. 01/31/1990)
     .input-container
-      = text_field_tag "#{question.id}[#{question.answer_templates.first.id}]", answer.value[question.answer_templates.first.id], maxlength: 10, class: 'survey-custom-date', placeholder: 'mm/dd/yyyy', data: { object: 'inline-validation-item', over18: "#{question.answer_templates.first.name=='birth_date' ? true : false}" }
+      = text_field_tag "#{question.id}[#{question.answer_templates.first.id}]", answer.value[question.answer_templates.first.id], maxlength: 10, class: 'survey-custom-date', placeholder: 'mm/dd/yyyy', data: { object: 'inline-validation-item', over18: "#{question.answer_templates.first.name=='birth_date' ? true : false}" }, disabled: answer.locked?, style: "#{'cursor: default' if answer_session.locked?}"
+      = render partial: 'surveys/question_templates/prefer_not_to_answer_box', locals: {question: question, answer: answer}
     .col-sm-10.col-sm-offset-1.hidden{ style: 'margin-bottom:20px;', data: { object: 'date--error' } }
       %p.small.centered-text.inline-validation-error{ data: { object: 'date--error-message' } }
     .button-container

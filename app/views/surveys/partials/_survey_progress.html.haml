@@ -1,7 +1,5 @@
-- if can_complete_surveys
-  - percent = survey.completion_percent(current_user).round
-- else
-  - percent = ((survey.answer_sessions.where(completed: true).count.to_f / User.current.count.to_f)*100.0).round
+- percent = survey.completion_percent(current_user).round
+
 .radial-progress.hidden-xs{ style: 'display:block; margin: 20px auto' }
   .circle{ data: { object: "circle_percentage", percent: "#{percent}", survey_id: survey.id } }
     .mask.left
@@ -18,20 +16,13 @@
           = percent.to_s + '%'
 %h4.f300.centered-text
   = survey.name
-// Mobile display
+// Mobile display for survey progress
 %h5.f300.visible-xs.text-muted
   = percent.to_s + '% completed'
 %h5.f300.primary-blue{ style: 'margin-bottom:30px;' }
-  - if can_complete_surveys
-    - if survey.complete?(current_user)
-      = link_to 'View report', survey_report_path(slug: survey)
-      %br/
-      = link_to 'Review answers', survey
-    - elsif survey.incomplete?(current_user) and percent!=0
-      = link_to 'Work on this survey now!', survey
-    -elsif survey.incomplete?(current_user) and percent==0
-      = link_to 'Start this survey now!', survey
-    - else
-      = link_to 'Start this survey now!', survey
-  - else
-    = link_to 'View Data', survey_report_path(slug: survey)
+  - if survey.complete?(current_user)
+    = survey.locked?(current_user) ? (link_to 'View report', survey_report_path(slug: survey)) : (link_to 'Review and submit answers', survey)
+  - elsif survey.incomplete?(current_user) and percent!=0
+    = link_to 'Work on this survey now!', survey
+  -else
+    = link_to 'Start this survey now!', survey

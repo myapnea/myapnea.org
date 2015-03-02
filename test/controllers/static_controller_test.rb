@@ -36,11 +36,6 @@ class StaticControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should get share" do
-    get :share
-    assert_response :success
-  end
-
   test "should get team" do
     get :team
     assert_response :success

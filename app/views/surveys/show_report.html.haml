@@ -14,7 +14,7 @@
           Return to the
           = link_to 'survey page', survey_path(@survey)
           to work on this survey!
-    - elsif (current_user.provider? or current_user.is_only_researcher?) and current_user.ready_for_research?
+    - elsif (current_user.is_only_academic?) and current_user.ready_for_research?
       %h3.f300{style: 'margin-bottom:30px;'}
         Welcome to the data viewer for the
         %span.darker-blue= @survey.name
@@ -35,7 +35,7 @@
     %a.u-voice.primary-blue Get in touch with us.
 
 -# TODO test that this can be removed once consent paths are finalized
-- unless (current_user.provider? or current_user.is_only_researcher?) and !current_user.ready_for_research?
+- unless (current_user.is_only_academic?) and !current_user.ready_for_research?
   - if @survey
     - answer_session = AnswerSession.most_recent(@survey.id, current_user.id)
     - all_answer_frequencies = @survey.survey_answer_frequencies

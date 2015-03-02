@@ -9,9 +9,14 @@
       - answer_template = question.answer_templates.first
       .row
         .col-xs-6{ style: 'text-align:right'}
-          = text_field_tag "#{question.id}[#{answer_template.id}]", answer.value[answer_template.id], disabled: answer.locked?, class: 'number-input', maxlength: 5, data: { object: 'number-validation' }
+          = select_tag "#{question.id}[#{answer_template.id}][feet]", options_for_select(0..8, selected: answer_template.postprocess_value(answer.value)["feet"].to_i), class: 'height_select'
         .col-xs-6{ style: 'text-align:left'}
-          .number-label= answer_template.unit if answer_template.unit.present?
+          = label_tag "#{question.id}[#{answer_template.id}][feet]", "feet", class: 'height_label'
+      .row
+        .col-xs-6{ style: 'text-align:right'}
+          = select_tag "#{question.id}[#{answer_template.id}][inches]", options_for_select(0..11, selected: answer_template.postprocess_value(answer.value)["inches"].to_i), class: 'height_select'
+        .col-xs-6{ style: 'text-align:left'}
+          = label_tag "#{question.id}[#{answer_template.id}][inches]", "inches", class: 'height_label'
       .row
         .col-xs-8.col-xs-offset-2
           = render partial: 'surveys/question_templates/prefer_not_to_answer_box', locals: {question: question, answer: answer}

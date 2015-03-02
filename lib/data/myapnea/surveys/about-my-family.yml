@@ -119,7 +119,7 @@ questions:
   display_type: radio_input
   answer_templates:
   - name: household_minors
-    data_type: numeric_value
+    data_type: answer_option_id
     answer_options:
     - text: 1 person
       hotkey: 1
@@ -184,50 +184,50 @@ questions:
     answer_options:
     - text: 1
       value: 1
-      display_class: option-of-multiple option-of-3 label-default
+      display_class: label-default label-sm
     - text: 2
       value: 2
-      display_class: option-of-multiple option-of-3 label-default
+      display_class: label-default label-sm
     - text: 3+
       value: 3
-      display_class: option-of-multiple option-of-3 label-default
+      display_class: label-default label-sm
   - name: specified_sisters
     data_type: answer_option_id
     target_answer_option: 4
     answer_options:
     - text: 1
       value: 1
-      display_class: option-of-multiple option-of-3 label-default
+      display_class: label-default label-sm
     - text: 2
       value: 2
-      display_class: option-of-multiple option-of-3 label-default
+      display_class: label-default label-sm
     - text: 3+
       value: 3
-      display_class: option-of-multiple option-of-3 label-default
+      display_class: label-default label-sm
   - name: specified_sons
     data_type: answer_option_id
     target_answer_option: 5
     answer_options:
     - text: 1
       value: 1
-      display_class: option-of-multiple option-of-3 label-default
+      display_class: label-default label-sm
     - text: 2
       value: 2
-      display_class: option-of-multiple option-of-3 label-default
+      display_class: label-default label-sm
     - text: 3+
       value: 3
-      display_class: option-of-multiple option-of-3 label-default
+      display_class: label-default label-sm
   - name: specified_daughters
     data_type: answer_option_id
     target_answer_option: 6
     answer_options:
     - text: 1
       value: 1
-      display_class: option-of-multiple option-of-3 label-default
+      display_class: label-default label-sm
     - text: 2
       value: 2
-      display_class: option-of-multiple option-of-3 label-default
+      display_class: label-default label-sm
     - text: 3+
       value: 3
-      display_class: option-of-multiple option-of-3 label-default
+      display_class: label-default label-sm
 

@@ -1,7 +1,7 @@
 class ResearchTopicsController < ApplicationController
   before_action :authenticate_user!
 
-  before_action :no_layout,                           only: [ :research_topics, :vote_counter ]
+  before_action :no_layout,                           only: [ :research_topics ]
   before_action :set_research_topic,                  only: [ :show, :update, :edit, :destroy ]
   before_action :set_active_top_nav_link_to_research
 

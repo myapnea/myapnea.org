@@ -60,6 +60,6 @@
         %strong= "#{current_user.name}."
       %p.lead
         If you are a professional care provider and want to set up your custom page, please select 'Professional care provider' as your
-        = link_to 'user type', user_type_path
+        = link_to 'user type', describe_yourself_path
 - else
   = render partial: "providers/signup_form", locals: { resource: @provider }

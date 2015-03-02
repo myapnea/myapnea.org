@@ -42,11 +42,15 @@ class AnswerSession < ActiveRecord::Base
   end
 
   def completed?
-    unless self[:completed]
-      update_attribute(:completed, total_remaining_path_length == 0)
+    answers.complete.count == survey.questions.count
+  end
+
+  def locked?
+    unless self[:locked]
+      update(locked: (answers.locked.count == survey.questions.count))
     end
 
-    self[:completed]
+    self[:locked]
   end
 
   def process_answer(question, params)
@@ -58,7 +62,8 @@ class AnswerSession < ActiveRecord::Base
       # New Record: do everything
       answer_modified = false
 
-      if answer.new_record? or answer.string_value != params[question.id.to_s]
+      # We want to update if answer is new, answer value has changed, or answer value used to be blank.
+      if answer.new_record? or answer.string_value != params[question.id.to_s] or answer.show_value.blank?
         # Set Value and Save
         answer.value = params[question.id.to_s]
         answer.save
@@ -103,66 +108,6 @@ class AnswerSession < ActiveRecord::Base
         .where("parent_ae.child_answer_id is not null or child_ae.parent_answer_id is not null")
   end
 
-
-
-
-  ## Deprecated - remove in 6.0.0
-  # def all_reportable_answers
-  #   answers.joins(answer_values: :answer_template).where("\"answer_templates\".data_type = 'answer_option_id'").where('"answer_values".answer_option_id is not null')
-  # end
-
-
-  # TODO: Can we just use the association?
-  # def answers
-  #   Answer.current
-  #       .joins('left join answer_edges parent_ae on parent_ae.child_answer_id = "answers".id')
-  #       .joins('left join answer_edges child_ae on child_ae.parent_answer_id = "answers".id')
-  #       .where(answer_session_id: self.id)
-  #       .where("parent_ae.child_answer_id is not null or child_ae.parent_answer_id is not null")
-  #
-  # end
-
-
-  # def grouped_reportable_answers
-  #   all_reportable_answers.includes(question: :question_help_message).group_by{|a| a.question.question_help_message ? a.question.question_help_message.message : ""}
-  #
-  # end
-
-  # def reset_completion
-  #   if first_answer.present?
-  #     #connected_answers = all_answers
-  #     first_answer.destroy_descendant_edges
-  #     self.first_answer = nil
-  #     self.last_answer = nil
-  #     self.completed = false
-  #     save
-  #     #connected_answers.each(&:destroy)
-  #   end
-  # end
-
-  # def path_length_to_answer(answer)
-  #   if last_answer.blank?
-  #     coll = []
-  #     current_answer = answer
-  #   elsif answer.nil? or answer.new_record?
-  #     coll = [answer]
-  #     current_answer = last_answer
-  #   else
-  #     current_answer = answer.clone
-  #     coll = []
-  #   end
-  #
-  #   while current_answer
-  #     coll << current_answer
-  #     current_answer = current_answer.previous_answer
-  #   end
-  #
-  #   coll.length
-  # end
-
-
-  ##
-
   def get_answer(question_id)
     Answer.current.joins(:question).where(questions: {id: question_id}).where(answer_session_id: self.id).order("updated_at desc").limit(1).first
   end
@@ -185,33 +130,33 @@ class AnswerSession < ActiveRecord::Base
     completed_answers.count
   end
 
-  def remaining_path_length(from_answer)
-    if from_answer.nil?
-      total_remaining_path_length
-    elsif from_answer.next_question.present?
-      survey.path_length(from_answer.next_question)
-    else
-      0
-    end
+  # def remaining_path_length(from_answer)
+  #   if from_answer.nil?
+  #     total_remaining_path_length
+  #   elsif from_answer.next_question.present?
+  #     survey.path_length(from_answer.next_question)
+  #   else
+  #     0
+  #   end
+  #
+  # end
 
-  end
+  # def total_remaining_path_length
+  #   if last_answer.blank?
+  #     survey.longest_path_length
+  #   elsif last_answer.next_question.nil?
+  #     0
+  #   else
+  #     survey.path_length(last_answer.next_question)
+  #   end
+  # end
 
-  def total_remaining_path_length
-    if last_answer.blank?
-      survey.longest_path_length
-    elsif last_answer.next_question.nil?
-      0
-    else
-      survey.path_length(last_answer.next_question)
-    end
-  end
-
-  def total_path_length
-    survey.total_questions or completed_path_length + remaining_path_length(last_answer)
-  end
+  # def total_path_length
+  #   survey.total_questions or completed_path_length + remaining_path_length(last_answer)
+  # end
 
   def percent_completed
-    (completed_path_length.to_f / total_path_length.to_f) * 100.0
+    (answers.complete.count / survey.questions.count.to_f) * 100.0
   end
 
   def destroy

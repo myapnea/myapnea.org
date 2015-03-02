@@ -53,7 +53,7 @@ class Survey < ActiveRecord::Base
 
       question_attributes["answer_templates"].each do |answer_template_attributes|
         answer_template = AnswerTemplate.where(name: answer_template_attributes["name"]).first_or_create
-        answer_template.update(data_type: answer_template_attributes["data_type"], text: answer_template_attributes["text"], display_type_id: answer_template_attributes["display_type_id"], allow_multiple: answer_template_attributes["allow_multiple"].present?, target_answer_option: answer_template_attributes["target_answer_option"])
+        answer_template.update(data_type: answer_template_attributes["data_type"], text: answer_template_attributes["text"], display_type_id: answer_template_attributes["display_type_id"], allow_multiple: answer_template_attributes["allow_multiple"].present?, target_answer_option: answer_template_attributes["target_answer_option"], preprocess: answer_template_attributes["preprocess"], unit: answer_template_attributes["unit"])
         (question.answer_templates << answer_template) unless question.answer_templates.exists?(answer_template.id)
 
         if answer_template_attributes.has_key?("answer_options")
@@ -108,6 +108,12 @@ class Survey < ActiveRecord::Base
   end
 
   ## Need to be fast
+  def locked?(user)
+    false unless user.present?
+    answer_session = self.answer_sessions.where( user_id: user.id ).order( updated_at: :desc ).first
+    answer_session.present? and answer_session.locked?
+  end
+
   def complete?(user)
     false unless user.present?
     answer_session = self.answer_sessions.where( user_id: user.id ).order( updated_at: :desc ).first
@@ -133,7 +139,7 @@ class Survey < ActiveRecord::Base
     elsif self.complete?(user)
       100
     else
-      self.most_recent_answer_session(user).percent_completed
+      self.most_recent_encounter(user).percent_completed
     end
   end
 
@@ -167,29 +173,16 @@ class Survey < ActiveRecord::Base
   ##
 
 
-  # Efficient lookup of questions (1 query), returns relation
-  def all_questions
-
-    Question
-        .distinct
-        .joins('left join question_edges parent_qe on parent_qe.child_question_id = "questions".id')
-        .joins('left join question_edges child_qe on child_qe.parent_question_id = "questions".id')
-        .where("child_qe.survey_id = ? or child_qe.survey_id is null", self.id)
-        .where("parent_qe.survey_id = ? or parent_qe.survey_id is null", self.id)
-        .where("parent_qe.child_question_id is not null or child_qe.parent_question_id is not null")
-        .where("parent_qe.direct = 't' and child_qe.direct = 't'")
-  end
-
   # Fast (uses descendant cache?), returns array
   def all_questions_descendants
     # source .descendants is very fast with no db hits! why? How can we use it? It's type is ActiveRecord::Association::CollectionProxy
     ([source] + source.descendants)
   end
 
-
-
-
-
+  def questions
+    ordered_questions
+  end
+  ##
 
 
 
@@ -325,42 +318,6 @@ class Survey < ActiveRecord::Base
     distances[destination.id]
   end
   ## End called on precomputation
-
-
-
-
-  ## Deprecated - remove in 6.0.0
-  # def self.complete(user)
-  #   res = joins(:answer_sessions).where(status: "show", answer_sessions: {user_id: user.id, deleted: false}).select do |qf|
-  #     as = qf.answer_sessions.where(user_id: user.id, deleted: false).order(updated_at: :desc).first
-  #
-  #
-  #     as.present? and as.completed? and !as.deleted?
-  #   end
-  #
-  #   res
-  # end
-  #
-  # def self.unstarted(user)
-  #   user_id = (user.present? ? user.id : nil)
-  #   res = includes(:answer_sessions).where(status: "show").select{ |qf| user_id.blank? or qf.answer_sessions.where(user_id: user.id, deleted: false).empty? }
-  #
-  #   res
-  # end
-  #
-  # def self.incomplete(user)
-  #   res = joins(:answer_sessions).where(status: "show", answer_sessions: {user_id: user.id, deleted: false}).select do |qf|
-  #     as = qf.answer_sessions.where(user_id: user.id).order(updated_at: :desc).first
-  #
-  #     as.present? and !as.completed? and !as.deleted?
-  #   end
-  #   res
-  # end
-  ## END DEPRECATED
-
-  # def completion_stats(user)
-  #   most_recent_answer_session(user).calculate_status_stats
-  # end
 
   def deprecated?
     self[:slug].nil?

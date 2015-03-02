@@ -22,7 +22,7 @@ class AnswerMigration
     Survey::SURVEY_LIST.each do |survey_slug|
       survey = Survey.find_by_slug(survey_slug)
       if survey
-        survey.all_questions_descendants.each do |question|
+        survey.questions.each do |question|
           question.answer_templates.each do |answer_template|
             found_mapping = @question_map.select{|qm| qm["slug"] == question.slug and qm["answer_template_name"] == answer_template.name }
 
@@ -163,23 +163,30 @@ class AnswerMigration
 
     survey = Survey.find_by(slug: survey_slug)
 
-    survey.all_questions_descendants.each do |question|
+    total_new_question_number = survey.questions.count
+
+    survey.questions.each_with_index do |question, question_i|
+
       question.answer_templates.each do |answer_template|
         matched_mapping = @question_map.select{|mapping| (mapping["slug"] == question.slug and mapping["answer_template_name"] == answer_template.name) }.first
 
         if matched_mapping
           matched_question = Question.find(matched_mapping["id"].to_i)
 
-          matched_question.answers.each do |matched_answer|
+          total_matched_answer_number = matched_question.answers.count
+
+          matched_question.answers.each_with_index do |matched_answer, answer_i|
             matched_user = matched_answer.answer_session.user
-            new_answer_session = matched_user.answer_sessions.find_or_create_by(survey_id: survey.id, encounter: "migrated")
+            new_answer_session = matched_user.answer_sessions.find_or_create_by(survey_id: survey.id, encounter: "baseline")
 
             matched_answer.answer_values.each do |matched_answer_value|
               # Do not create empty answers!
-              unless matched_answer_value.show_value.blank?
-                new_answer = Answer.find_or_create_by(question_id: question.id, answer_session_id: new_answer_session.id, state: "migrated")
+              if matched_answer_value.show_value.present? and Answer.find_by(question_id: question.id, answer_session_id: new_answer_session.id).blank?
 
-                puts "Migrating answer for #{matched_user.email} | #{question.slug}"
+                new_answer = Answer.create(question_id: question.id, answer_session_id: new_answer_session.id, state: "migrated")
+
+                puts "Question #{question_i + 1} of #{total_new_question_number} | Migrating answer #{answer_i} of #{total_matched_answer_number} for #{matched_user.email} | #{question.slug}"
+
                 matched_answer_template = matched_answer_value.answer_template
 
                 if answer_template.data_type == 'answer_option_id' and matched_answer_template.data_type == 'answer_option_id'

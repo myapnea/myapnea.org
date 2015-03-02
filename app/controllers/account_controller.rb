@@ -53,12 +53,12 @@ class AccountController < ApplicationController
 
   def accepts_privacy
     current_user.update accepted_privacy_policy_at: Time.zone.now
-    if current_user.is_only_researcher? or current_user.is_provider?
-      redirect_to get_started_terms_of_access_path
-    elsif current_user.ready_for_research?
-      redirect_to get_started_about_me_path
-    else
+    if !current_user.ready_for_research?
       redirect_to get_started_consent_path
+    elsif current_user.is_only_academic?
+      redirect_to get_started_terms_of_access_path
+    else
+      redirect_to get_started_about_me_path
     end
   end
 
@@ -77,10 +77,12 @@ class AccountController < ApplicationController
 
   def accepts_consent
     current_user.update(accepted_consent_at: Time.zone.now)
-    if current_user.ready_for_research?
-      redirect_to get_started_about_me_path
-    else
+    if !current_user.ready_for_research?
       redirect_to get_started_privacy_path
+    elsif current_user.is_provider?
+        redirect_to get_started_provider_profile_path
+    else
+      redirect_to get_started_about_me_path
     end
   end
 
