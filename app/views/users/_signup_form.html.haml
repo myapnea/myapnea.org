@@ -7,8 +7,8 @@
         %br
         %br
         And, of course, all of your information is completely protected.
-        - if current_page?(root_path)
-          %span#privacy-policy.lighter-blue{ data: { toggle: 'modal', target: '#myModal' } } See our privacy policy.
+        - if current_page?(root_path) or true
+          %span#privacy-policy.lighter-blue{ data: { toggle: 'modal', target: '#privacyModal' } } See our privacy policy.
         - else # current_page?(new_user_registration_path)
           = link_to 'See our privacy policy.', privacy_path, target: '_blank'
       = form_for(resource, url: registration_path(resource), class: 'form-horizontal', method: :post) do |f|
