@@ -52,12 +52,6 @@ Rails.application.routes.draw do
   match 'research_topics_tab', to: "research_topics#research_topics", via: :get, as: :research_topics_ajax
   resources :research_topics
 
-  # Research Section
-  get 'research_topics' => 'research#research_topics'
-  get 'research_karma' => 'research#research_karma'
-  get 'research_today' => 'research#research_today'
-  get 'data_connections' => 'research#data_connections'
-
   # Surveys
   get 'surveys' => 'surveys#index', as: :surveys
   get 'surveys/example', to: 'surveys#example'
