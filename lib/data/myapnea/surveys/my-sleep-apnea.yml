@@ -504,12 +504,12 @@ questions:
     - text: 'Yes'
       hotkey: 1
       value: 1
-      display_class: label-default label-med
+      display_class: label-default option-of-multiple option-of-3
     - text: 'No'
       hotkey: 2
       value: 2
-      display_class: label-default label-med
+      display_class: label-default option-of-multiple option-of-3
     - text: Prefer not to answer
       hotkey: 3
       value: 3
-      display_class: label-default label-med
+      display_class: label-default option-of-multiple option-of-3
