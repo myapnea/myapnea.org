@@ -4,18 +4,19 @@ Rails.application.routes.draw do
 
   # Static Pages
   root 'static#home'
-  get 'home'      => 'static#home'
-  get 'about'     => 'static#about'
-  get 'share'     => 'static#share' # Alias of About
-  get 'team'      => 'static#team'
-  get 'advisory'  => 'static#advisory'
-  get 'partners'  => 'static#partners'
-  get 'learn'     => 'static#learn'
-  get 'faqs'      => 'static#faqs'
-  get 'research'  => 'static#research'
-  get 'theme'     => 'static#theme'
-  get 'version'   => 'static#version'
-  get 'sitemap'   => 'static#sitemap'
+  scope module: 'static' do
+    get :home
+    get :about
+    get :team
+    get :advisory
+    get :partners
+    get :learn
+    get :faqs
+    get :research
+    get :theme
+    get :version
+    get :sitemap
+  end
 
   # Sleep Tips
   get 'sleep-tips'   => 'static#sleep_tips'
