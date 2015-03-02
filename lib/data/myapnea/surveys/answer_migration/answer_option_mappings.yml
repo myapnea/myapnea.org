@@ -1215,6 +1215,9 @@
   new_template_name: satisfied_with_sleep # Not at all
   new_option_value: 1
 
+
+## Numerical --> Categorical
+
 # Age of Diagnosis - numerical --> categorical
 - old_value_min: 0
   old_value_max: 20

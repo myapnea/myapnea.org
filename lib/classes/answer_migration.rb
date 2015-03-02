@@ -91,12 +91,13 @@ class AnswerMigration
       old_question.answer_templates.each do |old_answer_template|
         if new_answer_template.data_type == "answer_option_id"
           # CATEGORICAL - NEW ANSWER
+          option_list = new_answer_template.answer_options
+          option_text_list = option_list.map(&:text)
+
           if old_answer_template.data_type == "answer_option_id"
             # CATEGORICAL - OLD ANSWER
 
             # Both are categorical - let's try to match up
-            option_list = new_answer_template.answer_options
-            option_text_list = option_list.map(&:text)
             option_matcher = FuzzyMatch.new(option_text_list)
 
             map_file.write "\n# #{new_question.slug} : #{old_question.id} : #{new_answer_template.name} \n# #{option_list.map{|o| "#{o.value} : #{o.text}"}.join(" | ")}\n"
@@ -113,13 +114,23 @@ class AnswerMigration
               csv_file << [new_question.slug, new_answer_template.name, old_question.id, "categorical", "categorical", "yes", stripped_text, stripped_matched, same] + option_text_list
 
 
-              map_file.write "- old_option_id: #{answer_option.id} # #{answer_option.text_value.strip}\n"
-              map_file.write "  new_template_name: #{new_answer_template.name} # #{matched_option_text.strip if matched_option_text}\n"
-              map_file.write "  new_option_value: #{matched_answer_option.value if matched_answer_option}\n"
+              #map_file.write "- old_option_id: #{answer_option.id} # #{answer_option.text_value.strip}\n"
+              #map_file.write "  new_template_name: #{new_answer_template.name} # #{matched_option_text.strip if matched_option_text}\n"
+              #map_file.write "  new_option_value: #{matched_answer_option.value if matched_answer_option}\n"
 
               #map_file.write "  new_option_id: #{matched_answer_option.id if matched_answer_option} # #{matched_option_text.strip if matched_option_text}\n"
             end
           else
+            # Set up for categorical mapping:
+            new_answer_template.answer_options.each do |answer_option|
+              map_file.write "- old_value_min: \n"
+              map_file.write "  old_value_max: \n"
+              map_file.write "  new_template_name: #{new_answer_template.name} \n"
+              map_file.write "  new_option_value: #{matched_answer_option.value if matched_answer_option} # #{answer_option.text}\n"
+
+            end
+
+
             csv_file << [new_question.slug, new_answer_template.name, old_question.id, "categorical", old_answer_template.data_type, "no"]
           end
 
