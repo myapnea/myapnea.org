@@ -100,7 +100,7 @@ class AnswerMigration
             # Both are categorical - let's try to match up
             option_matcher = FuzzyMatch.new(option_text_list)
 
-            map_file.write "\n# #{new_question.slug} : #{old_question.id} : #{new_answer_template.name} \n# #{option_list.map{|o| "#{o.value} : #{o.text}"}.join(" | ")}\n"
+            #map_file.write "\n# #{new_question.slug} : #{old_question.id} : #{new_answer_template.name} \n# #{option_list.map{|o| "#{o.value} : #{o.text}"}.join(" | ")}\n"
 
             old_answer_template.answer_options.each do |answer_option|
               matched_option_text = option_matcher.find(answer_option.text_value)
@@ -121,12 +121,13 @@ class AnswerMigration
               #map_file.write "  new_option_id: #{matched_answer_option.id if matched_answer_option} # #{matched_option_text.strip if matched_option_text}\n"
             end
           else
+            map_file.write "\n# #{new_question.slug} : #{old_question.id} : #{new_answer_template.name} \n# #{option_list.map{|o| "#{o.value} : #{o.text}"}.join(" | ")}\n"
             # Set up for categorical mapping:
             new_answer_template.answer_options.each do |answer_option|
               map_file.write "- old_value_min: \n"
               map_file.write "  old_value_max: \n"
               map_file.write "  new_template_name: #{new_answer_template.name} \n"
-              map_file.write "  new_option_value: #{matched_answer_option.value if matched_answer_option} # #{answer_option.text}\n"
+              map_file.write "  new_option_value: #{answer_option.value} # #{answer_option.text}\n"
 
             end
 

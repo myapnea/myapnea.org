@@ -1218,32 +1218,410 @@
 
 ## Numerical --> Categorical
 
-# Age of Diagnosis - numerical --> categorical
+
+# household-members : 556 : household_members
+# 1 : 1 person | 2 : 2 people | 3 : 3 people | 4 : 4 or more people | 5 : I live alone | 6 : Prefer not to answer
+- old_value_min: 1
+  old_value_max: 1
+  new_template_name: household_members
+  new_option_value: 1 # 1 person
+- old_value_min: 2
+  old_value_max: 2
+  new_template_name: household_members
+  new_option_value: 2 # 2 people
+- old_value_min: 3
+  old_value_max: 3
+  new_template_name: household_members
+  new_option_value: 3 # 3 people
+- old_value_min: 4
+  old_value_max: Float::INFINITY
+  new_template_name: household_members
+  new_option_value: 4 # 4 or more people
+- old_value_min: 0
+  old_value_max: 0
+  new_template_name: household_members
+  new_option_value: 5 # I live alone
+
+# household-minors : 9556 : household_minors
+# 1 : 1 person | 2 : 2 people | 3 : 3 people | 4 : 4 or more people | 5 : None | 6 : Prefer not to answer
+- old_value_min: 1
+  old_value_max: 1
+  new_template_name: household_minors
+  new_option_value: 1 # 1 person
+- old_value_min: 2
+  old_value_max: 2
+  new_template_name: household_minors
+  new_option_value: 2 # 2 people
+- old_value_min: 3
+  old_value_max: 3
+  new_template_name: household_minors
+  new_option_value: 3 # 3 people
+- old_value_min: 4
+  old_value_max: Float::INFINITY
+  new_template_name: household_minors
+  new_option_value: 4 # 4 or more people
+- old_value_min: 0
+  old_value_max: 0
+  new_template_name: household_minors
+  new_option_value: 5 # None
+
+# sleep-hours-weekdays : 509 : number_of_hours_weekdays
+# 1 : 0-4 hours | 2 : 5-6 hours | 3 : 7 hours | 4 : 8 hours | 5 : 9 hours | 6 : 10 or more hours | 7 : Unsure | 8 : Prefer not to answer
+- old_value_min: 0
+  old_value_max: 5
+  new_template_name: number_of_hours_weekdays
+  new_option_value: 1 # 0-4 hours
+- old_value_min: 5
+  old_value_max: 7
+  new_template_name: number_of_hours_weekdays
+  new_option_value: 2 # 5-6 hours
+- old_value_min: 7
+  old_value_max: 8
+  new_template_name: number_of_hours_weekdays
+  new_option_value: 3 # 7 hours
+- old_value_min: 8
+  old_value_max: 9
+  new_template_name: number_of_hours_weekdays
+  new_option_value: 4 # 8 hours
+- old_value_min: 9
+  old_value_max: 10
+  new_template_name: number_of_hours_weekdays
+  new_option_value: 5 # 9 hours
+- old_value_min: 10
+  old_value_max: Float::INFINITY
+  new_template_name: number_of_hours_weekdays
+  new_option_value: 6 # 10 or more hours
+
+# sleep-hours-weekends : 510 : number_of_hours_weekends
+# 1 : 0-4 hours | 2 : 5-6 hours | 3 : 7 hours | 4 : 8 hours | 5 : 9 hours | 6 : 10 or more hours | 7 : Unsure | 8 : Prefer not to answer
+- old_value_min: 0
+  old_value_max: 5
+  new_template_name: number_of_hours_weekdays
+  new_option_value: 1 # 0-4 hours
+- old_value_min: 5
+  old_value_max: 7
+  new_template_name: number_of_hours_weekdays
+  new_option_value: 2 # 5-6 hours
+- old_value_min: 7
+  old_value_max: 8
+  new_template_name: number_of_hours_weekdays
+  new_option_value: 3 # 7 hours
+- old_value_min: 8
+  old_value_max: 9
+  new_template_name: number_of_hours_weekdays
+  new_option_value: 4 # 8 hours
+- old_value_min: 9
+  old_value_max: 10
+  new_template_name: number_of_hours_weekdays
+  new_option_value: 5 # 9 hours
+- old_value_min: 10
+  old_value_max: Float::INFINITY
+  new_template_name: number_of_hours_weekdays
+  new_option_value: 6 # 10 or more hours
+
+# apnea-before-diagnosis : 493 : apnea_before_diagnosis
+# 1 : 0-3 months | 2 : 3-6 months | 3 : 6-9 months | 4 : 9-12 months | 5 : 12-24 months | 6 : 24+ months | 7 : Not sure | 8 : Prefer not to answer
+- old_value_min: 0
+  old_value_max: 3
+  new_template_name: apnea_before_diagnosis
+  new_option_value: 1 # 0-3 months
+- old_value_min: 3
+  old_value_max: 6
+  new_template_name: apnea_before_diagnosis
+  new_option_value: 2 # 3-6 months
+- old_value_min: 6
+  old_value_max: 9
+  new_template_name: apnea_before_diagnosis
+  new_option_value: 3 # 6-9 months
+- old_value_min: 9
+  old_value_max: 12
+  new_template_name: apnea_before_diagnosis
+  new_option_value: 4 # 9-12 months
+- old_value_min: 12
+  old_value_max: 24
+  new_template_name: apnea_before_diagnosis
+  new_option_value: 5 # 12-24 months
+- old_value_min: 24
+  old_value_max: Float::INFINITY
+  new_template_name: apnea_before_diagnosis
+  new_option_value: 6 # 24+ months
+
+# age-of-diagnosis : 492 : age_of_diagnosis
+# 1 : 0-19 years old | 2 : 20-29 years old | 3 : 30-39 years old | 4 : 40-49 years old | 5 : 50-59 years old | 6 : 60-69 years old | 7 : Over 70 years old | 8 : Prefer not to answer
 - old_value_min: 0
   old_value_max: 20
   new_template_name: age_of_diagnosis
-  new_option_value: 1
+  new_option_value: 1 # 0-19 years old
 - old_value_min: 20
   old_value_max: 30
   new_template_name: age_of_diagnosis
-  new_option_value: 2
+  new_option_value: 2 # 20-29 years old
 - old_value_min: 30
   old_value_max: 40
   new_template_name: age_of_diagnosis
-  new_option_value: 3
+  new_option_value: 3 # 30-39 years old
 - old_value_min: 40
   old_value_max: 50
   new_template_name: age_of_diagnosis
-  new_option_value: 4
+  new_option_value: 4 # 40-49 years old
 - old_value_min: 50
   old_value_max: 60
   new_template_name: age_of_diagnosis
-  new_option_value: 5
+  new_option_value: 5 # 50-59 years old
 - old_value_min: 60
   old_value_max: 70
   new_template_name: age_of_diagnosis
-  new_option_value: 6
+  new_option_value: 6 # 60-69 years old
 - old_value_min: 70
   old_value_max: Float::INFINITY
   new_template_name: age_of_diagnosis
-  new_option_value: 7
+  new_option_value: 7 # Over 70 years old
+
+
+# symptoms-before-diagnosis : 20494 : snoring_before_diagnosis
+# 1 : 0-3 months | 2 : 3-6 months | 3 : 6-12 months | 4 : 12+ months | 5 : N/A
+- old_value_min: 0
+  old_value_max: 3
+  new_template_name: snoring_before_diagnosis
+  new_option_value: 1 # 0-3 months
+- old_value_min: 3
+  old_value_max: 6
+  new_template_name: snoring_before_diagnosis
+  new_option_value: 2 # 3-6 months
+- old_value_min: 6
+  old_value_max: 12
+  new_template_name: snoring_before_diagnosis
+  new_option_value: 3 # 6-12 months
+- old_value_min: 12
+  old_value_max: Float::INFINITY
+  new_template_name: snoring_before_diagnosis
+  new_option_value: 4 # 12+ months
+
+# symptoms-before-diagnosis : 20495 : sleepiness_before_diagnosis
+# 1 : 0-3 months | 2 : 3-6 months | 3 : 6-12 months | 4 : 12+ months | 5 : N/A
+- old_value_min: 0
+  old_value_max: 3
+  new_template_name: snoring_before_diagnosis
+  new_option_value: 1 # 0-3 months
+- old_value_min: 3
+  old_value_max: 6
+  new_template_name: snoring_before_diagnosis
+  new_option_value: 2 # 3-6 months
+- old_value_min: 6
+  old_value_max: 12
+  new_template_name: snoring_before_diagnosis
+  new_option_value: 3 # 6-12 months
+- old_value_min: 12
+  old_value_max: Float::INFINITY
+  new_template_name: snoring_before_diagnosis
+  new_option_value: 4 # 12+ months
+
+# symptoms-before-diagnosis : 120496 : tiredness_before_diagnosis
+# 1 : 0-3 months | 2 : 3-6 months | 3 : 6-12 months | 4 : 12+ months | 5 : N/A
+- old_value_min: 0
+  old_value_max: 3
+  new_template_name: snoring_before_diagnosis
+  new_option_value: 1 # 0-3 months
+- old_value_min: 3
+  old_value_max: 6
+  new_template_name: snoring_before_diagnosis
+  new_option_value: 2 # 3-6 months
+- old_value_min: 6
+  old_value_max: 12
+  new_template_name: snoring_before_diagnosis
+  new_option_value: 3 # 6-12 months
+- old_value_min: 12
+  old_value_max: Float::INFINITY
+  new_template_name: snoring_before_diagnosis
+  new_option_value: 4 # 12+ months
+
+# symptoms-before-diagnosis : 20496 : accident_before_diagnosis
+# 1 : 0-3 months | 2 : 3-6 months | 3 : 6-12 months | 4 : 12+ months | 5 : N/A
+- old_value_min: 0
+  old_value_max: 3
+  new_template_name: snoring_before_diagnosis
+  new_option_value: 1 # 0-3 months
+- old_value_min: 3
+  old_value_max: 6
+  new_template_name: snoring_before_diagnosis
+  new_option_value: 2 # 3-6 months
+- old_value_min: 6
+  old_value_max: 12
+  new_template_name: snoring_before_diagnosis
+  new_option_value: 3 # 6-12 months
+- old_value_min: 12
+  old_value_max: Float::INFINITY
+  new_template_name: snoring_before_diagnosis
+  new_option_value: 4 # 12+ months
+
+# symptoms-before-diagnosis : 20497 : shortness_breath_before_diagnosis
+# 1 : 0-3 months | 2 : 3-6 months | 3 : 6-12 months | 4 : 12+ months | 5 : N/A
+- old_value_min: 0
+  old_value_max: 3
+  new_template_name: snoring_before_diagnosis
+  new_option_value: 1 # 0-3 months
+- old_value_min: 3
+  old_value_max: 6
+  new_template_name: snoring_before_diagnosis
+  new_option_value: 2 # 3-6 months
+- old_value_min: 6
+  old_value_max: 12
+  new_template_name: snoring_before_diagnosis
+  new_option_value: 3 # 6-12 months
+- old_value_min: 12
+  old_value_max: Float::INFINITY
+  new_template_name: snoring_before_diagnosis
+  new_option_value: 4 # 12+ months
+
+# symptoms-before-diagnosis : 120498 : stopped_breathing_before_diagnosis
+# 1 : 0-3 months | 2 : 3-6 months | 3 : 6-12 months | 4 : 12+ months | 5 : N/A
+- old_value_min: 0
+  old_value_max: 3
+  new_template_name: snoring_before_diagnosis
+  new_option_value: 1 # 0-3 months
+- old_value_min: 3
+  old_value_max: 6
+  new_template_name: snoring_before_diagnosis
+  new_option_value: 2 # 3-6 months
+- old_value_min: 6
+  old_value_max: 12
+  new_template_name: snoring_before_diagnosis
+  new_option_value: 3 # 6-12 months
+- old_value_min: 12
+  old_value_max: Float::INFINITY
+  new_template_name: snoring_before_diagnosis
+  new_option_value: 4 # 12+ months
+
+# symptoms-before-diagnosis : 120499 : heart_disease_before_diagnosis
+# 1 : 0-3 months | 2 : 3-6 months | 3 : 6-12 months | 4 : 12+ months | 5 : N/A
+- old_value_min: 0
+  old_value_max: 3
+  new_template_name: snoring_before_diagnosis
+  new_option_value: 1 # 0-3 months
+- old_value_min: 3
+  old_value_max: 6
+  new_template_name: snoring_before_diagnosis
+  new_option_value: 2 # 3-6 months
+- old_value_min: 6
+  old_value_max: 12
+  new_template_name: snoring_before_diagnosis
+  new_option_value: 3 # 6-12 months
+- old_value_min: 12
+  old_value_max: Float::INFINITY
+  new_template_name: snoring_before_diagnosis
+  new_option_value: 4 # 12+ months
+
+# symptoms-before-diagnosis : 120500 : hbp_before_diagnosis
+# 1 : 0-3 months | 2 : 3-6 months | 3 : 6-12 months | 4 : 12+ months | 5 : N/A
+- old_value_min: 0
+  old_value_max: 3
+  new_template_name: snoring_before_diagnosis
+  new_option_value: 1 # 0-3 months
+- old_value_min: 3
+  old_value_max: 6
+  new_template_name: snoring_before_diagnosis
+  new_option_value: 2 # 3-6 months
+- old_value_min: 6
+  old_value_max: 12
+  new_template_name: snoring_before_diagnosis
+  new_option_value: 3 # 6-12 months
+- old_value_min: 12
+  old_value_max: Float::INFINITY
+  new_template_name: snoring_before_diagnosis
+  new_option_value: 4 # 12+ months
+
+# symptoms-before-diagnosis : 120501 : depressed_before_diagnosis
+# 1 : 0-3 months | 2 : 3-6 months | 3 : 6-12 months | 4 : 12+ months | 5 : N/A
+- old_value_min: 0
+  old_value_max: 3
+  new_template_name: snoring_before_diagnosis
+  new_option_value: 1 # 0-3 months
+- old_value_min: 3
+  old_value_max: 6
+  new_template_name: snoring_before_diagnosis
+  new_option_value: 2 # 3-6 months
+- old_value_min: 6
+  old_value_max: 12
+  new_template_name: snoring_before_diagnosis
+  new_option_value: 3 # 6-12 months
+- old_value_min: 12
+  old_value_max: Float::INFINITY
+  new_template_name: snoring_before_diagnosis
+  new_option_value: 4 # 12+ months
+
+# symptoms-before-diagnosis : 120502 : irritability_before_diagnosis
+# 1 : 0-3 months | 2 : 3-6 months | 3 : 6-12 months | 4 : 12+ months | 5 : N/A
+- old_value_min: 0
+  old_value_max: 3
+  new_template_name: snoring_before_diagnosis
+  new_option_value: 1 # 0-3 months
+- old_value_min: 3
+  old_value_max: 6
+  new_template_name: snoring_before_diagnosis
+  new_option_value: 2 # 3-6 months
+- old_value_min: 6
+  old_value_max: 12
+  new_template_name: snoring_before_diagnosis
+  new_option_value: 3 # 6-12 months
+- old_value_min: 12
+  old_value_max: Float::INFINITY
+  new_template_name: snoring_before_diagnosis
+  new_option_value: 4 # 12+ months
+
+# symptoms-before-diagnosis : 120503 : concerned_friend_before_diagnosis
+# 1 : 0-3 months | 2 : 3-6 months | 3 : 6-12 months | 4 : 12+ months | 5 : N/A
+- old_value_min: 0
+  old_value_max: 3
+  new_template_name: snoring_before_diagnosis
+  new_option_value: 1 # 0-3 months
+- old_value_min: 3
+  old_value_max: 6
+  new_template_name: snoring_before_diagnosis
+  new_option_value: 2 # 3-6 months
+- old_value_min: 6
+  old_value_max: 12
+  new_template_name: snoring_before_diagnosis
+  new_option_value: 3 # 6-12 months
+- old_value_min: 12
+  old_value_max: Float::INFINITY
+  new_template_name: snoring_before_diagnosis
+  new_option_value: 4 # 12+ months
+
+# symptoms-before-diagnosis : 220504 : forgetfulness_before_diagnosis
+# 1 : 0-3 months | 2 : 3-6 months | 3 : 6-12 months | 4 : 12+ months | 5 : N/A
+- old_value_min: 0
+  old_value_max: 3
+  new_template_name: snoring_before_diagnosis
+  new_option_value: 1 # 0-3 months
+- old_value_min: 3
+  old_value_max: 6
+  new_template_name: snoring_before_diagnosis
+  new_option_value: 2 # 3-6 months
+- old_value_min: 6
+  old_value_max: 12
+  new_template_name: snoring_before_diagnosis
+  new_option_value: 3 # 6-12 months
+- old_value_min: 12
+  old_value_max: Float::INFINITY
+  new_template_name: snoring_before_diagnosis
+  new_option_value: 4 # 12+ months
+
+# symptoms-before-diagnosis : 220505 : provider_suggestion_before_diagnosis
+# 1 : 0-3 months | 2 : 3-6 months | 3 : 6-12 months | 4 : 12+ months | 5 : N/A
+- old_value_min: 0
+  old_value_max: 3
+  new_template_name: snoring_before_diagnosis
+  new_option_value: 1 # 0-3 months
+- old_value_min: 3
+  old_value_max: 6
+  new_template_name: snoring_before_diagnosis
+  new_option_value: 2 # 3-6 months
+- old_value_min: 6
+  old_value_max: 12
+  new_template_name: snoring_before_diagnosis
+  new_option_value: 3 # 6-12 months
+- old_value_min: 12
+  old_value_max: Float::INFINITY
+  new_template_name: snoring_before_diagnosis
+  new_option_value: 4 # 12+ months
+
