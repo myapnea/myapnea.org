@@ -11,7 +11,7 @@ class SurveysControllerTest < ActionController::TestCase
   test "User can view an assigned survey" do
     login(users(:has_launched_survey))
 
-    get :show, slug: answer_sessions(:launched).survey
+    get :show, id: answer_sessions(:launched).survey
 
     assert_response :success
   end
@@ -61,7 +61,7 @@ class SurveysControllerTest < ActionController::TestCase
 
     assert answer_sessions(:complete).completed?
 
-    get :show_report, slug: answer_sessions(:complete).survey
+    get :report, id: answer_sessions(:complete).survey
 
     assert_response :success
   end
@@ -73,7 +73,7 @@ class SurveysControllerTest < ActionController::TestCase
   test "User cannot view an unassigned survey" do
     login(users(:social))
 
-    get :show, slug: surveys(:new)
+    get :show, id: surveys(:new)
 
     assert_redirected_to surveys_path
   end
@@ -83,7 +83,7 @@ class SurveysControllerTest < ActionController::TestCase
   test "User cannot view survey report for assigned but unstarted survey" do
     login(users(:has_launched_survey))
 
-    get :show_report, slug: answer_sessions(:launched).survey
+    get :report, id: answer_sessions(:launched).survey
 
     assert_redirected_to surveys_path
 
@@ -94,7 +94,7 @@ class SurveysControllerTest < ActionController::TestCase
   test "User cannot view survey report for incomplete survey" do
     login(users(:has_incomplete_survey))
 
-    get :show_report, slug: answer_sessions(:incomplete).survey
+    get :report, id: answer_sessions(:incomplete).survey
 
     assert_redirected_to surveys_path
   end
@@ -106,7 +106,7 @@ class SurveysControllerTest < ActionController::TestCase
 
     assert answer_sessions(:complete).completed?
 
-    get :show, slug: surveys(:new)
+    get :show, id: surveys(:new)
 
     assert_not_nil assigns(:survey)
 

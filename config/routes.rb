@@ -53,13 +53,16 @@ Rails.application.routes.draw do
   resources :research_topics
 
   # Surveys
-  get 'surveys' => 'surveys#index', as: :surveys
-  get 'surveys/example', to: 'surveys#example'
-  get 'surveys/:slug/report(/:answer_session_id)', to: 'surveys#show_report', as: :survey_report
-  match 'surveys/:slug', to: 'surveys#show', as: :survey, via: :get
-  ## Answer Processing
-  match 'research_surveys/process_answer', to: 'surveys#process_answer', via: :post, as: :process_answer
-  match 'surveys/submit', to: 'surveys#submit', via: :post, as: :submit_survey
+  resources :surveys do
+    collection do
+      post :process_answer
+      post :submit
+    end
+    member do
+      get :report
+    end
+  end
+
   ## JSON
   get 'questions/frequencies(/:question_id/:answer_session_id)', to: "questions#frequencies", as: :question_frequencies, format: :json
   get 'questions/typeahead/:question_id', to: "questions#typeahead", as: :question_typeahead, format: :json
