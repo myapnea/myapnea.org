@@ -37,7 +37,7 @@
             %h4.f300.centered-text
               = survey.name
             %h5.f300.primary-blue{ style: 'margin-bottom:30px;' }
-              = link_to 'View Data', survey_report_path(slug: survey)
+              = link_to 'View Data', report_survey_path(survey)
       - else
         - if !current_user.has_user_type?
           .centered-text{ style: 'display:block' }

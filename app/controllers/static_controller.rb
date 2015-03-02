@@ -1,13 +1,9 @@
 class StaticController < ApplicationController
-  before_action :load_pc, only: [ :about, :share, :team, :advisory, :learn, :faqs, :research ]
+  before_action :load_pc, only: [ :about, :team, :advisory, :learn, :faqs, :research ]
   before_action :about_layout, only: [ :research ]
 
   ## Static
   def about
-  end
-
-  # Alias for about
-  def share
   end
 
   def team

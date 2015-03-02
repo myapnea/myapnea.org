@@ -42,16 +42,16 @@
   .panel.centered-text{ style: "padding: 20px;"}
     - if @survey.locked?(current_user)
       %p.lead You've already submitted this survey. You can compare your answers to others in the community by viewing the survey report!
-      = link_to "View Report", survey_report_path(@survey), class: "btn btn-success btn-lg"
+      = link_to "View Report", report_survey_path(@survey), class: "btn btn-success btn-lg"
     - else
       .panel-heading{ style: 'background-color: transparent;', data: { object: 'survey-submit-btn-container' } }
-        .btn.btn-primary.btn-lg{ style: 'width:100%', data: { object: 'survey-submit-btn', path: submit_survey_path, answer_session_id: @answer_session.id } } Submit Answers!
+        .btn.btn-primary.btn-lg{ style: 'width:100%', data: { object: 'survey-submit-btn', path: submit_surveys_path, answer_session_id: @answer_session.id } } Submit Answers!
       .panel-body.hidden{ data: { object: 'survey-submit-congratulations-container' } }
         %h3.f300.primary-blue Congratulations!
         %p.lead You've reached the end of the survey, and are already on your way to making an impact on sleep apnea research. You've also gained one entry into our monthly prize drawing!
         %p.lead From here, we highly recommend you continue and answer a few more questions to help us learn more about you and your experience with sleep apnea.
         .row{ style: 'margin-bottom:20px; text-align: center;' }
-          = link_to "View Report", survey_report_path(@survey), class: "btn btn-success btn-lg"
+          = link_to "View Report", report_survey_path(@survey), class: "btn btn-success btn-lg"
           = link_to "Continue", next_survey_path(@survey), class: "btn btn-primary btn-lg"
         %p.lead{ style: 'font-size: 16px;'}
           We also have an active community that you can

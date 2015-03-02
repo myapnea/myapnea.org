@@ -1,5 +1,0 @@
-- @active_top_nav_link = :participate
-.row
-  - Survey.viewable.each do |survey|
-    .col-sm-4
-      = render partial: 'surveys/partials/survey_widget', locals: { survey: survey }

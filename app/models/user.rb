@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
           ['Researcher', 'researcher']]
 
   DEFAULT_SURVEYS = {
-    adult_diagnosed: ['about-me', 'additional-information-about-me', 'about-my-family', 'my-interest-in-research', 'my-sleep-pattern', 'my-sleep-quality', 'my-quality-of-life', 'my-health-conditions', 'my-sleep-apnea', 'my-sleep-apnea-treatment', 'my-risk-profile'],
+    adult_diagnosed: ['about-me', 'additional-information-about-me', 'about-my-family', 'my-interest-in-research', 'my-sleep-pattern', 'my-sleep-quality', 'my-quality-of-life', 'my-health-conditions', 'my-sleep-apnea', 'my-sleep-apnea-treatment'],
     adult_at_risk: ['about-me', 'additional-information-about-me', 'about-my-family', 'my-interest-in-research', 'my-sleep-pattern', 'my-sleep-quality', 'my-quality-of-life', 'my-health-conditions', 'my-risk-profile'],
     caregiver_adult: ['about-me', 'additional-information-about-me', 'about-my-family', 'my-interest-in-research'],
     caregiver_child: ['about-me', 'additional-information-about-me', 'about-my-family', 'my-interest-in-research']
