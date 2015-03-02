@@ -1,5 +1,5 @@
 // Multiple checks
-.input-container input[type=checkbox] {
+.input-container:not(#foo) input[type=checkbox] {
   display:none;
 }
 

@@ -10,7 +10,6 @@
 .panel
   .panel-body
     .row
-      -# TODO refactor into one statement
       - if current_user.is_only_academic?
         - Survey.viewable.where.not(slug: nil).first(3).each do |survey|
           .col-sm-4.centered-text
@@ -45,24 +44,23 @@
   .panel-body
     .row
       .col-sm-4{ style: 'margin-bottom:20px;' }
-        = link_to ENV['website_url']+'/forums/news/topics/patient-engagement-panel-description-and-application', class: 'home-news-link' do
+        = link_to ENV['website_url']+'/forums/news/topics/first-lottery-winner', class: 'home-news-link' do
           = image_tag 'myapnea/welcome/img-small/unsplash-team_300x300.jpg', style: 'width:100%; height: auto;', class: 'img-rounded hidden-xs'
-          %h4.f300.primary-orange.centered-text Join as a member of the Patient Engagement Council!
-          %h5.f300.centered-text.visible-xs Help the community by providing critical reviews, and of the Network's activities and ensure that the patient's voice is reflected in major decisions and implementation.
+          %h4.f300.primary-orange.centered-text First Lottery Winner!
+          %h5.f300.centered-text.visible-xs You've my doing an amazing job with surveys, and our first winner has been picked!
       .col-sm-4{ style: 'margin-bottom:20px;' }
-        = link_to ENV['website_url']+'/forums/news/topics/we-re-happy-to-announce-the-beta-release-of-our-new-and-improved-platform', class: 'home-news-link' do
+        = link_to ENV['website_url']+'/forums/news/topics/new-survey-format-and-release-5-0', class: 'home-news-link' do
           = image_tag 'myapnea/welcome/img-small/unsplash-computer_300x300.jpg', style: 'width:100%; height: auto;', class: 'img-rounded hidden-xs'
-          %h4.f300.primary-orange.centered-text We're happy to announce the beta release of our new and improved platform!
-          %h5.f300.centered-text.visible-xs Click here to opt in and gain the ability to provide feedback and help us finish the last stages of development.
+          %h4.f300.primary-orange.centered-text New and Improved Surveys!
+          %h5.f300.centered-text.visible-xs We are happy to announce that our survey system has gotten a beautiful redesign!
       .col-sm-4{ style: 'margin-bottom:20px;' }
         = link_to ENV['website_url']+'/forums/news/topics/introducing-provider-s-pages', class: 'home-news-link' do
           = image_tag 'myapnea/welcome/img-small/snapwire-team_300x300.jpg', style: 'width:100%; height: auto;', class: 'img-rounded hidden-xs'
-          %h4.f300.primary-orange.centered-text Introducing: Provider's pages!
-          %h5.f300.centered-text.visible-xs Care providers can now join as an official Healthcare Partner, create their own custom page, and build a personal network.
+          %h4.f300.primary-orange.centered-text Customizing your MyApnea Experience
+          %h5.f300.centered-text.visible-xs We're working on personalizing your experience on MyApnea.Org. Let us know what you want to see more of!
 
 .panel
   .panel-heading
     %h3.f300 Recent Forum Activity
-    / %h5.f300 It seems like you're most active on these forums, so we've filtered the content for you.
   = render partial: './forums/show_from_home', locals: { topic_limit: '5' }
 
