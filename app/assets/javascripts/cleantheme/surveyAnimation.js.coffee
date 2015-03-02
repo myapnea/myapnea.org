@@ -127,9 +127,10 @@
   $('.survey-container').click (event) ->
     event.stopPropagation()
     # For click events on 'Next Question' button, just assign next question
-    if $(event.target).hasClass "next-question"
+    target = event.target or event.srcElement
+    if $(target).hasClass "next-question"
       assignQuestion(true, false)
-    else if $(event.target).is("input") or $(event.target).closest("label").siblings("input").length > 0
+    else if $(target).is("input") or $(target).closest("label").siblings("input").length > 0
       return
     else if !$(this).hasClass "active"
       assignQuestionDirect($(this))
@@ -170,7 +171,7 @@
           writeDate(e.keyCode)
 
   $("body").keyup (e) ->
-    if $('.survey-container').length
+    if $('.survey-container.active').length
       # Handle navigating using the up/down arrow keys
       if e.keyCode is 38
         e.preventDefault()
@@ -183,10 +184,10 @@
         assignQuestion(true, false)
         return
       # Handle hidden inputs first to prevent extra entering
-      if $("input:focus").is(":text")
+      else if $("input:focus").is(":text")
         return
       # Handle 'prefer not to answer checkbox'
-      else if $(this).find('.preferred-not-to-answer').length
+      else if $('.survey-container.active').find('.preferred-not-to-answer').length
         return
       # Handle radio_input_multiple
       else if $(".survey-container.active").hasClass "multiple-question-parts"
@@ -200,6 +201,7 @@
       else
         # Progress to next question if applicable
         if $(".survey-container.active").data('progress')
+          console.log "clicking radio input"
           inputs = $(".survey-container.active").find("input:radio")
           inputs.each (index) ->
             if e.keyCode is $(this).data("hotkey").toString().charCodeAt(0)
@@ -220,10 +222,12 @@
   # Attach change event handler to everything but radio button inputs. Radio button inputs are changed by JS, so each time
   # the :checked property is changed, handleChangedValue has to be called.
   $(".survey-container input").change (event) ->
-    handleChangedValue($(event.target))
+    target = event.target or event.srcElement
+    handleChangedValue($(target))
 
   $(".survey-container select").change (event) ->
-    handleChangedValue($(event.target))
+    target = event.target or event.srcElement
+    handleChangedValue($(target))
 
   #####################
   # SURVEY SUBMISSION #

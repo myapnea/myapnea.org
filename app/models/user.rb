@@ -262,7 +262,7 @@ class User < ActiveRecord::Base
   def choose_next_survey(survey)
     DEFAULT_SURVEYS.each do |user_type, survey_order|
       if self[user_type]
-        return (survey_order - (completed_surveys.pluck(:slug) << survey[:slug])).first
+        return (survey_order - completed_surveys.pluck(:slug) - [survey[:slug]]).first
       end
     end
   end
