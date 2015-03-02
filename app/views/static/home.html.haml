@@ -10,7 +10,6 @@
 .panel
   .panel-body
     .row
-      -# TODO refactor into one statement
       - if current_user.is_only_academic?
         - Survey.viewable.where.not(slug: nil).first(3).each do |survey|
           .col-sm-4.centered-text
@@ -63,6 +62,5 @@
 .panel
   .panel-heading
     %h3.f300 Recent Forum Activity
-    / %h5.f300 It seems like you're most active on these forums, so we've filtered the content for you.
   = render partial: './forums/show_from_home', locals: { topic_limit: '5' }
 
