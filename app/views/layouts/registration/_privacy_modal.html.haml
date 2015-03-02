@@ -1,23 +1,4 @@
-/ TODO make sure they're on privacy page and just got redirected
-- if current_user and params[:action] == 'registration1' and !current_user.ready_for_research?
-  .modal.fade.in#introPrivacyModal{ tabindex:'-1', role:'dialog', aria: { labelledby: 'introPrivacyModalLabel', hidden: 'true' } }
-    .modal-dialog.modal-lg{ style: 'z-index:1050' }
-      .modal-content
-        .modal-header
-          %button.close{ type: 'button', data: { dismiss: 'modal' } }
-            %span{ aria: { hidden: 'true' } } &times;
-            %span.sr-only Close
-          %h4.modal-title#introPrivacyModalLabel Welcome to MyApnea.Org!
-        .modal-body{ style: 'overflow-y:scroll; max-height:600px; font-size:20px;' }
-          %h4.f300.spaced
-            Your valuable input can help shape the future direction of sleep apnea research, but first we need your permission to participate in the research community. After agreeing to the privacy policy and informed consent, you may begin the research surveys and engage with all aspects of the community! For each survey that you complete, you will be entered into our monthly lottery for a
-            %span.f500 $250 Visa Gift card.
-          %h5.f300.spaced
-            %span.f500 Please note:
-            You can sign the informed consent at any time. Forums are available to all users, even those who haven't signed the informed consent.
-        .modal-footer.centered-text
-          %button.btn.btn-success{ type: 'button', style: 'width:30%; margin: 0px auto;', data: { dismiss: 'modal' } } Continue
-- else
+- if (current_page?(root_path) or params[:controller] == 'registrations') and !current_user
   .modal.fade#privacyModal{ tabindex:'-1', role:'dialog', aria: { labelledby: 'privacyModalLabel', hidden: 'true' } }
     .modal-dialog.modal-lg{ style: 'z-index:1050' }
       .modal-content
@@ -31,4 +12,4 @@
           = markdown @pc['privacy_policy']
         .modal-footer
           = link_to 'More information', consent_path, class: 'btn btn-default'
-          %button.btn.btn-primary{ type: 'button', data: { dismiss: '#privacyModal' } } Close
+          %button.btn.btn-primary{ type: 'button', data: { dismiss: 'modal' } } Close

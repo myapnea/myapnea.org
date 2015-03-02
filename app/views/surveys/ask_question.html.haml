@@ -1,5 +1,5 @@
 #answer-session
-  = form_tag(process_answer_path, {role: "form"}) do
+  = form_tag(process_answer_surveys_path, {role: "form"}) do
     .panel.panel-default
       .panel-heading
         = render partial: 'surveys/partials/header', locals: {survey: @answer_session.survey}

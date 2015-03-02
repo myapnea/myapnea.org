@@ -4,18 +4,19 @@ Rails.application.routes.draw do
 
   # Static Pages
   root 'static#home'
-  get 'home'      => 'static#home'
-  get 'about'     => 'static#about'
-  get 'share'     => 'static#share' # Alias of About
-  get 'team'      => 'static#team'
-  get 'advisory'  => 'static#advisory'
-  get 'partners'  => 'static#partners'
-  get 'learn'     => 'static#learn'
-  get 'faqs'      => 'static#faqs'
-  get 'research'  => 'static#research'
-  get 'theme'     => 'static#theme'
-  get 'version'   => 'static#version'
-  get 'sitemap'   => 'static#sitemap'
+  scope module: 'static' do
+    get :home
+    get :about
+    get :team
+    get :advisory
+    get :partners
+    get :learn
+    get :faqs
+    get :research
+    get :theme
+    get :version
+    get :sitemap
+  end
 
   # Sleep Tips
   get 'sleep-tips'   => 'static#sleep_tips'
@@ -29,7 +30,7 @@ Rails.application.routes.draw do
   get 'get-started/provider-profile' => 'account#get_started_provider_profile'
   get 'get-started/social-profile' => 'account#get_started_social_profile'
 
-  get 'describe_yourself' => 'account#user_type'
+  get 'describe-yourself' => 'account#user_type'
   patch 'set_user_type' => 'account#set_user_type'
   patch 'set_user_type_and_redirect_to_account' => 'account#set_user_type_and_redirect_to_account'
   post 'accepts_privacy' => 'account#accepts_privacy'
@@ -50,22 +51,19 @@ Rails.application.routes.draw do
   #match 'research_questions', to: 'research_topics#index', via: :get, as: :research_topics
   #match 'research_questions/new', to: 'research_topics#new', via: :get, as: :new_research_topic
   match 'research_topics_tab', to: "research_topics#research_topics", via: :get, as: :research_topics_ajax
-  resources :research_topics
-
-  # Research Section
-  get 'research_topics' => 'research#research_topics'
-  get 'research_karma' => 'research#research_karma'
-  get 'research_today' => 'research#research_today'
-  get 'data_connections' => 'research#data_connections'
+  resources :research_topics, path: 'research-topics'
 
   # Surveys
-  get 'surveys' => 'surveys#index', as: :surveys
-  get 'surveys/example', to: 'surveys#example'
-  get 'surveys/:slug/report(/:answer_session_id)', to: 'surveys#show_report', as: :survey_report
-  match 'surveys/:slug', to: 'surveys#show', as: :survey, via: :get
-  ## Answer Processing
-  match 'research_surveys/process_answer', to: 'surveys#process_answer', via: :post, as: :process_answer
-  match 'surveys/submit', to: 'surveys#submit', via: :post, as: :submit_survey
+  resources :surveys do
+    collection do
+      post :process_answer
+      post :submit
+    end
+    member do
+      get :report
+    end
+  end
+
   ## JSON
   get 'questions/frequencies(/:question_id/:answer_session_id)', to: "questions#frequencies", as: :question_frequencies, format: :json
   get 'questions/typeahead/:question_id', to: "questions#typeahead", as: :question_typeahead, format: :json

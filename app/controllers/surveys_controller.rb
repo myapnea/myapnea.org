@@ -2,7 +2,7 @@ class SurveysController < ApplicationController
   before_action :authenticate_user!
   before_action :set_active_top_nav_link_to_surveys
   before_action :authenticate_research
-  before_action :set_survey, only: [:show, :show_report, :start_survey]
+  before_action :set_survey, only: [:show, :report, :start_survey]
 
 
 
@@ -14,10 +14,10 @@ class SurveysController < ApplicationController
     redirect_to surveys_path and return if @survey.deprecated?
     # We do not want to redirect to survey report path if it's completed, we
     # want to show the survey page, with locked questions instead. ~ Remo
-    # redirect_to survey_report_path(@survey, @answer_session) and return if @answer_session.completed?
+    # redirect_to report_survey_path(@survey, @answer_session) and return if @answer_session.completed?
   end
 
-  def show_report
+  def report
     redirect_to surveys_path and return unless @answer_session.completed?
   end
 
@@ -37,23 +37,15 @@ class SurveysController < ApplicationController
 
   def submit
     @answer_session = AnswerSession.find(params[:answer_session_id])
+    @answer_session.lock_answers if @answer_session.completed?
 
-    respond_to do |format|
-      format.json do
-        if @answer_session.completed?
-          @answer_session.lock_answers
-        end
-
-        render json: { locked: @answer_session.locked? }
-
-      end
-    end
+    render json: { locked: @answer_session.locked? }
   end
 
   private
 
   def set_survey
-    @survey = Survey.where("slug = ? or id = ?", params["slug"], params["slug"].to_i).first
+    @survey = Survey.where("slug = ? or id = ?", params[:id], params[:id].to_i).first
     @answer_session = AnswerSession.where(user_id: current_user.id, survey_id: @survey.id).order("created_at desc").first
 
     redirect_to surveys_path and return unless @answer_session.present?

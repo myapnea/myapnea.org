@@ -4,7 +4,7 @@
       %li.list-group-item.hover-slide-left.list-shrink{ style: 'color:white; color: rgba(255,255,255,.8); text-decoration: none;' } Home
     = link_to forums_path do
       %li.list-group-item.hover-slide-left.list-shrink{ style: 'color:white; color: rgba(255,255,255,.8); text-decoration: none;' } Forums
-    = link_to surveys_path do
+    = link_to surveys_path, data: { no_turbolink: true } do
       %li.list-group-item.hover-slide-left.list-shrink{ style: 'color:white; color: rgba(255,255,255,.8); text-decoration: none;' } Research Surveys
     = link_to research_topics_path do
       %li.list-group-item.hover-slide-left.list-shrink{ style: 'color:white; color: rgba(255,255,255,.8); text-decoration: none;' } Rank the Research

@@ -26,8 +26,8 @@ class User < ActiveRecord::Base
           ['Researcher', 'researcher']]
 
   DEFAULT_SURVEYS = {
-    adult_diagnosed: ['about-me', 'additional-information-about-me', 'about-my-family', 'my-interest-in-research', 'my-sleep-pattern', 'my-sleep-quality', 'my-quality-of-life', 'my-health-conditions', 'my-sleep-apnea', 'my-sleep-apnea-treatment', 'my-risk-profile'],
-    adult_at_risk: ['about-me', 'additional-information-about-me', 'about-my-family', 'my-interest-in-research', 'my-sleep-pattern', 'my-sleep-quality', 'my-quality-of-life', 'my-health-conditions', 'my-risk-profile'],
+    adult_diagnosed: ['about-me', 'additional-information-about-me', 'about-my-family', 'my-health-conditions', 'my-sleep-pattern', 'my-sleep-quality', 'my-sleep-apnea', 'my-sleep-apnea-treatment', 'my-quality-of-life', 'my-interest-in-research'],
+    adult_at_risk: ['about-me', 'additional-information-about-me', 'about-my-family', 'my-health-conditions', 'my-sleep-pattern', 'my-sleep-quality', 'my-risk-profile', 'my-quality-of-life', 'my-interest-in-research'],
     caregiver_adult: ['about-me', 'additional-information-about-me', 'about-my-family', 'my-interest-in-research'],
     caregiver_child: ['about-me', 'additional-information-about-me', 'about-my-family', 'my-interest-in-research']
   }
@@ -260,7 +260,11 @@ class User < ActiveRecord::Base
   end
 
   def choose_next_survey(survey)
-    incomplete_surveys.where("surveys.id != ?", survey.id).first
+    DEFAULT_SURVEYS.each do |user_type, survey_order|
+      if self[user_type]
+        return (survey_order - (completed_surveys.pluck(:slug) << survey[:slug])).first
+      end
+    end
   end
 
   def research_topics_with_vote
