@@ -30,7 +30,7 @@ Rails.application.routes.draw do
   get 'get-started/provider-profile' => 'account#get_started_provider_profile'
   get 'get-started/social-profile' => 'account#get_started_social_profile'
 
-  get 'describe_yourself' => 'account#user_type'
+  get 'describe-yourself' => 'account#user_type'
   patch 'set_user_type' => 'account#set_user_type'
   patch 'set_user_type_and_redirect_to_account' => 'account#set_user_type_and_redirect_to_account'
   post 'accepts_privacy' => 'account#accepts_privacy'
