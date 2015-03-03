@@ -77,6 +77,14 @@ class AnswerMigration
     validation
   end
 
+  def answer_option_map
+    @answer_option_map
+  end
+
+  def question_map
+    @question_map
+  end
+
   def set_answer_option_mappings(output_dir)
     csv_file = CSV.open(File.join(output_dir, "summary.csv"), 'w')
     map_file = File.open(File.join(output_dir, "mappings.yml"), 'w')
@@ -160,7 +168,7 @@ class AnswerMigration
 
   end
 
-  def migrate_survey(survey_slug)
+  def migrate_survey(survey_slug, log_file_path)
     # First pass:
     # 1. Go through the answers for a given question
     # 2. Find or create the answer session for the given user/survey combo
@@ -171,6 +179,7 @@ class AnswerMigration
 
     ## This should allow all historical values to be saved, without
 
+    log_file = File.open(log_file_path, "w")
 
 
     survey = Survey.find_by(slug: survey_slug)
@@ -213,9 +222,8 @@ class AnswerMigration
                     new_answer.save!
                   else
                     msg = "Mapping not found! #{matched_option_id} #{answer_template.name}"
-                    logger.error msg
                     puts msg
-                    raise StandardError, msg
+                    log_file.puts msg
 
                   end
 
@@ -225,27 +233,33 @@ class AnswerMigration
                   new_answer.save!
                 elsif answer_template.data_type == 'answer_option_id' and matched_answer_template.data_type == 'numeric_value'
                   matched_answer_option_mapping = @answer_option_map.select do |mapping|
-                    matched_answer_value.value >= mapping["old_value_min"].to_f and matched_answer_value.value < mapping["old_value_max"].to_f and mapping["new_template_name" == answer_template.name ]
+                    if mapping["new_template_name"] == answer_template.name
+                      min = mapping["old_value_min"].to_f
+                      max = (numeric?(mapping["old_value_max"]) ? mapping["old_value_max"].to_f : Float.const_get(mapping["old_value_max"]))
+                      (matched_answer_value.value.to_f >= min and matched_answer_value.value.to_f < max)
+                    else
+                      false
+                    end
+
                   end.first
 
                   if matched_answer_option_mapping
                     new_answer_option = answer_template.answer_options.find_by_value(matched_answer_option_mapping["new_option_value"])
                     new_answer.answer_values.create(answer_template_id: answer_template.id, answer_option_id: new_answer_option.id)
                     new_answer.save!
-                  else
-                    msg = "Mapping not found! #{matched_option_id} #{answer_template.name}"
-                    logger.error msg
+                  elsif matched_answer_value.present?
+                    msg = "Mapping not found!  #{answer_template.name} | #{matched_answer_value.value}"
                     puts msg
-                    raise StandardError, msg
+                    log_file.puts msg
+                  else
+                    msg = "Blank Answer! #{answer_template.name} | #{matched_answer_value.value}"
+                    puts msg
+                    log_file.puts msg
                   end
                 else
                   msg = "Unresolved match! #{matched_mapping["slug"]} | #{matched_mapping["answer_template_name"]} | #{answer_template.data_type}:#{matched_answer_template.data_type}"
-                  logger.error msg
                   puts msg
-                  raise StandardError, msg
-
-                  #new_answer.answer_values.create(:answer_template_id => answer_template.id, answer_template.data_type => matched_answer_value.value)
-                  #new_answer.save!
+                  log_file.puts msg
                 end
               end
             end
@@ -256,6 +270,12 @@ class AnswerMigration
 
       end
     end
+    log_file.close
   end
 
+  private
+
+  def numeric?(str)
+    Float(str) != nil rescue false
+  end
 end
