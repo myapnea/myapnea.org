@@ -61,6 +61,7 @@
 
 ### Bug Fixes
 - Fixed a bug that prevented a user dashboard from displaying if no forum topics existed
+- Fixed a bug on IE9 where the password field disappeared upon erroring due to old placeholders.jquery.min
 
 ### Search Engine Optimization
 - Added sitemap_generator gem for dynamic SEO via sitemap creation
