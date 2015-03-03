@@ -7,13 +7,14 @@
     %h5.f300{ style: ' margin-bottom:30px; ' }
       My answer:
       %span.primary-blue
-        - if question.applicable_to_user?(answer_session)
-          = answer_value.show_value if answer_value.present?
+        - if question.applicable_to_user?(answer_session) or answer_value.present?
+          = answer_value.show_value
         - elsif question.user_skipped_question?(answer_session)
           Oops, it looks like you didn't answer this question.
           = link_to 'Answer now!', surveys_path
         - else
           You were unable to answer this question due to previous responses!
+
     %h5
       - if question.applicable_to_user?(answer_session) or question.user_skipped_question?(answer_session)
         See how the community answered!
