@@ -112,7 +112,7 @@
   $("[data-object~='reveal-next-input']").click (e) ->
     if this.checked then revealNextInput($(this).data('target'))
 
-  $('input:radio').click (event) ->
+  $('.survey-container input:radio').click (event) ->
     event.stopPropagation()
     unless $(this).data('secondary')
       $(this).prop "checked", true
@@ -126,7 +126,7 @@
       else
         assignQuestionDirect($(this).closest('.survey-container'))
 
-  $('input:text').click (event) ->
+  $('.survey-container input:text').click (event) ->
     event.stopPropagation()
     if $(this).data('secondary')
       setActive($(this).closest('.survey-container'))
