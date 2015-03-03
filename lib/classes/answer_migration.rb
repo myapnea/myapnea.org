@@ -206,7 +206,7 @@ class AnswerMigration
 
                 new_answer = Answer.create(question_id: question.id, answer_session_id: new_answer_session.id, state: "migrated")
 
-                puts "Question #{question_i + 1} of #{total_new_question_number} | Migrating answer #{answer_i} of #{total_matched_answer_number} for #{matched_user.email} | #{question.slug}"
+                puts "Survey: #{survey.slug} | Question #{question_i + 1} of #{total_new_question_number} | Migrating answer #{answer_i} of #{total_matched_answer_number} for #{matched_user.email} | #{question.slug}"
 
                 matched_answer_template = matched_answer_value.answer_template
 
@@ -262,7 +262,7 @@ class AnswerMigration
                   log_file.puts msg
                 end
               else
-                puts "!Question #{question_i + 1} of #{total_new_question_number} | ! answer #{answer_i} of #{total_matched_answer_number} for #{matched_user.email} | #{question.slug} | Empty or present! value: #{matched_answer_value.show_value} | count: #{Answer.where(question_id: question.id, answer_session_id: new_answer_session.id).count} | as: #{new_answer_session.encounter} #{new_answer_session.created_at} "
+                puts "!Survey: #{survey.slug} | Question #{question_i + 1} of #{total_new_question_number} | ! answer #{answer_i} of #{total_matched_answer_number} for #{matched_user.email} | #{question.slug} | Empty or present! value: #{matched_answer_value.show_value} | count: #{Answer.where(question_id: question.id, answer_session_id: new_answer_session.id).count} | as: #{new_answer_session.encounter} #{new_answer_session.created_at} "
               end
             end
           end
