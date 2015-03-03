@@ -168,7 +168,7 @@ class AnswerMigration
 
   end
 
-  def migrate_survey(survey_slug, log_file_path)
+  def migrate_survey(survey_slug, log_file_path=File.join(Rails.root, "tmp", "answer_migration.log"))
     # First pass:
     # 1. Go through the answers for a given question
     # 2. Find or create the answer session for the given user/survey combo
@@ -261,6 +261,8 @@ class AnswerMigration
                   puts msg
                   log_file.puts msg
                 end
+              else
+                puts "!Question #{question_i + 1} of #{total_new_question_number} | ! answer #{answer_i} of #{total_matched_answer_number} for #{matched_user.email} | #{question.slug} | Empty or present! value: #{matched_answer_value.show_value} | count: #{Answer.where(question_id: question.id, answer_session_id: new_answer_session.id).count} | as: #{new_answer_session.encounter} #{new_answer_session.created_at} "
               end
             end
           end

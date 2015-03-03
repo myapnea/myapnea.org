@@ -1222,15 +1222,15 @@
 # household-members : 556 : household_members
 # 1 : 1 person | 2 : 2 people | 3 : 3 people | 4 : 4 or more people | 5 : I live alone | 6 : Prefer not to answer
 - old_value_min: 1
-  old_value_max: 1
+  old_value_max: 2
   new_template_name: household_members
   new_option_value: 1 # 1 person
 - old_value_min: 2
-  old_value_max: 2
+  old_value_max: 3
   new_template_name: household_members
   new_option_value: 2 # 2 people
 - old_value_min: 3
-  old_value_max: 3
+  old_value_max: 4
   new_template_name: household_members
   new_option_value: 3 # 3 people
 - old_value_min: 4
@@ -1238,22 +1238,22 @@
   new_template_name: household_members
   new_option_value: 4 # 4 or more people
 - old_value_min: 0
-  old_value_max: 0
+  old_value_max: 1
   new_template_name: household_members
   new_option_value: 5 # I live alone
 
 # household-minors : 9556 : household_minors
 # 1 : 1 person | 2 : 2 people | 3 : 3 people | 4 : 4 or more people | 5 : None | 6 : Prefer not to answer
 - old_value_min: 1
-  old_value_max: 1
+  old_value_max: 2
   new_template_name: household_minors
   new_option_value: 1 # 1 person
 - old_value_min: 2
-  old_value_max: 2
+  old_value_max: 3
   new_template_name: household_minors
   new_option_value: 2 # 2 people
 - old_value_min: 3
-  old_value_max: 3
+  old_value_max: 4
   new_template_name: household_minors
   new_option_value: 3 # 3 people
 - old_value_min: 4
@@ -1261,7 +1261,7 @@
   new_template_name: household_minors
   new_option_value: 4 # 4 or more people
 - old_value_min: 0
-  old_value_max: 0
+  old_value_max: 1
   new_template_name: household_minors
   new_option_value: 5 # None
 
