@@ -91,12 +91,13 @@ class AnswerMigration
       old_question.answer_templates.each do |old_answer_template|
         if new_answer_template.data_type == "answer_option_id"
           # CATEGORICAL - NEW ANSWER
+          option_list = new_answer_template.answer_options
+          option_text_list = option_list.map(&:text)
+
           if old_answer_template.data_type == "answer_option_id"
             # CATEGORICAL - OLD ANSWER
 
             # Both are categorical - let's try to match up
-            option_list = new_answer_template.answer_options
-            option_text_list = option_list.map(&:text)
             option_matcher = FuzzyMatch.new(option_text_list)
 
             map_file.write "\n# #{new_question.slug} : #{old_question.id} : #{new_answer_template.name} \n# #{option_list.map{|o| "#{o.value} : #{o.text}"}.join(" | ")}\n"
@@ -117,9 +118,20 @@ class AnswerMigration
               map_file.write "  new_template_name: #{new_answer_template.name} # #{matched_option_text.strip if matched_option_text}\n"
               map_file.write "  new_option_value: #{matched_answer_option.value if matched_answer_option}\n"
 
-              #map_file.write "  new_option_id: #{matched_answer_option.id if matched_answer_option} # #{matched_option_text.strip if matched_option_text}\n"
+              map_file.write "  new_option_id: #{matched_answer_option.id if matched_answer_option} # #{matched_option_text.strip if matched_option_text}\n"
             end
           else
+            map_file.write "\n# #{new_question.slug} : #{old_question.id} : #{new_answer_template.name} \n# #{option_list.map{|o| "#{o.value} : #{o.text}"}.join(" | ")}\n"
+            # Set up for categorical mapping:
+            new_answer_template.answer_options.each do |answer_option|
+              map_file.write "- old_value_min: \n"
+              map_file.write "  old_value_max: \n"
+              map_file.write "  new_template_name: #{new_answer_template.name} \n"
+              map_file.write "  new_option_value: #{answer_option.value} # #{answer_option.text}\n"
+
+            end
+
+
             csv_file << [new_question.slug, new_answer_template.name, old_question.id, "categorical", old_answer_template.data_type, "no"]
           end
 
@@ -200,17 +212,40 @@ class AnswerMigration
                     new_answer.answer_values.create(answer_template_id: answer_template.id, answer_option_id: new_answer_option.id)
                     new_answer.save!
                   else
-                    puts "Mapping not found! #{matched_option_id} #{answer_template.name}"
+                    msg = "Mapping not found! #{matched_option_id} #{answer_template.name}"
+                    logger.error msg
+                    puts msg
+                    raise StandardError, msg
+
                   end
 
                 elsif answer_template.data_type == matched_answer_template.data_type
                   # Match of types - just copy
                   new_answer.answer_values.create(:answer_template_id => answer_template.id, answer_template.data_type => matched_answer_value.value)
                   new_answer.save!
+                elsif answer_template.data_type == 'answer_option_id' and matched_answer_template.data_type == 'numeric_value'
+                  matched_answer_option_mapping = @answer_option_map.select do |mapping|
+                    matched_answer_value.value >= mapping["old_value_min"].to_f and matched_answer_value.value < mapping["old_value_max"].to_f and mapping["new_template_name" == answer_template.name ]
+                  end.first
+
+                  if matched_answer_option_mapping
+                    new_answer_option = answer_template.answer_options.find_by_value(matched_answer_option_mapping["new_option_value"])
+                    new_answer.answer_values.create(answer_template_id: answer_template.id, answer_option_id: new_answer_option.id)
+                    new_answer.save!
+                  else
+                    msg = "Mapping not found! #{matched_option_id} #{answer_template.name}"
+                    logger.error msg
+                    puts msg
+                    raise StandardError, msg
+                  end
                 else
-                  puts "Unresolved match! #{matched_mapping["slug"]} | #{matched_mapping["answer_template_name"]} | #{answer_template.data_type}:#{matched_answer_template.data_type}"
-                  new_answer.answer_values.create(:answer_template_id => answer_template.id, answer_template.data_type => matched_answer_value.value)
-                  new_answer.save!
+                  msg = "Unresolved match! #{matched_mapping["slug"]} | #{matched_mapping["answer_template_name"]} | #{answer_template.data_type}:#{matched_answer_template.data_type}"
+                  logger.error msg
+                  puts msg
+                  raise StandardError, msg
+
+                  #new_answer.answer_values.create(:answer_template_id => answer_template.id, answer_template.data_type => matched_answer_value.value)
+                  #new_answer.save!
                 end
               end
             end
