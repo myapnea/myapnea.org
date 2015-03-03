@@ -275,7 +275,7 @@
 
   @checkCompletion = () ->
     numberSelectors = $("[data-object~='survey-indicator']").length
-    numberCompletedSelectors = $("[data-object~='survey-indicator'].complete").length
+    numberCompletedSelectors = $("[data-object~='survey-indicator'].complete").length + $("[data-object~='survey-indicator'].locked").length
     if numberSelectors == numberCompletedSelectors
       return true
     else
