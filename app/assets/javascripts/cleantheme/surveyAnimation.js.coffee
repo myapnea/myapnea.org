@@ -162,13 +162,13 @@
       if e.keyCode is 38 or e.keyCode is 40 or e.keyCode is 13
         e.preventDefault()
       # Specifically targeting custom date input
-      if $(".survey-container.active").find(".survey-custom-date").is(":focus")
+      if $(".survey-custom-date").is(":focus")
         # Allow regular command and left/right keys
         if e.metaKey or e.keyCode is 37 or e.keyCode is 39
           return
         # Ensure proper blurring of date input
         else if e.keyCode is 13
-          $(".survey-container.active").find(".survey-custom-date").blur()
+          $(".survey-custom-date").blur()
           return
         # Autocomplete date when tab or / is pressed
         else if e.keyCode is 9 or e.keyCode is 191
