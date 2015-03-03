@@ -168,7 +168,7 @@ class AnswerMigration
 
   end
 
-  def migrate_survey(survey_slug, log_file_path=File.join(Rails.root, "tmp", "answer_migration.log"))
+  def migrate_survey(survey_slug, user_email=nil, log_file_path=File.join(Rails.root, "tmp", "answer_migration.log"))
     # First pass:
     # 1. Go through the answers for a given question
     # 2. Find or create the answer session for the given user/survey combo
@@ -180,7 +180,6 @@ class AnswerMigration
     ## This should allow all historical values to be saved, without
 
     log_file = File.open(log_file_path, "w")
-
 
     survey = Survey.find_by(slug: survey_slug)
 
@@ -196,7 +195,10 @@ class AnswerMigration
 
           total_matched_answer_number = matched_question.answers.count
 
-          matched_question.answers.joins(:answer_session).order("answer_sessions.user_id, answer_sessions.created_at desc").each_with_index do |matched_answer, answer_i|
+          answers_to_migrate = matched_question.answers.joins(:answer_session).order("answer_sessions.user_id, answer_sessions.created_at desc")
+          answers_to_migrate = answers_to_migrate.where("answer_sessions.user_id = ?", User.find_by_email(user_email).id) if user_email.present?
+
+          answers_to_migrate.each_with_index do |matched_answer, answer_i|
             matched_user = matched_answer.answer_session.user
             new_answer_session = matched_user.answer_sessions.find_or_create_by(survey_id: survey.id, encounter: "baseline")
 
@@ -256,6 +258,10 @@ class AnswerMigration
                     puts msg
                     log_file.puts msg
                   end
+                elsif answer_template.data_type == 'text_value' and matched_answer_template.data_type == "time_value"
+                  # Copy old time values as text
+                  new_answer.answer_values.create(:answer_template_id => answer_template.id, answer_template.data_type => matched_answer_value.value)
+                  new_answer.save!
                 else
                   msg = "Unresolved match! #{matched_mapping["slug"]} | #{matched_mapping["answer_template_name"]} | #{answer_template.data_type}:#{matched_answer_template.data_type}"
                   puts msg
