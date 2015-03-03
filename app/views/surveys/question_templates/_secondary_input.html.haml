@@ -10,3 +10,4 @@
           %label{ for: "question_#{question.id}_#{targeted_template.id}_#{answer_option.new_value}", style: "#{'cursor: default' if answer.locked?}" }
             %p= answer_option.text
             %span.hotkey= answer_option.hotkey
+    %br{ style: 'clear: both' }
