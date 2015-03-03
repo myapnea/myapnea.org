@@ -1,5 +1,7 @@
 // DEFAULTS FOR RADIO
-.input-container input[type=radio] { display: none; }
+.input-container:not(#foo) input[type=radio] {
+  display: none;
+}
 
 .label-default {
   background-color: transparent;
