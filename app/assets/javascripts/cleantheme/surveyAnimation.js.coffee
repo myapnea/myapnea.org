@@ -112,7 +112,7 @@
   $("[data-object~='reveal-next-input']").click (e) ->
     if this.checked then revealNextInput($(this).data('target'))
 
-  $('input:radio').click (event) ->
+  $('.survey-container input:radio').click (event) ->
     event.stopPropagation()
     unless $(this).data('secondary')
       $(this).prop "checked", true
@@ -126,13 +126,19 @@
       else
         assignQuestionDirect($(this).closest('.survey-container'))
 
-  $('input:text').click (event) ->
+  $('.survey-container input:text').click (event) ->
     event.stopPropagation()
     if $(this).data('secondary')
       setActive($(this).closest('.survey-container'))
     else
       assignQuestionDirect($(this).closest('.survey-container'))
 
+  $("[data-object~='checkbox-label'").click (event) ->
+    event.preventDefault()
+    event.stopPropagation()
+    checkbox = $(this).siblings('input:checkbox')
+    $(checkbox).prop "checked", !$(checkbox).prop("checked")
+    return
 
   # Respond to user clicking different questions
   $('.survey-container').click (event) ->
@@ -221,12 +227,13 @@
         # Otherwise, check answer
         else
           inputs = $(".survey-container.active").find("input:checkbox")
-          inputs.each (index) ->
-            if e.keyCode is $(inputs[index]).data("hotkey").toString().charCodeAt(0)
-              if !($(inputs[index]).prop "checked") and ($(inputs[index]).data('object') == "reveal-next-input")
-                revealNextInput($(inputs[index]).data('target'))
-              $(inputs[index]).prop "checked", !$(inputs[index]).prop("checked")
-              handleChangedValue($(inputs[index]))
+          if $(inputs).data('hotkey')
+            inputs.each (index) ->
+              if e.keyCode is $(inputs[index]).data("hotkey").toString().charCodeAt(0)
+                if !($(inputs[index]).prop "checked") and ($(inputs[index]).data('object') == "reveal-next-input")
+                  revealNextInput($(inputs[index]).data('target'))
+                $(inputs[index]).prop "checked", !$(inputs[index]).prop("checked")
+                handleChangedValue($(inputs[index]))
 
 
   # Attach change event handler to everything but radio button inputs. Radio button inputs are changed by JS, so each time

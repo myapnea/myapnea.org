@@ -1,50 +1,49 @@
 - part_of_registration = false unless defined?(part_of_registration)
 - url_path = part_of_registration ? set_user_type_path(registration_process: '1') : set_user_type_path
-= form_for current_user, html: { data: { object: 'inline-validation-checklist' } }, url: url_path do |f|
-  .survey-container.check-w-hotkey.active
-    .panel
-      .question-container
-        %h3.f300 How do you best describe yourself?
-        %h5.f300.reset-layout (You can select more than one, if needed!)
-      .input-container
-        .col-sm-6.hidden{ data: { object: 'checklist--error' } }
-        .row
-          .user-type-container.col-xs-4
-            = f.check_box :adult_diagnosed, data: { object: 'inline-validation-item', name: 'adult-diagnosed' }
-            = f.label :adult_diagnosed do
-              = image_tag 'myapnea/user_types/adult_diagnosed.png', class: 'img-responsive'
-              %p
-                %span.f500 Adult who has been diagnosed with sleep apnea
-          .user-type-container.col-xs-4
-            = f.check_box :adult_at_risk, data: { object: 'inline-validation-item', name: 'adult-at-risk' }
-            = f.label :adult_at_risk do
-              = image_tag 'myapnea/user_types/adult_at_risk.png', class: 'img-responsive'
-              %p
-                %span.f500 Adult who is at-risk of sleep apnea
-          .user-type-container.col-xs-4
-            = f.check_box :caregiver_adult, data: { object: 'inline-validation-item', name: 'caregiver-adult' }
-            = f.label :caregiver_adult do
-              = image_tag 'myapnea/user_types/caregiver_adult.png', class: 'img-responsive'
-              %p
-                %span.f500 Caregiver of adult diagnosed with or at-risk of sleep apnea
-        .row{ style: 'margin-top: 25px; ' }
-          .user-type-container.col-xs-4
-            = f.check_box :caregiver_child, data: { object: 'inline-validation-item', name: 'caregiver-child' }
-            = f.label :caregiver_child do
-              = image_tag 'myapnea/user_types/caregiver_child.png', class: 'img-responsive'
-              %p
-                %span.f500 Caregiver of child(ren) diagnosed with or at-risk of sleep apnea
-          .user-type-container.col-xs-4
-            = f.check_box :provider, data: { object: 'inline-validation-item', name: 'provider' }
-            = f.label :provider do
-              = image_tag 'myapnea/user_types/provider_icon.png', class: 'img-responsive'
-              %p
-                %span.f500 Professional care provider
-          .user-type-container.col-xs-4
-            = f.check_box :researcher, data: { object: 'inline-validation-item', name: 'researcher' }
-            = f.label :researcher do
-              = image_tag 'myapnea/user_types/researcher_icon.png', class: 'img-responsive'
-              %p
-                %span.f500 Research professional
-      .button-container
-        = f.submit "Submit", class: 'btn btn-primary btn-lg'
+= form_for current_user, html: { data: { object: 'inline-validation-checklist' }, class: 'survey-container active' }, url: url_path do |f|
+  .panel
+    .question-container
+      %h3.f300 How do you best describe yourself?
+      %h5.f300.reset-layout (You can select more than one, if needed!)
+    .input-container
+      .col-sm-6.hidden{ data: { object: 'checklist--error' } }
+      .row
+        .user-type-container.col-xs-4
+          = f.check_box :adult_diagnosed, data: { object: 'inline-validation-item', name: 'adult-diagnosed' }
+          = f.label :adult_diagnosed, data: { object: 'checkbox-label'} do
+            = image_tag 'myapnea/user_types/adult_diagnosed.png', class: 'img-responsive'
+            %p
+              %span.f500 Adult who has been diagnosed with sleep apnea
+        .user-type-container.col-xs-4
+          = f.check_box :adult_at_risk, data: { object: 'inline-validation-item', name: 'adult-at-risk' }
+          = f.label :adult_at_risk, data: { object: 'checkbox-label'} do
+            = image_tag 'myapnea/user_types/adult_at_risk.png', class: 'img-responsive'
+            %p
+              %span.f500 Adult who is at-risk of sleep apnea
+        .user-type-container.col-xs-4
+          = f.check_box :caregiver_adult, data: { object: 'inline-validation-item', name: 'caregiver-adult' }
+          = f.label :caregiver_adult, data: { object: 'checkbox-label'} do
+            = image_tag 'myapnea/user_types/caregiver_adult.png', class: 'img-responsive'
+            %p
+              %span.f500 Caregiver of adult diagnosed with or at-risk of sleep apnea
+      .row{ style: 'margin-top: 25px; ' }
+        .user-type-container.col-xs-4
+          = f.check_box :caregiver_child, data: { object: 'inline-validation-item', name: 'caregiver-child' }
+          = f.label :caregiver_child, data: { object: 'checkbox-label'} do
+            = image_tag 'myapnea/user_types/caregiver_child.png', class: 'img-responsive'
+            %p
+              %span.f500 Caregiver of child(ren) diagnosed with or at-risk of sleep apnea
+        .user-type-container.col-xs-4
+          = f.check_box :provider, data: { object: 'inline-validation-item', name: 'provider' }
+          = f.label :provider, data: { object: 'checkbox-label'} do
+            = image_tag 'myapnea/user_types/provider_icon.png', class: 'img-responsive'
+            %p
+              %span.f500 Professional care provider
+        .user-type-container.col-xs-4
+          = f.check_box :researcher, data: { object: 'inline-validation-item', name: 'researcher' }
+          = f.label :researcher, data: { object: 'checkbox-label'} do
+            = image_tag 'myapnea/user_types/researcher_icon.png', class: 'img-responsive'
+            %p
+              %span.f500 Research professional
+    .button-container
+      = f.submit "Submit", class: 'btn btn-primary btn-lg'
