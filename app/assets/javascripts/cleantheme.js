@@ -23,7 +23,6 @@
 //= require google_analytics
 //= require bloodhound
 //= require bootstrap-tagsinput
-//= require placeholders.jquery.min
 //= require main
 //= require pages
 //= require posts
