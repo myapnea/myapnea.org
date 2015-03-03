@@ -259,6 +259,14 @@ class User < ActiveRecord::Base
     Survey.viewable.joins(:answer_sessions).where(answer_sessions: {user_id: self.id, locked: [false, nil]}).distinct
   end
 
+  def smart_surveys
+    DEFAULT_SURVEYS.each do |user_type, survey_order|
+      if self[user_type]
+        return (survey_order - completed_surveys.pluck(:slug)) + completed_surveys.pluck(:slug)
+      end
+    end
+  end
+
   def choose_next_survey(survey)
     DEFAULT_SURVEYS.each do |user_type, survey_order|
       if self[user_type]
