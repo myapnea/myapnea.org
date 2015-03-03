@@ -206,7 +206,7 @@ class AnswerMigration
               # Do not create empty answers!
               if matched_answer_value.show_value.present? and Answer.find_by(question_id: question.id, answer_session_id: new_answer_session.id).blank?
 
-                new_answer = Answer.create(question_id: question.id, answer_session_id: new_answer_session.id, state: "migrated")
+                new_answer = Answer.create(question_id: question.id, answer_session_id: new_answer_session.id, state: "locked")
 
                 puts "Survey: #{survey.slug} | Question #{question_i + 1} of #{total_new_question_number} | Migrating answer #{answer_i} of #{total_matched_answer_number} for #{matched_user.email} | #{question.slug} | value: #{matched_answer_value.show_value} | old_as: #{matched_answer.answer_session.survey_id}"
 
@@ -260,7 +260,7 @@ class AnswerMigration
                   end
                 elsif answer_template.data_type == 'text_value' and matched_answer_template.data_type == "time_value"
                   # Copy old time values as text
-                  new_answer.answer_values.create(:answer_template_id => answer_template.id, answer_template.data_type => matched_answer_value.value)
+                  new_answer.answer_values.create(:answer_template_id => answer_template.id, answer_template.data_type => matched_answer_value.value.strftime("%m/%d/%y"))
                   new_answer.save!
                 else
                   msg = "Unresolved match! #{matched_mapping["slug"]} | #{matched_mapping["answer_template_name"]} | #{answer_template.data_type}:#{matched_answer_template.data_type}"
