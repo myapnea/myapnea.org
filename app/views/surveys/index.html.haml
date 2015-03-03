@@ -53,9 +53,10 @@
               Since you're doing such a great job, why don't you
               = link_to 'submit a research question', research_topics_path, style: 'text-decoration: none;'
               to be discussed by the community?
-          - current_user.assigned_surveys.each_with_index do |survey, index|
-            - if (index)%3==0
-              %div{style: 'clear:both'}
-            .col-sm-4.centered-text
-              = render partial: 'surveys/partials/survey_progress', locals: { survey: survey }
+          - current_user.smart_surveys.each_with_index do |surveyName, index|
+            - if survey = Survey.viewable.where(slug: surveyName).first
+              - if (index)%3==0
+                %div{style: 'clear:both'}
+              .col-sm-4.centered-text
+                = render partial: 'surveys/partials/survey_progress', locals: { survey: survey }
 
