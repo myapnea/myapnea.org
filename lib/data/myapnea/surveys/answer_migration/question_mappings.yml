@@ -26,6 +26,9 @@
 - slug: race
   answer_template_name: specified_race
   id: 1551
+- slug: ethnicity
+  answer_template_name: ethnicity
+  id: 552
 - slug: education-level
   answer_template_name: education_level
   id: 553
@@ -52,6 +55,12 @@
   answer_template_name: household_minors
   id: 9556
 # additional-information-about-me
+- slug: height
+  answer_template_name: height
+  id: 547
+- slug: weight
+  answer_template_name: weight
+  id: 548
 - slug: marital-status
   answer_template_name: marital_status_list
   id: 554
@@ -63,10 +72,10 @@
   id: 558
 # my-sleep-pattern
 - slug: sleep-hours-weekdays
-  answer_template_name: number_of_hours
+  answer_template_name: number_of_hours_weekdays
   id: 509
 - slug: sleep-hours-weekends
-  answer_template_name: number_of_hours
+  answer_template_name: number_of_hours_weekends
   id: 510
 - slug: ideal-wakeup
   answer_template_name: time_of_day_list
@@ -206,6 +215,9 @@
   id: 577
 
 # my-sleep-apnea
+- slug: apnea-before-diagnosis
+  answer_template_name: apnea_before_diagnosis
+  id: 493
 - slug: age-of-diagnosis
   answer_template_name: age_of_diagnosis
   id: 492
@@ -221,6 +233,45 @@
 - slug: health-care-coverage
   answer_template_name: health_care_coverage
   id: 544
+- slug: symptoms-before-diagnosis
+  answer_template_name: snoring_before_diagnosis
+  id: 20494
+- slug: symptoms-before-diagnosis
+  answer_template_name: sleepiness_before_diagnosis
+  id: 20495
+- slug: symptoms-before-diagnosis
+  answer_template_name: tiredness_before_diagnosis
+  id: 120496
+- slug: symptoms-before-diagnosis
+  answer_template_name: accident_before_diagnosis
+  id: 20496
+- slug: symptoms-before-diagnosis
+  answer_template_name: shortness_breath_before_diagnosis
+  id: 20497
+- slug: symptoms-before-diagnosis
+  answer_template_name: stopped_breathing_before_diagnosis
+  id: 120498
+- slug: symptoms-before-diagnosis
+  answer_template_name: heart_disease_before_diagnosis
+  id: 120499
+- slug: symptoms-before-diagnosis
+  answer_template_name: hbp_before_diagnosis
+  id: 120500
+- slug: symptoms-before-diagnosis
+  answer_template_name: depressed_before_diagnosis
+  id: 120501
+- slug: symptoms-before-diagnosis
+  answer_template_name: irritability_before_diagnosis
+  id: 120502
+- slug: symptoms-before-diagnosis
+  answer_template_name: concerned_friend_before_diagnosis
+  id: 120503
+- slug: symptoms-before-diagnosis
+  answer_template_name: forgetfulness_before_diagnosis
+  id: 220504
+- slug: symptoms-before-diagnosis
+  answer_template_name: provider_suggestion_before_diagnosis
+  id: 220505
 
 # my-sleep-apnea-treatment
 - slug: types-of-treatments

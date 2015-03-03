@@ -185,7 +185,7 @@ questions:
       hotkey: 5
       value: 5
       display_class: option-of-multiple option-of-5 survey-scale
-  - name: shortness_breah_before_diagnosis
+  - name: shortness_breath_before_diagnosis
     data_type: answer_option_id
     text: Shortness of breath during sleep
     answer_options:

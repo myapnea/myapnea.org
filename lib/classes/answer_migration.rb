@@ -54,6 +54,10 @@ class AnswerMigration
     validation
   end
 
+  def inspect
+    "question_mappings: #{@question_map.length} | answer_option_mappings: #{@answer_option_map.length}"
+  end
+
   def validate_answer_option_map
     validation = true
 
@@ -77,6 +81,14 @@ class AnswerMigration
     validation
   end
 
+  def answer_option_map
+    @answer_option_map
+  end
+
+  def question_map
+    @question_map
+  end
+
   def set_answer_option_mappings(output_dir)
     csv_file = CSV.open(File.join(output_dir, "summary.csv"), 'w')
     map_file = File.open(File.join(output_dir, "mappings.yml"), 'w')
@@ -91,12 +103,13 @@ class AnswerMigration
       old_question.answer_templates.each do |old_answer_template|
         if new_answer_template.data_type == "answer_option_id"
           # CATEGORICAL - NEW ANSWER
+          option_list = new_answer_template.answer_options
+          option_text_list = option_list.map(&:text)
+
           if old_answer_template.data_type == "answer_option_id"
             # CATEGORICAL - OLD ANSWER
 
             # Both are categorical - let's try to match up
-            option_list = new_answer_template.answer_options
-            option_text_list = option_list.map(&:text)
             option_matcher = FuzzyMatch.new(option_text_list)
 
             map_file.write "\n# #{new_question.slug} : #{old_question.id} : #{new_answer_template.name} \n# #{option_list.map{|o| "#{o.value} : #{o.text}"}.join(" | ")}\n"
@@ -117,9 +130,20 @@ class AnswerMigration
               map_file.write "  new_template_name: #{new_answer_template.name} # #{matched_option_text.strip if matched_option_text}\n"
               map_file.write "  new_option_value: #{matched_answer_option.value if matched_answer_option}\n"
 
-              #map_file.write "  new_option_id: #{matched_answer_option.id if matched_answer_option} # #{matched_option_text.strip if matched_option_text}\n"
+              map_file.write "  new_option_id: #{matched_answer_option.id if matched_answer_option} # #{matched_option_text.strip if matched_option_text}\n"
             end
           else
+            map_file.write "\n# #{new_question.slug} : #{old_question.id} : #{new_answer_template.name} \n# #{option_list.map{|o| "#{o.value} : #{o.text}"}.join(" | ")}\n"
+            # Set up for categorical mapping:
+            new_answer_template.answer_options.each do |answer_option|
+              map_file.write "- old_value_min: \n"
+              map_file.write "  old_value_max: \n"
+              map_file.write "  new_template_name: #{new_answer_template.name} \n"
+              map_file.write "  new_option_value: #{answer_option.value} # #{answer_option.text}\n"
+
+            end
+
+
             csv_file << [new_question.slug, new_answer_template.name, old_question.id, "categorical", old_answer_template.data_type, "no"]
           end
 
@@ -148,7 +172,7 @@ class AnswerMigration
 
   end
 
-  def migrate_survey(survey_slug)
+  def migrate_survey(survey_slug, user_email=nil, log_file_path=File.join(Rails.root, "tmp", "answer_migration.log"))
     # First pass:
     # 1. Go through the answers for a given question
     # 2. Find or create the answer session for the given user/survey combo
@@ -159,7 +183,7 @@ class AnswerMigration
 
     ## This should allow all historical values to be saved, without
 
-
+    log_file = File.open(log_file_path, "w")
 
     survey = Survey.find_by(slug: survey_slug)
 
@@ -175,17 +199,28 @@ class AnswerMigration
 
           total_matched_answer_number = matched_question.answers.count
 
-          matched_question.answers.each_with_index do |matched_answer, answer_i|
+          answers_to_migrate = matched_question.answers.joins(:answer_session).order("answer_sessions.user_id, answer_sessions.created_at desc")
+          answers_to_migrate = answers_to_migrate.where("answer_sessions.user_id = ?", User.find_by_email(user_email).id) if user_email.present?
+
+          answers_to_migrate.each_with_index do |matched_answer, answer_i|
             matched_user = matched_answer.answer_session.user
             new_answer_session = matched_user.answer_sessions.find_or_create_by(survey_id: survey.id, encounter: "baseline")
 
             matched_answer.answer_values.each do |matched_answer_value|
+              # Prevent answers from getting over-written
+              new_answer = Answer.find_or_initialize_by(question_id: question.id, answer_session_id: new_answer_session.id, deleted: false)
+
+              ## No answer exists ==> initialized ==> allow
+              ## Answer exists, but does not have answer value for given answer template ==> allow
+              ## Answer exists, and answer value for given answer template exists ==> skip
+              allow_creation = (new_answer.new_record? or (new_answer.persisted? and new_answer.answer_values.where(answer_template_id: answer_template.id).empty?))
+
               # Do not create empty answers!
-              if matched_answer_value.show_value.present? and Answer.find_by(question_id: question.id, answer_session_id: new_answer_session.id).blank?
-
-                new_answer = Answer.create(question_id: question.id, answer_session_id: new_answer_session.id, state: "migrated")
-
-                puts "Question #{question_i + 1} of #{total_new_question_number} | Migrating answer #{answer_i} of #{total_matched_answer_number} for #{matched_user.email} | #{question.slug}"
+              if matched_answer_value.show_value.present? and allow_creation
+                # Lock answer, since we're definitely adding a valid value
+                new_answer.update(state: "locked")
+                
+                puts "Survey: #{survey.slug} | Question #{question_i + 1} of #{total_new_question_number} | Migrating answer #{answer_i} of #{total_matched_answer_number} for #{matched_user.email} | #{question.slug} | value: #{matched_answer_value.show_value} | old_as: #{matched_answer.answer_session.survey_id}"
 
                 matched_answer_template = matched_answer_value.answer_template
 
@@ -200,18 +235,52 @@ class AnswerMigration
                     new_answer.answer_values.create(answer_template_id: answer_template.id, answer_option_id: new_answer_option.id)
                     new_answer.save!
                   else
-                    puts "Mapping not found! #{matched_option_id} #{answer_template.name}"
+                    msg = "Mapping not found! #{matched_option_id} #{answer_template.name}"
+                    puts msg
+                    log_file.puts msg
+
                   end
 
                 elsif answer_template.data_type == matched_answer_template.data_type
                   # Match of types - just copy
                   new_answer.answer_values.create(:answer_template_id => answer_template.id, answer_template.data_type => matched_answer_value.value)
                   new_answer.save!
-                else
-                  puts "Unresolved match! #{matched_mapping["slug"]} | #{matched_mapping["answer_template_name"]} | #{answer_template.data_type}:#{matched_answer_template.data_type}"
-                  new_answer.answer_values.create(:answer_template_id => answer_template.id, answer_template.data_type => matched_answer_value.value)
+                elsif answer_template.data_type == 'answer_option_id' and matched_answer_template.data_type == 'numeric_value'
+                  matched_answer_option_mapping = @answer_option_map.select do |mapping|
+                    if mapping["new_template_name"] == answer_template.name
+                      min = mapping["old_value_min"].to_f
+                      max = (numeric?(mapping["old_value_max"]) ? mapping["old_value_max"].to_f : Float.const_get(mapping["old_value_max"]))
+                      (matched_answer_value.value.to_f >= min and matched_answer_value.value.to_f < max)
+                    else
+                      false
+                    end
+
+                  end.first
+
+                  if matched_answer_option_mapping
+                    new_answer_option = answer_template.answer_options.find_by_value(matched_answer_option_mapping["new_option_value"])
+                    new_answer.answer_values.create(answer_template_id: answer_template.id, answer_option_id: new_answer_option.id)
+                    new_answer.save!
+                  elsif matched_answer_value.present?
+                    msg = "Mapping not found!  #{answer_template.name} | #{matched_answer_value.value}"
+                    puts msg
+                    log_file.puts msg
+                  else
+                    msg = "Blank Answer! #{answer_template.name} | #{matched_answer_value.value}"
+                    puts msg
+                    log_file.puts msg
+                  end
+                elsif answer_template.data_type == 'text_value' and matched_answer_template.data_type == "time_value"
+                  # Copy old time values as text
+                  new_answer.answer_values.create(:answer_template_id => answer_template.id, answer_template.data_type => matched_answer_value.value.strftime("%m/%d/%y"))
                   new_answer.save!
+                else
+                  msg = "Unresolved match! #{matched_mapping["slug"]} | #{matched_mapping["answer_template_name"]} | #{answer_template.data_type}:#{matched_answer_template.data_type}"
+                  puts msg
+                  log_file.puts msg
                 end
+              else
+                puts "!Survey: #{survey.slug} | Question #{question_i + 1} of #{total_new_question_number} | ! answer #{answer_i} of #{total_matched_answer_number} for #{matched_user.email} | #{question.slug} | Empty or present! value: #{matched_answer_value.show_value} | old_as: #{matched_answer.answer_session.survey_id} | count: #{Answer.where(question_id: question.id, answer_session_id: new_answer_session.id).count}"
               end
             end
           end
@@ -221,6 +290,12 @@ class AnswerMigration
 
       end
     end
+    log_file.close
   end
 
+  private
+
+  def numeric?(str)
+    Float(str) != nil rescue false
+  end
 end
