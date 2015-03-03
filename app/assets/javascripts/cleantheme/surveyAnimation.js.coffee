@@ -133,7 +133,7 @@
     else
       assignQuestionDirect($(this).closest('.survey-container'))
 
-  $("[data-object~='checkbox-label'").click (event) ->
+  $("[data-object~='checkbox-label']").click (event) ->
     event.preventDefault()
     event.stopPropagation()
     checkbox = $(this).siblings('input:checkbox')
