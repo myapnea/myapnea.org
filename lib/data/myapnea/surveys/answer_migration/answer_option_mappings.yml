@@ -1222,46 +1222,46 @@
 # household-members : 556 : household_members
 # 1 : 1 person | 2 : 2 people | 3 : 3 people | 4 : 4 or more people | 5 : I live alone | 6 : Prefer not to answer
 - old_value_min: 1
-  old_value_max: 1
+  old_value_max: 2
   new_template_name: household_members
   new_option_value: 1 # 1 person
 - old_value_min: 2
-  old_value_max: 2
+  old_value_max: 3
   new_template_name: household_members
   new_option_value: 2 # 2 people
 - old_value_min: 3
-  old_value_max: 3
+  old_value_max: 4
   new_template_name: household_members
   new_option_value: 3 # 3 people
 - old_value_min: 4
-  old_value_max: Float::INFINITY
+  old_value_max: INFINITY
   new_template_name: household_members
   new_option_value: 4 # 4 or more people
 - old_value_min: 0
-  old_value_max: 0
+  old_value_max: 1
   new_template_name: household_members
   new_option_value: 5 # I live alone
 
 # household-minors : 9556 : household_minors
 # 1 : 1 person | 2 : 2 people | 3 : 3 people | 4 : 4 or more people | 5 : None | 6 : Prefer not to answer
 - old_value_min: 1
-  old_value_max: 1
+  old_value_max: 2
   new_template_name: household_minors
   new_option_value: 1 # 1 person
 - old_value_min: 2
-  old_value_max: 2
+  old_value_max: 3
   new_template_name: household_minors
   new_option_value: 2 # 2 people
 - old_value_min: 3
-  old_value_max: 3
+  old_value_max: 4
   new_template_name: household_minors
   new_option_value: 3 # 3 people
 - old_value_min: 4
-  old_value_max: Float::INFINITY
+  old_value_max: INFINITY
   new_template_name: household_minors
   new_option_value: 4 # 4 or more people
 - old_value_min: 0
-  old_value_max: 0
+  old_value_max: 1
   new_template_name: household_minors
   new_option_value: 5 # None
 
@@ -1288,7 +1288,7 @@
   new_template_name: number_of_hours_weekdays
   new_option_value: 5 # 9 hours
 - old_value_min: 10
-  old_value_max: Float::INFINITY
+  old_value_max: INFINITY
   new_template_name: number_of_hours_weekdays
   new_option_value: 6 # 10 or more hours
 
@@ -1296,27 +1296,27 @@
 # 1 : 0-4 hours | 2 : 5-6 hours | 3 : 7 hours | 4 : 8 hours | 5 : 9 hours | 6 : 10 or more hours | 7 : Unsure | 8 : Prefer not to answer
 - old_value_min: 0
   old_value_max: 5
-  new_template_name: number_of_hours_weekdays
+  new_template_name: number_of_hours_weekends
   new_option_value: 1 # 0-4 hours
 - old_value_min: 5
   old_value_max: 7
-  new_template_name: number_of_hours_weekdays
+  new_template_name: number_of_hours_weekends
   new_option_value: 2 # 5-6 hours
 - old_value_min: 7
   old_value_max: 8
-  new_template_name: number_of_hours_weekdays
+  new_template_name: number_of_hours_weekends
   new_option_value: 3 # 7 hours
 - old_value_min: 8
   old_value_max: 9
-  new_template_name: number_of_hours_weekdays
+  new_template_name: number_of_hours_weekends
   new_option_value: 4 # 8 hours
 - old_value_min: 9
   old_value_max: 10
-  new_template_name: number_of_hours_weekdays
+  new_template_name: number_of_hours_weekends
   new_option_value: 5 # 9 hours
 - old_value_min: 10
-  old_value_max: Float::INFINITY
-  new_template_name: number_of_hours_weekdays
+  old_value_max: INFINITY
+  new_template_name: number_of_hours_weekends
   new_option_value: 6 # 10 or more hours
 
 # apnea-before-diagnosis : 493 : apnea_before_diagnosis
@@ -1342,7 +1342,7 @@
   new_template_name: apnea_before_diagnosis
   new_option_value: 5 # 12-24 months
 - old_value_min: 24
-  old_value_max: Float::INFINITY
+  old_value_max: INFINITY
   new_template_name: apnea_before_diagnosis
   new_option_value: 6 # 24+ months
 
@@ -1373,7 +1373,7 @@
   new_template_name: age_of_diagnosis
   new_option_value: 6 # 60-69 years old
 - old_value_min: 70
-  old_value_max: Float::INFINITY
+  old_value_max: INFINITY
   new_template_name: age_of_diagnosis
   new_option_value: 7 # Over 70 years old
 
@@ -1393,7 +1393,7 @@
   new_template_name: snoring_before_diagnosis
   new_option_value: 3 # 6-12 months
 - old_value_min: 12
-  old_value_max: Float::INFINITY
+  old_value_max: INFINITY
   new_template_name: snoring_before_diagnosis
   new_option_value: 4 # 12+ months
 
@@ -1412,7 +1412,7 @@
   new_template_name: snoring_before_diagnosis
   new_option_value: 3 # 6-12 months
 - old_value_min: 12
-  old_value_max: Float::INFINITY
+  old_value_max: INFINITY
   new_template_name: snoring_before_diagnosis
   new_option_value: 4 # 12+ months
 
@@ -1431,7 +1431,7 @@
   new_template_name: snoring_before_diagnosis
   new_option_value: 3 # 6-12 months
 - old_value_min: 12
-  old_value_max: Float::INFINITY
+  old_value_max: INFINITY
   new_template_name: snoring_before_diagnosis
   new_option_value: 4 # 12+ months
 
@@ -1450,7 +1450,7 @@
   new_template_name: snoring_before_diagnosis
   new_option_value: 3 # 6-12 months
 - old_value_min: 12
-  old_value_max: Float::INFINITY
+  old_value_max: INFINITY
   new_template_name: snoring_before_diagnosis
   new_option_value: 4 # 12+ months
 
@@ -1469,7 +1469,7 @@
   new_template_name: snoring_before_diagnosis
   new_option_value: 3 # 6-12 months
 - old_value_min: 12
-  old_value_max: Float::INFINITY
+  old_value_max: INFINITY
   new_template_name: snoring_before_diagnosis
   new_option_value: 4 # 12+ months
 
@@ -1488,7 +1488,7 @@
   new_template_name: snoring_before_diagnosis
   new_option_value: 3 # 6-12 months
 - old_value_min: 12
-  old_value_max: Float::INFINITY
+  old_value_max: INFINITY
   new_template_name: snoring_before_diagnosis
   new_option_value: 4 # 12+ months
 
@@ -1507,7 +1507,7 @@
   new_template_name: snoring_before_diagnosis
   new_option_value: 3 # 6-12 months
 - old_value_min: 12
-  old_value_max: Float::INFINITY
+  old_value_max: INFINITY
   new_template_name: snoring_before_diagnosis
   new_option_value: 4 # 12+ months
 
@@ -1526,7 +1526,7 @@
   new_template_name: snoring_before_diagnosis
   new_option_value: 3 # 6-12 months
 - old_value_min: 12
-  old_value_max: Float::INFINITY
+  old_value_max: INFINITY
   new_template_name: snoring_before_diagnosis
   new_option_value: 4 # 12+ months
 
@@ -1545,7 +1545,7 @@
   new_template_name: snoring_before_diagnosis
   new_option_value: 3 # 6-12 months
 - old_value_min: 12
-  old_value_max: Float::INFINITY
+  old_value_max: INFINITY
   new_template_name: snoring_before_diagnosis
   new_option_value: 4 # 12+ months
 
@@ -1564,7 +1564,7 @@
   new_template_name: snoring_before_diagnosis
   new_option_value: 3 # 6-12 months
 - old_value_min: 12
-  old_value_max: Float::INFINITY
+  old_value_max: INFINITY
   new_template_name: snoring_before_diagnosis
   new_option_value: 4 # 12+ months
 
@@ -1583,7 +1583,7 @@
   new_template_name: snoring_before_diagnosis
   new_option_value: 3 # 6-12 months
 - old_value_min: 12
-  old_value_max: Float::INFINITY
+  old_value_max: INFINITY
   new_template_name: snoring_before_diagnosis
   new_option_value: 4 # 12+ months
 
@@ -1602,7 +1602,7 @@
   new_template_name: snoring_before_diagnosis
   new_option_value: 3 # 6-12 months
 - old_value_min: 12
-  old_value_max: Float::INFINITY
+  old_value_max: INFINITY
   new_template_name: snoring_before_diagnosis
   new_option_value: 4 # 12+ months
 
@@ -1621,7 +1621,7 @@
   new_template_name: snoring_before_diagnosis
   new_option_value: 3 # 6-12 months
 - old_value_min: 12
-  old_value_max: Float::INFINITY
+  old_value_max: INFINITY
   new_template_name: snoring_before_diagnosis
   new_option_value: 4 # 12+ months
 
