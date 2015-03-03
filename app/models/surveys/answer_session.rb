@@ -129,31 +129,7 @@ class AnswerSession < ActiveRecord::Base
   def completed_path_length
     completed_answers.count
   end
-
-  # def remaining_path_length(from_answer)
-  #   if from_answer.nil?
-  #     total_remaining_path_length
-  #   elsif from_answer.next_question.present?
-  #     survey.path_length(from_answer.next_question)
-  #   else
-  #     0
-  #   end
-  #
-  # end
-
-  # def total_remaining_path_length
-  #   if last_answer.blank?
-  #     survey.longest_path_length
-  #   elsif last_answer.next_question.nil?
-  #     0
-  #   else
-  #     survey.path_length(last_answer.next_question)
-  #   end
-  # end
-
-  # def total_path_length
-  #   survey.total_questions or completed_path_length + remaining_path_length(last_answer)
-  # end
+  
 
   def percent_completed
     (answers.complete.count / survey.questions.count.to_f) * 100.0
