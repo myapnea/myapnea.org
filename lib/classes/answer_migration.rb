@@ -196,7 +196,7 @@ class AnswerMigration
 
           total_matched_answer_number = matched_question.answers.count
 
-          matched_question.answers.each_with_index do |matched_answer, answer_i|
+          matched_question.answers.joins(:answer_session).order("answer_sessions.user_id, answer_sessions.created_at desc").each_with_index do |matched_answer, answer_i|
             matched_user = matched_answer.answer_session.user
             new_answer_session = matched_user.answer_sessions.find_or_create_by(survey_id: survey.id, encounter: "baseline")
 
@@ -206,7 +206,7 @@ class AnswerMigration
 
                 new_answer = Answer.create(question_id: question.id, answer_session_id: new_answer_session.id, state: "migrated")
 
-                puts "Survey: #{survey.slug} | Question #{question_i + 1} of #{total_new_question_number} | Migrating answer #{answer_i} of #{total_matched_answer_number} for #{matched_user.email} | #{question.slug}"
+                puts "Survey: #{survey.slug} | Question #{question_i + 1} of #{total_new_question_number} | Migrating answer #{answer_i} of #{total_matched_answer_number} for #{matched_user.email} | #{question.slug} | value: #{matched_answer_value.show_value} | old_as: #{matched_answer.answer_session.survey_id}"
 
                 matched_answer_template = matched_answer_value.answer_template
 
@@ -262,7 +262,7 @@ class AnswerMigration
                   log_file.puts msg
                 end
               else
-                puts "!Survey: #{survey.slug} | Question #{question_i + 1} of #{total_new_question_number} | ! answer #{answer_i} of #{total_matched_answer_number} for #{matched_user.email} | #{question.slug} | Empty or present! value: #{matched_answer_value.show_value} | count: #{Answer.where(question_id: question.id, answer_session_id: new_answer_session.id).count} | as: #{new_answer_session.encounter} #{new_answer_session.created_at} "
+                puts "!Survey: #{survey.slug} | Question #{question_i + 1} of #{total_new_question_number} | ! answer #{answer_i} of #{total_matched_answer_number} for #{matched_user.email} | #{question.slug} | Empty or present! value: #{matched_answer_value.show_value} | old_as: #{matched_answer.answer_session.survey_id} | count: #{Answer.where(question_id: question.id, answer_session_id: new_answer_session.id).count}"
               end
             end
           end
