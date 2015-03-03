@@ -1,9 +1,9 @@
 - if targeted_template.present?
   - if targeted_template.data_type == 'text_value'
-    %div.hidden-input{ data: { receiver: "#{('question_'+question.id.to_s+'_answer'+answer_option.id.to_s+'_secondary_'+targeted_template.data_type)}" } }
+    .hidden-input{ data: { receiver: "#{('question_'+question.id.to_s+'_answer'+answer_option.id.to_s+'_secondary_'+targeted_template.data_type)}" } }
       = text_field_tag "#{question.id}[#{targeted_template.id}]", answer.value[targeted_template.id], class: "survey-short-text survey-text-small", disabled: answer.locked?, data: { secondary: true }
   - elsif targeted_template.data_type == 'answer_option_id'
-    %div.hidden-input{ style: 'width: 80%; margin: auto', data: { receiver: "#{('question_'+question.id.to_s+'_answer'+answer_option.id.to_s+'_secondary_'+targeted_template.data_type)}" } }
+    .hidden-input{ style: 'width: 80%; margin: auto', data: { receiver: "#{('question_'+question.id.to_s+'_answer'+answer_option.id.to_s+'_secondary_'+targeted_template.data_type)}" } }
       - targeted_template.answer_options.distinct.each do |answer_option|
         %div{ class: answer_option.display_class }
           = radio_button_tag "#{question.id}[#{targeted_template.id}]", answer_option.id, have_checked?(answer, targeted_template, answer_option.id), id: "question_#{question.id}_#{targeted_template.id}_#{answer_option.new_value}", data: { hotkey: answer_option.hotkey, secondary: true }, disabled: answer.locked?

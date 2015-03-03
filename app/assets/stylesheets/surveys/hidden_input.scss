@@ -2,7 +2,7 @@
   display: none;
 }
 
-input[data-object='reveal-next-input']:checked ~ .hidden-input {
+input[data-object='reveal-next-input']:checked ~ .hidden-input:not(#foo) {
   display:inline-block;
 }
 
