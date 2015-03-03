@@ -113,7 +113,6 @@
     if this.checked then revealNextInput($(this).data('target'))
 
   $('.survey-container input:radio').click (event) ->
-    event.stopPropagation()
     unless $(this).data('secondary')
       $(this).prop "checked", true
       if $(this).data('object') == 'reveal-next-input'
@@ -125,20 +124,26 @@
         assignQuestion(true,false)
       else
         assignQuestionDirect($(this).closest('.survey-container'))
+    console.log "radio clicked"
+    handleChangedValue($(this))
+    event.stopPropagation()
+    return
 
   $('.survey-container input:text').click (event) ->
-    event.stopPropagation()
     if $(this).data('secondary')
       setActive($(this).closest('.survey-container'))
     else
       assignQuestionDirect($(this).closest('.survey-container'))
+    event.stopPropagation()
+    return
 
   $("[data-object~='checkbox-label']").click (event) ->
     event.preventDefault()
-    event.stopPropagation()
     checkbox = $(this).siblings('input:checkbox')
     $(checkbox).prop "checked", !$(checkbox).prop("checked")
+    e.stopPropagation()
     return
+
 
   # Respond to user clicking different questions
   $('.survey-container').click (event) ->
@@ -245,7 +250,8 @@
 
   # Attach change event handler to everything but radio button inputs. Radio button inputs are changed by JS, so each time
   # the :checked property is changed, handleChangedValue has to be called.
-  $(".survey-container input").change (event) ->
+  $(".survey-container input").not(":radio").change (event) ->
+    console.log "non radio clicked"
     target = event.target or event.srcElement
     handleChangedValue($(target))
 
