@@ -54,6 +54,10 @@ class AnswerMigration
     validation
   end
 
+  def inspect
+    "question_mappings: #{@question_map.length} | answer_option_mappings: #{@answer_option_map.length}"
+  end
+
   def validate_answer_option_map
     validation = true
 
@@ -203,11 +207,19 @@ class AnswerMigration
             new_answer_session = matched_user.answer_sessions.find_or_create_by(survey_id: survey.id, encounter: "baseline")
 
             matched_answer.answer_values.each do |matched_answer_value|
+              # Prevent answers from getting over-written
+              new_answer = Answer.find_or_initialize_by(question_id: question.id, answer_session_id: new_answer_session.id, deleted: false)
+
+              ## No answer exists ==> initialized ==> allow
+              ## Answer exists, but does not have answer value for given answer template ==> allow
+              ## Answer exists, and answer value for given answer template exists ==> skip
+              allow_creation = (new_answer.new_record? or (new_answer.persisted? and new_answer.answer_values.where(answer_template_id: answer_template.id).empty?))
+
               # Do not create empty answers!
-              if matched_answer_value.show_value.present? and Answer.find_by(question_id: question.id, answer_session_id: new_answer_session.id).blank?
-
-                new_answer = Answer.create(question_id: question.id, answer_session_id: new_answer_session.id, state: "locked")
-
+              if matched_answer_value.show_value.present? and allow_creation
+                # Lock answer, since we're definitely adding a valid value
+                new_answer.update(state: "locked")
+                
                 puts "Survey: #{survey.slug} | Question #{question_i + 1} of #{total_new_question_number} | Migrating answer #{answer_i} of #{total_matched_answer_number} for #{matched_user.email} | #{question.slug} | value: #{matched_answer_value.show_value} | old_as: #{matched_answer.answer_session.survey_id}"
 
                 matched_answer_template = matched_answer_value.answer_template
