@@ -69,6 +69,26 @@ class TopicsControllerTest < ActionController::TestCase
     assert_redirected_to [assigns(:forum), assigns(:topic)]
   end
 
+  test "should create topic with valid slug when starting title with a number" do
+    login(@valid_user)
+    assert_difference('Post.count') do
+      assert_difference('Topic.count') do
+        post :create, forum_id: forum, topic: { name: "12", description: "A topic post about the number twelve." }
+      end
+    end
+
+    assert_not_nil assigns(:forum)
+    assert_not_nil assigns(:topic)
+    assert_equal "12", assigns(:topic).name
+    assert_equal "t12", assigns(:topic).slug.first(3)
+    assert_equal @valid_user, assigns(:topic).user
+    assert_equal "A topic post about the number twelve.", assigns(:topic).posts.first.description
+    assert_equal @valid_user, assigns(:topic).posts.first.user
+    assert_nil assigns(:topic).last_post_at
+
+    assert_redirected_to [assigns(:forum), assigns(:topic)]
+  end
+
   test "should show topic and increase views count" do
     get :show, forum_id: forum, id: topic
     assert_not_nil assigns(:forum)
