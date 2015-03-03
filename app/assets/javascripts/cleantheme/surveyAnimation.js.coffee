@@ -38,9 +38,12 @@
     $("input").blur()
     $(question).find("input:not([type=hidden])").first().focus()
 
-  @assignQuestionDirect = (element) ->
+  @setActive = (element) ->
     $(".survey-container.active").removeClass "active"
     $(element).addClass "active"
+
+  @assignQuestionDirect = (element) ->
+    setActive(element)
     nextQuestionScroll($(".survey-container.active"))
 
   # Progress to next or previous question
@@ -123,6 +126,14 @@
       else
         assignQuestionDirect($(this).closest('.survey-container'))
 
+  $('input:text').click (event) ->
+    event.stopPropagation()
+    if $(this).data('secondary')
+      setActive($(this).closest('.survey-container'))
+    else
+      assignQuestionDirect($(this).closest('.survey-container'))
+
+
   # Respond to user clicking different questions
   $('.survey-container').click (event) ->
     event.stopPropagation()
@@ -201,7 +212,6 @@
       else
         # Progress to next question if applicable
         if $(".survey-container.active").data('progress')
-          console.log "clicking radio input"
           inputs = $(".survey-container.active").find("input:radio")
           inputs.each (index) ->
             if e.keyCode is $(this).data("hotkey").toString().charCodeAt(0)
