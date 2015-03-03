@@ -141,7 +141,7 @@
     event.preventDefault()
     checkbox = $(this).siblings('input:checkbox')
     $(checkbox).prop "checked", !$(checkbox).prop("checked")
-    e.stopPropagation()
+    event.stopPropagation()
     return
 
 
