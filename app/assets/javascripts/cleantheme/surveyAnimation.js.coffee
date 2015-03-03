@@ -113,7 +113,6 @@
     if this.checked then revealNextInput($(this).data('target'))
 
   $('.survey-container input:radio').click (event) ->
-    event.stopPropagation()
     unless $(this).data('secondary')
       $(this).prop "checked", true
       if $(this).data('object') == 'reveal-next-input'
@@ -125,20 +124,26 @@
         assignQuestion(true,false)
       else
         assignQuestionDirect($(this).closest('.survey-container'))
+    event.stopPropagation()
+    if window.event
+      handleChangedValue($(this))
+    return false
 
   $('.survey-container input:text').click (event) ->
-    event.stopPropagation()
     if $(this).data('secondary')
       setActive($(this).closest('.survey-container'))
     else
       assignQuestionDirect($(this).closest('.survey-container'))
+    event.stopPropagation()
+    return false
 
   $("[data-object~='checkbox-label']").click (event) ->
     event.preventDefault()
-    event.stopPropagation()
     checkbox = $(this).siblings('input:checkbox')
     $(checkbox).prop "checked", !$(checkbox).prop("checked")
-    return
+    event.stopPropagation()
+    return false
+
 
   # Respond to user clicking different questions
   $('.survey-container').click (event) ->
