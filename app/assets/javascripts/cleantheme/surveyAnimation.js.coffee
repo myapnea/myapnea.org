@@ -157,26 +157,28 @@
   #####################
 
   $("body").keydown (e) ->
+    e = e || window.event
+    keyCode = if window.event then e.which else e.keyCode
     if $('.survey-container').length
       # Prevent default up and down and enter on keydown
-      if e.keyCode is 38 or e.keyCode is 40 or e.keyCode is 13
+      if keyCode is 38 or keyCode is 40 or keyCode is 13
         e.preventDefault()
       # Specifically targeting custom date input
       if $(".survey-custom-date").is(":focus")
         # Allow regular command and left/right keys
-        if e.metaKey or e.keyCode is 37 or e.keyCode is 39
+        if e.metaKey or keyCode is 37 or keyCode is 39
           return
         # Ensure proper blurring of date input
-        else if e.keyCode is 13
+        else if keyCode is 13
           $(".survey-custom-date").blur()
           return
         # Autocomplete date when tab or / is pressed
-        else if e.keyCode is 9 or e.keyCode is 191
+        else if keyCode is 9 or keyCode is 191
           e.preventDefault()
           autocompleteDate()
           return
         # Allow deleting, with dynamic string completion
-        else if e.keyCode is 46 or e.keyCode is 8
+        else if keyCode is 46 or keyCode is 8
           writeDate(e.keyCode)
           return
         else if (/^[a-zA-Z]*$/.test(+String.fromCharCode(e.keyCode)))
@@ -188,16 +190,18 @@
           writeDate(e.keyCode)
 
   $("body").keyup (e) ->
+    e = e || window.event
+    keyCode = if window.event then e.which else e.keyCode
     if $('.survey-container.active').length
       # Handle navigating using the up/down arrow keys
-      if e.keyCode is 38
+      if keyCode is 38
         e.preventDefault()
         if $(".survey-container.active").hasClass "multiple-question-parts" then assignMultipleQuestion(false, true) else assignQuestion(false, true)
-      else if e.keyCode is 40
+      else if keyCode is 40
         e.preventDefault()
         if $(".survey-container.active").hasClass "multiple-question-parts" then assignMultipleQuestion(true, false) else assignQuestion(true, false)
       # Progress to next question for enter
-      else if e.keyCode is 13
+      else if keyCode is 13
         assignQuestion(true, false)
         return
       # Handle hidden inputs first to prevent extra entering
@@ -209,8 +213,9 @@
       # Handle radio_input_multiple
       else if $(".survey-container.active").hasClass "multiple-question-parts"
         inputs = $(".survey-container.active .multiple-question-container.current").find("input:radio")
+        keyCode = if window.event then e.which else e.keyCode
         inputs.each (index) ->
-          if e.keyCode is $(inputs[index]).data("hotkey").toString().charCodeAt(0)
+          if keyCode is $(inputs[index]).data("hotkey").toString().charCodeAt(0)
             $(inputs[index]).prop "checked", true
             handleChangedValue($(inputs[index]))
             assignMultipleQuestion(true, false)
@@ -219,17 +224,19 @@
         # Progress to next question if applicable
         if $(".survey-container.active").data('progress')
           inputs = $(".survey-container.active").find("input:radio")
+          keyCode = if window.event then e.which else e.keyCode
           inputs.each (index) ->
-            if e.keyCode is $(this).data("hotkey").toString().charCodeAt(0)
+            if keyCode is $(this).data("hotkey").toString().charCodeAt(0)
               $(inputs[index]).prop "checked", true
               handleChangedValue($(inputs[index]))
               if $(inputs[index]).data('object') == "reveal-next-input" then revealNextInput($(inputs[index]).data('target')) else assignQuestion(true, false)
         # Otherwise, check answer
         else
           inputs = $(".survey-container.active").find("input:checkbox")
+          keyCode = if window.event then e.which else e.keyCode
           if $(inputs).data('hotkey')
             inputs.each (index) ->
-              if e.keyCode is $(inputs[index]).data("hotkey").toString().charCodeAt(0)
+              if keyCode is $(inputs[index]).data("hotkey").toString().charCodeAt(0)
                 if !($(inputs[index]).prop "checked") and ($(inputs[index]).data('object') == "reveal-next-input")
                   revealNextInput($(inputs[index]).data('target'))
                 $(inputs[index]).prop "checked", !$(inputs[index]).prop("checked")
