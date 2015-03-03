@@ -46,17 +46,17 @@
     .row
       .col-sm-4{ style: 'margin-bottom:20px;' }
         = link_to ENV['website_url']+'/forums/news/topics/first-lottery-winner', class: 'home-news-link' do
-          = image_tag 'myapnea/welcome/img-small/unsplash-team_300x300.jpg', style: 'width:100%; height: auto;', class: 'img-rounded hidden-xs'
+          = render partial: 'static/home_news_image', locals: {day: '8', month: 'Feb', year: '15'}
           %h4.f300.primary-orange.centered-text First Lottery Winner!
           %h5.f300.centered-text.visible-xs You've my doing an amazing job with surveys, and our first winner has been picked!
       .col-sm-4{ style: 'margin-bottom:20px;' }
         = link_to ENV['website_url']+'/forums/news/topics/new-survey-format-and-release-5-0', class: 'home-news-link' do
-          = image_tag 'myapnea/welcome/img-small/unsplash-computer_300x300.jpg', style: 'width:100%; height: auto;', class: 'img-rounded hidden-xs'
+          = render partial: 'static/home_news_image', locals: {day: '28', month: 'Feb', year: '15'}
           %h4.f300.primary-orange.centered-text New and Improved Surveys!
           %h5.f300.centered-text.visible-xs We are happy to announce that our survey system has gotten a beautiful redesign!
       .col-sm-4{ style: 'margin-bottom:20px;' }
         = link_to ENV['website_url']+'/forums/news/topics/introducing-provider-s-pages', class: 'home-news-link' do
-          = image_tag 'myapnea/welcome/img-small/snapwire-team_300x300.jpg', style: 'width:100%; height: auto;', class: 'img-rounded hidden-xs'
+          = render partial: 'static/home_news_image', locals: {day: '3', month: 'Mar', year: '15'}
           %h4.f300.primary-orange.centered-text Customizing your MyApnea Experience
           %h5.f300.centered-text.visible-xs We're working on personalizing your experience on MyApnea.Org. Let us know what you want to see more of!
 

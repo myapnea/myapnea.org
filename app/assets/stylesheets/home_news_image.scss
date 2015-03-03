@@ -1,0 +1,20 @@
+.home-news-container {
+  width:160px;
+  height:160px;
+  background-color: #ffc864;
+  margin: auto;
+  border-radius: 50%;
+  border: 5px double white;
+  .month {
+    font-size: 34px;
+    margin: auto 5px;
+  }
+  .day, .year {
+    font-size: 20px;
+    padding: 5px 3px 10px 3px;
+    border-top: 2px solid rgba(255,255,255,.6);
+    border-bottom: 2px solid rgba(255,255,255,.6);
+    position:relative;
+    top: -3px;
+  }
+}
