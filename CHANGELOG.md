@@ -1,8 +1,12 @@
 ## 5.1.0
 
 ### New Features
+
 ### Enhancements
+
 ### Bug Fixes
+- Fixed a minor error generating a lottery winner
+
 ### Refactoring
 
 
