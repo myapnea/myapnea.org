@@ -4,14 +4,14 @@
 - **Major Survey Updates**
   - Surveys have received a major update and have been restructured.
     - The three existing surveys have been split across 11 smaller surveys
-    - These new surveys have an exciting new interface!
-  - Users are able to scroll through survey by using keystrokes
-  - Answer options now have hotkeys and values
-  - Animated scrolling now used to move between questions
-  - Survey urls have been simplified
-  - Surveys can display nested questions
-  - On submission, surveys are locked, but can be reviewed when revisited
-  - Surveys are assigned based on user role selected during the registration process
+  - New surveys have an exciting new interface!
+    - Users are able to scroll through survey by using keystrokes
+    - Answer options now have hotkeys and values
+    - Animated scrolling now used to move between questions
+    - Survey urls have been simplified
+    - Surveys can display nested questions
+    - On submission, surveys are locked, but can be reviewed when revisited
+    - Surveys are assigned based on user role selected during the registration process
 - **Member Roles**
   - Members are able to define one or more of the following roles:
     - Adult who has been diagnosed with sleep apnea
@@ -20,11 +20,6 @@
     - Caregiver of child(ren) diagnosed with or at-risk of sleep apnea
     - Professional care provider
     - Research professional
-- **Terms of Access (ToA)**
-  - ToA will now be shown to the following groups, in place of the consent:
-    - Members who identify as a provider, but not any patient or caregiver role
-    - Members who identify as a researcher, but not any patient or caregiver role
-    - Still visible by other members of the community for transparency
 - **Registration Process**
   - Upon registration, users are asked to describe their role on the site
   - Upon registration, users are automatically sent through consent process
@@ -40,6 +35,11 @@
       1. Privacy Policy
       2. Consent
       3. About Me Survey
+- **Terms of Access (ToA)**
+  - ToA will now be shown to the following groups, in place of the consent:
+    - Members who identify as a provider, but not any patient or caregiver role
+    - Members who identify as a researcher, but not any patient or caregiver role
+    - Still visible by other members of the community for transparency
 
 ### Enhancements
 - **Administrative Changes**
