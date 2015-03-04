@@ -3,6 +3,7 @@
 ### New Features
 
 ### Enhancements
+- Fixed some minor typos
 
 ### Bug Fixes
 - Fixed a minor error generating a lottery winner
