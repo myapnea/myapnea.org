@@ -3,40 +3,52 @@
 ### New Features
 - **Member Roles**
   - Members are able to define one or more of the following roles:
-    - Adult who has diagnosed sleep apnea
+    - Adult who has been diagnosed with sleep apnea
     - Adult who is at-risk of sleep apnea
     - Caregiver of adult diagnosed with or at-risk of sleep apnea
     - Caregiver of child(ren) diagnosed with or at-risk of sleep apnea
-    - Provider
-    - Researcher
+    - Professional care provider
+    - Research professional
 - **Terms of Access (ToA)**
   - ToA will now be shown to the following groups, in place of the consent:
     - Members who identify as a provider, but not any patient or caregiver role
     - Members who identify as a researcher, but not any patient or caregiver role
     - Still visible by other members of the community for transparency
 - **Registration Process**
-  - Upon registration, user's are asked to immediately set their user_type
-    - Provider, researcher, adult diagnosed, adult at-risk, caregiver of adult, caregiver of child(ren)
-  - Upon registration, user's are automatically sent through consent process
-    - For providers: privacy policy, ToA, provider profile
-    - For researchers who only identify as a researcher: privacy policy, ToA, social profile
-    - For all other members: privacy policy, consent, about me survey
+  - Upon registration, users are asked to describe their role on the site
+  - Upon registration, users are automatically sent through consent process
+    - For providers:
+      1. Privacy Policy
+      2. Terms of Access
+      3. Provider Profile
+    - For researchers who only identify as a researcher:
+      1. Privacy Policy
+      2. Terms of Access
+      3. Social Profile
+    - For all other members:
+      1. Privacy Policy
+      2. Consent
+      3. About Me Survey
 
 ### Enhancements
-- **Survey UI**
+- **Survey Changes**
+  - Surveys have received a major update and have been restructured.
+    - The three existing surveys have been split across 11 smaller surveys
+    - These new surveys have an exciting new interface!
   - Users are able to scroll through survey by using keystrokes
+  - Answer options now have hotkeys and values
   - Animated scrolling now used to move between questions
-  - Survey urls simplified to use slugs
-  - Old surveys display using old UI, new surveys display using beta UI
-  - Surveys can display multiple-part radio button questions
-  - Surveys can be submitted, which locks their answers but allows future review
+  - Survey urls have been simplified
+  - Surveys can display nested questions
+  - On submission, surveys are locked, but can be reviewed when revisited
+  - Surveys are assigned based on user role selected during the registration process
 - **Administrative Changes**
   - Added an admin dashboard to provide a central place to reach reports and research topic moderation
 - **Research Study Changes**
   - Clicking "Leave Research Study" on the Consent or Privacy Policy pages now removes the member from the study
     - In the past, the member would be redirected to the account page where this question would be asked one more time
 - **Forum Changes**
-  - Added indication of additional posts on forum index and pagination on inidividual forums
+  - Added indication of additional posts on forum index and pagination on individual forums
   - Forum post anchors now correctly offset based on the top navigation bar
   - Forum markdown has been improved and examples are provided under the Markup tab
     - Blockquotes: `> This is quote`
@@ -44,45 +56,38 @@
     - Underline: `_This is underlined_`
     - Superscript: `This is the 2^(nd) time`
     - Strikethrough: `This is ~~removed~~`
-- **Survey Model**
-  - Slugs added for surveys
-  - Answer options now have hotkeys and values
-  - A single survey can be loaded individually
-  - Answers to common questions from deprecated surveys can be migrated to new surveys
-  - Surveys can be launched for single users and groups of users
-  - Different groups of surveys can be launched for a user on user registration depending on user roles
-  - Answer sessions are only created when surveys are launched, and encounter identifiers
 - **Community Page Changes**
   - Removed state labels from USA map to provide cleaner overview
 - **Lottery Updates**
   - Lottery random drawing code has been added, and can be run using `Lottery.draw_winner`
+- **Search Engine Optimization**
+  - Added `sitemap_generator` gem for dynamic SEO via sitemap creation
+  - Added unique meta descriptions to several key pages
+  - Added unique page titles to several key pages
 - **Gem Changes**
-  - Updated to ruby 2.2.1
+  - Updated to Ruby 2.2.1
 
 ### Bug Fixes
-- Fixed a bug that prevented a user dashboard from displaying if no forum topics existed
-- Fixed a bug on IE9 where the password field disappeared upon erroring due to old placeholders.jquery.min
-- Fixed a bug that prevented topics from being generated correctly due to invalid topic slugs
-
-### Search Engine Optimization
-- Added sitemap_generator gem for dynamic SEO via sitemap creation
-- Added unique meta descriptions to each key page
-- Added unique page titles to each key page
+- Password fields now display correctly in IE9
+- Topic slugs are now generated correctly for topics with titles that start with numbers
+- User dashboard displays correctly even without the presence of the forum
 
 ### Refactoring
-- Removed OODT and Validic integration
-- Removed blog controller and views, this functionality is currently being handled by the "News Forum"
-- Cleaned up the static controller and added appropriate tests
-  - Moved `views/myapnea/static` files into `views/static` folder
+- Centralized application configuration further by using figaro environment variables
+- Beta UI pages are now set as the default
+- Several OpenPPRN features have been disabled or removed
+  - Removed OODT and Validic integration
+  - Removed blog controller and views, this functionality is currently being handled by the "News Forum"
+  - Removed unused `pprn.rb` initializer file
+- Several survey model simplifications have been made:
+  - Renamed `QuestionFlow` to `Survey`
+  - Simplified survey load files
+  - Answer sessions are only created when surveys are launched, and encounter identifiers
 - The Forums Terms and Conditions now uses the new layout
 - Reduced dependency on `authority` gem
 - Cleaned up the account controller and updated tests
-- Removed unused `pprn.rb` initializer file
-- Centralized application configuration further by using figaro environment variables
-- Renamed `QuestionFlow` to `Survey`
-- Simplified survey load files
-- Survey controller, views, and routes refactored and upgraded for beta design
-- Started to refactor and update tests to align with new survey flow
+- Cleaned up the static controller and added appropriate tests
+  - Moved `views/myapnea/static` files into `views/static` folder
 
 ## 4.2.0 (January 29, 2015)
 
@@ -245,7 +250,7 @@
   - Blog posts link now correctly goes to the news forum
 - **Gem Changes**
   - Updated to rails 4.2.0
-  - Updated to ruby 2.2.0
+  - Updated to Ruby 2.2.0
 
 ### Upcoming Changes
 - Added redesign preview of the following pages:
@@ -278,7 +283,7 @@
 
 - **Gem Changes**
   - Updated to rails 4.2.0.rc1
-  - Updated to ruby 2.1.5
+  - Updated to Ruby 2.1.5
 
 ### Refactoring
 - Updated production environment initialization, including integration with Figaro gem.
