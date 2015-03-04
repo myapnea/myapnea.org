@@ -1,6 +1,17 @@
 ## 5.0.0
 
 ### New Features
+- **Major Survey Updates**
+  - Surveys have received a major update and have been restructured.
+    - The three existing surveys have been split across 11 smaller surveys
+    - These new surveys have an exciting new interface!
+  - Users are able to scroll through survey by using keystrokes
+  - Answer options now have hotkeys and values
+  - Animated scrolling now used to move between questions
+  - Survey urls have been simplified
+  - Surveys can display nested questions
+  - On submission, surveys are locked, but can be reviewed when revisited
+  - Surveys are assigned based on user role selected during the registration process
 - **Member Roles**
   - Members are able to define one or more of the following roles:
     - Adult who has been diagnosed with sleep apnea
@@ -31,17 +42,6 @@
       3. About Me Survey
 
 ### Enhancements
-- **Survey Changes**
-  - Surveys have received a major update and have been restructured.
-    - The three existing surveys have been split across 11 smaller surveys
-    - These new surveys have an exciting new interface!
-  - Users are able to scroll through survey by using keystrokes
-  - Answer options now have hotkeys and values
-  - Animated scrolling now used to move between questions
-  - Survey urls have been simplified
-  - Surveys can display nested questions
-  - On submission, surveys are locked, but can be reviewed when revisited
-  - Surveys are assigned based on user role selected during the registration process
 - **Administrative Changes**
   - Added an admin dashboard to provide a central place to reach reports and research topic moderation
 - **Research Study Changes**
