@@ -39,7 +39,7 @@
   return
 
 @userHasNoVotes = (element) ->
-  alert = "<div class='alert alert-danger', style='width:90%;'> You have used all of your votes! Come back tomorrow to vote more.</div>"
+  alert = "<div class='alert alert-danger', style='width:90%;'> You have used all of your votes! Come back next week to vote more.</div>"
   $(element).before alert
 
 
