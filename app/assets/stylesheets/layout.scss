@@ -182,71 +182,7 @@ nav {
 }
 
 
-/* USER SIDEBAR */
 
-.form-control {
-  font-size:16px;
-}
-
-#container-right .form-control {
-  margin:10px auto;
-}
-
-.user-picture {
-  width:100%;
-  border-radius: 100%;
-  border:2px solid rgb(255,255,255);
-  border:2px solid rgba(255,255,255,.8);
-  // float:right;
-}
-
-.user-stats {
-  position: relative;
-  background-color: #7fb2eb;
-  color: white;
-  font-weight:300;
-  padding:5px;
-  line-height:100%;
-  p.small {
-    margin-bottom:3px;
-  }
-  h5 {
-    margin-top:0px;
-    margin-bottom:0px;
-  }
-  padding-left:20px;
-}
-
-#container-right .list-group-item {
-  color:rgb(255,255,255);
-  color:rgba(255,255,255,.9);
-  background-color:transparent;
-  border:none;
-  border-radius:0px;
-  border-bottom:1px solid rgb(255,255,255);
-  border-bottom:1px solid rgba(255,255,255,.4);
-  font-size:16px;
-  font-weight:300;
-}
-
-#nav-right .list-group-item {
-  background-color: #387fcf;
-  border:none;
-  border-radius:20px 0 0 20px;
-  font-size:16px;
-  font-weight:300;
-  margin:5px auto;
-}
-
-.list-shrink {
-  width:95%;
-  float:right;
-}
-
-.list-expand {
-  width:100%;
-  float:right;
-}
 
 @media (max-width: 992px) {
   .footer {
