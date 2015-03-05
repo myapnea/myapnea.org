@@ -87,7 +87,7 @@ p.spaced { line-height: 19px; }
   p.spaced { line-height: 21px; }
   p.long { font-size: 14px; }
   h1,h2,h3,h4,h5,p {
-    padding: 0 25px;
+    padding: 0 15px;
   }
 }
 
@@ -106,4 +106,10 @@ p.spaced { line-height: 19px; }
   h5.spaced { line-height: 21px; }
   p.spaced { line-height: 21px; }
   p.long { font-size: 14px; }
+  h1,h2,h3,h4,h5,p {
+    padding: 0 10px;
+  }
+  ul, ol {
+    padding: 0 0 0 30px;
+  }
 }
