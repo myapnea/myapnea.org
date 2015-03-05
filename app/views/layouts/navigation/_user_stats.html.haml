@@ -1,18 +1,15 @@
 - if current_user
-  / = link_to forums_path, class: 'user-stats' do
-  .col-xs-4.user-stats.hidden-sm
+  .col-xs-4.user-stats
     %p.small.f500.text-dark5
       POSTS
     %h5.text-white5
       = current_user.approved_posts.count
-  / = link_to surveys_path, class: 'user-stats' do
-  .col-xs-4.user-stats.hidden-sm
+  .col-xs-4.user-stats
     %p.small.f500.text-dark5
       SURVEYS
     %h5.text-white5
       = current_user.completed_surveys.count
-  / = link_to research_topics_path, class: 'user-stats' do
-  .col-xs-4.user-stats.hidden-sm
+  .col-xs-4.user-stats
     %p.small.f500.text-dark5
       VOTES
     %h5.large.text-white5

@@ -34,7 +34,7 @@ class ResearchTopic < ActiveRecord::Base
   end
 
   def voted_on_percentage
-    ( self.votes.where(rating: 1).count * 100) / ( Vote.total_number_voters.nonzero? || 1 )
+    ( self.votes.where(rating: 1).count * 100) / ( Vote.total_number_voters.nonzero? || 1 ).ceil
   end
 
   def received_vote_from?(user)

@@ -251,9 +251,14 @@
   # Attach change event handler to everything but radio button inputs. Radio button inputs are changed by JS, so each time
   # the :checked property is changed, handleChangedValue has to be called.
   $(".survey-container input").not(":radio").change (event) ->
-    console.log "non radio clicked"
-    target = event.target or event.srcElement
-    handleChangedValue($(target))
+    if $(this).hasClass "survey-custom-date"
+      dateStr = $(this).val()
+      if validateDate(dateStr) == "" and validateOver18(dateStr) == ""
+        target = event.target or event.srcElement
+        handleChangedValue($(target))
+    else
+      target = event.target or event.srcElement
+      handleChangedValue($(target))
 
   $(".survey-container select").change (event) ->
     target = event.target or event.srcElement
