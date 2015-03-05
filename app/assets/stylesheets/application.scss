@@ -1,0 +1,49 @@
+/* This file controls whether base styles or theme styles are used, based on config*/
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "font-awesome";
+
+/* Layout */
+@import "clean_variables";
+@import "layout";
+@import "responsive";
+@import "content_wrapper";
+
+/* Components */
+@import "components/callouts";
+@import "components/posts";
+@import "components/topics";
+@import "components/floating_indicator";
+@import "components/home_news_image";
+@import "components/panels";
+@import "components/modals";
+@import "components/validation";
+@import "components/share_icons";
+@import "components/turbolinks";
+
+/* Static */
+@import "static/team";
+@import "static/sleep_tips";
+
+/* Surveys */
+@import "surveys/surveys";
+@import "surveys/checkbox_input";
+@import "surveys/date_input";
+@import "surveys/hidden_input";
+@import "surveys/radio_input";
+@import "surveys/radio_input_multiple";
+@import "surveys/range_input";
+@import "surveys/text_input";
+@import "surveys/height_input";
+@import "surveys/number_input";
+
+/* Survey Reports */
+@import "survey_reports/radial_progress";
+@import "survey_reports/speech_bubbles";
+
+/* User Interface */
+@import "users/user_types";
+@import "users/welcome";
+
+/* Rank the Research */
+@import "rank_the_research/ranking";

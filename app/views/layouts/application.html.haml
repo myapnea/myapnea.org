@@ -19,8 +19,8 @@
     %title= @page_title || 'MyApnea'
     = favicon_link_tag
     = csrf_meta_tags
-    = stylesheet_link_tag 'cleantheme', media: 'all', 'data-turbolinks-track' => true
-    = javascript_include_tag "cleantheme", "data-turbolinks-track" => true
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag "application", "data-turbolinks-track" => true
     = javascript_tag "var root_url='#{request.script_name + '/'}';var auth_token='#{form_authenticity_token}';"
     - if false
       = javascript_include_tag "//code.jquery.com/ui/1.11.2/jquery-ui.min.js"
