@@ -6,9 +6,9 @@
       %th Number Started
       %th Number Completed
   %tbody
-    - Survey.viewable.each do |qf|
+    - Survey.viewable.each do |survey|
       %tr
-        %td= qf.name
-        %td= qf.total_questions
-        %td= qf.answer_sessions.count
-        %td= qf.answer_sessions.where(completed: true).count
+        %td= survey.name
+        %td= survey.total_questions
+        %td= survey.answer_sessions.count
+        %td= survey.answer_sessions.where(locked: true).count
