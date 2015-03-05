@@ -13,7 +13,7 @@
         .col-xs-6{ style: 'text-align:left'}
           .number-label= answer_template.unit if answer_template.unit.present?
       .row
-        .col-xs-8.col-xs-offset-2
+        .col-sm-8.col-sm-offset-2.col-xs-12
           = render partial: 'surveys/question_templates/prefer_not_to_answer_box', locals: {question: question, answer: answer}
 
     .button-container
