@@ -4,10 +4,11 @@
 @import "font-awesome";
 
 /* Layout */
-@import "clean_variables";
 @import "layout";
 @import "responsive";
 @import "content_wrapper";
+@import "fonts";
+@import "colors";
 
 /* Components */
 @import "components/callouts";
