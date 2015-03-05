@@ -248,7 +248,7 @@ class User < ActiveRecord::Base
 
   # Surveys
   def assigned_surveys
-    Survey.viewable.joins(:answer_sessions).where(answer_sessions: {user_id: self.id}).distinct
+    Survey.viewable.joins(:answer_sessions).where(answer_sessions: {user_id: self.id}).order("answer_sessions.locked asc, answer_sessions.position asc, answer_sessions.encounter").distinct
   end
 
   def completed_surveys
@@ -259,21 +259,25 @@ class User < ActiveRecord::Base
     Survey.viewable.joins(:answer_sessions).where(answer_sessions: {user_id: self.id, locked: [false, nil]}).distinct
   end
 
-  def smart_surveys
-    DEFAULT_SURVEYS.each do |user_type, survey_order|
-      if self[user_type]
-        return (survey_order - completed_surveys.pluck(:slug)) + completed_surveys.pluck(:slug)
-      end
-    end
+  def visible_surveys
+    is_only_academic? ? Survey.viewable : current_user.assigned_surveys
   end
 
-  def choose_next_survey(survey)
-    DEFAULT_SURVEYS.each do |user_type, survey_order|
-      if self[user_type]
-        return (survey_order - completed_surveys.pluck(:slug) - [survey[:slug]]).first
-      end
-    end
-  end
+  # def smart_surveys
+  #   DEFAULT_SURVEYS.each do |user_type, survey_order|
+  #     if self[user_type]
+  #       return (survey_order - completed_surveys.pluck(:slug)) + completed_surveys.pluck(:slug)
+  #     end
+  #   end
+  # end
+  #
+  # def choose_next_survey(survey)
+  #   DEFAULT_SURVEYS.each do |user_type, survey_order|
+  #     if self[user_type]
+  #       return (survey_order - completed_surveys.pluck(:slug) - [survey[:slug]]).first
+  #     end
+  #   end
+  # end
 
   def research_topics_with_vote
     ResearchTopic.voted_by(self)

@@ -1,5 +1,6 @@
 name: About Me
 slug: about-me
+default_position: 10
 description: |+
   These questions are designed to get to know you and your background more, so we can understand our members better.
   Many of these questions are typical of research, and you'll learn more about the purpose of each question once you complete the survey.

@@ -129,7 +129,7 @@ class AnswerSession < ActiveRecord::Base
   def completed_path_length
     completed_answers.count
   end
-  
+
 
   def percent_completed
     (answers.complete.count / survey.questions.count.to_f) * 100.0
@@ -140,6 +140,10 @@ class AnswerSession < ActiveRecord::Base
     answers.each do |a|
       a.destroy
     end
+  end
+
+  def position
+    self[:position] || survey.default_position
   end
 
   private

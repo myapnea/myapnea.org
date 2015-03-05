@@ -21,6 +21,7 @@ launched:
   user: has_launched_survey
   survey: new
   encounter: baseline
+  position: 1
 incomplete:
   user: has_incomplete_survey
   survey: new

@@ -1,5 +1,6 @@
 name: My Quality of Life
 slug: my-quality-of-life
+default_position: 100
 description: |+
   MyApnea.Org is one of a select few patient-powered research networks (PPRNs). The following questions are asked by all PPRNs. Researchers can use this information to make comparisons between different illnesses and diseases.
 status: show

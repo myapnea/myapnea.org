@@ -1,5 +1,6 @@
 name: My Risk Profile
 slug: my-risk-profile
+default_position: 90
 description: |+
   Before being diagnosed with sleep apnea, many people experience a number of symptoms that prompt them to seek medical attention.
 status: show

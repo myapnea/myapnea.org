@@ -26,6 +26,7 @@
               You have not listed your role in the sleep apnea community. In order to participate in this part of the research community, please
               = link_to 'select a role.', describe_yourself_path, style: 'text-decoration: none;'
         - elsif current_user.assigned_surveys.count == current_user.completed_surveys.count
+          - #raise StandardError
           %h3.f300.centered-text.text-dark7
             Congratulations! You have completed all of your surveys!
           %h4.f300.centered-text.text-dark7{ style: 'margin: 20px 10px;' }
