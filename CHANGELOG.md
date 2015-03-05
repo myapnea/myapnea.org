@@ -1,8 +1,12 @@
 ## 5.1.0
 
 ### New Features
+
 ### Enhancements
+
 ### Bug Fixes
+- Added redirect for deprecated 'research_surveys' to 'surveys'
+
 ### Refactoring
 
 
