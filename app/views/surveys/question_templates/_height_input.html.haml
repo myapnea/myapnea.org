@@ -9,16 +9,16 @@
       - answer_template = question.answer_templates.first
       .row
         .col-xs-6{ style: 'text-align:right'}
-          = select_tag "#{question.id}[#{answer_template.id}][feet]", options_for_select(0..8, selected: answer_template.postprocess_value(answer.value)["feet"].to_i), class: 'height_select'
+          = select_tag "#{question.id}[#{answer_template.id}][feet]", options_for_select(0..8, selected: answer_template.postprocess_value(answer.value)["feet"].to_i), class: 'height-select'
         .col-xs-6{ style: 'text-align:left'}
-          = label_tag "#{question.id}[#{answer_template.id}][feet]", "feet", class: 'height_label'
+          = label_tag "#{question.id}[#{answer_template.id}][feet]", "feet", class: 'height-label'
       .row
         .col-xs-6{ style: 'text-align:right'}
-          = select_tag "#{question.id}[#{answer_template.id}][inches]", options_for_select(0..11, selected: answer_template.postprocess_value(answer.value)["inches"].to_i), class: 'height_select'
+          = select_tag "#{question.id}[#{answer_template.id}][inches]", options_for_select(0..11, selected: answer_template.postprocess_value(answer.value)["inches"].to_i), class: 'height-select'
         .col-xs-6{ style: 'text-align:left'}
-          = label_tag "#{question.id}[#{answer_template.id}][inches]", "inches", class: 'height_label'
+          = label_tag "#{question.id}[#{answer_template.id}][inches]", "inches", class: 'height-label'
       .row
-        .col-xs-8.col-xs-offset-2
+        .col-sm-8.col-sm-offset-2.col-xs-12
           = render partial: 'surveys/question_templates/prefer_not_to_answer_box', locals: {question: question, answer: answer}
 
     .button-container

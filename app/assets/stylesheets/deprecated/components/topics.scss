@@ -1,0 +1,22 @@
+$ma-lightest-yellow:    #fff6ac;
+$ma-light-yellow:       #ffbb52;
+$ma-lighter-blue:       #9faac9;
+
+$text-muted:            $ma-lighter-blue;
+
+
+.topic-pinned {
+  // background-color: yellow;
+}
+
+.topic-pending-review {
+  background-color: $ma-lightest-yellow;
+}
+
+.topic-spam {
+  background-color: #eee;
+}
+
+.topic-posts-pending-review {
+  background-color: $ma-lightest-yellow;
+}

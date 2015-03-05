@@ -7,6 +7,7 @@
 
 ### Bug Fixes
 - Fixed a minor error generating a lottery winner
+- Added redirect for deprecated 'research_surveys' to 'surveys'
 
 ### Refactoring
 
