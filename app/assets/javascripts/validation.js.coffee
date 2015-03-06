@@ -145,4 +145,6 @@
     # Ensure that it is a number and stop the keypress
     if (e.shiftKey or e.keyCode < 48 or e.keyCode > 57) and (e.keyCode < 96 or e.keyCode > 105)
       e.preventDefault()
+    if $(this).val().length > 4
+      e.preventDefault()
     return
