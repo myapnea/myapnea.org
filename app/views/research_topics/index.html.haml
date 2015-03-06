@@ -23,4 +23,3 @@
       - @research_topics.shuffle.each do |research_topic|
         %tr{ id: "#{'update_link'+research_topic.id.to_s}" }
           = render partial: 'votes/voting_link', locals: { research_topic: research_topic}
-

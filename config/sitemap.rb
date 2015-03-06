@@ -20,7 +20,7 @@ SitemapGenerator::Sitemap.create do
     add '/forums/'+forum.to_param, lastmod: forum.updated_at
   end
   add '/surveys', :changefreq => 'weekly', :priority => 0.8
-  Survey.find_each do |survey|
+  Survey.viewable.find_each do |survey|
     add '/surveys/'+survey.to_param, lastmod: survey.updated_at
   end
   add '/research_topics', :changefreq => 'daily', :priority => 0.7

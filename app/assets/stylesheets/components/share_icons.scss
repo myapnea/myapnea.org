@@ -31,6 +31,21 @@ a.open-tab:hover {
   cursor: pointer;
 }
 
+a#provider-link {
+  text-decoration: none;
+  text-align:center;
+  display: block;
+  .btn {
+    background-color: #ffa400;
+    border-radius:20px;
+    color:white;
+  }
+}
+
+a#provider-link .btn:hover {
+  background-color: #EC9F15;
+}
+
 a.home-news-link:hover {
   text-decoration:none;
   h4 {
