@@ -1,7 +1,7 @@
 %nav.navbar.navbar-fixed-top{role:'navigation'}
   .container-fluid
     / #slidemenu
-    = link_to image_tag('myapnea/MyApneaLogo_border_whitesub_300x80.png'), root_path, class: "navbar-brand"
+    = link_to image_tag('myapnea/logos/MyApneaLogo_border_whitetext_300x80.png'), root_path, class: "navbar-brand"
     - if !current_user
       = link_to "Login", new_user_session_path, class: "btn primary-blue-bcg text-white visible-xs float-right", id: "btn-login-phone"
     - elsif @provider
