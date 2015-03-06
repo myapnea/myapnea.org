@@ -35,9 +35,10 @@
       = f.submit "Save Changes", class: 'btn btn-primary pull-right'
   .panel-footer.text-dark9{ style: 'margin:10px 0;'}
     - if current_user.has_user_type?
-      %h4.f300.centered-text
-        You are listed as a(n)
-        %span.f500= current_user.user_types + '.'
+      %h4.f500.centered-text You describe yourself as:
+      .centered-text{ style: 'margin: 20px;' }
+        - current_user.user_types.each do |type|
+          %p= type
       %h5.f300.centered-text
         If this is incorrect, please
         = link_to 'change your user type.', describe_yourself_path

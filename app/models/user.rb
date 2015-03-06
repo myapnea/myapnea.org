@@ -99,11 +99,7 @@ class User < ActiveRecord::Base
   end
 
   def user_types
-    user_types = [('Adult diagnosed with sleep apnea' if self.adult_diagnosed?), ('Adult at-risk of sleep apnea' if self.adult_at_risk?), ('Caregiver of adult(s) with sleep apnea' if self.caregiver_adult?), ('Caregiver of child(ren) with sleep apnea' if self.caregiver_child?), ('Professional care provider' if self.provider?), ('Researcher' if self.researcher?) ].reject(&:blank?).join(', ')
-    if user_types.include? ','
-      user_types = user_types.reverse.sub(',', 'dna ,').reverse
-    end
-    return user_types.downcase
+    user_types = [('Adult diagnosed with sleep apnea' if self.adult_diagnosed?), ('Adult at-risk of sleep apnea' if self.adult_at_risk?), ('Caregiver of adult(s) with sleep apnea' if self.caregiver_adult?), ('Caregiver of child(ren) with sleep apnea' if self.caregiver_child?), ('Professional care provider' if self.provider?), ('Researcher' if self.researcher?) ].reject(&:blank?)
   end
 
   def all_topics
