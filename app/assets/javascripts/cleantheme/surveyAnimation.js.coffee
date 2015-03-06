@@ -277,6 +277,8 @@
     if checkCompletion()
       $(this).addClass 'hidden'
       $("[data-object~='survey-submit-congratulations-container']").removeClass 'hidden'
+      setActive($(this).parents('.survey-container'))
+      nextQuestionScroll($(this).parents('.survey-container'))
     else
       $("[data-object~='survey-indicator'].incomplete").addClass 'error'
       target = 'question-container-' + $("[data-object~='survey-indicator'].incomplete").first().data('target')
