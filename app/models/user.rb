@@ -287,10 +287,6 @@ class User < ActiveRecord::Base
     incomplete_surveys.blank? and complete_surveys.blank?
   end
 
-  def share_research_topics?
-    social_profile.present? and social_profile.show_publicly?
-  end
-
   def number_votes_remaining
     vote_quota - this_weeks_votes.length
   end

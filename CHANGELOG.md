@@ -3,6 +3,7 @@
 ### New Features
 
 ### Enhancements
+- Social profile information is now automatically displayed after being added by member
 
 ### Bug Fixes
 - Added redirect for deprecated 'research_surveys' to 'surveys'

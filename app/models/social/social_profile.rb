@@ -15,12 +15,14 @@ class SocialProfile < ActiveRecord::Base
     res.map{|geo| {latitude: geo.latitude, longitude: geo.longitude} }
   end
 
+  # DEPRECATED 5.1
   def show_publicly?
     make_public?
   end
+  # /deprecated
 
   def photo_url
-    if show_publicly? and photo.present?
+    if photo.present?
       photo.url
     else
       'default-user.jpg'
@@ -28,7 +30,7 @@ class SocialProfile < ActiveRecord::Base
   end
 
   def public_location
-    if show_publicly?
+    if location.present?
       location
     else
       "Anonymous Location"
@@ -36,7 +38,7 @@ class SocialProfile < ActiveRecord::Base
   end
 
   def public_nickname
-    if show_publicly? and name.present?
+    if name.present?
       name
     else
       SocialProfile.get_anonymous_name(user.email)
