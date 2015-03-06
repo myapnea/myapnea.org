@@ -8,6 +8,7 @@
 ### Bug Fixes
 - Fixed a minor error generating a lottery winner
 - Added redirect for deprecated 'research_surveys' to 'surveys'
+- Fixed survey error when all options for a checkbox question were unselected
 
 ### Refactoring
 
