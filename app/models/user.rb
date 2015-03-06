@@ -248,36 +248,28 @@ class User < ActiveRecord::Base
 
   # Surveys
   def assigned_surveys
-    Survey.viewable.joins(:answer_sessions).where(answer_sessions: {user_id: self.id}).order("answer_sessions.locked asc, answer_sessions.position asc, answer_sessions.encounter").distinct
+    Survey.viewable.joins(:answer_sessions).where(answer_sessions: {user_id: self.id}).order("answer_sessions.locked asc, answer_sessions.position asc, surveys.default_position asc, answer_sessions.encounter")
   end
 
   def completed_surveys
-    Survey.viewable.joins(:answer_sessions).where(answer_sessions: {user_id: self.id, locked: true}).distinct
+    Survey.viewable.joins(:answer_sessions).where(answer_sessions: {user_id: self.id, locked: true}).order("answer_sessions.locked asc, answer_sessions.position asc, answer_sessions.encounter")
   end
 
   def incomplete_surveys
-    Survey.viewable.joins(:answer_sessions).where(answer_sessions: {user_id: self.id, locked: [false, nil]}).distinct
+    Survey.viewable.joins(:answer_sessions).where(answer_sessions: {user_id: self.id, locked: [false, nil]}).order("answer_sessions.locked asc, answer_sessions.position asc, answer_sessions.encounter")
   end
 
   def visible_surveys
-    is_only_academic? ? Survey.viewable : current_user.assigned_surveys
+    is_only_academic? ? Survey.viewable : assigned_surveys
   end
 
-  # def smart_surveys
-  #   DEFAULT_SURVEYS.each do |user_type, survey_order|
-  #     if self[user_type]
-  #       return (survey_order - completed_surveys.pluck(:slug)) + completed_surveys.pluck(:slug)
-  #     end
-  #   end
-  # end
-  #
-  # def choose_next_survey(survey)
-  #   DEFAULT_SURVEYS.each do |user_type, survey_order|
-  #     if self[user_type]
-  #       return (survey_order - completed_surveys.pluck(:slug) - [survey[:slug]]).first
-  #     end
-  #   end
-  # end
+  def completed_assigned_surveys?
+    assigned_surveys == completed_surveys
+  end
+
+  def next_survey(survey)
+    incomplete_surveys.where("surveys.id != ?", survey.id).first
+  end
 
   def research_topics_with_vote
     ResearchTopic.voted_by(self)

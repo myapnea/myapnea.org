@@ -7,7 +7,7 @@ class SurveysController < ApplicationController
 
 
   def index
-    @surveys =
+    @surveys = current_user.assigned_surveys
   end
 
   def show

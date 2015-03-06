@@ -291,7 +291,7 @@ class AccountControllerTest < ActionController::TestCase
     end
 
     # Assigned surveys should put completed at the end
-    assert_equal users(:blank_slate).assigned_surveys.first, Survey.find_by_slug("about-me")
+    assert_equal Survey.find_by_slug("about-me"), users(:blank_slate).assigned_surveys.first
     assert_equal users(:blank_slate).assigned_surveys.second, Survey.find_by_slug("my-sleep-quality")
     assert_equal users(:blank_slate).assigned_surveys.last, Survey.find_by_slug("about-my-family")
   end

@@ -48,6 +48,7 @@ class StaticController < ApplicationController
     if current_user
       @active_top_nav_link = :home
       @posts = Notification.blog_posts.viewable
+      @surveys = current_user.visible_surveys.first(3)
     else
       render 'landing'
     end
