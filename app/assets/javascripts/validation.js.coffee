@@ -7,10 +7,11 @@
   $("[data-object~='inline-validation'] [data-object~='inline-validation-item'] ").blur () ->
     # Dynamically update custom url name during registration process ONLY
     if $(this).data('name') == 'provider-name'
-      $("[data-name~='provider-slug']").val $("[data-name~='provider-name']").val().replace(/[^\w]/g, "-").replace(/-+$/, "").toLowerCase()
+      $("[data-name~='provider-slug']").val removeExtraHyphens($("[data-name~='provider-name']").val().replace(/[^\w]/g, "-").replace(/-+$/, "").toLowerCase())
       checkForBlank($("[data-name~='provider-slug']"))
     checkForBlank(this)
     if $(this).data('name') == 'provider-slug'
+      $(this).val removeExtraHyphens($(this).val())
       checkSlug($(this))
 
   # Catch errors on submission
@@ -31,15 +32,17 @@
       errors[errorName]=false
     return
 
+  @removeExtraHyphens = (slugstring) ->
+    return slugstring.replace(/\-+\-/g, '-')
+
+
   @checkSlug = (element1) ->
     regexSlug = new RegExp("^[a-z0-9]+(-[a-z0-9]+)*$")
     errorName = 'provider-slug--error'
     if regexSlug.test($(element1).val())
-      console.log "everything okay"
       $("[data-object~='"+errorName+"']").addClass "hidden"
       errors[errorName]=false
     else
-      console.log "everything NOT okay"
       $("[data-object~='"+errorName+"']").removeClass "hidden"
       errors[errorName]=true
     return
@@ -144,5 +147,7 @@
       return
     # Ensure that it is a number and stop the keypress
     if (e.shiftKey or e.keyCode < 48 or e.keyCode > 57) and (e.keyCode < 96 or e.keyCode > 105)
+      e.preventDefault()
+    if $(this).val().length > 4
       e.preventDefault()
     return

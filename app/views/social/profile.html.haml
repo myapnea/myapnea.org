@@ -2,22 +2,6 @@
 
 = form_for @social_profile, html: {role: "form", class: 'form-horizontal'}, url: social_profile_path do |f|
   .panel.panel-default
-    .panel-heading
-      %h4 Do you want want to publicly share the following information on MyApnea.Org?
-      .radio
-        %label
-          = f.radio_button :make_public, true, id: 'optionsRadios2'
-          %strong
-            Yes&nbsp;&nbsp;-&nbsp;
-          %span Make my nickname, city, sex, and age publicly available.
-
-      .radio
-        %label
-          = f.radio_button :make_public, false, id: 'optionsRadios1'
-          %strong
-            No&nbsp;&nbsp;-&nbsp;
-          %span Let me participate as an anonymous user.
-
     .panel-body
       - if @social_profile.errors.any?
         .alert.alert-danger.alert-dismissable

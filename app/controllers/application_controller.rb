@@ -44,6 +44,7 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate_research
+    session[:return_to] = request.fullpath
     # raise Authority::SecurityViolation.new(current_user, 'research', action_name) unless current_user.ready_for_research?
     redirect_to consent_path unless current_user.ready_for_research?
   end

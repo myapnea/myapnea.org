@@ -25,7 +25,9 @@
       %p.f300
         You may answer the following questions using your mouse or your keyboard, whichever you prefer! The
         %span.lighter-orange orange progress sidebar
-        on the left side of the screen will show you how you are advancing, and easily let you jump to questions that you may have missed. Remember, you are allowed to navigate away at any time and your answers will automatically be saved, but you must finish the entire survey for an entry into the lottery!
+        on the left side of the screen will show you how you are advancing, and easily let you jump to questions that you may have missed. Remember, you are allowed to navigate away at any time and your answers will automatically be saved, but
+        %span.f500 you must provide an answer to each question before a survey is considered complete.
+        The survey must be completed to earn an entry into the lottery.
     .button-container
       .btn.btn-primary.next-question
         Begin Survey
@@ -45,9 +47,9 @@
       = link_to "View Report", report_survey_path(@survey), class: "btn btn-success btn-lg"
     - else
       .panel-heading{ style: 'background-color: transparent;', data: { object: 'survey-submit-btn-container' } }
-        .btn.btn-primary.btn-lg{ style: 'width:100%', data: { object: 'survey-submit-btn', path: submit_surveys_path, answer_session_id: @answer_session.id } } Submit Answers!
+        .btn.btn-primary.btn-lg{ style: 'width:100%', data: { object: 'survey-submit-btn', path: submit_surveys_path, answer_session_id: @answer_session.id } } Submit Answers
       .panel-body.hidden{ data: { object: 'survey-submit-congratulations-container' } }
-        %h3.f300.primary-blue Congratulations!
+        = image_tag 'myapnea/surveys/survey_congratulations.png', class: 'img-responsive', style: 'margin: auto'
         %p.lead You've reached the end of the survey, and are already on your way to making an impact on sleep apnea research. You've also gained one entry into our monthly prize drawing!
         %p.lead From here, we highly recommend you continue and answer a few more questions to help us learn more about you and your experience with sleep apnea.
         .row{ style: 'margin-bottom:20px; text-align: center;' }

@@ -22,21 +22,10 @@
           =f.select(:sex, ["Male", "Female", "Other"], {}, class: 'form-control')
       / =f.submit("Save Changes", class: 'btn btn-primary col-sm-6 col-sm-offset-3 centered-text')
     .panel-footer.text-dark9.row{ style: 'margin:10px 0;'}
-      .col-sm-8.col-sm-offset-2
-        %h4.f300.centered-text Do you want other members on MyApnea.Org to see your location?
-      .col-sm-6.col-sm-offset-3{style: 'margin-bottom:20px;'}
-        .radio
-          %label
-            = f.radio_button :show_location, true, id: 'optionsRadios2'
-            %strong
-              Show me.
-            %span.small Add a marker for me on the map that shows information from my social profile.
-        .radio
-          %label
-            = f.radio_button :show_location, false, id: 'optionsRadios1'
-            %strong
-              Don't show me.
-            %span.small Don't let other members on this site see any map marker for me.
+      %h4.f500.centered-text
+        This is how you will appear to other members of MyApnea.Org
+      %p.lead.centered-text
+        If you would prefer to be shown anonymously, you can leave these fields blank. You can change this any time by visiting your settings!
       =f.submit("Save Changes", class: 'btn btn-primary col-sm-4 col-sm-offset-4 centered-text')
       - if current_user.social_profile.errors.any?
         .alert.alert-danger.alert-dismissable

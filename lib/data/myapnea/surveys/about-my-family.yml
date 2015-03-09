@@ -13,35 +13,35 @@ questions:
     display_type_id: 3
     answer_options:
     - text: U.S.A.
-      hotkey: 1
+      hotkey: A
       value: 1
       display_class: label-default label-med
     - text: Canada
-      hotkey: 2
+      hotkey: B
       value: 2
       display_class: label-default label-med
     - text: Mexico
-      hotkey: 3
+      hotkey: C
       value: 3
       display_class: label-default label-med
     - text: China
-      hotkey: 4
+      hotkey: D
       value: 4
       display_class: label-default label-med
     - text: India
-      hotkey: 5
+      hotkey: E
       value: 5
       display_class: label-default label-med
     - text: Philippines
-      hotkey: 6
+      hotkey: F
       value: 6
       display_class: label-default label-med
     - text: Other country (please specify)
-      hotkey: 7
+      hotkey: G
       value: 7
       display_class: label-default label-med
     - text: Prefer not to answer
-      hotkey: 8
+      hotkey: H
       value: 8
       display_class: label-default label-med
   - name: specified_country

@@ -88,7 +88,7 @@ class AccountController < ApplicationController
 
   def revoke_consent
     current_user.revoke_consent!
-    redirect_to account_path, notice: "You have successfully left the research study. If you ever change your mind, just visit your account settings to view the research consent and privacy policy again."
+    redirect_to home_path, notice: "You have successfully left the research study portion of MyApnea.Org. If you ever change your mind, just visit your account settings to view the research consent and privacy policy again."
   end
 
   def user_type

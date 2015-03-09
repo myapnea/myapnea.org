@@ -24,5 +24,29 @@
 
   <dt>User Avatar</dt>
   <dd><%= render partial: 'forums/user_image', locals: { user: @user, size: 50 } %></dd>
+
+  <dt>Joined</dt>
+  <dd><%= @user.created_at.strftime("%m/%d/%Y") if @user.created_at.present? %></dd>
+
+  <dt>Privacy Policy</dt>
+  <dd><%= @user.accepted_privacy_policy_at.strftime("%m/%d/%Y") if @user.accepted_privacy_policy_at.present? %></dd>
+
+  <dt>Consent</dt>
+  <dd><%= @user.accepted_consent_at.strftime("%m/%d/%Y") if @user.accepted_consent_at.present? %></dd>
+
+  <dt>Terms of Access</dt>
+  <dd><%= @user.accepted_terms_of_access_at.strftime("%m/%d/%Y") if @user.accepted_terms_of_access_at.present? %></dd>
+
+  <dt>Ready for Research</dt>
+  <dd><%= simple_check @user.ready_for_research? %></dd>
+
+  <dt>Assigned Surveys</dt>
+  <dd><%= @user.assigned_surveys.count %></dd>
+
+  <dt>Incomplete Surveys</dt>
+  <dd><%= @user.incomplete_surveys.count %></dd>
+
+  <dt>Completed Surveys</dt>
+  <dd><%= @user.completed_surveys.count %></dd>
 </dl>
 

@@ -55,6 +55,16 @@ class AdminControllerTest < ActionController::TestCase
     assert_authorization_exception
   end
 
+  test "should get admin version stats" do
+    login(users(:moderator_1))
+
+    get :version_stats
+
+    assert_not_nil assigns(:version_dates)
+
+    assert_response :success
+  end
+
   # test "should allow owner to add and remove user roles" do
   #   login(users(:owner))
 
