@@ -219,7 +219,19 @@ namespace :surveys do
   task :refresh => :environment do
     Survey.refresh_all_surveys
 
-    AnswerSession.current.each {|as| as.completed? }
+    AnswerSession.current.each {|as| as.locked? }
+  end
+
+  namespace :answer_sessions do
+    desc "Update cached locked value for answer sessions"
+    task :refresh => :environment do
+      total = AnswerSession.current.count
+      AnswerSession.current.each_with_index do |as, i|
+        puts "Checking #{i+1} of #{total}"
+        as.locked?
+      end
+    end
+
   end
 
 
