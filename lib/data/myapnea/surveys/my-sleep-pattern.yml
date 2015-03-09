@@ -12,35 +12,35 @@ questions:
     data_type: answer_option_id
     answer_options:
     - text: 0-4 hours
-      hotkey: 1
+      hotkey: A
       value: 1
       display_class: option-of-multiple option-of-4 label-default
     - text: 5-6 hours
-      hotkey: 2
+      hotkey: B
       value: 2
       display_class: option-of-multiple option-of-4 label-default
     - text: 7 hours
-      hotkey: 3
+      hotkey: C
       value: 3
       display_class: option-of-multiple option-of-4 label-default
     - text: 8 hours
-      hotkey: 4
+      hotkey: D
       value: 4
       display_class: option-of-multiple option-of-4 label-default
     - text: 9 hours
-      hotkey: 5
+      hotkey: E
       value: 5
       display_class: option-of-multiple option-of-4 label-default
     - text: 10 or more hours
-      hotkey: 6
+      hotkey: F
       value: 6
       display_class: option-of-multiple option-of-4 label-default
     - text: Unsure
-      hotkey: 7
+      hotkey: G
       value: 7
       display_class: option-of-multiple option-of-4 label-default
     - text: Prefer not to answer
-      hotkey: 8
+      hotkey: H
       value: 8
       display_class: option-of-multiple option-of-4 label-default
 - text: |
@@ -52,35 +52,35 @@ questions:
     data_type: answer_option_id
     answer_options:
     - text: 0-4 hours
-      hotkey: 1
+      hotkey: A
       value: 1
       display_class: option-of-multiple option-of-4 label-default
     - text: 5-6 hours
-      hotkey: 2
+      hotkey: B
       value: 2
       display_class: option-of-multiple option-of-4 label-default
     - text: 7 hours
-      hotkey: 3
+      hotkey: C
       value: 3
       display_class: option-of-multiple option-of-4 label-default
     - text: 8 hours
-      hotkey: 4
+      hotkey: D
       value: 4
       display_class: option-of-multiple option-of-4 label-default
     - text: 9 hours
-      hotkey: 5
+      hotkey: E
       value: 5
       display_class: option-of-multiple option-of-4 label-default
     - text: 10 or more hours
-      hotkey: 6
+      hotkey: F
       value: 6
       display_class: option-of-multiple option-of-4 label-default
     - text: Unsure
-      hotkey: 7
+      hotkey: G
       value: 7
       display_class: option-of-multiple option-of-4 label-default
     - text: Prefer not to answer
-      hotkey: 8
+      hotkey: H
       value: 8
       display_class: option-of-multiple option-of-4 label-default
 - text: |
@@ -92,27 +92,27 @@ questions:
     data_type: answer_option_id
     answer_options:
     - text: 5:00 - 6:30 am
-      hotkey: 1
+      hotkey: A
       value: 1
       display_class: option-of-multiple option-of-6 label-default
     - text: 6:30 - 7:45 am
-      hotkey: 2
+      hotkey: B
       value: 2
       display_class: option-of-multiple option-of-6 label-default
     - text: 7:45 - 9:45 am
-      hotkey: 3
+      hotkey: C
       value: 3
       display_class: option-of-multiple option-of-6 label-default
     - text: 9:45 - 11:00 am
-      hotkey: 4
+      hotkey: D
       value: 4
       display_class: option-of-multiple option-of-6 label-default
     - text: After 11:00 am
-      hotkey: 5
+      hotkey: E
       value: 5
       display_class: option-of-multiple option-of-6 label-default
     - text: Prefer not to answer
-      hotkey: 6
+      hotkey: F
       value: 6
       display_class: option-of-multiple option-of-6 label-default
 - text: |

@@ -14,19 +14,19 @@ questions:
     text: Allergies
     answer_options:
     - text: 'Yes'
-      hotkey: 1
+      hotkey: A
       value: 1
       display_class: option-of-multiple option-of-4 survey-scale survey-scale-blue
     - text: 'No'
-      hotkey: 2
+      hotkey: B
       value: 2
       display_class: option-of-multiple option-of-4 survey-scale survey-scale-blue
     - text: Don't know
-      hotkey: 3
+      hotkey: C
       value: 3
       display_class: option-of-multiple option-of-4 survey-scale survey-scale-blue
     - text: Prefer not to answer
-      hotkey: 4
+      hotkey: D
       value: 4
       display_class: option-of-multiple option-of-4 survey-scale survey-scale-blue
   - name: conditions-asthma
@@ -34,19 +34,19 @@ questions:
     text: Asthma
     answer_options:
     - text: 'Yes'
-      hotkey: 1
+      hotkey: A
       value: 1
       display_class: option-of-multiple option-of-4 survey-scale survey-scale-blue
     - text: 'No'
-      hotkey: 2
+      hotkey: B
       value: 2
       display_class: option-of-multiple option-of-4 survey-scale survey-scale-blue
     - text: Don't know
-      hotkey: 3
+      hotkey: C
       value: 3
       display_class: option-of-multiple option-of-4 survey-scale survey-scale-blue
     - text: Prefer not to answer
-      hotkey: 4
+      hotkey: D
       value: 4
       display_class: option-of-multiple option-of-4 survey-scale survey-scale-blue
   - name: conditions-add
@@ -54,19 +54,19 @@ questions:
     text: Attention Deficit Disorder (ADD)
     answer_options:
     - text: 'Yes'
-      hotkey: 1
+      hotkey: A
       value: 1
       display_class: option-of-multiple option-of-4 survey-scale survey-scale-blue
     - text: 'No'
-      hotkey: 2
+      hotkey: B
       value: 2
       display_class: option-of-multiple option-of-4 survey-scale survey-scale-blue
     - text: Don't know
-      hotkey: 3
+      hotkey: C
       value: 3
       display_class: option-of-multiple option-of-4 survey-scale survey-scale-blue
     - text: Prefer not to answer
-      hotkey: 4
+      hotkey: D
       value: 4
       display_class: option-of-multiple option-of-4 survey-scale survey-scale-blue
   - name: conditions-adhd
@@ -74,19 +74,19 @@ questions:
     text: Attention Deficit Hyperactivity Disorder (ADHD)
     answer_options:
     - text: 'Yes'
-      hotkey: 1
+      hotkey: A
       value: 1
       display_class: option-of-multiple option-of-4 survey-scale survey-scale-blue
     - text: 'No'
-      hotkey: 2
+      hotkey: B
       value: 2
       display_class: option-of-multiple option-of-4 survey-scale survey-scale-blue
     - text: Don't know
-      hotkey: 3
+      hotkey: C
       value: 3
       display_class: option-of-multiple option-of-4 survey-scale survey-scale-blue
     - text: Prefer not to answer
-      hotkey: 4
+      hotkey: D
       value: 4
       display_class: option-of-multiple option-of-4 survey-scale survey-scale-blue
   - name: conditions-cancer
@@ -94,19 +94,19 @@ questions:
     text: Cancer
     answer_options:
     - text: 'Yes'
-      hotkey: 1
+      hotkey: A
       value: 1
       display_class: option-of-multiple option-of-4 survey-scale survey-scale-blue
     - text: 'No'
-      hotkey: 2
+      hotkey: B
       value: 2
       display_class: option-of-multiple option-of-4 survey-scale survey-scale-blue
     - text: Don't know
-      hotkey: 3
+      hotkey: C
       value: 3
       display_class: option-of-multiple option-of-4 survey-scale survey-scale-blue
     - text: Prefer not to answer
-      hotkey: 4
+      hotkey: D
       value: 4
       display_class: option-of-multiple option-of-4 survey-scale survey-scale-blue
   - name: conditions-copd
@@ -114,19 +114,19 @@ questions:
     text: Chronic Obstructive Lung Disease (COPD or Emphysema)
     answer_options:
     - text: 'Yes'
-      hotkey: 1
+      hotkey: A
       value: 1
       display_class: option-of-multiple option-of-4 survey-scale survey-scale-blue
     - text: 'No'
-      hotkey: 2
+      hotkey: B
       value: 2
       display_class: option-of-multiple option-of-4 survey-scale survey-scale-blue
     - text: Don't know
-      hotkey: 3
+      hotkey: C
       value: 3
       display_class: option-of-multiple option-of-4 survey-scale survey-scale-blue
     - text: Prefer not to answer
-      hotkey: 4
+      hotkey: D
       value: 4
       display_class: option-of-multiple option-of-4 survey-scale survey-scale-blue
   - name: conditions-depression
@@ -134,19 +134,19 @@ questions:
     text: Depression
     answer_options:
     - text: 'Yes'
-      hotkey: 1
+      hotkey: A
       value: 1
       display_class: option-of-multiple option-of-4 survey-scale survey-scale-blue
     - text: 'No'
-      hotkey: 2
+      hotkey: B
       value: 2
       display_class: option-of-multiple option-of-4 survey-scale survey-scale-blue
     - text: Don't know
-      hotkey: 3
+      hotkey: C
       value: 3
       display_class: option-of-multiple option-of-4 survey-scale survey-scale-blue
     - text: Prefer not to answer
-      hotkey: 4
+      hotkey: D
       value: 4
       display_class: option-of-multiple option-of-4 survey-scale survey-scale-blue
   - name: conditions-diabetes
@@ -154,19 +154,19 @@ questions:
     text: Diabetes
     answer_options:
     - text: 'Yes'
-      hotkey: 1
+      hotkey: A
       value: 1
       display_class: option-of-multiple option-of-4 survey-scale survey-scale-blue
     - text: 'No'
-      hotkey: 2
+      hotkey: B
       value: 2
       display_class: option-of-multiple option-of-4 survey-scale survey-scale-blue
     - text: Don't know
-      hotkey: 3
+      hotkey: C
       value: 3
       display_class: option-of-multiple option-of-4 survey-scale survey-scale-blue
     - text: Prefer not to answer
-      hotkey: 4
+      hotkey: D
       value: 4
       display_class: option-of-multiple option-of-4 survey-scale survey-scale-blue
   - name: conditions-epilepsy
@@ -174,19 +174,19 @@ questions:
     text: Epilepsy or seizure disorder
     answer_options:
     - text: 'Yes'
-      hotkey: 1
+      hotkey: A
       value: 1
       display_class: option-of-multiple option-of-4 survey-scale survey-scale-blue
     - text: 'No'
-      hotkey: 2
+      hotkey: B
       value: 2
       display_class: option-of-multiple option-of-4 survey-scale survey-scale-blue
     - text: Don't know
-      hotkey: 3
+      hotkey: C
       value: 3
       display_class: option-of-multiple option-of-4 survey-scale survey-scale-blue
     - text: Prefer not to answer
-      hotkey: 4
+      hotkey: D
       value: 4
       display_class: option-of-multiple option-of-4 survey-scale survey-scale-blue
   - name: conditions-hbp
@@ -194,19 +194,19 @@ questions:
     text: High blood pressure
     answer_options:
     - text: 'Yes'
-      hotkey: 1
+      hotkey: A
       value: 1
       display_class: option-of-multiple option-of-4 survey-scale survey-scale-blue
     - text: 'No'
-      hotkey: 2
+      hotkey: B
       value: 2
       display_class: option-of-multiple option-of-4 survey-scale survey-scale-blue
     - text: Don't know
-      hotkey: 3
+      hotkey: C
       value: 3
       display_class: option-of-multiple option-of-4 survey-scale survey-scale-blue
     - text: Prefer not to answer
-      hotkey: 4
+      hotkey: D
       value: 4
       display_class: option-of-multiple option-of-4 survey-scale survey-scale-blue
   - name: conditions-heart-disease
@@ -214,19 +214,19 @@ questions:
     text: Heart Disease
     answer_options:
     - text: 'Yes'
-      hotkey: 1
+      hotkey: A
       value: 1
       display_class: option-of-multiple option-of-4 survey-scale survey-scale-blue
     - text: 'No'
-      hotkey: 2
+      hotkey: B
       value: 2
       display_class: option-of-multiple option-of-4 survey-scale survey-scale-blue
     - text: Don't know
-      hotkey: 3
+      hotkey: C
       value: 3
       display_class: option-of-multiple option-of-4 survey-scale survey-scale-blue
     - text: Prefer not to answer
-      hotkey: 4
+      hotkey: D
       value: 4
       display_class: option-of-multiple option-of-4 survey-scale survey-scale-blue
   - name: conditions-insomnia
@@ -234,19 +234,19 @@ questions:
     text: Insomnia
     answer_options:
     - text: 'Yes'
-      hotkey: 1
+      hotkey: A
       value: 1
       display_class: option-of-multiple option-of-4 survey-scale survey-scale-blue
     - text: 'No'
-      hotkey: 2
+      hotkey: B
       value: 2
       display_class: option-of-multiple option-of-4 survey-scale survey-scale-blue
     - text: Don't know
-      hotkey: 3
+      hotkey: C
       value: 3
       display_class: option-of-multiple option-of-4 survey-scale survey-scale-blue
     - text: Prefer not to answer
-      hotkey: 4
+      hotkey: D
       value: 4
       display_class: option-of-multiple option-of-4 survey-scale survey-scale-blue
   - name: conditions-narcolepsy
@@ -254,19 +254,19 @@ questions:
     text: Narcolepsy
     answer_options:
     - text: 'Yes'
-      hotkey: 1
+      hotkey: A
       value: 1
       display_class: option-of-multiple option-of-4 survey-scale survey-scale-blue
     - text: 'No'
-      hotkey: 2
+      hotkey: B
       value: 2
       display_class: option-of-multiple option-of-4 survey-scale survey-scale-blue
     - text: Don't know
-      hotkey: 3
+      hotkey: C
       value: 3
       display_class: option-of-multiple option-of-4 survey-scale survey-scale-blue
     - text: Prefer not to answer
-      hotkey: 4
+      hotkey: D
       value: 4
       display_class: option-of-multiple option-of-4 survey-scale survey-scale-blue
   - name: conditions-pulmonary-fibrosis
@@ -274,19 +274,19 @@ questions:
     text: Pulmonary Fibrosis
     answer_options:
     - text: 'Yes'
-      hotkey: 1
+      hotkey: A
       value: 1
       display_class: option-of-multiple option-of-4 survey-scale survey-scale-blue
     - text: 'No'
-      hotkey: 2
+      hotkey: B
       value: 2
       display_class: option-of-multiple option-of-4 survey-scale survey-scale-blue
     - text: Don't know
-      hotkey: 3
+      hotkey: C
       value: 3
       display_class: option-of-multiple option-of-4 survey-scale survey-scale-blue
     - text: Prefer not to answer
-      hotkey: 4
+      hotkey: D
       value: 4
       display_class: option-of-multiple option-of-4 survey-scale survey-scale-blue
   - name: conditions-restless-legs
@@ -294,19 +294,19 @@ questions:
     text: Resless leg syndrome
     answer_options:
     - text: 'Yes'
-      hotkey: 1
+      hotkey: A
       value: 1
       display_class: option-of-multiple option-of-4 survey-scale survey-scale-blue
     - text: 'No'
-      hotkey: 2
+      hotkey: B
       value: 2
       display_class: option-of-multiple option-of-4 survey-scale survey-scale-blue
     - text: Don't know
-      hotkey: 3
+      hotkey: C
       value: 3
       display_class: option-of-multiple option-of-4 survey-scale survey-scale-blue
     - text: Prefer not to answer
-      hotkey: 4
+      hotkey: D
       value: 4
       display_class: option-of-multiple option-of-4 survey-scale survey-scale-blue
   - name: conditions-stroke
@@ -314,19 +314,19 @@ questions:
     text: Stroke
     answer_options:
     - text: 'Yes'
-      hotkey: 1
+      hotkey: A
       value: 1
       display_class: option-of-multiple option-of-4 survey-scale survey-scale-blue
     - text: 'No'
-      hotkey: 2
+      hotkey: B
       value: 2
       display_class: option-of-multiple option-of-4 survey-scale survey-scale-blue
     - text: Don't know
-      hotkey: 3
+      hotkey: C
       value: 3
       display_class: option-of-multiple option-of-4 survey-scale survey-scale-blue
     - text: Prefer not to answer
-      hotkey: 4
+      hotkey: D
       value: 4
       display_class: option-of-multiple option-of-4 survey-scale survey-scale-blue
 - text: |
@@ -338,21 +338,21 @@ questions:
     data_type: answer_option_id
     answer_options:
     - text: 'Yes'
-      hotkey: Y
+      hotkey: A
       value: 1
-      display_class: label-default label-lg
+      display_class: label-default option-of-multiple option-of-4
     - text: 'No'
-      hotkey: N
+      hotkey: B
       value: 2
-      display_class: label-default label-lg
+      display_class: label-default option-of-multiple option-of-4
     - text: Don't know
-      hotkey: 3
+      hotkey: C
       value: 3
-      display_class: label-default label-lg
+      display_class: label-default option-of-multiple option-of-4
     - text: Prefer not to answer
-      hotkey: 4
+      hotkey: D
       value: 4
-      display_class: label-default label-lg
+      display_class: label-default option-of-multiple option-of-4
   - name: specified_health_condition
     data_type: text_value
     target_answer_option: 1

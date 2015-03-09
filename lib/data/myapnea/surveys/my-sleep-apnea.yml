@@ -13,35 +13,35 @@ questions:
     data_type: answer_option_id
     answer_options:
     - text: 0-19 years old
-      hotkey: 1
+      hotkey: A
       value: 1
       display_class: option-of-multiple option-of-4 label-default
     - text: 20-29 years old
-      hotkey: 2
+      hotkey: B
       value: 2
       display_class: option-of-multiple option-of-4 label-default
     - text: 30-39 years old
-      hotkey: 3
+      hotkey: C
       value: 3
       display_class: option-of-multiple option-of-4 label-default
     - text: 40-49 years old
-      hotkey: 4
+      hotkey: D
       value: 4
       display_class: option-of-multiple option-of-4 label-default
     - text: 50-59 years old
-      hotkey: 5
+      hotkey: E
       value: 5
       display_class: option-of-multiple option-of-4 label-default
     - text: 60-69 years old
-      hotkey: 6
+      hotkey: F
       value: 6
       display_class: option-of-multiple option-of-4 label-default
     - text: Over 70 years old
-      hotkey: 7
+      hotkey: G
       value: 7
       display_class: option-of-multiple option-of-4 label-default
     - text: Prefer not to answer
-      hotkey: 8
+      hotkey: H
       value: 8
       display_class: option-of-multiple option-of-4 label-default
 - text: |
@@ -53,35 +53,35 @@ questions:
     data_type: answer_option_id
     answer_options:
     - text: 0-3 months
-      hotkey: 1
+      hotkey: A
       value: 1
       display_class: option-of-multiple option-of-4 label-default
     - text: 3-6 months
-      hotkey: 2
+      hotkey: B
       value: 2
       display_class: option-of-multiple option-of-4 label-default
     - text: 6-9 months
-      hotkey: 3
+      hotkey: C
       value: 3
       display_class: option-of-multiple option-of-4 label-default
     - text: 9-12 months
-      hotkey: 4
+      hotkey: D
       value: 4
       display_class: option-of-multiple option-of-4 label-default
     - text: 12-24 months
-      hotkey: 5
+      hotkey: E
       value: 5
       display_class: option-of-multiple option-of-4 label-default
     - text: 24+ months
-      hotkey: 6
+      hotkey: F
       value: 6
       display_class: option-of-multiple option-of-4 label-default
     - text: Not sure
-      hotkey: 7
+      hotkey: G
       value: 7
       display_class: option-of-multiple option-of-4 label-default
     - text: Prefer not to answer
-      hotkey: 8
+      hotkey: H
       value: 8
       display_class: option-of-multiple option-of-4 label-default
 - text: |
@@ -94,23 +94,23 @@ questions:
     text: Snoring
     answer_options:
     - text: 0-3 months
-      hotkey: 1
+      hotkey: A
       value: 1
       display_class: option-of-multiple option-of-5 label-default
     - text: 3-6 months
-      hotkey: 2
+      hotkey: B
       value: 2
       display_class: option-of-multiple option-of-5 label-default
     - text: 6-12 months
-      hotkey: 3
+      hotkey: C
       value: 3
       display_class: option-of-multiple option-of-5 label-default
     - text: 12+ months
-      hotkey: 4
+      hotkey: D
       value: 4
       display_class: option-of-multiple option-of-5 label-default
     - text: N/A
-      hotkey: 5
+      hotkey: E
       value: 5
       display_class: option-of-multiple option-of-5 survey-scale
   - name: sleepiness_before_diagnosis
@@ -118,23 +118,23 @@ questions:
     text: Sleepiness
     answer_options:
     - text: 0-3 months
-      hotkey: 1
+      hotkey: A
       value: 1
       display_class: option-of-multiple option-of-5 label-default
     - text: 3-6 months
-      hotkey: 2
+      hotkey: B
       value: 2
       display_class: option-of-multiple option-of-5 label-default
     - text: 6-12 months
-      hotkey: 3
+      hotkey: C
       value: 3
       display_class: option-of-multiple option-of-5 label-default
     - text: 12+ months
-      hotkey: 4
+      hotkey: D
       value: 4
       display_class: option-of-multiple option-of-5 label-default
     - text: N/A
-      hotkey: 5
+      hotkey: E
       value: 5
       display_class: option-of-multiple option-of-5 survey-scale
   - name: tiredness_before_diagnosis
@@ -142,23 +142,23 @@ questions:
     text: Tiredness
     answer_options:
     - text: 0-3 months
-      hotkey: 1
+      hotkey: A
       value: 1
       display_class: option-of-multiple option-of-5 label-default
     - text: 3-6 months
-      hotkey: 2
+      hotkey: B
       value: 2
       display_class: option-of-multiple option-of-5 label-default
     - text: 6-12 months
-      hotkey: 3
+      hotkey: C
       value: 3
       display_class: option-of-multiple option-of-5 label-default
     - text: 12+ months
-      hotkey: 4
+      hotkey: D
       value: 4
       display_class: option-of-multiple option-of-5 label-default
     - text: N/A
-      hotkey: 5
+      hotkey: E
       value: 5
       display_class: option-of-multiple option-of-5 survey-scale
   - name: accident_before_diagnosis
@@ -166,23 +166,23 @@ questions:
     text: Driving or work accident
     answer_options:
     - text: 0-3 months
-      hotkey: 1
+      hotkey: A
       value: 1
       display_class: option-of-multiple option-of-5 label-default
     - text: 3-6 months
-      hotkey: 2
+      hotkey: B
       value: 2
       display_class: option-of-multiple option-of-5 label-default
     - text: 6-12 months
-      hotkey: 3
+      hotkey: C
       value: 3
       display_class: option-of-multiple option-of-5 label-default
     - text: 12+ months
-      hotkey: 4
+      hotkey: D
       value: 4
       display_class: option-of-multiple option-of-5 label-default
     - text: N/A
-      hotkey: 5
+      hotkey: E
       value: 5
       display_class: option-of-multiple option-of-5 survey-scale
   - name: shortness_breath_before_diagnosis
@@ -190,23 +190,23 @@ questions:
     text: Shortness of breath during sleep
     answer_options:
     - text: 0-3 months
-      hotkey: 1
+      hotkey: A
       value: 1
       display_class: option-of-multiple option-of-5 label-default
     - text: 3-6 months
-      hotkey: 2
+      hotkey: B
       value: 2
       display_class: option-of-multiple option-of-5 label-default
     - text: 6-12 months
-      hotkey: 3
+      hotkey: C
       value: 3
       display_class: option-of-multiple option-of-5 label-default
     - text: 12+ months
-      hotkey: 4
+      hotkey: D
       value: 4
       display_class: option-of-multiple option-of-5 label-default
     - text: N/A
-      hotkey: 5
+      hotkey: E
       value: 5
       display_class: option-of-multiple option-of-5 survey-scale
   - name: stopped_breathing_before_diagnosis
@@ -214,23 +214,23 @@ questions:
     text: Stopped breathing during sleep
     answer_options:
     - text: 0-3 months
-      hotkey: 1
+      hotkey: A
       value: 1
       display_class: option-of-multiple option-of-5 label-default
     - text: 3-6 months
-      hotkey: 2
+      hotkey: B
       value: 2
       display_class: option-of-multiple option-of-5 label-default
     - text: 6-12 months
-      hotkey: 3
+      hotkey: C
       value: 3
       display_class: option-of-multiple option-of-5 label-default
     - text: 12+ months
-      hotkey: 4
+      hotkey: D
       value: 4
       display_class: option-of-multiple option-of-5 label-default
     - text: N/A
-      hotkey: 5
+      hotkey: E
       value: 5
       display_class: option-of-multiple option-of-5 survey-scale
   - name: heart_disease_before_diagnosis
@@ -238,23 +238,23 @@ questions:
     text: Heart disease
     answer_options:
     - text: 0-3 months
-      hotkey: 1
+      hotkey: A
       value: 1
       display_class: option-of-multiple option-of-5 label-default
     - text: 3-6 months
-      hotkey: 2
+      hotkey: B
       value: 2
       display_class: option-of-multiple option-of-5 label-default
     - text: 6-12 months
-      hotkey: 3
+      hotkey: C
       value: 3
       display_class: option-of-multiple option-of-5 label-default
     - text: 12+ months
-      hotkey: 4
+      hotkey: D
       value: 4
       display_class: option-of-multiple option-of-5 label-default
     - text: N/A
-      hotkey: 5
+      hotkey: E
       value: 5
       display_class: option-of-multiple option-of-5 survey-scale
   - name: hbp_before_diagnosis
@@ -262,23 +262,23 @@ questions:
     text: High blood pressure
     answer_options:
     - text: 0-3 months
-      hotkey: 1
+      hotkey: A
       value: 1
       display_class: option-of-multiple option-of-5 label-default
     - text: 3-6 months
-      hotkey: 2
+      hotkey: B
       value: 2
       display_class: option-of-multiple option-of-5 label-default
     - text: 6-12 months
-      hotkey: 3
+      hotkey: C
       value: 3
       display_class: option-of-multiple option-of-5 label-default
     - text: 12+ months
-      hotkey: 4
+      hotkey: D
       value: 4
       display_class: option-of-multiple option-of-5 label-default
     - text: N/A
-      hotkey: 5
+      hotkey: E
       value: 5
       display_class: option-of-multiple option-of-5 survey-scale
   - name: depressed_before_diagnosis
@@ -286,23 +286,23 @@ questions:
     text: Depressed mood
     answer_options:
     - text: 0-3 months
-      hotkey: 1
+      hotkey: A
       value: 1
       display_class: option-of-multiple option-of-5 label-default
     - text: 3-6 months
-      hotkey: 2
+      hotkey: B
       value: 2
       display_class: option-of-multiple option-of-5 label-default
     - text: 6-12 months
-      hotkey: 3
+      hotkey: C
       value: 3
       display_class: option-of-multiple option-of-5 label-default
     - text: 12+ months
-      hotkey: 4
+      hotkey: D
       value: 4
       display_class: option-of-multiple option-of-5 label-default
     - text: N/A
-      hotkey: 5
+      hotkey: E
       value: 5
       display_class: option-of-multiple option-of-5 survey-scale
   - name: irritability_before_diagnosis
@@ -310,23 +310,23 @@ questions:
     text: Irritability
     answer_options:
     - text: 0-3 months
-      hotkey: 1
+      hotkey: A
       value: 1
       display_class: option-of-multiple option-of-5 label-default
     - text: 3-6 months
-      hotkey: 2
+      hotkey: B
       value: 2
       display_class: option-of-multiple option-of-5 label-default
     - text: 6-12 months
-      hotkey: 3
+      hotkey: C
       value: 3
       display_class: option-of-multiple option-of-5 label-default
     - text: 12+ months
-      hotkey: 4
+      hotkey: D
       value: 4
       display_class: option-of-multiple option-of-5 label-default
     - text: N/A
-      hotkey: 5
+      hotkey: E
       value: 5
       display_class: option-of-multiple option-of-5 survey-scale
   - name: concerned_friend_before_diagnosis
@@ -334,23 +334,23 @@ questions:
     text: Concerned friend or spouse
     answer_options:
     - text: 0-3 months
-      hotkey: 1
+      hotkey: A
       value: 1
       display_class: option-of-multiple option-of-5 label-default
     - text: 3-6 months
-      hotkey: 2
+      hotkey: B
       value: 2
       display_class: option-of-multiple option-of-5 label-default
     - text: 6-12 months
-      hotkey: 3
+      hotkey: C
       value: 3
       display_class: option-of-multiple option-of-5 label-default
     - text: 12+ months
-      hotkey: 4
+      hotkey: D
       value: 4
       display_class: option-of-multiple option-of-5 label-default
     - text: N/A
-      hotkey: 5
+      hotkey: E
       value: 5
       display_class: option-of-multiple option-of-5 survey-scale
   - name: forgetfulness_before_diagnosis
@@ -358,23 +358,23 @@ questions:
     text: Forgetfulness
     answer_options:
     - text: 0-3 months
-      hotkey: 1
+      hotkey: A
       value: 1
       display_class: option-of-multiple option-of-5 label-default
     - text: 3-6 months
-      hotkey: 2
+      hotkey: B
       value: 2
       display_class: option-of-multiple option-of-5 label-default
     - text: 6-12 months
-      hotkey: 3
+      hotkey: C
       value: 3
       display_class: option-of-multiple option-of-5 label-default
     - text: 12+ months
-      hotkey: 4
+      hotkey: D
       value: 4
       display_class: option-of-multiple option-of-5 label-default
     - text: N/A
-      hotkey: 5
+      hotkey: E
       value: 5
       display_class: option-of-multiple option-of-5 survey-scale
   - name: provider_suggestion_before_diagnosis
@@ -382,23 +382,23 @@ questions:
     text: Healthcare provider's suggestion
     answer_options:
     - text: 0-3 months
-      hotkey: 1
+      hotkey: A
       value: 1
       display_class: option-of-multiple option-of-5 label-default
     - text: 3-6 months
-      hotkey: 2
+      hotkey: B
       value: 2
       display_class: option-of-multiple option-of-5 label-default
     - text: 6-12 months
-      hotkey: 3
+      hotkey: C
       value: 3
       display_class: option-of-multiple option-of-5 label-default
     - text: 12+ months
-      hotkey: 4
+      hotkey: D
       value: 4
       display_class: option-of-multiple option-of-5 label-default
     - text: N/A
-      hotkey: 5
+      hotkey: E
       value: 5
       display_class: option-of-multiple option-of-5 survey-scale
 - text: |
@@ -410,27 +410,27 @@ questions:
     data_type: answer_option_id
     answer_options:
     - text: Primary care or family doctor (PCP)
-      hotkey: 1
+      hotkey: A
       value: 1
       display_class: label-default label-lg
     - text: Cardiologist
-      hotkey: 2
+      hotkey: B
       value: 2
       display_class: label-default label-lg
     - text: Diabetes specialist
-      hotkey: 3
+      hotkey: C
       value: 3
       display_class: label-default label-lg
     - text: Sleep specialist
-      hotkey: 4
+      hotkey: D
       value: 4
       display_class: label-default label-lg
     - text: Other
-      hotkey: 5
+      hotkey: E
       value: 5
       display_class: label-default label-lg
     - text: Prefer not to answer
-      hotkey: 6
+      hotkey: F
       value: 6
       display_class: label-default label-lg
 - text: |
@@ -442,15 +442,15 @@ questions:
     data_type: answer_option_id
     answer_options:
     - text: A sleep study at my home (portable sleep study)
-      hotkey: 1
+      hotkey: A
       value: 1
       display_class: label-default label-lg
     - text: A sleep study in a sleep lab/center
-      hotkey: 2
+      hotkey: B
       value: 2
       display_class: label-default label-lg
     - text: Prefer not to answer
-      hotkey: 3
+      hotkey: C
       value: 3
       display_class: label-default label-lg
 - text: |
@@ -502,14 +502,14 @@ questions:
     data_type: answer_option_id
     answer_options:
     - text: 'Yes'
-      hotkey: 1
+      hotkey: A
       value: 1
       display_class: label-default option-of-multiple option-of-3
     - text: 'No'
-      hotkey: 2
+      hotkey: B
       value: 2
       display_class: label-default option-of-multiple option-of-3
     - text: Prefer not to answer
-      hotkey: 3
+      hotkey: C
       value: 3
       display_class: label-default option-of-multiple option-of-3

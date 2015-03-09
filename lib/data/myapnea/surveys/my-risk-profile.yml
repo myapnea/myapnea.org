@@ -14,23 +14,23 @@ questions:
     text: Snoring
     answer_options:
     - text: 0-3 months
-      hotkey: 1
+      hotkey: A
       value: 1
       display_class: option-of-multiple option-of-5 label-default
     - text: 3-6 months
-      hotkey: 2
+      hotkey: B
       value: 2
       display_class: option-of-multiple option-of-5 label-default
     - text: 6-12 months
-      hotkey: 3
+      hotkey: C
       value: 3
       display_class: option-of-multiple option-of-5 label-default
     - text: 12+ months
-      hotkey: 4
+      hotkey: D
       value: 4
       display_class: option-of-multiple option-of-5 label-default
     - text: N/A
-      hotkey: 5
+      hotkey: E
       value: 5
       display_class: option-of-multiple option-of-5 survey-scale
   - name: sleepiness_risk_symptom
@@ -38,23 +38,23 @@ questions:
     text: Sleepiness
     answer_options:
     - text: 0-3 months
-      hotkey: 1
+      hotkey: A
       value: 1
       display_class: option-of-multiple option-of-5 label-default
     - text: 3-6 months
-      hotkey: 2
+      hotkey: B
       value: 2
       display_class: option-of-multiple option-of-5 label-default
     - text: 6-12 months
-      hotkey: 3
+      hotkey: C
       value: 3
       display_class: option-of-multiple option-of-5 label-default
     - text: 12+ months
-      hotkey: 4
+      hotkey: D
       value: 4
       display_class: option-of-multiple option-of-5 label-default
     - text: N/A
-      hotkey: 5
+      hotkey: E
       value: 5
       display_class: option-of-multiple option-of-5 survey-scale
   - name: tiredness_risk_symptom
@@ -62,23 +62,23 @@ questions:
     text: Tiredness
     answer_options:
     - text: 0-3 months
-      hotkey: 1
+      hotkey: A
       value: 1
       display_class: option-of-multiple option-of-5 label-default
     - text: 3-6 months
-      hotkey: 2
+      hotkey: B
       value: 2
       display_class: option-of-multiple option-of-5 label-default
     - text: 6-12 months
-      hotkey: 3
+      hotkey: C
       value: 3
       display_class: option-of-multiple option-of-5 label-default
     - text: 12+ months
-      hotkey: 4
+      hotkey: D
       value: 4
       display_class: option-of-multiple option-of-5 label-default
     - text: N/A
-      hotkey: 5
+      hotkey: E
       value: 5
       display_class: option-of-multiple option-of-5 survey-scale
   - name: accident_risk_symptom
@@ -86,23 +86,23 @@ questions:
     text: Driving or work accident
     answer_options:
     - text: 0-3 months
-      hotkey: 1
+      hotkey: A
       value: 1
       display_class: option-of-multiple option-of-5 label-default
     - text: 3-6 months
-      hotkey: 2
+      hotkey: B
       value: 2
       display_class: option-of-multiple option-of-5 label-default
     - text: 6-12 months
-      hotkey: 3
+      hotkey: C
       value: 3
       display_class: option-of-multiple option-of-5 label-default
     - text: 12+ months
-      hotkey: 4
+      hotkey: D
       value: 4
       display_class: option-of-multiple option-of-5 label-default
     - text: N/A
-      hotkey: 5
+      hotkey: E
       value: 5
       display_class: option-of-multiple option-of-5 survey-scale
   - name: shortness_breah_risk_symptom
@@ -110,23 +110,23 @@ questions:
     text: Shortness of breath during sleep
     answer_options:
     - text: 0-3 months
-      hotkey: 1
+      hotkey: A
       value: 1
       display_class: option-of-multiple option-of-5 label-default
     - text: 3-6 months
-      hotkey: 2
+      hotkey: B
       value: 2
       display_class: option-of-multiple option-of-5 label-default
     - text: 6-12 months
-      hotkey: 3
+      hotkey: C
       value: 3
       display_class: option-of-multiple option-of-5 label-default
     - text: 12+ months
-      hotkey: 4
+      hotkey: D
       value: 4
       display_class: option-of-multiple option-of-5 label-default
     - text: N/A
-      hotkey: 5
+      hotkey: E
       value: 5
       display_class: option-of-multiple option-of-5 survey-scale
   - name: stopped_breathing_risk_symptom
@@ -134,23 +134,23 @@ questions:
     text: Stopped breathing during sleep
     answer_options:
     - text: 0-3 months
-      hotkey: 1
+      hotkey: A
       value: 1
       display_class: option-of-multiple option-of-5 label-default
     - text: 3-6 months
-      hotkey: 2
+      hotkey: B
       value: 2
       display_class: option-of-multiple option-of-5 label-default
     - text: 6-12 months
-      hotkey: 3
+      hotkey: C
       value: 3
       display_class: option-of-multiple option-of-5 label-default
     - text: 12+ months
-      hotkey: 4
+      hotkey: D
       value: 4
       display_class: option-of-multiple option-of-5 label-default
     - text: N/A
-      hotkey: 5
+      hotkey: E
       value: 5
       display_class: option-of-multiple option-of-5 survey-scale
   - name: heart_disease_risk_symptom
@@ -158,23 +158,23 @@ questions:
     text: Heart disease
     answer_options:
     - text: 0-3 months
-      hotkey: 1
+      hotkey: A
       value: 1
       display_class: option-of-multiple option-of-5 label-default
     - text: 3-6 months
-      hotkey: 2
+      hotkey: B
       value: 2
       display_class: option-of-multiple option-of-5 label-default
     - text: 6-12 months
-      hotkey: 3
+      hotkey: C
       value: 3
       display_class: option-of-multiple option-of-5 label-default
     - text: 12+ months
-      hotkey: 4
+      hotkey: D
       value: 4
       display_class: option-of-multiple option-of-5 label-default
     - text: N/A
-      hotkey: 5
+      hotkey: E
       value: 5
       display_class: option-of-multiple option-of-5 survey-scale
   - name: hbp_risk_symptom
@@ -182,23 +182,23 @@ questions:
     text: High blood pressure
     answer_options:
     - text: 0-3 months
-      hotkey: 1
+      hotkey: A
       value: 1
       display_class: option-of-multiple option-of-5 label-default
     - text: 3-6 months
-      hotkey: 2
+      hotkey: B
       value: 2
       display_class: option-of-multiple option-of-5 label-default
     - text: 6-12 months
-      hotkey: 3
+      hotkey: C
       value: 3
       display_class: option-of-multiple option-of-5 label-default
     - text: 12+ months
-      hotkey: 4
+      hotkey: D
       value: 4
       display_class: option-of-multiple option-of-5 label-default
     - text: N/A
-      hotkey: 5
+      hotkey: E
       value: 5
       display_class: option-of-multiple option-of-5 survey-scale
   - name: depressed_risk_symptom
@@ -206,23 +206,23 @@ questions:
     text: Depressed mood
     answer_options:
     - text: 0-3 months
-      hotkey: 1
+      hotkey: A
       value: 1
       display_class: option-of-multiple option-of-5 label-default
     - text: 3-6 months
-      hotkey: 2
+      hotkey: B
       value: 2
       display_class: option-of-multiple option-of-5 label-default
     - text: 6-12 months
-      hotkey: 3
+      hotkey: C
       value: 3
       display_class: option-of-multiple option-of-5 label-default
     - text: 12+ months
-      hotkey: 4
+      hotkey: D
       value: 4
       display_class: option-of-multiple option-of-5 label-default
     - text: N/A
-      hotkey: 5
+      hotkey: E
       value: 5
       display_class: option-of-multiple option-of-5 survey-scale
   - name: irritability_risk_symptom
@@ -230,23 +230,23 @@ questions:
     text: Irritability
     answer_options:
     - text: 0-3 months
-      hotkey: 1
+      hotkey: A
       value: 1
       display_class: option-of-multiple option-of-5 label-default
     - text: 3-6 months
-      hotkey: 2
+      hotkey: B
       value: 2
       display_class: option-of-multiple option-of-5 label-default
     - text: 6-12 months
-      hotkey: 3
+      hotkey: C
       value: 3
       display_class: option-of-multiple option-of-5 label-default
     - text: 12+ months
-      hotkey: 4
+      hotkey: D
       value: 4
       display_class: option-of-multiple option-of-5 label-default
     - text: N/A
-      hotkey: 5
+      hotkey: E
       value: 5
       display_class: option-of-multiple option-of-5 survey-scale
   - name: concerned_friend_risk_symptom
@@ -254,23 +254,23 @@ questions:
     text: Concerned friend or spouse
     answer_options:
     - text: 0-3 months
-      hotkey: 1
+      hotkey: A
       value: 1
       display_class: option-of-multiple option-of-5 label-default
     - text: 3-6 months
-      hotkey: 2
+      hotkey: B
       value: 2
       display_class: option-of-multiple option-of-5 label-default
     - text: 6-12 months
-      hotkey: 3
+      hotkey: C
       value: 3
       display_class: option-of-multiple option-of-5 label-default
     - text: 12+ months
-      hotkey: 4
+      hotkey: D
       value: 4
       display_class: option-of-multiple option-of-5 label-default
     - text: N/A
-      hotkey: 5
+      hotkey: E
       value: 5
       display_class: option-of-multiple option-of-5 survey-scale
   - name: forgetfulness_risk_symptom
@@ -278,22 +278,22 @@ questions:
     text: Forgetfulness
     answer_options:
     - text: 0-3 months
-      hotkey: 1
+      hotkey: A
       value: 1
       display_class: option-of-multiple option-of-5 label-default
     - text: 3-6 months
-      hotkey: 2
+      hotkey: B
       value: 2
       display_class: option-of-multiple option-of-5 label-default
     - text: 6-12 months
-      hotkey: 3
+      hotkey: C
       value: 3
       display_class: option-of-multiple option-of-5 label-default
     - text: 12+ months
-      hotkey: 4
+      hotkey: D
       value: 4
       display_class: option-of-multiple option-of-5 label-default
     - text: N/A
-      hotkey: 5
+      hotkey: E
       value: 5
       display_class: option-of-multiple option-of-5 survey-scale
