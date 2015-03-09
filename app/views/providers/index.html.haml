@@ -5,6 +5,9 @@
     Providers on
     = ENV['pprn_title']
 
+.row.reset-layout
+  = render partial: 'layouts/partials/per_page', locals: { per_page: 12, object_count: @providers.total_count }
+
 .row
   - @providers.order(:provider_name).each do |provider|
     .col-xs-12.col-sm-6.col-md-4

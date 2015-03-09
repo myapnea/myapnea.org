@@ -3,7 +3,7 @@ class ProvidersController < ApplicationController
   before_action :redirect_without_provider, only: [ :show ] # , :edit, :update, :destroy
 
   def index
-    @providers = User.where(provider: true).where.not(slug: [nil,''], provider_name: [nil,'']).page(params[:page]).per( 8 )
+    @providers = User.where(provider: true).where.not(slug: [nil,''], provider_name: [nil,'']).page(params[:page]).per( 12 )
   end
 
 
