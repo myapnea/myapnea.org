@@ -3,7 +3,6 @@ class AdminController < ApplicationController
   before_action :check_owner_or_moderator
 
   def dashboard
-
   end
 
   def research_topics
@@ -15,7 +14,9 @@ class AdminController < ApplicationController
   end
 
   def surveys
+  end
 
+  def version_stats
   end
 
   def notifications

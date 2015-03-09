@@ -1,0 +1,49 @@
+- @title = 'Version Stats'
+.content-main-header
+  %h1= @title
+%dl.dl-horizontal
+  %dt Version Number
+  %dd 5.0
+
+  - release_date = DateTime.new(2015,3,4).at_noon()
+  %dt Release Date
+  %dd= release_date.strftime("%m/%d/%Y")
+
+  %h3 User Stats
+  - number_new_users = User.select{|user| user.created_at >= release_date}.count
+  %dt New Users
+  %dd= number_new_users
+
+  - number_consented = User.select{|user| user.created_at >= release_date and user.ready_for_research?}.count
+  %dt Consented
+  %dd= (number_consented * 100 / number_new_users).to_s + '%'
+
+  - number_users_with_completed_surveys = User.select{|user| user.created_at >= release_date and user.ready_for_research? and user.completed_surveys.count > 0 }.count
+  %dt Completing Surveys
+  %dd= (number_users_with_completed_surveys * 100 / number_new_users).to_s + '%'
+
+  - number_complete_surveys = 0
+  - User.select{|user| user.created_at >= release_date and user.completed_surveys.count > 0}.each do |user|
+    - number_complete_surveys += user.completed_surveys.count
+  %dt Avg # Complete
+  %dd= number_complete_surveys / number_users_with_completed_surveys
+
+
+  %h3 User Types
+  %dt Adult Diagnosed
+  %dd= User.select{|user| user.created_at >= release_date and user.adult_diagnosed?}.count
+
+  %dt Adult At-Risk
+  %dd= User.select{|user| user.created_at >= release_date and user.adult_at_risk?}.count
+
+  %dt Caregiver Adult
+  %dd= User.select{|user| user.created_at >= release_date and user.caregiver_adult?}.count
+
+  %dt Caregiven Child(ren)
+  %dd= User.select{|user| user.created_at >= release_date and user.caregiver_child?}.count
+
+  %dt Provider
+  %dd= User.select{|user| user.created_at >= release_date and user.provider?}.count
+
+  %dt Researcher
+  %dd= User.select{|user| user.created_at >= release_date and user.researcher?}.count
