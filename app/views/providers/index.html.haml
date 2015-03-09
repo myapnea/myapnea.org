@@ -5,17 +5,15 @@
     Providers on
     = ENV['pprn_title']
 
-.row.reset-layout
-  = render partial: 'layouts/partials/per_page', locals: { per_page: 12, object_count: @providers.total_count }
+%div{ style: 'text-align:center' }= paginate @providers, theme: 'bootstrap-small'
 
 .row
   - @providers.order(:provider_name).each do |provider|
     .col-xs-12.col-sm-6.col-md-4
       .panel
-        .panel-heading{ style: "overflow:hidden;" }
-          .f300{ style: "white-space:nowrap;position:relative" }
-            = link_to provider.provider_name, provider_path(provider.slug), data: { toggle: 'tooltip', title: provider.provider_name, container: 'body', placement: 'top' }
         .panel-body
+          .f500.centered-text{ style: "white-space:nowrap;position:relative;margin-bottom:10px;" }
+            = link_to provider.provider_name, provider_path(provider.slug), data: { toggle: 'tooltip', title: provider.provider_name, container: 'body', placement: 'top' }
           %div{ style: "text-align:center;padding-bottom:5px;height:145px;line-height:145px" }
             = link_to image_tag( provider.photo_url, style: 'max-width:100%;max-height:140px' ), provider_path(provider.slug)
           %div.f300{ style: 'text-align:center;margin-top:5px' }
@@ -29,6 +27,7 @@
                 Thousands of members
             = link_to "Join Provider Group", provider_path(provider.slug), class: 'btn btn-xs btn-primary'
 
+%div{ style: 'text-align:center' }= paginate @providers, theme: 'bootstrap-small'
 
 %div{ style: 'text-align:center;margin-top:20px' }
   = link_to 'Become a Provider', new_provider_path, class: 'btn btn-lg btn-primary'
