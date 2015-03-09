@@ -85,7 +85,8 @@ class Survey < ActiveRecord::Base
   def launch_single(user, encounter, position=nil)
     position ||= self[:default_position]
 
-    answer_session = user.answer_sessions.find_or_initialize_by(encounter: encounter, survey_id: self.id, position: position)
+    answer_session = user.answer_sessions.find_or_initialize_by(encounter: encounter, survey_id: self.id)
+    answer_session.position = position
     return_object = answer_session.new_record? ? nil : user
     answer_session.save!
 

@@ -1,5 +1,5 @@
 
-# sex : 546 : sex 
+# sex : 546 : sex
 # 1 : Male | 2 : Female | 3 : Other | 4 : Prefer not to answer
 - old_option_id: 5 # Male
   new_template_name: sex # Male
@@ -14,7 +14,7 @@
   new_template_name: sex # Prefer not to answer
   new_option_value: 4
 
-# race : 551 : race 
+# race : 551 : race
 # 1 : American Indian or Alaskan Native (a person having origins in any of the original peoples of North or South America (including Central America), and who maintains tribal affiliation or community attachment) | 2 : Asian (a person having origins in any of the original peoples of the Far East, Southest Asia, or the Indian subcontinent, including, for example, Cambodia, China, India, Japan, Korea, Malaysia, Pakistan, the Philippine islands, Thailand, or Vietnam) | 3 : Black or African American (a person having origins in any of the black racial groups of Africa) | 4 : Native Hawaiian or Other Pacific Islander (a person having origins in any of the original peoples of Hawaii, Guam, Samoa, or other Pacific Islands) | 5 : White (a person having origins in any of the original peoples of Europe, the Middle East, or North Africa) | 6 : Some other race or origin (please specify) | 7 : Unsure | 8 : Prefer not to answer
 - old_option_id: 15 # Asian (i.e. Asian Indian, Chinese, Filipino, Japanese, Korean, Vietnamese, Hmong, Laotian, Thai, Pakistani, Cambodian, etc.)
   new_template_name: race # Asian (a person having origins in any of the original peoples of the Far East, Southest Asia, or the Indian subcontinent, including, for example, Cambodia, China, India, Japan, Korea, Malaysia, Pakistan, the Philippine islands, Thailand, or Vietnam)
@@ -39,7 +39,7 @@
   new_template_name: race # Prefer not to answer
   new_option_value: 8
 
-# ethnicity : 552 : ethnicity 
+# ethnicity : 552 : ethnicity
 # 1 : No | 2 : Yes - Mexican, Mexican American, or Chicano | 3 : Yes - Puerto Rican | 4 : Yes - Cuban | 5 : Yes - Other or Mixed Hispanic, Latino, or Spanish origin | 6 : Unsure | 7 : Prefer not to answer
 - old_option_id: 21 # Yes, Mexican, Mexican American or Chicano
   new_template_name: ethnicity # Yes - Mexican, Mexican American, or Chicano
@@ -60,16 +60,16 @@
   new_template_name: ethnicity # No
   new_option_value: 6
 
-# education-level : 553 : education_level 
+# education-level : 553 : education_level
 # 1 : 8th grade or less | 2 : Some high school, but did not graduate | 3 : High school graduate or GED | 4 : Some college or 2-year degree | 5 : 4-year college graduate | 6 : More than 4-year college degree | 7 : Prefer not to answer
 - old_option_id: 26 # Some school, but did not graduate high school
   new_template_name: education_level # Some high school, but did not graduate
   new_option_value: 2
 - old_option_id: 295 # High school diploma
-  new_template_name: education_level 
+  new_template_name: education_level
   new_option_value: 3
 - old_option_id: 29 # Some college, but did not graduate college
-  new_template_name: education_level 
+  new_template_name: education_level
   new_option_value: 4
 - old_option_id: 30 # Bachelor's degree
   new_template_name: education_level
@@ -84,7 +84,7 @@
   new_template_name: education_level # Prefer not to answer
   new_option_value: 7
 
-# income-level : 559 : income_level 
+# income-level : 559 : income_level
 # 1 : Less than $10,000 (USD) | 2 : $10,000 - $49,999 | 3 : $50,000 - $99,999 | 4 : $100,000 - $149,999 | 5 : $150,000 - $199,999 | 6 : $200,000 - $249,999 | 7 : $250,000 and above | 8 : Unknown | 9 : Prefer not to answer
 - old_option_id: 19 # Don't know
   new_template_name: income_level # Unknown
@@ -99,25 +99,25 @@
   new_template_name: income_level # $200,000 - $249,999
   new_option_value: 2
 - old_option_id: 54 # $20,000 to under $30,000
-  new_template_name: income_level 
+  new_template_name: income_level
   new_option_value: 2
 - old_option_id: 55 # $30,000 to under 40,000
   new_template_name: income_level
   new_option_value: 2
 - old_option_id: 56 # $40,000 to under $50,000
-  new_template_name: income_level 
+  new_template_name: income_level
   new_option_value: 2
 - old_option_id: 57 # $50,000 to under $75,000
   new_template_name: income_level # $50,000 - $99,999
   new_option_value: 3
 - old_option_id: 58 # $75,000 to under $100,000
-  new_template_name: income_level 
+  new_template_name: income_level
   new_option_value: 3
 - old_option_id: 59 # $100,000 to under $150,000
   new_template_name: income_level # $100,000 - $149,999
   new_option_value: 4
 
-# origin-country : 549 : country_list 
+# origin-country : 549 : country_list
 # 1 : U.S.A. | 2 : Canada | 3 : Mexico | 4 : China | 5 : India | 6 : Philippines | 7 : Other country (please specify) | 8 : Prefer not to answer
 - old_option_id: 7 # U.S.A
   new_template_name: country_list # U.S.A.
@@ -138,7 +138,7 @@
   new_template_name: country_list # Other country (please specify)
   new_option_value: 7
 
-# primary-language : 579 : language_list 
+# primary-language : 579 : language_list
 # 1 : English | 2 : Spanish | 3 : Chinese | 4 : Other language (please specify) | 5 : Prefer not to answer
 - old_option_id: 318 # English
   new_template_name: language_list # English
@@ -156,7 +156,7 @@
   new_template_name: language_list # Prefer not to answer
   new_option_value: 5
 
-# marital-status : 554 : marital_status_list 
+# marital-status : 554 : marital_status_list
 # 1 : Now married | 2 : Unmarried, but living with a partner | 3 : Widowed | 4 : Divorced | 5 : Separated | 6 : Never married | 7 : Prefer not to answer
 - old_option_id: 61 # Married
   new_template_name: marital_status_list # Now married
@@ -180,7 +180,7 @@
   new_template_name: marital_status_list # Prefer not to answer
   new_option_value: 7
 
-# daily-activities : 557 : daily_activities_list 
+# daily-activities : 557 : daily_activities_list
 # 1 : Working full time (day shifts) | 2 : Working full time (rotating or night shifts) | 3 : Working part time (day shifts) | 4 : Working part time (rotating or night shifts) | 5 : Unemployed, laid off, or looking for work | 6 : In school (full- or part-time student) | 7 : Stay-at-home parent or keeping household | 8 : Retired | 9 : Disabled | 10 : Prefer not to answer
 - old_option_id: 37 # Working full time
   new_template_name: daily_activities_list # Working full time (day shifts)
@@ -207,7 +207,7 @@
   new_template_name: daily_activities_list # Prefer not to answer
   new_option_value: 10
 
-# affording-basics : 558 : afford_difficulty_scale 
+# affording-basics : 558 : afford_difficulty_scale
 # 1 : Very hard | 2 : Hard | 3 : Somewhat hard | 4 : Not very hard | 5 : Don't know | 6 : Prefer not to answer
 - old_option_id: 19 # Don't know
   new_template_name: afford_difficulty_scale # Don't know
@@ -228,7 +228,7 @@
   new_template_name: afford_difficulty_scale # Not very hard
   new_option_value: 4
 
-# ideal-wakeup : 511 : time_of_day_list 
+# ideal-wakeup : 511 : time_of_day_list
 # 1 : 5:00 - 6:30 am | 2 : 6:30 - 7:45 am | 3 : 7:45 - 9:45 am | 4 : 9:45 - 11:00 am | 5 : After 11:00 am | 6 : Prefer not to answer
 - old_option_id: 226 # 5:00-6:30 am
   new_template_name: time_of_day_list # 5:00 - 6:30 am
@@ -246,7 +246,7 @@
   new_template_name: time_of_day_list # After 11:00 am
   new_option_value: 5
 
-# epworth-sleepiness-scale : 512 : doze_while_sitting 
+# epworth-sleepiness-scale : 512 : doze_while_sitting
 # 1 : High chance of dozing | 2 : Moderate chance of dozing | 3 : Slight chance of dozing | 4 : Would never doze | 5 : Prefer not to answer
 - old_option_id: 1 # High chance of dozing
   new_template_name: doze_while_sitting # High chance of dozing
@@ -261,7 +261,7 @@
   new_template_name: doze_while_sitting # Would never doze
   new_option_value: 4
 
-# epworth-sleepiness-scale : 513 : doze_while_watching_tv 
+# epworth-sleepiness-scale : 513 : doze_while_watching_tv
 # 1 : High chance of dozing | 2 : Moderate chance of dozing | 3 : Slight chance of dozing | 4 : Would never doze | 5 : Prefer not to answer
 - old_option_id: 1 # High chance of dozing
   new_template_name: doze_while_watching_tv # High chance of dozing
@@ -276,7 +276,7 @@
   new_template_name: doze_while_watching_tv # Would never doze
   new_option_value: 4
 
-# epworth-sleepiness-scale : 514 : doze_while_public_sitting 
+# epworth-sleepiness-scale : 514 : doze_while_public_sitting
 # 1 : High chance of dozing | 2 : Moderate chance of dozing | 3 : Slight chance of dozing | 4 : Would never doze | 5 : Prefer not to answer
 - old_option_id: 1 # High chance of dozing
   new_template_name: doze_while_public_sitting # High chance of dozing
@@ -291,7 +291,7 @@
   new_template_name: doze_while_public_sitting # Would never doze
   new_option_value: 4
 
-# epworth-sleepiness-scale : 515 : doze_while_passenger_in_car 
+# epworth-sleepiness-scale : 515 : doze_while_passenger_in_car
 # 1 : High chance of dozing | 2 : Moderate chance of dozing | 3 : Slight chance of dozing | 4 : Would never doze | 5 : Prefer not to answer
 - old_option_id: 1 # High chance of dozing
   new_template_name: doze_while_passenger_in_car # High chance of dozing
@@ -306,7 +306,7 @@
   new_template_name: doze_while_passenger_in_car # Would never doze
   new_option_value: 4
 
-# epworth-sleepiness-scale : 516 : doze_while_lying_down_afternoon 
+# epworth-sleepiness-scale : 516 : doze_while_lying_down_afternoon
 # 1 : High chance of dozing | 2 : Moderate chance of dozing | 3 : Slight chance of dozing | 4 : Would never doze | 5 : Prefer not to answer
 - old_option_id: 1 # High chance of dozing
   new_template_name: doze_while_lying_down_afternoon # High chance of dozing
@@ -321,7 +321,7 @@
   new_template_name: doze_while_lying_down_afternoon # Would never doze
   new_option_value: 4
 
-# epworth-sleepiness-scale : 517 : doze_while_sitting_talking 
+# epworth-sleepiness-scale : 517 : doze_while_sitting_talking
 # 1 : High chance of dozing | 2 : Moderate chance of dozing | 3 : Slight chance of dozing | 4 : Would never doze | 5 : Prefer not to answer
 - old_option_id: 1 # High chance of dozing
   new_template_name: doze_while_sitting_talking # High chance of dozing
@@ -336,7 +336,7 @@
   new_template_name: doze_while_sitting_talking # Would never doze
   new_option_value: 4
 
-# epworth-sleepiness-scale : 518 : doze_while_sitting_after_lunch 
+# epworth-sleepiness-scale : 518 : doze_while_sitting_after_lunch
 # 1 : High chance of dozing | 2 : Moderate chance of dozing | 3 : Slight chance of dozing | 4 : Would never doze | 5 : Prefer not to answer
 - old_option_id: 1 # High chance of dozing
   new_template_name: doze_while_sitting_after_lunch # High chance of dozing
@@ -351,7 +351,7 @@
   new_template_name: doze_while_sitting_after_lunch # Would never doze
   new_option_value: 4
 
-# epworth-sleepiness-scale : 519 : doze_while_in_car_stopped 
+# epworth-sleepiness-scale : 519 : doze_while_in_car_stopped
 # 1 : High chance of dozing | 2 : Moderate chance of dozing | 3 : Slight chance of dozing | 4 : Would never doze | 5 : Prefer not to answer
 - old_option_id: 1 # High chance of dozing
   new_template_name: doze_while_in_car_stopped # High chance of dozing
@@ -366,7 +366,7 @@
   new_template_name: doze_while_in_car_stopped # Would never doze
   new_option_value: 4
 
-# health-conditions-list : 531 : conditions-allergies 
+# health-conditions-list : 531 : conditions-allergies
 # 1 : Yes | 2 : No | 3 : Don't know | 4 : Prefer not to answer
 - old_option_id: 36 # Yes
   new_template_name: conditions-allergies # Yes
@@ -378,7 +378,7 @@
   new_template_name: conditions-allergies # Don't know
   new_option_value: 3
 
-# health-conditions-list : 532 : conditions-asthma 
+# health-conditions-list : 532 : conditions-asthma
 # 1 : Yes | 2 : No | 3 : Don't know | 4 : Prefer not to answer
 - old_option_id: 36 # Yes
   new_template_name: conditions-asthma # Yes
@@ -390,7 +390,7 @@
   new_template_name: conditions-asthma # Don't know
   new_option_value: 3
 
-# health-conditions-list : 533 : conditions-add 
+# health-conditions-list : 533 : conditions-add
 # 1 : Yes | 2 : No | 3 : Don't know | 4 : Prefer not to answer
 - old_option_id: 36 # Yes
   new_template_name: conditions-add # Yes
@@ -402,7 +402,7 @@
   new_template_name: conditions-add # Don't know
   new_option_value: 3
 
-# health-conditions-list : 534 : conditions-cancer 
+# health-conditions-list : 534 : conditions-cancer
 # 1 : Yes | 2 : No | 3 : Don't know | 4 : Prefer not to answer
 - old_option_id: 36 # Yes
   new_template_name: conditions-cancer # Yes
@@ -414,7 +414,7 @@
   new_template_name: conditions-cancer # Don't know
   new_option_value: 3
 
-# health-conditions-list : 535 : conditions-copd 
+# health-conditions-list : 535 : conditions-copd
 # 1 : Yes | 2 : No | 3 : Don't know | 4 : Prefer not to answer
 - old_option_id: 36 # Yes
   new_template_name: conditions-copd # Yes
@@ -426,7 +426,7 @@
   new_template_name: conditions-copd # Don't know
   new_option_value: 3
 
-# health-conditions-list : 536 : conditions-depression 
+# health-conditions-list : 536 : conditions-depression
 # 1 : Yes | 2 : No | 3 : Don't know | 4 : Prefer not to answer
 - old_option_id: 36 # Yes
   new_template_name: conditions-depression # Yes
@@ -438,7 +438,7 @@
   new_template_name: conditions-depression # Don't know
   new_option_value: 3
 
-# health-conditions-list : 537 : conditions-diabetes 
+# health-conditions-list : 537 : conditions-diabetes
 # 1 : Yes | 2 : No | 3 : Don't know | 4 : Prefer not to answer
 - old_option_id: 36 # Yes
   new_template_name: conditions-diabetes # Yes
@@ -450,7 +450,7 @@
   new_template_name: conditions-diabetes # Don't know
   new_option_value: 3
 
-# health-conditions-list : 538 : conditions-hbp 
+# health-conditions-list : 538 : conditions-hbp
 # 1 : Yes | 2 : No | 3 : Don't know | 4 : Prefer not to answer
 - old_option_id: 36 # Yes
   new_template_name: conditions-hbp # Yes
@@ -462,7 +462,7 @@
   new_template_name: conditions-hbp # Don't know
   new_option_value: 3
 
-# health-conditions-list : 539 : conditions-heart-disease 
+# health-conditions-list : 539 : conditions-heart-disease
 # 1 : Yes | 2 : No | 3 : Don't know | 4 : Prefer not to answer
 - old_option_id: 36 # Yes
   new_template_name: conditions-heart-disease # Yes
@@ -474,7 +474,7 @@
   new_template_name: conditions-heart-disease # Don't know
   new_option_value: 3
 
-# health-conditions-list : 540 : conditions-insomnia 
+# health-conditions-list : 540 : conditions-insomnia
 # 1 : Yes | 2 : No | 3 : Don't know | 4 : Prefer not to answer
 - old_option_id: 36 # Yes
   new_template_name: conditions-insomnia # Yes
@@ -486,7 +486,7 @@
   new_template_name: conditions-insomnia # Don't know
   new_option_value: 3
 
-# health-conditions-list : 541 : conditions-narcolepsy 
+# health-conditions-list : 541 : conditions-narcolepsy
 # 1 : Yes | 2 : No | 3 : Don't know | 4 : Prefer not to answer
 - old_option_id: 36 # Yes
   new_template_name: conditions-narcolepsy # Yes
@@ -498,7 +498,7 @@
   new_template_name: conditions-narcolepsy # Don't know
   new_option_value: 3
 
-# health-conditions-list : 542 : conditions-restless-legs 
+# health-conditions-list : 542 : conditions-restless-legs
 # 1 : Yes | 2 : No | 3 : Don't know | 4 : Prefer not to answer
 - old_option_id: 36 # Yes
   new_template_name: conditions-restless-legs # Yes
@@ -510,7 +510,7 @@
   new_template_name: conditions-restless-legs # Don't know
   new_option_value: 3
 
-# health-conditions-list : 543 : conditions-stroke 
+# health-conditions-list : 543 : conditions-stroke
 # 1 : Yes | 2 : No | 3 : Don't know | 4 : Prefer not to answer
 - old_option_id: 36 # Yes
   new_template_name: conditions-stroke # Yes
@@ -522,7 +522,7 @@
   new_template_name: conditions-stroke # Don't know
   new_option_value: 3
 
-# referral-methods : 489 : myapnea_referral_source 
+# referral-methods : 489 : myapnea_referral_source
 # 1 : American Sleep Apnea Association (ASAA) | 2 : A.W.A.K.E. Group | 3 : CPAP company | 4 : Personal or family doctor | 5 : Clinic or hospital | 6 : CPAP provider | 7 : Poster or other advertisement | 8 : Facebook | 9 : Twitter | 10 : Family member | 11 : Friend | 12 : Internet search | 13 : Other patient-centered network | 14 : Other | 15 : Prefer not to answer
 - old_option_id: 296 # American Sleep Apnea Association (ASAA)
   new_template_name: myapnea_referral_source # American Sleep Apnea Association (ASAA)
@@ -570,7 +570,7 @@
   new_template_name: myapnea_referral_source # Other
   new_option_value: 14
 
-# previous-research-participation : 560 : previous_research_participation 
+# previous-research-participation : 560 : previous_research_participation
 # 1 : Yes | 2 : No | 3 : Prefer not to answer
 - old_option_id: 36 # Yes
   new_template_name: previous_research_participation # Yes
@@ -579,7 +579,7 @@
   new_template_name: previous_research_participation # No
   new_option_value: 2
 
-# preferred-method-of-contact : 561 : preferred_method_of_contact 
+# preferred-method-of-contact : 561 : preferred_method_of_contact
 # 1 : E-mail | 2 : Cell phone text messaging | 3 : Social media (such as Facebook, Twitter, or Pinterest) | 4 : Letter or post card in the mail | 5 : A computer created phone message | 6 : Personal phone call from research staff or my doctor | 7 : Talking face-to-face with research staff or my doctor when I am visiting the clinic | 8 : Other (please describe) | 9 : I am not interested in being contacted about future research studies
 - old_option_id: 297 # Email
   new_template_name: preferred_method_of_contact # E-mail
@@ -609,7 +609,7 @@
   new_template_name: preferred_method_of_contact # I am not interested in being contacted about future research studies
   new_option_value: 9
 
-# interest-in-study-designs : 563 : interest_in_surveys 
+# interest-in-study-designs : 563 : interest_in_surveys
 # 1 : Not interested | 2 : Somewhat interested | 3 : Very interested | 4 : Prefer not to answer
 - old_option_id: 305 # Not interested
   new_template_name: interest_in_surveys # Not interested
@@ -621,7 +621,7 @@
   new_template_name: interest_in_surveys # Very interested
   new_option_value: 3
 
-# interest-in-study-designs : 564 : interest_in_blood_sample 
+# interest-in-study-designs : 564 : interest_in_blood_sample
 # 1 : Not interested | 2 : Somewhat interested | 3 : Very interested | 4 : Prefer not to answer
 - old_option_id: 305 # Not interested
   new_template_name: interest_in_blood_sample # Not interested
@@ -633,7 +633,7 @@
   new_template_name: interest_in_blood_sample # Very interested
   new_option_value: 3
 
-# interest-in-study-designs : 565 : interest_in_conversation 
+# interest-in-study-designs : 565 : interest_in_conversation
 # 1 : Not interested | 2 : Somewhat interested | 3 : Very interested | 4 : Prefer not to answer
 - old_option_id: 305 # Not interested
   new_template_name: interest_in_conversation # Not interested
@@ -645,7 +645,7 @@
   new_template_name: interest_in_conversation # Very interested
   new_option_value: 3
 
-# interest-in-study-designs : 566 : interest_in_medication 
+# interest-in-study-designs : 566 : interest_in_medication
 # 1 : Not interested | 2 : Somewhat interested | 3 : Very interested | 4 : Prefer not to answer
 - old_option_id: 305 # Not interested
   new_template_name: interest_in_medication # Not interested
@@ -657,7 +657,7 @@
   new_template_name: interest_in_medication # Very interested
   new_option_value: 3
 
-# interest-in-study-designs : 567 : interest_in_meeting_local 
+# interest-in-study-designs : 567 : interest_in_meeting_local
 # 1 : Not interested | 2 : Somewhat interested | 3 : Very interested | 4 : Prefer not to answer
 - old_option_id: 305 # Not interested
   new_template_name: interest_in_meeting_local # Not interested
@@ -669,7 +669,7 @@
   new_template_name: interest_in_meeting_local # Very interested
   new_option_value: 3
 
-# interest-in-study-designs : 568 : interest_in_with_family 
+# interest-in-study-designs : 568 : interest_in_with_family
 # 1 : Not interested | 2 : Somewhat interested | 3 : Very interested | 4 : Prefer not to answer
 - old_option_id: 305 # Not interested
   new_template_name: interest_in_with_family # Not interested
@@ -681,7 +681,7 @@
   new_template_name: interest_in_with_family # Very interested
   new_option_value: 3
 
-# interest-in-study-designs : 569 : interest_in_hospital_stay 
+# interest-in-study-designs : 569 : interest_in_hospital_stay
 # 1 : Not interested | 2 : Somewhat interested | 3 : Very interested | 4 : Prefer not to answer
 - old_option_id: 305 # Not interested
   new_template_name: interest_in_hospital_stay # Not interested
@@ -693,7 +693,7 @@
   new_template_name: interest_in_hospital_stay # Very interested
   new_option_value: 3
 
-# general-health-rate : 529 : general_health_rating 
+# general-health-rate : 529 : general_health_rating
 # 1 : Poor | 2 : Fair | 3 : Good | 4 : Very good | 5 : Excellent | 6 : Prefer not to answer
 - old_option_id: 100 # Excellent
   new_template_name: general_health_rating # Excellent
@@ -711,7 +711,7 @@
   new_template_name: general_health_rating # Poor
   new_option_value: 1
 
-# improved-health-rate : 530 : improved_health_rating 
+# improved-health-rate : 530 : improved_health_rating
 # 1 : Much worse than one year ago | 2 : Somewhat worse now than one year ago | 3 : About the same as one year ago | 4 : Somewhat better now than one year ago | 5 : Much better now than one year ago | 6 : Prefer not to answer
 - old_option_id: 105 # Much better now than one year ago
   new_template_name: improved_health_rating # Much better now than one year ago
@@ -729,7 +729,7 @@
   new_template_name: improved_health_rating # Much worse than one year ago
   new_option_value: 1
 
-# general-quality-life-rate : 570 : general_quality_life_rating 
+# general-quality-life-rate : 570 : general_quality_life_rating
 # 1 : Poor | 2 : Fair | 3 : Good | 4 : Very good | 5 : Excellent | 6 : Prefer not to answer
 - old_option_id: 100 # Excellent
   new_template_name: general_quality_life_rating # Excellent
@@ -747,7 +747,7 @@
   new_template_name: general_quality_life_rating # Poor
   new_option_value: 1
 
-# everyday-physical-activities : 571 : everyday_physical_activities 
+# everyday-physical-activities : 571 : everyday_physical_activities
 # 1 : Not at all | 2 : A little | 3 : Moderately | 4 : Mostly | 5 : Completely | 6 : Prefer not to answer
 - old_option_id: 308 # Completely
   new_template_name: everyday_physical_activities # Completely
@@ -765,7 +765,7 @@
   new_template_name: everyday_physical_activities # Not at all
   new_option_value: 1
 
-# errands-and-shop : 572 : errands_and_shop 
+# errands-and-shop : 572 : errands_and_shop
 # 1 : Unable to do | 2 : With much difficulty | 3 : With some difficulty | 4 : With a little difficulty | 5 : Without any difficulty | 6 : Prefer not to answer
 - old_option_id: 312 # Without any difficulty
   new_template_name: errands_and_shop # Without any difficulty
@@ -783,7 +783,7 @@
   new_template_name: errands_and_shop # Unable to do
   new_option_value: 1
 
-# last-week-depression : 573 : last_week_depression 
+# last-week-depression : 573 : last_week_depression
 # 1 : Always | 2 : Often | 3 : Sometimes | 4 : Rarely | 5 : Never | 6 : Prefer not to answer
 - old_option_id: 317 # Never
   new_template_name: last_week_depression # Never
@@ -801,7 +801,7 @@
   new_template_name: last_week_depression # Always
   new_option_value: 1
 
-# last-week-fatigue : 574 : last_week_fatigue 
+# last-week-fatigue : 574 : last_week_fatigue
 # 1 : Very much | 2 : Quite a bit | 3 : Somewhat | 4 : A little bit | 5 : Not at all | 6 : Prefer not to answer
 - old_option_id: 117 # Not at all
   new_template_name: last_week_fatigue # Not at all
@@ -819,7 +819,7 @@
   new_template_name: last_week_fatigue # Very much
   new_option_value: 1
 
-# last-week-problem-sleep : 575 : last_week_problem_sleep 
+# last-week-problem-sleep : 575 : last_week_problem_sleep
 # 1 : Very much | 2 : Quite a bit | 3 : Somewhat | 4 : A little bit | 5 : Not at all | 6 : Prefer not to answer
 - old_option_id: 117 # Not at all
   new_template_name: last_week_problem_sleep # Not at all
@@ -837,7 +837,7 @@
   new_template_name: last_week_problem_sleep # Very much
   new_option_value: 1
 
-# trouble-with-leisure : 576 : trouble_with_leisure 
+# trouble-with-leisure : 576 : trouble_with_leisure
 # 1 : Always | 2 : Often | 3 : Sometimes | 4 : Rarely | 5 : Never | 6 : Prefer not to answer
 - old_option_id: 317 # Never
   new_template_name: trouble_with_leisure # Never
@@ -855,7 +855,7 @@
   new_template_name: trouble_with_leisure # Always
   new_option_value: 1
 
-# last-week-pain-interference : 577 : last_week_pain_interference 
+# last-week-pain-interference : 577 : last_week_pain_interference
 # 1 : Very much | 2 : Quite a bit | 3 : Somewhat | 4 : A little bit | 5 : Not at all | 6 : Prefer not to answer
 - old_option_id: 117 # Not at all
   new_template_name: last_week_pain_interference # Not at all
@@ -873,7 +873,7 @@
   new_template_name: last_week_pain_interference # Very much
   new_option_value: 1
 
-# doctor-who-introduced-sa : 497 : doctor_who_introduced_sa 
+# doctor-who-introduced-sa : 497 : doctor_who_introduced_sa
 # 1 : Primary care or family doctor (PCP) | 2 : Cardiologist | 3 : Diabetes specialist | 4 : Sleep specialist | 5 : Other | 6 : Prefer not to answer
 - old_option_id: 190 # Primary care doctor
   new_template_name: doctor_who_introduced_sa # Primary care or family doctor (PCP)
@@ -891,7 +891,7 @@
   new_template_name: doctor_who_introduced_sa # Other
   new_option_value: 5
 
-# diagnostic-study : 499 : diagnostic_study_type 
+# diagnostic-study : 499 : diagnostic_study_type
 # 1 : A sleep study at my home (portable sleep study) | 2 : A sleep study in a sleep lab/center | 3 : Prefer not to answer
 - old_option_id: 220 # A sleep study at my home (portable sleep study)
   new_template_name: diagnostic_study_type # A sleep study at my home (portable sleep study)
@@ -900,34 +900,34 @@
   new_template_name: diagnostic_study_type # A sleep study in a sleep lab/center
   new_option_value: 2
 
-# sleep-study-satisfaction : 500 : sleep_study_satisfaction 
+# sleep-study-satisfaction : 500 : sleep_study_satisfaction
 # 1 : Very dissatisfied | 2 : Dissatisfied | 3 : Slightly dissatisfied | 4 : Neutral | 5 : Slightly satisfied | 6 : Satisfied | 7 : Very satisfied | 8 : Prefer not to answer
 - old_option_id: 222 # 0 (very dissatisfied)
   new_template_name: sleep_study_satisfaction
   new_option_value: 1
 - old_option_id: 74 # 1
-  new_template_name: sleep_study_satisfaction # 
+  new_template_name: sleep_study_satisfaction #
   new_option_value: 2
 - old_option_id: 75 # 2
-  new_template_name: sleep_study_satisfaction # 
+  new_template_name: sleep_study_satisfaction #
   new_option_value: 3
 - old_option_id: 76 # 3
-  new_template_name: sleep_study_satisfaction # 
+  new_template_name: sleep_study_satisfaction #
   new_option_value: 4
 - old_option_id: 77 # 4
-  new_template_name: sleep_study_satisfaction # 
+  new_template_name: sleep_study_satisfaction #
   new_option_value: 4
 - old_option_id: 214 # 5
-  new_template_name: sleep_study_satisfaction # 
+  new_template_name: sleep_study_satisfaction #
   new_option_value: 5
 - old_option_id: 215 # 6
-  new_template_name: sleep_study_satisfaction # 
+  new_template_name: sleep_study_satisfaction #
   new_option_value: 6
 - old_option_id: 223 # 7 (very satisified)
   new_template_name: sleep_study_satisfaction # Very satisfied
   new_option_value: 7
 
-# health-care-coverage : 544 : health_care_coverage 
+# health-care-coverage : 544 : health_care_coverage
 # 1 : Yes | 2 : No | 3 : Prefer not to answer
 - old_option_id: 36 # Yes
   new_template_name: health_care_coverage # Yes
@@ -936,7 +936,7 @@
   new_template_name: health_care_coverage # No
   new_option_value: 2
 
-# types-of-treatments : 501 : types_of_treatments 
+# types-of-treatments : 501 : types_of_treatments
 # 1 : Never been treated | 2 : Continuous Positive Airway Pressure Machine (CPAP) | 3 : Auto Positive Airway Pressure Machine (APAP) | 4 : Bi-level Positive Airway Pressure Machine (BiPAP) | 5 : Adaptive Servo-Ventilation (ASV) | 6 : Oral appliance | 7 : Behavioral therapy | 8 : Tongue stimulation | 9 : Tonsillectomy (removal of tonsils) | 10 : UPPP (removal of palate and other tissue from the mouth) | 11 : Nasal deviation surgery | 12 : Tongue surgery | 13 : Jaw surgery | 14 : Bariatric surgery | 15 : Prefer not to answer
 - old_option_id: 280 # Never been treated
   new_template_name: types_of_treatments # Never been treated
@@ -981,97 +981,97 @@
   new_template_name: types_of_treatments # Bariatric surgery
   new_option_value: 14
 
-# treatment-outcomes-components : 504 : treatment_outcome_sleepiness 
+# treatment-outcomes-components : 504 : treatment_outcome_sleepiness
 # 1 : Much worse | 2 : Mildly worse | 3 : No change | 4 : Mildly better | 5 : Much better | 6 : Prefer not to answer
 - old_option_id: 210 # 1 (Much better)
   new_template_name: treatment_outcome_sleepiness # Much better
   new_option_value: 5
 - old_option_id: 75 # 2
-  new_template_name: treatment_outcome_sleepiness # 
+  new_template_name: treatment_outcome_sleepiness #
   new_option_value: 4
 - old_option_id: 211 # 3 (No change)
   new_template_name: treatment_outcome_sleepiness # No change
   new_option_value: 3
 - old_option_id: 77 # 4
-  new_template_name: treatment_outcome_sleepiness # 
+  new_template_name: treatment_outcome_sleepiness #
   new_option_value: 2
 - old_option_id: 212 # 5 (Much worse)
   new_template_name: treatment_outcome_sleepiness # Much worse
   new_option_value: 1
 
-# treatment-outcomes-components : 505 : treatment_outcome_sleep_quality 
+# treatment-outcomes-components : 505 : treatment_outcome_sleep_quality
 # 1 : Much worse | 2 : Mildly worse | 3 : No change | 4 : Mildly better | 5 : Much better | 6 : Prefer not to answer
 - old_option_id: 210 # 1 (Much better)
   new_template_name: treatment_outcome_sleep_quality # Much better
   new_option_value: 5
 - old_option_id: 75 # 2
-  new_template_name: treatment_outcome_sleep_quality # 
+  new_template_name: treatment_outcome_sleep_quality #
   new_option_value: 4
 - old_option_id: 211 # 3 (No change)
   new_template_name: treatment_outcome_sleep_quality # No change
   new_option_value: 3
 - old_option_id: 77 # 4
-  new_template_name: treatment_outcome_sleep_quality # 
+  new_template_name: treatment_outcome_sleep_quality #
   new_option_value: 2
 - old_option_id: 212 # 5 (Much worse)
   new_template_name: treatment_outcome_sleep_quality # Much worse
   new_option_value: 1
 
-# treatment-outcomes-components : 506 : treatment_outcome_energy_level 
+# treatment-outcomes-components : 506 : treatment_outcome_energy_level
 # 1 : Much worse | 2 : Mildly worse | 3 : No change | 4 : Mildly better | 5 : Much better | 6 : Prefer not to answer
 - old_option_id: 210 # 1 (Much better)
   new_template_name: treatment_outcome_energy_level # Much better
   new_option_value: 5
 - old_option_id: 75 # 2
-  new_template_name: treatment_outcome_energy_level # 
+  new_template_name: treatment_outcome_energy_level #
   new_option_value: 4
 - old_option_id: 211 # 3 (No change)
   new_template_name: treatment_outcome_energy_level # No change
   new_option_value: 3
 - old_option_id: 77 # 4
-  new_template_name: treatment_outcome_energy_level # 
+  new_template_name: treatment_outcome_energy_level #
   new_option_value: 2
 - old_option_id: 212 # 5 (Much worse)
   new_template_name: treatment_outcome_energy_level # Much worse
   new_option_value: 1
 
-# treatment-outcomes-components : 507 : treatment_outcome_alertness 
+# treatment-outcomes-components : 507 : treatment_outcome_alertness
 # 1 : Much worse | 2 : Mildly worse | 3 : No change | 4 : Mildly better | 5 : Much better | 6 : Prefer not to answer
 - old_option_id: 210 # 1 (Much better)
   new_template_name: treatment_outcome_alertness # Much better
   new_option_value: 5
 - old_option_id: 75 # 2
-  new_template_name: treatment_outcome_alertness # 
+  new_template_name: treatment_outcome_alertness #
   new_option_value: 4
 - old_option_id: 211 # 3 (No change)
   new_template_name: treatment_outcome_alertness # No change
   new_option_value: 3
 - old_option_id: 77 # 4
-  new_template_name: treatment_outcome_alertness # 
+  new_template_name: treatment_outcome_alertness #
   new_option_value: 2
 - old_option_id: 212 # 5 (Much worse)
   new_template_name: treatment_outcome_alertness # Much worse
   new_option_value: 1
 
-# treatment-outcomes-components : 508 : treatment_outcome_attention 
+# treatment-outcomes-components : 508 : treatment_outcome_attention
 # 1 : Much worse | 2 : Mildly worse | 3 : No change | 4 : Mildly better | 5 : Much better | 6 : Prefer not to answer
 - old_option_id: 210 # 1 (Much better)
   new_template_name: treatment_outcome_attention # Much better
   new_option_value: 5
 - old_option_id: 75 # 2
-  new_template_name: treatment_outcome_attention # 
+  new_template_name: treatment_outcome_attention #
   new_option_value: 4
 - old_option_id: 211 # 3 (No change)
   new_template_name: treatment_outcome_attention # No change
   new_option_value: 3
 - old_option_id: 77 # 4
-  new_template_name: treatment_outcome_attention # 
+  new_template_name: treatment_outcome_attention #
   new_option_value: 2
 - old_option_id: 212 # 5 (Much worse)
   new_template_name: treatment_outcome_attention # Much worse
   new_option_value: 1
 
-# sleep-quality-week : 521 : overall_sleep_quality 
+# sleep-quality-week : 521 : overall_sleep_quality
 # 1 : Very Poor | 2 : Poor | 3 : Fair | 4 : Good | 5 : Very Good | 6 : Prefer not to answer
 - old_option_id: 101 # Very good
   new_template_name: overall_sleep_quality # Very Good
@@ -1089,7 +1089,7 @@
   new_template_name: overall_sleep_quality # Very Poor
   new_option_value: 1
 
-# sleep-quality-week-components : 522 : sleep_refreshing 
+# sleep-quality-week-components : 522 : sleep_refreshing
 # 1 : Not at all | 2 : A little bit | 3 : Somewhat | 4 : Quite a bit | 5 : Very much | 6 : Prefer not to answer
 - old_option_id: 267 # Very much
   new_template_name: sleep_refreshing # Very much
@@ -1107,7 +1107,7 @@
   new_template_name: sleep_refreshing # Not at all
   new_option_value: 1
 
-# sleep-quality-week-components : 523 : problem_with_sleep 
+# sleep-quality-week-components : 523 : problem_with_sleep
 # 1 : Not at all | 2 : A little bit | 3 : Somewhat | 4 : Quite a bit | 5 : Very much | 6 : Prefer not to answer
 - old_option_id: 267 # Very much
   new_template_name: problem_with_sleep # Very much
@@ -1125,7 +1125,7 @@
   new_template_name: problem_with_sleep # Not at all
   new_option_value: 1
 
-# sleep-quality-week-components : 524 : difficulty_falling_asleep 
+# sleep-quality-week-components : 524 : difficulty_falling_asleep
 # 1 : Not at all | 2 : A little bit | 3 : Somewhat | 4 : Quite a bit | 5 : Very much | 6 : Prefer not to answer
 - old_option_id: 267 # Very much
   new_template_name: difficulty_falling_asleep # Very much
@@ -1143,7 +1143,7 @@
   new_template_name: difficulty_falling_asleep # Not at all
   new_option_value: 1
 
-# sleep-quality-week-components : 525 : restless_sleep 
+# sleep-quality-week-components : 525 : restless_sleep
 # 1 : Not at all | 2 : A little bit | 3 : Somewhat | 4 : Quite a bit | 5 : Very much | 6 : Prefer not to answer
 - old_option_id: 267 # Very much
   new_template_name: restless_sleep # Very much
@@ -1161,7 +1161,7 @@
   new_template_name: restless_sleep # Not at all
   new_option_value: 1
 
-# sleep-quality-week-components : 526 : tried_hard_to_get_sleep 
+# sleep-quality-week-components : 526 : tried_hard_to_get_sleep
 # 1 : Not at all | 2 : A little bit | 3 : Somewhat | 4 : Quite a bit | 5 : Very much | 6 : Prefer not to answer
 - old_option_id: 267 # Very much
   new_template_name: tried_hard_to_get_sleep # Very much
@@ -1179,7 +1179,7 @@
   new_template_name: tried_hard_to_get_sleep # Not at all
   new_option_value: 1
 
-# sleep-quality-week-components : 527 : worried_about_not_sleeping 
+# sleep-quality-week-components : 527 : worried_about_not_sleeping
 # 1 : Not at all | 2 : A little bit | 3 : Somewhat | 4 : Quite a bit | 5 : Very much | 6 : Prefer not to answer
 - old_option_id: 267 # Very much
   new_template_name: worried_about_not_sleeping # Very much
@@ -1197,7 +1197,7 @@
   new_template_name: worried_about_not_sleeping # Not at all
   new_option_value: 1
 
-# sleep-quality-week-components : 528 : satisfied_with_sleep 
+# sleep-quality-week-components : 528 : satisfied_with_sleep
 # 1 : Not at all | 2 : A little bit | 3 : Somewhat | 4 : Quite a bit | 5 : Very much | 6 : Prefer not to answer
 - old_option_id: 267 # Very much
   new_template_name: satisfied_with_sleep # Very much
@@ -1401,227 +1401,227 @@
 # 1 : 0-3 months | 2 : 3-6 months | 3 : 6-12 months | 4 : 12+ months | 5 : N/A
 - old_value_min: 0
   old_value_max: 3
-  new_template_name: snoring_before_diagnosis
+  new_template_name: sleepiness_before_diagnosis
   new_option_value: 1 # 0-3 months
 - old_value_min: 3
   old_value_max: 6
-  new_template_name: snoring_before_diagnosis
+  new_template_name: sleepiness_before_diagnosis
   new_option_value: 2 # 3-6 months
 - old_value_min: 6
   old_value_max: 12
-  new_template_name: snoring_before_diagnosis
+  new_template_name: sleepiness_before_diagnosis
   new_option_value: 3 # 6-12 months
 - old_value_min: 12
   old_value_max: INFINITY
-  new_template_name: snoring_before_diagnosis
+  new_template_name: sleepiness_before_diagnosis
   new_option_value: 4 # 12+ months
 
 # symptoms-before-diagnosis : 120496 : tiredness_before_diagnosis
 # 1 : 0-3 months | 2 : 3-6 months | 3 : 6-12 months | 4 : 12+ months | 5 : N/A
 - old_value_min: 0
   old_value_max: 3
-  new_template_name: snoring_before_diagnosis
+  new_template_name: tiredness_before_diagnosis
   new_option_value: 1 # 0-3 months
 - old_value_min: 3
   old_value_max: 6
-  new_template_name: snoring_before_diagnosis
+  new_template_name: tiredness_before_diagnosis
   new_option_value: 2 # 3-6 months
 - old_value_min: 6
   old_value_max: 12
-  new_template_name: snoring_before_diagnosis
+  new_template_name: tiredness_before_diagnosis
   new_option_value: 3 # 6-12 months
 - old_value_min: 12
   old_value_max: INFINITY
-  new_template_name: snoring_before_diagnosis
+  new_template_name: tiredness_before_diagnosis
   new_option_value: 4 # 12+ months
 
 # symptoms-before-diagnosis : 20496 : accident_before_diagnosis
 # 1 : 0-3 months | 2 : 3-6 months | 3 : 6-12 months | 4 : 12+ months | 5 : N/A
 - old_value_min: 0
   old_value_max: 3
-  new_template_name: snoring_before_diagnosis
+  new_template_name: accident_before_diagnosis
   new_option_value: 1 # 0-3 months
 - old_value_min: 3
   old_value_max: 6
-  new_template_name: snoring_before_diagnosis
+  new_template_name: accident_before_diagnosis
   new_option_value: 2 # 3-6 months
 - old_value_min: 6
   old_value_max: 12
-  new_template_name: snoring_before_diagnosis
+  new_template_name: accident_before_diagnosis
   new_option_value: 3 # 6-12 months
 - old_value_min: 12
   old_value_max: INFINITY
-  new_template_name: snoring_before_diagnosis
+  new_template_name: accident_before_diagnosis
   new_option_value: 4 # 12+ months
 
 # symptoms-before-diagnosis : 20497 : shortness_breath_before_diagnosis
 # 1 : 0-3 months | 2 : 3-6 months | 3 : 6-12 months | 4 : 12+ months | 5 : N/A
 - old_value_min: 0
   old_value_max: 3
-  new_template_name: snoring_before_diagnosis
+  new_template_name: shortness_breath_before_diagnosis
   new_option_value: 1 # 0-3 months
 - old_value_min: 3
   old_value_max: 6
-  new_template_name: snoring_before_diagnosis
+  new_template_name: shortness_breath_before_diagnosis
   new_option_value: 2 # 3-6 months
 - old_value_min: 6
   old_value_max: 12
-  new_template_name: snoring_before_diagnosis
+  new_template_name: shortness_breath_before_diagnosis
   new_option_value: 3 # 6-12 months
 - old_value_min: 12
   old_value_max: INFINITY
-  new_template_name: snoring_before_diagnosis
+  new_template_name: shortness_breath_before_diagnosis
   new_option_value: 4 # 12+ months
 
 # symptoms-before-diagnosis : 120498 : stopped_breathing_before_diagnosis
 # 1 : 0-3 months | 2 : 3-6 months | 3 : 6-12 months | 4 : 12+ months | 5 : N/A
 - old_value_min: 0
   old_value_max: 3
-  new_template_name: snoring_before_diagnosis
+  new_template_name: stopped_breathing_before_diagnosis
   new_option_value: 1 # 0-3 months
 - old_value_min: 3
   old_value_max: 6
-  new_template_name: snoring_before_diagnosis
+  new_template_name: stopped_breathing_before_diagnosis
   new_option_value: 2 # 3-6 months
 - old_value_min: 6
   old_value_max: 12
-  new_template_name: snoring_before_diagnosis
+  new_template_name: stopped_breathing_before_diagnosis
   new_option_value: 3 # 6-12 months
 - old_value_min: 12
   old_value_max: INFINITY
-  new_template_name: snoring_before_diagnosis
+  new_template_name: stopped_breathing_before_diagnosis
   new_option_value: 4 # 12+ months
 
 # symptoms-before-diagnosis : 120499 : heart_disease_before_diagnosis
 # 1 : 0-3 months | 2 : 3-6 months | 3 : 6-12 months | 4 : 12+ months | 5 : N/A
 - old_value_min: 0
   old_value_max: 3
-  new_template_name: snoring_before_diagnosis
+  new_template_name: heart_disease_before_diagnosis
   new_option_value: 1 # 0-3 months
 - old_value_min: 3
   old_value_max: 6
-  new_template_name: snoring_before_diagnosis
+  new_template_name: heart_disease_before_diagnosis
   new_option_value: 2 # 3-6 months
 - old_value_min: 6
   old_value_max: 12
-  new_template_name: snoring_before_diagnosis
+  new_template_name: heart_disease_before_diagnosis
   new_option_value: 3 # 6-12 months
 - old_value_min: 12
   old_value_max: INFINITY
-  new_template_name: snoring_before_diagnosis
+  new_template_name: heart_disease_before_diagnosis
   new_option_value: 4 # 12+ months
 
 # symptoms-before-diagnosis : 120500 : hbp_before_diagnosis
 # 1 : 0-3 months | 2 : 3-6 months | 3 : 6-12 months | 4 : 12+ months | 5 : N/A
 - old_value_min: 0
   old_value_max: 3
-  new_template_name: snoring_before_diagnosis
+  new_template_name: hbp_before_diagnosis
   new_option_value: 1 # 0-3 months
 - old_value_min: 3
   old_value_max: 6
-  new_template_name: snoring_before_diagnosis
+  new_template_name: hbp_before_diagnosis
   new_option_value: 2 # 3-6 months
 - old_value_min: 6
   old_value_max: 12
-  new_template_name: snoring_before_diagnosis
+  new_template_name: hbp_before_diagnosis
   new_option_value: 3 # 6-12 months
 - old_value_min: 12
   old_value_max: INFINITY
-  new_template_name: snoring_before_diagnosis
+  new_template_name: hbp_before_diagnosis
   new_option_value: 4 # 12+ months
 
 # symptoms-before-diagnosis : 120501 : depressed_before_diagnosis
 # 1 : 0-3 months | 2 : 3-6 months | 3 : 6-12 months | 4 : 12+ months | 5 : N/A
 - old_value_min: 0
   old_value_max: 3
-  new_template_name: snoring_before_diagnosis
+  new_template_name: depressed_before_diagnosis
   new_option_value: 1 # 0-3 months
 - old_value_min: 3
   old_value_max: 6
-  new_template_name: snoring_before_diagnosis
+  new_template_name: depressed_before_diagnosis
   new_option_value: 2 # 3-6 months
 - old_value_min: 6
   old_value_max: 12
-  new_template_name: snoring_before_diagnosis
+  new_template_name: depressed_before_diagnosis
   new_option_value: 3 # 6-12 months
 - old_value_min: 12
   old_value_max: INFINITY
-  new_template_name: snoring_before_diagnosis
+  new_template_name: depressed_before_diagnosis
   new_option_value: 4 # 12+ months
 
 # symptoms-before-diagnosis : 120502 : irritability_before_diagnosis
 # 1 : 0-3 months | 2 : 3-6 months | 3 : 6-12 months | 4 : 12+ months | 5 : N/A
 - old_value_min: 0
   old_value_max: 3
-  new_template_name: snoring_before_diagnosis
+  new_template_name: irritability_before_diagnosis
   new_option_value: 1 # 0-3 months
 - old_value_min: 3
   old_value_max: 6
-  new_template_name: snoring_before_diagnosis
+  new_template_name: irritability_before_diagnosis
   new_option_value: 2 # 3-6 months
 - old_value_min: 6
   old_value_max: 12
-  new_template_name: snoring_before_diagnosis
+  new_template_name: irritability_before_diagnosis
   new_option_value: 3 # 6-12 months
 - old_value_min: 12
   old_value_max: INFINITY
-  new_template_name: snoring_before_diagnosis
+  new_template_name: irritability_before_diagnosis
   new_option_value: 4 # 12+ months
 
 # symptoms-before-diagnosis : 120503 : concerned_friend_before_diagnosis
 # 1 : 0-3 months | 2 : 3-6 months | 3 : 6-12 months | 4 : 12+ months | 5 : N/A
 - old_value_min: 0
   old_value_max: 3
-  new_template_name: snoring_before_diagnosis
+  new_template_name: concerned_friend_before_diagnosis
   new_option_value: 1 # 0-3 months
 - old_value_min: 3
   old_value_max: 6
-  new_template_name: snoring_before_diagnosis
+  new_template_name: concerned_friend_before_diagnosis
   new_option_value: 2 # 3-6 months
 - old_value_min: 6
   old_value_max: 12
-  new_template_name: snoring_before_diagnosis
+  new_template_name: concerned_friend_before_diagnosis
   new_option_value: 3 # 6-12 months
 - old_value_min: 12
   old_value_max: INFINITY
-  new_template_name: snoring_before_diagnosis
+  new_template_name: concerned_friend_before_diagnosis
   new_option_value: 4 # 12+ months
 
 # symptoms-before-diagnosis : 220504 : forgetfulness_before_diagnosis
 # 1 : 0-3 months | 2 : 3-6 months | 3 : 6-12 months | 4 : 12+ months | 5 : N/A
 - old_value_min: 0
   old_value_max: 3
-  new_template_name: snoring_before_diagnosis
+  new_template_name: forgetfulness_before_diagnosis
   new_option_value: 1 # 0-3 months
 - old_value_min: 3
   old_value_max: 6
-  new_template_name: snoring_before_diagnosis
+  new_template_name: forgetfulness_before_diagnosis
   new_option_value: 2 # 3-6 months
 - old_value_min: 6
   old_value_max: 12
-  new_template_name: snoring_before_diagnosis
+  new_template_name: forgetfulness_before_diagnosis
   new_option_value: 3 # 6-12 months
 - old_value_min: 12
   old_value_max: INFINITY
-  new_template_name: snoring_before_diagnosis
+  new_template_name: forgetfulness_before_diagnosis
   new_option_value: 4 # 12+ months
 
 # symptoms-before-diagnosis : 220505 : provider_suggestion_before_diagnosis
 # 1 : 0-3 months | 2 : 3-6 months | 3 : 6-12 months | 4 : 12+ months | 5 : N/A
 - old_value_min: 0
   old_value_max: 3
-  new_template_name: snoring_before_diagnosis
+  new_template_name: provider_suggestion_before_diagnosis
   new_option_value: 1 # 0-3 months
 - old_value_min: 3
   old_value_max: 6
-  new_template_name: snoring_before_diagnosis
+  new_template_name: provider_suggestion_before_diagnosis
   new_option_value: 2 # 3-6 months
 - old_value_min: 6
   old_value_max: 12
-  new_template_name: snoring_before_diagnosis
+  new_template_name: provider_suggestion_before_diagnosis
   new_option_value: 3 # 6-12 months
 - old_value_min: 12
   old_value_max: INFINITY
-  new_template_name: snoring_before_diagnosis
+  new_template_name: provider_suggestion_before_diagnosis
   new_option_value: 4 # 12+ months
 
