@@ -8,6 +8,7 @@
 ### Enhancements
 - Fixed some minor typos
 - Social profile information is now automatically displayed after being added by member
+- Providers index now properly paginates, with 12 providers listed on each page
 
 ### Bug Fixes
 - Fixed a survey bug where users had incomplete multiple radio button questions locked.
