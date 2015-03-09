@@ -1,5 +1,10 @@
 ## 5.0.0
 
+### Bug Fixes
+- Fixed a survey bug where users had incomplete multiple radio button questions locked.
+ 
+## 5.0.0
+
 ### New Features
 - **Member Roles**
   - Members are able to define one or more of the following roles:

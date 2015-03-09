@@ -172,6 +172,27 @@ class AnswerMigration
 
   end
 
+  def unlock_incomplete_multiple_radio_answers(survey_slug, user_email=nil, log_file_path=File.join(Rails.root, "tmp", "answer_migration.log"))
+    log_file = File.open(log_file_path, "w")
+
+    survey = Survey.find_by(slug: survey_slug)
+
+    survey.questions.where(display_type: "radio_input_multiple").each do |question|
+      template_count = question.answer_templates.count
+
+      answers_to_check = question.answers.locked
+      answers_to_check = answers_to_check.joins(:answer_session).where(answer_session: {user_id: User.find_by_email(user_email).id}) if user_email
+
+      answers_to_check.each do |answer|
+        if answer.answer_values.count < template_count
+          # Unlock Answer and Answer Session
+          answer.update(state: "incomplete")
+          answer.answer_session.update(locked: false)
+        end
+      end
+    end
+  end
+
   def migrate_survey(survey_slug, user_email=nil, log_file_path=File.join(Rails.root, "tmp", "answer_migration.log"))
     # First pass:
     # 1. Go through the answers for a given question
