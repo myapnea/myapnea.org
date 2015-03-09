@@ -8,6 +8,7 @@
 ### Enhancements
 - Fixed some minor typos
 - Social profile information is now automatically displayed after being added by member
+- Providers index now properly paginates, with 12 providers listed on each page
 
 ### Bug Fixes
 - Fixed a survey bug where users had incomplete multiple radio button questions locked.
@@ -15,6 +16,7 @@
 - Added redirect for deprecated 'research_surveys' to 'surveys'
 - Fixed survey error when all options for a checkbox question were unselected
 - Fixed incorrect answer option migration mapping for the my-sleep-apnea survey
+- Hotkeys disabled for locked questions
 
 ## 5.0.0 (March 4, 2015)
 
