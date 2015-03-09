@@ -1,5 +1,7 @@
 // DEFAULTS FOR RADIO
-.input-container input[type=radio] { display: none; }
+.input-container:not(#foo) input[type=radio] {
+  display: none;
+}
 
 .label-default {
   background-color: transparent;
@@ -75,66 +77,84 @@ $blue: #7fb2eb;
   -moz-box-sizing:border-box;
   -webkit-box-sizing:border-box;
   border:6px double transparent;
+  background-color: $neutral;
   background-color: transparentize($neutral, .7);
 }
 
 .survey-scale input[type=radio]:checked ~ label {
+  background-color: $neutral;
   background-color: transparentize($neutral, .1);
   border: 6px double white;
 }
 .survey-scale-blue label {
+  background-color: $blue;
   background-color: transparentize($blue, .7);
 }
 .survey-scale-blue input[type=radio]:checked ~ label {
+  background-color: $blue;
   background-color: transparentize($blue, .1);
   border: 6px double white;
 }
 .survey-scale-emergency label {
+  background-color: $emergency;
   background-color: transparentize($emergency, .7);
 }
 .survey-scale-emergency input[type=radio]:checked ~ label {
+  background-color: $emergency;
   background-color: transparentize($emergency, .1);
   border: 6px double white;
 }
 .survey-scale-danger label {
+  background-color: $danger;
   background-color: transparentize($danger, .7);
 }
 .survey-scale-danger input[type=radio]:checked ~ label {
+  background-color: $danger;
   background-color: transparentize($danger, .1);
   border: 6px double white;
 }
 .survey-scale-warning label {
+  background-color: $warning;
   background-color: transparentize($warning, .7);
 }
 .survey-scale-warning input[type=radio]:checked ~ label {
+  background-color: $warning;
   background-color: transparentize($warning, .1);
   border: 6px double white;
 }
 .survey-scale-moderate label {
+  background-color: $moderate;
   background-color: transparentize($moderate, .7);
 }
 .survey-scale-moderate input[type=radio]:checked ~ label {
+  background-color: $moderate;
   background-color: transparentize($moderate, .1);
   border: 6px double white;
 }
 .survey-scale-good label {
+  background-color: $good;
   background-color: transparentize($good, .7);
 }
 .survey-scale-good input[type=radio]:checked ~ label {
+  background-color: $good;
   background-color: transparentize($good, .1);
   border: 6px double white;
 }
 .survey-scale-great label {
+  background-color: $great;
   background-color: transparentize($great, .7);
 }
 .survey-scale-great input[type=radio]:checked ~ label {
+  background-color: $great;
   background-color: transparentize($great, .1);
   border: 6px double white;
 }
 .survey-scale-excellent label {
+  background-color: $excellent;
   background-color: transparentize($excellent, .7);
 }
 .survey-scale-excellent input[type=radio]:checked ~ label {
+  background-color: $excellent;
   background-color: transparentize($excellent, .1);
   border: 6px double white;
 }
@@ -161,9 +181,6 @@ $blue: #7fb2eb;
       color:black; color: rgba(0,0,0,.6);
       padding: 0px;
     }
-  }
-  input[type=radio] {
-    display: none;
   }
 }
 

@@ -142,6 +142,10 @@ class AnswerSession < ActiveRecord::Base
     end
   end
 
+  def position
+    self[:position] || survey.default_position
+  end
+
   private
 
 end

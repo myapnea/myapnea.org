@@ -1,5 +1,6 @@
 name: My Sleep Quality
 slug: my-sleep-quality
+default_position: 60
 description: |+
   The following questions are from the PROMIS Sleep Disturbance Item Bank.
 status: show

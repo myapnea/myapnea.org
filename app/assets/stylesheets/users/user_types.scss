@@ -6,6 +6,7 @@
   vertical-align: middle;
   text-align: center;
   height:300px;
+  width:100%;
   max-width:250px;
   cursor: pointer;
   img {
@@ -20,6 +21,7 @@
 
 .user-type-container:not(#foo) > input[type=checkbox]:checked + label {
   border-color: #1765bc;
+  background-color: #b1d2f6;
   background-color: transparentize(#b1d2f6, .5);
 }
 
@@ -34,10 +36,19 @@
     padding:5px;
     input + label {
       border-width: 2px;
-      height: 240px;
       p {
         font-size: 14px;
         padding: 0px;
+      }
+    }
+  }
+}
+@media all and (max-width: 778px) {
+  .user-type-container:not(#foo) {
+    input + label {
+      height: 240px;
+      img {
+        width: 170px;
       }
     }
   }

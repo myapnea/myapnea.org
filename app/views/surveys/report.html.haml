@@ -49,7 +49,7 @@
             - answer_value = answer_session.user.answer_for(answer_session, question).answer_values.where(answer_template_id: answer_template.id).first if answer_session.user.answer_for(answer_session, question)
             = render partial: 'surveys/reports/question_and_answer', locals: { survey: @survey, question: question, answer_template: answer_template, answer_value: answer_value, answer_session: @answer_session, answer_frequencies: answer_frequencies}
     -# Select next survey for completion
-    - next_survey = current_user.choose_next_survey(@survey)
+    - next_survey = current_user.next_survey(@survey)
     - continue_path = next_survey.present? ? survey_path(next_survey) : surveys_path
     .row.reset-layout
       .panel.lighterer-blue-bcg

@@ -1,6 +1,6 @@
 /* Thanks to help from danield770 http://jsfiddle.net/danield770/YvCHW/4232/ */
 
-select.height_select {
+select.height-select {
   border: 1px solid #111;
   background: transparent;
   width: 150px;
@@ -11,18 +11,30 @@ select.height_select {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  background: url("http://www.swopinfo.com/images/arrowdown.png") 96% / 15% no-repeat #fff;
+  background: asset-url("myapnea/icons/arrowdown.png") 96% / 15% no-repeat #fff;
 }
 
-.height_label {
+.height-label {
   font-size: 34px;
   padding: 5px;
 }
 
 
+@media all and (max-width:778px) {
+  select.height-select {
+    width:100px;
+    font-size:18px;
+    margin:5px;
+  }
+  .height-label {
+    margin:5px;
+    font-size:22px;
+  }
+}
+
 /*target Internet Explorer 9 and Internet Explorer 10:*/
 @media screen and (min-width:0\0) {
-  select {
+  select.height-select {
     background:none;
     padding: 5px;
   }

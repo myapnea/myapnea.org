@@ -134,6 +134,7 @@ Rails.application.routes.draw do
   end
 
   get 'forum', to: redirect("forums")
+  get 'research_surveys', to: redirect("surveys")
 
 # # Authentication
 #   devise_for :user, skip: [:sessions, :passwords, :confirmations, :registrations]

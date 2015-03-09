@@ -1,5 +1,6 @@
 name: My Sleep Apnea
 slug: my-sleep-apnea
+default_position: 70
 description: |+
   The following questions will ask about when and how you were diagnosed with sleep apnea. We will also ask about symptoms that might have led you to seek medical attention.
 status: show

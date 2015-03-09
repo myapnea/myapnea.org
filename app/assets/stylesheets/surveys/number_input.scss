@@ -8,3 +8,16 @@ input[type=text].number-input {
 .number-label {
   font-size: 34px;
 }
+
+
+@media all and (max-width:778px) {
+  input[type=text].number-input {
+    width:130px;
+    font-size:18px;
+    margin:5px;
+  }
+  .number-label {
+    margin:5px;
+    font-size:22px;
+  }
+}

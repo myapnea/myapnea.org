@@ -275,6 +275,27 @@ class AccountControllerTest < ActionController::TestCase
     assert_includes users(:blank_slate).assigned_surveys, Survey.find_by_slug('my-sleep-apnea')
   end
 
+  test "should assign correct position to answer sessions" do
+    # Setup
+    load_survey_package
+    login(users(:blank_slate))
+
+    patch :set_user_type, user: { adult_diagnosed: true }
+
+    # Set a survey as complete
+    users(:blank_slate).answer_sessions.where(survey_id: Survey.find_by_slug("about-my-family").id).first.update(locked: true)
+
+    users(:blank_slate).answer_sessions.each do |as|
+      assert_not_nil as.position
+      assert_equal as.survey.default_position, as.position
+    end
+
+    # Assigned surveys should put completed at the end
+    assert_equal Survey.find_by_slug("about-me"), users(:blank_slate).assigned_surveys.first
+    assert_equal users(:blank_slate).assigned_surveys.second, Survey.find_by_slug("my-sleep-quality")
+    assert_equal users(:blank_slate).assigned_surveys.last, Survey.find_by_slug("about-my-family")
+  end
+
   test "should assign correct surveys for adult_at_risk role" do
     # Setup
     load_survey_package

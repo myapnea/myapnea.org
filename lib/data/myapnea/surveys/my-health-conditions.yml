@@ -1,5 +1,6 @@
 name: My Health Conditions
 slug: my-health-conditions
+default_position: 40
 description: |+
   Sleep apnea is related, and can lead, to many other health issues. People may develop other health conditions before and after they are diagnosed with sleep apnea. Researchers are interested in examining the relationship between sleep apnea and other health conditions in order to improve treatments and overall health.
 status: show

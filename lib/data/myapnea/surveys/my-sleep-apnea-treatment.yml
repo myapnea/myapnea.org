@@ -1,5 +1,6 @@
 name: My Sleep Apnea Treatment
 slug: my-sleep-apnea-treatment
+default_position: 80
 description: |+
   MyApnea.Org members who have a diagnosis of sleep apnea and who are receiving treatment might be getting different kinds of treatment.   We are interested in your treatment type(s) and how satisfied you are with your treatment(s).  This will help us learn more about how members feel about different kinds of treatment and how well you think your treatment works for you.
 status: show

@@ -7,7 +7,7 @@ class SurveysController < ApplicationController
 
 
   def index
-    @surveys = (current_user.is_only_academic?) ? @surveys = Survey.viewable : current_user.assigned_surveys
+    @surveys = current_user.assigned_surveys
   end
 
   def show
@@ -18,7 +18,7 @@ class SurveysController < ApplicationController
   end
 
   def report
-    redirect_to surveys_path and return unless @answer_session.completed?
+    redirect_to surveys_path and return unless (@answer_session.completed? or current_user.is_only_academic?)
   end
 
   def process_answer

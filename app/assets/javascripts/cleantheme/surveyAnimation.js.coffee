@@ -28,7 +28,7 @@
       newHeight = currentHeight - 91
     else
       newHeight = currentHeight - offsetHeight + elementOffsetHeight
-    $("body").animate
+    $("body,html").animate
       scrollTop: newHeight, 400, "swing"
     , ->
       changeFocus(element2)
@@ -38,9 +38,12 @@
     $("input").blur()
     $(question).find("input:not([type=hidden])").first().focus()
 
-  @assignQuestionDirect = (element) ->
+  @setActive = (element) ->
     $(".survey-container.active").removeClass "active"
     $(element).addClass "active"
+
+  @assignQuestionDirect = (element) ->
+    setActive(element)
     nextQuestionScroll($(".survey-container.active"))
 
   # Progress to next or previous question
@@ -109,8 +112,7 @@
   $("[data-object~='reveal-next-input']").click (e) ->
     if this.checked then revealNextInput($(this).data('target'))
 
-  $('input:radio').click (event) ->
-    event.stopPropagation()
+  $('.survey-container input:radio').click (event) ->
     unless $(this).data('secondary')
       $(this).prop "checked", true
       if $(this).data('object') == 'reveal-next-input'
@@ -122,14 +124,35 @@
         assignQuestion(true,false)
       else
         assignQuestionDirect($(this).closest('.survey-container'))
+    console.log "radio clicked"
+    handleChangedValue($(this))
+    event.stopPropagation()
+    return
+
+  $('.survey-container input:text').click (event) ->
+    if $(this).data('secondary')
+      setActive($(this).closest('.survey-container'))
+    else
+      assignQuestionDirect($(this).closest('.survey-container'))
+    event.stopPropagation()
+    return
+
+  $("[data-object~='checkbox-label']").click (event) ->
+    event.preventDefault()
+    checkbox = $(this).siblings('input:checkbox')
+    $(checkbox).prop "checked", !$(checkbox).prop("checked")
+    event.stopPropagation()
+    return
+
 
   # Respond to user clicking different questions
   $('.survey-container').click (event) ->
     event.stopPropagation()
     # For click events on 'Next Question' button, just assign next question
-    if $(event.target).hasClass "next-question"
+    target = event.target or event.srcElement
+    if $(target).hasClass "next-question"
       assignQuestion(true, false)
-    else if $(event.target).is("input") or $(event.target).closest("label").siblings("input").length > 0
+    else if $(target).is("input") or $(target).closest("label").siblings("input").length > 0
       return
     else if !$(this).hasClass "active"
       assignQuestionDirect($(this))
@@ -139,26 +162,28 @@
   #####################
 
   $("body").keydown (e) ->
+    e = e || window.event
+    keyCode = if window.event then e.which else e.keyCode
     if $('.survey-container').length
       # Prevent default up and down and enter on keydown
-      if e.keyCode is 38 or e.keyCode is 40 or e.keyCode is 13
+      if keyCode is 38 or keyCode is 40 or keyCode is 13
         e.preventDefault()
       # Specifically targeting custom date input
-      if $(".survey-container.active").find(".survey-custom-date").is(":focus")
+      if $(".survey-custom-date").is(":focus")
         # Allow regular command and left/right keys
-        if e.metaKey or e.keyCode is 37 or e.keyCode is 39
+        if e.metaKey or keyCode is 37 or keyCode is 39
           return
         # Ensure proper blurring of date input
-        else if e.keyCode is 13
-          $(".survey-container.active").find(".survey-custom-date").blur()
+        else if keyCode is 13
+          $(".survey-custom-date").blur()
           return
         # Autocomplete date when tab or / is pressed
-        else if e.keyCode is 9 or e.keyCode is 191
+        else if keyCode is 9 or keyCode is 191
           e.preventDefault()
           autocompleteDate()
           return
         # Allow deleting, with dynamic string completion
-        else if e.keyCode is 46 or e.keyCode is 8
+        else if keyCode is 46 or keyCode is 8
           writeDate(e.keyCode)
           return
         else if (/^[a-zA-Z]*$/.test(+String.fromCharCode(e.keyCode)))
@@ -170,29 +195,32 @@
           writeDate(e.keyCode)
 
   $("body").keyup (e) ->
-    if $('.survey-container').length
+    e = e || window.event
+    keyCode = if window.event then e.which else e.keyCode
+    if $('.survey-container.active').length
       # Handle navigating using the up/down arrow keys
-      if e.keyCode is 38
+      if keyCode is 38
         e.preventDefault()
         if $(".survey-container.active").hasClass "multiple-question-parts" then assignMultipleQuestion(false, true) else assignQuestion(false, true)
-      else if e.keyCode is 40
+      else if keyCode is 40
         e.preventDefault()
         if $(".survey-container.active").hasClass "multiple-question-parts" then assignMultipleQuestion(true, false) else assignQuestion(true, false)
       # Progress to next question for enter
-      else if e.keyCode is 13
+      else if keyCode is 13
         assignQuestion(true, false)
         return
       # Handle hidden inputs first to prevent extra entering
-      if $("input:focus").is(":text")
+      else if $("input:focus").is(":text")
         return
       # Handle 'prefer not to answer checkbox'
-      else if $(this).find('.preferred-not-to-answer').length
+      else if $('.survey-container.active').find('.preferred-not-to-answer').length
         return
       # Handle radio_input_multiple
       else if $(".survey-container.active").hasClass "multiple-question-parts"
         inputs = $(".survey-container.active .multiple-question-container.current").find("input:radio")
+        keyCode = if window.event then e.which else e.keyCode
         inputs.each (index) ->
-          if e.keyCode is $(inputs[index]).data("hotkey").toString().charCodeAt(0)
+          if keyCode is $(inputs[index]).data("hotkey").toString().charCodeAt(0)
             $(inputs[index]).prop "checked", true
             handleChangedValue($(inputs[index]))
             assignMultipleQuestion(true, false)
@@ -201,29 +229,40 @@
         # Progress to next question if applicable
         if $(".survey-container.active").data('progress')
           inputs = $(".survey-container.active").find("input:radio")
+          keyCode = if window.event then e.which else e.keyCode
           inputs.each (index) ->
-            if e.keyCode is $(this).data("hotkey").toString().charCodeAt(0)
+            if keyCode is $(this).data("hotkey").toString().charCodeAt(0)
               $(inputs[index]).prop "checked", true
               handleChangedValue($(inputs[index]))
               if $(inputs[index]).data('object') == "reveal-next-input" then revealNextInput($(inputs[index]).data('target')) else assignQuestion(true, false)
         # Otherwise, check answer
         else
           inputs = $(".survey-container.active").find("input:checkbox")
-          inputs.each (index) ->
-            if e.keyCode is $(inputs[index]).data("hotkey").toString().charCodeAt(0)
-              if !($(inputs[index]).prop "checked") and ($(inputs[index]).data('object') == "reveal-next-input")
-                revealNextInput($(inputs[index]).data('target'))
-              $(inputs[index]).prop "checked", !$(inputs[index]).prop("checked")
-              handleChangedValue($(inputs[index]))
+          keyCode = if window.event then e.which else e.keyCode
+          if $(inputs).data('hotkey')
+            inputs.each (index) ->
+              if keyCode is $(inputs[index]).data("hotkey").toString().charCodeAt(0)
+                if !($(inputs[index]).prop "checked") and ($(inputs[index]).data('object') == "reveal-next-input")
+                  revealNextInput($(inputs[index]).data('target'))
+                $(inputs[index]).prop "checked", !$(inputs[index]).prop("checked")
+                handleChangedValue($(inputs[index]))
 
 
   # Attach change event handler to everything but radio button inputs. Radio button inputs are changed by JS, so each time
   # the :checked property is changed, handleChangedValue has to be called.
-  $(".survey-container input").change (event) ->
-    handleChangedValue($(event.target))
+  $(".survey-container input").not(":radio").change (event) ->
+    if $(this).hasClass "survey-custom-date"
+      dateStr = $(this).val()
+      if validateDate(dateStr) == "" and validateOver18(dateStr) == ""
+        target = event.target or event.srcElement
+        handleChangedValue($(target))
+    else
+      target = event.target or event.srcElement
+      handleChangedValue($(target))
 
   $(".survey-container select").change (event) ->
-    handleChangedValue($(event.target))
+    target = event.target or event.srcElement
+    handleChangedValue($(target))
 
   #####################
   # SURVEY SUBMISSION #
@@ -247,7 +286,7 @@
 
   @checkCompletion = () ->
     numberSelectors = $("[data-object~='survey-indicator']").length
-    numberCompletedSelectors = $("[data-object~='survey-indicator'].complete").length
+    numberCompletedSelectors = $("[data-object~='survey-indicator'].complete").length + $("[data-object~='survey-indicator'].locked").length
     if numberSelectors == numberCompletedSelectors
       return true
     else

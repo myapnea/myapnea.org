@@ -11,6 +11,7 @@
       $(element2).find(".progress-bar").width 0 + "%"
       $(element2).find(".progress-bar").html 0 + "%"
       $(element2).removeClass "in"
+  return
 
 
 @showRankBar = (element1, element2, voted) ->
@@ -39,21 +40,24 @@
   return
 
 @userHasNoVotes = (element) ->
-  alert = "<div class='alert alert-danger', style='width:90%;'> You have used all of your votes! Come back tomorrow to vote more.</div>"
+  alert = "<div class='alert alert-danger', style='width:90%;'> You have used all of your votes! Come back next week to vote more.</div>"
   $(element).before alert
+  return
 
 
 
 @rankingUXReady = () ->
-  $(".expand-topic").click ->
-    if $(this).html() is "Read more"
-      $(this).html "Read less"
-    else
-      $(this).html "Read more"
-    return
-
-  # Load progress vars for things that users have already voted on
-  $(".progress.in").each () ->
-    currentProgress = parseFloat( $(this).find(".progress-bar").attr("aria-valuenow") )
-    $(this).find(".progress-bar").width currentProgress + "%"
-    return
+  $(document)
+    .on('click', ".expand-research-topic", () ->
+      if $(this).html() is "Read more"
+        $(this).html "Read less"
+      else
+        $(this).html "Read more"
+      return
+    )
+    .ready ->
+      # Load progress vars for things that users have already voted on
+      $(".progress.in").each () ->
+      currentProgress = parseFloat( $(this).find(".progress-bar").attr("aria-valuenow") )
+      $(this).find(".progress-bar").width currentProgress + "%"
+      return

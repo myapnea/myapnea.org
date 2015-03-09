@@ -1,19 +1,8 @@
-// .reveal-next-input ~ .hidden-input {
-//   display:none;
-// }
-// .reveal-next-input:checked ~ .hidden-input {
-//   display: inline-block;
-//   margin: 7px 5%;
-//   width: 90%;
-//   float:left;
-//   margin-bottom:30px;
-// }
-
-.hidden-input {
+.hidden-input:not(#foo) {
   display: none;
 }
 
-input[data-object='reveal-next-input']:checked ~ .hidden-input {
+input[data-object='reveal-next-input']:checked ~ .hidden-input:not(#foo) {
   display:inline-block;
 }
 

@@ -26,7 +26,7 @@ class Lottery
       user_count = 0
 
       User.current.each do |u|
-        u.complete_surveys.each_with_index do |survey, index|
+        u.completed_surveys.each_with_index do |survey, index|
           user_count += 1 if index == 0
           tickets << ::Ticket.new(u.id, survey.id)
           count += 1

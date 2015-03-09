@@ -10,15 +10,18 @@ new:
   first_question: radio1
   slug: new-survey
   status: show
+  default_position: 1
 
 hidden:
   name_en: Hidden Survey
   first_question: radio2
   slug: hidden-survey
   status: hide
+  default_position: 2
 
 new_2:
   name_en: Another Survey
   first_question: date1
   slug: another-survey
   status: show
+  default_position: 3
