@@ -103,6 +103,8 @@
 
   # Handle 'prefer not to answer checkbox'
   $('.preferred-not-to-answer').click (e) ->
+    e.stopPropagation()
+    e.preventDefault()
     unless $(this).find("input:checkbox").prop 'disabled'
       $(this).find('input:checkbox').prop "checked", !$(this).find('input:checkbox').prop("checked")
       handleChangedValue($(this))
