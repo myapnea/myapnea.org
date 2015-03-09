@@ -10,8 +10,11 @@
 - Social profile information is now automatically displayed after being added by member
 
 ### Bug Fixes
+- Fixed a survey bug where users had incomplete multiple radio button questions locked.
 - Fixed a minor error generating a lottery winner
 - Added redirect for deprecated 'research_surveys' to 'surveys'
+- Fixed survey error when all options for a checkbox question were unselected
+- Fixed incorrect answer option migration mapping for the my-sleep-apnea survey
 
 ## 5.0.0 (March 4, 2015)
 

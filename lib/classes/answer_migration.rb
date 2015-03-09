@@ -172,7 +172,32 @@ class AnswerMigration
 
   end
 
-  def migrate_survey(survey_slug, user_email=nil, log_file_path=File.join(Rails.root, "tmp", "answer_migration.log"))
+  def unlock_incomplete_multiple_radio_answers(survey_slug, user_email=nil, log_file_path=File.join(Rails.root, "tmp", "answer_migration.log"))
+    log_file = File.open(log_file_path, "w")
+
+    survey = Survey.find_by(slug: survey_slug)
+
+    survey.questions.where(display_type: "radio_input_multiple").each do |question|
+      template_count = question.answer_templates.count
+
+      answers_to_check = question.answers.locked
+      answers_to_check = answers_to_check.joins(:answer_session).where(answer_sessions: {user_id: User.find_by_email(user_email).id}) if user_email
+
+      answers_to_check.each do |answer|
+        if answer.answer_values.count < template_count
+          msg = "Unlocking #{question.slug} for #{answer.answer_session.user.email}: Had #{answer.answer_values.count} of #{template_count}"
+          puts msg
+          log_file.puts(msg)
+
+          # Unlock Answer and Answer Session
+          answer.update(state: "incomplete")
+          answer.answer_session.update(locked: false)
+        end
+      end
+    end
+  end
+
+  def migrate_survey(survey_slug, user_email=nil, overwrite=false, log_file_path=File.join(Rails.root, "tmp", "answer_migration.log"))
     # First pass:
     # 1. Go through the answers for a given question
     # 2. Find or create the answer session for the given user/survey combo
@@ -213,14 +238,22 @@ class AnswerMigration
               ## No answer exists ==> initialized ==> allow
               ## Answer exists, but does not have answer value for given answer template ==> allow
               ## Answer exists, and answer value for given answer template exists ==> skip
-              allow_creation = (new_answer.new_record? or (new_answer.persisted? and new_answer.answer_values.where(answer_template_id: answer_template.id).empty?))
+              allow_creation = (new_answer.new_record? or (new_answer.persisted? and new_answer.answer_values.where(answer_template_id: answer_template.id).empty?) or overwrite)
 
               # Do not create empty answers!
               if matched_answer_value.show_value.present? and allow_creation
+                if overwrite
+                  msg = "Overwriting: #{question.slug}/#{answer_template.name} | #{matched_user.email}"
+                  puts msg
+                  log_file.puts msg
+
+                  new_answer.answer_values.where(answer_template_id: answer_template.id).delete_all
+                end
+
                 # Lock answer, since we're definitely adding a valid value
                 new_answer.update(state: "locked")
-                
-                puts "Survey: #{survey.slug} | Question #{question_i + 1} of #{total_new_question_number} | Migrating answer #{answer_i} of #{total_matched_answer_number} for #{matched_user.email} | #{question.slug} | value: #{matched_answer_value.show_value} | old_as: #{matched_answer.answer_session.survey_id}"
+
+                puts "Survey: #{survey.slug} | Question #{question_i + 1} of #{total_new_question_number} | Migrating answer #{answer_i} of #{total_matched_answer_number} for #{matched_user.email} | #{question.slug}/#{answer_template.name} | value: #{matched_answer_value.show_value} | old_as: #{matched_answer.answer_session.survey_id}"
 
                 matched_answer_template = matched_answer_value.answer_template
 
@@ -280,7 +313,7 @@ class AnswerMigration
                   log_file.puts msg
                 end
               else
-                puts "!Survey: #{survey.slug} | Question #{question_i + 1} of #{total_new_question_number} | ! answer #{answer_i} of #{total_matched_answer_number} for #{matched_user.email} | #{question.slug} | Empty or present! value: #{matched_answer_value.show_value} | old_as: #{matched_answer.answer_session.survey_id} | count: #{Answer.where(question_id: question.id, answer_session_id: new_answer_session.id).count}"
+                puts "!Survey: #{survey.slug} | Question #{question_i + 1} of #{total_new_question_number} | ! answer #{answer_i} of #{total_matched_answer_number} for #{matched_user.email} | #{question.slug}/#{answer_template.name} | Empty or present! value: #{matched_answer_value.show_value} | old_as: #{matched_answer.answer_session.survey_id} | count: #{Answer.where(question_id: question.id, answer_session_id: new_answer_session.id).count}"
               end
             end
           end

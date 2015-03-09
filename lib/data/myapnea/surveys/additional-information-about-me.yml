@@ -1,5 +1,6 @@
 name: Additional Information About Me
 slug: additional-information-about-me
+default_position: 20
 description:
 status: show
 questions:

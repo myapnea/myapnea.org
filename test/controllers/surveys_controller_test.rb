@@ -39,6 +39,26 @@ class SurveysControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "User can remove all answers from a checkbox question" do
+    login(users(:has_incomplete_survey))
+
+    refute answer_sessions(:incomplete).completed?
+
+    xhr :post, :process_answer, { 'question_id' => [questions(:checkbox1).id.to_s], 'answer_session_id' => answer_sessions(:incomplete).id.to_s }, format: 'json'
+
+    assert_response :success
+
+    created_answer = assigns(:answer_session).last_answer
+
+    assert created_answer.persisted?
+    refute created_answer.complete?
+    refute created_answer.locked?
+
+    refute assigns(:answer_session).completed?, "#{assigns(:answer_session).answers.complete.count} #{assigns(:answer_session).survey.questions.count} #{assigns(:answer_session).answers.to_a}"
+
+
+  end
+
   test "User can prefer not to answer a question on an assigned survey" do
     login(users(:has_incomplete_survey))
 

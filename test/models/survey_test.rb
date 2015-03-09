@@ -12,6 +12,7 @@ class SurveyTest < ActiveSupport::TestCase
     assert_not_nil survey
 
     assert_equal "about-me", survey.slug
+    assert_equal 10, survey.default_position
     assert_equal 6, survey.questions.length, "hmm: #{survey.questions.map(&:slug)}"
 
     assert_match /What is your date of birth?/, survey.questions.first.text
@@ -97,6 +98,9 @@ class SurveyTest < ActiveSupport::TestCase
       result = surveys(:new).launch_single(u, "baseline")
       assert_nil result
     end
+
+    assert_equal surveys(:new), u.assigned_surveys.last
+    assert_equal surveys(:new).default_position, u.answer_sessions.last.position
 
 
     assert_equal u, surveys(:new).launch_single(u, "baseline")

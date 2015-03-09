@@ -7,7 +7,7 @@ class Survey < ActiveRecord::Base
   include Localizable
   include TSort
 
-  # Translations
+  # Translations                               position: (Forum.count + 1) * 10
   localize :name
   localize :description
   localize :short_description
@@ -42,7 +42,7 @@ class Survey < ActiveRecord::Base
 
     # Find or Create Survey
     survey = Survey.where(slug: data_file["slug"]).first_or_create
-    survey.update(name_en: data_file["name"], description_en: data_file["description"], status: data_file["status"], first_question_id: nil)
+    survey.update(name_en: data_file["name"], description_en: data_file["description"], status: data_file["status"], first_question_id: nil, default_position: data_file["default_position"])
     QuestionEdge.destroy_all(survey_id: survey.id)
 
 
@@ -82,20 +82,22 @@ class Survey < ActiveRecord::Base
 
 
   # Instance Methods
-  def launch_single(user, encounter)
+  def launch_single(user, encounter, position=nil)
+    position ||= self[:default_position]
 
     answer_session = user.answer_sessions.find_or_initialize_by(encounter: encounter, survey_id: self.id)
+    answer_session.position = position
     return_object = answer_session.new_record? ? nil : user
     answer_session.save!
 
     return_object
   end
 
-  def launch_multiple(users, encounter)
+  def launch_multiple(users, encounter, position=nil)
     already_assigned = []
 
     users.each do |user|
-      already_assigned << launch_single(user, encounter)
+      already_assigned << launch_single(user, encounter, position)
     end
 
     already_assigned.compact!

@@ -1,5 +1,6 @@
 name: My Sleep Pattern
 slug: my-sleep-pattern
+default_position: 50
 description:
 status: show
 questions:
