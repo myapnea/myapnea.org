@@ -1,15 +1,15 @@
 ## 5.1.0
 
 ### New Features
+- **Adminstrative Changes**
+  - A user registration and survey completion report added
+    - The report provides comparison across different MyApnea.Org releases
 
 ### Enhancements
 - Social profile information is now automatically displayed after being added by member
 
 ### Bug Fixes
 - Added redirect for deprecated 'research_surveys' to 'surveys'
-
-### Refactoring
-
 
 ## 5.0.0 (March 4, 2015)
 

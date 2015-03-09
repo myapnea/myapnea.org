@@ -1,49 +1,83 @@
 - @title = 'Version Stats'
 .content-main-header
   %h1= @title
-%dl.dl-horizontal
-  %dt Version Number
-  %dd 5.0
-
-  - release_date = DateTime.new(2015,3,4).at_noon()
-  %dt Release Date
-  %dd= release_date.strftime("%m/%d/%Y")
-
-  %h3 User Stats
-  - number_new_users = User.select{|user| user.created_at >= release_date}.count
-  %dt New Users
-  %dd= number_new_users
-
-  - number_consented = User.select{|user| user.created_at >= release_date and user.ready_for_research?}.count
-  %dt Consented
-  %dd= (number_consented * 100 / number_new_users).to_s + '%'
-
-  - number_users_with_completed_surveys = User.select{|user| user.created_at >= release_date and user.ready_for_research? and user.completed_surveys.count > 0 }.count
-  %dt Completing Surveys
-  %dd= (number_users_with_completed_surveys * 100 / number_new_users).to_s + '%'
-
-  - number_complete_surveys = 0
-  - User.select{|user| user.created_at >= release_date and user.completed_surveys.count > 0}.each do |user|
-    - number_complete_surveys += user.completed_surveys.count
-  %dt Avg # Complete
-  %dd= number_complete_surveys / number_users_with_completed_surveys
 
 
-  %h3 User Types
-  %dt Adult Diagnosed
-  %dd= User.select{|user| user.created_at >= release_date and user.adult_diagnosed?}.count
+- @version_dates.each do |v|
+  - release_users = User.current
+  - release_users = release_users.where( "created_at >= ?", v[:release_date].at_noon ) if v[:release_date]
+  - release_users = release_users.where( "created_at < ?", v[:next_release_date].at_noon ) if v[:next_release_date]
 
-  %dt Adult At-Risk
-  %dd= User.select{|user| user.created_at >= release_date and user.adult_at_risk?}.count
+  %h2
+    Version
+    = v[:version]
+    User Stats
 
-  %dt Caregiver Adult
-  %dd= User.select{|user| user.created_at >= release_date and user.caregiver_adult?}.count
+  %dl.dl-horizontal
+    %dt
+      Release Date
+    %dd
+      = v[:release_date].strftime("%m/%d/%Y") if v[:release_date]
 
-  %dt Caregiven Child(ren)
-  %dd= User.select{|user| user.created_at >= release_date and user.caregiver_child?}.count
+    - number_new_users = release_users.count
+    %dt
+      New Users
+    %dd
+      = number_new_users
 
-  %dt Provider
-  %dd= User.select{|user| user.created_at >= release_date and user.provider?}.count
+    - number_consented = release_users.where.not(accepted_consent_at: nil)
+    %dt
+      Consented
+    %dd
+      = number_consented.count
 
-  %dt Researcher
-  %dd= User.select{|user| user.created_at >= release_date and user.researcher?}.count
+      %span.text-muted
+        = '(' + (number_consented.count * 100 / number_new_users).to_s + '%)' rescue '(0%)'
+
+    - user_ids_with_completed_surveys = AnswerSession.current.where( locked: true ).pluck(:user_id).uniq
+    - number_users_with_completed_surveys = number_consented.where(id: user_ids_with_completed_surveys)
+    %dt
+      Completing Surveys
+    %dd
+      = number_users_with_completed_surveys.count
+      %span.text-muted
+        = '(' + (number_users_with_completed_surveys.count * 100 / number_new_users).to_s + '%)' rescue '(0%)'
+
+    - number_complete_surveys = AnswerSession.current.where( locked: true, user_id: user_ids_with_completed_surveys ).count
+    %dt
+      Avg # Complete
+    %dd
+      - if number_users_with_completed_surveys.count == 0
+        0
+      - else
+        = "%0.2f" % (number_complete_surveys.to_f / number_users_with_completed_surveys.count)
+
+    %dt
+      Adult Diagnosed
+    %dd
+      = release_users.where(adult_diagnosed: true).count
+
+    %dt
+      Adult At-Risk
+    %dd
+      = release_users.where(adult_at_risk: true).count
+
+    %dt
+      Caregiver Adult
+    %dd
+      = release_users.where(caregiver_adult: true).count
+
+    %dt
+      Caregiven Child(ren)
+    %dd
+      = release_users.where(caregiver_child: true).count
+
+    %dt
+      Provider
+    %dd
+      = release_users.where(provider: true).count
+
+    %dt
+      Researcher
+    %dd
+      = release_users.where(researcher: true).count
