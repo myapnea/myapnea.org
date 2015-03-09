@@ -1,16 +1,12 @@
 ## 5.1.0
 
-### Bug Fixes
-- Fixed a survey bug where users had incomplete multiple radio button questions locked.
- 
-## 5.0.0
-
 ### New Features
 
 ### Enhancements
 - Fixed some minor typos
 
 ### Bug Fixes
+- Fixed a survey bug where users had incomplete multiple radio button questions locked.
 - Fixed a minor error generating a lottery winner
 - Added redirect for deprecated 'research_surveys' to 'surveys'
 - Fixed survey error when all options for a checkbox question were unselected
