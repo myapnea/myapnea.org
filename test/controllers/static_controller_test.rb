@@ -101,6 +101,26 @@ class StaticControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should get PAP care maintenance" do
+    get :PAP_care_maintenance
+    assert_response :success
+  end
+
+  test "should get PAP masks equipment" do
+    get :PAP_masks_equipment
+    assert_response :success
+  end
+
+  test "should get traveling with PAP" do
+    get :traveling_with_PAP
+    assert_response :success
+  end
+
+  test "should get side effects PAP" do
+    get :side_effects_PAP
+    assert_response :success
+  end
+
   test "should get sleep tips" do
     get :sleep_tips
     assert_response :success

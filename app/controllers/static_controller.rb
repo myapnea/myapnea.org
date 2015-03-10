@@ -52,6 +52,22 @@ class StaticController < ApplicationController
     render 'static/SEO_content/PAP_troubleshooting_guide'
   end
 
+  def PAP_care_maintenance
+    render 'static/SEO_content/PAP_care_maintenance'
+  end
+
+  def PAP_masks_equipment
+    render 'static/SEO_content/PAP_masks_equipment'
+  end
+
+  def traveling_with_PAP
+    render 'static/SEO_content/traveling_with_PAP'
+  end
+
+  def side_effects_PAP
+    render 'static/SEO_content/side_effects_PAP'
+  end
+
   def sleep_tips
     render 'static/sleep_tips/sleep_tips'
   end

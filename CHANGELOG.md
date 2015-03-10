@@ -12,6 +12,10 @@
   - About PAP Therapy
   - PAP Quick Setup Guide
   - PAP Troubleshooting Guide
+  - PAP Care and Maintenance
+  - PAP Masks and Equipment
+  - Traveling with PAP
+  - Side Effects of PAP
   - Sleep Tips
 
 ### Enhancements
