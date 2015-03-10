@@ -81,10 +81,29 @@ class StaticControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should get about sleep apnea" do
+    get :about_sleep_apnea
+    assert_response :success
+  end
+
+  test "should get about PAP therapy" do
+    get :about_PAP_therapy
+    assert_response :success
+  end
+
+  test "should get PAP setup guide" do
+    get :PAP_setup_guide
+    assert_response :success
+  end
+
+  test "should get PAP troubleshooting guide" do
+    get :PAP_troubleshooting_guide
+    assert_response :success
+  end
+
   test "should get sleep tips" do
     get :sleep_tips
     assert_response :success
   end
-
 
 end

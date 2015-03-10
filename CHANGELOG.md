@@ -7,6 +7,12 @@
 - ** Forum Changes**
   - Posts can include mentions of other users by their social profile names
   - Topics can be searched by authors of posts within that topic
+- ** Content Additions**
+  - About Sleep Apnea
+  - About PAP Therapy
+  - PAP Quick Setup Guide
+  - PAP Troubleshooting Guide
+  - Sleep Tips
 
 ### Enhancements
 - Fixed some minor typos

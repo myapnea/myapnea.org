@@ -18,7 +18,11 @@ Rails.application.routes.draw do
     get :sitemap
   end
 
-  # Sleep Tips
+  # SEO Content
+  get 'about-sleep-apnea' => 'static#about_sleep_apnea'
+  get 'about-PAP-therapy' => 'static#about_PAP_therapy'
+  get 'PAP-setup-guide'   => 'static#PAP_setup_guide'
+  get 'PAP-troubleshooting-guide' => 'static#PAP_troubleshooting_guide'
   get 'sleep-tips'   => 'static#sleep_tips'
 
   # Registration flow
