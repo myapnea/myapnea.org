@@ -1,0 +1,15 @@
+Dear <%= @user.first_name %>,
+
+<%= @post.user.forum_name %> mentioned you in a post on the forums at MyApnea.Org.
+
+<%= "#{@post.topic.name} #{ENV['website_url']}/forums/#{@post.topic.to_param}" %>
+
+  <%= render partial: 'digest_post', locals: { post: @post } %>
+
+
+Click the following link to view the post:
+
+<%= "#{ENV['website_url']}/forums/#{@post.topic.to_param}\##{@post.id}" %>
+
+
+You may turn off these email notifications in your settings: <%= "#{ENV['website_url']}/account" %>
