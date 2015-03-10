@@ -4,6 +4,9 @@
 - **Adminstrative Changes**
   - A user registration and survey completion report added
     - The report provides comparison across different MyApnea.Org releases
+- ** Forum Changes**
+  - Posts can include mentions of other users by their social profile names
+  - Topics can be searched by authors of posts within that topic
 
 ### Enhancements
 - Fixed some minor typos

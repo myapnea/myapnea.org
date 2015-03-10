@@ -7,11 +7,19 @@
 - topics = topics.search(params[:s]) if params[:s].present?
 - if params[:a].present? and social_profile = SocialProfile.find_by_name(params[:a])
   - topics = topics.user_active(social_profile.user_id)
-  = Topic.user_active(social_profile.user_id).count
 - topics = topics.pending_review if params[:status] == 'pending_review'
 - topics = topics.page(topic_limit ? 1 : params[:page]).per( topic_limit )
 
 - if topics.count > 0 or (params[:s].blank? and params[:status].blank?)
+  - if params[:a].present? and social_profile.present?
+    .alert.alert-info
+      Showing topics that include posts by
+      = social_profile.name
+  - elsif params[:a].present? and social_profile.blank?
+    .alert.alert-warning
+      There are no posts by
+      = params[:a]
+      in this forum.
   .panel.panel-forums
     - if topic_limit
       .panel-heading
