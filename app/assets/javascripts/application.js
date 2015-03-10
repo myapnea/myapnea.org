@@ -19,6 +19,7 @@
 //= require jquery.PrintArea
 //= require bootbox.min
 //= require typeahead
+//= require external/jquery.textcomplete.js
 //= require cleantheme/uservoice_left
 //= require google_analytics
 //= require bloodhound
@@ -30,10 +31,6 @@
 //= require votes
 //= require surveys
 //= require fb
-//= require external/jquery.color.min.js
-//= require external/jquery.placeholder.js
-//= require external/jquery.animate-shadow-min.js
-//= require external/froogaloop2.min.js
 //= require cleantheme/landing
 //= require cleantheme/rankingUX
 //= require cleantheme/team
@@ -47,10 +44,13 @@
 //= require cleantheme/maps
 //= require cleantheme/navigationUX
 //= require cleantheme/navigationToggle.js
-// require cleantheme/surveyProgress.js
 //= require cleantheme/circle.coffee
 //= require cookies
 //= require video_controls
 //= require cleantheme/surveyAnimation
 //= require cleantheme/registrationProgress
 //= require validation
+//= require external/jquery.color.min.js
+//= require external/jquery.placeholder.js
+//= require external/jquery.animate-shadow-min.js
+//= require external/froogaloop2.min.js

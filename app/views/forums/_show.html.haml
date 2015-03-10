@@ -1,9 +1,13 @@
 - @active_top_nav_link = :participate
+
 - topics = if current_user and current_user.has_role? :moderator
   - forum.topics
 - else
   - forum.topics.viewable_by_user(current_user ? current_user.id : nil)
 - topics = topics.search(params[:s]) if params[:s].present?
+- if params[:a].present? and social_profile = SocialProfile.find_by_name(params[:a])
+  - topics = topics.user_active(social_profile.user_id)
+  = Topic.user_active(social_profile.user_id).count
 - topics = topics.pending_review if params[:status] == 'pending_review'
 - topics = topics.page(topic_limit ? 1 : params[:page]).per( topic_limit )
 
