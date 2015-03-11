@@ -4,6 +4,19 @@
 - **Adminstrative Changes**
   - A user registration and survey completion report added
     - The report provides comparison across different MyApnea.Org releases
+- ** Forum Changes**
+  - Posts can include mentions of other users by their social profile names
+  - Topics can be searched by authors of posts within that topic
+- ** Content Additions**
+  - About Sleep Apnea
+  - About PAP Therapy
+  - PAP Quick Setup Guide
+  - PAP Troubleshooting Guide
+  - PAP Care and Maintenance
+  - PAP Masks and Equipment
+  - Traveling with PAP
+  - Side Effects of PAP
+  - Sleep Tips
 
 ### Enhancements
 - Fixed some minor typos

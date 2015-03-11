@@ -23,4 +23,10 @@ class UserMailerPreview < ActionMailer::Preview
     UserMailer.welcome(user)
   end
 
+  def mentioned_in_post
+    user = User.first
+    post = Post.first
+    UserMailer.mentioned_in_post(post, user)
+  end
+
 end
