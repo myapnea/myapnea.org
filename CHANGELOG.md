@@ -1,3 +1,11 @@
+## 6.0.0
+
+### New Features
+
+### Enhancements
+
+### Bug Fixes
+
 ## 5.1.0
 
 ### New Features
