@@ -73,6 +73,7 @@ Rails.application.routes.draw do
     end
   end
   get 'surveys/about-me/report-mockup' => 'surveys#about_me_mockup'
+  get 'surveys/my-sleep-pattern/report-mockup' => 'surveys#my_sleep_pattern_mockup'
 
   ## JSON
   get 'questions/frequencies(/:question_id/:answer_session_id)', to: "questions#frequencies", as: :question_frequencies, format: :json

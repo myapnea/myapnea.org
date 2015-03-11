@@ -1,6 +1,9 @@
 ## 6.0.0
 
 ### New Features
+- Survey reports restyled to be more easily digested, and appear as infographics
+  - About Me
+  - My Sleep Pattern
 
 ### Enhancements
 
