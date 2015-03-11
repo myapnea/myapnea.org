@@ -5,6 +5,9 @@ class SurveysController < ApplicationController
   before_action :set_survey, only: [:show, :report, :start_survey]
 
 
+  def about_me_mockup
+    render 'surveys/reports/about_me'
+  end
 
   def index
     @surveys = current_user.assigned_surveys
