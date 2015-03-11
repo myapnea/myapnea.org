@@ -18,16 +18,17 @@ Rails.application.routes.draw do
     get :sitemap
   end
 
-  # SEO Content
-  get 'about-sleep-apnea' => 'static#about_sleep_apnea'
-  get 'about-PAP-therapy' => 'static#about_PAP_therapy'
-  get 'PAP-setup-guide'   => 'static#PAP_setup_guide'
-  get 'PAP-troubleshooting-guide' => 'static#PAP_troubleshooting_guide'
-  get 'PAP-care-and-maintenance' => 'static#PAP_care_maintenance'
-  get 'PAP-masks-and-equipment' => 'static#PAP_masks_equipment'
-  get 'traveling-with-PAP' => 'static#traveling_with_PAP'
-  get 'side-effects-of-PAP' => 'static#side_effects_PAP'
-  get 'sleep-tips'   => 'static#sleep_tips'
+  # Educational Content
+  get 'learn/obstructive-sleep-apnea' => 'static#obstructive_sleep_apnea'
+  get 'learn/pap' => 'static#pap'
+  get 'learn/pap/about-PAP-therapy' => 'static#about_PAP_therapy'
+  get 'learn/pap/PAP-setup-guide'   => 'static#PAP_setup_guide'
+  get 'learn/pap/PAP-troubleshooting-guide' => 'static#PAP_troubleshooting_guide'
+  get 'learn/pap/PAP-care-and-maintenance' => 'static#PAP_care_maintenance'
+  get 'learn/pap/PAP-masks-and-equipment' => 'static#PAP_masks_equipment'
+  get 'learn/pap/traveling-with-PAP' => 'static#traveling_with_PAP'
+  get 'learn/pap/side-effects-of-PAP' => 'static#side_effects_PAP'
+  get 'learn/sleep-tips'   => 'static#sleep_tips'
 
   # Registration flow
   get 'get-started' => 'account#get_started'

@@ -34,10 +34,14 @@ class StaticController < ApplicationController
   def sitemap
   end
 
-  ## SEO Content
+  ## Educational content
 
-  def about_sleep_apnea
-    render 'static/SEO_content/about_sleep_apnea'
+  def obstructive_sleep_apnea
+    render 'static/SEO_content/obstructive_sleep_apnea'
+  end
+
+  def pap
+    render 'static/PAP'
   end
 
   def about_PAP_therapy
