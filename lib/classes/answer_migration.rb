@@ -185,7 +185,7 @@ class AnswerMigration
 
       answers_to_check.each do |answer|
         if answer.answer_values.count < template_count
-          msg = "Unlocking #{question.slug} for #{answer.answer_session.user.email}: Had #{answer.answer_values.count} of #{template_count}"
+          msg = "Unlocking #{'%15.15s' % question.slug} for #{'%15.15s' % answer.answer_session.user.email}: Had #{answer.answer_values.count.to_s.rjust(3)} of #{template_count.to_s.rjust(3)}"
           puts msg
           log_file.puts(msg)
 
@@ -197,14 +197,6 @@ class AnswerMigration
     end
   end
 
-  def fix_migration_of_multiple_value_answers()
-
-
-
-  end
-=begin
-
-=end
   def migrate_survey(survey_slug, opts={} )
     # Defaults
     opts = {
