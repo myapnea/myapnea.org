@@ -11,7 +11,8 @@
 
     bundle exec rake db:drop RAILS_ENV=production_copy
     bundle exec rake db:create RAILS_ENV=production_copy
-    psql -U postgres -d myapnea_production_copy -f /home/pwm4/dumps/myapnea_production-20150305-1300.sql
+    psql -U postgres -d myapnea_production_copy -f /home/pwm4/dumps/myapnea_production_20150312_1500.sql
+    bundle exec rake db:migrate RAILS_ENV=production_copy
 
     rails c production_copy
 
@@ -24,7 +25,6 @@
     User.update_all(encrypted_password: pw)
 
     ## Only if changes need to be appended
-    bundle exec rake db:migrate RAILS_ENV=production_copy
     bundle exec rake surveys:refresh RAILS_ENV=production_copy
     bundle exec rake surveys:load["about-me"] RAILS_ENV=production_copy
     bundle exec rake surveys:load["about-my-family"] RAILS_ENV=production_copy

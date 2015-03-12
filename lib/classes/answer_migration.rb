@@ -288,7 +288,6 @@ class AnswerMigration
                 ## OVERWRITE
                 if opts[:overwrite]
                   msg = "Overwriting: #{question.slug}/#{answer_template.name} | #{matched_user.email}"
-                  puts msg
                   log_file.puts msg
 
                   new_answer.answer_values.where(answer_template_id: answer_template.id).delete_all
@@ -298,7 +297,7 @@ class AnswerMigration
                 new_answer.update(state: "locked")
                 matched_answer_template = matched_answer_value[:answer_template]
 
-                puts "Survey: #{survey.slug} | Question #{question_i + 1} of #{total_new_question_number} | Migrating answer #{answer_i+1} of #{total_matched_answer_number} for #{matched_user.email} | #{question.slug}/#{answer_template.name} | value: #{matched_answer_value[:value]} | old_as: #{matched_answer.answer_session.survey_id}"
+                puts "Survey: #{'%-12.12s' % survey.slug} | Question #{(question_i + 1).to_s.rjust(2)} of #{total_new_question_number.to_s.rjust(2)} | Migrating answer #{(answer_i+1).to_s.rjust(5)} of #{total_matched_answer_number.to_s.rjust(5)} for #{'%15.15s' % matched_user.email} | #{'%15.15s' % question.slug}/#{'%15.15s' % answer_template.name} | value: #{matched_answer_value[:value].to_s.rjust(7)} | old_survey: #{matched_answer.answer_session.survey_id.to_s.rjust(2)}"
 
 
 
@@ -345,7 +344,6 @@ class AnswerMigration
                     new_answer.save!
                   else
                     msg = "Blank Answer! #{answer_template.name} | #{matched_answer_value[:value]}"
-                    puts msg
                     log_file.puts msg
                   end
                 elsif answer_template.data_type == 'text_value' and matched_answer_template.data_type == "time_value"
@@ -358,7 +356,7 @@ class AnswerMigration
                   log_file.puts msg
                 end
               else
-                puts "!Survey: #{survey.slug} | Question #{question_i + 1} of #{total_new_question_number} | ! answer #{answer_i} of #{total_matched_answer_number} for #{matched_user.email} | #{question.slug}/#{answer_template.name} | Empty or present! value: #{matched_answer_value.show_value} | old_as: #{matched_answer.answer_session.survey_id} | count: #{Answer.where(question_id: question.id, answer_session_id: new_answer_session.id).count}"
+                log_file.puts "!Survey: #{survey.slug} | Question #{question_i + 1} of #{total_new_question_number} | ! answer #{answer_i} of #{total_matched_answer_number} for #{matched_user.email} | #{question.slug}/#{answer_template.name} | Empty or present! value: #{matched_answer_value.show_value} | old_as: #{matched_answer.answer_session.survey_id} | count: #{Answer.where(question_id: question.id, answer_session_id: new_answer_session.id).count}"
               end
             end
           end
@@ -389,7 +387,7 @@ class AnswerMigration
     all_answer_templates = question.answer_templates
 
     if all_answer_templates.count > 1
-      raise StandardError, "Not enough answer values! #{question.id} | #{answer.id}" if (answer.answer_values.count != all_answer_templates.count)
+      raise StandardError, "Not enough answer values! #{question.id} | #{answer.id}" if (answer.answer_values.count < all_answer_templates.count)
 
       answer_template = all_answer_templates.first
       answer_template_names = all_answer_templates.map(&:name).sort
