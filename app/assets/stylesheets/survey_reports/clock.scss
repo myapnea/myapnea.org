@@ -3,7 +3,7 @@
   width:220px;
   height:220px;
   background-color: #96d2d0;
-  margin: 50px auto 0;
+  margin: 50px auto;
   border:10px solid #fff;
   border-radius: 50%;
   span.hand {
@@ -58,16 +58,16 @@ ul.digits {
     margin:-.8em 0 0 -.8em;
     font-weight:bold;
   }
-  li:nth-child(1) { transform:translate(3.9em, -6.9em) }
-  li:nth-child(2) { transform:translate(6.9em, -4em) }
-  li:nth-child(3) { transform:translate(8em, 0) }
-  li:nth-child(4) { transform:translate(6.8em, 4em) }
-  li:nth-child(5) { transform:translate(3.9em, 6.9em) }
-  li:nth-child(6) { transform:translate(0, 8em) }
-  li:nth-child(7) { transform:translate(-3.9em, 6.9em) }
-  li:nth-child(8) { transform:translate(-6.8em, 4em) }
-  li:nth-child(9) { transform:translate(-8em, 0) }
-  li:nth-child(10) { transform:translate(-6.9em, -4em) }
-  li:nth-child(11) { transform:translate(-3.9em, -6.9em) }
-  li:nth-child(12) { transform:translate(0, -8em) }
+  li:nth-child(1) { transform:translate(2.925em, -5.175em) }
+  li:nth-child(2) { transform:translate(5.175em, -3em) }
+  li:nth-child(3) { transform:translate(6em, 0) }
+  li:nth-child(4) { transform:translate(5.1em, 3em) }
+  li:nth-child(5) { transform:translate(2.925em, 5.175em) }
+  li:nth-child(6) { transform:translate(0, 6em) }
+  li:nth-child(7) { transform:translate(-2.925em, 5.175em) }
+  li:nth-child(8) { transform:translate(-5.1em, 3em) }
+  li:nth-child(9) { transform:translate(-6em, 0) }
+  li:nth-child(10) { transform:translate(-5.1em, -3em) }
+  li:nth-child(11) { transform:translate(-2.925em, -5.175em) }
+  li:nth-child(12) { transform:translate(0, -6em) }
 }
