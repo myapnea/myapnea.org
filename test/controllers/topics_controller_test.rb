@@ -92,8 +92,8 @@ class TopicsControllerTest < ActionController::TestCase
   test "should not create topic with slug being `new`" do
     login(@valid_user)
 
-    refute_difference('Post.count') do
-      refute_difference('Topic.count') do
+    assert_difference('Post.count') do
+      assert_difference('Topic.count') do
         post :create, forum_id: forum, topic: { name: "New", description: "A new topic." }
       end
     end
@@ -101,10 +101,10 @@ class TopicsControllerTest < ActionController::TestCase
     assert_not_nil assigns(:forum)
     assert_not_nil assigns(:topic)
 
-    assert !assigns(:topic).valid?
-    assert_match /restricted/, assigns(:topic).errors.messages[:slug].join
+    assert assigns(:topic).valid?
+    refute_equal "new", assigns(:topic).slug
 
-    assert_template "new"
+    assert_redirected_to [assigns(:forum), assigns(:topic)]
   end
 
   test "should show topic and increase views count" do
