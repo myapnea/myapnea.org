@@ -224,7 +224,9 @@ class AnswerMigration
 
     survey.questions.each_with_index do |question, question_i|
 
-      question.answer_templates.each do |answer_template|
+      total_template_number = question.answer_templates.count
+
+      question.answer_templates.each_with_index do |answer_template, template_i|
         # Get the mapping for the current question and answer template
         matched_mapping = @question_map.select do |mapping|
           matches = (mapping["slug"] == question.slug and mapping["answer_template_name"] == answer_template.name)
@@ -289,7 +291,7 @@ class AnswerMigration
                 new_answer.update(state: "locked")
                 matched_answer_template = matched_answer_value[:answer_template]
 
-                puts "Survey: #{'%-12.12s' % survey.slug} | Question #{(question_i + 1).to_s.rjust(2)} of #{total_new_question_number.to_s.rjust(2)} | Migrating answer #{(answer_i+1).to_s.rjust(5)} of #{total_matched_answer_number.to_s.rjust(5)} for #{'%15.15s' % matched_user.email} | #{'%15.15s' % question.slug}/#{'%15.15s' % answer_template.name} | value: #{matched_answer_value[:value].to_s.rjust(7)} | old_survey: #{matched_answer.answer_session.survey_id.to_s.rjust(2)}"
+                puts "Survey: #{'%-12.12s' % survey.slug} | Question #{(question_i + 1).to_s.rjust(2)} of #{total_new_question_number.to_s.rjust(2)} | Template #{(template_i + 1).to_s.rjust(2)} of #{total_template_number.to_s.rjust(2)} | Migrating answer #{(answer_i+1).to_s.rjust(5)} of #{total_matched_answer_number.to_s.rjust(5)} for #{'%15.15s' % matched_user.email} | #{'%15.15s' % question.slug}/#{'%15.15s' % answer_template.name} | value: #{matched_answer_value[:value].to_s.rjust(7)} | old_survey: #{matched_answer.answer_session.survey_id.to_s.rjust(2)}"
 
 
 
