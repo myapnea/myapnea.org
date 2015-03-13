@@ -76,6 +76,7 @@
 #provider-header {
   background-image: asset-url('myapnea/welcome/img-large/SplitShire-starry-night.jpg');
   background-size: cover;
+  -ms-behavior: asset-url('ie8/backgroundsize.min.htc');
   background-position:center;
   min-height:600px;
   font-family: 'Dosis', sans-serif;
@@ -334,7 +335,8 @@
 
 #slide-5 {
   background-image: asset-url('myapnea/welcome/img-large/unsplash-standing-group.jpg');
-  background-size:100% 100%;
+  background-size: cover;
+  -ms-behavior: asset-url('ie8/backgroundsize.min.htc');
   background-repeat:no-repeat;
   background-position: bottom;
   font-family: 'Dosis', sans-serif;
