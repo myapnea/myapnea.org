@@ -4,11 +4,11 @@
 - **Adminstrative Changes**
   - A user registration and survey completion report added
     - The report provides comparison across different MyApnea.Org releases
-- ** Forum Changes**
+- **Forum Changes**
   - Posts can include mentions of other users by their social profile names
-  - Topics can be searched by authors of posts within that topic
-  - Topics can be moved between forums
-- ** Content Additions**
+  - Topics can be searched by authors of posts within that forum
+  - Moderators can now move topics between forums
+- **Content Additions**
   - About Sleep Apnea
   - About PAP Therapy
   - PAP Quick Setup Guide
@@ -30,11 +30,11 @@
   - Removed Network Member Feedback Regarding Proposed Studies and Clinical Trials
 
 ### Bug Fixes
-- Fixed a survey bug where users had incomplete multiple radio button questions locked.
+- Fixed a survey bug where users had incomplete multiple radio button questions locked
 - Fixed a minor error generating a lottery winner
 - Added redirect for deprecated 'research_surveys' to 'surveys'
 - Fixed survey error when all options for a checkbox question were unselected
-- Fixed incorrect answer option migration mapping for the my-sleep-apnea survey
+- Fixed incorrect answer option migration mapping for the `my-sleep-apnea` survey
 - Hotkeys disabled for locked questions
 - Topics with slug `new` cannot be created
 - Google Analytics compatibility with Turbolinks
