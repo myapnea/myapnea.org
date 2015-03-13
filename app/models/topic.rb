@@ -111,7 +111,7 @@ class Topic < ActiveRecord::Base
     if self.new_record?
       self.slug = self.name.parameterize
       self.slug = 't' + self.slug unless self.slug.first.to_s.downcase.in?(('a'..'z'))
-      if (Topic.current.where(forum_id: self.forum_id, slug: self.slug).count > 0) or slug == 'new'
+      if (Topic.current.where(forum_id: self.forum_id, slug: self.slug).count > 0) or self.slug == 'new'
         self.slug += "-#{SecureRandom.hex(8)}"
       end
     end
