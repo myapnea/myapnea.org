@@ -18,58 +18,7 @@ class SurveysController < ApplicationController
   end
 
   def my_health_conditions_data
-    render json: {
-      nodes: [
-        {
-          name: "node 1",
-          artist: "artist name",
-          id: "unique_id_1",
-          playcount: 100
-        },
-        {
-          name: "node 2",
-          artist: "artist two",
-          id: "unique_id_2",
-          playcount: 75
-        },
-        {
-          name: "node 3",
-          artist: "artist three",
-          id: "unique_id_3",
-          playcount: 25
-        },
-        {
-          name: "node 4",
-          artist: "artist four",
-          id: "unique_id_4",
-          playcount: 50
-        },
-        {
-          name: "node 5",
-          artist: "artist five",
-          id: "unique_id_5",
-          playcount: 81
-        }
-      ],
-      links: [
-        {
-          source: "unique_id_1",
-          target: "unique_id_2"
-        },
-        {
-          source: "unique_id_1",
-          target: "unique_id_3"
-        },
-        {
-          source: "unique_id_1",
-          target: "unique_id_4"
-        },
-        {
-          source: "unique_id_1",
-          target: "unique_id_5"
-        }
-      ]
-    }
+    @survey = Survey.find_by_slug("my-health-conditions")
   end
 
   def index

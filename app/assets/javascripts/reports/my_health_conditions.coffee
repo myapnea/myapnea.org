@@ -2,13 +2,13 @@
   # Creating network
   myNetwork = Network()
 
-  d3.json "data", (json) ->
+  d3.json "data.json", (json) ->
     myNetwork("#vis", json)
   myNetwork.toggleLayout("force")
 
 Network = () ->
   width = 800
-  height = 300
+  height = 500
   # allData will store the unfiltered data
   allData = []
   curLinksData = []
@@ -52,21 +52,15 @@ Network = () ->
   # private function, called everytime a parameter changes and the network needs to be reset
   update = () ->
     # filter data for current settings
+    console.log allData
     curNodesData = allData.nodes
     curLinksData = allData.links
     # Reset nodes in force layout, then update to enter/exit for nodes
     force.nodes(curNodesData)
     updateNodes()
     # Show links in force layout, then update to enter/exit for links
-    if layout == "force"
-      force.links(curLinksData)
-      updateLinks()
-    else
-      # remove links to prevent them from interfering with other layouts
-      force.links([])
-      if link
-        link.data([]).exit().remove()
-        link = null
+    force.links(curLinksData)
+    updateLinks()
     # Start
     force.start()
 
@@ -79,14 +73,14 @@ Network = () ->
 
   setupData = (data) ->
     # initialize circle radius scale
-    countExtent = d3.extent(data.nodes, (d) -> d.playcount)
+    countExtent = d3.extent(data.nodes, (d) -> d.frequency)
     circleRadius = d3.scale.sqrt().range([3, 12]).domain(countExtent)
 
     # Initialize x/y coordinate and radius of each node
     data.nodes.forEach (n) ->
       n.x = randomnumber=Math.floor(Math.random()*width)
       n.y = randomnumber=Math.floor(Math.random()*height)
-      n.radius = circleRadius(n.playcount)
+      n.radius = circleRadius(n.frequency)
     # IDs -> node objects
     nodesMap = mapNodes(data.nodes)
     # Switch links to point to node objects instead of id's, and sort links
@@ -131,6 +125,7 @@ Network = () ->
       .attr("x2", (d) -> d.target.x)
       .attr("y2", (d) -> d.target.y)
     link.exit().remove()
+
 
   # switches force to new layout parameters
   setLayout = (newLayout) ->
