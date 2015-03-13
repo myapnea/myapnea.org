@@ -7,6 +7,7 @@
 - ** Forum Changes**
   - Posts can include mentions of other users by their social profile names
   - Topics can be searched by authors of posts within that topic
+  - Topics can be moved between forums
 - ** Content Additions**
   - About Sleep Apnea
   - About PAP Therapy
@@ -22,6 +23,11 @@
 - Fixed some minor typos
 - Social profile information is now automatically displayed after being added by member
 - Providers index now properly paginates, with 12 providers listed on each page
+- Forums slightly restructured
+  - Introductions -> General
+  - Rank the Research -> Research
+  - Removed Daytime Sleepiness and Performance Outcomes
+  - Removed Network Member Feedback Regarding Proposed Studies and Clinical Trials
 
 ### Bug Fixes
 - Fixed a survey bug where users had incomplete multiple radio button questions locked.
