@@ -33,6 +33,17 @@
 - [ ] Chrome
 - [ ] Safari
 
+
+## UserVoice
+- [ ] UserVoice wiget is visible on all pages.
+- [ ] Uservoice wiget allows issue reporting.
+- [ ] UserVoice wiget allows screen capture.
+- [ ] UserVoice wiget forwards issues to support@myapnea.org
+
+## Google Analytics
+- [ ] Pageviews are captured when using turbolinks.
+- [ ] Pageviews are captured on non-turbolink requests
+
 ## Registration
 
 ### Users

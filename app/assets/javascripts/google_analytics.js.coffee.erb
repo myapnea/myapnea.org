@@ -16,9 +16,17 @@
 ) window, document, "script", "//www.google-analytics.com/analytics.js", "ga"
 ga "create", "<%= ENV["google_analytics_id"] %>", "auto"
 ga "require", "displayfeatures"
-ga "send", 'pageview'
 
 
-# $(document).on "page:change", ->
-#   ga "send", "pageview", window.location.pathname
-#   return
+
+
+$(document).ready ->
+  if typeof Turbolinks is 'undefined' or !Turbolinks.supported
+    #console.log "pageview - no tl"
+    ga "send", 'pageview'
+    return
+
+$(document).on "page:change", ->
+  #console.log "pageview - tl"
+  ga "send", "pageview", window.location.pathname
+  return

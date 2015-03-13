@@ -30,7 +30,8 @@
 - Fixed survey error when all options for a checkbox question were unselected
 - Fixed incorrect answer option migration mapping for the my-sleep-apnea survey
 - Hotkeys disabled for locked questions
-- Topics with slug `new` cannot be created.
+- Topics with slug `new` cannot be created
+- Google Analytics compatibility with Turbolinks
 
 ## 5.0.0 (March 4, 2015)
 
