@@ -64,6 +64,7 @@ Turbolinks.enableProgressBar();
   registrationUXReady() if registrationUXReady?
   validationReady() if validationReady?
   postsReady() if postsReady?
+  surveyReportsReady() if surveyReportsReady?
 
 $(document).ready(loaders)
 $(document).on('page:load', loaders)

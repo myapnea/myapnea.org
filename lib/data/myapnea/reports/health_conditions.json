@@ -1,0 +1,22 @@
+{
+  "nodes": [
+    {
+      "name": "node 1",
+      "artist": "artist name",
+      "id": "unique_id_1",
+      "playcount": 123
+    },
+    {
+      "name": "node 2",
+      "artist": "artist two",
+      "id": "unique_id_2",
+      "playcount": 146
+    }
+  ],
+  "links": [
+    {
+      "source": "unique_id_1",
+      "target": "unique_id_2"
+    }
+  ]
+}

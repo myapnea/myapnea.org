@@ -17,6 +17,7 @@
 //= require chosen.jquery
 //= require jquery.slimscroll
 //= require jquery.PrintArea
+//= require d3.min
 //= require bootbox.min
 //= require typeahead
 //= require external/jquery.textcomplete.js
@@ -31,6 +32,7 @@
 //= require votes
 //= require surveys
 //= require fb
+//= require reports/my_health_conditions.js
 //= require cleantheme/landing
 //= require cleantheme/rankingUX
 //= require cleantheme/team
