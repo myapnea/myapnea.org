@@ -35,10 +35,10 @@
 
 
 ## UserVoice
-- [ ] UserVoice wiget is visible on all pages.
-- [ ] Uservoice wiget allows issue reporting.
-- [ ] UserVoice wiget allows screen capture.
-- [ ] UserVoice wiget forwards issues to support@myapnea.org
+- [ ] UserVoice widget is visible on all pages.
+- [ ] Uservoice widget allows issue reporting.
+- [ ] UserVoice widget allows screen capture.
+- [ ] UserVoice widget forwards issues to support@myapnea.org
 
 ## Google Analytics
 - [ ] Pageviews are captured when using turbolinks.
