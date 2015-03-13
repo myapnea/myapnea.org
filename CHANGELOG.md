@@ -1,7 +1,7 @@
 ## 5.1.0 (March 13, 2015)
 
 ### New Features
-- **Adminstrative Changes**
+- **Administrative Changes**
   - A user registration and survey completion report added
     - The report provides comparison across different MyApnea.Org releases
 - **Forum Changes**
