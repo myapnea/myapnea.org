@@ -1,3 +1,7 @@
+## 5.2.0
+
+### Enhancements
+
 ## 5.1.0 (March 13, 2015)
 
 ### New Features
