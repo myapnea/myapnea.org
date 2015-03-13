@@ -1,4 +1,4 @@
-## 5.1.0
+## 5.1.0 (March 13, 2015)
 
 ### New Features
 - **Adminstrative Changes**
