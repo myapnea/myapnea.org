@@ -25,6 +25,10 @@ class SurveysController < ApplicationController
     render 'surveys/reports/my_sleep_apnea_treatment'
   end
 
+  def my_sleep_quality_mockup
+    render 'surveys/reports/my_sleep_quality'
+  end
+
   def index
     @surveys = current_user.assigned_surveys
   end
