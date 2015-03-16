@@ -21,6 +21,10 @@ class SurveysController < ApplicationController
     @survey = Survey.find_by_slug("my-health-conditions")
   end
 
+  def my_sleep_apnea_treatment_mockup
+    render 'surveys/reports/my_sleep_apnea_treatment'
+  end
+
   def index
     @surveys = current_user.assigned_surveys
   end
