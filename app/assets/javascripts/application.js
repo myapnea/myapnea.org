@@ -32,7 +32,9 @@
 //= require votes
 //= require surveys
 //= require fb
-//= require reports/my_health_conditions.js
+//= require reports/survey_reports
+//= require reports/my_health_conditions
+//= require reports/additional_information_about_me
 //= require cleantheme/landing
 //= require cleantheme/rankingUX
 //= require cleantheme/team

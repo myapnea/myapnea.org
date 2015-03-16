@@ -1,9 +1,9 @@
-@surveyReportsReady = () ->
+@healthConditionsReady = () ->
   # Creating network
   myNetwork = Network()
 
   d3.json "data.json", (json) ->
-    myNetwork("#vis", json)
+    myNetwork("#health-conditions", json)
   myNetwork.toggleLayout("force")
 
 Network = () ->
