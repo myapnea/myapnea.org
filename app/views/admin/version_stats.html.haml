@@ -12,11 +12,11 @@
       %th
         New Users
       %th
-        Consent
+        Consent *
       %th
-        Completing Surveys
+        Completing Surveys *
       %th
-        Avg # Complete
+        Avg # Complete *
   %tbody
     - @version_dates.each do |v|
       - release_users = User.current
@@ -31,16 +31,18 @@
           - number_new_users = release_users.count
           = number_new_users
         %td
-          - number_consented = release_users.where.not(accepted_consent_at: nil)
+          - diagnosed_adults = release_users.where(adult_diagnosed: true)
+          - number_diagnosed_adults = diagnosed_adults.count
+          - number_consented = diagnosed_adults.where.not(accepted_consent_at: nil)
           = number_consented.count
           %span.text-muted
-            = '(' + (number_consented.count * 100 / number_new_users).to_s + '%)' rescue '(0%)'
+            = '(' + (number_consented.count * 100 / number_diagnosed_adults).to_s + '%)' rescue '(0%)'
         %td
           - user_ids_with_completed_surveys = AnswerSession.current.where( encounter: 'baseline', locked: true ).pluck(:user_id).uniq
           - number_users_with_completed_surveys = number_consented.where(id: user_ids_with_completed_surveys)
           = number_users_with_completed_surveys.count
           %span.text-muted
-            = '(' + (number_users_with_completed_surveys.count * 100 / number_new_users).to_s + '%)' rescue '(0%)'
+            = '(' + (number_users_with_completed_surveys.count * 100 / number_diagnosed_adults).to_s + '%)' rescue '(0%)'
         %td
           - number_complete_surveys = AnswerSession.current.where( encounter: 'baseline', locked: true, user_id: number_users_with_completed_surveys.pluck(:id) ).count
 
@@ -48,6 +50,8 @@
             0
           - else
             = "%0.2f" % (number_complete_surveys.to_f / number_users_with_completed_surveys.count)
+%p.muted
+  * Calculation based on number of adult diagnosed patients (see table below)
 
 %table.table.table-striped
   %thead
