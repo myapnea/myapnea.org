@@ -33,6 +33,9 @@
 //= require surveys
 //= require fb
 //= require reports/survey_reports
+//= require reports/display_types/horizontal_bar_graph
+//= require reports/display_types/vertical_bar_graph
+//= require reports/display_types/pie_chart
 //= require reports/my_health_conditions
 //= require reports/additional_information_about_me
 //= require cleantheme/landing

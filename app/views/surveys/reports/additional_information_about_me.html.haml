@@ -1,7 +1,15 @@
 - @active_top_nav_link = :participate
 
 .row.reset-layout{ style: 'background-color: rgb(207, 226, 248)'}
-  .col-md-12.centered-text.lighterer-blue-bcg
+  .col-md-12.centered-text
     %h3.f500.text-dark7 What is your current marital status?
     %p.lead.text-dark6 Your answer: Prefer not to answer
     #marital-status{ data: { object: 'd3-report', question: 'marital-status' } }
+  .col-md-12.centered-text.lighterer-blue-bcg
+    %h3.f500.text-dark7 What best describes your current main daily activities?
+    %p.lead.text-dark6 Your answer: Prefer not to answer
+    #daily-activities{ data: { object: 'd3-report', question: 'daily-activities' } }
+  .col-md-12.centered-text
+    %h3.f500.text-dark7 How hard is it for you (and your family) to pay for basics like food, rent, or mortgage, heating, etc.?
+    %p.lead.text-dark6 Your answer: Very hard
+    #difficulty-paying-basics{ data: { object: 'd3-report', question: 'difficulty-paying-basics' } }
