@@ -37,6 +37,10 @@ class SurveysController < ApplicationController
     render 'surveys/reports/about_my_family'
   end
 
+  def my_quality_of_life_mockup
+    render 'surveys/reports/my_quality_of_life'
+  end
+
   def index
     @surveys = current_user.assigned_surveys
   end

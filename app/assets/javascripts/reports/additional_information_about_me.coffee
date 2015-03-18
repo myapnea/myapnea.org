@@ -31,5 +31,6 @@
     .style("margin", "auto")
     .style("padding", "100px 35%")
   data = [45,31,17,7]
+  colors = ["#e54835", "#f4b46d", "#d9f0a3", "#78c679"]
   labels = ["Very Hard", "Hard", "Somewhat Hard", "Not Very Hard"]
-  pieChart(canvas,data,labels,150)
+  pieChart(canvas,data,labels,150,colors)

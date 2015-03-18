@@ -4,6 +4,8 @@
     maritalStatusReady() if $("[data-question~='marital-status']").length > 0
     dailyActivitiesReady() if $("[data-question~='daily-activities']").length > 0
     difficultyPayingBasicsReady() if $("[data-question~='difficulty-paying-basics']").length > 0
+    healthRatingReady() if $("[data-question~='health-rating']").length > 0
+    qolRatingReady() if $("[data-question~='qol-rating']").length > 0
 
 
 

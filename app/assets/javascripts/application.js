@@ -36,8 +36,9 @@
 //= require reports/display_types/horizontal_bar_graph
 //= require reports/display_types/vertical_bar_graph
 //= require reports/display_types/pie_chart
-//= require reports/my_health_conditions
 //= require reports/additional_information_about_me
+//= require reports/my_health_conditions
+//= require reports/my_quality_of_life
 //= require cleantheme/landing
 //= require cleantheme/rankingUX
 //= require cleantheme/team

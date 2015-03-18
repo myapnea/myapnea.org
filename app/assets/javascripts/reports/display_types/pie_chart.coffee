@@ -1,11 +1,12 @@
-@pieChart = (canvas, data, labels, radius) ->
+@pieChart = (canvas, data, labels, radius, colors) ->
   n = labels.length
-  colors = []
-  i = 0
-  while i < 6
-    colors[i] = randomOrange() if i%2
-    colors[i] = randomBlue() if !(i%2)
-    i++
+  if colors is null
+    colors = []
+    i = 0
+    while i < 6
+      colors[i] = randomOrange() if i%2
+      colors[i] = randomBlue() if !(i%2)
+      i++
 
   pie = d3.layout.pie()
   pie(data)
