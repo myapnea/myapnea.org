@@ -1,6 +1,8 @@
 ## 5.2.0
 
 ### Enhancements
+- **Forum Changes**
+  - Submitting a post on a topic now disables the button to prevent double-posting
 
 ## 5.1.0 (March 13, 2015)
 
