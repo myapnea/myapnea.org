@@ -1,4 +1,96 @@
+=begin
+DOCUMENTATION
+
+Demographics table
+
+- user_id --> text
+- birth_date --> text(10) as YYYY-MM-DD
+    (from question: date-of-birth/birth_date)
+- birth_time --> DNE
+- sex --> text(2)
+    (from question: sex/sex)
+
+    A=Ambiguous
+    F=Female (2)
+    M=Male (1)
+    NI=No information (4)
+    UN=Unknown (Default?)
+    OT=Other (3)
+
+- hispanic --> text(2)
+    (from question ethnicity/ethnicity)
+
+    Y=Yes (2,3,4,5)
+    N=No (1)
+    R=Refuse to answer (7)
+    NI=No information
+    UN=Unknown (6)
+    OT=Other
+
+- race --> text(2)
+    (from question race/race)
+
+    01=American Indian or Alaska Native (1)
+    02=Asian (2)
+    03=Black or African American (3)
+    04=Native Hawaiian or Other Pacific Islander (4)
+    05=White (5)
+    06=Multiple race (if more than 1 answer)
+    07=Refuse to answer (8)
+    NI=No information
+    UN=Unknown (7)
+    OT=Other (6)
+
+Enrollments table
+
+- user_id --> text
+- enr_start_date --> text(10) (YYYY-MM-DD)
+    (minimum from all answer_sessions)
+- enr_end_date --> text(10) (YYYY-MM-DD)
+    (maximum from all answer_sessions)
+    OR
+    (if consent signed, today's date)
+- enr_basis --> text(1)
+    A=Algorithmic
+    OR
+    E=Encounter-based
+
+Encounter table
+
+- user_id --> text
+    (from answer_session)
+- encounter_id --> text
+    (name of encounter in answer_session)
+- admit_date --> text(10) (YYYY-MM-DD)
+    (answer session creation date OR first answer date)
+- admit_time --> text(5) (HH:MI OR first answer time)
+- discharge_date --> text(10) (YYYY-MM-DD)
+    (most recent answer updated_at if answer session finished?)
+- enc_type --> text(2)
+    (OT - OTHER)
+
+
+Vital Table
+- patid --> text
+- encounterid --> text
+    (answer session encounter)
+- measure_date --> text(10) (YYYY-MM-DD)
+    (answer updated_at)
+- measure_time --> text(5) (HH:MI)
+    (answer update_at)
+- vital_source --> text(2)
+    (PR - Patient reported)
+- ht --> number(8)
+    (height in inches from question height/height)
+- wt --> number(8)
+    (weight in inches from weight/weight)
+
+
+=end
+
 module CommonDataModel
+
+
   extend ActiveSupport::Concern
 
   # Helpers
