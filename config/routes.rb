@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'tools/risk_assessment'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -67,6 +69,9 @@ Rails.application.routes.draw do
   ## JSON
   get 'questions/frequencies(/:question_id/:answer_session_id)', to: "questions#frequencies", as: :question_frequencies, format: :json
   get 'questions/typeahead/:question_id', to: "questions#typeahead", as: :question_typeahead, format: :json
+
+  ## Public Tools
+  get 'sleep-apnea-risk-assessment' => 'tools#risk_assessment'
 
   # Discussion
   match 'forums/terms_and_conditions', to: 'account#terms_and_conditions', via: :get, as: :terms_and_conditions
