@@ -6,28 +6,68 @@
       #stopbang-gender
         %h3
           Are you male or female?
+        = radio_button_tag 'gender', 'male'
+        %label{ for: 'gender' }
+          %p Male
+        = radio_button_tag 'gender', 'female'
+        %label{ for: 'gender' }
+          %p Female
       #stopbang-age
         %h3
           What is your age?
+        = number_field_tag 'age'
       #stopbang-height
         %h3
           How tall are you?
+        = select_tag 'feet', options_for_select(0..8)
+        %label{ for: 'feet'} feet
+        = select_tag 'inches', options_for_select(0..11)
+        %label{ for: 'inches' } inches
       #stopbang-weight
         %h3
           What is your weight?
+        = number_field_tag 'weight', class: 'number-input', data: { object: 'number-validation' }
       #stopbang-bp
         %h3
-          Do you have high blood pressure?
+          What is your blood pressure?
+        = range_field_tag 'systolic', nil, in: 90...180, step: '1'
+        %label{ for: 'systolic' } systolic
+        = range_field_tag 'diastolic', nil, in: 90...180, step: '1'
+        %label{ for: 'diastolic' } diastolic
     .col-sm-6
       #stopbang-snoring
         %h3
           Do you snore?
+        = radio_button_tag 'snoring', 'yes'
+        %label{ for: 'snoring' }
+          %p Yes
+        = radio_button_tag 'snoring', 'no'
+        %label{ for: 'snoring' }
+          %p No
       #stopbang-tiredness
         %h3
           Do you often feel tired, fatigued, or sleepy during the daytime?
+        = radio_button_tag 'tiredness', 'yes'
+        %label{ for: 'tiredness' }
+          %p Yes
+        = radio_button_tag 'tiredness', 'no'
+        %label{ for: 'tiredness' }
+          %p No
       #stopbang-observation
         %h3
           Has anyone ever observed you stop sleeping at night?
+        = radio_button_tag 'observation', 'yes'
+        %label{ for: 'observation' }
+          %p Yes
+        = radio_button_tag 'observation', 'no'
+        %label{ for: 'observation' }
+          %p No
       #stopbang-neck
         %h3
-          What is your neck size?
+          Is your neck size larger than 40cm?
+        = radio_button_tag 'neck', 'yes'
+        %label{ for: 'neck' }
+          %p Yes
+        = radio_button_tag 'neck', 'no'
+        %label{ for: 'neck' }
+          %p No
