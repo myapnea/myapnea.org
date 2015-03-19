@@ -1,0 +1,72 @@
+- @active_top_nav_link = :participate
+
+.row.reset-layout{ style: 'background-color: rgb(207, 226, 248)'}
+  .col-md-12.centered-text
+    %h3.f500.text-dark7 How old were you when you were first diagnosed with sleep apnea?
+    %p.lead Your answer: 50-59 years old
+    .row
+      .col-sm-6
+        %p.lead Average age of diagnosis:
+        %h1.primary-orange.cabin-sketch 54
+      .col-sm-6
+        %p.lead Your age of diagnosis:
+        %h1.primary-orange.cabin-sketch 50-59
+    #age-of-diagnosis.hidden{ data: { object: 'd3-report', question: 'age-of-diagnosis' } }
+  .col-md-12.centered-text.lighterer-blue-bcg
+    %h3.f500.text-dark7 How long do you think you had sleep apnea before you were diagnosed?
+    %p.lead Your answer: 9-12 months
+    .row
+      .col-sm-6.col-sm-offset-3
+        %p.lead Percentage of MyApnea members who think they had sleep apnea for over 2 years:
+        %h1.primary-orange.cabin-sketch 94%
+  .col-md-12.centered-text
+    %h3.f500.text-dark7 Most common symptoms for MyApnea members
+    .row
+      .col-sm-2.col-sm-offset-1
+        %h1.primary-orange.cabin-sketch{ style: 'margin-top: 0px'} 86%
+      .col-sm-8
+        %p.lead.text-left
+          of members report experiencing
+          %span.darkerer-blue snoring
+          for at least one year before diagnosis
+    .row
+      .col-sm-2.col-sm-offset-1
+        %h1.primary-orange.cabin-sketch{ style: 'margin-top: 0px'}
+          72%
+      .col-sm-8
+        %p.lead.text-left
+          of members report experiencing
+          %span.darkerer-blue sleepiness
+          for at least one year before diagnosis
+    .row
+      .col-sm-2.col-sm-offset-1
+        %h1.primary-orange.cabin-sketch{ style: 'margin-top: 0px'}
+          61%
+      .col-sm-8
+        %p.lead.text-left
+          of members report experiencing
+          %span.darkerer-blue irritation
+          for at least one year before diagnosis
+  .col-md-12.centered-text
+    %h3.f500.text-dark7 What type of sleep study did you have when first diagnosed with sleep apnea?
+    %p.lead Your answer: A sleep study in a sleep lab/center
+    .row
+      .col-sm-6
+        %h3.f300 Home Sleep Tests
+        %p.lead Used by
+        %h1.primary-orange.cabin-sketch 37%
+        %p.lead of MyApnea members
+        %br
+        %p.lead
+          %span.darkerer-blue 38%
+          of these members report satisfaction with their test
+      .col-sm-6
+        %h3.f300 Sleep Tests in a Sleep Lab/Center
+        %p.lead Used by
+        %h1.primary-orange.cabin-sketch 63%
+        %p.lead of MyApnea members
+        %br
+        %p.lead
+          %span.darkerer-blue 72%
+          of these members report satisfaction with their test
+

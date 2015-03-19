@@ -39,6 +39,7 @@
 //= require reports/additional_information_about_me
 //= require reports/my_health_conditions
 //= require reports/my_quality_of_life
+//= require reports/my_sleep_apnea
 //= require cleantheme/landing
 //= require cleantheme/rankingUX
 //= require cleantheme/team
