@@ -32,7 +32,7 @@
           What is your blood pressure?
         = range_field_tag 'systolic', nil, in: 90...180, step: '1'
         %label{ for: 'systolic' } systolic
-        = range_field_tag 'diastolic', nil, in: 90...180, step: '1'
+        = range_field_tag 'diastolic', nil, in: 50...120, step: '1'
         %label{ for: 'diastolic' } diastolic
     .col-sm-6
       #stopbang-snoring
@@ -71,3 +71,10 @@
         = radio_button_tag 'neck', 'no'
         %label{ for: 'neck' }
           %p No
+  .row.primary-orange-bcg
+    .col-sm-6
+      %p.small
+        From StopBang.ca
+    .col-sm-6.centered-text
+      %btn.btn.btn-success{ data: { object: 'submit-risk-assessment'} }
+        Check my Risk

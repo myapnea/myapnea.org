@@ -29,6 +29,7 @@
 //= require admin
 //= require votes
 //= require surveys
+//= require tools
 //= require fb
 //= require external/jquery.color.min.js
 //= require external/jquery.placeholder.js
