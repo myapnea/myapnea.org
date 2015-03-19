@@ -4,6 +4,9 @@
 - Survey reports restyled to be more easily digested, and appear as infographics
   - About Me
   - My Sleep Pattern
+- **Administrative Changes**
+  - Cross-Tabs admin panel added
+    - Lists information about demographics of enrollment per type of referral source
 
 ### Enhancements
 

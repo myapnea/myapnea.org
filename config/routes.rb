@@ -116,6 +116,7 @@ Rails.application.routes.draw do
   get 'admin/research-topics' => 'admin#research_topics', as: 'admin_research_topics'
   get 'admin/research-topic/:id' => 'admin#research_topic', as: 'admin_research_topic'
   get 'admin/version-stats' => 'admin#version_stats', as: 'admin_version_stats'
+  get 'admin/cross-tabs' => 'admin#cross_tabs', as: 'admin_cross_tabs'
 
   # Development/System
   get 'pprn' => 'application#toggle_pprn_cookie'
