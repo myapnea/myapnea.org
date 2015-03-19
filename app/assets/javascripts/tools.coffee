@@ -22,9 +22,6 @@
   # console.log document.getElementById('neck_no').checked
 
   highbloodpressure = (document.getElementById('systolic').value > 140) and (document.getElementById('diastolic').value > 90)
-  height = (document.getElementById('feet').value * 12) + parseInt(document.getElementById('inches').value)
-  weight = document.getElementById('weight').value
-  bmi = ( weight / Math.pow(height,2) ) * 703
 
   stop = { "s": 0, "t": 0, "o" : 0, "p" : 0 }
   stop["s"] = 1 if document.getElementById('snoring_yes').checked
@@ -36,13 +33,32 @@
   for k of stop
     stop_score += stop[k]
 
+  height = (document.getElementById('feet').value * 12) + parseInt(document.getElementById('inches').value)
+  weight = document.getElementById('weight').value
+  bmi = ( weight / Math.pow(height,2) ) * 703
+  male = document.getElementById('gender_male').checked
+  largeNeck = document.getElementById('neck_yes').checked
+
   stopbang = stop
   stopbang["b"] = if bmi > 35 then 1 else 0
   stopbang["a"] = if document.getElementById('age').value > 50 then 1 else 0
-  stopbang["n"] = if document.getElementById('neck_yes').checked then 1 else 0
-  stopbang["g"] = if document.getElementById('gender_male').checked then 1 else 0
+  stopbang["n"] = if largeNeck then 1 else 0
+  stopbang["g"] = if male.checked then 1 else 0
 
   stopbang_score = 0
   for k of stopbang
     stopbang_score += stopbang[k]
+
+  alert determineRisk(stop_score, stopbang_score, male, bmi > 35, largeNeck)
+
+@determineRisk = (stop, stopbang, male, bmi, neck) ->
+  if stopbang <= 2
+    risk = "You're at low risk for OSA"
+  else if stopbang <= 4
+    risk = "You're at intermediate risk for OSA"
+  else
+    risk = "You're at high risk for OSA"
+  if stop >= 2 and (male or bmi or neck)
+    risk = "You're at high risk for OSA"
+  return risk
 
