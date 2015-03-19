@@ -5,6 +5,7 @@
     dailyActivitiesReady() if $("[data-question~='daily-activities']").length > 0
     difficultyPayingBasicsReady() if $("[data-question~='difficulty-paying-basics']").length > 0
     healthRatingReady() if $("[data-question~='health-rating']").length > 0
+    @healthImprovementReady() if $("[data-question~='health-improvement']").length > 0
     qolRatingReady() if $("[data-question~='qol-rating']").length > 0
 
 
