@@ -51,6 +51,28 @@
   #stopbang-gender {
     border: 2px solid #eee;
   }
+  .radio-container:not(#foo) {
+    display:inline-block;
+    input[type=radio] {
+      display: none;
+    }
+    input[type=radio] ~ label {
+      vertical-align: middle;
+      display: inline-block;
+      padding: 10px;
+      border-radius:20px;
+      width: 100px;
+      text-align: center;
+      background-color: #b1d2f6;
+      border:6px double transparent;
+      cursor: pointer;
+    }
+    input[type=radio]:checked ~ label {
+      border:6px double #b1d2f6;
+      background-color: #5999DE;
+      color: white;
+    }
+  }
 }
 
 #stopbang-bp {

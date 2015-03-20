@@ -1,8 +1,16 @@
 @toolsReady = () ->
-  $("[data-object~='submit-risk-assessment']").click (e) ->
-    submitRiskAssessment()
+
+  ### Initialize ###
   updateSystolicLabel(document.getElementById('systolic').value)
   updateDiastolicLabel(document.getElementById('diastolic').value)
+
+  ### Radio input clicks ###
+  $('#risk-assessment-container .radio-container').click (event) ->
+    $(this).find("input:radio").prop "checked", !$(this).find('input:radio').prop("checked")
+
+  ### Submit ###
+  $("[data-object~='submit-risk-assessment']").click (e) ->
+    submitRiskAssessment()
 
 @updateSystolicRange = (val) ->
   document.getElementById('systolic').value = val
@@ -16,6 +24,8 @@
 @updateDiastolicLabel = (val) ->
   document.getElementById('diastolic_label').value = val
 
+@toggleRadioInput = (element) ->
+  console.log "hi"
 
 @submitRiskAssessment = () ->
 

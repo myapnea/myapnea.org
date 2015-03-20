@@ -1,19 +1,21 @@
 #risk-assessment-container
   %h1.centered-text
     Are you at risk for developing sleep apnea?
-  .row
+  .row.reset-layout
     .col-sm-6.reset-layout
       #stopbang-gender.row.reset-layout
         .col-xs-6
           %h4
             Are you male or female?
         .col-xs-6
-          = radio_button_tag 'gender', 'male'
-          %label{ for: 'gender' }
-            %p Male
-          = radio_button_tag 'gender', 'female'
-          %label{ for: 'gender' }
-            %p Female
+          .radio-container
+            = radio_button_tag 'gender', 'male'
+            %label{ for: 'gender' }
+              %p Male
+          .radio-container
+            = radio_button_tag 'gender', 'female'
+            %label{ for: 'gender' }
+              %p Female
       #stopbang-age.row.reset-layout
         .col-xs-6
           %h4
@@ -59,45 +61,53 @@
           %h4
             Do you snore?
         .col-xs-6
-          = radio_button_tag 'snoring', 'yes'
-          %label{ for: 'snoring' }
-            %p Yes
-          = radio_button_tag 'snoring', 'no'
-          %label{ for: 'snoring' }
-            %p No
+          .radio-container
+            = radio_button_tag 'snoring', 'yes'
+            %label{ for: 'snoring' }
+              %p Yes
+          .radio-container
+            = radio_button_tag 'snoring', 'no'
+            %label{ for: 'snoring' }
+              %p No
       #stopbang-tiredness.row.reset-layout
         .col-xs-6
           %h4
             Do you often feel tired, fatigued, or sleepy during the daytime?
         .col-xs-6
-          = radio_button_tag 'tiredness', 'yes'
-          %label{ for: 'tiredness' }
-            %p Yes
-          = radio_button_tag 'tiredness', 'no'
-          %label{ for: 'tiredness' }
-            %p No
+          .radio-container
+            = radio_button_tag 'tiredness', 'yes'
+            %label{ for: 'tiredness' }
+              %p Yes
+          .radio-container
+            = radio_button_tag 'tiredness', 'no'
+            %label{ for: 'tiredness' }
+              %p No
       #stopbang-observation.row.reset-layout
         .col-xs-6
           %h4
             Has anyone ever observed you stop sleeping at night?
         .col-xs-6
-          = radio_button_tag 'observation', 'yes'
-          %label{ for: 'observation' }
-            %p Yes
-          = radio_button_tag 'observation', 'no'
-          %label{ for: 'observation' }
-            %p No
+          .radio-container
+            = radio_button_tag 'observation', 'yes'
+            %label{ for: 'observation' }
+              %p Yes
+          .radio-container
+            = radio_button_tag 'observation', 'no'
+            %label{ for: 'observation' }
+              %p No
       #stopbang-neck.row.reset-layout
         .col-xs-6
           %h4
             Is your neck size larger than 40cm?
         .col-xs-6
-          = radio_button_tag 'neck', 'yes'
-          %label{ for: 'neck' }
-            %p Yes
-          = radio_button_tag 'neck', 'no'
-          %label{ for: 'neck' }
-            %p No
+          .radio-container
+            = radio_button_tag 'neck', 'yes'
+            %label{ for: 'neck' }
+              %p Yes
+          .radio-container
+            = radio_button_tag 'neck', 'no'
+            %label{ for: 'neck' }
+              %p No
   .row.primary-orange-bcg
     .col-sm-6
       %p.small
