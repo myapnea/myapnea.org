@@ -30,10 +30,22 @@
       #stopbang-bp
         %h3
           What is your blood pressure?
-        = range_field_tag 'systolic', nil, in: 90...180, step: '1'
-        %label{ for: 'systolic' } systolic
-        = range_field_tag 'diastolic', nil, in: 50...120, step: '1'
-        %label{ for: 'diastolic' } diastolic
+        .row
+          .col-xs-6
+            %h4
+              What is your systolic blood pressure?
+          .col-xs-6
+            = range_field_tag 'systolic', nil, in: 90...180, step: '1', onchange: 'updateSystolicLabel(this.value)', oninput: 'updateSystolicLabel(this.value)'
+            = text_field_tag 'systolic_label', nil, maxlength: 3, onchange: 'updateSystolicRange(this.value)', oninput: 'updateSystolicRange(this.value)'
+            %label{ for: 'systolic_label' } mm Hg
+        .row
+          .col-xs-6
+            %h4.float-left
+              What is your systolic blood pressure?
+          .col-xs-6
+            = range_field_tag 'diastolic', nil, in: 50...120, step: '1', onchange: 'updateDiastolicLabel(this.value)', oninput: 'updateDiastolicLabel(this.value)'
+            = text_field_tag 'diastolic_label', nil, maxlength: 3, onchange: 'updateDiastolicRange(this.value)', oninput: 'updateDiastolicRange(this.value)'
+            %label{ for: 'diastolic' } mm Hg
     .col-sm-6
       #stopbang-snoring
         %h3

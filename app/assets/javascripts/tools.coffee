@@ -1,27 +1,25 @@
 @toolsReady = () ->
   $("[data-object~='submit-risk-assessment']").click (e) ->
     submitRiskAssessment()
+  updateSystolicLabel(document.getElementById('systolic').value)
+  updateDiastolicLabel(document.getElementById('diastolic').value)
+
+@updateSystolicRange = (val) ->
+  document.getElementById('systolic').value = val
+
+@updateSystolicLabel = (val) ->
+  document.getElementById('systolic_label').value = val
+
+@updateDiastolicRange = (val) ->
+  document.getElementById('diastolic').value = val
+
+@updateDiastolicLabel = (val) ->
+  document.getElementById('diastolic_label').value = val
+
 
 @submitRiskAssessment = () ->
-  #### Check answers using the following syntax ####
-  # console.log document.getElementById('gender_male').checked
-  # console.log document.getElementById('gender_female').checked
-  # console.log document.getElementById('age').value
-  # console.log document.getElementById('feet').value
-  # console.log document.getElementById('inches').value
-  # console.log document.getElementById('weight').value
-  # console.log document.getElementById('systolic').value
-  # console.log document.getElementById('diastolic').value
-  # console.log document.getElementById('snoring_yes').checked
-  # console.log document.getElementById('snoring_no').checked
-  # console.log document.getElementById('tiredness_yes').checked
-  # console.log document.getElementById('tiredness_no').checked
-  # console.log document.getElementById('observation_yes').checked
-  # console.log document.getElementById('observation_no').checked
-  # console.log document.getElementById('neck_yes').checked
-  # console.log document.getElementById('neck_no').checked
 
-  highbloodpressure = (document.getElementById('systolic').value > 140) and (document.getElementById('diastolic').value > 90)
+  highbloodpressure = (document.getElementById('systolic').value > 140) or (document.getElementById('diastolic').value > 90)
 
   stop = { "s": 0, "t": 0, "o" : 0, "p" : 0 }
   stop["s"] = 1 if document.getElementById('snoring_yes').checked
@@ -62,3 +60,22 @@
     risk = "You're at high risk for OSA"
   return risk
 
+
+
+#### Check answers using the following syntax ####
+  # console.log document.getElementById('gender_male').checked
+  # console.log document.getElementById('gender_female').checked
+  # console.log document.getElementById('age').value
+  # console.log document.getElementById('feet').value
+  # console.log document.getElementById('inches').value
+  # console.log document.getElementById('weight').value
+  # console.log document.getElementById('systolic').value
+  # console.log document.getElementById('diastolic').value
+  # console.log document.getElementById('snoring_yes').checked
+  # console.log document.getElementById('snoring_no').checked
+  # console.log document.getElementById('tiredness_yes').checked
+  # console.log document.getElementById('tiredness_no').checked
+  # console.log document.getElementById('observation_yes').checked
+  # console.log document.getElementById('observation_no').checked
+  # console.log document.getElementById('neck_yes').checked
+  # console.log document.getElementById('neck_no').checked
