@@ -1,6 +1,11 @@
 #risk-assessment-container
-  %h1.centered-text
-    Are you at risk for developing sleep apnea?
+  .row.reset-layout.logo-color-bcg{ style: 'padding-bottom:10px;' }
+    .col-sm-8
+      %h1.centered-text.text-white
+        Sleep Apnea Risk Assessment
+    #risk-assessment-logo.col-sm-2.col-sm-offset-1
+      = link_to root_path do
+        = image_tag 'myapnea/logos/MyApneaLogo_border_whitetext_300x80.png', class: 'img-responsive'
   .row.reset-layout
     .col-sm-6.reset-layout
       #stopbang-gender.row.reset-layout
@@ -31,7 +36,7 @@
             = select_tag 'feet', options_for_select(0..8)
             %label.select-label{ for: 'feet'} feet
             = select_tag 'inches', options_for_select(0..11)
-            %label.select-label{ for: 'inches' } inches
+            %label.select-label{ for: 'inches' } inch(es)
         #stopbang-weight.row.reset-layout
           .col-xs-6
             %h4
@@ -108,10 +113,10 @@
             = radio_button_tag 'neck', 'no'
             %label{ for: 'neck' }
               %p No
-  .row.primary-orange-bcg
+      #stopbang-submit.centered-text
+        %button.btn.btn-success{ data: { object: 'submit-risk-assessment'} }
+          %h3 Check my Risk
+  .row.reset-layout.primary-orange-bcg
     .col-sm-6
       %p.small
         From StopBang.ca
-    .col-sm-6.centered-text
-      %btn.btn.btn-success{ data: { object: 'submit-risk-assessment'} }
-        Check my Risk

@@ -31,15 +31,29 @@
 }
 
 #risk-assessment-container {
-  margin-top:50px;
+  margin: 50px 0;
   background-color: #fff;
   border-top: 5px solid #ffa400;
   border-bottom: 5px solid #ffa400;
+  #risk-assessment-logo {
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
   h4 {
     margin: 0px;
   }
   .col-xs-6 {
     padding:30px;
+  }
+  #stopbang-submit {
+    padding:50px;
+    button {
+      border-radius:20px;
+    }
+    h3 {
+      margin: 0px;
+      padding: 20px;
+    }
   }
   #stopbang-snoring,
   #stopbang-tiredness,
@@ -178,5 +192,13 @@
   }
   #diastolic-container input[type=range]::-ms-fill-upper {
     @include range-input-background-diastolic;
+  }
+}
+
+
+@media all and (max-width:768px) {
+  #risk-assessment-logo {
+    width: 200px;
+    margin: 0px auto;
   }
 }
