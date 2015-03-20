@@ -83,9 +83,19 @@ Vital Table
 - ht --> number(8)
     (height in inches from question height/height)
 - wt --> number(8)
-    (weight in inches from weight/weight)
+    (weight in pounds from weight/weight)
 
 
+PRO_CM table
+  general-health-rate/general_health_rating     ==>   PN_0001/61577-3
+  general-quality-life-rate/general_quality_life_rating     ==>   PN_0002/61578-1
+  everyday-physical-activities/everyday_physical_activities     ==>   PN_0003/61582-3
+  errands-and-shop/errands_and_shop     ==>   PN_0004/61635-9
+  last-week-depression/last_week_depression     ==>   PN_0005/61967-6
+  last-week-fatigue/last_week_fatigue     ==>   PN_0006/61878-5
+  last-week-problem-sleep/last_week_problem_sleep     ==>   PN_0007/61998-1
+  trouble-with-leisure/trouble_with_leisure     ==>   PN_0008/75417-6
+  last-week-pain-interference/last_week_pain_interference     ==>   PN_0009/61758-9
 =end
 
 module CommonDataModel
