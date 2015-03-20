@@ -35,6 +35,22 @@
   background-color: #fff;
   border-top: 5px solid #ffa400;
   border-bottom: 5px solid #ffa400;
+  h4 {
+    margin: 0px;
+  }
+  .col-xs-6 {
+    padding:30px;
+  }
+  #stopbang-snoring,
+  #stopbang-tiredness,
+  #stopbang-observation,
+  #stopbang-bmi,
+  #stopbang-bp,
+  #stopbang-age,
+  #stopbang-neck,
+  #stopbang-gender {
+    border: 2px solid #eee;
+  }
 }
 
 #stopbang-bp {
