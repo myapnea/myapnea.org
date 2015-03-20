@@ -1,0 +1,13 @@
+create or replace view cdm_enrollment as
+select
+  u.id patid,
+  u.accepted_consent_at,
+  min(ans.created_at) enr_start_date,
+  max(a.updated_at) enr_end_date,
+  'E'::text as enr_basis
+from users u
+  left join answer_sessions ans on ans.user_id = u.id
+  left join answers a on ans.id = a.answer_session_id
+where ans.deleted = FALSE
+      and a.deleted = FALSE
+group by u.id;

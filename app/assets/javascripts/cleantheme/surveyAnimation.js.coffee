@@ -188,13 +188,13 @@
         else if keyCode is 46 or keyCode is 8
           writeDate(e.keyCode)
           return
-        else if (/^[a-zA-Z]*$/.test(+String.fromCharCode(e.keyCode)))
-          # prevent letter from returning
-          e.preventDefault()
-        else if (/^[0-9]{1,10}$/.test(+String.fromCharCode(e.keyCode)))
+        else if (/^[0-9]{1,10}$/.test(keyCode-48) or /^[0-9]{1,10}$/.test(keyCode-96))
           # allow number to be written
           # e.preventDefault()
           writeDate(e.keyCode)
+        else if (/^[a-zA-Z]*$/.test(+String.fromCharCode(keyCode)))
+          # prevent letter from returning
+          e.preventDefault()
 
   $("body").keyup (e) ->
     e = e || window.event
@@ -222,7 +222,8 @@
         inputs = $(".survey-container.active .multiple-question-container.current").find("input:radio")
         keyCode = if window.event then e.which else e.keyCode
         inputs.each (index) ->
-          if keyCode is $(inputs[index]).data("hotkey").toString().charCodeAt(0)
+          hotkeyVal = $(inputs[index]).data("hotkey").toString().charCodeAt(0)
+          if (keyCode is hotkeyVal) or (keyCode-48 is hotkeyVal)
             $(inputs[index]).prop "checked", true
             handleChangedValue($(inputs[index]))
             assignMultipleQuestion(true, false)
@@ -233,7 +234,8 @@
           inputs = $(".survey-container.active").find("input:radio")
           keyCode = if window.event then e.which else e.keyCode
           inputs.each (index) ->
-            if keyCode is $(this).data("hotkey").toString().charCodeAt(0)
+            hotkeyVal = $(this).data("hotkey").toString().charCodeAt(0)
+            if (keyCode is hotkeyVal) or (keyCode-48 is hotkeyVal)
               $(inputs[index]).prop "checked", true
               handleChangedValue($(inputs[index]))
               if $(inputs[index]).data('object') == "reveal-next-input" then revealNextInput($(inputs[index]).data('target')) else assignQuestion(true, false)
@@ -243,7 +245,8 @@
           keyCode = if window.event then e.which else e.keyCode
           if $(inputs).data('hotkey')
             inputs.each (index) ->
-              if keyCode is $(inputs[index]).data("hotkey").toString().charCodeAt(0)
+              hotkeyVal = $(inputs[index]).data("hotkey").toString().charCodeAt(0)
+              if (keyCode is hotkeyVal) or (keyCode-48 is hotkeyVal)
                 if !($(inputs[index]).prop "checked") and ($(inputs[index]).data('object') == "reveal-next-input")
                   revealNextInput($(inputs[index]).data('target'))
                 $(inputs[index]).prop "checked", !$(inputs[index]).prop("checked")

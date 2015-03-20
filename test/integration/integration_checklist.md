@@ -33,6 +33,17 @@
 - [ ] Chrome
 - [ ] Safari
 
+
+## UserVoice
+- [ ] UserVoice widget is visible on all pages.
+- [ ] Uservoice widget allows issue reporting.
+- [ ] UserVoice widget allows screen capture.
+- [ ] UserVoice widget forwards issues to support@myapnea.org
+
+## Google Analytics
+- [ ] Pageviews are captured when using turbolinks.
+- [ ] Pageviews are captured on non-turbolink requests
+
 ## Registration
 
 ### Users

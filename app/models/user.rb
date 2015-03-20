@@ -68,6 +68,13 @@ class User < ActiveRecord::Base
   has_many :subscriptions
   has_many :users, class_name: "User", foreign_key: "provider_id"
 
+  # CDM
+  has_one :cdm_demographic, foreign_key: 'patid'
+  has_one :cdm_enrollment, foreign_key: 'patid'
+  has_many :cdm_encounters, foreign_key: 'patid'
+  has_many :cdm_vitals, foreign_key: 'patid'
+  has_many :cdm_pro_cms, foreign_key: 'patid'
+
   # Overriding Devise built-in active_for_authentication? method
   def active_for_authentication?
     super and not self.deleted?

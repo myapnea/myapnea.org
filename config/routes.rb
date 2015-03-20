@@ -139,6 +139,13 @@ Rails.application.routes.draw do
     end
   end
 
+  # Forums
+  # TODO remove redirects in 8.0
+  get 'forums/introductions', to: redirect("forums/general")
+  get 'forums/introductions(/*path)', to: redirect("forums/general/%{path}")
+  get 'forums/rank-the-research', to: redirect("forums/research")
+  get 'forums/rank-the-research(/*path)', to: redirect("forums/research/%{path}")
+  # end TODO from 5.1
   resources :forums do
     resources :topics do
       member do
