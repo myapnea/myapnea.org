@@ -29,9 +29,9 @@
               How tall are you?
           .col-xs-6
             = select_tag 'feet', options_for_select(0..8)
-            %label{ for: 'feet'} feet
+            %label.select-label{ for: 'feet'} feet
             = select_tag 'inches', options_for_select(0..11)
-            %label{ for: 'inches' } inches
+            %label.select-label{ for: 'inches' } inches
         #stopbang-weight.row.reset-layout
           .col-xs-6
             %h4
