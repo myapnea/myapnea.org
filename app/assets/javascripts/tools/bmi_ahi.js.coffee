@@ -6,6 +6,25 @@ calculate_predicted_ahi_change = () ->
   $("#predicted-change").html(weight_vs_ahi(old_w,new_w)+" %")
   $("#predicted-bmi").html(get_bmi(height, new_w))
 
+calculate_bmi = () ->
+  height_feet = parseFloat($("#my-height-feet").val())
+  height_inches = parseFloat($("#my-height-inches").val())
+  height = height_feet * 12 + height_inches
+  weight = parseFloat($("#my-weight").val())
+
+  $("#my-bmi").html(get_bmi(height, weight))
+  $("#bmi").html(get_bmi(height, weight))
+  $("#height").html(height + " inches")
+  $("#height").data('height', height)
+  $("#weight").html(weight + " pounds")
+  $("#bmi").data('bmi', get_bmi(height, weight))
+  $("#current-weight").data("weight", weight)
+  $("#current-weight").html(weight + " pounds")
+
+
+  $('#bmi-graph svg.chart').html("")
+  draw_bmi_graph()
+
 weight_vs_ahi = (old_weight, new_weight) ->
   weight_change = ((new_weight-old_weight)/old_weight) * 100
   Math.round((2.938 * weight_change))
@@ -17,6 +36,8 @@ get_bmi = (height, weight) ->
 
 
 draw_bmi_graph = () ->
+
+
   data = [
     { label: "Underweight", color: "underweight", from: 0, to: 18.5 },
     { label: "Normal", color: "normal", from: 18.5, to: 25 },
@@ -147,6 +168,9 @@ draw_ahi_graph = () ->
   window.ya = ya
 
 draw_ahi_graph()
-draw_bmi_graph()
+
+
 $(document).on 'change', '#desired-weight', () ->
   calculate_predicted_ahi_change()
+$(document).on 'change', '#my-height-inches,#my-height-feet,#my-weight', () ->
+  calculate_bmi()

@@ -9,26 +9,52 @@
         You did not provide information about your height and weight, so we could not determine your #{link_to 'Body Mass Index', 'http://en.wikipedia.org/wiki/Body_mass_index'}.
     %p
       Although obesity is by no means a trait of all Sleep Apnea patients... realtionships exist... Changes in weight have been linked to changes in Apnea Hypoxia Index. #{link_to "Get more information.", ""}
+
+
+
+
   #bmi-graph.col-md-5.col-md-offset-1
-    %h4 Your Body Mass Index
+    %h4 What is my BMI?
+    .list-group-item
+      .row
+        .col-md-7
+          %h5 Your Weight:
+        .col-md-5
+          .input-group.input-group-sm
+            %input#my-weight.form-control/
+            %span.input-group-addon pounds
+    .list-group-item
+      .row
+        .col-md-7
+          %h5 Your Height:
+        .col-md-5
+          .input-group.input-group-sm
+            %input#my-height-feet.form-control/
+            %span.input-group-addon feet
+          .input-group.input-group-sm
+            %input#my-height-inches.form-control/
+            %span.input-group-addon inches
+    .list-group-item
+      .row
+        .col-md-7
+          %h5 Your Calculated BMI:
+        .col-md-5
+          %h5#my-bmi
+    %br/
     %svg.chart
     .row
       %dl
         .col-md-4
           %dt
             %strong Your height:
-          %dd#height{"data-height" => @height}
-            = @height
-            inches
+          %dd#height
         .col-md-4
           %dt
             %strong Your weight:
-          %dd
-            = @weight
-            pounds
+          %dd#weight
         .col-md-4
           %dt Your BMI
-          %dd#bmi{"data-bmi" => bmi(@height, @weight)}= bmi(@height, @weight)
+          %dd#bmi
 %br/
 %br/
 #ahi.row
@@ -45,8 +71,7 @@
           .col-md-7
             %h5 Your Current Weight:
           .col-md-5
-            %h5#current-weight{"data-weight" => @weight}
-              = @weight
+            %h5#current-weight
       .list-group-item
         .row
           .col-md-7
