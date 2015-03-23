@@ -1,5 +1,10 @@
 @toolsReady = () ->
+  riskAssessmentReady() if document.getElementById('risk-assessment-container')
 
+feet_updated = false
+inches_updated = false
+weight_updated = false
+@riskAssessmentReady = () ->
   ### Initialize ###
   updateSystolicLabel(document.getElementById('systolic').value)
   updateDiastolicLabel(document.getElementById('diastolic').value)
@@ -11,7 +16,17 @@
   ### Submit ###
   $("[data-object~='submit-risk-assessment']").click (e) ->
     params = submitRiskAssessment()
-    console.log params
+
+  ### Track changes of BMI categories ###
+  $("[data-object~='feet-input']").change (e) ->
+    feet_updated = true
+    outputBMI()
+  $("[data-object~='inches-input']").change (e) ->
+    inches_updated = true
+    outputBMI()
+  $("[data-object~='weight-input']").change (e) ->
+    weight_updated = true
+    outputBMI()
 
 @updateSystolicRange = (val) ->
   document.getElementById('systolic').value = val
@@ -25,8 +40,6 @@
 @updateDiastolicLabel = (val) ->
   document.getElementById('diastolic_label').value = val
 
-@toggleRadioInput = (element) ->
-  console.log "hi"
 
 @submitRiskAssessment = () ->
 
@@ -42,9 +55,7 @@
   for k of stop
     stop_score += stop[k]
 
-  height = (document.getElementById('feet').value * 12) + parseInt(document.getElementById('inches').value)
-  weight = document.getElementById('weight').value
-  bmi = ( weight / Math.pow(height,2) ) * 703
+  bmi = calculateBMI()
   male = document.getElementById('gender_male').checked
   largeNeck = document.getElementById('neck_yes').checked
 
@@ -60,16 +71,15 @@
 
   return [stop_score, stopbang_score, male, bmi, largeNeck]
 
-@determineRisk = (stop, stopbang, male, bmi, neck) ->
-  if stopbang <= 2
-    risk = "You're at low risk for OSA"
-  else if stopbang <= 4
-    risk = "You're at intermediate risk for OSA"
-  else
-    risk = "You're at high risk for OSA"
-  if stop >= 2 and (male or bmi or neck)
-    risk = "You're at high risk for OSA"
-  return risk
+@calculateBMI = () ->
+  height = (document.getElementById('feet').value * 12) + parseInt(document.getElementById('inches').value)
+  weight = document.getElementById('weight').value
+  return ( weight / Math.pow(height,2) ) * 703
+
+@outputBMI = () ->
+  if feet_updated and inches_updated and weight_updated
+    document.getElementById('stopbang-bmi-output').innerHTML = Math.round(calculateBMI() * 100)/100
+
 
 
 

@@ -34,16 +34,21 @@
               %h4
                 How tall are you?
             .col-xs-6
-              = select_tag 'feet', options_for_select(0..8)
+              = select_tag 'feet', options_for_select(0..8), include_blank: true, data: { object: 'feet-input' }
               %label.select-label{ for: 'feet'} feet
-              = select_tag 'inches', options_for_select(0..11)
+              = select_tag 'inches', options_for_select(0..11), include_blank: true, data: { object: 'inches-input' }
               %label.select-label{ for: 'inches' } inch(es)
           #stopbang-weight.row.reset-layout
             .col-xs-6
               %h4
                 What is your weight?
             .col-xs-6
-              = number_field_tag 'weight', class: 'number-input', data: { object: 'number-validation' }
+              = number_field_tag 'weight', nil, class: 'number-input', data: { object: 'weight-input' }
+          .row.reset-layout
+            .col-xs-6
+              %h4 Your BMI:
+            .col-xs-6
+              %h4#stopbang-bmi-output.f300
         #stopbang-bp
           #systolic-container.row.reset-layout
             .col-xs-6
@@ -115,7 +120,6 @@
               %label{ for: 'neck' }
                 %p No
         #stopbang-submit.centered-text
-          = submit_tag 'Submit'
           %button.btn.btn-success{ data: { object: 'submit-risk-assessment'} }
             %h3 Check my Risk
   .row.reset-layout.primary-orange-bcg
