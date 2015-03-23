@@ -10,7 +10,8 @@
 
   ### Submit ###
   $("[data-object~='submit-risk-assessment']").click (e) ->
-    submitRiskAssessment()
+    params = submitRiskAssessment()
+    console.log params
 
 @updateSystolicRange = (val) ->
   document.getElementById('systolic').value = val
@@ -57,7 +58,7 @@
   for k of stopbang
     stopbang_score += stopbang[k]
 
-  alert determineRisk(stop_score, stopbang_score, male, bmi > 35, largeNeck)
+  return [stop_score, stopbang_score, male, bmi, largeNeck]
 
 @determineRisk = (stop, stopbang, male, bmi, neck) ->
   if stopbang <= 2

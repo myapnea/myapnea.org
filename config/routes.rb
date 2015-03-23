@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get 'tools/risk_assessment'
-
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -72,6 +70,8 @@ Rails.application.routes.draw do
 
   ## Public Tools
   get 'sleep-apnea-risk-assessment' => 'tools#risk_assessment'
+  post 'sleep-apnea-risk-assessment/results' => 'tools#risk_assessment_results'
+
 
   # Discussion
   match 'forums/terms_and_conditions', to: 'account#terms_and_conditions', via: :get, as: :terms_and_conditions

@@ -195,6 +195,22 @@
   }
 }
 
+#risk-assessment-results-container {
+  margin: 50px 0;
+  background-color: #fff;
+  border-top: 5px solid #ffa400;
+  border-bottom: 5px solid #ffa400;
+  #risk-assessment-logo {
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+  h4 {
+    margin: 0px;
+  }
+  .col-xs-6 {
+    padding:30px;
+  }
+}
 
 @media all and (max-width:768px) {
   #risk-assessment-logo {

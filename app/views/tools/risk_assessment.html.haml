@@ -6,116 +6,118 @@
     #risk-assessment-logo.col-sm-2.col-sm-offset-1
       = link_to root_path do
         = image_tag 'myapnea/logos/MyApneaLogo_border_whitetext_300x80.png', class: 'img-responsive'
-  .row.reset-layout
-    .col-sm-6.reset-layout
-      #stopbang-gender.row.reset-layout
-        .col-xs-6
-          %h4
-            Are you male or female?
-        .col-xs-6
-          .radio-container
-            = radio_button_tag 'gender', 'male'
-            %label{ for: 'gender' }
-              %p Male
-          .radio-container
-            = radio_button_tag 'gender', 'female'
-            %label{ for: 'gender' }
-              %p Female
-      #stopbang-age.row.reset-layout
-        .col-xs-6
-          %h4
-            What is your age?
-        .col-xs-6
-          = number_field_tag 'age'
-      #stopbang-bmi
-        #stopbang-height.row.reset-layout
+  = form_tag sleep_apnea_risk_assessment_results_path do
+    .row.reset-layout
+      .col-sm-6.reset-layout
+        #stopbang-gender.row.reset-layout
           .col-xs-6
             %h4
-              How tall are you?
+              Are you male or female?
           .col-xs-6
-            = select_tag 'feet', options_for_select(0..8)
-            %label.select-label{ for: 'feet'} feet
-            = select_tag 'inches', options_for_select(0..11)
-            %label.select-label{ for: 'inches' } inch(es)
-        #stopbang-weight.row.reset-layout
-          .col-xs-6
-            %h4
-              What is your weight?
-          .col-xs-6
-            = number_field_tag 'weight', class: 'number-input', data: { object: 'number-validation' }
-      #stopbang-bp
-        #systolic-container.row.reset-layout
+            .radio-container
+              = radio_button_tag 'gender', 'male'
+              %label{ for: 'gender' }
+                %p Male
+            .radio-container
+              = radio_button_tag 'gender', 'female'
+              %label{ for: 'gender' }
+                %p Female
+        #stopbang-age.row.reset-layout
           .col-xs-6
             %h4
-              What is your systolic blood pressure?
+              What is your age?
           .col-xs-6
-            = text_field_tag 'systolic_label', nil, maxlength: 3, onchange: 'updateSystolicRange(this.value)', oninput: 'updateSystolicRange(this.value)'
-            %label{ for: 'systolic_label' } mm Hg
-            = range_field_tag 'systolic', nil, in: 90...180, step: '1', onchange: 'updateSystolicLabel(this.value)', oninput: 'updateSystolicLabel(this.value)'
-        #diastolic-container.row.reset-layout
+            = number_field_tag 'age'
+        #stopbang-bmi
+          #stopbang-height.row.reset-layout
+            .col-xs-6
+              %h4
+                How tall are you?
+            .col-xs-6
+              = select_tag 'feet', options_for_select(0..8)
+              %label.select-label{ for: 'feet'} feet
+              = select_tag 'inches', options_for_select(0..11)
+              %label.select-label{ for: 'inches' } inch(es)
+          #stopbang-weight.row.reset-layout
+            .col-xs-6
+              %h4
+                What is your weight?
+            .col-xs-6
+              = number_field_tag 'weight', class: 'number-input', data: { object: 'number-validation' }
+        #stopbang-bp
+          #systolic-container.row.reset-layout
+            .col-xs-6
+              %h4
+                What is your systolic blood pressure?
+            .col-xs-6
+              = text_field_tag 'systolic_label', nil, maxlength: 3, onchange: 'updateSystolicRange(this.value)', oninput: 'updateSystolicRange(this.value)'
+              %label{ for: 'systolic_label' } mm Hg
+              = range_field_tag 'systolic', nil, in: 90...180, step: '1', onchange: 'updateSystolicLabel(this.value)', oninput: 'updateSystolicLabel(this.value)'
+          #diastolic-container.row.reset-layout
+            .col-xs-6
+              %h4.float-left
+                What is your systolic blood pressure?
+            .col-xs-6
+              = text_field_tag 'diastolic_label', nil, maxlength: 3, onchange: 'updateDiastolicRange(this.value)', oninput: 'updateDiastolicRange(this.value)'
+              %label{ for: 'diastolic' } mm Hg
+              = range_field_tag 'diastolic', nil, in: 50...120, step: '1', onchange: 'updateDiastolicLabel(this.value)', oninput: 'updateDiastolicLabel(this.value)'
+      .col-sm-6.reset-layout
+        #stopbang-snoring.row.reset-layout
           .col-xs-6
-            %h4.float-left
-              What is your systolic blood pressure?
+            %h4
+              Do you snore?
           .col-xs-6
-            = text_field_tag 'diastolic_label', nil, maxlength: 3, onchange: 'updateDiastolicRange(this.value)', oninput: 'updateDiastolicRange(this.value)'
-            %label{ for: 'diastolic' } mm Hg
-            = range_field_tag 'diastolic', nil, in: 50...120, step: '1', onchange: 'updateDiastolicLabel(this.value)', oninput: 'updateDiastolicLabel(this.value)'
-    .col-sm-6.reset-layout
-      #stopbang-snoring.row.reset-layout
-        .col-xs-6
-          %h4
-            Do you snore?
-        .col-xs-6
-          .radio-container
-            = radio_button_tag 'snoring', 'yes'
-            %label{ for: 'snoring' }
-              %p Yes
-          .radio-container
-            = radio_button_tag 'snoring', 'no'
-            %label{ for: 'snoring' }
-              %p No
-      #stopbang-tiredness.row.reset-layout
-        .col-xs-6
-          %h4
-            Do you often feel tired, fatigued, or sleepy during the daytime?
-        .col-xs-6
-          .radio-container
-            = radio_button_tag 'tiredness', 'yes'
-            %label{ for: 'tiredness' }
-              %p Yes
-          .radio-container
-            = radio_button_tag 'tiredness', 'no'
-            %label{ for: 'tiredness' }
-              %p No
-      #stopbang-observation.row.reset-layout
-        .col-xs-6
-          %h4
-            Has anyone ever observed you stop sleeping at night?
-        .col-xs-6
-          .radio-container
-            = radio_button_tag 'observation', 'yes'
-            %label{ for: 'observation' }
-              %p Yes
-          .radio-container
-            = radio_button_tag 'observation', 'no'
-            %label{ for: 'observation' }
-              %p No
-      #stopbang-neck.row.reset-layout
-        .col-xs-6
-          %h4
-            Is your neck size larger than 40cm?
-        .col-xs-6
-          .radio-container
-            = radio_button_tag 'neck', 'yes'
-            %label{ for: 'neck' }
-              %p Yes
-          .radio-container
-            = radio_button_tag 'neck', 'no'
-            %label{ for: 'neck' }
-              %p No
-      #stopbang-submit.centered-text
-        %button.btn.btn-success{ data: { object: 'submit-risk-assessment'} }
-          %h3 Check my Risk
+            .radio-container
+              = radio_button_tag 'snoring', 'yes'
+              %label{ for: 'snoring' }
+                %p Yes
+            .radio-container
+              = radio_button_tag 'snoring', 'no'
+              %label{ for: 'snoring' }
+                %p No
+        #stopbang-tiredness.row.reset-layout
+          .col-xs-6
+            %h4
+              Do you often feel tired, fatigued, or sleepy during the daytime?
+          .col-xs-6
+            .radio-container
+              = radio_button_tag 'tiredness', 'yes'
+              %label{ for: 'tiredness' }
+                %p Yes
+            .radio-container
+              = radio_button_tag 'tiredness', 'no'
+              %label{ for: 'tiredness' }
+                %p No
+        #stopbang-observation.row.reset-layout
+          .col-xs-6
+            %h4
+              Has anyone ever observed you stop sleeping at night?
+          .col-xs-6
+            .radio-container
+              = radio_button_tag 'observation', 'yes'
+              %label{ for: 'observation' }
+                %p Yes
+            .radio-container
+              = radio_button_tag 'observation', 'no'
+              %label{ for: 'observation' }
+                %p No
+        #stopbang-neck.row.reset-layout
+          .col-xs-6
+            %h4
+              Is your neck size larger than 40cm?
+          .col-xs-6
+            .radio-container
+              = radio_button_tag 'neck', 'yes'
+              %label{ for: 'neck' }
+                %p Yes
+            .radio-container
+              = radio_button_tag 'neck', 'no'
+              %label{ for: 'neck' }
+                %p No
+        #stopbang-submit.centered-text
+          = submit_tag 'Submit'
+          %button.btn.btn-success{ data: { object: 'submit-risk-assessment'} }
+            %h3 Check my Risk
   .row.reset-layout.primary-orange-bcg
     .col-sm-6
       %p.small

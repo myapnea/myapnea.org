@@ -6,4 +6,9 @@ class ToolsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should get risk assessment results" do
+    post :risk_assessment_results
+    assert_response :success
+  end
+
 end
