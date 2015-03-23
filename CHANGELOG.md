@@ -9,6 +9,8 @@
     - Lists information about demographics of enrollment per type of referral source
 
 ### Enhancements
+- **Gem Changes**
+  - Updated to rails 4.2.1
 
 ### Bug Fixes
 
