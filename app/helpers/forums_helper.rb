@@ -15,7 +15,7 @@ module ForumsHelper
     result = replace_p_with_p_lead(result)
     result = remove_links(result) unless allow_links
     result = target_link_as_blank(result) if target_blank
-    # result = link_usernames(result)
+    result = link_usernames(result)
     result.html_safe
   end
 
@@ -36,7 +36,16 @@ module ForumsHelper
   end
 
   def add_table_class(text, table_class)
-      text.to_s.gsub(/<table>/, "<table class=\"#{table_class}\">").html_safe
+    text.to_s.gsub(/<table>/, "<table class=\"#{table_class}\">").html_safe
+  end
+
+  def link_usernames(text)
+    usernames = SocialProfile.current.where.not(name: [nil, '']).pluck(:name).uniq.sort
+    result = text.to_s
+    usernames.each do |username|
+      result = result.gsub(/@#{username}\b/i, "<a href=\"#{ENV['website_url']}/forum?a=#{username}\">@#{username}</a>")
     end
+    result.html_safe
+  end
 
 end

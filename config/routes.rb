@@ -18,8 +18,17 @@ Rails.application.routes.draw do
     get :sitemap
   end
 
-  # Sleep Tips
-  get 'sleep-tips'   => 'static#sleep_tips'
+  # Educational Content
+  get 'learn/obstructive-sleep-apnea' => 'static#obstructive_sleep_apnea'
+  get 'learn/pap' => 'static#pap'
+  get 'learn/pap/about-PAP-therapy' => 'static#about_PAP_therapy'
+  get 'learn/pap/PAP-setup-guide'   => 'static#PAP_setup_guide'
+  get 'learn/pap/PAP-troubleshooting-guide' => 'static#PAP_troubleshooting_guide'
+  get 'learn/pap/PAP-care-and-maintenance' => 'static#PAP_care_maintenance'
+  get 'learn/pap/PAP-masks-and-equipment' => 'static#PAP_masks_equipment'
+  get 'learn/pap/traveling-with-PAP' => 'static#traveling_with_PAP'
+  get 'learn/pap/side-effects-of-PAP' => 'static#side_effects_PAP'
+  get 'learn/sleep-tips'   => 'static#sleep_tips'
 
   # Registration flow
   get 'get-started' => 'account#get_started'
@@ -63,15 +72,28 @@ Rails.application.routes.draw do
       get :report
     end
   end
+  get 'surveys/about-me/report-mockup' => 'surveys#about_me_mockup'
+  get 'surveys/my-sleep-pattern/report-mockup' => 'surveys#my_sleep_pattern_mockup'
+  get 'surveys/my-health-conditions/report-mockup' => 'surveys#my_health_conditions_mockup'
+  get 'surveys/my-health-conditions/data' => 'surveys#my_health_conditions_data', format: :json
+  get 'surveys/my-sleep-apnea-treatment/report-mockup' => 'surveys#my_sleep_apnea_treatment_mockup'
+  get 'surveys/my-sleep-quality/report-mockup' => 'surveys#my_sleep_quality_mockup'
+  get 'surveys/additional-information-about-me/report-mockup' => 'surveys#additional_information_about_me_mockup'
+  get 'surveys/about-my-family/report-mockup' => 'surveys#about_my_family_mockup'
+  get 'surveys/my-quality-of-life/report-mockup' => 'surveys#my_quality_of_life_mockup'
+  get 'surveys/my-sleep-apnea/report-mockup' => 'surveys#my_sleep_apnea_mockup'
+  get 'surveys/my-risk-profile/report-mockup' => 'surveys#my_risk_profile_mockup'
 
   ## JSON
   get 'questions/frequencies(/:question_id/:answer_session_id)', to: "questions#frequencies", as: :question_frequencies, format: :json
   get 'questions/typeahead/:question_id', to: "questions#typeahead", as: :question_typeahead, format: :json
 
+
   ## Public Tools
   get 'sleep-apnea-risk-assessment' => 'tools#risk_assessment'
   post 'sleep-apnea-risk-assessment/results' => 'tools#risk_assessment_results'
-
+  # Tools
+  get 'bmi_ahi' => 'tools#bmi_ahi'
 
   # Discussion
   match 'forums/terms_and_conditions', to: 'account#terms_and_conditions', via: :get, as: :terms_and_conditions
@@ -103,6 +125,7 @@ Rails.application.routes.draw do
   get 'admin/research-topics' => 'admin#research_topics', as: 'admin_research_topics'
   get 'admin/research-topic/:id' => 'admin#research_topic', as: 'admin_research_topic'
   get 'admin/version-stats' => 'admin#version_stats', as: 'admin_version_stats'
+  get 'admin/cross-tabs' => 'admin#cross_tabs', as: 'admin_cross_tabs'
 
   # Development/System
   get 'pprn' => 'application#toggle_pprn_cookie'
@@ -123,6 +146,13 @@ Rails.application.routes.draw do
     end
   end
 
+  # Forums
+  # TODO remove redirects in 8.0
+  get 'forums/introductions', to: redirect("forums/general")
+  get 'forums/introductions(/*path)', to: redirect("forums/general/%{path}")
+  get 'forums/rank-the-research', to: redirect("forums/research")
+  get 'forums/rank-the-research(/*path)', to: redirect("forums/research/%{path}")
+  # end TODO from 5.1
   resources :forums do
     resources :topics do
       member do

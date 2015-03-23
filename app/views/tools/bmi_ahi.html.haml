@@ -1,0 +1,96 @@
+.row
+  .col-md-6
+    %h3 BMI and Sleep Apnea
+    - if @height and @weight
+      %p
+        From the height and weight you've provided, we've determined your #{link_to 'Body Mass Index', 'http://en.wikipedia.org/wiki/Body_mass_index'} to be #{bmi(@height, @weight)}. People with this BMI are considered to be #{bmi_category(bmi(@height, @weight))}.
+    - else
+      %p
+        You did not provide information about your height and weight, so we could not determine your #{link_to 'Body Mass Index', 'http://en.wikipedia.org/wiki/Body_mass_index'}.
+    %p
+      Although obesity is by no means a trait of all Sleep Apnea patients... realtionships exist... Changes in weight have been linked to changes in Apnea Hypoxia Index. #{link_to "Get more information.", ""}
+
+
+
+
+  #bmi-graph.col-md-5.col-md-offset-1
+    %h4 What is my BMI?
+    .list-group-item
+      .row
+        .col-md-7
+          %h5 Your Weight:
+        .col-md-5
+          .input-group.input-group-sm
+            %input#my-weight.form-control/
+            %span.input-group-addon pounds
+    .list-group-item
+      .row
+        .col-md-7
+          %h5 Your Height:
+        .col-md-5
+          .input-group.input-group-sm
+            %input#my-height-feet.form-control/
+            %span.input-group-addon feet
+          .input-group.input-group-sm
+            %input#my-height-inches.form-control/
+            %span.input-group-addon inches
+    .list-group-item
+      .row
+        .col-md-7
+          %h5 Your Calculated BMI:
+        .col-md-5
+          %h5#my-bmi
+    %br/
+    %svg.chart
+    .row
+      %dl
+        .col-md-4
+          %dt
+            %strong Your height:
+          %dd#height
+        .col-md-4
+          %dt
+            %strong Your weight:
+          %dd#weight
+        .col-md-4
+          %dt Your BMI
+          %dd#bmi
+%br/
+%br/
+#ahi.row
+  #ahi-graph.col-md-8
+    %h4 Effects of Weight Change on AHI
+    %svg.chart
+    %cite.notice.text-muted
+      %a{:href => ""} Peppard et al. Longitudinal Study of Moderate Weight Change and Sleep-Disordered Breathing. JAMA. 2000;284(23):3015-3021.
+  #prediction.col-md-4
+    %h4 How might your AHI change?
+    .list-group
+      .list-group-item
+        .row
+          .col-md-7
+            %h5 Your Current Weight:
+          .col-md-5
+            %h5#current-weight
+      .list-group-item
+        .row
+          .col-md-7
+            %h5 Your Desired Weight:
+          .col-md-5
+            .input-group.input-group-sm
+              %input#desired-weight.form-control/
+              %span.input-group-addon pounds
+      .list-group-item
+        .row
+          .col-md-7
+            %h5 Your Resulting BMI:
+          .col-md-5
+            %h5#predicted-bmi
+      .list-group-item
+        .row
+          .col-md-7
+            %h5 Possible AHI Change:
+          .col-md-5
+            %h5#predicted-change
+= javascript_include_tag "tools/bmi_ahi"
+= stylesheet_link_tag "tools/bmi_ahi"

@@ -1,0 +1,23 @@
+- @active_top_nav_link = :participate
+
+- promis_score_raw = 8
+- promis_score = 10*(promis_score_raw-20)/5.6872 + 50
+
+.row.reset-layout{ style: 'background-color: rgb(207, 226, 248)'}
+  .col-md-12.centered-text
+    %h3.f500.text-dark7 The PROMIS Sleep Disturbance Scale
+    %p.lead
+      This scale allows you to see how your perceived sleep quality compares with the average adult's over the past week. The average score is 50, with values greater than that indicating poorer sleep quality, and values less than that indicating better sleep quality.
+    %br
+    .range-container
+      = range_field_tag 'quality', promis_score, in: 1...100, step: '1', list: 'quality-options', disabled: true
+      .range-text.range-left 0
+      .range-text.range-center 50
+      .range-text.range-right 100
+    %p.lead
+      Your sleep disturbance score:
+      %span.f500= "%0.2f" % promis_score
+    %p.lead
+      %span.f500 You did a great job with your sleep this week!
+    %p.lead
+      Keep your current routine consistent and you will be on your way to better sleep.

@@ -1,4 +1,5 @@
-Turbolinks.enableProgressBar();
+if typeof Turbolinks isnt 'undefined' and Turbolinks.supported
+  Turbolinks.enableProgressBar();
 
 @mainLoader = () ->
   $("select[rel=chosen]").chosen
@@ -64,6 +65,8 @@ Turbolinks.enableProgressBar();
   registrationUXReady() if registrationUXReady?
   validationReady() if validationReady?
   toolsReady() if toolsReady?
+  postsReady() if postsReady?
+  surveyReportsReady() if surveyReportsReady?
 
 $(document).ready(loaders)
 $(document).on('page:load', loaders)

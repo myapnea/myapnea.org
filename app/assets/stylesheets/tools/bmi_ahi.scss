@@ -1,0 +1,40 @@
+.bar {
+  fill: steelblue;
+}
+
+.bar:hover {
+  fill: brown;
+}
+
+.axis {
+  font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.x.axis path {
+  display: none;
+}
+
+#ahi-graph cite {
+  font-size: 10px;
+}
+
+
+.underweight {
+  fill: #00CBE7;
+}
+.overweight {
+  fill: #F4F328;
+}
+.normal {
+  fill: #00DA3C ;
+}
+.obese {
+  fill: #FD8603;
+}

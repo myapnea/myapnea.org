@@ -17,10 +17,13 @@
       %h4
         = pluralize(@topic.errors.count, "error")
         prohibited this topic from being saved
-
       %ul
-        - @topic.errors.full_messages.each do |msg|
-          %li= msg
+        - @topic.errors.messages.each do |key, msg|
+          - if key == :slug or key == :name
+            %li= msg.join(", ")
+          - else
+            %li= "#{key.to_s.titleize} #{msg.join(", ")}"
+
 
   .form-group
     = f.label :name, 'Title', class: 'col-md-2 control-label'
@@ -50,6 +53,11 @@
       = f.label :status, nil, class: 'col-md-2 control-label'
       .col-md-10
         = f.select :status, [['---', nil]] + Topic::STATUS, {}, class: 'form-control'
+
+    .form-group
+      = f.label :forum_id, nil, class: 'col-md-2 control-label'
+      .col-md-10
+        = f.select :forum_id, Forum.current.pluck(:name, :id), {}, class: 'form-control'
 
     .form-group
       .col-md-offset-2.col-md-10

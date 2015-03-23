@@ -5,6 +5,49 @@ class SurveysController < ApplicationController
   before_action :set_survey, only: [:show, :report, :start_survey]
 
 
+  def about_me_mockup
+    render 'surveys/reports/about_me'
+  end
+
+  def my_sleep_pattern_mockup
+    render 'surveys/reports/my_sleep_pattern'
+  end
+
+  def my_health_conditions_mockup
+    render 'surveys/reports/my_health_conditions'
+  end
+
+  def my_health_conditions_data
+    @survey = Survey.find_by_slug("my-health-conditions")
+  end
+
+  def my_sleep_apnea_treatment_mockup
+    render 'surveys/reports/my_sleep_apnea_treatment'
+  end
+
+  def my_sleep_quality_mockup
+    render 'surveys/reports/my_sleep_quality'
+  end
+
+  def additional_information_about_me_mockup
+    render 'surveys/reports/additional_information_about_me'
+  end
+
+  def about_my_family_mockup
+    render 'surveys/reports/about_my_family'
+  end
+
+  def my_quality_of_life_mockup
+    render 'surveys/reports/my_quality_of_life'
+  end
+
+  def my_sleep_apnea_mockup
+    render 'surveys/reports/my_sleep_apnea'
+  end
+
+  def my_risk_profile_mockup
+    render 'surveys/reports/my_risk_profile'
+  end
 
   def index
     @surveys = current_user.assigned_surveys

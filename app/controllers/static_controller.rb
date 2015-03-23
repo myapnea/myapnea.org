@@ -34,10 +34,48 @@ class StaticController < ApplicationController
   def sitemap
   end
 
-  ## Sleep Tips
+  ## Educational content
+
+  def obstructive_sleep_apnea
+    render 'static/SEO_content/obstructive_sleep_apnea'
+  end
+
+  def pap
+    render 'static/PAP'
+  end
+
+  def about_PAP_therapy
+    render 'static/SEO_content/about_PAP_therapy'
+  end
+
+  def PAP_setup_guide
+    render 'static/SEO_content/PAP_setup_guide'
+  end
+
+  def PAP_troubleshooting_guide
+    render 'static/SEO_content/PAP_troubleshooting_guide'
+  end
+
+  def PAP_care_maintenance
+    render 'static/SEO_content/PAP_care_maintenance'
+  end
+
+  def PAP_masks_equipment
+    render 'static/SEO_content/PAP_masks_equipment'
+  end
+
+  def traveling_with_PAP
+    render 'static/SEO_content/traveling_with_PAP'
+  end
+
+  def side_effects_PAP
+    render 'static/SEO_content/side_effects_PAP'
+  end
+
   def sleep_tips
     render 'static/sleep_tips/sleep_tips'
   end
+
 
   ## NON-STATIC
 

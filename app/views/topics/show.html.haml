@@ -97,7 +97,7 @@
 
           .tab-content
             #write-new.tab-pane.active{ style: 'padding-top:23px' }
-              = f.text_area :description, rows: 7, class: 'form-control', id: 'post_description_new'
+              = f.text_area :description, rows: 7, class: 'form-control', id: 'post_description_new', data: { object: 'text-area-autocomplete', mentions: SocialProfile.current.where.not(name: [nil, '']).pluck(:name).uniq.sort }
             #preview-new.tab-pane{ style: 'min-height:177px;padding-top:23px' }
               #preview-new.post-container
             #markup-new.tab-pane{ style: 'padding-top:23px' }
@@ -106,7 +106,7 @@
       .row.reset-layout{ style: 'margin-top: 15px;'}
         .col-xs-1
         .col-md-11.col-xs-10.col-xs-offset-1.col-md-offset-0
-          = f.submit "Comment", class: 'btn btn-primary'
+          = f.submit "Comment", class: 'btn btn-primary', data: { disable_with: "Posting comment..." }
 
     = render partial: 'topics/subscribe_unsubscribe', locals: { topic: @topic }
   - else

@@ -1,0 +1,15 @@
+- @active_top_nav_link = :participate
+
+.row.reset-layout{ style: 'background-color: rgb(207, 226, 248)'}
+  .col-md-12.centered-text
+    %h3.f500.text-dark7 In general, how would you rate your health?
+    %p.lead Your answer: Poor
+    #health-rating{ data: { object: 'd3-report', question: 'health-rating' } }
+  .col-md-12.centered-text
+    %h3.f500.text-dark7 Compared to one year ago, how would you rate your health in general now?
+    %p.lead Your answer: Somewhat better now than one year ago
+    #health-improvement{ data: { object: 'd3-report', question: 'health-improvement' } }
+  .col-md-12.centered-text
+    %h3.f500.text-dark7 In general, how would you rate your quality of life?
+    %p.lead Your answer: Very good
+    #qol-rating{ data: { object: 'd3-report', question: 'qol-rating' } }

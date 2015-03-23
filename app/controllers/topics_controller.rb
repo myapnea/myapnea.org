@@ -82,7 +82,7 @@ class TopicsController < ApplicationController
 
     def topic_params
       if current_user.has_role? :moderator
-        params.require(:topic).permit(:name, :description, :slug, :locked, :pinned, :status)
+        params.require(:topic).permit(:name, :description, :slug, :locked, :pinned, :status, :forum_id)
       else
         params.require(:topic).permit(:name, :description)
       end

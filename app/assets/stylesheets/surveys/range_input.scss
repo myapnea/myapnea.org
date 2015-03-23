@@ -1,13 +1,18 @@
-// Question range
-.input-container input[type=range] {
-  -webkit-appearance: none;
+.range-container {
+  margin-top: 30px;
+  margin-bottom: 50px;
 }
 
-.input-container input[type=range]:focus {
+.range-container input[type=range] {
+  -webkit-appearance: none;
+  background-color: transparent;
+}
+
+.range-container input[type=range]:focus {
   outline: none;
 }
 
-.input-container input[type=range] ~ .range-text {
+.range-container input[type=range] ~ .range-text {
   width:33.3%;
   float:left;
   margin-top: 10px;
@@ -15,16 +20,16 @@
   font-weight:500;
   color:white; color: rgba(0,0,0,.4);
 }
-.survey-container.active .panel .input-container input[type=range] ~ .range-text {
+.range-container input[type=range] ~ .range-text {
   color: black; color: rgba(0,0,0,.7);
 }
-.input-container input[type=range] ~ .range-left {
+.range-container input[type=range] ~ .range-left {
   text-align:left;
 }
-.input-container input[type=range] ~ .range-center {
+.range-container input[type=range] ~ .range-center {
   text-align:center;
 }
-.input-container input[type=range] ~ .range-right {
+.range-container input[type=range] ~ .range-right {
   text-align:right;
 }
 
@@ -32,27 +37,23 @@
 http://brennaobrien.com/blog/2014/05/style-input-type-range-in-every-browser.html
 */
 // Webkit
-.input-container input[type=range]::-webkit-slider-runnable-track {
+.range-container input[type=range]::-webkit-slider-runnable-track {
   -webkit-appearance: none;
-  background-color: #ddd;
   border-radius:20px;
-}
-
-.input-container input[type=range]:focus::-webkit-slider-runnable-track {
   background: rgba(255,61,61,1);
-  background: -moz-linear-gradient(left, rgba(255,61,61,1) 0%, rgba(171,255,158,1) 100%);
-  background: -webkit-gradient(left top, right top, color-stop(0%, rgba(255,61,61,1)), color-stop(100%, rgba(171,255,158,1)));
-  background: -webkit-linear-gradient(left, rgba(255,61,61,1) 0%, rgba(171,255,158,1) 100%);
-  background: -o-linear-gradient(left, rgba(255,61,61,1) 0%, rgba(171,255,158,1) 100%);
-  background: -ms-linear-gradient(left, rgba(255,61,61,1) 0%, rgba(171,255,158,1) 100%);
-  background: linear-gradient(to right, rgba(255,61,61,1) 0%, rgba(171,255,158,1) 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff3d3d', endColorstr='#abff9e', GradientType=1 );
+  background: -moz-linear-gradient(left, rgba(171,255,158,1) 0%, rgba(255,61,61,1) 100%);
+  background: -webkit-gradient(left top, right top, color-stop(0%, rgba(171,255,158,1)), color-stop(100%, rgba(255,61,61,1)));
+  background: -webkit-linear-gradient(left, rgba(171,255,158,1) 0%, rgba(255,61,61,1) 100%);
+  background: -o-linear-gradient(left, rgba(171,255,158,1) 0%, rgba(255,61,61,1) 100%);
+  background: -ms-linear-gradient(left, rgba(171,255,158,1) 0%, rgba(255,61,61,1) 100%);
+  background: linear-gradient(to right, rgba(171,255,158,1) 0%, rgba(255,61,61,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#abff93', endColorstr='#ff3d3d', GradientType=1 );
 }
 
-.input-container input[type=range]::-webkit-slider-thumb {
+.range-container input[type=range]::-webkit-slider-thumb {
   -webkit-appearance: none;
   background-color: #fff;
-  width: 20px;
+  width: 10px;
   height: 40px;
   border-radius:7px;
   box-shadow: 0px 1px 1px #ddd;
@@ -60,13 +61,13 @@ http://brennaobrien.com/blog/2014/05/style-input-type-range-in-every-browser.htm
 
 
 // Firefox
-.input-container input[type=range]::-moz-range-track {
+.range-container input[type=range]::-moz-range-track {
   background-color: #ddd;
   border-radius:20px;
   border: none;
 }
 
-.input-container input[type=range]::-moz-range-thumb {
+.range-container input[type=range]::-moz-range-thumb {
   background-color: #fff;
   width: 20px;
   height: 40px;
@@ -75,12 +76,12 @@ http://brennaobrien.com/blog/2014/05/style-input-type-range-in-every-browser.htm
   border:none;
 }
 
-.input-container input[type=range]:-moz-focusring{
+.range-container input[type=range]:-moz-focusring{
     outline: 1px solid white;
     outline-offset: -1px;
 }
 
-.input-container input[type=range]:focus::-moz-range-track {
+.range-container input[type=range]:focus::-moz-range-track {
   background: rgba(255,61,61,1);
   background: -moz-linear-gradient(left, rgba(255,61,61,1) 0%, rgba(171,255,158,1) 100%);
   background: -webkit-gradient(left top, right top, color-stop(0%, rgba(255,61,61,1)), color-stop(100%, rgba(171,255,158,1)));
@@ -93,20 +94,20 @@ http://brennaobrien.com/blog/2014/05/style-input-type-range-in-every-browser.htm
 
 
 // IE10+
-.input-container input[type=range]::-ms-track {
+.range-container input[type=range]::-ms-track {
   background-color: #ddd;
   border-radius:20px;
 }
 
-.input-container input[type=range]::-ms-fill-lower {
+.range-container input[type=range]::-ms-fill-lower {
   background-color: #ddd;
 }
 
-.input-container input[type=range]::-ms-fill-uper {
+.range-container input[type=range]::-ms-fill-uper {
   background-color: #ddd;
 }
 
-.input-container input[type=range]::-ms-thumb {
+.range-container input[type=range]::-ms-thumb {
   background-color: #fff;
   width: 20px;
   height: 40px;
@@ -115,7 +116,7 @@ http://brennaobrien.com/blog/2014/05/style-input-type-range-in-every-browser.htm
   border:none;
 }
 
-.input-container input[type=range]:focus::-ms-fill-lower {
+.range-container input[type=range]:focus::-ms-fill-lower {
   background: rgba(255,61,61,1);
   background: -moz-linear-gradient(left, rgba(255,61,61,1) 0%, rgba(171,255,158,1) 100%);
   background: -webkit-gradient(left top, right top, color-stop(0%, rgba(255,61,61,1)), color-stop(100%, rgba(171,255,158,1)));
@@ -126,7 +127,7 @@ http://brennaobrien.com/blog/2014/05/style-input-type-range-in-every-browser.htm
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff3d3d', endColorstr='#abff9e', GradientType=1 );
 }
 
-.input-container input[type=range]:focus::-ms-fill-lower {
+.range-container input[type=range]:focus::-ms-fill-lower {
   background: rgba(255,61,61,1);
   background: -moz-linear-gradient(left, rgba(255,61,61,1) 0%, rgba(171,255,158,1) 100%);
   background: -webkit-gradient(left top, right top, color-stop(0%, rgba(255,61,61,1)), color-stop(100%, rgba(171,255,158,1)));

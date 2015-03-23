@@ -32,4 +32,11 @@ class ToolsController < ApplicationController
     end
     return risk_category
   end
+
+  def bmi_ahi
+    @height = 60
+    @weight = 150
+
+  end
 end
+

@@ -30,4 +30,13 @@ class UserMailer < ApplicationMailer
     mail(to: @email_to, subject: "Welcome to MyApnea.Org!")
   end
 
+  def mentioned_in_post(post, user)
+    setup_email
+    @user = user
+    @post = post
+    @email_to = user.email
+    mail(to: @email_to,
+      subject: "#{post.user.forum_name} Mentioned You on the MyApnea Forums")
+  end
+
 end

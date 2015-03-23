@@ -89,6 +89,24 @@ class TopicsControllerTest < ActionController::TestCase
     assert_redirected_to [assigns(:forum), assigns(:topic)]
   end
 
+  test "should not create topic with slug being `new`" do
+    login(@valid_user)
+
+    assert_difference('Post.count') do
+      assert_difference('Topic.count') do
+        post :create, forum_id: forum, topic: { name: "New", description: "A new topic." }
+      end
+    end
+
+    assert_not_nil assigns(:forum)
+    assert_not_nil assigns(:topic)
+
+    assert assigns(:topic).valid?
+    refute_equal "new", assigns(:topic).slug
+
+    assert_redirected_to [assigns(:forum), assigns(:topic)]
+  end
+
   test "should show topic and increase views count" do
     get :show, forum_id: forum, id: topic
     assert_not_nil assigns(:forum)
