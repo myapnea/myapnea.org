@@ -68,10 +68,11 @@ $excellent: #16C63C;
 }
 
 #risk-assessment-results-1, #risk-assessment-results-2, #risk-assessment-results-3 {
-  height: $row-height * 3;
+  min-height: $row-height * 3;
   border: 10px solid #f3f3f3;
   border-radius: 20px;
   background-color: white;
+  padding-bottom:20px;
 }
 
 #risk-assessment-results-3 { border-color: $danger; }
