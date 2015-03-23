@@ -6,23 +6,23 @@
     #risk-assessment-logo.col-sm-2.col-sm-offset-1
       = link_to root_path do
         = image_tag 'myapnea/logos/MyApneaLogo_border_whitetext_300x80.png', class: 'img-responsive'
-  .row.reset-layout
+  .row.reset-layout{ style: 'margin: 40px 20px;'}
     .col-xs-3.col-xs-offset-1.no-padding
-      #high-risk-bar.row.reset-layout.risk-indicator-bar{ class: "#{'risk-level-passed' if @risk_category>=3} #{'risk-level-active' if @risk_category==3}" }
+      #high-risk-bar.row.reset-layout.risk-indicator-bar{ class: "#{'risk-level-active' if @risk_category==3}" }
         %p.lead{ class: "#{'f500' if @risk_category==3}" }
-          High Risk
-      #middle-risk-bar.row.reset-layout.risk-indicator-bar{ class: "#{'risk-level-passed' if @risk_category>=2} #{'risk-level-active' if @risk_category==2}" }
+          High
+      #middle-risk-bar.row.reset-layout.risk-indicator-bar{ class: "#{'risk-level-active' if @risk_category==2}" }
         %p.lead{ class: "#{'f500' if @risk_category==2}" }
-          Moderate Risk
-      #low-risk-bar.row.reset-layout.risk-indicator-bar{ class: "#{'risk-level-passed' if @risk_category>=1} #{'risk-level-active' if @risk_category==1}" }
+          Moderate
+      #low-risk-bar.row.reset-layout.risk-indicator-bar{ class: "#{'risk-level-active' if @risk_category==1}" }
         %p.lead{ class: "#{'f500' if @risk_category==1}" }
-          Low Risk
+          Low
     .col-xs-2.no-padding
-      .row.reset-layout.risk-connector{ class: "#{'risk-level-active' if @risk_category==3}" }
-      .row.reset-layout.risk-connector{ class: "#{'risk-level-active' if @risk_category==2}" }
-      .row.reset-layout.risk-connector{ class: "#{'risk-level-active' if @risk_category==1}" }
-    #risk-assessment-results-description.col-xs-5.no-padding
+      #high-risk-connector.row.reset-layout.risk-connector{ class: "#{'risk-level-active' if @risk_category==3}" }
+      #middle-risk-connector.row.reset-layout.risk-connector{ class: "#{'risk-level-active' if @risk_category==2}" }
+      #low-risk-connector.row.reset-layout.risk-connector{ class: "#{'risk-level-active' if @risk_category==1}" }
+    .col-xs-5.no-padding{ id: "#{'risk-assessment-results-' + @risk_category.to_s }" }
       %h2.f300.centered-text
-        Your risk category is:
+        Your risk score is:
         %br
-        %span.primary-orange= @risk_category
+        %span.primary-orange= @stop_score + @bang_score

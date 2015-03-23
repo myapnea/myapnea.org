@@ -4,7 +4,7 @@ class ToolsController < ApplicationController
 
   def risk_assessment_results
     @bp = [params[:systolic].to_i,params[:diastolic].to_i]
-    @stop_score = (params[:snoring] ? 1 : 0) + (params[:tiredness] ? 1 : 0) + (params[:observation] ? 1 : 0) + ((params[:systolic].to_i > 140 and params[:diastolic].to_i > 90) ? 1 : 0)
+    @stop_score = (params[:snoring] ? 1 : 0) + (params[:tiredness] ? 1 : 0) + (params[:observation] ? 1 : 0) + ((params[:systolic].to_i > 140 or params[:diastolic].to_i > 90) ? 1 : 0)
     @bmi = calculateBMI
     @has_large_neck = params[:neck]
     @is_male = params[:gender] == 'male'
