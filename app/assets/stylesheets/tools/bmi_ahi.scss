@@ -1,3 +1,42 @@
+#bmi-ahi-calculator {
+  select {
+    border: 1px solid #111;
+    background: transparent;
+    width: 70px;
+    padding: 3px;
+    font-size: 20px;
+    border: 1px solid #ccc;
+    height: 35px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: asset-url("myapnea/icons/arrowdown.png") 96% / 15% no-repeat #fff;
+  }
+  .select-label {
+    font-size: 18px;
+    font-weight: 300;
+    margin-right:10px;
+  }
+  input[type=text] {
+    font-size: 20px;
+    width: 60%;
+    max-width: 100px;
+    border-radius:5px;
+    margin-bottom:10px;
+  }
+  input[type=number] {
+    font-size: 20px;
+    width:80%;
+    max-width:150px;
+    border-radius:5px;
+  }
+  input[type=number]::-webkit-inner-spin-button,
+  input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
 .bar {
   fill: steelblue;
 }

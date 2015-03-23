@@ -1,7 +1,7 @@
 module ToolsHelper
 
   def bmi(height, weight)
-    (weight/height**2 * 703).round
+    (weight.to_f/(height.to_f**2) * 703)
   end
 
   def bmi_category(bmi)

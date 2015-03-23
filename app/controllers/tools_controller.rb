@@ -34,9 +34,6 @@ class ToolsController < ApplicationController
   end
 
   def bmi_ahi
-    @height = 60
-    @weight = 150
-
   end
 end
 

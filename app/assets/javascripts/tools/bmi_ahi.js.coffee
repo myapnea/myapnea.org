@@ -1,15 +1,18 @@
 calculate_predicted_ahi_change = () ->
-  height = parseFloat($("#height").data("height"))
-  old_w = parseFloat($("#current-weight").data("weight"))
+  height = calculate_height()
+  old_w = parseFloat($("#my-weight").val())
   new_w = parseFloat($("#desired-weight").val())
 
   $("#predicted-change").html(weight_vs_ahi(old_w,new_w)+" %")
   $("#predicted-bmi").html(get_bmi(height, new_w))
 
-calculate_bmi = () ->
+calculate_height = () ->
   height_feet = parseFloat($("#my-height-feet").val())
   height_inches = parseFloat($("#my-height-inches").val())
-  height = height_feet * 12 + height_inches
+  return height_feet * 12 + height_inches
+
+calculate_bmi = () ->
+  height = calculate_height()
   weight = parseFloat($("#my-weight").val())
 
   $("#my-bmi").html(get_bmi(height, weight))
@@ -30,7 +33,7 @@ weight_vs_ahi = (old_weight, new_weight) ->
   Math.round((2.938 * weight_change))
 
 get_bmi = (height, weight) ->
-  Math.round((weight / (height * height)) * 703)
+  Math.round((weight / (height ** 2)) * 703)
 
 
 
