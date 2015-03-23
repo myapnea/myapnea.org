@@ -1,0 +1,62 @@
+$row-height: 150px;
+
+.risk-indicator-bar {
+  height: $row-height;
+  p {
+    text-align: center;
+    line-height: $row-height;
+    color: #ccc;
+  }
+  p.f500 {
+    color: #333;
+  }
+}
+
+$danger: #e54835;
+$warning: #f4b46d;
+$excellent: #16C63C;
+
+#high-risk-bar.risk-level-passed {
+  background-color: $danger;
+  background-color: transparentize($danger, .7);
+}
+#middle-risk-bar.risk-level-passed {
+  background-color: $warning;
+  background-color: transparentize($warning, .7);
+}
+#low-risk-bar.risk-level-passed {
+  background-color: $excellent;
+  background-color: transparentize($excellent, .7);
+}
+
+
+#high-risk-bar.risk-level-active {
+  background-color: $danger;
+  background-color: transparentize($danger, .1);
+}
+#middle-risk-bar.risk-level-active {
+  background-color: $warning;
+  background-color: transparentize($warning, .1);
+}
+#low-risk-bar.risk-level-active {
+  background-color: $excellent;
+  background-color: transparentize($excellent, .1);
+}
+
+
+.risk-connector {
+  height: $row-height;
+  border-top: 45px solid white;
+  border-bottom: 45px solid white;
+  border-width: ($row-height - 10) / 2;
+}
+
+.risk-connector.risk-level-active {
+  background-color: #ddd;
+}
+
+#risk-assessment-results-description {
+  height: $row-height * 3;
+  border: 10px solid #ddd;
+  border-radius: 20px;
+}

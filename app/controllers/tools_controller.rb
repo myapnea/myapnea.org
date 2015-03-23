@@ -9,6 +9,7 @@ class ToolsController < ApplicationController
     @has_large_neck = params[:neck]
     @is_male = params[:gender] == 'male'
     @bang_score = (@bmi > 35 ? 1 : 0) + (params[:age].to_i > 50 ? 1 : 0) + (@has_large_neck ? 1 : 0) + (@is_male ? 1 : 0)
+    @risk_category = riskCategory(@stop_score, @stop_score + @bang_score, @has_large_neck, @is_male, @bmi > 35)
   end
 
   def calculateBMI
@@ -16,5 +17,19 @@ class ToolsController < ApplicationController
     weight = params[:weight].to_f
     bmi = (weight / (height ** 2)) * 703
     return bmi
+  end
+
+  def riskCategory(stop, stopbang, neck, male, bmi)
+    if stopbang <= 2
+      risk_category = 1
+    elsif stopbang <= 4
+      risk_category = 2
+    else
+      risk_category = 3
+    end
+    if stop >= 2 and (male or bmi or neck)
+      risk_category = 3
+    end
+    return risk_category
   end
 end
