@@ -1,5 +1,6 @@
 @toolsReady = () ->
   riskAssessmentReady() if document.getElementById('risk-assessment-container')
+  bmiAHICalculatorReady() if document.getElementById('bmi-ahi-calculator')
 
 feet_updated = false
 inches_updated = false
