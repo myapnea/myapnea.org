@@ -13,6 +13,13 @@ current_weight_updated = false
   $(document).on 'change', '#my-weight', () ->
     current_weight_updated = true
     calculate_bmi()
+  $(document).on 'change', '#desired-weight', () ->
+    output_AHI_change(weight_vs_ahi(parseFloat($("#my-weight").val()), parseFloat($("#desired-weight").val())))
+
+  $(document).on 'click', "[data-object~='calculate-minimum-weight']", () ->
+    $("#desired-weight").val minimum_healthy_weight(calculate_height())
+    calculate_predicted_ahi_change()
+    output_AHI_change(weight_vs_ahi(parseFloat($("#my-weight").val()), parseFloat($("#desired-weight").val())))
 
 calculate_predicted_ahi_change = () ->
   height = calculate_height()
@@ -37,6 +44,8 @@ calculate_bmi = () ->
   $("#current-weight").data("weight", weight)
   $("#current-weight").html(weight + " pounds")
 
+  # If all data is entered, show the BMI graph, the AHI graph,
+  # and autocomplete necessary weight for healthy BMI (if applicable)
   if feet_updated and inches_updated and current_weight_updated
     $('#bmi-graph svg.chart').html("")
     draw_bmi_graph()
@@ -50,7 +59,11 @@ weight_vs_ahi = (old_weight, new_weight) ->
 get_bmi = (height, weight) ->
   Math.round((weight / (height ** 2)) * 703)
 
+minimum_healthy_weight = (height) ->
+  Math.round(25 * (height ** 2) / 703)
 
+output_AHI_change = (ahi) ->
+  console.log ahi
 
 
 draw_bmi_graph = () ->
