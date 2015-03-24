@@ -7,6 +7,7 @@
 - **Administrative Changes**
   - Cross-Tabs admin panel added
     - Lists information about demographics of enrollment per type of referral source
+- Common Data Model Version 2.0 exports implemented
 
 ### Enhancements
 
