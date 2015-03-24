@@ -1,4 +1,8 @@
 /* 5.0 */
+.full-survey-container:not(#simple-survey) {
+  #make-it-exciting { display: none; }
+  #make-it-simple { display: block; }
+}
 .survey-container {
   padding:0;
   background-color: transparent;
