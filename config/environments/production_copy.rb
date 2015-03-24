@@ -1,8 +1,30 @@
 =begin
+    cd ~/dumps
+    pg_dump -h pgsql.dipr.partners.org -U myapnea_production myapnea_production > myapnea_production.sql
+    mv myapnea_production.sql myapnea_production_yyyymmdd_hhmm.sql
+
+    scp pwm4@myapnea.dipr.partners.org:/PHShome/pwm4/dumps/myapnea_production_yyyymmdd_hhmm.sql ~/dumps
+
+
+    gedit myapnea_production_yyyymmdd_hhmm.sql
+    # replace myapnea_production with myapnea and save
+
     bundle exec rake db:drop RAILS_ENV=production_copy
     bundle exec rake db:create RAILS_ENV=production_copy
-    psql -U postgres -d myapnea_production_copy -f /home/pwm4/dumps/myapnea_production-20150305-1300.sql
+    psql -U postgres -d myapnea_production_copy -f /home/pwm4/dumps/myapnea_production_20150312_1500.sql
     bundle exec rake db:migrate RAILS_ENV=production_copy
+
+    rails c production_copy
+
+
+    u = User.first
+    u.password = "password"
+    u.save
+    u.reload
+    pw = u.encrypted_password
+    User.update_all(encrypted_password: pw)
+
+    ## Only if changes need to be appended
     bundle exec rake surveys:refresh RAILS_ENV=production_copy
     bundle exec rake surveys:load["about-me"] RAILS_ENV=production_copy
     bundle exec rake surveys:load["about-my-family"] RAILS_ENV=production_copy
@@ -14,6 +36,8 @@
     bundle exec rake surveys:load["my-quality-of-life"] RAILS_ENV=production_copy
     bundle exec rake surveys:load["my-sleep-apnea-treatment"] RAILS_ENV=production_copy
     bundle exec rake surveys:load["my-sleep-apnea"] RAILS_ENV=production_copy
+
+    rails s -e production_copy
 =end
 
 Rails.application.configure do

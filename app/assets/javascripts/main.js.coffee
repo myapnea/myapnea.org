@@ -1,4 +1,5 @@
-Turbolinks.enableProgressBar();
+if typeof Turbolinks isnt 'undefined' and Turbolinks.supported
+  Turbolinks.enableProgressBar();
 
 @mainLoader = () ->
   $("select[rel=chosen]").chosen

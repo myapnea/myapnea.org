@@ -18,10 +18,11 @@ class Topic < ActiveRecord::Base
   scope :pending_review, -> { where('topics.status = ? or topics.id IN (select posts.topic_id from posts where posts.deleted = ? and posts.status = ?)', 'pending_review', false, 'pending_review') }
 
   # Model Validation
-  validates_presence_of :name, :user_id, :forum_id
-  validates_uniqueness_of :slug, scope: [ :deleted, :forum_id ], allow_blank: true
-  validates_format_of :slug, with: /\A[a-z][a-z0-9\-]*\Z/
+  validates_presence_of :name, :user_id, :forum_id, message: "The title cannot be blank."
+  validates_uniqueness_of :slug, scope: [ :deleted, :forum_id ], allow_blank: true, message: "This topic title already exists in this forum."
+  validates_format_of :slug, with: /\A[a-z][a-z0-9\-]*\Z/, message: "The format of the slug is invalid."
   validates_presence_of :description, if: :requires_description?
+  validates_exclusion_of :slug, in: %w(new), message: "This topic slug is restricted."
 
   # Model Relationships
   belongs_to :user
@@ -110,7 +111,7 @@ class Topic < ActiveRecord::Base
     if self.new_record?
       self.slug = self.name.parameterize
       self.slug = 't' + self.slug unless self.slug.first.to_s.downcase.in?(('a'..'z'))
-      if Topic.current.where(forum_id: self.forum_id, slug: self.slug).count > 0
+      if (Topic.current.where(forum_id: self.forum_id, slug: self.slug).count > 0) or self.slug == 'new'
         self.slug += "-#{SecureRandom.hex(8)}"
       end
     end

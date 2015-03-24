@@ -106,7 +106,7 @@
       .row.reset-layout{ style: 'margin-top: 15px;'}
         .col-xs-1
         .col-md-11.col-xs-10.col-xs-offset-1.col-md-offset-0
-          = f.submit "Comment", class: 'btn btn-primary'
+          = f.submit "Comment", class: 'btn btn-primary', data: { disable_with: "Posting comment..." }
 
     = render partial: 'topics/subscribe_unsubscribe', locals: { topic: @topic }
   - else

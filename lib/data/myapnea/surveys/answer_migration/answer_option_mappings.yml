@@ -1349,30 +1349,30 @@
 # age-of-diagnosis : 492 : age_of_diagnosis
 # 1 : 0-19 years old | 2 : 20-29 years old | 3 : 30-39 years old | 4 : 40-49 years old | 5 : 50-59 years old | 6 : 60-69 years old | 7 : Over 70 years old | 8 : Prefer not to answer
 - old_value_min: 0
-  old_value_max: 20
+  old_value_max: 240
   new_template_name: age_of_diagnosis
   new_option_value: 1 # 0-19 years old
-- old_value_min: 20
-  old_value_max: 30
+- old_value_min: 240
+  old_value_max: 360
   new_template_name: age_of_diagnosis
   new_option_value: 2 # 20-29 years old
-- old_value_min: 30
-  old_value_max: 40
+- old_value_min: 360
+  old_value_max: 480
   new_template_name: age_of_diagnosis
   new_option_value: 3 # 30-39 years old
-- old_value_min: 40
-  old_value_max: 50
+- old_value_min: 480
+  old_value_max: 600
   new_template_name: age_of_diagnosis
   new_option_value: 4 # 40-49 years old
-- old_value_min: 50
-  old_value_max: 60
+- old_value_min: 600
+  old_value_max: 720
   new_template_name: age_of_diagnosis
   new_option_value: 5 # 50-59 years old
-- old_value_min: 60
-  old_value_max: 70
+- old_value_min: 720
+  old_value_max: 840
   new_template_name: age_of_diagnosis
   new_option_value: 6 # 60-69 years old
-- old_value_min: 70
+- old_value_min: 840
   old_value_max: INFINITY
   new_template_name: age_of_diagnosis
   new_option_value: 7 # Over 70 years old
