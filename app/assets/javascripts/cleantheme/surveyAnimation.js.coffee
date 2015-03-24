@@ -178,7 +178,14 @@
   #####################
 
   $("body").keydown (e) ->
-    return if $("[data-object~='full-survey-container']").attr("id") is "simple-survey"
+    if $("[data-object~='full-survey-container']").attr("id") is "simple-survey"
+      if $(".survey-custom-date").is(":focus")
+        e = e || window.event
+        keyCode = if window.event then e.which else e.keyCode
+        if keyCode is 13
+          $(".survey-custom-date").blur()
+          return
+      return
     e = e || window.event
     keyCode = if window.event then e.which else e.keyCode
     if $('.survey-container').length
@@ -275,6 +282,7 @@
     if $(this).hasClass "survey-custom-date"
       dateStr = $(this).val()
       if validateDate(dateStr) == "" and validateOver18(dateStr) == ""
+        console.log "handling date"
         target = event.target or event.srcElement
         handleChangedValue($(target))
     else
@@ -291,11 +299,11 @@
 
   $("[data-object~='survey-submit-btn']").click (e) ->
     e.stopPropagation()
-    $.post($(this).data("path"),
-      {answer_session_id: $(this).data("answer-session-id")}, (data) ->
-        console.log data
-    )
     if checkCompletion()
+      $.post($(this).data("path"),
+        {answer_session_id: $(this).data("answer-session-id")}, (data) ->
+          console.log data
+      )
       $(this).addClass 'hidden'
       $("[data-object~='survey-submit-congratulations-container']").removeClass 'hidden'
       setActive($(this).parents('.survey-container'))
@@ -309,6 +317,9 @@
   @checkCompletion = () ->
     numberSelectors = $("[data-object~='survey-indicator']").length
     numberCompletedSelectors = $("[data-object~='survey-indicator'].complete").length + $("[data-object~='survey-indicator'].locked").length
+    if $("[data-object~='date--error-message']").length > 0 and $("[data-object~='date--error-message']").html() != ""
+      console.log "date error exists"
+      return false
     if numberSelectors == numberCompletedSelectors
       return true
     else

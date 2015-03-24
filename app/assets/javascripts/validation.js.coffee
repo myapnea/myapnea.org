@@ -97,7 +97,7 @@
   @validateDate = (dateString) ->
     if dateString.length == 0
       return ""
-    if(!/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(dateString))
+    if !(/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(dateString))
       return "Please use the mm/dd/yyyy format when entering your date of birth."
 
     parts = dateString.split("/")
