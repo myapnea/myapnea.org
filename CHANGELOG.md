@@ -1,4 +1,4 @@
-## 5.2.0
+## 5.2.0 (March 25, 2015)
 
 ### Enhancements
 - **Forum Changes**
