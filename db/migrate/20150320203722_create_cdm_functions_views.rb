@@ -5,6 +5,7 @@ class CreateCdmFunctionsViews < ActiveRecord::Migration
     execute function_sql(timestamp, :pcornet_unique_id)
     execute function_sql(timestamp, :pcornet_loinc)
 
+    timestamp = '20150324223004'
     execute view_sql(timestamp, :cdm_demographic)
     execute view_sql(timestamp, :cdm_vital)
     execute view_sql(timestamp, :cdm_enrollment)
