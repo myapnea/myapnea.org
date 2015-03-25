@@ -18,8 +18,6 @@ current_weight_updated = false
     output_AHI_change(scatter_pt[0], scatter_pt[1])
 
 
-
-
   $(document).on 'click', "[data-object~='calculate-minimum-weight']", () ->
     $("#desired-weight").val minimum_healthy_weight(calculate_height())
     calculate_predicted_ahi_change()
@@ -76,7 +74,7 @@ calculate_scatter_position = () ->
 
 output_AHI_change = (x,y) ->
   $("#ahi").removeClass "hidden"
-  draw_ahi_graph2()
+  draw_ahi_graph2(x)
 
 
 draw_bmi_graph = () ->
@@ -210,7 +208,8 @@ draw_ahi_graph = () ->
   window.ya = ya
 
 
-draw_ahi_graph2 = () ->
+draw_ahi_graph2 = (x1) ->
+  x1 = Math.round(x1)
   # x = [ - 20, -19, -18, -17, -16, -15, -14, -13, -12, -11, -10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
   x = [ - 20, -19, -18, -17, -16, -15, -14, -13, -12, -11, -10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0]
   data = []
@@ -266,6 +265,9 @@ draw_ahi_graph2 = () ->
     .attr("cx", (d) -> xa(d.weight_change) + 15)
     .attr("cy", (d) -> ya(d.ahi_change))
     .attr("r", 5)
+    .style("fill", "#1765BC")
+  .filter((d) -> d.weight_change == x1)
+    .style("fill", "#ffa400")
 
   svg.selectAll("text").data(data)
     .enter().append("text")
