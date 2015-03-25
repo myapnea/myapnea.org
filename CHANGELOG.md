@@ -3,6 +3,7 @@
 ### Enhancements
 - **Forum Changes**
   - Submitting a post on a topic now disables the button to prevent double-posting
+  - Images in forum posts now scale correctly
 
 ## 5.1.0 (March 13, 2015)
 
