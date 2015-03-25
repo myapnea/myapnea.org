@@ -31,7 +31,7 @@
         People with this BMI are considered to be
         %span.f500= bmi_category(bmi(72, 160))
       %svg.chart
-  #bmi-ahi-results-container.col-sm-7
+  #bmi-ahi-results-container.col-sm-7.hidden
     .panel{ style: 'margin-top:20px; height: 100%;' }
       .panel-heading
         %h4 Effects of Weight Change on AHI
@@ -53,7 +53,7 @@
             %h5 Possible AHI Change:
           .col-md-8
             %h5#predicted-change
-        #ahi.row.reset-layout
+        #ahi.row.reset-layout.hidden
           #ahi-graph.col-md-10
             %svg.chart
             %cite.notice.text-muted

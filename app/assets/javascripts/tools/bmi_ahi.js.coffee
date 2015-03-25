@@ -2,7 +2,6 @@ feet_updated = false
 inches_updated = false
 current_weight_updated = false
 @bmiAHICalculatorReady = () ->
-  draw_ahi_graph2()
   $(document).on 'change', '#desired-weight', () ->
     calculate_predicted_ahi_change()
   $(document).on 'change', '#my-height-feet', () ->
@@ -15,12 +14,18 @@ current_weight_updated = false
     current_weight_updated = true
     calculate_bmi()
   $(document).on 'change', '#desired-weight', () ->
-    output_AHI_change(weight_vs_ahi(parseFloat($("#my-weight").val()), parseFloat($("#desired-weight").val())))
+    scatter_pt = calculate_scatter_position()
+    output_AHI_change(scatter_pt[0], scatter_pt[1])
+
+
+
 
   $(document).on 'click', "[data-object~='calculate-minimum-weight']", () ->
     $("#desired-weight").val minimum_healthy_weight(calculate_height())
     calculate_predicted_ahi_change()
-    output_AHI_change(weight_vs_ahi(parseFloat($("#my-weight").val()), parseFloat($("#desired-weight").val())))
+    scatter_pt = calculate_scatter_position()
+    output_AHI_change(scatter_pt[0], scatter_pt[1])
+
 
 calculate_predicted_ahi_change = () ->
   height = calculate_height()
@@ -51,7 +56,6 @@ calculate_bmi = () ->
     $('#bmi-graph svg.chart').html("")
     draw_bmi_graph()
     $("#bmi-ahi-results-container").removeClass "hidden"
-    draw_ahi_graph()
 
 weight_vs_ahi = (old_weight, new_weight) ->
   weight_change = ((new_weight-old_weight)/old_weight) * 100
@@ -63,14 +67,22 @@ get_bmi = (height, weight) ->
 minimum_healthy_weight = (height) ->
   Math.round(25 * (height ** 2) / 703)
 
-output_AHI_change = (ahi) ->
-  console.log ahi
+calculate_scatter_position = () ->
+  old_w = parseFloat($("#my-weight").val())
+  new_w = parseFloat($("#desired-weight").val())
+  weight_change_percent = (new_w - old_w)/old_w * 100
+  ahi = weight_vs_ahi(old_w, new_w)
+  return [weight_change_percent, ahi]
+
+output_AHI_change = (x,y) ->
+  $("#ahi").removeClass "hidden"
+  draw_ahi_graph2()
 
 
 draw_bmi_graph = () ->
   data = [
     { label: "Underweight", color: "underweight", from: 0, to: 18.5 },
-    { label: "Normal weight", color: "normal", from: 18.5, to: 25 },
+    { label: "Normal", color: "normal", from: 18.5, to: 25 },
     { label: "Overweight", color: "overweight", from: 25, to: 30 },
     { label: "Obese", color: "obese", from: 30, to: 45 },
   ]
