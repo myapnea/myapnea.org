@@ -8,7 +8,7 @@ module ToolsHelper
     if bmi < 18.5
       "Underweight"
     elsif bmi < 25
-      "Normal"
+      "Normal weight"
     elsif bmi < 30
       "Overweight"
     else

@@ -7,7 +7,7 @@
     #bmi-height.row.list-group-item
       .col-xs-6
         %h4
-          How tall are you?
+          What is your height?
       .col-xs-6
         = select_tag 'feet', options_for_select(0..8), include_blank: true, class: 'bmi-height-select', id: 'my-height-feet', data: { object: 'feet-input' }
         %label.select-label{ for: 'feet'} feet
