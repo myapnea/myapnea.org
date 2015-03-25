@@ -1,13 +1,14 @@
-// OPTIONS FOR RADIO INPUT - MULTIPLE
-.survey-container.active .panel .input-container .multiple-question-container.current {
-  background-color: #b1d2f6;
-  background-color: transparentize(#b1d2f6, .9);
-  border-radius:20px;
-}
-.input-container .multiple-question-container {
-  margin-bottom:25px;
-  h4 {
-    color: black; color: rgba(0,0,0,.7);
+.full-survey-container:not(#simple-survey) {
+  .survey-container.active .panel .input-container .multiple-question-container.current {
+    background-color: #b1d2f6;
+    background-color: transparentize(#b1d2f6, .9);
+    border-radius:20px;
+  }
+  .input-container .multiple-question-container {
+    margin-bottom:25px;
+    h4 {
+      color: black; color: rgba(0,0,0,.7);
+    }
   }
 }
 
