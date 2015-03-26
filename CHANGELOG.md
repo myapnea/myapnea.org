@@ -8,7 +8,9 @@
   - Cross-Tabs admin panel added
     - Lists information about demographics of enrollment per type of referral source
 - Common Data Model Version 2.0 exports implemented
-
+- System for adding custom validations for specific Survey questions
+  - Date of birth validation
+  
 ### Enhancements
 - **Gem Changes**
   - Updated to rails 4.2.1

@@ -84,3 +84,10 @@ number2:
   display_type: number_input
   answer_templates:
   - number_of_hours
+
+text1:
+  text_en: What is this date?
+  slug: date_of_birth
+  display_type: text_input
+  answer_templates:
+  - text

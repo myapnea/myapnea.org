@@ -73,7 +73,7 @@ class SurveysController < ApplicationController
     end
 
     respond_to do |format|
-      format.json { render json: {completed: @answer.complete?, answer: @answer, value: @answer.string_value, errors: @answer.errors.full_messages } }
+      format.json { render json: {completed: @answer.complete?, invalid: @answer.invalid?, answer: @answer, value: @answer.string_value, errors: @answer.errors.full_messages, validation_errors: @answer.validation_errors } }
     end
 
   end

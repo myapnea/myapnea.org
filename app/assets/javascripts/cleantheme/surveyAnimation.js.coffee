@@ -84,6 +84,7 @@
   @submitAnswer = (inputElement) ->
     questionForm = inputElement.closest("form")
     $.post(questionForm.attr("action"), questionForm.serialize(), (data) ->
+      console.log data
       indicator = $(questionForm).data('object').slice(-1)
       indicatorSelector = $("[data-object~='survey-indicator'][data-target~='"+indicator+"']")
       if data['completed']
@@ -113,9 +114,9 @@
     return if $("[data-object~='full-survey-container']").attr("id") is "simple-survey"
     e.stopPropagation()
     e.preventDefault()
-    unless $(this).find("input:checkbox").prop 'disabled'
-      $(this).find('input:checkbox').prop "checked", !$(this).find('input:checkbox').prop("checked")
-      handleChangedValue($(this))
+    #unless $(this).find("input:checkbox").prop 'disabled'
+    $(this).find('input:checkbox').prop "checked", !$(this).find('input:checkbox').prop("checked")
+    handleChangedValue($(this))
     return
 
   # Respond to click events on conditional events - note that this only works on checkbox inputs
@@ -281,7 +282,7 @@
   $(".survey-container input").not(":radio").change (event) ->
     if $(this).hasClass "survey-custom-date"
       dateStr = $(this).val()
-      if validateDate(dateStr) == "" and validateOver18(dateStr) == ""
+      if true #validateDate(dateStr) == "" and validateOver18(dateStr) == ""
         console.log "handling date"
         target = event.target or event.srcElement
         handleChangedValue($(target))
