@@ -84,7 +84,7 @@
   @submitAnswer = (inputElement) ->
     questionForm = inputElement.closest("form")
     $.post(questionForm.attr("action"), questionForm.serialize(), (data) ->
-      console.log data
+      #console.log data
       indicator = $(questionForm).data('object').slice(-1)
       indicatorSelector = $("[data-object~='survey-indicator'][data-target~='"+indicator+"']")
       if data['completed']
@@ -283,7 +283,7 @@
     if $(this).hasClass "survey-custom-date"
       dateStr = $(this).val()
       if true #validateDate(dateStr) == "" and validateOver18(dateStr) == ""
-        console.log "handling date"
+        #console.log "handling date"
         target = event.target or event.srcElement
         handleChangedValue($(target))
     else
@@ -303,7 +303,7 @@
     if checkCompletion()
       $.post($(this).data("path"),
         {answer_session_id: $(this).data("answer-session-id")}, (data) ->
-          console.log data
+          #console.log data
       )
       $(this).addClass 'hidden'
       $("[data-object~='survey-submit-congratulations-container']").removeClass 'hidden'
@@ -319,7 +319,7 @@
     numberSelectors = $("[data-object~='survey-indicator']").length
     numberCompletedSelectors = $("[data-object~='survey-indicator'].complete").length + $("[data-object~='survey-indicator'].locked").length
     if $("[data-object~='date--error-message']").length > 0 and $("[data-object~='date--error-message']").html() != ""
-      console.log "date error exists"
+      #console.log "date error exists"
       return false
     if numberSelectors == numberCompletedSelectors
       return true
