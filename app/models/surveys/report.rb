@@ -1,4 +1,6 @@
 class Report
+
+  attr_reader :survey, :user, :encounter
   # When creating a report, you create it for:
   # - a user (normal, researcher, etc.)
   # - an encounter (list, possibly)
@@ -13,8 +15,41 @@ class Report
   # - specific user
   #
 
-  # For now, group functions by survey
-  def user
+  def initialize(survey, user, encounter)
+    @survey = survey
+    @user = user
+    @encounter = encounter
+  end
+
+
+  def report_data(section)
+
+  end
+
+
+  ## Accessor
+
+
+  ## Custom Report Methods: return tabular data
+  ## Naming convention: <survey slug>_<section>
+
+  def about_me_sex
+    SurveyAnswerFrequency.find_by
+  end
+
+  def about_me_race
+
+  end
+
+  def about_me_hispanic
+
+  end
+
+  def about_me_education
+
+  end
+
+  def about_me_income
 
   end
 
