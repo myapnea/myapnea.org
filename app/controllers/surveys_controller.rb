@@ -80,7 +80,7 @@ class SurveysController < ApplicationController
 
   def submit
     @answer_session = AnswerSession.find(params[:answer_session_id])
-    @answer_session.lock_answers if @answer_session.completed?
+    @answer_session.lock if @answer_session.completed?
 
     render json: { locked: @answer_session.locked? }
   end
