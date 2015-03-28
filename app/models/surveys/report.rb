@@ -93,19 +93,23 @@ class Report < ActiveRecord::Base
   # - specific user
   #
 
-  def report_data(section)
 
+  def self.tabular_data(group_by)
+    # survey_slug, question_slug, answer_template_name, encounter, value, answer_option_text, answer_count, total_count, frequency
+    self.where(question_slug: 'sex').group('survey_slug, question_slug, answer_template_name, encounter,value, answer_option_text').select("survey_slug, question_slug, answer_template_name,encounter,value,answer_option_text,count(answer_value_id) as answer_count")
   end
 
 
-  ## Accessor
+
 
 
   ## Custom Report Methods: return tabular data
   ## Naming convention: <survey slug>_<section>
 
-  def about_me_sex
-    SurveyAnswerFrequency.find_by
+  def self.about_me_sex
+    self.where(survey_slug: 'about-me', question_slug: 'sex', answer_template_name: 'sex')
+        .group('encounter,answer_option_text')
+        .select("encounter,answer_option_text,count(answer_value_id) as answer_count")
   end
 
   def about_me_race
