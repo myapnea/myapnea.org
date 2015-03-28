@@ -9,7 +9,7 @@ class AnswerSession < ActiveRecord::Base
   belongs_to :user
   has_many :answer_edges
   has_many :answers, -> { where deleted: false }
-
+  has_many :reports
 
   # Validations
   # Unique in terms of survey/encounter

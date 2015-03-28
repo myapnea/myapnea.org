@@ -24,6 +24,7 @@ class Survey < ActiveRecord::Base
   has_many :survey_question_orders, -> { order "question_number asc" }
   has_many :ordered_questions, through: :survey_question_orders, foreign_key: "question_id", class_name: "Question", source: :question
   has_many :survey_answer_frequencies
+  has_many :reports
 
   # Named scopes
   scope :viewable, -> { where(status: "show") }

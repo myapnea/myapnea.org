@@ -42,9 +42,43 @@
 =end
 
 
-class Report
+# Columns to filter or group on:
+# - created_at
+# - updated_at
+# - survey_slug
+# - question_slug
+# - answer_template_name
+# - encounter
+# - question_state
+# - locked
+# - preferred_not_to_answer
 
-  attr_reader :survey, :user, :encounter
+# Foreign keys (also can be filtered/grouped on)
+# - answer_value_id
+# - answer_option_id
+# - answer_template_id
+# - answer_id
+# - question_id
+# - answer_session_id
+# - user_id
+# - survey_id
+
+# Columns to read or aggregate:
+# - value
+# - answer_option_text
+
+class Report < ActiveRecord::Base
+  self.table_name = 'report_master'
+
+  belongs_to :answer_value
+  belongs_to :answer_option
+  belongs_to :answer_template
+  belongs_to :answer
+  belongs_to :question
+  belongs_to :answer_session
+  belongs_to :user
+  belongs_to :survey
+
   # When creating a report, you create it for:
   # - a user (normal, researcher, etc.)
   # - an encounter (list, possibly)
@@ -58,13 +92,6 @@ class Report
   # - encounter
   # - specific user
   #
-
-  def initialize(survey, user, encounter)
-    @survey = survey
-    @user = user
-    @encounter = encounter
-  end
-
 
   def report_data(section)
 

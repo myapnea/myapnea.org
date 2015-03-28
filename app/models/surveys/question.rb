@@ -6,6 +6,7 @@ class Question < ActiveRecord::Base
   belongs_to :question_help_message
   has_many :survey_answer_frequencies
   has_many :votes
+  has_many :reports
 
   # Concerns
   include Localizable

@@ -8,7 +8,7 @@ class Answer < ActiveRecord::Base
   belongs_to :answer_session
   has_one :in_edge, class_name: "AnswerEdge", foreign_key: "child_answer_id", dependent: :destroy
   has_one :out_edge, class_name: "AnswerEdge", foreign_key: "parent_answer_id", dependent: :destroy
-  belongs_to :user # When necessary
+  has_many :reports
 
   # Scopes
   scope :incomplete, -> { where(state: 'incomplete')}
