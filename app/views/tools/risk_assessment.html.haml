@@ -123,6 +123,14 @@
           %button.btn.btn-success{ data: { object: 'submit-risk-assessment'} }
             %h3 Check my Risk
   .row.reset-layout.primary-orange-bcg
-    .col-sm-6
-      %p.small
-        From StopBang.ca
+    .col-sm-4
+    .col-sm-4
+    .col-sm-4
+      %p#stopbang-accreditation.small.text-right
+        = link_to 'Stop-Bang', 'http://www.stopbang.ca'
+        is the property of 
+        = link_to 'University Health Network', 'http://www.uhn.ca'
+        and is licensed for use by
+        = link_to 'Partners Healthcare', 'http://www.partners.org'
+        and 
+        = link_to('MyApnea.Org', 'http://www.myapnea.org') + '.'
