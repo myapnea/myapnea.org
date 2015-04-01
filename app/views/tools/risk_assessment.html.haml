@@ -34,16 +34,20 @@
               %h4
                 How tall are you?
             .col-xs-6
-              = select_tag 'feet', options_for_select(0..8), include_blank: true, data: { object: 'feet-input' }
-              %label.select-label{ for: 'feet'} feet
-              = select_tag 'inches', options_for_select(0..11), include_blank: true, data: { object: 'inches-input' }
-              %label.select-label{ for: 'inches' } inch(es)
+              .row.reset-layout
+                .col-sm-6.no-padding
+                  = select_tag 'feet', options_for_select(0..8), include_blank: true, data: { object: 'feet-input' }
+                  %label.select-label{ for: 'feet'} feet
+                .col-sm-6.no-padding
+                  = select_tag 'inches', options_for_select(0..11), include_blank: true, data: { object: 'inches-input' }
+                  %label.select-label{ for: 'inches' } inches
           #stopbang-weight.row.reset-layout
             .col-xs-6
               %h4
                 What is your weight?
             .col-xs-6
               = number_field_tag 'weight', nil, class: 'number-input', data: { object: 'weight-input' }
+              %label.f300{ for: 'weight' } pounds
           .row.reset-layout
             .col-xs-6
               %h4 Your BMI:
