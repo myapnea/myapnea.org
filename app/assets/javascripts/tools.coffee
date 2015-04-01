@@ -5,7 +5,6 @@ feet_updated = false
 inches_updated = false
 weight_updated = false
 @riskAssessmentReady = () ->
-  ### Initialize ###
 
   ### Radio input clicks ###
   $('#risk-assessment-container .radio-container').click (event) ->
@@ -14,6 +13,8 @@ weight_updated = false
   ### Submit ###
   $("[data-object~='submit-risk-assessment']").click (e) ->
     params = submitRiskAssessment()
+    if params == false
+      e.preventDefault()
 
   ### Track changes of BMI categories ###
   $("[data-object~='feet-input']").change (e) ->
@@ -59,7 +60,7 @@ weight_updated = false
   stopbang["b"] = if bmi > 35 then 1 else 0
   stopbang["a"] = if document.getElementById('age').value > 50 then 1 else 0
   stopbang["n"] = if largeNeck then 1 else 0
-  stopbang["g"] = if male.checked then 1 else 0
+  stopbang["g"] = if male then 1 else 0
 
   stopbang_score = 0
   for k of stopbang
