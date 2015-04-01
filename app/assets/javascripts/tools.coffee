@@ -6,8 +6,6 @@ inches_updated = false
 weight_updated = false
 @riskAssessmentReady = () ->
   ### Initialize ###
-  updateSystolicLabel(document.getElementById('systolic').value)
-  updateDiastolicLabel(document.getElementById('diastolic').value)
 
   ### Radio input clicks ###
   $('#risk-assessment-container .radio-container').click (event) ->
@@ -43,13 +41,11 @@ weight_updated = false
 
 @submitRiskAssessment = () ->
 
-  highbloodpressure = (document.getElementById('systolic').value > 140) or (document.getElementById('diastolic').value > 90)
-
   stop = { "s": 0, "t": 0, "o" : 0, "p" : 0 }
   stop["s"] = 1 if document.getElementById('snoring_yes').checked
   stop["t"] = 1 if document.getElementById('tiredness_yes').checked
   stop["o"] = 1 if document.getElementById('observation_yes').checked
-  stop["p"] = 1 if highbloodpressure
+  stop["p"] = 1 if document.getElementById('hbp_yes').checked
 
   stop_score = 0
   for k of stop
