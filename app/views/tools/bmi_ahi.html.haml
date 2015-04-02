@@ -49,6 +49,13 @@
           .col-md-8
             %h5#predicted-bmi
         .row
+          .col-sm-10.col-sm-offset-1
+            %p#bmi-change-result-text.hidden.lead{ style: 'font-size: 16px; '}
+              Research has show that the risk of obstructive sleep apnea (OSA) is much higher in people with high BMI, and a strong relationship exists between increases in BMI and increases in the severity of OSA.
+              %br
+              %br
+              %span#bmi-change-result-custom-text.darkerer-blue
+        .row{ style: 'margin: 20px' }
           %cite.notice.text-muted
             %a{:href => ""} Peppard et al. Longitudinal Study of Moderate Weight Change and Sleep-Disordered Breathing. JAMA. 2000;284(23):3015-3021.
 

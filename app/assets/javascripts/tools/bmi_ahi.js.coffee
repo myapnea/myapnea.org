@@ -2,8 +2,6 @@ feet_updated = false
 inches_updated = false
 current_weight_updated = false
 @bmiAHICalculatorReady = () ->
-  $(document).on 'change', '#desired-weight', () ->
-    calculate_predicted_ahi_change()
   $(document).on 'change', '#my-height-feet', () ->
     feet_updated = true
     calculate_bmi()
@@ -15,11 +13,20 @@ current_weight_updated = false
     calculate_bmi()
   $(document).on 'change', '#desired-weight', () ->
     # CALCULATE OUTPUT
+    output_BMI_changes()
 
   $(document).on 'click', "[data-object~='calculate-minimum-weight']", () ->
     $("#desired-weight").val minimum_healthy_weight(calculate_height(), calculate_bmi())
     # CALCULATE OUTPUT
+    output_BMI_changes()
 
+
+output_BMI_changes = () ->
+  old_BMI = get_bmi(calculate_height(), parseFloat($("#my-weight").val()))
+  new_BMI = get_bmi(calculate_height(), parseFloat($("#desired-weight").val()))
+  $("#predicted-bmi").html(new_BMI)
+  $("#bmi-change-result-text").removeClass 'hidden'
+  $("#bmi-change-result-custom-text").html(determine_result_description(calculate_BMI_category(old_BMI), calculate_BMI_category(new_BMI)))
 
 calculate_height = () ->
   height_feet = parseFloat($("#my-height-feet").val())
@@ -60,13 +67,13 @@ minimum_healthy_weight = (height, bmi) ->
 
 calculate_desired_BMI = (bmi) ->
   if bmi < 18.5
-    return 18.6
+    return 19
   else if bmi < 25
     return bmi
   else if bmi < 30
-    return 24.9
+    return 24.4
   else
-    return 29.9
+    return 29.4
 
 calculate_BMI_category = (bmi) ->
   if bmi < 18.5
@@ -77,6 +84,44 @@ calculate_BMI_category = (bmi) ->
     return "Overweight"
   else
     return "Obese"
+
+determine_result_description = (bmiC1, bmiC2) ->
+  if bmiC1 == bmiC2
+    return "Try entering a new weight to see how it will affect your BMI, and how it might affect the severity of your sleep apnea."
+  # Obese patients
+  if bmiC1 == "Obese"
+    result = "People with sleep apnea and a BMI greater than 30 are much more likely to develop severe OSA. "
+    if bmiC2 == "Overweight"
+      result += "By decreasing your weight to this level, you would greatly reduce the risk of your OSA being or becoming severe."
+    else if bmiC2 == "Normal weight"
+      result += "By decreasing your weight this much, you would accomplish having a normal BMI, and extremely lower the likelihood of your OSA being severe."
+    else if bmiC2 == "Underweight"
+      result += "By decreasing your weight this much, you would be much less likely to develop severe OSA. "
+      result += "However, keep in mind that losing a drastic amount of weight can have alternate negative side effects."
+  # Overweight patients
+  else if bmiC1 == "Overweight"
+    result = "People with sleep apnea and a BMI between 25 and 30 are most likely to develop moderate sleep apnea, but also at significant risk for severe OSA. "
+    if bmiC2 == "Obese"
+      result += "Gaining weight will increase your chances of developing severe OSA."
+    else if bmiC2 == "Normal weight"
+      result += "By losing this much weight, you could decrease the severity of your OSA."
+    else if bmiC2 == "Underweight"
+      result += "By losing this much weight, you could decrease the severity of your OSA. "
+      result += "However, keep in mind that losing a drastic amount of weight can have alternate negative side effects."
+  # Normal weight patients
+  else if bmiC1 == "Normal weight"
+    result = "People in the normal weight range for their height are least likely to develop severe sleep apnea. "
+    if bmiC2 == "Obese" or bmiC2 == "Overweight"
+      result += "Gaining weight will increase your risk for severe sleep apnea. You would do best to maintain your current weight."
+    else if bmiC2 == "Underweight"
+      result += "However, keep in mind that losing a drastic amount of weight can have alternate negative side effects."
+  # Underweight patients
+  else if bmiC1 == "Underweight"
+    result = "People with a BMI below 19 are considered underweight. Being drastically underweight can have negative side effects that are not necessarily associated with your sleep apnea. "
+    if bmiC2 == "Obese" or bmiC2 == "Overweight"
+      result += "Gaining too much weight will increase your risk for severe sleep apnea. A normal weight category (BMI between 19 and 25) is generally preferred for lowest risk of severe OSA and best general health."
+    else if bmiC2 == "Normal weight"
+      result += "A normal weight category (BMI between 19 and 25) is generally preferred for lowest risk of severe OSA and best general health."
 
 draw_bmi_graph = () ->
   data = [
