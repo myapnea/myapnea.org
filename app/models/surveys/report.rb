@@ -68,8 +68,6 @@
 # - answer_option_text
 
 class Report < ActiveRecord::Base
-  self.table_name = 'report_master'
-
   belongs_to :answer_value
   belongs_to :answer_option
   belongs_to :answer_template
