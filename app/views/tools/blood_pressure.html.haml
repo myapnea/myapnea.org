@@ -1,0 +1,17 @@
+#stopbang-bp
+  #systolic-container.row.reset-layout
+    .col-xs-6
+      %h4
+        What is your systolic blood pressure?
+    .col-xs-6
+      = text_field_tag 'systolic_label', nil, maxlength: 3, onchange: 'updateSystolicRange(this.value)', oninput: 'updateSystolicRange(this.value)'
+      %label{ for: 'systolic_label' } mm Hg
+      = range_field_tag 'systolic', nil, in: 90...180, step: '1', onchange: 'updateSystolicLabel(this.value)', oninput: 'updateSystolicLabel(this.value)'
+  #diastolic-container.row.reset-layout
+    .col-xs-6
+      %h4.float-left
+        What is your systolic blood pressure?
+    .col-xs-6
+      = text_field_tag 'diastolic_label', nil, maxlength: 3, onchange: 'updateDiastolicRange(this.value)', oninput: 'updateDiastolicRange(this.value)'
+      %label{ for: 'diastolic' } mm Hg
+      = range_field_tag 'diastolic', nil, in: 50...120, step: '1', onchange: 'updateDiastolicLabel(this.value)', oninput: 'updateDiastolicLabel(this.value)'
