@@ -37,16 +37,16 @@ calculate_height = () ->
 calculate_bmi = () ->
   height = calculate_height()
   weight = parseFloat($("#my-weight").val())
-
+  bmi = get_bmi(height,weight)
   $("#bmi").html(get_bmi(height, weight))
-  $("#weight").html(weight + " pounds")
-  $("#bmi").data('bmi', get_bmi(height, weight))
+  $("#bmi").data('bmi', bmi)
+  $("#my-bmi-category").html(calculate_BMI_category(bmi))
   $("#current-weight").data("weight", weight)
-  $("#current-weight").html(weight + " pounds")
 
   # If all data is entered, show the BMI graph, the AHI graph,
   # and autocomplete necessary weight for healthy BMI (if applicable)
   if feet_updated and inches_updated and current_weight_updated
+    $("#my-bmi").removeClass 'hidden'
     output_BMI()
   return get_bmi(height,weight)
 

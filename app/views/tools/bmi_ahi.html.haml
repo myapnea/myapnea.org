@@ -22,15 +22,16 @@
         %label.select-label{ for: 'weight' } pounds
     #bmi-graph.row.list-group-item
       %h4 Your Calculated BMI:
-      %p.f300
-        From the height and weight you've provided, we've determined your
-        = link_to 'Body Mass Index', 'http://en.wikipedia.org/wiki/Body_mass_index'
-        to be:
-        %span#bmi.f500
-      %p.f300
-        People with this BMI are considered to be
-        %span.f500= bmi_category(bmi(72, 160))
-      %svg.chart
+      #my-bmi.hidden
+        %p.f300
+          From the height and weight you've provided, we've determined your
+          = link_to 'Body Mass Index', 'http://en.wikipedia.org/wiki/Body_mass_index'
+          to be:
+          %span#bmi.f500
+        %p.f300
+          People with this BMI are considered to be
+          %span#my-bmi-category.f500
+        %svg.chart
   #bmi-ahi-results-container.col-sm-7.hidden
     .panel{ style: 'margin-top:20px; height: 100%;' }
       .panel-heading
@@ -49,16 +50,18 @@
           .col-md-8
             %h5#predicted-bmi
         .row
-          .col-sm-10.col-sm-offset-1
-            %p#bmi-change-result-text.hidden.lead{ style: 'font-size: 16px; '}
+          .col-sm-12
+            %p#bmi-change-result-text.hidden.lead{ style: 'font-size: 18px; padding-left: 5px; padding-right: 5px'}
+              %br
               Research has show that the risk of obstructive sleep apnea (OSA) is much higher in people with high BMI, and a strong relationship exists between increases in BMI and increases in the severity of OSA.
               %br
               %br
               %span#bmi-change-result-custom-text.darkerer-blue
-        .row{ style: 'margin: 20px' }
-          %cite#bmi-change-result-citation.notice.text-muted.small.hidden
-            %a{:href => "http://www.archbronconeumol.org/en/obstructive-sleep-apnea-in-normal/articulo/90258886/"}
-              Quintas et al. "Obstructive sleep apnea in normal weight patients: Characteristics and comparison with overweight and obese patients." Archivos de Bronconeumología (English Edition) 49.12 (2013): 513-517.
+        .row
+          .col-sm-12
+            %cite#bmi-change-result-citation.notice.text-muted.small.hidden
+              %a{:href => "http://www.archbronconeumol.org/en/obstructive-sleep-apnea-in-normal/articulo/90258886/"}
+                Quintas et al. "Obstructive sleep apnea in normal weight patients: Characteristics and comparison with overweight and obese patients." Archivos de Bronconeumología (English Edition) 49.12 (2013): 513-517.
 
 
 
