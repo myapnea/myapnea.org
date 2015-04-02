@@ -9,7 +9,6 @@ class AnswerValidator
 
   def messages(answer)
     validate(answer)[:messages]
-
   end
 
   def validate(answer)
