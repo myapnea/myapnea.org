@@ -96,7 +96,7 @@ Rails.application.routes.draw do
   get 'sleep-apnea-and-bmi' => 'tools#bmi_ahi'
 
   # Discussion
-  match 'forums/terms_and_conditions', to: 'account#terms_and_conditions', via: :get, as: :terms_and_conditions
+  match 'forums/terms-and-conditions', to: 'account#terms_and_conditions', via: :get, as: :terms_and_conditions
 
   # Social Section
   match 'social', to: 'social#overview', via: :get, as: 'social' # show
@@ -116,7 +116,7 @@ Rails.application.routes.draw do
   match 'update_account', to: 'account#update', as: 'update_account', via: :patch
   match 'change_password', to: 'account#change_password', as: 'change_password', via: :patch
 
-  match 'terms_of_access', to: 'account#terms_of_access', as: :terms_of_access, via: [:get, :post]
+  match 'terms-of-access', to: 'account#terms_of_access', as: :terms_of_access, via: [:get, :post]
 
   # Governance
   get 'governance-policy', to: 'static#governance_policy', as: :governance_policy
