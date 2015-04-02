@@ -13,4 +13,4 @@ from answer_sessions ans
   left join answers a on ans.id = a.answer_session_id
 where ans.deleted = FALSE
       and a.deleted = FALSE
-group by ans.id;
+group by ans.user_id, ans.encounter, ans.created_at, ans.locked, ans.id;
