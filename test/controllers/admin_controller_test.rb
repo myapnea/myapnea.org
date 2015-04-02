@@ -68,7 +68,7 @@ class AdminControllerTest < ActionController::TestCase
   test "should get location report for admin" do
     login(users(:moderator_1))
 
-    get :admin_reports_location
+    get :location
     assert_response :success
   end
 
