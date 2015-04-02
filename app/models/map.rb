@@ -13,7 +13,7 @@ class Map
   end
 
   def self.update_existing_users!
-    User.all.each do |u|
+    User.all.order(:id).each do |u|
       if u.state_code.present? or u.country_code.present?
         Rails.logger.debug "USER ##{u.id} EXISTS: '#{u.state_code}' '#{u.country_code}'"
         next

@@ -11,6 +11,7 @@
   - Common Data Model Version 2.0 exports implemented
   - ESS export task added for reporting purposes
   - PROMIS export task added for reporting purposes
+  - Location Report added that shows membership by country and state
 - System for adding custom validations for specific Survey questions
   - Date of birth validation
 
