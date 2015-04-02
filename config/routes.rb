@@ -93,7 +93,7 @@ Rails.application.routes.draw do
   get 'sleep-apnea-risk-assessment' => 'tools#risk_assessment'
   post 'sleep-apnea-risk-assessment/results' => 'tools#risk_assessment_results'
   # Tools
-  get 'bmi_ahi' => 'tools#bmi_ahi'
+  get 'sleep-apnea-and-bmi' => 'tools#bmi_ahi'
 
   # Discussion
   match 'forums/terms_and_conditions', to: 'account#terms_and_conditions', via: :get, as: :terms_and_conditions
