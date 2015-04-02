@@ -118,6 +118,11 @@ Rails.application.routes.draw do
 
   match 'terms_of_access', to: 'account#terms_of_access', as: :terms_of_access, via: [:get, :post]
 
+  # Governance
+  get 'governance-policy', to: 'static#governance_policy', as: :governance_policy
+  get 'patient-engagement-panel-charter', to: 'static#PEP_charter', as: :pep_charter
+  get 'advisory-council-charter', to: 'static#AC_charter', as: :ac_charter
+
   # Admin Section
   get 'admin' => 'admin#dashboard'
   get 'admin/surveys' => 'admin#surveys', as: 'admin_surveys'
