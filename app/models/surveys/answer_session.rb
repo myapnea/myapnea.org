@@ -91,10 +91,15 @@ class AnswerSession < ActiveRecord::Base
     end
   end
 
-  def lock_answers
+  def lock
     answers.each do |answer|
       answer.update(state: "locked")
     end
+  end
+
+  def unlock
+    answers.each {|answer| answer.update(state: 'incomplete')}
+    update(locked: false)
   end
 
   ## Optimized (mostly)
