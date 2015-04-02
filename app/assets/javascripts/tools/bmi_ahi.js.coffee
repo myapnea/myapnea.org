@@ -19,7 +19,7 @@ current_weight_updated = false
 
 
   $(document).on 'click', "[data-object~='calculate-minimum-weight']", () ->
-    $("#desired-weight").val minimum_healthy_weight(calculate_height())
+    $("#desired-weight").val minimum_healthy_weight(calculate_height(), calculate_bmi())
     calculate_predicted_ahi_change()
     scatter_pt = calculate_scatter_position()
     output_AHI_change(scatter_pt[0], scatter_pt[1])
@@ -51,9 +51,13 @@ calculate_bmi = () ->
   # If all data is entered, show the BMI graph, the AHI graph,
   # and autocomplete necessary weight for healthy BMI (if applicable)
   if feet_updated and inches_updated and current_weight_updated
-    $('#bmi-graph svg.chart').html("")
-    draw_bmi_graph()
-    $("#bmi-ahi-results-container").removeClass "hidden"
+    output_BMI()
+  return get_bmi(height,weight)
+
+output_BMI = () ->
+  $('#bmi-graph svg.chart').html("")
+  draw_bmi_graph()
+  $("#bmi-ahi-results-container").removeClass "hidden"
 
 weight_vs_ahi = (old_weight, new_weight) ->
   weight_change = ((new_weight-old_weight)/old_weight) * 100
@@ -62,8 +66,12 @@ weight_vs_ahi = (old_weight, new_weight) ->
 get_bmi = (height, weight) ->
   Math.round((weight / (height ** 2)) * 703)
 
-minimum_healthy_weight = (height) ->
-  Math.round(25 * (height ** 2) / 703)
+minimum_healthy_weight = (height, bmi) ->
+  desired_bmi = calculate_desired_BMI(bmi)
+  if desired_bmi==bmi
+    return parseFloat($("#my-weight").val())
+  else
+    Math.round(desired_bmi * (height ** 2) / 703)
 
 calculate_scatter_position = () ->
   old_w = parseFloat($("#my-weight").val())
@@ -76,6 +84,25 @@ output_AHI_change = (x,y) ->
   $("#ahi").removeClass "hidden"
   draw_ahi_graph2(x)
 
+calculate_desired_BMI = (bmi) ->
+  if bmi < 18.5
+    return 18.6
+  else if bmi < 25
+    return bmi
+  else if bmi < 30
+    return 24.9
+  else
+    return 29.9
+
+calculate_BMI_category = (bmi) ->
+  if bmi < 18.5
+    return "Underweight"
+  else if bmi < 25
+    return "Normal weight"
+  else if bmi < 30
+    return "Overweight"
+  else
+    return "Obese"
 
 draw_bmi_graph = () ->
   data = [
@@ -134,7 +161,6 @@ draw_bmi_graph = () ->
     .attr("y2", h+1)
     .attr("stroke-width", 2)
     .attr("stroke", "black")
-
 
 
 draw_ahi_graph = () ->
