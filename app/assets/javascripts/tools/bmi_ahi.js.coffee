@@ -26,6 +26,7 @@ output_BMI_changes = () ->
   new_BMI = get_bmi(calculate_height(), parseFloat($("#desired-weight").val()))
   $("#predicted-bmi").html(new_BMI)
   $("#bmi-change-result-text").removeClass 'hidden'
+  $("#bmi-change-result-citation").removeClass 'hidden'
   $("#bmi-change-result-custom-text").html(determine_result_description(calculate_BMI_category(old_BMI), calculate_BMI_category(new_BMI)))
 
 calculate_height = () ->
