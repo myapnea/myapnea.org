@@ -1,5 +1,5 @@
 #container-left.no-js
-  - if current_user.accepted_update_at.blank? or current_user.accepted_update_at < DateTime.new(2015,04,02)
+  - if current_user and (current_user.accepted_update_at.blank? or current_user.accepted_update_at < DateTime.new(2015,04,02))
     #accept-update-container.alert.alert-info
       %button.close{"data-dismiss" => "alert"}
         &times;
