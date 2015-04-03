@@ -50,33 +50,35 @@
 
 .survey-report-container.panel
   .survey-report-question.rounded-top
-    %h3 What type of sleep study did you have when first diagnosed with sleep apnea?
+    - question = @survey.ordered_questions.where(slug: 'diagnostic-study').first
+    %h3= question.text
   .survey-report-answer
     %p
       Your answer:
-      %span.f500= "A sleep study in a sleep lab/center"
+      %span.f500= @answer_session.answers.where(question_id: question.id).first.show_value
   .survey-report-info
+    - stats = Report.sleep_test_stats
     .row
       .col-xs-6
-        %h3.f300 Sleep Tests at Home
+        %h3.f300 Home Sleep Tests
       .col-xs-6
-        %h3.f300 Sleep Tests in a Sleep Lab
+        %h3.f300 Lab Sleep Tests
     %br
     .row
-      .col-xs-6
+      .col-sm-6
         %p.lead Used by
-        %h1.report-statistic= "37%"
+        %h1.report-statistic= "#{stats[:home_percent].round(1)}%"
         %p.lead of MyApnea members
         %br
         %p.lead
-          %span.darkerer-blue= "38%"
+          %span.darkerer-blue= "#{stats[:home_sat_percent].round(1)}%"
           of these members report satisfaction with their test
-      .col-xs-6
+      .col-sm-6
         %p.lead Used by
-        %h1.report-statistic= "63%"
+        %h1.report-statistic= "#{stats[:center_percent].round(1)}%"
         %p.lead of MyApnea members
         %br
         %p.lead
-          %span.darkerer-blue= "72%"
+          %span.darkerer-blue= "#{stats[:center_sat_percent].round(1)}%"
           of these members report satisfaction with their test
 

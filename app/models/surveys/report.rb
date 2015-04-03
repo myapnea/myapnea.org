@@ -291,6 +291,27 @@ class Report < ActiveRecord::Base
     by_symptom.sort{|a,b| b[:freq]<=>a[:freq]}
   end
 
+  def self.sleep_test_stats
+    test_query = Report.where(question_slug: 'diagnostic-study', locked: true, value: ['1', '2'])
+
+    total = test_query.count
+    home_percent = percentage(test_query.where(value: '1').count, total)
+    center_percent = percentage(test_query.where(value: '2').count, total)
+
+    home_as = test_query.where(value: '1').group(:answer_session_id).pluck(:answer_session_id)
+    center_as = test_query.where(value: '2').group(:answer_session_id).pluck(:answer_session_id)
+
+    satisfaction_query = Report.where(question_slug: 'sleep-study-satisfaction', locked: true)
+
+    home_values = satisfaction_query.where(answer_session_id: home_as).pluck(:value)
+    center_values = satisfaction_query.where(answer_session_id: center_as).pluck(:value)
+
+    home_sat_percent = percentage(home_values.select{|x| ['5','6','7'].include? x }.length, home_values.length)
+    center_sat_percent = percentage(center_values.select{|x| ['5','6','7'].include? x }.length, center_values.length)
+
+    {home_percent: home_percent, home_sat_percent: home_sat_percent, center_percent: center_percent, center_sat_percent: center_sat_percent}
+  end
+
   ## The core is answer value...
 
 
