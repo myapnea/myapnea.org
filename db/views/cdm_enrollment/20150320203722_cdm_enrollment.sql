@@ -1,7 +1,7 @@
 create or replace view cdm_enrollment as
 select
   u.id patid,
-  u.accepted_consent_at,
+  max(u.accepted_consent_at),
   min(ans.created_at) enr_start_date,
   max(a.updated_at) enr_end_date,
   'E'::text as enr_basis
