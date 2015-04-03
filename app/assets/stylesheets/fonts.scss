@@ -16,9 +16,19 @@
   src: asset-url('myapnea/fonts/CabinSketch-Bold.otf') format("opentype");
 }
 
-.cabin-sketch {
-  font-family: 'Cabin Sketch', sans-serif;
+@font-face {
+  font-family: 'Oswald';
+  src: asset-url('myapnea/fonts/Oswald-Regular.ttf') format("opentype");
 }
+
+@font-face {
+  font-family: 'Oswald';
+  font-weight: 500;
+  src: asset-url('myapnea/fonts/Oswald-Bold.ttf') format("opentype");
+}
+
+.cabin-sketch { font-family: 'Cabin Sketch', sans-serif; }
+.oswald { font-family: 'Oswald', sans-serif; }
 
 @font-face {
   font-family: 'Agenda Condensed';
