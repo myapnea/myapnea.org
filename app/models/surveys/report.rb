@@ -140,6 +140,36 @@ class Report < ActiveRecord::Base
   end
 
 
+
+  # My Sleep Pattern
+  def self.percent_below_minimum_sleep_weekday()
+    percent_by_value('baseline', 'sleep-hours-weekdays', ['1', '2'])
+  end
+
+  def self.percent_different_sleep_weekends_weekdays()
+    all = Report.where(encounter: 'baseline', question_slug: ['sleep-hours-weekends', 'sleep-hours-weekdays'], locked: true).group('answer_session_id').select('answer_session_id,array_agg(value) as values')
+    total_count = all.length
+
+
+    different_count = all.select{|row| row['values'].uniq.length != 1 }.length
+
+
+    (different_count / total_count.to_f) * 100.0
+  end
+
+  def self.median_wakeup_time()
+    values = Report.where(encounter: 'baseline', question_slug: 'ideal-wakeup', locked: true, value: 1..5).select('value,answer_option_text').map{|row| {value: row.value, text: row.answer_option_text}}.sort{|x,y| x[:value] <=> y[:value]}
+    values[values.length/2][:text]
+  end
+
+  def self.ess(encounter, user_id)
+    ess_map = {'4' => 0, '3' => 1, '2' => 2, '1' => 3}
+
+    values = Report.where(encounter: encounter, question_slug: 'epworth-sleepiness-scale', user_id: user_id).pluck(:value)
+
+    values.map{|v| ess_map[v]}.sum
+
+  end
   ## The core is answer value...
 
   ## Additional Info About Me
@@ -157,4 +187,13 @@ class Report < ActiveRecord::Base
     AnswerSession.current
   end
 
+
+  ## HELPERS
+  private
+
+  def self.percent_by_value(encounter, slug, values)
+    selected = Report.where(encounter: encounter, question_slug: slug, locked: true, value: values).count
+    total = Report.where(encounter: encounter, question_slug: slug, locked: true).count
+    (selected / total.to_f) * 100.0
+  end
 end

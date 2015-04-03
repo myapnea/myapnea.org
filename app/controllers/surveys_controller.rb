@@ -61,6 +61,7 @@ class SurveysController < ApplicationController
   end
 
   def report
+
     redirect_to surveys_path and return unless (@answer_session.completed? or current_user.is_only_academic?)
   end
 
