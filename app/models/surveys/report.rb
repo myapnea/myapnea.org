@@ -199,6 +199,19 @@ class Report < ActiveRecord::Base
     10*(raw_value-20)/5.6872 + 50
 
   end
+
+  # My Sleep Apnea Treatment
+  def self.current_treatment_popularity(encounter)
+    base_query = Report.where(question_slug: 'types-of-treatments', encounter: encounter, value: (2..14).map(&:to_s))
+    total_treatments = base_query.count
+
+    by_treatment = base_query.group(:value,:answer_option_text).select('value,answer_option_text,count(answer_value_id)').map(&:attributes).sort{|a,b| b["count"]<=>a["count"]}
+
+    by_treatment.each {|t| t['frequency'] = t['count'].to_f/total_treatments*100.0}
+
+    by_treatment
+  end
+
   ## The core is answer value...
 
 
