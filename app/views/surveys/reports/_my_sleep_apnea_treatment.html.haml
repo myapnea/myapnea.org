@@ -5,82 +5,35 @@
     %h3.f500.text-dark7 Sleep Apnea Treatments
     %p.lead The following displays full summaries of sleep apnea treatment options, as reported by members of MyApnea. The treatments are ordered by popularity.
 
-    .row
-      .col-xs-11.col-xs-offset-1.text-left
-        %h3.f500.darkerer-blue
-          Continuous Positive Airway Pressure (CPAP)
-      .col-xs-8.col-xs-offset-2.text-left
-        %h4.f500
-          Used by
-          %span.primary-orange 70%
-          of members at some point.
-      .col-xs-8.col-xs-offset-2.text-left
-        %h4
-          Used by
-          %span.primary-orange 62%
-          of members currently.
-      .col-xs-8.col-xs-offset-2.text-left
-        %h4
-          Average satisfaction:
-          %span.f300.darker-blue 81%
-      .col-xs-8.col-xs-offset-2.text-left
-        %h4
-          Helped the most with:
-          %span.f300.darker-blue Sleepiness
-      .col-xs-8.col-xs-offset-2.text-left
-        %h4
-          Helped the least with:
-          %span.f300.darker-blue Alertness
-    .row
-      .col-xs-11.col-xs-offset-1.text-left
-        %h3.f500.darkerer-blue
-          Bi-level Positive Airway Pressure (BiPAP)
-      .col-xs-8.col-xs-offset-2.text-left
-        %h4.f500
-          Used by
-          %span.primary-orange 53%
-          of members at some point.
-      .col-xs-8.col-xs-offset-2.text-left
-        %h4
-          Used by
-          %span.primary-orange 39%
-          of members currently.
-      .col-xs-8.col-xs-offset-2.text-left
-        %h4
-          Average satisfaction:
-          %span.f300.darker-blue 79%
-      .col-xs-8.col-xs-offset-2.text-left
-        %h4
-          Helped the most with:
-          %span.f300.darker-blue Energy level
-      .col-xs-8.col-xs-offset-2.text-left
-        %h4
-          Helped the least with:
-          %span.f300.darker-blue Alertness
-    .row
-      .col-xs-11.col-xs-offset-1.text-left
-        %h3.f500.darkerer-blue
-          Oral appliance
-      .col-xs-8.col-xs-offset-2.text-left
-        %h4.f500
-          Used by
-          %span.primary-orange 48%
-          of members at some point.
-      .col-xs-8.col-xs-offset-2.text-left
-        %h4
-          Used by
-          %span.primary-orange 41%
-          of members currently.
-      .col-xs-8.col-xs-offset-2.text-left
-        %h4
-          Average satisfaction:
-          %span.f300.darker-blue 64%
-      .col-xs-8.col-xs-offset-2.text-left
-        %h4
-          Helped the most with:
-          %span.f300.darker-blue Attention
-      .col-xs-8.col-xs-offset-2.text-left
-        %h4
-          Helped the least with:
-          %span.f300.darker-blue Sleep quality
-
+    - Report.current_treatment_popularity('baseline').each do |treatment|
+      - stats = Report.treatment_stats('baseline', treatment["value"].to_i)
+      .row
+        .col-xs-11.col-xs-offset-1.text-left
+          %h3.f500.darkerer-blue
+            = treatment["answer_option_text"]
+        .col-xs-8.col-xs-offset-2.text-left
+          %h4
+            Used by
+            %span.primary-orange= "#{treatment["frequency"].round(1)}%"
+            of members currently.
+        - unless stats[:used_treatment].nan?
+          .col-xs-8.col-xs-offset-2.text-left
+            %h4.f500
+              Used by
+              %span.primary-orange= "#{stats[:used_treatment].round(1)}%"
+              of members at some point.
+        - unless stats[:satisfaction].nan?
+          .col-xs-8.col-xs-offset-2.text-left
+            %h4
+              Average satisfaction:
+              %span.f300.darker-blue= "#{stats[:satisfaction].round(1)}%"
+        - if stats[:helped_most].present?
+          .col-xs-8.col-xs-offset-2.text-left
+            %h4
+              Helped the most with:
+              %span.f300.darker-blue= "#{stats[:helped_most]}"
+        - if stats[:helped_least].present?
+          .col-xs-8.col-xs-offset-2.text-left
+            %h4
+              Helped the least with:
+              %span.f300.darker-blue= "#{stats[:helped_least]}"
