@@ -6,6 +6,8 @@
 .range-container input[type=range] {
   -webkit-appearance: none;
   background-color: transparent;
+  border:3px solid white;
+  border-radius:25px;
 }
 
 .range-container input[type=range]:focus {
