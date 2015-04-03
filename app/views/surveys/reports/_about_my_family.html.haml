@@ -1,55 +1,83 @@
 - @active_top_nav_link = :participate
 
-.row.reset-layout{ style: 'background-color: rgb(207, 226, 248)'}
-  .col-md-12.centered-text.lighterer-blue-bcg
-    %h3.f500.text-dark7 In what country were you born in?
-    %p.lead Your answer: Canada
+.survey-report-container.panel.row.reset-layout
+  .survey-report-question.rounded-top
+    %h3 In what country were you born in?
+  .survey-report-answer
+    %p
+      Your answer:
+      %span.f500= "Canada"
+  .survey-report-info
     %p.lead
       The global MyApnea community:
     %div{ style: "height: 500px; min-width: 310px; max-width: 600px; margin: 0 auto", data: { object: 'draw-world-map', membership: Map.countries_for_map.to_json } }
-  .col-md-12.centered-text
-    %h3.f500.text-dark7 What language do you mainly speak at home?
-    %p.lead Your answer: English
+
+.survey-report-container.panel.row.reset-layout
+  .survey-report-question.rounded-top
+    %h3 What language do you mainly speak at home?
+  .survey-report-answer
+    %p
+      Your answer:
+      %span.f500= "English"
+  .survey-report-info
     .col-sm-4
       = image_tag 'myapnea/surveys/about-my-family/uk-flag.png', class: 'img-responsive', style: 'margin: auto'
-      %p.lead.text-white
-        80%
+      %p.lead
+        = "80%"
     .col-sm-4
       = image_tag 'myapnea/surveys/about-my-family/spain-flag.png', class: 'img-responsive', style: 'margin: auto'
-      %p.lead.text-white
-        15%
+      %p.lead
+        = "18%"
     .col-sm-4
       = image_tag 'myapnea/surveys/about-my-family/china-flag.png', class: 'img-responsive', style: 'margin: auto'
-      %p.lead.text-white
-        3%
-  .col-md-12.centered-text.lighterer-blue-bcg
-    %h3.f500.text-dark7 Have any of your biological family members been diagnosed with sleep apnea?
-    %p.lead Your answer: Father
+      %p.lead
+        = "5%"
+
+.survey-report-container.panel.row.reset-layout
+  .survey-report-question.rounded-top
+    %h3 Have any of your biological family members been diagnosed with sleep apnea?
+  .survey-report-answer
+    %p
+      Your answer:
+      %span.f500= "Father"
+  .survey-report-info
     .row
       .col-sm-2
       .col-sm-2.col-xs-6
-        %p.lead Mother: 14%
+        %p.lead
+          Mother:
+          = "14%"
       .col-sm-2.col-xs-6= image_tag 'myapnea/surveys/about-me/female_color.png', class: 'img-responsive'
       .col-sm-2.col-xs-6= image_tag 'myapnea/surveys/about-me/male_color.png', class: 'img-responsive'
       .col-sm-2.col-xs-6
-        %p.lead Father: 37%
+        %p.lead
+          Father:
+          = "37%"
       .col-sm-2
     .row
       .col-sm-2.col-sm-offset-1.col-xs-6
-        %p.lead Sister: 6%
+        %p.lead
+          Sister:
+          = "6%"
       .col-sm-2.col-xs-6= image_tag 'myapnea/surveys/about-me/female_color.png', class: 'img-responsive'
       .col-sm-2.col-xs-hidden= image_tag 'myapnea/surveys/about-me/male_color.png', class: 'img-responsive'
       .col-sm-2.col-xs-6= image_tag 'myapnea/surveys/about-me/male_color.png', class: 'img-responsive'
       .col-sm-2.col-xs-6
-        %p.lead Brother: 18%
+        %p.lead
+          Brother:
+          = "18%"
     .row
       .col-sm-2
       .col-sm-2.col-xs-6
-        %p.lead Daughter: 2%
+        %p.lead
+          Daughter:
+          = "2%"
       .col-sm-2.col-xs-6= image_tag 'myapnea/surveys/about-me/female_color.png', class: 'img-responsive'
       .col-sm-2.col-xs-6= image_tag 'myapnea/surveys/about-me/male_color.png', class: 'img-responsive'
       .col-sm-2.col-xs-6
-        %p.lead Son: 21%
+        %p.lead
+          Son:
+          = "21%"
       .col-sm-2
     %p.lead
       You are more likely to have sleep apnea if another family member also has the condition. It's not that you have a genetic predisposition to developing sleep apnea like a specific type of cancer that may run in families. Instead, it's likely that you've inherited certain aspects of your physical makeup that increase sleep apnea risk. For example, if your mother is being treated for sleep apnea and you've inherited her narrow jaw, you may also develop sleep apnea. Also your ancestry, where your relatives come from, may also determine certain physical features that may increase your risk of developing sleep apnea. Researchers examine these factors in order to help health care providers better detect and diagnose sleep apnea in the population and also determine what treatments may be most effective for certain groups.
