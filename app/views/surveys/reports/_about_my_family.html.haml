@@ -1,6 +1,6 @@
 - @active_top_nav_link = :participate
 
-.survey-report-container.panel.row.reset-layout
+.survey-report-container.panel
   .survey-report-question.rounded-top
     %h3 In what country were you born in?
   .survey-report-answer
@@ -12,7 +12,7 @@
       The global MyApnea community:
     %div{ style: "height: 500px; min-width: 310px; max-width: 600px; margin: 0 auto", data: { object: 'draw-world-map', membership: Map.countries_for_map.to_json } }
 
-.survey-report-container.panel.row.reset-layout
+.survey-report-container.panel
   .survey-report-question.rounded-top
     %h3 What language do you mainly speak at home?
   .survey-report-answer
@@ -33,7 +33,7 @@
       %p.lead
         = "5%"
 
-.survey-report-container.panel.row.reset-layout
+.survey-report-container.panel
   .survey-report-question.rounded-top
     %h3 Have any of your biological family members been diagnosed with sleep apnea?
   .survey-report-answer

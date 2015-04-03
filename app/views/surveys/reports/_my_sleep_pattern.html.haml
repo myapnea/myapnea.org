@@ -1,14 +1,14 @@
 - @active_top_nav_link = :participate
 
-.survey-report-container.panel.row.reset-layout
-  .survey-report-question.col-xs-12.rounded-top
+.survey-report-container.panel
+  .survey-report-question.rounded-top
     - question = @survey.ordered_questions.where(slug: 'sleep-hours-weekdays').first
     %h3= question.text
-  .survey-report-answer.col-xs-12
+  .survey-report-answer
     %p
       Your answer:
       %span.f500= @answer_session.answers.where(question_id: question.id).first.show_value
-  .survey-report-info.col-xs-12.rounded-bottom
+  .survey-report-info.rounded-bottom
     .row
       .col-xs-4.text-right
         %h1.report-statistic
@@ -22,15 +22,15 @@
 
 
 
-.survey-report-container.panel.row.reset-layout
-  .survey-report-question.col-xs-12.rounded-top
+.survey-report-container.panel
+  .survey-report-question.rounded-top
     - question = @survey.ordered_questions.where(slug: 'sleep-hours-weekends').first
     %h3= question.text
-  .survey-report-answer.col-xs-12
+  .survey-report-answer
     %p
       Your answer:
       %span.f500= @answer_session.answers.where(question_id: question.id).first.show_value
-  .survey-report-info.col-xs-12.rounded-bottom
+  .survey-report-info.rounded-bottom
     .row
       .col-xs-4.text-right
         %h1.report-statistic
@@ -42,11 +42,11 @@
     %p.lead
       Having the same bedtime and wake up time on workdays and weekends could help you fall asleep and stay asleep all night because it helps keep your body's clock regular.
 
-.survey-report-container.panel.row.reset-layout
-  .survey-report-question.col-xs-12.rounded-top
+.survey-report-container.panel
+  .survey-report-question.rounded-top
     - question = @survey.ordered_questions.where(slug: 'ideal-wakeup').first
     %h3= question.text
-  .survey-report-answer.col-xs-12
+  .survey-report-answer
     %p
       Your answer:
       %span.f500= @answer_session.answers.where(question_id: question.id).first.show_value
@@ -66,23 +66,23 @@
         %li 12
       %span.hand.minute
       %span.hand.hour
-  .survey-report-info.col-xs-12.rounded-bottom
+  .survey-report-info.rounded-bottom
     %p.lead
       The average MyApnea member would prefer to wake up
       %span.primary-orange.f500= Report.median_wakeup_time()
     %p.lead
       Some people prefer to wake up earlier in the morning and go to bed earlier at night (sometimes called morning larks). Others prefer to sleep later in the mroning and stay up later at night (sometime's called night owls). Researchers study the body's internal clock, or circadian rhythm, to learn more about the differences between morning larks and night owls.
 
-.survey-report-container.panel.row.reset-layout
-  .survey-report-question.col-xs-12.rounded-top
+.survey-report-container.panel
+  .survey-report-question.rounded-top
     - question = @survey.ordered_questions.where(slug: 'epworth-sleepiness-scale').first
     %h3 The last question of this survey asked you to note how likely you would be to doze off or fall asleep in a variety of situations.
     %h4.f300 This series is known as the Epworth Sleepiness Scale (ESS), and provides a measure of how sleep you feel.
-  .survey-report-answer.col-xs-12
+  .survey-report-answer
     %p.lead Your score:
     %h1.report-statistic
       = Report.personal_ess('baseline', current_user)
-  .survey-report-info.col-xs-12.rounded-bottom
+  .survey-report-info.rounded-bottom
     %p.lead Average MyApnea user score:
     %h1.report-statistic
       = Report.average_ess('baseline').round(1)
