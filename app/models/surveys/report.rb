@@ -252,6 +252,45 @@ class Report < ActiveRecord::Base
     {satisfaction: satisfaction_percent, used_treatment: used_treatment_percent, helped_most: helped_most, helped_least: helped_least}
   end
 
+
+  # My Sleep Apnea
+
+  def self.median_age_of_diagnosis(encounter)
+    values = Report.where(encounter: encounter, question_slug: 'age-of-diagnosis', locked: true, value: 1..7).select('value,answer_option_text').map{|row| {value: row.value, text: row.answer_option_text}}.sort{|x,y| x[:value] <=> y[:value]}
+    values[values.length/2][:text]
+  end
+
+  def self.percent_length_before_diagnosis(encounter)
+    base_query = Report.where(encounter: encounter, question_slug: 'apnea-before-diagnosis', locked: true)
+    more_than_two_years = base_query.where(value: '6')
+
+    percentage(more_than_two_years.count, base_query.count)
+
+  end
+
+  def self.symptoms_before_diagnosis
+    base_query = Report.where(question_slug: 'symptoms-before-diagnosis', locked: true)
+
+
+    # number !N/A vs. all
+
+    # Median length
+
+    by_symptom = base_query.group(:answer_template_name,:answer_template_text).select("answer_template_name,answer_template_text,count(answer_value_id) as total,array_agg(value) as values, array_agg(answer_option_text) as texts").map(&:attributes)
+
+    by_symptom = by_symptom.map do |symp|
+      zipped_values = symp["values"].map(&:to_i).zip(symp["texts"])
+      not_na_values = zipped_values.select{|x| x[0] != 5}.sort{|a,b| b[0]<=>a[0]}
+
+      median_length = not_na_values[not_na_values.length/2][1]
+      above_year = symp["values"].select{|x| x == '4'}.length
+
+      {name: symp["answer_template_name"], text: symp["answer_template_text"], freq: percentage(not_na_values.length, symp["total"]), median: median_length, above_year: percentage(above_year, symp["total"])}
+    end
+
+    by_symptom.sort{|a,b| b[:freq]<=>a[:freq]}
+  end
+
   ## The core is answer value...
 
 
@@ -279,5 +318,9 @@ class Report < ActiveRecord::Base
     selected = Report.where(encounter: encounter, question_slug: slug, locked: true, value: values).count
     total = Report.where(encounter: encounter, question_slug: slug, locked: true).count
     (selected / total.to_f) * 100.0
+  end
+
+  def self.percentage(count, total)
+    (count.to_f/total.to_f) * 100.0
   end
 end
