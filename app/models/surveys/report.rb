@@ -183,7 +183,7 @@ class Report < ActiveRecord::Base
 
   # My Sleep Quality
   def self.average_promis_score(encounter)
-    db_values = Report.where(encounter: encounter, survey_slug: 'my-sleep-quality', value: %w(1 2 3 4 5)).group("answer_session_id").pluck("array_agg(value::int)")
+    db_values = Report.where(encounter: encounter, survey_slug: 'my-sleep-quality', value: %w(1 2 3 4 5), locked: true).group("answer_session_id").pluck("array_agg(value::int)")
     raw_values = db_values.map(&:sum)
 
     avg_raw_val = raw_values.sum/raw_values.length
@@ -202,14 +202,52 @@ class Report < ActiveRecord::Base
 
   # My Sleep Apnea Treatment
   def self.current_treatment_popularity(encounter)
-    base_query = Report.where(question_slug: 'types-of-treatments', encounter: encounter, value: (2..14).map(&:to_s))
-    total_treatments = base_query.count
 
-    by_treatment = base_query.group(:value,:answer_option_text).select('value,answer_option_text,count(answer_value_id)').map(&:attributes).sort{|a,b| b["count"]<=>a["count"]}
+    base_query = Report.where(question_slug: 'types-of-treatments', encounter: encounter, locked: true)
+    total_people = base_query.group(:answer_session_id).pluck(:answer_session_id).count
 
-    by_treatment.each {|t| t['frequency'] = t['count'].to_f/total_treatments*100.0}
+    by_treatment = base_query.where(value: (2..14).map(&:to_s)).group(:value,:answer_option_text).select('value,answer_option_text,count(answer_value_id)').map(&:attributes).sort{|a,b| b["count"]<=>a["count"]}
+
+    by_treatment.each {|t| t['frequency'] = t['count'].to_f/total_people*100.0}
 
     by_treatment
+  end
+
+  def self.treatment_stats(encounter, value)
+    current_to_satisfaction_map = {
+        2 => 'satisfaction_with_cpap',
+        3 => 'satisfaction_with_apap',
+        4 => 'satisfaction_with_bipap',
+        5 => 'satisfaction_with_asv',
+        6 => 'satisfaction_with_oral_appliance',
+        7 => 'satisfaction_with_behavioral_therapy',
+        8 => 'satisfaction_with_tongue_stimulation',
+        9 => 'satisfaction_with_tonsillectomy',
+        10 => 'satisfaction_with_uppp',
+        11 => 'satisfaction_with_nasal_deviation_surgery',
+        12 => 'satisfaction_with_toungue_surgery',
+        13 => 'satisfaction_with_jaw_surgery',
+        14 => 'satisfaction_with_bariatric_surgery'
+    }
+
+
+    # For each treatment (or top 5?) we want all the answer sessions where people indicated a not-6 for that answer_template (satisfaction)
+    # Now, for this set of people, we want to find ratings for how the treatment helpled.
+
+    # so, let's do it for CPAP
+
+    base_query = Report.where(answer_template_name: 'satisfaction_with_cpap', encounter: encounter, locked: true)
+    values = base_query.pluck(:value)
+    satisfaction_percent = values.select{|v| %(3 4).include?(v)}.length.to_f/values.length * 100.0
+    used_treatment = base_query.where.not(value: %(5 6)).pluck(:answer_session_id)
+    outcomes = Report.where(answer_session_id: used_treatment, question_slug: 'treatment-outcomes-components', value: 1..5).group(:answer_template_name, :answer_template_text).select('answer_template_name,answer_template_text,sum(value::int)').map(&:attributes).sort{|a,b| b['sum']<=>a['sum']}
+
+    helped_most = outcomes.first["answer_template_text"]
+    helped_least = outcomes.last["answer_template_text"]
+
+
+
+    {satisfaction: satisfaction_percent, helped_most: helped_most, helped_least: helped_least}
   end
 
   ## The core is answer value...
