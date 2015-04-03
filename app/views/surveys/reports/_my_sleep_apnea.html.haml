@@ -35,28 +35,30 @@
             %span.darker-blue= symptom[:median]
             before diagnosis.
             %span.primary-orange.cabin-sketch= "#{symptom[:above_year].round(1)}%"
-            of MyApnea users report experiencing this symptom at least one year before diagnosis.
+            of MyApnea users report experiencing this symptom for at least one year before diagnosis.
 
   .col-md-12.centered-text
-    %h3.f500.text-dark7 What type of sleep study did you have when first diagnosed with sleep apnea?
-    %p.lead Your answer: A sleep study in a sleep lab/center
+    - question = @survey.ordered_questions.where(slug: 'diagnostic-study').first
+    %h3.f500.text-dark7= question.text
+    %p.lead= "Your answer: #{@answer_session.answers.where(question_id: question.id).first.show_value}"
+    - stats = Report.sleep_test_stats
     .row
       .col-sm-6
         %h3.f300 Home Sleep Tests
         %p.lead Used by
-        %h1.primary-orange.cabin-sketch 37%
+        %h1.primary-orange.cabin-sketch= "#{stats[:home_percent].round(1)}%"
         %p.lead of MyApnea members
         %br
         %p.lead
-          %span.darkerer-blue 38%
+          %span.darkerer-blue= "#{stats[:home_sat_percent].round(1)}%"
           of these members report satisfaction with their test
       .col-sm-6
         %h3.f300 Sleep Tests in a Sleep Lab/Center
         %p.lead Used by
-        %h1.primary-orange.cabin-sketch 63%
+        %h1.primary-orange.cabin-sketch= "#{stats[:center_percent].round(1)}%"
         %p.lead of MyApnea members
         %br
         %p.lead
-          %span.darkerer-blue 72%
+          %span.darkerer-blue= "#{stats[:center_sat_percent].round(1)}%"
           of these members report satisfaction with their test
 
