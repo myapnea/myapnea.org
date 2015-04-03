@@ -53,6 +53,9 @@ class AccountController < ApplicationController
 
   def accepts_privacy
     current_user.update accepted_privacy_policy_at: Time.zone.now
+    # TODO Remove when update is changed
+    current_user.update(accepted_update_at: Time.zone.now)
+    # end todo
     if current_user.is_only_academic? and !current_user.ready_for_research?
       redirect_to get_started_terms_of_access_path
     elsif !current_user.ready_for_research?
