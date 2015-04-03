@@ -64,6 +64,7 @@ if typeof Turbolinks isnt 'undefined' and Turbolinks.supported
   surveyAnimationReady() if surveyAnimationReady?
   registrationUXReady() if registrationUXReady?
   validationReady() if validationReady?
+  toolsReady() if toolsReady?
   postsReady() if postsReady?
   surveyReportsReady() if surveyReportsReady?
 

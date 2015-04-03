@@ -38,6 +38,7 @@
 @import "surveys/text_input";
 @import "surveys/height_input";
 @import "surveys/number_input";
+@import "surveys/simple_display";
 
 /* Survey Reports */
 @import "survey_reports/radial_progress";
@@ -50,3 +51,7 @@
 
 /* Rank the Research */
 @import "rank_the_research/ranking";
+
+/* Tools */
+@import "tools/risk_assessment";
+@import "tools/risk_assessment_results";

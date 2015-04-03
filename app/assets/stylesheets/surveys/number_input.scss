@@ -1,27 +1,31 @@
-input[type=number].number-input {
-  font-size: 34px;
-  width:150px;
-  border-radius:5px;
-}
+.full-survey-container:not(#simple-survey) {
+  input[type=number].number-input {
+    font-size: 34px;
+    width:150px;
+    border-radius:5px;
+  }
 
-.number-label {
-  font-size: 34px;
-}
+  .number-label {
+    font-size: 34px;
+  }
 
-input[type=number].number-input::-webkit-inner-spin-button,
-input[type=number].number-input::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+  input[type=number].number-input::-webkit-inner-spin-button,
+  input[type=number].number-input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
 }
 
 @media all and (max-width:778px) {
-  input[type=number].number-input {
-    width:130px;
-    font-size:18px;
-    margin:5px;
-  }
-  .number-label {
-    margin:5px;
-    font-size:22px;
+  .full-survey-container:not(#simple-survey) {
+    input[type=number].number-input {
+      width:130px;
+      font-size:18px;
+      margin:5px;
+    }
+    .number-label {
+      margin:5px;
+      font-size:22px;
+    }
   }
 }

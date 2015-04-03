@@ -32,7 +32,7 @@ complete:
   user: has_completed_survey
   survey: new
   first_answer: a11
-  last_answer: a12
+  last_answer: a13
   encounter: baseline
 
 #

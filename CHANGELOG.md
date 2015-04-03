@@ -7,18 +7,24 @@
 - **Administrative Changes**
   - Cross-Tabs admin panel added
     - Lists information about demographics of enrollment per type of referral source
-
+- Common Data Model Version 2.0 exports implemented
+- System for adding custom validations for specific Survey questions
+  - Date of birth validation
+  
 ### Enhancements
 - **Gem Changes**
   - Updated to rails 4.2.1
 
 ### Bug Fixes
 
-## 5.2.0
+## 5.2.0 (March 25, 2015)
 
 ### Enhancements
 - **Forum Changes**
   - Submitting a post on a topic now disables the button to prevent double-posting
+  - Images in forum posts now scale correctly
+- **Survey Changes**
+  - Users can now toggle a simple survey display if they have trouble inputting answers
 
 ## 5.1.0 (March 13, 2015)
 

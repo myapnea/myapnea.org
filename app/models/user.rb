@@ -75,6 +75,9 @@ class User < ActiveRecord::Base
   has_many :cdm_vitals, foreign_key: 'patid'
   has_many :cdm_pro_cms, foreign_key: 'patid'
 
+  # Reports
+  has_many :reports
+
   # Overriding Devise built-in active_for_authentication? method
   def active_for_authentication?
     super and not self.deleted?
@@ -286,6 +289,21 @@ class User < ActiveRecord::Base
     incomplete_surveys.blank? and complete_surveys.blank?
   end
 
+  def answer_for(answer_session, question)
+    Answer.current.where(answer_session_id: answer_session.id, question_id: question.id).order("updated_at desc").includes(answer_values: :answer_template).limit(1).first
+  end
+
+  def unlock_survey!(slug, encounter)
+    as = answer_sessions.joins(:survey).where(surveys: {slug: slug}, encounter: encounter).first
+    if as.present?
+      as.unlock
+    else
+      nil
+    end
+  end
+
+
+  # Voting
   def number_votes_remaining
     vote_quota - this_weeks_votes.length
   end
@@ -299,9 +317,6 @@ class User < ActiveRecord::Base
     self.votes.where.not(research_topic_id: nil).where(rating: '1')
   end
 
-  def answer_for(answer_session, question)
-    Answer.current.where(answer_session_id: answer_session.id, question_id: question.id).order("updated_at desc").includes(answer_values: :answer_template).limit(1).first
-  end
 
   ## Provider Methods
 

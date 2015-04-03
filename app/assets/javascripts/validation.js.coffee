@@ -97,8 +97,8 @@
   @validateDate = (dateString) ->
     if dateString.length == 0
       return ""
-    if(!/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(dateString))
-      return "incorrect format"
+    if !(/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(dateString))
+      return "Please use the mm/dd/yyyy format when entering your date of birth."
 
     parts = dateString.split("/")
     month = parseInt(parts[0], 10)
@@ -106,16 +106,16 @@
     year = parseInt(parts[2], 10)
 
     if (year < 1900 or year > 2015)
-      return "Invalid year. "
+      return "Year is out of range. Please use the mm/dd/yyyy format when entering your date of birth."
     if (month < 1 or month > 12)
-      return "Invalid month. "
+      return "Month is out of range. Please use the mm/dd/yyyy format when entering your date of birth."
 
     monthLength = [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ]
     if (year % 400 == 0 || (year % 100 != 0 && year % 4 == 0))
         monthLength[1] = 29
 
     unless (day > 0 && day <= monthLength[month - 1])
-      return "Invalid date. "
+      return "Day is out of range. Please use the mm/dd/yyyy format when entering your date of birth."
 
     return ""
 

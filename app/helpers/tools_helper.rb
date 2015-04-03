@@ -1,13 +1,14 @@
 module ToolsHelper
+
   def bmi(height, weight)
-    (weight/height**2 * 703).round
+    (weight.to_f/(height.to_f**2) * 703)
   end
 
   def bmi_category(bmi)
     if bmi < 18.5
       "Underweight"
     elsif bmi < 25
-      "Normal"
+      "Normal weight"
     elsif bmi < 30
       "Overweight"
     else
@@ -15,3 +16,4 @@ module ToolsHelper
     end
   end
 end
+

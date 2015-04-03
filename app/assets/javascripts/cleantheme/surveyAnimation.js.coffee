@@ -13,6 +13,13 @@
     target = 'question-container-' + $(this).data('target')
     assignQuestionDirect($("[data-object~='"+target+"']"))
 
+  $("[data-object~='simple-survey-toggle']").click (e) ->
+    if  $(".full-survey-container").attr("id") is "simple-survey"
+      $(".full-survey-container").attr("id", "")
+    else
+      $(".full-survey-container").attr("id", "simple-survey")
+
+
   # Scroll to active question
   @nextQuestionScroll = (element2) ->
     # Check for multiple questions, and position the first question in the center
@@ -77,6 +84,7 @@
   @submitAnswer = (inputElement) ->
     questionForm = inputElement.closest("form")
     $.post(questionForm.attr("action"), questionForm.serialize(), (data) ->
+      #console.log data
       indicator = $(questionForm).data('object').slice(-1)
       indicatorSelector = $("[data-object~='survey-indicator'][data-target~='"+indicator+"']")
       if data['completed']
@@ -103,18 +111,23 @@
 
   # Handle 'prefer not to answer checkbox'
   $('.preferred-not-to-answer').click (e) ->
+    return if $("[data-object~='full-survey-container']").attr("id") is "simple-survey"
     e.stopPropagation()
     e.preventDefault()
-    unless $(this).find("input:checkbox").prop 'disabled'
-      $(this).find('input:checkbox').prop "checked", !$(this).find('input:checkbox').prop("checked")
-      handleChangedValue($(this))
+    #unless $(this).find("input:checkbox").prop 'disabled'
+    $(this).find('input:checkbox').prop "checked", !$(this).find('input:checkbox').prop("checked")
+    handleChangedValue($(this))
     return
 
   # Respond to click events on conditional events - note that this only works on checkbox inputs
   $("[data-object~='reveal-next-input']").click (e) ->
     if this.checked then revealNextInput($(this).data('target'))
 
+  # Respond to radio clicks
   $('.survey-container input:radio').click (event) ->
+    if $("[data-object~='full-survey-container']").attr("id") is "simple-survey"
+      handleChangedValue($(this))
+      return
     unless $(this).data('secondary')
       $(this).prop "checked", true
       if $(this).data('object') == 'reveal-next-input'
@@ -126,12 +139,12 @@
         assignQuestion(true,false)
       else
         assignQuestionDirect($(this).closest('.survey-container'))
-    console.log "radio clicked"
     handleChangedValue($(this))
     event.stopPropagation()
     return
 
   $('.survey-container input:text').click (event) ->
+    return if $("[data-object~='full-survey-container']").attr("id") is "simple-survey"
     if $(this).data('secondary')
       setActive($(this).closest('.survey-container'))
     else
@@ -140,6 +153,7 @@
     return
 
   $("[data-object~='checkbox-label']").click (event) ->
+    return if $("[data-object~='full-survey-container']").attr("id") is "simple-survey"
     event.preventDefault()
     checkbox = $(this).siblings('input:checkbox')
     $(checkbox).prop "checked", !$(checkbox).prop("checked")
@@ -149,6 +163,7 @@
 
   # Respond to user clicking different questions
   $('.survey-container').click (event) ->
+    return if $("[data-object~='full-survey-container']").attr("id") is "simple-survey"
     event.stopPropagation()
     # For click events on 'Next Question' button, just assign next question
     target = event.target or event.srcElement
@@ -164,6 +179,14 @@
   #####################
 
   $("body").keydown (e) ->
+    if $("[data-object~='full-survey-container']").attr("id") is "simple-survey"
+      if $(".survey-custom-date").is(":focus")
+        e = e || window.event
+        keyCode = if window.event then e.which else e.keyCode
+        if keyCode is 13
+          $(".survey-custom-date").blur()
+          return
+      return
     e = e || window.event
     keyCode = if window.event then e.which else e.keyCode
     if $('.survey-container').length
@@ -197,6 +220,7 @@
           e.preventDefault()
 
   $("body").keyup (e) ->
+    return if $("[data-object~='full-survey-container']").attr("id") is "simple-survey"
     e = e || window.event
     keyCode = if window.event then e.which else e.keyCode
     if $('.survey-container.active').length
@@ -258,7 +282,8 @@
   $(".survey-container input").not(":radio").change (event) ->
     if $(this).hasClass "survey-custom-date"
       dateStr = $(this).val()
-      if validateDate(dateStr) == "" and validateOver18(dateStr) == ""
+      if true #validateDate(dateStr) == "" and validateOver18(dateStr) == ""
+        #console.log "handling date"
         target = event.target or event.srcElement
         handleChangedValue($(target))
     else
@@ -275,11 +300,11 @@
 
   $("[data-object~='survey-submit-btn']").click (e) ->
     e.stopPropagation()
-    $.post($(this).data("path"),
-      {answer_session_id: $(this).data("answer-session-id")}, (data) ->
-        console.log data
-    )
     if checkCompletion()
+      $.post($(this).data("path"),
+        {answer_session_id: $(this).data("answer-session-id")}, (data) ->
+          #console.log data
+      )
       $(this).addClass 'hidden'
       $("[data-object~='survey-submit-congratulations-container']").removeClass 'hidden'
       setActive($(this).parents('.survey-container'))
@@ -288,12 +313,14 @@
       $("[data-object~='survey-indicator'].incomplete").addClass 'error'
       target = 'question-container-' + $("[data-object~='survey-indicator'].incomplete").first().data('target')
       assignQuestionDirect($("[data-object~='"+target+"']"))
-
     return
 
   @checkCompletion = () ->
     numberSelectors = $("[data-object~='survey-indicator']").length
     numberCompletedSelectors = $("[data-object~='survey-indicator'].complete").length + $("[data-object~='survey-indicator'].locked").length
+    if $("[data-object~='date--error-message']").length > 0 and $("[data-object~='date--error-message']").html() != ""
+      #console.log "date error exists"
+      return false
     if numberSelectors == numberCompletedSelectors
       return true
     else

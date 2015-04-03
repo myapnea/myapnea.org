@@ -9,7 +9,7 @@ class AnswerSession < ActiveRecord::Base
   belongs_to :user
   has_many :answer_edges
   has_many :answers, -> { where deleted: false }
-
+  has_many :reports
 
   # Validations
   # Unique in terms of survey/encounter
@@ -62,13 +62,13 @@ class AnswerSession < ActiveRecord::Base
       # New Record: do everything
       answer_modified = false
 
-      # We want to update if answer is new, answer value has changed, or answer value used to be blank.
-      if answer.new_record? or answer.string_value != params[question.id.to_s] or answer.show_value.blank?
-        # Set Value and Save
-        answer.value = params[question.id.to_s]
-        answer.save
-        answer_modified = true
-      end
+      # We want to update if answer is new, or answer value used to be blank.
+      #if answer.new_record? or answer.string_value != params[question.id.to_s] or answer.show_value.blank?
+      # Set Value and Save
+      answer.value = params[question.id.to_s]
+      answer.save
+      answer_modified = true
+      #end
 
       if first_answer_id.blank?
         # if no first answer, set it!
@@ -91,10 +91,15 @@ class AnswerSession < ActiveRecord::Base
     end
   end
 
-  def lock_answers
+  def lock
     answers.each do |answer|
       answer.update(state: "locked")
     end
+  end
+
+  def unlock
+    answers.each {|answer| answer.update(state: 'incomplete')}
+    update(locked: false)
   end
 
   ## Optimized (mostly)

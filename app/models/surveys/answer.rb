@@ -8,10 +8,11 @@ class Answer < ActiveRecord::Base
   belongs_to :answer_session
   has_one :in_edge, class_name: "AnswerEdge", foreign_key: "child_answer_id", dependent: :destroy
   has_one :out_edge, class_name: "AnswerEdge", foreign_key: "parent_answer_id", dependent: :destroy
-  belongs_to :user # When necessary
+  has_many :reports
 
   # Scopes
   scope :incomplete, -> { where(state: 'incomplete')}
+  scope :invalid, -> { where(state: 'invalid') }
   scope :migrated, -> { where(state: 'migrated')}
   scope :complete, -> { where(state: ['complete', 'locked'])}
   scope :locked, -> { where(state: 'locked')}
@@ -56,7 +57,6 @@ class Answer < ActiveRecord::Base
     self[:preferred_not_to_answer] = (val.delete('preferred_not_to_answer') ? true : false)
 
     answer_values.clear
-
     template_completions = []
     template_values = []
 
@@ -200,12 +200,29 @@ class Answer < ActiveRecord::Base
     self[:state] == 'locked'
   end
 
+  def invalid?
+    self[:state] == 'invalid'
+  end
+
+  def validation_errors
+    validator = AnswerValidator.new(question.slug)
+    validator.messages(self)
+  end
+
   private
 
   def set_completion_state(template_completions)
-    self[:state] = ((template_completions.all? or preferred_not_to_answer)? 'complete' : 'incomplete')
-  end
+    validator = AnswerValidator.new(question.slug)
+    validation_result = validator.validate(self)
 
+    if preferred_not_to_answer
+      self[:state] = 'complete'
+    elsif validation_result[:valid]
+      self[:state] = (template_completions.all? ? 'complete' : 'incomplete')
+    else
+      self[:state] = "invalid"
+    end
+  end
 
   def fits_condition?(condition)
     all_values = answer_values.map(&:string_value)

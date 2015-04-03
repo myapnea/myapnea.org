@@ -17,6 +17,7 @@ class SurveysControllerTest < ActionController::TestCase
   end
 
   test "User can answer question on an assigned survey" do
+
     login(users(:has_incomplete_survey))
 
     refute answer_sessions(:incomplete).completed?
@@ -26,6 +27,8 @@ class SurveysControllerTest < ActionController::TestCase
 
     assert created_answer.persisted?
     assert created_answer.complete?
+    refute created_answer.validation_errors.present?
+
     refute created_answer.locked?
 
     assert_equal answer_options(:wookie).id, created_answer.answer_values.first.answer_option_id
@@ -34,7 +37,30 @@ class SurveysControllerTest < ActionController::TestCase
     assert_equal "Some other race", created_answer.answer_values.second.answer_option.text
     assert_equal "Polish", created_answer.answer_values.last.text_value
 
-    assert assigns(:answer_session).completed?, "#{assigns(:answer_session).answers.complete.count} #{assigns(:answer_session).survey.questions.count} #{assigns(:answer_session).answers.to_a}"
+    assert_equal 2, assigns(:answer_session).answers.complete.count, "#{assigns(:answer_session).survey.questions.count} #{assigns(:answer_session).answers.to_a}"
+
+    assert_response :success
+  end
+
+  test "User can give an invalid answer to a question" do
+    login(users(:has_incomplete_survey))
+
+    refute answer_sessions(:incomplete).completed?
+
+    invalid_value = "19999999"
+    xhr :post, :process_answer, { 'question_id' => [questions(:text1).id.to_s], 'answer_session_id' => answer_sessions(:incomplete).id.to_s,  questions(:text1).id.to_s => { answer_templates(:text).id.to_s => invalid_value }}, format: 'json'
+    created_answer = assigns(:answer_session).last_answer
+
+    assert created_answer.persisted?
+    assert created_answer.invalid?
+    assert created_answer.validation_errors.present?
+    refute created_answer.complete?
+    refute created_answer.locked?
+
+    assert_equal 1, created_answer.answer_values.count
+    assert_equal invalid_value, created_answer.answer_values.first.text_value
+
+    assert_equal 1, assigns(:answer_session).answers.complete.count
 
     assert_response :success
   end
@@ -54,7 +80,7 @@ class SurveysControllerTest < ActionController::TestCase
     refute created_answer.complete?
     refute created_answer.locked?
 
-    refute assigns(:answer_session).completed?, "#{assigns(:answer_session).answers.complete.count} #{assigns(:answer_session).survey.questions.count} #{assigns(:answer_session).answers.to_a}"
+    assert_equal 1, assigns(:answer_session).answers.complete.count, "#{assigns(:answer_session).survey.questions.count} #{assigns(:answer_session).answers.to_a}"
 
 
   end
@@ -71,7 +97,7 @@ class SurveysControllerTest < ActionController::TestCase
     assert created_answer.complete?
 
     assert created_answer.preferred_not_to_answer?
-    assert assigns(:answer_session).completed?, "#{assigns(:answer_session).answers.complete.count} #{assigns(:answer_session).survey.questions.count} #{assigns(:answer_session).answers.to_a}"
+    assert_equal 2, assigns(:answer_session).answers.complete.count, "#{assigns(:answer_session).survey.questions.count} #{assigns(:answer_session).answers.to_a}"
 
     assert_response :success
   end

@@ -4,50 +4,50 @@ class SurveysController < ApplicationController
   before_action :authenticate_research
   before_action :set_survey, only: [:show, :report, :start_survey]
 
-
-  def about_me_mockup
-    render 'surveys/reports/about_me'
-  end
-
-  def my_sleep_pattern_mockup
-    render 'surveys/reports/my_sleep_pattern'
-  end
-
-  def my_health_conditions_mockup
-    render 'surveys/reports/my_health_conditions'
-  end
-
-  def my_health_conditions_data
-    @survey = Survey.find_by_slug("my-health-conditions")
-  end
-
-  def my_sleep_apnea_treatment_mockup
-    render 'surveys/reports/my_sleep_apnea_treatment'
-  end
-
-  def my_sleep_quality_mockup
-    render 'surveys/reports/my_sleep_quality'
-  end
-
-  def additional_information_about_me_mockup
-    render 'surveys/reports/additional_information_about_me'
-  end
-
-  def about_my_family_mockup
-    render 'surveys/reports/about_my_family'
-  end
-
-  def my_quality_of_life_mockup
-    render 'surveys/reports/my_quality_of_life'
-  end
-
-  def my_sleep_apnea_mockup
-    render 'surveys/reports/my_sleep_apnea'
-  end
-
-  def my_risk_profile_mockup
-    render 'surveys/reports/my_risk_profile'
-  end
+  #
+  # def about_me_mockup
+  #   render 'surveys/reports/about_me'
+  # end
+  #
+  # def my_sleep_pattern_mockup
+  #   render 'surveys/reports/my_sleep_pattern'
+  # end
+  #
+  # def my_health_conditions_mockup
+  #   render 'surveys/reports/my_health_conditions'
+  # end
+  #
+  # def my_health_conditions_data
+  #   @survey = Survey.find_by_slug("my-health-conditions")
+  # end
+  #
+  # def my_sleep_apnea_treatment_mockup
+  #   render 'surveys/reports/my_sleep_apnea_treatment'
+  # end
+  #
+  # def my_sleep_quality_mockup
+  #   render 'surveys/reports/my_sleep_quality'
+  # end
+  #
+  # def additional_information_about_me_mockup
+  #   render 'surveys/reports/additional_information_about_me'
+  # end
+  #
+  # def about_my_family_mockup
+  #   render 'surveys/reports/about_my_family'
+  # end
+  #
+  # def my_quality_of_life_mockup
+  #   render 'surveys/reports/my_quality_of_life'
+  # end
+  #
+  # def my_sleep_apnea_mockup
+  #   render 'surveys/reports/my_sleep_apnea'
+  # end
+  #
+  # def my_risk_profile_mockup
+  #   render 'surveys/reports/my_risk_profile'
+  # end
 
   def index
     @surveys = current_user.assigned_surveys
@@ -61,6 +61,7 @@ class SurveysController < ApplicationController
   end
 
   def report
+
     redirect_to surveys_path and return unless (@answer_session.completed? or current_user.is_only_academic?)
   end
 
@@ -73,14 +74,14 @@ class SurveysController < ApplicationController
     end
 
     respond_to do |format|
-      format.json { render json: {completed: @answer.complete?, answer: @answer, value: @answer.string_value, errors: @answer.errors.full_messages } }
+      format.json { render json: {completed: @answer.complete?, invalid: @answer.invalid?, answer: @answer, value: @answer.string_value, errors: @answer.errors.full_messages, validation_errors: @answer.validation_errors } }
     end
 
   end
 
   def submit
     @answer_session = AnswerSession.find(params[:answer_session_id])
-    @answer_session.lock_answers if @answer_session.completed?
+    @answer_session.lock if @answer_session.completed?
 
     render json: { locked: @answer_session.locked? }
   end

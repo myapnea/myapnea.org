@@ -71,6 +71,20 @@ qe11:
   direct: TRUE
   count: 1
 
+qe16:
+  survey: new
+  parent_question: checkbox1
+  child_question: text1
+  direct: TRUE
+  count: 1
+
+qe17:
+  survey: new
+  parent_question: radio1
+  child_question: text1
+  direct: FALSE
+  count: 1
+
 qe12:
   survey: new_2
   parent_question: date1

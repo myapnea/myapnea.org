@@ -31,6 +31,7 @@
 //= require admin
 //= require votes
 //= require surveys
+//= require tools
 //= require fb
 //= require reports/survey_reports
 //= require reports/display_types/horizontal_bar_graph

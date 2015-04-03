@@ -2,13 +2,14 @@
 
 .row.reset-layout{ style: 'background-color: rgb(207, 226, 248)'}
   .col-md-12.centered-text.lighterer-blue-bcg
-    %h3.f500.text-dark7 How many hours of sleep do you usually get per night on weekdays or workdays?
-    %p.lead.text-dark6 Your answer: 5-6 hours
+    - question = @survey.ordered_questions.where(slug: 'sleep-hours-weekdays').first
+    %h3.f500.text-dark7= question.text
+    %p.lead.text-dark6= "Your answer: #{@answer_session.answers.where(question_id: question.id).first.show_value}"
     %br
     .row
       .col-xs-4.text-right
         %h1.primary-orange.cabin-sketch{ style: 'margin-top:0px' }
-          70%
+          = "#{Report.percent_below_minimum_sleep_weekday.round(1)} %"
       .col-xs-8.text-left
         %p.lead.text-light9
           of MyApnea members report getting less than the recommended amount of sleep.
@@ -16,12 +17,13 @@
     %p.lead.text-dark7
       The National Sleep Foundation recommends all adults over the age of 18 to get a minimum of 7 hours of sleep every night. Nearly half of all US Americans report getting less than the recommended amount of sleep, which contributes to a myriad of health and mental problems.
   .col-md-12.centered-text
-    %h3.f400.text-dark7 How many hours of sleep do you usually get per night on weekends or days off?
-    %p.lead.text-dark6 Your answer: 9 hours
+    - question = @survey.ordered_questions.where(slug: 'sleep-hours-weekends').first
+    %h3.f400.text-dark7= question.text
+    %p.lead.text-dark6= "Your answer: #{@answer_session.answers.where(question_id: question.id).first.show_value}"
     .row
       .col-xs-4.text-right
         %h1.lighter-orange.cabin-sketch{ style: 'margin-top:0px' }
-          90%
+          = "#{Report.percent_different_sleep_weekends_weekdays.round(1)} %"
       .col-xs-8.text-left
         %p.lead.text-light9
           of MyApnea members report getting different amounts of sleep on the weekends than on weekdays.
@@ -30,8 +32,9 @@
       Having the same bedtime and wake up time on workdays and weekends could help you fall asleep and stay asleep all night because it helps keep your body's clock regular.
 .row.reset-layout{ style: 'background-color: rgb(207, 226, 248)'}
   .col-md-12.centered-text.lighterer-blue-bcg
-    %h3.f500.text-dark7 Considering only your own "feeling best" rhythm, at what time would you get up if you were entirely free to plan your day?
-    %p.lead.text-dark6 Your answer: 6:30 - 7:45 am
+    - question = @survey.ordered_questions.where(slug: 'ideal-wakeup').first
+    %h3.f500.text-dark7= question.text
+    %p.lead.text-dark6= "Your answer: #{@answer_session.answers.where(question_id: question.id).first.show_value}"
     .row
       .col-xs-10.col-xs-offset-1
         #clock
@@ -52,16 +55,20 @@
           %span.hand.hour
       .col-xs-10.col-xs-offset-1
         %p.lead
-          The average MyApnea member would prefer to wake up at
-          %span.primary-orange.f500 7:45 am
+          The average MyApnea member would prefer to wake up
+          %span.primary-orange.f500= Report.median_wakeup_time()
         %p.lead
           Some people prefer to wake up earlier in the morning and go to bed earlier at night (sometimes called morning larks). Others prefer to sleep later in the mroning and stay up later at night (sometime's called night owls). Researchers study the body's internal clock, or circadian rhythm, to learn more about the differences between morning larks and night owls.
 .row.reset-layout{ style: 'background-color: rgb(207, 226, 248)'}
   .col-md-12.centered-text
+    - question = @survey.ordered_questions.where(slug: 'epworth-sleepiness-scale').first
     %h3.f500.text-dark7 The last question of this survey asked you to note how likely you would be to doze off or fall asleep in a variety of situations.
     %h4.f300.text-dark7 This series is known as the Epworth Sleepiness Scale (ESS), and provides a measure of how sleep you feel.
     %p.lead Your score:
     %h1.f500.cabin-sketch.primary-orange
-      18
+      = Report.personal_ess('baseline', current_user)
+    %p.lead Average MyApnea user score:
+    %h1.f500.cabin-sketch.primary-orange
+      = Report.average_ess('baseline').round(1)
     %p.lead
       Normal scores are less than 10. Scores of 11 or more indicate sleepiness, with scores greater than 16 indicating high levels of sleepiness.  Sleepiness may occur because of untreated sleep apnea, inadequately treated sleep apnea, not getting enough sleep per night (most adults need 7 to 8 hours of sleep per night) or another sleep disorder.  If your score is greater than 10, you may want to talk to your health care provider as well as review your sleep habits to make sure you are getting 7 to 8 hours of sleep per night.

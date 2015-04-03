@@ -1,25 +1,27 @@
-input[type=date] {
-  line-height: normal;
-}
-.survey-custom-date {
-  font-size:35px;
-  border-radius:20px;
-  border-color: #b1d2f6;
-  padding:7px;
-  width:80%;
-  margin: 0 auto;
-}
+.full-survey-container:not(#simple-survey) {
+  input[type=date] {
+    line-height: normal;
+  }
+  .survey-custom-date {
+    font-size:35px;
+    border-radius:20px;
+    border-color: #b1d2f6;
+    padding:7px;
+    width:80%;
+    margin: 0 auto;
+  }
 
-.survey-custom-date:focus {
-  outline:none;
-  box-shadow:0 0 10px #b1d2f6;
-}
+  .survey-custom-date:focus {
+    outline:none;
+    box-shadow:0 0 10px #b1d2f6;
+  }
 
-.survey-custom-date {}
-.survey-custom-date::-webkit-input-placeholder { color: #555; }
-.survey-custom-date:-moz-placeholder { color: #333; }
-.survey-custom-date::-moz-placeholder { color: #333; }
-.survey-custom-date:-ms-placeholder { color: #333; }
+  .survey-custom-date {}
+  .survey-custom-date::-webkit-input-placeholder { color: #555; }
+  .survey-custom-date:-moz-placeholder { color: #333; }
+  .survey-custom-date::-moz-placeholder { color: #333; }
+  .survey-custom-date:-ms-placeholder { color: #333; }
+}
 
 /* RESPONSIVE */
 @media all and (max-width: 1200px) {}

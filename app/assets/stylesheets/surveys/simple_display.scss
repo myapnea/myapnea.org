@@ -1,0 +1,39 @@
+.full-survey-container#simple-survey {
+  #make-it-exciting { display: block; }
+  #make-it-simple { display: none; }
+  .survey-container .panel {
+    background-color: white;
+    box-shadow:0px 3px 5px rgb(0,0,0);
+    box-shadow:0px 3px 5px rgba(0,0,0,.5);
+  }
+  .or-press-enter {
+    display: none;
+  }
+  // Checkboxes
+  .check-box-container:not(.preferred-not-to-answer) {
+    text-align:left;
+  }
+  .check-box-container {
+    input {  }
+    label {
+      span.hotkey { display: none; }
+      p { }
+    }
+  }
+  // Radio inputs
+  .radio-input-container {
+    text-align:left;
+    margin-left: 30px;
+    input {}
+    label {
+      span.hotkey { display: none; }
+    }
+  }
+  .label-default {
+    background-color: white;
+  }
+  // Multiple radio inputs
+  .multiple-question-container {
+    margin-bottom: 30px;
+  }
+}

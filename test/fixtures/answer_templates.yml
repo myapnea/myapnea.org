@@ -96,3 +96,7 @@ doze_public:
 number_of_hours:
   name: fixture_number_of_hours
   data_type: numeric_value
+
+text:
+  name: fixture_text
+  data_type: text_value
