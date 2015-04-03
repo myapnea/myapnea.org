@@ -165,7 +165,7 @@ class Report < ActiveRecord::Base
   def self.personal_ess(encounter, user_id)
     ess_map = {'4' => 0, '3' => 1, '2' => 2, '1' => 3}
 
-    values = Report.where(encounter: encounter, question_slug: 'epworth-sleepiness-scale', user_id: user_id).pluck(:value)
+    values = Report.where(encounter: encounter, question_slug: 'epworth-sleepiness-scale', user_id: user_id, locked: true).pluck(:value)
 
     values.map{|v| ess_map[v]}.sum
 
@@ -174,7 +174,7 @@ class Report < ActiveRecord::Base
   def self.average_ess(encounter)
     ess_map = {'4' => 0, '3' => 1, '2' => 2, '1' => 3}
 
-    values = Report.where(encounter: encounter, question_slug: 'epworth-sleepiness-scale', value: ['1','2','3','4']).group(:answer_session_id).select("answer_session_id,array_agg(value)")
+    values = Report.where(encounter: encounter, question_slug: 'epworth-sleepiness-scale', value: ['1','2','3','4'], locked: true).group(:answer_session_id).select("answer_session_id,array_agg(value)")
 
     values = values.map{|x| x["array_agg"].map{|s| ess_map[s]}.sum}
 
@@ -230,24 +230,26 @@ class Report < ActiveRecord::Base
         14 => 'satisfaction_with_bariatric_surgery'
     }
 
-
+    template_name = current_to_satisfaction_map[value]
     # For each treatment (or top 5?) we want all the answer sessions where people indicated a not-6 for that answer_template (satisfaction)
     # Now, for this set of people, we want to find ratings for how the treatment helpled.
 
     # so, let's do it for CPAP
 
-    base_query = Report.where(answer_template_name: 'satisfaction_with_cpap', encounter: encounter, locked: true)
-    values = base_query.pluck(:value)
+    base_query = Report.where(answer_template_name: template_name, encounter: encounter, locked: true)
+      values = base_query.where.not(value: nil).pluck(:value)
     satisfaction_percent = values.select{|v| %(3 4).include?(v)}.length.to_f/values.length * 100.0
-    used_treatment = base_query.where.not(value: %(5 6)).pluck(:answer_session_id)
+    used_treatment = base_query.where.not(value: ['5', '6']).pluck(:answer_session_id)
+    used_treatment_percent = (used_treatment.length.to_f/base_query.count.to_f) * 100.0
     outcomes = Report.where(answer_session_id: used_treatment, question_slug: 'treatment-outcomes-components', value: 1..5).group(:answer_template_name, :answer_template_text).select('answer_template_name,answer_template_text,sum(value::int)').map(&:attributes).sort{|a,b| b['sum']<=>a['sum']}
 
-    helped_most = outcomes.first["answer_template_text"]
-    helped_least = outcomes.last["answer_template_text"]
+    helped_most = (outcomes.present? ? outcomes.first["answer_template_text"] : nil)
+    helped_least = (outcomes.present? ? outcomes.last["answer_template_text"] : nil)
 
 
 
-    {satisfaction: satisfaction_percent, helped_most: helped_most, helped_least: helped_least}
+
+    {satisfaction: satisfaction_percent, used_treatment: used_treatment_percent, helped_most: helped_most, helped_least: helped_least}
   end
 
   ## The core is answer value...
