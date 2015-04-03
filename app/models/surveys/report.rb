@@ -94,9 +94,23 @@ class Report < ActiveRecord::Base
   #
 
 
-  def self.tabular_data(group_by)
+  def self.tabular_data(where_clause, not_where_clause={answer_value_id: nil})
     # survey_slug, question_slug, answer_template_name, encounter, value, answer_option_text, answer_count, total_count, frequency
-    self.where(question_slug: 'sex').group('survey_slug, question_slug, answer_template_name, encounter,value, answer_option_text').select("survey_slug, question_slug, answer_template_name,encounter,value,answer_option_text,count(answer_value_id) as answer_count")
+    q_result = self
+        .where(where_clause)
+        .where.not(not_where_clause)
+        .group('survey_slug, question_slug, answer_template_name, encounter,value')
+        .select("survey_slug, question_slug, answer_template_name,encounter,value,max(answer_option_text) as answer_option_text,count(answer_value_id) as answer_count")
+        .to_a
+    total_count = q_result.map(&:answer_count).sum
+    tabbed_data = q_result.map do |q_res|
+      h = q_res.attributes
+      h["total_count"] = total_count
+      h["frequency"] = (h["answer_count"].to_f / total_count.to_f) * 100.0
+      [h["value"], h]
+    end
+
+    Hash[tabbed_data]
   end
 
 
@@ -107,25 +121,24 @@ class Report < ActiveRecord::Base
   ## Naming convention: <survey slug>_<section>
 
   def self.about_me_sex
-    self.where(survey_slug: 'about-me', question_slug: 'sex', answer_template_name: 'sex')
-        .group('encounter,answer_option_text')
-        .select("encounter,answer_option_text,count(answer_value_id) as answer_count")
+    self.tabular_data(survey_slug: 'about-me', question_slug: 'sex', answer_template_name: 'sex')
   end
 
   def about_me_race
-
+    #self.tabular_data({survey_slug: 'about-me', question_slug: 'race', answer_template_name: ['race', 'specified_race']}, {value: '6'})
+    self.tabular_data({survey_slug: 'about-me', question_slug: 'race', answer_template_name: 'race'})
   end
 
   def about_me_hispanic
-
+    self.tabular_data(survey_slug: 'about-me', question_slug: 'ethnicity', answer_template_name: 'ethnicity')
   end
 
   def about_me_education
-
+    self.tabular_data(survey_slug: 'about-me', question_slug: 'education-level', answer_template_name: 'education_level')
   end
 
   def about_me_income
-
+    self.tabular_data(survey_slug: 'about-me', question_slug: 'income-level', answer_template_name: 'income_level')
   end
 
 
