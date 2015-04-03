@@ -162,7 +162,7 @@ class Report < ActiveRecord::Base
     values[values.length/2][:text]
   end
 
-  def self.ess(encounter, user_id)
+  def self.personal_ess(encounter, user_id)
     ess_map = {'4' => 0, '3' => 1, '2' => 2, '1' => 3}
 
     values = Report.where(encounter: encounter, question_slug: 'epworth-sleepiness-scale', user_id: user_id).pluck(:value)
@@ -170,7 +170,38 @@ class Report < ActiveRecord::Base
     values.map{|v| ess_map[v]}.sum
 
   end
+
+  def self.average_ess(encounter)
+    ess_map = {'4' => 0, '3' => 1, '2' => 2, '1' => 3}
+
+    values = Report.where(encounter: encounter, question_slug: 'epworth-sleepiness-scale', value: ['1','2','3','4']).group(:answer_session_id).select("answer_session_id,array_agg(value)")
+
+    values = values.map{|x| x["array_agg"].map{|s| ess_map[s]}.sum}
+
+    values.sum/values.length.to_f
+  end
+
+  # My Sleep Quality
+  def self.average_promis_score(encounter)
+    db_values = Report.where(encounter: encounter, survey_slug: 'my-sleep-quality', value: %w(1 2 3 4 5)).group("answer_session_id").pluck("array_agg(value::int)")
+    raw_values = db_values.map(&:sum)
+
+    avg_raw_val = raw_values.sum/raw_values.length
+
+    score = 10*(avg_raw_val-20)/5.6872 + 50
+
+    score
+  end
+
+  def self.personal_promis_score(encounter, user)
+    raw_value = Report.where(encounter: encounter, survey_slug: 'my-sleep-quality', value: %w(1 2 3 4 5), user_id: user.id).group("answer_session_id").pluck("array_agg(value::int)").first.sum
+
+    10*(raw_value-20)/5.6872 + 50
+
+  end
   ## The core is answer value...
+
+
 
   ## Additional Info About Me
   def bmi
