@@ -1,10 +1,11 @@
 - @active_top_nav_link = :participate
 
-.row.reset-layout{ style: 'background-color: rgb(207, 226, 248)'}
-  .col-md-12.centered-text
-    %h3.f500.text-dark7 Sleep Apnea Treatments
+.survey-report-container.panel
+  .survey-report-question.rounded-top
+    %h3 Sleep Apnea Treatments
+  .survey-report-answer
+  .survey-report-info
     %p.lead The following displays full summaries of sleep apnea treatment options, as reported by members of MyApnea. The treatments are ordered by popularity.
-
     - Report.current_treatment_popularity('baseline').each do |treatment|
       - stats = Report.treatment_stats('baseline', treatment["value"].to_i)
       .row
