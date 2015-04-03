@@ -45,6 +45,7 @@ Rails.application.routes.draw do
   post 'accepts_privacy' => 'account#accepts_privacy'
   post 'accepts_consent' => 'account#accepts_consent'
   post 'accepts_terms_of_access' => 'account#accepts_terms_of_access'
+  post 'accepts_update' => 'account#accepts_update'
 
   # Provider Pages
   get 'p(/:slug)', to: 'static#provider_page'

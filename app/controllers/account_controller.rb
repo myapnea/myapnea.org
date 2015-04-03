@@ -91,6 +91,11 @@ class AccountController < ApplicationController
     redirect_to home_path, notice: "You have successfully left the research study portion of MyApnea.Org. If you ever change your mind, just visit your account settings to view the research consent and privacy policy again."
   end
 
+  def accepts_update
+    current_user.update(accepted_update_at: Time.zone.now)
+    redirect_to root_path
+  end
+
   def user_type
   end
 
