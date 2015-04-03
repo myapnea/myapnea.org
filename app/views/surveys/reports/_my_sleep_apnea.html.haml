@@ -1,72 +1,91 @@
 - @active_top_nav_link = :participate
 
-.row.reset-layout{ style: 'background-color: rgb(207, 226, 248)'}
-  .col-md-12.centered-text
-    %h3.f500.text-dark7 How old were you when you were first diagnosed with sleep apnea?
-    %p.lead Your answer: 50-59 years old
-    .row
-      .col-sm-6
-        %p.lead Average age of diagnosis:
-        %h1.primary-orange.cabin-sketch 54
-      .col-sm-6
-        %p.lead Your age of diagnosis:
-        %h1.primary-orange.cabin-sketch 50-59
-    #age-of-diagnosis.hidden{ data: { object: 'd3-report', question: 'age-of-diagnosis' } }
-  .col-md-12.centered-text.lighterer-blue-bcg
-    %h3.f500.text-dark7 How long do you think you had sleep apnea before you were diagnosed?
+.survey-report-container.panel
+  .survey-report-question.rounded-top
+    %h3 How old were you when you were first diagnosed with sleep apnea?
+  .survey-report-answer
+    %p.lead
+      Your answer:
+      %span.f500= "50-59 years old"
+  .survey-report-info
+    %p.lead Average age of diagnosis:
+    %h1.report-statistic 54
+
+.survey-report-container.panel
+  .survey-report-question.rounded-top
+    %h3 How long do you think you had sleep apnea before you were diagnosed?
+  .survey-report-answer
     %p.lead Your answer: 9-12 months
-    .row
-      .col-sm-6.col-sm-offset-3
-        %p.lead Percentage of MyApnea members who think they had sleep apnea for over 2 years:
-        %h1.primary-orange.cabin-sketch 94%
-  .col-md-12.centered-text
-    %h3.f500.text-dark7 Most common symptoms for MyApnea members
+  .survey-report-info
+    %p.lead Percentage of MyApnea members who think they had sleep apnea for over 2 years:
+    %h1.report-statistic 94%
+
+.survey-report-container.panel
+  .survey-report-question.rounded-top
+    %h3 What symptoms have you experienced?
+  .survey-report-answer
+    %p.lead
+      Your symptoms include:
+      %span.f500= "Tiredness, Fatigue"
+  .survey-report-info
+    %h3 The most common symptoms for MyApnea members:
+    %br
     .row
       .col-sm-2.col-sm-offset-1
-        %h1.primary-orange.cabin-sketch{ style: 'margin-top: 0px'} 86%
+        %h1.report-statistic= "81%"
       .col-sm-8
         %p.lead.text-left
           of members report experiencing
           %span.darkerer-blue snoring
           for at least one year before diagnosis
+    %br
     .row
       .col-sm-2.col-sm-offset-1
-        %h1.primary-orange.cabin-sketch{ style: 'margin-top: 0px'}
-          72%
+        %h1.report-statistic= "72%"
       .col-sm-8
         %p.lead.text-left
           of members report experiencing
           %span.darkerer-blue sleepiness
           for at least one year before diagnosis
+    %br
     .row
       .col-sm-2.col-sm-offset-1
-        %h1.primary-orange.cabin-sketch{ style: 'margin-top: 0px'}
-          61%
+        %h1.report-statistic= "61%"
       .col-sm-8
         %p.lead.text-left
           of members report experiencing
           %span.darkerer-blue irritation
           for at least one year before diagnosis
-  .col-md-12.centered-text
-    %h3.f500.text-dark7 What type of sleep study did you have when first diagnosed with sleep apnea?
-    %p.lead Your answer: A sleep study in a sleep lab/center
+
+.survey-report-container.panel
+  .survey-report-question.rounded-top
+    %h3 What type of sleep study did you have when first diagnosed with sleep apnea?
+  .survey-report-answer
+    %p
+      Your answer:
+      %span.f500= "A sleep study in a sleep lab/center"
+  .survey-report-info
     .row
-      .col-sm-6
-        %h3.f300 Home Sleep Tests
+      .col-xs-6
+        %h3.f300 Sleep Tests at Home
+      .col-xs-6
+        %h3.f300 Sleep Tests in a Sleep Lab
+    %br
+    .row
+      .col-xs-6
         %p.lead Used by
-        %h1.primary-orange.cabin-sketch 37%
+        %h1.report-statistic= "37%"
         %p.lead of MyApnea members
         %br
         %p.lead
-          %span.darkerer-blue 38%
+          %span.darkerer-blue= "38%"
           of these members report satisfaction with their test
-      .col-sm-6
-        %h3.f300 Sleep Tests in a Sleep Lab/Center
+      .col-xs-6
         %p.lead Used by
-        %h1.primary-orange.cabin-sketch 63%
+        %h1.report-statistic= "63%"
         %p.lead of MyApnea members
         %br
         %p.lead
-          %span.darkerer-blue 72%
+          %span.darkerer-blue= "72%"
           of these members report satisfaction with their test
 
