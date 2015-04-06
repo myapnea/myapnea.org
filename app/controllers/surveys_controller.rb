@@ -17,9 +17,9 @@ class SurveysController < ApplicationController
   #   render 'surveys/reports/my_health_conditions'
   # end
   #
-  # def my_health_conditions_data
-  #   @survey = Survey.find_by_slug("my-health-conditions")
-  # end
+  def my_health_conditions_data
+    @data = Report.comorbidity_map.push(["Sleep Apnea", "conditions-sleep-apnea", 100])
+  end
   #
   # def my_sleep_apnea_treatment_mockup
   #   render 'surveys/reports/my_sleep_apnea_treatment'

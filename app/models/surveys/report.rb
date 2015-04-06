@@ -414,6 +414,23 @@ class Report < ActiveRecord::Base
     return symptoms
   end
 
+  ## My health conditions
+
+  def self.comorbidity_map
+    conditions = ["Allergies", "Asthma", "ADD", "ADHD", "Cancer", "COPD", "Depression", "Diabetes", "Epilepsy", "HBP", "Heart Disease", "Insomnia", "Narcolepsy", "Pulmonary Fibrosis", "Restless Legs", "Stroke"]
+    data = []
+    conditions.each do |condition|
+      data.push(self.comorbidity_map_data(condition))
+    end
+    return data
+  end
+
+  def self.comorbidity_map_data(condition)
+    at_name = 'conditions-' + condition.to_s.gsub(" ", "-").downcase
+    r = Report.tabular_data(survey_slug: 'my-health-conditions', question_slug: 'health-conditions-list', answer_template_name: at_name).first
+    return [condition.to_s, at_name, r[1]["frequency"]]
+  end
+
   ## HELPERS
   private
   def self.table_to_freq_array(table)
