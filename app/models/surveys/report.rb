@@ -352,17 +352,17 @@ class Report < ActiveRecord::Base
 
   def self.current_marital_status_data
     table_data = Report.frequency_data('marital-status', 1..6)
-    return [table_data[1][:freq], table_data[2][:freq], table_data[3][:freq], table_data[4][:freq], table_data[5][:freq], table_data[6][:freq]]
+    return self.table_to_freq_array(table_data)
   end
 
   def self.daily_activities_data
     table_data = Report.frequency_data('daily-activities', 1..9)
-    return [table_data[1][:freq], table_data[2][:freq], table_data[3][:freq], table_data[4][:freq], table_data[5][:freq], table_data[6][:freq], table_data[7][:freq], table_data[8][:freq], table_data[9][:freq]]
+    return self.table_to_freq_array(table_data)
   end
 
   def self.affording_basics_data
     table_data = Report.frequency_data('affording-basics', 1..4)
-    return [table_data[1][:freq], table_data[2][:freq], table_data[3][:freq], table_data[4][:freq]]
+    return self.table_to_freq_array(table_data)
   end
 
 
@@ -370,17 +370,17 @@ class Report < ActiveRecord::Base
 
   def self.health_rating_data
     table_data = Report.frequency_data('general-health-rate', 1..5)
-    return [table_data[1][:freq], table_data[2][:freq], table_data[3][:freq], table_data[4][:freq], table_data[5][:freq]]
+    return self.table_to_freq_array(table_data)
   end
 
   def self.health_improvement_data
     table_data = Report.frequency_data('improved-health-rate', 1..5)
-    return [table_data[1][:freq], table_data[2][:freq], table_data[3][:freq], table_data[4][:freq], table_data[5][:freq]]
+    return self.table_to_freq_array(table_data)
   end
 
   def self.qol_rating_data
     table_data = Report.frequency_data('general-quality-life-rate', 1..5)
-    return [table_data[1][:freq], table_data[2][:freq], table_data[3][:freq], table_data[4][:freq], table_data[5][:freq]]
+    return self.table_to_freq_array(table_data)
   end
 
 
@@ -393,16 +393,23 @@ class Report < ActiveRecord::Base
 
   def self.primary_language_data
     table_data = self.frequency_data('primary-language', 1..3)
-    return [table_data[1][:freq], table_data[2][:freq], table_data[3][:freq]]
+    return self.table_to_freq_array(table_data)
   end
 
   def self.family_diagnostic_data
     table_data = self.frequency_data('family-diagnoses', 1..6)
-    return [table_data[1][:freq], table_data[2][:freq], table_data[3][:freq], table_data[4][:freq], table_data[5][:freq], table_data[6][:freq]]
+    return self.table_to_freq_array(table_data)
   end
 
   ## HELPERS
   private
+  def self.table_to_freq_array(table)
+    array = []
+    table.each do |row|
+      array.push(row[1][:freq])
+    end
+    return array
+  end
 
   def self.percent_by_value(encounter, slug, values)
     selected = Report.where(encounter: encounter, question_slug: slug, locked: true, value: values).count
