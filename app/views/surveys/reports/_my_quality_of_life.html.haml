@@ -3,7 +3,6 @@
 .survey-report-container.panel
   - question = @survey.questions.where(slug: 'general-health-rate').first
   - answer = @answer_session.answers.where(question_id: question.id).first
-  - table_data = Report.frequency_data('general-health-rate', 1..5)
   .survey-report-question.rounded-top
     %h3 In general, how would you rate your health?
   .survey-report-answer
@@ -15,13 +14,12 @@
       The quality of your sleep and how long you sleep can impact your overall health and how you feel including your mood. We might ask these questions again in future surveys to see if your health or quality of life has changed over time.
     %p.lead.f500
       How the community answered:
-    - data_array = [table_data[1][:freq], table_data[2][:freq], table_data[3][:freq], table_data[4][:freq], table_data[5][:freq]]
+    - data_array = Report.health_rating_data
     #health-rating{ data: { object: 'd3-report', question: 'health-rating', array: "#{data_array}" } }
 
 .survey-report-container.panel
   - question = @survey.questions.where(slug: 'improved-health-rate').first
   - answer = @answer_session.answers.where(question_id: question.id).first
-  - table_data = Report.frequency_data('improved-health-rate', 1..5)
   .survey-report-question.rounded-top
     %h3 Compared to one year ago, how would you rate your health in general now?
   .survey-report-answer
@@ -33,13 +31,12 @@
       The quality of your sleep and how long you sleep can impact your overall health and how you feel including your mood. We might ask these questions again in future surveys to see if your health or quality of life has changed over time.
     %p.lead.f500
       How the community answered:
-    - data_array = [table_data[1][:freq], table_data[2][:freq], table_data[3][:freq], table_data[4][:freq], table_data[5][:freq]]
+    - data_array = Report.health_improvement_data
     #health-improvement{ data: { object: 'd3-report', question: 'health-improvement', array: "#{data_array}" } }
 
 .survey-report-container.panel
   - question = @survey.questions.where(slug: 'general-quality-life-rate').first
   - answer = @answer_session.answers.where(question_id: question.id).first
-  - table_data = Report.frequency_data('general-quality-life-rate', 1..5)
   .survey-report-question.rounded-top
     %h3 In general, how would you rate your quality of life?
   .survey-report-answer
@@ -51,5 +48,5 @@
       The quality of your sleep and how long you sleep can impact your overall health and how you feel including your mood. We might ask these questions again in future surveys to see if your health or quality of life has changed over time.
     %p.lead.f500
       How the community answered:
-    - data_array = [table_data[1][:freq], table_data[2][:freq], table_data[3][:freq], table_data[4][:freq], table_data[5][:freq]]
+    - data_array = Report.qol_rating_data
     #qol-rating{ data: { object: 'd3-report', question: 'qol-rating', array: "#{data_array}" } }
