@@ -20,6 +20,8 @@
       .col-xs-3
         = image_tag 'myapnea/surveys/about-me/female_color.png', class: 'img-responsive'
         %p.lead= "#{table_data[2][:text]}: #{table_data[2][:freq].round(1)}%"
+    %p.lead
+      Members of either sex can develop sleep apnea. Men are 2-to-3 times more likely to have sleep apnea, but as women reach menopause their risk increases.
 
 .survey-report-container.panel
   - question = @survey.questions.where(slug: 'race').first
@@ -33,22 +35,34 @@
       %span.f500= answer.show_value
   .survey-report-info
     .row.reset-layout
-      .col-xs-4
-        = image_tag 'myapnea/surveys/about-me/americas_highlighted.png', class: 'img-responsive'
-        %p.lead= "#{table_data[1][:text]}: #{table_data[1][:freq].round(1)}%"
-      .col-xs-4
-        = image_tag 'myapnea/surveys/about-me/asia_highlighted.png', class: 'img-responsive'
-        %p.lead= "#{table_data[2][:text]}: #{table_data[2][:freq].round(1)}%"
-      .col-xs-4
-        = image_tag 'myapnea/surveys/about-me/africa_highlighted.png', class: 'img-responsive'
-        %p.lead= "#{table_data[3][:text]}: #{table_data[3][:freq].round(1)}%"
-    .row.reset-layout
-      .col-xs-4.col-xs-offset-2
-        = image_tag 'myapnea/surveys/about-me/pacific_islands_highlighted.png', class: 'img-responsive'
-        %p.lead= "#{table_data[4][:text]}: #{table_data[4][:freq].round(1)}%"
-      .col-xs-4
-        = image_tag 'myapnea/surveys/about-me/europe_highlighted.png', class: 'img-responsive'
-        %p.lead= "#{table_data[5][:text]}: #{table_data[5][:freq].round(1)}%"
+      .col-sm-4
+        = image_tag 'myapnea/surveys/about-me/globe.png', class: 'img-responsive'
+      .col-sm-8
+        %br
+        %p.lead.text-left
+          Sleep apnea occurs in all races of people. Understanding associations between sleep apnea and race may help shed light on the genes and environmental risk factors that influence sleep apnea.
+          %br
+          %br
+          Recent research shows that
+          %span.f500 Asians and African American children
+          may be at particularly increased risk for sleep apnea.
+      - if false
+        .col-xs-4
+          = image_tag 'myapnea/surveys/about-me/americas_highlighted.png', class: 'img-responsive'
+          %p.lead= "#{table_data[1][:text]}: #{table_data[1][:freq].round(1)}%"
+        .col-xs-4
+          = image_tag 'myapnea/surveys/about-me/asia_highlighted.png', class: 'img-responsive'
+          %p.lead= "#{table_data[2][:text]}: #{table_data[2][:freq].round(1)}%"
+        .col-xs-4
+          = image_tag 'myapnea/surveys/about-me/africa_highlighted.png', class: 'img-responsive'
+          %p.lead= "#{table_data[3][:text]}: #{table_data[3][:freq].round(1)}%"
+        .row.reset-layout
+          .col-xs-4.col-xs-offset-2
+            = image_tag 'myapnea/surveys/about-me/pacific_islands_highlighted.png', class: 'img-responsive'
+            %p.lead= "#{table_data[4][:text]}: #{table_data[4][:freq].round(1)}%"
+          .col-xs-4
+            = image_tag 'myapnea/surveys/about-me/europe_highlighted.png', class: 'img-responsive'
+          %p.lead= "#{table_data[5][:text]}: #{table_data[5][:freq].round(1)}%"
 
 .survey-report-container.panel
   - question = @survey.questions.where(slug: 'ethnicity').first
@@ -63,12 +77,12 @@
   .survey-report-info
     .row.reset-layout
       .col-xs-6
-        %h1.cabin-sketch.text-light8 Yes
+        %h1.report-statistic Yes
         %p.lead
           = "#{table_data[2][:text]}:"
           %span.f500.darkerer-blue= "#{table_data[2][:freq].round(1)}%"
       .col-xs-6
-        %h1.cabin-sketch.text-light8 No
+        %h1.report-statistic No
         %p.lead
           = "#{table_data[1][:text]}:"
           %span.f500.darkerer-blue= "#{table_data[1][:freq].round(1)}%"
@@ -132,39 +146,44 @@
       Your answer:
       %span.f500= answer.show_value
   .survey-report-info
-    .row.reset-layout{ style: 'margin: 40px 0'}
-      .col-xs-2.col-sm-offset-1
-        = image_tag 'myapnea/surveys/about-me/dollar_bill1.png', class: 'img-responsive'
-      .col-xs-8
-        %h4.f300.text-left
-          = "#{table_data[1][:text]}: #{table_data[1][:freq].round(1)}%"
-    .row.reset-layout{ style: 'margin: 40px 0'}
-      .col-xs-2.col-sm-offset-1
-        = image_tag 'myapnea/surveys/about-me/dollar_bill2.png', class: 'img-responsive'
-      .col-xs-8
-        %h4.f300.text-left
-          = "#{table_data[2][:text]}: #{table_data[2][:freq].round(1)}%"
-    .row.reset-layout{ style: 'margin: 40px 0'}
-      .col-xs-2.col-sm-offset-1
-        = image_tag 'myapnea/surveys/about-me/dollar_bill3.png', class: 'img-responsive'
-      .col-xs-8
-        %h4.f300.text-left
-          = "#{table_data[3][:text]}: #{table_data[3][:freq].round(1)}%"
-    .row.reset-layout{ style: 'margin: 40px 0'}
-      .col-xs-2.col-sm-offset-1
-        = image_tag 'myapnea/surveys/about-me/dollar_bill4.png', class: 'img-responsive'
-      .col-xs-8
-        %h4.f300.text-left
-          = "#{table_data[4][:text]}: #{table_data[4][:freq].round(1)}%"
-    .row.reset-layout{ style: 'margin: 40px 0'}
-      .col-xs-2.col-sm-offset-1
-        = image_tag 'myapnea/surveys/about-me/dollar_bill5.png', class: 'img-responsive'
-      .col-xs-8
-        %h4.f300.text-left
-          = "#{table_data[5][:text]}: #{table_data[5][:freq].round(1)}%"
-    .row.reset-layout{ style: 'margin: 40px 0'}
-      .col-xs-2.col-sm-offset-1
-        = image_tag 'myapnea/surveys/about-me/dollar_bill5.png', class: 'img-responsive'
-      .col-xs-8
-        %h4.f300.text-left
-          = "#{table_data[6][:text]}: #{table_data[6][:freq].round(1)}%"
+    %p.lead
+      Years in school and what you may earn does not directly determine whether or not you will have sleep apnea. However, education and income may affect whether or not you have access to health insurance and therefore medical care.
+    %p.lead.f500
+      People who can regularly access medical services are more likely to have their sleep apnea diagnosed early and therefore receive the treatment they may need.
+    - if false
+      .row.reset-layout{ style: 'margin: 40px 0'}
+        .col-xs-2.col-sm-offset-1
+          = image_tag 'myapnea/surveys/about-me/dollar_bill1.png', class: 'img-responsive'
+        .col-xs-8
+          %h4.f300.text-left
+            = "#{table_data[1][:text]}: #{table_data[1][:freq].round(1)}%"
+      .row.reset-layout{ style: 'margin: 40px 0'}
+        .col-xs-2.col-sm-offset-1
+          = image_tag 'myapnea/surveys/about-me/dollar_bill2.png', class: 'img-responsive'
+        .col-xs-8
+          %h4.f300.text-left
+            = "#{table_data[2][:text]}: #{table_data[2][:freq].round(1)}%"
+      .row.reset-layout{ style: 'margin: 40px 0'}
+        .col-xs-2.col-sm-offset-1
+          = image_tag 'myapnea/surveys/about-me/dollar_bill3.png', class: 'img-responsive'
+        .col-xs-8
+          %h4.f300.text-left
+            = "#{table_data[3][:text]}: #{table_data[3][:freq].round(1)}%"
+      .row.reset-layout{ style: 'margin: 40px 0'}
+        .col-xs-2.col-sm-offset-1
+          = image_tag 'myapnea/surveys/about-me/dollar_bill4.png', class: 'img-responsive'
+        .col-xs-8
+          %h4.f300.text-left
+            = "#{table_data[4][:text]}: #{table_data[4][:freq].round(1)}%"
+      .row.reset-layout{ style: 'margin: 40px 0'}
+        .col-xs-2.col-sm-offset-1
+          = image_tag 'myapnea/surveys/about-me/dollar_bill5.png', class: 'img-responsive'
+        .col-xs-8
+          %h4.f300.text-left
+            = "#{table_data[5][:text]}: #{table_data[5][:freq].round(1)}%"
+      .row.reset-layout{ style: 'margin: 40px 0'}
+        .col-xs-2.col-sm-offset-1
+          = image_tag 'myapnea/surveys/about-me/dollar_bill5.png', class: 'img-responsive'
+        .col-xs-8
+          %h4.f300.text-left
+            = "#{table_data[6][:text]}: #{table_data[6][:freq].round(1)}%"
