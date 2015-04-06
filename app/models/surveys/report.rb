@@ -401,6 +401,19 @@ class Report < ActiveRecord::Base
     return self.table_to_freq_array(table_data)
   end
 
+  ## My Risk Profile
+
+  def self.selected_symptoms(encounter, survey_slug, user)
+    answers = Report.where(encounter: encounter, user_id: user.id, question_slug: survey_slug, value: 1..4)
+    symptoms = []
+    answers.each do |answer|
+      unless answer.answer_option_text == "N/A"
+        symptoms.push(AnswerTemplate.find_by_id(answer.answer_template_id).text)
+      end
+    end
+    return symptoms
+  end
+
   ## HELPERS
   private
   def self.table_to_freq_array(table)

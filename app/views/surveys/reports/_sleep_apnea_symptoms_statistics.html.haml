@@ -1,0 +1,14 @@
+- Report.symptoms_before_diagnosis.each do |symptom|
+  %br
+  .row
+    .col-sm-3
+      %h1.report-statistic= "#{symptom[:freq].round(1)}%"
+    .col-sm-9
+      %p.lead.text-left
+        of members report that
+        %span.darkerer-blue.f500= symptom[:text]
+        caused them to be evaluated for sleep apnea, with this symptom lasting for an average of
+        %span.darker-blue= symptom[:median]
+        before diagnosis.
+        %span.primary-orange= "#{symptom[:above_year].round(1)}%"
+        of MyApnea users report experiencing this symptom at least one year before diagnosis.

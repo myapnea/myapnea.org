@@ -30,23 +30,10 @@
   .survey-report-answer
     %p.lead
       Your symptoms include:
-      %span.f500= "Tiredness, Fatigue"
+      %span.f500= Report.selected_symptoms("baseline", "symptoms-before-diagnosis", current_user).join(", ")
   .survey-report-info
     %h3 The most common symptoms for MyApnea members:
-    - Report.symptoms_before_diagnosis.each do |symptom|
-      %br
-      .row
-        .col-sm-3
-          %h1.report-statistic= "#{symptom[:freq].round(1)}%"
-        .col-sm-9
-          %p.lead.text-left
-            of members report that
-            %span.darkerer-blue.f500= symptom[:text]
-            caused them to be evaluated for sleep apnea, with this symptom lasting for an average of
-            %span.darker-blue= symptom[:median]
-            before diagnosis.
-            %span.primary-orange= "#{symptom[:above_year].round(1)}%"
-            of MyApnea users report experiencing this symptom at least one year before diagnosis.
+    = render partial: 'surveys/reports/sleep_apnea_symptoms_statistics'
 
 .survey-report-container.panel
   .survey-report-question.rounded-top
