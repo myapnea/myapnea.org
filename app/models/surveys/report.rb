@@ -350,9 +350,19 @@ class Report < ActiveRecord::Base
     ((weight / (height * height)) * 703)
   end
 
-  def self.current_marital_status
-    # slug:
-    AnswerSession.current
+  def self.current_marital_status_data
+    table_data = Report.frequency_data('marital-status', 1..6)
+    return [table_data[1][:freq], table_data[2][:freq], table_data[3][:freq], table_data[4][:freq], table_data[5][:freq], table_data[6][:freq]]
+  end
+
+  def self.daily_activities_data
+    table_data = Report.frequency_data('daily-activities', 1..9)
+    return [table_data[1][:freq], table_data[2][:freq], table_data[3][:freq], table_data[4][:freq], table_data[5][:freq], table_data[6][:freq], table_data[7][:freq], table_data[8][:freq], table_data[9][:freq]]
+  end
+
+  def self.affording_basics_data
+    table_data = Report.frequency_data('affording-basics', 1..4)
+    return [table_data[1][:freq], table_data[2][:freq], table_data[3][:freq], table_data[4][:freq]]
   end
 
 
