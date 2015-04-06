@@ -384,6 +384,23 @@ class Report < ActiveRecord::Base
   end
 
 
+  ## About my family
+
+  def self.country_of_origin
+    table_data = self.frequency_data('origin-country', 1..6)
+    extra_table_data = self.tabular_data(survey_slug: 'about-my-family', question_slug: 'origin-country', answer_template_name: 'specified_country')
+  end
+
+  def self.primary_language_data
+    table_data = self.frequency_data('primary-language', 1..3)
+    return [table_data[1][:freq], table_data[2][:freq], table_data[3][:freq]]
+  end
+
+  def self.family_diagnostic_data
+    table_data = self.frequency_data('family-diagnoses', 1..6)
+    return [table_data[1][:freq], table_data[2][:freq], table_data[3][:freq], table_data[4][:freq], table_data[5][:freq], table_data[6][:freq]]
+  end
+
   ## HELPERS
   private
 
