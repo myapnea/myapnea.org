@@ -3,33 +3,38 @@
 .survey-report-container.panel
   - question = @survey.questions.where(slug: 'marital-status').first
   - answer = @answer_session.answers.where(question_id: question.id).first
-  - table_data = Report.frequency_data('marital-status', 1..6)
   .survey-report-question.rounded-top
     %h3= question.text
   .survey-report-answer
     %p
-      %span.f500= "Your answer: #{answer.show_value}"
+      Your answer
+      %span.f500= answer.show_value
   .survey-report-info
-    #marital-status{ data: { object: 'd3-report', question: 'marital-status' } }
+    - data_array = Report.current_marital_status_data
+    #marital-status{ data: { object: 'd3-report', question: 'marital-status', array: "#{data_array}" } }
 
 .survey-report-container.panel
   - question = @survey.questions.where(slug: 'daily-activities').first
   - answer = @answer_session.answers.where(question_id: question.id).first
-  - table_data = Report.frequency_data('daily-activities', 1..9)
   .survey-report-question.rounded-top
     %h3= question.text
   .survey-report-answer
-    %p= "Your answer: #{answer.show_value}"
+    %p
+      Your answer:
+      %span.f500= answer.show_value
   .survey-report-info
-    #daily-activities{ data: { object: 'd3-report', question: 'daily-activities' } }
+    - data_array = Report.daily_activities_data
+    #daily-activities{ data: { object: 'd3-report', question: 'daily-activities', array: "#{data_array}" } }
 
 .survey-report-container.panel
   - question = @survey.questions.where(slug: 'affording-basics').first
   - answer = @answer_session.answers.where(question_id: question.id).first
-  - table_data = Report.frequency_data('affording-basics', 1..4)
   .survey-report-question.rounded-top
     %h3= question.text
   .survey-report-answer
-    %p= "Your answer: #{answer.show_value}"
+    %p
+      Your answer:
+      %span.f500= answer.show_value
   .survey-report-info
-    #difficulty-paying-basics{ data: { object: 'd3-report', question: 'difficulty-paying-basics' } }
+    - data_array = Report.affording_basics_data
+    #difficulty-affording-basics{ data: { object: 'd3-report', question: 'difficulty-paying-basics', array: "#{data_array}" } }

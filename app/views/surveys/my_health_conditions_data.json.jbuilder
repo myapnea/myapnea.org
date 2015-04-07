@@ -1,13 +1,16 @@
-json.nodes @survey.survey_answer_frequencies do |answer|
-  json.name answer.answer_option_text
-  json.id answer.answer_option_id
-  json.frequency answer.frequency*100
+@data
+
+json.nodes @data do |datum|
+  json.name datum[0]
+  json.id datum[1]
+  json.frequency datum[2]
 end
 
-json.links @survey.survey_answer_frequencies do |answer|
-  json.source answer.answer_option_id
-  json.target 104
+json.links @data do |datum|
+  json.source datum[1]
+  json.target "conditions-sleep-apnea"
 end
+
 
 ### FORMAT
 # {

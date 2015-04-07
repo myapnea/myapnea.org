@@ -350,14 +350,96 @@ class Report < ActiveRecord::Base
     ((weight / (height * height)) * 703)
   end
 
-  def self.current_marital_status
-    # slug:
-    AnswerSession.current
+  def self.current_marital_status_data
+    table_data = Report.frequency_data('marital-status', 1..6)
+    return self.table_to_freq_array(table_data)
+  end
+
+  def self.daily_activities_data
+    table_data = Report.frequency_data('daily-activities', 1..9)
+    return self.table_to_freq_array(table_data)
+  end
+
+  def self.affording_basics_data
+    table_data = Report.frequency_data('affording-basics', 1..4)
+    return self.table_to_freq_array(table_data)
   end
 
 
+  ## My Quality of Life
+
+  def self.health_rating_data
+    table_data = Report.frequency_data('general-health-rate', 1..5)
+    return self.table_to_freq_array(table_data)
+  end
+
+  def self.health_improvement_data
+    table_data = Report.frequency_data('improved-health-rate', 1..5)
+    return self.table_to_freq_array(table_data)
+  end
+
+  def self.qol_rating_data
+    table_data = Report.frequency_data('general-quality-life-rate', 1..5)
+    return self.table_to_freq_array(table_data)
+  end
+
+
+  ## About my family
+
+  def self.country_of_origin
+    table_data = self.frequency_data('origin-country', 1..6)
+    extra_table_data = self.tabular_data(survey_slug: 'about-my-family', question_slug: 'origin-country', answer_template_name: 'specified_country')
+  end
+
+  def self.primary_language_data
+    table_data = self.frequency_data('primary-language', 1..3)
+    return self.table_to_freq_array(table_data)
+  end
+
+  def self.family_diagnostic_data
+    table_data = self.frequency_data('family-diagnoses', 1..6)
+    return self.table_to_freq_array(table_data)
+  end
+
+  ## My Risk Profile
+
+  def self.selected_symptoms(encounter, survey_slug, user)
+    answers = Report.where(encounter: encounter, user_id: user.id, question_slug: survey_slug, value: 1..4)
+    symptoms = []
+    answers.each do |answer|
+      unless answer.answer_option_text == "N/A"
+        symptoms.push(AnswerTemplate.find_by_id(answer.answer_template_id).text)
+      end
+    end
+    return symptoms
+  end
+
+  ## My health conditions
+
+  def self.comorbidity_map
+    conditions = ["Allergies", "Asthma", "ADD", "ADHD", "Cancer", "COPD", "Depression", "Diabetes", "Epilepsy", "HBP", "Heart Disease", "Insomnia", "Narcolepsy", "Pulmonary Fibrosis", "Restless Legs", "Stroke"]
+    data = []
+    conditions.each do |condition|
+      data.push(self.comorbidity_map_data(condition))
+    end
+    return data
+  end
+
+  def self.comorbidity_map_data(condition)
+    at_name = 'conditions-' + condition.to_s.gsub(" ", "-").downcase
+    r = Report.tabular_data(survey_slug: 'my-health-conditions', question_slug: 'health-conditions-list', answer_template_name: at_name).first
+    return [condition.to_s, at_name, r[1]["frequency"]]
+  end
+
   ## HELPERS
   private
+  def self.table_to_freq_array(table)
+    array = []
+    table.each do |row|
+      array.push(row[1][:freq])
+    end
+    return array
+  end
 
   def self.percent_by_value(encounter, slug, values)
     selected = Report.where(encounter: encounter, question_slug: slug, locked: true, value: values).count

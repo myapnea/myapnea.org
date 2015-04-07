@@ -7,33 +7,7 @@
   .survey-report-answer
     %p
       Your symptoms include:
-      %span.f500= "Tiredness, Fatigue"
+      %span.f500= Report.selected_symptoms("baseline", "risk-symptoms", current_user).join(", ")
   .survey-report-info
-    %h3 The following symptoms were commonly experienced by diagnosed members of MyApnea.Org
-    %br
-    .row
-      .col-sm-2.col-sm-offset-1
-        %h1.report-statistic= "81%"
-      .col-sm-8
-        %p.lead.text-left
-          of members report experiencing
-          %span.darkerer-blue snoring
-          for at least one year before diagnosis
-    %br
-    .row
-      .col-sm-2.col-sm-offset-1
-        %h1.report-statistic= "72%"
-      .col-sm-8
-        %p.lead.text-left
-          of members report experiencing
-          %span.darkerer-blue sleepiness
-          for at least one year before diagnosis
-    %br
-    .row
-      .col-sm-2.col-sm-offset-1
-        %h1.report-statistic= "61%"
-      .col-sm-8
-        %p.lead.text-left
-          of members report experiencing
-          %span.darkerer-blue irritation
-          for at least one year before diagnosis
+    %h3 The following symptoms were commonly experienced by members of MyApnea.Org before their diagnosis:
+    = render partial: 'surveys/reports/sleep_apnea_symptoms_statistics'

@@ -6,7 +6,7 @@
   horizontalDistance = barWidth + barSeparation
 
   textSize = 14
-  textXOffset = barWidth / 2 - textSize / 2
+  textXOffset = barWidth / 2 - textSize / 2 - 10
   textYOffset = 20
 
   barHeightMultiplier = graphHeight / maxData
@@ -25,7 +25,7 @@
     .style("font-size", textSize)
 
   data.append("text")
-    .text((d) -> d)
+    .text((d) -> Number((d).toFixed(2)) + '%')
     .attr("x", (d, i) -> String(i * horizontalDistance + textXOffset))
     .attr("y", (d, i) -> graphHeight - d*barHeightMultiplier - textYOffset)
     .style("font-size", textSize)
