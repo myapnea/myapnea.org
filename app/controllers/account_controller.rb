@@ -53,6 +53,9 @@ class AccountController < ApplicationController
 
   def accepts_privacy
     current_user.update accepted_privacy_policy_at: Time.zone.now
+    # TODO Remove when update is changed
+    current_user.update(accepted_update_at: Time.zone.now)
+    # end todo
     if current_user.is_only_academic? and !current_user.ready_for_research?
       redirect_to get_started_terms_of_access_path
     elsif !current_user.ready_for_research?
@@ -89,6 +92,11 @@ class AccountController < ApplicationController
   def revoke_consent
     current_user.revoke_consent!
     redirect_to home_path, notice: "You have successfully left the research study portion of MyApnea.Org. If you ever change your mind, just visit your account settings to view the research consent and privacy policy again."
+  end
+
+  def accepts_update
+    current_user.update(accepted_update_at: Time.zone.now)
+    redirect_to root_path
   end
 
   def user_type

@@ -1,3 +1,15 @@
 #container-left.no-js
+  - if current_user and (current_user.accepted_update_at.blank? or current_user.accepted_update_at < DateTime.new(2015,04,15))
+    #accept-update-container.alert.alert-info
+      %p.lead
+        Our privacy policy and consent have been slightly modified. If you wish to review them, please do so by clicking one of the links below.
+      %br
+      .row.centered-text
+        %button.btn.btn-default
+          = link_to 'Privacy Policy', privacy_path
+        %button.btn.btn-default
+          = link_to 'Consent', consent_path
+        %button.btn.btn-primary
+          = link_to 'I acknowledge these changes', accepts_update_path, method: :post, style: 'color: white'
   = render partial: 'layouts/partials/flash_messages'
   = yield
