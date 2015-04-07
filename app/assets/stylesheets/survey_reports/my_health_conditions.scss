@@ -6,9 +6,15 @@
   background-color: #ffa400;
   color: white;
   h2 {
-    text-decoration: underline;
+    // text-decoration: underline;
   }
   p {
     color: rgba(255,255,255,.95);
   }
+}
+
+#conditions-sleep-apnea {
+  fill: #5999de !important;
+  stroke: #5999de !important;
+  position:relative;
 }

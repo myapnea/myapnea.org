@@ -102,7 +102,7 @@ Network = () ->
       .data(curNodesData, (d) -> d.id)
     node.enter().append("circle")
       .attr("class", "none")
-      .attr("id", (d) -> d.name)
+      .attr("id", (d) -> d.id)
       .attr("cx", (d) -> d.x)
       .attr("cy", (d) -> d.y)
       .attr("r", (d) -> d.radius)
@@ -162,9 +162,17 @@ showInfo = (d, i) ->
   $("#health-conditions-info").html(content)
 
 showDetails = (d,i) ->
-  $("#tooltip").css("top", d.y)
-  $("#tooltip").css("left", d.x)
+  $("#tooltip").removeClass "hidden"
   $("#tooltip").html(d.name)
+  if d.x > 400
+    $("#tooltip").css("left", d.x + 30 + d.frequency/2)
+  else
+    $("#tooltip").css("left", d.x - 30 - d.frequency/2)
+  if d.y > 400
+    $("#tooltip").css("top", d.y + 30 + d.frequency/2)
+  else
+    $("#tooltip").css("top", d.y - 30 - d.frequency/2)
+
 
 hideDetails = (d,i) ->
-  console.log "bye"
+  $("#tooltip").addClass "hidden"
