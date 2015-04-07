@@ -1,15 +1,40 @@
 - @active_top_nav_link = :participate
 
-.row.reset-layout{ style: 'background-color: rgb(207, 226, 248)'}
-  .col-md-12.centered-text
-    %h3.f500.text-dark7 What is your current marital status?
-    %p.lead.text-dark6 Your answer: Prefer not to answer
-    #marital-status{ data: { object: 'd3-report', question: 'marital-status' } }
-  .col-md-12.centered-text.lighterer-blue-bcg
-    %h3.f500.text-dark7 What best describes your current main daily activities?
-    %p.lead.text-dark6 Your answer: Prefer not to answer
-    #daily-activities{ data: { object: 'd3-report', question: 'daily-activities' } }
-  .col-md-12.centered-text
-    %h3.f500.text-dark7 How hard is it for you (and your family) to pay for basics like food, rent, or mortgage, heating, etc.?
-    %p.lead.text-dark6 Your answer: Very hard
-    #difficulty-paying-basics{ data: { object: 'd3-report', question: 'difficulty-paying-basics' } }
+.survey-report-container.panel
+  - question = @survey.questions.where(slug: 'marital-status').first
+  - answer = @answer_session.answers.where(question_id: question.id).first
+  .survey-report-question.rounded-top
+    %h3= question.text
+  .survey-report-answer
+    %p
+      Your answer
+      %span.f500= answer.show_value
+  .survey-report-info
+    - data_array = Report.current_marital_status_data
+    #marital-status{ data: { object: 'd3-report', question: 'marital-status', array: "#{data_array}" } }
+
+.survey-report-container.panel
+  - question = @survey.questions.where(slug: 'daily-activities').first
+  - answer = @answer_session.answers.where(question_id: question.id).first
+  .survey-report-question.rounded-top
+    %h3= question.text
+  .survey-report-answer
+    %p
+      Your answer:
+      %span.f500= answer.show_value
+  .survey-report-info
+    - data_array = Report.daily_activities_data
+    #daily-activities{ data: { object: 'd3-report', question: 'daily-activities', array: "#{data_array}" } }
+
+.survey-report-container.panel
+  - question = @survey.questions.where(slug: 'affording-basics').first
+  - answer = @answer_session.answers.where(question_id: question.id).first
+  .survey-report-question.rounded-top
+    %h3= question.text
+  .survey-report-answer
+    %p
+      Your answer:
+      %span.f500= answer.show_value
+  .survey-report-info
+    - data_array = Report.affording_basics_data
+    #difficulty-affording-basics{ data: { object: 'd3-report', question: 'difficulty-paying-basics', array: "#{data_array}" } }

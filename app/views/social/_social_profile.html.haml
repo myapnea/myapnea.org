@@ -17,10 +17,11 @@
         .col-sm-6
           =f.number_field(:age, class: 'form-control')
       .form-group
-        %label.col-sm-3.control-label Sex
+        %label.col-sm-3.control-label Gender
         .col-sm-6
-          =f.select(:sex, ["Male", "Female", "Other"], {}, class: 'form-control')
-      / =f.submit("Save Changes", class: 'btn btn-primary col-sm-6 col-sm-offset-3 centered-text')
+          = f.text_field(:sex, class: 'form-control')
+          -# =f.select(:sex, ["Male", "Female", "Other"], {}, class: 'form-control')
+      -# =f.submit("Save Changes", class: 'btn btn-primary col-sm-6 col-sm-offset-3 centered-text')
     .panel-footer.text-dark9.row{ style: 'margin:10px 0;'}
       %h4.f500.centered-text
         This is how you will appear to other members of MyApnea.Org

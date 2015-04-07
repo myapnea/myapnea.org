@@ -25,6 +25,6 @@
     .attr("y", (d, i) -> i * verticalDistance + textYOffset)
 
   data.append("text")
-    .text((d) -> d)
+    .text((d) -> Number((d).toFixed(2)) + '%')
     .attr("x", (d, i) -> 300 + (d - 1) * barHeightMultiplier + 10)
     .attr("y", (d, i) -> i * verticalDistance + textYOffset)

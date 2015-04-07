@@ -19,6 +19,7 @@ create or replace view reports as
     q.slug as question_slug,
     q.display_type as question_display_type,
     av_at.name as answer_template_name,
+    av_at.text as answer_template_text,
     av_at.data_type as data_type,
     av.created_at as created_at,
     av.updated_at as updated_at,

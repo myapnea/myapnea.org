@@ -2,13 +2,13 @@
   # Creating network
   myNetwork = Network()
 
-  d3.json "data.json", (json) ->
+  d3.json "my_health_conditions_data.json", (json) ->
     myNetwork("#health-conditions", json)
   myNetwork.toggleLayout("force")
 
 Network = () ->
   width = 800
-  height = 500
+  height = 800
   # allData will store the unfiltered data
   allData = []
   curLinksData = []
@@ -52,7 +52,6 @@ Network = () ->
   # private function, called everytime a parameter changes and the network needs to be reset
   update = () ->
     # filter data for current settings
-    console.log allData
     curNodesData = allData.nodes
     curLinksData = allData.links
     # Reset nodes in force layout, then update to enter/exit for nodes
@@ -68,13 +67,13 @@ Network = () ->
   network.toggleLayout = (newLayout) ->
     update()
     force.on("tick", forceTick)
-      .charge(-200)
-      .linkDistance(50)
+      .charge(-1500)
+      .linkDistance(300)
 
   setupData = (data) ->
     # initialize circle radius scale
     countExtent = d3.extent(data.nodes, (d) -> d.frequency)
-    circleRadius = d3.scale.sqrt().range([3, 12]).domain(countExtent)
+    circleRadius = d3.scale.sqrt().range([3, 50]).domain(countExtent)
 
     # Initialize x/y coordinate and radius of each node
     data.nodes.forEach (n) ->
@@ -103,14 +102,16 @@ Network = () ->
       .data(curNodesData, (d) -> d.id)
     node.enter().append("circle")
       .attr("class", "none")
+      .attr("id", (d) -> d.id)
       .attr("cx", (d) -> d.x)
       .attr("cy", (d) -> d.y)
       .attr("r", (d) -> d.radius)
       .style("fill", (d) -> nodeColors(d.artist))
       .style("stroke", (d) -> strokeFor(d))
       .style("stroke-width", 1.0)
-    # node.on("mouseover", showDetails)
-    #   .on("mouseout", hideDetails)
+    node.on("mouseover", showDetails)
+      .on("mouseout", hideDetails)
+    node.on("click", showInfo)
     node.exit().remove()
 
   updateLinks = () ->
@@ -132,8 +133,8 @@ Network = () ->
     layout = newLayout
     if layout == "force"
       force.on("tick", forceTick)
-        .charge(-200)
-        .linkDistance(50)
+        .charge(-1500)
+        .linkDistance(300)
     else if layout == "radial"
       force.on("tick", radialTick)
         .charge(charge)
@@ -155,54 +156,23 @@ Network = () ->
 
   return network
 
+showInfo = (d, i) ->
+  content = "<h2>" + d.name + "</h2>"
+  content += "<p class='lead'> Experienced by <span class='f500'>" + Number((d.frequency).toFixed(2)) + "%</span> of the MyApnea community."
+  $("#health-conditions-info").html(content)
+
+showDetails = (d,i) ->
+  $("#tooltip").removeClass "hidden"
+  $("#tooltip").html(d.name)
+  if d.x > 400
+    $("#tooltip").css("left", d.x + 30 + d.frequency/2)
+  else
+    $("#tooltip").css("left", d.x - 30 - d.frequency/2)
+  if d.y > 400
+    $("#tooltip").css("top", d.y + 30 + d.frequency/2)
+  else
+    $("#tooltip").css("top", d.y - 30 - d.frequency/2)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+hideDetails = (d,i) ->
+  $("#tooltip").addClass "hidden"
