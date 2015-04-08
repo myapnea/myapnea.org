@@ -47,7 +47,7 @@
   .survey-report-answer
     %p
       Your answer:
-      %span.f500= answer.show_value
+      %span.f500= Report.family_diagnostic_answer('baseline', current_user)
   .survey-report-info
     .row
       .col-sm-2

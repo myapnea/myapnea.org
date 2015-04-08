@@ -386,6 +386,11 @@ class Report < ActiveRecord::Base
 
   ## About my family
 
+  def self.family_diagnostic_answer(encounter, user)
+    answers = Report.where(encounter: encounter, survey_slug: 'about-my-family', question_slug: 'family-diagnoses', user: user.id, value: %w(1 2 3 4 5 6 7)).where.not(answer_option_text: ["1", "2", "3+"]).pluck(:answer_option_text)
+    return answers.collect{|answer| answer.partition(' ').first}.join(', ')
+  end
+
   def self.country_of_origin
     table_data = self.frequency_data('origin-country', 1..6)
     extra_table_data = self.tabular_data(survey_slug: 'about-my-family', question_slug: 'origin-country', answer_template_name: 'specified_country')
