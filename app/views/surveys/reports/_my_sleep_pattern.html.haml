@@ -37,7 +37,7 @@
           = "#{Report.percent_different_sleep_weekends_weekdays.round(1)} %"
       .col-xs-8.text-left
         %p.report-statistic-descriptor
-          of MyApnea members report getting different amounts of sleep on the weekends than on weekdays.
+          of MyApnea members report getting different amounts of sleep on the weekends compared to weekdays.
     %br
     %p.lead
       Having the same bedtime and wake up time on workdays and weekends could help you fall asleep and stay asleep all night because it helps keep your body's clock regular.
@@ -71,20 +71,23 @@
       The average MyApnea member would prefer to wake up
       %span.primary-orange.f500= Report.median_wakeup_time()
     %p.lead
-      Some people prefer to wake up earlier in the morning and go to bed earlier at night (sometimes called morning larks). Others prefer to sleep later in the mroning and stay up later at night (sometime's called night owls). Researchers study the body's internal clock, or circadian rhythm, to learn more about the differences between morning larks and night owls.
+      Some people prefer to wake up earlier in the morning and go to bed earlier at night (sometimes called morning larks). Others prefer to sleep later in the morning and stay up later at night (sometimes called night owls). Researchers study the body's internal clock, or circadian rhythm, to learn more about the differences between morning larks and night owls.
 
 .survey-report-container.panel
   .survey-report-question.rounded-top
     - question = @survey.ordered_questions.where(slug: 'epworth-sleepiness-scale').first
     %h3 The last question of this survey asked you to note how likely you would be to doze off or fall asleep in a variety of situations.
-    %h4.f300 This series is known as the Epworth Sleepiness Scale (ESS), and provides a measure of how sleep you feel.
+    %h4.f300 This series is known as the Epworth Sleepiness Scale (ESS), and provides a measure of how sleepy you feel.
   .survey-report-answer
     %p.lead Your score:
     %h1.report-statistic
       = Report.personal_ess('baseline', current_user)
   .survey-report-info.rounded-bottom
-    %p.lead Average MyApnea user score:
+    %p.lead Average MyApnea member score:
     %h1.report-statistic
       = Report.average_ess('baseline').round(1)
     %p.lead
-      Normal scores are less than 10. Scores of 11 or more indicate sleepiness, with scores greater than 16 indicating high levels of sleepiness.  Sleepiness may occur because of untreated sleep apnea, inadequately treated sleep apnea, not getting enough sleep per night (most adults need 7 to 8 hours of sleep per night) or another sleep disorder.  If your score is greater than 10, you may want to talk to your health care provider as well as review your sleep habits to make sure you are getting 7 to 8 hours of sleep per night.
+      Normal scores are less than 10. Scores of 11 or more indicate sleepiness, with scores greater than 16 indicating high levels of sleepiness.  Sleepiness may occur because of untreated sleep apnea, inadequately treated sleep apnea, not getting enough sleep per night (most adults need 7 to 8 hours of sleep per night), or another sleep disorder.
+      %br
+      %br
+      If your score is greater than 10, you may want to talk to your health care provider as well as review your sleep habits to make sure you are getting 7 to 8 hours of sleep per night.
