@@ -73,7 +73,7 @@ Network = () ->
   setupData = (data) ->
     # initialize circle radius scale
     countExtent = d3.extent(data.nodes, (d) -> d.frequency)
-    circleRadius = d3.scale.sqrt().range([3, 50]).domain(countExtent)
+    circleRadius = d3.scale.sqrt().range([10, 50]).domain(countExtent)
 
     # Initialize x/y coordinate and radius of each node
     data.nodes.forEach (n) ->
