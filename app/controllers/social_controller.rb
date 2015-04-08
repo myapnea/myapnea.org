@@ -44,7 +44,7 @@ class SocialController < ApplicationController
         :location_id,
         :make_public,
         :age,
-        :sex,
+        :gender,
         :photo,
         :visible_to_community,
         :visible_to_world

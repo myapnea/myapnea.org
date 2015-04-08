@@ -67,6 +67,7 @@ if typeof Turbolinks isnt 'undefined' and Turbolinks.supported
   toolsReady() if toolsReady?
   postsReady() if postsReady?
   surveyReportsReady() if surveyReportsReady?
+  autocompleteGenderReady() if $("#social_profile_gender").length > 0
 
 $(document).ready(loaders)
 $(document).on('page:load', loaders)

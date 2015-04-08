@@ -33,6 +33,7 @@
 //= require surveys
 //= require tools
 //= require fb
+//= require social/autocomplete_gender
 //= require reports/survey_reports
 //= require reports/display_types/horizontal_bar_graph
 //= require reports/display_types/vertical_bar_graph

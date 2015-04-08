@@ -19,8 +19,7 @@
       .form-group
         %label.col-sm-3.control-label Gender
         .col-sm-6
-          = f.text_field(:sex, class: 'form-control')
-          -# =f.select(:sex, ["Male", "Female", "Other"], {}, class: 'form-control')
+          = f.text_field(:gender, autocomplete: "off", data: { object: 'typeahead', local: ["Male", "Female", "Genderqueer", "Androgynous", "Intersex", "Transgender", "Transsexual", "Cross-dresser", "Male-to-female (MTF)", "Female-to-male (FTM)"].to_json }, class: 'form-control')
       -# =f.submit("Save Changes", class: 'btn btn-primary col-sm-6 col-sm-offset-3 centered-text')
     .panel-footer.text-dark9.row{ style: 'margin:10px 0;'}
       %h4.f500.centered-text
