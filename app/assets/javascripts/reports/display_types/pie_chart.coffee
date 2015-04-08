@@ -8,7 +8,7 @@
       colors[i] = randomBlue() if !(i%2)
       i++
 
-  pie = d3.layout.pie()
+  pie = d3.layout.pie().sort(null)
   pie(data)
   arc = d3.svg.arc()
     .innerRadius(0)
