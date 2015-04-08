@@ -45,6 +45,7 @@ Rails.application.routes.draw do
   post 'accepts_privacy' => 'account#accepts_privacy'
   post 'accepts_consent' => 'account#accepts_consent'
   post 'accepts_terms_of_access' => 'account#accepts_terms_of_access'
+  post 'accepts_update' => 'account#accepts_update'
 
   # Provider Pages
   get 'p(/:slug)', to: 'static#provider_page'
@@ -93,10 +94,10 @@ Rails.application.routes.draw do
   get 'sleep-apnea-risk-assessment' => 'tools#risk_assessment'
   post 'sleep-apnea-risk-assessment/results' => 'tools#risk_assessment_results'
   # Tools
-  get 'bmi_ahi' => 'tools#bmi_ahi'
+  get 'sleep-apnea-and-bmi' => 'tools#bmi_ahi'
 
   # Discussion
-  match 'forums/terms_and_conditions', to: 'account#terms_and_conditions', via: :get, as: :terms_and_conditions
+  match 'forums/terms-and-conditions', to: 'account#terms_and_conditions', via: :get, as: :terms_and_conditions
 
   # Social Section
   match 'social', to: 'social#overview', via: :get, as: 'social' # show
@@ -116,7 +117,12 @@ Rails.application.routes.draw do
   match 'update_account', to: 'account#update', as: 'update_account', via: :patch
   match 'change_password', to: 'account#change_password', as: 'change_password', via: :patch
 
-  match 'terms_of_access', to: 'account#terms_of_access', as: :terms_of_access, via: [:get, :post]
+  match 'terms-of-access', to: 'account#terms_of_access', as: :terms_of_access, via: [:get, :post]
+
+  # Governance
+  get 'governance-policy', to: 'static#governance_policy', as: :governance_policy
+  get 'patient-engagement-panel-charter', to: 'static#PEP_charter', as: :pep_charter
+  get 'advisory-council-charter', to: 'static#AC_charter', as: :ac_charter
 
   # Admin Section
   get 'admin' => 'admin#dashboard'
@@ -126,6 +132,7 @@ Rails.application.routes.draw do
   get 'admin/research-topic/:id' => 'admin#research_topic', as: 'admin_research_topic'
   get 'admin/version-stats' => 'admin#version_stats', as: 'admin_version_stats'
   get 'admin/cross-tabs' => 'admin#cross_tabs', as: 'admin_cross_tabs'
+  get 'admin/reports/location' => 'admin#location', as: 'admin_reports_location'
 
   # Development/System
   get 'pprn' => 'application#toggle_pprn_cookie'

@@ -36,6 +36,10 @@ class AdminController < ApplicationController
     ]
   end
 
+  def location
+
+  end
+
   def cross_tabs
     user_values = {}
 

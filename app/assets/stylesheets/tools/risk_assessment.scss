@@ -101,7 +101,6 @@
     background: asset-url("myapnea/icons/arrowdown.png") 96% / 15% no-repeat #fff;
   }
   .select-label {
-    font-size: 18px;
     font-weight: 300;
     margin-right:10px;
   }
@@ -209,6 +208,16 @@
   }
   .col-xs-6 {
     padding:30px;
+  }
+}
+
+#stopbang-accreditation {
+  a {
+    color: white;
+  }
+  a:hover, a:active {
+    text-decoration: none;
+    color: rgba(255,255,255,.7);
   }
 }
 

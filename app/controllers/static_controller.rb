@@ -34,6 +34,15 @@ class StaticController < ApplicationController
   def sitemap
   end
 
+  def governance_policy
+  end
+
+  def PEP_charter
+  end
+
+  def AC_charter
+  end
+
   ## Educational content
 
   def obstructive_sleep_apnea

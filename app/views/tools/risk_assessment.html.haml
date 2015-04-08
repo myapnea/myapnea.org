@@ -12,7 +12,7 @@
         #stopbang-gender.row.reset-layout
           .col-xs-6
             %h4
-              Are you male or female?
+              What is your sex?
           .col-xs-6
             .radio-container
               = radio_button_tag 'gender', 'male'
@@ -32,45 +32,46 @@
           #stopbang-height.row.reset-layout
             .col-xs-6
               %h4
-                How tall are you?
+                What is your height?
             .col-xs-6
-              = select_tag 'feet', options_for_select(0..8), include_blank: true, data: { object: 'feet-input' }
-              %label.select-label{ for: 'feet'} feet
-              = select_tag 'inches', options_for_select(0..11), include_blank: true, data: { object: 'inches-input' }
-              %label.select-label{ for: 'inches' } inch(es)
+              .row.reset-layout
+                .col-sm-6.no-padding
+                  = select_tag 'feet', options_for_select(0..8), include_blank: true, data: { object: 'feet-input' }
+                  %label.select-label{ for: 'feet'} feet
+                .col-sm-6.no-padding
+                  = select_tag 'inches', options_for_select(0..11), include_blank: true, data: { object: 'inches-input' }
+                  %label.select-label{ for: 'inches' } inches
           #stopbang-weight.row.reset-layout
             .col-xs-6
               %h4
                 What is your weight?
             .col-xs-6
               = number_field_tag 'weight', nil, class: 'number-input', data: { object: 'weight-input' }
+              %label.f300{ for: 'weight' } pounds
           .row.reset-layout
             .col-xs-6
               %h4 Your BMI:
             .col-xs-6
               %h4#stopbang-bmi-output.f300
-        #stopbang-bp
-          #systolic-container.row.reset-layout
-            .col-xs-6
-              %h4
-                What is your systolic blood pressure?
-            .col-xs-6
-              = text_field_tag 'systolic_label', nil, maxlength: 3, onchange: 'updateSystolicRange(this.value)', oninput: 'updateSystolicRange(this.value)'
-              %label{ for: 'systolic_label' } mm Hg
-              = range_field_tag 'systolic', nil, in: 90...180, step: '1', onchange: 'updateSystolicLabel(this.value)', oninput: 'updateSystolicLabel(this.value)'
-          #diastolic-container.row.reset-layout
-            .col-xs-6
-              %h4.float-left
-                What is your systolic blood pressure?
-            .col-xs-6
-              = text_field_tag 'diastolic_label', nil, maxlength: 3, onchange: 'updateDiastolicRange(this.value)', oninput: 'updateDiastolicRange(this.value)'
-              %label{ for: 'diastolic' } mm Hg
-              = range_field_tag 'diastolic', nil, in: 50...120, step: '1', onchange: 'updateDiastolicLabel(this.value)', oninput: 'updateDiastolicLabel(this.value)'
-      .col-sm-6.reset-layout
+        #stopbang-bp.row.reset-layout
+          .col-xs-6
+            %h4
+              Are you currently being treated for high blood pressure?
+          .col-xs-6
+            .radio-container
+              = radio_button_tag 'hbp', 'yes'
+              %label{ for: 'snoring' }
+                %p Yes
+            .radio-container
+              = radio_button_tag 'hbp', 'no'
+              %label{ for: 'snoring' }
+                %p No
         #stopbang-snoring.row.reset-layout
           .col-xs-6
             %h4
-              Do you snore?
+              Do you snore loudly?
+            %p.f300.text-muted
+              Loudly enough to be heard through closed doors, or so that your bed-partner elbows you for snoring at night.
           .col-xs-6
             .radio-container
               = radio_button_tag 'snoring', 'yes'
@@ -80,6 +81,7 @@
               = radio_button_tag 'snoring', 'no'
               %label{ for: 'snoring' }
                 %p No
+      .col-sm-6.reset-layout
         #stopbang-tiredness.row.reset-layout
           .col-xs-6
             %h4
@@ -96,7 +98,7 @@
         #stopbang-observation.row.reset-layout
           .col-xs-6
             %h4
-              Has anyone ever observed you stop sleeping at night?
+              Has anyone ever observed you stop breathing or start choking/gasping during your sleep?
           .col-xs-6
             .radio-container
               = radio_button_tag 'observation', 'yes'
@@ -109,7 +111,16 @@
         #stopbang-neck.row.reset-layout
           .col-xs-6
             %h4
-              Is your neck size larger than 40cm?
+              Do you have a large neck size?
+              %br
+              %span.text-muted.f300
+                Collar size of 17" or more for men
+                %br
+                Collar size of 16" or more for women
+            %p.f300.text-muted
+              If you don't know your collar size, you can approximate using your hands. If you can wrap your hands around your neck and your fingers
+              %span.f500 do not touch
+              on both sides, you likely have a large neck.
           .col-xs-6
             .radio-container
               = radio_button_tag 'neck', 'yes'
@@ -123,6 +134,14 @@
           %button.btn.btn-success{ data: { object: 'submit-risk-assessment'} }
             %h3 Check my Risk
   .row.reset-layout.primary-orange-bcg
-    .col-sm-6
-      %p.small
-        From StopBang.ca
+    .col-sm-4
+    .col-sm-4
+    .col-sm-4
+      %p#stopbang-accreditation.small.text-right
+        = link_to 'Stop-Bang', 'http://www.stopbang.ca'
+        is the property of
+        = link_to 'University Health Network', 'http://www.uhn.ca'
+        and is licensed for use by
+        = link_to 'Partners Healthcare', 'http://www.partners.org'
+        and
+        = link_to('MyApnea.Org', 'http://www.myapnea.org') + '.'

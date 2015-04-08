@@ -65,6 +65,13 @@ class AdminControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should get location report for admin" do
+    login(users(:moderator_1))
+
+    get :location
+    assert_response :success
+  end
+
   # test "should allow owner to add and remove user roles" do
   #   login(users(:owner))
 
