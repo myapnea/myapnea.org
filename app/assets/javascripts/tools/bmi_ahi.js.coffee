@@ -12,16 +12,19 @@ current_weight_updated = false
     current_weight_updated = true
     calculate_bmi()
   $(document).on 'input', '#desired-weight', () ->
-    # CALCULATE OUTPUT
-    output_BMI_changes()
+    $("[data-object~='submit-weight-change']").removeClass 'disabled'
 
   $(document).on 'click', "[data-object~='submit-bmi']", () ->
     calculate_bmi_pressed()
 
+  $(document).on 'click', "[data-object~='submit-weight-change']", () ->
+    # CALCULATE OUTPUT
+    $("#weight-change-results-container").removeClass 'hidden'
+    output_BMI_changes()
+
   $(document).on 'click', "[data-object~='calculate-minimum-weight']", () ->
     $("#desired-weight").val minimum_healthy_weight(calculate_height(), calculate_bmi())
-    # CALCULATE OUTPUT
-    output_BMI_changes()
+    $("[data-object~='submit-weight-change']").removeClass 'disabled'
 
 
 output_BMI_changes = () ->
@@ -57,7 +60,8 @@ check_for_BMI_variables = () ->
     return true
 
 calculate_bmi_pressed = () ->
-  console.log "calculate bmi pressed"
+  $("#bmi-ahi-results-container").removeClass 'dimmed-and-disabled'
+  $("[data-object~='calculate-minimum-weight']").removeClass 'disabled'
   $("#bmi-graph").removeClass 'hidden'
   output_BMI()
 

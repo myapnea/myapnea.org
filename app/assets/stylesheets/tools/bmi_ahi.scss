@@ -77,3 +77,16 @@
 .obese {
   fill: #FD8603;
 }
+
+#bmi-ahi-results-container {
+  margin-top:20px;
+}
+
+#bmi-ahi-results-container.dimmed-and-disabled {
+  display:none;
+  .list-group-item {
+    background-color: #eee;
+    color: #777;
+  }
+  pointer-events: none;
+}
