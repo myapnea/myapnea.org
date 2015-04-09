@@ -2,7 +2,7 @@ class SurveysController < ApplicationController
   before_action :authenticate_user!
   before_action :set_active_top_nav_link_to_surveys
   before_action :authenticate_research
-  before_action :set_survey, only: [:show, :report, :report_detail, :start_survey]
+  before_action :set_survey, only: [:show, :report, :report_detail, :accept_update_first, :start_survey]
 
 
   def my_health_conditions_data
@@ -15,6 +15,9 @@ class SurveysController < ApplicationController
 
   def show
     redirect_to surveys_path and return if @survey.deprecated?
+    unless current_user.accepted_most_recent_update?
+      redirect_to accept_update_first_survey_path and return
+    end
     # We do not want to redirect to survey report path if it's completed, we
     # want to show the survey page, with locked questions instead. ~ Remo
     # redirect_to report_survey_path(@survey, @answer_session) and return if @answer_session.completed?
@@ -26,6 +29,11 @@ class SurveysController < ApplicationController
 
   def report_detail
     redirect_to surveys_path and return unless (@answer_session.completed? or current_user.is_only_academic?)
+  end
+
+  def accept_update_first
+    redirect_to survey_path(@survey) if current_user.accepted_most_recent_update?
+    session[:return_to] = survey_path(@survey)
   end
 
   def process_answer

@@ -72,6 +72,7 @@ Rails.application.routes.draw do
     member do
       get :report
       get 'report-detail', as: :report_detail
+      get 'accept-update-first', as: :accept_update_first
     end
   end
   get 'surveys/my-health-conditions/my_health_conditions_data' => 'surveys#my_health_conditions_data', format: :json

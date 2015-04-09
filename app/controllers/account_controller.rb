@@ -96,8 +96,9 @@ class AccountController < ApplicationController
 
   def accepts_update
     current_user.update(accepted_update_at: Time.zone.now)
-    redirect_to root_path
+    redirect_to session[:return_to] rescue root_path
   end
+
 
   def user_type
   end

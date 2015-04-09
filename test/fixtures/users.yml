@@ -93,6 +93,7 @@ has_completed_survey:
   over_eighteen: true
   accepted_consent_at: <%= 5.day.ago.to_s(:db) %>
   accepted_privacy_policy_at: <%= 6.day.ago.to_s(:db) %>
+  accepted_update_at: <%= Date.parse("2015-04-17").at_noon %>
   adult_diagnosed: true
   encrypted_password: <%= pw %>
 
@@ -114,6 +115,7 @@ has_launched_survey:
   zip_code: 12345
   accepted_consent_at: <%= 5.day.ago.to_s(:db) %>
   accepted_privacy_policy_at: <%= 6.day.ago.to_s(:db) %>
+  accepted_update_at: <%= Date.parse("2015-04-17").at_noon %>
   over_eighteen: true
   adult_diagnosed: true
   encrypted_password: <%= pw %>
