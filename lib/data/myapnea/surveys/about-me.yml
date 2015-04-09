@@ -23,13 +23,13 @@ questions:
     data_type: answer_option_id
     answer_options:
     - slug: sex-1
-      text: Female
-      hotkey: B
+      text: Male
+      hotkey: A
       value: 1
       display_class: label-default label-med
     - slug: sex-2
-      text: Male
-      hotkey: A
+      text: Female
+      hotkey: B
       value: 2
       display_class: label-default label-med
     - slug: sex-3
