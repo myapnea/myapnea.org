@@ -1,5 +1,5 @@
 #bmi-ahi-calculator.row.reset-layout
-  .col-sm-5
+  .col-md-5
     .row.list-group-item
       %h3 Sleep Apnea and BMI
       %p.lead
@@ -35,9 +35,12 @@
           People with this BMI are considered to be
           %span#my-bmi-category.f500
         %svg.chart
-  #bmi-ahi-results-container.col-sm-7.dimmed-and-disabled
+  #bmi-ahi-results-container.col-md-7.dimmed-and-disabled
     .list-group-item
-      %h4 Effects of Weight Change on AHI
+      %h4
+        Effects of Weight Change on AHI
+      %p.lead
+        Research has show that the risk of obstructive sleep apnea (OSA) is much higher in people with high BMI, and a strong relationship exists between increases in BMI and increases in the severity of OSA.
     .list-group-item
       .row
         .col-xs-4
@@ -61,9 +64,36 @@
         %p#bmi-change-result-text.hidden.lead{ style: 'font-size: 18px; padding-left: 5px; padding-right: 5px'}
           %br
           %span#bmi-change-result-custom-text.darkerer-blue
-          %br
-          %br
-          Research has show that the risk of obstructive sleep apnea (OSA) is much higher in people with high BMI, and a strong relationship exists between increases in BMI and increases in the severity of OSA.
+          #severity-graph.centered-text
+            #severe.row.reset-layout
+              .col-xs-3
+                %h4.darkerer-blue Severe
+              .col-xs-3
+              .col-xs-3
+              .col-xs-3
+                .circle
+            #moderate.row.reset-layout
+              .col-xs-3
+                %h4.darkerer-blue Moderate
+              .col-xs-3
+              .col-xs-3
+                .circle
+              .col-xs-3
+            #mild.row.reset-layout
+              .col-xs-3
+                %h4.darkerer-blue Mild
+              .col-xs-3
+                .circle
+              .col-xs-3
+              .col-xs-3
+            .row.reset-layout
+              .col-xs-3
+              .col-xs-3
+                %h4.darkerer-blue Normal weight
+              .col-xs-3
+                %h4.darkerer-blue Overweight
+              .col-xs-3
+                %h4.darkerer-blue Obese
     .list-group-item
       %cite#bmi-change-result-citation.notice.text-muted.small
         %a{:href => "http://www.archbronconeumol.org/en/obstructive-sleep-apnea-in-normal/articulo/90258886/"}

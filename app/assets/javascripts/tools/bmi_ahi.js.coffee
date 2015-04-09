@@ -102,8 +102,12 @@ calculate_BMI_category = (bmi) ->
     return "Obese"
 
 determine_result_description = (bmiC1, bmiC2) ->
+  draw_severity_graph(bmiC2)
   if bmiC1 == bmiC2
-    return "Try entering a new weight to see how it will affect your BMI, and how it might affect the severity of your sleep apnea."
+    if parseFloat($("#my-weight").val()) == parseFloat($("#desired-weight").val())
+      return "Try entering a new weight to see how it will affect your BMI, and how it might affect the severity of your sleep apnea."
+    else
+      return "This change in weight will not change your BMI category."
   # Obese patients
   if bmiC1 == "Obese"
     result = "People with sleep apnea and a BMI greater than 30 are much more likely to develop severe OSA. "
@@ -196,3 +200,13 @@ draw_bmi_graph = () ->
     .attr("y2", h+1)
     .attr("stroke-width", 2)
     .attr("stroke", "black")
+
+draw_severity_graph = (bmi_category) ->
+  $('#severity-graph').removeClass 'hidden'
+  $("#severity-graph .row").removeClass "active"
+  if bmi_category == "Normal weight"
+    $(".row#mild").addClass "active"
+  else if bmi_category == "Overweight"
+    $(".row#moderate").addClass "active"
+  else if bmi_category == "Obese"
+    $(".row#severe").addClass "active"
