@@ -81,6 +81,40 @@ class Survey < ActiveRecord::Base
     survey.refresh_precomputations
   end
 
+  def write_to_file
+    file_hash = {}
+
+    file_hash["name"] = name
+    file_hash["slug"] = slug
+    file_hash["default_position"] = default_position
+    file_hash["description"] = description
+    file_hash["status"] = status
+
+    file_hash["questions"] = ordered_questions.map do |q|
+      q_hash = {}
+      q_hash["text"] = q.text
+      q_hash["slug"] = q.slug
+      q_hash["display_type"] = q.display_type
+      q_hash["answer_templates"] = q.answer_templates.map do |at|
+        at_hash = {}
+        at_hash["name"] = at.name
+        at_hash["data_type"] = at.data_type
+        at_hash["answer_options"] = at.answer_options.map do |ao|
+          ao_hash = {}
+          ao_hash["text"] = ao.text
+          ao_hash["hotkey"] = ao.hotkey
+          ao_hash["value"] = ao.value
+          ao_hash["display_class"] = ao.display_class
+          ao_hash["slug"] = "#{at.name}_#{ao.value}"
+          ao_hash
+        end
+        at_hash
+      end
+      q_hash
+    end
+
+    File.open("/usr/local/htdocs/www_myapnea_org/lib/data/myapnea/surveys/generated/#{slug}.yml", 'w') {|f| f.write file_hash.to_yaml }
+  end
 
   # Instance Methods
   def launch_single(user, encounter, position=nil)
