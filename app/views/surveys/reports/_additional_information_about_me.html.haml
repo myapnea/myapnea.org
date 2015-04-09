@@ -1,40 +1,36 @@
 - @active_top_nav_link = :participate
 
 .survey-report-container.panel
-  - question = @survey.questions.where(slug: 'marital-status').first
-  - answer = @answer_session.answers.where(question_id: question.id).first
+  - bmi = Report.bmi('baseline', current_user)
   .survey-report-question.rounded-top
-    %h3= question.text
+    %h3 Based on your height and weight, we are able to calculate your body mass index (BMI).
   .survey-report-answer
     %p
-      Your answer
-      %span.f500= answer.show_value
-  .survey-report-info
-    - data_array = Report.current_marital_status_data
-    #marital-status{ data: { object: 'd3-report', question: 'marital-status', array: "#{data_array}" } }
-
-.survey-report-container.panel
-  - question = @survey.questions.where(slug: 'daily-activities').first
-  - answer = @answer_session.answers.where(question_id: question.id).first
-  .survey-report-question.rounded-top
-    %h3= question.text
-  .survey-report-answer
+      Your height:
+      %span.f500= "#{Report.height('baseline', current_user)} inches"
     %p
-      Your answer:
-      %span.f500= answer.show_value
+      Your weight:
+      %span.f500= "#{Report.weight('baseline', current_user)} pounds"
   .survey-report-info
-    - data_array = Report.daily_activities_data
-    #daily-activities{ data: { object: 'd3-report', question: 'daily-activities', array: "#{data_array}" } }
-
-.survey-report-container.panel
-  - question = @survey.questions.where(slug: 'affording-basics').first
-  - answer = @answer_session.answers.where(question_id: question.id).first
-  .survey-report-question.rounded-top
-    %h3= question.text
-  .survey-report-answer
-    %p
-      Your answer:
-      %span.f500= answer.show_value
-  .survey-report-info
-    - data_array = Report.affording_basics_data
-    #difficulty-affording-basics{ data: { object: 'd3-report', question: 'difficulty-paying-basics', array: "#{data_array}" } }
+    %p.lead
+      Your BMI:
+      %br
+      %span.report-statistic= "%0.2f" % bmi
+    - if bmi < 25
+      %p.lead
+        A BMI between 18 and 25 puts you in the
+        %span.f500.primary-orange 'normal weight'
+        category. Research has shown that people in this category are the least likely to develop severe obstructive sleep apnea, and more typically have mild or moderate OSA.
+    - elsif bmi < 35
+      %p.lead
+        A BMI between 25 and 35 puts you in the
+        %span.f500.primary-orange 'overweight'
+        category. Research has shown that people who are overweight are more likely to develop moderate or severe obstructive sleep apnea.
+    - elsif bmi < 100
+      %p.lead
+        A BMI above 35 puts you in the
+        %span.f500.primary-orange 'obese'
+        category. Research has shown that people who are obese are most likely to develop severe obstructive sleep apnea.
+    %p.lead
+      To learn more about the link between BMI and sleep apnea severity, visit
+      = link_to 'our BMI research tool.', sleep_apnea_and_bmi_path
