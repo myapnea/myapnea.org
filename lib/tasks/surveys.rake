@@ -258,4 +258,6 @@ namespace :surveys do
           List of users with survey previously launched:\n
           #{already_assigned}"
   end
+
+
 end
