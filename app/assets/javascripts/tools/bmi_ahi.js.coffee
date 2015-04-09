@@ -8,12 +8,15 @@ current_weight_updated = false
   $(document).on 'change', '#my-height-inches', () ->
     inches_updated = true
     calculate_bmi()
-  $(document).on 'change', '#my-weight', () ->
+  $(document).on 'input', '#my-weight', () ->
     current_weight_updated = true
     calculate_bmi()
-  $(document).on 'change', '#desired-weight', () ->
+  $(document).on 'input', '#desired-weight', () ->
     # CALCULATE OUTPUT
     output_BMI_changes()
+
+  $(document).on 'click', "[data-object~='submit-bmi']", () ->
+    calculate_bmi_pressed()
 
   $(document).on 'click', "[data-object~='calculate-minimum-weight']", () ->
     $("#desired-weight").val minimum_healthy_weight(calculate_height(), calculate_bmi())
@@ -45,10 +48,18 @@ calculate_bmi = () ->
 
   # If all data is entered, show the BMI graph, the AHI graph,
   # and autocomplete necessary weight for healthy BMI (if applicable)
-  if feet_updated and inches_updated and current_weight_updated
-    $("#my-bmi").removeClass 'hidden'
-    output_BMI()
+  if check_for_BMI_variables()
+    $("[data-object~='submit-bmi']").removeClass 'disabled'
   return get_bmi(height,weight)
+
+check_for_BMI_variables = () ->
+  if feet_updated and inches_updated and current_weight_updated
+    return true
+
+calculate_bmi_pressed = () ->
+  console.log "calculate bmi pressed"
+  $("#bmi-graph").removeClass 'hidden'
+  output_BMI()
 
 output_BMI = () ->
   $('#bmi-graph svg.chart').html("")
