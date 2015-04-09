@@ -15,11 +15,11 @@ questions:
     answer_options:
     - text: Very Poor
       hotkey: 1
-      value: 1
+      value: 5
       display_class: option-of-multiple option-of-6 survey-scale survey-scale-danger
     - text: Poor
       hotkey: 2
-      value: 2
+      value: 4
       display_class: option-of-multiple option-of-6 survey-scale survey-scale-warning
     - text: Fair
       hotkey: 3
@@ -27,11 +27,11 @@ questions:
       display_class: option-of-multiple option-of-6 survey-scale survey-scale-moderate
     - text: Good
       hotkey: 4
-      value: 4
+      value: 2
       display_class: option-of-multiple option-of-6 survey-scale survey-scale-good
     - text: Very Good
       hotkey: 5
-      value: 5
+      value: 1
       display_class: option-of-multiple option-of-6 survey-scale survey-scale-great
     - text: Prefer not to answer
       hotkey: 6
@@ -48,11 +48,11 @@ questions:
     answer_options:
     - text: Not at all
       hotkey: 1
-      value: 1
+      value: 5
       display_class: option-of-multiple option-of-6 survey-scale survey-scale-danger
     - text: A little bit
       hotkey: 2
-      value: 2
+      value: 4
       display_class: option-of-multiple option-of-6 survey-scale survey-scale-warning
     - text: Somewhat
       hotkey: 3
@@ -60,11 +60,11 @@ questions:
       display_class: option-of-multiple option-of-6 survey-scale survey-scale-moderate
     - text: Quite a bit
       hotkey: 4
-      value: 4
+      value: 2
       display_class: option-of-multiple option-of-6 survey-scale survey-scale-good
     - text: Very much
       hotkey: 5
-      value: 5
+      value: 1
       display_class: option-of-multiple option-of-6 survey-scale survey-scale-great
     - text: Prefer not to answer
       hotkey: 6
@@ -216,11 +216,11 @@ questions:
     answer_options:
     - text: Not at all
       hotkey: 1
-      value: 1
+      value: 5
       display_class: option-of-multiple option-of-6 survey-scale survey-scale-danger
     - text: A little bit
       hotkey: 2
-      value: 2
+      value: 4
       display_class: option-of-multiple option-of-6 survey-scale survey-scale-warning
     - text: Somewhat
       hotkey: 3
@@ -228,11 +228,11 @@ questions:
       display_class: option-of-multiple option-of-6 survey-scale survey-scale-moderate
     - text: Quite a bit
       hotkey: 4
-      value: 4
+      value: 2
       display_class: option-of-multiple option-of-6 survey-scale survey-scale-good
     - text: Very much
       hotkey: 5
-      value: 5
+      value: 1
       display_class: option-of-multiple option-of-6 survey-scale survey-scale-great
     - text: Prefer not to answer
       hotkey: 6

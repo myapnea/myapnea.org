@@ -91,15 +91,18 @@ class Report < ActiveRecord::Base
   # - specific user
   #
 
-  def self.frequency_data(question_slug, values)
+  def self.frequency_data(question_slug, values=nil)
+
     q = Question.where(slug: question_slug).includes(answer_templates: :answer_options).first
     answer_options = q.answer_templates.first.answer_options
 
 
-    base_query = Report.where(question_slug: question_slug, value: values.map(&:to_s))
+    base_query = Report.where(question_slug: question_slug)
+    base_query = base_query.where(value: values.map(&:to_s)) if values.present?
+
     total_count = base_query.count
 
-    ao_counts = base_query.select("survey_slug, question_slug, answer_template_name,answer_option_id,value,max(answer_option_text) as answer_option_text,count(answer_value_id) as answer_count").group('survey_slug,question_slug,answer_template_name,encounter,value,answer_option_id').map(&:attributes)
+    ao_counts = base_query.select("survey_slug, question_slug, answer_template_name,answer_option_id,value,max(answer_option_text) as answer_option_text,count(answer_value_id) as answer_count").group('survey_slug,question_slug,answer_template_name,value,answer_option_id').map(&:attributes)
 
 
     final_counts = answer_options.map do |ao|
@@ -141,29 +144,6 @@ class Report < ActiveRecord::Base
 
   ## Custom Report Methods: return tabular data
   ## Naming convention: <survey slug>_<section>
-
-  def self.about_me_sex
-    self.tabular_data(survey_slug: 'about-me', question_slug: 'sex', answer_template_name: 'sex')
-  end
-
-  def about_me_race
-    #self.tabular_data({survey_slug: 'about-me', question_slug: 'race', answer_template_name: ['race', 'specified_race']}, {value: '6'})
-    self.tabular_data({survey_slug: 'about-me', question_slug: 'race', answer_template_name: 'race'})
-  end
-
-  def about_me_hispanic
-    self.tabular_data(survey_slug: 'about-me', question_slug: 'ethnicity', answer_template_name: 'ethnicity')
-  end
-
-  def about_me_education
-    self.tabular_data(survey_slug: 'about-me', question_slug: 'education-level', answer_template_name: 'education_level')
-  end
-
-  def about_me_income
-    self.tabular_data(survey_slug: 'about-me', question_slug: 'income-level', answer_template_name: 'income_level')
-  end
-
-
 
   # My Sleep Pattern
   def self.percent_below_minimum_sleep_weekday()

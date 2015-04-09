@@ -127,7 +127,7 @@ questions:
     answer_options:
     - text: High chance of dozing
       hotkey: 1
-      value: 1
+      value: 3
       display_class: option-of-multiple option-of-5 survey-scale survey-scale-danger
     - text: Moderate chance of dozing
       hotkey: 2
@@ -135,15 +135,15 @@ questions:
       display_class: option-of-multiple option-of-5 survey-scale survey-scale-warning
     - text: Slight chance of dozing
       hotkey: 3
-      value: 3
+      value: 1
       display_class: option-of-multiple option-of-5 survey-scale survey-scale-good
     - text: Would never doze
       hotkey: 4
-      value: 4
+      value: 0
       display_class: option-of-multiple option-of-5 survey-scale survey-scale-great
     - text: Prefer not to answer
       hotkey: 5
-      value: 5
+      value: 4
       display_class: option-of-multiple option-of-5 survey-scale
   - name: doze_while_watching_tv
     data_type: answer_option_id
@@ -151,7 +151,7 @@ questions:
     answer_options:
     - text: High chance of dozing
       hotkey: 1
-      value: 1
+      value: 3
       display_class: option-of-multiple option-of-5 survey-scale survey-scale-danger
     - text: Moderate chance of dozing
       hotkey: 2
@@ -159,15 +159,15 @@ questions:
       display_class: option-of-multiple option-of-5 survey-scale survey-scale-warning
     - text: Slight chance of dozing
       hotkey: 3
-      value: 3
+      value: 1
       display_class: option-of-multiple option-of-5 survey-scale survey-scale-good
     - text: Would never doze
       hotkey: 4
-      value: 4
+      value: 0
       display_class: option-of-multiple option-of-5 survey-scale survey-scale-great
     - text: Prefer not to answer
       hotkey: 5
-      value: 5
+      value: 4
       display_class: option-of-multiple option-of-5 survey-scale
   - name: doze_while_public_sitting
     data_type: answer_option_id
@@ -175,7 +175,7 @@ questions:
     answer_options:
     - text: High chance of dozing
       hotkey: 1
-      value: 1
+      value: 3
       display_class: option-of-multiple option-of-5 survey-scale survey-scale-danger
     - text: Moderate chance of dozing
       hotkey: 2
@@ -183,15 +183,15 @@ questions:
       display_class: option-of-multiple option-of-5 survey-scale survey-scale-warning
     - text: Slight chance of dozing
       hotkey: 3
-      value: 3
+      value: 1
       display_class: option-of-multiple option-of-5 survey-scale survey-scale-good
     - text: Would never doze
       hotkey: 4
-      value: 4
+      value: 0
       display_class: option-of-multiple option-of-5 survey-scale survey-scale-great
     - text: Prefer not to answer
       hotkey: 5
-      value: 5
+      value: 4
       display_class: option-of-multiple option-of-5 survey-scale
   - name: doze_while_passenger_in_car
     data_type: answer_option_id
@@ -199,7 +199,7 @@ questions:
     answer_options:
     - text: High chance of dozing
       hotkey: 1
-      value: 1
+      value: 3
       display_class: option-of-multiple option-of-5 survey-scale survey-scale-danger
     - text: Moderate chance of dozing
       hotkey: 2
@@ -207,15 +207,15 @@ questions:
       display_class: option-of-multiple option-of-5 survey-scale survey-scale-warning
     - text: Slight chance of dozing
       hotkey: 3
-      value: 3
+      value: 1
       display_class: option-of-multiple option-of-5 survey-scale survey-scale-good
     - text: Would never doze
       hotkey: 4
-      value: 4
+      value: 0
       display_class: option-of-multiple option-of-5 survey-scale survey-scale-great
     - text: Prefer not to answer
       hotkey: 5
-      value: 5
+      value: 4
       display_class: option-of-multiple option-of-5 survey-scale
   - name: doze_while_lying_down_afternoon
     data_type: answer_option_id
@@ -223,7 +223,7 @@ questions:
     answer_options:
     - text: High chance of dozing
       hotkey: 1
-      value: 1
+      value: 3
       display_class: option-of-multiple option-of-5 survey-scale survey-scale-danger
     - text: Moderate chance of dozing
       hotkey: 2
@@ -231,15 +231,15 @@ questions:
       display_class: option-of-multiple option-of-5 survey-scale survey-scale-warning
     - text: Slight chance of dozing
       hotkey: 3
-      value: 3
+      value: 1
       display_class: option-of-multiple option-of-5 survey-scale survey-scale-good
     - text: Would never doze
       hotkey: 4
-      value: 4
+      value: 0
       display_class: option-of-multiple option-of-5 survey-scale survey-scale-great
     - text: Prefer not to answer
       hotkey: 5
-      value: 5
+      value: 4
       display_class: option-of-multiple option-of-5 survey-scale
   - name: doze_while_sitting_talking
     data_type: answer_option_id
@@ -247,7 +247,7 @@ questions:
     answer_options:
     - text: High chance of dozing
       hotkey: 1
-      value: 1
+      value: 3
       display_class: option-of-multiple option-of-5 survey-scale survey-scale-danger
     - text: Moderate chance of dozing
       hotkey: 2
@@ -255,15 +255,15 @@ questions:
       display_class: option-of-multiple option-of-5 survey-scale survey-scale-warning
     - text: Slight chance of dozing
       hotkey: 3
-      value: 3
+      value: 1
       display_class: option-of-multiple option-of-5 survey-scale survey-scale-good
     - text: Would never doze
       hotkey: 4
-      value: 4
+      value: 0
       display_class: option-of-multiple option-of-5 survey-scale survey-scale-great
     - text: Prefer not to answer
       hotkey: 5
-      value: 5
+      value: 4
       display_class: option-of-multiple option-of-5 survey-scale
   - name: doze_while_sitting_after_lunch
     data_type: answer_option_id
@@ -271,7 +271,7 @@ questions:
     answer_options:
     - text: High chance of dozing
       hotkey: 1
-      value: 1
+      value: 3
       display_class: option-of-multiple option-of-5 survey-scale survey-scale-danger
     - text: Moderate chance of dozing
       hotkey: 2
@@ -279,15 +279,15 @@ questions:
       display_class: option-of-multiple option-of-5 survey-scale survey-scale-warning
     - text: Slight chance of dozing
       hotkey: 3
-      value: 3
+      value: 1
       display_class: option-of-multiple option-of-5 survey-scale survey-scale-good
     - text: Would never doze
       hotkey: 4
-      value: 4
+      value: 0
       display_class: option-of-multiple option-of-5 survey-scale survey-scale-great
     - text: Prefer not to answer
       hotkey: 5
-      value: 5
+      value: 4
       display_class: option-of-multiple option-of-5 survey-scale
   - name: doze_while_in_car_stopped
     data_type: answer_option_id
@@ -295,7 +295,7 @@ questions:
     answer_options:
     - text: High chance of dozing
       hotkey: 1
-      value: 1
+      value: 3
       display_class: option-of-multiple option-of-5 survey-scale survey-scale-danger
     - text: Moderate chance of dozing
       hotkey: 2
@@ -303,13 +303,13 @@ questions:
       display_class: option-of-multiple option-of-5 survey-scale survey-scale-warning
     - text: Slight chance of dozing
       hotkey: 3
-      value: 3
+      value: 1
       display_class: option-of-multiple option-of-5 survey-scale survey-scale-good
     - text: Would never doze
       hotkey: 4
-      value: 4
+      value: 0
       display_class: option-of-multiple option-of-5 survey-scale survey-scale-great
     - text: Prefer not to answer
       hotkey: 5
-      value: 5
+      value: 4
       display_class: option-of-multiple option-of-5 survey-scale
