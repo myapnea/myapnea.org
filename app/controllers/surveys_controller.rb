@@ -2,52 +2,12 @@ class SurveysController < ApplicationController
   before_action :authenticate_user!
   before_action :set_active_top_nav_link_to_surveys
   before_action :authenticate_research
-  before_action :set_survey, only: [:show, :report, :start_survey]
+  before_action :set_survey, only: [:show, :report, :report_detail, :accept_update_first, :start_survey]
 
-  #
-  # def about_me_mockup
-  #   render 'surveys/reports/about_me'
-  # end
-  #
-  # def my_sleep_pattern_mockup
-  #   render 'surveys/reports/my_sleep_pattern'
-  # end
-  #
-  # def my_health_conditions_mockup
-  #   render 'surveys/reports/my_health_conditions'
-  # end
-  #
+
   def my_health_conditions_data
     @data = Report.comorbidity_map.push(["Sleep Apnea", "conditions-sleep-apnea", 100])
   end
-  #
-  # def my_sleep_apnea_treatment_mockup
-  #   render 'surveys/reports/my_sleep_apnea_treatment'
-  # end
-  #
-  # def my_sleep_quality_mockup
-  #   render 'surveys/reports/my_sleep_quality'
-  # end
-  #
-  # def additional_information_about_me_mockup
-  #   render 'surveys/reports/additional_information_about_me'
-  # end
-  #
-  # def about_my_family_mockup
-  #   render 'surveys/reports/about_my_family'
-  # end
-  #
-  # def my_quality_of_life_mockup
-  #   render 'surveys/reports/my_quality_of_life'
-  # end
-  #
-  # def my_sleep_apnea_mockup
-  #   render 'surveys/reports/my_sleep_apnea'
-  # end
-  #
-  # def my_risk_profile_mockup
-  #   render 'surveys/reports/my_risk_profile'
-  # end
 
   def index
     @surveys = current_user.assigned_surveys
@@ -55,14 +15,25 @@ class SurveysController < ApplicationController
 
   def show
     redirect_to surveys_path and return if @survey.deprecated?
+    unless current_user.accepted_most_recent_update?
+      redirect_to accept_update_first_survey_path and return
+    end
     # We do not want to redirect to survey report path if it's completed, we
     # want to show the survey page, with locked questions instead. ~ Remo
     # redirect_to report_survey_path(@survey, @answer_session) and return if @answer_session.completed?
   end
 
   def report
-
     redirect_to surveys_path and return unless (@answer_session.completed? or current_user.is_only_academic?)
+  end
+
+  def report_detail
+    redirect_to surveys_path and return unless (@answer_session.completed? or current_user.is_only_academic?)
+  end
+
+  def accept_update_first
+    redirect_to survey_path(@survey) if current_user.accepted_most_recent_update?
+    session[:return_to] = survey_path(@survey)
   end
 
   def process_answer

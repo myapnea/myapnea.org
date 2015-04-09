@@ -318,14 +318,21 @@ class Report < ActiveRecord::Base
 
 
   ## Additional Info About Me
-  def bmi
-    # height/height
-    # weight/weight
+  def self.bmi(encounter, user)
+    height = self.height(encounter, user)
+    weight = self.weight(encounter, user)
 
-
-    AnswerValue.joins(:answer)
     ((weight / (height * height)) * 703)
   end
+
+  def self.height(encounter, user)
+    Report.where(question_slug: 'height', encounter: encounter, user: user.id).pluck(:value)[0].to_f
+  end
+
+  def self.weight(encounter, user)
+    Report.where(question_slug: 'weight', encounter: encounter, user: user.id).pluck(:value)[0].to_f
+  end
+
 
   def self.current_marital_status_data
     table_data = Report.frequency_data('marital-status', 1..6)

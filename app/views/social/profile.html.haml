@@ -39,9 +39,10 @@
         .col-sm-6
           =f.number_field(:age, class: 'form-control')
       .form-group
-        %label.col-sm-3.control-label Sex
+        %label.col-sm-3.control-label Gender
         .col-sm-6
-          =f.select(:sex, ["Male", "Female", "Other"], {}, class: 'form-control')
+          = f.text_field(:gender, autocomplete: "off", data: { object: 'typeahead', local: ["Male", "Female", "Genderqueer", "Androgynous", "Intersex", "Transgender", "Transsexual", "Cross-dresser", "Male-to-female (MTF)", "Female-to-male (FTM)"].to_json }, class: 'form-control')
+          / =f.select(:sex, ["Male", "Female", "Other"], {}, class: 'form-control')
       =f.submit("Save", class: 'btn btn-primary pull-right')
 
 = javascript_include_tag "//maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places&key=AIzaSyBB91qMUvtmPzct9z7slTqm-lTUEVuYjKo"

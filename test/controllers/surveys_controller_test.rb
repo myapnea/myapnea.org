@@ -112,7 +112,15 @@ class SurveysControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "User can view detailed survey report for completed survey" do
+    login(users(:has_completed_survey))
 
+    assert answer_sessions(:complete).completed?
+
+    get :report_detail, id: answer_sessions(:complete).survey
+
+    assert_response :success
+  end
 
   ## Unassigned Surveys
 

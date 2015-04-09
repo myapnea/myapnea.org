@@ -8,17 +8,23 @@ current_weight_updated = false
   $(document).on 'change', '#my-height-inches', () ->
     inches_updated = true
     calculate_bmi()
-  $(document).on 'change', '#my-weight', () ->
+  $(document).on 'input', '#my-weight', () ->
     current_weight_updated = true
     calculate_bmi()
-  $(document).on 'change', '#desired-weight', () ->
+  $(document).on 'input', '#desired-weight', () ->
+    $("[data-object~='submit-weight-change']").removeClass 'disabled'
+
+  $(document).on 'click', "[data-object~='submit-bmi']", () ->
+    calculate_bmi_pressed()
+
+  $(document).on 'click', "[data-object~='submit-weight-change']", () ->
     # CALCULATE OUTPUT
+    $("#weight-change-results-container").removeClass 'hidden'
     output_BMI_changes()
 
   $(document).on 'click', "[data-object~='calculate-minimum-weight']", () ->
     $("#desired-weight").val minimum_healthy_weight(calculate_height(), calculate_bmi())
-    # CALCULATE OUTPUT
-    output_BMI_changes()
+    $("[data-object~='submit-weight-change']").removeClass 'disabled'
 
 
 output_BMI_changes = () ->
@@ -45,10 +51,19 @@ calculate_bmi = () ->
 
   # If all data is entered, show the BMI graph, the AHI graph,
   # and autocomplete necessary weight for healthy BMI (if applicable)
-  if feet_updated and inches_updated and current_weight_updated
-    $("#my-bmi").removeClass 'hidden'
-    output_BMI()
+  if check_for_BMI_variables()
+    $("[data-object~='submit-bmi']").removeClass 'disabled'
   return get_bmi(height,weight)
+
+check_for_BMI_variables = () ->
+  if feet_updated and inches_updated and current_weight_updated
+    return true
+
+calculate_bmi_pressed = () ->
+  $("#bmi-ahi-results-container").removeClass 'dimmed-and-disabled'
+  $("[data-object~='calculate-minimum-weight']").removeClass 'disabled'
+  $("#bmi-graph").removeClass 'hidden'
+  output_BMI()
 
 output_BMI = () ->
   $('#bmi-graph svg.chart').html("")
@@ -87,8 +102,12 @@ calculate_BMI_category = (bmi) ->
     return "Obese"
 
 determine_result_description = (bmiC1, bmiC2) ->
+  draw_severity_graph(bmiC2)
   if bmiC1 == bmiC2
-    return "Try entering a new weight to see how it will affect your BMI, and how it might affect the severity of your sleep apnea."
+    if parseFloat($("#my-weight").val()) == parseFloat($("#desired-weight").val())
+      return "Try entering a new weight to see how it will affect your BMI, and how it might affect the severity of your sleep apnea."
+    else
+      return "This change in weight will not change your BMI category."
   # Obese patients
   if bmiC1 == "Obese"
     result = "People with sleep apnea and a BMI greater than 30 are much more likely to develop severe OSA. "
@@ -181,3 +200,13 @@ draw_bmi_graph = () ->
     .attr("y2", h+1)
     .attr("stroke-width", 2)
     .attr("stroke", "black")
+
+draw_severity_graph = (bmi_category) ->
+  $('#severity-graph').removeClass 'hidden'
+  $("#severity-graph .row").removeClass "active"
+  if bmi_category == "Normal weight"
+    $(".row#mild").addClass "active"
+  else if bmi_category == "Overweight"
+    $(".row#moderate").addClass "active"
+  else if bmi_category == "Obese"
+    $(".row#severe").addClass "active"

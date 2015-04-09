@@ -1,5 +1,5 @@
 #bmi-ahi-calculator.row.reset-layout
-  .col-sm-5
+  .col-md-5
     .row.list-group-item
       %h3 Sleep Apnea and BMI
       %p.lead
@@ -20,9 +20,12 @@
       .col-xs-6
         = number_field_tag 'weight', nil, class: 'number-input', id: 'my-weight', data: { object: 'weight-input' }
         %label.select-label{ for: 'weight' } pounds
-    #bmi-graph.row.list-group-item
+    #calculate-bmi-placeholder.row.list-group-item.centered-text
+      %button.btn.btn-success.disabled{ data: { object: 'submit-bmi'} }
+        %h3 Calculate My BMI
+    #bmi-graph.row.list-group-item.hidden
       %h4 Your Calculated BMI:
-      #my-bmi.hidden
+      #my-bmi
         %p.f300
           From the height and weight you've provided, we've determined your
           = link_to 'Body Mass Index', 'http://en.wikipedia.org/wiki/Body_mass_index'
@@ -32,149 +35,69 @@
           People with this BMI are considered to be
           %span#my-bmi-category.f500
         %svg.chart
-  #bmi-ahi-results-container.col-sm-7.hidden
-    .panel{ style: 'margin-top:20px; height: 100%;' }
-      .panel-heading
-        %h4 Effects of Weight Change on AHI
-      .panel-body
-        .row
-          .col-xs-4
-            %h5 Your Desired Weight:
-          .col-xs-8
-            = number_field_tag 'desired-weight', nil, class: 'number-input', style: 'position:relative; top:4px;'
-            .btn.btn-success{ data: { object: 'calculate-minimum-weight' } }
-              %p.small.reset-layout Calculate minimum healthy weight
+  #bmi-ahi-results-container.col-md-7.dimmed-and-disabled
+    .list-group-item
+      %h4
+        Effects of Weight Change on AHI
+      %p.lead
+        Research has show that the risk of obstructive sleep apnea (OSA) is much higher in people with high BMI, and a strong relationship exists between increases in BMI and increases in the severity of OSA.
+    .list-group-item
+      .row
+        .col-xs-4
+          %h5 Your Desired Weight:
+        .col-xs-8
+          = number_field_tag 'desired-weight', nil, class: 'number-input', style: 'position:relative; top:4px;'
+          %button.btn.btn-default.disabled{ data: { object: 'calculate-minimum-weight' } }
+            %p.small.reset-layout Calculate short-term weight goal
+    .list-group-item
+      #calculate-weight-change-results.centered-text
+        %button.btn.btn-primary.disabled{ data: { object: 'submit-weight-change'} }
+          %h4 See Your Results
+    #weight-change-results-container.hidden
+      .list-group-item
         .row
           .col-md-4
             %h5 Your Resulting BMI:
           .col-md-8
             %h5#predicted-bmi
-        .row
-          .col-sm-12
-            %p#bmi-change-result-text.hidden.lead{ style: 'font-size: 18px; padding-left: 5px; padding-right: 5px'}
-              %br
-              Research has show that the risk of obstructive sleep apnea (OSA) is much higher in people with high BMI, and a strong relationship exists between increases in BMI and increases in the severity of OSA.
-              %br
-              %br
-              %span#bmi-change-result-custom-text.darkerer-blue
-        .row
-          .col-sm-12
-            %cite#bmi-change-result-citation.notice.text-muted.small.hidden
-              %a{:href => "http://www.archbronconeumol.org/en/obstructive-sleep-apnea-in-normal/articulo/90258886/"}
-                Quintas et al. "Obstructive sleep apnea in normal weight patients: Characteristics and comparison with overweight and obese patients." Archivos de Bronconeumología (English Edition) 49.12 (2013): 513-517.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
--if false
-  .row.reset-layout
-    #bmi-graph.col-md-5.col-md-offset-1
-      %h4 What is my BMI?
       .list-group-item
-        .row
-          .col-md-7
-            %h5 Your Weight:
-          .col-md-5
-            .input-group.input-group-sm
-              %input#my-weight.form-control/
-              %span.input-group-addon pounds
-      .list-group-item
-        .row
-          .col-md-7
-            %h5 Your Height:
-          .col-md-5
-            .input-group.input-group-sm
-              %input#my-height-feet.form-control/
-              %span.input-group-addon feet
-            .input-group.input-group-sm
-              %input#my-height-inches.form-control/
-              %span.input-group-addon inches
-      .list-group-item
-        .row
-          .col-md-7
-            %h5 Your Calculated BMI:
-          .col-md-5
-            %h5#my-bmi
-      %br/
-      %svg.chart
-      .row
-        %dl
-          .col-md-4
-            %dt
-              %strong Your height:
-            %dd#height
-          .col-md-4
-            %dt
-              %strong Your weight:
-            %dd#weight
-          .col-md-4
-            %dt Your BMI
-            %dd#bmi
-
-- if false
-  #ahi.row.reset-layout
-    #ahi-graph.col-md-8
-      %h4 Effects of Weight Change on AHI
-      %svg.chart
-      %cite.notice.text-muted
-        %a{:href => ""} Peppard et al. Longitudinal Study of Moderate Weight Change and Sleep-Disordered Breathing. JAMA. 2000;284(23):3015-3021.
-    #prediction.col-md-4
-      %h4 How might your AHI change?
-      .list-group
-        .list-group-item
-          .row
-            .col-md-7
-              %h5 Your Current Weight:
-            .col-md-5
-              %h5#current-weight
-        .list-group-item
-          .row
-            .col-md-7
-              %h5 Your Desired Weight:
-            .col-md-5
-              .input-group.input-group-sm
-                %input#desired-weight.form-control/
-                %span.input-group-addon pounds
-        .list-group-item
-          .row
-            .col-md-7
-              %h5 Your Resulting BMI:
-            .col-md-5
-              %h5#predicted-bmi
-        .list-group-item
-          .row
-            .col-md-7
-              %h5 Possible AHI Change:
-            .col-md-5
-              %h5#predicted-change
+        %p#bmi-change-result-text.hidden.lead{ style: 'font-size: 18px; padding-left: 5px; padding-right: 5px'}
+          %br
+          %span#bmi-change-result-custom-text.darkerer-blue
+          #severity-graph.centered-text
+            #severe.row.reset-layout
+              .col-xs-3
+                %h4.darkerer-blue Severe
+              .col-xs-3
+              .col-xs-3
+              .col-xs-3
+                .circle
+            #moderate.row.reset-layout
+              .col-xs-3
+                %h4.darkerer-blue Moderate
+              .col-xs-3
+              .col-xs-3
+                .circle
+              .col-xs-3
+            #mild.row.reset-layout
+              .col-xs-3
+                %h4.darkerer-blue Mild
+              .col-xs-3
+                .circle
+              .col-xs-3
+              .col-xs-3
+            .row.reset-layout
+              .col-xs-3
+              .col-xs-3
+                %h4.darkerer-blue Normal weight
+              .col-xs-3
+                %h4.darkerer-blue Overweight
+              .col-xs-3
+                %h4.darkerer-blue Obese
+    .list-group-item
+      %cite#bmi-change-result-citation.notice.text-muted.small
+        %a{:href => "http://www.archbronconeumol.org/en/obstructive-sleep-apnea-in-normal/articulo/90258886/"}
+          Quintas et al. "Obstructive sleep apnea in normal weight patients: Characteristics and comparison with overweight and obese patients." Archivos de Bronconeumología (English Edition) 49.12 (2013): 513-517.
 
 = javascript_include_tag "tools/bmi_ahi"
 = stylesheet_link_tag "tools/bmi_ahi"

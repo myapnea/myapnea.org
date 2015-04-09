@@ -1,34 +1,12 @@
-- @active_top_nav_link = :participate
-.panel
-  .panel-body
-    - if current_user.is_nonacademic? and !current_user.provider?
-      %h3.f400
-        Thank you for completing the
-        %span.darkerer-blue.f500= @survey.name
-        survey!
-      %h5.f400.lighter-blue{style: 'margin-bottom:30px;'}
-        Congratulations, you have received one entry into the next monthly drawing!
-      %h4.f300.spaced
-        Now take some time to review your answers and see how they compare to other members of the community. If you want to continue the discussion, bring any questions or concerns to the forums to hear from doctors, researchers, and other people with sleep apnea.
-    - elsif (current_user.is_only_academic?)
-      %h3.f300{style: 'margin-bottom:30px;'}
-        Welcome to the data viewer for the
-        %span.darker-blue= @survey.name
-        survey!
-      %h4.f300
-        Please only use this data in accordance with our
-        = link_to('Terms of Access', terms_of_access_path) + '.'
-  .panel-footer.f400
-    We would love your feedback
-    %a.u-voice.primary-blue Get in touch with us.
+= render partial: 'surveys/report_intro'
+
 = render partial: "surveys/reports/#{@survey.slug.underscore}" rescue render partial: 'surveys/reports/default'
 
--# Select next survey for completion
-- next_survey = current_user.next_survey(@survey)
-- continue_path = next_survey.present? ? survey_path(next_survey) : surveys_path
-.row.reset-layout
-  .panel.lighterer-blue-bcg
-    .panel-body
-      %h3.f300.centered-text.text-dark7{ style: 'margin-bottom: 20px;' }
-        Congratulations on finishing this survey - you're doing great!
-      = link_to "Click here to continue", continue_path, class: "btn btn-primary btn-lg btn-block", style: 'width: 70%; margin: 10px auto;'
+.panel{ style: 'border: 2px solid #b1d2f6' }
+  .panel-body
+    %p.lead.no-margin
+      %span.f500 Note:
+      You can view the full-detailed version of the survey report by clicking
+      = link_to 'here.', report_detail_survey_path
+
+= render partial: 'surveys/report_outro'

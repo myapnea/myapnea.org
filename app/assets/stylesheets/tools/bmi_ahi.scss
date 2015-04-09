@@ -77,3 +77,46 @@
 .obese {
   fill: #FD8603;
 }
+
+#bmi-ahi-results-container {
+  margin-top:20px;
+}
+
+#bmi-ahi-results-container.dimmed-and-disabled {
+  display:none;
+  .list-group-item {
+    background-color: #eee;
+    color: #777;
+  }
+  pointer-events: none;
+}
+
+#severity-graph {
+  margin: 10px;
+  padding: 20px;
+  border: 2px solid #1765bc;
+  border-radius: 20px;
+  .row {
+    .col-xs-3:first-of-type {
+      border-right:1px solid #1765bc;
+      padding: 0px;
+    }
+    .col-xs-3 {
+      height:70px;
+      .circle {
+        width:50px;
+        height:50px;
+        border-radius:50%;
+        margin:auto;
+        background-color: #1765cd;
+      }
+    }
+  }
+  .row.active {
+    color: #ffa400;
+    .circle { background-color: #ffa400; }
+  }
+  .row:last-of-type {
+    border-top: 1px solid #1765bc;
+  }
+}

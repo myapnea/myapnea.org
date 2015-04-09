@@ -233,6 +233,10 @@ class User < ActiveRecord::Base
     self.accepted_terms_of_access_at.present?
   end
 
+  def accepted_most_recent_update?
+    self.accepted_update_at.present? and (self.accepted_update_at > Date.parse("2015-04-15").at_noon)
+  end
+
   def this_weeks_votes
     self.votes.where("votes.updated_at >= ? ", Time.now.beginning_of_week(:sunday)).where.not(rating: '0', research_topic_id: nil)
   end

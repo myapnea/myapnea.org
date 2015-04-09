@@ -43,15 +43,15 @@
   .panel-body
     .row
       .col-sm-4{ style: 'margin-bottom:20px;' }
-        = link_to ENV['website_url']+'/forums/news/topics/first-lottery-winner', class: 'home-news-link' do
+        = link_to ENV['website_url']+'/forums/news/topics/new-lottery-winner-announced', class: 'home-news-link' do
           = render partial: 'static/home_news_image', locals: {day: '8', month: 'Feb', year: '15'}
-          %h4.f300.primary-orange.centered-text First Lottery Winner!
-          %h5.f300.centered-text.visible-xs You've been doing an amazing job with surveys, and our first winner has been picked!
+          %h4.f300.primary-orange.centered-text Recent Lottery Winner!
+          %h5.f300.centered-text.visible-xs You've been doing an amazing job with surveys, and our most recent winner has been picked!
       .col-sm-4{ style: 'margin-bottom:20px;' }
-        = link_to ENV['website_url']+'/forums/news/topics/new-survey-format-and-release-5-0', class: 'home-news-link' do
+        = link_to ENV['website_url']+'/forums/building-myapnea-org/topics/we-re-releasing-new-survey-reports-we-want-your-feedback', class: 'home-news-link' do
           = render partial: 'static/home_news_image', locals: {day: '28', month: 'Feb', year: '15'}
-          %h4.f300.primary-orange.centered-text New and Improved Surveys!
-          %h5.f300.centered-text.visible-xs We are happy to announce that our survey system has gotten a beautiful redesign!
+          %h4.f300.primary-orange.centered-text New and Improved Survey Reports!
+          %h5.f300.centered-text.visible-xs We are happy to announce that our survey reports have gotten a beautiful redesign! Big thanks to many members for their feedback.
       .col-sm-4{ style: 'margin-bottom:20px;' }
         = link_to ENV['website_url']+'/forums/news/topics/customize-your-myapnea-experience', class: 'home-news-link' do
           = render partial: 'static/home_news_image', locals: {day: '3', month: 'Mar', year: '15'}
