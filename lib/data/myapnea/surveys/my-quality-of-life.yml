@@ -245,12 +245,12 @@ questions:
     - slug: last-week-depression-1
       text: Always
       hotkey: '1'
-      value: 1
+      value: 5
       display_class: option-of-multiple option-of-6 survey-scale survey-scale-danger
     - slug: last-week-depression-2
       text: Often
       hotkey: '2'
-      value: 2
+      value: 4
       display_class: option-of-multiple option-of-6 survey-scale survey-scale-warning
     - slug: last-week-depression-3
       text: Sometimes
@@ -260,12 +260,12 @@ questions:
     - slug: last-week-depression-4
       text: Rarely
       hotkey: '4'
-      value: 4
+      value: 2
       display_class: option-of-multiple option-of-6 survey-scale survey-scale-good
     - slug: last-week-depression-5
       text: Never
       hotkey: '5'
-      value: 5
+      value: 1
       display_class: option-of-multiple option-of-6 survey-scale survey-scale-great
     - slug: last-week-depression-6
       text: Prefer not to answer
@@ -283,12 +283,12 @@ questions:
     - slug: last-week-fatigue-1
       text: Very much
       hotkey: '1'
-      value: 1
+      value: 5
       display_class: option-of-multiple option-of-6 survey-scale survey-scale-danger
     - slug: last-week-fatigue-2
       text: Quite a bit
       hotkey: '2'
-      value: 2
+      value: 4
       display_class: option-of-multiple option-of-6 survey-scale survey-scale-warning
     - slug: last-week-fatigue-3
       text: Somewhat
@@ -298,12 +298,12 @@ questions:
     - slug: last-week-fatigue-4
       text: A little bit
       hotkey: '4'
-      value: 4
+      value: 2
       display_class: option-of-multiple option-of-6 survey-scale survey-scale-good
     - slug: last-week-fatigue-5
       text: Not at all
       hotkey: '5'
-      value: 5
+      value: 1
       display_class: option-of-multiple option-of-6 survey-scale survey-scale-great
     - slug: last-week-fatigue-6
       text: Prefer not to answer
@@ -321,12 +321,12 @@ questions:
     - slug: last-week-problem-sleep-1
       text: Very much
       hotkey: '1'
-      value: 1
+      value: 5
       display_class: option-of-multiple option-of-6 survey-scale survey-scale-danger
     - slug: last-week-problem-sleep-2
       text: Quite a bit
       hotkey: '2'
-      value: 2
+      value: 4
       display_class: option-of-multiple option-of-6 survey-scale survey-scale-warning
     - slug: last-week-problem-sleep-3
       text: Somewhat
@@ -336,12 +336,12 @@ questions:
     - slug: last-week-problem-sleep-4
       text: A little bit
       hotkey: '4'
-      value: 4
+      value: 2
       display_class: option-of-multiple option-of-6 survey-scale survey-scale-good
     - slug: last-week-problem-sleep-5
       text: Not at all
       hotkey: '5'
-      value: 5
+      value: 1
       display_class: option-of-multiple option-of-6 survey-scale survey-scale-great
     - slug: last-week-problem-sleep-6
       text: Prefer not to answer

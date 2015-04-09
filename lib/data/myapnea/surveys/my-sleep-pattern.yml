@@ -2,7 +2,7 @@
 name: My Sleep Pattern
 slug: my-sleep-pattern
 default_position: 50
-description: 
+description:
 status: show
 questions:
 - text: |
@@ -151,7 +151,7 @@ questions:
     - slug: doze-while-sitting-1
       text: High chance of dozing
       hotkey: '1'
-      value: 1
+      value: 3
       display_class: option-of-multiple option-of-5 survey-scale survey-scale-danger
     - slug: doze-while-sitting-2
       text: Moderate chance of dozing
@@ -161,12 +161,12 @@ questions:
     - slug: doze-while-sitting-3
       text: Slight chance of dozing
       hotkey: '3'
-      value: 3
+      value: 1
       display_class: option-of-multiple option-of-5 survey-scale survey-scale-good
     - slug: doze-while-sitting-4
       text: Would never doze
       hotkey: '4'
-      value: 4
+      value: 0
       display_class: option-of-multiple option-of-5 survey-scale survey-scale-great
     - slug: doze-while-sitting-5
       text: Prefer not to answer
@@ -177,27 +177,27 @@ questions:
     data_type: answer_option_id
     text: Watching TV
     answer_options:
-    - slug: doze-while-watching-tv-1
+    - slug: doze-while-sitting-1
       text: High chance of dozing
       hotkey: '1'
-      value: 1
+      value: 3
       display_class: option-of-multiple option-of-5 survey-scale survey-scale-danger
-    - slug: doze-while-watching-tv-2
+    - slug: doze-while-sitting-2
       text: Moderate chance of dozing
       hotkey: '2'
       value: 2
       display_class: option-of-multiple option-of-5 survey-scale survey-scale-warning
-    - slug: doze-while-watching-tv-3
+    - slug: doze-while-sitting-3
       text: Slight chance of dozing
       hotkey: '3'
-      value: 3
+      value: 1
       display_class: option-of-multiple option-of-5 survey-scale survey-scale-good
-    - slug: doze-while-watching-tv-4
+    - slug: doze-while-sitting-4
       text: Would never doze
       hotkey: '4'
-      value: 4
+      value: 0
       display_class: option-of-multiple option-of-5 survey-scale survey-scale-great
-    - slug: doze-while-watching-tv-5
+    - slug: doze-while-sitting-5
       text: Prefer not to answer
       hotkey: '5'
       value: 5
@@ -206,27 +206,27 @@ questions:
     data_type: answer_option_id
     text: Sitting inactive in a public place (like a movie theater or classroom)
     answer_options:
-    - slug: doze-while-public-sitting-1
+    - slug: doze-while-sitting-1
       text: High chance of dozing
       hotkey: '1'
-      value: 1
+      value: 3
       display_class: option-of-multiple option-of-5 survey-scale survey-scale-danger
-    - slug: doze-while-public-sitting-2
+    - slug: doze-while-sitting-2
       text: Moderate chance of dozing
       hotkey: '2'
       value: 2
       display_class: option-of-multiple option-of-5 survey-scale survey-scale-warning
-    - slug: doze-while-public-sitting-3
+    - slug: doze-while-sitting-3
       text: Slight chance of dozing
       hotkey: '3'
-      value: 3
+      value: 1
       display_class: option-of-multiple option-of-5 survey-scale survey-scale-good
-    - slug: doze-while-public-sitting-4
+    - slug: doze-while-sitting-4
       text: Would never doze
       hotkey: '4'
-      value: 4
+      value: 0
       display_class: option-of-multiple option-of-5 survey-scale survey-scale-great
-    - slug: doze-while-public-sitting-5
+    - slug: doze-while-sitting-5
       text: Prefer not to answer
       hotkey: '5'
       value: 5
@@ -235,27 +235,27 @@ questions:
     data_type: answer_option_id
     text: Riding as a passenger in a car for an hour without a break
     answer_options:
-    - slug: doze-while-passenger-in-car-1
+    - slug: doze-while-sitting-1
       text: High chance of dozing
       hotkey: '1'
-      value: 1
+      value: 3
       display_class: option-of-multiple option-of-5 survey-scale survey-scale-danger
-    - slug: doze-while-passenger-in-car-2
+    - slug: doze-while-sitting-2
       text: Moderate chance of dozing
       hotkey: '2'
       value: 2
       display_class: option-of-multiple option-of-5 survey-scale survey-scale-warning
-    - slug: doze-while-passenger-in-car-3
+    - slug: doze-while-sitting-3
       text: Slight chance of dozing
       hotkey: '3'
-      value: 3
+      value: 1
       display_class: option-of-multiple option-of-5 survey-scale survey-scale-good
-    - slug: doze-while-passenger-in-car-4
+    - slug: doze-while-sitting-4
       text: Would never doze
       hotkey: '4'
-      value: 4
+      value: 0
       display_class: option-of-multiple option-of-5 survey-scale survey-scale-great
-    - slug: doze-while-passenger-in-car-5
+    - slug: doze-while-sitting-5
       text: Prefer not to answer
       hotkey: '5'
       value: 5
@@ -264,27 +264,27 @@ questions:
     data_type: answer_option_id
     text: Lying down to rest in the afternoon when time permits
     answer_options:
-    - slug: doze-while-lying-down-afternoon-1
+    - slug: doze-while-sitting-1
       text: High chance of dozing
       hotkey: '1'
-      value: 1
+      value: 3
       display_class: option-of-multiple option-of-5 survey-scale survey-scale-danger
-    - slug: doze-while-lying-down-afternoon-2
+    - slug: doze-while-sitting-2
       text: Moderate chance of dozing
       hotkey: '2'
       value: 2
       display_class: option-of-multiple option-of-5 survey-scale survey-scale-warning
-    - slug: doze-while-lying-down-afternoon-3
+    - slug: doze-while-sitting-3
       text: Slight chance of dozing
       hotkey: '3'
-      value: 3
+      value: 1
       display_class: option-of-multiple option-of-5 survey-scale survey-scale-good
-    - slug: doze-while-lying-down-afternoon-4
+    - slug: doze-while-sitting-4
       text: Would never doze
       hotkey: '4'
-      value: 4
+      value: 0
       display_class: option-of-multiple option-of-5 survey-scale survey-scale-great
-    - slug: doze-while-lying-down-afternoon-5
+    - slug: doze-while-sitting-5
       text: Prefer not to answer
       hotkey: '5'
       value: 5
@@ -293,27 +293,27 @@ questions:
     data_type: answer_option_id
     text: Sitting and talking to someone
     answer_options:
-    - slug: doze-while-sitting-talking-1
+    - slug: doze-while-sitting-1
       text: High chance of dozing
       hotkey: '1'
-      value: 1
+      value: 3
       display_class: option-of-multiple option-of-5 survey-scale survey-scale-danger
-    - slug: doze-while-sitting-talking-2
+    - slug: doze-while-sitting-2
       text: Moderate chance of dozing
       hotkey: '2'
       value: 2
       display_class: option-of-multiple option-of-5 survey-scale survey-scale-warning
-    - slug: doze-while-sitting-talking-3
+    - slug: doze-while-sitting-3
       text: Slight chance of dozing
       hotkey: '3'
-      value: 3
+      value: 1
       display_class: option-of-multiple option-of-5 survey-scale survey-scale-good
-    - slug: doze-while-sitting-talking-4
+    - slug: doze-while-sitting-4
       text: Would never doze
       hotkey: '4'
-      value: 4
+      value: 0
       display_class: option-of-multiple option-of-5 survey-scale survey-scale-great
-    - slug: doze-while-sitting-talking-5
+    - slug: doze-while-sitting-5
       text: Prefer not to answer
       hotkey: '5'
       value: 5
@@ -322,27 +322,27 @@ questions:
     data_type: answer_option_id
     text: Sitting quietly after lunch without alcohol
     answer_options:
-    - slug: doze-while-sitting-after-lunch-1
+    - slug: doze-while-sitting-1
       text: High chance of dozing
       hotkey: '1'
-      value: 1
+      value: 3
       display_class: option-of-multiple option-of-5 survey-scale survey-scale-danger
-    - slug: doze-while-sitting-after-lunch-2
+    - slug: doze-while-sitting-2
       text: Moderate chance of dozing
       hotkey: '2'
       value: 2
       display_class: option-of-multiple option-of-5 survey-scale survey-scale-warning
-    - slug: doze-while-sitting-after-lunch-3
+    - slug: doze-while-sitting-3
       text: Slight chance of dozing
       hotkey: '3'
-      value: 3
+      value: 1
       display_class: option-of-multiple option-of-5 survey-scale survey-scale-good
-    - slug: doze-while-sitting-after-lunch-4
+    - slug: doze-while-sitting-4
       text: Would never doze
       hotkey: '4'
-      value: 4
+      value: 0
       display_class: option-of-multiple option-of-5 survey-scale survey-scale-great
-    - slug: doze-while-sitting-after-lunch-5
+    - slug: doze-while-sitting-5
       text: Prefer not to answer
       hotkey: '5'
       value: 5
@@ -351,27 +351,27 @@ questions:
     data_type: answer_option_id
     text: In a car, while stopped for a few minutes in traffic
     answer_options:
-    - slug: doze-while-in-car-stopped-1
+    - slug: doze-while-sitting-1
       text: High chance of dozing
       hotkey: '1'
-      value: 1
+      value: 3
       display_class: option-of-multiple option-of-5 survey-scale survey-scale-danger
-    - slug: doze-while-in-car-stopped-2
+    - slug: doze-while-sitting-2
       text: Moderate chance of dozing
       hotkey: '2'
       value: 2
       display_class: option-of-multiple option-of-5 survey-scale survey-scale-warning
-    - slug: doze-while-in-car-stopped-3
+    - slug: doze-while-sitting-3
       text: Slight chance of dozing
       hotkey: '3'
-      value: 3
+      value: 1
       display_class: option-of-multiple option-of-5 survey-scale survey-scale-good
-    - slug: doze-while-in-car-stopped-4
+    - slug: doze-while-sitting-4
       text: Would never doze
       hotkey: '4'
-      value: 4
+      value: 0
       display_class: option-of-multiple option-of-5 survey-scale survey-scale-great
-    - slug: doze-while-in-car-stopped-5
+    - slug: doze-while-sitting-5
       text: Prefer not to answer
       hotkey: '5'
       value: 5

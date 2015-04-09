@@ -17,12 +17,12 @@ questions:
     - slug: overall-sleep-quality-1
       text: Very Poor
       hotkey: '1'
-      value: 1
+      value: 5
       display_class: option-of-multiple option-of-6 survey-scale survey-scale-danger
     - slug: overall-sleep-quality-2
       text: Poor
       hotkey: '2'
-      value: 2
+      value: 4
       display_class: option-of-multiple option-of-6 survey-scale survey-scale-warning
     - slug: overall-sleep-quality-3
       text: Fair
@@ -32,12 +32,12 @@ questions:
     - slug: overall-sleep-quality-4
       text: Good
       hotkey: '4'
-      value: 4
+      value: 2
       display_class: option-of-multiple option-of-6 survey-scale survey-scale-good
     - slug: overall-sleep-quality-5
       text: Very Good
       hotkey: '5'
-      value: 5
+      value: 1
       display_class: option-of-multiple option-of-6 survey-scale survey-scale-great
     - slug: overall-sleep-quality-6
       text: Prefer not to answer
@@ -56,12 +56,12 @@ questions:
     - slug: sleep-refreshing-1
       text: Not at all
       hotkey: '1'
-      value: 1
+      value: 5
       display_class: option-of-multiple option-of-6 survey-scale survey-scale-danger
     - slug: sleep-refreshing-2
       text: A little bit
       hotkey: '2'
-      value: 2
+      value: 4
       display_class: option-of-multiple option-of-6 survey-scale survey-scale-warning
     - slug: sleep-refreshing-3
       text: Somewhat
@@ -71,12 +71,12 @@ questions:
     - slug: sleep-refreshing-4
       text: Quite a bit
       hotkey: '4'
-      value: 4
+      value: 2
       display_class: option-of-multiple option-of-6 survey-scale survey-scale-good
     - slug: sleep-refreshing-5
       text: Very much
       hotkey: '5'
-      value: 5
+      value: 1
       display_class: option-of-multiple option-of-6 survey-scale survey-scale-great
     - slug: sleep-refreshing-6
       text: Prefer not to answer
@@ -260,12 +260,12 @@ questions:
     - slug: satisfied-with-sleep-1
       text: Not at all
       hotkey: '1'
-      value: 1
+      value: 5
       display_class: option-of-multiple option-of-6 survey-scale survey-scale-danger
     - slug: satisfied-with-sleep-2
       text: A little bit
       hotkey: '2'
-      value: 2
+      value: 4
       display_class: option-of-multiple option-of-6 survey-scale survey-scale-warning
     - slug: satisfied-with-sleep-3
       text: Somewhat
@@ -275,12 +275,12 @@ questions:
     - slug: satisfied-with-sleep-4
       text: Quite a bit
       hotkey: '4'
-      value: 4
+      value: 2
       display_class: option-of-multiple option-of-6 survey-scale survey-scale-good
     - slug: satisfied-with-sleep-5
       text: Very much
       hotkey: '5'
-      value: 5
+      value: 1
       display_class: option-of-multiple option-of-6 survey-scale survey-scale-great
     - slug: satisfied-with-sleep-6
       text: Prefer not to answer

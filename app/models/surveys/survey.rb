@@ -59,8 +59,8 @@ class Survey < ActiveRecord::Base
 
         if answer_template_attributes.has_key?("answer_options")
           answer_template_attributes["answer_options"].each do |answer_option_attributes|
-            answer_option = answer_template.answer_options.find_or_create_by(value: answer_option_attributes["value"])
-            answer_option.update(slug: answer_option_attributes["slug"], text: answer_option_attributes["text"], hotkey: answer_option_attributes["hotkey"], display_class: answer_option_attributes["display_class"])
+            answer_option = answer_template.answer_options.find_or_create_by(slug: answer_option_attributes["slug"])
+            answer_option.update(value: answer_option_attributes["value"], text: answer_option_attributes["text"], hotkey: answer_option_attributes["hotkey"], display_class: answer_option_attributes["display_class"])
           end
         end
       end
