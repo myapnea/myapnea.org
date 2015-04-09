@@ -11,7 +11,7 @@
 
     bundle exec rake db:drop RAILS_ENV=production_copy
     bundle exec rake db:create RAILS_ENV=production_copy
-    psql -U postgres -d myapnea_production_copy -f /home/pwm4/dumps/myapnea_production_20150319_1400.sql
+    psql -U postgres -d myapnea_production_copy -f /home/pwm4/dumps/myapnea_production_20150409_1500.sql
     bundle exec rake db:migrate RAILS_ENV=production_copy
 
     rails c production_copy
@@ -36,6 +36,8 @@
     bundle exec rake surveys:load["my-quality-of-life"] RAILS_ENV=production_copy
     bundle exec rake surveys:load["my-sleep-apnea-treatment"] RAILS_ENV=production_copy
     bundle exec rake surveys:load["my-sleep-apnea"] RAILS_ENV=production_copy
+    bundle exec rake surveys:load["my-risk-profile"] RAILS_ENV=production_copy
+
 
     rails s -e production_copy
 =end
