@@ -167,30 +167,25 @@ class Report < ActiveRecord::Base
   end
 
   def self.personal_ess(encounter, user_id)
-    ess_map = {'4' => 0, '3' => 1, '2' => 2, '1' => 3}
+    values = Report.where(encounter: encounter, question_slug: 'epworth-sleepiness-scale', user_id: user_id, locked: true, value: ['0','1','2','3']).pluck(:value)
 
-    values = Report.where(encounter: encounter, question_slug: 'epworth-sleepiness-scale', user_id: user_id, locked: true).pluck(:value)
-
-    values.map{|v| ess_map[v]}.sum
-
+    if values.length ==  8
+      values.map(&:to_i).sum
+    else
+      nil
+    end
   end
 
   def self.average_ess(encounter)
-    ess_map = {'4' => 0, '3' => 1, '2' => 2, '1' => 3}
-
-    values = Report.where(encounter: encounter, question_slug: 'epworth-sleepiness-scale', value: ['1','2','3','4'], locked: true).group(:answer_session_id).select("answer_session_id,array_agg(value)")
-
-    values = values.map{|x| x["array_agg"].map{|s| ess_map[s]}.sum}
-
+    values = Report.where(encounter: encounter, question_slug: 'epworth-sleepiness-scale', value: ['0','1','2','3'], locked: true).group(:answer_session_id).having('count(value) = 8').pluck('sum(value::int)')
     values.sum/values.length.to_f
   end
 
   # My Sleep Quality
   def self.average_promis_score(encounter)
-    db_values = Report.where(encounter: encounter, survey_slug: 'my-sleep-quality', value: %w(1 2 3 4 5), locked: true).group("answer_session_id").pluck("array_agg(value::int)")
-    raw_values = db_values.map(&:sum)
+    db_values = Report.where(encounter: encounter, survey_slug: 'my-sleep-quality', value: %w(1 2 3 4 5), locked: true).group("answer_session_id").having('count(value) = 8').pluck("sum(value::int)")
 
-    avg_raw_val = raw_values.sum/raw_values.length
+    avg_raw_val = db_values.sum/db_values.length.to_f
 
     score = 10*(avg_raw_val-20)/5.6872 + 50
 
@@ -198,10 +193,12 @@ class Report < ActiveRecord::Base
   end
 
   def self.personal_promis_score(encounter, user)
-    raw_value = Report.where(encounter: encounter, survey_slug: 'my-sleep-quality', value: %w(1 2 3 4 5), user_id: user.id).group("answer_session_id").pluck("array_agg(value::int)").first.sum
-
-    10*(raw_value-20)/5.6872 + 50
-
+    raw_value = Report.where(encounter: encounter, survey_slug: 'my-sleep-quality', value: %w(1 2 3 4 5), user_id: user.id).group("answer_session_id").having("count(value) = 8").pluck("sum(value::int)").first
+    if raw_value
+      10*(raw_value-20)/5.6872 + 50
+    else
+      nil
+    end
   end
 
   # My Sleep Apnea Treatment
