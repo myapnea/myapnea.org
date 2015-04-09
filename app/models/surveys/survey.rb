@@ -60,7 +60,7 @@ class Survey < ActiveRecord::Base
         if answer_template_attributes.has_key?("answer_options")
           answer_template_attributes["answer_options"].each do |answer_option_attributes|
             answer_option = answer_template.answer_options.find_or_create_by(value: answer_option_attributes["value"])
-            answer_option.update(text: answer_option_attributes["text"], hotkey: answer_option_attributes["hotkey"], display_class: answer_option_attributes["display_class"])
+            answer_option.update(slug: answer_option_attributes["slug"], text: answer_option_attributes["text"], hotkey: answer_option_attributes["hotkey"], display_class: answer_option_attributes["display_class"])
           end
         end
       end
@@ -81,6 +81,47 @@ class Survey < ActiveRecord::Base
     survey.refresh_precomputations
   end
 
+  def write_to_file
+    file_hash = {}
+
+    file_hash["name"] = name
+    file_hash["slug"] = slug
+    file_hash["default_position"] = default_position
+    file_hash["description"] = description
+    file_hash["status"] = status
+
+    file_hash["questions"] = ordered_questions.map do |q|
+      q_hash = {}
+      q_hash["text"] = q.text
+      q_hash["slug"] = q.slug
+      q_hash["display_type"] = q.display_type
+      q_hash["answer_templates"] = q.answer_templates.map do |at|
+        at_hash = {}
+        at_hash["name"] = at.name
+        at_hash["data_type"] = at.data_type
+        at_hash["text"] = at.text if at.text.present?
+        at_hash["unit"] = at.unit if at.unit.present?
+        at_hash["preprocess"] = at.preprocess if at.preprocess.present?
+        at_hash["allow_multiple"] = at.allow_multiple if at.allow_multiple
+        at_hash["target_answer_option"] = at.target_answer_option if at.target_answer_option.present?
+        if at.answer_options.present?
+          at_hash["answer_options"] = at.answer_options.map do |ao|
+            ao_hash = {}
+            ao_hash["slug"] = "#{at.name}_#{ao.value}".dasherize
+            ao_hash["text"] = ao.text
+            ao_hash["hotkey"] = ao.hotkey if ao.hotkey.present?
+            ao_hash["value"] = ao.value
+            ao_hash["display_class"] = ao.display_class if ao.display_class.present?
+            ao_hash
+          end
+        end
+        at_hash
+      end
+      q_hash
+    end
+
+    File.open(File.join(Rails.root, "/lib/data/myapnea/surveys/generated/#{slug}.yml"), 'w') {|f| f.write file_hash.to_yaml }
+  end
 
   # Instance Methods
   def launch_single(user, encounter, position=nil)
