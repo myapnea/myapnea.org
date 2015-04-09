@@ -1,0 +1,23 @@
+- @active_top_nav_link = :participate
+.panel
+  .panel-body
+    - if current_user.is_nonacademic? and !current_user.provider?
+      %h3.f400
+        Thank you for completing the
+        %span.darkerer-blue.f500= @survey.name
+        survey!
+      %h5.f400.lighter-blue{style: 'margin-bottom:30px;'}
+        Congratulations, you have received one entry into the next monthly drawing!
+      %h4.f300.spaced
+        Now take some time to review your answers and see how they compare to other members of the community. If you want to continue the discussion, bring any questions or concerns to the forums to hear from doctors, researchers, and other people with sleep apnea.
+    - elsif (current_user.is_only_academic?)
+      %h3.f300{style: 'margin-bottom:30px;'}
+        Welcome to the data viewer for the
+        %span.darker-blue= @survey.name
+        survey!
+      %h4.f300
+        Please only use this data in accordance with our
+        = link_to('Terms of Access', terms_of_access_path) + '.'
+  .panel-footer.f400
+    We would love your feedback
+    %a.u-voice.primary-blue Get in touch with us.
