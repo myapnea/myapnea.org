@@ -84,7 +84,12 @@
   @submitAnswer = (inputElement) ->
     questionForm = inputElement.closest("form")
     $.post(questionForm.attr("action"), questionForm.serialize(), (data) ->
-      #console.log data
+      # console.log data
+      if !data['completed'] and data['validation_errors'].length > 0
+        $("[data-object~='date--error']").removeClass 'hidden'
+        $("[data-object~='date--error-message']").html(data['validation_errors'][0])
+      else if data['completed']
+        $("[data-object~='date--error']").addClass 'hidden'
       indicator = $(questionForm).data('object').slice(-1)
       indicatorSelector = $("[data-object~='survey-indicator'][data-target~='"+indicator+"']")
       if data['completed']
@@ -283,7 +288,6 @@
     if $(this).hasClass "survey-custom-date"
       dateStr = $(this).val()
       if true #validateDate(dateStr) == "" and validateOver18(dateStr) == ""
-        #console.log "handling date"
         target = event.target or event.srcElement
         handleChangedValue($(target))
     else
