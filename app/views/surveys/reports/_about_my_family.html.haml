@@ -13,33 +13,6 @@
     %div{ style: "height: 500px; min-width: 310px; max-width: 600px; margin: 0 auto", data: { object: 'draw-world-map', membership: Map.countries_for_map.to_json } }
 
 .survey-report-container.panel
-  - question = @survey.questions.where(slug: 'primary-language').first
-  - answer = @answer_session.answers.where(question_id: question.id).first
-  .survey-report-question.rounded-top
-    %h3 What language do you mainly speak at home?
-  .survey-report-answer
-    %p
-      Your answer:
-      %span.f500= "English"
-  .survey-report-info
-    .row
-      .col-sm-4
-        = image_tag 'myapnea/surveys/about-my-family/uk-flag.png', class: 'img-responsive', style: 'margin: auto'
-        %p.lead
-          English:
-          %span.f500.darkerer-blue= "%0.2f" % Report.primary_language_data[0] + "%"
-      .col-sm-4
-        = image_tag 'myapnea/surveys/about-my-family/spain-flag.png', class: 'img-responsive', style: 'margin: auto'
-        %p.lead
-          Spanish:
-          %span.f500.darkerer-blue= "%0.2f" % Report.primary_language_data[1] + "%"
-      .col-sm-4
-        = image_tag 'myapnea/surveys/about-my-family/china-flag.png', class: 'img-responsive', style: 'margin: auto'
-        %p.lead
-          Chinese:
-          %span.f500.darkerer-blue= "%0.2f" % Report.primary_language_data[2] + "%"
-
-.survey-report-container.panel
   - question = @survey.questions.where(slug: 'family-diagnoses').first
   - answer = @answer_session.answers.where(question_id: question.id).first
   .survey-report-question.rounded-top

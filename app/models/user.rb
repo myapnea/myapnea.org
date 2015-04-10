@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
 
   self.authorizer_name = "UserAuthorizer"
 
+  #  For recent updates to consent/privacy policy/etc
+  RECENT_UPDATE_DATE = "2015-04-15"
 
   # Include default devise modules. Others available are:
   # :confirmable, :omniauthable
@@ -234,7 +236,7 @@ class User < ActiveRecord::Base
   end
 
   def accepted_most_recent_update?
-    self.accepted_update_at.present? and (self.accepted_update_at > Date.parse("2015-04-05").at_noon)
+    self.accepted_update_at.present? and (self.accepted_update_at > Date.parse(RECENT_UPDATE_DATE).at_noon)
   end
 
   def this_weeks_votes

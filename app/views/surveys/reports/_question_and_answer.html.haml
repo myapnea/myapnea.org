@@ -1,17 +1,17 @@
-
 - if answer_template.text.present?
   .col-sm-5.rectangle-speech-border.rectangle-speech-border-left.rectangle-speech-border-orange
-    %h5= answer_template.text
+    %h4.f300= answer_template.text
+- elsif answer_template_index > 0 and answer_template.name.present?
+  .col-sm-5.rectangle-speech-border.rectangle-speech-border-left.rectangle-speech-border-orange
+    %h4.f300= answer_template.name.gsub('_', ' ').capitalize
 .row.reset-layout
   .col-sm-11.col-sm-offset-1.rectangle-speech-border.rectangle-speech-border-right.rectangle-speech-border-blue
     %h5.f300{ style: ' margin-bottom:30px; ' }
       My answer:
       %span.primary-blue
         - if question.applicable_to_user?(answer_session) or answer_value.present?
-          = answer_value.show_value
-        - elsif question.user_skipped_question?(answer_session)
-          Oops, it looks like you didn't answer this question.
-          = link_to 'Answer now!', surveys_path
+          -# = answer_value.show_value
+          = answer_value.collect{ |v| v.show_value }.join(', ')
         - else
           You were unable to answer this question due to previous responses!
 
@@ -29,7 +29,8 @@
           /- user_selected = answer_frequencies[:label].to_s.strip.include? answer.show_value.to_s.strip.split(', ')
           - user_selected = []
           - answer_frequencies.each do |answer_frequency|
-            - if answer_value.present? and answer_value.show_value.to_s.strip.split(', ').include? answer_frequency.answer_option_text.strip
+            - if false
+              /answer_value.present? and answer_value.show_value.to_s.strip.split(', ').include? answer_frequency.answer_option_text.strip
               - user_selected << 1
               %tr{ style: 'background-color:rgba(245,245,245,.7)' }
                 %td
