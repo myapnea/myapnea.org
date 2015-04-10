@@ -422,8 +422,8 @@ class Report < ActiveRecord::Base
 
   def self.comorbidity_map_data(condition)
     at_name = 'conditions-' + condition.to_s.gsub(" ", "-").downcase
-    r = Report.tabular_data(survey_slug: 'my-health-conditions', question_slug: 'health-conditions-list', answer_template_name: at_name).first
-    return [condition.to_s, at_name, r[1]["frequency"]]
+    r = Report.tabular_data(survey_slug: 'my-health-conditions', question_slug: 'health-conditions-list', answer_template_name: at_name, value: ['1','2'])['1']
+    return [condition.to_s, at_name, r["frequency"]]
   end
 
   ## HELPERS

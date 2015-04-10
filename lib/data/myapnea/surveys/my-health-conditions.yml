@@ -349,7 +349,7 @@ questions:
       display_class: option-of-multiple option-of-4 survey-scale survey-scale-blue
   - name: conditions-restless-legs
     data_type: answer_option_id
-    text: Resless leg syndrome
+    text: Restless leg syndrome
     answer_options:
     - slug: conditions-restless-legs-1
       text: 'Yes'

@@ -234,7 +234,7 @@ class User < ActiveRecord::Base
   end
 
   def accepted_most_recent_update?
-    self.accepted_update_at.present? and (self.accepted_update_at > Date.parse("2015-04-15").at_noon)
+    self.accepted_update_at.present? and (self.accepted_update_at > Date.parse("2015-04-05").at_noon)
   end
 
   def this_weeks_votes
