@@ -1,11 +1,14 @@
 ## 6.0.0
 
 ### New Features
-- Survey reports restyled to be more easily digested, and appear as infographics
-  - All surveys except for 'My Interest in Research'
-  - Users are able to toggle and view the original detailed reports
-  - Researchers and providers are immediately shown the original reports, with option to see new reports
-  - Formatting and content based on feedback sourced from members via the forums
+- **Survey Updates**
+  - Survey reports restyled to be more easily digested, and appear as infographics
+    - All surveys except for 'My Interest in Research'
+    - Users are able to toggle and view the original detailed reports
+    - Researchers and providers are immediately shown the original reports, with option to see new reports
+    - Formatting and content based on feedback sourced from members via the forums
+  - System for adding custom validations for specific Survey questions
+    - Date of birth validation
 - **Administrative Changes**
   - Cross-Tabs admin panel added
     - Lists information about demographics of enrollment per type of referral source
@@ -16,8 +19,6 @@
   - ESS export task added for reporting purposes
   - PROMIS export task added for reporting purposes
   - Location Report added that shows membership by country and state
-- System for adding custom validations for specific Survey questions
-  - Date of birth validation
 - **Public facing tools**
   - Sleep apnea risk assessment tool added
     - Based on the STOPBang survey
