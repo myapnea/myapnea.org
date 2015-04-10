@@ -85,6 +85,7 @@ Rails.application.routes.draw do
   ## Public Tools
   get 'sleep-apnea-risk-assessment' => 'tools#risk_assessment'
   post 'sleep-apnea-risk-assessment/results' => 'tools#risk_assessment_results'
+  get 'sleep-apnea-risk-assessment/results' => 'tools#risk_assessment_results_display'
   # Tools
   get 'sleep-apnea-and-bmi' => 'tools#bmi_ahi'
 

@@ -1,4 +1,4 @@
-- risk_multipliers = [0, 0, 0, 250, 300, 500, 600, 700, 700]
+- @risk_category = params[:category].to_i
 
 #risk-assessment-results-container
   .row.reset-layout.logo-color-bcg{ style: 'padding-bottom:10px;' }
@@ -9,7 +9,7 @@
       = link_to root_path do
         = image_tag 'myapnea/logos/MyApneaLogo_border_whitetext_300x80.png', class: 'img-responsive'
   .row.reset-layout{ style: 'margin: 40px 20px;'}
-    .col-xs-3.col-xs-offset-1.no-padding
+    .col-sm-3.col-sm-offset-1.hidden-xs.no-padding
       #high-risk-bar.row.reset-layout.risk-indicator-bar{ class: "#{'risk-level-active' if @risk_category==3}" }
         %p.lead{ class: "#{'f500' if @risk_category==3}" }
           High
@@ -19,28 +19,37 @@
       #low-risk-bar.row.reset-layout.risk-indicator-bar{ class: "#{'risk-level-active' if @risk_category==1}" }
         %p.lead{ class: "#{'f500' if @risk_category==1}" }
           Low
-    .col-xs-2.no-padding
+    .col-sm-2.hidden-xs.no-padding
       #high-risk-connector.row.reset-layout.risk-connector{ class: "#{'risk-level-active' if @risk_category==3}" }
       #middle-risk-connector.row.reset-layout.risk-connector{ class: "#{'risk-level-active' if @risk_category==2}" }
       #low-risk-connector.row.reset-layout.risk-connector{ class: "#{'risk-level-active' if @risk_category==1}" }
-    .col-xs-5.centered-text{ id: "#{'risk-assessment-results-' + @risk_category.to_s }" }
+    .col-sm-5.centered-text{ id: "#{'risk-assessment-results-' + @risk_category.to_s }" }
       %h2.f300
         Your risk score is:
         %br
-        %span.f500.primary-orange= @stop_score + @bang_score
+        %span.f500.primary-orange= params[:score]
       - if @risk_category == 1
-        %h3.f300
-          You're currently at a low risk for developing sleep apnea. However, this risk will increase with age and with body weight. We encourage you to maintain a healthy diet and exercise regimen to stay in good shape!
-      - else
-        %h3.f300
-          Your risk of having or developing obstructive sleep apnea is
-          %span.primary-orange= risk_multipliers[@stop_score + @bang_score].to_s + '%'
-          higher than people with a risk score of 0-2.
         %p.lead
-          Over 80% of adults with sleep apnea go undiagnosed, and are left untreated. We encourage you to join MyApnea.Org to find out more, and consider booking a sleep appointment with a
-          = link_to 'sleep care provider near you.', providers_path
+          You're currently at a low risk for developing sleep apnea. However, your risk can increase with age and with body weight. We encourage you to maintain a healthy diet and stay active to help keep your risk low!
+      - else
+        - if @risk_category == 2
+          %p.lead
+            Based on this information, you are at moderate risk of having or developing obstructive sleep apnea. Your risk can increase further with age and with body weight. We encourage you to maintain a healthy diet and stay active to help lower your risk.
+        - elsif @risk_category == 3
+          %p.lead
+            Based on this information, you are at high risk of having or developing obstructive sleep apnea. We encourage you to maintain a healthy diet and stay active to help lower your risk.
+        %p.lead
+          Over 80% of adults with sleep apnea go undiagnosed, and are left untreated. We encourage you to join MyApnea.Org to find out more and participate in important research, and consider booking a sleep appointment with a sleep care provider near you.
+          - if false
+            / TODO add this link once providers are listed by area
+            = link_to 'sleep care provider near you.', providers_path
+        = link_to new_user_registration_path do
+          %button.btn.btn-success
+            Join MyApnea.Org!
+      %br
+      %br
       %p.f500
-        Share this with your friends and family to help reduce the number of undiagnosed cases, and help those in need get proper treatment:
+        Share this with your friends and family to help reduce the number of undiagnosed cases, and help those in need get proper treatment.
       = link_to image_tag('myapnea/icons/facebook_icon.png', class: 'share-icons-animate share-icons-md'), "https://www.facebook.com/sharer/sharer.php?u=http://bit.ly/sleep-apnea-risk"
       = link_to image_tag('myapnea/icons/twitter_icon.png', class: 'share-icons-animate share-icons-md'), 'http://twitter.com/intent/tweet?text=I+just+checked+my+risk+for+sleep+apnea+via+%40MyApneaOrg%2C+and+you+should+too+-+over+80%25+of+cases+go+undiagnosed.+Visit+http%3A%2F%2Fbit.ly%2Fsleep-apnea-risk'
       = link_to image_tag('myapnea/icons/email_icon.png', class: 'share-icons-animate share-icons-md'), "mailto:?subject=Check your risk for sleep apnea via http://bit.ly/sleep-apnea-risk"

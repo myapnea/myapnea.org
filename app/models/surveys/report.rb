@@ -161,6 +161,12 @@ class Report < ActiveRecord::Base
     (different_count / total_count.to_f) * 100.0
   end
 
+  def self.personal_wakeup_time_toclock(user)
+    time = Report.where(encounter: 'baseline', question_slug: 'ideal-wakeup', user_id: user.id, value: 1..5).pluck(:value)[0].to_i
+    times = [6, 7, 8, 10, 12]
+    times[time-1]
+  end
+
   def self.median_wakeup_time()
     values = Report.where(encounter: 'baseline', question_slug: 'ideal-wakeup', locked: true, value: 1..5).select('value,answer_option_text').map{|row| {value: row.value, text: row.answer_option_text}}.sort{|x,y| x[:value] <=> y[:value]}
     values[values.length/2][:text]

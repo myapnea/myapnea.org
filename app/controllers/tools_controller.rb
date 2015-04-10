@@ -9,6 +9,10 @@ class ToolsController < ApplicationController
     @is_male = params[:gender] == 'male'
     @bang_score = (@bmi > 35 ? 1 : 0) + (params[:age].to_i > 50 ? 1 : 0) + (@has_large_neck ? 1 : 0) + (@is_male ? 1 : 0)
     @risk_category = riskCategory(@stop_score, @stop_score + @bang_score, @has_large_neck, @is_male, @bmi > 35)
+    redirect_to sleep_apnea_risk_assessment_results_path(category: @risk_category, score: @stop_score+@bang_score)
+  end
+
+  def risk_assessment_results_display
   end
 
   def calculateBMI

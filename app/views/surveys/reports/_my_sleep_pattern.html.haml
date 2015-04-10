@@ -45,11 +45,14 @@
 .survey-report-container.panel
   .survey-report-question.rounded-top
     - question = @survey.ordered_questions.where(slug: 'ideal-wakeup').first
+    - answer = @answer_session.answers.where(question_id: question.id).first
     %h3= question.text
   .survey-report-answer
     %p
       Your answer:
-      %span.f500= @answer_session.answers.where(question_id: question.id).first.show_value
+      %span.f500= answer.show_value
+  .survey-report-info.rounded-bottom
+    - rotate_value = 30 * Report.personal_wakeup_time_toclock(current_user) - 15 rescue 0
     #clock
       %ul.digits
         %li 1
@@ -65,13 +68,16 @@
         %li 11
         %li 12
       %span.hand.minute
-      %span.hand.hour
-  .survey-report-info.rounded-bottom
+      %span.hand.hour{ style: "-webkit-transform: rotate(#{rotate_value}deg); -moz-transform: rotate(#{rotate_value}deg); -o-transform: rotate(#{rotate_value}deg); -ms-transform: rotate(#{rotate_value}deg); transform: rotate(#{rotate_value}deg); margin-left: #{'3px' unless rotate_value==0}"}
     %p.lead
-      The average MyApnea member would prefer to wake up
-      %span.primary-orange.f500= Report.median_wakeup_time()
+      Some people prefer to wake up earlier in the morning and go to bed earlier at night (sometimes called
+      %span.primary-orange morning larks
+      ). Others prefer to sleep later in the morning and stay up later at night (sometimes called
+      %span.primary-blue night owls
+      ). Researchers study the body's internal clock, or circadian rhythm, to learn more about the differences between morning larks and night owls.
     %p.lead
-      Some people prefer to wake up earlier in the morning and go to bed earlier at night (sometimes called morning larks). Others prefer to sleep later in the morning and stay up later at night (sometimes called night owls). Researchers study the body's internal clock, or circadian rhythm, to learn more about the differences between morning larks and night owls.
+      The average MyApnea member would prefer to wake up between
+      %span.f500= Report.median_wakeup_time()
 
 .survey-report-container.panel
   .survey-report-question.rounded-top

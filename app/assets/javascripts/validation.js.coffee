@@ -80,7 +80,7 @@
     return
 
 
-  ########## DATES ##########
+  ########## DATES ########## TODO Remove, this frontend validation is deprecated
   $("[data-validation~='inline-validation-date'] [data-object~='inline-validation-item']").blur (e) ->
     validationItem = $("[data-validation~='inline-validation-date'] [data-object~='inline-validation-item']")
     dateString = validationItem.val()

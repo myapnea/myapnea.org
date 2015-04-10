@@ -7,8 +7,8 @@ class ToolsControllerTest < ActionController::TestCase
   end
 
   test "should get risk assessment results" do
-    post :risk_assessment_results
-    assert_response :success
+    get :risk_assessment_results
+    assert_redirected_to sleep_apnea_risk_assessment_results_path(category: 1, score: 0)
   end
 
 end
