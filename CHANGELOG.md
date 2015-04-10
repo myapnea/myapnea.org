@@ -2,11 +2,15 @@
 
 ### New Features
 - Survey reports restyled to be more easily digested, and appear as infographics
-  - About Me
-  - My Sleep Pattern
+  - All surveys except for 'My Interest in Research'
+  - Users are able to toggle and view the original detailed reports
+  - Researchers and providers are immediately shown the original reports, with option to see new reports
+  - Formatting and content based on feedback sourced from members via the forums
 - **Administrative Changes**
   - Cross-Tabs admin panel added
     - Lists information about demographics of enrollment per type of referral source
+  - Location breakdown admin panel added
+    - Shows breakdown of member location by state and country
 - **Survey Exports**
   - Common Data Model Version 2.0 exports implemented
   - ESS export task added for reporting purposes
@@ -14,12 +18,28 @@
   - Location Report added that shows membership by country and state
 - System for adding custom validations for specific Survey questions
   - Date of birth validation
+- **Public facing tools**
+  - Sleep apnea risk assessment tool added
+    - Based on the STOPBang survey
+    - Social sharing of results added for social media
+  - Sleep apnea and BMI assessment tool added
+    - Transformed from BMI/AHI calculator
+    - Relates sleep apnea severity to BMI category
 
 ### Enhancements
 - **Gem Changes**
   - Updated to rails 4.2.1
+- **Documentation Changes**
+  - Consent and Privacy Policy updated based on need in order to do coenrollment
+  - Method for users to accept this update added
+    - This acceptance is required to for users to complete new surveys
+    - New users will automatically accept the update when they accept the consent
+  - Governance policies added to footer
+- Added American Sleep Association as a partner
 
 ### Bug Fixes
+- Date of birth bug fix addressed now from the backend for better handling
+- Partner ISSS link updated
 
 ## 5.2.0 (March 25, 2015)
 
