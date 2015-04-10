@@ -30,6 +30,12 @@
     font-weight: 300;
     font-size: 21px;
   }
+  #tooltip {
+    background-color: #333;
+    color: #ddd;
+    padding: 5px;
+    border-radius: 3px;
+  }
 }
 
 @media all and (max-width: 1200px) {}
