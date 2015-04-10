@@ -30,14 +30,20 @@
         %span.f500.primary-orange= params[:score]
       - if @risk_category == 1
         %p.lead
-          You're currently at a low risk for developing sleep apnea. However, your risk can increase with age and with body weight. We encourage you to maintain a healthy diet and stay active to help keep your risk low!
+          You're currently at
+          %span.f500 low risk
+          for developing sleep apnea. However, your risk can increase with age and with body weight. We encourage you to maintain a healthy diet and stay active to help keep your risk low!
       - else
         - if @risk_category == 2
           %p.lead
-            Based on this information, you are at moderate risk of having or developing obstructive sleep apnea. Your risk can increase further with age and with body weight. We encourage you to maintain a healthy diet and stay active to help lower your risk.
+            Based on this information, you are at
+            %span.f500 moderate risk
+            of having or developing obstructive sleep apnea. Your risk can increase further with age and with body weight. We encourage you to maintain a healthy diet and stay active to help lower your risk.
         - elsif @risk_category == 3
           %p.lead
-            Based on this information, you are at high risk of having or developing obstructive sleep apnea. We encourage you to maintain a healthy diet and stay active to help lower your risk.
+            Based on this information, you are at
+            %span.f500 high risk
+            of having or developing obstructive sleep apnea. We encourage you to maintain a healthy diet and stay active to help lower your risk.
         %p.lead
           Over 80% of adults with sleep apnea go undiagnosed, and are left untreated. We encourage you to join MyApnea.Org to find out more and participate in important research, and consider booking a sleep appointment with a sleep care provider near you.
           - if false
