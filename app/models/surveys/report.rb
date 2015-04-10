@@ -231,20 +231,23 @@ class Report < ActiveRecord::Base
         8 => 'satisfaction_with_tongue_stimulation',
         9 => 'satisfaction_with_tonsillectomy',
         10 => 'satisfaction_with_uppp',
-        11 => 'satisfaction_with_nasal_deviation_surgery',
-        12 => 'satisfaction_with_toungue_surgery',
+        11 => 'satisfaction_with_naval_deviation',
+        12 => 'satisfaction_with_tongue_surgery',
         13 => 'satisfaction_with_jaw_surgery',
         14 => 'satisfaction_with_bariatric_surgery'
     }
 
+
     template_name = current_to_satisfaction_map[value]
+    puts template_name
+
     # For each treatment (or top 5?) we want all the answer sessions where people indicated a not-6 for that answer_template (satisfaction)
     # Now, for this set of people, we want to find ratings for how the treatment helpled.
 
     # so, let's do it for CPAP
 
     base_query = Report.where(answer_template_name: template_name, encounter: encounter, locked: true)
-      values = base_query.where.not(value: nil).pluck(:value)
+    values = base_query.where.not(value: nil).pluck(:value)
     satisfaction_percent = values.select{|v| %(3 4).include?(v)}.length.to_f/values.length * 100.0
     used_treatment = base_query.where.not(value: ['5', '6']).pluck(:answer_session_id)
     used_treatment_percent = (used_treatment.length.to_f/base_query.count.to_f) * 100.0

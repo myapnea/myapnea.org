@@ -388,7 +388,7 @@ questions:
       display_class: option-of-multiple option-of-6 survey-scale
   - name: satisfaction_with_naval_deviation
     data_type: answer_option_id
-    text: Naval deviation surgery
+    text: Nasal deviation surgery
     answer_options:
     - slug: satisfaction-with-naval-deviation-1
       text: Very dissatisfied
