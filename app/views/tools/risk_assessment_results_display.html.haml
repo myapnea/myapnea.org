@@ -1,4 +1,4 @@
-- risk_multipliers = [0, 0, 0, 250, 300, 500, 600, 700, 700]
+- @risk_category = params[:category].to_i
 
 #risk-assessment-results-container
   .row.reset-layout.logo-color-bcg{ style: 'padding-bottom:10px;' }
@@ -27,7 +27,7 @@
       %h2.f300
         Your risk score is:
         %br
-        %span.f500.primary-orange= @stop_score + @bang_score
+        %span.f500.primary-orange= params[:score]
       - if @risk_category == 1
         %p.lead
           You're currently at a low risk for developing sleep apnea. However, your risk can increase with age and with body weight. We encourage you to maintain a healthy diet and stay active to help keep your risk low!
