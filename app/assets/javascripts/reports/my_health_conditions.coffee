@@ -36,10 +36,20 @@ Network = () ->
 
     # create our svg and groups
     vis = d3.select(selection).append("svg")
-      .attr("width", width)
-      .attr("height", height)
+      .attr("width", "800px")
+      .attr("height", "800px")
+      .attr("viewBox", "0 0 800 800")
+      .attr("preserveAspectRatio", "xMidYMid")
     linksG = vis.append("g").attr("id", "links")
     nodesG = vis.append("g").attr("id", "nodes")
+
+    aspect = 1
+    chart = $("#health-conditions svg")
+    $(window).on 'resize', ->
+      targetWidth = Math.min(chart.parent().parent().width(), $(window).width())
+      chart.attr 'width', targetWidth
+      chart.attr 'height', targetWidth / aspect
+      return
 
     # setup the size of the force environment
     force.size([width, height])
