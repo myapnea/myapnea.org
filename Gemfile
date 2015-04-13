@@ -55,7 +55,7 @@ gem 'fuzzy_match'
 gem 'bootstrap-generators', '~> 3.2.0'
 
 # Markdown Support
-gem 'redcarpet', '~> 3.2.0'
+gem 'redcarpet', '~> 3.2.3'
 
 # Directed Acyclic Graph
 gem 'acts-as-dag'

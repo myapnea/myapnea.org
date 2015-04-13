@@ -30,6 +30,7 @@
 ### Enhancements
 - **Gem Changes**
   - Updated to rails 4.2.1
+  - Updated to redcarpet 3.2.3
 - **Documentation Changes**
   - Consent and Privacy Policy updated based on need in order to do coenrollment
   - Method for users to accept this update added
