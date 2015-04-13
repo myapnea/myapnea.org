@@ -1,5 +1,15 @@
 ## 6.1.0
 
+### Enhancements
+- **Tool Updates**
+  - Updated layout of BMI calculation and graph for `Sleep Apnea and BMI` tool
+  - Minor edits to wording of results on `Risk Assessment` tool
+  - Minor edits to wording of results on `Sleep Apnea and BMI` tool
+- **Survey Changes**
+  - Clarified wording of `family diagnostic` question in `About My Family` survey
+- **Other**
+  - Standardized text sizes on partners page
+
 
 ## 6.0.0 (April 15, 2015)
 
