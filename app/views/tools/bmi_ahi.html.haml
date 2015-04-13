@@ -3,7 +3,10 @@
     .row.list-group-item
       %h3 Sleep Apnea and BMI
       %p.lead
-        Although obesity is not a trait of all patients with sleep apnea, there is evidence that a relationship between weight and sleep apnea exists.  Changes in weight have been linked to changes in the Apnea Hypopnea Index.
+        Although obesity is not a trait of all patients with sleep apnea, there is evidence that a relationship between weight and sleep apnea exists.  Changes in weight, and resulting changes in
+        = link_to('body mass index (BMI)', 'http://en.wikipedia.org/wiki/Body_mass_index')+','
+        have been linked to changes in the
+        = link_to('apnea hypopnea index (AHI)', 'http://en.wikipedia.org/wiki/Apnea%E2%80%93hypopnea_index')+'.'
     #bmi-height.row.list-group-item
       .col-xs-6
         %h4
