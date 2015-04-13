@@ -1,4 +1,7 @@
-## 6.0.0
+## 6.1.0
+
+
+## 6.0.0 (April 15, 2015)
 
 ### New Features
 - **Survey Updates**
