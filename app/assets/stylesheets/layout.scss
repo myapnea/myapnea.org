@@ -94,56 +94,84 @@ nav {
 
 #myapneanavbar {
   position:relative;
-}
-
-#myapneanavbar > li {
-  font-size:18px;
-  margin:0 1px;
-  border-bottom: 5px solid transparent;
-}
-
-/* Reset bootstrap defaults */
-  #myapneanavbar > li > a{
-    padding:10px 20px 15px 20px;
-    color: white;
-    display: block;
-    background-color: inherit;
+  li {
+    font-size:18px;
+    margin:0 1px;
+    border-bottom: 5px solid transparent;
+    a {
+      padding:10px 20px 15px 20px;
+      color: white;
+      display: block;
+      background-color: inherit;
+    }
+    a:hover { background-color: inherit; }
   }
-  #myapneanavbar > li > a:hover {
-    background-color: inherit;
+  li.dropdown.open {
+    a.dropdown-toggle {
+      background-color: inherit;
+    }
   }
-  #myapneanavbar > li.dropdown.open a.dropdown-toggle {
-    background-color:inherit;
+  li.active {
+    border-bottom: 5px solid #5999de;
   }
-
-#myapneanavbar >li.active {
-  border-bottom:5px solid #5999de;
-}
-
-#myapneanavbar > li:hover {
-  border-bottom:5px solid rgb(89, 153, 222);
-}
-
-#myapneanavbar .dropdown-menu {
-  border-radius: 0 0 5px 5px;
-}
-#myapneanavbar .dropdown-menu li {
-  margin:2px;
+  li:hover {
+    border-bottom:5px solid rgb(89, 153, 222);
+  }
+  .dropdown-menu {
+    border-radius: 0 0 5px 5px;
+    li {
+      margin: 2px;
+    }
+  }
 }
 
 
-// Ensure proper logo size for large screens
-.navbar-header {
-  // min-width:30%;
+#menulogin {
+  position:relative;
+  top: 8px;
+  width:80%;
+  float:right;
+  li {
+    font-size:18px;
+    margin:0 1px;
+    border-radius: 10px;
+    border:1px solid #5999de;
+    a {
+      padding:10px 20px 15px 20px;
+      color: white;
+      display: block;
+      background-color: inherit;
+      border-radius: 10px;
+    }
+    a:hover { background-color: inherit; }
+  }
+  li.dropdown.open {
+    border-radius: 10px 10px 0 0;
+    a.dropdown-toggle {
+      background-color: inherit;
+      border-radius: 10px 10px 0 0;
+    }
+  }
+  li.active {
+    background-color: #5999de;
+  }
+  li:hover {
+    background-color:rgb(89, 153, 222);
+  }
+  .dropdown-menu {
+    border-radius: 0 0 5px 5px;
+    left: initial;
+    right: -1px;
+    li {
+      margin: 2px;
+    }
+  }
 }
+
 
 .navbar-right {
   margin-top:-5px;
 }
-
-// .container-fluid > .row {
-//   background-image: asset-url('myapnea/welcome/textures/grey.png');
-// }
 
 
 .footer {

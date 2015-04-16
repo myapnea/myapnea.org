@@ -9,9 +9,20 @@
             %span.icon-bar
             %span.icon-bar
     .hidden-sm.hidden-xs.centered-text#navbar-social
-      = link_to image_tag('myapnea/icons/facebook_icon.png', class: 'share-icons-animate share-icons-md'), "http://www.facebook.com/share.php?u=#{ENV['website_url']}"
-      = link_to image_tag('myapnea/icons/twitter_icon.png', class: 'share-icons-animate share-icons-md'), 'http://ctt.ec/Qeg7f'
-      = link_to image_tag('myapnea/icons/email_icon.png', class: 'share-icons-animate share-icons-md'), "mailto:?subject=Check out MyApnea.Org&body=This group is working to improve treatment and research of sleep apnea! You can learn more and join their community by visiting www.myapnea.org"
+      - if current_user
+        = link_to image_tag('myapnea/icons/facebook_icon.png', class: 'share-icons-animate share-icons-md'), "http://www.facebook.com/share.php?u=#{ENV['website_url']}"
+        = link_to image_tag('myapnea/icons/twitter_icon.png', class: 'share-icons-animate share-icons-md'), 'http://ctt.ec/Qeg7f'
+        = link_to image_tag('myapnea/icons/email_icon.png', class: 'share-icons-animate share-icons-md'), "mailto:?subject=Check out MyApnea.Org&body=This group is working to improve treatment and research of sleep apnea! You can learn more and join their community by visiting www.myapnea.org"
+      - else
+        %ul.nav.navbar-nav#menulogin
+          %li.dropdown
+            %a.dropdown-toggle{ href:'#', data:{ toggle: 'dropdown'} }
+              Login
+            .dropdown-menu{ style: 'padding:15px;' }
+              = form_tag user_session_path, method: :post, class: "navbar-form" do
+                = text_field_tag 'user[email]', nil, placeholder: 'Email', class: "form-control"
+                = password_field_tag 'user[password]', nil, placeholder: 'Password', class: "form-control"
+                = submit_tag 'Login', class: "btn btn-primary"
       %ul.nav.navbar-nav#myapneanavbar{ style:'color:white; position:absolute; right:20%; bottom:0;' }
         %li{:class => "#{"active" if @active_top_nav_link == :home}"}= link_to 'Home', root_path
         %li.dropdown{:class => "#{"active" if @active_top_nav_link == :about}"}
