@@ -9,6 +9,7 @@
   - Clarified wording of `family diagnostic` question in `About My Family` survey
 - **Other**
   - Standardized text sizes on partners page
+  - ASA correctly listed as promotional partner
 
 
 ## 6.0.0 (April 15, 2015)
