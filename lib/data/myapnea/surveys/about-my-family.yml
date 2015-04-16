@@ -170,7 +170,7 @@ questions:
       value: 6
       display_class: option-of-multiple option-of-6 label-default
 - text: |
-    Have any of your biological family members been diagnosed with sleep apnea?
+    Have any of your immediate biological family members been diagnosed with sleep apnea?
   slug: family-diagnoses
   display_type: checkbox_input
   answer_templates:

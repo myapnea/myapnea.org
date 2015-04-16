@@ -3,7 +3,10 @@
     .row.list-group-item
       %h3 Sleep Apnea and BMI
       %p.lead
-        Although obesity is not a trait of all patients with sleep apnea, there is evidence that a relationship between weight and sleep apnea exists.  Changes in weight have been linked to changes in the Apnea Hypopnea Index.
+        Although obesity is not a trait of all patients with sleep apnea, there is evidence that a relationship between weight and sleep apnea exists.  Changes in weight, and resulting changes in
+        = link_to('body mass index (BMI)', 'http://en.wikipedia.org/wiki/Body_mass_index')+','
+        have been linked to changes in the
+        = link_to('apnea hypopnea index (AHI)', 'http://en.wikipedia.org/wiki/Apnea%E2%80%93hypopnea_index')+'.'
     #bmi-height.row.list-group-item
       .col-xs-6
         %h4
@@ -24,21 +27,18 @@
       %button.btn.btn-success.disabled{ data: { object: 'submit-bmi'} }
         %h3 Calculate My BMI
     #bmi-graph.row.list-group-item.hidden
-      %h4 Your Calculated BMI:
-      #my-bmi
-        %p.f300
-          From the height and weight you've provided, we've determined your
-          = link_to 'Body Mass Index', 'http://en.wikipedia.org/wiki/Body_mass_index'
-          to be:
-          %span#bmi.f500
-        %p.f300
-          People with this BMI are considered to be
+      %h3.centered-text.f300
+        Your BMI:
+        %span#bmi.f500
+      #my-bmi{ style: 'margin-top: 20px;'}
+        %p.lead
+          People with this BMI are considered to be:
           %span#my-bmi-category.f500
         %svg.chart
   #bmi-ahi-results-container.col-md-7.dimmed-and-disabled
     .list-group-item
       %h4
-        Effects of Weight Change on AHI
+        Weight and Sleep Apnea Severity
       %p.lead
         Research has show that the risk of obstructive sleep apnea (OSA) is much higher in people with high BMI, and a strong relationship exists between increases in BMI and increases in the severity of OSA.
     .list-group-item
