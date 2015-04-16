@@ -85,6 +85,9 @@ class StaticController < ApplicationController
     render 'static/sleep_tips/sleep_tips'
   end
 
+  def landing
+    render 'static/landing_page_redesign'
+  end
 
   ## NON-STATIC
 
