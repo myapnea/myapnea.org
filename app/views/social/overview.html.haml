@@ -3,6 +3,56 @@
 .content-main-header
   %h1.content-main-title Our Community
 
-%div{ style: "height: 500px; min-width: 310px; max-width: 600px; margin: 0 auto", data: { object: 'draw-map', membership: Map.states_for_map.to_json } }
+.panel
+  .panel-body
+    %p.lead
+      MyApnea.Org is a network created by people with sleep apnea to empower others like us to get the answers we want and need through sharing and promoting research. MyApnea.Org offers sleep apnea patients and caregivers the opportunity to
+      = link_to "learn", learn_path
+      more about apnea and effective treatments,
+      = link_to "share", forums_path
+      experiences with other members of the community, and contribute to
+      = link_to "research", surveys_path
+      to improve diagnosis, management, and treatments for sleep apnea.
+    %br
+    %h2.f300.centered-text Community Success
+    %br
+    %p.lead
+      Most promising, our community is becoming increasingly active. We currently have
+      %span.f500.darkerer-blue= "#{Post.current.count} posts"
+      in
+      %span.f500.darkerer-blue= "#{Topic.current.count} topics."
+      To date, we've watched an overwhelming amount of support grow among the MyApnea community. The forums alone have become an active discussion board where people with sleep apnea, researchers, and care providers help each other address important questions and concerns. Among these are:
+    %ul
+      %li.lead= link_to 'Issues that people have adjusting to new CPAP devices', ENV['website_url']+'/forums/general/topics/contribute-community-tips-for-using-pap-devices'
+      %li.lead= link_to 'Finding proper care for central/mixed sleep apnea', ENV['website_url']+'/forums/general/topics/central-mixed-apnea'
+      %li.lead= link_to 'Determining future research for the link between sleep apnea and body weight', ENV['website_url']+'/forums/research/topics/does-treatment-of-sleep-apnea-influence-body-weight'
+.row.centered-text
+  .col-sm-4
+    .user-testimonial-small
+      %p.user-testimonial-quote
+        "Note I look at a lot of support sites and finally pulled the trigger on this one....glad I did!"
+      %p.user-testimonial-quoter
+        \-
+        = link_to 'JDARZ', ENV['website_url']+'/forums/general/topics/waking-up-with-dry-mouth#c17'
+  .col-sm-4
+    .user-testimonial-small
+      %p.user-testimonial-quote
+        "I got up this morning feeling completely different...thank you guys for helping me ease into this next phase."
+      %p.user-testimonial-quoter
+        \-
+        = link_to 'Bhek', ENV['website_url']+'/forums/general/topics/contribute-community-tips-for-using-pap-devices#c10'
+  .col-sm-4
+    .user-testimonial-small
+      %p.user-testimonial-quote
+        "I belong to a bunch of SA support groups...this one has the people that honestly want to help."
+      %p.user-testimonial-quoter
+        \-
+        = link_to 'Pat', ENV['website_url']+'/forums/general/topics/waking-up-with-dry-mouth#c19'
 
-%div{ style: "height: 500px; min-width: 310px; max-width: 600px; margin: 0 auto", data: { object: 'draw-world-map', membership: Map.countries_for_map.to_json } }
+
+.panel
+  .panel-body
+    .list-group-item
+      %div{ style: "height: 500px; min-width: 310px; max-width: 600px; margin: 0 auto", data: { object: 'draw-map', membership: Map.states_for_map.to_json } }
+    .list-group-item
+      %div{ style: "height: 500px; min-width: 310px; max-width: 600px; margin: 0 auto", data: { object: 'draw-world-map', membership: Map.countries_for_map.to_json } }

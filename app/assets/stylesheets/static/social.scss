@@ -1,3 +1,32 @@
-#user_map {
-  height: 400px;
+.user-testimonial-small {
+  height: 200px;
+  background-color: #def;
+  border: 1px solid #ccc;
+  border-bottom: 5px solid #777;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  padding: 10px;
+  position:relative;
+  p.user-testimonial-quote {
+    font-size: 18px;
+  }
+  p.user-testimonial-quoter {
+    font-size: 16px;
+    position: absolute;
+    bottom: 10px;
+    left: 40%;
+    a, a:hover, a:active { text-decoration: none; }
+  }
+}
+
+@media (max-width: 992px) {
+  .user-testimonial-small {
+    height: 250px;
+  }
+}
+
+@media (max-width: 768px) {
+  .user-testimonial-small {
+    height: 150px;
+  }
 }
