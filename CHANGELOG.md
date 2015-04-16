@@ -4,6 +4,10 @@
 - **Gem Changes**
   - Updated to Ruby 2.2.2
 
+### Bug Fixes
+- Fixed issue with academic users not being able to see surveys
+- Fixed styling on button to accept the consent and privacy policy updates
+
 ## 6.0.0 (April 15, 2015)
 
 ### New Features
