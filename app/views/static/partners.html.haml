@@ -62,23 +62,10 @@
       The following companies and organizations share our mission and goals to improve research and the treatment of sleep apnea and are working with us to promote the MyApnea.Org Network to patients and health care professionals.*  We greatly appreciate their assistance.
   .panel-body
     .row
-      .col-sm-6.centered-text{ style: 'margin-bottom:20px' }
-        .img-centerer
-        = link_to image_tag('myapnea/partners/cmb_solutions_crop.jpg', class: 'partners-logo-square', style: 'max-height:75px'), 'http://www.cmbsolutionsinc.com/'
-      .col-sm-6.centered-text{ style: 'margin-bottom:20px' }
-        .img-centerer
-        = link_to image_tag('myapnea/partners/vgm_group.jpg', class: 'partners-logo-square', style: 'max-height:75px'), 'http://www.vgm.com'
-    .row
-      .col-sm-6.centered-text{ style: 'margin-bottom:20px' }
-        .img-centerer
-        = link_to image_tag('myapnea/partners/rt_sleepworld.jpg', class: 'partners-logo-square', style: 'max-height:75px'), 'https://www.rtsleepworld.com'
-      .col-sm-6.centered-text{ style: 'margin-bottom:20px' }
-        .img-centerer
-        = link_to image_tag('myapnea/partners/health-eheart.png', class: 'partners-logo-square', style: 'max-height:75px'), 'http://hehstdy.org/139gKdA'
-    .row
-      .col-sm-6.centered-text{ style: 'margin-bottom:20px'}
-        .img-centerer
-        = link_to image_tag('myapnea/partners/asa_logo.png', class: 'partners-logo-square', style: 'max-height:75px'), 'https://www.sleepassociation.org/'
+      - [['asa_logo.png', 'https://www.sleepassociation.org/'],['cmb_solutions_crop.jpg', 'http://www.cmbsolutionsinc.com/'], ['vgm_group.jpg', 'http://www.vgm.com'], ['rt_sleepworld.jpg', 'https://www.rtsleepworld.com'], ['health-eheart.png', 'http://hehstdy.org/139gKdA']].sort.each do |image, url|
+        .col-sm-6.centered-text{ style: 'margin-bottom:20px'}
+          .img-centerer
+          = link_to image_tag("myapnea/partners/#{image}", class: 'partners-logo-square', style: 'max-height:75px'), url
   .panel-footer
     %p.small
       *Our promotional and other partners DO NOT have access to your contact or health information.  Per our
