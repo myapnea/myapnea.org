@@ -1,0 +1,192 @@
+#slide1 {
+  background-image: asset-url('myapnea/welcome/img-large/unsplash-standing-colors.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  -ms-behavior: asset-url('ie8/backgroundsize.min.htc');
+  background-color: rgb(15, 18, 27);
+  position:relative;
+  min-height:800px;
+  padding-bottom:100px;
+  font-family: 'Dosis', sans-serif;
+  padding-top: 100px;
+  h2 {}
+  h3 {}
+  h4 { margin-top: 30px; }
+  #btn-join {
+    font-size: 21px;
+    padding: 10px;
+    width: 50%;
+    min-width: 190px;
+    background-color: #FFA400;
+    border: 1px solid white;
+    border-radius: 100px;
+  }
+  #landing-video-play {
+    margin-top: 20px;
+    background-color:rgba(250,250,250,.43);
+    padding:30px;
+    text-align:center;
+    border:none;
+    cursor:pointer;
+    border-radius:20px;
+    i {
+      color:rgb(45, 81, 131);
+      font-size:147px;
+      line-height:118px;
+      border-radius:100%;
+    }
+  }
+  #community-tracker {
+    position:absolute;
+    bottom:0px;
+    width:100%;
+    padding-bottom:0px;
+    text-align:center;
+    .round-img {
+      width:20%;
+      height:auto;
+      border-radius:50%;
+      margin: 0 1%;
+      // Controls for xlarge screens
+      max-width: 120px;
+      max-height:120px;
+    }
+    .round-img-orange { border:5px solid #FFA400; }
+    .round-img-blue { border:5px solid #5999DE; }
+  }
+}
+
+#slide2:before {
+  content: ' ';
+  display:block; z-index:0;
+  position:absolute; left:0; top:0px;
+  width:100%; height:50px;
+  opacity:1;
+  background-color: black;
+}
+
+#slide2 {
+  // background-image: asset-url('myapnea/welcome/textures/grey.png');
+  background-color: #233063;
+  position: relative;
+  overflow: hidden;
+  padding-top: 75px;
+  padding-bottom: 0;
+  text-align: center;
+  .text-content-container {
+    width: 80%;
+    margin: 0% 10%;
+    background-color: inherit;
+    h1 { color: white; }
+    p {
+      color: white;
+      color: rgba(255,255,255,.8);
+      span {
+        color: #ffa400;
+      }
+    }
+  }
+  .row { background-color: white; }
+  .col-sm-6 {
+    border: 4px solid #233063;
+    padding: 20px;
+    background-color: white;
+    h3 { color: #233063; }
+    height: 385px;
+  }
+  #value1 {
+    border-left: none;
+    // border-top: none;
+  }
+  #value2 {
+    border-right: none;
+    // border-top: none;
+  }
+  #value3 {
+    border-left: none;
+    // border-bottom: none;
+  }
+  #value4 {
+    border-right: none;
+    // border-bottom: none;
+  }
+}
+
+#slide3 {
+  background-color: #233063;
+  overflow: hidden;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  text-align: center;
+  #testimonial {
+    background-color: white;
+    background-color: rgba(255,255,255,.7);
+    padding: 20px;
+    border: 5px solid white;
+    border-radius: 20px;
+    h4 {
+      color: #387fcf;
+    }
+  }
+  #testimonial-giver {
+    padding: 20px;
+    img {
+      border: 5px solid white;
+      border-radius: 5px;
+    }
+  }
+  #social-overview-link {
+    clear: both;
+    padding-top: 40px;
+    a {
+      text-decoration: none;
+      color: #ffa400;
+      font-size: 18px;
+    }
+    a:hover {
+      color: #ffc864;
+    }
+  }
+}
+
+#slide4 {
+  background-image: asset-url('myapnea/welcome/img-large/unsplash-standing-group.jpg');
+  background-size: cover;
+  -ms-behavior: asset-url('ie8/backgroundsize.min.htc');
+  background-repeat:no-repeat;
+  background-position: bottom;
+  font-family: 'Dosis', sans-serif;
+  text-align: center;
+  h1 {
+    margin-bottom:20px;
+    font-weight:600;
+    font-size:40px;
+  }
+  ul {
+    li { font-size: 18px; }
+  }
+  span#privacy-policy:hover { cursor:pointer; }
+  #panel-sign-up {
+    h4 {
+      margin-bottom: 15px;
+      padding:0 10px;
+    }
+    input {
+      margin: 10px auto;
+    }
+    .input-group {
+      width:100%;
+      margin-top:10px;
+      margin-bottom:10px;
+      font-size:16px;
+      input {
+        margin: 0px auto;
+      }
+      .signup-error {
+        color: #FCF2F2;
+        background-color: #DF7667;
+      }
+    }
+  }
+}

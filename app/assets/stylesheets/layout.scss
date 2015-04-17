@@ -121,6 +121,13 @@ nav {
     border-radius: 0 0 5px 5px;
     li {
       margin: 2px;
+      border-bottom: none;
+      a {
+        color: #333;
+      }
+    }
+    li:hover {
+      background-color: #eee;
     }
   }
 }

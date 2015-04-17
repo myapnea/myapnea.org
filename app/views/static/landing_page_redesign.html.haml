@@ -1,0 +1,139 @@
+- @page_title = 'MyApnea | Focusing Sleep Apnea Research on Patient Outcomes'
+/ WELCOME / JOIN
+/ <div class="row-fullscreen" style="" id="slide-1">
+#slide1.row.row-fullscreen.reset-layout
+  .col-md-6.col-md-offset-1
+    %h2.text-white
+      Finding answers...together!
+    %h3.lighter-orange
+      Sleep apnea affects over 25 million Americans.  We are working together to improve the health and well-being of people with sleep apnea through information sharing, support, and research.
+    %h4.text-white
+      Wake up to a better future - join now!
+    = link_to 'Join the Community', '#signup', class: 'btn btn-primary', id: 'btn-join'
+  .col-md-3.col-md-offset-1.hidden-sm.hidden-xs
+    .thumbnail#landing-video-play{ data: { object: 'play-video', toggle:"modal", target:'#welcomeVideoModal' } }
+      %i.fa.fa-play-circle
+
+  / COMMUNITY TRACKER
+  #community-tracker.row.reset-layout
+    .col-sm-5.col-sm-offset-1
+      %h2.lighterer-blue
+        Current community:
+        = succeed " members" do
+          %span.primary-blue= number_with_delimiter User.current.count
+    .col-sm-6
+      = image_tag 'myapnea/team/redline_200x200.jpg', class: 'round-img round-img-orange hidden-xs'
+      = image_tag 'myapnea/testimonials/larry-testimonial-cropped.png', class: 'round-img round-img-blue hidden-xs'
+      = image_tag 'myapnea/testimonials/steve-testimonial-cropped.jpeg', class: 'round-img round-img-orange hidden-xs'
+/ MISSION
+#slide2.row.row-fullscreen.reset-layout
+  .text-content-container
+    %h1.darkerer-blue
+      Get Involved!
+    %p.lead
+      The mission of MyApnea.Org is to improve the diagnosis and treatment of sleep apnea through the
+      %span.lighter-blue active engagement
+      of patients, families, researchers, and healthcare providers in a community that facilitates patient-centered research.
+  %br
+  .row
+    #value1.col-sm-6
+      = image_tag 'myapnea/icons/risk.png', class: 'img-responsive', style: 'max-width:150px; margin: auto;'
+      %h3 Are you at risk?
+      %p.lead
+        Over 80% of sleep apnea cases go undiagnosed. Take our quick test and see if you're at risk.
+      = link_to 'Check Your Risk', sleep_apnea_risk_assessment_path, class: 'btn btn-warning'
+    #value2.col-sm-6
+      = image_tag 'myapnea/icons/data_powerful.png', class: 'img-responsive', style: 'max-width:150px; margin: auto;'
+      %h3 Your Data is Powerful
+      %p.lead
+        Research relies on people like you to help by sharing important data to find the best outcomes.
+      = link_to 'Participate in Research', sleep_apnea_risk_assessment_path, class: 'btn btn-warning'
+  .row
+    #value3.col-sm-6
+      = image_tag 'myapnea/icons/speech_bubbles.png', class: 'img-responsive', style: 'max-width:150px; margin: auto;'
+      %h3 Join the Discussion!
+      %p.lead
+        Families, researchers, and care providers have all come together to help each other in amazing ways.
+      = link_to 'See the Community', forums_path, class: 'btn btn-warning'
+    #value4.col-sm-6
+      = image_tag 'myapnea/icons/did_you_know.png', class: 'img-responsive', style: 'max-width:150px; margin: auto;'
+      %h3 Help Spread Awareness
+      %p.lead
+        By sharing our page and promoting sleep health, you can help others get the information they need!
+      = link_to image_tag('myapnea/icons/facebook_icon.png', class: 'share-icons-animate share-icons-md'), "http://www.facebook.com/share.php?u=#{ENV['website_url']}"
+      = link_to image_tag('myapnea/icons/twitter_icon.png', class: 'share-icons-animate share-icons-md'), 'http://ctt.ec/Qeg7f'
+      = link_to image_tag('myapnea/icons/email_icon.png', class: 'share-icons-animate share-icons-md'), "mailto:?subject=Check out MyApnea.Org&body=This group is working to improve treatment and research of sleep apnea! You can learn more and join their community by visiting www.myapnea.org"
+
+#slide3.row.reset-layout
+  #testimonial.col-sm-8.col-sm-offset-1
+    %p.lead
+      As a new CPAP user, I was very happy to find the MyApnea.org website. My immediate need has been trying to get ideas from experienced CPAP users about dealing with the nightly surprises that go along with adjusting to CPAP. It has been especially helpful to me hearing from people who have successfully used CPAP for 10, 20 and even 25 years. I have found that the experienced CPAP users have a wealth of practical knowledge about solutions as well as further resources.
+    %h4
+      \- Janet Barry
+      %span.f300 (Florida, USA)
+  #testimonial-giver.col-sm-2
+    .img-centerer
+    = image_tag 'myapnea/users/janet_barry.jpg', class: 'img-responsive'
+  - if false
+    #social-overview-link
+      = link_to 'Read more from our community >', social_path
+
+#partners-banner.row.reset-layout
+  .col-sm-12.col-md-4.col-lg-4.col-lg-offset-1
+    = image_tag 'myapnea/welcome/img-small/asaa_logo.jpg', class: 'partners-img img-responsive', id: 'partner-AASA'
+  .col-sm-12.col-md-4.col-lg-3
+    = image_tag 'myapnea/welcome/img-small/pcornet_logo.jpg', class: 'partners-img img-responsive', id: 'partner-PCORnet'
+  .col-sm-12.col-md-4.col-lg-3
+    = image_tag 'myapnea/welcome/img-small/bwh_logo.jpg', class: 'partners-img img-responsive', id: 'partner-BWH'
+
+%a{:name => "signup"}
+#slide4.row.reset-layout
+  - resource = User.new
+  .col-md-10.col-md-offset-1.col-lg-8.col-lg-offset-2.panel.panel-signup
+    #panel-sign-up.panel-body
+      %h1.darker-blue Wake up to a better future!
+      %h4
+        By joining, you gain access to a unique group of resources and a growing research community. It's fast, simple, and completely free of cost to join and start making a difference!
+        %br
+        %br
+        And, of course, all of your information is completely protected.
+        - if current_page?(root_path) or true
+          %span#privacy-policy.lighter-blue{ data: { toggle: 'modal', target: '#privacyModal' } } See our privacy policy.
+        - else # current_page?(new_user_registration_path)
+          = link_to 'See our privacy policy.', privacy_path, target: '_blank'
+      = form_for(resource, url: registration_path(resource), class: 'form-horizontal', method: :post) do |f|
+        - if resource.errors.any?
+          .bs-callout.bs-callout-danger#error_explanation
+            %h4
+              = pluralize(resource.errors.count, "error")
+              prohibited this user from being saved
+            %ul
+              - resource.errors.messages.each do |key, msg|
+                - if key == :over_eighteen
+                  %li= msg.join(", ")
+                - else
+                  %li= "#{key.to_s.titleize} #{msg.join(", ")}"
+        = f.hidden_field :beta_opt_in, value: true
+        = f.hidden_field :provider_id
+        .input-group
+          = f.text_field :first_name, placeholder: 'First name', class: 'form-control'
+          - if resource.errors.any? and resource.errors[:first_name].present?
+            %span.input-group-addon.signup-error !
+        .input-group
+          = f.text_field :last_name, placeholder: 'Last name', class: 'form-control'
+          - if resource.errors.any? and resource.errors[:last_name].present?
+            %span.input-group-addon.signup-error !
+        .input-group
+          = f.email_field :email, placeholder: 'Email address', class: 'form-control'
+          - if resource.errors.any? and resource.errors[:email].present?
+            %span.input-group-addon.signup-error !
+        .input-group
+          = f.password_field :password, placeholder: 'Password', class: 'form-control'
+          - if resource.errors.any? and resource.errors[:password].present?
+            %span.input-group-addon.signup-error !
+        .input-group{ style: 'margin-left: 15px;' }
+          .checkbox
+            = f.check_box :over_eighteen
+            = f.label :over_eighteen, 'I am over the age of 18', style: 'position:relative; top:-5px;'
+        .input-group
+          = f.submit 'Sign up!', class: 'form-control', id: 'submit-join'

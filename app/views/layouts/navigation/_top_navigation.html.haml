@@ -1,5 +1,5 @@
 %nav.navbar.navbar-fixed-top{role:'navigation'}
-  .container-fluid
+  .container-fluid.reset-layout
     = link_to image_tag('myapnea/logos/MyApneaLogo_border_whitetext_300x80.png'), root_path, class: "navbar-brand"
     = link_to account_path do
       .hidden-md.hidden-lg.navbar-right.text-white.centered-text
@@ -19,9 +19,9 @@
             %a.dropdown-toggle{ href:'#', data:{ toggle: 'dropdown'} }
               Login
             .dropdown-menu{ style: 'padding:15px;' }
-              = form_tag user_session_path, method: :post, class: "navbar-form" do
-                = text_field_tag 'user[email]', nil, placeholder: 'Email', class: "form-control"
-                = password_field_tag 'user[password]', nil, placeholder: 'Password', class: "form-control"
+              = form_tag user_session_path, method: :post, class: "navbar-form centered-text" do
+                = text_field_tag 'user[email]', nil, placeholder: 'Email', class: 'form-control', style: 'margin-bottom:10px;'
+                = password_field_tag 'user[password]', nil, placeholder: 'Password', class: 'form-control', style: 'margin-bottom:10px;'
                 = submit_tag 'Login', class: "btn btn-primary"
       %ul.nav.navbar-nav#myapneanavbar{ style:'color:white; position:absolute; right:20%; bottom:0;' }
         %li{:class => "#{"active" if @active_top_nav_link == :home}"}= link_to 'Home', root_path
