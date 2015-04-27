@@ -19,6 +19,8 @@
 - **Survey Changes**
   - Clarified wording of `family diagnostic` question in `About My Family` survey
   - Fixed a typo in the `income` question in `About Me` survey
+- **Forum Changes**
+  - Posting on a multi-page topic now correctly loads the last topic page and post
 - **General Changes**
   - Standardized text sizes on partners page
   - ASA correctly listed as promotional partner
