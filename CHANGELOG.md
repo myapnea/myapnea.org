@@ -8,6 +8,7 @@
   - Cleaned up layout on `Risk Assessment` tool
 - **Survey Changes**
   - Clarified wording of `family diagnostic` question in `About My Family` survey
+  - Fixed a typo in the `income` question in `About Me` survey
 - **General Changes**
   - Standardized text sizes on partners page
   - ASA correctly listed as promotional partner
