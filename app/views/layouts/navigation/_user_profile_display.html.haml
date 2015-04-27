@@ -1,18 +1,17 @@
 .col-md-5.col-sm-12.col-xs-5.centered-text
   = link_to social_profile_path do
     = image_tag current_user.photo_url, class: "user-picture", style: 'max-width:65px; max-height:65px;'
-.col-md-7.col-sm-12.col-xs-7.reset-layout#user-profile-header-text
-  %h4.f300.text-white
-    = current_user.name
-  = link_to account_path, style: 'color:white; color:rgba(255,255,255,.8); text-decoration:none;', class: 'f300' do
+#user-profile-header-text.col-md-7.col-sm-12.col-xs-7
+  %h4.f300.text-white= current_user.name
+  = link_to account_path, class: 'f300 text-light8' do
     %span.glyphicon.glyphicon-cog{ style: 'margin-bottom:10px' }
     Settings
   %br
-  = link_to destroy_user_session_path, style: 'color:white; color:rgba(255,255,255,.8); text-decoration:none;', class: 'f300', :method => :delete do
+  = link_to destroy_user_session_path, class: 'f300 text-light8', :method => :delete do
     %i.fa.fa-sign-out{ style: 'margin-bottom:10px' }
     Sign out
   %br
   - if current_user.has_role? :owner or current_user.has_role? :moderator
-    = link_to admin_path, style: 'color:white; color:rgba(255,255,255,.8); text-decoration:none;', class: 'f300' do
+    = link_to admin_path, class: 'f300 text-light8' do
       %i.fa.fa-wrench
       Admin Dashboard

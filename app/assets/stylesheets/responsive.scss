@@ -66,12 +66,19 @@
   position: absolute;
   top:-81px;
 }
+
 #container-right-fixed {
   background-color: #5999DE;
   box-shadow:0px 3px 3px #ddd;
   padding-top:20px;
   padding-bottom:20px;
+  width: inherit;
 }
+
+
+
+
+
 
 @media all and (min-width: 1600px) {
   .user-picture {

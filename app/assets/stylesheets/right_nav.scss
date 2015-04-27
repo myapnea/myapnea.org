@@ -64,6 +64,9 @@
 }
 
 @media all and (max-width: 992px) {
+  .user-picture {
+    float: right;
+  }
   .user-stats {
     padding-left: 0px;
   }

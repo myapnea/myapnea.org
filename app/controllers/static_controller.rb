@@ -95,10 +95,6 @@ class StaticController < ApplicationController
     render 'static/sleep_tips/sleep_tips'
   end
 
-  def landing
-    render 'static/landing_page_redesign', layout: 'layouts/application-no-sidebar'
-  end
-
   ## NON-STATIC
 
   ## TODO: Move out of here
