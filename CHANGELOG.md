@@ -1,4 +1,4 @@
-## 6.1.0
+## 6.1.0 (April 27, 2015)
 
 ### New Features
 - New landing page redesign
