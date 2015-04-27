@@ -34,4 +34,4 @@
   .form-group
     .col-md-offset-2.col-md-10
       = f.submit nil, class: 'btn btn-primary'
-      = link_to 'Cancel', (@post.new_record? ? [@forum, @topic] : forum_topic_path(@forum, @topic) + "#c#{@post.number}"), class: 'btn btn-default'
+      = link_to 'Cancel', (@post.new_record? ? [@forum, @topic] : forum_topic_post_path(@forum, @topic, @post)), class: 'btn btn-default'
