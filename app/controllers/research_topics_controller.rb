@@ -13,18 +13,22 @@ class ResearchTopicsController < ApplicationController
 
 
   def index
+    @active_top_nav_link = :research
     @research_topics = ResearchTopic.accepted
   end
 
   def show
+    @active_top_nav_link = :research
     authorize_action_for @research_topic
   end
 
   def new
+    @active_top_nav_link = :research
     @research_topic = current_user.research_topics.new
   end
 
   def edit
+    @active_top_nav_link = :research
     authorize_action_for @research_topic
   end
 

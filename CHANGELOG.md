@@ -1,6 +1,16 @@
 ## 6.1.0
 
+### New Features
+- New landing page redesign
+  - Removes 'walled garden' feel by showing top navigation immediately
+  - Better highlights 4 key values for possible MyApnea members
+
 ### Enhancements
+- **Layout**
+  - PAP devices added to learn panel
+    - Minor updates to styling
+    - Improved navigation between these pages
+  - Navigation expanded to include distinct 'Learn' and 'Research' tabs
 - **Tool Updates**
   - Updated layout of BMI calculation and graph for `Sleep Apnea and BMI` tool
   - Minor edits to wording of results on `Risk Assessment` tool

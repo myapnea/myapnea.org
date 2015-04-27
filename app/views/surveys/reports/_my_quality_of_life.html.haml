@@ -1,5 +1,3 @@
-- @active_top_nav_link = :participate
-
 .survey-report-container.panel
   - question = @survey.questions.where(slug: 'general-health-rate').first
   - answer = @answer_session.answers.where(question_id: question.id).first

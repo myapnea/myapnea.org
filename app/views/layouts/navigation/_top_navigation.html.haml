@@ -41,7 +41,7 @@
             %li= link_to 'Our Advisors', advisory_path
             %li= link_to 'Our Partners', partners_path
             %li= link_to 'FAQs', faqs_path
-        %li.dropdown{:class => "#{"active" if @active_top_nav_link == :education}"}
+        %li.dropdown{:class => "#{"active" if @active_top_nav_link == :learn}"}
           %a.dropdown-toggle{ href:'#', data:{ toggle: 'dropdown'} }
             Learn
             %span.caret
@@ -50,7 +50,7 @@
             %li= link_to 'PAP Devices', learn_pap_path
             %li= link_to 'Risk Assessment', sleep_apnea_risk_assessment_path
             %li= link_to 'BMI and Sleep Apnea', sleep_apnea_and_bmi_path
-        %li.dropdown{:class => "#{"active" if @active_top_nav_link == :participate}"}
+        %li.dropdown{:class => "#{"active" if @active_top_nav_link == :research}"}
           %a.dropdown-toggle{ href:'#', data:{ toggle: 'dropdown'} }
             Research
             %span.caret

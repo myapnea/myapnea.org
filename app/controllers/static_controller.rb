@@ -46,42 +46,52 @@ class StaticController < ApplicationController
   ## Educational content
 
   def obstructive_sleep_apnea
+    @active_top_nav_link = :learn
     render 'static/SEO_content/obstructive_sleep_apnea'
   end
 
   def pap
+    @active_top_nav_link = :learn
     render 'static/PAP'
   end
 
   def about_PAP_therapy
+    @active_top_nav_link = :learn
     render 'static/SEO_content/about_PAP_therapy'
   end
 
   def PAP_setup_guide
+    @active_top_nav_link = :learn
     render 'static/SEO_content/PAP_setup_guide'
   end
 
   def PAP_troubleshooting_guide
+    @active_top_nav_link = :learn
     render 'static/SEO_content/PAP_troubleshooting_guide'
   end
 
   def PAP_care_maintenance
+    @active_top_nav_link = :learn
     render 'static/SEO_content/PAP_care_maintenance'
   end
 
   def PAP_masks_equipment
+    @active_top_nav_link = :learn
     render 'static/SEO_content/PAP_masks_equipment'
   end
 
   def traveling_with_PAP
+    @active_top_nav_link = :learn
     render 'static/SEO_content/traveling_with_PAP'
   end
 
   def side_effects_PAP
+    @active_top_nav_link = :learn
     render 'static/SEO_content/side_effects_PAP'
   end
 
   def sleep_tips
+    @active_top_nav_link = :learn
     render 'static/sleep_tips/sleep_tips'
   end
 

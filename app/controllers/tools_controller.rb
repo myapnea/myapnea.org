@@ -43,5 +43,7 @@ class ToolsController < ApplicationController
     end
     return risk_category
   end
+
+
 end
 
