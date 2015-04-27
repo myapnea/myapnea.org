@@ -1,5 +1,6 @@
 class ToolsController < ApplicationController
   def risk_assessment
+    render layout: 'layouts/application-only-footer'
   end
 
   def risk_assessment_results
@@ -13,7 +14,14 @@ class ToolsController < ApplicationController
   end
 
   def risk_assessment_results_display
+    render layout: 'layouts/application-only-footer'
   end
+
+  def bmi_ahi
+    render layout: 'layouts/application-no-sidebar'
+  end
+
+  private
 
   def calculateBMI
     height = params[:feet].to_f * 12 + params[:inches].to_f
@@ -34,9 +42,6 @@ class ToolsController < ApplicationController
       risk_category = 3
     end
     return risk_category
-  end
-
-  def bmi_ahi
   end
 end
 

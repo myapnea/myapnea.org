@@ -1,5 +1,7 @@
 class RegistrationsController < Devise::RegistrationsController
 
+  layout 'layouts/application-no-sidebar'
+
   protected
 
   def after_sign_up_path_for(resource)

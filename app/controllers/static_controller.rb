@@ -86,7 +86,7 @@ class StaticController < ApplicationController
   end
 
   def landing
-    render 'static/landing_page_redesign'
+    render 'static/landing_page_redesign', layout: 'layouts/application-no-sidebar'
   end
 
   ## NON-STATIC
@@ -100,7 +100,7 @@ class StaticController < ApplicationController
       @posts = Notification.blog_posts.viewable
       @surveys = current_user.visible_surveys.first(3)
     else
-      render 'landing'
+      render 'landing', layout: 'layouts/application-no-sidebar'
     end
   end
 

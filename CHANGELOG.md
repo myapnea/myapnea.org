@@ -5,6 +5,7 @@
   - Updated layout of BMI calculation and graph for `Sleep Apnea and BMI` tool
   - Minor edits to wording of results on `Risk Assessment` tool
   - Minor edits to wording of results on `Sleep Apnea and BMI` tool
+  - Cleaned up layout on `Risk Assessment` tool
 - **Survey Changes**
   - Clarified wording of `family diagnostic` question in `About My Family` survey
 - **General Changes**

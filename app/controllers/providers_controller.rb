@@ -6,29 +6,14 @@ class ProvidersController < ApplicationController
     @providers = User.where(provider: true).where.not(slug: [nil,''], provider_name: [nil,'']).page(params[:page]).per( 12 ).order(:provider_name)
   end
 
-
   def new
     @provider = User.new
+    render layout: 'layouts/application-no-sidebar'
   end
 
-  # before_action :authenticate_user!
-  # before_action :authenticate_provider
-
-
-  # def profile
-
-  # end
-
-  # def update
-
-  #   @provider = Provider.find(current_user.id)
-
-  #   if @provider.update(provider_params)
-  #     redirect_to account_path, notice: "Your account settings have been successfully changed."
-  #   else
-  #     render :profile
-  #   end
-  # end
+  def show
+    render layout: 'layouts/application-no-sidebar'
+  end
 
   protected
 
@@ -39,16 +24,5 @@ class ProvidersController < ApplicationController
     def redirect_without_provider
       empty_response_or_root_path(providers_path) unless @provider
     end
-
-
-
-  # def authenticate_provider
-  #   raise Authority::SecurityViolation.new(current_user, 'act as provider', action_name) unless current_user.can?(:act_as_provider)
-
-  # end
-
-  # def provider_params
-  #   params.required(:provider).permit(:provider_name, :welcome_message, :photo)
-  # end
 
 end

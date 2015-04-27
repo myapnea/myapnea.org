@@ -28,9 +28,7 @@
     %div#social-backdrop
     = render partial: 'layouts/navigation/top_navigation'
     .container-fluid.reset-layout.wrapper
-      #container-main
-        = render partial: 'layouts/partials/container_left'
-        = render partial: 'layouts/partials/container_right'
+      = yield
     = render partial: 'layouts/partials/footer'
     = render partial: 'layouts/registration/privacy_modal'
     = render partial: 'layouts/partials/welcome_video_modal'
