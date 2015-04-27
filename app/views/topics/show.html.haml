@@ -46,7 +46,7 @@
         = link_to 'edit this topic', edit_forum_topic_path(@forum, @topic)
         to unlock it.
 
-- @posts = @topic.posts.page(params[:page]).per( Post::POSTS_PER_PAGE )
+- @posts = @topic.posts.page(params[:page]).per( Topic::POSTS_PER_PAGE )
 
 = render @posts
 

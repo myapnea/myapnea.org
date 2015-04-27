@@ -59,7 +59,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    redirect_to forum_topic_path(@forum, @topic) + "?page=#{((@post.number - 1) / Post::POSTS_PER_PAGE)+1}#c#{@post.number}"
+    redirect_to forum_topic_path(@forum, @topic, page: @post.page, anchor: @post.anchor)
   end
 
   # PUT /posts/1
