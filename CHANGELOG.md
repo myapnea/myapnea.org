@@ -27,6 +27,7 @@
   - Minor copy changes throughout the site
   - Mailings that reference https://myapnea.org/bwh now forward to the BWH provider page
   - Fixed margin and spacing on FAQs
+  - Privacy Policy URL now uses hyphen to be consistent with other links
 - **Gem Changes**
   - Updated to Ruby 2.2.2
   - Removed slow capybara test framework
