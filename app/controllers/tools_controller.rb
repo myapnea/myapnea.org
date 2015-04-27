@@ -1,8 +1,10 @@
 class ToolsController < ApplicationController
   def risk_assessment
+    @active_top_nav_link = :learn
   end
 
   def risk_assessment_results
+    @active_top_nav_link = :learn
     @stop_score = (params[:snoring]=="yes" ? 1 : 0) + (params[:tiredness]=="yes" ? 1 : 0) + (params[:observation]=="yes" ? 1 : 0) + (params[:hbp]=="yes" ? 1 : 0)
     @bmi = calculateBMI
     @has_large_neck = params[:neck]=="yes"
@@ -13,6 +15,7 @@ class ToolsController < ApplicationController
   end
 
   def risk_assessment_results_display
+    @active_top_nav_link = :learn
   end
 
   def calculateBMI
@@ -37,6 +40,7 @@ class ToolsController < ApplicationController
   end
 
   def bmi_ahi
+    @active_top_nav_link = :learn
   end
 end
 

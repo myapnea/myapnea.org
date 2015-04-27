@@ -4,6 +4,23 @@
 
 .panel
   .panel-body
+    %p.lead
+      Jump to a specific question by clicking the links below.
+    .list-group-item
+      = link_to "What kind of water should I use to fill my humidifier chamber?", '#q1'
+    .list-group-item
+      = link_to "How do I clean my PAP device?", '#q2'
+    .list-group-item
+      = link_to "How often should I replace my equipment and supplies?", '#q3'
+  .panel-footer
+    %p
+      Return to
+      = link_to 'PAP Devices', learn_pap_path
+      main page.
+
+%a.anchor#q1
+.panel
+  .panel-body
     %h3
       What kind of water should I use to fill my humidifier chamber?
     %p.lead
@@ -11,6 +28,8 @@
       %br
       %span.italic
         Note: You should never top off or reuse the water in your humidifier. You may adjust the amount you put in the chamber if you find that you need less water.
+
+%a.anchor#q2
 .panel
   .panel-body
     %h3
@@ -23,6 +42,8 @@
       Soak your mask, headgear, tubing and humidifier chamber for 20 minutes in a solution of warm water with mild or anti-bacterial dish detergent. Rinse with clean water and let air dry. Remove the filter from the back of your PAP device and rinse it under warm, running water. Squeeze out excess water and allow it to air dry
       %span.underlined completely
       before replacing it in your machine.
+
+%a.anchor#q3
 .panel
   .panel-body
     %h3
