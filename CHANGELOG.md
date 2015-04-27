@@ -15,12 +15,24 @@
   - Updated layout of BMI calculation and graph for `Sleep Apnea and BMI` tool
   - Minor edits to wording of results on `Risk Assessment` tool
   - Minor edits to wording of results on `Sleep Apnea and BMI` tool
+  - Cleaned up layout on `Risk Assessment` tool
 - **Survey Changes**
   - Clarified wording of `family diagnostic` question in `About My Family` survey
-- **Other**
+  - Fixed a typo in the `income` question in `About Me` survey
+- **General Changes**
   - Standardized text sizes on partners page
   - ASA correctly listed as promotional partner
+  - Minor copy changes throughout the site
+  - Mailings that reference https://myapnea.org/bwh now forward to the BWH provider page
+  - Fixed margin and spacing on FAQs
+- **Gem Changes**
+  - Updated to Ruby 2.2.2
+  - Removed slow capybara test framework
+    - Tests will be handled by integration tests
 
+### Bug Fixes
+- Fixed issue with academic users not being able to see surveys
+- Fixed styling on button to accept the consent and privacy policy updates
 
 ## 6.0.0 (April 15, 2015)
 

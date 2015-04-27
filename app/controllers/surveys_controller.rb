@@ -10,7 +10,7 @@ class SurveysController < ApplicationController
   end
 
   def index
-    @surveys = current_user.assigned_surveys
+    @surveys = current_user.is_only_academic? ? Survey.viewable : current_user.assigned_surveys
   end
 
   def show

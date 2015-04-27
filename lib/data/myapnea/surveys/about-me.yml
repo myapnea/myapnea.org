@@ -181,7 +181,7 @@ questions:
       value: 7
       display_class: label-default label-lg
 - text: |
-    Last year, what was your total household income from all source, before taxes?
+    Last year, what was your total household income from all sources, before taxes?
   slug: income-level
   display_type: radio_input
   answer_templates:

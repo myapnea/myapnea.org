@@ -51,6 +51,7 @@ Rails.application.routes.draw do
   # Provider Pages
   get 'p(/:slug)', to: 'static#provider_page'
   resources :providers
+  get 'bwh', to: redirect("providers/bwh")
 
   # Facebook Real Updates
   # match "update_fb_feed", to: "posts#receive_update", as: :update_fb_feed, via: :post
