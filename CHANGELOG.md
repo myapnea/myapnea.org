@@ -19,6 +19,7 @@
 - **Survey Changes**
   - Clarified wording of `family diagnostic` question in `About My Family` survey
   - Fixed a typo in the `income` question in `About Me` survey
+  - Admins can now specify members to be excluded from data exports and reports
 - **Forum Changes**
   - Posting on a multi-page topic now correctly loads the last topic page and post
   - Non-square member photos now display better on the forums

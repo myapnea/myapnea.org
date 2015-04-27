@@ -1,0 +1,66 @@
+- @title = @user.name
+.page-header
+  %h1
+    = link_to_if current_user.has_role?(:owner), "Users", users_path
+    &middot;
+    = @title
+  - if current_user.has_role? :owner
+    = link_to "Edit User", edit_user_path(@user), class: 'btn btn-default btn-xs'
+    = link_to 'Delete User', @user, method: :delete, class: 'btn btn-xs btn-danger', data: { confirm: "Are you sure you want to delete User #{@user.name}?" } unless current_user == @user
+
+%dl.dl-horizontal
+  %dt Email
+  %dd
+    = @user.email
+
+  %dt Forum Username
+  %dd
+    = link_to @user.forum_name, forums_path(a: @user.forum_name) if @user.forum_name.present?
+
+  %dt Owner
+  %dd
+    = simple_check @user.has_role? :owner
+
+  %dt Moderator
+  %dd
+    = simple_check @user.has_role? :moderator
+
+  %dt User Avatar
+  %dd
+    = render partial: 'forums/user_image', locals: { user: @user, size: 50 }
+
+  %dt Joined
+  %dd
+    = @user.created_at.strftime("%m/%d/%Y") if @user.created_at.present?
+
+  %dt Privacy Policy
+  %dd
+    = @user.accepted_privacy_policy_at.strftime("%m/%d/%Y") if @user.accepted_privacy_policy_at.present?
+
+  %dt Consent
+  %dd
+    = @user.accepted_consent_at.strftime("%m/%d/%Y") if @user.accepted_consent_at.present?
+
+  %dt Terms of Access
+  %dd
+    = @user.accepted_terms_of_access_at.strftime("%m/%d/%Y") if @user.accepted_terms_of_access_at.present?
+
+  %dt Ready for Research
+  %dd
+    = simple_check @user.ready_for_research?
+
+  %dt Assigned Surveys
+  %dd
+    = @user.assigned_surveys.count
+
+  %dt Incomplete Surveys
+  %dd
+    = @user.incomplete_surveys.count
+
+  %dt Completed Surveys
+  %dd
+    = @user.completed_surveys.count
+
+  %dt Include in Exports and Reports
+  %dd
+    = simple_check @user.include_in_exports

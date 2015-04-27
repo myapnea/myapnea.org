@@ -56,7 +56,7 @@ namespace :data do
     CSV.open(export_csv_path, 'wb') do |csv|
       csv << ["Participant Code"] + answer_template_names + ['Total ESS']
 
-      users = User.current
+      users = User.current.include_in_exports_and_reports
       users.each do |u|
         row = [u.id]
         if user_values[u.id.to_s]
@@ -119,7 +119,7 @@ namespace :data do
     CSV.open(export_csv_path, 'wb') do |csv|
       csv << ["Participant Code"] + answer_template_names + ['Total PROMIS']
 
-      users = User.current
+      users = User.current.include_in_exports_and_reports
       users.each do |u|
         row = [u.id]
         if user_values[u.id.to_s]

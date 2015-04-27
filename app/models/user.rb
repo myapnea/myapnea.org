@@ -41,6 +41,7 @@ class User < ActiveRecord::Base
   scope :search_by_email, ->(terms) { where("LOWER(#{self.table_name}.email) LIKE ?", terms.to_s.downcase.gsub(/^| |$/, '%')) }
   scope :search, lambda { |arg| where( 'LOWER(first_name) LIKE ? or LOWER(last_name) LIKE ? or LOWER(email) LIKE ?', arg.to_s.downcase.gsub(/^| |$/, '%'), arg.to_s.downcase.gsub(/^| |$/, '%'), arg.to_s.downcase.gsub(/^| |$/, '%') ) }
   scope :providers, -> { current.where(provider: true) }
+  scope :include_in_exports_and_reports, -> { where(include_in_exports: true) }
 
   # Model Validation
   validates_presence_of :first_name, :last_name
