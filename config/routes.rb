@@ -16,7 +16,6 @@ Rails.application.routes.draw do
     get :theme
     get :version
     get :sitemap
-    get :landing
   end
 
   # Educational Content
