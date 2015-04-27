@@ -1,7 +1,9 @@
 %nav.navbar.navbar-fixed-top{role:'navigation'}
   .container-fluid.reset-layout
     = link_to image_tag('myapnea/logos/MyApneaLogo_border_whitetext_300x80.png'), root_path, class: "navbar-brand"
-    = link_to account_path do
+    - if !current_user
+      = link_to "Login", new_user_session_path, class: "btn primary-blue-bcg text-white hidden-md hidden-lg pull-right", id: "btn-login-phone"
+    - else
       .hidden-md.hidden-lg.navbar-right.text-white.centered-text
         .navbar-header.pull-right#slide-nav
           %a.navbar-toggle.pull-right
@@ -23,6 +25,10 @@
                 = text_field_tag 'user[email]', nil, placeholder: 'Email', class: 'form-control', style: 'margin-bottom:10px;'
                 = password_field_tag 'user[password]', nil, placeholder: 'Password', class: 'form-control', style: 'margin-bottom:10px;'
                 = submit_tag 'Login', class: "btn btn-primary"
+              %br
+              %p.small.reset-layout.centered-text
+                Not a member?
+                = link_to 'Join now!', new_user_registration_path, style: 'color: #5999de;', class: 'inline-link'
       %ul.nav.navbar-nav#myapneanavbar{ style:'color:white; position:absolute; right:20%; bottom:0;' }
         %li{:class => "#{"active" if @active_top_nav_link == :home}"}= link_to 'Home', root_path
         %li.dropdown{:class => "#{"active" if @active_top_nav_link == :about}"}

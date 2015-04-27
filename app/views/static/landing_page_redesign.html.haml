@@ -11,7 +11,7 @@
       Wake up to a better future - join now!
     = link_to 'Join the Community', '#signup', class: 'btn btn-primary', id: 'btn-join'
   .col-md-3.col-md-offset-1.hidden-sm.hidden-xs
-    .thumbnail#landing-video-play{ data: { object: 'play-video', toggle:"modal", target:'#welcomeVideoModal' } }
+    .thumbnail#landing-video-play{ data: { object: 'play-video', toggle:"modal", target:'#landingVideoModal' } }
       %i.fa.fa-play-circle
 
   / COMMUNITY TRACKER
@@ -25,6 +25,8 @@
       = image_tag 'myapnea/team/redline_200x200.jpg', class: 'round-img round-img-orange hidden-xs'
       = image_tag 'myapnea/testimonials/larry-testimonial-cropped.png', class: 'round-img round-img-blue hidden-xs'
       = image_tag 'myapnea/testimonials/steve-testimonial-cropped.jpeg', class: 'round-img round-img-orange hidden-xs'
+      = image_tag 'myapnea/testimonials/DEAN.jpg', class: 'round-img round-img-blue hidden-xs'
+
 / MISSION
 #slide2.row.row-fullscreen.reset-layout
   .text-content-container
@@ -38,7 +40,7 @@
   .row
     #value1.col-sm-6
       = image_tag 'myapnea/icons/risk.png', class: 'img-responsive', style: 'max-width:150px; margin: auto;'
-      %h3 Are you at risk?
+      %h3 Are You at Risk?
       %p.lead
         Over 80% of sleep apnea cases go undiagnosed. Take our quick test and see if you're at risk.
       = link_to 'Check Your Risk', sleep_apnea_risk_assessment_path, class: 'btn btn-warning'
@@ -47,7 +49,7 @@
       %h3 Your Data is Powerful
       %p.lead
         Research relies on people like you to help by sharing important data to find the best outcomes.
-      = link_to 'Participate in Research', sleep_apnea_risk_assessment_path, class: 'btn btn-warning'
+      = link_to 'Participate in Research', surveys_path, class: 'btn btn-warning'
   .row
     #value3.col-sm-6
       = image_tag 'myapnea/icons/speech_bubbles.png', class: 'img-responsive', style: 'max-width:150px; margin: auto;'
@@ -73,7 +75,7 @@
       %span.f300 (Florida, USA)
   #testimonial-giver.col-sm-2
     .img-centerer
-    = image_tag 'myapnea/users/janet_barry.jpg', class: 'img-responsive'
+    = image_tag 'myapnea/users/janet_barry.jpg', class: 'img-responsive', style: 'margin: auto'
   - if false
     #social-overview-link
       = link_to 'Read more from our community >', social_path
@@ -137,3 +139,5 @@
             = f.label :over_eighteen, 'I am over the age of 18', style: 'position:relative; top:-5px;'
         .input-group
           = f.submit 'Sign up!', class: 'form-control', id: 'submit-join'
+
+= render partial: 'layouts/partials/landing_video_modal'
