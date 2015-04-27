@@ -1,29 +1,7 @@
+// Document structure
+
 html, body {
   height: 100%;
-}
-
-.reset-layout {
-  margin:0;
-  padding:0;
-}
-
-.no-padding {
-  padding:0px !important;
-}
-
-.no-margin {
-  margin:0px !important;
-}
-
-.wrapper {
-  min-height: 100%;
-  height: auto !important;
-  height: 100%;
-  margin: 0 auto -222px;
-}
-
-.wrapper:after {
-  height: 222px;
 }
 
 html {
@@ -53,6 +31,35 @@ body.night-mode {
   opacity:.65;
   background-color: orange;
 }
+
+// Helper classes
+
+.reset-layout {
+  margin:0;
+  padding:0;
+}
+
+.no-padding {
+  padding:0px !important;
+}
+
+.no-margin {
+  margin:0px !important;
+}
+
+.wrapper {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -222px;
+}
+
+.wrapper:after {
+  height: 222px;
+}
+
+
+// Navigation
 
 #social-backdrop {
   background-color:black;
@@ -186,6 +193,8 @@ nav {
   margin-top:-5px;
 }
 
+
+// Footer
 
 .footer {
   height:222px;
