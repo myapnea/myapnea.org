@@ -30,6 +30,12 @@ class StaticControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should get landing for logged in user" do
+    login(users(:social))
+    get :landing
+    assert_response :success
+  end
+
   test "should get about" do
     get :about
     assert_response :success

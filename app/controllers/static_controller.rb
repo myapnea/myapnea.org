@@ -110,6 +110,10 @@ class StaticController < ApplicationController
     end
   end
 
+  def landing
+    render layout: 'layouts/application-no-sidebar'
+  end
+
   def provider_page
     @provider = User.current.providers.find_by_slug(params[:slug])
     if @provider and @provider.slug.present?

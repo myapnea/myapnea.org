@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   # Static Pages
   root 'static#home'
   scope module: 'static' do
+    get :landing
     get :home
     get :about
     get :team
