@@ -11,6 +11,7 @@
   - Standardized text sizes on partners page
   - ASA correctly listed as promotional partner
   - Minor copy changes throughout the site
+  - Mailings that reference https://myapnea.org/bwh now forward to the BWH provider page
 - **Gem Changes**
   - Updated to Ruby 2.2.2
 
