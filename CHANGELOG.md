@@ -16,6 +16,7 @@
   - Minor edits to wording of results on `Risk Assessment` tool
   - Minor edits to wording of results on `Sleep Apnea and BMI` tool
   - Cleaned up layout on `Risk Assessment` tool
+  - Fixed minor issue with display labels for height on `Sleep Apnea and BMI` tool
 - **Survey Changes**
   - Clarified wording of `family diagnostic` question in `About My Family` survey
   - Fixed a typo in the `income` question in `About Me` survey
