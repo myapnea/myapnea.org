@@ -10,6 +10,7 @@
 - **General Changes**
   - Standardized text sizes on partners page
   - ASA correctly listed as promotional partner
+  - Minor copy changes throughout the site
 - **Gem Changes**
   - Updated to Ruby 2.2.2
 
