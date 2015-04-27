@@ -15,6 +15,8 @@
   - Mailings that reference https://myapnea.org/bwh now forward to the BWH provider page
 - **Gem Changes**
   - Updated to Ruby 2.2.2
+  - Removed slow capybara test framework
+    - Tests will be handled by integration tests
 
 ### Bug Fixes
 - Fixed issue with academic users not being able to see surveys

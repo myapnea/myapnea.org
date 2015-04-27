@@ -93,13 +93,19 @@ group :development, :integration_test, :production_copy do
   gem "binding_of_caller"
 end
 
-
 # Testing
-group :development, :test do
+group :test do
+  # Pretty printed test output
+  gem 'minitest'
   gem 'minitest-rails'
   gem 'minitest-reporters'
-  gem 'minitest-rails-capybara'
-  gem 'selenium-webdriver'
+  gem 'simplecov',          '~> 0.10.0',           require: false
 end
 
-gem 'simplecov', require: false, group: :test
+# # Testing
+# group :development, :test do
+#   gem 'minitest-rails'
+#   gem 'minitest-reporters'
+# end
+
+# gem 'simplecov', require: false, group: :test
