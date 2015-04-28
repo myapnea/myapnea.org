@@ -1,7 +1,7 @@
 ## 6.1.1
 
 ### Enhancements
-- Temporarily removed the video from the landing page
+- Temporarily removed the video from the landing page and moved to learn page
 - Updated a link on the learn page
 - Minor website copy changes
 - Email field now gets focus when clicking the Login button in the top navigation bar
