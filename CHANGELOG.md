@@ -4,6 +4,7 @@
 - Temporarily removed the video from the landing page
 - Updated a link on the learn page
 - Minor website copy changes
+- Email field now gets focus when clicking the Login button in the top navigation bar
 
 ### Bug Fix
 - Fixed the Sleep Apnea and BMI tool not loading correctly in certain instances

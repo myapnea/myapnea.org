@@ -22,7 +22,7 @@
               Login
             .dropdown-menu{ style: 'padding:15px;' }
               = form_tag user_session_path, method: :post, class: "navbar-form centered-text" do
-                = text_field_tag 'user[email]', nil, placeholder: 'Email', class: 'form-control', style: 'margin-bottom:10px;'
+                = text_field_tag 'user[email]', nil, placeholder: 'Email', class: 'form-control', style: 'margin-bottom:10px;', autofocus: '1'
                 = password_field_tag 'user[password]', nil, placeholder: 'Password', class: 'form-control', style: 'margin-bottom:10px;'
                 = submit_tag 'Login', class: "btn btn-primary"
               %br
