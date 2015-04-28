@@ -2,6 +2,7 @@
 
 ### Enhancements
 - Temporarily removed the video from the landing page
+- Updated a link on the learn page
 
 ## 6.1.0 (April 27, 2015)
 
