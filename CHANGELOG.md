@@ -5,6 +5,9 @@
 - Updated a link on the learn page
 - Minor website copy changes
 
+### Bug Fix
+- Fixed the Sleep Apnea and BMI tool not loading correctly in certain instances
+
 ## 6.1.0 (April 27, 2015)
 
 ### New Features

@@ -9,8 +9,5 @@ Rails.application.config.assets.precompile += %w( bootswatch.js )
 Rails.application.config.assets.precompile += %w( home.js dashboard.js)
 Rails.application.config.assets.precompile += %w( reports/default.js reports/report_13.js )
 
-# Tools
-Rails.application.config.assets.precompile += %w( tools/bmi_ahi.js tools/bmi_ahi.css )
-
 # Kyle's new redesign
 Rails.application.config.assets.precompile += %w( application.css application.js )
