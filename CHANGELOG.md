@@ -1,5 +1,8 @@
 ## 6.1.1
 
+### Enhancements
+- Temporarily removed the video from the landing page
+
 ## 6.1.0 (April 27, 2015)
 
 ### New Features
