@@ -8,6 +8,7 @@
       %th{ style: "white-space:nowrap" } Recent Activity
       %th Owner
       %th Moderator
+      %th Excluded from Exports
       %th{ style: "white-space:nowrap" } Surveys Completed
       %th
   - @users.each do |user|
@@ -24,6 +25,8 @@
         = simple_check user.has_role? :owner
       %td{ style: "text-align:center" }
         = simple_check user.has_role? :moderator
+      %td{ style: "text-align:center" }
+        = simple_check !user.include_in_exports?
       %td
         = user.completed_surveys.count
       %td{ style: 'white-space:nowrap' }

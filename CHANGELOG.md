@@ -1,4 +1,6 @@
-## 6.1.0
+## 7.0.0
+
+## 6.1.0 (April 27, 2015)
 
 ### New Features
 - New landing page redesign
@@ -16,15 +18,21 @@
   - Minor edits to wording of results on `Risk Assessment` tool
   - Minor edits to wording of results on `Sleep Apnea and BMI` tool
   - Cleaned up layout on `Risk Assessment` tool
+  - Fixed minor issue with display labels for height on `Sleep Apnea and BMI` tool
 - **Survey Changes**
   - Clarified wording of `family diagnostic` question in `About My Family` survey
   - Fixed a typo in the `income` question in `About Me` survey
+  - Admins can now specify members to be excluded from data exports and reports
+- **Forum Changes**
+  - Posting on a multi-page topic now correctly loads the last topic page and post
+  - Non-square member photos now display better on the forums
 - **General Changes**
   - Standardized text sizes on partners page
   - ASA correctly listed as promotional partner
   - Minor copy changes throughout the site
   - Mailings that reference https://myapnea.org/bwh now forward to the BWH provider page
   - Fixed margin and spacing on FAQs
+  - Privacy Policy URL now uses hyphen to be consistent with other links
 - **Gem Changes**
   - Updated to Ruby 2.2.2
   - Removed slow capybara test framework

@@ -13,10 +13,13 @@
         %h4
           What is your height?
       .col-xs-6
-        = select_tag 'feet', options_for_select(0..8), include_blank: true, class: 'bmi-height-select', id: 'my-height-feet', data: { object: 'feet-input' }
-        %label.select-label{ for: 'feet'} feet
-        = select_tag 'inches', options_for_select(0..11), include_blank: true, class: 'bmi-height-select', id: 'my-height-inches', data: { object: 'inches-input' }
-        %label.select-label{ for: 'inches' } inches
+        .row
+          .col-xs-6
+            = select_tag 'feet', options_for_select(0..8), include_blank: true, class: 'bmi-height-select', id: 'my-height-feet', data: { object: 'feet-input' }
+            %label.select-label{ for: 'feet'} feet
+          .col-xs-6
+            = select_tag 'inches', options_for_select(0..11), include_blank: true, class: 'bmi-height-select', id: 'my-height-inches', data: { object: 'inches-input' }
+            %label.select-label{ for: 'inches' } inches
     #bmi-weight.row.list-group-item
       .col-xs-6
         %h4

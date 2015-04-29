@@ -58,7 +58,7 @@ class UsersController < ApplicationController
 
       if current_user.has_role? :owner
         params.require(:user).permit(
-          :first_name, :last_name, :email, :username
+          :first_name, :last_name, :email, :username, :include_in_exports
         )
       else
         params.require(:user).permit(

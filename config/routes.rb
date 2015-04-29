@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   # Static Pages
   root 'static#home'
   scope module: 'static' do
+    get :landing
     get :home
     get :about
     get :team
@@ -107,7 +108,7 @@ Rails.application.routes.draw do
   match 'consent', to: "account#consent", as: :consent, via: [:get, :post]
   post 'revoke_consent' => 'account#revoke_consent'
 
-  match 'privacy_policy', to: "account#privacy_policy", as: :privacy, via: [:get, :post]
+  match 'privacy-policy', to: "account#privacy_policy", as: :privacy, via: [:get, :post]
   match 'update_account', to: 'account#update', as: 'update_account', via: :patch
   match 'change_password', to: 'account#change_password', as: 'change_password', via: :patch
 

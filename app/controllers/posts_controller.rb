@@ -41,7 +41,7 @@ class PostsController < ApplicationController
           end
         end
 
-        format.html { redirect_to forum_topic_path(@forum, @topic) + "#c#{@post.number}", notice: 'Post was successfully created.' }
+        format.html { redirect_to forum_topic_post_path(@forum, @topic, @post), notice: 'Post was successfully created.' }
         format.json { render action: 'show', status: :created, location: @post }
       else
         format.html { redirect_to forum_topic_path(@forum, @topic, error: @errors) }
@@ -59,7 +59,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    redirect_to forum_topic_path(@forum, @topic) + "?page=#{((@post.number - 1) / Post::POSTS_PER_PAGE)+1}#c#{@post.number}"
+    redirect_to forum_topic_path(@forum, @topic, page: @post.page, anchor: @post.anchor)
   end
 
   # PUT /posts/1
@@ -85,10 +85,10 @@ class PostsController < ApplicationController
 
 
         end
-        format.html { redirect_to forum_topic_path(@forum, @topic) + "#c#{@post.number}", notice: 'Post was successfully updated.' }
+        format.html { redirect_to forum_topic_post_path(@forum, @topic, @post), notice: 'Post was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { redirect_to forum_topic_path(@forum, @topic) + "#c#{@post.number}", warning: 'Post can\'t be blank.' }
+        format.html { redirect_to forum_topic_post_path(@forum, @topic, @post), warning: 'Post can\'t be blank.' }
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
@@ -100,7 +100,7 @@ class PostsController < ApplicationController
     @post.destroy
 
     respond_to do |format|
-      format.html { redirect_to forum_topic_path(@forum, @topic) + "#c#{@post.number}" }
+      format.html { redirect_to forum_topic_post_path(@forum, @topic, @post) }
       format.json { head :no_content }
     end
   end

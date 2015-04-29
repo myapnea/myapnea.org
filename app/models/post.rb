@@ -2,8 +2,6 @@ class Post < ActiveRecord::Base
 
   STATUS = [['Approved', 'approved'], ['Pending Review', 'pending_review'], ['Marked as Spam', 'spam'], ['Hidden', 'hidden']]
 
-  POSTS_PER_PAGE = 20
-
   # Concerns
   include Deletable
 
@@ -39,6 +37,14 @@ class Post < ActiveRecord::Base
 
   def number
     self.topic.posts.order(:id).pluck(:id).index(self.id) + 1 rescue 0
+  end
+
+  def page
+    ((self.number - 1) / Topic::POSTS_PER_PAGE) + 1
+  end
+
+  def anchor
+    "c#{self.number}"
   end
 
   def pending_review?

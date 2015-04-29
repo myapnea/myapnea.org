@@ -61,7 +61,7 @@ class PostsControllerTest < ActionController::TestCase
     assert_not_nil assigns(:topic).last_post_at
     assert_equal false, assigns(:topic).subscribed?(users(:user_2))
 
-    assert_redirected_to forum_topic_path(assigns(:forum), assigns(:topic)) + "#c2"
+    assert_redirected_to forum_topic_post_path(assigns(:forum), assigns(:topic), assigns(:post))
   end
 
   test "should create pending_review post as regular user" do
@@ -75,7 +75,7 @@ class PostsControllerTest < ActionController::TestCase
     assert_not_nil assigns(:post)
 
     assert_equal 'pending_review', assigns(:post).status
-    assert_redirected_to forum_topic_path(assigns(:forum), assigns(:topic)) + "#c2"
+    assert_redirected_to forum_topic_post_path(assigns(:forum), assigns(:topic), assigns(:post))
   end
 
   test "should create approved post as moderator" do
@@ -89,7 +89,7 @@ class PostsControllerTest < ActionController::TestCase
     assert_not_nil assigns(:post)
 
     assert_equal 'approved', assigns(:post).status
-    assert_redirected_to forum_topic_path(assigns(:forum), assigns(:topic)) + "#c2"
+    assert_redirected_to forum_topic_post_path(assigns(:forum), assigns(:topic), assigns(:post))
   end
 
   test "should create post and add subscription" do
@@ -107,7 +107,7 @@ class PostsControllerTest < ActionController::TestCase
     assert_not_nil assigns(:topic).last_post_at
     assert_equal true, assigns(:topic).subscribed?(users(:moderator_1))
 
-    assert_redirected_to forum_topic_path(assigns(:forum), assigns(:topic)) + "#c2"
+    assert_redirected_to forum_topic_post_path(assigns(:forum), assigns(:topic), assigns(:post))
   end
 
   test "should create post and mark new last post at" do
@@ -123,7 +123,7 @@ class PostsControllerTest < ActionController::TestCase
 
     assert_equal assigns(:post).created_at.strftime("%-m/%-d/%Y at %-l:%M %p"), assigns(:post).topic.last_post_at.strftime("%-m/%-d/%Y at %-l:%M %p")
 
-    assert_redirected_to forum_topic_path(assigns(:forum), assigns(:topic)) + "#c2"
+    assert_redirected_to forum_topic_post_path(assigns(:forum), assigns(:topic), assigns(:post))
   end
 
   test "should not create post as logged out user" do
@@ -214,7 +214,7 @@ class PostsControllerTest < ActionController::TestCase
 
     assert_equal true, assigns(:topic).subscribed?(@valid_user)
 
-    assert_redirected_to forum_topic_path(assigns(:forum), assigns(:topic)) + "#c1"
+    assert_redirected_to forum_topic_post_path(assigns(:forum), assigns(:topic), assigns(:post))
   end
 
   test "should update post but not reset subscription" do
@@ -227,7 +227,7 @@ class PostsControllerTest < ActionController::TestCase
 
     assert_equal false, assigns(:topic).subscribed?(users(:user_2))
 
-    assert_redirected_to forum_topic_path(assigns(:forum), assigns(:topic)) + "#c2"
+    assert_redirected_to forum_topic_post_path(assigns(:forum), assigns(:topic), assigns(:post))
   end
 
   test "should not update post on locked topic" do
@@ -272,7 +272,7 @@ class PostsControllerTest < ActionController::TestCase
     assert_not_nil assigns(:topic)
     assert_not_nil assigns(:post)
 
-    assert_redirected_to forum_topic_path(assigns(:forum), assigns(:topic)) + "#c1"
+    assert_redirected_to forum_topic_post_path(assigns(:forum), assigns(:topic), assigns(:post))
   end
 
   test "should destroy post as post author" do
@@ -285,7 +285,7 @@ class PostsControllerTest < ActionController::TestCase
     assert_not_nil assigns(:topic)
     assert_not_nil assigns(:post)
 
-    assert_redirected_to forum_topic_path(assigns(:forum), assigns(:topic)) + "#c1"
+    assert_redirected_to forum_topic_post_path(assigns(:forum), assigns(:topic), assigns(:post))
   end
 
   test "should not destroy post as another user" do

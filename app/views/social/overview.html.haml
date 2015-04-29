@@ -23,9 +23,9 @@
       %span.f500.darkerer-blue= "#{Topic.current.count} topics."
       To date, we've watched an overwhelming amount of support grow among the MyApnea community. The forums alone have become an active discussion board where people with sleep apnea, researchers, and care providers help each other address important questions and concerns. Among these are:
     %ul
-      %li.lead= link_to 'Issues that people have adjusting to new CPAP devices', ENV['website_url']+'/forums/general/topics/contribute-community-tips-for-using-pap-devices'
-      %li.lead= link_to 'Finding proper care for central/mixed sleep apnea', ENV['website_url']+'/forums/general/topics/central-mixed-apnea'
-      %li.lead= link_to 'Determining future research for the link between sleep apnea and body weight', ENV['website_url']+'/forums/research/topics/does-treatment-of-sleep-apnea-influence-body-weight'
+      %li.lead= link_to 'Issues that people have adjusting to new CPAP devices', forum_topic_path('general', 'contribute-community-tips-for-using-pap-devices')
+      %li.lead= link_to 'Finding proper care for central/mixed sleep apnea', forum_topic_path('general', 'central-mixed-apnea')
+      %li.lead= link_to 'Determining future research for the link between sleep apnea and body weight', forum_topic_path('research', 'does-treatment-of-sleep-apnea-influence-body-weight')
 .row.centered-text
   .col-sm-4
     .user-testimonial-small
@@ -33,21 +33,21 @@
         "Note I look at a lot of support sites and finally pulled the trigger on this one....glad I did!"
       %p.user-testimonial-quoter
         \-
-        = link_to 'JDARZ', ENV['website_url']+'/forums/general/topics/waking-up-with-dry-mouth#c17'
+        = link_to 'JDARZ', forum_topic_post_path('general', 'waking-up-with-dry-mouth', '609')
   .col-sm-4
     .user-testimonial-small
       %p.user-testimonial-quote
         "I got up this morning feeling completely different...thank you guys for helping me ease into this next phase."
       %p.user-testimonial-quoter
         \-
-        = link_to 'Bhek', ENV['website_url']+'/forums/general/topics/contribute-community-tips-for-using-pap-devices#c10'
+        = link_to 'Bhek', forum_topic_post_path('general', 'contribute-community-tips-for-using-pap-devices', '531')
   .col-sm-4
     .user-testimonial-small
       %p.user-testimonial-quote
         "I belong to a bunch of SA support groups...this one has the people that honestly want to help."
       %p.user-testimonial-quoter
         \-
-        = link_to 'Pat', ENV['website_url']+'/forums/general/topics/waking-up-with-dry-mouth#c19'
+        = link_to 'Pat', forum_topic_post_path('general', 'waking-up-with-dry-mouth', '614')
 
 
 .panel

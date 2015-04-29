@@ -1,2 +1,2 @@
 - size = 25 unless defined?(size)
-= image_tag user.photo_url, size: "#{size}x#{size}", class: "user-thumbnail-forum", style: "max-height:#{size+5}px;max-width:#{size+5}px;", title: user.forum_name, data: { toggle: 'tooltip', container: 'body', placement: 'top' }
+= image_tag user.photo_url, class: "user-thumbnail-forum", style: "max-height:#{(size*2)+5}px;max-width:#{size+5}px;", title: user.forum_name, data: { toggle: 'tooltip', container: 'body', placement: 'top' }
