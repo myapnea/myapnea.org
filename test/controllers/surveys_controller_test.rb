@@ -1,6 +1,7 @@
 require 'test_helper.rb'
 
 class SurveysControllerTest < ActionController::TestCase
+  # Normal User
   test "User needs to be logged in to see surveys" do
     get :index
 
@@ -193,4 +194,53 @@ class SurveysControllerTest < ActionController::TestCase
       assert old_val, answer.value
     end
   end
+
+  ## Academic Users
+  test "Researcher can view survey report without completed answer session" do
+    u = users(:researcher)
+    login(u)
+    assert u.is_only_academic?
+    assert u.ready_for_research?
+
+    get :report_detail, id: surveys(:new)
+
+    assert_template :report_detail
+    assert_response :success
+  end
+
+  test "Researcher can view detailed survey report without completed answer session" do
+    u = users(:researcher)
+    login(u)
+    assert u.is_only_academic?
+    assert u.ready_for_research?
+
+    get :report, id: surveys(:new_2)
+
+    assert_response :success
+  end
+
+
+  test "Provider can view survey report without completed answer session" do
+    u = users(:provider)
+    login(u)
+    assert u.is_only_academic?
+    assert u.ready_for_research?
+
+    get :report, id: surveys(:new_2)
+
+    assert_response :success
+
+  end
+
+  test "Provider can view detailed survey report without completed answer session" do
+    u = users(:provider)
+    login(u)
+    assert u.is_only_academic?
+    assert u.ready_for_research?
+
+    get :report_detail, id: surveys(:new)
+
+    assert_response :success
+  end
+
 end

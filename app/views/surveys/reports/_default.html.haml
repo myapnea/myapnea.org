@@ -1,5 +1,4 @@
 - if @survey
-  - answer_session = AnswerSession.most_recent(@survey.id, current_user.id)
   - all_answer_frequencies = @survey.survey_answer_frequencies
   - @survey.ordered_questions.each do |question|
     - question_answer_frequencies = all_answer_frequencies.where(question_id: question.id) #select {|af| af.question_id == question.id} #@survey.survey_answer_frequencies.where(question_id: question.id)
@@ -8,5 +7,5 @@
       - question.answer_templates.each_with_index do |answer_template, index|
         - answer_frequencies = question_answer_frequencies.where(answer_template_id: answer_template.id)
         - if answer_frequencies.present?
-          - answer_value = answer_session.user.answer_for(answer_session, question).answer_values.where(answer_template_id: answer_template.id).all if answer_session.user.answer_for(answer_session, question)
+          - answer_value = @answer_session.user.answer_for(@answer_session, question).answer_values.where(answer_template_id: answer_template.id).all if @answer_session and @answer_session.user.answer_for(@answer_session, question)
           = render partial: 'surveys/reports/question_and_answer', locals: { survey: @survey, question: question, answer_template: answer_template, answer_value: answer_value, answer_session: @answer_session, answer_frequencies: answer_frequencies, answer_template_index: index}

@@ -2,14 +2,15 @@
 
 .survey-report-container.panel
   - question = @survey.questions.where(slug: 'sex').first
-  - answer = @answer_session.answers.where(question_id: question.id).first
   - table_data = Report.frequency_data('sex', 1..2)
   .survey-report-question.rounded-top
     %h3= question.text
-  .survey-report-answer
-    %p
-      Your answer:
-      %span.f500= answer.show_value
+  - if @answer_session.present?
+    - answer = @answer_session.answers.where(question_id: question.id).first
+    .survey-report-answer
+      %p
+        Your answer:
+        %span.f500= answer.show_value
   .survey-report-info
     .row.reset-layout
       .col-xs-3.col-xs-offset-3
@@ -23,14 +24,15 @@
 
 .survey-report-container.panel
   - question = @survey.questions.where(slug: 'race').first
-  - answer = @answer_session.answers.where(question_id: question.id).first
   - table_data = Report.frequency_data('race', 1..5)
   .survey-report-question.rounded-top
     %h3= question.text
-  .survey-report-answer
-    %p
-      Your answer:
-      %span.f500= answer.show_value
+  - if @answer_session.present?
+    - answer = @answer_session.answers.where(question_id: question.id).first
+    .survey-report-answer
+      %p
+        Your answer:
+        %span.f500= answer.show_value
   .survey-report-info
     .row.reset-layout
       .col-lg-3.col-sm-4.col-sm-offset-0.col-xs-6.col-xs-offset-3
@@ -59,14 +61,15 @@
 
 .survey-report-container.panel
   - question = @survey.questions.where(slug: 'ethnicity').first
-  - answer = @answer_session.answers.where(question_id: question.id).first
   - table_data = Report.frequency_data('ethnicity', 1..2)
   .survey-report-question
     %h3= question.text
-  .survey-report-answer
-    %p
-      Your answer:
-      %span.f500= answer.show_value
+  - if @answer_session.present?
+    - answer = @answer_session.answers.where(question_id: question.id).first
+    .survey-report-answer
+      %p
+        Your answer:
+        %span.f500= answer.show_value
   .survey-report-info
     .row.reset-layout
       .col-xs-6
@@ -84,14 +87,15 @@
 
 .survey-report-container.panel
   - question = @survey.questions.where(slug: 'education-level').first
-  - answer = @answer_session.answers.where(question_id: question.id).first
   - table_data = Report.frequency_data('education-level', 1..6)
   .survey-report-question
     %h3= question.text
-  .survey-report-answer
-    %p
-      Your answer:
-      %span.f500= answer.show_value
+  - if @answer_session.present?
+    - answer = @answer_session.answers.where(question_id: question.id).first
+    .survey-report-answer
+      %p
+        Your answer:
+        %span.f500= answer.show_value
   .survey-report-info
     .row.reset-layout{ style: 'margin: 40px 0'}
       .col-xs-2.col-sm-offset-1
@@ -132,14 +136,15 @@
 
 .survey-report-container.panel
   - question = @survey.questions.where(slug: 'income-level').first
-  - answer = @answer_session.answers.where(question_id: question.id).first
   - table_data = Report.frequency_data('income-level', 1..6)
   .survey-report-question
     %h3= question.text
-  .survey-report-answer
-    %p
-      Your answer:
-      %span.f500= answer.show_value
+  - if @answer_session.present?
+    - answer = @answer_session.answers.where(question_id: question.id).first
+    .survey-report-answer
+      %p
+        Your answer:
+        %span.f500= answer.show_value
   .survey-report-info
     %p.lead
       Years in school and what you may earn does not directly determine whether or not you will have sleep apnea. However, education and income may affect whether or not you have access to health insurance and therefore medical care.

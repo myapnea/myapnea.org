@@ -6,20 +6,21 @@
     %h4.f300= answer_template.name.gsub('_', ' ').capitalize
 .row.reset-layout
   .col-sm-11.col-sm-offset-1.rectangle-speech-border.rectangle-speech-border-right.rectangle-speech-border-blue
-    %h5.f300{ style: ' margin-bottom:30px; ' }
-      My answer:
-      %span.primary-blue
-        - if question.applicable_to_user?(answer_session) or answer_value.present?
-          -# = answer_value.show_value
-          = answer_value.collect{ |v| v.show_value }.join(', ')
-        - else
-          You were unable to answer this question due to previous responses!
+    - if answer_session.present?
+      %h5.f300{ style: ' margin-bottom:30px; ' }
+        My answer:
+        %span.primary-blue
+          - if question.applicable_to_user?(answer_session) or answer_value.present?
+            -# = answer_value.show_value
+            = answer_value.collect{ |v| v.show_value }.join(', ')
+          - else
+            You were unable to answer this question due to previous responses!
 
-    %h5
-      - if question.applicable_to_user?(answer_session) or question.user_skipped_question?(answer_session)
-        See how the community answered!
-      - else
-        Compare your answers to the rest of the community!
+      %h5
+        - if question.applicable_to_user?(answer_session) or question.user_skipped_question?(answer_session)
+          See how the community answered!
+        - else
+          Compare your answers to the rest of the community!
     .col-sm-4{ style: 'margin:20px auto; ' }
       %table.table-bordered{ style: 'padding:10px; width:100%; ' }
         %thead
