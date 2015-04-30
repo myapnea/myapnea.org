@@ -11,9 +11,18 @@ class ResearchTopicsController < ApplicationController
     raise StandardError
   end
 
+  def intro
+  end
+
+  def first_topics
+    @research_topics = ResearchTopic.accepted.first(10)
+  end
 
   def index
     @active_top_nav_link = :research
+    if current_user.votes.where(rating: 1).count < 1
+      redirect_to intro_research_topics_path
+    end
     @research_topics = ResearchTopic.accepted
   end
 
