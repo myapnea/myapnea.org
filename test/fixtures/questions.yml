@@ -91,3 +91,11 @@ text1:
   display_type: text_input
   answer_templates:
   - text
+
+country1:
+  text_en: Where were you born?
+  slug: country
+  display_type: radio_input
+  answer_templates:
+  - countries
+  - spec_countries

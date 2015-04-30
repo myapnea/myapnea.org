@@ -100,3 +100,13 @@ number_of_hours:
 text:
   name: fixture_text
   data_type: text_value
+
+countries:
+  name: countries
+  data_type: answer_option_id
+
+spec_countries:
+  name: spec_countries
+  data_type: text_value
+  target_answer_option: 3
+

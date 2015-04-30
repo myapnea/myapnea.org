@@ -25,3 +25,10 @@ new_2:
   slug: another-survey
   status: show
   default_position: 3
+
+for_reports:
+  name_en: Report Test
+  first_question: country1
+  slug: for-reports
+  status: hide
+  default_position: 4

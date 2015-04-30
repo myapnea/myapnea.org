@@ -52,3 +52,13 @@ a13:
   state: complete
 
 
+country_answer1:
+  question: country1
+  answer_session: report_test1
+  state: complete
+
+
+country_answer2:
+  question: country1
+  answer_session: report_test2
+  state: complete

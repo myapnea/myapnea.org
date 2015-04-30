@@ -310,6 +310,22 @@ class User < ActiveRecord::Base
   end
 
 
+  # Reports
+  def report_value(params = {})
+
+
+    Report.where({ user: self[:id] }.merge(params)).pluck(:value).first
+
+  end
+
+  def report_text(params={})
+    rows = Report.where({ user: self[:id] }.merge(params))
+
+    if rows
+    end
+
+  end
+
   # Voting
   def number_votes_remaining
     vote_quota - this_weeks_votes.length

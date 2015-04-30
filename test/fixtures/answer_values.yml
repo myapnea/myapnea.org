@@ -57,3 +57,18 @@ av13:
  answer: a13
  answer_template: text
  text_value: "11/11/1988"
+
+country_answer_value1:
+  answer: country_answer1
+  answer_template: countries
+  answer_option: poland
+
+country_answer_value2a:
+  answer: country_answer2
+  answer_template: countries
+  answer_option: other
+
+country_answer_value2b:
+  answer: country_answer2
+  answer_template: spec_countries
+  text_value: Easter Island

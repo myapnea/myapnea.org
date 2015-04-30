@@ -1,6 +1,6 @@
 = render partial: 'surveys/report_intro'
 
-= render partial: "surveys/reports/#{@survey.slug.underscore}" rescue render partial: 'surveys/reports/default'
+= render partial: "surveys/reports/#{@survey.slug.underscore}" #rescue render partial: 'surveys/reports/default'
 
 .panel{ style: 'border: 2px solid #b1d2f6' }
   .panel-body

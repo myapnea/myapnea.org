@@ -385,14 +385,17 @@ class Report < ActiveRecord::Base
   end
 
   def self.country_of_origin_answer(encounter, user)
-    answer = Report.where(encounter: encounter, survey_slug: 'about-my-family', question_slug: 'origin-country', user: user.id, value: %w(1 2 3 4 5 6 8)).first
-    answer_other = Report.where(encounter: encounter, survey_slug: 'about-my-family', question_slug: 'origin-country', user: user.id, value: 7).first
-    if answer
-      answer.answer_option_text
-    elsif answer_other
-      answer_template = AnswerTemplate.find_by_name 'specified_country'
-      answer_value = answer_other.answer.answer_values.where(answer_template_id: answer_template.id).first if answer_template
-      answer_value.text_value if answer_value
+    radio_answer = Report.where(encounter: encounter, survey_slug: 'about-my-family', question_slug: 'origin-country', answer_template_name: 'country_list', user: user.id).first
+    specific_answer = Report.where(encounter: encounter, survey_slug: 'about-my-family', question_slug: 'origin-country', answer_template_name: 'specified_country', user: user.id).first
+
+    if radio_answer.present?
+      if radio_answer.value.to_i == 7
+        specific_answer.value if specific_answer.present?
+      else
+        radio_answer.answer_option_text
+      end
+    else
+      nil
     end
   end
 

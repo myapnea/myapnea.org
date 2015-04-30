@@ -40,3 +40,17 @@ complete:
 #  user: social
 #  survey: new_2
 #  encounter: baseline
+
+report_test1:
+  user: social
+  survey: for_reports
+  first_answer: country_answer1
+  last_answer: country_answer1
+  encounter: baseline
+
+report_test2:
+  user: participant
+  survey: for_reports
+  first_answer: country_answer2
+  last_answer: country_answer2
+  encounter: baseline
