@@ -29,6 +29,7 @@ class Topic < ActiveRecord::Base
   # Model Relationships
   belongs_to :user
   belongs_to :forum
+  has_one :research_topic # For research topic functionality
   has_many :posts, -> { order(:created_at) }
   has_many :subscriptions
   has_many :subscribers, -> { where(deleted: false) }, through: :subscriptions, source: :user
