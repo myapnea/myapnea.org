@@ -384,6 +384,18 @@ class Report < ActiveRecord::Base
     return answers.collect{|answer| answer.partition(' ').first}.join(', ')
   end
 
+  def self.country_of_origin_answer(encounter, user)
+    answer = Report.where(encounter: encounter, survey_slug: 'about-my-family', question_slug: 'origin-country', user: user.id, value: %w(1 2 3 4 5 6 8)).first
+    answer_other = Report.where(encounter: encounter, survey_slug: 'about-my-family', question_slug: 'origin-country', user: user.id, value: 7).first
+    if answer
+      answer.answer_option_text
+    elsif answer_other
+      answer_template = AnswerTemplate.find_by_name 'specified_country'
+      answer_value = answer_other.answer.answer_values.where(answer_template_id: answer_template.id).first if answer_template
+      answer_value.text_value if answer_value
+    end
+  end
+
   def self.country_of_origin
     table_data = self.frequency_data('origin-country', 1..6)
     extra_table_data = self.tabular_data(survey_slug: 'about-my-family', question_slug: 'origin-country', answer_template_name: 'specified_country')

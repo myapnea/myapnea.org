@@ -4,7 +4,7 @@
   .survey-report-answer
     %p
       Your answer:
-      %span.f500= "Canada"
+      %span.f500= Report.country_of_origin_answer('baseline', current_user)
   .survey-report-info
     %p.lead
       The global MyApnea community:
