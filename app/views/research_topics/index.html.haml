@@ -1,27 +1,136 @@
 - @active_top_nav_link = :research
 
-.content-main-header
-  %h1.f300 Rank the Research
-
-.panel
-  .panel-heading
-    %h4.f300
-      At MyApnea.Org you can help direct the future of sleep apnea research.
-  .panel-body
-    %h5.f300
-      Below are questions important to network members. Every week, you can cast up to five votes on approved research questions, and you can suggest your own  as well.
-      %div.centered-text{ style: 'margin: 15px;' }
-        = link_to 'Add a new research question', new_research_topic_path, class: 'btn btn-sm btn-primary', style: 'margin-right: 15px;'
-        / = link_to 'Discuss other research questions', new_research_topic_path, class: 'btn btn-sm btn-info'
-    %h5.f300
-      For each question you vote on, you will be able to see what proportion of other members have also voted on that question. If a question is highly popular, and if data is lacking, the topic will be endorsed as an important direction for future research, and we'll get to work in figuring out how to deliver you the knowledge you need.
-  .panel-footer
-    %h4.f300.centered-text Let your voice be heard, vote now!
 
 
-- if current_user
-  .panel.panel-rank-research
-    %table.table
-      - @research_topics.shuffle.each do |research_topic|
-        %tr{ id: "#{'update_link'+research_topic.id.to_s}" }
-          = render partial: 'votes/voting_link', locals: { research_topic: research_topic}
+- if current_user.votes.where(rating: 1).count < 10
+  .list-group-item
+    .panel
+      .panel-body.centered-text
+        %h1.300 Welcome to Rank the Research!
+        %p.lead
+          This is a tool to solicit patient engagement surrounding research topics that are of most interest to patients. This tool will help prioritize which research questions are of most importance (i.e. allow a ranking of questions in order of priority based on number of different patients that have voted on each question). The end goal is to take a top rated question and for researchers to develop a grant proposal or study investigation based on the top rated questions that currently lack sufficient evidence. For top rated questions which have a rich body of evidence, the current knowledge will be synthesized and shared among members.
+        %br
+        = link_to 'Get Started!', research_topics_path, class: 'btn btn-primary btn-lg'
+
+  .list-group-item
+    .row
+      - rt = @research_topics.last
+      .col-sm-6.col-sm-offset-3
+        .panel
+          .panel-heading
+            %div{ style: 'min-height: 50px;'}
+              = image_tag rt.user.photo_url, class: 'img-responsive', style: 'width: 50px; height: 50px; border: 2px solid white; float: left'
+              %p.text-dark6{ style: 'float: left; padding-left: 20px; padding-top: 20px;font-size: 15px;' }
+                %span.f500.primary-blue= rt.user.name
+                asked:
+          .panel-body
+            %h4.centered-text= rt.text
+            %hr
+            %p.lead= "\"#{rt.description}\""
+            %hr
+            .centered-text
+              = radio_button_tag "I endorse this topic", :endorse
+              %label{ for: 'endorse' } I endorse this topic!
+              %br
+              = radio_button_tag "I don't endorse this topic", :dont_endorse
+              %label{ for: 'dont_endorse' } I don't endorse this topic!
+              %br
+              %br
+              %p.muted Add a comment (optional):
+              = text_area_tag "comment", nil, rows: 5, class: 'form-control'
+              %br
+              = submit_tag "Submit", class: 'btn btn-primary'
+  .list-group-item
+    .panel
+      .panel-body.centered-text
+        %h1.f300 Great job!
+        %br
+        %p.lead
+          It looks like you're really getting the hang of this. Why don't you try
+          = link_to 'creating your own research question?', new_research_topic_path
+          Otherwise, you can continue on and see all of the research topics that are currently being voted on, and read the state of the research for topics that have been approved.
+        = link_to 'Continue', research_topics_path, class: 'btn btn-success'
+  .list-group-item
+    .row
+      .col-sm-8
+        %h3= "Hi #{current_user.first_name}!"
+        %p.lead
+          Check out what's been going on in research lately.
+    .row
+      .col-sm-6
+        = link_to forum_topic_path('research', 'does-treatment-of-sleep-apnea-influence-body-weight') do
+          = image_tag 'myapnea/research/sleep-apnea-body-weight.png', class: 'img-responsive'
+      .col-sm-6
+        = link_to forum_topic_path('research', 'does-sleep-influence-memory-and-brain-plasticity') do
+          = image_tag 'myapnea/research/sleep-apnea-memory.png', class: 'img-responsive'
+    .row
+      .col-sm-4
+        %h3 Most Popular
+        - @research_topics.first(5).each do |rt|
+          .list-group-item
+            %p.small= rt.text
+      .col-sm-4
+        %h3 Most Discussed
+        - @research_topics.first(5).each do |rt|
+          .list-group-item
+            %p.small= rt.text
+      .col-sm-4
+        %h3 Newest
+        - @research_topics.first(5).each do |rt|
+          .list-group-item
+            %p.small= rt.text
+    %br
+    %br
+    .row.primary-blue-bcg
+      .col-sm-8.col-sm-offset-2
+        %h3.text-light9 Add your own question!
+        - research_topic = ResearchTopic.new
+        .list-group-item
+          = form_for research_topic, html: { data: { object: "inline-validation"} } do |f|
+            .form-group
+              = f.label :text, class: 'sr-only'
+              = f.text_area :text, class: 'form-control input-lg', placeholder: "Enter your research question here...", autocomplete: :off, data: { object: 'inline-validation-item', name: 'research-topic-name' }
+              .col-sm-6.hidden{ style: 'margin-top: 15px; margin-bottom: 30px;', data: { object: 'research-topic-name--error' } }
+                %p.small.centered-text.inline-validation-error
+                  Please enter a valid question or research topic!
+            .form-group
+              = f.label :author, class: 'sr-only'
+              = f.text_area :description, placeholder: "Describe why you think this question is important...", class: 'form-control input-lg'
+            - if current_user.can_moderate?(research_topic) and false
+              .form-group
+                = f.label :state, class: 'sr-only'
+                = f.select :state, ResearchTopic::STATES, {prompt: "-- select state --" }, { class: 'input-lg form-control' }
+            = f.submit("Submit", class: "btn btn-success pull-right")
+            .clearfix
+        %br
+        %br
+
+
+
+
+- else
+  .content-main-header
+    %h1.f300 Rank the Research
+
+  .panel
+    .panel-heading
+      %h4.f300
+        At MyApnea.Org you can help direct the future of sleep apnea research.
+    .panel-body
+      %h5.f300
+        Below are questions important to network members. Every week, you can cast up to five votes on approved research questions, and you can suggest your own  as well.
+        %div.centered-text{ style: 'margin: 15px;' }
+          = link_to 'Add a new research question', new_research_topic_path, class: 'btn btn-sm btn-primary', style: 'margin-right: 15px;'
+          / = link_to 'Discuss other research questions', new_research_topic_path, class: 'btn btn-sm btn-info'
+      %h5.f300
+        For each question you vote on, you will be able to see what proportion of other members have also voted on that question. If a question is highly popular, and if data is lacking, the topic will be endorsed as an important direction for future research, and we'll get to work in figuring out how to deliver you the knowledge you need.
+    .panel-footer
+      %h4.f300.centered-text Let your voice be heard, vote now!
+
+
+  - if current_user
+    .panel.panel-rank-research
+      %table.table
+        - @research_topics.shuffle.each do |research_topic|
+          %tr{ id: "#{'update_link'+research_topic.id.to_s}" }
+            = render partial: 'votes/voting_link', locals: { research_topic: research_topic}
