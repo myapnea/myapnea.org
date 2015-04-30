@@ -2,12 +2,13 @@ class ResearchTopicRefactoring < ActiveRecord::Migration
   def change
     # Research Topic
     add_column :research_topics, :progress, :string
-    add_column :research_topics, :topic_id, :reference
+    add_column :research_topics, :topic_id, :integer
+    add_index :research_topics, :topic_id
 
     # Vote
-    remove_column :comment_id, :integer
-    remove_column :question_id, :integer
-    remove_column :notification_id, :integer
+    remove_column :votes, :comment_id, :integer
+    remove_column :votes,  :question_id, :integer
+    remove_column :votes,  :notification_id, :integer
 
 
   end
