@@ -1,5 +1,15 @@
 ## 7.0.0
 
+### New Features
+- Rank the Research requires users to go through an intro process
+  - Users will see a dedicated page that introduces and explains the feature
+  - Users will then go through ten dedicated questions, one at a time
+  - Users will finally be able to see the full index, which has been restyled
+    - The most popular topic will be pulled above the fold to encourage further engagement
+    - Endorsed questions will be shown as visual links as a proof of deliverable
+    - Questions are binned by category (newest, most discussed)
+    - Users can submit a question on the index page
+
 ## 6.1.0 (April 27, 2015)
 
 ### New Features
