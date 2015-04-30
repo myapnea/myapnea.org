@@ -58,12 +58,45 @@
           Check out what's been going on in research lately.
     .row
       .col-sm-6
-        = link_to forum_topic_path('research', 'does-treatment-of-sleep-apnea-influence-body-weight') do
-          = image_tag 'myapnea/research/sleep-apnea-body-weight.png', class: 'img-responsive'
+        = link_to forum_topic_path('research', 'does-treatment-of-sleep-apnea-influence-body-weight'), class: 'thumbnail pull-right' do
+          = image_tag 'myapnea/research/sleep-apnea-body-weight.png', class: 'img-responsive', style: 'max-width: 400px;'
       .col-sm-6
-        = link_to forum_topic_path('research', 'does-sleep-influence-memory-and-brain-plasticity') do
-          = image_tag 'myapnea/research/sleep-apnea-memory.png', class: 'img-responsive'
+        = link_to forum_topic_path('research', 'does-sleep-influence-memory-and-brain-plasticity'), class: 'thumbnail pull-left' do
+          = image_tag 'myapnea/research/sleep-apnea-memory.png', class: 'img-responsive', style: 'max-width: 400px;'
+    %hr
     .row
+      .col-sm-6
+        .panel
+          .panel-heading{ style: 'background-color: #ffa400; color: white'}
+            %h3 Trending Topic
+          .panel-body
+            - rt = @research_topics.last
+            %h4.f400.spaced= rt.text
+            %hr
+            %p.lead.text-dark7= rt.description
+            %hr
+            %br
+            .list-group-item{ style: 'border: 4px solid #5999de; border-radius: 10px;'}
+              .centered-text
+                %h5.darker-blue You've already voted on this question!
+                %h5.f300
+                  You can keep up to date with the conversation by clicking
+                  = link_to 'here.', forums_path
+
+      .col-sm-6
+        %br
+        %h4 Most Discussed
+        - @research_topics[6..10].each do |rt|
+          .list-group-item
+            %p.small= rt.text
+        %hr
+        %h4 Newest
+        - @research_topics[11..15].each do |rt|
+          .list-group-item
+            %p.small= rt.text
+
+
+    .row.hidden
       .col-sm-4
         %h3 Most Popular
         - @research_topics.first(5).each do |rt|
@@ -71,12 +104,12 @@
             %p.small= rt.text
       .col-sm-4
         %h3 Most Discussed
-        - @research_topics.first(5).each do |rt|
+        - @research_topics[6..10].each do |rt|
           .list-group-item
             %p.small= rt.text
       .col-sm-4
         %h3 Newest
-        - @research_topics.first(5).each do |rt|
+        - @research_topics[11..15].each do |rt|
           .list-group-item
             %p.small= rt.text
     %br
