@@ -52,7 +52,7 @@
             .form-group
               = f.label :author, class: 'sr-only'
               = f.text_area :description, placeholder: "Describe why you think this question is important...", class: 'form-control input-lg'
-            - if current_user.can_moderate?(research_topic) and false
+            - if current_user.can_moderate?(research_topic)
               .form-group
                 = f.label :state, class: 'sr-only'
                 = f.select :state, ResearchTopic::STATES, {prompt: "-- select state --" }, { class: 'input-lg form-control' }
