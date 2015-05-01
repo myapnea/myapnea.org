@@ -10,6 +10,19 @@
     - Questions are binned by category (newest, most discussed)
     - Users can submit a question on the index page
 
+## 6.1.1 (May 1, 2015)
+
+### Enhancements
+- Temporarily removed the video from the landing page and moved to learn page
+- Updated a link on the learn page
+- Minor website copy changes
+- Email field now gets focus when clicking the Login button in the top navigation bar
+- Added bitly links to landing page for engagement tracking
+
+### Bug Fix
+- Fixed the Sleep Apnea and BMI tool not loading correctly in certain instances
+- About My Family Report now properly displays the member's selected country of birth
+
 ## 6.1.0 (April 27, 2015)
 
 ### New Features
