@@ -18,6 +18,22 @@ class ResearchTopicsController < ApplicationController
     @research_topics = ResearchTopic.accepted.first(10)
   end
 
+  def newest
+    @rt_c1 = []
+    @rt_c2 = []
+    ResearchTopic.accepted.each_with_index do |rt, index|
+      (index+1)%2==0 ? (@rt_c1 << rt) : (@rt_c2 << rt)
+    end
+  end
+
+  def most_discussed
+    @research_topics = ResearchTopic.accepted
+  end
+
+  def all
+    @research_topics = ResearchTopic.accepted
+  end
+
   def index
     @active_top_nav_link = :research
     if current_user.votes.where(rating: 1).count < 1

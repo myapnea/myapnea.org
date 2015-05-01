@@ -4,7 +4,7 @@
   %h1.f300 Rank the Research
 
 .lighterer-blue-bcg{ style: 'border-radius: 20px; padding: 20px;' }
-  %h1.text-white Trending Topic
+  %h2.text-white Trending Topic
   = render partial: 'research_topics/voting_form', locals: { rt: @research_topics.last }
 
 
@@ -39,6 +39,8 @@
                       %span{"aria-hidden" => "true"} ×
                   .modal-body
                     = render partial: 'research_topics/voting_form', locals: { rt: rt }
+        .list-group-item
+          = link_to 'More...', newest_research_topics_path
 
       .col-sm-6
         %h4 Most Discussed
@@ -55,6 +57,8 @@
                       %span{"aria-hidden" => "true"} ×
                   .modal-body
                     = render partial: 'research_topics/voting_form', locals: { rt: rt }
+        .list-group-item
+          = link_to 'More...', most_discussed_research_topics_path
 
 .panel.primary-blue-bcg
   .panel-body

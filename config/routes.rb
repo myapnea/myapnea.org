@@ -67,6 +67,9 @@ Rails.application.routes.draw do
     collection do
       get :intro
       get "first-topics", as: :first_topics
+      get :newest
+      get "most-discussed", as: :most_discussed
+      get :all
     end
   end
 
