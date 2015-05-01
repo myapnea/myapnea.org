@@ -1,9 +1,10 @@
 - @active_top_nav_link = :research
 
+.content-main-header
+  %h1.f300 Rank the Research
 
-%div{ style: 'background-color: #ffa400; border-radius: 20px; padding: 20px;' }
-  %h1.text-white.centered-text Trending Topic
-  %br
+.lighterer-blue-bcg{ style: 'border-radius: 20px; padding: 20px;' }
+  %h1.text-white Trending Topic
   = render partial: 'research_topics/voting_form', locals: { rt: @research_topics.last }
 
 
