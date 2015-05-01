@@ -79,6 +79,11 @@ bith:
   hotkey: B
   value: 2
 
+rodian:
+  text: Rodian
+  hotkey: R
+  value: 5
+
 other_race:
   text: Some other race
   hotkey: O

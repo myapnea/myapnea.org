@@ -312,10 +312,16 @@ class User < ActiveRecord::Base
 
   # Reports
   def report_value(params = {})
+    result_rows = Report.where({ user: self[:id] }.merge(params))
 
-
-    Report.where({ user: self[:id] }.merge(params)).pluck(:value).first
-
+    answer_option_rows = result_rows.where(data_type: 'answer_option_id')
+    if answer_option_rows.count == 1
+      answer_option_rows.pluck(:value).first
+    elsif answer_option_rows.count > 1
+      answer_option_rows.pluck(:value)
+    else
+      result_rows.pluck(:value).first
+    end
   end
 
   def report_text(params={})
