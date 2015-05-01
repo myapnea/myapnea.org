@@ -49,9 +49,14 @@
     .list-group-item
       - if @user.research_topics.present?
         .row
-          - @user.research_topics.limit(4).each do |rt|
-            .col-sm-6
-              = render partial: 'research_topics/voting_form', locals: { rt: rt }
+          - @user.research_topics.limit(4).each_with_index do |rt, index|
+            - if index % 2 == 0
+              .col-sm-6
+                = render partial: 'research_topics/voting_form', locals: { rt: rt }
+            - else
+              .row
+                .col-sm-6
+                  = render partial: 'research_topics/voting_form', locals: { rt: rt }
       - else
         - if @user == current_user
           %p.lead You haven't proposed any research topics!
