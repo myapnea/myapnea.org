@@ -44,28 +44,28 @@
       %h3 Are You at Risk?
       %p.lead
         Over 80% of sleep apnea cases go undiagnosed. Take our quick test and see if you're at risk.
-      = link_to 'Check Your Risk', sleep_apnea_risk_assessment_path, class: 'btn btn-warning'
+      = link_to 'Check Your Risk', 'http://bit.ly/sleep-apnea-risk', class: 'btn btn-warning'
     #value2.col-sm-6
       = image_tag 'myapnea/icons/data_powerful.png', class: 'img-responsive', style: 'max-width:150px; margin: auto;'
       %h3 Your Data is Powerful
       %p.lead
         Research relies on people like you to help by sharing important data to find the best outcomes.
-      = link_to 'Participate in Research', surveys_path, class: 'btn btn-warning'
+      = link_to 'Participate in Research', 'http://bit.ly/myapnea-surveys', class: 'btn btn-warning'
   .row
     #value3.col-sm-6
       = image_tag 'myapnea/icons/speech_bubbles.png', class: 'img-responsive', style: 'max-width:150px; margin: auto;'
       %h3 Join the Discussion!
       %p.lead
         Families, researchers, and care providers have all come together to help each other in amazing ways.
-      = link_to 'See the Community', forums_path, class: 'btn btn-warning'
+      = link_to 'See the Community', 'http://bit.ly/myapnea-forums', class: 'btn btn-warning'
     #value4.col-sm-6
       = image_tag 'myapnea/icons/did_you_know.png', class: 'img-responsive', style: 'max-width:150px; margin: auto;'
       %h3 Help Spread Awareness
       %p.lead
         By sharing our page and promoting sleep health, you can help others get the information they need!
-      = link_to image_tag('myapnea/icons/facebook_icon.png', class: 'share-icons-animate share-icons-md'), "http://www.facebook.com/share.php?u=#{ENV['website_url']}"
+      = link_to image_tag('myapnea/icons/facebook_icon.png', class: 'share-icons-animate share-icons-md'), "http://bit.ly/myapnea-share-fb"
       = link_to image_tag('myapnea/icons/twitter_icon.png', class: 'share-icons-animate share-icons-md'), 'http://ctt.ec/Qeg7f'
-      = link_to image_tag('myapnea/icons/email_icon.png', class: 'share-icons-animate share-icons-md'), "mailto:?subject=Check out MyApnea.Org&body=This group is working to improve treatment and research of sleep apnea! You can learn more and join their community by visiting www.myapnea.org"
+      = link_to image_tag('myapnea/icons/email_icon.png', class: 'share-icons-animate share-icons-md'), "mailto:?subject=Check%20out%20MyApnea.Org&body=This%20group%20is%20working%20to%20improve%20treatment%20and%20research%20of%20sleep%20apnea!%20You%20can%20learn%20more%20and%20join%20their%20community%20by%20visiting%20www.myapnea.org"
 
 #slide3.row.reset-layout
   #testimonial.col-sm-8.col-sm-offset-1
