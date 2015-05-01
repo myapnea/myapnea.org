@@ -128,7 +128,10 @@ class AdminControllerTest < ActionController::TestCase
 
   # Research Topics
   test "should show research topic administration to moderator" do
+    skip "Research topic administration will leverage forum administration"
+
     login(users(:moderator_1))
+
 
     get :research_topics
 

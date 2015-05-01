@@ -2,6 +2,8 @@ require "test_helper"
 
 class ResearchTopicTest < ActiveSupport::TestCase
   test "Research topic creation" do
+    skip "Pending implementation"
+
     u = users(:user_1)
     text = "Does sleep apnea cause obesity, or is it the other way around?"
     desc = "This question has been on my mind for quite a long time, and I'm sure others have wondered about it as well."
