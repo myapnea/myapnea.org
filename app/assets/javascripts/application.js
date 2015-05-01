@@ -65,3 +65,4 @@
 //= require external/jquery.placeholder.js
 //= require external/jquery.animate-shadow-min.js
 //= require external/froogaloop2.min.js
+//= require tools/bmi_ahi

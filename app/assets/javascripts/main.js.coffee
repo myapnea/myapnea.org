@@ -48,6 +48,10 @@ if typeof Turbolinks isnt 'undefined' and Turbolinks.supported
     $("div#print-area").printArea()
     false
 
+@setFocusToField = (element_id) ->
+  val = $(element_id).val()
+  $(element_id).focus().val('').val(val)
+
 @loaders = () ->
   mainLoader()
   consentReady()
@@ -70,4 +74,8 @@ if typeof Turbolinks isnt 'undefined' and Turbolinks.supported
   autocompleteGenderReady() if $("#social_profile_gender").length > 0
 
 $(document).ready(loaders)
-$(document).on('page:load', loaders)
+$(document)
+  .on('page:load', loaders)
+  .on('click', '[data-object~="login-with-focus"]', () ->
+    setFocusToField("#user_email")
+  )
