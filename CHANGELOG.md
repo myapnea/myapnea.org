@@ -22,7 +22,6 @@
 ### Bug Fix
 - Fixed the Sleep Apnea and BMI tool not loading correctly in certain instances
 - About My Family Report now properly displays the member's selected country of birth
->>>>>>> Temporary merge branch 2
 
 ## 6.1.0 (April 27, 2015)
 

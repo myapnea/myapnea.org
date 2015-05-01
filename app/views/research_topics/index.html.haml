@@ -1,9 +1,10 @@
 - @active_top_nav_link = :research
 
+.content-main-header
+  %h1.f300 Rank the Research
 
-%div{ style: 'background-color: #ffa400; border-radius: 20px; padding: 20px;' }
-  %h1.text-white.centered-text Trending Topic
-  %br
+.lighterer-blue-bcg{ style: 'border-radius: 20px; padding: 20px;' }
+  %h1.text-white Trending Topic
   = render partial: 'research_topics/voting_form', locals: { rt: @research_topics.last }
 
 
@@ -27,13 +28,33 @@
         - @research_topics.first(5).each do |rt|
           .list-group-item
             %p.small= rt.text
+            / Button trigger modal
+            %button.btn.btn-sm.btn-primary{"data-target" => "#modal-rt#{rt.id}-newest", "data-toggle" => "modal", :type => "button"}
+              Vote!
+            .modal.fade{ id: "modal-rt#{rt.id}-newest", "aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+              .modal-dialog
+                .modal-content
+                  .modal-header{ style: 'background-color: white; border: none;' }
+                    %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+                      %span{"aria-hidden" => "true"} ×
+                  .modal-body
+                    = render partial: 'research_topics/voting_form', locals: { rt: rt }
 
       .col-sm-6
         %h4 Most Discussed
         - @research_topics.first(5).each do |rt|
           .list-group-item
             %p.small= rt.text
-        %hr
+            %button.btn.btn-sm.btn-primary{"data-target" => "#modal-rt#{rt.id}-discussed", "data-toggle" => "modal", :type => "button"}
+              Vote!
+            .modal.fade{ id: "modal-rt#{rt.id}-discussed", "aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+              .modal-dialog
+                .modal-content
+                  .modal-header{ style: 'background-color: white; border: none;' }
+                    %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+                      %span{"aria-hidden" => "true"} ×
+                  .modal-body
+                    = render partial: 'research_topics/voting_form', locals: { rt: rt }
 
 .panel.primary-blue-bcg
   .panel-body
