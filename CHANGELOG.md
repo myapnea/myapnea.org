@@ -1,4 +1,4 @@
-## 6.1.1
+## 6.1.1 (May 1, 2015)
 
 ### Enhancements
 - Temporarily removed the video from the landing page and moved to learn page
