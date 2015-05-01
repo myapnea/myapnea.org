@@ -78,13 +78,19 @@
     width: 80%;
     margin: 0% 10%;
     background-color: inherit;
+    padding-bottom: 50px;
     h1 { color: white; }
     p {
       color: white;
-      color: rgba(255,255,255,.8);
-      span {
-        color: #ffa400;
-      }
+      color: rgba(255,255,255,.9);
+    }
+    #get-started-button {
+      width: 50%;
+      min-width: 200px;
+      padding: 20px;
+      font-size: 25px;
+      border-radius:20px;
+      border: 2px solid white;
     }
   }
   .row { background-color: white; }
