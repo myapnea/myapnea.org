@@ -311,7 +311,7 @@ class User < ActiveRecord::Base
 
 
   # Reports
-  def report_value(params = {})
+  def answer_value(params = {})
     result_rows = Report.where({ user: self[:id] }.merge(params))
 
     answer_option_rows = result_rows.where(data_type: 'answer_option_id')
@@ -324,11 +324,48 @@ class User < ActiveRecord::Base
     end
   end
 
-  def report_text(params={})
-    rows = Report.where({ user: self[:id] }.merge(params))
+  def answer_text(params={})
+    result_rows = Report.where({ user: self[:id] }.merge(params))
 
-    if rows
+    # One answer value:
+    if result_rows.count == 1
+      result_row = result_rows.first
+
+      ## Answer option
+      ## Non-answer option
+      result_row.data_type == 'answer_option_id' ? result_row.answer_option_text : result_row.value
+
+    elsif result_rows.count > 1
+      if result_rows.where(allow_multiple: true).count == 0
+        # Two answer values, no multiple allowed
+        if result_rows.where(data_type: 'answer_option_id').pluck(:value).map(&:to_i).include? result_rows.pluck(:target_answer_option).compact.first
+          ## Non-answer option with target_answer_option selected
+          result_rows.where("target_answer_option is not null").pluck(:value).first
+        else
+          ## target_answer_option not selected
+          result_rows.where(data_type: 'answer_option_id').pluck(:answer_option_text).first
+        end
+      else
+        # Multiple Values Allowed:
+        ## Write-in with target_answer_option selected
+
+        all_ao_values = result_rows.where(data_type: 'answer_option_id').pluck(:value)
+        ignore_values = result_rows.pluck(:target_answer_option).compact
+
+
+
+        write_in_result_rows = result_rows.where("target_answer_option is not null").where(target_answer_option: all_ao_values)
+        ao_result_rows = result_rows.where(data_type: 'answer_option_id')
+        ao_result_rows = ao_result_rows.where.not(value: ignore_values.map(&:to_s)) if ignore_values
+
+        ## Just answer option answer
+        write_in_result_rows.pluck(:value) + ao_result_rows.pluck(:answer_option_text)
+      end
     end
+
+
+
+
 
   end
 
