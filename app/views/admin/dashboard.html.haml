@@ -4,21 +4,25 @@
 
 .panel
   .panel-body
-    .list-group-item
-      %br
-      %p.lead= link_to 'Users', users_path if current_user.has_role? :owner
-    .list-group-item
-      %br
-      %p.lead= link_to 'Surveys', admin_surveys_path
-    .list-group-item
-      %br
-      %p.lead= link_to 'Research Topics', admin_research_topics_path
-    .list-group-item
-      %br
-      %p.lead= link_to 'Current Version Stats', admin_version_stats_path
-    .list-group-item
-      %br
-      %p.lead= link_to 'Cross Tabs', admin_cross_tabs_path
-    .list-group-item
-      %br
-      %p.lead= link_to 'Location', admin_reports_location_path
+    .list-group
+      .list-group-item
+        %br
+        %p.lead= link_to 'Users', users_path if current_user.has_role? :owner
+      .list-group-item
+        %br
+        %p.lead= link_to 'Surveys', admin_surveys_path
+      .list-group-item
+        %br
+        %p.lead= link_to 'Research Topics', admin_research_topics_path
+      .list-group-item
+        %br
+        %p.lead= link_to 'Current Version Stats', admin_version_stats_path
+      .list-group-item
+        %br
+        %p.lead= link_to 'Cross Tabs', admin_cross_tabs_path
+      .list-group-item
+        %br
+        %p.lead= link_to 'Location', admin_reports_location_path
+      .list-group-item
+        %br
+        %p.lead= link_to 'Providers', admin_providers_path

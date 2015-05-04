@@ -16,6 +16,10 @@ class AdminController < ApplicationController
   def surveys
   end
 
+  def providers
+    @providers = User.current.where(provider: true)
+  end
+
   def version_stats
     @version_dates = [
       { version: '6.1.0', release_date: Date.parse('2015-04-27'), next_release_date: nil },
