@@ -14,8 +14,10 @@
   - Highlights the provider with the most members
 
 ### Enhancements
-- Forum topics can now be easily shared
-  - Each topic can auto generate a tweet, facebook post, and email for sharing
+- Social sharing
+  - Forum topics can now be easily shared
+    - Each topic can auto generate a tweet, facebook post, and email for sharing
+  - Users are able to share that they have just completed a survey after submission
 
 ## 6.1.1 (May 1, 2015)
 
