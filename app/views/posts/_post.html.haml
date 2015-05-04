@@ -93,6 +93,27 @@
             = render partial: 'posts/formatted', locals: { post: post }
             .small.text-muted{ style: 'font-weight: 300' }
               = post.created_at.strftime("%-d %B %Y, %-l:%M %p")
+    - elsif current_user
+      .col-xs-1.reset-layout
+        = render partial: 'forums/user_image', locals: { user: post.user, size: 50 }
+      .col-xs-11
+        .post-container.post-under-review
+          .post-container-right-after{ style: 'max-width: 200px; '}
+            %span.f400
+              Not moderated
+          - if post.topic.user == post.user
+            .post-container-right-bottom-after.original-poster-badge
+              Original Poster
+          %div{ id: "post_#{post.id}_container" }
+            .post-user-name-container
+              = post.user.forum_name
+            %p{ style: 'font-style:italic' }
+              %i.fa.fa-eye
+              = 'Your' if current_user == post.user
+              Post Is Under Review
+            = render partial: 'posts/formatted', locals: { post: post }
+            .small.text-muted{ style: 'font-weight: 300' }
+              = post.created_at.strftime("%-d %B %Y, %-l:%M %p")
   - else
     .col-xs-1.reset-layout
       = render partial: 'forums/user_image', locals: { user: post.user, size: 50 }

@@ -18,6 +18,10 @@
   - Forum topics can now be easily shared
     - Each topic can auto generate a tweet, facebook post, and email for sharing
   - Users are able to share that they have just completed a survey after submission
+- Forums
+  - Unmoderated posts are visible to users (not public), with a visible flag that they are unmoderated
+  - A disclaimer is included at the bottom of a topic with unmoderated posts
+
 
 ## 6.1.1 (May 1, 2015)
 
