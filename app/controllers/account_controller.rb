@@ -124,6 +124,11 @@ class AccountController < ApplicationController
   def terms_and_conditions
   end
 
+  def accepts_terms_and_conditions
+    current_user.update(accepted_terms_conditions_at: Time.zone.now)
+    redirect_to session[:return_to] || forums_path
+  end
+
   def terms_of_access
     if params[:terms_of_access_read]
       current_user.update(accepted_terms_of_access_at: Time.zone.now)

@@ -12,6 +12,9 @@ class Forum < ActiveRecord::Base
   belongs_to :user
   has_many :topics, -> { where(deleted: false).order(pinned: :desc, last_post_at: :desc, id: :desc) }
 
+  #  For recent updates to consent/privacy policy/etc
+  RECENT_FORUMS_UPDATE_DATE = "2015-05-01"
+
   # Forum Methods
 
   def to_param

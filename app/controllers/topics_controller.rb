@@ -5,6 +5,8 @@ class TopicsController < ApplicationController
   before_action :set_viewable_forum
   before_action :redirect_without_forum
 
+  before_action :check_approved_terms
+
   before_action :set_viewable_topic,      only: [ :show, :destroy, :subscription ]
   before_action :set_editable_topic,      only: [ :edit, :update, :destroy ]
 
@@ -85,6 +87,13 @@ class TopicsController < ApplicationController
         params.require(:topic).permit(:name, :description, :slug, :locked, :pinned, :status, :forum_id)
       else
         params.require(:topic).permit(:name, :description)
+      end
+    end
+
+    def check_approved_terms
+      if current_user and (current_user.accepted_terms_conditions_at.blank? or current_user.accepted_terms_conditions_at < Date.parse(Forum::RECENT_FORUMS_UPDATE_DATE).at_noon)
+        session[:return_to] = request.fullpath
+        redirect_to terms_and_conditions_path
       end
     end
 
