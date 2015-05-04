@@ -10,7 +10,10 @@
   %ul
     - providers.each do |provider|
       %li
-        = link_to provider.name, "mailto:#{provider.email}"
+        = provider.slug.present? ? link_to(provider.name, (ENV['website_url'] + '/p/'+ provider.slug)) : ""
+        &middot;
+        = link_to "mailto:#{provider.email}" do
+          %span.glyphicon.glyphicon-envelope
   %h4.f300
     Number of members:
     %span.f500.darkerer-blue= providers.first.users.count
@@ -21,11 +24,13 @@
   %thead
     %tr
       %th Provider Name
+      %th URL
       %th Date Joined
       %th Members
   %tbody
     - @providers.sort{ |a,b| a.last_name <=> b.last_name }.each do |provider|
       %tr
         %td= link_to (provider.last_name + ', ' + provider.first_name), "mailto:#{provider.email}"
+        %td= provider.slug.present? ? link_to((ENV['website_url'] + '/p/' + provider.slug), (ENV['website_url'] + '/p/'+ provider.slug)) : ""
         %td= provider.created_at.strftime("%d-%m-%Y %l:%M%P")
         %td= provider.users.count
