@@ -13,6 +13,10 @@
   - Shows the number of members who have signed up with each provider
   - Highlights the provider with the most members
 
+### Enhancements
+- Forum topics can now be easily shared
+  - Each topic can auto generate a tweet, facebook post, and email for sharing
+
 ## 6.1.1 (May 1, 2015)
 
 ### Enhancements
