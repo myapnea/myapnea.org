@@ -6,6 +6,8 @@ class ForumsController < ApplicationController
   before_action :set_forum,               only: [:show, :edit, :update, :destroy]
   before_action :redirect_without_forum,  only: [:show, :edit, :update, :destroy]
 
+  before_action :check_approved_terms
+
   respond_to :html
 
   def index
@@ -56,5 +58,12 @@ class ForumsController < ApplicationController
 
     def forum_params
       params.require(:forum).permit(:name, :description, :slug, :position)
+    end
+
+    def check_approved_terms
+      if current_user and (current_user.accepted_terms_conditions_at.blank? or current_user.accepted_terms_conditions_at < Date.parse(Forum::RECENT_FORUMS_UPDATE_DATE).at_noon)
+        session[:return_to] = request.fullpath
+        redirect_to terms_and_conditions_path
+      end
     end
 end

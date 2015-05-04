@@ -1,0 +1,41 @@
+- @user = current_user unless defined?(@user)
+
+%p.lead
+  = link_to_if current_user.has_role?(:owner), "Users", users_path
+  &middot;
+  = @user.name
+.row
+  .col-sm-6
+    %dl.dl-horizontal
+      %dt Joined
+      %dd
+        = @user.created_at.strftime("%m/%d/%Y") if @user.created_at.present?
+
+      %dt Privacy Policy
+      %dd
+        = @user.accepted_privacy_policy_at.strftime("%m/%d/%Y") if @user.accepted_privacy_policy_at.present?
+
+      %dt Consent
+      %dd
+        = @user.accepted_consent_at.strftime("%m/%d/%Y") if @user.accepted_consent_at.present?
+
+      %dt Terms of Access
+      %dd
+        = @user.accepted_terms_of_access_at.strftime("%m/%d/%Y") if @user.accepted_terms_of_access_at.present?
+        = simple_check @user.has_role? :moderator
+      %dt Completed Surveys
+      %dd
+        = @user.completed_surveys.count
+      %dt Include in Data
+      %dd
+        = simple_check @user.include_in_exports
+      %dt Owner
+      %dd
+        = simple_check @user.has_role? :owner
+      %dt Moderator
+      %dd
+        = simple_check @user.has_role? :moderator
+  .col-sm-6
+    %ul.f500 User Types
+    - @user.user_types.each do |ut|
+      %li= ut

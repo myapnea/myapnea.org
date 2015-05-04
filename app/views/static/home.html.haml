@@ -5,37 +5,45 @@
     Welcome,
     = current_user.first_name + '!'
 
-
-.panel
-  .panel-body
-    .row
-      - if current_user.is_only_academic?
-        - @surveys.each do |survey|
-          .col-sm-4.centered-text
-            = image_tag 'myapnea/icons/data_display'+rand(1..3).to_s+'.png', class: 'img-responsive', style: 'margin: 0 auto; width: 80%; max-width:250px; border-radius: 10px;'
-            %h4.f300.centered-text
-              = survey.name
-            %h5.f300.primary-blue{ style: 'margin-bottom:30px;' }
-              = link_to 'View Data', report_survey_path(survey)
-      - else
-        - if !current_user.has_user_type?
-          .centered-text{ style: 'display:block' }
-            = image_tag 'myapnea/user_types/role_confused.png', class: 'img-responsive', style: 'margin: 0 auto; width: 150px;'
-            %h4.f300{ style: 'margin: 0 10px;' }
-              You have not listed your role in the sleep apnea community. In order to participate in this part of the research community, please
-              = link_to 'select a role.', describe_yourself_path, style: 'text-decoration: none;'
-        - elsif current_user.assigned_surveys.count == current_user.completed_surveys.count
-          - #raise StandardError
-          %h3.f300.centered-text.text-dark7
-            Congratulations! You have completed all of your surveys!
-          %h4.f300.centered-text.text-dark7{ style: 'margin: 20px 10px;' }
-            Since you're doing such a great job, why don't you
-            = link_to 'submit a research question', research_topics_path, style: 'text-decoration: none;'
-            to be discussed by the community?
-        - else
+- unless current_user.assigned_surveys.count == current_user.completed_surveys.count
+  .panel
+    .panel-body
+      .row
+        - if current_user.is_only_academic?
           - @surveys.each do |survey|
             .col-sm-4.centered-text
-              = render partial: 'surveys/partials/survey_progress', locals: { survey: survey }
+              = image_tag 'myapnea/icons/data_display'+rand(1..3).to_s+'.png', class: 'img-responsive', style: 'margin: 0 auto; width: 80%; max-width:250px; border-radius: 10px;'
+              %h4.f300.centered-text
+                = survey.name
+              %h5.f300.primary-blue{ style: 'margin-bottom:30px;' }
+                = link_to 'View Data', report_survey_path(survey)
+        - else
+          - if !current_user.has_user_type?
+            .centered-text{ style: 'display:block' }
+              = image_tag 'myapnea/user_types/role_confused.png', class: 'img-responsive', style: 'margin: 0 auto; width: 150px;'
+              %h4.f300{ style: 'margin: 0 10px;' }
+                You have not listed your role in the sleep apnea community. In order to participate in this part of the research community, please
+                = link_to 'select a role.', describe_yourself_path, style: 'text-decoration: none;'
+          - else
+            - @surveys.each do |survey|
+              .col-sm-4.centered-text
+                = render partial: 'surveys/partials/survey_progress', locals: { survey: survey }
+
+/ Trending topic
+- @rt = ResearchTopic.current.first
+.lighterer-blue-bcg{ style: 'padding: 20px; margin: 20px 0; border-radius: 20px;'}
+  %h1.text-white Trending Topic
+  = render partial: 'research_topics/voting_form', locals: { rt: @rt }
+
+- if current_user.assigned_surveys.count == current_user.completed_surveys.count
+  .panel
+    .panel-body
+      %h3.f300.centered-text.text-dark7
+        Congratulations! You have completed all of your surveys!
+      %h4.f300.centered-text.text-dark7{ style: 'margin: 20px 10px;' }
+        Since you're doing such a great job, why don't you
+        = link_to 'submit a research question', research_topics_path, style: 'text-decoration: none;'
+        to be discussed by the community?
 
 .panel
   .panel-heading

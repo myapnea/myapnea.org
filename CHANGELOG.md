@@ -1,5 +1,28 @@
 ## 7.0.0
 
+### New Features
+- Rank the Research requires users to go through an intro process
+  - Users will see a dedicated page that introduces and explains the feature
+  - Users will then go through ten dedicated questions, one at a time
+  - Users will finally be able to see the full index, which has been restyled
+    - The most popular topic will be pulled above the fold to encourage further engagement
+    - Endorsed questions will be shown as visual links as a proof of deliverable
+    - Questions are binned by category (newest, most discussed)
+    - Users can submit a question on the index page
+- Added provider report to admin panel
+  - Shows the number of members who have signed up with each provider
+  - Highlights the provider with the most members
+
+### Enhancements
+- Social sharing
+  - Forum topics can now be easily shared
+    - Each topic can auto generate a tweet, facebook post, and email for sharing
+  - Users are able to share that they have just completed a survey after submission
+- Forums
+  - Unmoderated posts are visible to users (not public), with a visible flag that they are unmoderated
+  - A disclaimer is included at the bottom of a topic with unmoderated posts
+
+
 ## 6.1.1 (May 1, 2015)
 
 ### Enhancements

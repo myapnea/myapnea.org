@@ -1,0 +1,16 @@
+.content-main-header
+  %h1.f300 Newest Research Questions
+
+.panel
+  .panel-body
+    - @research_topics.each do |rt|
+      .list-group-item
+        - if rt.votes.pluck(:user_id).include?(current_user.id)
+          .row
+            .col-sm-11.col-xs-10
+              %p.lead= rt.text
+            .col-xs-1
+              %p.lead.primary-blue= simple_check true
+        - else
+          = render partial: 'research_topics/voting_form', locals: { rt: rt }
+

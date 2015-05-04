@@ -15,6 +15,16 @@
       &middot;
       = link_to 'Edit Topic', edit_forum_topic_path(@forum, @topic), class: 'btn btn-xs btn-primary'
 
+.well.well-sm.centered-text
+  %h3.f300
+    Share this discussion:
+    - 2.times do
+      %br.visible-xs
+    = link_to image_tag('myapnea/icons/facebook_icon.png', class: 'share-icons-sm'), "http://www.facebook.com/share.php?u=#{forum_topic_path(@forum, @topic)}"
+    = link_to image_tag('myapnea/icons/twitter_icon.png', class: 'share-icons-sm'), "http://twitter.com/home?status=#{truncate(@topic.name, length: 92)}%20#{forum_topic_path(@forum, @topic)}%20via%20%40MyApneaOrg%20%23myapnea"
+    = link_to image_tag('myapnea/icons/email_icon.png', class: 'share-icons-sm'), "mailto:?subject=Check%20out%20this%20conversation%20on%20MyApnea.Org&body=I%20think%20you%20will%20like%20this%20discussion%20happening%20on%20MyApnea.Org:%20#{@topic.name}%20%28#{forum_topic_path(@forum, @topic)}%29"
+
+
 - if current_user and current_user.has_role? :moderator and (@topic.hidden? or @topic.locked? or ['pending_review', 'spam'].include?(@topic.status))
   .panel.panel-primary
     .panel-heading
@@ -49,6 +59,12 @@
 - @posts = @topic.posts.page(params[:page]).per( Topic::POSTS_PER_PAGE )
 
 = render @posts
+
+- if @posts.pluck(:status).uniq.include?("pending_review")
+  .well
+    %p.lead
+      This topic includes at least one post that has not been approved by a moderator. Please be advised that these posts may contain sensitive material or unsolicitied medical advice. MyApnea does not endorse the content of these posts, and strongly urges you to ignore any direct medical advice received anywhere on the internet.
+
 
 %div{ style: 'text-align:center' }= paginate @posts, theme: 'bootstrap-small'
 
@@ -115,51 +131,3 @@
       = link_to 'sign in'.html_safe, new_user_session_path, class: 'btn btn-xs btn-success'
       to join the discussion.
 
-
-- if false
-  %p{ id: "notice" }= notice
-
-  %p
-    %strong
-      Forum:
-      = @topic.forum_id
-
-  %p
-    %strong
-      User:
-      = @topic.user_id
-
-  %p
-    %strong
-      Name:
-      = @topic.name
-
-  %p
-    %strong
-      Locked:
-      = @topic.locked
-
-  %p
-    %strong
-      Pinned:
-      = @topic.pinned
-
-  %p
-    %strong
-      Last post at:
-      = @topic.last_post_at
-
-  %p
-    %strong
-      Status:
-      = @topic.status
-
-  %p
-    %strong
-      Views count:
-      = @topic.views_count
-
-  %p
-    %strong
-      Slug:
-      = @topic.slug
