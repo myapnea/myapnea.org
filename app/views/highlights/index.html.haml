@@ -3,6 +3,11 @@
   &middot;
   = link_to 'New Highlight', new_highlight_path, class: 'btn btn-primary'
 
+- if Highlight.current.where(displayed: true).count > 3
+  .alert.alert-danger
+    %p.lead
+      There are more than 3 items currently marked as 'displayed'. Only three will be displayed at a time, so you should untag certain items to make sure only the three most important items will be displayed.
+
 - @highlights.each do |highlight|
   %hr
   = render partial: 'highlights/display', locals: { highlight: highlight }

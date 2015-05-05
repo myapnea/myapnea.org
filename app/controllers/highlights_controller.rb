@@ -45,7 +45,7 @@ class HighlightsController < ApplicationController
   def update
     respond_to do |format|
       if @highlight.update(highlight_params)
-        format.html { redirect_to @highlight, notice: 'Highlight was successfully updated.' }
+        format.html { redirect_to highlights_path, notice: 'Highlight was successfully updated.' }
         format.json { render :show, status: :ok, location: @highlight }
       else
         format.html { render :edit }
@@ -72,6 +72,6 @@ class HighlightsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def highlight_params
-      params.require(:highlight).permit(:title, :description, :photo, :display_date, :link)
+      params.require(:highlight).permit(:title, :description, :photo, :display_date, :displayed, :link)
     end
 end

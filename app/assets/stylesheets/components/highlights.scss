@@ -1,4 +1,12 @@
 .highlight-container {
+  position: relative;
+  .highlight-container-right-after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-radius: 0px 20px 0px 0px;
+    padding: 5px;
+  }
   a {
     text-decoration: none !important;
   }

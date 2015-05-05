@@ -77,7 +77,7 @@ class HighlightsControllerTest < ActionController::TestCase
   test "should update highlight" do
     login(@owner)
     patch :update, id: @highlight, highlight: { description: @highlight.description, display_date: @highlight.display_date, photo: @highlight.photo, title: @highlight.title }
-    assert_redirected_to highlight_path(assigns(:highlight))
+    assert_redirected_to highlights_path
   end
 
   test "should not update highlight for regular user" do
