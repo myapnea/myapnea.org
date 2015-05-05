@@ -21,6 +21,7 @@
 - Forums
   - Unmoderated posts are visible to users (not public), with a visible flag that they are unmoderated
   - A disclaimer is included at the bottom of a topic with unmoderated posts
+- Added 'Remember me' to login process to reduce landing page hits for already registered members
 
 ### Bug Fixes
 - Welcome modal that introduces research will only appear for nonacademic users
