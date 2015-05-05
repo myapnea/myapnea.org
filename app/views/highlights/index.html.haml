@@ -1,0 +1,11 @@
+%h1
+  Highlights
+  &middot;
+  = link_to 'New Highlight', new_highlight_path, class: 'btn btn-primary'
+
+- @highlights.each do |highlight|
+  %hr
+  = render partial: 'highlights/display', locals: { highlight: highlight }
+  .centered-text
+    = link_to 'Edit', edit_highlight_path(highlight), class: 'btn btn-default'
+

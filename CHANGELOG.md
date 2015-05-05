@@ -12,6 +12,7 @@
 - Added provider report to admin panel
   - Shows the number of members who have signed up with each provider
   - Highlights the provider with the most members
+- Added ability for owners to dynamically update dashboard highlights
 
 ### Enhancements
 - Social sharing
