@@ -11,6 +11,4 @@
 - @highlights.each do |highlight|
   %hr
   = render partial: 'highlights/display', locals: { highlight: highlight }
-  .centered-text
-    = link_to 'Edit', edit_highlight_path(highlight), class: 'btn btn-default'
 

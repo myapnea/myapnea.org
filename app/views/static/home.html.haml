@@ -45,26 +45,10 @@
         = link_to 'submit a research question', research_topics_path, style: 'text-decoration: none;'
         to be discussed by the community?
 
-.panel
-  .panel-heading
-    %h3.f300 News
-  .panel-body
-    .row
-      .col-sm-4{ style: 'margin-bottom:20px;' }
-        = link_to ENV['website_url']+'/forums/news/topics/new-lottery-winner-announced', class: 'home-news-link' do
-          = render partial: 'static/home_news_image', locals: {day: '8', month: 'Feb', year: '15'}
-          %h4.f300.primary-orange.centered-text Recent Lottery Winner!
-          %h5.f300.centered-text.visible-xs You've been doing an amazing job with surveys, and our most recent winner has been picked!
-      .col-sm-4{ style: 'margin-bottom:20px;' }
-        = link_to ENV['website_url']+'/forums/building-myapnea-org/topics/we-re-releasing-new-survey-reports-we-want-your-feedback', class: 'home-news-link' do
-          = render partial: 'static/home_news_image', locals: {day: '28', month: 'Feb', year: '15'}
-          %h4.f300.primary-orange.centered-text New and Improved Survey Reports!
-          %h5.f300.centered-text.visible-xs We are happy to announce that our survey reports have gotten a beautiful redesign! Big thanks to many members for their feedback.
-      .col-sm-4{ style: 'margin-bottom:20px;' }
-        = link_to ENV['website_url']+'/forums/news/topics/customize-your-myapnea-experience', class: 'home-news-link' do
-          = render partial: 'static/home_news_image', locals: {day: '3', month: 'Mar', year: '15'}
-          %h4.f300.primary-orange.centered-text Customizing your MyApnea Experience
-          %h5.f300.centered-text.visible-xs We're working on personalizing your experience on MyApnea.Org. Let us know what you want to see more of!
+.row{ style: 'margin-bottom:20px;' }
+  - Highlight.current.where(displayed: true).sort{ |a,b| b.created_at <=> a.created_at }.first(3).each do |highlight|
+    .col-sm-4
+      = render partial: 'highlights/display', locals: { highlight: highlight }
 
 .panel
   .panel-heading

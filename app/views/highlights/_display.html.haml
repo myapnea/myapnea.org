@@ -2,18 +2,21 @@
 
 .panel.highlight-container
   / Allow easy toggling of displayed update items
-  .highlight-container-right-after
-    - if @highlight.displayed?
-      = link_to highlight_path(@highlight, highlight: { displayed: false }), method: :patch do
-        %span.glyphicon.glyphicon-star.primary-orange
-    - else
-      = link_to highlight_path(@highlight, highlight: { displayed: true }), method: :patch do
-        %span.glyphicon.glyphicon-star-empty.text-dark4
-
+  - if current_user.has_role?(:owner)
+    .highlight-container-right-after
+      - if @highlight.displayed?
+        = link_to highlight_path(@highlight, highlight: { displayed: false }), method: :patch do
+          %span.glyphicon.glyphicon-star.primary-orange
+      - else
+        = link_to highlight_path(@highlight, highlight: { displayed: true }), method: :patch do
+          %span.glyphicon.glyphicon-star-empty.text-dark4
+      %br
+      = link_to edit_highlight_path(@highlight) do
+        %i.fa.fa-pencil
   .panel-body.centered-text
-    = link_to (@highlight.link.present? ? @highlight.link : @highlight) do
+    = link_to (@highlight.link.present? ? @highlight.link : root_path) do
       - if @highlight.photo_url.present?
-        = image_tag @highlight.photo, class: 'img-responsive img-thumbnail', style: 'margin: auto;'
+        = image_tag @highlight.photo, class: 'img-responsive', style: 'margin: auto;'
       - elsif @highlight.display_date.present?
         = render partial: 'static/home_news_image', locals: {day: @highlight.display_date.day.to_s, month: Date::MONTHNAMES[@highlight.display_date.month][0..2], year: @highlight.display_date.year.to_s[2..3]}
       %h4.f300.primary-orange
