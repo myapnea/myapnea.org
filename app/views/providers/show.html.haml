@@ -9,6 +9,12 @@
       %br
       If you would like to make changes, go to your
       = link_to 'account settings', account_path
+      %br
+      %br
+      If you would like to share your page, please use this url:
+      %br
+      %span.wrapword
+        = link_to (ENV['website_url'] + '/p/' + current_user.slug), (ENV['website_url'] + '/p/'+ current_user.slug)
 .row.row-fullscreen#provider-header
   .col-md-7.col-md-offset-5.darker-blue-bcg{ style: 'border-radius: 30px 0 0 30px; margin-top:50px; padding:25px; background-color: #387FCF; background-color: rgba(56, 127, 207, 0.7)' }
     %h1.centered-text.text-white Wake up to a better future

@@ -9,6 +9,22 @@
     - Endorsed questions will be shown as visual links as a proof of deliverable
     - Questions are binned by category (newest, most discussed)
     - Users can submit a question on the index page
+- Added provider report to admin panel
+  - Shows the number of members who have signed up with each provider
+  - Highlights the provider with the most members
+
+### Enhancements
+- Social sharing
+  - Forum topics can now be easily shared
+    - Each topic can auto generate a tweet, facebook post, and email for sharing
+  - Users are able to share that they have just completed a survey after submission
+- Forums
+  - Unmoderated posts are visible to users (not public), with a visible flag that they are unmoderated
+  - A disclaimer is included at the bottom of a topic with unmoderated posts
+- Added 'Remember me' to login process to reduce landing page hits for already registered members
+
+### Bug Fixes
+- Welcome modal that introduces research will only appear for nonacademic users
 
 ## 6.1.1 (May 1, 2015)
 

@@ -124,6 +124,11 @@ class AccountController < ApplicationController
   def terms_and_conditions
   end
 
+  def accepts_terms_and_conditions
+    current_user.update(accepted_terms_conditions_at: Time.zone.now)
+    redirect_to session[:return_to] || forums_path
+  end
+
   def terms_of_access
     if params[:terms_of_access_read]
       current_user.update(accepted_terms_of_access_at: Time.zone.now)
@@ -164,7 +169,7 @@ class AccountController < ApplicationController
   private
 
   def user_params
-    params.required(:user).permit(:email, :first_name, :last_name, :zip_code, :year_of_birth, :password, :password_confirmation, :current_password, :beta_opt_in, :state_code, :country_code, :provider_id, :welcome_message, :photo, :emails_enabled, :slug, :provider_name)
+    params.required(:user).permit(:email, :first_name, :last_name, :zip_code, :year_of_birth, :password, :password_confirmation, :current_password, :beta_opt_in, :state_code, :country_code, :provider_id, :welcome_message, :photo, :remove_photo, :emails_enabled, :slug, :provider_name)
   end
 
   def load_content

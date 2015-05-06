@@ -1,6 +1,10 @@
 .col-md-5.col-sm-12.col-xs-5.centered-text
-  = link_to social_profile_path do
-    = image_tag current_user.photo_url, class: "user-picture", style: 'max-width:65px; max-height:65px;'
+  - if current_user.is_provider?
+    = link_to provider_path(current_user.slug) do
+      = image_tag current_user.photo_url, class: "user-picture", style: 'max-width:65px; max-height:65px;'
+  - else
+    = link_to social_profile_path do
+      = image_tag current_user.photo_url, class: "user-picture", style: 'max-width:65px; max-height:65px;'
 #user-profile-header-text.col-md-7.col-sm-12.col-xs-7
   %h4.f300.text-white= current_user.name
   = link_to account_path, class: 'f300 text-light8' do

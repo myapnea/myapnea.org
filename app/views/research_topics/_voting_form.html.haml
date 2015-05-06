@@ -1,5 +1,6 @@
 - raise StandardError unless defined?(rt)
-.panel
+- @already_voted = rt.votes.pluck(:user_id).include?(current_user.id)
+.panel{ style: "#{'opacity: 0.8; background-color: #eee' if @already_voted}"}
   .panel-heading
     %div{ style: 'min-height: 50px;'}
       = image_tag rt.user.photo_url, class: 'img-responsive', style: 'width: 50px; height: 50px; border: 2px solid white; float: left'
@@ -9,17 +10,21 @@
   .panel-body
     %h4.centered-text= rt.text
     %hr
-    %p.lead= "\"#{rt.description}\""
-    %hr
-    .centered-text
-      = radio_button_tag "I endorse this topic", :endorse
-      %label{ for: 'endorse' } I endorse this topic!
-      %br
-      = radio_button_tag "I don't endorse this topic", :dont_endorse
-      %label{ for: 'dont_endorse' } I don't endorse this topic!
-      %br
-      %br
-      %p.muted Add a comment (optional):
-      = text_area_tag "comment", nil, rows: 5, class: 'form-control'
-      %br
-      = submit_tag "Submit", class: 'btn btn-primary'
+    - if @already_voted
+      .centered-text{ style: 'border: 3px solid #5999de; border-radius: 10px; padding:10px; background-color:#aaa; color: white'}
+        You've already voted on this. Thank you!
+    - else
+      %p.lead= "\"#{rt.description}\""
+      %hr
+      .centered-text
+        = radio_button_tag "I endorse this topic", :endorse
+        %label{ for: 'endorse' } I endorse this topic!
+        %br
+        = radio_button_tag "I don't endorse this topic", :dont_endorse
+        %label{ for: 'dont_endorse' } I don't endorse this topic!
+        %br
+        %br
+        %p.muted Add a comment (optional):
+        = text_area_tag "comment", nil, rows: 5, class: 'form-control'
+        %br
+        = submit_tag "Submit", class: 'btn btn-primary'

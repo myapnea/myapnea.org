@@ -7,6 +7,8 @@ class PostsController < ApplicationController
   before_action :set_topic
   before_action :redirect_without_topic
 
+  before_action :check_approved_terms
+
   # before_action :check_banned, only: [ :create, :edit, :update ]
   before_action :redirect_on_locked_topic,  only: [ :new, :create, :edit, :update, :destroy ]
   before_action :set_post, only: [ :show ]
@@ -147,6 +149,13 @@ class PostsController < ApplicationController
         params.require(:post).permit(:description, :status)
       else
         params.require(:post).permit(:description)
+      end
+    end
+
+    def check_approved_terms
+      if current_user and (current_user.accepted_terms_conditions_at.blank? or current_user.accepted_terms_conditions_at < Date.parse(Forum::RECENT_FORUMS_UPDATE_DATE).at_noon)
+        session[:return_to] = request.fullpath
+        redirect_to terms_and_conditions_path
       end
     end
 end

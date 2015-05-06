@@ -46,6 +46,7 @@ class SocialController < ApplicationController
         :age,
         :gender,
         :photo,
+        :remove_photo,
         :visible_to_community,
         :visible_to_world
     )

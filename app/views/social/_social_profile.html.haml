@@ -1,26 +1,43 @@
 = form_for current_user.social_profile, html: {role: "form", class: 'form-horizontal'}, url: social_profile_path do |f|
   .panel
     .panel-body.text-dark8
-      %h3.f300.col-xs-12.centered-text.text-dark9{ style: 'margin-bottom:30px;'} My Social Profile
+      %h3.f300.centered-text.text-dark9{ style: 'margin-bottom:30px;'}
+        My Social Profile
+
       .form-group
-        %label.col-sm-3.col-sm-offset-3.control-label
-          = image_tag current_user.photo_url, :class => "img-responsive img-thumbnail"
-        .col-sm-6
-          %h4.f300 Change Photo
-          =f.file_field :photo
+        .row
+          %label.social-image-container.control-label.col-sm-3.col-sm-offset-3
+            - # Allow removal of social profile
+            .social-image-container-left-after
+              = link_to update_social_profile_path(current_user.social_profile, social_profile: { remove_photo: true }), method: :post do
+                %button.btn.btn-sm.btn-default X
+            = image_tag current_user.photo_url, :class => "img-responsive img-thumbnail"
+          .col-sm-6
+            %h4.f300
+              Change Photo
+            %br
+            =f.file_field :photo
+
       .form-group{ style: 'margin-top:20px;' }
-        %label.col-sm-3.control-label Nickname
-        .col-sm-6
-          =f.text_field(:name, class: 'form-control' )
+        .row
+          %label.control-label.col-sm-3 Nickname
+          .col-sm-6
+            =f.text_field(:name, class: 'form-control' )
+
       .form-group
-        %label.col-sm-3.control-label Age
-        .col-sm-6
-          =f.number_field(:age, class: 'form-control')
+        .row
+          %label.control-label.col-sm-3
+            Age
+          .col-sm-6
+            =f.number_field(:age, class: 'form-control')
+
       .form-group
-        %label.col-sm-3.control-label Gender
-        .col-sm-6
-          = f.text_field(:gender, autocomplete: "off", data: { object: 'typeahead', local: ["Male", "Female", "Genderqueer", "Androgynous", "Intersex", "Transgender", "Transsexual", "Cross-dresser", "Male-to-female (MTF)", "Female-to-male (FTM)"].to_json }, class: 'form-control')
-      -# =f.submit("Save Changes", class: 'btn btn-primary col-sm-6 col-sm-offset-3 centered-text')
+        .row
+          %label.control-label.col-sm-3
+            Gender
+          .col-sm-6
+            = f.text_field(:gender, autocomplete: "off", data: { object: 'typeahead', local: ["Male", "Female", "Genderqueer", "Androgynous", "Intersex", "Transgender", "Transsexual", "Cross-dresser", "Male-to-female (MTF)", "Female-to-male (FTM)"].to_json }, class: 'form-control')
+
     .panel-footer.text-dark9.row{ style: 'margin:10px 0;'}
       %h4.f500.centered-text
         This is how you will appear to other members of MyApnea.Org

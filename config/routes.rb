@@ -47,6 +47,7 @@ Rails.application.routes.draw do
   post 'accepts_consent' => 'account#accepts_consent'
   post 'accepts_terms_of_access' => 'account#accepts_terms_of_access'
   post 'accepts_update' => 'account#accepts_update'
+  post 'accepts_terms_and_conditions' => 'account#accepts_terms_and_conditions'
 
   # Provider Pages
   get 'p(/:slug)', to: 'static#provider_page'
@@ -67,6 +68,9 @@ Rails.application.routes.draw do
     collection do
       get :intro
       get "first-topics", as: :first_topics
+      get :newest
+      get "most-discussed", as: :most_discussed
+      get :all
     end
   end
 
@@ -133,6 +137,7 @@ Rails.application.routes.draw do
   get 'admin/version-stats' => 'admin#version_stats', as: 'admin_version_stats'
   get 'admin/cross-tabs' => 'admin#cross_tabs', as: 'admin_cross_tabs'
   get 'admin/reports/location' => 'admin#location', as: 'admin_reports_location'
+  get 'admin/providers' => 'admin#providers'
 
   # Development/System
   get 'pprn' => 'application#toggle_pprn_cookie'

@@ -11,6 +11,7 @@ user_<%= i %>:
   over_eighteen: true
   adult_diagnosed: true
   encrypted_password: <%= pw %>
+  accepted_terms_conditions_at: <%= Time.zone.now %>
 <% end %>
 
 has_accepted_privacy:
@@ -64,6 +65,7 @@ moderator_1:
   over_eighteen: true
   adult_diagnosed: true
   encrypted_password: <%= pw %>
+  accepted_terms_conditions_at: <%= Time.zone.now %>
 
 moderator_2:
   first_name: Mod
@@ -74,6 +76,7 @@ moderator_2:
   over_eighteen: true
   adult_diagnosed: true
   encrypted_password: <%= pw %>
+  accepted_terms_conditions_at: <%= Time.zone.now %>
 
 owner:
   first_name: Own
@@ -84,6 +87,7 @@ owner:
   over_eighteen: true
   adult_diagnosed: true
   encrypted_password: <%= pw %>
+  accepted_terms_conditions_at: <%= Time.zone.now %>
 
 has_completed_survey:
   first_name: Complete
