@@ -17,6 +17,8 @@ class ResearchTopic < ActiveRecord::Base
     topic.status
   end
 
+
+
   private
 
 end

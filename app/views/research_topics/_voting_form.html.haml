@@ -1,5 +1,5 @@
 - raise StandardError unless defined?(rt)
-- @already_voted = rt.votes.pluck(:user_id).include?(current_user.id)
+- @already_voted = false #rt.votes.pluck(:user_id).include?(current_user.id)
 .panel{ style: "#{'opacity: 0.8; background-color: #eee' if @already_voted}"}
   .panel-heading
     %div{ style: 'min-height: 50px;'}
