@@ -1,14 +1,46 @@
 .dashboard-community-container {
   margin: 15px 5px;
-  border: 1px solid #f4f4f4;
-  .reply-header {
+  border: 1px solid #bbb;
+  border-radius: 5px;
+  background-color: white;
+  .post-header {
     background-color: #fcfcfc;
     border-bottom: 1px solid #f0f0f0;
+    border-radius:5px 5px 0 0;
     margin: 0;
     padding: 10px 10px 10px 5px;
   }
-  .reply-content {
-    background-color: white;
+  .post-content {
     margin: 0;
+  }
+  .reply-container {
+    .reply {
+      margin: 0;
+      padding-bottom:5px;
+      .reply-field {
+        padding: 0px;
+        .reply-text-area {
+          height: 35px;
+          padding: 3px;
+          font-size: 18px;
+          width: 100%;
+          border-radius: 3px 0 0 3px;
+          border: 1px solid #bbb;
+          border-right: none;
+        }
+        .reply-text-area:focus {
+          border-color: #66afe9;
+          outline: 0;
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+        }
+      }
+      .reply-submit {
+        padding: 0px;
+        .reply-button {
+          height: 35px;
+          border-radius: 0 3px 3px 0;
+        }
+      }
+    }
   }
 }

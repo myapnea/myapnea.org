@@ -1,27 +1,37 @@
 - recent_posts = Post.visible_for_user(current_user).sort{ |a,b| b.created_at <=> a.created_at }.first(topic_limit)
 
 - recent_posts.each do |post|
+  - @topic = Topic.find_by_id(post.topic_id)
+  - @forum = Forum.find_by_id(@topic.forum_id)
   .dashboard-community-container
-    .row.reply-header
+    .row.post-header
       .col-sm-1.col-xs-2
         = render partial: 'forums/user_image', locals: { user: post.user, size: 75 }
       .col-sm-11.col-xs-10
         %h4.f300
           %span.f500= post.user.forum_name
           replied to
-          = link_to post.topic.name, forum_topic_path(Forum.find_by_id(Topic.find_by_id(post.topic_id).forum_id).slug, Topic.find_by_id(post.topic_id).slug), class: 'no-underline'
+          = link_to post.topic.name, forum_topic_path(@forum.slug, @topic.slug), class: 'no-underline'
         %p.small.muted-text
           = post.created_at.strftime("%-d %B %Y, %-l:%M %p")
-    .row.reply-content
+    .row.post-content
       .col-sm-11.col-sm-offset-1.col-xs-10.col-xs-offset-2
         %p.lead
           - if post.description.length > 1000
             = simple_markdown(truncate(post.description, length: 1000))
-            = link_to 'read more', forum_topic_post_path(Forum.find_by_id(Topic.find_by_id(post.topic_id).forum_id).slug, Topic.find_by_id(post.topic_id).slug, post), class: 'no-underline'
+            = link_to 'read more', forum_topic_post_path(@forum.slug, @topic.slug, post), class: 'no-underline'
           - else
             = simple_markdown(post.description)
+    .reply-container
+      - unless @topic.locked?
+        - @post = @topic.posts.new
+        = form_for [@forum, @topic, @post], html: { class: 'form-horizontal' } do |f|
 
-.centered-text
-  %br
-  = link_to 'Read more from the community', forums_path, class: 'btn btn-primary btn-lg'
-  %br
+          - if current_user.has_role? :moderator
+            = f.hidden_field :status, value: 'approved'
+
+          .row.reply
+            .reply-field.col-sm-10.col-sm-offset-1.col-xs-9.col-xs-offset-2
+              = f.text_area :description, rows: 1, class: 'reply-text-area', id: 'post_description_new', data: { object: 'text-area-autocomplete', mentions: SocialProfile.current.where.not(name: [nil, '']).pluck(:name).uniq.sort }
+            .reply-submit.col-xs-1
+              = f.submit "Reply", class: 'btn btn-primary reply-button', data: { disable_with: "Posting" }

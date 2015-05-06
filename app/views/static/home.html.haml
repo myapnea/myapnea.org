@@ -1,5 +1,6 @@
 - @page_title = 'Home'
 
+/ Survey widget
 - unless current_user.assigned_surveys.count == current_user.completed_surveys.count
   .panel
     .panel-body
@@ -24,7 +25,7 @@
               .col-sm-4.centered-text
                 = render partial: 'surveys/partials/survey_progress', locals: { survey: survey }
 
-/ Trending topic
+/ Trending topic widget
 - @rt = ResearchTopic.current.first
 .lighterer-blue-bcg{ style: 'padding: 20px; margin: 20px 0; border-radius: 20px;'}
   %h1.text-white Trending Topic
@@ -35,10 +36,9 @@
     .col-sm-4
       = render partial: 'highlights/display', locals: { highlight: highlight }
 
-.panel
-  .panel-body
-    %h1.f300
-      Recent Community Activity
-    %br
-    = render partial: './forums/show_from_home', locals: { topic_limit: 20 }
-
+/ Forums widget
+= render partial: './forums/show_from_home', locals: { topic_limit: 20 }
+.centered-text
+  %br
+  = link_to 'Read more from the community', forums_path, class: 'btn btn-default btn-lg'
+  %br
