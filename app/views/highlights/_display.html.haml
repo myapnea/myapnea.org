@@ -14,7 +14,7 @@
       = link_to edit_highlight_path(@highlight) do
         %i.fa.fa-pencil
   .panel-body.centered-text
-    = link_to (@highlight.link.present? ? @highlight.link : root_path) do
+    = link_to ((@highlight.link.present? and safe_url?(@highlight.link)) ? @highlight.link : "#") do
       - if @highlight.photo_url.present?
         = image_tag @highlight.photo, class: 'img-responsive', style: 'margin: auto;'
       - elsif @highlight.display_date.present?
