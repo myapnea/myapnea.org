@@ -1,4 +1,4 @@
-- recent_posts = Post.visible_for_user(current_user).sort{ |a,b| b.created_at <=> a.created_at }.first(topic_limit)
+- recent_posts = Post.visible_for_user(current_user).where.not(user_id: current_user.id).sort{ |a,b| b.created_at <=> a.created_at }.first(topic_limit)
 
 - recent_posts.each do |post|
   - @topic = Topic.find_by_id(post.topic_id)
@@ -31,7 +31,9 @@
             = f.hidden_field :status, value: 'approved'
 
           .row.reply
-            .reply-field.col-sm-10.col-sm-offset-1.col-xs-9.col-xs-offset-2
+            .col-sm-1.col-xs-2
+              = render partial: 'forums/user_image', locals: { user: current_user, size: 40 }
+            .reply-field.col-sm-10.col-xs-9
               = f.text_area :description, rows: 1, class: 'reply-text-area', id: 'post_description_new', data: { object: 'text-area-autocomplete', mentions: SocialProfile.current.where.not(name: [nil, '']).pluck(:name).uniq.sort }
             .reply-submit.col-xs-1
               = f.submit "Reply", class: 'btn btn-primary reply-button', data: { disable_with: "Posting" }
