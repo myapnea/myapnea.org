@@ -1,12 +1,46 @@
 - @page_title = "Account"
 .content-main-header
   %h1 Account Settings
+
 - unless current_user.ready_for_research?
   = render partial: 'account/join_leave_research_study'
+
+
+.panel
+  .panel-body
+    %p.lead
+      Need help with a specific topic? Click on one of the links to get there quickly.
+    .list-group-item
+      %br
+      %p.lead= link_to "I want to change my picture that appears on the forums", '#q1'
+    .list-group-item
+      %br
+      %p.lead= link_to "I want to change my basic information (name, email, etc)", '#q2'
+    .list-group-item
+      %br
+      %p.lead= link_to "I want to change my member description (at-risk patient, diagnosed, care provider, etc.)", '#q3'
+    .list-group-item
+      %br
+      %p.lead= link_to "I want to change my password", '#q4'
+    .list-group-item
+      %br
+      %p.lead= link_to "I want to link with my care provider", '#q5'
+    .list-group-item
+      %br
+      %p.lead= link_to "I want to change how I receive notifications", '#q6'
+    - if current_user.ready_for_research?
+      .list-group-item
+        %br
+        %p.lead= link_to "I want to leave the research study", "#q7"
+
+%a.anchor#q1
 - if current_user.is_provider?
   = render partial: 'providers/providers_profile'
--else
+- else
   = render partial: 'social/social_profile'
+
+
+%a.anchor#q2
 .panel
   .panel-heading
     %h4.f300 Basic Information
@@ -34,6 +68,7 @@
           = f.select :state_code, [['---', nil]] + Map::MAP_STATES_AND_CODES, {}, class: 'form-control input-lg'
       = f.submit "Save Changes", class: 'btn btn-primary pull-right'
   .panel-footer.text-dark9{ style: 'margin:10px 0;'}
+    %a.anchor#q3
     - if current_user.has_user_type?
       %h4.f500.centered-text You describe yourself as:
       .centered-text{ style: 'margin: 20px;' }
@@ -42,6 +77,8 @@
       %h5.f300.centered-text
         If this is incorrect, please
         = link_to 'change your user type.', describe_yourself_path
+
+%a.anchor#q4
 .panel
   .panel-heading
     %h4.f300 Change Password
@@ -54,7 +91,9 @@
         = f.label :password, class: 'sr-only'
         = f.password_field :password, class: 'form-control input-lg', placeholder: "New Password"
       = f.submit "Change My Password", class: 'btn btn-primary pull-right'
-- if current_user.my_provider
+
+%a.anchor#q5
+- if current_user.my_provider.present?
   .panel
     .panel-heading
       %h4.f300 My Listed Provider
@@ -65,6 +104,8 @@
       If you wish, you may
       = link_to 'unlist', update_account_path(user: { provider_id: nil }), method: :patch, class: 'btn btn-warning btn-xs'
       yourself from this provider's network.
+
+%a.anchor#q6
 .panel
   .panel-heading
     %h4.f300 Notification Preferences
@@ -83,5 +124,7 @@
       If you prefer, you can
       = link_to 'enable', update_account_path(user: { emails_enabled: '1' }), method: :patch, class: 'btn btn-primary btn-xs'
       emails.
+
+%a.anchor#q7
 - if current_user.ready_for_research?
   = render partial: 'account/join_leave_research_study'
