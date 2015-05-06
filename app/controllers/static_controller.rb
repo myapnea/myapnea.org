@@ -1,5 +1,5 @@
 class StaticController < ApplicationController
-  before_action :load_pc, only: [ :about, :team, :advisory, :learn, :faqs, :research ]
+  before_action :load_pc, only: [ :team, :advisory, :learn, :research ]
   before_action :about_layout, only: [ :research ]
 
   ## Static
@@ -130,7 +130,7 @@ class StaticController < ApplicationController
   end
 
   def page_content(name)
-    YAML.load_file(Rails.root.join('lib', 'data', 'myapnea', 'content', "#{name}.#{I18n.locale}.yml"))[I18n.locale.to_s][name]
+    YAML.load_file(Rails.root.join('lib', 'data', 'content', "#{name}.yml"))[name]
   end
 
   def about_layout
