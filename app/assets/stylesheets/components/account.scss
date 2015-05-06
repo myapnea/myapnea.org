@@ -1,0 +1,14 @@
+#account-link-container {
+  a {
+    text-decoration: none;
+    .list-group-item {
+      background-color: #fff;
+    }
+  }
+  a:hover {
+    text-decoration: none;
+    .list-group-item {
+      background-color: #efefef;
+    }
+  }
+}
