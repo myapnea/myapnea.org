@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+
   mount_uploader :photo, PhotoUploader
 
   rolify role_join_table_name: 'roles_users'

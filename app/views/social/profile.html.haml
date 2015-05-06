@@ -1,50 +1,53 @@
-- @title = "Your Social Profile"
+= render partial: 'social/social_profile'
 
-= form_for @social_profile, html: {role: "form", class: 'form-horizontal'}, url: social_profile_path do |f|
-  .panel.panel-default
-    .panel-body
-      - if @social_profile.errors.any?
-        .alert.alert-danger.alert-dismissable
-          %button.close{"aria-hidden" => "true", "data-dismiss" => "alert", :type => "button"} &times;
-          %strong Profile Errors
-          %ul
-            - @social_profile.errors.full_messages.each do |msg|
-              %li= msg.html_safe
+- if false
+  - @title = "Your Social Profile"
 
-      .form-group
-        %label.col-sm-3.control-label
-          - if current_user.social_profile and current_user.social_profile.photo.present?
-            = image_tag current_user.social_profile.photo_url, class: 'img-responsive img-thumbnail'
-          - else
-            = image_tag 'default-user.jpg', class: 'img-responsive img-thumbnail'
-        .col-sm-9
-          - if @social_profile.photo.present?
-            %h3 Change Photo
-          - else
-            %h3 Upload Photo
-          =f.file_field :photo
-      .form-group
-        %label.col-sm-3.control-label Nickname
-        .col-sm-6
-          =f.text_field(:name, class: 'form-control')
-      .form-group
-        %label.col-sm-3.control-label City
-        .col-sm-6
-          =f.text_field(:location, autocomplete: 'off', id: 'location', class: 'form-control')
-          =f.hidden_field :latitude
-          =f.hidden_field :longitude
-          =f.hidden_field :location_id
-      .form-group
-        %label.col-sm-3.control-label Age
-        .col-sm-6
-          =f.number_field(:age, class: 'form-control')
-      .form-group
-        %label.col-sm-3.control-label Gender
-        .col-sm-6
-          = f.text_field(:gender, autocomplete: "off", data: { object: 'typeahead', local: ["Male", "Female", "Genderqueer", "Androgynous", "Intersex", "Transgender", "Transsexual", "Cross-dresser", "Male-to-female (MTF)", "Female-to-male (FTM)"].to_json }, class: 'form-control')
-          / =f.select(:sex, ["Male", "Female", "Other"], {}, class: 'form-control')
-      =f.submit("Save", class: 'btn btn-primary pull-right')
+  = form_for @social_profile, html: {role: "form", class: 'form-horizontal'}, url: social_profile_path do |f|
+    .panel.panel-default
+      .panel-body
+        - if @social_profile.errors.any?
+          .alert.alert-danger.alert-dismissable
+            %button.close{"aria-hidden" => "true", "data-dismiss" => "alert", :type => "button"} &times;
+            %strong Profile Errors
+            %ul
+              - @social_profile.errors.full_messages.each do |msg|
+                %li= msg.html_safe
 
-= javascript_include_tag "//maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places&key=AIzaSyBB91qMUvtmPzct9z7slTqm-lTUEVuYjKo"
-= javascript_include_tag 'typeahead-addresspicker'
-= javascript_include_tag 'social/places'
+        .form-group
+          %label.col-sm-3.control-label
+            - if current_user.social_profile and current_user.social_profile.photo.present?
+              = image_tag current_user.social_profile.photo_url, class: 'img-responsive img-thumbnail'
+            - else
+              = image_tag 'default-user.jpg', class: 'img-responsive img-thumbnail'
+          .col-sm-9
+            - if @social_profile.photo.present?
+              %h3 Change Photo
+            - else
+              %h3 Upload Photo
+            =f.file_field :photo
+        .form-group
+          %label.col-sm-3.control-label Nickname
+          .col-sm-6
+            =f.text_field(:name, class: 'form-control')
+        .form-group
+          %label.col-sm-3.control-label City
+          .col-sm-6
+            =f.text_field(:location, autocomplete: 'off', id: 'location', class: 'form-control')
+            =f.hidden_field :latitude
+            =f.hidden_field :longitude
+            =f.hidden_field :location_id
+        .form-group
+          %label.col-sm-3.control-label Age
+          .col-sm-6
+            =f.number_field(:age, class: 'form-control')
+        .form-group
+          %label.col-sm-3.control-label Gender
+          .col-sm-6
+            = f.text_field(:gender, autocomplete: "off", data: { object: 'typeahead', local: ["Male", "Female", "Genderqueer", "Androgynous", "Intersex", "Transgender", "Transsexual", "Cross-dresser", "Male-to-female (MTF)", "Female-to-male (FTM)"].to_json }, class: 'form-control')
+            / =f.select(:sex, ["Male", "Female", "Other"], {}, class: 'form-control')
+        =f.submit("Save", class: 'btn btn-primary pull-right')
+
+  = javascript_include_tag "//maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places&key=AIzaSyBB91qMUvtmPzct9z7slTqm-lTUEVuYjKo"
+  = javascript_include_tag 'typeahead-addresspicker'
+  = javascript_include_tag 'social/places'
