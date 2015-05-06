@@ -59,14 +59,6 @@
         = f.label :email, class: 'col-sm-3 control-label'
         .col-sm-6
           = f.email_field :email, class: 'form-control', placeholder: User.human_attribute_name(:email), autocomplete: :off
-      .form-group.row
-        = f.label :country_code, 'Country', class: 'col-sm-3 control-label'
-        .col-sm-6
-          = f.select :country_code, [['---', nil]] + Map::MAP_COUNTRIES_AND_CODES, {}, class: 'form-control'
-      .form-group.row
-        = f.label :state_code, 'State', class: 'col-sm-3 control-label'
-        .col-sm-6
-          = f.select :state_code, [['---', nil]] + Map::MAP_STATES_AND_CODES, {}, class: 'form-control'
       .row
         = f.submit "Save Changes", class: 'btn btn-primary col-xs-4 col-xs-offset-4 centered-text'
   .panel-footer.text-dark9{ style: 'margin:10px 0;'}
