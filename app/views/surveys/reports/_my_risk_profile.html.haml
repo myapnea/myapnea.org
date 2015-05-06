@@ -2,7 +2,7 @@
   .survey-report-question.rounded-top
     %h3
       What symptoms do you currently experience?
-  - if @answer_session.present?
+  - if Report.selected_symptoms("baseline", "risk-symptoms", current_user).present?
     .survey-report-answer
       %p
         Your symptoms include:

@@ -1,8 +1,5 @@
 .survey-report-container.panel
-  .survey-report-question.rounded-top
-    - question = @survey.ordered_questions.where(slug: 'sleep-hours-weekdays').first
-    %h3= question.text
-  = render partial: 'surveys/reports/question_and_user_answer', locals: {question_params: {survey_slug: @survey.slug, question_slug: question.slug, encounter: 'baseline'} }
+  = render partial: 'surveys/reports/question_and_user_answer', locals: { survey: @survey, question_slug: 'sleep-hours-weekdays', encounter: 'baseline'}
   .survey-report-info.rounded-bottom
     .row
       .col-xs-4.text-right
@@ -18,10 +15,7 @@
 
 
 .survey-report-container.panel
-  .survey-report-question.rounded-top
-    - question = @survey.ordered_questions.where(slug: 'sleep-hours-weekends').first
-    %h3= question.text
-  = render partial: 'surveys/reports/question_and_user_answer', locals: {question_params: {survey_slug: @survey.slug, question_slug: question.slug, encounter: 'baseline'} }
+  = render partial: 'surveys/reports/question_and_user_answer', locals: { survey: @survey, question_slug: 'sleep-hours-weekends', encounter: 'baseline'}
   .survey-report-info.rounded-bottom
     .row
       .col-xs-4.text-right
@@ -35,10 +29,7 @@
       Having the same bedtime and wake up time on workdays and weekends could help you fall asleep and stay asleep all night because it helps keep your body's clock regular.
 
 .survey-report-container.panel
-  .survey-report-question.rounded-top
-    - question = @survey.ordered_questions.where(slug: 'ideal-wakeup').first
-    %h3= question.text
-  = render partial: 'surveys/reports/question_and_user_answer', locals: {question_params: {survey_slug: @survey.slug, question_slug: question.slug, encounter: 'baseline'} }
+  = render partial: 'surveys/reports/question_and_user_answer', locals: { survey: @survey, question_slug: 'ideal-wakeup', encounter: 'baseline'}
   .survey-report-info.rounded-bottom
     - rotate_value = 30 * Report.personal_wakeup_time_toclock(current_user) - 15 rescue 0
     #clock
@@ -65,7 +56,7 @@
       ). Researchers study the body's internal clock, or circadian rhythm, to learn more about the differences between morning larks and night owls.
     %p.lead
       The average MyApnea member would prefer to wake up between
-      %span.f500= Report.median_wakeup_time()
+      %span.f500= Report.median_wakeup_time
 
 .survey-report-container.panel
   .survey-report-question.rounded-top

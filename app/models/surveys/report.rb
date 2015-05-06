@@ -239,8 +239,6 @@ class Report < ActiveRecord::Base
 
 
     template_name = current_to_satisfaction_map[value]
-    puts template_name
-
     # For each treatment (or top 5?) we want all the answer sessions where people indicated a not-6 for that answer_template (satisfaction)
     # Now, for this set of people, we want to find ratings for how the treatment helpled.
 
@@ -424,7 +422,7 @@ class Report < ActiveRecord::Base
         symptoms.push(AnswerTemplate.find_by_id(answer.answer_template_id).text)
       end
     end
-    return symptoms
+    symptoms.empty? ? nil : symptoms
   end
 
   ## My health conditions
