@@ -1,10 +1,5 @@
 - @page_title = 'Home'
 
-.content-main-header
-  %h1.f300
-    Welcome,
-    = current_user.first_name + '!'
-
 - unless current_user.assigned_surveys.count == current_user.completed_surveys.count
   .panel
     .panel-body
@@ -35,23 +30,15 @@
   %h1.text-white Trending Topic
   = render partial: 'research_topics/voting_form', locals: { rt: @rt }
 
-- if current_user.assigned_surveys.count == current_user.completed_surveys.count
-  .panel
-    .panel-body
-      %h3.f300.centered-text.text-dark7
-        Congratulations! You have completed all of your surveys!
-      %h4.f300.centered-text.text-dark7{ style: 'margin: 20px 10px;' }
-        Since you're doing such a great job, why don't you
-        = link_to 'submit a research question', research_topics_path, style: 'text-decoration: none;'
-        to be discussed by the community?
-
 .row{ style: 'margin-bottom:20px;' }
   - Highlight.current.where(displayed: true).sort{ |a,b| b.created_at <=> a.created_at }.first(3).each do |highlight|
     .col-sm-4
       = render partial: 'highlights/display', locals: { highlight: highlight }
 
 .panel
-  .panel-heading
-    %h3.f300 Recent Forum Activity
-  = render partial: './forums/show_from_home', locals: { topic_limit: '5' }
+  .panel-body
+    %h1.f300
+      Recent Community Activity
+    %br
+    = render partial: './forums/show_from_home', locals: { topic_limit: 20 }
 

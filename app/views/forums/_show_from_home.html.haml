@@ -1,29 +1,27 @@
-- if smart_forum = current_user.smart_forum
-  - topics = if current_user and current_user.has_role? :moderator
-    - smart_forum.topics
-  - else
-    - smart_forum.topics.viewable_by_user(current_user ? current_user.id : nil)
-- else
-  - topics = Topic.none
+- recent_posts = Post.visible_for_user(current_user).sort{ |a,b| b.created_at <=> a.created_at }.first(topic_limit)
 
-- if topics.count > 0
-  .panel-body
-    %table.table
-      %col{ width: "50px" }
-      %col
-      %col{ width: "70px" }
-      %col{ width: "150px" }
-      %col{ width: "170px" }
-      %thead
-        %tr
-          %th
-          %th
-          %th
-            Posts
-          %th.hidden-xs.hidden-sm
-            Last Post By
-          %th.hidden-xs.hidden-sm
-            Time
-      %tbody
-        - topics.limit(topic_limit).each do |topic|
-          = render partial: 'topics/summary_table_row', locals: { topic: topic }
+- recent_posts.each do |post|
+  .dashboard-community-container
+    .row.reply-header
+      .col-sm-1.col-xs-2
+        = render partial: 'forums/user_image', locals: { user: post.user, size: 75 }
+      .col-sm-11.col-xs-10
+        %h4.f300
+          %span.f500= post.user.forum_name
+          replied to
+          = link_to post.topic.name, forum_topic_path(Forum.find_by_id(Topic.find_by_id(post.topic_id).forum_id).slug, Topic.find_by_id(post.topic_id).slug), class: 'no-underline'
+        %p.small.muted-text
+          = post.created_at.strftime("%-d %B %Y, %-l:%M %p")
+    .row.reply-content
+      .col-sm-11.col-sm-offset-1.col-xs-10.col-xs-offset-2
+        %p.lead
+          - if post.description.length > 1000
+            = simple_markdown(truncate(post.description, length: 1000))
+            = link_to 'read more', forum_topic_post_path(Forum.find_by_id(Topic.find_by_id(post.topic_id).forum_id).slug, Topic.find_by_id(post.topic_id).slug, post), class: 'no-underline'
+          - else
+            = simple_markdown(post.description)
+
+.centered-text
+  %br
+  = link_to 'Read more from the community', forums_path, class: 'btn btn-primary btn-lg'
+  %br
