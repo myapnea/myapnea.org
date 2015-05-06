@@ -381,23 +381,23 @@ class Report < ActiveRecord::Base
 
   def self.family_diagnostic_answer(encounter, user)
     answers = Report.where(encounter: encounter, survey_slug: 'about-my-family', question_slug: 'family-diagnoses', user: user.id, value: %w(1 2 3 4 5 6 7)).where.not(answer_option_text: ["1", "2", "3+"]).pluck(:answer_option_text)
-    return answers.collect{|answer| answer.partition(' ').first}.join(', ')
+    answers.present? ? answers.collect{|answer| answer.partition(' ').first}.join(', ') : nil
   end
 
-  def self.country_of_origin_answer(encounter, user)
-    radio_answer = Report.where(encounter: encounter, survey_slug: 'about-my-family', question_slug: 'origin-country', answer_template_name: 'country_list', user: user.id).first
-    specific_answer = Report.where(encounter: encounter, survey_slug: 'about-my-family', question_slug: 'origin-country', answer_template_name: 'specified_country', user: user.id).first
-
-    if radio_answer.present?
-      if radio_answer.value.to_i == 7
-        specific_answer.value if specific_answer.present?
-      else
-        radio_answer.answer_option_text
-      end
-    else
-      nil
-    end
-  end
+  # def self.country_of_origin_answer(encounter, user)
+  #   radio_answer = Report.where(encounter: encounter, survey_slug: 'about-my-family', question_slug: 'origin-country', answer_template_name: 'country_list', user: user.id).first
+  #   specific_answer = Report.where(encounter: encounter, survey_slug: 'about-my-family', question_slug: 'origin-country', answer_template_name: 'specified_country', user: user.id).first
+  #
+  #   if radio_answer.present?
+  #     if radio_answer.value.to_i == 7
+  #       specific_answer.value if specific_answer.present?
+  #     else
+  #       radio_answer.answer_option_text
+  #     end
+  #   else
+  #     nil
+  #   end
+  # end
 
   def self.country_of_origin
     table_data = self.frequency_data('origin-country', 1..6)

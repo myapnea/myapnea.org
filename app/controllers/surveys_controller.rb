@@ -60,7 +60,7 @@ class SurveysController < ApplicationController
   private
 
   def set_survey
-    @survey = Survey.where("slug = ? or id = ?", params[:id], params[:id].to_i).first
+    @survey = Survey.where("slug = ? or id = ?", params[:id], params[:id].to_i).includes(:ordered_questions).first
     @answer_session = AnswerSession.where(user_id: current_user.id, survey_id: @survey.id).order("created_at desc").first
 
     if @answer_session.blank?

@@ -226,6 +226,12 @@ class Survey < ActiveRecord::Base
   def questions
     ordered_questions
   end
+
+  def question_text(question_slug)
+    q = questions.where(slug: question_slug).first
+
+    q.present? ? q.text : nil
+  end
   ##
 
 

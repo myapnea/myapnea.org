@@ -1,0 +1,8 @@
+.survey-report-question.rounded-top
+  %h3= survey.question_text(question_slug)
+- question_params = {survey_slug: survey.slug, question_slug: question_slug, encounter: encounter}
+- if current_user.answer_present?(question_params) and !defined?(skip_answer)
+  .survey-report-answer
+    %p
+      Your answer:
+      %span.f500= current_user.answer_text(question_params)

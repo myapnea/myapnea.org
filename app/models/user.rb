@@ -316,6 +316,10 @@ class User < ActiveRecord::Base
 
 
   # Reports
+  def answer_present?(params = {})
+    Report.where({ user: self[:id] }.merge(params)).count > 0
+  end
+
   def answer_value(params = {})
     result_rows = Report.where({ user: self[:id] }.merge(params))
 

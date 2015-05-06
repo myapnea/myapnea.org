@@ -1,17 +1,9 @@
 .row.reset-layout{ style: 'background-color: rgb(207, 226, 248)'}
 
 .survey-report-container.panel
-  - question = @survey.questions.where(slug: 'sex').first
-  - table_data = Report.frequency_data('sex', 1..2)
-  .survey-report-question.rounded-top
-    %h3= question.text
-  - if @answer_session.present?
-    - answer = @answer_session.answers.where(question_id: question.id).first
-    .survey-report-answer
-      %p
-        Your answer:
-        %span.f500= answer.show_value
+  = render partial: 'surveys/reports/question_and_user_answer', locals: { survey: @survey, question_slug: 'sex', encounter: 'baseline'}
   .survey-report-info
+    - table_data = Report.frequency_data('sex', 1..2)
     .row.reset-layout
       .col-xs-3.col-xs-offset-3
         = image_tag 'myapnea/surveys/about-me/male_color.png', class: 'img-responsive'
@@ -23,17 +15,9 @@
       Members of either sex can develop sleep apnea. Men are 2-to-3 times more likely to have sleep apnea, but as women reach menopause their risk increases.
 
 .survey-report-container.panel
-  - question = @survey.questions.where(slug: 'race').first
-  - table_data = Report.frequency_data('race', 1..5)
-  .survey-report-question.rounded-top
-    %h3= question.text
-  - if @answer_session.present?
-    - answer = @answer_session.answers.where(question_id: question.id).first
-    .survey-report-answer
-      %p
-        Your answer:
-        %span.f500= answer.show_value
+  = render partial: 'surveys/reports/question_and_user_answer', locals: { survey: @survey, question_slug: 'race', encounter: 'baseline'}
   .survey-report-info
+    - table_data = Report.frequency_data('race', 1..5)
     .row.reset-layout
       .col-lg-3.col-sm-4.col-sm-offset-0.col-xs-6.col-xs-offset-3
         = image_tag 'myapnea/surveys/about-me/globe.png', class: 'img-responsive'
@@ -60,17 +44,9 @@
           %p.lead= "#{table_data[5][:text]}: #{table_data[5][:freq].round(1)}%"
 
 .survey-report-container.panel
-  - question = @survey.questions.where(slug: 'ethnicity').first
-  - table_data = Report.frequency_data('ethnicity', 1..2)
-  .survey-report-question
-    %h3= question.text
-  - if @answer_session.present?
-    - answer = @answer_session.answers.where(question_id: question.id).first
-    .survey-report-answer
-      %p
-        Your answer:
-        %span.f500= answer.show_value
+  = render partial: 'surveys/reports/question_and_user_answer', locals: { survey: @survey, question_slug: 'ethnicity', encounter: 'baseline'}
   .survey-report-info
+    - table_data = Report.frequency_data('ethnicity', 1..2)
     .row.reset-layout
       .col-xs-6
         %h1.report-statistic Yes
@@ -86,17 +62,9 @@
       Sleep apnea occurs among people of all ethnicities. Our culture can play an important role in determining where we live, what we eat and how we live our lives. Understanding associations between sleep apnea and one’s ethnicity or culture may help shed light on the genetic and environmental risk factors that influence sleep apnea.
 
 .survey-report-container.panel
-  - question = @survey.questions.where(slug: 'education-level').first
-  - table_data = Report.frequency_data('education-level', 1..6)
-  .survey-report-question
-    %h3= question.text
-  - if @answer_session.present?
-    - answer = @answer_session.answers.where(question_id: question.id).first
-    .survey-report-answer
-      %p
-        Your answer:
-        %span.f500= answer.show_value
+  = render partial: 'surveys/reports/question_and_user_answer', locals: { survey: @survey, question_slug: 'education-level', encounter: 'baseline'}
   .survey-report-info
+    - table_data = Report.frequency_data('education-level', 1..6)
     .row.reset-layout{ style: 'margin: 40px 0'}
       .col-xs-2.col-sm-offset-1
         = image_tag 'myapnea/surveys/about-me/education1_color.png', class: 'img-responsive'
@@ -135,55 +103,9 @@
           = "#{table_data[6][:text]}: #{table_data[6][:freq].round(1)}%"
 
 .survey-report-container.panel
-  - question = @survey.questions.where(slug: 'income-level').first
-  - table_data = Report.frequency_data('income-level', 1..6)
-  .survey-report-question
-    %h3= question.text
-  - if @answer_session.present?
-    - answer = @answer_session.answers.where(question_id: question.id).first
-    .survey-report-answer
-      %p
-        Your answer:
-        %span.f500= answer.show_value
+  = render partial: 'surveys/reports/question_and_user_answer', locals: { survey: @survey, question_slug: 'income-level', encounter: 'baseline'}
   .survey-report-info
     %p.lead
       Years in school and what you may earn does not directly determine whether or not you will have sleep apnea. However, education and income may affect whether or not you have access to health insurance and therefore medical care.
     %p.lead.f500
       People who can regularly access medical services are more likely to have their sleep apnea diagnosed early and therefore receive the treatment they may need.
-    - if false
-      .row.reset-layout{ style: 'margin: 40px 0'}
-        .col-xs-2.col-sm-offset-1
-          = image_tag 'myapnea/surveys/about-me/dollar_bill1.png', class: 'img-responsive'
-        .col-xs-8
-          %h4.f300.text-left
-            = "#{table_data[1][:text]}: #{table_data[1][:freq].round(1)}%"
-      .row.reset-layout{ style: 'margin: 40px 0'}
-        .col-xs-2.col-sm-offset-1
-          = image_tag 'myapnea/surveys/about-me/dollar_bill2.png', class: 'img-responsive'
-        .col-xs-8
-          %h4.f300.text-left
-            = "#{table_data[2][:text]}: #{table_data[2][:freq].round(1)}%"
-      .row.reset-layout{ style: 'margin: 40px 0'}
-        .col-xs-2.col-sm-offset-1
-          = image_tag 'myapnea/surveys/about-me/dollar_bill3.png', class: 'img-responsive'
-        .col-xs-8
-          %h4.f300.text-left
-            = "#{table_data[3][:text]}: #{table_data[3][:freq].round(1)}%"
-      .row.reset-layout{ style: 'margin: 40px 0'}
-        .col-xs-2.col-sm-offset-1
-          = image_tag 'myapnea/surveys/about-me/dollar_bill4.png', class: 'img-responsive'
-        .col-xs-8
-          %h4.f300.text-left
-            = "#{table_data[4][:text]}: #{table_data[4][:freq].round(1)}%"
-      .row.reset-layout{ style: 'margin: 40px 0'}
-        .col-xs-2.col-sm-offset-1
-          = image_tag 'myapnea/surveys/about-me/dollar_bill5.png', class: 'img-responsive'
-        .col-xs-8
-          %h4.f300.text-left
-            = "#{table_data[5][:text]}: #{table_data[5][:freq].round(1)}%"
-      .row.reset-layout{ style: 'margin: 40px 0'}
-        .col-xs-2.col-sm-offset-1
-          = image_tag 'myapnea/surveys/about-me/dollar_bill5.png', class: 'img-responsive'
-        .col-xs-8
-          %h4.f300.text-left
-            = "#{table_data[6][:text]}: #{table_data[6][:freq].round(1)}%"
