@@ -2,39 +2,54 @@
 = form_for current_user, html: { role: "form", class: 'form-horizontal', data: { object: "#{validation}"} }, url: update_account_path, method: :patch do |f|
   .panel
     .panel-body.text-dark8
-      %h3.f300.col-xs-12.centered-text.text-dark9{ style: 'margin-bottom:30px;'} My Provider Profile
+      %h3.f300.col-xs-12.centered-text.text-dark9{ style: 'margin-bottom:30px;'}
+        My Provider Profile
+
       .form-group
-        %label.col-sm-3.col-sm-offset-3.control-label
-          = image_tag current_user.photo_url, :class => "img-responsive img-thumbnail"
-        .col-sm-6
-          %h4.f300 Change Photo
-          =f.file_field :photo
+        .row
+          %label.social-image-container.control-label.col-sm-3.col-sm-offset-3
+            .social-image-container-left-after
+              = link_to update_account_path(current_user, user: { remove_photo: true }), method: :patch do
+                %button.btn.btn-sm.btn-default X
+            = image_tag current_user.photo_url, :class => "img-responsive img-thumbnail"
+          .col-sm-6
+            %h4.f300
+              Change Photo
+            %br
+            =f.file_field :photo
 
       .form-group{ style: 'margin-top:20px;' }
-        %label.col-sm-3.control-label Official Provider Name
-        .col-sm-6
-          =f.text_field :provider_name, class: 'form-control', placeholder: 'Your official name (eg. John Smith Medical)', data: { object: 'inline-validation-item', name: 'provider-name' }
-        .col-sm-3.hidden{ data: { object: 'provider-name--error' } }
-          %p.small.centered-text.inline-validation-error
-            Please enter your official provider name!
+        .row
+          %label.control-label.col-sm-3
+            Official Provider Name
+          .col-sm-6
+            =f.text_field :provider_name, class: 'form-control', placeholder: 'Your official name (eg. John Smith Medical)', data: { object: 'inline-validation-item', name: 'provider-name' }
+          .col-sm-3.hidden{ data: { object: 'provider-name--error' } }
+            %p.small.centered-text.inline-validation-error
+              Please enter your official provider name!
 
       .form-group{ style: 'margin-top:20px;' }
-        %label.col-sm-3.control-label Custom URL Name
-        .col-sm-6
-          =f.text_field :slug, class: 'form-control', placeholder: 'Your unique url (eg. john-smith-medical)', data: { object: 'inline-validation-item', name: 'provider-slug' }
-        .col-sm-3.hidden{ data: { object: 'provider-slug--error' } }
-          %p.small.centered-text.inline-validation-error
-            Please enter a unique url so users can easily find you! Only use numbers and lower-case letters, separated by hyphens (e.g. provider-example-1).
+        .row
+          %label.control-label.col-sm-3
+            Custom URL Name
+          .col-sm-6
+            =f.text_field :slug, class: 'form-control', placeholder: 'Your unique url (eg. john-smith-medical)', data: { object: 'inline-validation-item', name: 'provider-slug' }
+          .col-sm-3.hidden{ data: { object: 'provider-slug--error' } }
+            %p.small.centered-text.inline-validation-error
+              Please enter a unique url so users can easily find you! Only use numbers and lower-case letters, separated by hyphens (e.g. provider-example-1).
 
       .form-group{ style: 'margin-top:20px;' }
-        %label.col-sm-3.control-label Welcome Message
-        .col-sm-6
-          =f.text_area :welcome_message, class: 'form-control', placeholder: 'Welcome to my page!', value: current_user.welcome_message, rows: '3', data: { object: 'inline-validation-item', name: 'provider-welcome-message' }
-        .col-sm-3.hidden{ data: { object: 'provider-welcome-message--error' } }
-          %p.small.centered-text.inline-validation-error
-            Please enter a unique message for your incoming members!
+        .row
+          %label.control-label.col-sm-3
+            Welcome Message
+          .col-sm-6
+            =f.text_area :welcome_message, class: 'form-control', placeholder: 'Welcome to my page!', value: current_user.welcome_message, rows: '3', data: { object: 'inline-validation-item', name: 'provider-welcome-message' }
+          .col-sm-3.hidden{ data: { object: 'provider-welcome-message--error' } }
+            %p.small.centered-text.inline-validation-error
+              Please enter a unique message for your incoming members!
 
       =f.submit("Save and Preview Changes", class: 'btn btn-primary col-sm-6 col-sm-offset-3 centered-text')
+
     .panel-footer
       - if current_user.provider_name.present? and current_user.slug.present?
         %h4.f400

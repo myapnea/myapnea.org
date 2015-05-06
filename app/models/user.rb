@@ -108,6 +108,10 @@ class User < ActiveRecord::Base
     self.adult_diagnosed? or self.adult_at_risk? or self.caregiver_child? or self.caregiver_adult?
   end
 
+  def is_academic?
+    self.researcher? or self.provider?
+  end
+
   def has_user_type?
     self.adult_diagnosed? or self.adult_at_risk? or self.caregiver_child? or self.caregiver_adult? or self.provider? or self.researcher?
   end

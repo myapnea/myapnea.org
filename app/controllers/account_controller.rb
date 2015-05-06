@@ -169,7 +169,7 @@ class AccountController < ApplicationController
   private
 
   def user_params
-    params.required(:user).permit(:email, :first_name, :last_name, :zip_code, :year_of_birth, :password, :password_confirmation, :current_password, :beta_opt_in, :state_code, :country_code, :provider_id, :welcome_message, :photo, :emails_enabled, :slug, :provider_name)
+    params.required(:user).permit(:email, :first_name, :last_name, :zip_code, :year_of_birth, :password, :password_confirmation, :current_password, :beta_opt_in, :state_code, :country_code, :provider_id, :welcome_message, :photo, :remove_photo, :emails_enabled, :slug, :provider_name)
   end
 
   def load_content
