@@ -230,3 +230,11 @@ provider:
   accepted_privacy_policy_at: <%= 6.day.ago.to_s(:db) %>
   accepted_terms_of_access_at: <%= 6.day.ago.to_s(:db) %>
 
+# This provider hasn't filled anything in yet
+provider_without_slug:
+  first_name: iAm
+  last_name: aNewProvider
+  email: iam@anewprovider.com
+  # slug:
+  encrypted_password: <%= pw %>
+  provider: true

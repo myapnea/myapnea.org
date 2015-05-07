@@ -5,6 +5,8 @@ class AccountControllerTest < ActionController::TestCase
   setup do
     @regular_user = users(:user_1)
     @participant = users(:participant)
+    @provider = users(:provider)
+    @provider_without_slug = users(:provider_without_slug)
   end
 
 
@@ -65,6 +67,18 @@ class AccountControllerTest < ActionController::TestCase
     login(@regular_user)
     get :account
 
+    assert_response :success
+  end
+
+  test "should get account for provider" do
+    login(@provider)
+    get :account
+    assert_response :success
+  end
+
+  test "should get account for provider without a slug" do
+    login(@provider_without_slug)
+    get :account
     assert_response :success
   end
 

@@ -1,37 +1,36 @@
 - @page_title = "Account"
-.content-main-header
-  %h1 Account Settings
+#account-link-container.well
+  %h2.f300
+    Welcome to your settings.
+  %p.lead
+    Need help with a specific topic? Click on one of these links to get there quickly.
+  = link_to '#q1' do
+    .list-group-item
+      I want to change my picture that appears on the forums
+  = link_to '#q2' do
+    .list-group-item
+      I want to change my basic information (name, email, etc)
+  = link_to '#q3' do
+    .list-group-item
+      I want to change my member description (at-risk patient, diagnosed, care provider, etc.)
+  = link_to '#q4' do
+    .list-group-item
+      I want to change my password
+  = link_to '#q5' do
+    .list-group-item
+      I want to link with my care provider
+  = link_to '#q6' do
+    .list-group-item
+      I want to change how I receive notifications
+  - if current_user.ready_for_research?
+    = link_to '#q7' do
+      .list-group-item
+        I want to leave the research study
 
 - unless current_user.ready_for_research?
   = render partial: 'account/join_leave_research_study'
 
-
-.panel
-  .panel-body
-    %p.lead
-      Need help with a specific topic? Click on one of the links to get there quickly.
-    .list-group-item
-      %br
-      %p.lead= link_to "I want to change my picture that appears on the forums", '#q1'
-    .list-group-item
-      %br
-      %p.lead= link_to "I want to change my basic information (name, email, etc)", '#q2'
-    .list-group-item
-      %br
-      %p.lead= link_to "I want to change my member description (at-risk patient, diagnosed, care provider, etc.)", '#q3'
-    .list-group-item
-      %br
-      %p.lead= link_to "I want to change my password", '#q4'
-    .list-group-item
-      %br
-      %p.lead= link_to "I want to link with my care provider", '#q5'
-    .list-group-item
-      %br
-      %p.lead= link_to "I want to change how I receive notifications", '#q6'
-    - if current_user.ready_for_research?
-      .list-group-item
-        %br
-        %p.lead= link_to "I want to leave the research study", "#q7"
+%hr
 
 %a.anchor#q1
 - if current_user.is_provider?
@@ -39,50 +38,48 @@
 - else
   = render partial: 'social/social_profile'
 
+%hr
 
 %a.anchor#q2
 .panel
-  .panel-heading
-    %h4.f300 Basic Information
   .panel-body
+    %h3.f300.centered-text
+      Basic Information
+    %br
     = form_for current_user, url: update_account_path, html: { class: 'form-horizontal' } do |f|
-      .form-group
-        = f.label :first_name, class: 'col-sm-2 control-label input-lg'
-        .col-sm-10
-          = f.text_field :first_name, class: 'form-control input-lg', placeholder: User.human_attribute_name(:first_name), autocomplete: :off
-      .form-group
-        = f.label :last_name, class: 'col-sm-2 control-label input-lg'
-        .col-sm-10
-          = f.text_field :last_name, class: 'form-control input-lg', placeholder: User.human_attribute_name(:last_name), autocomplete: :off
-      .form-group
-        = f.label :email, class: 'col-sm-2 control-label input-lg'
-        .col-sm-10
-          = f.email_field :email, class: 'form-control input-lg', placeholder: User.human_attribute_name(:email), autocomplete: :off
-      .form-group{ style: 'clear:both;' }
-        = f.label :country_code, 'Country', class: 'col-sm-2 control-label input-lg'
-        .col-sm-10
-          = f.select :country_code, [['---', nil]] + Map::MAP_COUNTRIES_AND_CODES, {}, class: 'form-control input-lg'
-      .form-group
-        = f.label :state_code, 'State', class: 'col-sm-2 control-label input-lg'
-        .col-sm-10
-          = f.select :state_code, [['---', nil]] + Map::MAP_STATES_AND_CODES, {}, class: 'form-control input-lg'
-      = f.submit "Save Changes", class: 'btn btn-primary pull-right'
+      .form-group.row
+        = f.label :first_name, class: 'col-sm-3 control-label'
+        .col-sm-6
+          = f.text_field :first_name, class: 'form-control', placeholder: User.human_attribute_name(:first_name), autocomplete: :off
+      .form-group.row
+        = f.label :last_name, class: 'col-sm-3 control-label'
+        .col-sm-6
+          = f.text_field :last_name, class: 'form-control', placeholder: User.human_attribute_name(:last_name), autocomplete: :off
+      .form-group.row
+        = f.label :email, class: 'col-sm-3 control-label'
+        .col-sm-6
+          = f.email_field :email, class: 'form-control', placeholder: User.human_attribute_name(:email), autocomplete: :off
+      .row
+        = f.submit "Save Changes", class: 'btn btn-primary col-xs-4 col-xs-offset-4 centered-text'
   .panel-footer.text-dark9{ style: 'margin:10px 0;'}
     %a.anchor#q3
     - if current_user.has_user_type?
       %h4.f500.centered-text You describe yourself as:
       .centered-text{ style: 'margin: 20px;' }
         - current_user.user_types.each do |type|
-          %p= type
+          %p.lead= type
       %h5.f300.centered-text
         If this is incorrect, please
         = link_to 'change your user type.', describe_yourself_path
 
+%hr
+
 %a.anchor#q4
 .panel
-  .panel-heading
-    %h4.f300 Change Password
   .panel-body
+    %h3.f300.centered-text
+      Change Your Password
+    %br
     = form_for current_user, url: change_password_path do |f|
       .form-group
         = f.label :current_password, class: "sr-only"
@@ -90,41 +87,59 @@
       .form-group
         = f.label :password, class: 'sr-only'
         = f.password_field :password, class: 'form-control input-lg', placeholder: "New Password"
-      = f.submit "Change My Password", class: 'btn btn-primary pull-right'
+      .row
+        = f.submit "Change Password", class: 'btn btn-primary col-xs-4 col-xs-offset-4 centered-text'
+
+%hr
 
 %a.anchor#q5
-- if current_user.my_provider.present?
-  .panel
-    .panel-heading
-      %h4.f300 My Listed Provider
-    .panel-body
-      You have listed
-      %strong= current_user.my_provider.provider_name
-      as your preferred provider.
-      If you wish, you may
-      = link_to 'unlist', update_account_path(user: { provider_id: nil }), method: :patch, class: 'btn btn-warning btn-xs'
-      yourself from this provider's network.
+.panel
+  .panel-body
+    %h3.f300.centered-text
+      Your Provider
+    %br
+    - if current_user.my_provider.present?
+      %p.lead
+        You have listed
+        %strong= current_user.my_provider.provider_name
+        as your preferred provider.
+        If you wish, you may
+        = link_to 'unlist', update_account_path(user: { provider_id: nil }), method: :patch, class: 'btn btn-warning btn-xs'
+        yourself from this provider's network.
+    - else
+      %p.lead
+        You have not listed a provider. You can search through the registered providers
+        = link_to 'here', providers_path
+        and see if your provider has registered. If they haven't you should
+        = link_to 'invite them!', "mailto:?subject=Join MyApnea.Org"
+
+%hr
 
 %a.anchor#q6
 .panel
-  .panel-heading
-    %h4.f300 Notification Preferences
   .panel-body
+    %h3.f300.centered-text
+      Notification Preferences
+    %br
     - if current_user.emails_enabled?
-      You are currently set to receive emails from
-      = ENV['pprn_title']
-      %br
-      If you prefer, you can
-      = link_to 'unsubscribe', update_account_path(user: { emails_enabled: '0' }), method: :patch, class: 'btn btn-warning btn-xs'
-      from emails.
+      %p.lead
+        You are currently set to receive emails from
+        = ENV['pprn_title']
+        %br
+        If you prefer, you can
+        = link_to 'unsubscribe', update_account_path(user: { emails_enabled: '0' }), method: :patch, class: 'btn btn-warning btn-xs'
+        from emails.
     - else
-      You are currently unsubscribed from emails from
-      = ENV['pprn_title']
-      %br
-      If you prefer, you can
-      = link_to 'enable', update_account_path(user: { emails_enabled: '1' }), method: :patch, class: 'btn btn-primary btn-xs'
-      emails.
+      %p.lead
+        You are currently unsubscribed from emails from
+        = ENV['pprn_title']
+        %br
+        If you prefer, you can
+        = link_to 'enable', update_account_path(user: { emails_enabled: '1' }), method: :patch, class: 'btn btn-primary btn-xs'
+        emails.
 
-%a.anchor#q7
+%hr
+
 - if current_user.ready_for_research?
+  %a.anchor#q7
   = render partial: 'account/join_leave_research_study'

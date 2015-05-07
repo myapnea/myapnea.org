@@ -2,33 +2,13 @@
 
 .content-main-header
   %h1.f300
-    Welcome,
-    = current_user.first_name + '!'
+    = "Welcome #{current_user.first_name}!"
 
-.panel
-  .panel-body
-    .row
-      - if !current_user.has_user_type?
-        .centered-text{ style: 'display:block' }
-          = image_tag 'myapnea/user_types/role_confused.png', class: 'img-responsive', style: 'margin: 0 auto; width: 150px;'
-          %h4.f300{ style: 'margin: 0 10px;' }
-            You have not listed your role in the sleep apnea community. In order to participate in this part of the research community, please
-            = link_to 'select a role.', describe_yourself_path, style: 'text-decoration: none;'
-
-      - elsif current_user.is_nonacademic?
-        - if current_user.assigned_surveys.count == current_user.completed_surveys.count
-          %h3.f300.centered-text.text-dark7
-            Congratulations! You have completed all of your surveys!
-          %h4.f300.centered-text.text-dark7{ style: 'margin: 20px 10px;' }
-            Since you're doing such a great job, why don't you
-            = link_to 'submit a research question', research_topics_path, style: 'text-decoration: none;'
-            to be discussed by the community?
-        - else
-          - @surveys.each do |survey|
-            .col-sm-4.centered-text
-              = render partial: 'surveys/partials/survey_progress', locals: { survey: survey }
-
-      - elsif current_user.is_academic?
+/ Survey widget
+- if current_user.is_only_academic?
+  .panel
+    .panel-body
+      .row
         - @surveys.each do |survey|
           .col-sm-4.centered-text
             = image_tag 'myapnea/icons/data_display'+rand(1..3).to_s+'.png', class: 'img-responsive', style: 'margin: 0 auto; width: 80%; max-width:250px; border-radius: 10px;'
@@ -36,36 +16,37 @@
               = survey.name
             %h5.f300.primary-blue{ style: 'margin-bottom:30px;' }
               = link_to 'View Data', report_survey_path(survey)
+- elsif current_user.assigned_surveys.count != current_user.completed_surveys.count
+  .panel
+    .panel-body
+      .row
+        - if !current_user.has_user_type?
+          .centered-text{ style: 'display:block' }
+            = image_tag 'myapnea/user_types/role_confused.png', class: 'img-responsive', style: 'margin: 0 auto; width: 150px;'
+            %h4.f300{ style: 'margin: 0 10px;' }
+              You have not listed your role in the sleep apnea community. In order to participate in this part of the research community, please
+              = link_to 'select a role.', describe_yourself_path, style: 'text-decoration: none;'
+        - else
+          - @surveys.each do |survey|
+            .col-sm-4.centered-text
+              = render partial: 'surveys/partials/survey_progress', locals: { survey: survey }
 
-/ Trending topic
+/ Trending topic widget
 - @rt = ResearchTopic.current.first
-.lighterer-blue-bcg{ style: 'padding: 20px; margin: 20px 0; border-radius: 20px;'}
-  %h1.text-white Trending Topic
+/ .lighterer-blue-bcg{ style: 'padding: 20px; margin: 20px 0; border-radius: 20px;'}
+/ %h1.text-white Trending Topic
+- unless @rt.received_vote_from?(current_user)
   = render partial: 'research_topics/voting_form', locals: { rt: @rt }
 
-.panel
-  .panel-heading
-    %h3.f300 News
-  .panel-body
-    .row
-      .col-sm-4{ style: 'margin-bottom:20px;' }
-        = link_to ENV['website_url']+'/forums/news/topics/new-lottery-winner-announced', class: 'home-news-link' do
-          = render partial: 'static/home_news_image', locals: {day: '8', month: 'Feb', year: '15'}
-          %h4.f300.primary-orange.centered-text Recent Lottery Winner!
-          %h5.f300.centered-text.visible-xs You've been doing an amazing job with surveys, and our most recent winner has been picked!
-      .col-sm-4{ style: 'margin-bottom:20px;' }
-        = link_to ENV['website_url']+'/forums/building-myapnea-org/topics/we-re-releasing-new-survey-reports-we-want-your-feedback', class: 'home-news-link' do
-          = render partial: 'static/home_news_image', locals: {day: '28', month: 'Feb', year: '15'}
-          %h4.f300.primary-orange.centered-text New and Improved Survey Reports!
-          %h5.f300.centered-text.visible-xs We are happy to announce that our survey reports have gotten a beautiful redesign! Big thanks to many members for their feedback.
-      .col-sm-4{ style: 'margin-bottom:20px;' }
-        = link_to ENV['website_url']+'/forums/news/topics/customize-your-myapnea-experience', class: 'home-news-link' do
-          = render partial: 'static/home_news_image', locals: {day: '3', month: 'Mar', year: '15'}
-          %h4.f300.primary-orange.centered-text Customizing your MyApnea Experience
-          %h5.f300.centered-text.visible-xs We're working on personalizing your experience on MyApnea.Org. Let us know what you want to see more of!
+/ Highlights widget
+.row{ style: 'margin-bottom:20px;' }
+  - Highlight.current.where(displayed: true).sort{ |a,b| b.created_at <=> a.created_at }.first(3).each do |highlight|
+    .col-sm-4
+      = render partial: 'highlights/display', locals: { highlight: highlight }
 
-.panel
-  .panel-heading
-    %h3.f300 Recent Forum Activity
-  = render partial: './forums/show_from_home', locals: { topic_limit: '5' }
-
+/ Forums widget
+= render partial: './forums/show_from_home', locals: { topic_limit: 20 }
+.centered-text
+  %br
+  = link_to 'Read more from the community', forums_path, class: 'btn btn-default btn-lg'
+  %br
