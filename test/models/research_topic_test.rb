@@ -6,9 +6,10 @@ class ResearchTopicTest < ActiveSupport::TestCase
     text = "Does sleep apnea cause obesity, or is it the other way around?"
     desc = "This question has been on my mind for quite a long time, and I'm sure others have wondered about it as well."
 
+    rt = nil
 
     assert_difference [ 'Topic.pending_review.count', 'ResearchTopic.pending_review.count' ], 1 do
-      rt = ResearchTopic.create(user_id: u.id, text: t, description: d)
+      rt = ResearchTopic.create(user_id: u.id, text: text, description: desc)
     end
 
     assert rt.topic
@@ -17,7 +18,7 @@ class ResearchTopicTest < ActiveSupport::TestCase
     assert_equal u, t.user
     assert_equal u, rt.user
 
-    assert_equal text, t.title
+    assert_equal text, t.name
     assert_equal text, rt.text
 
     assert_equal desc, t.description

@@ -7,10 +7,6 @@ class ResearchTopicsController < ApplicationController
 
   authorize_actions_for ResearchTopic, only: [:index, :create, :new]
 
-  def research_topics
-    raise StandardError
-  end
-
   def intro
   end
 

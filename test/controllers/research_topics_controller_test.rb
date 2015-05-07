@@ -3,36 +3,32 @@ require 'test_helper'
 class ResearchTopicsControllerTest < ActionController::TestCase
 
   setup do
-    skip "Research topics are getting an overhaul"
     @regular_user = users(:user_1)
     @moderator = users(:moderator_1)
   end
+
+
+  # Voting
+  test "User can endorse a research topic" do
+
+  end
+
+  # Others
 
   test "should get index for regular user" do
     login(@regular_user)
     get :index
     assert_not_nil assigns(:research_topics)
-    assert_equal ['accepted'], assigns(:research_topics).pluck(:state).uniq
     assert_response :success
   end
 
-  test "should create under review research topic as regular user" do
+  test "should create a research topic as regular user" do
     login(@regular_user)
     assert_difference('ResearchTopic.count') do
       post :create, research_topic: { text: 'Some new research topic', description: 'Why I think this is important', state: 'approved' }
     end
     assert_not_nil assigns(:research_topic)
     assert_equal 'under_review', assigns(:research_topic).state
-    assert_redirected_to research_topics_path
-  end
-
-  test "should create approved research topic as moderator" do
-    login(@moderator)
-    assert_difference('ResearchTopic.count') do
-      post :create, research_topic: { text: 'Some new research topic', description: 'Why I think this is important', state: 'approved' }
-    end
-    assert_not_nil assigns(:research_topic)
-    assert_equal 'approved', assigns(:research_topic).state
     assert_redirected_to research_topics_path
   end
 
@@ -44,23 +40,7 @@ class ResearchTopicsControllerTest < ActionController::TestCase
     assert_redirected_to new_user_session_path
   end
 
-  test "should get new for regular user" do
-    login(@regular_user)
-    get :new
-    assert_not_nil assigns(:research_topic)
-    assert_response :success
-  end
-
   # Older tests
-
-  test "User can edit own research topic" do
-    login(users(:user_2))
-
-    get :edit, id: research_topics(:rt2)
-
-    assert_response :success
-    assert_equal assigns(:research_topic), research_topics(:rt2)
-  end
 
   test "User can view accepted research topic" do
     login(users(:user_1))
@@ -70,20 +50,6 @@ class ResearchTopicsControllerTest < ActionController::TestCase
     assert_not_nil assigns(:research_topic)
     assert_response :success
   end
-
-
-  test "User can create new research topic" do
-    login(users(:user_2))
-
-    assert_difference "ResearchTopic.count" do
-      post :create, research_topic: {text: "Some new research topic", description: "Why I think this is important"}
-    end
-
-    assert_not_nil assigns(:research_topic)
-    assert_equal "under_review", assigns(:research_topic).state
-    assert_redirected_to research_topics_path
-  end
-
 
   test "User can update own research topic" do
     login(users(:user_2))
