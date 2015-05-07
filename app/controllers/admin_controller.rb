@@ -114,7 +114,7 @@ class AdminController < ApplicationController
 
     # Education level
     question = survey.questions.find_by_slug 'education-level'
-    values_and_ids = AnswerValue.current.where( answer_id: question.answers.pluck(:id) ).where.not( answer_option_id: nil ).includes(:answer_option, answer: :answer_session).pluck("answer_options.text", "answer_sessions.user_id")
+    values_and_ids = AnswerValue.current.where( answer_id: question.answers.select(:id) ).where.not( answer_option_id: nil ).includes(:answer_option, answer: :answer_session).pluck("answer_options.text", "answer_sessions.user_id")
 
     values_and_ids.each do |v,user_id|
       user_values[user_id.to_s] ||= {}
@@ -139,7 +139,7 @@ class AdminController < ApplicationController
     # Wealth
     survey = Survey.find_by_slug 'additional-information-about-me'
     question = survey.questions.find_by_slug 'affording-basics'
-    values_and_ids = AnswerValue.current.where( answer_id: question.answers.pluck(:id) ).where.not( answer_option_id: nil ).includes(:answer_option, answer: :answer_session).pluck("answer_options.text", "answer_sessions.user_id")
+    values_and_ids = AnswerValue.current.where( answer_id: question.answers.select(:id) ).where.not( answer_option_id: nil ).includes(:answer_option, answer: :answer_session).pluck("answer_options.text", "answer_sessions.user_id")
 
     values_and_ids.each do |v,user_id|
       user_values[user_id.to_s] ||= {}
@@ -158,7 +158,7 @@ class AdminController < ApplicationController
     # Referral
     survey = Survey.find_by_slug 'my-interest-in-research'
     question = survey.questions.find_by_slug 'referral-methods'
-    values_and_ids = AnswerValue.current.where( answer_id: question.answers.pluck(:id) ).where.not( answer_option_id: nil ).includes(:answer_option, answer: :answer_session).pluck("answer_options.text", "answer_sessions.user_id")
+    values_and_ids = AnswerValue.current.where( answer_id: question.answers.select(:id) ).where.not( answer_option_id: nil ).includes(:answer_option, answer: :answer_session).pluck("answer_options.text", "answer_sessions.user_id")
 
     values_and_ids.each do |v,user_id|
       user_values[user_id.to_s] ||= {}
