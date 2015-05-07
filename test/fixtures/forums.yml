@@ -16,3 +16,12 @@ two:
   slug: news
   position: 1
   user: owner
+
+research_topics:
+  name: Research Topics
+  description: This forum has research topics
+  views_count: 1
+  slug: research-topics
+  position: 2
+  user: owner
+  status: hidden

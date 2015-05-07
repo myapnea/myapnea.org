@@ -55,3 +55,8 @@ hidden:
   status: hidden
   views_count: 1
   slug: hidden-topic
+
+rt1:
+  forum: research_topics
+  user: owner
+  name:
