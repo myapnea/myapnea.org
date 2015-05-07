@@ -1,17 +1,13 @@
-- recent_posts = Post.visible_for_user(current_user).where.not(user_id: current_user.id).sort{ |a,b| b.created_at <=> a.created_at }.first(topic_limit)
-
-- recent_posts.each do |post|
-  - @topic = Topic.find_by_id(post.topic_id)
-  - @forum = Forum.find_by_id(@topic.forum_id)
+- @posts.each do |post|
   .dashboard-community-container
     .row.post-header
       .col-sm-1.col-xs-2
-        = render partial: 'forums/user_image', locals: { user: post.user, size: 75 }
+        = render 'forums/user_image', user: post.user, size: 75
       .col-sm-11.col-xs-10
         %h4.f300
           %span.f500= post.user.forum_name
           replied to
-          = link_to post.topic.name, forum_topic_path(@forum.slug, @topic.slug), class: 'no-underline'
+          = link_to post.topic.name, forum_topic_path(post.topic.forum.slug, post.topic.slug), class: 'no-underline'
         %p.small.muted-text
           = post.created_at.strftime("%-d %B %Y, %-l:%M %p")
     .row.post-content
@@ -19,13 +15,13 @@
         %p.lead
           - if post.description.length > 1000
             = simple_markdown(truncate(post.description, length: 1000))
-            = link_to 'read more', forum_topic_post_path(@forum.slug, @topic.slug, post), class: 'no-underline'
+            = link_to 'read more', forum_topic_post_path(post.topic.forum.slug, post.topic.slug, post), class: 'no-underline'
           - else
             = simple_markdown(post.description)
     .reply-container
-      - unless @topic.locked?
-        - @post = @topic.posts.new
-        = form_for [@forum, @topic, @post], html: { class: 'form-horizontal' } do |f|
+      - unless post.topic.locked?
+        - new_post = post.topic.posts.new
+        = form_for [post.topic.forum, post.topic, new_post], html: { class: 'form-horizontal' } do |f|
 
           - if current_user.has_role? :moderator
             = f.hidden_field :status, value: 'approved'

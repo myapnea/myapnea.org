@@ -1,12 +1,18 @@
 Rails.application.routes.draw do
+
+  scope module: 'home' do
+    get :dashboard
+    get :landing
+    post :posts
+  end
+
   resources :highlights
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # Static Pages
-  root 'static#home'
+  root 'home#dashboard'
   scope module: 'static' do
-    get :landing
     get :home
     get :about
     get :team

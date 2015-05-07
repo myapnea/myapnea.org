@@ -87,7 +87,7 @@ class AccountControllerTest < ActionController::TestCase
     assert_nil @participant.accepted_consent_at
     assert_nil @participant.accepted_privacy_policy_at
     assert_not_nil flash[:notice]
-    assert_redirected_to home_path
+    assert_redirected_to root_path
   end
 
   test "should not revoke consent for logged out user" do

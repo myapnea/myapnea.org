@@ -77,7 +77,7 @@
       - if !current_user
         = link_to "Login", new_user_session_path, class: "btn primary-blue-bcg text-white visible-xs float-right", id: "btn-login-phone"
       - elsif @provider
-        = link_to home_path do
+        = link_to root_path do
           .navbar-right.text-white.centered-text.visible-xs
             .navbar-header.pull-right#slide-nav
               %i.fa.fa-home{ style:'font-size:40px' }

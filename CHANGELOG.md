@@ -12,7 +12,9 @@
 - Added provider report to admin panel
   - Shows the number of members who have signed up with each provider
   - Highlights the provider with the most members
-- Added ability for owners to dynamically update dashboard highlights
+- Dashboard
+  - Added ability for owners to dynamically update dashboard highlights
+  - Added a stream of recent posts to the dashboard (continously loads all posts)
 
 ### Enhancements
 - Social sharing
