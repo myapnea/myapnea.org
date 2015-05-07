@@ -19,6 +19,16 @@
   }
 }
 
+.social-image-container {
+  position: relative;
+  .social-image-container-left-after {
+    position: absolute;
+    top:0;
+    left:0;
+    padding:5px;
+  }
+}
+
 @media (max-width: 992px) {
   .user-testimonial-small {
     height: 250px;
@@ -28,5 +38,15 @@
 @media (max-width: 768px) {
   .user-testimonial-small {
     height: 150px;
+  }
+  .social-image-container {
+    width: 60%;
+    margin: auto;
+    text-align: center;
+  }
+  .social-image-updater {
+    width: 60%;
+    margin: auto;
+    text-align: center;
   }
 }

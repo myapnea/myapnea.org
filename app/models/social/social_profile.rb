@@ -56,4 +56,5 @@ class SocialProfile < ActiveRecord::Base
   def self.get_anonymous_name(input)
     "Member#{Digest::MD5.hexdigest(input.to_s).hex.to_s[0..5]}"
   end
+
 end

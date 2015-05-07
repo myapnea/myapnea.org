@@ -24,6 +24,10 @@
               = form_tag user_session_path, method: :post, class: "navbar-form centered-text" do
                 = text_field_tag 'user[email]', nil, placeholder: 'Email', class: 'form-control', style: 'margin-bottom:10px;', autofocus: true, autocomplete: 'off'
                 = password_field_tag 'user[password]', nil, placeholder: 'Password', class: 'form-control', style: 'margin-bottom:10px;'
+                = check_box_tag 'user[remember_me]', '1'
+                %label{ for: 'user_remember_me' } Remember me
+                %br
+                %br
                 = submit_tag 'Login', class: "btn btn-primary"
               %br
               %p.small.reset-layout.centered-text

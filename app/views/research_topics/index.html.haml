@@ -32,7 +32,7 @@
             %button.btn.btn-sm.btn-primary{"data-target" => "#modal-rt#{rt.id}-newest", "data-toggle" => "modal", :type => "button"}
               Vote!
             .modal.fade{ id: "modal-rt#{rt.id}-newest", "aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
-              .modal-dialog
+              .modal-dialog{ style: 'z-index: 1050; '}
                 .modal-content
                   .modal-header{ style: 'background-color: white; border: none;' }
                     %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
@@ -50,7 +50,7 @@
             %button.btn.btn-sm.btn-primary{"data-target" => "#modal-rt#{rt.id}-discussed", "data-toggle" => "modal", :type => "button"}
               Vote!
             .modal.fade{ id: "modal-rt#{rt.id}-discussed", "aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
-              .modal-dialog
+              .modal-dialog{ style: 'z-index: 1050; '}
                 .modal-content
                   .modal-header{ style: 'background-color: white; border: none;' }
                     %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
