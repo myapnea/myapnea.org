@@ -3,12 +3,7 @@ require 'test_helper.rb'
 class StaticControllerTest < ActionController::TestCase
 
   ## NON-STATIC
-  test "should get home for regular user" do
-    login(users(:social))
-    get :home
-    assert_template 'home'
-    assert_response :success
-  end
+
 
   test "should redirect to a provider show page" do
     get :provider_page, slug: 'health-hospital'
@@ -23,18 +18,6 @@ class StaticControllerTest < ActionController::TestCase
   end
 
   ## STATIC
-
-  test "should get landing for logged out user" do
-    get :home
-    assert_template 'landing'
-    assert_response :success
-  end
-
-  test "should get landing for logged in user" do
-    login(users(:social))
-    get :landing
-    assert_response :success
-  end
 
   test "should get about" do
     get :about

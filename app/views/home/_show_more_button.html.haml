@@ -1,0 +1,3 @@
+- unless @posts.current_page >= @posts.num_pages
+  .centered-text
+    = link_to 'Show more', posts_path(page: @posts.current_page+1), method: :post, remote: true, data: { disable_with: "Loading..." }, class: 'btn btn-default btn-lg'

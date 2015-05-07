@@ -21,11 +21,11 @@ class NavigationTest < ActionDispatch::IntegrationTest
   end
 
   test "should login regular user" do
-    get "/home"
-    assert_equal '/home', path
+    get "/dashboard"
+    assert_equal '/dashboard', path
 
     sign_in_as(@valid, "password", "user_1@example.com")
-    assert_equal "/home", path
+    assert_equal "/", path
     # assert_equal I18n.t('devise.sessions.signed_in'), flash[:notice]
   end
 
