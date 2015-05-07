@@ -96,22 +96,10 @@ class StaticController < ApplicationController
   end
 
   ## NON-STATIC
-
   ## TODO: Move out of here
-  def home
-    flash.delete(:notice)
-    flash.delete(:alert)
-    if current_user
-      @active_top_nav_link = :home
-      @posts = Notification.blog_posts.viewable
-      @surveys = current_user.visible_surveys.first(3)
-    else
-      render 'landing', layout: 'layouts/application-no-sidebar'
-    end
-  end
 
-  def landing
-    render layout: 'layouts/application-no-sidebar'
+  def home
+    redirect_to root_path
   end
 
   def provider_page

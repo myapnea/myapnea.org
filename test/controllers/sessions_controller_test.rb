@@ -11,7 +11,7 @@ class Devise::SessionsControllerTest < ActionController::TestCase
 
     post :create, user: { email: user.email, password: "password" }
 
-    assert_redirected_to home_path
+    assert_redirected_to root_path
   end
 
   test "a deleted user should not be able to sign in" do
