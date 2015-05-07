@@ -5,4 +5,5 @@
   .survey-report-answer
     %p
       Your answer:
-      %span.f500= current_user.answer_text(question_params)
+      %span.f500
+        = current_user.answer_formatted_text(question_params)

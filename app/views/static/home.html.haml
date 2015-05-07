@@ -35,7 +35,7 @@
 - @rt = ResearchTopic.current.first
 / .lighterer-blue-bcg{ style: 'padding: 20px; margin: 20px 0; border-radius: 20px;'}
 / %h1.text-white Trending Topic
-- unless @rt.received_vote_from?(current_user)
+- unless false # @rt.received_vote_from?(current_user)
   = render partial: 'research_topics/voting_form', locals: { rt: @rt }
 
 / Highlights widget

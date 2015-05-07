@@ -371,10 +371,16 @@ class User < ActiveRecord::Base
         write_in_result_rows.pluck(:value) + ao_result_rows.pluck(:answer_option_text)
       end
     end
+  end
 
+  def answer_formatted_text(params={})
+    answer = answer_text(params)
 
-
-
+    if answer.kind_of?(Array)
+      answer.delete_if{|x| x.blank? }.join(", ")
+    else
+      answer
+    end
 
   end
 
