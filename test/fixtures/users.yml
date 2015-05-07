@@ -225,3 +225,11 @@ provider:
   zip_code: 12345
   encrypted_password: <%= pw %>
 
+# This provider hasn't filled anything in yet
+provider_without_slug:
+  first_name: iAm
+  last_name: aNewProvider
+  email: iam@anewprovider.com
+  # slug:
+  encrypted_password: <%= pw %>
+  provider: true
