@@ -11,9 +11,9 @@
       %p MyApnea
       %li= link_to 'Learn', learn_path
       %li= link_to 'Community', social_path
-      %li= link_to 'Forums', forums_path
+      %li= link_to 'Forums', forums_path, data: { no_turbolink: true }
       %li= link_to 'Research', research_topics_path
-      %li= link_to 'Surveys', surveys_path
+      %li= link_to 'Surveys', surveys_path, data: { no_turbolink: true }
       %li= link_to 'Providers', providers_path
   .col-sm-2.col-xs-3
     %ul
