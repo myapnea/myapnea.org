@@ -1,63 +1,89 @@
+# Research topic belongs to forum topic
+
 class ResearchTopic < ActiveRecord::Base
-  include Votable, Deletable
-
-  has_many :votes
-
+  # Concerns
+  include Deletable
   include Authority::Abilities
 
+  # Accessors
+  attr_writer :description, :text
+
+  # Associations
   belongs_to :user
+  belongs_to :topic
+  has_many :votes, -> { where(deleted: false) }
 
-  STATES = [:under_review, :proposed, :accepted, :rejected, :complete, :hidden]
+  # Constants
+  PROGRESS = [:proposed, :accepted, :ongoing_research, :complete]
 
-  scope :accepted, -> { where(state: 'accepted') }
-  scope :viewable_by, lambda { |user_id| where("state = ? or user_id = ?", "accepted", user_id)}
+  # Callbacks
+  after_create :create_associated_topic
 
-  def self.popular(user_id = nil)
+  # Named Scopes
+  scope :approved, lambda { current.joins(:topic).where(topics: {status: 'approved'})}
+  scope :pending_review, lambda { current.joins(:topic).where(topics: {status: 'pending_review'})}
+  scope :most_voted, lambda { current.select("research_topics.*, count(votes.id) as vote_count").joins("left outer join votes on votes.research_topic_id = research_topics.id and votes.deleted = 'f'").group("research_topics.id").order("vote_count desc") }
+  scope :least_voted, lambda { current.select("research_topics.*, count(votes.id) as vote_count").joins("left outer join votes on votes.research_topic_id = research_topics.id and votes.deleted = 'f'").group("research_topics.id").order("vote_count asc") }
+  scope :most_discussed, lambda { current.select("research_topics.*, count(posts.id) as post_count").joins(topic: :posts).group("research_topics.id").order("post_count desc") }
+  scope :newest, lambda { current.order("research_topics.created_at desc") }
 
-    current.viewable_by(user_id).includes(:votes).sort do |rt1, rt2|
-      sort_topics(rt1, rt2)
-    end
+  # Class methods
+  def self.popular(vote_threshold = nil)
+    query = current.select("research_topics.*, (sum(votes.rating)::float/count(votes.rating)::float) as endorsement").joins(:votes).group("research_topics.id").order("endorsement desc")
+    query = query.having("count(votes.rating) > ?", vote_threshold) if vote_threshold.present?
+    query
   end
 
-  def self.voted_by(user)
-    current.accepted.joins(:votes).where(votes: {user_id: user.id, rating: 1} ).sort do |rt1, rt2|
-      sort_topics(rt1, rt2)
-    end
+  def self.highlighted(user)
+    # Similar to least voted, but making sure that user has not voted already
+    approved
+      .select("research_topics.*, count(votes.id) as vote_count")
+      .joins("left outer join votes on votes.research_topic_id = research_topics.id and votes.deleted = 'f'")
+      .group("research_topics.id").having("sum(case when votes.user_id = ? then 1 else 0 end) = 0", user.id)
+      .order("vote_count asc")
+      .first
   end
 
-  def self.created_by(user)
-    current.where(user_id: user.id)
+  # Getters
+  def status
+    topic.status if topic.present?
   end
 
-  def self.newest(user_id = nil)
-    current.viewable_by(user_id).order("created_at DESC")
+  def text
+    topic.name if topic.present?
   end
 
-  def voted_on_percentage
-    [(self.votes.where(rating: 1).count * 100) / ( Vote.total_number_voters.nonzero? || 1 ), 1].max
+  def description
+    topic.posts.first.description if topic.present? and !topic.posts.empty?
   end
 
-  def received_vote_from?(user)
-    self.votes.where(user_id: user.id, rating: 1).present? ? true : false
+  # Voting
+  def endorsement
+    Vote.current.select("sum(rating)::float/count(rating)::float as endorsement").group("research_topic_id").where(research_topic_id: self[:id]).map(&:endorsement).first
   end
 
-  def user_removed_vote?(user)
-    self.votes.where(user_id: user.id, rating: 0).present? ? true : false
+  def endorse(user)
+    votes.create(user_id: user.id, rating: 1)
   end
 
-  # def vote_created_today?(user)
-  #   self.votes.where(user_id: user.id).first.created_at.today?
-  # end
 
-  def accepted?
-    state == 'accepted'
+  def oppose(user)
+    votes.create(user_id: user.id, rating: 0)
   end
+
+
+
+
 
   private
 
-  def self.sort_topics(rt1, rt2)
-    comp = rt2.rating <=> rt1.rating
-    comp.zero? ? (rt1.created_at <=> rt2.created_at) : comp
+  def create_associated_topic
+
+    self.create_topic(forum_id: Forum.find_by_slug(ENV["research_topic_forum_slug"]).id, name: @text,  description: @description, user_id: user.id)
+
+
+    #topic.create( description: self.description, user_id: self.user_id )
+    #self.get_or_create_subscription( self.user )
   end
 
 end

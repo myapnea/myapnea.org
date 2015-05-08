@@ -209,6 +209,9 @@ researcher:
   over_eighteen: true
   researcher: true
   encrypted_password: <%= pw %>
+  accepted_privacy_policy_at: <%= 6.day.ago.to_s(:db) %>
+  accepted_terms_of_access_at: <%= 6.day.ago.to_s(:db) %>
+
 
 
 ## Provider
@@ -224,6 +227,8 @@ provider:
   provider: true
   zip_code: 12345
   encrypted_password: <%= pw %>
+  accepted_privacy_policy_at: <%= 6.day.ago.to_s(:db) %>
+  accepted_terms_of_access_at: <%= 6.day.ago.to_s(:db) %>
 
 # This provider hasn't filled anything in yet
 provider_without_slug:

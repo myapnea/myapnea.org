@@ -24,11 +24,11 @@ class SurveysController < ApplicationController
   end
 
   def report
-    redirect_to surveys_path and return unless (@answer_session.completed? or current_user.is_only_academic?)
+    check_report_access
   end
 
   def report_detail
-    redirect_to surveys_path and return unless (@answer_session.completed? or current_user.is_only_academic?)
+    check_report_access
   end
 
   def accept_update_first
@@ -60,11 +60,16 @@ class SurveysController < ApplicationController
   private
 
   def set_survey
-    @survey = Survey.where("slug = ? or id = ?", params[:id], params[:id].to_i).first
+    @survey = Survey.where("slug = ? or id = ?", params[:id], params[:id].to_i).includes(:ordered_questions).first
     @answer_session = AnswerSession.where(user_id: current_user.id, survey_id: @survey.id).order("created_at desc").first
 
-    redirect_to surveys_path and return unless @answer_session.present?
+    if @answer_session.blank?
+      redirect_to surveys_path and return unless current_user.is_only_academic?
+    end
+  end
 
+  def check_report_access
+    redirect_to surveys_path and return unless ((@answer_session.present? and @answer_session.completed?) or current_user.is_only_academic?)
   end
 
 end

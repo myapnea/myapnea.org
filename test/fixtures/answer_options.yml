@@ -79,6 +79,11 @@ bith:
   hotkey: B
   value: 2
 
+rodian:
+  text: Rodian
+  hotkey: R
+  value: 5
+
 other_race:
   text: Some other race
   hotkey: O
@@ -95,3 +100,18 @@ low_chance:
   hotkey: L
   value: 2
   display_class: option-of-multiple option-of-2 survey-scale survey-scale-great
+
+ghana:
+  text: Ghana
+  hotkey: G
+  value: 1
+
+poland:
+  text: Poland
+  hotkey: P
+  value: 2
+
+brunei:
+  text: Brunei
+  hotkey: B
+  value: 5

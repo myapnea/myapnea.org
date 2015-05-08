@@ -3,6 +3,7 @@ require 'test_helper.rb'
 class VotesControllerTest < ActionController::TestCase
 
   setup do
+    skip "Research topics are getting an overhaul"
     @regular_user = users(:user_1)
   end
 

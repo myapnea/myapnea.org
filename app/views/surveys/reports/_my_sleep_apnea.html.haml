@@ -1,23 +1,11 @@
 .survey-report-container.panel
-  .survey-report-question.rounded-top
-    - question = @survey.ordered_questions.where(slug: 'age-of-diagnosis').first
-    %h3= question.text
-  .survey-report-answer
-    %p.lead
-      Your answer:
-      %span.f500= @answer_session.answers.where(question_id: question.id).first.show_value
+  = render partial: 'surveys/reports/question_and_user_answer', locals: { survey: @survey, question_slug: 'age-of-diagnosis', encounter: 'baseline'}
   .survey-report-info
     %p.lead Average age of diagnosis:
     %h1.report-statistic= Report.median_age_of_diagnosis('baseline')
 
 .survey-report-container.panel
-  .survey-report-question.rounded-top
-    - question = @survey.ordered_questions.where(slug: 'apnea-before-diagnosis').first
-    %h3= question.text
-  .survey-report-answer
-    %p
-      Your answer:
-      %span.f500= @answer_session.answers.where(question_id: question.id).first.show_value
+  = render partial: 'surveys/reports/question_and_user_answer', locals: { survey: @survey, question_slug: 'apnea-before-diagnosis', encounter: 'baseline'}
   .survey-report-info
     %p.lead Percentage of MyApnea members who think they had sleep apnea for over 2 years:
     %h1.report-statistic= "#{Report.percent_length_before_diagnosis('baseline').round(1)}%"
@@ -25,22 +13,17 @@
 .survey-report-container.panel
   .survey-report-question.rounded-top
     %h3 What symptoms have you experienced?
-  .survey-report-answer
-    %p.lead
-      Your symptoms include:
-      %span.f500= Report.selected_symptoms("baseline", "symptoms-before-diagnosis", current_user).join(", ")
+  - if Report.selected_symptoms("baseline", "symptoms-before-diagnosis", current_user).present?
+    .survey-report-answer
+      %p.lead
+        Your symptoms include:
+        %span.f500= Report.selected_symptoms("baseline", "symptoms-before-diagnosis", current_user).join(", ")
   .survey-report-info
     %h3 The most common symptoms for MyApnea members:
     = render partial: 'surveys/reports/sleep_apnea_symptoms_statistics'
 
 .survey-report-container.panel
-  .survey-report-question.rounded-top
-    - question = @survey.ordered_questions.where(slug: 'diagnostic-study').first
-    %h3= question.text
-  .survey-report-answer
-    %p
-      Your answer:
-      %span.f500= @answer_session.answers.where(question_id: question.id).first.show_value
+  = render partial: 'surveys/reports/question_and_user_answer', locals: { survey: @survey, question_slug: 'diagnostic-study', encounter: 'baseline'}
   .survey-report-info
     - stats = Report.sleep_test_stats
     .row

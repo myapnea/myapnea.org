@@ -239,8 +239,6 @@ class Report < ActiveRecord::Base
 
 
     template_name = current_to_satisfaction_map[value]
-    puts template_name
-
     # For each treatment (or top 5?) we want all the answer sessions where people indicated a not-6 for that answer_template (satisfaction)
     # Now, for this set of people, we want to find ratings for how the treatment helpled.
 
@@ -381,20 +379,23 @@ class Report < ActiveRecord::Base
 
   def self.family_diagnostic_answer(encounter, user)
     answers = Report.where(encounter: encounter, survey_slug: 'about-my-family', question_slug: 'family-diagnoses', user: user.id, value: %w(1 2 3 4 5 6 7)).where.not(answer_option_text: ["1", "2", "3+"]).pluck(:answer_option_text)
-    return answers.collect{|answer| answer.partition(' ').first}.join(', ')
+    answers.present? ? answers.collect{|answer| answer.partition(' ').first}.join(', ') : nil
   end
 
-  def self.country_of_origin_answer(encounter, user)
-    answer = Report.where(encounter: encounter, survey_slug: 'about-my-family', question_slug: 'origin-country', user: user.id, value: %w(1 2 3 4 5 6 8)).first
-    answer_other = Report.where(encounter: encounter, survey_slug: 'about-my-family', question_slug: 'origin-country', user: user.id, value: 7).first
-    if answer
-      answer.answer_option_text
-    elsif answer_other
-      answer_template = AnswerTemplate.find_by_name 'specified_country'
-      answer_value = answer_other.answer.answer_values.where(answer_template_id: answer_template.id).first if answer_template
-      answer_value.text_value if answer_value
-    end
-  end
+  # def self.country_of_origin_answer(encounter, user)
+  #   radio_answer = Report.where(encounter: encounter, survey_slug: 'about-my-family', question_slug: 'origin-country', answer_template_name: 'country_list', user: user.id).first
+  #   specific_answer = Report.where(encounter: encounter, survey_slug: 'about-my-family', question_slug: 'origin-country', answer_template_name: 'specified_country', user: user.id).first
+  #
+  #   if radio_answer.present?
+  #     if radio_answer.value.to_i == 7
+  #       specific_answer.value if specific_answer.present?
+  #     else
+  #       radio_answer.answer_option_text
+  #     end
+  #   else
+  #     nil
+  #   end
+  # end
 
   def self.country_of_origin
     table_data = self.frequency_data('origin-country', 1..6)
@@ -421,7 +422,7 @@ class Report < ActiveRecord::Base
         symptoms.push(AnswerTemplate.find_by_id(answer.answer_template_id).text)
       end
     end
-    return symptoms
+    symptoms.empty? ? nil : symptoms
   end
 
   ## My health conditions

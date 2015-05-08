@@ -1,6 +1,6 @@
 class Survey < ActiveRecord::Base
   # Constants
-  SURVEY_DATA_LOCATION = ['lib', 'data', 'myapnea', 'surveys']
+  SURVEY_DATA_LOCATION = ['lib', 'data', 'surveys']
   SURVEY_LIST = ['about-me', 'additional-information-about-me', 'about-my-family', 'my-interest-in-research', 'my-sleep-pattern', 'my-sleep-quality', 'my-quality-of-life', 'my-health-conditions', 'my-sleep-apnea', 'my-sleep-apnea-treatment', 'my-risk-profile']
 
   # Concerns
@@ -225,6 +225,12 @@ class Survey < ActiveRecord::Base
 
   def questions
     ordered_questions
+  end
+
+  def question_text(question_slug)
+    q = questions.where(slug: question_slug).first
+
+    q.present? ? q.text : nil
   end
   ##
 

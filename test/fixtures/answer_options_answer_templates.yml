@@ -112,3 +112,19 @@ aoat34:
 aoat35:
   answer_template: doze_public
   answer_option: low_chance
+
+aoat36:
+  answer_template: countries
+  answer_option: ghana
+aoat37:
+  answer_template: countries
+  answer_option: brunei
+aoat38:
+  answer_template: countries
+  answer_option: poland
+aoat39:
+  answer_template: countries
+  answer_option: other
+aoat40:
+  answer_template: countries
+  answer_option: prefer_not_to_answer

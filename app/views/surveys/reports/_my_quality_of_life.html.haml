@@ -1,12 +1,5 @@
 .survey-report-container.panel
-  - question = @survey.questions.where(slug: 'general-health-rate').first
-  - answer = @answer_session.answers.where(question_id: question.id).first
-  .survey-report-question.rounded-top
-    %h3 In general, how would you rate your health?
-  .survey-report-answer
-    %p
-      Your answer:
-      %span.f500= answer.show_value
+  = render partial: 'surveys/reports/question_and_user_answer', locals: { survey: @survey, question_slug: 'general-health-rate', encounter: 'baseline'}
   .survey-report-info
     %p.lead
       Your overall health can be influenced by many different factors. Sleep is one important factor. The quality of your sleep and how long you sleep can impact your overall health.
@@ -16,14 +9,7 @@
     #health-rating{ data: { object: 'd3-report', question: 'health-rating', array: "#{data_array}" } }
 
 .survey-report-container.panel
-  - question = @survey.questions.where(slug: 'improved-health-rate').first
-  - answer = @answer_session.answers.where(question_id: question.id).first
-  .survey-report-question.rounded-top
-    %h3 Compared to one year ago, how would you rate your health in general now?
-  .survey-report-answer
-    %p
-      Your answer:
-      %span.f500= answer.show_value
+  = render partial: 'surveys/reports/question_and_user_answer', locals: { survey: @survey, question_slug: 'improved-health-rate', encounter: 'baseline'}
   .survey-report-info
     %p.lead
       Proper management of your sleep apnea may be a key factor in whether or not you feel better or worse than last year. If you are feeling worse, you may want to talk with your sleep provider.
@@ -33,14 +19,7 @@
     #health-improvement{ data: { object: 'd3-report', question: 'health-improvement', array: "#{data_array}" } }
 
 .survey-report-container.panel
-  - question = @survey.questions.where(slug: 'general-quality-life-rate').first
-  - answer = @answer_session.answers.where(question_id: question.id).first
-  .survey-report-question.rounded-top
-    %h3 In general, how would you rate your quality of life?
-  .survey-report-answer
-    %p
-      Your answer:
-      %span.f500= answer.show_value
+  = render partial: 'surveys/reports/question_and_user_answer', locals: { survey: @survey, question_slug: 'general-quality-life-rate', encounter: 'baseline'}
   .survey-report-info
     %p.lead
       Your quality of life can be impacted by how well you are physically feeling along with your mood. These factors are influenced by many things including the quality of your sleep and how long you sleep.

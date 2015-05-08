@@ -5,7 +5,7 @@
 
 .lighterer-blue-bcg{ style: 'border-radius: 20px; padding: 20px;' }
   %h2.text-white Trending Topic
-  = render partial: 'research_topics/voting_form', locals: { rt: @research_topics.last }
+  = render partial: 'research_topics/voting_form', locals: { research_topic: ResearchTopic.highlighted(current_user) }
 
 
 %br
@@ -25,7 +25,7 @@
     .row
       .col-sm-6
         %h4 Newest
-        - @research_topics.first(5).each do |rt|
+        - @research_topics.newest.first(5).each do |rt|
           .list-group-item
             %p.small= rt.text
             / Button trigger modal
@@ -38,13 +38,13 @@
                     %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
                       %span{"aria-hidden" => "true"} ×
                   .modal-body
-                    = render partial: 'research_topics/voting_form', locals: { rt: rt }
+                    = render partial: 'research_topics/voting_form', locals: { research_topic: rt }
         .list-group-item
           = link_to 'More...', newest_research_topics_path
 
       .col-sm-6
         %h4 Most Discussed
-        - @research_topics.first(5).each do |rt|
+        - @research_topics.most_discussed.first(5).each do |rt|
           .list-group-item
             %p.small= rt.text
             %button.btn.btn-sm.btn-primary{"data-target" => "#modal-rt#{rt.id}-discussed", "data-toggle" => "modal", :type => "button"}
@@ -56,7 +56,7 @@
                     %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
                       %span{"aria-hidden" => "true"} ×
                   .modal-body
-                    = render partial: 'research_topics/voting_form', locals: { rt: rt }
+                    = render partial: 'research_topics/voting_form', locals: { research_topic: rt }
         .list-group-item
           = link_to 'More...', most_discussed_research_topics_path
 
@@ -65,9 +65,8 @@
     .row
       .col-sm-8.col-sm-offset-2
         %h3.text-light9 Add your own question!
-        - research_topic = ResearchTopic.new
         .list-group-item
-          = form_for research_topic, html: { data: { object: "inline-validation"} } do |f|
+          = form_for ResearchTopic.new, html: { data: { object: "inline-validation"} } do |f|
             .form-group
               = f.label :text, class: 'sr-only'
               = f.text_area :text, class: 'form-control input-lg', placeholder: "Enter your research question here...", autocomplete: :off, data: { object: 'inline-validation-item', name: 'research-topic-name' }
@@ -77,57 +76,26 @@
             .form-group
               = f.label :author, class: 'sr-only'
               = f.text_area :description, placeholder: "Describe why you think this question is important...", class: 'form-control input-lg'
-            - if current_user.can_moderate?(research_topic)
-              .form-group
-                = f.label :state, class: 'sr-only'
-                = f.select :state, ResearchTopic::STATES, {prompt: "-- select state --" }, { class: 'input-lg form-control' }
             = f.submit("Submit", class: "btn btn-success pull-right")
             .clearfix
     %br
     %br
 
-
 - if false
   .row
     .col-sm-4
       %h3 Most Popular
-      - @research_topics.first(5).each do |rt|
+      - @research_topics.popular(10).first(5).each do |rt|
         .list-group-item
           %p.small= rt.text
     .col-sm-4
       %h3 Most Discussed
-      - @research_topics[6..10].each do |rt|
+      - @research_topics.most_discussed.first(5).each do |rt|
         .list-group-item
           %p.small= rt.text
     .col-sm-4
       %h3 Newest
-      - @research_topics[11..15].each do |rt|
+      - @research_topics.newest.each do |rt|
         .list-group-item
           %p.small= rt.text
 
-- if false
-  .content-main-header
-    %h1.f300 Rank the Research
-
-  .panel
-    .panel-heading
-      %h4.f300
-        At MyApnea.Org you can help direct the future of sleep apnea research.
-    .panel-body
-      %h5.f300
-        Below are questions important to network members. Every week, you can cast up to five votes on approved research questions, and you can suggest your own  as well.
-        %div.centered-text{ style: 'margin: 15px;' }
-          = link_to 'Add a new research question', new_research_topic_path, class: 'btn btn-sm btn-primary', style: 'margin-right: 15px;'
-          / = link_to 'Discuss other research questions', new_research_topic_path, class: 'btn btn-sm btn-info'
-      %h5.f300
-        For each question you vote on, you will be able to see what proportion of other members have also voted on that question. If a question is highly popular, and if data is lacking, the topic will be endorsed as an important direction for future research, and we'll get to work in figuring out how to deliver you the knowledge you need.
-    .panel-footer
-      %h4.f300.centered-text Let your voice be heard, vote now!
-
-
-  - if current_user
-    .panel.panel-rank-research
-      %table.table
-        - @research_topics.shuffle.each do |research_topic|
-          %tr{ id: "#{'update_link'+research_topic.id.to_s}" }
-            = render partial: 'votes/voting_link', locals: { research_topic: research_topic}
