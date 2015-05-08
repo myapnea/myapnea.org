@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :timeoutable, :lockable
 
   # Callbacks
-  after_create :send_welcome_email
+  after_create :set_forum_name, :send_welcome_email
 
   # Mappings
   TYPE = [['Diagnosed With Sleep Apnea', 'adult_diagnosed'],
@@ -46,6 +46,8 @@ class User < ActiveRecord::Base
 
   # Model Validation
   validates_presence_of :first_name, :last_name
+
+  validates :forum_name, allow_blank: true, uniqueness: true, format: { with: /\A[a-zA-Z0-9]*\Z/i }
 
   with_options unless: :is_provider? do |user|
     user.validates :over_eighteen, inclusion: { in: [true], message: "You must be over 18 years of age to sign up" }, allow_nil: true
@@ -175,8 +177,8 @@ class User < ActiveRecord::Base
   def photo_url
     if photo.present?
       photo.url
-    elsif social_profile
-      social_profile.photo_url
+    # elsif social_profile
+    #   social_profile.photo_url
     else
       'default-user.jpg'
     end
@@ -190,14 +192,6 @@ class User < ActiveRecord::Base
   #     'default-user.jpg'
   #   end
   # end
-
-  def forum_name
-    if social_profile
-      social_profile.public_nickname
-    else
-      SocialProfile.get_anonymous_name(email)
-    end
-  end
 
   def can_post_links?
     self.has_role? :moderator or self.has_role? :owner
@@ -340,6 +334,12 @@ class User < ActiveRecord::Base
 
 
   private
+
+  def set_forum_name
+    if self.forum_name.blank?
+      self.update forum_name: SocialProfile.generate_forum_name(self.email, Time.now.usec.to_s)
+    end
+  end
 
   def send_welcome_email
     UserMailer.welcome(self).deliver if Rails.env.production? and !self.provider?

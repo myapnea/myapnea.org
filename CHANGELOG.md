@@ -15,15 +15,21 @@
 - Dashboard
   - Added ability for owners to dynamically update dashboard highlights
   - Added a stream of recent posts to the dashboard (continously loads all posts)
+- **Profile Changes**
+  - Members can drag and drop a new photo on the settings page
+  - Members can generate a random forum name, generated names are in the following format:
+    - `AdjectiveColorAnimal####`
 
 ### Enhancements
 - Social sharing
   - Forum topics can now be easily shared
     - Each topic can auto generate a tweet, facebook post, and email for sharing
-  - Users are able to share that they have just completed a survey after submission
-- Forums
+  - Members are able to share that they have just completed a survey after submission
+- **Forum Changes**
   - Unmoderated posts are visible to users (not public), with a visible flag that they are unmoderated
   - A disclaimer is included at the bottom of a topic with unmoderated posts
+  - Members are now assigned a forum name from a list of more than 14 billion possibilities
+    - Members may change their forum name in their account settings if they choose
 - Added 'Remember me' to login process to reduce landing page hits for already registered members
 - Design updates
   - Cleaned up the account page, and added easier jump-navigation

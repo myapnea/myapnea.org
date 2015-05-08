@@ -37,11 +37,20 @@
           = f.check_box :include_in_exports
           Include in Exports and Reports
 
-  - if false
-    .form-group
-      = f.label :username, "Forum Username", class: 'col-md-2 control-label'
-      .col-md-10
-        = f.text_field :username, class: 'form-control'
+  .form-group
+    = f.label :forum_name, "Forum Username", class: 'col-md-2 control-label'
+    .col-md-10
+      = f.text_field :forum_name, class: 'form-control'
+
+  .form-group
+    = f.label :age, nil, class: 'col-md-2 control-label'
+    .col-md-10
+      = f.number_field :age, class: 'form-control'
+
+  .form-group
+    = f.label :gender, nil, class: 'col-md-2 control-label'
+    .col-md-10
+      = f.text_field :gender, class: 'form-control'
 
   .form-group
     .col-md-10.col-md-offset-2

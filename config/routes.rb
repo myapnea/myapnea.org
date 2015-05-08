@@ -119,6 +119,10 @@ Rails.application.routes.draw do
   get 'social/discussion(/*path)', to: redirect("forums/%{path}")
 
   # Account Section
+  scope module: 'account' do
+    post :suggest_random_forum_name
+  end
+
   get 'account' => 'account#account'
   get 'account_export' => 'account#account_export'
   match 'consent', to: "account#consent", as: :consent, via: [:get, :post]
@@ -190,6 +194,7 @@ Rails.application.routes.draw do
 
   get 'forum', to: redirect("forums")
   get 'research_surveys', to: redirect("surveys")
+  get 'update_account', to: redirect("account")
 
 # # Authentication
 #   devise_for :user, skip: [:sessions, :passwords, :confirmations, :registrations]

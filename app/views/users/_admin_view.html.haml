@@ -11,6 +11,15 @@
       %dd
         = @user.created_at.strftime("%m/%d/%Y") if @user.created_at.present?
 
+      %dt Forum Name
+      %dd= @user.forum_name
+
+      %dt Gender
+      %dd= @user.gender
+
+      %dt Age
+      %dd= @user.age
+
       %dt Privacy Policy
       %dd
         = @user.accepted_privacy_policy_at.strftime("%m/%d/%Y") if @user.accepted_privacy_policy_at.present?

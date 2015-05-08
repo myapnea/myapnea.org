@@ -12,3 +12,27 @@
     }
   }
 }
+
+// Fix for input form-controls losing border radius when error field is applied
+.input-group .has-error:first-child input.form-control {
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+
+#filedrag {
+  display: none;
+  // font-weight: bold;
+  text-align: center;
+  padding: 1em 0;
+  margin: 1em 0;
+  color: #777;
+  border: 1px dashed #777;
+  border-radius: 4px;
+  cursor: default;
+}
+
+#filedrag:hover {
+  color: #66afe9;
+  border-color: #66afe9;
+  border: 1px dashed #333;
+}

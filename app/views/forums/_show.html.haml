@@ -5,17 +5,17 @@
 - else
   - forum.topics.viewable_by_user(current_user ? current_user.id : nil)
 - topics = topics.search(params[:s]) if params[:s].present?
-- if params[:a].present? and social_profile = SocialProfile.find_by_name(params[:a])
-  - topics = topics.user_active(social_profile.user_id)
+- if author = User.current.find_by_forum_name(params[:a])
+  - topics = topics.user_active(author.id)
 - topics = topics.pending_review if params[:status] == 'pending_review'
 - topics = topics.page(topic_limit ? 1 : params[:page]).per( topic_limit )
 
 - if topics.count > 0 or (params[:s].blank? and params[:status].blank?)
-  - if params[:a].present? and social_profile.present?
+  - if author
     .alert.alert-info
       Showing topics that include posts by
-      = social_profile.name
-  - elsif params[:a].present? and social_profile.blank?
+      %strong= author.forum_name
+  - elsif params[:a].present? and author.blank?
     .alert.alert-warning
       There are no posts by
       = params[:a]

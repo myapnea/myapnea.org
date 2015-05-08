@@ -1,4 +1,4 @@
-= form_for current_user.social_profile, html: {role: "form", class: 'form-horizontal'}, url: social_profile_path do |f|
+= form_for current_user, html: { role: "form", class: 'form-horizontal' }, url: update_account_path, method: :patch do |f|
   .panel
     .panel-body.text-dark8
       %h3.f300.centered-text.text-dark9
@@ -6,35 +6,54 @@
       %br
 
       .row{ style: 'margin-bottom:20px;' }
-        .social-image-container.col-sm-3.col-sm-offset-3
-          - # Allow removal of social profile
-          .social-image-container-left-after
-            = link_to update_social_profile_path(current_user.social_profile, social_profile: { remove_photo: true }), method: :post do
-              %button.btn.btn-sm.btn-default X
-          = image_tag current_user.photo_url, class: 'img-responsive img-thumbnail'
-        .social-image-updater.col-sm-6
-          %h4.f300
-            Change Photo
-          %br
-          .centered-text
-            =f.file_field :photo
+        .col-sm-3.col-sm-offset-3
+          #profile-image-container
+            = render 'account/profile_photo'
+        .col-sm-3
+          .social-image-updater
+            %h4.f300
+              Change Photo
+            %br
+            .centered-text
+              =f.file_field :photo
+            %br
+            #filedrag{ data: { object: 'dropfile' } }
+              or drop photo here
 
-      .form-group.row
-        %label.control-label.col-sm-3 Nickname
+      .form-group
+        %label.control-label.col-sm-3 Forum Name
         .col-sm-6
-          =f.text_field(:name, class: 'form-control' )
+          .input-group
+            = f.text_field :forum_name, class: 'form-control'
+            %span.input-group-btn
+              = link_to suggest_random_forum_name_path, method: :post, remote: true, data: { toggle: 'tooltip', container: 'body' }, title: 'Generate Random Nickname', class: 'btn btn-default' do
+                %span.glyphicon.glyphicon-random
+          - if errors = current_user.errors[:forum_name] and errors.present?
+            .bs-callout.bs-callout-danger
+              - if 'is invalid'.in?(errors)
+                Please enter a valid forum name that consists of letters
+                %code a-z
+                and
+                numbers
+                %code 0-9
+                only.
+              - if 'has already been taken'.in?(errors)
+                This forum name has already been taken. Please choose another forum name.
+              You may click the
+              %span.glyphicon.glyphicon-random
+              for a suggestion.
 
-      .form-group.row
+      .form-group
         %label.control-label.col-sm-3
           Age
         .col-sm-6
-          =f.number_field(:age, class: 'form-control')
+          = f.number_field :age, class: 'form-control', min: 1
 
-      .form-group.row
+      .form-group
         %label.control-label.col-sm-3
           Gender
         .col-sm-6
-          = f.text_field(:gender, autocomplete: "off", data: { object: 'typeahead', local: ["Male", "Female", "Genderqueer", "Androgynous", "Intersex", "Transgender", "Transsexual", "Cross-dresser", "Male-to-female (MTF)", "Female-to-male (FTM)"].to_json }, class: 'form-control')
+          = f.text_field :gender, autocomplete: "off", data: { object: 'typeahead', local: ["Male", "Female", "Genderqueer", "Androgynous", "Intersex", "Transgender", "Transsexual", "Cross-dresser", "Male-to-female (MTF)", "Female-to-male (FTM)"].to_json }, class: 'form-control'
 
     .panel-footer.text-dark9.centered-text{ style: 'margin:10px 0;'}
       %h4
@@ -43,11 +62,3 @@
         If you would prefer to be shown anonymously, you can leave these fields blank. You can change this any time by visiting your settings!
       .row
         = f.submit "Save Changes", class: 'btn btn-primary col-xs-4 col-xs-offset-4 centered-text'
-
-      - if current_user.social_profile.errors.any?
-        .alert.alert-danger.alert-dismissable
-          %button.close{"aria-hidden" => "true", "data-dismiss" => "alert", :type => "button"} &times;
-          %strong Profile Errors
-          %ul
-            - current_user.social_profile.errors.full_messages.each do |msg|
-              %li= msg.html_safe

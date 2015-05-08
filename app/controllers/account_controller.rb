@@ -147,7 +147,10 @@ class AccountController < ApplicationController
       if [:welcome_message, :slug, :provider_name].all? {|k| user_params.key? k}
         redirect_to provider_path(current_user.slug)
       else
-        redirect_to account_path, notice: "Your account settings have been successfully changed."
+        respond_to do |format|
+          format.js
+          format.all { redirect_to account_path, notice: "Your account settings have been successfully changed." }
+        end
       end
     else
       @update_for = :user_info
@@ -166,10 +169,29 @@ class AccountController < ApplicationController
     end
   end
 
+  def suggest_random_forum_name
+    @new_forum_name = SocialProfile.generate_forum_name(Time.now.nsec.to_s)
+  end
+
   private
 
   def user_params
-    params.required(:user).permit(:email, :first_name, :last_name, :zip_code, :year_of_birth, :password, :password_confirmation, :current_password, :beta_opt_in, :state_code, :country_code, :provider_id, :welcome_message, :photo, :remove_photo, :emails_enabled, :slug, :provider_name)
+    params.required(:user).permit(
+      # Basic Information
+      :first_name, :last_name, :email,
+      # Change and Reset Password
+      :password, :password_confirmation, :current_password,
+      # Forum and Social Profile
+      :photo, :remove_photo, :forum_name, :age, :gender,
+      # Linking to a Provider
+      :provider_id,
+      # Receiving Emails
+      :emails_enabled,
+      # For Provider Profiles
+      :welcome_message, :provider_name, :slug,
+      # Enabling Beta
+      :beta_opt_in
+      )
   end
 
   def load_content
