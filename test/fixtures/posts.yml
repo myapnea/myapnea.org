@@ -65,3 +65,27 @@ six:
 #   deleted: false
 #   last_moderated_by: moderator_1
 #   last_moderated_at: 2015-01-09 12:40:06
+
+rt1:
+  topic: rt1
+  description: It's so annoying!
+  user: user_1
+  status: approved
+  last_moderated_by: moderator_1
+  last_moderated_at: 2015-01-09 12:40:00
+
+rt2:
+  topic: rt2
+  description: I sleep all the time, but can't remember noticing myself breathing.
+  user: user_2
+  status: approved
+  last_moderated_by: moderator_1
+  last_moderated_at: 2015-01-09 12:40:00
+
+rt3:
+  topic: rt3
+  description: I've always wonder this, but I can't be bothered to look for an answer.
+  user: user_3
+  status: approved
+  last_moderated_by: moderator_1
+  last_moderated_at: 2015-01-09 12:40:00

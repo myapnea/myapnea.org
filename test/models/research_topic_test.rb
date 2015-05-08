@@ -25,4 +25,25 @@ class ResearchTopicTest < ActiveSupport::TestCase
     assert_equal desc, rt.description
   end
 
+  test "Research topic endorsement" do
+    u = users(:user_10)
+    rt = research_topics(:rt1)
+
+    assert_equal 0.6, rt.endorsement
+
+    rt.endorse(u)
+
+    assert_equal (4.0/6.0).round(4), rt.endorsement
+  end
+
+  test "Research topic opposition" do
+    u = users(:user_10)
+    rt = research_topics(:rt3)
+
+    assert_equal 0.75, rt.endorsement
+
+    rt.oppose(u)
+
+    assert_equal 0.6, rt.endorsement
+  end
 end

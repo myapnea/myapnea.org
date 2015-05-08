@@ -58,5 +58,25 @@ hidden:
 
 rt1:
   forum: research_topics
-  user: owner
-  name:
+  user: user_1
+  name: Why do we snore?
+  locked: false
+  pinned: false
+  slug: why-do-we-snore
+
+rt2:
+  forum: research_topics
+  user: user_2
+  name: Do we breathe while we sleep?
+  locked: false
+  pinned: false
+  slug: do-we-breathe
+
+rt3:
+  forum: research_topics
+  user: user_3
+  name: How much sleep do we really need?
+  locked: false
+  pinned: false
+  slug: how-much-sleep
+

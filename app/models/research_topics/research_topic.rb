@@ -10,7 +10,8 @@ class ResearchTopic < ActiveRecord::Base
 
   # Associations
   belongs_to :user
-  belongs_to :topic, -> { includes :posts }
+  belongs_to :topic #, -> { includes :posts }
+  has_many :votes
 
   # Constants
   PROGRESS = [:proposed, :accepted, :ongoing_research, :complete]
@@ -42,6 +43,21 @@ class ResearchTopic < ActiveRecord::Base
   def description
     topic.posts.first.description
   end
+
+  # Voting
+  def endorsement
+    Vote.select("sum(rating)::float/count(rating)::float as endorsement").group("research_topic_id").where(research_topic_id: self[:id]).map(&:endorsement).first.round(4)
+  end
+
+  def endorse(user)
+    votes.create(user_id: user.id, rating: 1)
+  end
+
+
+  def oppose(user)
+    votes.create(user_id: user.id, rating: 0)
+  end
+
 
 
   private

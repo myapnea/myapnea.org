@@ -5,7 +5,7 @@ v1:
 v2:
   user: user_1
   research_topic: rt3
-  rating: 1
+  rating: 0
 v3:
   user: user_4
   research_topic: rt1
@@ -17,7 +17,7 @@ v4:
 v5:
   user: user_6
   research_topic: rt1
-  rating: 1
+  rating: 0
 v6:
   user: user_7
   research_topic: rt3
@@ -32,5 +32,5 @@ v8:
   rating: 1
 v9:
   user: social
-  rating: 1
+  rating: 0
   research_topic: rt1
