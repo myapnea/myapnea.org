@@ -63,6 +63,12 @@ namespace :profiles do
       end
     end
 
+    SocialProfile.includes(:user).each do |social_profile|
+      if social_profile.user and social_profile.photo
+        social_profile.user.update photo: social_profile.photo
+      end
+    end
+
   end
 
 end
