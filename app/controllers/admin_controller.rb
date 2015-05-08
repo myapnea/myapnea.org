@@ -180,10 +180,4 @@ class AdminController < ApplicationController
     @age_ranges = age_ranges
     @user_values = user_values
   end
-
-  def notifications
-    @posts = Notification.notifications
-    @new_post = Notification.new(post_type: :notification)
-  end
-
 end

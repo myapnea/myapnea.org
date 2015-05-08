@@ -138,7 +138,6 @@ Rails.application.routes.draw do
   # Admin Section
   get 'admin' => 'admin#dashboard'
   get 'admin/surveys' => 'admin#surveys', as: 'admin_surveys'
-  get 'admin/notifications' => 'admin#notifications', as: 'admin_notifications'
   get 'admin/research-topics' => 'admin#research_topics', as: 'admin_research_topics'
   get 'admin/research-topic/:id' => 'admin#research_topic', as: 'admin_research_topic'
   get 'admin/version-stats' => 'admin#version_stats', as: 'admin_version_stats'
@@ -153,9 +152,6 @@ Rails.application.routes.draw do
   resources :questions
   match 'vote', to: 'votes#vote', via: :post, as: :vote
   match 'vote', to: 'research_topics#index', via: :get, as: :vote_fake
-
-  # Notification Posts
-  resources :notifications, except: [:show, :index]
 
   devise_for :users, controllers: { registrations: 'registrations' }
 

@@ -11,7 +11,7 @@
 
     bundle exec rake db:drop RAILS_ENV=production_copy
     bundle exec rake db:create RAILS_ENV=production_copy
-    psql -U postgres -d myapnea_production_copy -f /home/pwm4/dumps/myapnea_production_20150506_1400.sql
+    psql -U postgres -d myapnea_production_copy -f /home/pwm4/dumps/myapnea_production_20150508_1600.sql
     bundle exec rake db:migrate RAILS_ENV=production_copy
 
     rails c production_copy
