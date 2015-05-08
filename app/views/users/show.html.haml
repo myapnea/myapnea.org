@@ -52,11 +52,11 @@
           - @user.research_topics.limit(4).each_with_index do |rt, index|
             - if index % 2 == 0
               .col-sm-6
-                = render partial: 'research_topics/voting_form', locals: { rt: rt }
+                = render partial: 'research_topics/voting_form', locals: { research_topic: rt }
             - else
               .row
                 .col-sm-6
-                  = render partial: 'research_topics/voting_form', locals: { rt: rt }
+                  = render partial: 'research_topics/voting_form', locals: { research_topic: rt }
       - else
         - if @user == current_user
           %p.lead You haven't proposed any research topics!

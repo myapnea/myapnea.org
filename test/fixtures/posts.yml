@@ -97,3 +97,12 @@ rt3:
   status: approved
   last_moderated_by: moderator_1
   last_moderated_at: 2015-01-09 12:40:00
+
+rt4:
+  topic: rt4
+  description: whaaat
+  user: user_10
+  status: approved
+  last_moderated_by: moderator_1
+  last_moderated_at: 2015-01-09 12:40:00
+  deleted: true

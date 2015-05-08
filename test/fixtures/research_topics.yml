@@ -13,3 +13,10 @@ rt3:
   user: user_3
   created_at: <%= Time.zone.now - 2.hour %>
   topic: rt3
+
+deleted:
+  progress: proposed
+  user: user_9
+  created_at: <%= Time.zone.now - 10.hour %>
+  topic: rt4
+  deleted: true

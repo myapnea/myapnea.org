@@ -385,17 +385,8 @@ class User < ActiveRecord::Base
   end
 
   # Voting
-  def number_votes_remaining
-    vote_quota - this_weeks_votes.length
-  end
-
-  def has_votes_remaining?(rating = 1)
-
-    (this_weeks_votes.length < vote_quota) or (rating < 1)
-  end
-
-  def positive_votes
-    self.votes.where.not(research_topic_id: nil).where(rating: '1')
+  def cast_vote_for?(research_topic)
+    votes.current.where(research_topic_id: research_topic.id).count > 0
   end
 
 

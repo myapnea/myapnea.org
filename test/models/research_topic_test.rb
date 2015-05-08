@@ -1,6 +1,21 @@
 require "test_helper"
 
 class ResearchTopicTest < ActiveSupport::TestCase
+  test "self.highlighted" do
+    # Voted for neither
+    assert_equal research_topics(:rt3), ResearchTopic.highlighted(users(:user_10))
+
+    # Already voted for lowest voted
+    assert_equal research_topics(:rt1), ResearchTopic.highlighted(users(:user_7))
+
+    # Voted for all
+    assert_nil ResearchTopic.highlighted(users(:user_1))
+  end
+
+  test "self.approved" do
+    assert_equal 2, ResearchTopic.approved.length
+  end
+
   test "self.popular" do
     assert_equal 2, ResearchTopic.popular.length
     assert_equal 1, ResearchTopic.popular(4).length
@@ -57,7 +72,7 @@ class ResearchTopicTest < ActiveSupport::TestCase
 
     rt.endorse(u)
 
-    assert_equal (4.0/6.0).round(4), rt.endorsement
+    assert_in_epsilon (4.0/6.0), rt.endorsement
   end
 
   test "Research topic opposition" do

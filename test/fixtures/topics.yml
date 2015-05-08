@@ -63,6 +63,7 @@ rt1:
   locked: false
   pinned: false
   slug: why-do-we-snore
+  status: approved
 
 rt2:
   forum: research_topics
@@ -71,6 +72,7 @@ rt2:
   locked: false
   pinned: false
   slug: do-we-breathe
+  status: under_review
 
 rt3:
   forum: research_topics
@@ -79,4 +81,15 @@ rt3:
   locked: false
   pinned: false
   slug: how-much-sleep
+  status: approved
 
+
+rt4:
+  forum: research_topics
+  user: user_10
+  name: What what what?
+  locked: false
+  pinned: false
+  deleted: true
+  slug: what-what-what
+  status: approved

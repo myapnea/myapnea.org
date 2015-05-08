@@ -11,7 +11,7 @@ class ResearchTopicsController < ApplicationController
   end
 
   def first_topics
-    @research_topics = ResearchTopic.accepted.first(10)
+    @research_topics = ResearchTopic.approved.first(10)
   end
 
   def newest
@@ -23,33 +23,26 @@ class ResearchTopicsController < ApplicationController
   end
 
   def most_discussed
-    @research_topics = ResearchTopic.accepted
+    @research_topics = ResearchTopic.approved.most_discussed
   end
 
   def all
-    @research_topics = ResearchTopic.accepted
+    @research_topics = ResearchTopic.approved
   end
 
   def index
-    @active_top_nav_link = :research
-    if current_user.votes.where(rating: 1).count < 1
-      redirect_to intro_research_topics_path
-    end
-    @research_topics = ResearchTopic.accepted
+    @research_topics = ResearchTopic.approved
   end
 
   def show
-    @active_top_nav_link = :research
     authorize_action_for @research_topic
   end
 
   def new
-    @active_top_nav_link = :research
     @research_topic = current_user.research_topics.new
   end
 
   def edit
-    @active_top_nav_link = :research
     authorize_action_for @research_topic
   end
 
