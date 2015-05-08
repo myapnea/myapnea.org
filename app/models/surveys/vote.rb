@@ -1,4 +1,6 @@
 class Vote < ActiveRecord::Base
+  include Deletable
+
   # Always needs to belong to user
   belongs_to :user
 

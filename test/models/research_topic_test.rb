@@ -1,6 +1,30 @@
 require "test_helper"
 
 class ResearchTopicTest < ActiveSupport::TestCase
+  test "self.popular" do
+    assert_equal 2, ResearchTopic.popular.length
+    assert_equal 1, ResearchTopic.popular(4).length
+    assert_equal 0, ResearchTopic.popular(10).length
+
+    assert_equal [0.75, 0.6], ResearchTopic.popular.map(&:endorsement)
+    assert_equal [0.6], ResearchTopic.popular(4).map(&:endorsement)
+  end
+
+  test "self.most_discussed" do
+    assert_equal 3, ResearchTopic.most_discussed.length
+    assert_equal [2,1,1], ResearchTopic.most_discussed.map(&:post_count)
+
+  end
+
+  test "self.most_voted" do
+    assert_equal 3, ResearchTopic.most_voted.length
+    assert_equal [5,4,0], ResearchTopic.most_voted.map(&:vote_count)
+  end
+
+  test "self.newest" do
+    assert_equal 3, ResearchTopic.newest.length
+  end
+
   test "Research topic creation" do
     u = users(:user_1)
     text = "Does sleep apnea cause obesity, or is it the other way around?"

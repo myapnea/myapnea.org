@@ -74,6 +74,14 @@ rt1:
   last_moderated_by: moderator_1
   last_moderated_at: 2015-01-09 12:40:00
 
+rt1a:
+  topic: rt1
+  description: I hear ya!
+  user: user_4
+  status: approved
+  last_moderated_by: moderator_1
+  last_moderated_at: 2015-01-09 12:40:00
+
 rt2:
   topic: rt2
   description: I sleep all the time, but can't remember noticing myself breathing.

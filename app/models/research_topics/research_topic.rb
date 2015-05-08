@@ -10,8 +10,8 @@ class ResearchTopic < ActiveRecord::Base
 
   # Associations
   belongs_to :user
-  belongs_to :topic #, -> { includes :posts }
-  has_many :votes
+  belongs_to :topic
+  has_many :votes, -> { where(deleted: false) }
 
   # Constants
   PROGRESS = [:proposed, :accepted, :ongoing_research, :complete]
@@ -22,13 +22,26 @@ class ResearchTopic < ActiveRecord::Base
   # Named Scopes
   scope :approved, lambda { joins(:topic).where(topics: {status: 'approved'})}
   scope :pending_review, lambda { joins(:topic).where(topics: {status: 'pending_review'})}
+  scope :popular, lambda {  }
 
-  # scope :viewable_by_user, lambda { |arg| where('topics.status = ? or topics.user_id = ?', 'approved', arg) }
-  # scope :pending_review, -> { where('topics.status = ? or topics.id IN (select posts.topic_id from posts where posts.deleted = ? and posts.status = ?)', 'pending_review', false, 'pending_review') }
+  # Class methods
+  def self.popular(vote_threshold = nil)
+    query = select("research_topics.*, (sum(votes.rating)::float/count(votes.rating)::float) as endorsement").joins(:votes).group("research_topics.id").order("endorsement desc")
+    query = query.having("count(votes.rating) > ?", vote_threshold) if vote_threshold.present?
+    query
+  end
 
-  #scope :accepted, -> { where(state: 'accepted') }
-  #scope :viewable_by, lambda { |user_id| where("state = ? or user_id = ?", "accepted", user_id)}
+  def self.most_voted
+    select("research_topics.*, count(votes.id) as vote_count").joins("left outer join votes on votes.research_topic_id = research_topics.id and votes.deleted = 'f'").group("research_topics.id").order("vote_count desc")
+  end
 
+  def self.most_discussed
+    select("research_topics.*, count(posts.id) as post_count").joins(topic: :posts).group("research_topics.id").order("post_count desc")
+  end
+
+  def self.newest
+    order("created_at desc")
+  end
 
 
   # Getters
@@ -46,7 +59,7 @@ class ResearchTopic < ActiveRecord::Base
 
   # Voting
   def endorsement
-    Vote.select("sum(rating)::float/count(rating)::float as endorsement").group("research_topic_id").where(research_topic_id: self[:id]).map(&:endorsement).first.round(4)
+    Vote.current.select("sum(rating)::float/count(rating)::float as endorsement").group("research_topic_id").where(research_topic_id: self[:id]).map(&:endorsement).first.round(4)
   end
 
   def endorse(user)
@@ -57,6 +70,8 @@ class ResearchTopic < ActiveRecord::Base
   def oppose(user)
     votes.create(user_id: user.id, rating: 0)
   end
+
+
 
 
 

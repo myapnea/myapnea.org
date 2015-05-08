@@ -34,3 +34,13 @@ v9:
   user: social
   rating: 0
   research_topic: rt1
+v10:
+  user: social
+  rating: 1
+  research_topic: rt3
+  deleted: true
+v11:
+  user: social
+  rating: 1
+  research_topic: rt1
+  deleted: true
