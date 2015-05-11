@@ -1,0 +1,66 @@
+%b
+  Dear
+  = "#{@user.first_name},"
+
+%p
+  Thank you for registering as a Provider with
+  = "#{ENV['website_name']}!"
+  We are excited that
+  you have joined our dynamic patient-centered community and we look forward to
+  collaborating with you.
+%p
+  There are several ways that you can now let your patients know about
+  = "#{ENV['website_name']}."
+
+%strong Via Email
+%ul
+  %li
+    The method that has been most effective is a direct email to your patient
+    panel either through your own account or through your organization's EHR or
+    email system. Here is an example of an invitation email to your patients:
+    %br
+    %br
+    %div{ style: 'color:#777;padding-left:25px'}
+      %i Example Invitation Email to Patients
+    %div{ style: 'border: 4px solid #428bca; padding:20px; margin-right:40px' }
+      %p
+        Your health data has power. If you haven't already, please join me and
+        register for the sleep apnea patient-powered network
+        = ENV['website_name']
+        through my unique portal at:
+      %p
+        = link_to "#{ENV['website_url']}/p/#{@user.slug}", "#{ENV['website_url']}/p/#{@user.slug}", style: "color: #428bca"
+      %p
+        If you have already joined, thank you! Now you can link to my portal by
+        visiting the link above and clicking on the button at the bottom of the page that says:
+      %p
+        "Yes, list
+        = @user.provider_name
+        as my Provider!"
+      %p
+        Together we have the power to help improve the lives of sleep apnea patients. Join now!
+
+%strong Via Web Links
+%ul
+  %li
+    You can also request electronic graphic links/buttons like the one below for
+    placement on your website by sending an email to us at
+    = link_to('support@myapnea.org', 'mailto:support@myapnea.org', style: "color: #428bca") + '.'
+    We can tag the button so we can report to you how many people have used the
+    link to come to the site. You can also just provide a link with the
+    statement: "Join the sleep apnea patient-powered movement now" if space is
+    more limited.
+
+%strong Via Promo Cards
+%ul
+  %li
+    You can also request print materials about
+    = ENV['website_name']
+    for use in your clinic or lab. Please submit your request for postcard or
+    flyer sized promotional materials in English and/or Spanish here:
+    %p
+      %center
+        = link_to 'MyApnea.Org Provider Inquiry', 'http://bit.ly/1F5ZJCV', style: "color: #428bca"
+
+Thank you and welcome to
+= "#{ENV['website_name']}!"

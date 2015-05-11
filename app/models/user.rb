@@ -392,6 +392,20 @@ class User < ActiveRecord::Base
     end
   end
 
+  def send_provider_informational_email!
+    unless Rails.env.test?
+      pid = Process.fork
+      if pid.nil? then
+        # In child
+        UserMailer.welcome_provider(self).deliver_later if Rails.env.production? and self.provider?
+        Kernel.exit!
+      else
+        # In parent
+        Process.detach(pid)
+      end
+    end
+  end
+
   private
 
   def set_forum_name
@@ -401,7 +415,17 @@ class User < ActiveRecord::Base
   end
 
   def send_welcome_email
-    UserMailer.welcome(self).deliver if Rails.env.production? and !self.provider?
+    unless Rails.env.test?
+      pid = Process.fork
+      if pid.nil? then
+        # In child
+        UserMailer.welcome(self).deliver_later if Rails.env.production?
+        Kernel.exit!
+      else
+        # In parent
+        Process.detach(pid)
+      end
+    end
   end
 
   def assign_default_surveys

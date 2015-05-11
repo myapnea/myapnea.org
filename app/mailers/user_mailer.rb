@@ -22,6 +22,13 @@ class UserMailer < ApplicationMailer
     mail(to: @email_to, subject: "Welcome to MyApnea.Org!")
   end
 
+  def welcome_provider(user)
+    setup_email
+    @user = user
+    @email_to = user.email
+    mail(to: @email_to, subject: "MyApnea.Org Provider Registration Information")
+  end
+
   def mentioned_in_post(post, user)
     setup_email
     @user = user
