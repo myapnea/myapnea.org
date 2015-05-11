@@ -60,7 +60,7 @@
 
 = render @posts
 
-- if @posts.pluck(:status).uniq.include?("pending_review")
+- if @topic.posts.where(status: 'pending_review').count > 0
   .well
     %p.lead
       This topic includes at least one post that has not been approved by a moderator. Please be advised that these posts may contain sensitive material or unsolicitied medical advice. MyApnea does not endorse the content of these posts, and strongly urges you to ignore any direct medical advice received anywhere on the internet.
