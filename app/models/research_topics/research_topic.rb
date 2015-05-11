@@ -15,6 +15,7 @@ class ResearchTopic < ActiveRecord::Base
 
   # Constants
   PROGRESS = [:proposed, :accepted, :ongoing_research, :complete]
+  INTRO_LENGTH = 10
 
   # Callbacks
   after_create :create_associated_topic
