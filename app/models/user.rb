@@ -392,7 +392,6 @@ class User < ActiveRecord::Base
     end
   end
 
-
   private
 
   def set_forum_name

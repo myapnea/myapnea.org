@@ -35,6 +35,9 @@
   - Individual posts can now have links enabled
     - Link become clickable once the post is approved
     - Members editing their post sets the post back to under review, hence removing the clickable link
+  - Community member profiles have been added that show a member's popular posts and forum contributions
+- **Moderator Changes**
+  - Forum moderators can now get in touch with forum participants to discuss posts that may require moderation or editing
 - Added 'Remember me' to login process to reduce landing page hits for already registered members
 - Design updates
   - Cleaned up the account page, and added easier jump-navigation

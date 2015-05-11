@@ -50,7 +50,8 @@
             Original Poster
         %div{ id: "post_#{post.id}_container" }
           .post-user-name-container
-            = post.user.forum_name
+            - unless post.user.forum_name.blank?
+              = link_to post.user.forum_name, member_path(post.user.forum_name)
           %p{ style: 'font-style:italic' }
             %i.fa.fa-eye-slash
             Post Is Hidden
@@ -86,7 +87,8 @@
             Original Poster
         %div{ id: "post_#{post.id}_container" }
           .post-user-name-container
-            = post.user.forum_name
+            - unless post.user.forum_name.blank?
+              = link_to post.user.forum_name, member_path(post.user.forum_name)
           %p{ style: 'font-style:italic' }
             %i.fa.fa-eye
             = 'Your' if current_user and current_user == post.user
@@ -113,7 +115,8 @@
             Original Poster
         %div{ id: "post_#{post.id}_container" }
         .post-user-name-container
-          = post.user.forum_name
+          - unless post.user.forum_name.blank?
+            = link_to post.user.forum_name, member_path(post.user.forum_name)
         = render partial: 'posts/formatted', locals: { post: post }
         .small.text-muted{ style: 'font-weight: 300' }
           = post.created_at.strftime("%-d %B %Y, %-l:%M %p")

@@ -14,7 +14,7 @@
   - @users.each do |user|
     %tr
       %td{ style: 'white-space:nowrap' }
-        = render partial: 'forums/user_image', locals: { user: user, size: 18 }
+        = render 'forums/user_image_no_border', user: user, size: 18
         = link_to user.name, user_path(user)
       %td= user.email
       %td
