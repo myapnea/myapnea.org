@@ -35,7 +35,7 @@ class UserMailerTest < ActionMailer::TestCase
 
     assert_equal [valid.email], email.to
     assert_equal "Welcome to MyApnea.Org!", email.subject
-    assert_match(/Your registration with MyApnea\.Org was successful\. Thank you for joining our growing network!/, email.encoded)
+    assert_match(/Your registration with MyApnea\.Org was successful\./, email.encoded)
   end
 
   test "welcome provider email" do

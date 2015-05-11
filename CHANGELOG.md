@@ -40,6 +40,7 @@
   - Forum moderators can now get in touch with forum participants to discuss posts that may require moderation or editing
 - **Provider Changes**
   - Providers now receive an informational email after updating a completed provider profile
+  - Member welcome emails now list their provider if they signed up through a provider page
 - Added 'Remember me' to login process to reduce landing page hits for already registered members
 - Design updates
   - Cleaned up the account page, and added easier jump-navigation

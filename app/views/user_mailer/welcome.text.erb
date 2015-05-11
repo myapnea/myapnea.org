@@ -1,15 +1,22 @@
 Dear <%= @user.first_name %>,
 
-Your registration with MyApnea.Org was successful. Thank you for joining our growing network!
+Your registration with <%= "#{@user.my_provider.provider_name} for " if @user.my_provider and @user.my_provider.provider_name.present? %>MyApnea.Org was successful.
+
+Thank you for joining our growing network!
 
 The dawn of a new era in sleep apnea research is here. As a network member you can now:
 
 
-  - Connect with other members on the Forums, <%= "#{ENV['website_url']}/forums" %>, to share your story and discuss your views on future research projects.
+  - Connect with other members on the Forums, <%= "#{ENV['website_url']}/forums" %>,
+    to share your story and discuss your views on future research projects.
 
-  - Track your health over time and compare with other network members by completing short surveys, <%= "#{ENV['website_url']}/surveys" %>, (each completed survey earns you an entry into our monthly lottery for a chance to win a $250 Visa Gift card).
+  - Track your health over time and compare with other network members by
+    completing short surveys, <%= "#{ENV['website_url']}/surveys" %>,
+    (each completed survey earns you an entry into our monthly lottery for a
+    chance to win a $250 Visa Gift card).
 
-  - Direct future sleep apnea research by suggesting and voting on topics <%= "#{ENV['website_url']}/research-topics" %>, that matter to you most.
+  - Direct future sleep apnea research by suggesting and voting on topics
+    <%= "#{ENV['website_url']}/research-topics" %>, that matter to you most.
 
 
 Again, welcome and we look forward to finding answers together with you!
