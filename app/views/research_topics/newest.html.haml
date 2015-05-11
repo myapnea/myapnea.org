@@ -1,13 +1,11 @@
 .content-main-header
   %h1.f300 Newest Research Questions
 
-.panel
-  .panel-body
-    .row
-      .col-sm-6
-        - @rt_c1.each do |rt|
-          = render partial: 'research_topics/voting_form', locals: { rt: rt }
-      .col-sm-6
-        - @rt_c2.each do |rt|
-          = render partial: 'research_topics/voting_form', locals: { rt: rt }
+.row
+  .col-sm-6
+    - @rt_c1.each do |rt|
+      = render partial: 'research_topics/voting_form', locals: { research_topic: rt }
+  .col-sm-6
+    - @rt_c2.each do |rt|
+      = render partial: 'research_topics/voting_form', locals: { research_topic: rt }
 

@@ -5,12 +5,10 @@
   .panel-body
     - @research_topics.each do |rt|
       .list-group-item
-        - if rt.votes.pluck(:user_id).include?(current_user.id)
-          .row
-            .col-sm-11.col-xs-10
-              %p.lead= rt.text
-            .col-xs-1
-              %p.lead.primary-blue= simple_check true
+        - if current_user.cast_vote_for?(rt)
+          %span.badge{ class: "#{current_user.endorsed?(rt) ? 'great-bcg' : 'danger-bcg' }" }
+            %span.glyphicon{ class: "#{current_user.endorsed?(rt) ? 'glyphicon-ok' : 'glyphicon-remove' }" }
+          %p.lead= rt.text
         - else
-          = render partial: 'research_topics/voting_form', locals: { rt: rt }
+          = render partial: 'research_topics/voting_form', locals: { research_topic: rt }
 

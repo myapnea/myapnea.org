@@ -383,6 +383,14 @@ class User < ActiveRecord::Base
     votes.current.where(research_topic_id: research_topic.id).count > 0
   end
 
+  def endorsed?(research_topic)
+    votes.current.where(research_topic_id: research_topic.id, rating: 1).count > 0
+  end
+
+  def opposed?(research_topic)
+    votes.current.where(research_topic_id: research_topic.id, rating: 0).count > 0
+  end
+
 
   ## Provider Methods
 
