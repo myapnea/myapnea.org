@@ -80,7 +80,7 @@ class Topic < ActiveRecord::Base
   end
 
   def set_last_post_at!
-    if last_post = self.posts.where(status: 'approved').last
+    if last_post = self.posts.where(status: ['approved', 'pending_review']).last
       self.update last_post_at: last_post.created_at
     else
       self.update last_post_at: nil

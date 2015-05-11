@@ -31,6 +31,13 @@
       .col-md-10
         = f.select :status, [['---', nil]] + Post::STATUS, {}, class: 'form-control'
 
+    .form-group
+      .col-md-10.col-md-offset-2
+        .checkbox
+          %label
+            = f.check_box :links_enabled
+            Allow Links in Post
+
   .form-group
     .col-md-offset-2.col-md-10
       = f.submit nil, class: 'btn btn-primary'

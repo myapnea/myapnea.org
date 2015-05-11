@@ -120,7 +120,7 @@ class PostsController < ApplicationController
       end
 
       if current_user.has_role? :moderator
-        params.require(:post).permit(:description, :status)
+        params.require(:post).permit(:description, :status, :links_enabled)
       else
         params.require(:post).permit(:description, :status)
       end
