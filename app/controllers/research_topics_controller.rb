@@ -17,7 +17,7 @@ class ResearchTopicsController < ApplicationController
   def newest
     @rt_c1 = []
     @rt_c2 = []
-    ResearchTopic.accepted.each_with_index do |rt, index|
+    ResearchTopic.approved.each_with_index do |rt, index|
       (index+1)%2==0 ? (@rt_c1 << rt) : (@rt_c2 << rt)
     end
   end

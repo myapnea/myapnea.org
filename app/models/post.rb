@@ -68,7 +68,7 @@ class Post < ActiveRecord::Base
   # AND
   # 2) The topic subscriber is not the post creator
   def send_reply_emails!
-    unless Rails.env.test?
+    unless Rails.env.test? or Rails.env.development?
       pid = Process.fork
       if pid.nil? then
         # In child

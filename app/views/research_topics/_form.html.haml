@@ -10,8 +10,8 @@
     = f.text_area :description, placeholder: "Describe why you think this question is important...", class: 'form-control input-lg'
   - if current_user.can_moderate?(research_topic)
     .form-group
-      = f.label :state, class: 'sr-only'
-      = f.select :state, ResearchTopic::STATES, {prompt: "-- select state --" }, { class: 'input-lg form-control' }
+      = f.label :progress, class: 'sr-only'
+      = f.select :progress, ResearchTopic::PROGRESS, {prompt: "-- select state --" }, { class: 'input-lg form-control' }
   = f.submit("Submit", class: "btn btn-success pull-right")
   .clearfix
 
