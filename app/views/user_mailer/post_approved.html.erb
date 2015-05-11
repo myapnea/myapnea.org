@@ -1,5 +1,0 @@
-<b>Dear <%= @post.user.first_name %>,</b><br />
-<br />
-Your forum post has been <span style="padding:5px;background-color:#5cb85c;color:white">approved</span>. You can view the post under the following topic:<br />
-<br />
-<center><%= link_to @post.topic.name, "#{ENV['website_url']}/forums/#{@post.forum.to_param}/topics/#{@post.topic.to_param}/posts/#{@post.to_param}", style: "color: #428bca" %></center><br />

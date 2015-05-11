@@ -1,8 +1,0 @@
-Dear <%= @post.user.first_name %>,
-
-Your forum post has been approved. You can view the post under the following topic:
-
-
-  <%= @post.topic.name %>
-
-  <%= "#{ENV['website_url']}/forums/#{@post.forum.to_param}/topics/#{@post.topic.to_param}/posts/#{@post.to_param}" %>

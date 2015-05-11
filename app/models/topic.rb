@@ -32,7 +32,7 @@ class Topic < ActiveRecord::Base
   has_one :research_topic # For research topic functionality
   has_many :posts, -> { order(:created_at) }
   has_many :subscriptions
-  has_many :subscribers, -> { where(deleted: false) }, through: :subscriptions, source: :user
+  has_many :subscribers, -> { current.where(emails_enabled: true) }, through: :subscriptions, source: :user
 
   # Topic Methods
 
@@ -73,10 +73,6 @@ class Topic < ActiveRecord::Base
     else
       'auto-muted'
     end
-  end
-
-  def subscribers
-    self.subscriptions.where(subscribed: true).select{|s| s.user.emails_enabled?}.collect{|s| s.user}.uniq
   end
 
   def increase_views!(current_user)

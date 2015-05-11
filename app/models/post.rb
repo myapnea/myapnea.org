@@ -6,6 +6,7 @@ class Post < ActiveRecord::Base
   include Deletable
 
   # Callbacks
+  after_create :send_reply_emails!
   after_save :touch_topic
 
   # Named Scopes
@@ -60,26 +61,27 @@ class Post < ActiveRecord::Base
     self.status == 'hidden'
   end
 
-  def approved_email(current_user)
-    # self.add_event!('Post approved.', current_user, 'approved')
-    # self.post_events.create event_type: 'moderator_approved', user_id: current_user.id, event_at: Time.now
-    UserMailer.post_approved(self, current_user).deliver_later if Rails.env.production?
-  end
+  private
 
-  def reply_emails
-    self.topic.subscribers.each do |u|
-      if u.emails_enabled? and u != self.user
-        Rails.logger.info "Topic ##{self.topic.id} Post ##{self.id} Reply Email To User ##{u.id} - #{u.email} - EMAIL SENT"
-      elsif u.emails_enabled?
-        Rails.logger.info "Topic ##{self.topic.id} Post ##{self.id} Reply Email To User ##{u.id} - #{u.email} - ORIGINAL USER NO EMAIL SENT"
+  # Reply Emails sends emails if the following conditions are met:
+  # 1) The topic subscriber has email notifications enabled
+  # AND
+  # 2) The topic subscriber is not the post creator
+  def send_reply_emails!
+    unless Rails.env.test?
+      pid = Process.fork
+      if pid.nil? then
+        # In child
+        self.topic.subscribers.where.not(id: self.user_id).each do |u|
+          UserMailer.post_replied(self, u).deliver_later if Rails.env.production?
+        end
+        Kernel.exit!
       else
-        Rails.logger.info "Topic ##{self.topic.id} Post ##{self.id} Reply Email To User ##{u.id} - #{u.email} - NO EMAIL SENT - EMAIL DISABLED"
+        # In parent
+        Process.detach(pid)
       end
-      UserMailer.post_replied(self, u).deliver_later if Rails.env.production? and u.emails_enabled? and u != self.user
     end
   end
-
-  private
 
   def touch_topic
     self.topic.set_last_post_at!
