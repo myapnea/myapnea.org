@@ -32,10 +32,10 @@ class ResearchTopicsController < ApplicationController
   end
 
   def index
-    if current_user.votes.current.count >= ResearchTopic::INTRO_LENGTH
+    if current_user.vote_count >= ResearchTopic::INTRO_LENGTH
       @research_topics = ResearchTopic.approved
     else
-      redirect_to first_topics_research_topics_path
+      redirect_to current_user.vote_count==0 ? intro_research_topics_path : first_topics_research_topics_path
     end
   end
 

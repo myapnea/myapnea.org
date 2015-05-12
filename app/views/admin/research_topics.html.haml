@@ -11,20 +11,18 @@
   %table.table.table-responsive.table-striped
     %thead
       %tr
-        %th Rating
+        %th Endorsement
         %th Text
         %th User
-        %th State
-        %th Submitted At
+        %th Submitted
         %th Options
     %tbody
       - @research_topics.each do |research_topic|
         %tr
-          %td= research_topic.rating
+          %td= research_topic.endorsement.present? ? research_topic.endorsement.round(2) : 0
           %td= research_topic.text
           %td= research_topic.user
-          %td= research_topic.state
-          %td= research_topic.created_at.strftime("%d-%m-%Y %H:%M")
+          %td= research_topic.created_at.strftime("%d-%m-%Y")
           %td
             .btn-group
               = link_to "Moderate", admin_research_topic_path(research_topic), class: "btn btn-success btn-xs"

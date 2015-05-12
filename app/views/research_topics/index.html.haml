@@ -6,7 +6,7 @@
 - if current_user.highlighted_research_topic.present?
   .lighterer-blue-bcg{ style: 'border-radius: 20px; padding: 20px;' }
     %h2.text-white Trending Topic
-    = render partial: 'research_topics/voting_form', locals: { research_topic: current_user.highlighted_research_topic }
+    = render 'research_topics/voting_form', research_topic: current_user.highlighted_research_topic
 
 
 %br

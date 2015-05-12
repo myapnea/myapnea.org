@@ -2,13 +2,13 @@ require "test_helper"
 
 class ResearchTopicTest < ActiveSupport::TestCase
   test "self.highlighted" do
-    # Voted for neither
+    # User 10 has voted for neither research topic (rt1 or rt3)
     assert_equal research_topics(:rt3), ResearchTopic.highlighted(users(:user_10)).first
 
-    # Already voted for lowest voted
+    # User 7 already voted for lowest voted research topic (rt3), so he should see rt1
     assert_equal research_topics(:rt1), ResearchTopic.highlighted(users(:user_7)).first
 
-    # Voted for all
+    # User 1 has voted for all approved research topics and should not see any
     assert_nil ResearchTopic.highlighted(users(:user_1)).first
   end
 
