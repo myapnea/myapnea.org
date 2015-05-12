@@ -1,4 +1,4 @@
-## 6.1.2
+## 6.1.2 (May 12, 2015)
 
 ### Bug Fix
 - Added support for JavaScript functions that were not available in Firefox and Internet Explorer
