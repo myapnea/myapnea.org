@@ -3,13 +3,13 @@ require "test_helper"
 class ResearchTopicTest < ActiveSupport::TestCase
   test "self.highlighted" do
     # Voted for neither
-    assert_equal research_topics(:rt3), ResearchTopic.highlighted(users(:user_10))
+    assert_equal research_topics(:rt3), ResearchTopic.highlighted(users(:user_10)).first
 
     # Already voted for lowest voted
-    assert_equal research_topics(:rt1), ResearchTopic.highlighted(users(:user_7))
+    assert_equal research_topics(:rt1), ResearchTopic.highlighted(users(:user_7)).first
 
     # Voted for all
-    assert_nil ResearchTopic.highlighted(users(:user_1))
+    assert_nil ResearchTopic.highlighted(users(:user_1)).first
   end
 
   test "self.approved" do

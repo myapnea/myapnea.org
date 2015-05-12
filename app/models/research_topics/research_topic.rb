@@ -42,7 +42,6 @@ class ResearchTopic < ActiveRecord::Base
       .joins("left outer join votes on votes.research_topic_id = research_topics.id and votes.deleted = 'f'")
       .group(group_columns).having("sum(case when votes.user_id = ? then 1 else 0 end) = 0", user.id)
       .order("vote_count asc")
-      .first
   end
 
   # Getters

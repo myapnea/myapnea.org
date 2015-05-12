@@ -3,10 +3,10 @@
 .content-main-header
   %h1.f300 Rank the Research
 
-- if ResearchTopic.highlighted(current_user).present?
+- if current_user.highlighted_research_topic.present?
   .lighterer-blue-bcg{ style: 'border-radius: 20px; padding: 20px;' }
     %h2.text-white Trending Topic
-    = render partial: 'research_topics/voting_form', locals: { research_topic: ResearchTopic.highlighted(current_user) }
+    = render partial: 'research_topics/voting_form', locals: { research_topic: current_user.highlighted_research_topic }
 
 
 %br

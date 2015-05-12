@@ -12,7 +12,7 @@ class ResearchTopicsController < ApplicationController
 
   def first_topics
     redirect_to intro_research_topics_path if current_user.vote_count == 0
-    @research_topic = ResearchTopic.highlighted(current_user)
+    @research_topic = current_user.highlighted_research_topic
   end
 
   def newest

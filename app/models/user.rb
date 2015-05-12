@@ -286,13 +286,6 @@ class User < ActiveRecord::Base
     incomplete_surveys.where("surveys.id != ?", survey.id).first
   end
 
-  def research_topics_with_vote
-    ResearchTopic.voted_by(self)
-  end
-
-  def submitted_research_topics
-    ResearchTopic.created_by(self)
-  end
 
   def has_no_started_surveys?
     incomplete_surveys.blank? and complete_surveys.blank?
@@ -381,7 +374,24 @@ class User < ActiveRecord::Base
 
   end
 
+
+
+  # Research Topics
+  # def research_topics_with_vote
+  #   ResearchTopic.c
+  # end
+  #
+  # def submitted_research_topics
+  #   ResearchTopic.created_by(self)
+  # end
+
+  def highlighted_research_topic
+    ResearchTopic.highlighted(self).first
+  end
+
   # Voting
+
+
   def cast_vote_for?(research_topic)
     votes.current.where(research_topic_id: research_topic.id).count > 0
   end
