@@ -11,8 +11,8 @@ class ResearchTopicsController < ApplicationController
   end
 
   def first_topics
-    redirect_to intro_research_topics_path if current_user.votes.count==0
-    @research_topic = ResearchTopic.approved.where.not(id: current_user.votes.pluck(:research_topic_id)).first
+    redirect_to intro_research_topics_path if current_user.vote_count == 0
+    @research_topic = ResearchTopic.highlighted(current_user)
   end
 
   def newest
