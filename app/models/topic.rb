@@ -22,9 +22,8 @@ class Topic < ActiveRecord::Base
   # Model Validation
   validates_presence_of :name, :user_id, :forum_id, message: "The title cannot be blank."
   validates_uniqueness_of :slug, scope: [ :deleted, :forum_id ], allow_blank: true, message: "This topic title already exists in this forum."
-  validates_format_of :slug, with: /\A[a-z][a-z0-9\-]*\Z/, message: "The format of the slug is invalid."
+  validates_format_of :slug, with: /\A(?!\Anew\Z)[a-z][a-z0-9\-]*\Z/, message: "The format of the slug is invalid."
   validates_presence_of :description, if: :requires_description?
-  validates_exclusion_of :slug, in: %w(new), message: "This topic slug is restricted."
 
   # Model Relationships
   belongs_to :user
