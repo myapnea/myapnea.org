@@ -48,6 +48,11 @@
 ### Bug Fixes
 - Welcome modal that introduces research will only appear for nonacademic users
 
+## 6.1.2 (May 12, 2015)
+
+### Bug Fix
+- Added support for JavaScript functions that were not available in Firefox and Internet Explorer
+
 ## 6.1.1 (May 1, 2015)
 
 ### Enhancements
