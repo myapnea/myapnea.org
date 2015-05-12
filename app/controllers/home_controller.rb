@@ -8,9 +8,11 @@ class HomeController < ApplicationController
       flash.delete(:alert)
 
       @active_top_nav_link = :home
-      @surveys = current_user.visible_surveys.first(3)
 
+      @surveys = current_user.visible_surveys.first(3)
       @posts = Post.visible_for_user(current_user).where.not(user_id: current_user.id).includes(:user, topic: :forum).order(created_at: :desc).page(params[:page]).per(10)
+
+      render layout: 'layouts/application-no-central-padding'
     else
       render 'landing', layout: 'layouts/application-no-sidebar'
     end

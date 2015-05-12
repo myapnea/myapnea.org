@@ -6,16 +6,17 @@
 
 / Survey widget
 - if current_user.is_only_academic?
-  .panel
-    .panel-body
-      .row
-        - @surveys.each do |survey|
-          .col-sm-4.centered-text
-            = image_tag 'myapnea/icons/data_display'+rand(1..3).to_s+'.png', class: 'img-responsive', style: 'margin: 0 auto; width: 80%; max-width:250px; border-radius: 10px;'
-            %h4.f300.centered-text
-              = survey.name
-            %h5.f300.primary-blue{ style: 'margin-bottom:30px;' }
-              = link_to 'View Data', report_survey_path(survey)
+  .row.widget-container
+    / .widget-container-header
+    /   %h3.f300 Surveys
+    .widget-container-body
+      - @surveys.each do |survey|
+        .col-xs-4.centered-text
+          = image_tag 'myapnea/icons/data_display'+rand(1..3).to_s+'.png', class: 'img-responsive', style: 'margin: 0 auto; width: 60%; max-width:250px; border-radius: 10px;'
+          %h5.f300.centered-text
+            = survey.name
+          %h6.f300.primary-blue{ style: 'margin-bottom:30px;' }
+            = link_to 'View Data', report_survey_path(survey)
 - elsif current_user.assigned_surveys.count != current_user.completed_surveys.count
   .panel
     .panel-body
@@ -36,13 +37,14 @@
   = render 'research_topics/voting_form', research_topic: ResearchTopic.highlighted(current_user)
 
 / Highlights widget
-.row{ style: 'margin-bottom:20px;' }
+.row.reset-layout
   - Highlight.current.where(displayed: true).sort{ |a,b| b.created_at <=> a.created_at }.first(3).each do |highlight|
     .col-sm-4
       = render partial: 'highlights/display', locals: { highlight: highlight }
 
-/ Forums widget
-#recent-posts
-  = render 'home/show_from_home'
-#read-more-recent-posts
-  = render 'home/show_more_button'
+.recent-posts-container
+  / Forums widget
+  #recent-posts
+    = render 'home/show_from_home'
+  #read-more-recent-posts
+    = render 'home/show_more_button'

@@ -1,6 +1,6 @@
 @navigationUXReady = () ->
 
-  $("#container-left")
+  $("#container-left, #container-left-no-padding")
     .removeClass "no-js"
     .addClass "js"
   $("#container-right")
@@ -22,6 +22,6 @@
     return
 
   $('.navbar-toggle').click ->
-    $('#container-right, #container-left, .navbar-toggle, #container-main').toggleClass "active-sidebar"
+    $('#container-right, #container-left, #container-left-no-padding, .navbar-toggle, #container-main').toggleClass "active-sidebar"
   $(window).resize ->
-    $('#container-right, #container-left, .navbar-toggle, #container-main').removeClass "active-sidebar"
+    $('#container-right, #container-left, #container-left-no-padding, .navbar-toggle, #container-main').removeClass "active-sidebar"

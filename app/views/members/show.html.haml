@@ -1,18 +1,17 @@
 - if current_user and current_user.has_role? :moderator
-  .panel
-    .panel-heading
-      .panel-title
-        Moderator Contact Information
-    .panel-body
-      %dl.dl-horizontal
-        %dt
-          %strong Member Name
-        %dd
-          = @member.name
-        %dt
-          %strong Member Email
-        %dd
-          = @member.email
+  .well
+    %h4.f300
+      Moderator Contact Information
+    %br
+    %dl.dl-horizontal
+      %dt
+        %strong Member Name
+      %dd
+        = @member.name
+      %dt
+        %strong Member Email
+      %dd
+        = @member.email
 
 .panel
   .panel-body

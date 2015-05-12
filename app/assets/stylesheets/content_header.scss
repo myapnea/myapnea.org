@@ -1,17 +1,32 @@
 /* MAIN CONTENT */
 
-.content-main-header {
-  padding: 5px 30px;
-  background-color: #ffa400;
-  border-radius: 16px;
-  box-shadow:0px 1px 5px rgba(0,0,0,.5);
-  margin-bottom:20px;
+#container-left {
+  .content-main-header {
+    padding: 5px 30px;
+    background-color: #ffa400;
+    border-radius: 16px;
+    box-shadow:0px 1px 5px rgba(0,0,0,.5);
+    margin-bottom:20px;
+    h1 {
+      font-family: 'Lato', sans-serif;
+      color: rgb(255,255,255);
+      color: rgba(255,255,255,.85);
+      font-weight: 300;
+    }
+  }
 }
 
-.content-main-header h1 {
-  font-family: 'Lato', sans-serif;
-  color: rgb(255,255,255);
-  color: rgba(255,255,255,.85);
+#container-left-no-padding {
+  .content-main-header {
+    padding: 5px 20px;
+    background-color: #ffa400;
+    h1 {
+      font-family: 'Lato', sans-serif;
+      color: rgb(255,255,255);
+      color: rgba(255,255,255,.85);
+      font-weight: 300;
+    }
+  }
 }
 
 @media (max-width: 1200px) {
