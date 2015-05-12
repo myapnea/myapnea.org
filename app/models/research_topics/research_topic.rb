@@ -17,7 +17,7 @@ class ResearchTopic < ActiveRecord::Base
   PROGRESS = [:proposed, :accepted, :ongoing_research, :complete]
   TYPE = [:user_submitted, :seeded]
   INTRO_LENGTH = 10
-  RESEARCH_TOPIC_DATA_LOCATION = ['lib', 'data', 'surveys']
+  RESEARCH_TOPIC_DATA_LOCATION = ['lib', 'data', 'research_topics']
 
 
   # Callbacks
@@ -51,20 +51,20 @@ class ResearchTopic < ActiveRecord::Base
     loaded_successfully = []
     loaded_with_problems = []
 
-    data_file = YAML.load_file(Rails.root.join(*(RESEARCH_TOPIC_DATA_LOCATION + ["seeds.yml"])))
+    data_file = YAML.load_file(Rails.root.join(*(RESEARCH_TOPIC_DATA_LOCATION + ["original_seeding.yml"])))
 
     data_file['research_topics'].each do |research_topic_attributes|
-      user = User.find_by_email(research_topic_attributes["user_email"])
+      user = User.find_by_email(research_topic_attributes.delete("user_email"))
 
       if user.present?
         loaded_successfully << research_topic_attributes
       else
         loaded_with_problems << research_topic_attributes
         user = User.first
-        puts "User #{research_topic_attributes["user_email"]} not found for research topic #{research_topic_attributes["text"]}. Assigning #{user.email} as a fallback."
+        puts "User #{research_topic_attributes["user_email"]} not found for research topic #{research_topic_attributes["text"]}\nAssigning #{user.email} as a fallback."
       end
 
-      create({type: 'seeded', progress: 'proposed'}.merge(research_topic_attributes))
+      create({category: 'seeded', progress: 'proposed', user_id: user.id}.merge(research_topic_attributes))
     end
 
     {successful: loaded_successfully, with_problems: loaded_with_problems}
