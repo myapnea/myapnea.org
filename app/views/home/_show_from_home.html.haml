@@ -30,6 +30,6 @@
             .reply-user.col-sm-1.col-xs-2
               = image_tag current_user.photo_url, title: current_user.forum_name, data: { toggle: 'tooltip', container: 'body', placement: 'top' }
             .reply-field.col-sm-10.col-xs-9
-              = f.text_area :description, rows: 1, style: 'resize: none;', class: 'reply-text-area', id: 'post_description_new', data: { object: 'text-area-autocomplete', mentions: SocialProfile.current.where.not(name: [nil, '']).pluck(:name).uniq.sort }
+              = f.text_area :description, rows: 1, style: 'resize: none;', class: 'reply-text-area', id: 'post_description_new', data: { object: 'text-area-autocomplete', mentions: User.current.where.not(forum_name: [nil, '']).pluck(:forum_name).uniq.sort }
             .reply-submit.col-xs-1
               = f.submit "Reply", class: 'btn btn-primary reply-button', data: { disable_with: "Posting" }
