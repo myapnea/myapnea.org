@@ -1,6 +1,6 @@
 .row
   .col-sm-6.col-sm-offset-3
-    = render 'research_topics/voting_form', research_topic: @research_topic.first
+    = render 'research_topics/voting_form', research_topic: @research_topics.first
 
 - if current_user.votes.where(rating: 1).count >= ResearchTopic::INTRO_LENGTH
   .panel

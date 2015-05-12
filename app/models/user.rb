@@ -394,6 +394,9 @@ class User < ActiveRecord::Base
     votes.current.where(research_topic_id: research_topic.id, rating: 0).count > 0
   end
 
+  def vote_count
+    votes.current.where(rating: 1).count
+  end
 
   ## Provider Methods
 
