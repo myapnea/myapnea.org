@@ -1,10 +1,16 @@
 class VotesController < ApplicationController
   before_action :authenticate_user!
 
-  before_action :set_research_topic,              only: [ :vote ]
-  before_action :redirect_without_research_topic, only: [ :vote ]
+  before_action :set_research_topic,              only: [ :create ]
+  before_action :redirect_without_research_topic, only: [ :create ]
 
-  def vote
+  def create
+    vote = Vote.create(user_id: current_user.id, research_topic_id: params[:research_topic], rating: params[:endorse].to_i)
+    vote.create_post(params[:comment]) if params[:comment].present?
+    redirect_to research_topics_path
+  end
+
+  def vote_deprecated
     if @research_topic and current_user.can_vote_for?(@research_topic) and current_user.has_votes_remaining?(params[:vote][:rating].to_i)
       @vote = Vote.find_or_initialize_by(user_id: current_user.id, research_topic_id: params[:vote][:research_topic_id])
       @vote.rating = params[:vote]["rating"]
@@ -33,8 +39,12 @@ class VotesController < ApplicationController
 
   private
 
-    def set_research_topic
+    def set_research_topic_deprecated
       @research_topic = ResearchTopic.current.find_by_id(params[:vote] ? params[:vote][:research_topic_id] : nil)
+    end
+
+    def set_research_topic
+      @research_topic = ResearchTopic.find_by_id(params[:research_topic] ? params[:research_topic] : nil )
     end
 
     def redirect_without_research_topic

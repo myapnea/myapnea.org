@@ -1,8 +1,8 @@
 .row
   .col-sm-6.col-sm-offset-3
-    = render partial: 'research_topics/voting_form', locals: { rt: @research_topics.first }
+    = render 'research_topics/voting_form', research_topic: @research_topic.first
 
-- if current_user.votes.where(rating: 1).count >= 1
+- if current_user.votes.where(rating: 1).count >= ResearchTopic::INTRO_LENGTH
   .panel
     .panel-body.centered-text
       %h1.f300 Great job!

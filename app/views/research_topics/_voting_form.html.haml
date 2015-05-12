@@ -17,15 +17,16 @@
       %p.lead= "\"#{research_topic.description}\""
       %hr
       .centered-text
-        %form
-          = radio_button_tag "I endorse this topic", :endorse
-          %label{ for: 'endorse' } I endorse this topic!
+        = form_tag vote_path(research_topic: research_topic) do
+          = radio_button_tag :endorse, 1
+          %label{ for: 'endorse_1' } I endorse this topic!
           %br
-          = radio_button_tag "I don't endorse this topic", :dont_endorse
-          %label{ for: 'dont_endorse' } I don't endorse this topic!
+          = radio_button_tag :endorse, 0
+          %label{ for: 'endorse_0' } I don't endorse this topic!
           %br
           %br
           %p.muted Add a comment (optional):
-          = text_area_tag "comment", nil, rows: 5, class: 'form-control'
+          = text_area_tag 'comment', nil, rows: 5, class: 'form-control'
           %br
           = submit_tag "Submit", class: 'btn btn-primary'
+

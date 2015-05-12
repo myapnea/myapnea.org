@@ -11,14 +11,15 @@ class ResearchTopicsController < ApplicationController
   end
 
   def first_topics
-    @research_topics = ResearchTopic.approved.first(10)
+    redirect_to intro_research_topics_path if current_user.votes.count==0
+    @research_topic = ResearchTopic.approved.where.not(id: current_user.votes.pluck(:research_topic_id)).first
   end
 
   def newest
     @rt_c1 = []
     @rt_c2 = []
-    ResearchTopic.accepted.each_with_index do |rt, index|
-      (index+1)%2==0 ? (@rt_c1 << rt) : (@rt_c2 << rt)
+    ResearchTopic.approved.each_with_index do |rt, index|
+      (index+1)%2==0 ? (@rt_c2 << rt) : (@rt_c1 << rt)
     end
   end
 
@@ -31,7 +32,11 @@ class ResearchTopicsController < ApplicationController
   end
 
   def index
-    @research_topics = ResearchTopic.approved
+    if current_user.votes.current.count >= ResearchTopic::INTRO_LENGTH
+      @research_topics = ResearchTopic.approved
+    else
+      redirect_to first_topics_research_topics_path
+    end
   end
 
   def show
