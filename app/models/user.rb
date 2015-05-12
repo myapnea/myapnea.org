@@ -38,6 +38,8 @@ class User < ActiveRecord::Base
   # Concerns
   include CommonDataModel, Deletable
 
+  attr_accessor :user_is_updating
+
   # Named Scopes
   scope :search_by_email, ->(terms) { where("LOWER(#{self.table_name}.email) LIKE ?", terms.to_s.downcase.gsub(/^| |$/, '%')) }
   scope :search, lambda { |arg| where( 'LOWER(first_name) LIKE ? or LOWER(last_name) LIKE ? or LOWER(email) LIKE ?', arg.to_s.downcase.gsub(/^| |$/, '%'), arg.to_s.downcase.gsub(/^| |$/, '%'), arg.to_s.downcase.gsub(/^| |$/, '%') ) }
@@ -47,7 +49,8 @@ class User < ActiveRecord::Base
   # Model Validation
   validates_presence_of :first_name, :last_name
 
-  validates :forum_name, allow_blank: true, uniqueness: true, format: { with: /\A[a-zA-Z0-9]*\Z/i }
+  validates :forum_name, allow_blank: true, uniqueness: true, format: { with: /\A[a-zA-Z0-9]*\Z/i }, unless: :update_by_user?
+  validates :forum_name, allow_blank: false, uniqueness: true, format: { with: /\A[a-zA-Z0-9]+\Z/i }, if: :update_by_user?
 
   with_options unless: :is_provider? do |user|
     user.validates :over_eighteen, inclusion: { in: [true], message: "You must be over 18 years of age to sign up" }, allow_nil: true
@@ -407,6 +410,11 @@ class User < ActiveRecord::Base
   end
 
   private
+
+  # This happens when any user updates changes from dashboard
+  def update_by_user?
+    self.user_is_updating == '1'
+  end
 
   def set_forum_name
     if self.forum_name.blank?

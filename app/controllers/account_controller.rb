@@ -164,7 +164,7 @@ class AccountController < ApplicationController
   end
 
   def change_password
-    if current_user.update_with_password(user_params)
+    if current_user.update_with_password(user_password_params)
       # Sign in the user by passing validation in case the user's password changed
       sign_in current_user, bypass: true
       redirect_to account_path, alert: "Your password has been changed."
@@ -181,11 +181,13 @@ class AccountController < ApplicationController
   private
 
   def user_params
+    params[:user] ||= { blank: '1' }
+
+    params[:user][:user_is_updating] = '1'
+
     params.required(:user).permit(
       # Basic Information
       :first_name, :last_name, :email,
-      # Change and Reset Password
-      :password, :password_confirmation, :current_password,
       # Forum and Social Profile
       :photo, :remove_photo, :forum_name, :age, :gender,
       # Linking to a Provider
@@ -195,8 +197,16 @@ class AccountController < ApplicationController
       # For Provider Profiles
       :welcome_message, :provider_name, :slug,
       # Enabling Beta
-      :beta_opt_in
+      :beta_opt_in,
+      # Enforces that forum name can't be blank
+      :user_is_updating
       )
+  end
+
+  def user_password_params
+    params.required(:user).permit(
+      :password, :password_confirmation, :current_password
+    )
   end
 
   def load_content

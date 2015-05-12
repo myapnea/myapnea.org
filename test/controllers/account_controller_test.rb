@@ -10,8 +10,6 @@ class AccountControllerTest < ActionController::TestCase
   end
 
 
-
-
   test "should get registration user_type page for logged in user" do
     login(users(:user_1))
     get :get_started
@@ -246,6 +244,17 @@ class AccountControllerTest < ActionController::TestCase
     assert_equal new_gender, users(:social).gender
     assert_equal new_age, users(:social).age
     assert_equal new_forum_name, users(:social).forum_name
+  end
+
+  test "should not allow user to enter blank forum name" do
+    login(users(:social))
+    patch :update, user: { forum_name: '' }
+
+    users(:social).reload
+
+    assert_equal 'TomHaverford', users(:social).forum_name
+    assert_response :success
+
   end
 
   test "should not update account for regular user with invalid user information" do
