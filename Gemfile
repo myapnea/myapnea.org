@@ -4,6 +4,9 @@ source 'https://rubygems.org'
 # gem 'rails_12factor', group: :production
 # gem 'airbrake'
 
+# To be removed if fixed in sprockets-rails 2.3.1 or higher
+gem 'sprockets-rails', '2.2.4'
+
 gem 'thin'
 
 
