@@ -32,9 +32,8 @@
               = render partial: 'surveys/partials/survey_progress', locals: { survey: survey }
 
 / Trending topic widget
-/ .lighterer-blue-bcg{ style: 'padding: 20px; margin: 20px 0; border-radius: 20px;'}
-/ %h1.text-white Trending Topic
-= render partial: 'research_topics/voting_form', locals: { research_topic: ResearchTopic.highlighted(current_user) }
+- if current_user.votes.count >= ResearchTopic::INTRO_LENGTH
+  = render 'research_topics/voting_form', research_topic: ResearchTopic.highlighted(current_user)
 
 / Highlights widget
 .row{ style: 'margin-bottom:20px;' }

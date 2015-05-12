@@ -1,14 +1,3 @@
 .row
-  .col-sm-6.col-sm-offset-3
-    = render 'research_topics/voting_form', research_topic: @research_topic.first
-
-- if current_user.votes.where(rating: 1).count >= ResearchTopic::INTRO_LENGTH
-  .panel
-    .panel-body.centered-text
-      %h1.f300 Great job!
-      %br
-      %p.lead
-        It looks like you're really getting the hang of this. Why don't you try
-        = link_to 'creating your own research question?', new_research_topic_path
-        Otherwise, you can continue on and see all of the research topics that are currently being voted on, and read the state of the research for topics that have been approved.
-      = link_to 'Continue', research_topics_path, class: 'btn btn-success'
+  .col-sm-8.col-sm-offset-2
+    = render 'research_topics/voting_form', research_topic: @research_topic

@@ -11,7 +11,6 @@ class ResearchTopicsController < ApplicationController
   end
 
   def first_topics
-    redirect_to intro_research_topics_path if current_user.votes.count==0
     @research_topic = ResearchTopic.approved.where.not(id: current_user.votes.pluck(:research_topic_id)).first
   end
 
@@ -35,7 +34,7 @@ class ResearchTopicsController < ApplicationController
     if current_user.votes.current.count >= ResearchTopic::INTRO_LENGTH
       @research_topics = ResearchTopic.approved
     else
-      redirect_to first_topics_research_topics_path
+      redirect_to current_user.votes.count==0 ? intro_research_topics_path : first_topics_research_topics_path
     end
   end
 
