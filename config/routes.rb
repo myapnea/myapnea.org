@@ -193,6 +193,7 @@ Rails.application.routes.draw do
   get 'forum', to: redirect("forums")
   get 'research_surveys', to: redirect("surveys")
   get 'update_account', to: redirect("account")
+  get 'change_password', to: redirect("account")
 
 # # Authentication
 #   devise_for :user, skip: [:sessions, :passwords, :confirmations, :registrations]
