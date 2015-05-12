@@ -1,0 +1,49 @@
+- if current_user and current_user.has_role? :moderator
+  .panel
+    .panel-heading
+      .panel-title
+        Moderator Contact Information
+    .panel-body
+      %dl.dl-horizontal
+        %dt
+          %strong Member Name
+        %dd
+          = @member.name
+        %dt
+          %strong Member Email
+        %dd
+          = @member.email
+
+.panel
+  .panel-body
+
+    %div{ style: 'padding-bottom: 20px;' }
+
+      %h1{ style: 'margin-top:0px' }
+        = render 'forums/user_image', user: @member, size: 100
+        = @member.forum_name
+
+    %p.lead
+      %span.f500 Member since:
+      = @member.created_at.strftime("%b %-d, %Y")
+    %p.lead
+      %span.f500 Contributions:
+      = link_to pluralize(@member.posts.where(status: ['approved', 'pending_review']).count, 'Forum Post'), forums_path(a: @member.forum_name)
+
+    .list-group-item.primary-blue-bcg
+      %h5.text-white Most popular community posts:
+    - posts = @member.posts.collect{ |p| { post: p, popularity: p.topic.posts.current.count } }
+    - if posts.present?
+      - posts.sort_by{ |k| k[:popularity] }.first(3).each do |post_hash|
+        - post = post_hash[:post]
+        .list-group-item
+          = render 'posts/formatted', post: post
+          = link_to 'Read more', forum_topic_post_path(post.forum, post.topic, post), class: 'btn btn-primary btn-sm pull-right'
+          .clearfix
+    - else
+      .list-group-item
+        - if @member == current_user
+          %p.lead You haven't contributed to any discussions yet!
+          = link_to 'Join the Conversation', forums_path, class: 'btn btn-primary', style: 'margin: auto'
+        - else
+          %p.lead This user hasn't joined the conversation yet!

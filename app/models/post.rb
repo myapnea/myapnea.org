@@ -6,7 +6,6 @@ class Post < ActiveRecord::Base
   include Deletable
 
   # Callbacks
-  after_create :send_reply_emails!
   after_save :touch_topic
 
   # Named Scopes
@@ -61,8 +60,6 @@ class Post < ActiveRecord::Base
     self.status == 'hidden'
   end
 
-  private
-
   # Reply Emails sends emails if the following conditions are met:
   # 1) The topic subscriber has email notifications enabled
   # AND
@@ -82,6 +79,8 @@ class Post < ActiveRecord::Base
       end
     end
   end
+
+  private
 
   def touch_topic
     self.topic.set_last_post_at!

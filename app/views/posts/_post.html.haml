@@ -50,7 +50,8 @@
             Original Poster
         %div{ id: "post_#{post.id}_container" }
           .post-user-name-container
-            = post.user.forum_name
+            - unless post.user.forum_name.blank?
+              = link_to post.user.forum_name, member_path(post.user.forum_name)
           %p{ style: 'font-style:italic' }
             %i.fa.fa-eye-slash
             Post Is Hidden
@@ -59,61 +60,42 @@
           .small.text-muted{ style: 'font-weight: 300' }
             = post.created_at.strftime("%-d %B %Y, %-l:%M %p")
   - elsif post.pending_review?
-    - if current_user == post.user or (current_user and current_user.has_role? :moderator)
-      .col-xs-1.reset-layout
-        = render partial: 'forums/user_image', locals: { user: post.user, size: 50 }
-      .col-xs-11
-        .post-container.post-under-review
-          .post-container-right-after
-            %span.f400
-              Under Review
-            - if current_user.has_role? :moderator
-              = link_to forum_topic_post_path(post.forum, post.topic, post, post: { status: 'approved' }), method: :patch, class: 'btn btn-xs btn-default' do
-                %i.fa.fa-thumbs-up
-                Approve
-              = link_to forum_topic_post_path(post.forum, post.topic, post, post: { status: 'hidden' }), method: :patch, class: 'btn btn-xs btn-default' do
-                %i.fa.fa-eye-slash
-                Hide Post
-              = link_to forum_topic_post_path(post.forum, post.topic, post, post: { status: 'spam' }), method: :patch, class: 'btn btn-xs btn-default' do
-                %i.fa.fa-thumbs-down
-                Mark As Spam
+    .col-xs-1.reset-layout
+      = render partial: 'forums/user_image', locals: { user: post.user, size: 50 }
+    .col-xs-11
+      .post-container.post-under-review
+        .post-container-right-after
+          %span.f400
+            Under Review
+          - if current_user and current_user.has_role? :moderator
+            = link_to forum_topic_post_path(post.forum, post.topic, post, post: { status: 'approved' }), method: :patch, class: 'btn btn-xs btn-default' do
+              %i.fa.fa-thumbs-up
+              Approve
+            = link_to forum_topic_post_path(post.forum, post.topic, post, post: { status: 'hidden' }), method: :patch, class: 'btn btn-xs btn-default' do
+              %i.fa.fa-eye-slash
+              Hide Post
+            = link_to forum_topic_post_path(post.forum, post.topic, post, post: { status: 'spam' }), method: :patch, class: 'btn btn-xs btn-default' do
+              %i.fa.fa-thumbs-down
+              Mark As Spam
+          - if current_user and current_user == post.user
             = link_to edit_forum_topic_post_path(post.forum, post.topic, post), data: { toggle: 'tooltip', container: 'body'}, title: 'Edit Post', class: 'btn btn-xs btn-default' do
               %i.fa.fa-pencil
+          %a{ href: "#c#{current_index}" }
             = "##{current_index}"
-          - if post.topic.user == post.user
-            .post-container-right-bottom-after.original-poster-badge
-              Original Poster
-          %div{ id: "post_#{post.id}_container" }
-            .post-user-name-container
-              = post.user.forum_name
-            %p{ style: 'font-style:italic' }
-              %i.fa.fa-eye
-              = 'Your' if current_user == post.user
-              Post Is Under Review
-            = render partial: 'posts/formatted', locals: { post: post }
-            .small.text-muted{ style: 'font-weight: 300' }
-              = post.created_at.strftime("%-d %B %Y, %-l:%M %p")
-    - elsif current_user
-      .col-xs-1.reset-layout
-        = render partial: 'forums/user_image', locals: { user: post.user, size: 50 }
-      .col-xs-11
-        .post-container.post-under-review
-          .post-container-right-after{ style: 'max-width: 200px; '}
-            %span.f400
-              Not moderated
-          - if post.topic.user == post.user
-            .post-container-right-bottom-after.original-poster-badge
-              Original Poster
-          %div{ id: "post_#{post.id}_container" }
-            .post-user-name-container
-              = post.user.forum_name
-            %p{ style: 'font-style:italic' }
-              %i.fa.fa-eye
-              = 'Your' if current_user == post.user
-              Post Is Under Review
-            = render partial: 'posts/formatted', locals: { post: post }
-            .small.text-muted{ style: 'font-weight: 300' }
-              = post.created_at.strftime("%-d %B %Y, %-l:%M %p")
+        - if post.topic.user == post.user
+          .post-container-right-bottom-after.original-poster-badge
+            Original Poster
+        %div{ id: "post_#{post.id}_container" }
+          .post-user-name-container
+            - unless post.user.forum_name.blank?
+              = link_to post.user.forum_name, member_path(post.user.forum_name)
+          %p{ style: 'font-style:italic' }
+            %i.fa.fa-eye
+            = 'Your' if current_user and current_user == post.user
+            Post Is Under Review
+          = render partial: 'posts/formatted', locals: { post: post }
+          .small.text-muted{ style: 'font-weight: 300' }
+            = post.created_at.strftime("%-d %B %Y, %-l:%M %p")
   - else
     .col-xs-1.reset-layout
       = render partial: 'forums/user_image', locals: { user: post.user, size: 50 }
@@ -133,7 +115,8 @@
             Original Poster
         %div{ id: "post_#{post.id}_container" }
         .post-user-name-container
-          = post.user.forum_name
+          - unless post.user.forum_name.blank?
+            = link_to post.user.forum_name, member_path(post.user.forum_name)
         = render partial: 'posts/formatted', locals: { post: post }
         .small.text-muted{ style: 'font-weight: 300' }
           = post.created_at.strftime("%-d %B %Y, %-l:%M %p")

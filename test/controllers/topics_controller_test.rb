@@ -89,7 +89,7 @@ class TopicsControllerTest < ActionController::TestCase
     assert_redirected_to [assigns(:forum), assigns(:topic)]
   end
 
-  test "should not create topic with slug being `new`" do
+  test "should create topic and rewrite slug for topic slugs that would default to new" do
     login(@valid_user)
 
     assert_difference('Post.count') do

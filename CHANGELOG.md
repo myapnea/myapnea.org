@@ -26,12 +26,21 @@
     - Each topic can auto generate a tweet, facebook post, and email for sharing
   - Members are able to share that they have just completed a survey after submission
 - **Forum Changes**
-  - Unmoderated posts are visible to users (not public), with a visible flag that they are unmoderated
+  - Unmoderated posts are visible to users with a visible flag that they are under review
   - A disclaimer is included at the bottom of a topic with unmoderated posts
   - Members are now assigned a forum name from a list of more than 14 billion possibilities
     - Members may change their forum name in their account settings if they choose
   - Topic subscribers are now notified immediately when a new post is created
   - Editing a post now sets it back to under review for regular forum members
+  - Individual posts can now have links enabled
+    - Link become clickable once the post is approved
+    - Members editing their post sets the post back to under review, hence removing the clickable link
+  - Community member profiles have been added that show a member's popular posts and forum contributions
+- **Moderator Changes**
+  - Forum moderators can now get in touch with forum participants to discuss posts that may require moderation or editing
+- **Provider Changes**
+  - Providers now receive an informational email after updating a completed provider profile
+  - Member welcome emails now list their provider if they signed up through a provider page
 - Added 'Remember me' to login process to reduce landing page hits for already registered members
 - Design updates
   - Cleaned up the account page, and added easier jump-navigation

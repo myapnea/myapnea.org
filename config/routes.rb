@@ -65,6 +65,8 @@ Rails.application.routes.draw do
   # match "update_fb_feed", to: "posts#receive_update", as: :update_fb_feed, via: :post
   # match "verify_fb_subscription", to: "posts#verify_subscription", as: :verify_fb_subscription, via: :get
 
+  get "members", to: "members#index", as: :members
+  get "members/:forum_name", to: "members#show", as: :member
 
   # Research Topics
   #match 'research_topic/:id', to: "research_topics#show", as: :research_topic, via: :get
@@ -191,6 +193,7 @@ Rails.application.routes.draw do
   get 'forum', to: redirect("forums")
   get 'research_surveys', to: redirect("surveys")
   get 'update_account', to: redirect("account")
+  get 'change_password', to: redirect("account")
 
 # # Authentication
 #   devise_for :user, skip: [:sessions, :passwords, :confirmations, :registrations]

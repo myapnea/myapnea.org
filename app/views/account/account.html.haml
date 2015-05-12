@@ -13,7 +13,7 @@
   = link_to '#q3' do
     .list-group-item
       I want to change my member description (at-risk patient, diagnosed, care provider, etc.)
-  = link_to '#q4' do
+  = link_to '#change-password' do
     .list-group-item
       I want to change my password
   = link_to '#q5' do
@@ -47,15 +47,15 @@
       Basic Information
     %br
     = form_for current_user, url: update_account_path, html: { class: 'form-horizontal' } do |f|
-      .form-group.row
+      .form-group
         = f.label :first_name, class: 'col-sm-3 control-label'
         .col-sm-6
           = f.text_field :first_name, class: 'form-control', placeholder: User.human_attribute_name(:first_name), autocomplete: :off
-      .form-group.row
+      .form-group
         = f.label :last_name, class: 'col-sm-3 control-label'
         .col-sm-6
           = f.text_field :last_name, class: 'form-control', placeholder: User.human_attribute_name(:last_name), autocomplete: :off
-      .form-group.row
+      .form-group
         = f.label :email, class: 'col-sm-3 control-label'
         .col-sm-6
           = f.email_field :email, class: 'form-control', placeholder: User.human_attribute_name(:email), autocomplete: :off
@@ -74,19 +74,29 @@
 
 %hr
 
-%a.anchor#q4
+%a.anchor#change-password
 .panel
   .panel-body
     %h3.f300.centered-text
       Change Your Password
     %br
-    = form_for current_user, url: change_password_path do |f|
+    = form_for current_user, url: change_password_path, html: { class: 'form-horizontal' } do |f|
       .form-group
-        = f.label :current_password, class: "sr-only"
-        = f.password_field :current_password, class: 'form-control input-lg', placeholder: 'Current Password'
+        = f.label :current_password, class: 'col-sm-3 control-label'
+        .col-sm-6
+          = f.password_field :current_password, class: 'form-control', placeholder: 'Current password'
+          - if errors = current_user.errors[:current_password] and errors.present?
+            .bs-callout.bs-callout-danger
+              Please enter your
+              %strong current
+              password in order to set a new password.
       .form-group
-        = f.label :password, class: 'sr-only'
-        = f.password_field :password, class: 'form-control input-lg', placeholder: "New Password"
+        = f.label :password, class: 'col-sm-3 control-label'
+        .col-sm-6
+          = f.password_field :password, class: 'form-control', placeholder: "New password"
+          - if errors = current_user.errors[:password] and errors.present?
+            .bs-callout.bs-callout-danger
+              Please enter a new password that is at least 8 characters long.
       .row
         = f.submit "Change Password", class: 'btn btn-primary col-xs-4 col-xs-offset-4 centered-text'
 

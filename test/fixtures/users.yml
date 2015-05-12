@@ -44,6 +44,7 @@ social:
   over_eighteen: true
   adult_diagnosed: true
   encrypted_password: <%= pw %>
+  forum_name: TomHaverford
 
 participant:
   first_name: Research

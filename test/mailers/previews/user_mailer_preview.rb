@@ -17,6 +17,11 @@ class UserMailerPreview < ActionMailer::Preview
     UserMailer.welcome(user)
   end
 
+  def welcome_provider
+    user = User.where(provider: true).where.not(slug: [nil, '']).first
+    UserMailer.welcome_provider(user)
+  end
+
   def mentioned_in_post
     user = User.first
     post = Post.first
