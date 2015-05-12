@@ -10,7 +10,7 @@
 - topics = topics.pending_review if params[:status] == 'pending_review'
 - topics = topics.page(topic_limit ? 1 : params[:page]).per( topic_limit )
 
-- if topics.count > 0 or (params[:s].blank? and params[:status].blank?)
+- if topics.count > 0 or (params[:s].blank? and params[:status].blank? and params[:a].blank?)
   - if author
     .alert.alert-info
       Showing topics that include posts by
