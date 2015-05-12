@@ -85,4 +85,16 @@ class ResearchTopicTest < ActiveSupport::TestCase
 
     assert_equal 0.6, rt.endorsement
   end
+
+  test "Research topic endorsement should not allow double-voting" do
+    assert false
+  end
+
+  test "Research topic opposition should not allow double-voting" do
+    assert false
+  end
+
+  test "Vote can be switched from endorsement to opposition and vice-versa" do
+    assert false
+  end
 end
