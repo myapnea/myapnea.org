@@ -13,6 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require compatibility/array_prototype_index_of.js
+//= require compatibility/array_prototype_map.js
 //= require bootstrap-sprockets
 //= require chosen.jquery
 //= require jquery.slimscroll
