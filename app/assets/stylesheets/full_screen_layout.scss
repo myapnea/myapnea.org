@@ -28,3 +28,14 @@
   box-shadow: none;
 }
 
+.full-screen-video {
+  width: 800px;
+  padding-bottom: 450px !important;
+  margin: auto;
+}
+
+@media (max-width: 992px) {
+  .full-screen-video {
+    width: 100%;
+  }
+}

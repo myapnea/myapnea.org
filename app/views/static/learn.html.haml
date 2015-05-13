@@ -3,41 +3,37 @@
 .content-main-header
   %h1.f300 Learn more about sleep apnea!
 
-.panel{ style: 'padding: 5px;border-radius: 4px' }
-  .video-player
-    .video-player-inner
-      .embed-responsive.embed-responsive-16by9
-        %iframe.embed-responsive-item{ src: '//www.youtube.com/embed/4JkiWvWn2aU?rel=0&modestbranding=1&autohide=1&showinfo=0&controls=0', 'webkitallowfullscreen' => 'true', 'mozallowfullscreen' => 'true', 'allowfullscreen' => 'true' }
+.content-container
+  .embed-responsive.embed-responsive-16by9.full-screen-video
+    %iframe.embed-responsive-item{ src: '//www.youtube.com/embed/4JkiWvWn2aU?rel=0&modestbranding=1&autohide=1&showinfo=0&controls=0', 'webkitallowfullscreen' => 'true', 'mozallowfullscreen' => 'true', 'allowfullscreen' => 'true' }
 
-.panel
-  .panel-heading
-    %p.lead{ style: 'margin-top:20px;' }= @pc['content']
-  .panel-body
+.content-container
+  .content-body
+    %p.lead= @pc['content']
+    %br
     - @pc['questions'].each do |question|
       %h4.f300= question['question']
       %h5.f300.spaced{ style: 'margin-bottom:20px;'}= question['answer']
     %ul
       - @pc['resources'].each do |resource|
         %li.f300= markdown resource['description']
-    %br/
+    %br
 
-.panel{ style: 'padding: 5px;border-radius: 4px' }
-  .video-player
-    .video-player-inner
-      .embed-responsive.embed-responsive-16by9
-        %iframe.embed-responsive-item{ src: '//www.youtube.com/embed/9Xy33MVgUiY?rel=0&modestbranding=1&autohide=1&showinfo=0&controls=0', allowFullScreen: 'true',  webkitallowfullscreen: 'true', mozallowfullscreen: 'true' }
+.content-container
+  .embed-responsive.embed-responsive-16by9.full-screen-video
+    %iframe.embed-responsive-item{ src: '//www.youtube.com/embed/9Xy33MVgUiY?rel=0&modestbranding=1&autohide=1&showinfo=0&controls=0', allowFullScreen: 'true',  webkitallowfullscreen: 'true', mozallowfullscreen: 'true' }
 
-.panel
-  .panel-heading
+.content-container
+  .content-header
     %h3.f300 Additional Resources
-  .panel-body
+  .content-body
     %p.lead
       The following professional and non-profit organizations provide educational resources and are working with MyApnea.Org to promote the Network and sleep apnea research.
     %ul
-      %li.f300
+      %li
         The
         = link_to "International Surgical Sleep Society (ISSS)", 'http://surgicalsleep.org/'
         is a non-profit organization dedicated to fostering health worldwide by improving the care of people with sleep disorders. Formed in 2006, the society has members from around the globe.
-      %li.f300
+      %li
         If you are interested in partnering with MyApnea.Org and would like your organization listed, please contact
         = link_to "darrel@myapnea.org", "mailto:darrel@myapnea.org?subject=I would like to partner with MyApnea.Org!"
