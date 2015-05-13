@@ -1,4 +1,4 @@
-- @title = @topic.new_record? ? 'New Topic' : 'Edit Topic'
+- @page_title = @topic.new_record? ? 'New Topic' : 'Edit Topic'
 
 .content-main-header
   %h1
@@ -9,71 +9,73 @@
     - unless @topic.new_record?
       = link_to @topic.name, [@forum, @topic]
       &middot;
-    = @title
+    = @page_title
 
-= form_for [@forum, @topic], html: { class: 'form-horizontal' } do |f|
-  - if @topic.errors.any?
-    #error_explanation.bs-callout.bs-callout-danger
-      %h4
-        = pluralize(@topic.errors.count, "error")
-        prohibited this topic from being saved
-      %ul
-        - @topic.errors.messages.each do |key, msg|
-          - if key == :slug or key == :name
-            %li= msg.join(", ")
-          - else
-            %li= "#{key.to_s.titleize} #{msg.join(", ")}"
+.content-container
+  .content-body
+    = form_for [@forum, @topic], html: { class: 'form-horizontal' } do |f|
+      - if @topic.errors.any?
+        #error_explanation.bs-callout.bs-callout-danger
+          %h4
+            = pluralize(@topic.errors.count, "error")
+            prohibited this topic from being saved
+          %ul
+            - @topic.errors.messages.each do |key, msg|
+              - if key == :slug or key == :name
+                %li= msg.join(", ")
+              - else
+                %li= "#{key.to_s.titleize} #{msg.join(", ")}"
 
 
-  .form-group
-    = f.label :name, 'Title', class: 'col-md-2 control-label'
-    .col-md-10
-      = f.text_field :name, class: 'form-control', autocomplete: 'off'
-
-  - if @topic.new_record?
-    .form-group
-      = f.label :description, nil, class: 'col-md-2 control-label'
-      .col-md-10
-        = f.text_area :description, rows: 14, class: 'form-control'
-
-  - if current_user.has_role? :moderator
-    - unless @topic.new_record?
       .form-group
-        = f.label :slug, nil, class: 'col-md-2 control-label'
+        = f.label :name, 'Title', class: 'col-md-2 control-label'
         .col-md-10
-          = f.text_field :slug, class: 'form-control'
-          .bs-callout.bs-callout-info
-            %h4
-              Naming convention
-            %ul
-              %li Must be a lowercase letter <code>a-z</code> followed by lowercase letters <code>a-z</code>, numbers<code>0-9</code>, or dashes<code>-</code>.
-            Ex: <code>meetings-1-on-1</code>
+          = f.text_field :name, class: 'form-control', autocomplete: 'off'
 
-    .form-group
-      = f.label :status, nil, class: 'col-md-2 control-label'
-      .col-md-10
-        = f.select :status, [['---', nil]] + Topic::STATUS, {}, class: 'form-control'
+      - if @topic.new_record?
+        .form-group
+          = f.label :description, nil, class: 'col-md-2 control-label'
+          .col-md-10
+            = f.text_area :description, rows: 14, class: 'form-control'
 
-    .form-group
-      = f.label :forum_id, nil, class: 'col-md-2 control-label'
-      .col-md-10
-        = f.select :forum_id, Forum.current.pluck(:name, :id), {}, class: 'form-control'
+      - if current_user.has_role? :moderator
+        - unless @topic.new_record?
+          .form-group
+            = f.label :slug, nil, class: 'col-md-2 control-label'
+            .col-md-10
+              = f.text_field :slug, class: 'form-control'
+              .bs-callout.bs-callout-info
+                %h4
+                  Naming convention
+                %ul
+                  %li Must be a lowercase letter <code>a-z</code> followed by lowercase letters <code>a-z</code>, numbers<code>0-9</code>, or dashes<code>-</code>.
+                Ex: <code>meetings-1-on-1</code>
 
-    .form-group
-      .col-md-offset-2.col-md-10
-        .checkbox
-          %label
-            = f.check_box :locked
-            Post Locked
+        .form-group
+          = f.label :status, nil, class: 'col-md-2 control-label'
+          .col-md-10
+            = f.select :status, [['---', nil]] + Topic::STATUS, {}, class: 'form-control'
 
-    .form-group
-      .col-md-offset-2.col-md-10
-        .checkbox
-          %label
-            = f.check_box :pinned
-            Post Pinned
+        .form-group
+          = f.label :forum_id, nil, class: 'col-md-2 control-label'
+          .col-md-10
+            = f.select :forum_id, Forum.current.pluck(:name, :id), {}, class: 'form-control'
 
-  .form-group
-    .col-md-offset-2.col-md-10
-      = f.submit nil, class: 'btn btn-primary'
-      = link_to 'Cancel', (@topic.new_record? ? @forum : [@forum, @topic]), class: 'btn btn-default'
+        .form-group
+          .col-md-offset-2.col-md-10
+            .checkbox
+              %label
+                = f.check_box :locked
+                Post Locked
+
+        .form-group
+          .col-md-offset-2.col-md-10
+            .checkbox
+              %label
+                = f.check_box :pinned
+                Post Pinned
+
+      .form-group
+        .col-md-offset-2.col-md-10
+          = f.submit nil, class: 'btn btn-primary'
+          = link_to 'Cancel', (@topic.new_record? ? @forum : [@forum, @topic]), class: 'btn btn-default'
