@@ -125,6 +125,16 @@ class ResearchTopicTest < ActiveSupport::TestCase
     assert_equal 0.6, rt.endorsement
   end
 
+  test "Research topic commenting when voting" do
+    u = users(:user_10)
+    rt = research_topics(:rt1)
+    comment = "some comment for this topic"
+
+    rt.endorse_by(u, comment)
+
+    assert_equal comment, rt.topic.posts.last.description
+  end
+
   test "Research topic voting should not allow double-voting" do
     u = users(:user_1)
     rt = research_topics(:rt1)

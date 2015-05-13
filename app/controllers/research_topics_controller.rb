@@ -10,10 +10,13 @@ class ResearchTopicsController < ApplicationController
   end
 
   def first_topics
-    redirect_to intro_research_topics_path if current_user.no_votes_user? and params[:read_intro].blank?
-    redirect_to research_topics_path if current_user.experienced_voter?
+    redirect_to intro_research_topics_path and return if current_user.no_votes_user? and params[:read_intro].blank?
+    redirect_to research_topics_path and return if current_user.experienced_voter?
 
     @research_topic = current_user.seeded_research_topic
+
+    redirect_to newest_research_topics_path and return if @research_topic.blank?
+
   end
 
   def newest
@@ -52,9 +55,9 @@ class ResearchTopicsController < ApplicationController
 
   def vote
     @research_topic = ResearchTopic.find(params[:research_topic_id])
-
     if current_user.experienced_voter? or @research_topic.seeded?
-      params[:endorse] == 1 ? @research_topic.endorse_by(current_user) : @research_topic.oppose_by(current_user)
+      params[:endorse].to_i == 1 ? @research_topic.endorse_by(current_user, params[:comment]) : @research_topic.oppose_by(current_user, params[:comment])
+      redirect_to :back
     else
       render nothing: true
     end

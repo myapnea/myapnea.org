@@ -9,20 +9,21 @@
     .research-topic-body
       %h4.centered-text= research_topic.text
       %hr
-      %p.lead= "\"#{research_topic.description}\""
-      %hr
+      - if research_topic.description.present?
+        %p.lead= "\"#{research_topic.description}\""
+        %hr
       .centered-text
         = form_tag vote_path(research_topic: research_topic) do
           = hidden_field_tag :research_topic_id, research_topic.id
-          = radio_button_tag :endorse, 1
+          = radio_button_tag :endorse, 1, current_user.endorsed?(research_topic)
           %label{ for: 'endorse_1' } I endorse this topic!
           %br
-          = radio_button_tag :endorse, 0
+          = radio_button_tag :endorse, 0, current_user.opposed?(research_topic)
           %label{ for: 'endorse_0' } I don't endorse this topic!
           %br
           %br
           %p.muted Add a comment (optional):
-          = text_area_tag 'comment', nil, rows: 5, class: 'form-control'
+          = text_area_tag 'comment', nil, rows: 5, class: 'form-control', disabled: current_user.cast_vote_for?(research_topic)
           %br
           = submit_tag "Submit", class: 'btn btn-primary'
 

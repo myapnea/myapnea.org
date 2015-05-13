@@ -47,6 +47,7 @@ class ResearchTopicsControllerTest < ActionController::TestCase
 
   # First Topics
   test "should get first topics for novice user" do
+    ResearchTopic.load_seeds
     login(@novice_user)
 
     get :first_topics
@@ -56,6 +57,7 @@ class ResearchTopicsControllerTest < ActionController::TestCase
   end
 
   test "should get first topics for no_votes user that read the intro" do
+    ResearchTopic.load_seeds
     login(@no_votes_user)
 
     get :first_topics, read_intro: 1
@@ -173,6 +175,8 @@ class ResearchTopicsControllerTest < ActionController::TestCase
   # Test w/ and w/o comment
 
   test "should endorse any approved research topic as experienced user" do
+    @request.env['HTTP_REFERER'] = 'http://localhost:3000/sessions/new'
+
     login(@experienced_user)
 
     assert_nil research_topics(:rt2).endorsement
@@ -185,11 +189,25 @@ class ResearchTopicsControllerTest < ActionController::TestCase
 
     assert_not_nil assigns(:research_topic)
 
-    assert_template 'vote'
-    assert_response :success
+    assert_response 302
+  end
+
+  test "should add comment when voting for topic" do
+    @request.env['HTTP_REFERER'] = 'http://localhost:3000/sessions/new'
+
+    login(@experienced_user)
+    comment = "Hi there i'm commenting"
+
+    assert_difference "Post.count" do
+      xhr :post, :vote, research_topic_id: research_topics(:rt2).id, endorse: 1, comment: comment, format: 'js'
+    end
+
+    assert_equal comment, research_topics(:rt2).topic.posts.last.description
+
   end
 
   test "should vote for only the seeded research topics as a no_votes user" do
+    @request.env['HTTP_REFERER'] = 'http://localhost:3000/sessions/new'
     login(@no_votes_user)
     ResearchTopic.load_seeds
     rt = ResearchTopic.where(category: "seeded").first
@@ -207,6 +225,7 @@ class ResearchTopicsControllerTest < ActionController::TestCase
 
 
   test "should vote for only the seeded research topics as a novice user" do
+    @request.env['HTTP_REFERER'] = 'http://localhost:3000/sessions/new'
     login(@novice_user)
     ResearchTopic.load_seeds
     rt = ResearchTopic.where(category: "seeded").first
@@ -225,6 +244,7 @@ class ResearchTopicsControllerTest < ActionController::TestCase
 
   # Opposition
   test "should oppose any approved research topic as experienced user" do
+    @request.env['HTTP_REFERER'] = 'http://localhost:3000/sessions/new'
     login(@experienced_user)
 
     assert_nil research_topics(:rt2).endorsement
@@ -237,8 +257,7 @@ class ResearchTopicsControllerTest < ActionController::TestCase
 
     assert_not_nil assigns(:research_topic)
 
-    assert_template 'vote'
-    assert_response :success
+    assert_response 302
   end
 
 

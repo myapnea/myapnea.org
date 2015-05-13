@@ -32,6 +32,10 @@ class ResearchTopic < ActiveRecord::Base
   scope :newest, lambda { current.order("research_topics.created_at desc") }
 
   # Class methods
+  def self.find_by_slug(slug)
+    ResearchTopic.joins(:topic).where(topics: {slug: slug})
+  end
+
   def self.popular(vote_threshold = nil)
     query = current.select("research_topics.*, (sum(votes.rating)::float/count(votes.rating)::float) as endorsement").joins(:votes).group(group_columns).order("endorsement desc")
     query = query.having("count(votes.rating) > ?", vote_threshold) if vote_threshold.present?
@@ -90,19 +94,24 @@ class ResearchTopic < ActiveRecord::Base
     topic.posts.first.description if topic.present? and !topic.posts.empty?
   end
 
+  def slug
+    topic.slug if topic.present?
+  end
+
+
   # Voting
   def endorsement
     Vote.current.select("sum(rating)::float/count(rating)::float as endorsement").group("research_topic_id").where(research_topic_id: self[:id]).map(&:endorsement).first
   end
 
-  def endorse_by(user)
-    cast_vote(user, 1)
+  def endorse_by(user, comment = nil)
+    cast_vote(user, 1, comment)
 
   end
 
 
-  def oppose_by(user)
-    cast_vote(user, 0)
+  def oppose_by(user, comment = nil)
+    cast_vote(user, 0, comment)
   end
 
 
@@ -115,11 +124,15 @@ class ResearchTopic < ActiveRecord::Base
 
   private
 
-  def cast_vote(user, rating)
+  def cast_vote(user, rating, comment)
     if user.cast_vote_for?(self)
       votes.find_by_user_id(user.id).update(rating: rating)
     else
       votes.create(user_id: user.id, rating: rating)
+    end
+
+    if comment.present?
+      topic.posts.create(description: comment, user_id: user.id)
     end
   end
 
