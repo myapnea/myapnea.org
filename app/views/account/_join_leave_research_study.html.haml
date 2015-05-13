@@ -1,9 +1,9 @@
 - if current_user.ready_for_research?
-  .panel
-    .panel-body
+  .content-container
+    .content-header
       %h3.f300.centered-text
         Leave Research Study
-      %br
+    .content-body
       %p.lead
         You may choose to leave the research study at any time. We will no longer collect any information from you and we will stop all communication. However, as stated in the informed consent, the information that you have already provided to
         = ENV['pprn_title']
@@ -14,12 +14,14 @@
         = link_to 'Review Consent', consent_path, class: 'btn btn-primary', style: 'width: 49%; margin:.5%; float:left;'
       = link_to 'Review Privacy Policy', privacy_path, class: 'btn btn-primary', style: 'width: 49%; margin:.5%; float:left;'
       = link_to 'Leave Research Study', revoke_consent_path, method: :post, class: 'btn btn-warning', style: 'width: 99%; margin: .5%; float:left;'
+      .clearfix
+
 - else
-  .panel
-    .panel-body
+  .content-container
+    .content-header
       %h3.f300.centered-text
         Join Research Study
-      %br
+    .content-body
       %p.lead
         You need to read and accept the
         - if (current_user.is_only_academic?) and (current_user.accepted_consent_at.blank?)
@@ -34,3 +36,4 @@
       - else
         = link_to 'Read the Consent', consent_path, class: 'btn btn-primary', style: 'width: 49%; margin:.5%; float:left;'
       = link_to 'Read our Privacy Policy', privacy_path, class: 'btn btn-primary', style: 'width: 49%; margin:.5%; float:left;'
+      .clearfix
