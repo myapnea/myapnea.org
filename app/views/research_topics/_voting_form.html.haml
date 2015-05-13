@@ -1,27 +1,28 @@
 - if research_topic.present?
   .research-topic-container
     .research-topic-header
-      %div{ style: 'min-height: 50px;'}
+      .research-topic-header-details
         = image_tag research_topic.user.photo_url, class: 'img-responsive', style: 'width: 50px; height: 50px; float: left'
         %p.text-dark6{ style: 'float: left; padding-left: 20px; padding-top: 20px;font-size: 15px;' }
-          %span.f500.primary-blue= research_topic.user.name
+          %span.f500.primary-blue= research_topic.user.forum_name.present? ? link_to(research_topic.user.forum_name, member_path(research_topic.user.forum_name), class: 'no-underline') : research_topic.user.name
           asked:
     .research-topic-body
-      %h4.centered-text= research_topic.text
+      %h5.centered-text= research_topic.text
       %hr
-      %p.lead= "\"#{research_topic.description}\""
+      %h5.f300= "\"#{research_topic.description}\""
       %hr
       .centered-text
         = form_tag vote_path(research_topic: research_topic) do
-          = radio_button_tag :endorse, 1
-          %label{ for: 'endorse_1' } I endorse this topic!
-          %br
-          = radio_button_tag :endorse, 0
-          %label{ for: 'endorse_0' } I don't endorse this topic!
-          %br
-          %br
-          %p.muted Add a comment (optional):
-          = text_area_tag 'comment', nil, rows: 5, class: 'form-control'
+          .row
+            .col-xs-6
+              .endorse-button-container
+                = radio_button_tag :endorse, 1
+                %label.endorse-label{ for: 'endorse_1' } Endorse
+              .endorse-button-container
+                = radio_button_tag :endorse, 0
+                %label.endorse-label{ for: 'endorse_0' } Don't endorse
+            .col-xs-6
+              = text_area_tag 'comment', nil, rows: 3, placeholder: 'Add a comment (optional)', style: 'resize: none', class: 'form-control'
           %br
           = submit_tag "Submit", class: 'btn btn-primary'
 

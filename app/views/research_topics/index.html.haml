@@ -4,94 +4,91 @@
   %h1.f300 Rank the Research
 
 - if ResearchTopic.highlighted(current_user).present?
-  .lighterer-blue-bcg{ style: 'border-radius: 20px; padding: 20px;' }
-    %h2.text-white Trending Topic
-    = render 'research_topics/voting_form', research_topic: ResearchTopic.highlighted(current_user)
+  = render 'research_topics/voting_form', research_topic: ResearchTopic.highlighted(current_user)
 
-
-%br
-%br
-.panel
-  .panel-body
-    .row
-      .col-sm-6
-        = link_to forum_topic_path('research', 'does-treatment-of-sleep-apnea-influence-body-weight'), class: 'thumbnail pull-right' do
-          = image_tag 'myapnea/research/sleep-apnea-body-weight.png', class: 'img-responsive', style: 'max-width: 400px;'
-      .col-sm-6
-        = link_to forum_topic_path('research', 'does-sleep-influence-memory-and-brain-plasticity'), class: 'thumbnail pull-left' do
-          = image_tag 'myapnea/research/sleep-apnea-memory.png', class: 'img-responsive', style: 'max-width: 400px;'
-  .panel-footer
+.content-container.inherit-background
+  .content-body
     .row
       .col-sm-6
         %h4 Newest
-        - @research_topics.newest.first(5).each do |rt|
-          - if current_user.cast_vote_for?(rt)
-            .list-group-item
-              %span.badge{ class: "#{current_user.endorsed?(rt) ? 'great-bcg' : 'danger-bcg' }" }
-                %span.glyphicon{ class: "#{current_user.endorsed?(rt) ? 'glyphicon-ok' : 'glyphicon-remove' }" }
-              %p= rt.text
-          - else
-            / Button trigger modal
-            %a.list-group-item{"data-target" => "#modal-rt#{rt.id}-newest", "data-toggle" => "modal", :type => "button"}
-              %span.badge
-                Vote!
-              %p= rt.text
-            .modal.fade{ id: "modal-rt#{rt.id}-newest", "aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
-              .modal-dialog{ style: 'z-index: 1050; '}
-                .modal-content
-                  .modal-header{ style: 'background-color: white; border: none;' }
-                    %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
-                      %span{"aria-hidden" => "true"} ×
-                  .modal-body
-                    = render partial: 'research_topics/voting_form', locals: { research_topic: rt }
-        .list-group-item
-          = link_to 'More...', newest_research_topics_path
+        .scroll-container
+          - @research_topics.newest.first(10).each do |rt|
+            - if current_user.cast_vote_for?(rt)
+              .research-topic-index-display
+                %span.badge{ class: "#{current_user.endorsed?(rt) ? 'great-bcg' : 'danger-bcg' }" }
+                  %span.glyphicon{ class: "#{current_user.endorsed?(rt) ? 'glyphicon-ok' : 'glyphicon-remove' }" }
+                %p= rt.text
+            - else
+              / Button trigger modal
+              %a.research-topic-index-display{"data-target" => "#modal-rt#{rt.id}-newest", "data-toggle" => "modal", :type => "button"}
+                %span.badge
+                  Vote!
+                %p= rt.text
+              .modal.fade{ id: "modal-rt#{rt.id}-newest", "aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+                .modal-dialog{ style: 'z-index: 1050; '}
+                  .modal-content
+                    .modal-header{ style: 'background-color: white; border: none;' }
+                      %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+                        %span{"aria-hidden" => "true"} ×
+                    .modal-body
+                      = render partial: 'research_topics/voting_form', locals: { research_topic: rt }
+          .research-topic-index-display
+            = link_to 'More...', newest_research_topics_path
 
       .col-sm-6
         %h4 Most Discussed
-        - @research_topics.most_discussed.first(5).each do |rt|
-          - if current_user.cast_vote_for?(rt)
-            .list-group-item
-              %span.badge{ class: "#{current_user.endorsed?(rt) ? 'great-bcg' : 'danger-bcg' }" }
-                %span.glyphicon{ class: "#{current_user.endorsed?(rt) ? 'glyphicon-ok' : 'glyphicon-remove' }" }
-              %p= rt.text
-          - else
-            / Button trigger modal
-            %a.list-group-item{"data-target" => "#modal-rt#{rt.id}-discussed", "data-toggle" => "modal", :type => "button"}
-              %span.badge
-                Vote!
-              %p= rt.text
-            .modal.fade{ id: "modal-rt#{rt.id}-discussed", "aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
-              .modal-dialog{ style: 'z-index: 1050; '}
-                .modal-content
-                  .modal-header{ style: 'background-color: white; border: none;' }
-                    %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
-                      %span{"aria-hidden" => "true"} ×
-                  .modal-body
-                    = render partial: 'research_topics/voting_form', locals: { research_topic: rt }
-        .list-group-item
-          = link_to 'More...', most_discussed_research_topics_path
+        .scroll-container
+          - @research_topics.most_discussed.first(10).each do |rt|
+            - if current_user.cast_vote_for?(rt)
+              .research-topic-index-display
+                %span.badge{ class: "#{current_user.endorsed?(rt) ? 'great-bcg' : 'danger-bcg' }" }
+                  %span.glyphicon{ class: "#{current_user.endorsed?(rt) ? 'glyphicon-ok' : 'glyphicon-remove' }" }
+                %p= rt.text
+            - else
+              / Button trigger modal
+              %a.research-topic-index-display{"data-target" => "#modal-rt#{rt.id}-discussed", "data-toggle" => "modal", :type => "button"}
+                %span.badge
+                  Vote!
+                %p= rt.text
+              .modal.fade{ id: "modal-rt#{rt.id}-discussed", "aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+                .modal-dialog{ style: 'z-index: 1050; '}
+                  .modal-content
+                    .modal-header{ style: 'background-color: white; border: none;' }
+                      %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+                        %span{"aria-hidden" => "true"} ×
+                    .modal-body
+                      = render partial: 'research_topics/voting_form', locals: { research_topic: rt }
+          .research-topic-index-display
+            = link_to 'More...', most_discussed_research_topics_path
 
-.panel.primary-blue-bcg
-  .panel-body
-    .row
-      .col-sm-8.col-sm-offset-2
-        %h3.text-light9 Add your own question!
-        .list-group-item
-          = form_for ResearchTopic.new, html: { data: { object: "inline-validation"} } do |f|
-            .form-group
-              = f.label :text, class: 'sr-only'
-              = f.text_area :text, class: 'form-control input-lg', placeholder: "Enter your research question here...", autocomplete: :off, data: { object: 'inline-validation-item', name: 'research-topic-name' }
-              .col-sm-6.hidden{ style: 'margin-top: 15px; margin-bottom: 30px;', data: { object: 'research-topic-name--error' } }
-                %p.small.centered-text.inline-validation-error
-                  Please enter a valid question or research topic!
-            .form-group
-              = f.label :author, class: 'sr-only'
-              = f.text_area :description, placeholder: "Describe why you think this question is important...", class: 'form-control input-lg'
-            = f.submit("Submit", class: "btn btn-success pull-right")
-            .clearfix
-    %br
-    %br
+.content-container.horizontal-inset
+  .content-body.lighter-blue-bcg
+    %h3.text-light9 Add your own question!
+    .list-group-item
+      = form_for ResearchTopic.new, html: { data: { object: "inline-validation"} } do |f|
+        .form-group
+          = f.label :text, class: 'sr-only'
+          = f.text_area :text, placeholder: "Enter your research question here", autocomplete: :off, style: 'resize: none', class: 'form-control input-lg', data: { object: 'inline-validation-item', name: 'research-topic-name' }
+          .col-sm-6.hidden{ style: 'margin-top: 15px; margin-bottom: 30px;', data: { object: 'research-topic-name--error' } }
+            %p.small.centered-text.inline-validation-error
+              Please enter a valid question or research topic!
+        .form-group
+          = f.label :author, class: 'sr-only'
+          = f.text_area :description, placeholder: "Describe why you think this question is important", style: 'resize: none', class: 'form-control input-lg'
+        = f.submit("Submit", class: "btn btn-success pull-right")
+        .clearfix
+
 
 
 = render 'research_topics/ready' if current_user.votes.count == ResearchTopic::INTRO_LENGTH
+
+- if false
+  .content-container
+    .content-body
+      .row
+        .col-md-3.col-sm-4.col-xs-6
+          = link_to forum_topic_path('research', 'does-treatment-of-sleep-apnea-influence-body-weight') do
+            = image_tag 'myapnea/research/sleep-apnea-body-weight.png', class: 'img-responsive'
+        .col-md-3.col-sm-4.col-xs-6
+          = link_to forum_topic_path('research', 'does-sleep-influence-memory-and-brain-plasticity') do
+            = image_tag 'myapnea/research/sleep-apnea-memory.png', class: 'img-responsive'
