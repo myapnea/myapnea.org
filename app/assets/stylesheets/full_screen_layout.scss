@@ -23,3 +23,9 @@
     background-color: #fafafa;
   }
 }
+
+.content-container.inherit-background {
+  background: inherit;
+  box-shadow: none;
+}
+

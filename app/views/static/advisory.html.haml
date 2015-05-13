@@ -1,13 +1,14 @@
 - @active_top_nav_link = :about
 - @page_title = 'Our Advisors'
-.content-main-header
-  %h1.f300 Advisory Council
 
-.panel{ style: 'margin-bottom: 30px' }
-  .panel-body
+.content-main-header
+  %h1 Advisory Council
+
+.content-container
+  .content-body
     %p.lead
       The
-      = link_to 'MyApnea.Org Advisory Council', ac_charter_path
+      = link_to 'MyApnea.Org Advisory Council', ac_charter_path, class: 'no-underline'
       brings together a diverse group of people with sleep apnea, family members, professionals, clinicians and researchers to help us develop our network. Each member has unique viewpoints, experiences and has been active in treating, researching or spreading awareness about sleep apnea treatment and research.
 
 - group1 = []; group2 = []; group3 = []
@@ -18,31 +19,34 @@
     - group3.push(member)
   - else
     - group2.push(member)
-.row
-  .col-sm-4
-    -group1.each_with_index do |member, index|
-      .panel.advisory-small{ data: { toggle: 'collapse', target: "#collapse#{member['name'].gsub(/\s+/, '')}" } }
-        %h5
-          = member["name"]
-          - if member["title"]
-            %span= member["title"]
-        %h6= member["loc"]
-        %p.long.collapse{ id: "collapse#{member['name'].gsub(/\s+/, '')}"}= member["bio"]
-  .col-sm-4
-    -group2.each_with_index do |member, index|
-      .panel.advisory-small{ data: { toggle: 'collapse', target: "#collapse#{member['name'].gsub(/\s+/, '')}" } }
-        %h5
-          = member["name"]
-          - if member["title"]
-            %span= member["title"]
-        %h6= member["loc"]
-        %p.long.collapse{ id: "collapse#{member['name'].gsub(/\s+/, '')}"}= member["bio"]
-  .col-sm-4
-    -group3.each_with_index do |member, index|
-      .panel.advisory-small{ data: { toggle: 'collapse', target: "#collapse#{member['name'].gsub(/\s+/, '')}" } }
-        %h5
-          = member["name"]
-          - if member["title"]
-            %span= member["title"]
-        %h6= member["loc"]
-        %p.long.collapse{ id: "collapse#{member['name'].gsub(/\s+/, '')}"}= member["bio"]
+
+.content-container.inherit-background
+  .content-body
+    .row
+      .col-sm-4
+        -group1.each_with_index do |member, index|
+          .panel.advisory-small{ data: { toggle: 'collapse', target: "#collapse#{member['name'].gsub(/\s+/, '')}" } }
+            %h5
+              = member["name"]
+              - if member["title"]
+                %span= member["title"]
+            %h6= member["loc"]
+            %p.long.collapse{ id: "collapse#{member['name'].gsub(/\s+/, '')}"}= member["bio"]
+      .col-sm-4
+        -group2.each_with_index do |member, index|
+          .panel.advisory-small{ data: { toggle: 'collapse', target: "#collapse#{member['name'].gsub(/\s+/, '')}" } }
+            %h5
+              = member["name"]
+              - if member["title"]
+                %span= member["title"]
+            %h6= member["loc"]
+            %p.long.collapse{ id: "collapse#{member['name'].gsub(/\s+/, '')}"}= member["bio"]
+      .col-sm-4
+        -group3.each_with_index do |member, index|
+          .panel.advisory-small{ data: { toggle: 'collapse', target: "#collapse#{member['name'].gsub(/\s+/, '')}" } }
+            %h5
+              = member["name"]
+              - if member["title"]
+                %span= member["title"]
+            %h6= member["loc"]
+            %p.long.collapse{ id: "collapse#{member['name'].gsub(/\s+/, '')}"}= member["bio"]
