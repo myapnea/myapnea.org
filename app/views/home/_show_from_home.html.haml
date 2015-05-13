@@ -1,23 +1,22 @@
 - @posts.each do |post|
-  .dashboard-community-container
-    .row.post-header
-      .col-sm-1.col-xs-2
-        = render 'forums/user_image', user: post.user, size: 75
-      .col-sm-11.col-xs-10
-        %h4.f300
-          %span.f500= post.user.forum_name
+  .recent-post-container
+    .post-header
+      .poster-image
+        = render 'forums/user_image_no_border', user: post.user, size: 50
+      .poster-details
+        %h5.f300.poster
+          %span.f500= post.user.forum_name.present? ? link_to(post.user.forum_name, member_path(post.user.forum_name), class: 'no-underline') : post.user.name
           replied to
+          %br.visible-xs
           = link_to post.topic.name, forum_topic_path(post.topic.forum.slug, post.topic.slug), class: 'no-underline'
-        %p.small.muted-text
+        %p.small.post-time
           = post.created_at.strftime("%-d %B %Y, %-l:%M %p")
-    .row.post-content
-      .col-sm-11.col-sm-offset-1.col-xs-10.col-xs-offset-2
-        %p.lead
-          - if post.description.length > 1000
-            = simple_markdown(truncate(post.description, length: 1000))
-            = link_to 'read more', forum_topic_post_path(post.topic.forum.slug, post.topic.slug, post), class: 'no-underline'
-          - else
-            = simple_markdown(post.description)
+    .post-content
+      - if post.description.length > 500
+        = simple_markdown(truncate(post.description, length: 500))
+        = link_to 'Read more', forum_topic_post_path(post.topic.forum.slug, post.topic.slug, post), class: 'no-underline'
+      - else
+        = simple_markdown(post.description)
     .reply-container
       - unless post.topic.locked?
         - new_post = post.topic.posts.new
@@ -26,10 +25,10 @@
           - if current_user.has_role? :moderator
             = f.hidden_field :status, value: 'approved'
 
-          .row.reply
-            .reply-user.col-sm-1.col-xs-2
-              = image_tag current_user.photo_url, title: current_user.forum_name, data: { toggle: 'tooltip', container: 'body', placement: 'top' }
-            .reply-field.col-sm-10.col-xs-9
+          .reply
+            .reply-user
+              = image_tag current_user.photo_url, class: 'reply-user-image'
+            .reply-field
               = f.text_area :description, rows: 1, style: 'resize: none;', class: 'reply-text-area', id: 'post_description_new', data: { object: 'text-area-autocomplete', mentions: SocialProfile.current.where.not(name: [nil, '']).pluck(:name).uniq.sort }
-            .reply-submit.col-xs-1
+            .reply-submit
               = f.submit "Reply", class: 'btn btn-primary reply-button', data: { disable_with: "Posting" }
