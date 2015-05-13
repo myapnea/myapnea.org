@@ -307,7 +307,7 @@
     if checkCompletion()
       $.post($(this).data("path"),
         {answer_session_id: $(this).data("answer-session-id")}, (data) ->
-          #console.log data
+            #console.log data
       )
       $(this).addClass 'hidden'
       $("[data-object~='survey-submit-congratulations-container']").removeClass 'hidden'
@@ -322,7 +322,7 @@
   @checkCompletion = () ->
     numberSelectors = $("[data-object~='survey-indicator']").length
     numberCompletedSelectors = $("[data-object~='survey-indicator'].complete").length + $("[data-object~='survey-indicator'].locked").length
-    if $("[data-object~='date--error-message']").length > 0 and $("[data-object~='date--error-message']").html() != ""
+    if $("[data-object~='date--error-message']").length > 0 and $("[data-object~='date--error-message']").html() != "" and !$("[data-object~='date--error']").hasClass("hidden")
       #console.log "date error exists"
       return false
     if numberSelectors == numberCompletedSelectors
