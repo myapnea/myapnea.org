@@ -3,6 +3,9 @@ class ApplicationController < ActionController::Base
   # Add theme folder to view path
   self.view_paths.unshift(*Rails.root.join('app', 'views', 'myapnea'))
 
+  # Layout
+  layout 'layouts/application-no-central-padding'
+
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception

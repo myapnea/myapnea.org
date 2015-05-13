@@ -1,5 +1,24 @@
-.dashboard-community-container {
-  margin: 15px 5px;
+.widget-container {
+  background-color: white;
+  box-shadow:0px 0px 5px rgba(0,0,0,.5);
+  margin-bottom: 20px;
+  .widget-container-header {
+    padding: 5px 40px;
+    background-color: #F2F1EC;
+  }
+  .widget-container-body {
+    padding: 20px;
+  }
+}
+
+.recent-posts-container {
+  background-color: inherit;
+  margin-bottom: 20px;
+}
+
+.recent-post-container {
+  position: relative;
+  margin: 20px;
   border: 1px solid #bbb;
   border-radius: 5px;
   background-color: white;
@@ -7,40 +26,58 @@
     background-color: #fcfcfc;
     border-bottom: 1px solid #f0f0f0;
     border-radius:5px 5px 0 0;
-    margin: 0;
-    padding: 10px 10px 10px 5px;
+    position: relative;
+    min-height: 55px;
+    .poster-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    .poster-details {
+      margin: 0 0 0 65px;
+      overflow: hidden;
+      white-space: nowrap;
+      .poster {
+        margin: 10px 0px 0px 0px;
+      }
+      .post-time {
+        margin: 5px 0px 0px 0px;
+      }
+    }
   }
   .post-content {
-    margin: 0;
+    padding: 20px;
   }
   .reply-container {
+    height: 35px;
     .reply {
       margin: 0;
-      padding-bottom:5px;
+      width: 100%;
+      position: relative;
+      border-top: 1px solid #bbb;
       .reply-user {
-        position: relative;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 35px;
+        border-radius: 0 0 0 3px;
         img {
-          position: absolute;
-          right:0;
-          top:0;
-          height:35px;
-          width:35px;
-          padding:3px;
-          border: 1px solid #bbb;
-          border-right: none;
-          border-radius: 3px 0 0 3px;
+          height: 34px;
+          width: 100%;
+          border-radius: 0 0 0 3px;
         }
       }
       .reply-field {
-        padding: 0px;
+        margin: 0 75px 0 35px;
+        height: 35px;
         .reply-text-area {
+          width: 100%;
           height: 35px;
           padding: 3px;
           font-size: 18px;
-          width: 100%;
-          border-radius: 0 0 0 0;
-          border: 1px solid #bbb;
-          border-right: none;
+          border-color: #bbb;
+          border-top:none;
+          border-right:none;
         }
         .reply-text-area:focus {
           border-color: #66afe9;
@@ -49,11 +86,25 @@
         }
       }
       .reply-submit {
-        padding: 0px;
+        width:75px;
+        position: absolute;
+        right: 0;
+        top: 0;
         .reply-button {
-          height: 35px;
-          border-radius: 0 3px 3px 0;
+          width: 100%;
+          border-radius: 0 0 3px 0;
         }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .recent-post-container {
+    .post-header {
+      .poster-image {
+        top: 7px;
+        left: 7px;
       }
     }
   }

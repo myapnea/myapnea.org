@@ -1,19 +1,14 @@
-
 - if research_topic.present?
-  .panel{ style: "#{'opacity: 0.8; background-color: #eee' if false}"}
-    .panel-heading
+  .research-topic-container
+    .research-topic-header
       %div{ style: 'min-height: 50px;'}
-        = image_tag research_topic.user.photo_url, class: 'img-responsive', style: 'width: 50px; height: 50px; border: 2px solid white; float: left'
+        = image_tag research_topic.user.photo_url, class: 'img-responsive', style: 'width: 50px; height: 50px; float: left'
         %p.text-dark6{ style: 'float: left; padding-left: 20px; padding-top: 20px;font-size: 15px;' }
           %span.f500.primary-blue= research_topic.user.name
           asked:
-    .panel-body
+    .research-topic-body
       %h4.centered-text= research_topic.text
       %hr
-      -# For now, any RT coming in has not been voted on by the user
-      -#- if @already_voted
-      -#  .centered-text{ style: 'border: 3px solid #5999de; border-radius: 10px; padding:10px; background-color:#aaa; color: white'}
-      -#    You've already voted on this. Thank you!
       %p.lead= "\"#{research_topic.description}\""
       %hr
       .centered-text

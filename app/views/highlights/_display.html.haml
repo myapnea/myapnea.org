@@ -1,6 +1,6 @@
 - @highlight = highlight
 
-.panel.highlight-container
+.highlight-container
   / Allow easy toggling of displayed update items
   - if current_user.has_role?(:owner)
     .highlight-container-right-after
@@ -13,7 +13,7 @@
       %br
       = link_to edit_highlight_path(@highlight) do
         %i.fa.fa-pencil
-  .panel-body.centered-text
+  .centered-text
     = link_to ((@highlight.link.present? and safe_url?(@highlight.link)) ? @highlight.link : "#") do
       - if @highlight.photo_url.present?
         = image_tag @highlight.photo, class: 'img-responsive', style: 'margin: auto;'
