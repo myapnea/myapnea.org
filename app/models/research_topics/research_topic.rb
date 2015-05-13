@@ -16,7 +16,7 @@ class ResearchTopic < ActiveRecord::Base
   # Constants
   PROGRESS = [:proposed, :accepted, :ongoing_research, :complete]
   TYPE = [:user_submitted, :seeded]
-  INTRO_LENGTH = 10
+  INTRO_LENGTH = ENV["research_topic_experience_threshold"].to_i
   RESEARCH_TOPIC_DATA_LOCATION = ['lib', 'data', 'research_topics']
 
 
@@ -47,6 +47,10 @@ class ResearchTopic < ActiveRecord::Base
       .order("vote_count asc")
   end
 
+  def self.seeded(user)
+    where("research_topics.category = ?", "seeded").highlighted(user)
+  end
+
   def self.load_seeds
     loaded_successfully = []
     loaded_with_problems = []
@@ -64,7 +68,9 @@ class ResearchTopic < ActiveRecord::Base
         puts "User #{research_topic_attributes["user_email"]} not found for research topic #{research_topic_attributes["text"]}\nAssigning #{user.email} as a fallback."
       end
 
-      create({category: 'seeded', progress: 'proposed', user_id: user.id}.merge(research_topic_attributes))
+      rt = create({category: 'seeded', progress: 'proposed', user_id: user.id}.merge(research_topic_attributes))
+      rt.topic.update(status: 'approved')
+      rt.topic.posts.first.update(status: 'approved')
     end
 
     {successful: loaded_successfully, with_problems: loaded_with_problems}
@@ -88,12 +94,12 @@ class ResearchTopic < ActiveRecord::Base
     Vote.current.select("sum(rating)::float/count(rating)::float as endorsement").group("research_topic_id").where(research_topic_id: self[:id]).map(&:endorsement).first
   end
 
-  def endorse(user)
+  def endorse_by(user)
     votes.create(user_id: user.id, rating: 1)
   end
 
 
-  def oppose(user)
+  def oppose_by(user)
     votes.create(user_id: user.id, rating: 0)
   end
 

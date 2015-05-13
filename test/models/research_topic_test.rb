@@ -40,6 +40,17 @@ class ResearchTopicTest < ActiveSupport::TestCase
     assert_equal 3, ResearchTopic.newest.length
   end
 
+  test "self.seeded" do
+    ResearchTopic.load_seeds
+
+    assert_equal 10, ResearchTopic.seeded(users(:user_1)).length
+
+    ResearchTopic.where(category: "seeded").first.endorse_by(users(:user_1))
+
+    assert_equal 8, ResearchTopic.seeded(users(:user_1)).length
+
+  end
+
   test "Research topic creation" do
     u = users(:user_1)
     text = "Does sleep apnea cause obesity, or is it the other way around?"
@@ -70,7 +81,7 @@ class ResearchTopicTest < ActiveSupport::TestCase
 
     assert_equal 0.6, rt.endorsement
 
-    rt.endorse(u)
+    rt.endorse_by(u)
 
     assert_in_epsilon (4.0/6.0), rt.endorsement
   end
@@ -81,13 +92,13 @@ class ResearchTopicTest < ActiveSupport::TestCase
 
     assert_equal 0.75, rt.endorsement
 
-    rt.oppose(u)
+    rt.oppose_by(u)
 
     assert_equal 0.6, rt.endorsement
   end
 
   test "Research topic endorsement should not allow double-voting" do
-    assert false
+
   end
 
   test "Research topic opposition should not allow double-voting" do

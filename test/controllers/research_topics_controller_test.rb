@@ -3,31 +3,32 @@ require 'test_helper'
 class ResearchTopicsControllerTest < ActionController::TestCase
 
   setup do
-    @no_votes_user = users(:user_1)
-    @novice_user = users(:user_1)
+    @no_votes_user = users(:user_2)
+    @novice_user = users(:user_4)
     @experienced_user = users(:user_1)
 
-    @moderator = users(:moderator_1)
   end
 
   # Index
 
   test "should get index for experienced user" do
     # Displays normal index
-    login(@regular_user)
+    login(@experienced_user)
     get :index
     assert_not_nil assigns(:research_topics)
     assert_response :success
   end
 
   test "should redirect to intro action for no_votes user" do
-    assert false
-
+    login(@no_votes_user)
+    get :index
+    assert_redirected_to intro_research_topics_path
   end
 
   test "should redirect to first_topics action for novice_user" do
-    assert false
-
+    login(@novice_user)
+    get :index
+    assert_redirected_to first_research_topics_path
   end
 
 
@@ -35,6 +36,7 @@ class ResearchTopicsControllerTest < ActionController::TestCase
 
   test "should get intro for no_votes user" do
     # page explaining rank the research and allowing user to press "get started"
+    login(@no_votes_user)
     assert false
 
 
@@ -43,53 +45,63 @@ class ResearchTopicsControllerTest < ActionController::TestCase
 
   # First Topics
   test "should get first topics for novice user" do
+    login(@novice_user)
     assert false
 
   end
 
   test "should get first topics for no_votes user that read the intro" do
+    login(@no_votes_user)
     assert false
 
   end
 
   test "should redirect no_votes user to intro if they haven't read the intro" do
+    login(@no_votes_user)
     assert false
 
   end
 
-  test "should redirect to index for experienced users" do
+  test "should redirect from first topics to index for experienced users" do
+    login(@experienced_user)
     assert false
 
   end
 
   # Newest
   test "should get newest for experienced user" do
+    login(@experienced_user)
     assert false
 
   end
 
-  test "should redirect to intro action for no_votes user" do
+  test "should redirect from newest to intro action for no_votes user" do
+    login(@no_votes_user)
     assert false
 
   end
 
-  test "should redirect to first_topics action for novice_user" do
+  test "should redirect from newest to first_topics action for novice_user" do
+    login(@novice_user)
     assert false
 
   end
 
   # Most Discussed
   test "should get most_discussed for experienced user" do
+    login(@experienced_user)
     assert false
 
   end
 
-  test "should redirect to intro action for no_votes user" do
+  test "should redirect from most discussed to intro action for no_votes user" do
+    login(@no_votes_user)
     assert false
 
   end
 
-  test "should redirect to first_topics action for novice_user" do
+  test "should redirect from most discussed to first_topics action for novice_user" do
+    login(@novice_user)
     assert false
 
   end
@@ -98,7 +110,7 @@ class ResearchTopicsControllerTest < ActionController::TestCase
   # Creation
 
   test "should create a research topic as experienced user" do
-    login(@regular_user)
+    login(@experienced_user)
     assert_difference('ResearchTopic.count') do
       post :create, research_topic: { text: 'Some new research topic', description: 'Why I think this is important', state: 'approved' }
     end
@@ -108,11 +120,13 @@ class ResearchTopicsControllerTest < ActionController::TestCase
   end
 
   test "should not create research topic as novice user" do
+    login(@novice_user)
     assert false
 
   end
 
   test "should not create research topic as no votes user" do
+    login(@no_votes_user)
     assert false
 
   end
@@ -130,7 +144,7 @@ class ResearchTopicsControllerTest < ActionController::TestCase
   # Test w/ and w/o comment
 
   test "should endorse any approved research topic as experienced user" do
-    login(@regular_user)
+    login(@experienced_user)
 
     assert_difference "ResearchTopic.find_by_id(#{research_topics(:rt2).id}).rating" do
       assert_difference "Vote.count" do
@@ -147,6 +161,8 @@ class ResearchTopicsControllerTest < ActionController::TestCase
   end
 
   test "should endorse only the seeded research topics as a novice or no_votes user" do
+    login(@no_votes_user)
+    login(@novice_user)
     assert false
   end
 
@@ -154,7 +170,7 @@ class ResearchTopicsControllerTest < ActionController::TestCase
 
   # Mirror image of Endorsement
   test "should oppose any approved research topic as experienced user" do
-    login(@regular_user)
+    login(@experienced_user)
 
     assert_difference "ResearchTopic.find_by_id(#{research_topics(:rt2).id}).rating" do
       assert_difference "Vote.count" do
@@ -171,6 +187,8 @@ class ResearchTopicsControllerTest < ActionController::TestCase
   end
 
   test "should oppose only the seeded research topics as a novice or no_votes user" do
+    login(@no_votes_user)
+    login(@novice_user)
     assert false
   end
 
