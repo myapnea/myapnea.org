@@ -17,25 +17,35 @@ class ResearchTopicsController < ApplicationController
   end
 
   def newest
-    @research_topics = ResearchTopic.approved.newest
+    redirect_to intro_research_topics_path if current_user.no_votes_user?
+    redirect_to first_topics_research_topics_path if current_user.novice_voter?
+
+    @research_topics = ResearchTopic.approved.newest.to_a
   end
 
   def most_discussed
+    redirect_to intro_research_topics_path if current_user.no_votes_user?
+    redirect_to first_topics_research_topics_path if current_user.novice_voter?
+
     @research_topics = ResearchTopic.approved.most_discussed
   end
 
   def index
     if current_user.experienced_voter?
-      @research_topics = ResearchTopic.popular
+      @research_topics = ResearchTopic.popular(5)
     else
       redirect_to current_user.no_votes_user? ? intro_research_topics_path : first_topics_research_topics_path
     end
   end
 
   def create
-    @new_research_topic = current_user.research_topics.new(research_topic_params)
+    redirect_to intro_research_topics_path and return if current_user.no_votes_user?
+    redirect_to first_topics_research_topics_path and return if current_user.novice_voter?
 
-    @new_research_topic.save
+    @new_research_topic = current_user.research_topics.new(research_topic_params)
+    @research_topics = ResearchTopic.popular(5)
+
+    flash[:notice] = 'Topic was successfully created.' if @new_research_topic.save
 
     render :index
   end

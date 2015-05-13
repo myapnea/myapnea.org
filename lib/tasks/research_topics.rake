@@ -9,5 +9,6 @@ namespace :research_topics do
     puts "#{seeds[:successful].length + seeds[:with_problems].length} research topics loaded in total."
     puts "#{seeds[:successful].length} research topics loaded successfully."
     puts "#{seeds[:with_problems].length} research topics loaded with problems."
+    puts "Messages:\n#{seeds[:messages].join("\n")}"
   end
 end

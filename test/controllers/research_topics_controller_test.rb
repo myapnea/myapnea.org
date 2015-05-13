@@ -84,39 +84,51 @@ class ResearchTopicsControllerTest < ActionController::TestCase
   # Newest
   test "should get newest for experienced user" do
     login(@experienced_user)
-    assert false
 
+    get :newest
+
+    assert_response :success
   end
 
   test "should redirect from newest to intro action for no_votes user" do
     login(@no_votes_user)
-    assert false
 
+    get :newest
+
+    assert_redirected_to intro_research_topics_path
   end
 
   test "should redirect from newest to first_topics action for novice_user" do
     login(@novice_user)
-    assert false
 
+    get :newest
+
+    assert_redirected_to first_topics_research_topics_path
   end
 
   # Most Discussed
   test "should get most_discussed for experienced user" do
     login(@experienced_user)
-    assert false
 
+    get :most_discussed
+
+    assert_response :success
   end
 
   test "should redirect from most discussed to intro action for no_votes user" do
     login(@no_votes_user)
-    assert false
 
+    get :most_discussed
+
+    assert_redirected_to intro_research_topics_path
   end
 
   test "should redirect from most discussed to first_topics action for novice_user" do
     login(@novice_user)
-    assert false
 
+    get :most_discussed
+
+    assert_redirected_to first_topics_research_topics_path
   end
 
 
@@ -125,31 +137,35 @@ class ResearchTopicsControllerTest < ActionController::TestCase
   test "should create a research topic as experienced user" do
     login(@experienced_user)
     assert_difference('ResearchTopic.count') do
-      post :create, research_topic: { text: 'Some new research topic', description: 'Why I think this is important', state: 'approved' }
+      post :create, research_topic: { text: 'Some new research topic', description: 'Why I think this is important'}
     end
-    assert_not_nil assigns(:research_topic)
-    assert_equal 'under_review', assigns(:research_topic).state
-    assert_redirected_to research_topics_path
+
+    assert_response :success
   end
 
   test "should not create research topic as novice user" do
     login(@novice_user)
-    assert false
+
+    assert_no_difference('ResearchTopic.count') do
+      post :create, research_topic: { text: 'Some new research topic', description: 'Why I think this is important'}
+    end
+
 
   end
 
   test "should not create research topic as no votes user" do
     login(@no_votes_user)
-    assert false
 
+    assert_no_difference('ResearchTopic.count') do
+      post :create, research_topic: { text: 'Some new research topic', description: 'Why I think this is important'}
+    end
   end
 
   test "should not create research topic as logged out user" do
-    assert_difference('ResearchTopic.count', 0) do
-      post :create, research_topic: { text: 'Some new research topic', description: 'Why I think this is important', state: 'approved' }
+    assert_no_difference('ResearchTopic.count') do
+      post :create, research_topic: { text: 'Some new research topic', description: 'Why I think this is important' }
     end
-    assert_nil assigns(:research_topic)
-    assert_redirected_to new_user_session_path
+
   end
 
 

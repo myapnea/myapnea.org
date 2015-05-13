@@ -72,26 +72,4 @@ class AdminControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-
-  # Research Topics
-  test "should show research topic administration to moderator" do
-    skip "Research topic administration will leverage forum administration"
-
-    login(users(:moderator_1))
-
-
-    get :research_topics
-
-    assert_response :success
-
-  end
-
-  test "should not show research topic administration to normal user" do
-    login(users(:user_4))
-
-    get :research_topics
-
-    assert_authorization_exception
-  end
-
 end

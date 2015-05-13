@@ -54,6 +54,7 @@ class ResearchTopic < ActiveRecord::Base
   def self.load_seeds
     loaded_successfully = []
     loaded_with_problems = []
+    msgs = []
 
     data_file = YAML.load_file(Rails.root.join(*(RESEARCH_TOPIC_DATA_LOCATION + ["original_seeding.yml"])))
 
@@ -65,7 +66,7 @@ class ResearchTopic < ActiveRecord::Base
       else
         loaded_with_problems << research_topic_attributes
         user = User.first
-        puts "User #{research_topic_attributes["user_email"]} not found for research topic #{research_topic_attributes["text"]}\nAssigning #{user.email} as a fallback."
+        msgs << "User #{research_topic_attributes["user_email"]} not found for research topic #{research_topic_attributes["text"]}\nAssigning #{user.email} as a fallback."
       end
 
       rt = create({category: 'seeded', progress: 'proposed', user_id: user.id}.merge(research_topic_attributes))
@@ -73,7 +74,7 @@ class ResearchTopic < ActiveRecord::Base
       rt.topic.posts.first.update(status: 'approved') if rt.topic.posts.first.present?
     end
 
-    {successful: loaded_successfully, with_problems: loaded_with_problems}
+    {successful: loaded_successfully, with_problems: loaded_with_problems, messages: msgs }
   end
 
   # Getters
