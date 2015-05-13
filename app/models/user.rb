@@ -377,21 +377,15 @@ class User < ActiveRecord::Base
 
 
   # Research Topics
-  # def research_topics_with_vote
-  #   ResearchTopic.c
-  # end
-  #
-  # def submitted_research_topics
-  #   ResearchTopic.created_by(self)
-  # end
-
   def highlighted_research_topic
     ResearchTopic.highlighted(self).first
   end
 
+  def seeded_research_topic
+    ResearchTopic.seeded(self).first
+  end
+
   # Voting
-
-
   def cast_vote_for?(research_topic)
     votes.current.where(research_topic_id: research_topic.id).count > 0
   end

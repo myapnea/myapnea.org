@@ -28,7 +28,7 @@ class ResearchTopicsControllerTest < ActionController::TestCase
   test "should redirect to first_topics action for novice_user" do
     login(@novice_user)
     get :index
-    assert_redirected_to first_research_topics_path
+    assert_redirected_to first_topics_research_topics_path
   end
 
 
@@ -37,8 +37,10 @@ class ResearchTopicsControllerTest < ActionController::TestCase
   test "should get intro for no_votes user" do
     # page explaining rank the research and allowing user to press "get started"
     login(@no_votes_user)
-    assert false
 
+    get :intro
+
+    assert_response :success
 
   end
 
@@ -46,25 +48,36 @@ class ResearchTopicsControllerTest < ActionController::TestCase
   # First Topics
   test "should get first topics for novice user" do
     login(@novice_user)
-    assert false
+
+    get :first_topics
+
+    assert_response :success
 
   end
 
   test "should get first topics for no_votes user that read the intro" do
     login(@no_votes_user)
-    assert false
 
+    get :first_topics, read_intro: 1
+
+    assert_response :success
   end
 
   test "should redirect no_votes user to intro if they haven't read the intro" do
     login(@no_votes_user)
-    assert false
 
+    get :first_topics
+
+    assert_redirected_to intro_research_topics_path
   end
 
+  # Not sure this is the best course of action:
   test "should redirect from first topics to index for experienced users" do
     login(@experienced_user)
-    assert false
+
+    get :first_topics
+
+    assert_redirected_to research_topics_path
 
   end
 

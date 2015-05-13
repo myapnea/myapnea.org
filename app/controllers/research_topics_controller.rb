@@ -10,24 +10,18 @@ class ResearchTopicsController < ApplicationController
   end
 
   def first_topics
-    redirect_to intro_research_topics_path if current_user.no_votes_user?
-    @research_topic = current_user.highlighted_research_topic
+    redirect_to intro_research_topics_path if current_user.no_votes_user? and params[:read_intro].blank?
+    redirect_to research_topics_path if current_user.experienced_voter?
+
+    @research_topic = current_user.seeded_research_topic
   end
 
   def newest
-    @rt_c1 = []
-    @rt_c2 = []
-    ResearchTopic.approved.each_with_index do |rt, index|
-      (index+1)%2==0 ? (@rt_c2 << rt) : (@rt_c1 << rt)
-    end
+    @research_topics = ResearchTopic.approved.newest
   end
 
   def most_discussed
     @research_topics = ResearchTopic.approved.most_discussed
-  end
-
-  def all
-    @research_topics = ResearchTopic.approved
   end
 
   def index

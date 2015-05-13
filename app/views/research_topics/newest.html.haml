@@ -3,9 +3,9 @@
 
 .row
   .col-sm-6
-    - @rt_c1.each do |rt|
+    - @research_topics.select.each_with_index{|x,i| i.odd? }.each do |rt|
       = render partial: 'research_topics/voting_form', locals: { research_topic: rt }
   .col-sm-6
-    - @rt_c2.each do |rt|
+    - @research_topics.select.each_with_index{|x,i| i.odd? }.each do |rt|
       = render partial: 'research_topics/voting_form', locals: { research_topic: rt }
 
