@@ -65,6 +65,8 @@ class ResearchTopicTest < ActiveSupport::TestCase
     assert rt.topic
     t = rt.topic
 
+    assert_not_nil rt.topic.posts.first
+
     assert_equal u, t.user
     assert_equal u, rt.user
 
@@ -73,6 +75,32 @@ class ResearchTopicTest < ActiveSupport::TestCase
 
     assert_equal desc, t.description
     assert_equal desc, rt.description
+  end
+
+  test "Research topic can be created without description" do
+    u = users(:user_1)
+    text = "Does sleep apnea cause obesity, or is it the other way around?"
+    desc = nil
+
+    rt = nil
+
+    assert_difference [ 'Topic.pending_review.count', 'ResearchTopic.pending_review.count' ], 1 do
+      rt = ResearchTopic.create(user_id: u.id, text: text, description: desc)
+    end
+
+    assert rt.topic
+    t = rt.topic
+
+    assert_equal u, t.user
+    assert_equal u, rt.user
+
+    assert_equal text, t.name
+    assert_equal text, rt.text
+
+    assert_nil rt.topic.posts.first
+    assert_nil t.description
+    assert_nil rt.description
+
   end
 
   test "Research topic endorsement" do

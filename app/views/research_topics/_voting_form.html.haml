@@ -18,6 +18,7 @@
       %hr
       .centered-text
         = form_tag vote_path(research_topic: research_topic) do
+          = hidden_field_tag :research_topic_id, research_topic.id
           = radio_button_tag :endorse, 1
           %label{ for: 'endorse_1' } I endorse this topic!
           %br

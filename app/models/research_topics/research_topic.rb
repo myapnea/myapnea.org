@@ -70,7 +70,7 @@ class ResearchTopic < ActiveRecord::Base
 
       rt = create({category: 'seeded', progress: 'proposed', user_id: user.id}.merge(research_topic_attributes))
       rt.topic.update(status: 'approved')
-      rt.topic.posts.first.update(status: 'approved')
+      rt.topic.posts.first.update(status: 'approved') if rt.topic.posts.first.present?
     end
 
     {successful: loaded_successfully, with_problems: loaded_with_problems}
@@ -114,12 +114,7 @@ class ResearchTopic < ActiveRecord::Base
   end
 
   def create_associated_topic
-
     self.create_topic(forum_id: Forum.find_by_slug(ENV["research_topic_forum_slug"]).id, name: @text,  description: @description, user_id: user.id)
-
-
-    #topic.create( description: self.description, user_id: self.user_id )
-    #self.get_or_create_subscription( self.user )
   end
 
 end

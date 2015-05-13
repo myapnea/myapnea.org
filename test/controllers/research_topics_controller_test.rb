@@ -146,25 +146,53 @@ class ResearchTopicsControllerTest < ActionController::TestCase
   test "should endorse any approved research topic as experienced user" do
     login(@experienced_user)
 
-    assert_difference "ResearchTopic.find_by_id(#{research_topics(:rt2).id}).rating" do
-      assert_difference "Vote.count" do
-        xhr :post, :vote, vote: { research_topic_id: research_topics(:rt2).id, rating: '1' }, format: 'js'
-      end
+    assert_nil research_topics(:rt2).endorsement
+
+    assert_difference "Vote.count" do
+      xhr :post, :vote, research_topic_id: research_topics(:rt2).id, endorse: 1, format: 'js'
     end
 
+    assert_equal 1.0, research_topics(:rt2).endorsement
+
     assert_not_nil assigns(:research_topic)
-    assert_not_nil assigns(:vote)
 
     assert_template 'vote'
     assert_response :success
-
   end
 
   test "should endorse only the seeded research topics as a novice or no_votes user" do
     login(@no_votes_user)
-    login(@novice_user)
-    assert false
+    ResearchTopic.load_seeds
+    rt = ResearchTopic.where(category: "seeded").first
+
+
+    assert_no_difference "Vote.count" do
+      xhr :post, :vote, research_topic_id: research_topics(:rt2).id, endorse: 1, format: 'js'
+    end
+
+    assert_difference "Vote.count" do
+      xhr :post, :vote, research_topic_id: rt.id, endorse: 1, format: 'js'
+    end
+
   end
+
+
+  test "should endorse only the seeded research topics as a novice user" do
+    login(@novice_user)
+    ResearchTopic.load_seeds
+    rt = ResearchTopic.where(category: "seeded").first
+
+
+    assert_no_difference "Vote.count" do
+      xhr :post, :vote, research_topic_id: research_topics(:rt2).id, endorse: 1, format: 'js'
+    end
+
+    assert_difference "Vote.count" do
+      xhr :post, :vote, research_topic_id: rt.id, endorse: 1, format: 'js'
+    end
+
+  end
+
 
   # Opposition
 

@@ -156,8 +156,7 @@ Rails.application.routes.draw do
 
   # Voting on Questions
   resources :questions
-  match 'vote', to: 'votes#create', via: :post, as: :vote
-  match 'vote', to: 'research_topics#index', via: :get, as: :vote_fake
+  match 'vote', to: 'research_topics#vote', via: :post, as: :vote
 
   devise_for :users, controllers: { registrations: 'registrations' }
 

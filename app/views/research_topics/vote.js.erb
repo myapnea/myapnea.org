@@ -1,0 +1,18 @@
+<% if false %>
+
+
+    <% if @research_topic.received_vote_from?(current_user) %>
+      showRankBar("#voting_icon<%= @research_topic.id %>", "#progress<%= @research_topic.id %>", 1);
+    <% elsif @research_topic.user_removed_vote?(current_user) %>
+      <% if current_user.this_weeks_votes.count >= 5 %>
+        showRankBar("#voting_icon<%= @research_topic.id %>", "#progress<%= @research_topic.id %>", 0);
+      <% else %>
+        hideRankBar("#voting_icon<%= @research_topic.id %>", "#progress<%= @research_topic.id %>");
+      <% end %>
+    <% else %>
+      showRankBar("#voting_icon<%= @research_topic.id %>", "#progress<%= @research_topic.id %>", 0);
+    <% end %>
+
+    $("#update_link<%= @research_topic.id %>").html("<%= escape_javascript(render partial: 'votes/voting_link', locals: { research_topic: @research_topic } ) %>");
+    $("#user-stats").html("<%= escape_javascript(render partial: 'layouts/navigation/user_stats' ) %>");
+<% end %>

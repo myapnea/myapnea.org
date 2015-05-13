@@ -10,7 +10,7 @@ class ResearchTopicsController < ApplicationController
   end
 
   def first_topics
-    redirect_to intro_research_topics_path if current_user.vote_count == 0
+    redirect_to intro_research_topics_path if current_user.no_votes_user?
     @research_topic = current_user.highlighted_research_topic
   end
 
@@ -31,10 +31,10 @@ class ResearchTopicsController < ApplicationController
   end
 
   def index
-    if current_user.vote_count >= ResearchTopic::INTRO_LENGTH
+    if current_user.experienced_voter?
       @research_topics = ResearchTopic.popular
     else
-      redirect_to current_user.vote_count==0 ? intro_research_topics_path : first_topics_research_topics_path
+      redirect_to current_user.no_votes_user? ? intro_research_topics_path : first_topics_research_topics_path
     end
   end
 
@@ -44,6 +44,12 @@ class ResearchTopicsController < ApplicationController
     @new_research_topic.save
 
     render :index
+  end
+
+  def vote
+    @research_topic = ResearchTopic.find(params[:research_topic_id])
+
+    params[:endorse] == 1 ? @research_topic.endorse_by(current_user) : @research_topic.oppose_by(current_user)
   end
 
   private

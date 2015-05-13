@@ -405,7 +405,20 @@ class User < ActiveRecord::Base
   end
 
   def vote_count
-    votes.current.where(rating: 1).count
+    votes.current.where(rating: [0, 1]).count
+  end
+
+  def experienced_voter?
+    vote_count >= ResearchTopic::INTRO_LENGTH
+  end
+
+  def novice_voter?
+    vote_count < ResearchTopic::INTRO_LENGTH and vote_count > 0
+
+  end
+
+  def no_votes_user?
+    vote_count == 0
   end
 
   ## Provider Methods

@@ -101,8 +101,11 @@ class Topic < ActiveRecord::Base
   private
 
   def create_first_post
-    self.posts.create( description: self.description, user_id: self.user_id )
-    self.get_or_create_subscription( self.user )
+    if self.description.present?
+      self.posts.create( description: self.description, user_id: self.user_id )
+      self.get_or_create_subscription( self.user )
+    end
+
   end
 
   def set_slug
@@ -116,7 +119,7 @@ class Topic < ActiveRecord::Base
   end
 
   def requires_description?
-    self.new_record? and self.migration_flag != '1'
+    self.new_record? and self.migration_flag != '1' and self.forum.slug != ENV["research_topic_forum_slug"]
   end
 
 end
