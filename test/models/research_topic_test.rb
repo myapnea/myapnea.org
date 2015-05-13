@@ -47,7 +47,7 @@ class ResearchTopicTest < ActiveSupport::TestCase
 
     ResearchTopic.where(category: "seeded").first.endorse_by(users(:user_1))
 
-    assert_equal 8, ResearchTopic.seeded(users(:user_1)).length
+    assert_equal 9, ResearchTopic.seeded(users(:user_1)).length
 
   end
 
@@ -125,15 +125,39 @@ class ResearchTopicTest < ActiveSupport::TestCase
     assert_equal 0.6, rt.endorsement
   end
 
-  test "Research topic endorsement should not allow double-voting" do
+  test "Research topic voting should not allow double-voting" do
+    u = users(:user_1)
+    rt = research_topics(:rt1)
 
-  end
 
-  test "Research topic opposition should not allow double-voting" do
-    assert false
+    assert_no_difference "Vote.count" do
+      rt.endorse_by(u)
+    end
+
+    assert_no_difference "Vote.count" do
+      rt.oppose_by(u)
+    end
+
+
   end
 
   test "Vote can be switched from endorsement to opposition and vice-versa" do
-    assert false
+
+    u = users(:user_10)
+    rt = research_topics(:rt3)
+
+    assert_in_epsilon 0.75, rt.endorsement
+
+    rt.endorse_by(u)
+
+    assert_in_epsilon (4.0/5.0), rt.endorsement
+
+    rt.oppose_by(u)
+
+    assert_in_epsilon (3.0/5.0), rt.endorsement
+
+    rt.endorse_by(users(:user_1))
+
+    assert_equal (4.0/5.0), rt.endorsement
   end
 end

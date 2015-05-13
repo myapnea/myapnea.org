@@ -95,19 +95,32 @@ class ResearchTopic < ActiveRecord::Base
   end
 
   def endorse_by(user)
-    votes.create(user_id: user.id, rating: 1)
+    cast_vote(user, 1)
+
   end
 
 
   def oppose_by(user)
-    votes.create(user_id: user.id, rating: 0)
+    cast_vote(user, 0)
   end
 
 
 
+  def seeded?
+    category == "seeded"
+  end
+
 
 
   private
+
+  def cast_vote(user, rating)
+    if user.cast_vote_for?(self)
+      votes.find_by_user_id(user.id).update(rating: rating)
+    else
+      votes.create(user_id: user.id, rating: rating)
+    end
+  end
 
   def self.group_columns
     column_names.map{|cn| "research_topics.#{cn}"}.join(", ")

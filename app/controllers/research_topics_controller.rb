@@ -49,7 +49,12 @@ class ResearchTopicsController < ApplicationController
   def vote
     @research_topic = ResearchTopic.find(params[:research_topic_id])
 
-    params[:endorse] == 1 ? @research_topic.endorse_by(current_user) : @research_topic.oppose_by(current_user)
+    if current_user.experienced_voter? or @research_topic.seeded?
+      params[:endorse] == 1 ? @research_topic.endorse_by(current_user) : @research_topic.oppose_by(current_user)
+    else
+      render nothing: true
+    end
+
   end
 
   private
