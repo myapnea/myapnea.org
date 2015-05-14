@@ -14,6 +14,10 @@ class ResearchTopicsController < ApplicationController
     @research_topic = ResearchTopic.approved.where.not(id: current_user.votes.pluck(:research_topic_id)).first
   end
 
+  # def discussion
+  #   @forum = Forum.find_by_slug(ENV['research_topic_forum_slug'])
+  # end
+
   def newest
     @rt_c1 = []
     @rt_c2 = []
@@ -39,7 +43,9 @@ class ResearchTopicsController < ApplicationController
   end
 
   def show
-    authorize_action_for @research_topic
+    @forum = Forum.find_by_slug(ENV['research_topic_forum_slug'])
+    @topic = @research_topic.topic
+    # authorize_action_for @research_topic
   end
 
   def new

@@ -29,6 +29,11 @@ class ResearchTopic < ActiveRecord::Base
   scope :newest, lambda { current.order("research_topics.created_at desc") }
 
   # Class methods
+
+  # def to_param
+  #   self.topic.slug
+  # end
+
   def self.popular(vote_threshold = nil)
     query = current.select("research_topics.*, (sum(votes.rating)::float/count(votes.rating)::float) as endorsement").joins(:votes).group("research_topics.id").order("endorsement desc")
     query = query.having("count(votes.rating) > ?", vote_threshold) if vote_threshold.present?
