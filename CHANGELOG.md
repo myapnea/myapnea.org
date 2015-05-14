@@ -42,8 +42,10 @@
   - Providers now receive an informational email after updating a completed provider profile
   - Member welcome emails now list their provider if they signed up through a provider page
 - Added 'Remember me' to login process to reduce landing page hits for already registered members
-- Design updates
+- UI updates
+  - Removed large padding on main content area to allow for more dynamic design
   - Cleaned up the account page, and added easier jump-navigation
+  - Cleaned up admin dashboard
 
 ### Bug Fixes
 - Welcome modal that introduces research will only appear for nonacademic users

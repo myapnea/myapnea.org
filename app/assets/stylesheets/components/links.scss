@@ -2,3 +2,21 @@ a.no-underline,
 a.no-underline:hover {
   text-decoration: none;
 }
+
+
+.blue-block-link {
+  border: 2px solid #1765bc;
+  background-color: white;
+  color: black;
+  text-decoration: none;
+  border-radius: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-size: 18px;
+  font-weight: 300;
+}
+
+.blue-block-link:hover {
+  background-color: #1765bc;
+  color: white;
+}
