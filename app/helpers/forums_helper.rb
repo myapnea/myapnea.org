@@ -40,10 +40,10 @@ module ForumsHelper
   end
 
   def link_usernames(text)
-    usernames = SocialProfile.current.where.not(name: [nil, '']).pluck(:name).uniq.sort
+    usernames = User.current.where.not(forum_name: [nil, '']).pluck(:forum_name).uniq.sort
     result = text.to_s
     usernames.each do |username|
-      result = result.gsub(/@#{username}\b/i, "<a href=\"#{ENV['website_url']}/forum?a=#{username}\">@#{username}</a>")
+      result = result.gsub(/@#{username}\b/i, "<a href=\"#{ENV['website_url']}/members/#{username}\">@#{username}</a>")
     end
     result.html_safe
   end
