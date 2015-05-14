@@ -172,6 +172,7 @@ Rails.application.routes.draw do
   get 'forums/introductions(/*path)', to: redirect("forums/general/%{path}")
   get 'forums/rank-the-research', to: redirect("forums/research")
   get 'forums/rank-the-research(/*path)', to: redirect("forums/research/%{path}")
+  # get 'forums/research-topics(/*path)', to: redirect("research-%{path}")
   # end TODO from 5.1
   resources :forums do
     resources :topics do

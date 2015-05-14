@@ -19,6 +19,10 @@ class ResearchTopicsController < ApplicationController
 
   end
 
+  # def discussion
+  #   @forum = Forum.find_by_slug(ENV['research_topic_forum_slug'])
+  # end
+
   def newest
     redirect_to intro_research_topics_path if current_user.no_votes_user?
     redirect_to first_topics_research_topics_path if current_user.novice_voter?
