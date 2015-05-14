@@ -14,7 +14,7 @@
         .scroll-container
           - @research_topics.newest.first(10).each do |rt|
             - if current_user.cast_vote_for?(rt)
-              .research-topic-index-display
+              = link_to research_topic_path(rt), class: 'research-topic-index-display' do
                 %span.badge{ class: "#{current_user.endorsed?(rt) ? 'great-bcg' : 'danger-bcg' }" }
                   %span.glyphicon{ class: "#{current_user.endorsed?(rt) ? 'glyphicon-ok' : 'glyphicon-remove' }" }
                 %p= rt.text
@@ -40,7 +40,7 @@
         .scroll-container
           - @research_topics.most_discussed.first(10).each do |rt|
             - if current_user.cast_vote_for?(rt)
-              .research-topic-index-display
+              = link_to research_topic_path(rt), class: 'research-topic-index-display' do
                 %span.badge{ class: "#{current_user.endorsed?(rt) ? 'great-bcg' : 'danger-bcg' }" }
                   %span.glyphicon{ class: "#{current_user.endorsed?(rt) ? 'glyphicon-ok' : 'glyphicon-remove' }" }
                 %p= rt.text

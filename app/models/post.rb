@@ -61,6 +61,10 @@ class Post < ActiveRecord::Base
     self.status == 'hidden'
   end
 
+  def approved?
+    self.status == 'approved'
+  end
+
   # Reply Emails sends emails if the following conditions are met:
   # 1) The topic subscriber has email notifications enabled
   # AND

@@ -8,6 +8,8 @@ class ForumsController < ApplicationController
 
   before_action :check_approved_terms
 
+  before_action :redirect_to_research_topic, only: [ :show ]
+
   respond_to :html
 
   def index
@@ -54,6 +56,10 @@ class ForumsController < ApplicationController
 
     def redirect_without_forum
       empty_response_or_root_path(forums_path) unless @forum
+    end
+
+    def redirect_to_research_topic
+      redirect_to research_topics_path if @forum.slug==ENV['research_topic_forum_slug']
     end
 
     def forum_params

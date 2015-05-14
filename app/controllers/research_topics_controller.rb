@@ -1,6 +1,8 @@
 class ResearchTopicsController < ApplicationController
   before_action :authenticate_user!
 
+  before_action :set_research_topic,      only: [:show, :edit, :update, :destroy]
+
   before_action :no_layout,                           only: [ :research_topics ]
   before_action :set_active_top_nav_link_to_research
 
@@ -46,9 +48,11 @@ class ResearchTopicsController < ApplicationController
   end
 
   def show
-    @research_topic = ResearchTopic.find_by_slug(params[:id])
     @forum = Forum.find_by_slug(ENV['research_topic_forum_slug'])
     @topic = @research_topic.topic
+  end
+
+  def edit
   end
 
   def create
@@ -68,6 +72,13 @@ class ResearchTopicsController < ApplicationController
 
   end
 
+  def update
+    flash[:notice] = 'Research topic was successfully updated.' if @research_topic.update(params.require(:research_topic).permit(:progress))
+    @forum = Forum.find_by_slug(ENV['research_topic_forum_slug'])
+    @topic = @research_topic.topic
+    render :show
+  end
+
   def vote
     @research_topic = ResearchTopic.find(params[:research_topic_id])
     if current_user.experienced_voter? or @research_topic.seeded?
@@ -81,8 +92,11 @@ class ResearchTopicsController < ApplicationController
 
   private
 
+  def set_research_topic
+    @research_topic = ResearchTopic.find_by_slug(params[:id])
+  end
+
   def research_topic_params
     params.require(:research_topic).permit(:text, :description)
-
   end
 end

@@ -92,6 +92,16 @@ class User < ActiveRecord::Base
     super and not self.deleted?
   end
 
+  # Role helpers
+
+  def moderator?
+    self.has_role? :moderator
+  end
+
+  def owner?
+    self.has_role? :owner
+  end
+
   # Alias to be deprecated
   def is_provider?
     self.provider?

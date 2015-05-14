@@ -9,6 +9,8 @@
     - Endorsed questions will be shown as visual links as a proof of deliverable
     - Questions are binned by category (newest, most discussed)
     - Users can submit a question on the index page
+  - Show page for each research topic includes the discussion
+    - Leverages backend functionality of forums, but with custom styling and unique feel
 - Added provider report to admin panel
   - Shows the number of members who have signed up with each provider
   - Highlights the provider with the most members
