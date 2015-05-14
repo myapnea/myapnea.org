@@ -1,0 +1,29 @@
+.research-topic-index-display {
+  border: 1px solid #ddd;
+  background-color: white;
+  padding: 10px;
+  color: #555;
+  .badge {
+    float: right;
+  }
+  p {
+    margin-right: 50px;
+  }
+}
+
+a.research-topic-index-display {
+  display: block;
+  color: #333;
+  text-decoration: none;
+}
+
+a.research-topic-index-display:hover {
+  background-color: #fbfbfb;
+  border-color: #b1d2f6;
+  color: #111;
+}
+
+.scroll-container {
+  height: 400px;
+  overflow-y: auto;
+}

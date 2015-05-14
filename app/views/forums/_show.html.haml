@@ -21,20 +21,17 @@
       There are no posts by
       = params[:a]
       in this forum.
-  .panel.panel-forums
+
+  .content-container
+    -# Only need header for forums/index view
     - if topic_limit
-      .panel-heading
-        %h3.f300
-          = link_to forum.name, forum
-    -else
-      .panel-heading.centered-text.action-bar-forum-mobile
-        - if current_user
-          = link_to 'Start a New Topic', new_forum_topic_path(@forum), class: 'btn btn-primary btn-forum-header'
-        - else
-          = link_to 'Sign in to Start a New Topic', new_forum_topic_path(@forum), class: 'btn btn-primary btn-forum-header'
-        - if current_user and current_user.has_role? :owner
-          = link_to 'Edit Forum', edit_forum_path(@forum), class: 'btn btn-primary btn-forum-header'
-    .panel-body
+      -# Forums/Index view
+      .content-header
+        %h2.f300.centered-text
+          = link_to forum.name, forum, class: 'no-underline'
+
+    -# Body displayed in the same way for both views
+    .content-body
       %table.table
         %col{ width: "50px" }
         %col
@@ -54,9 +51,13 @@
         %tbody
           - topics.each do |topic|
             = render partial: 'topics/summary_table_row', locals: { topic: topic }
-      - if topic_limit
-        -# On Index
-        = link_to 'Enter forum to view more posts', forum
-      - else
-        =# On Show Page
-        %div{ style: 'text-align:center' }= paginate topics, theme: 'bootstrap-small'
+
+    -# Separate footer for view from index and show
+    - if topic_limit
+      -# On Index
+      .content-footer.centered-text
+        = link_to 'Enter forum to view more posts', forum, class: 'no-underline'
+    - else
+      -# On Show Page
+      .content-footer.centered-text
+        = paginate topics, theme: 'bootstrap-small'

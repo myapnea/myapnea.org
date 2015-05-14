@@ -4,6 +4,7 @@ class SurveysController < ApplicationController
   before_action :authenticate_research
   before_action :set_survey, only: [:show, :report, :report_detail, :accept_update_first, :start_survey]
 
+  layout 'layouts/application'
 
   def my_health_conditions_data
     @data = Report.comorbidity_map.push(["Sleep Apnea", "conditions-sleep-apnea", 100])

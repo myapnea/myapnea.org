@@ -1,10 +1,11 @@
 - @page_title = 'Our Advisors'
 - @page_title = 'Our Partners are Dedicated to Improving Sleep Apnea Research'
-.content-main-header
-  %h1.f300 Our Partners
 
-.panel.panel-partners
-  .panel-body
+.content-main-header
+  %h1 Our Partners
+
+.content-container.partners-content
+  .content-body
     .row
       .col-md-4.left.hidden-sm.hidden-xs
         .img-centerer
@@ -55,19 +56,19 @@
         .img-centerer
         = image_tag 'myapnea/partners/i2b2_logo.jpg', class: 'partners-logo-square'
 
-.panel
-  .panel-heading{ style: 'background-color: white;'}
-    %h3.f300.darker-blue.centered-text
+.content-container
+  .content-header
+    %h3.f300
       Promotional Partners
     %p.lead
       The following companies and organizations share our mission and goals to improve research and the treatment of sleep apnea and are working with us to promote the MyApnea.Org Network to patients and health care professionals.*  We greatly appreciate their assistance.
-  .panel-body
+  .content-body
     .row
       - [['asa_logo.png', 'https://www.sleepassociation.org/'],['cmb_solutions_crop.jpg', 'http://www.cmbsolutionsinc.com/'], ['vgm_group.jpg', 'http://www.vgm.com'], ['rt_sleepworld.jpg', 'https://www.rtsleepworld.com'], ['health-eheart.png', 'http://hehstdy.org/139gKdA']].sort.each do |image, url|
         .col-sm-6.centered-text{ style: 'margin-bottom:20px'}
           .img-centerer
           = link_to image_tag("myapnea/partners/#{image}", class: 'partners-logo-square', style: 'max-height:75px'), url
-  .panel-footer
+  .content-footer
     %p.small
       *Our promotional and other partners DO NOT have access to your contact or health information.  Per our
       = link_to('privacy policy', privacy_path) + ','

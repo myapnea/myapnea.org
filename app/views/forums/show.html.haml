@@ -1,58 +1,29 @@
 - @title = @forum.name
 
 .content-main-header
-  %h1.f300
-    = @title
-  %p.lead.text-light8{ style: 'margin-bottom: 0px;'}
-    = link_to 'Forums', forums_path, style: 'text-decoration: none;'
-.row.reset-layout{ style: 'margin-bottom:10px;'}
-  = form_tag @forum, method: :get, class: 'form-inline col-md-8 search-bar-forum' do
-    .input-group
-      = text_field_tag 's', params[:s], class: 'form-control'
-      %span.input-group-btn{ style: 'width: 1%;' }
-        = submit_tag 'Search', class: 'btn btn-primary', name: nil
-        -#= link_to 'Reset', @forum, class: 'btn btn-default'
-        = link_to 'Pending Review', forum_path(@forum, status: (params[:status] == 'pending_review' ? nil : 'pending_review')), class: "btn btn-default #{'active' if params[:status] == 'pending_review'}" if current_user and current_user.has_role? :moderator
-  .col-md-4.centered-text.action-bar-forum
-    - if current_user
-      = link_to 'Start a New Topic', new_forum_topic_path(@forum), class: 'btn btn-primary btn-forum-header'
-    - else
-      = link_to 'Sign in to Start a New Topic', new_forum_topic_path(@forum), class: 'btn btn-warning btn-forum-header'
-    - if current_user and current_user.has_role? :owner
-      = link_to 'Edit Forum', edit_forum_path(@forum), class: 'btn btn-success btn-forum-header'
+  %h3.f300.text-light9
+    = link_to 'Forums', forums_path, class: 'no-underline'
+    \/
+    %span.f400= @title
+- if current_user and (current_user.has_role? :owner or current_user.has_role? :moderator)
+  .well
+    %h4
+      For admins:
+      = link_to 'Edit Forum', edit_forum_path(@forum), class: 'btn btn-success btn-xs' if current_user.has_role? :owner
+      = link_to 'Pending Review', forum_path(@forum, status: (params[:status] == 'pending_review' ? nil : 'pending_review')), class: "btn btn-default btn-xs #{'active' if params[:status] == 'pending_review'}" if current_user.has_role? :moderator
+
+.content-container.horizontal-inset.inherit-background
+  .row.reset-layout
+    .col-sm-2.col-xs-3.centered-text
+      - if current_user
+        = link_to 'New Topic', new_forum_topic_path(@forum), class: 'btn btn-primary hidden-xs'
+        = link_to 'New', new_forum_topic_path(@forum), class: 'btn btn-primary visible-xs'
+      - else
+        = link_to 'Sign In', new_forum_topic_path(@forum), class: 'btn btn-warning'
+    = form_tag @forum, method: :get, class: 'form-inline col-sm-10 col-xs-9' do
+      .input-group
+        = text_field_tag 's', params[:s], class: 'form-control'
+        %span.input-group-btn{ style: 'width: 1%;' }
+          = submit_tag 'Search', class: 'btn btn-primary', name: nil
 
 = render partial: 'forums/show', locals: { forum: @forum, topic_limit: nil }
-
-
-- if false
-  %p
-    %strong
-      Name:
-      = @forum.name
-
-  %p
-    %strong
-      Description:
-      = @forum.description
-
-  %p
-    %strong
-      Views count:
-      = @forum.views_count
-
-  %p
-    %strong
-      Slug:
-      = @forum.slug
-
-  = link_to 'Edit', edit_forum_path(@forum)
-  |
-  = link_to 'Back', forums_path
-
-  %ul
-    - @forum.topics.each do |t|
-      %li
-        = link_to t.name, [@forum, t]
-        - if t.deleted? or t.hidden?
-          %span.label.label-danger
-            HIDDEN OR DELETED

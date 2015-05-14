@@ -3,9 +3,12 @@
   box-shadow:0px 0px 5px rgba(0,0,0,.5);
   margin-bottom: 20px;
   .content-header {
-    padding:20px;
-    text-align: center;
+    padding:20px 20px 0 20px;
     font-weight: 300;
+    h1, h2, h3, h4, h5, h6 {
+      margin-top:0;
+      margin-bottom:0;
+    }
   }
   .content-body {
     padding:20px;
@@ -21,5 +24,29 @@
     padding: 15px 20px;
     border-top: 1px solid #bbb;
     background-color: #fafafa;
+  }
+}
+
+.content-container.inherit-background {
+  background: inherit;
+  box-shadow: none;
+}
+
+.horizontal-inset {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+
+
+.full-screen-video {
+  width: 800px;
+  padding-bottom: 450px !important;
+  margin: auto;
+}
+
+@media (max-width: 992px) {
+  .full-screen-video {
+    width: 100%;
   }
 }

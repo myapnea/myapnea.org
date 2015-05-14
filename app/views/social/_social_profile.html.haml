@@ -1,11 +1,10 @@
 = form_for current_user, html: { role: "form", class: 'form-horizontal' }, url: update_account_path, method: :patch do |f|
-  .panel
-    .panel-body.text-dark8
-      %h3.f300.centered-text.text-dark9
+  .content-container
+    .content-header
+      %h3.f300.centered-text
         My Social Profile
-      %br
-
-      .row{ style: 'margin-bottom:20px;' }
+    .content-body
+      .form-group
         .col-sm-3.col-sm-offset-3
           #profile-image-container
             = render 'account/profile_photo'
@@ -19,9 +18,10 @@
             %br
             #filedrag{ data: { object: 'dropfile' } }
               or drop photo here
-
+      %br
       .form-group
-        %label.control-label.col-sm-3 Forum Name
+        %label.control-label.col-sm-3
+          Forum Name
         .col-sm-6
           .input-group
             = f.text_field :forum_name, class: 'form-control'
@@ -55,10 +55,8 @@
         .col-sm-6
           = f.text_field :gender, autocomplete: "off", data: { object: 'typeahead', local: ["Male", "Female", "Genderqueer", "Androgynous", "Intersex", "Transgender", "Transsexual", "Cross-dresser", "Male-to-female (MTF)", "Female-to-male (FTM)"].to_json }, class: 'form-control'
 
-    .panel-footer.text-dark9.centered-text{ style: 'margin:10px 0;'}
-      %h4
-        This is how you will appear to other members of MyApnea.Org
+    .content-footer.centered-text
       %p.lead
-        If you would prefer to be shown anonymously, you can leave these fields blank. You can change this any time by visiting your settings!
-      .row
+        This is how you will appear to other members of MyApnea.Org
+      .form-group
         = f.submit "Save Changes", class: 'btn btn-primary col-xs-4 col-xs-offset-4 centered-text'

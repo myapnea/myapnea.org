@@ -2,8 +2,8 @@
   %h1
     PAP Care and Maintenance
 
-.panel
-  .panel-body
+.content-container
+  .content-body
     %p.lead
       Jump to a specific question by clicking the links below.
     .list-group-item
@@ -12,15 +12,15 @@
       = link_to "How do I clean my PAP device?", '#q2'
     .list-group-item
       = link_to "How often should I replace my equipment and supplies?", '#q3'
-  .panel-footer
+  .content-footer
     %p
       Return to
       = link_to 'PAP Devices', learn_pap_path
       main page.
 
 %a.anchor#q1
-.panel
-  .panel-body
+.content-container.horizontal-inset
+  .content-body
     %h3
       What kind of water should I use to fill my humidifier chamber?
     %p.lead
@@ -30,8 +30,8 @@
         Note: You should never top off or reuse the water in your humidifier. You may adjust the amount you put in the chamber if you find that you need less water.
 
 %a.anchor#q2
-.panel
-  .panel-body
+.content-container.horizontal-inset
+  .content-body
     %h3
       How do I clean my PAP device?
     %p.lead
@@ -44,8 +44,8 @@
       before replacing it in your machine.
 
 %a.anchor#q3
-.panel
-  .panel-body
+.content-container.horizontal-inset
+  .content-body
     %h3
       How often should I replace my equipment and supplies?
     %p.lead

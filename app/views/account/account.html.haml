@@ -4,26 +4,26 @@
     Welcome to your settings.
   %p.lead
     Need help with a specific topic? Click on one of these links to get there quickly.
-  = link_to '#q1' do
+  = link_to '#change-picture' do
     .list-group-item
       I want to change my picture that appears on the forums
-  = link_to '#q2' do
+  = link_to '#change-information' do
     .list-group-item
       I want to change my basic information (name, email, etc)
-  = link_to '#q3' do
+  = link_to '#change-member-type' do
     .list-group-item
       I want to change my member description (at-risk patient, diagnosed, care provider, etc.)
   = link_to '#change-password' do
     .list-group-item
       I want to change my password
-  = link_to '#q5' do
+  = link_to '#select-provider' do
     .list-group-item
       I want to link with my care provider
-  = link_to '#q6' do
+  = link_to '#notification-preferences' do
     .list-group-item
       I want to change how I receive notifications
   - if current_user.ready_for_research?
-    = link_to '#q7' do
+    = link_to '#leave-study' do
       .list-group-item
         I want to leave the research study
 
@@ -32,20 +32,19 @@
 
 %hr
 
-%a.anchor#q1
+%a.anchor#change-picture
 - if current_user.is_provider?
   = render partial: 'providers/providers_profile'
 - else
   = render partial: 'social/social_profile'
 
-%hr
 
-%a.anchor#q2
-.panel
-  .panel-body
+%a.anchor#change-information
+.content-container
+  .content-header
     %h3.f300.centered-text
       Basic Information
-    %br
+  .content-body
     = form_for current_user, url: update_account_path, html: { class: 'form-horizontal' } do |f|
       .form-group
         = f.label :first_name, class: 'col-sm-3 control-label'
@@ -61,25 +60,27 @@
           = f.email_field :email, class: 'form-control', placeholder: User.human_attribute_name(:email), autocomplete: :off
       .row
         = f.submit "Save Changes", class: 'btn btn-primary col-xs-4 col-xs-offset-4 centered-text'
-  .panel-footer.text-dark9{ style: 'margin:10px 0;'}
-    %a.anchor#q3
-    - if current_user.has_user_type?
-      %h4.f500.centered-text You describe yourself as:
-      .centered-text{ style: 'margin: 20px;' }
-        - current_user.user_types.each do |type|
-          %p.lead= type
-      %h5.f300.centered-text
-        If this is incorrect, please
-        = link_to 'change your user type.', describe_yourself_path
 
-%hr
+  %a.anchor#change-member-type
+  .content-footer.centered-text
+    - if current_user.has_user_type?
+      %h4
+        You describe yourself as:
+      .horizontal-inset
+        - current_user.user_types.each do |type|
+          %h5.f300= type
+      %br
+      %p.lead
+        If this is incorrect, please
+        = link_to 'change your user type.', describe_yourself_path, class: 'no-underline'
+
 
 %a.anchor#change-password
-.panel
-  .panel-body
+.content-container
+  .content-header
     %h3.f300.centered-text
       Change Your Password
-    %br
+  .content-body
     = form_for current_user, url: change_password_path, html: { class: 'form-horizontal' } do |f|
       .form-group
         = f.label :current_password, class: 'col-sm-3 control-label'
@@ -97,17 +98,16 @@
           - if errors = current_user.errors[:password] and errors.present?
             .bs-callout.bs-callout-danger
               Please enter a new password that is at least 8 characters long.
-      .row
+      .form-group
         = f.submit "Change Password", class: 'btn btn-primary col-xs-4 col-xs-offset-4 centered-text'
 
-%hr
 
-%a.anchor#q5
-.panel
-  .panel-body
-    %h3.f300.centered-text
+%a.anchor#select-provider
+.content-container.centered-text
+  .content-header
+    %h3.f300
       Your Provider
-    %br
+  .content-body
     - if current_user.my_provider.present?
       %p.lead
         You have listed
@@ -123,14 +123,12 @@
         and see if your provider has registered. If they haven't you should
         = link_to 'invite them!', "mailto:?subject=Join MyApnea.Org"
 
-%hr
-
-%a.anchor#q6
-.panel
-  .panel-body
-    %h3.f300.centered-text
+%a.anchor#notification-preferences
+.content-container.centered-text
+  .content-header
+    %h3.f300
       Notification Preferences
-    %br
+  .content-body
     - if current_user.emails_enabled?
       %p.lead
         You are currently set to receive emails from
@@ -148,8 +146,7 @@
         = link_to 'enable', update_account_path(user: { emails_enabled: '1' }), method: :patch, class: 'btn btn-primary btn-xs'
         emails.
 
-%hr
 
 - if current_user.ready_for_research?
-  %a.anchor#q7
+  %a.anchor#leave-study
   = render partial: 'account/join_leave_research_study'

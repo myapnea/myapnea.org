@@ -105,30 +105,30 @@
 
 /* PARTNERS */
 
-.panel-partners {
-  // padding:0px;
-}
 
-.panel-partners .row {
-  position:relative;
-  padding:15px;
-  border-bottom:1px solid rgb(0,0,0);
-  border-bottom:1px solid rgba(0,0,0,.3);
-  min-height:225px;
-}
-  .panel-partners .row:last-of-type {
-    border-bottom-width:0px;
+.partners-content {
+  .row {
+    position:relative;
+    padding:15px;
+    border-bottom:1px solid rgb(0,0,0);
+    border-bottom:1px solid rgba(0,0,0,.3);
+    min-height:225px;
   }
-
-  .panel-partners .col-md-4.left {
+  .row:last-of-type {
+    border-bottom-width: 0px;
+  }
+  .col-md-4.left {
     position:absolute; top:0; left:0; bottom:0;
     text-align:center;
   }
-
-  .panel-partners .col-md-4.right {
+  .col-md-4.right {
     position:absolute; top:0; right:0; bottom:0;
     text-align:center;
   }
+}
+
+
+/* TABLES */
 
 table tr {
   width:100%;
