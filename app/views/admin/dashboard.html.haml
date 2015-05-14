@@ -2,30 +2,59 @@
   %h1
     Admin Dashboard
 
-.panel
-  .panel-body
-    .list-group
-      .list-group-item
-        %br
-        %p.lead= link_to 'Users', users_path if current_user.has_role? :owner
-      .list-group-item
-        %br
-        %p.lead= link_to 'Surveys', admin_surveys_path
-      .list-group-item
-        %br
-        %p.lead= link_to 'Research Topics', admin_research_topics_path
-      .list-group-item
-        %br
-        %p.lead= link_to 'Current Version Stats', admin_version_stats_path
-      .list-group-item
-        %br
-        %p.lead= link_to 'Cross Tabs', admin_cross_tabs_path
-      .list-group-item
-        %br
-        %p.lead= link_to 'Location', admin_reports_location_path
-      .list-group-item
-        %br
-        %p.lead= link_to 'Providers', admin_providers_path
-      .list-group-item
-        %br
-        %p.lead= link_to 'Dashboard Highlights', highlights_path
+.content-container
+  .content-header
+    %h3.f300 Member Management
+  .content-body
+    .row.centered-text
+      - if current_user.has_role? :owner
+        .col-sm-3
+          = link_to users_path, class: 'no-underline' do
+            .blue-block-link
+              Users
+      .col-sm-3
+        = link_to admin_reports_location_path, class: 'no-underline' do
+          .blue-block-link
+            Location
+      .col-sm-3
+        = link_to admin_providers_path, class: 'no-underline' do
+          .blue-block-link
+            Providers
+
+.content-container
+  .content-header
+    %h3.f300 Version Management
+  .content-body
+    .row.centered-text
+      .col-sm-3
+        = link_to admin_version_stats_path, class: 'no-underline' do
+          .blue-block-link
+            Current Version Stats
+      .col-sm-3
+        = link_to highlights_path, class: 'no-underline' do
+          .blue-block-link
+            Dashboard Highlights
+
+.content-container
+  .content-header
+    %h3.f300 Survey Results
+  .content-body
+    .row.centered-text
+      .col-sm-3
+        = link_to admin_surveys_path, class: 'no-underline' do
+          .blue-block-link
+            Surveys
+      .col-sm-3
+        = link_to admin_cross_tabs_path, class: 'no-underline' do
+          .blue-block-link
+            Cross Tabs
+
+.content-container
+  .content-header
+    %h3.f300 Research Results
+  .content-body
+    .row.centered-text
+      .col-sm-3
+        = link_to admin_research_topics_path, class: 'no-underline' do
+          .blue-block-link
+            Research Topics

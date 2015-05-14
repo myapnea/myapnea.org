@@ -20,7 +20,7 @@
       - @research_topics.each do |research_topic|
         %tr
           %td= research_topic.endorsement.present? ? research_topic.endorsement.round(2) : 0
-          %td= research_topic.text
+          %td= research_topic.text or research_topic.text_deprecated
           %td= research_topic.user
           %td= research_topic.created_at.strftime("%d-%m-%Y")
           %td
