@@ -377,6 +377,10 @@ class User < ActiveRecord::Base
 
 
   # Research Topics
+  def my_research_topics
+
+  end
+
   def highlighted_research_topic
     ResearchTopic.highlighted(self).first
   end

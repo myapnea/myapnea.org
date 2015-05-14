@@ -39,10 +39,16 @@ class ResearchTopicsController < ApplicationController
 
   def index
     if current_user.experienced_voter?
-      @research_topics = ResearchTopic.popular(5)
+      @research_topics = ResearchTopic.approved
     else
       redirect_to current_user.no_votes_user? ? intro_research_topics_path : first_topics_research_topics_path
     end
+  end
+
+  def show
+    @research_topic = ResearchTopic.find_by_slug(params[:id])
+    @forum = Forum.find_by_slug(ENV['research_topic_forum_slug'])
+    @topic = @research_topic.topic
   end
 
   def create
@@ -50,11 +56,16 @@ class ResearchTopicsController < ApplicationController
     redirect_to first_topics_research_topics_path and return if current_user.novice_voter?
 
     @new_research_topic = current_user.research_topics.new(research_topic_params)
-    @research_topics = ResearchTopic.popular(5)
 
-    flash[:notice] = 'Topic was successfully created.' if @new_research_topic.save
 
-    render :index
+    if @new_research_topic.save
+      flash[:notice] = 'Topic was successfully created.'
+      redirect_to research_topics_path
+    else
+      @research_topics = ResearchTopic.approved
+      render :index
+    end
+
   end
 
   def vote

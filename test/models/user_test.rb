@@ -62,4 +62,9 @@ class UserTest < ActiveSupport::TestCase
     assert_nil users(:has_incomplete_survey).answer_text({survey_slug: '', question_slug: 'country', encounter: 'baseline'})
 
   end
+
+
+  test "#my_research_topics" do
+    assert false
+  end
 end

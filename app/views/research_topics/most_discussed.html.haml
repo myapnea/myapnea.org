@@ -9,6 +9,7 @@
           %span.badge{ class: "#{current_user.endorsed?(rt) ? 'great-bcg' : 'danger-bcg' }" }
             %span.glyphicon{ class: "#{current_user.endorsed?(rt) ? 'glyphicon-ok' : 'glyphicon-remove' }" }
           %p.lead= rt.text
+          = link_to 'Read more', research_topic_path(rt), class: 'btn btn-primary btn-small'
         - else
           = render partial: 'research_topics/voting_form', locals: { research_topic: rt }
 

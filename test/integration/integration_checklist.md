@@ -24,6 +24,7 @@
    bundle exec rake surveys:load["my-sleep-apnea-treatment"] RAILS_ENV=integration_test
    bundle exec rake surveys:load["my-sleep-apnea"] RAILS_ENV=integration_test
    bundle exec rake research_topics:migrate_old RAILS_ENV=integration_test
+   bundle exec rake profiles:merge RAILS_ENV=integration_test
    ```
 - [ ] Start (or restart) server with the `integration_test` environment. For example: `rails s -e integration_test`.
 
