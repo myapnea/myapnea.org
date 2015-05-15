@@ -1,18 +1,8 @@
-<% if false %>
-
-
-    <% if @research_topic.received_vote_from?(current_user) %>
-      showRankBar("#voting_icon<%= @research_topic.id %>", "#progress<%= @research_topic.id %>", 1);
-    <% elsif @research_topic.user_removed_vote?(current_user) %>
-      <% if current_user.this_weeks_votes.count >= 5 %>
-        showRankBar("#voting_icon<%= @research_topic.id %>", "#progress<%= @research_topic.id %>", 0);
-      <% else %>
-        hideRankBar("#voting_icon<%= @research_topic.id %>", "#progress<%= @research_topic.id %>");
-      <% end %>
-    <% else %>
-      showRankBar("#voting_icon<%= @research_topic.id %>", "#progress<%= @research_topic.id %>", 0);
-    <% end %>
-
-    $("#update_link<%= @research_topic.id %>").html("<%= escape_javascript(render partial: 'votes/voting_link', locals: { research_topic: @research_topic } ) %>");
-    $("#user-stats").html("<%= escape_javascript(render partial: 'layouts/navigation/user_stats' ) %>");
+<% progress = (100.0 * current_user.votes.count.to_f / ENV['research_topic_experience_threshold'].to_f).round(2) %>
+$("#first-topics-progress-bar").html("<%=j render 'research_topics/progress_bar', progress: progress %>");
+<% if progress == 100.0 %>
+  $("#first-topics-voting-form").remove();
+  $("#first-topics-completed").html("<%=j render 'research_topics/ready' if current_user.vote_count == ResearchTopic::INTRO_LENGTH %>");
+<% else %>
+  $("#first-topics-voting-form").html("<%=j render 'research_topics/voting_form', research_topic: current_user.seeded_research_topic %>");
 <% end %>

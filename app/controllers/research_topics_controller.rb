@@ -3,6 +3,8 @@ class ResearchTopicsController < ApplicationController
 
   before_action :set_research_topic,      only: [:show, :edit, :update, :destroy]
 
+  before_action :redirect_beginner,      only: [:newest, :most_discussed, :show, :create]
+
   before_action :no_layout,                           only: [ :research_topics ]
   before_action :set_active_top_nav_link_to_research
 
@@ -17,25 +19,16 @@ class ResearchTopicsController < ApplicationController
 
     @research_topic = current_user.seeded_research_topic
 
+    # Do we need this?
     redirect_to newest_research_topics_path and return if @research_topic.blank?
 
   end
 
-  # def discussion
-  #   @forum = Forum.find_by_slug(ENV['research_topic_forum_slug'])
-  # end
-
   def newest
-    redirect_to intro_research_topics_path if current_user.no_votes_user?
-    redirect_to first_topics_research_topics_path if current_user.novice_voter?
-
     @research_topics = ResearchTopic.approved.newest.to_a
   end
 
   def most_discussed
-    redirect_to intro_research_topics_path if current_user.no_votes_user?
-    redirect_to first_topics_research_topics_path if current_user.novice_voter?
-
     @research_topics = ResearchTopic.approved.most_discussed
   end
 
@@ -56,11 +49,7 @@ class ResearchTopicsController < ApplicationController
   end
 
   def create
-    redirect_to intro_research_topics_path and return if current_user.no_votes_user?
-    redirect_to first_topics_research_topics_path and return if current_user.novice_voter?
-
     @new_research_topic = current_user.research_topics.new(research_topic_params)
-
 
     if @new_research_topic.save
       flash[:notice] = 'Topic was successfully created.'
@@ -81,9 +70,10 @@ class ResearchTopicsController < ApplicationController
 
   def vote
     @research_topic = ResearchTopic.find(params[:research_topic_id])
-    if current_user.experienced_voter? or @research_topic.seeded?
-      params[:endorse].to_i == 1 ? @research_topic.endorse_by(current_user, params[:comment]) : @research_topic.oppose_by(current_user, params[:comment])
+    if current_user.experienced_voter?
       redirect_to :back
+    elsif @research_topic.seeded?
+      params[:endorse].to_i == 1 ? @research_topic.endorse_by(current_user, params[:comment]) : @research_topic.oppose_by(current_user, params[:comment])
     else
       render nothing: true
     end
@@ -91,6 +81,11 @@ class ResearchTopicsController < ApplicationController
   end
 
   private
+
+  def redirect_beginner
+    redirect_to intro_research_topics_path if current_user.no_votes_user?
+    redirect_to first_topics_research_topics_path if current_user.novice_voter?
+  end
 
   def set_research_topic
     @research_topic = ResearchTopic.find_by_slug(params[:id])

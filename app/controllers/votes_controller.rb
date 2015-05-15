@@ -7,6 +7,7 @@ class VotesController < ApplicationController
   def create
     vote = Vote.create(user_id: current_user.id, research_topic_id: params[:research_topic], rating: params[:endorse].to_i)
     vote.create_post(params[:comment]) if params[:comment].present?
+
     redirect_to research_topics_path
   end
 
