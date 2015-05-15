@@ -2,6 +2,25 @@
 
 .content-main-header
   %h1.f300 Rank the Research
+- if (current_user.moderator? or current_user.owner?) and ResearchTopic.pending_review.present?
+  .well
+    %h4
+      For admins:
+    %h5.f300.horizontal-inset
+      The following topics are pending review:
+    %ul
+      - ResearchTopic.pending_review.each do |research_topic|
+        %li= link_to research_topic.text, research_topic_path(research_topic)
+
+- if current_user.my_research_topics.present?
+  .well
+    %h4.f300
+      = "You've submitted #{pluralize(current_user.my_research_topics.count, 'research topic')}!"
+    %ul
+      - current_user.my_research_topics.each do |rt|
+        %li= link_to(rt.text, research_topic_path(rt)) + " (#{rt.topic.status})"
+
+
 
 - if current_user.highlighted_research_topic.present?
   = render 'research_topics/voting_form', research_topic: current_user.highlighted_research_topic

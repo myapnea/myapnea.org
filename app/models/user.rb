@@ -388,7 +388,7 @@ class User < ActiveRecord::Base
 
   # Research Topics
   def my_research_topics
-
+      self.research_topics
   end
 
   def highlighted_research_topic

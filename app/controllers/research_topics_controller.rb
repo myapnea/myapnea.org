@@ -81,6 +81,7 @@ class ResearchTopicsController < ApplicationController
         format.html { redirect_to :back }
         format.js {  }
       end
+
     else
       render nothing: true
     end
