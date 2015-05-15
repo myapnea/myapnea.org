@@ -189,7 +189,7 @@ class ResearchTopicsControllerTest < ActionController::TestCase
 
     assert_not_nil assigns(:research_topic)
 
-    assert_response 302
+    assert_response :success
   end
 
   test "should add comment when voting for topic" do
@@ -257,7 +257,7 @@ class ResearchTopicsControllerTest < ActionController::TestCase
 
     assert_not_nil assigns(:research_topic)
 
-    assert_response 302
+    assert_response :success
   end
 
   # Invalid votes

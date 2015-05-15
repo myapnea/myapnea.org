@@ -65,6 +65,6 @@ class UserTest < ActiveSupport::TestCase
 
 
   test "#my_research_topics" do
-    assert false
+    assert_equal research_topics(:rt1), users(:user_1).my_research_topics.first
   end
 end

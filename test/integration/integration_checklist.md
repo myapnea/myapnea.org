@@ -312,40 +312,34 @@ Choose a nested question and select the nested option
 
 ## Rank the research
 
-1. Sign in with `tommyboy@gmail.com`, `password`
-2. Go to 'Rank the Research' page
-3. Check display:
-- [ ] Research questions should be randomized
-- [ ] Refreshing the page should show a new random order
-- [ ] Clicking on `Read more`
-   - [ ] Should **only** display for questions that contain extra details
-   - [ ] Should show image of user who submitted question, along with extra details
-   - [ ] Should display `Read less` after being clicked
-- [ ] Clicking on `Read less`
-   - [ ] Should **only** display after user clicks `Read more`
-   - [ ] Should hide image of user who submitted question, along with extra details
+1. Create a new user.
+2. Click on `Rank the Research` sidebar link.
 
-### Voting
-- [ ] User should vote on question by clicking the `thumbs up` icon
-   ** If user has votes remaining
-      - [ ] Icon should animate and become blue
-      - [ ] Progress bar should appear that displays percentage of votes for that specific topic
-      - [ ] Vote counter in user_stats on right navigation should increase by 1
-   ** If user does not have any votes remaining
-      - [ ] Icon **should not** change
-      - [ ] Progress bar should appear that displays percentage of votes for that specific topic
-      - [ ] Alert displays explaining why the user's vote was not cast
+## Intro
+3. Intro page checklist:
+- [ ] Intro page shows up.
+- [ ] Button takes you to the first topics progress page
 
-### Submitting new questions
-- [ ] Clicking on `add a research question` should redirect to research_topics/new
-- [ ] Fill out form, testing for missing fields and for invalid fields
-   - [ ] Attributes:
-      - [ ] Research question title
-      - [ ] Research question description
-   - [ ] Make sure clicking `Submit` and hitting `Enter` cause the form to submit.
-   - [ ] Make sure filled in data is persisted when validation fails
-- [ ] New research question **should not** display (must wait to be accepted by moderator)
-   - [ ] Messaging should explain why new topic will not yet be displayed
+## First topics
+4. Vote on the first topic with no comment, endorsing it.
+- [ ] Next topic should show up, and progress bar should increase.
+5. Leave votes blank on second topic, but add comment.
+- [ ] Vote should not submit, but comment should still be present for the same topic.
+6. Oppose the topic, keeping the comment.
+7. Repeat until progress bar ==> 100%. You should see a `Great Job` message.
+8. Great job button should take you to the topic index page.
+
+# Index page
+
+## Vote for highlighted topic
+
+## Vote for an arbitrary topic
+
+## See details about a topic
+1. Clicking on a specific topic should take you to the `show` page, which displays that topic's discussion. You should see your comments from the first topics section displayed.
+
+## Submit a new topic
+1. Submission should validate both text and description, and take you to the `show` page when successful.
 
 
 
