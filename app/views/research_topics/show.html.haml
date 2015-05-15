@@ -10,8 +10,8 @@
       = link_to 'Update Progress', edit_research_topic_path(@research_topic), class: 'btn btn-xs btn-primary' if current_user.has_role? :owner
       = link_to 'Approve Research Topic', forum_topic_path(@forum, @topic, topic: { status: 'approved' }), method: :patch, class: 'btn btn-success btn-xs' unless @topic.status=="approved"
 
--# Display of actual research topic
-- if true
+- if current_user.cast_vote_for?(@research_topic)
+  -# Display of actual research topic
   .research-topic-container
     .research-topic-header
       .research-topic-header-details
@@ -24,22 +24,16 @@
       - if @research_topic.description.present?
         %hr
         %h5.f300= @research_topic.description
-- else
+  -# Display of user's vote choice
   .content-container
-    .content-header
-      %h3.f300= @research_topic.topic.name
-    .content-body
-      = simple_markdown(@research_topic.topic.description, false)
-    .content-footer
-      = image_tag @research_topic.user.photo_url, class: 'img-responsive img-thumbnail', style: 'height: 50px; width: 50px; float: left; margin-right: 20px;'
-      .pull-left
-        %p.lead.no-margin
-          Proposed by
-          %span.f500.primary-blue
-            = @research_topic.user.forum_name.present? ? link_to(@research_topic.user.forum_name, member_path(@research_topic.user.forum_name), class: 'no-underline') : @research_topic.user.name
-        %p.small.text-muted{ style: 'margin-top: 5px' }
-          = @research_topic.created_at.strftime("%-d %B %Y, %-l:%M %p")
-      .clearfix
+    .content-body{ class: "text-white #{current_user.endorsed?(@research_topic) ? 'great-bcg' : 'danger-bcg' }" }
+      %p.lead.horizontal-inset
+        You've chosen to
+        = current_user.endorsed?(@research_topic) ? "endorse" : "not endorse"
+        this topic.
+- else
+  -# Display voting form
+  = render 'research_topics/voting_form', research_topic: @research_topic
 
 -# Display of comments
 - @topic.posts.offset(1).each do |post|
