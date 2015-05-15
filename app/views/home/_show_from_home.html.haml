@@ -3,8 +3,8 @@
     .post-header
       .poster-image
         = render 'forums/user_image_no_border', user: post.user, size: 50
-      .poster-details
-        %h5.f300.poster
+      .poster
+        %h5.f300.poster-details
           %span.f500= post.user.forum_name.present? ? link_to(post.user.forum_name, member_path(post.user.forum_name), class: 'no-underline') : post.user.name
           replied to
           %br.visible-xs
