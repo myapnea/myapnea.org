@@ -79,7 +79,7 @@ class ResearchTopicsControllerTest < ActionController::TestCase
 
     get :first_topics
 
-    assert_redirected_to research_topics_path(finished_intro: 1)
+    assert_redirected_to research_topics_path
 
   end
 
@@ -142,7 +142,7 @@ class ResearchTopicsControllerTest < ActionController::TestCase
       post :create, research_topic: { text: 'Some new research topic', description: 'Why I think this is important'}
     end
 
-    assert_redirected_to research_topics_path
+    assert_redirected_to research_topic_path(ResearchTopic.last)
   end
 
   test "should not create research topic as novice user" do
@@ -199,7 +199,7 @@ class ResearchTopicsControllerTest < ActionController::TestCase
     comment = "Hi there i'm commenting"
 
     assert_difference "Post.count" do
-      xhr :post, :vote, research_topic_id: research_topics(:rt2).id, endorse: 1, comment: comment, format: 'js'
+      xhr :post, :vote, research_topic_id: research_topics(:rt2).id, endorse: 1, "comment_#{research_topics(:rt2).id}" => comment, format: 'js'
     end
 
     assert_equal comment, research_topics(:rt2).topic.posts.last.description
