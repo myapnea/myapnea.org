@@ -182,7 +182,7 @@ class ResearchTopicsControllerTest < ActionController::TestCase
     assert_nil research_topics(:rt2).endorsement
 
     assert_difference "Vote.count" do
-      xhr :post, :vote, research_topic_id: research_topics(:rt2).id, endorse: 1, format: 'js'
+      xhr :post, :vote, research_topic_id: research_topics(:rt2).id, "endorse_#{research_topics(:rt2).id}" => 1, format: 'js'
     end
 
     assert_equal 1.0, research_topics(:rt2).endorsement
@@ -214,11 +214,11 @@ class ResearchTopicsControllerTest < ActionController::TestCase
 
 
     assert_no_difference "Vote.count" do
-      xhr :post, :vote, research_topic_id: research_topics(:rt2).id, endorse: 1, format: 'js'
+      xhr :post, :vote, research_topic_id: research_topics(:rt2).id, "endorse_#{research_topics(:rt2).id}" => 1, format: 'js'
     end
 
     assert_difference "Vote.count" do
-      xhr :post, :vote, research_topic_id: rt.id, endorse: 1, format: 'js'
+      xhr :post, :vote, research_topic_id: rt.id, "endorse_#{rt.id}" => 1, format: 'js'
     end
 
   end
@@ -232,11 +232,11 @@ class ResearchTopicsControllerTest < ActionController::TestCase
 
 
     assert_no_difference "Vote.count" do
-      xhr :post, :vote, research_topic_id: research_topics(:rt2).id, endorse: 1, format: 'js'
+      xhr :post, :vote, research_topic_id: research_topics(:rt2).id, "endorse_#{research_topics(:rt2).id}" => 1, format: 'js'
     end
 
     assert_difference "Vote.count" do
-      xhr :post, :vote, research_topic_id: rt.id, endorse: 1, format: 'js'
+      xhr :post, :vote, research_topic_id: rt.id, "endorse_#{rt.id}" => 1, format: 'js'
     end
 
   end
@@ -250,7 +250,7 @@ class ResearchTopicsControllerTest < ActionController::TestCase
     assert_nil research_topics(:rt2).endorsement
 
     assert_difference "Vote.count" do
-      xhr :post, :vote, research_topic_id: research_topics(:rt2).id, endorse: 0, format: 'js'
+      xhr :post, :vote, research_topic_id: research_topics(:rt2).id, "endorse_#{research_topics(:rt2).id}" => 0, format: 'js'
     end
 
     assert_equal 0.0, research_topics(:rt2).endorsement
