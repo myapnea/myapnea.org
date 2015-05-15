@@ -17,6 +17,7 @@
   - Added a stream of recent posts to the dashboard (continously loads all posts)
 - **Profile Changes**
   - Members can drag and drop a new photo on the settings page
+  - Uploaded photos are now renamed to obscure any original filename
   - Members can generate a random forum name, generated names are in the following format:
     - `AdjectiveColorAnimal####`
 

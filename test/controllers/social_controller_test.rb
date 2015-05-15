@@ -41,7 +41,7 @@ class SocialControllerTest < ActionController::TestCase
 
     users(:user_1).reload
 
-    assert_equal File.join(CarrierWave::Uploader::Base.root.call, 'uploads', 'social_profile', 'photo', assigns(:social_profile).id.to_s, 'rails.png'), assigns(:social_profile).photo.path
+    assert_equal File.join(CarrierWave::Uploader::Base.root.call, 'uploads', 'social_profile', 'photo', assigns(:social_profile).id.to_s, 'photo.png'), assigns(:social_profile).photo.path
 
     assert users(:user_1).social_profile
     assert_equal profile_params[:social_profile][:name], users(:user_1).social_profile.name
