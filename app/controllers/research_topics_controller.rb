@@ -15,13 +15,9 @@ class ResearchTopicsController < ApplicationController
 
   def first_topics
     redirect_to intro_research_topics_path and return if current_user.no_votes_user? and params[:read_intro].blank?
-    redirect_to research_topics_path(finished_intro: "1") and return if current_user.experienced_voter?
+    redirect_to research_topics_path and return if current_user.experienced_voter?
 
     @research_topic = current_user.seeded_research_topic
-
-    # Do we need this?
-    redirect_to newest_research_topics_path and return if @research_topic.blank?
-
   end
 
   def newest
@@ -54,7 +50,7 @@ class ResearchTopicsController < ApplicationController
 
     if @new_research_topic.save
       flash[:notice] = 'Topic was successfully created.'
-      redirect_to research_topics_path
+      redirect_to research_topic_path(@new_research_topic)
     else
       @research_topics = ResearchTopic.approved
       render :index
@@ -73,16 +69,19 @@ class ResearchTopicsController < ApplicationController
     @research_topic = ResearchTopic.find(params[:research_topic_id])
     if current_user.experienced_voter? or @research_topic.seeded?
       if params[:endorse].to_s == "1"
-        @research_topic.endorse_by(current_user, params[:comment])
+        @research_topic.endorse_by(current_user, params["comment_#{@research_topic.id}"])
       elsif params[:endorse].to_s == "0"
-        @research_topic.oppose_by(current_user, params[:comment])
+        @research_topic.oppose_by(current_user, params["comment_#{@research_topic.id}"])
       else
+        @vote_failed = true
         flash[:notice] = "Please either endorse or oppose this research topic."
       end
 
-      redirect_to :back
-    elsif @research_topic.seeded?
-      params[:endorse].to_i == 1 ? @research_topic.endorse_by(current_user, params[:comment]) : @research_topic.oppose_by(current_user, params[:comment])
+      respond_to do |format|
+        format.html { redirect_to :back }
+        format.js {  }
+      end
+
     else
       render nothing: true
     end

@@ -1,4 +1,10 @@
+<% if @vote_failed %>
+  alert("IT FAILED");
+<% end %>
+
+
 <% progress = (100.0 * current_user.votes.count.to_f / ENV['research_topic_experience_threshold'].to_f).round(2) %>
+console.log(<%= progress == 100.0 %>);
 $("#first-topics-progress-bar").html("<%=j render 'research_topics/progress_bar', progress: progress %>");
 <% if progress == 100.0 %>
   $("#first-topics-voting-form").remove();
