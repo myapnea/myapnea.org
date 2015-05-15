@@ -79,7 +79,7 @@ class ResearchTopicsControllerTest < ActionController::TestCase
 
     get :first_topics
 
-    assert_redirected_to research_topics_path
+    assert_redirected_to research_topics_path(finished_intro: 1)
 
   end
 
@@ -142,7 +142,7 @@ class ResearchTopicsControllerTest < ActionController::TestCase
       post :create, research_topic: { text: 'Some new research topic', description: 'Why I think this is important'}
     end
 
-    assert_response :success
+    assert_redirected_to research_topics_path
   end
 
   test "should not create research topic as novice user" do
@@ -260,6 +260,18 @@ class ResearchTopicsControllerTest < ActionController::TestCase
     assert_response 302
   end
 
+  # Invalid votes
+  test "should not accept votes with no endorsement or opposition chosen" do
+    @request.env['HTTP_REFERER'] = 'http://localhost:3000/sessions/new'
+    login(@experienced_user)
+
+
+    assert_no_difference "Vote.count" do
+      xhr :post, :vote, research_topic_id: research_topics(:rt2).id, format: 'js'
+    end
+
+
+  end
 
 
 

@@ -19,6 +19,15 @@ class ResearchTopic < ActiveRecord::Base
   INTRO_LENGTH = ENV["research_topic_experience_threshold"].to_i
   RESEARCH_TOPIC_DATA_LOCATION = ['lib', 'data', 'research_topics']
 
+  # Validations
+
+  #validate :description_and_text_are_present, on: :create
+  validates_presence_of :user_id, :description, :text
+
+  # def description_and_text_are_present
+  #   errors.add(:description, "needs to be provided.") if @description.blank?
+  #   errors.add(:text, "needs to be provided.") if @text.blank?
+  # end
 
   # Callbacks
   after_create :create_associated_topic
@@ -89,11 +98,15 @@ class ResearchTopic < ActiveRecord::Base
   end
 
   def text
-    topic.name if topic.present?
+    topic.present? ? topic.name : @text
   end
 
   def description
-    topic.posts.first.description if topic.present? and !topic.posts.empty?
+    if topic.present? and !topic.posts.empty?
+      topic.posts.first.description
+    else
+      @description
+    end
   end
 
   def slug

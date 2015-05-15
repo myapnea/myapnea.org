@@ -65,7 +65,20 @@
   .content-body.lighter-blue-bcg
     %h3.text-light9 Add your own question!
     .list-group-item
-      = form_for ResearchTopic.new, html: { data: { object: "inline-validation"} } do |f|
+      = form_for @new_research_topic, html: { data: { object: "inline-validation"} } do |f|
+        = #render "shared/form_errors", resource: @new_research_topic
+        - if @new_research_topic.errors.any?
+          .bs-callout.bs-callout-danger#error_explanation
+            %h4
+              = pluralize(@new_research_topic.errors.count, "error")
+              prohibited this user from being saved
+            %ul
+              - @new_research_topic.errors.messages.each do |key, msg|
+                - if key == :over_eighteen
+                  %li= msg.join(", ")
+                - else
+                  %li= "#{key.to_s.titleize} #{msg.join(", ")}"
+
         .form-group
           = f.label :text, class: 'sr-only'
           = f.text_area :text, placeholder: "Enter your research question here", autocomplete: :off, style: 'resize: none', class: 'form-control input-lg', data: { object: 'inline-validation-item', name: 'research-topic-name' }
@@ -77,7 +90,6 @@
           = f.text_area :description, placeholder: "Describe why you think this question is important", style: 'resize: none', class: 'form-control input-lg'
         = f.submit("Submit", class: "btn btn-success pull-right")
         .clearfix
-
 
 - if false
   .content-container
