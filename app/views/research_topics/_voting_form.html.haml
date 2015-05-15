@@ -18,11 +18,11 @@
           .row
             .col-xs-6
               .endorse-button-container
-                = radio_button_tag :endorse, 1, current_user.endorsed?(research_topic)
-                %label.endorse-label{ for: 'endorse_1' } Endorse
+                = radio_button_tag "endorse_#{research_topic.id}", 1, current_user.endorsed?(research_topic)
+                %label.endorse-label{ for: "endorse_#{research_topic.id}_1" } Endorse
               .endorse-button-container
-                = radio_button_tag :endorse, 0, current_user.opposed?(research_topic)
-                %label.endorse-label{ for: 'endorse_0' } Don't endorse
+                = radio_button_tag "endorse_#{research_topic.id}", 0, current_user.opposed?(research_topic)
+                %label.endorse-label{ for: "endorse_#{research_topic.id}_0" } Don't endorse
             .col-xs-6
               = text_area_tag "comment_#{research_topic.id}", params["comment_#{research_topic.id}"], rows: 3, placeholder: 'Add a comment (optional)', style: 'resize: none', class: 'form-control', disabled: current_user.cast_vote_for?(research_topic)
           %br

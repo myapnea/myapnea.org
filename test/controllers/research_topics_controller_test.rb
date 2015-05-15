@@ -199,7 +199,7 @@ class ResearchTopicsControllerTest < ActionController::TestCase
     comment = "Hi there i'm commenting"
 
     assert_difference "Post.count" do
-      xhr :post, :vote, research_topic_id: research_topics(:rt2).id, endorse: 1, "comment_#{research_topics(:rt2).id}" => comment, format: 'js'
+      xhr :post, :vote, research_topic_id: research_topics(:rt2).id, "endorse_#{research_topics(:rt2).id}" => 1, "comment_#{research_topics(:rt2).id}" => comment, format: 'js'
     end
 
     assert_equal comment, research_topics(:rt2).topic.posts.last.description

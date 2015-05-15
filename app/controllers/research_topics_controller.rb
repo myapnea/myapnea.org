@@ -68,9 +68,9 @@ class ResearchTopicsController < ApplicationController
   def vote
     @research_topic = ResearchTopic.find(params[:research_topic_id])
     if current_user.experienced_voter? or @research_topic.seeded?
-      if params[:endorse].to_s == "1"
+      if params["endorse_#{@research_topic.id}"].to_s == "1"
         @research_topic.endorse_by(current_user, params["comment_#{@research_topic.id}"])
-      elsif params[:endorse].to_s == "0"
+      elsif params["endorse_#{@research_topic.id}"].to_s == "0"
         @research_topic.oppose_by(current_user, params["comment_#{@research_topic.id}"])
       else
         @vote_failed = true
