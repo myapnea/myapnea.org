@@ -66,7 +66,6 @@
     %h3.text-light9 Add your own question!
     .list-group-item
       = form_for @new_research_topic, html: { data: { object: "inline-validation"} } do |f|
-        = #render "shared/form_errors", resource: @new_research_topic
         - if @new_research_topic.errors.any?
           .bs-callout.bs-callout-danger#error_explanation
             %h4
@@ -90,10 +89,6 @@
           = f.text_area :description, placeholder: "Describe why you think this question is important", style: 'resize: none', class: 'form-control input-lg'
         = f.submit("Submit", class: "btn btn-success pull-right")
         .clearfix
-
-
-
-= render 'research_topics/ready' if current_user.vote_count == ResearchTopic::INTRO_LENGTH and params["finished_intro"].present?
 
 - if false
   .content-container

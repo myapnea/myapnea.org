@@ -13,7 +13,7 @@
         %h5.f300= "\"#{research_topic.description}\""
         %hr
       .centered-text
-        = form_tag vote_path(research_topic: research_topic) do
+        = form_tag vote_path(research_topic: research_topic), remote: research_topic.seeded? do
           = hidden_field_tag :research_topic_id, research_topic.id
           .row
             .col-xs-6
@@ -24,7 +24,7 @@
                 = radio_button_tag :endorse, 0, current_user.opposed?(research_topic)
                 %label.endorse-label{ for: 'endorse_0' } Don't endorse
             .col-xs-6
-              = text_area_tag 'comment', nil, rows: 3, placeholder: 'Add a comment (optional)', style: 'resize: none', class: 'form-control', disabled: current_user.cast_vote_for?(research_topic)
+              = text_area_tag "comment_#{research_topic.id}", params["comment_#{research_topic.id}"], rows: 3, placeholder: 'Add a comment (optional)', style: 'resize: none', class: 'form-control', disabled: current_user.cast_vote_for?(research_topic)
           %br
           = submit_tag "Submit", class: 'btn btn-primary'
 

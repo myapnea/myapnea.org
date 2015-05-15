@@ -13,6 +13,7 @@ class Post < ActiveRecord::Base
   ## Temporary exclusion of ResearchTopic forum:
   #scope :visible_for_user, lambda { |arg| joins(topic: :forum).where("forums.slug != ? and posts.status = ? or posts.user_id = ?", ENV["research_topic_forum_slug"], 'approved', arg) }
   scope :visible_for_user, lambda { |arg| joins(topic: :forum).where("posts.status = ? or posts.user_id = ?", 'approved', arg) }
+  scope :not_research, -> { where('posts.topic_id NOT IN (select research_topics.topic_id from research_topics where research_topics.topic_id IS NOT NULL)')}
 
   # Model Validation
   validates_presence_of :description, :user_id, :topic_id
