@@ -18,23 +18,18 @@
           .post-container-right-middle-after
             = "##{current_index}"
           %i.text-muted
-            Post
-            - if post.hidden?
-              Hidden
-            - elsif post.spam?
-              Marked as Spam
+            = post.spam? ? "Post Marked as Spam" : "Post Hidden"
     - elsif post.hidden? and current_user and current_user.has_role? :moderator
       .col-xs-12
         .post-container.post-deleted
           .post-container-right-middle-after
-            = link_to edit_forum_topic_post_path(post.forum, post.topic, post), data: { toggle: 'tooltip', container: 'body' }, title: 'Edit Post', class: 'btn btn-xs btn-default' do
-              %i.fa.fa-pencil
+            = render 'posts/actions/edit', post: post
             = "##{current_index}"
           %i.text-muted
             Post Hidden
     - elsif post.spam? and current_user and current_user.has_role? :moderator
       .col-xs-1.reset-layout
-        = render partial: 'forums/user_image', locals: { user: post.user, size: 50 }
+        = render 'forums/user_image', user: post.user, size: 50
       .col-xs-11
         .post-container.post-spam
           .post-container-right-after
@@ -43,8 +38,7 @@
               = link_to forum_topic_post_path(post.forum, post.topic, post, post: { status: 'pending_review' }), method: :patch, class: 'btn btn-xs btn-default' do
                 %i.fa.fa-undo
                 Undo
-              = link_to edit_forum_topic_post_path(post.forum, post.topic, post), data: { toggle: 'tooltip', container: 'body' }, title: 'Edit Post', class: 'btn btn-xs btn-default' do
-                %i.fa.fa-pencil
+              = render 'posts/actions/edit', post: post
             = "##{current_index}"
           - if post.topic.user == post.user
             .post-container-right-bottom-after.original-poster-badge
@@ -53,34 +47,25 @@
             .post-user-name-container
               - unless post.user.forum_name.blank?
                 = link_to post.user.forum_name, member_path(post.user.forum_name)
-            %p{ style: 'font-style:italic' }
+            %p.italic
               %i.fa.fa-eye-slash
               Post Is Hidden
             .text-muted{ style: 'text-decoration:line-through' }
               = simple_markdown(post.description, false)
-            .small.text-muted{ style: 'font-weight: 300' }
+            .small.text-muted.f300
               = post.created_at.strftime("%-d %B %Y, %-l:%M %p")
     - elsif post.pending_review?
       .col-xs-1.reset-layout
-        = render partial: 'forums/user_image', locals: { user: post.user, size: 50 }
+        = render 'forums/user_image', user: post.user, size: 50
       .col-xs-11
         .post-container.post-under-review
           .post-container-right-after
             %span.f400
               Under Review
-            - if current_user and current_user.has_role? :moderator
-              = link_to forum_topic_post_path(post.forum, post.topic, post, post: { status: 'approved' }), method: :patch, class: 'btn btn-xs btn-default' do
-                %i.fa.fa-thumbs-up
-                Approve
-              = link_to forum_topic_post_path(post.forum, post.topic, post, post: { status: 'hidden' }), method: :patch, class: 'btn btn-xs btn-default' do
-                %i.fa.fa-eye-slash
-                Hide Post
-              = link_to forum_topic_post_path(post.forum, post.topic, post, post: { status: 'spam' }), method: :patch, class: 'btn btn-xs btn-default' do
-                %i.fa.fa-thumbs-down
-                Mark As Spam
+            - if current_user and current_user.moderator?
+              = render 'posts/actions/pending_review_as_moderator', post: post
             - if current_user and current_user == post.user
-              = link_to edit_forum_topic_post_path(post.forum, post.topic, post), data: { toggle: 'tooltip', container: 'body'}, title: 'Edit Post', class: 'btn btn-xs btn-default' do
-                %i.fa.fa-pencil
+              = render 'posts/actions/edit', post: post
             %a{ href: "#c#{current_index}" }
               = "##{current_index}"
           - if post.topic.user == post.user
@@ -90,18 +75,17 @@
             .post-user-name-container
               - unless post.user.forum_name.blank?
                 = link_to post.user.forum_name, member_path(post.user.forum_name)
-            = render partial: 'posts/formatted', locals: { post: post }
+            = render 'posts/formatted', post: post
             .small.text-muted{ style: 'font-weight: 300' }
               = post.created_at.strftime("%-d %B %Y, %-l:%M %p")
     - else
       .col-xs-1.reset-layout
-        = render partial: 'forums/user_image', locals: { user: post.user, size: 50 }
+        = render 'forums/user_image', user: post.user, size: 50
       .col-xs-11
         .post-container
           .post-container-right-after
             - if current_user and post.editable_by?(current_user)
-              = link_to edit_forum_topic_post_path(post.forum, post.topic, post), data: { toggle: 'tooltip', container: 'body' }, title: 'Edit Post', class: 'btn btn-xs btn-default' do
-                %i.fa.fa-pencil
+              = render 'posts/actions/edit', post: post
             - if current_user and post.deletable_by?(current_user)
               = link_to forum_topic_post_path(post.forum, post.topic, post), method: :delete, data: { confirm: "Are you sure?", toggle: 'tooltip', container: 'body' }, class: 'btn btn-xs btn-danger', title: 'Delete Post' do
                 %i.fa.fa-trash
@@ -114,6 +98,6 @@
           .post-user-name-container
             - unless post.user.forum_name.blank?
               = link_to post.user.forum_name, member_path(post.user.forum_name)
-          = render partial: 'posts/formatted', locals: { post: post }
+          = render 'posts/formatted', post: post
           .small.text-muted{ style: 'font-weight: 300' }
             = post.created_at.strftime("%-d %B %Y, %-l:%M %p")

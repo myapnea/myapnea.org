@@ -12,6 +12,8 @@ class TopicsController < ApplicationController
 
   before_action :redirect_without_topic,  only: [ :show, :edit, :update, :destroy, :subscription ]
 
+  before_action :redirect_to_research_topic, only: [ :show ]
+
   respond_to :html
 
   def subscription
@@ -82,6 +84,10 @@ class TopicsController < ApplicationController
       empty_response_or_root_path(@forum) unless @topic
     end
 
+    def redirect_to_research_topic
+      redirect_to research_topic_path(@topic.research_topic) if @topic.research_topic.present?
+    end
+
     def topic_params
       if current_user.has_role? :moderator
         params.require(:topic).permit(:name, :description, :slug, :locked, :pinned, :status, :forum_id)
@@ -96,5 +102,6 @@ class TopicsController < ApplicationController
         redirect_to terms_and_conditions_path
       end
     end
+
 
 end

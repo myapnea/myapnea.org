@@ -1,82 +1,46 @@
 - @page_title = "Research Topics"
 
 .content-main-header
-  %h1= @research_topic.text
+  %h1 Research Discussion
 
-- if current_user.has_role? :owner or current_user.has_role? :moderator
+- if current_user.owner? or current_user.moderator?
   .well
     %h4
       For admins:
-      = link_to 'Edit Research Topic', edit_research_topic_path(@research_topic), class: 'btn btn-xs btn-primary'
+      = link_to 'Update Progress', edit_research_topic_path(@research_topic), class: 'btn btn-xs btn-primary' if current_user.has_role? :owner
       = link_to 'Approve Research Topic', forum_topic_path(@forum, @topic, topic: { status: 'approved' }), method: :patch, class: 'btn btn-success btn-xs' unless @topic.status=="approved"
 
-.content-container
-  .content-header
-    %h3.f300= @research_topic.text
-  .content-body
-    = simple_markdown(@research_topic.description, false)
-  .content-footer
-    = image_tag @research_topic.user.photo_url, class: 'img-responsive img-thumbnail', style: 'height: 50px; width: 50px; float: left; margin-right: 20px;'
-    .pull-left
-      %p.lead.no-margin
-        Proposed by
-        %span.f500.primary-blue
-          = @research_topic.user.forum_name.present? ? link_to(@research_topic.user.forum_name, member_path(@research_topic.user.forum_name), class: 'no-underline') : @research_topic.user.name
-      %p.small.text-muted{ style: 'margin-top: 5px' }
-        = @research_topic.created_at.strftime("%-d %B %Y, %-l:%M %p")
-    .clearfix
+-# Display of actual research topic
+- if true
+  .research-topic-container
+    .research-topic-header
+      .research-topic-header-details
+        = image_tag @research_topic.user.photo_url, class: 'img-responsive', style: 'width: 50px; height: 50px; float: left'
+        %p.text-dark6{ style: 'float: left; padding-left: 20px; padding-top: 20px;font-size: 15px;' }
+          = render 'users/forum_name', user: @research_topic.user
+          asked:
+    .research-topic-body
+      %h5.centered-text= @research_topic.text
+      - if @research_topic.description.present?
+        %hr
+        %h5.f300= @research_topic.description
+- else
+  .content-container
+    .content-header
+      %h3.f300= @research_topic.topic.name
+    .content-body
+      = simple_markdown(@research_topic.topic.description, false)
+    .content-footer
+      = image_tag @research_topic.user.photo_url, class: 'img-responsive img-thumbnail', style: 'height: 50px; width: 50px; float: left; margin-right: 20px;'
+      .pull-left
+        %p.lead.no-margin
+          Proposed by
+          %span.f500.primary-blue
+            = @research_topic.user.forum_name.present? ? link_to(@research_topic.user.forum_name, member_path(@research_topic.user.forum_name), class: 'no-underline') : @research_topic.user.name
+        %p.small.text-muted{ style: 'margin-top: 5px' }
+          = @research_topic.created_at.strftime("%-d %B %Y, %-l:%M %p")
+      .clearfix
 
-= render @topic.posts.offset(1)
-
-
-
-
-
-
-
-
-
-- if false
-
-  .row
-    .col-md-12
-      .row
-        .col-md-1
-          %h2
-            %i.fa.fa-check-square-o
-            =@research_topic.endorsement
-        .col-md-11
-          = link_to research_topics_path, class: "btn btn-primary btn-xs pull-right" do
-            .fa.fa-arrow-left
-            Back to Research Questions
-          %h2
-            = @research_topic.text
-            .small= render partial: "research_topics/state", locals: {research_topic: @research_topic }
-
-          %p= @research_topic.description
-        %br/
-
-      -#.row
-      -#  .col-md-12
-      -#
-      -#    .alert.alert-info
-      -#      .req What stages should be available?
-      -#
-      -#      -#%span.small
-      -#      -#  This research proposal is currently <strong>under consideration</strong> by the research team.
-      -#      -#  Add your vote and voice to help increase the chances this research topic gets studied.
-      -#
-
-      - if @research_topic.user.present?
-        .panel.panel-default
-          .panel-heading
-            %h3.panel-title Proposed By...
-          .panel-body
-            .media
-              %a.pull-left
-                = image_tag @research_topic.user.photo_url, :class => "img-responsive img-thumbnail"
-              .media-body.small
-                %strong
-                  = @research_topic.user.forum_name
-              .clearfix
-
+-# Display of comments
+- @topic.posts.offset(1).each do |post|
+  = render 'research_topics/comments', comment: post

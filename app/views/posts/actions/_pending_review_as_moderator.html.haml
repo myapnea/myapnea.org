@@ -1,0 +1,9 @@
+= link_to forum_topic_post_path(post.forum, post.topic, post, post: { status: 'approved' }), method: :patch, class: 'btn btn-xs btn-default' do
+  %i.fa.fa-thumbs-up
+  Approve
+= link_to forum_topic_post_path(post.forum, post.topic, post, post: { status: 'hidden' }), method: :patch, class: 'btn btn-xs btn-default' do
+  %i.fa.fa-eye-slash
+  Hide Post
+= link_to forum_topic_post_path(post.forum, post.topic, post, post: { status: 'spam' }), method: :patch, class: 'btn btn-xs btn-default' do
+  %i.fa.fa-thumbs-down
+  Mark As Spam
