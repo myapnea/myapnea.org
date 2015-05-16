@@ -11,4 +11,10 @@ namespace :research_topics do
     puts "#{seeds[:with_problems].length} research topics loaded with problems."
     puts "Messages:\n#{seeds[:messages].join("\n")}"
   end
+
+  desc "Create research topic forum if one does not exist"
+  task create_forum: :environment do
+    Forum.create_research_topic_forum
+
+  end
 end
