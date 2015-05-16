@@ -1,6 +1,6 @@
 .content-main-header
   %h1.f300
-    Welcome to the Forums!
+    Welcome to the Forums
   = link_to 'New Forum', new_forum_path, class: 'btn btn-xs btn-primary' if current_user and current_user.has_role? :owner
 
 .row.reset-layout{ style: 'margin-bottom:10px;'}
