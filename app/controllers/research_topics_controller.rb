@@ -38,7 +38,7 @@ class ResearchTopicsController < ApplicationController
   end
 
   def show
-    @forum = Forum.find_by_slug(ENV['research_topic_forum_slug'])
+    @forum = Forum.for_research_topics
     @topic = @research_topic.topic
   end
 

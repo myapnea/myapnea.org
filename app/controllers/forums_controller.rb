@@ -13,7 +13,7 @@ class ForumsController < ApplicationController
   respond_to :html
 
   def index
-    @forums = Forum.current.where.not(slug: ENV['research_topic_forum_slug'])
+    @forums = Forum.current.main
     respond_with(@forums)
   end
 

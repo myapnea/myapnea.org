@@ -160,7 +160,7 @@ class ResearchTopic < ActiveRecord::Base
   end
 
   def create_associated_topic
-    self.create_topic(forum_id: Forum.find_by_slug(ENV["research_topic_forum_slug"]).id, name: @text,  description: @description, user_id: user.id)
+    self.create_topic(forum_id: Forum.for_research_topics.id, name: @text,  description: @description, user_id: user.id)
   end
 
 end

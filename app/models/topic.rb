@@ -120,7 +120,7 @@ class Topic < ActiveRecord::Base
   end
 
   def requires_description?
-    self.new_record? and self.migration_flag != '1' and self.forum.slug != ENV["research_topic_forum_slug"]
+    self.new_record? and self.migration_flag != '1' and !self.forum.for_research_topics?
   end
 
 end
