@@ -145,7 +145,6 @@ Rails.application.routes.draw do
   get 'admin' => 'admin#dashboard'
   get 'admin/surveys' => 'admin#surveys', as: 'admin_surveys'
   get 'admin/research-topics' => 'admin#research_topics', as: 'admin_research_topics'
-  get 'admin/research-topic/:id' => 'admin#research_topic', as: 'admin_research_topic'
   get 'admin/version-stats' => 'admin#version_stats', as: 'admin_version_stats'
   get 'admin/cross-tabs' => 'admin#cross_tabs', as: 'admin_cross_tabs'
   get 'admin/reports/location' => 'admin#location', as: 'admin_reports_location'

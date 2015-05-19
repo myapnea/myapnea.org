@@ -25,5 +25,5 @@
           %td= research_topic.created_at.strftime("%d-%m-%Y")
           %td
             .btn-group
-              = link_to "Moderate", admin_research_topic_path(research_topic.id), class: "btn btn-success btn-xs"
-              = link_to "Delete", research_topic_path(research_topic.id, method: :delete), class: "btn btn-danger btn-xs"
+              = link_to "Moderate", edit_research_topic_path(research_topic), class: "btn btn-success btn-xs"
+              = link_to "Delete", research_topic_path(research_topic), method: :delete, class: "btn btn-danger btn-xs"
