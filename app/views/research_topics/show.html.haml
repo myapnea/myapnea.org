@@ -31,6 +31,7 @@
         You've chosen to
         = current_user.endorsed?(@research_topic) ? "endorse" : "not endorse"
         this topic.
+        = link_to 'I changed my mind', change_vote_path(research_topic_id: @research_topic.id), method: :patch, class: 'btn btn-default pull-right'
 - else
   -# Display voting form
   = render 'research_topics/voting_form', research_topic: @research_topic

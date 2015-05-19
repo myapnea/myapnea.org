@@ -12,7 +12,7 @@
     .comment-container.comment-container-spam
       = render 'research_topics/comment_contents', comment: comment
       .comment-toolbar
-        = render 'posts/actions/edit', post: comment
+        = render 'posts/actions/edit_min', post: comment
   - elsif current_user == comment.user
     .wel.well-sm.danger-bcg.italic
       This post was marked as spam.
@@ -26,10 +26,10 @@
     - if current_user.moderator?
       .comment-toolbar
         = render 'posts/actions/pending_review_min', post: comment
-        = render 'posts/actions/edit', post: comment
+        = render 'posts/actions/edit_min', post: comment
     - elsif current_user == comment.user
       .comment-toolbar
-        = render 'posts/actions/edit', post: comment
+        = render 'posts/actions/edit_min', post: comment
 
   // Approved comments will be simply displayed
 - elsif comment.approved?
@@ -37,5 +37,5 @@
     = render 'research_topics/comment_contents', comment: comment
     - if current_user.moderator? or current_user == comment.user
       .comment-toolbar
-        = render 'posts/actions/edit', post: comment
+        = render 'posts/actions/edit_min', post: comment
 
