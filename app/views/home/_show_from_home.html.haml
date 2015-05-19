@@ -1,34 +1,34 @@
 - @posts.each do |post|
   .recent-post-container
-    .post-header
-      .poster-image
-        = render 'forums/user_image_no_border', user: post.user, size: 50
-      .poster
+    .poster-image
+      = render 'forums/user_image_link', user: post.user, size: 50
+    .post
+      .post-header
         %h5.f300.poster-details
-          %span.f500= post.user.forum_name.present? ? link_to(post.user.forum_name, member_path(post.user.forum_name), class: 'no-underline') : post.user.name
+          %span.f500= post.user.forum_name.present? ? link_to(post.user.forum_name, member_path(post.user.forum_name), class: 'no-underline darkerer-blue') : post.user.name
           replied to
           %br.visible-xs
           = link_to post.topic.name, forum_topic_path(post.topic.forum.slug, post.topic.slug), class: 'no-underline'
         %p.small.post-time
           = post.created_at.strftime("%-d %B %Y, %-l:%M %p")
-    .post-content
-      - if post.description.length > 800
-        = simple_markdown(truncate(post.description, length: 800))
-        .text-right= link_to '...read more', forum_topic_post_path(post.topic.forum.slug, post.topic.slug, post), class: 'no-underline'
-      - else
-        = simple_markdown(post.description)
-    .reply-container
-      - unless post.topic.locked?
-        - new_post = post.topic.posts.new
-        = form_for [post.topic.forum, post.topic, new_post], html: { class: 'form-horizontal' } do |f|
+      .post-content
+        - if post.description.length > 800
+          = simple_markdown(truncate(post.description, length: 800))
+          .text-right= link_to '...read more', forum_topic_post_path(post.topic.forum.slug, post.topic.slug, post), class: 'no-underline'
+        - else
+          = simple_markdown(post.description)
+      .reply-container
+        - unless post.topic.locked?
+          - new_post = post.topic.posts.new
+          = form_for [post.topic.forum, post.topic, new_post], html: { class: 'form-horizontal' } do |f|
 
-          - if current_user.has_role? :moderator
-            = f.hidden_field :status, value: 'approved'
+            - if current_user.has_role? :moderator
+              = f.hidden_field :status, value: 'approved'
 
-          .reply
-            .reply-user
-              = image_tag current_user.photo_url, class: 'reply-user-image'
-            .reply-field
-              = f.text_area :description, rows: 1, style: 'resize: none;', class: 'reply-text-area', id: 'post_description_new', data: { object: 'text-area-autocomplete', mentions: SocialProfile.current.where.not(name: [nil, '']).pluck(:name).uniq.sort }
-            .reply-submit
-              = f.submit "Reply", class: 'btn btn-primary reply-button', data: { disable_with: "Posting" }
+            .reply
+              .reply-user
+                = image_tag current_user.photo_url, class: 'reply-user-image'
+              .reply-field
+                = f.text_area :description, rows: 1, style: 'resize: none;', class: 'reply-text-area', id: 'post_description_new', data: { object: 'text-area-autocomplete', mentions: SocialProfile.current.where.not(name: [nil, '']).pluck(:name).uniq.sort }
+              .reply-submit
+                = f.submit "Reply", class: 'btn btn-primary reply-button', data: { disable_with: "Posting" }
