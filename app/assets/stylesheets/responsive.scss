@@ -1,3 +1,4 @@
+/* MOBILE NAVIGATION */
 #slide-nav .navbar-toggle {
     cursor: pointer;
     position: relative;
@@ -28,6 +29,7 @@
     position: relative
 }
 
+/* MAIN CONTENT */
 #container-main {
   display: table;
   position:relative;
@@ -35,146 +37,77 @@
   margin-left:0px;
   margin-right:0px;
   overflow:hidden;
-}
-
-#container-left {
-  width:80%;
-  padding: 40px 70px;
-  display:table-cell;
-  vertical-align:top;
-  float:none;
-}
-
-#container-left-no-padding {
-  width:80%;
-  display:table-cell;
-  vertical-align:top;
-  float:none;
-}
-
-#container-right {
-  width: 20%;
-  min-width:150px;
-  box-shadow: -3px 1px 5px #777;
-  background-color: #5999DE;
-  float:none;
-  display:table-cell;
-  vertical-align:top;
+  min-height:80vh;
+  #container-left {
+    padding: 40px 70px;
+  }
+  #container-left,
+  #container-left-no-padding {
+    width:80%;
+    display:table-cell;
+    vertical-align:top;
+    float:none;
+  }
+  #container-right {
+    width: 20%;
+    min-width:150px;
+    box-shadow: -3px 1px 5px #777;
+    background-color: #5999DE;
+    float:none;
+    display:table-cell;
+    vertical-align:top;
+  }
 }
 
 
-/* TESTING FOR MOBILE */
-#container-right-fixed:before {
-  content:'';
-  height:81px;
-  width:100%;
-  background-color:inherit;
-  display:inline-block;
-  position: absolute;
-  top:-81px;
-}
-
-#container-right-fixed {
-  background-color: #5999DE;
-  box-shadow:0px 3px 3px #ddd;
-  padding-top:20px;
-  padding-bottom:20px;
-  width: inherit;
-}
-
-
-
-
-
-
+/* RESPONSIVE DESIGN */
 @media all and (min-width: 1600px) {
   .user-picture {
     float:right;
     margin-right:15px;
   }
 }
-@media all and (min-width: 992px) {
-  #container-right-fixed {
-    position:fixed;
-    z-index:100;
-  }
-  #container-right-scroll {
-    margin-top: 450px;
-  }
-
-}
 @media all and (max-width: 992px) {
   #slide-nav .navbar-toggle {
     display: block !important;
   }
-  #container-left.js {
-    padding: 20px;
-    width:100%;
-    margin:0px;
-    margin-left:0;
-    float: left;
-  }
-  #container-left.js.active-sidebar {
-    margin-left:-60%;
-  }
-
-  #container-left-no-padding.js {
-    width:100%;
-    margin:0px;
-    margin-left:0;
-    float: left;
-  }
-  #container-left-no-padding.js.active-sidebar {
-    margin-left:-60%;
-  }
-
-  #container-right.js {
-    margin-right:-200%;
-    float:left;
-    width:60%;
-  }
-  #container-right.active-sidebar {
-    margin-left:0;
-    width:60%;
-    box-shadow: none;
-    #container-right-fixed {
+  #container-main {
+    #container-left {
+      padding: 20px;
+    }
+    #container-left,
+    #container-left-no-padding {
       width:100%;
+      margin:0px;
+      margin-left:0;
+      float: left;
+    }
+    #container-right {
+      margin-right:-200%;
+      float:left;
+      box-shadow: none;
+      width:60%;
     }
   }
-
-  #container-main.active-sidebar:before {
-    width: 60%;
-    position:absolute;
-    box-shadow: -3px 1px 5px #777;
-    background-color: #5999DE;
-    float:none;
-    display:table-cell;
-    vertical-align:top;
-    height:100%;
-    left:40%;
+  #container-main.js.active-sidebar {
+    #container-left,
+    #container-left-no-padding {
+      margin-left:-60%;
+    }
+    #container-right {
+      margin-left:0;
+      width:60%;
+      box-shadow: none;
+      min-height: 80vh;
+    }
   }
 
   #user-profile-header-text {
     text-align:center;
   }
-  #recent-news-container {
-    h4 {
-      padding: 0 2px;
-    }
-    ul li {
-      h5, p {
-        margin:0px 2px;
-        padding: 0 2px;
-      }
-    }
-  }
-
 }
 @media all and (max-width: 768px) {
-  //New methods
-  #container-left.js {
-    padding: 20px 5px;
-  }
-  #container-left-no-padding.js {
-  }
+  // New methods
+  #container-left { padding: 20px 5px; }
+  #container-left-no-padding { }
 }

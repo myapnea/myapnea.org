@@ -47,25 +47,31 @@
   /* XSMALL SCREENS */
   .content-main-header {
     padding: 5px;
-    border-radius:0;
-    position:relative;
-    box-shadow:3px 1px 3px rgba(0,0,0,.5);
   }
-  .content-main-header:before,
-  .content-main-header:after {
-    content:'';
-    width:5px;
-    height:100%;
-    background-color: #ffa400;
-    position:absolute;
-    top: 0;
+  #container-left {
+    .content-main-header {
+      border-radius:0;
+      position:relative;
+      box-shadow:3px 1px 3px rgba(0,0,0,.5);
+    }
   }
-  .content-main-header:before {
-    left:-5px;
-    box-shadow:3px 1px 3px rgba(0,0,0,.5);
-    z-index: -1;
-  }
-  .content-main-header:after {
-    right:-5px;
+  #container-left {
+    .content-main-header:before,
+    .content-main-header:after {
+      content:'';
+      width:5px;
+      height:100%;
+      background-color: #ffa400;
+      position:absolute;
+      top: 0;
+    }
+    .content-main-header:before {
+      left:-5px;
+      box-shadow:3px 1px 3px rgba(0,0,0,.5);
+      z-index: -1;
+    }
+    .content-main-header:after {
+      right:-5px;
+    }
   }
 }
