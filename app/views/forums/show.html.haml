@@ -11,7 +11,8 @@
       For admins:
       = link_to 'Edit Forum', edit_forum_path(@forum), class: 'btn btn-success btn-xs' if current_user.has_role? :owner
       = link_to 'Pending Review', forum_path(@forum, status: (params[:status] == 'pending_review' ? nil : 'pending_review')), class: "btn btn-default btn-xs #{'active' if params[:status] == 'pending_review'}" if current_user.has_role? :moderator
-
+- else
+  %br
 .content-container.horizontal-inset.inherit-background
   .row.reset-layout
     .col-sm-2.col-xs-3.centered-text

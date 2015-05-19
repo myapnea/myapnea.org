@@ -7,7 +7,8 @@
       For admins:
       = link_to 'New Forum', new_forum_path, class: 'btn btn-xs btn-primary' if current_user.has_role? :owner
       = link_to 'Pending Review', forums_path(status: (params[:status] == 'pending_review' ? nil : 'pending_review')), class: "btn btn-default btn-xs #{'active' if params[:status] == 'pending_review'}" if current_user.has_role? :moderator
-
+- else
+  %br
 .horizontal-inset
   = form_tag forums_path, method: :get, class: 'form-inline col-md-12 search-bar-forum' do
     .input-group
