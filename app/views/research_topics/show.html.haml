@@ -38,11 +38,14 @@
 -# Display of comments
 .row.horizontal-inset
   .col-sm-4
-    %h4
-      Endorsement:
-      %span.f300= "#{@research_topic.endorsement*100}%"
-    .progress-meter
-      %span{ data: { object: 'research-topic-meter', progress: "#{@research_topic.endorsement*100}" } }
+    - if @research_topic.votes.count > 0
+      %h4
+        Endorsement:
+        %span.f300= "#{@research_topic.endorsement*100}%"
+      .progress-meter
+        %span{ data: { object: 'research-topic-meter', progress: "#{@research_topic.endorsement*100}" } }
   .col-sm-8
     - @topic.posts.offset(1).each do |post|
       = render 'research_topics/comments', comment: post
+- 3.times do
+  %br

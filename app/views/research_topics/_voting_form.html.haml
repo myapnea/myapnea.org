@@ -10,7 +10,8 @@
       %h5.centered-text= research_topic.text
       %hr
       - if research_topic.description.present?
-        %h5.f300= "#{research_topic.description}"
+        .scroll-container-max
+          %h5.f300= "#{research_topic.description}"
         %hr
       .centered-text
         = form_tag vote_path(research_topic: research_topic), remote: research_topic.seeded? do
