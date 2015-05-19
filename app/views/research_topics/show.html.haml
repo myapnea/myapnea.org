@@ -36,5 +36,13 @@
   = render 'research_topics/voting_form', research_topic: @research_topic
 
 -# Display of comments
-- @topic.posts.offset(1).each do |post|
-  = render 'research_topics/comments', comment: post
+.row.horizontal-inset
+  .col-sm-4
+    %h4
+      Endorsement:
+      %span.f300= "#{@research_topic.endorsement*100}%"
+    .progress-meter
+      %span{ data: { object: 'research-topic-meter', progress: "#{@research_topic.endorsement*100}" } }
+  .col-sm-8
+    - @topic.posts.offset(1).each do |post|
+      = render 'research_topics/comments', comment: post

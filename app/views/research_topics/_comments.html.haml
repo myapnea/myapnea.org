@@ -1,67 +1,41 @@
-- index = comment.number
-%a.anchor-top{ name: "c#{index}" }
-
 // Deleted posts will only be viewed by moderators
 // and will only show up as a blank bar
 - if comment.deleted? or comment.user.deleted?
   - if current_user.moderator?
-    .row.horizontal-inset
-      .col-xs-11.col-xs-offset-1
-        .post-container.post-deleted
-          %i.text-muted
-            Post Deleted
+    .well.well-sm.italic
+      Post deleted
 
   // Spam and hidden posts will only be viewed by moderators,
   // and they have the ability to edit them
 - elsif comment.spam? or comment.hidden?
   - if current_user.moderator?
-    .row.horizontal-inset
-      .col-xs-11.col-xs-offset-1
-        .post-container.post-deleted
-          .post-container-right-middle-after
-            = render 'posts/actions/edit', post: comment
-          %i.text-muted
-            Post not visible (marked as spam or hidden)
+    .comment-container.comment-container-spam
+      = render 'research_topics/comment_contents', comment: comment
+      .comment-toolbar
+        = render 'posts/actions/edit', post: comment
+  - elsif current_user == comment.user
+    .wel.well-sm.danger-bcg.italic
+      This post was marked as spam.
 
   // Pending review posts will be visible to everyone
   // and everyone will see that they are pending review,
   // but only moderators and current users can edit them
 - elsif comment.pending_review?
-  .row.horizontal-inset
-    .col-xs-1.reset-layout
-      = render 'forums/user_image', user: comment.user, size: 50
-    .col-xs-11
-      .post-container.post-under-review
-        .post-container-right-after
-          %span.f400
-            Under Review
-          - if current_user.moderator?
-            = render 'posts/actions/pending_review_as_moderator', post: comment
-          - if current_user == comment.user
-            = render 'posts/actions/edit', post: comment
-        - if comment.topic.user == comment.user
-          .post-container-right-bottom-after.original-poster-badge
-            Original Poster
-        .post-user-name-container
-          = render 'users/forum_name', user: comment.user
-        = render 'posts/formatted', post: comment
-        .small.text-muted.f300
-          = comment.created_at.strftime("%-d %B %Y, %-l:%M %p")
+  .comment-container.comment-container-review
+    = render 'research_topics/comment_contents', comment: comment
+    - if current_user.moderator?
+      .comment-toolbar
+        = render 'posts/actions/pending_review_min', post: comment
+        = render 'posts/actions/edit', post: comment
+    - elsif current_user == comment.user
+      .comment-toolbar
+        = render 'posts/actions/edit', post: comment
 
+  // Approved comments will be simply displayed
 - elsif comment.approved?
-  .row.horizontal-inset
-    .col-xs-1.reset-layout
-      = render partial: 'forums/user_image', locals: { user: comment.user, size: 50 }
-    .col-xs-11
-      .post-container
-        - if current_user == comment.user or current_user.moderator?
-          .post-container-right-after
-            = render 'posts/actions/edit', post: comment
-        - if comment.topic.user == comment.user
-          .post-container-right-bottom-after.original-poster-badge
-            Original Poster
-        .post-user-name-container
-          = render 'users/forum_name', user: comment.user
-        = render 'posts/formatted', post: comment
-        .small.text-muted.f300
-          = comment.created_at.strftime("%-d %B %Y, %-l:%M %p")
+  .comment-container
+    = render 'research_topics/comment_contents', comment: comment
+    - if current_user.moderator? or current_user == comment.user
+      .comment-toolbar
+        = render 'posts/actions/edit', post: comment
+
