@@ -3,11 +3,11 @@
     .research-topic-header
       .research-topic-header-details
         = image_tag research_topic.user.photo_url, class: 'img-responsive', style: 'width: 50px; height: 50px; float: left'
-        %p.text-dark6{ style: 'float: left; padding-left: 20px; padding-top: 20px;font-size: 15px;' }
-          %span.f500.primary-blue= research_topic.user.forum_name.present? ? link_to(research_topic.user.forum_name, member_path(research_topic.user.forum_name), class: 'no-underline') : research_topic.user.name
+        %p.text-dark6.question-asked-by
+          = render 'users/forum_name', user: research_topic.user
           asked:
     .research-topic-body
-      %h5.centered-text= research_topic.text
+      %h4.centered-text= research_topic.text
       %hr
       - if research_topic.description.present?
         .scroll-container-max
