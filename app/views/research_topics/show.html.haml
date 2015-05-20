@@ -2,6 +2,7 @@
 
 .content-main-header
   %h1 Research Discussion
+  %h5.f300= link_to 'Back to Research Topics', research_topics_path, class: 'no-underline'
 
 - if current_user.owner? or current_user.moderator?
   .well

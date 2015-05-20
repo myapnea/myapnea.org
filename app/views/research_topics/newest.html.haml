@@ -1,11 +1,15 @@
 .content-main-header
   %h1.f300 Newest Research Questions
+  %h5.f300= link_to 'Back to Research Topics', research_topics_path, class: 'no-underline'
 
-.row
-  .col-sm-6
-    - @research_topics.select.each_with_index{|x,i| i.odd? }.each do |rt|
-      = render partial: 'research_topics/voting_form', locals: { research_topic: rt }
-  .col-sm-6
-    - @research_topics.select.each_with_index{|x,i| i.even? }.each do |rt|
-      = render partial: 'research_topics/voting_form', locals: { research_topic: rt }
+- @research_topics.newest.first.each do |rt|
+  = link_to research_topic_path(rt), class: 'research-topic-index-display' do
+    - if current_user.cast_vote_for?(rt)
+      %span.badge{ class: "#{current_user.endorsed?(rt) ? 'great-bcg' : 'danger-bcg' }" }
+        %span.glyphicon{ class: "#{current_user.endorsed?(rt) ? 'glyphicon-ok' : 'glyphicon-remove' }" }
+      %p= rt.text
+    - else
+      %span.badge
+        Vote!
+      %p= rt.text
 
