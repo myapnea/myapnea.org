@@ -47,7 +47,7 @@
         Endorsement:
         %br.hidden-lg.hidden-md
         %span.f300= "#{(@research_topic.endorsement*100).round(2)}%"
-        %span.f300.italic= "(#{@research_topic.votes.current.count} votes)"
+        %span.f300.italic= pluralize(@research_topic.votes.current.count, 'vote')
       .progress-meter
         %span{ data: { object: 'research-topic-meter', progress: "#{@research_topic.endorsement*100}" } }
       %br
