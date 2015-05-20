@@ -158,7 +158,7 @@ Rails.application.routes.draw do
   match 'vote', to: 'research_topics#vote', via: :post, as: :vote
   match 'change-vote', to: 'research_topics#change_vote', via: :patch, as: :change_vote
 
-  devise_for :users, controllers: { registrations: 'registrations' }
+  devise_for :users, controllers: { registrations: 'registrations' }, path_names: { sign_up: 'join', sign_in: 'login' }, path: ""
 
   resources :users do
     collection do

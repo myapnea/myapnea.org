@@ -39,6 +39,7 @@
     - Link become clickable once the post is approved
     - Members editing their post sets the post back to under review, hence removing the clickable link
   - Community member profiles have been added that show a member's popular posts and forum contributions
+  - Logging in while viewing a forum or topic page now keeps the member on that page and no longer redirects to the dashboard
 - **Moderator Changes**
   - Forum moderators can now get in touch with forum participants to discuss posts that may require moderation or editing
 - **Provider Changes**

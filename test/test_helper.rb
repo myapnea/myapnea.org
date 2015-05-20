@@ -48,7 +48,7 @@ class ActionDispatch::IntegrationTest
                        first_name: user_template.first_name, last_name: user_template.last_name)
     user.save!
     user.update_column :deleted, user_template.deleted?
-    post_via_redirect '/users/sign_in', user: { email: email, password: password }
+    post_via_redirect '/login', user: { email: email, password: password }
     user
   end
 end

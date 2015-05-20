@@ -10,9 +10,17 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  def after_sign_in_path_for(resource)
-    redirect_path = (resource.class == Provider ? account_path : root_path)
-    request.env['omniauth.origin'] || stored_location_for(resource) || redirect_path
+  before_action :store_location
+
+  def store_location
+    if (params[:controller].in?(['forums', 'topics', 'posts']) &&
+        !request.fullpath.match("#{request.script_name}/login") &&
+        !request.fullpath.match("#{request.script_name}/join") &&
+        !request.fullpath.match("#{request.script_name}/password") &&
+        !request.fullpath.match("#{request.script_name}/sign_out") &&
+        !request.xhr?) # don't store ajax calls
+      store_location_in_session
+    end
   end
 
   # Send 'em back where they came from with a slap on the wrist
@@ -73,5 +81,15 @@ class ApplicationController < ActionController::Base
     redirect_to root_path, alert: "You do not have sufficient privileges to access that page." unless current_user.has_role? :moderator
   end
 
+
+  def after_sign_in_path_for(resource)
+    session[:previous_url] || root_path
+  end
+
+  protected
+
+  def store_location_in_session
+    session[:previous_url] = request.fullpath
+  end
 
 end
