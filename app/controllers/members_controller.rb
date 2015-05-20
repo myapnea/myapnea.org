@@ -7,6 +7,7 @@ class MembersController < ApplicationController
   end
 
   def show
+    @posts = @member.posts.current.not_research.includes(:topic).order(created_at: :desc)
   end
 
   private

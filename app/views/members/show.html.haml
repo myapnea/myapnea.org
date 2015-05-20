@@ -1,3 +1,9 @@
+.content-main-header
+  %h1
+    = render 'forums/user_image', user: @member, size: 100
+    = @member.forum_name
+
+-# Admin information
 - if current_user and current_user.has_role? :moderator
   .well
     %h4.f300
@@ -13,36 +19,60 @@
       %dd
         = @member.email
 
-.panel
-  .panel-body
+-# About member
+.content-container
+  .content-body
+    .row
+      .col-sm-3
+      .col-sm-3
+        %p.text-dark8
+          %span.f500.text-dark5 Member since:
+          %br
+          = @member.created_at.strftime("%b %-d, %Y")
+      .col-sm-3
+        %p.text-dark8
+          %span.f500.text-dark5 Number of posts:
+          %br
+          = @posts.count
+      .col-sm-3
+        %p.text-dark8
+          %span.f500.text-dark5 Number of votes:
+          %br
+          = @member.votes.current.count
 
-    %div{ style: 'padding-bottom: 20px;' }
+-# Recent posts
+.horizontal-inset
+  - @posts.each do |post|
+    .recent-post-container
+      .poster-image
+        = render 'forums/user_image_link', user: @member, size: 50
+      .post
+        .post-header
+          %h5.f300.poster-details
+            %span.f500= link_to @member.forum_name, member_path(@member.forum_name), class: 'no-underline darkerer-blue'
+            replied to
+            %br.visible-xs
+            = link_to post.topic.name, forum_topic_path(post.topic.forum.slug, post.topic.slug), class: 'no-underline'
+          %p.small.post-time
+            = post.created_at.strftime("%-d %B %Y, %-l:%M %p")
+        .post-content
+          - if post.description.length > 800
+            = simple_markdown(truncate(post.description, length: 800))
+            .text-right= link_to '...read more', forum_topic_post_path(post.topic.forum.slug, post.topic.slug, post), class: 'no-underline'
+          - else
+            = simple_markdown(post.description)
+        .reply-container
+          - unless post.topic.locked?
+            - new_post = post.topic.posts.new
+            = form_for [post.topic.forum, post.topic, new_post], html: { class: 'form-horizontal' } do |f|
 
-      %h1{ style: 'margin-top:0px' }
-        = render 'forums/user_image', user: @member, size: 100
-        = @member.forum_name
+              - if current_user.has_role? :moderator
+                = f.hidden_field :status, value: 'approved'
 
-    %p.lead
-      %span.f500 Member since:
-      = @member.created_at.strftime("%b %-d, %Y")
-    %p.lead
-      %span.f500 Contributions:
-      = link_to pluralize(@member.posts.where(status: ['approved', 'pending_review']).count, 'Forum Post'), forums_path(a: @member.forum_name)
-
-    .list-group-item.primary-blue-bcg
-      %h5.text-white Most popular community posts:
-    - posts = @member.posts.collect{ |p| { post: p, popularity: p.topic.posts.current.count } }
-    - if posts.present?
-      - posts.sort_by{ |k| k[:popularity] }.first(3).each do |post_hash|
-        - post = post_hash[:post]
-        .list-group-item
-          = render 'posts/formatted', post: post
-          = link_to 'Read more', forum_topic_post_path(post.forum, post.topic, post), class: 'btn btn-primary btn-sm pull-right'
-          .clearfix
-    - else
-      .list-group-item
-        - if @member == current_user
-          %p.lead You haven't contributed to any discussions yet!
-          = link_to 'Join the Conversation', forums_path, class: 'btn btn-primary', style: 'margin: auto'
-        - else
-          %p.lead This user hasn't joined the conversation yet!
+              .reply
+                .reply-user
+                  = image_tag current_user.photo_url, class: 'reply-user-image'
+                .reply-field
+                  = f.text_area :description, rows: 1, style: 'resize: none;', class: 'reply-text-area', id: 'post_description_new', data: { object: 'text-area-autocomplete', mentions: SocialProfile.current.where.not(name: [nil, '']).pluck(:name).uniq.sort }
+                .reply-submit
+                  = f.submit "Reply", class: 'btn btn-primary reply-button', data: { disable_with: "Posting" }

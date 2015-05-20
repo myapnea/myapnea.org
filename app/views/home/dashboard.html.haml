@@ -43,9 +43,10 @@
     .col-sm-4
       = render partial: 'highlights/display', locals: { highlight: highlight }
 
-.recent-posts-container
-  / Forums widget
-  #recent-posts
-    = render 'home/show_from_home'
-  #read-more-recent-posts
-    = render 'home/show_more_button'
+.horizontal-inset
+  .recent-posts-container
+    / Forums widget
+    #recent-posts
+      = render 'home/show_from_home'
+    #read-more-recent-posts
+      = render 'home/show_more_button'
