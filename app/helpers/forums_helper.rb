@@ -13,6 +13,7 @@ module ForumsHelper
     # result = expand_relative_paths(result)
     # result = page_headers(result)
     result = replace_p_with_p_lead(result)
+    result = make_images_responsive(result)
     result = remove_links(result) unless allow_links
     result = target_link_as_blank(result) if target_blank
     result = link_usernames(result)
@@ -37,6 +38,10 @@ module ForumsHelper
 
   def add_table_class(text, table_class)
     text.to_s.gsub(/<table>/, "<table class=\"#{table_class}\">").html_safe
+  end
+
+  def make_images_responsive(text)
+    text.to_s.gsub(/<img/, '<img class="img-responsive"').html_safe
   end
 
   def link_usernames(text)
