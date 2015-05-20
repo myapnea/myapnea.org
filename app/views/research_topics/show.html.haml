@@ -8,8 +8,10 @@
   .well
     %h4
       For admins:
-      = link_to 'Update Progress', edit_research_topic_path(@research_topic), class: 'btn btn-xs btn-primary' if current_user.has_role? :owner
-      = link_to 'Approve Research Topic', forum_topic_path(@forum, @topic, topic: { status: 'approved' }), method: :patch, class: 'btn btn-success btn-xs' unless @topic.status=="approved"
+      - if @topic.status=="approved"
+        = link_to 'Update Progress', edit_research_topic_path(@research_topic), class: 'btn btn-xs btn-primary' if current_user.has_role? :owner
+      - else
+        = link_to 'Approve Research Topic', forum_topic_path(@forum, @topic, topic: { status: 'approved' }), method: :patch, class: 'btn btn-success btn-xs'
 
 - if current_user.cast_vote_for?(@research_topic)
   -# Display of actual research topic

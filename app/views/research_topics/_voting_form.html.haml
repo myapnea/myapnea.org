@@ -26,7 +26,10 @@
                   = radio_button_tag "endorse_#{research_topic.id}", 0, current_user.opposed?(research_topic)
                   %label.endorse-label{ for: "endorse_#{research_topic.id}_0" } Don't endorse
               .col-xs-8
-                = text_area_tag "comment_#{research_topic.id}", params["comment_#{research_topic.id}"], rows: 3, placeholder: 'Add a comment (optional)', style: 'resize: none', class: 'form-control', disabled: current_user.cast_vote_for?(research_topic)
+                %label.text-left{ for: "comment_#{research_topic.id}", style: 'width:100%'}
+                  Add a comment:
+                  %span.f300.italic (optional)
+                = text_area_tag "comment_#{research_topic.id}", params["comment_#{research_topic.id}"], rows: 3, style: 'resize: none', class: 'form-control', disabled: current_user.cast_vote_for?(research_topic)
             %br
             = submit_tag "Submit", class: 'btn btn-primary'
 
