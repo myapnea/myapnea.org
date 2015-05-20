@@ -41,11 +41,14 @@
 .row.horizontal-inset
   .col-sm-4
     - if @research_topic.votes.count > 0
-      %h4
+      %h5.centered-text
         Endorsement:
-        %span.f300= "#{@research_topic.endorsement*100}%"
+        %br.hidden-lg.hidden-md
+        %span.f300= "#{(@research_topic.endorsement*100).round(2)}%"
+        %span.f300.italic= "(#{@research_topic.votes.current.count} votes)"
       .progress-meter
         %span{ data: { object: 'research-topic-meter', progress: "#{@research_topic.endorsement*100}" } }
+      %br
   .col-sm-8
     - @topic.posts.offset(1).each do |post|
       = render 'research_topics/comments', comment: post
