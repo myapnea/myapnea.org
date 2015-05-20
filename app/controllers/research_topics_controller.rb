@@ -83,6 +83,10 @@ class ResearchTopicsController < ApplicationController
     render 'research_topics/accepted/sleep_apnea_brain_plasticity'
   end
 
+  def sleep_apnea_adenotonsillectomy_children
+    render 'research_topics/accepted/sleep_apnea_adenotonsillectomy_children'
+  end
+
   # Voting
 
   def vote
