@@ -79,6 +79,10 @@ class ResearchTopicsController < ApplicationController
     render 'research_topics/accepted/sleep_apnea_body_weight'
   end
 
+  def sleep_apnea_brain_plasticity
+    render 'research_topics/accepted/sleep_apnea_brain_plasticity'
+  end
+
   # Voting
 
   def vote
