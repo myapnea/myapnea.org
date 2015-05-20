@@ -85,9 +85,9 @@ Rails.application.routes.draw do
   end
 
   # Accepted research topics
-  get 'research-topics/accepted/does-treatment-of-sleep-apnea-influence-body-weight', to: "research_topics#sleep_apnea_body_weight"
-  get 'research-topics/accepted/does-sleep-influence-memory-and-brain-plasticity', to: "research_topics#sleep_apnea_brain_plasticity"
-  get 'research-topics/accepted/obstructive-sleep-apnea-and-adenotonsillectomy-in-children', to: "research_topics#sleep_apnea_adenotonsillectomy_children"
+  get 'research-topics/accepted/does-treatment-of-sleep-apnea-influence-body-weight', to: "research_topics#sleep_apnea_body_weight", as: "sleep_apnea_body_weight"
+  get 'research-topics/accepted/does-sleep-influence-memory-and-brain-plasticity', to: "research_topics#sleep_apnea_brain_plasticity", as: "sleep_apnea_brain_plasticity"
+  get 'research-topics/accepted/obstructive-sleep-apnea-and-adenotonsillectomy-in-children', to: "research_topics#sleep_apnea_adenotonsillectomy_children", as: "sleep_apnea_adenotonsillectomy_children"
 
   # Surveys
   resources :surveys do

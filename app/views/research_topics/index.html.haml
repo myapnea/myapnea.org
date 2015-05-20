@@ -63,7 +63,7 @@
 -# Add your own question
 .content-container.horizontal-inset
   .content-body.lighter-blue-bcg
-    %h3.text-light9 Add your own question!
+    %h3.text-light9 Add your own question:
     .list-group-item
       = form_for @new_research_topic, html: { data: { object: "inline-validation"} } do |f|
         - if @new_research_topic.errors.any?
@@ -90,13 +90,14 @@
         = f.submit("Submit", class: "btn btn-success pull-right")
         .clearfix
 
-- if true
-  .content-container
-    .content-body
-      .row
-        .col-md-4.col-sm-4.col-xs-6
-          = link_to forum_topic_path('research', 'does-treatment-of-sleep-apnea-influence-body-weight') do
-            = image_tag 'myapnea/research/sleep-apnea-body-weight.png', class: 'img-responsive'
-        .col-md-4.col-sm-4.col-xs-6
-          = link_to forum_topic_path('research', 'does-sleep-influence-memory-and-brain-plasticity') do
-            = image_tag 'myapnea/research/sleep-apnea-memory.png', class: 'img-responsive'
+.content-container
+  .content-header
+    %h3.text-dark7 Recently accepted research topics:
+  .content-body
+    .row
+      .col-md-4.col-sm-4.col-xs-6
+        = link_to sleep_apnea_body_weight_path do
+          = image_tag 'myapnea/research/sleep-apnea-body-weight.png', class: 'img-responsive'
+      .col-md-4.col-sm-4.col-xs-6
+        = link_to sleep_apnea_brain_plasticity_path do
+          = image_tag 'myapnea/research/sleep-apnea-memory.png', class: 'img-responsive'
