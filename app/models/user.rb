@@ -66,7 +66,7 @@ class User < ActiveRecord::Base
   belongs_to :my_provider, class_name: "User", foreign_key: 'provider_id'
   has_many :answer_sessions, -> { where deleted: false }
   has_many :answers, -> { where deleted: false }
-  has_many :votes
+  has_many :votes, -> { where deleted: false }
   has_one :social_profile, -> { where deleted: false }
   has_many :notifications, -> { where deleted: false }
   has_many :research_topics, -> { where deleted: false }
