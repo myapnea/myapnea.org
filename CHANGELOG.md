@@ -51,6 +51,10 @@
   - Cleaned up the account page, and added easier jump-navigation
   - Cleaned up admin dashboard
 
+### Refactoring
+- Trackable links on landing page now default to local paths if the trackable link is not present
+  - This allows better navigation in local and staging environments
+
 ### Bug Fixes
 - Welcome modal that introduces research will only appear for nonacademic users
 
