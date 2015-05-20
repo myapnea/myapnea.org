@@ -4,7 +4,7 @@
     = render partial: 'layouts/navigation/user_profile_display'
 -else
   %br
-  .centered-text
+  .horizontal-inset.centered-text
     = form_tag user_session_path, method: :post do
       = text_field_tag 'user[email]', nil, placeholder: 'Email', class: "form-control"
       = password_field_tag 'user[password]', nil, placeholder: 'Password', class: "form-control"
