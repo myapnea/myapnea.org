@@ -32,25 +32,15 @@
         %h4 Newest
         .scroll-container
           - @research_topics.newest.first(10).each do |rt|
-            - if current_user.cast_vote_for?(rt)
-              = link_to research_topic_path(rt), class: 'research-topic-index-display' do
+            = link_to research_topic_path(rt), class: 'research-topic-index-display' do
+              - if current_user.cast_vote_for?(rt)
                 %span.badge{ class: "#{current_user.endorsed?(rt) ? 'great-bcg' : 'danger-bcg' }" }
                   %span.glyphicon{ class: "#{current_user.endorsed?(rt) ? 'glyphicon-ok' : 'glyphicon-remove' }" }
                 %p= rt.text
-            - else
-              / Button trigger modal
-              %a.research-topic-index-display{"data-target" => "#modal-rt#{rt.id}-newest", "data-toggle" => "modal", :type => "button"}
+              - else
                 %span.badge
                   Vote!
                 %p= rt.text
-              .modal.fade{ id: "modal-rt#{rt.id}-newest", "aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
-                .modal-dialog{ style: 'z-index: 1050; '}
-                  .modal-content
-                    .modal-header{ style: 'background-color: white; border: none;' }
-                      %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
-                        %span{"aria-hidden" => "true"} ×
-                    .modal-body
-                      = render partial: 'research_topics/voting_form', locals: { research_topic: rt }
           .research-topic-index-display
             = link_to 'More...', newest_research_topics_path
 
@@ -58,28 +48,19 @@
         %h4 Most Discussed
         .scroll-container
           - @research_topics.most_discussed.first(10).each do |rt|
-            - if current_user.cast_vote_for?(rt)
-              = link_to research_topic_path(rt), class: 'research-topic-index-display' do
+            = link_to research_topic_path(rt), class: 'research-topic-index-display' do
+              - if current_user.cast_vote_for?(rt)
                 %span.badge{ class: "#{current_user.endorsed?(rt) ? 'great-bcg' : 'danger-bcg' }" }
                   %span.glyphicon{ class: "#{current_user.endorsed?(rt) ? 'glyphicon-ok' : 'glyphicon-remove' }" }
                 %p= rt.text
-            - else
-              / Button trigger modal
-              %a.research-topic-index-display{"data-target" => "#modal-rt#{rt.id}-discussed", "data-toggle" => "modal", :type => "button"}
+              - else
                 %span.badge
                   Vote!
                 %p= rt.text
-              .modal.fade{ id: "modal-rt#{rt.id}-discussed", "aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
-                .modal-dialog{ style: 'z-index: 1050; '}
-                  .modal-content
-                    .modal-header{ style: 'background-color: white; border: none;' }
-                      %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
-                        %span{"aria-hidden" => "true"} ×
-                    .modal-body
-                      = render partial: 'research_topics/voting_form', locals: { research_topic: rt }
           .research-topic-index-display
             = link_to 'More...', most_discussed_research_topics_path
 
+-# Add your own question
 .content-container.horizontal-inset
   .content-body.lighter-blue-bcg
     %h3.text-light9 Add your own question!

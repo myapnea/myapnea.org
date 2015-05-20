@@ -1,10 +1,10 @@
-#right-nav.col-xs-11.col-xs-offset-1{style:'margin-top:10px; margin-bottom: 10px; padding-right:0;'}
-  %ul.list-group
-    = link_to root_path do
-      %li.list-group-item.hover-slide-left.list-shrink.text-dark8 Home
-    = link_to forums_path, data: { no_turbolink: true } do
-      %li.list-group-item.hover-slide-left.list-shrink.text-dark8 Forums
-    = link_to surveys_path, data: { no_turbolink: true } do
-      %li.list-group-item.hover-slide-left.list-shrink.text-dark8 Research Surveys
-    = link_to research_topics_path do
-      %li.list-group-item.hover-slide-left.list-shrink.text-dark8 Rank the Research
+%ul.list-group
+  = link_to root_path do
+    %li.list-group-item.hover-slide-left.list-shrink.text-dark8 Home
+  = link_to forums_path, data: { no_turbolink: true } do
+    %li.list-group-item.hover-slide-left.list-shrink.text-dark8 Forums
+  = link_to surveys_path, data: { no_turbolink: true } do
+    %li.list-group-item.hover-slide-left.list-shrink.text-dark8 Research Surveys
+  = link_to research_topics_path do
+    %li.list-group-item.hover-slide-left.list-shrink.text-dark8 Rank the Research
+.clearfix

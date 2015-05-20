@@ -65,6 +65,15 @@ class ResearchTopicsController < ApplicationController
     render :show
   end
 
+  def destroy
+    @research_topic.destroy
+    @research_topic.topic.destroy
+    respond_to do |format|
+      format.html { redirect_to research_topics_path }
+      format.json { head :no_content }
+    end
+  end
+
   def vote
     @research_topic = ResearchTopic.find(params[:research_topic_id])
     if current_user.experienced_voter? or @research_topic.seeded?
@@ -86,6 +95,12 @@ class ResearchTopicsController < ApplicationController
       render nothing: true
     end
 
+  end
+
+  def change_vote
+    research_topic = ResearchTopic.find(params[:research_topic_id])
+    current_user.endorsed?(research_topic) ? research_topic.oppose_by(current_user) : research_topic.endorse_by(current_user)
+    redirect_to :back
   end
 
   private

@@ -1,15 +1,14 @@
 .content-main-header
-  %h1.f300 Newest Research Questions
+  %h1.f300 Most Discussed Research Questions
+  %h5.f300= link_to 'Back to Research Topics', research_topics_path, class: 'no-underline'
 
-.panel
-  .panel-body
-    - @research_topics.each do |rt|
-      .list-group-item
-        - if current_user.cast_vote_for?(rt)
-          %span.badge{ class: "#{current_user.endorsed?(rt) ? 'great-bcg' : 'danger-bcg' }" }
-            %span.glyphicon{ class: "#{current_user.endorsed?(rt) ? 'glyphicon-ok' : 'glyphicon-remove' }" }
-          %p.lead= rt.text
-          = link_to 'Read more', research_topic_path(rt), class: 'btn btn-primary btn-small'
-        - else
-          = render partial: 'research_topics/voting_form', locals: { research_topic: rt }
-
+- @research_topics.most_discussed.each do |rt|
+  = link_to research_topic_path(rt), class: 'research-topic-index-display' do
+    - if current_user.cast_vote_for?(rt)
+      %span.badge{ class: "#{current_user.endorsed?(rt) ? 'great-bcg' : 'danger-bcg' }" }
+        %span.glyphicon{ class: "#{current_user.endorsed?(rt) ? 'glyphicon-ok' : 'glyphicon-remove' }" }
+      %p= rt.text
+    - else
+      %span.badge
+        Vote!
+      %p= rt.text

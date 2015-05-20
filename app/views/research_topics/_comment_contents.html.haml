@@ -1,0 +1,9 @@
+.user-image
+  - if comment.user.forum_name.present?
+    = link_to member_path(comment.user.forum_name) do
+      = image_tag comment.user.photo_url, data: { toggle: 'tooltip', container: 'body'}, title: "#{comment.user.forum_name}", class: 'img-responsive'
+  - else
+    = image_tag comment.user.photo_url, class: 'img-responsive'
+.comment-description
+  %p= comment.description
+  %p.small.text-muted= comment.created_at.strftime("%-d %B %Y, %-l:%M %p")
