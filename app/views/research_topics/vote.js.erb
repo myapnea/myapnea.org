@@ -1,12 +1,7 @@
-<% if @vote_failed %>
-  alert("IT FAILED");
-<% end %>
+<% progress = (100 * current_user.votes.count / ENV['research_topic_experience_threshold'].to_i) %>
 
-
-<% progress = (100.0 * current_user.votes.count.to_f / ENV['research_topic_experience_threshold'].to_f).round(2) %>
-console.log(<%= progress == 100.0 %>);
 $("#first-topics-progress-bar").html("<%=j render 'research_topics/progress_bar', progress: progress %>");
-<% if progress == 100.0 %>
+<% if progress == 100 %>
   $("#first-topics-voting-form").remove();
   $("#first-topics-completed").html("<%=j render 'research_topics/ready' if current_user.vote_count == ResearchTopic::INTRO_LENGTH %>");
 <% else %>

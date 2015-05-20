@@ -46,7 +46,6 @@
 //= require reports/my_sleep_apnea
 //= require research_topics
 //= require cleantheme/landing
-//= require cleantheme/rankingUX
 //= require cleantheme/team
 //= require cleantheme/providers
 //= require external/highcharts-4.0.4.src.js

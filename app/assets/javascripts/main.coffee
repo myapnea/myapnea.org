@@ -56,8 +56,7 @@ if typeof Turbolinks isnt 'undefined' and Turbolinks.supported
   mainLoader()
   consentReady()
   surveysReady()
-  rankingUXReady() if rankingUXReady?
-  teamReady() if teamReady?
+  teamReady()
   providersReady() if providersReady?
   questionsReady() if questionsReady?
   landingReady() if landingReady?
@@ -73,6 +72,7 @@ if typeof Turbolinks isnt 'undefined' and Turbolinks.supported
   surveyReportsReady() if surveyReportsReady?
   autocompleteGenderReady() if $("#user_gender").length > 0
   fileDragReady()
+  researchTopicsReady()
 
 $(document).ready(loaders)
 $(document)

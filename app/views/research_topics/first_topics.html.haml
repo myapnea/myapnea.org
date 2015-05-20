@@ -1,7 +1,7 @@
 .row
   .col-sm-8.col-sm-offset-2
     #first-topics-progress-bar
-      = render 'research_topics/progress_bar', progress: (100.0 * current_user.votes.count.to_f / ENV['research_topic_experience_threshold'].to_f).round(2)
+      = render 'research_topics/progress_bar', progress: (100 * current_user.votes.count / ENV['research_topic_experience_threshold'].to_i)
     #first-topics-voting-form
       = render 'research_topics/voting_form', research_topic: @research_topic
     #first-topics-completed

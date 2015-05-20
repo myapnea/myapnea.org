@@ -1,4 +1,4 @@
-$(document).ready ->
+@researchTopicsReady = () ->
   if $("[data-object~='research-topic-meter']").length > 0
     $("[data-object~='research-topic-meter']").each ->
 
