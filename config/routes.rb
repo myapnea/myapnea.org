@@ -73,6 +73,7 @@ Rails.application.routes.draw do
   #match 'research_questions', to: 'research_topics#index', via: :get, as: :research_topics
   #match 'research_questions/new', to: 'research_topics#new', via: :get, as: :new_research_topic
   match 'research_topics_tab', to: "research_topics#research_topics", via: :get, as: :research_topics_ajax
+
   resources :research_topics, path: 'research-topics' do
     collection do
       get :intro
@@ -82,6 +83,9 @@ Rails.application.routes.draw do
       get :all
     end
   end
+
+  # Accepted research topics
+  get 'research-topics/accepted/does-treatment-of-sleep-apnea-influence-body-weight', to: "research_topics#sleep_apnea_body_weight"
 
   # Surveys
   resources :surveys do

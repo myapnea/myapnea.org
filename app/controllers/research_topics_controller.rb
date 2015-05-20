@@ -74,6 +74,13 @@ class ResearchTopicsController < ApplicationController
     end
   end
 
+  # Accepted research topics
+  def sleep_apnea_body_weight
+    render 'research_topics/accepted/sleep_apnea_body_weight'
+  end
+
+  # Voting
+
   def vote
     @research_topic = ResearchTopic.find(params[:research_topic_id])
     if current_user.experienced_voter? or @research_topic.seeded?
