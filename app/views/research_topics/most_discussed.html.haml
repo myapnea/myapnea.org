@@ -2,7 +2,7 @@
   %h1.f300 Most Discussed Research Questions
   %h5.f300= link_to 'Back to Research Topics', research_topics_path, class: 'no-underline'
 
-- @research_topics.most_discussed.each do |rt|
+- @research_topics.each do |rt|
   = link_to research_topic_path(rt), class: 'research-topic-index-display' do
     - if current_user.cast_vote_for?(rt)
       %span.badge{ class: "#{current_user.endorsed?(rt) ? 'great-bcg' : 'danger-bcg' }" }

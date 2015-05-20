@@ -21,7 +21,7 @@ class ResearchTopicsController < ApplicationController
   end
 
   def newest
-    @research_topics = ResearchTopic.approved.newest.to_a
+    @research_topics = ResearchTopic.approved.newest
   end
 
   def most_discussed
