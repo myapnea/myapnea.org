@@ -10,7 +10,11 @@
       For admins:
       - if @topic.status=="approved"
         = link_to 'Update Progress', edit_research_topic_path(@research_topic), class: 'btn btn-xs btn-primary' if current_user.has_role? :owner
-      - else
+      - elsif @topic.status=="pending_review"
+        = link_to 'Approve Research Topic', forum_topic_path(@forum, @topic, topic: { status: 'approved' }), method: :patch, class: 'btn btn-success btn-xs'
+        = link_to 'Reject Research Topic', forum_topic_path(@forum, @topic, topic: { status: 'hidden' }), method: :patch, class: 'btn btn-danger btn-xs'
+      - elsif @topic.status=="hidden"
+        %span.small Currently hidden.
         = link_to 'Approve Research Topic', forum_topic_path(@forum, @topic, topic: { status: 'approved' }), method: :patch, class: 'btn btn-success btn-xs'
 
 - if current_user.cast_vote_for?(@research_topic)
