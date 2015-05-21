@@ -81,6 +81,7 @@ Rails.application.routes.draw do
       get :newest
       get "most-discussed", as: :most_discussed
       get :all
+      get "my-research-topics", as: :my_research_topics
     end
   end
 

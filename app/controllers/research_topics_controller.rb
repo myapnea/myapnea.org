@@ -3,7 +3,7 @@ class ResearchTopicsController < ApplicationController
 
   before_action :set_research_topic,      only: [:show, :edit, :update, :destroy]
 
-  before_action :redirect_beginner,      only: [:newest, :most_discussed, :show, :create]
+  before_action :redirect_beginner,      only: [:newest, :most_discussed, :index, :show, :create, :my_research_topics]
 
   before_action :no_layout,                           only: [ :research_topics ]
   before_action :set_active_top_nav_link_to_research
@@ -28,13 +28,14 @@ class ResearchTopicsController < ApplicationController
     @research_topics = ResearchTopic.approved.most_discussed
   end
 
+  def my_research_topics
+    @research_topics = current_user.my_research_topics
+    @new_research_topic = ResearchTopic.new
+  end
+
   def index
-    if current_user.experienced_voter?
-      @research_topics = ResearchTopic.approved
-      @new_research_topic = ResearchTopic.new
-    else
-      redirect_to current_user.no_votes_user? ? intro_research_topics_path : first_topics_research_topics_path
-    end
+    @research_topics = ResearchTopic.approved
+    @new_research_topic = ResearchTopic.new
   end
 
   def show

@@ -12,14 +12,14 @@
       - ResearchTopic.pending_review.each do |research_topic|
         %li= link_to research_topic.text, research_topic_path(research_topic)
 
-- if current_user.my_research_topics.present?
-  .well
-    %h4.f300
-      = "You've submitted #{pluralize(current_user.my_research_topics.count, 'research topic')}!"
-    %ul
-      - current_user.my_research_topics.each do |rt|
-        %li= link_to(rt.text, research_topic_path(rt)) + " (#{rt.topic.status})"
-
+.content-container
+  .content-body
+    %p.lead
+      Let us know what research questions matter to you most. Join the community in voting and discussing research topics submitted by members like yourself. We will take the most endorsed questions and translate them into Research Highlights and proposals for future studies of sleep apnea.
+  - if current_user.my_research_topics.present?
+    .content-footer
+      %h5.f300
+        = link_to "Check the status of your research topics", my_research_topics_research_topics_path, class: 'no-underline'
 
 
 - if current_user.highlighted_research_topic.present?
