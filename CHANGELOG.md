@@ -45,6 +45,7 @@
 - **Provider Changes**
   - Providers now receive an informational email after updating a completed provider profile
   - Member welcome emails now list their provider if they signed up through a provider page
+  - The providers index can now be searched by provider name
 - Added 'Remember me' to login process to reduce landing page hits for already registered members
 - UI updates
   - Removed large padding on main content area to allow for more dynamic design
