@@ -141,7 +141,7 @@
           = f.password_field :password, placeholder: 'Password', class: 'form-control'
           - if resource.errors.any? and resource.errors[:password].present?
             %span.input-group-addon.signup-error !
-        .input-group{ style: 'margin-left: 15px;' }
+        .input-group{ style: 'margin-left: 15px; text-align: left' }
           .checkbox
             = f.check_box :over_eighteen
             = f.label :over_eighteen, 'I am over the age of 18', style: 'position:relative; top:-5px;'
