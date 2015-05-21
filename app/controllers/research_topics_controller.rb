@@ -76,6 +76,10 @@ class ResearchTopicsController < ApplicationController
   end
 
   # Accepted research topics
+  def accepted_research_topics_index
+    render 'research_topics/accepted/index'
+  end
+
   def sleep_apnea_body_weight
     render 'research_topics/accepted/sleep_apnea_body_weight'
   end
