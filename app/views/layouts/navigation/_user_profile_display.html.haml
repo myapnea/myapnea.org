@@ -1,5 +1,5 @@
 .col-md-5.col-sm-12.col-xs-5.centered-text
-  = link_to social_profile_path do
+  = link_to (current_user.forum_name.present? ? member_path(current_user.forum_name) : social_profile_path) do
     = image_tag current_user.photo_url, class: "user-picture", style: 'max-width:65px; max-height:65px;cursor:pointer'
 #user-profile-header-text.col-md-7.col-sm-12.col-xs-7
   %h4.f300.text-white= current_user.name

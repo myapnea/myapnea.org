@@ -5,10 +5,14 @@
     = "Welcome #{current_user.first_name}!"
 
 / Survey widget
-- if current_user.is_only_academic?
+- if !current_user.has_user_type?
+  .centered-text{ style: 'display:block' }
+    = image_tag 'myapnea/user_types/role_confused.png', class: 'img-responsive', style: 'margin: 0 auto; width: 150px;'
+    %h4.f300{ style: 'margin: 0 10px;' }
+      You have not listed your role in the sleep apnea community. In order to participate in this part of the research community, please
+      = link_to 'select a role.', describe_yourself_path, style: 'text-decoration: none;'
+- elsif current_user.is_only_academic?
   .widget-container
-    / .widget-container-header
-    /   %h3.f300 Surveys
     .widget-container-body
       .row.reset-layout
         - @surveys.each do |survey|
@@ -18,24 +22,17 @@
               = survey.name
             %h6.f300.primary-blue{ style: 'margin-bottom:30px;' }
               = link_to 'View Data', report_survey_path(survey)
-- elsif current_user.assigned_surveys.count != current_user.completed_surveys.count
+- elsif current_user.incomplete_surveys.present?
   .widget-container
     .widget-container-body
-      - if !current_user.has_user_type?
-        .centered-text{ style: 'display:block' }
-          = image_tag 'myapnea/user_types/role_confused.png', class: 'img-responsive', style: 'margin: 0 auto; width: 150px;'
-          %h4.f300{ style: 'margin: 0 10px;' }
-            You have not listed your role in the sleep apnea community. In order to participate in this part of the research community, please
-            = link_to 'select a role.', describe_yourself_path, style: 'text-decoration: none;'
-      - else
-        .row.reset-layout
-          - @surveys.each do |survey|
-            .col-sm-4.centered-text
-              = render partial: 'surveys/partials/survey_progress', locals: { survey: survey }
-
-/ Trending topic widget
-- if current_user.votes.count >= ResearchTopic::INTRO_LENGTH
-  = render 'research_topics/voting_form', research_topic: current_user.highlighted_research_topic
+      .row.reset-layout
+        - @surveys.each do |survey|
+          .col-sm-4.centered-text
+            = render partial: 'surveys/partials/survey_progress', locals: { survey: survey }
+- else
+  / Trending topic widget - displayed if no surveys are available
+  - if current_user.votes.count >= ResearchTopic::INTRO_LENGTH
+    = render 'research_topics/voting_form', research_topic: current_user.highlighted_research_topic
 
 / Highlights widget
 .row.reset-layout
@@ -43,9 +40,13 @@
     .col-sm-4
       = render partial: 'highlights/display', locals: { highlight: highlight }
 
-.recent-posts-container
-  / Forums widget
-  #recent-posts
-    = render 'home/show_from_home'
-  #read-more-recent-posts
-    = render 'home/show_more_button'
+%br
+%br
+.horizontal-inset
+  %h4.centered-text Recent Forum Activity
+  .recent-posts-container
+    / Forums widget
+    #recent-posts
+      = render 'home/show_from_home'
+    #read-more-recent-posts
+      = render 'home/show_more_button'

@@ -73,15 +73,23 @@ Rails.application.routes.draw do
   #match 'research_questions', to: 'research_topics#index', via: :get, as: :research_topics
   #match 'research_questions/new', to: 'research_topics#new', via: :get, as: :new_research_topic
   match 'research_topics_tab', to: "research_topics#research_topics", via: :get, as: :research_topics_ajax
+
   resources :research_topics, path: 'research-topics' do
     collection do
       get :intro
-      get "first-topics", as: :first_topics
+      get 'first-topics', as: :first_topics
       get :newest
-      get "most-discussed", as: :most_discussed
+      get 'most-discussed', as: :most_discussed
       get :all
+      get 'my-research-topics', as: :my_research_topics
+      # Accepted research topics
+      get 'accepted', to: 'research_topics#accepted_research_topics_index', as: :accepted
     end
   end
+
+  get 'research-topics/accepted/does-treatment-of-sleep-apnea-influence-body-weight', to: "research_topics#sleep_apnea_body_weight", as: "sleep_apnea_body_weight"
+  get 'research-topics/accepted/does-sleep-influence-memory-and-brain-plasticity', to: "research_topics#sleep_apnea_brain_plasticity", as: "sleep_apnea_brain_plasticity"
+  get 'research-topics/accepted/obstructive-sleep-apnea-and-adenotonsillectomy-in-children', to: "research_topics#sleep_apnea_adenotonsillectomy_children", as: "sleep_apnea_adenotonsillectomy_children"
 
   # Surveys
   resources :surveys do

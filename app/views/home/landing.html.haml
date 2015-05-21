@@ -141,11 +141,14 @@
           = f.password_field :password, placeholder: 'Password', class: 'form-control'
           - if resource.errors.any? and resource.errors[:password].present?
             %span.input-group-addon.signup-error !
-        .input-group{ style: 'margin-left: 15px;' }
+        .input-group{ style: 'margin-left: 15px; text-align: left' }
           .checkbox
             = f.check_box :over_eighteen
             = f.label :over_eighteen, 'I am over the age of 18', style: 'position:relative; top:-5px;'
         .input-group
           = f.submit 'Sign up!', class: 'form-control', id: 'submit-join'
+
+.warning-bcg.text-dark7.centered-text{ style: 'padding: 10px;'}
+  To enhance the user experience, this site enables the use of cookies and remarketing services to target ads to you based on your visit to MyApnea.Org.
 
 = render partial: 'layouts/partials/landing_video_modal'

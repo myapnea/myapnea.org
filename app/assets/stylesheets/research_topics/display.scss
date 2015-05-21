@@ -4,6 +4,13 @@
   overflow-y: auto;
 }
 
+.question-asked-by {
+  float: left;
+  padding-left: 20px;
+  padding-top: 20px;
+  font-size: 15px;
+}
+
 // Index display
 .research-topic-index-display {
   border: 1px solid #ddd;
@@ -12,6 +19,7 @@
   color: #555;
   .badge {
     float: right;
+    padding: 7px 10px;
   }
   p {
     margin-right: 50px;

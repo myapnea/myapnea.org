@@ -45,8 +45,7 @@
               Original Poster
           %div{ id: "post_#{post.id}_container" }
             .post-user-name-container
-              - unless post.user.forum_name.blank?
-                = link_to post.user.forum_name, member_path(post.user.forum_name)
+              = render 'users/forum_name', user: post.user
             %p.italic
               %i.fa.fa-eye-slash
               Post Is Hidden
@@ -73,8 +72,7 @@
               Original Poster
           %div{ id: "post_#{post.id}_container" }
             .post-user-name-container
-              - unless post.user.forum_name.blank?
-                = link_to post.user.forum_name, member_path(post.user.forum_name)
+              = render 'users/forum_name', user: post.user
             = render 'posts/formatted', post: post
             .small.text-muted{ style: 'font-weight: 300' }
               = post.created_at.strftime("%-d %B %Y, %-l:%M %p")
@@ -96,8 +94,7 @@
               Original Poster
           %div{ id: "post_#{post.id}_container" }
           .post-user-name-container
-            - unless post.user.forum_name.blank?
-              = link_to post.user.forum_name, member_path(post.user.forum_name)
+            = render 'users/forum_name', user: post.user
           = render 'posts/formatted', post: post
           .small.text-muted{ style: 'font-weight: 300' }
             = post.created_at.strftime("%-d %B %Y, %-l:%M %p")

@@ -170,6 +170,26 @@ class ResearchTopicsControllerTest < ActionController::TestCase
 
   end
 
+  # My Topics
+  test "should get my topics for experienced user" do
+    # Displays normal index
+    login(@experienced_user)
+    get :my_research_topics
+    assert_not_nil assigns(:research_topics)
+    assert_response :success
+  end
+
+  test "should get my topics and redirect to intro action for no_votes user" do
+    login(@no_votes_user)
+    get :my_research_topics
+    assert_redirected_to intro_research_topics_path
+  end
+
+  test "should get my topics and redirect to first_topics action for novice_user" do
+    login(@novice_user)
+    get :my_research_topics
+    assert_redirected_to first_topics_research_topics_path
+  end
 
   # Endorsement
   # Test w/ and w/o comment

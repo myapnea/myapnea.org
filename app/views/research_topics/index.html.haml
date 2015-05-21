@@ -12,14 +12,14 @@
       - ResearchTopic.pending_review.each do |research_topic|
         %li= link_to research_topic.text, research_topic_path(research_topic)
 
-- if current_user.my_research_topics.present?
-  .well
-    %h4.f300
-      = "You've submitted #{pluralize(current_user.my_research_topics.count, 'research topic')}!"
-    %ul
-      - current_user.my_research_topics.each do |rt|
-        %li= link_to(rt.text, research_topic_path(rt)) + " (#{rt.topic.status})"
-
+.content-container
+  .content-body
+    %p.lead
+      Let us know what research questions matter to you most. Join the community in voting and discussing research topics submitted by members like yourself. We will take the most endorsed questions and translate them into Research Highlights and proposals for future studies of sleep apnea.
+  - if current_user.my_research_topics.present?
+    .content-footer
+      %h5.f300
+        = link_to "Check the status of your research topics", my_research_topics_research_topics_path, class: 'no-underline'
 
 
 - if current_user.highlighted_research_topic.present?
@@ -34,8 +34,7 @@
           - @research_topics.newest.first(10).each do |rt|
             = link_to research_topic_path(rt), class: 'research-topic-index-display' do
               - if current_user.cast_vote_for?(rt)
-                %span.badge{ class: "#{current_user.endorsed?(rt) ? 'great-bcg' : 'danger-bcg' }" }
-                  %span.glyphicon{ class: "#{current_user.endorsed?(rt) ? 'glyphicon-ok' : 'glyphicon-remove' }" }
+                = render 'research_topics/voting_badge', rt: rt
                 %p= rt.text
               - else
                 %span.badge
@@ -50,8 +49,7 @@
           - @research_topics.most_discussed.first(10).each do |rt|
             = link_to research_topic_path(rt), class: 'research-topic-index-display' do
               - if current_user.cast_vote_for?(rt)
-                %span.badge{ class: "#{current_user.endorsed?(rt) ? 'great-bcg' : 'danger-bcg' }" }
-                  %span.glyphicon{ class: "#{current_user.endorsed?(rt) ? 'glyphicon-ok' : 'glyphicon-remove' }" }
+                = render 'research_topics/voting_badge', rt: rt
                 %p= rt.text
               - else
                 %span.badge
@@ -63,7 +61,7 @@
 -# Add your own question
 .content-container.horizontal-inset
   .content-body.lighter-blue-bcg
-    %h3.text-light9 Add your own question!
+    %h3.text-light9 Propose your own research topic:
     .list-group-item
       = form_for @new_research_topic, html: { data: { object: "inline-validation"} } do |f|
         - if @new_research_topic.errors.any?
@@ -90,13 +88,14 @@
         = f.submit("Submit", class: "btn btn-success pull-right")
         .clearfix
 
-- if false
-  .content-container
-    .content-body
-      .row
-        .col-md-3.col-sm-4.col-xs-6
-          = link_to forum_topic_path('research', 'does-treatment-of-sleep-apnea-influence-body-weight') do
-            = image_tag 'myapnea/research/sleep-apnea-body-weight.png', class: 'img-responsive'
-        .col-md-3.col-sm-4.col-xs-6
-          = link_to forum_topic_path('research', 'does-sleep-influence-memory-and-brain-plasticity') do
-            = image_tag 'myapnea/research/sleep-apnea-memory.png', class: 'img-responsive'
+.content-container
+  .content-header
+    %h3.text-dark7 Recently accepted research topics:
+  .content-body
+    .row
+      .col-md-4.col-sm-4.col-xs-6
+        = link_to sleep_apnea_body_weight_path do
+          = image_tag 'myapnea/research/sleep-apnea-body-weight.png', class: 'img-responsive'
+      .col-md-4.col-sm-4.col-xs-6
+        = link_to sleep_apnea_brain_plasticity_path do
+          = image_tag 'myapnea/research/sleep-apnea-memory.png', class: 'img-responsive'
