@@ -50,6 +50,8 @@
   - Removed large padding on main content area to allow for more dynamic design
   - Cleaned up the account page, and added easier jump-navigation
   - Cleaned up admin dashboard
+- **General Changes**
+  - Added a friendlier 404 page in case a member tries to visit a page that does not exist
 
 ### Refactoring
 - Trackable links on landing page now default to local paths if the trackable link is not present
