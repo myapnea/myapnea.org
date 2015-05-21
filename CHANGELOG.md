@@ -52,6 +52,7 @@
   - Cleaned up admin dashboard
 - **General Changes**
   - Added a friendlier 404 page in case a member tries to visit a page that does not exist
+  - Added retargeting pixel from Connect360 to landing page
 
 ### Refactoring
 - Trackable links on landing page now default to local paths if the trackable link is not present
