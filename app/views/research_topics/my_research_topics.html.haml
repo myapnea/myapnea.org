@@ -46,7 +46,11 @@
       .content-body
         %h5
           Status:
-          %span.f300= rt.topic.status.titlecase
+          %span.f300
+            - if rt.topic.status == "hidden"
+              Rejected
+            - else
+              = rt.topic.status.titlecase
         %h5
           Number of votes:
           %span.f300= rt.votes.current.count

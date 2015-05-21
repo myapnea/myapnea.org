@@ -13,10 +13,10 @@
           = post.created_at.strftime("%-d %B %Y, %-l:%M %p")
       .post-content
         - if post.description.length > 800
-          = simple_markdown(truncate(post.description, length: 800))
+          = simple_markdown(truncate(post.description, length: 800), (post.user.can_post_links? or (post.links_enabled? and post.status == 'approved')))
           .text-right= link_to '...read more', forum_topic_post_path(post.topic.forum.slug, post.topic.slug, post), class: 'no-underline'
         - else
-          = simple_markdown(post.description)
+          = simple_markdown(post.description, (post.user.can_post_links? or (post.links_enabled? and post.status == 'approved')))
       .reply-container
         - unless post.topic.locked?
           - new_post = post.topic.posts.new

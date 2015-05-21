@@ -28,7 +28,7 @@
           %i.text-muted
             Post Hidden
     - elsif post.spam? and current_user and current_user.has_role? :moderator
-      .col-xs-1.reset-layout
+      .col-xs-1.reset-layout.text-right
         = render 'forums/user_image', user: post.user, size: 50
       .col-xs-11
         .post-container.post-spam
@@ -54,7 +54,7 @@
             .small.text-muted.f300
               = post.created_at.strftime("%-d %B %Y, %-l:%M %p")
     - elsif post.pending_review?
-      .col-xs-1.reset-layout
+      .col-xs-1.reset-layout.text-right
         = render 'forums/user_image', user: post.user, size: 50
       .col-xs-11
         .post-container.post-under-review
@@ -77,7 +77,7 @@
             .small.text-muted{ style: 'font-weight: 300' }
               = post.created_at.strftime("%-d %B %Y, %-l:%M %p")
     - else
-      .col-xs-1.reset-layout
+      .col-xs-1.reset-layout.text-right
         = render 'forums/user_image', user: post.user, size: 50
       .col-xs-11
         .post-container
