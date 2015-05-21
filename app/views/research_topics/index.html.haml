@@ -63,7 +63,7 @@
 -# Add your own question
 .content-container.horizontal-inset
   .content-body.lighter-blue-bcg
-    %h3.text-light9 Add your own question:
+    %h3.text-light9 Propose your own research topic:
     .list-group-item
       = form_for @new_research_topic, html: { data: { object: "inline-validation"} } do |f|
         - if @new_research_topic.errors.any?
