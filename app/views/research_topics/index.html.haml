@@ -15,7 +15,9 @@
 .content-container
   .content-body
     %p.lead
-      Let us know what research questions matter to you most. Join the community in voting and discussing research topics submitted by members like yourself. We will take the most endorsed questions and translate them into Research Highlights and proposals for future studies of sleep apnea.
+      Let us know what research questions matter to you most. Join the community in voting and discussing research topics submitted by members like yourself. We will take the most endorsed questions and translate them into
+      = link_to 'research highlights', accepted_research_topics_path, class: 'no-underline'
+      and proposals for future studies of sleep apnea.
   - if current_user.my_research_topics.present?
     .content-footer
       %h5.f300

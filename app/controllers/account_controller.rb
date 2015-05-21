@@ -21,10 +21,9 @@ class AccountController < ApplicationController
   end
 
   def get_started_about_me
-    if current_user
-      @survey = Survey.find_by_slug("about-me")
-      @answer_session = AnswerSession.find_or_create(current_user, @survey)
-    end
+    @survey = Survey.find_by_slug("about-me")
+    @answer_session = AnswerSession.find_or_create(current_user, @survey)
+    render layout: 'application'
   end
 
   def accepts_terms_of_access

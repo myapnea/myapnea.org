@@ -103,7 +103,7 @@ class ResearchTopicsController < ApplicationController
         @research_topic.oppose_by(current_user, params["comment_#{@research_topic.id}"])
       else
         @vote_failed = true
-        flash[:notice] = "Please either endorse or oppose this research topic."
+        flash[:notice] = "Please either endorse or oppose this research topic." unless @research_topic.seeded?
       end
 
       respond_to do |format|
