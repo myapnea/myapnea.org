@@ -20,7 +20,7 @@ class MembersController < ApplicationController
   private
 
     def set_member
-      @member = User.current.find_by_forum_name(params[:forum_name])
+      @member = User.current.where("LOWER(users.forum_name) = ?", params[:forum_name].to_s.downcase).first
     end
 
     def redirect_without_member
