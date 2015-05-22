@@ -17,6 +17,9 @@
     - Shows each research topic, along with its
       - Status (approved, pending review, rejected)
       - Endorsement rating
+  - Added Research Highlights
+    - Shows a list of approved research topics from the community
+    - Each accepted question has a write up on its own separate page with unique styling, as needed
 - **Dashboard**
   - Added ability for owners to dynamically update dashboard highlights
   - Added a stream of recent posts to the dashboard (continously loads all posts)
