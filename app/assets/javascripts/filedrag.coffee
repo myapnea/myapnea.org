@@ -1,5 +1,14 @@
+@isNotInternetExplorer = () ->
+  ua = window.navigator.userAgent
+  msie = ua.indexOf("MSIE ")
+  if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./)) # If Internet Explorer, return version number
+    # parseInt(ua.substring(msie + 5, ua.indexOf(".", msie)))
+    return false
+  else # If another browser
+    return true
+
 @fileDragReady = () ->
-  if window.FormData != undefined
+  if window.FormData != undefined and isNotInternetExplorer()
     $("#filedrag").show()
 
 $(document)
