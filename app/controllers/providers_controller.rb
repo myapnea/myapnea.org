@@ -3,7 +3,7 @@ class ProvidersController < ApplicationController
   before_action :redirect_without_provider, only: [ :show ] # , :edit, :update, :destroy
 
   def index
-    provider_scope = User.where(provider: true).where.not(slug: [nil,''], provider_name: [nil,''])
+    provider_scope = User.current.where(provider: true).where.not(slug: [nil,''], provider_name: [nil,''])
     provider_scope = provider_scope.where("users.provider_name ~* ?", params[:s].to_s.split(/\s/).collect{|l| l.to_s.gsub(/[^\w\d%]/, '')}.collect{|l| "(\\m#{l})"}.join("|")) if params[:s].present?
     @providers = provider_scope.page(params[:page]).per( 12 ).order("LOWER(provider_name)")
   end
