@@ -19,9 +19,13 @@
     %tbody
       - @research_topics.each do |research_topic|
         %tr
-          %td= research_topic.endorsement.present? ? research_topic.endorsement.round(2) : 0
+          %td
+            - if research_topic.endorsement.present?
+              = "#{(research_topic.endorsement * 100).round}%"
+            - else
+              0%
           %td= research_topic.text or research_topic.text_deprecated
-          %td= research_topic.user
+          %td= link_to research_topic.user.forum_name, research_topic.user if research_topic.user
           %td= research_topic.created_at.strftime("%d-%m-%Y")
           %td
             .btn-group

@@ -58,6 +58,6 @@
           %h5
             Endorsement:
             %br.hidden-lg.hidden-md
-            %span.f300= "#{(rt.endorsement*100).round(2)}%"
+            %span.f300= "#{(rt.endorsement*100).round}%"
           .progress-meter
             %span{ data: { object: 'research-topic-meter', progress: "#{rt.endorsement*100}" } }
