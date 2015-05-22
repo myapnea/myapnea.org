@@ -19,18 +19,21 @@
     %span.f500.darkerer-blue= providers.first.users.count
 
 
-
-%table.table.table-striped
-  %thead
-    %tr
-      %th Provider Name
-      %th URL
-      %th Date Joined
-      %th Members
-  %tbody
-    - @providers.sort{ |a,b| a.last_name <=> b.last_name }.each do |provider|
-      %tr
-        %td= link_to (provider.last_name + ', ' + provider.first_name), "mailto:#{provider.email}"
-        %td= provider.slug.present? ? link_to((ENV['website_url'] + '/p/' + provider.slug), (ENV['website_url'] + '/p/'+ provider.slug)) : ""
-        %td= provider.created_at.strftime("%d-%m-%Y %l:%M%P")
-        %td= provider.users.count
+.content-container
+  .content-header
+    %h3 Providers
+  .content-body
+    %table.table.table-striped
+      %thead
+        %tr
+          %th Provider Name
+          %th URL
+          %th Date Joined
+          %th Members
+      %tbody
+        - @providers.sort{ |a,b| a.last_name <=> b.last_name }.each do |provider|
+          %tr
+            %td= link_to (provider.last_name + ', ' + provider.first_name), "mailto:#{provider.email}"
+            %td= provider.slug.present? ? link_to((ENV['website_url'] + '/p/' + provider.slug), (ENV['website_url'] + '/p/'+ provider.slug)) : ""
+            %td= provider.created_at.strftime("%d-%m-%Y %l:%M%P")
+            %td= provider.users.count
