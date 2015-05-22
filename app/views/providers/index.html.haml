@@ -34,7 +34,7 @@
           .col-xs-12.col-sm-6.col-md-4
             .panel
               .panel-body
-                .f500.centered-text{ style: "white-space:nowrap;position:relative;margin-bottom:10px;" }
+                .f500.centered-text{ style: "white-space:nowrap;position:relative;margin-bottom:10px;overflow-x:hidden" }
                   = link_to provider.provider_name, provider_path(provider.slug), data: { toggle: 'tooltip', title: provider.provider_name, container: 'body', placement: 'top' }
                 %div{ style: "text-align:center;padding-bottom:5px;height:145px;line-height:145px" }
                   = link_to image_tag( provider.photo_url, style: 'max-width:100%;max-height:140px' ), provider_path(provider.slug)
