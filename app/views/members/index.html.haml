@@ -2,20 +2,24 @@
 .content-main-header
   %h1= @title
 
-= render 'layouts/partials/per_page', per_page: 40, object_count: @members.total_count
+.horizontal-inset
+  = render 'layouts/partials/per_page', per_page: 40, object_count: @members.total_count
+.clearfix
 
-%table.table.table-striped
-  %thead
-    %tr
-      %th Forum Name
-      %th{ style: "white-space:nowrap" } Forum Posts
-      %th
-  - @members.each do |member|
-    %tr
-      %td{ style: 'white-space:nowrap' }
-        = render 'forums/user_image_no_border', user: member, size: 18
-        = link_to member.forum_name, member_path(member.forum_name)
-      %td
-        = member.posts.where(status: ['pending_review', 'approved']).count
+.content-container
+  .content-body
+    %table.table.table-striped
+      %thead
+        %tr
+          %th Forum Name
+          %th{ style: "white-space:nowrap" } Forum Posts
+          %th
+      - @members.each do |member|
+        %tr
+          %td{ style: 'white-space:nowrap' }
+            = render 'forums/user_image_no_border', user: member, size: 18
+            = link_to member.forum_name, member_path(member.forum_name)
+          %td
+            = member.posts.where(status: ['pending_review', 'approved']).count
 
-%div{ style: "text-align:center" }= paginate @members, theme: 'bootstrap'
+    .centered-text= paginate @members, theme: 'bootstrap'
