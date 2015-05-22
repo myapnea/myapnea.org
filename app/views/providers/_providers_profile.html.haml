@@ -6,18 +6,45 @@
         My Provider Profile
     .content-body
       .form-group
-        %label.social-image-container.control-label.col-sm-3.col-sm-offset-3
-          .social-image-container-left-after
-            = link_to update_account_path(current_user, user: { remove_photo: true }), method: :patch do
-              %button.btn.btn-sm.btn-default X
-          = image_tag current_user.photo_url, :class => "img-responsive img-thumbnail"
-        .col-sm-6
-          %h4.f300
-            Change Photo
-          %br
-          =f.file_field :photo
-
+        .col-sm-3.col-sm-offset-3
+          #profile-image-container
+            = render 'account/profile_photo'
+        .col-sm-3
+          .social-image-updater
+            %h4.f300
+              Change Photo
+            %br
+            .centered-text
+              =f.file_field :photo
+            %br
+            #filedrag{ data: { object: 'dropfile' } }
+              or drop photo here
       %br
+
+      .form-group
+        %label.control-label.col-sm-3
+          Forum Name
+        .col-sm-6
+          .input-group
+            = f.text_field :forum_name, class: 'form-control'
+            %span.input-group-btn
+              = link_to suggest_random_forum_name_path, method: :post, remote: true, data: { toggle: 'tooltip', container: 'body' }, title: 'Generate Random Nickname', class: 'btn btn-default' do
+                %span.glyphicon.glyphicon-random
+          - if errors = current_user.errors[:forum_name] and errors.present?
+            .bs-callout.bs-callout-danger
+              - if 'is invalid'.in?(errors)
+                Please enter a valid forum name that consists of letters
+                %code a-z
+                and
+                numbers
+                %code 0-9
+                only.
+              - if 'has already been taken'.in?(errors)
+                This forum name has already been taken. Please choose another forum name.
+              You may click the
+              %span.glyphicon.glyphicon-random
+              for a suggestion.
+
       .form-group
         %label.control-label.col-sm-3
           Official Provider Name
@@ -27,7 +54,6 @@
           %p.small.centered-text.inline-validation-error
             Please enter your official provider name!
 
-      %br
       .form-group
         %label.control-label.col-sm-3
           Custom URL Name
