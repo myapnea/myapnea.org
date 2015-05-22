@@ -122,7 +122,8 @@ Rails.application.routes.draw do
   match 'forums/terms-and-conditions', to: 'account#terms_and_conditions', via: :get, as: :terms_and_conditions
 
   # Social Section
-  match 'social', to: 'social#overview', via: :get, as: 'social' # show
+  get 'community', to: 'social#overview', via: :get, as: :community
+  # match 'social', to: 'social#overview', via: :get, as: 'social' # show
   match 'social/profile', to: 'social#profile', as: 'social_profile', via: :get #edit
   match 'social/profile', to: 'social#update_profile', as: 'update_social_profile', via: [:put, :post, :patch] # update
   match 'locations', via: :get, as: :locations, format: :json, to: 'social#locations'
@@ -203,6 +204,7 @@ Rails.application.routes.draw do
   get 'research_surveys', to: redirect("surveys")
   get 'update_account', to: redirect("account")
   get 'change_password', to: redirect("account")
+  get 'social', to: redirect("community")
 
 # # Authentication
 #   devise_for :user, skip: [:sessions, :passwords, :confirmations, :registrations]
