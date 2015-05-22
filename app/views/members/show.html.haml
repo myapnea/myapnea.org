@@ -75,7 +75,7 @@
                     .reply-user
                       = image_tag current_user.photo_url, class: 'reply-user-image'
                     .reply-field
-                      = f.text_area :description, rows: 1, style: 'resize: none;', class: 'reply-text-area', id: 'post_description_new', data: { object: 'text-area-autocomplete', mentions: SocialProfile.current.where.not(name: [nil, '']).pluck(:name).uniq.sort }
+                      = f.text_area :description, rows: 1, style: 'resize: none;', class: 'reply-text-area', id: 'post_description_new', data: { object: 'text-area-autocomplete' }
                     .reply-submit
                       = f.submit "Reply", class: 'btn btn-primary reply-button', data: { disable_with: "Posting" }
     - elsif event.class == ResearchTopic and current_user

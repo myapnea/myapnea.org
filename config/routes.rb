@@ -67,6 +67,7 @@ Rails.application.routes.draw do
 
   get "members", to: "members#index", as: :members
   get "members/:forum_name", to: "members#show", as: :member
+  get "members_search", to: "members#search", as: :members_search
 
   # Research Topics
   #match 'research_topic/:id', to: "research_topics#show", as: :research_topic, via: :get

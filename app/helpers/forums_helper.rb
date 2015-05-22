@@ -4,19 +4,15 @@ module ForumsHelper
     simple_markdown(text).gsub(/<blockquote>(.*?)<\/blockquote>/m, '').strip
   end
 
-
   def simple_markdown(text, allow_links = true, target_blank = true, table_class = '')
     result = ''
     markdown = Redcarpet::Markdown.new( Redcarpet::Render::HTML, no_intra_emphasis: true, fenced_code_blocks: true, autolink: true, strikethrough: true, superscript: true, tables: true, lax_spacing: true, space_after_headers: true, underline: true, highlight: true, footnotes: true )
     result = markdown.render(text.to_s)
     result = add_table_class(result, table_class) unless table_class.blank?
-    # result = expand_relative_paths(result)
-    # result = page_headers(result)
     result = replace_p_with_p_lead(result)
     result = make_images_responsive(result)
     result = remove_links(result) unless allow_links
     result = target_link_as_blank(result) if target_blank
-    result = link_usernames(result)
     result.html_safe
   end
 
@@ -33,7 +29,7 @@ module ForumsHelper
   end
 
   def replace_p_with_p_lead(text)
-    text.to_s.gsub(/<p>/, '<p class="lead">').html_safe
+    text.to_s.gsub(/<p>/, '<p class="lead" data-object="link-forum-names">').html_safe
   end
 
   def add_table_class(text, table_class)
@@ -42,15 +38,6 @@ module ForumsHelper
 
   def make_images_responsive(text)
     text.to_s.gsub(/<img/, '<img class="img-responsive"').html_safe
-  end
-
-  def link_usernames(text)
-    usernames = User.current.where.not(forum_name: [nil, '']).pluck(:forum_name).uniq.sort
-    result = text.to_s
-    usernames.each do |username|
-      result = result.gsub(/@#{username}\b/i, "<a href=\"#{ENV['website_url']}/members/#{username}\">@#{username}</a>")
-    end
-    result.html_safe
   end
 
 end
