@@ -7,26 +7,14 @@
     &middot;
     = @title
 
-.panel.panel-default
-  .panel-heading
-    .row
-      .col-md-3
-        %h3 Surveys
-      .col-md-9
-        .row
-          .col-md-10
-            .pull-right
-              %strong Total MyApnea.Org members:
-          .col-md-2
-            .text-info= User.current.count
-          .clearfix
-        .row
-          .col-md-10
-            .pull-right
-              %strong Members with signed consent:
-          .col-md-2
-            .text-info= User.current.where("accepted_consent_at is not null").count
-          .clearfix
-  .panel-body
+.content-container
+  .content-header
+    %h3 Surveys
+    %p
+      %span.f500 Total MyApnea.Org members:
+      %span.text-info= User.current.count
+    %p
+      %span.f500 Members with signed consent:
+      %span.text-info= User.current.where("accepted_consent_at is not null").count
+  .content-body
     = render partial: "surveys/partials/list"
-    = # link_to "+ Create New Survey"

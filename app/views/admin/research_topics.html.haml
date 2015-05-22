@@ -5,25 +5,26 @@
     &middot;
     = @title
 
-.panel.panel-default.research_topics
-  .panel-heading
+.content-container
+  .content-header
     %h3 Research Topics
-  %table.table.table-responsive.table-striped
-    %thead
-      %tr
-        %th Endorsement
-        %th Text
-        %th User
-        %th Submitted
-        %th Options
-    %tbody
-      - @research_topics.each do |research_topic|
+  .content-body
+    %table.table.table-responsive.table-striped
+      %thead
         %tr
-          %td= research_topic.endorsement.present? ? research_topic.endorsement.round(2) : 0
-          %td= research_topic.text or research_topic.text_deprecated
-          %td= research_topic.user
-          %td= research_topic.created_at.strftime("%d-%m-%Y")
-          %td
-            .btn-group
-              = link_to "Moderate", edit_research_topic_path(research_topic), class: "btn btn-success btn-xs"
-              = link_to "Delete", research_topic_path(research_topic), method: :delete, class: "btn btn-danger btn-xs"
+          %th Endorsement
+          %th Text
+          %th User
+          %th Submitted
+          %th Options
+      %tbody
+        - @research_topics.each do |research_topic|
+          %tr
+            %td= research_topic.endorsement.present? ? research_topic.endorsement.round(2) : 0
+            %td= research_topic.text or research_topic.text_deprecated
+            %td= research_topic.user
+            %td= research_topic.created_at.strftime("%d-%m-%Y")
+            %td
+              .btn-group
+                = link_to "Moderate", edit_research_topic_path(research_topic), class: "btn btn-success btn-xs"
+                = link_to "Delete", research_topic_path(research_topic), method: :delete, class: "btn btn-danger btn-xs"
