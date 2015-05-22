@@ -1,20 +1,23 @@
 ## 7.0.0
 
 ### New Features
-- Rank the Research requires users to go through an intro process
-  - Users will see a dedicated page that introduces and explains the feature
-  - Users will then go through ten dedicated questions, one at a time
-  - Users will finally be able to see the full index, which has been restyled
-    - The most popular topic will be pulled above the fold to encourage further engagement
-    - Endorsed questions will be shown as visual links as a proof of deliverable
-    - Questions are binned by category (newest, most discussed)
-    - Users can submit a question on the index page
+- **Rank the Research Overhaul**
+  - Requires users to go through an intro process
+    - Users will see a dedicated page that introduces and explains the feature
+    - Users will then go through ten dedicated questions, one at a time
+    - Users will finally be able to see the full index, which has been restyled
+      - The most popular topic will be pulled above the fold to encourage further engagement
+      - Endorsed questions will be shown as visual links as a proof of deliverable
+      - Questions are binned by category (newest, most discussed)
+      - Users can submit a question on the index page
   - Show page for each research topic includes the discussion
     - Leverages backend functionality of forums, but with custom styling and unique feel
-- Added provider report to admin panel
-  - Shows the number of members who have signed up with each provider
-  - Highlights the provider with the most members
-- Dashboard
+    - Users are able to vote, and easily change their vote, from this page
+  - Added a 'My Research Topics' page
+    - Shows each research topic, along with its
+      - Status (approved, pending review, rejected)
+      - Endorsement rating
+- **Dashboard**
   - Added ability for owners to dynamically update dashboard highlights
   - Added a stream of recent posts to the dashboard (continously loads all posts)
 - **Profile Changes**
@@ -22,9 +25,12 @@
   - Uploaded photos are now renamed to obscure any original filename
   - Members can generate a random forum name, generated names are in the following format:
     - `AdjectiveColorAnimal####`
+  - Each member has their own unique 'social profile' scoped by their forum name
+    - Displays their image and overall participation stats
+    - Displays all posts on the forum and approved research topics, chronologically
 
 ### Enhancements
-- Social sharing
+- **Social Sharing**
   - Forum topics can now be easily shared
     - Each topic can auto generate a tweet, facebook post, and email for sharing
   - Members are able to share that they have just completed a survey after submission
@@ -40,22 +46,28 @@
     - Members editing their post sets the post back to under review, hence removing the clickable link
   - Community member profiles have been added that show a member's popular posts and forum contributions
   - Logging in while viewing a forum or topic page now keeps the member on that page and no longer redirects to the dashboard
-- **Moderator Changes**
+- **Administrative Changes**
   - Forum moderators can now get in touch with forum participants to discuss posts that may require moderation or editing
+  - Added Provider Report
+    - Shows the number of members who have signed up with each provider
+    - Highlights the provider with the most members
 - **Provider Changes**
   - Providers now receive an informational email after updating a completed provider profile
   - Member welcome emails now list their provider if they signed up through a provider page
   - The providers index can now be searched by provider name
-- Added 'Remember me' to login process to reduce landing page hits for already registered members
-- UI updates
-  - Removed large padding on main content area to allow for more dynamic design
-  - Cleaned up the account page, and added easier jump-navigation
-  - Cleaned up admin dashboard
 - **General Changes**
   - Added a friendlier 404 page in case a member tries to visit a page that does not exist
   - Added retargeting pixel from Connect360 to landing page
+  - Added 'Remember me' to login process to reduce landing page hits for already registered members
 - **Consent Changes**
   - Updated the consent to latest approved revision
+- **User Interface**
+  - Updated to remove preset padding around each page
+    - Maximizes screen real estate
+    - Allows for more dynamic pages in the future
+  - Survey module still uses interface with padding, as the surveys were optimized for this
+  - Cleaned up the account page, and added easier jump-navigation
+  - Cleaned up admin dashboard
 
 ### Refactoring
 - Trackable links on landing page now default to local paths if the trackable link is not present
@@ -63,6 +75,8 @@
 
 ### Bug Fixes
 - Welcome modal that introduces research will only appear for nonacademic users
+- Answer session is no longer required to view survey reports
+- Login dropdown on top navigation optimized for internet explorer (text fields no longer spill over)
 
 ## 6.1.2 (May 12, 2015)
 

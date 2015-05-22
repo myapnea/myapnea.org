@@ -2,12 +2,12 @@
 
 .content-main-header
   %h1
-    = link_to 'Forums', forums_path
-    &middot;
-    - unless @forum.new_record?
-      = link_to @forum.name, @forum
-      &middot;
     = @title
+  %p.lead
+    = link_to 'Forums', forums_path
+    - unless @forum.new_record?
+      &middot;
+      = link_to @forum.name, @forum
 
 .content-container
   .content-body

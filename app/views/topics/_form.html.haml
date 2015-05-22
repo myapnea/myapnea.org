@@ -2,14 +2,14 @@
 
 .content-main-header
   %h1
+    = @page_title
+  %p.lead
     = link_to 'Forums', forums_path
     &middot;
     = link_to @forum.name, @forum
-    &middot;
     - unless @topic.new_record?
-      = link_to @topic.name, [@forum, @topic]
       &middot;
-    = @page_title
+      = link_to @topic.name, [@forum, @topic]
 
 .content-container
   .content-body

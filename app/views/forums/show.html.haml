@@ -1,10 +1,10 @@
 - @title = @forum.name
 
 .content-main-header
-  %h3.f300.text-light9
+  %h1
+    = @title
+  %p.lead
     = link_to 'Forums', forums_path, class: 'no-underline'
-    \/
-    %span.f400= @title
 - if current_user and (current_user.has_role? :owner or current_user.has_role? :moderator)
   .well
     %h4
