@@ -50,7 +50,7 @@
     = link_to image_tag('myapnea/icons/email_icon.png', class: 'share-icons-sm'), "mailto:?subject=Check%20out%20this%20conversation%20on%20MyApnea.Org&body=I%20think%20you%20will%20like%20this%20discussion%20happening%20on%20MyApnea.Org:%20#{@topic.name}%20%28#{forum_topic_path(@forum, @topic)}%29"
 
 
-- @posts = @topic.posts.page(params[:page]).per( Topic::POSTS_PER_PAGE )
+- @posts = @topic.posts.includes(:user, topic: :forum).page(params[:page]).per( Topic::POSTS_PER_PAGE )
 
 = render @posts
 
