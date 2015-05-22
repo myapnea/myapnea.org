@@ -3,7 +3,7 @@ class MembersController < ApplicationController
   before_action :redirect_without_member,   only: :show
 
   def index
-    @members = User.current.where("users.id IN (SELECT posts.user_id FROM posts WHERE posts.status IN (?) and posts.deleted = ?)", ['pending_review', 'approved'], false).where.not(forum_name: [nil, '']).order(:forum_name).page(params[:page]).per( 40 )
+    @members = member_scope.page(params[:page]).per( 40 )
   end
 
   def show
@@ -14,8 +14,7 @@ class MembersController < ApplicationController
 
   # GET /search.json?q=QUERY
   def search
-    member_scope = User.current.where("users.forum_name ~* ?", "(\\m#{params[:q].to_s.gsub(/[^a-zA-Z0-9]/, '')})").where("users.id IN (SELECT posts.user_id FROM posts WHERE posts.status IN (?) and posts.deleted = ?)", ['pending_review', 'approved'], false).where.not(forum_name: [nil, '']).order(:forum_name)
-    render json: member_scope.limit(10).pluck(:forum_name)
+    render json: member_scope.where("users.forum_name ~* ?", "(\\m#{params[:q].to_s.gsub(/[^a-zA-Z0-9]/, '')})").limit(10).pluck(:forum_name)
   end
 
   private
@@ -26,6 +25,10 @@ class MembersController < ApplicationController
 
     def redirect_without_member
       empty_response_or_root_path(members_path) unless @member
+    end
+
+    def member_scope
+      User.current.where("users.id IN (SELECT posts.user_id FROM posts WHERE posts.status IN (?) and posts.deleted = ?)", ['pending_review', 'approved'], false).where.not(forum_name: [nil, '']).order("LOWER(forum_name)")
     end
 
 end
