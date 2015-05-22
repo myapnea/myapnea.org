@@ -66,6 +66,10 @@ class Post < ActiveRecord::Base
     self.status == 'approved'
   end
 
+  def is_first_post?
+    self.topic.posts.first == self
+  end
+
   # Reply Emails sends emails if the following conditions are met:
   # 1) The topic subscriber has email notifications enabled
   # AND

@@ -10,7 +10,7 @@ class HomeController < ApplicationController
       @active_top_nav_link = :home
 
       @surveys = current_user.visible_surveys.first(3)
-      @posts = Post.visible_for_user(current_user).where.not(user_id: current_user.id).includes(:user, topic: :forum).order(created_at: :desc).page(params[:page]).per(10)
+      @posts = posts
 
       render layout: 'layouts/application-no-central-padding'
     else
