@@ -62,21 +62,22 @@
               .text-right= link_to '...read more', forum_topic_post_path(event.topic.forum.slug, event.topic.slug, event), class: 'no-underline'
             - else
               = simple_markdown(event.description)
-          .reply-container
-            - unless event.topic.locked?
-              - new_post = event.topic.posts.new
-              = form_for [event.topic.forum, event.topic, new_post], html: { class: 'form-horizontal' } do |f|
+          - if current_user
+            .reply-container
+              - unless event.topic.locked?
+                - new_post = event.topic.posts.new
+                = form_for [event.topic.forum, event.topic, new_post], html: { class: 'form-horizontal' } do |f|
 
-                - if current_user.has_role? :moderator
-                  = f.hidden_field :status, value: 'approved'
+                  - if current_user.has_role? :moderator
+                    = f.hidden_field :status, value: 'approved'
 
-                .reply
-                  .reply-user
-                    = image_tag current_user.photo_url, class: 'reply-user-image'
-                  .reply-field
-                    = f.text_area :description, rows: 1, style: 'resize: none;', class: 'reply-text-area', id: 'post_description_new', data: { object: 'text-area-autocomplete', mentions: SocialProfile.current.where.not(name: [nil, '']).pluck(:name).uniq.sort }
-                  .reply-submit
-                    = f.submit "Reply", class: 'btn btn-primary reply-button', data: { disable_with: "Posting" }
-    - elsif event.class == ResearchTopic
+                  .reply
+                    .reply-user
+                      = image_tag current_user.photo_url, class: 'reply-user-image'
+                    .reply-field
+                      = f.text_area :description, rows: 1, style: 'resize: none;', class: 'reply-text-area', id: 'post_description_new', data: { object: 'text-area-autocomplete', mentions: SocialProfile.current.where.not(name: [nil, '']).pluck(:name).uniq.sort }
+                    .reply-submit
+                      = f.submit "Reply", class: 'btn btn-primary reply-button', data: { disable_with: "Posting" }
+    - elsif event.class == ResearchTopic and current_user
       %div{ style: 'width: 80%; margin: auto'}
         = render 'research_topics/voting_form', research_topic: event

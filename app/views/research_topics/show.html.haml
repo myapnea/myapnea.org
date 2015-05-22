@@ -25,7 +25,7 @@
         = image_tag @research_topic.user.photo_url, class: 'img-responsive', style: 'width: 50px; height: 50px; float: left'
         %p.text-dark6.question-asked-by
           = render 'users/forum_name', user: @research_topic.user
-          asked:
+          proposed:
     .research-topic-body
       %h4.centered-text= @research_topic.text
       - if @research_topic.description.present?
@@ -37,9 +37,9 @@
       %p.lead.horizontal-inset
         %i.fa.fa-lg{ class: "#{current_user.endorsed?(@research_topic) ? 'fa-thumbs-up' : 'fa-thumbs-down' }" }
         &nbsp;
-        You've
+        You
         = current_user.endorsed?(@research_topic) ? "agreed" : "disagreed"
-        with this topic.
+        that this is an important research topic.
         = link_to 'I changed my mind', change_vote_path(research_topic_id: @research_topic.id), method: :patch, class: 'btn btn-default pull-right'
 - else
   -# Display voting form

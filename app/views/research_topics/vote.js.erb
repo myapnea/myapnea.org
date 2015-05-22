@@ -4,6 +4,7 @@
   $("#first-topics-error-form").addClass("hidden");
 <% end %>
 
+$(document).scrollTop(0);
 <% progress = (100 * current_user.votes.count / ENV['research_topic_experience_threshold'].to_i) %>
 
 $("#first-topics-progress-bar").html("<%=j render 'research_topics/progress_bar', progress: progress %>");
