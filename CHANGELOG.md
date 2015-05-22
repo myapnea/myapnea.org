@@ -17,9 +17,6 @@
     - Shows each research topic, along with its
       - Status (approved, pending review, rejected)
       - Endorsement rating
-- **Added provider report to admin panel**
-  - Shows the number of members who have signed up with each provider
-  - Highlights the provider with the most members
 - **Dashboard**
   - Added ability for owners to dynamically update dashboard highlights
   - Added a stream of recent posts to the dashboard (continously loads all posts)
@@ -33,7 +30,7 @@
     - Displays all posts on the forum and approved research topics, chronologically
 
 ### Enhancements
-- Social sharing
+- **Social Sharing**
   - Forum topics can now be easily shared
     - Each topic can auto generate a tweet, facebook post, and email for sharing
   - Members are able to share that they have just completed a survey after submission
@@ -49,20 +46,19 @@
     - Members editing their post sets the post back to under review, hence removing the clickable link
   - Community member profiles have been added that show a member's popular posts and forum contributions
   - Logging in while viewing a forum or topic page now keeps the member on that page and no longer redirects to the dashboard
-- **Moderator Changes**
+- **Administrative Changes**
   - Forum moderators can now get in touch with forum participants to discuss posts that may require moderation or editing
+  - Added Provider Report
+    - Shows the number of members who have signed up with each provider
+    - Highlights the provider with the most members
 - **Provider Changes**
   - Providers now receive an informational email after updating a completed provider profile
   - Member welcome emails now list their provider if they signed up through a provider page
   - The providers index can now be searched by provider name
-- Added 'Remember me' to login process to reduce landing page hits for already registered members
-- UI updates
-  - Removed large padding on main content area to allow for more dynamic design
-  - Cleaned up the account page, and added easier jump-navigation
-  - Cleaned up admin dashboard
 - **General Changes**
   - Added a friendlier 404 page in case a member tries to visit a page that does not exist
   - Added retargeting pixel from Connect360 to landing page
+  - Added 'Remember me' to login process to reduce landing page hits for already registered members
 - **Consent Changes**
   - Updated the consent to latest approved revision
 - **User Interface**
@@ -70,6 +66,8 @@
     - Maximizes screen real estate
     - Allows for more dynamic pages in the future
   - Survey module still uses interface with padding, as the surveys were optimized for this
+  - Cleaned up the account page, and added easier jump-navigation
+  - Cleaned up admin dashboard
 
 ### Refactoring
 - Trackable links on landing page now default to local paths if the trackable link is not present
