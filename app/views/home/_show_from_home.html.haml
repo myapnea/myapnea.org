@@ -5,7 +5,11 @@
     .post
       .post-header
         %h5.f300.poster-details
-          %span.f500= post.user.forum_name.present? ? link_to(post.user.forum_name, member_path(post.user.forum_name), class: 'no-underline darkerer-blue') : post.user.name
+          %span.f500
+            - if post.user.forum_name.present?
+              = link_to post.user.forum_name, member_path(post.user.forum_name), class: 'no-underline darkerer-blue'
+            - else
+              Anonymous
           = post.is_first_post? ? "started the topic" : "replied to"
           %br.visible-xs
           = link_to post.topic.name, forum_topic_path(post.topic.forum.slug, post.topic.slug), class: 'no-underline'
