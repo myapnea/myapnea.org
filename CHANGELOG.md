@@ -82,6 +82,7 @@
 - Login dropdown on top navigation optimized for internet explorer (text fields no longer spill over)
 - Fixed an issue for forum moderators where topics with hidden posts would no longer be viewable on forum index
 - Videos on learn page no longer cover the navigation bar when using Internet Explorer
+- Improved legibility of call-out text on the landing page
 
 ## 6.1.3 (May 26, 2015)
 
