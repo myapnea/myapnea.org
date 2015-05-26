@@ -55,7 +55,7 @@
             %i.fa.fa-eye-slash
             Post Is Hidden
           .text-muted{ style: 'text-decoration:line-through' }
-            = simple_markdown(post.description, false)
+            = simple_markdown(sanitize(post.description).gsub('&gt;', '>'), false)
           .small.text-muted{ style: 'font-weight: 300' }
             = post.created_at.strftime("%-d %B %Y, %-l:%M %p")
   - elsif post.pending_review?
