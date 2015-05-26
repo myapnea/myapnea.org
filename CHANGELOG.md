@@ -81,6 +81,11 @@
 - Answer session is no longer required to view survey reports
 - Login dropdown on top navigation optimized for internet explorer (text fields no longer spill over)
 
+## 6.1.3 (May 26, 2015)
+
+### Bug Fix
+- Fixed an issue where members could post images and links on forum without having explicit permission to post links or images
+
 ## 6.1.2 (May 12, 2015)
 
 ### Bug Fix
