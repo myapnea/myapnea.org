@@ -7,7 +7,7 @@ class MembersController < ApplicationController
   end
 
   def show
-    @posts = @member.posts.current.not_research.includes(topic: :forum).order(created_at: :desc)
+    @posts = @member.posts.current.visible_for_user.not_research.includes(topic: :forum).order(created_at: :desc)
     @research_topics = @member.research_topics.approved.includes(:user, topic: [:forum, :posts]).order(created_at: :desc)
     @events = (@posts + @research_topics).sort_by(&:created_at).reverse!
   end
