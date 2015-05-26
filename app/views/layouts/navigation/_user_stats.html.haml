@@ -2,7 +2,7 @@
   %p.small.f500.text-dark5
     POSTS
   %h5.text-white5
-    = current_user.approved_posts.count
+    = current_user.posts.visible_for_user.not_research.count
 .col-xs-4.user-stats
   %p.small.f500.text-dark5
     SURVEYS

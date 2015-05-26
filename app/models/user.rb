@@ -73,7 +73,6 @@ class User < ActiveRecord::Base
   has_many :forums, -> { where deleted: false }
   has_many :topics, -> { where deleted: false }
   has_many :posts, -> { where deleted: false }
-  has_many :approved_posts, -> { where deleted: false, status: 'approved' }, through: :posts, source: :topic
   has_many :subscriptions
   has_many :users, class_name: "User", foreign_key: "provider_id"
 
