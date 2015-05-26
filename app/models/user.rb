@@ -248,8 +248,9 @@ class User < ActiveRecord::Base
     self.accepted_terms_of_access_at.present?
   end
 
+  # Should not compare against RECENT_UPDATE_DATE if it is in the future
   def accepted_most_recent_update?
-    self.accepted_update_at.present? and (self.accepted_update_at > Date.parse(RECENT_UPDATE_DATE).at_noon)
+    (self.accepted_update_at.present? and (self.accepted_update_at > Date.parse(RECENT_UPDATE_DATE).at_noon)) or (Date.parse(RECENT_UPDATE_DATE).at_noon > Time.now )
   end
 
   def this_weeks_votes
