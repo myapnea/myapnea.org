@@ -1,4 +1,4 @@
-## 6.1.3
+## 6.1.3 (May 26, 2015)
 
 ### Bug Fix
 - Fixed an issue where members could post images and links on forum without having explicit permission to post links or images
