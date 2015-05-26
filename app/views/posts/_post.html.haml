@@ -5,22 +5,24 @@
 .horizontal-inset
   .row.reset-layout
     - if post.deleted? or post.user.deleted?
-      .col-xs-1.reset-layout
-      .col-xs-11
+      .col-xs-1.reset-layout{ style: "display:none" }
+      .col-xs-11{ style: 'display:none' }
         .post-container.post-deleted
           .post-container-right-middle-after
             = "##{current_index}"
           %i.text-muted
             Post Deleted
     - elsif (post.hidden? or post.spam?) and not (current_user and current_user.has_role? :moderator)
-      .col-xs-12{ style: 'display:none' }
+      .col-xs-1.reset-layout{ style: 'display:none' }
+      .col-xs-11{ style: 'display:none' }
         .post-container.post-deleted
           .post-container-right-middle-after
             = "##{current_index}"
           %i.text-muted
             = post.spam? ? "Post Marked as Spam" : "Post Hidden"
     - elsif post.hidden? and current_user and current_user.has_role? :moderator
-      .col-xs-12
+      .col-xs-1.reset-layout
+      .col-xs-11
         .post-container.post-deleted
           .post-container-right-middle-after
             = render 'posts/actions/edit', post: post

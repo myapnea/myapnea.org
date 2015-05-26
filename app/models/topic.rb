@@ -87,12 +87,12 @@ class Topic < ActiveRecord::Base
     end
   end
 
-  def last_visible_post(current_user)
-    if current_user and current_user.has_role? :moderator
-      self.posts.where(status: ['approved', 'pending_review']).last
-    else
-      self.posts.visible_for_user(current_user ? current_user.id : nil).where(status: ['approved', 'pending_review']).last
-    end
+  def visible_posts
+    self.posts.current.visible_for_user
+  end
+
+  def last_visible_post
+    self.visible_posts.includes(:user).order(:created_at).last
   end
 
   def has_posts_pending_review?

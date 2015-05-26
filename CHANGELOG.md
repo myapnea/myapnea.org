@@ -80,6 +80,7 @@
 - Welcome modal that introduces research will only appear for nonacademic users
 - Answer session is no longer required to view survey reports
 - Login dropdown on top navigation optimized for internet explorer (text fields no longer spill over)
+- Fixed an issue for forum moderators where topics with hidden posts would no longer be viewable on forum index
 
 ## 6.1.3 (May 26, 2015)
 
