@@ -168,21 +168,38 @@
       margin-bottom: 15px;
       padding:0 10px;
     }
-    input {
-      margin: 10px auto;
-    }
     .input-group {
-      width:100%;
+      max-width: 500px;
+      margin: auto;
       margin-top:10px;
       margin-bottom:10px;
       font-size:16px;
       input {
         margin: 0px auto;
+        border-radius: 3px;
       }
       .signup-error {
         color: #FCF2F2;
         background-color: #DF7667;
       }
     }
+    #over18.input-group {
+      padding-left: 15px;
+      text-align: left;
+      label {
+        position:relative;
+        top:-5px;
+      }
+    }
   }
+}
+
+
+/* SIGN UP FORMS */
+
+.signup-form {
+  margin-top:50px;
+  margin-bottom:50px;
+  background-color: rgb(255, 255, 255);
+  background-color: rgba(255, 255, 255, .8);
 }
