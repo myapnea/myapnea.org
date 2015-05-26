@@ -21,16 +21,18 @@ class Map
       results = Geocoder.search(u.current_sign_in_ip)
       result = results.first
       if result
+        country = result.country.to_s
+        country = "United States of America" if country == "United States"
         state_pair = MAP_STATES_AND_CODES.select{|name, code| name.downcase == result.state.to_s.downcase}.first
-        country_pair = MAP_COUNTRIES_AND_CODES.select{|name, code| name.downcase == result.country.to_s.downcase}.first
+        country_pair = MAP_COUNTRIES_AND_CODES.select{|name, code| name.downcase == country.downcase}.first
         if state_pair
           u.update(state_code: state_pair[1], country_code: 'us')
-          Rails.logger.debug "USER ##{u.id} UPDATED: '#{u.state_code}' '#{u.country_code}' State: #{result.state}  Country: #{result.country}"
+          Rails.logger.debug "USER ##{u.id} UPDATED: '#{u.state_code}' '#{u.country_code}' State: #{result.state}  Country: #{country}"
         elsif country_pair
           u.update(country_code: country_pair[1])
-          Rails.logger.debug "USER ##{u.id} UPDATED: '#{u.country_code}' State: #{result.state}  Country: #{result.country}"
+          Rails.logger.debug "USER ##{u.id} UPDATED: '#{u.country_code}' State: #{result.state}  Country: #{country}"
         else
-          Rails.logger.debug "User ##{u.id} did not find a match for\n    State: #{result.state}\n  Country: #{result.country}"
+          Rails.logger.debug "User ##{u.id} did not find a match for\n    State: #{result.state}\n  Country: #{country}"
         end
       else
         Rails.logger.debug "User ##{u.id} no result found for #{u.current_sign_in_ip}"
