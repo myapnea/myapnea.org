@@ -1,4 +1,3 @@
-## DID YOU UPDATE RECENT_UPDATE_DATE IN USER.rb to RECENT_UPDATE_DATE = "2015-06-01"
 module WwwMyapneaOrg
   module VERSION #:nodoc:
     MAJOR = 7
