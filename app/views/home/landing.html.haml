@@ -1,6 +1,5 @@
 - @page_title = 'MyApnea | Focusing Sleep Apnea Research on Patient Outcomes'
 / WELCOME / JOIN
-/ <div class="row-fullscreen" style="" id="slide-1">
 #slide1.row.row-fullscreen.reset-layout
   .col-md-6.col-md-offset-1
     %h2.text-white
@@ -17,17 +16,11 @@
 
   / COMMUNITY TRACKER
   #community-tracker.row.reset-layout
-    .col-sm-5.col-sm-offset-1
+    .col-sm-8.col-sm-offset-2
       %h2.lighterer-blue
         Current community:
         = succeed " members" do
           %span.primary-blue= number_with_delimiter User.current.count
-    .col-sm-6
-      = image_tag 'myapnea/team/redline_200x200.jpg', class: 'round-img round-img-orange hidden-xs'
-      = image_tag 'myapnea/testimonials/larry-testimonial-cropped.png', class: 'round-img round-img-blue hidden-xs'
-      = image_tag 'myapnea/testimonials/steve-testimonial-cropped.jpg', class: 'round-img round-img-orange hidden-xs'
-      = image_tag 'myapnea/testimonials/DEAN.jpg', class: 'round-img round-img-blue hidden-xs'
-
 / MISSION
 #slide2.row.row-fullscreen.reset-layout
   .text-content-container

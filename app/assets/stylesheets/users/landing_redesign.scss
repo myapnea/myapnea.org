@@ -1,5 +1,6 @@
 #slide1 {
-  background-image: asset-url('myapnea/welcome/img-large/unsplash-standing-colors.jpg');
+  // background-image: asset-url('myapnea/welcome/img-large/unsplash-standing-colors.jpg');
+  background-image: asset-url('myapnea/welcome/img-large/myapnea_landing_05262015.jpg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -43,17 +44,6 @@
     width:100%;
     padding-bottom:0px;
     text-align:center;
-    .round-img {
-      width:20%;
-      height:auto;
-      border-radius:50%;
-      margin: 0 1%;
-      // Controls for xlarge screens
-      max-width: 120px;
-      max-height:120px;
-    }
-    .round-img-orange { border:5px solid #FFA400; }
-    .round-img-blue { border:5px solid #5999DE; }
   }
 }
 
