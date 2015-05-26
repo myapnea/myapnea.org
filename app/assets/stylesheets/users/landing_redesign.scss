@@ -1,3 +1,14 @@
+// Main CTA
+#btn-join {
+  font-size: 21px;
+  padding: 10px;
+  width: 50%;
+  min-width: 190px;
+  background-color: #FFA400;
+  border: 1px solid white;
+  border-radius: 100px;
+}
+
 #slide1 {
   // background-image: asset-url('myapnea/welcome/img-large/unsplash-standing-colors.jpg');
   background-image: asset-url('myapnea/welcome/img-large/myapnea_landing_05262015.jpg');
@@ -14,15 +25,6 @@
   h2 {}
   h3 {}
   h4 { margin-top: 30px; }
-  #btn-join {
-    font-size: 21px;
-    padding: 10px;
-    width: 50%;
-    min-width: 190px;
-    background-color: #FFA400;
-    border: 1px solid white;
-    border-radius: 100px;
-  }
   #landing-video-play {
     margin-top: 20px;
     background-color:rgba(250,250,250,.43);
