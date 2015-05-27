@@ -1,14 +1,25 @@
-%h1
-  Highlights
-  &middot;
-  = link_to 'New Highlight', new_highlight_path, class: 'btn btn-primary'
+- @title = 'Highlights'
+.content-main-header
+  %h1= @title
+
+.well
+  %h4
+    = link_to 'New Highlight', new_highlight_path, class: 'btn btn-primary'
+
 
 - if Highlight.current.where(displayed: true).count > 3
   .alert.alert-danger
     %p.lead
       There are more than 3 items currently marked as 'displayed'. Only three will be displayed at a time, so you should untag certain items to make sure only the three most important items will be displayed.
 
-- @highlights.each do |highlight|
-  %hr
-  = render partial: 'highlights/display', locals: { highlight: highlight }
-
+.content-container
+  .content-body
+    - if @highlights.count == 0
+      %p.lead.centered-text{ style: 'margin-top: 20px' }
+        You can
+        = link_to 'create highlights', new_highlight_path
+        here that promote content on the site on members' dashboards.
+    - else
+      - @highlights.each do |highlight|
+        %hr
+        = render 'highlights/display', highlight: highlight
