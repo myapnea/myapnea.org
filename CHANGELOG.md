@@ -55,6 +55,7 @@
     - Shows the number of members who have signed up with each provider
     - Highlights the provider with the most members
   - Added Progress Report
+  - Admin location report now better shows unmatched locations
 - **Provider Changes**
   - Providers now receive an informational email after updating a completed provider profile
   - Member welcome emails now list their provider if they signed up through a provider page
