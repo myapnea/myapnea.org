@@ -92,6 +92,14 @@ class ResearchTopicsController < ApplicationController
     render 'research_topics/accepted/sleep_apnea_adenotonsillectomy_children'
   end
 
+  def sleep_apnea_diabetes
+    render 'research_topics/accepted/sleep_apnea_diabetes'
+  end
+
+  def sleep_apnea_nighttime_oxygen_use
+    render 'research_topics/accepted/sleep_apnea_nighttime_oxygen_use'
+  end
+
   # Voting
 
   def vote

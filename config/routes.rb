@@ -91,6 +91,8 @@ Rails.application.routes.draw do
   get 'research-topics/accepted/does-treatment-of-sleep-apnea-influence-body-weight', to: "research_topics#sleep_apnea_body_weight", as: "sleep_apnea_body_weight"
   get 'research-topics/accepted/does-sleep-influence-memory-and-brain-plasticity', to: "research_topics#sleep_apnea_brain_plasticity", as: "sleep_apnea_brain_plasticity"
   get 'research-topics/accepted/obstructive-sleep-apnea-and-adenotonsillectomy-in-children', to: "research_topics#sleep_apnea_adenotonsillectomy_children", as: "sleep_apnea_adenotonsillectomy_children"
+  get 'research-topics/accepted/link-between-type-2-diabetes-and-sleep-apnea', to: "research_topics#sleep_apnea_diabetes", as: "sleep_apnea_diabetes"
+  get 'research-topics/accepted/can-nighttime-oxygen-replace-cpap-for-treatment-of-sleep-apnea', to: "research_topics#sleep_apnea_nighttime_oxygen_use", as: "sleep_apnea_nighttime_oxygen_use"
 
   # Surveys
   resources :surveys do
