@@ -1,0 +1,22 @@
+.highlight-container
+  - if current_user.has_role?(:owner)
+    .highlight-container-right-after
+      - if highlight.displayed?
+        = link_to highlight_path(highlight, highlight: { displayed: false }), method: :patch do
+          %span.glyphicon.glyphicon-star.primary-orange
+      - else
+        = link_to highlight_path(highlight, highlight: { displayed: true }), method: :patch do
+          %span.glyphicon.glyphicon-star-empty.text-dark4
+      %br
+      = link_to edit_highlight_path(highlight) do
+        %i.fa.fa-pencil
+  .centered-text
+    = link_to ((highlight.link.present? and safe_url?(highlight.link)) ? highlight.link : "#") do
+      - if highlight.photo_url.present?
+        = image_tag highlight.photo, class: 'img-responsive', style: 'margin: auto;'
+      - elsif highlight.display_date.present?
+        = render 'static/home_news_image', day: highlight.display_date.day.to_s, month: Date::MONTHNAMES[highlight.display_date.month][0..2], year: highlight.display_date.year.to_s[2..3]
+      %h4.f300.primary-orange
+        = highlight.title
+      %h5.f300
+        = highlight.description
