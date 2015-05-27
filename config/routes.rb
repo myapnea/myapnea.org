@@ -158,7 +158,9 @@ Rails.application.routes.draw do
   get 'admin/version-stats' => 'admin#version_stats', as: 'admin_version_stats'
   get 'admin/cross-tabs' => 'admin#cross_tabs', as: 'admin_cross_tabs'
   get 'admin/reports/location' => 'admin#location', as: 'admin_reports_location'
+  get 'admin/reports/progress' => 'admin#progress_report', as: 'admin_progress_report'
   get 'admin/providers' => 'admin#providers'
+
 
   # Development/System
   get 'pprn' => 'application#toggle_pprn_cookie'

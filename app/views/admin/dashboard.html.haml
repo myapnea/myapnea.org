@@ -23,7 +23,7 @@
 
 .content-container
   .content-header
-    %h3.f300 Version Management
+    %h3.f300 Aggregate Reports
   .content-body
     .row.centered-text
       .col-sm-3
@@ -31,9 +31,9 @@
           .blue-block-link
             Current Version Stats
       .col-sm-3
-        = link_to highlights_path, class: 'no-underline' do
+        = link_to admin_progress_report_path, class: 'no-underline' do
           .blue-block-link
-            Dashboard Highlights
+            Progress Report
 
 .content-container
   .content-header
@@ -51,10 +51,14 @@
 
 .content-container
   .content-header
-    %h3.f300 Research Results
+    %h3.f300 Website Features
   .content-body
     .row.centered-text
       .col-sm-3
         = link_to admin_research_topics_path, class: 'no-underline' do
           .blue-block-link
             Research Topics
+      .col-sm-3
+        = link_to highlights_path, class: 'no-underline' do
+          .blue-block-link
+            Dashboard Highlights
