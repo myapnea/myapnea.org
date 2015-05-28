@@ -95,6 +95,11 @@ class StaticController < ApplicationController
     render 'static/sleep_tips/sleep_tips'
   end
 
+  ## THEME
+
+  def sizes
+  end
+
   ## NON-STATIC
   ## TODO: Move out of here
 
