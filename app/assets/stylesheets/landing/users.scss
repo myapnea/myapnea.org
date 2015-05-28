@@ -1,0 +1,59 @@
+/* PARTNERS BANNER */
+#partners-banner {
+  background-color:white;
+  background-image: none;
+  min-height:115px;
+  border-top: 5px solid #FFA400;
+  border-bottom:5px solid #5999DE;
+  padding-top:20px;
+}
+
+.partners-img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width:100%;
+}
+
+
+span#privacy-policy:hover {
+  cursor:pointer;
+}
+
+#panel-sign-up h4 {
+  margin-bottom: 15px;
+  padding:0 10px;
+}
+
+#panel-sign-up {
+  input {
+    margin: 10px auto;
+  }
+  .input-group {
+    width:100%;
+    margin-top:10px;
+    margin-bottom:10px;
+    font-size:16px;
+    input {
+      margin: 0px auto;
+    }
+    .signup-error {
+      color: #FCF2F2;
+      background-color: #DF7667;
+    }
+  }
+}
+
+/* If input groups are needed */
+#panel-sign-up .input-group {
+}
+#panel-sign-up .input-group-addon {
+}
+
+#submit-join {
+  background-color: #5999DE;
+  color:white;
+  font-size: 18px;
+  padding: 10px;
+  height: auto;
+}

@@ -1,16 +1,14 @@
-#slide-5.row.row-fullscreen
-  .col-md-10.col-md-offset-1.col-lg-8.col-lg-offset-2.panel.panel-signup
+#slide4.row.row-fullscreen
+  .panel.signup-form.col-md-10.col-md-offset-1.col-lg-8.col-lg-offset-2
     #panel-sign-up.panel-body
-      %h1.darker-blue Wake up to a better future!
+      %h1.darker-blue
+        Wake up to a better future!
       %h4
         By joining, you gain access to a unique group of resources and a growing research community. It's fast, simple, and completely free of cost to join and start making a difference!
         %br
         %br
-        All of your information is protected.
-        - if current_page?(root_path) or true
-          %span#privacy-policy.lighter-blue{ data: { toggle: 'modal', target: '#privacyModal' } } See our privacy policy.
-        - else # current_page?(new_user_registration_path)
-          = link_to 'See our privacy policy.', privacy_path, target: '_blank'
+        All of your information is completely protected.
+        %span#privacy-policy.lighter-blue{ data: { toggle: 'modal', target: '#privacyModal' } } See our privacy policy.
       = form_for(resource, url: registration_path(resource), class: 'form-horizontal', method: :post) do |f|
         - if resource.errors.any?
           .bs-callout.bs-callout-danger#error_explanation
@@ -41,10 +39,10 @@
           = f.password_field :password, placeholder: 'Password', class: 'form-control'
           - if resource.errors.any? and resource.errors[:password].present?
             %span.input-group-addon.signup-error !
-        .input-group{ style: 'margin-left: 15px;' }
+        #over18.input-group
           .checkbox
             = f.check_box :over_eighteen
-            = f.label :over_eighteen, 'I am over the age of 18', style: 'position:relative; top:-5px;'
+            = f.label :over_eighteen, 'I am over the age of 18'
         .input-group
           = f.submit 'Sign up!', class: 'form-control', id: 'submit-join'
 

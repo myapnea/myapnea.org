@@ -1,6 +1,5 @@
 - @page_title = 'MyApnea | Focusing Sleep Apnea Research on Patient Outcomes'
 / WELCOME / JOIN
-/ <div class="row-fullscreen" style="" id="slide-1">
 #slide1.row.row-fullscreen.reset-layout
   .col-md-6.col-md-offset-1
     %h2.text-white
@@ -10,24 +9,17 @@
     %h4.text-white
       Wake up to a better future - join now!
     = link_to 'Join the Community', '#signup', class: 'btn btn-primary', id: 'btn-join'
-  - if false
-    .col-md-3.col-md-offset-1.hidden-sm.hidden-xs
-      .thumbnail#landing-video-play{ data: { object: 'play-video', toggle:"modal", target:'#landingVideoModal' } }
-        %i.fa.fa-play-circle
+  .col-md-3.col-md-offset-1.hidden-sm.hidden-xs
+    .thumbnail#landing-video-play{ data: { object: 'play-video', toggle:"modal", target:'#landingVideoModal' } }
+      %i.fa.fa-play-circle
 
   / COMMUNITY TRACKER
   #community-tracker.row.reset-layout
-    .col-sm-5.col-sm-offset-1
+    .col-sm-8.col-sm-offset-2
       %h2.lighterer-blue
         Current community:
         = succeed " members" do
           %span.primary-blue= number_with_delimiter User.current.count
-    .col-sm-6
-      = image_tag 'myapnea/team/redline_200x200.jpg', class: 'round-img round-img-orange hidden-xs'
-      = image_tag 'myapnea/testimonials/larry-testimonial-cropped.png', class: 'round-img round-img-blue hidden-xs'
-      = image_tag 'myapnea/testimonials/steve-testimonial-cropped.jpg', class: 'round-img round-img-orange hidden-xs'
-      = image_tag 'myapnea/testimonials/DEAN.jpg', class: 'round-img round-img-blue hidden-xs'
-
 / MISSION
 #slide2.row.row-fullscreen.reset-layout
   .text-content-container
@@ -94,56 +86,7 @@
     = image_tag 'myapnea/welcome/img-small/bwh_logo.jpg', class: 'partners-img img-responsive', id: 'partner-BWH'
 
 %a{:name => "signup"}
-#slide4.row.reset-layout
-  - resource = User.new
-  .col-md-10.col-md-offset-1.col-lg-8.col-lg-offset-2.panel.panel-signup
-    #panel-sign-up.panel-body
-      %h1.darker-blue Wake up to a better future!
-      %h4
-        By joining, you gain access to a unique group of resources and a growing research community. It's fast, simple, and completely free of cost to join and start making a difference!
-        %br
-        %br
-        All of your information is completely protected.
-        - if current_page?(root_path) or true
-          %span#privacy-policy.lighter-blue{ data: { toggle: 'modal', target: '#privacyModal' } } See our privacy policy.
-        - else # current_page?(new_user_registration_path)
-          = link_to 'See our privacy policy.', privacy_path, target: '_blank'
-      = form_for(resource, url: registration_path(resource), class: 'form-horizontal', method: :post) do |f|
-        - if resource.errors.any?
-          .bs-callout.bs-callout-danger#error_explanation
-            %h4
-              = pluralize(resource.errors.count, "error")
-              prohibited this user from being saved
-            %ul
-              - resource.errors.messages.each do |key, msg|
-                - if key == :over_eighteen
-                  %li= msg.join(", ")
-                - else
-                  %li= "#{key.to_s.titleize} #{msg.join(", ")}"
-        = f.hidden_field :beta_opt_in, value: true
-        = f.hidden_field :provider_id
-        .input-group
-          = f.text_field :first_name, placeholder: 'First name', class: 'form-control'
-          - if resource.errors.any? and resource.errors[:first_name].present?
-            %span.input-group-addon.signup-error !
-        .input-group
-          = f.text_field :last_name, placeholder: 'Last name', class: 'form-control'
-          - if resource.errors.any? and resource.errors[:last_name].present?
-            %span.input-group-addon.signup-error !
-        .input-group
-          = f.email_field :email, placeholder: 'Email address', class: 'form-control'
-          - if resource.errors.any? and resource.errors[:email].present?
-            %span.input-group-addon.signup-error !
-        .input-group
-          = f.password_field :password, placeholder: 'Password', class: 'form-control'
-          - if resource.errors.any? and resource.errors[:password].present?
-            %span.input-group-addon.signup-error !
-        .input-group{ style: 'margin-left: 15px; text-align: left' }
-          .checkbox
-            = f.check_box :over_eighteen
-            = f.label :over_eighteen, 'I am over the age of 18', style: 'position:relative; top:-5px;'
-        .input-group
-          = f.submit 'Sign up!', class: 'form-control', id: 'submit-join'
+= render 'users/signup_form', resource: User.new
 
 .warning-bcg.text-dark7.centered-text{ style: 'padding: 10px;'}
   To enhance the user experience, this site enables the use of cookies and remarketing services to target ads to you based on your visit to MyApnea.Org.
