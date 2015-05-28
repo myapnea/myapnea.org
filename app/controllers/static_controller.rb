@@ -10,6 +10,16 @@ class StaticController < ApplicationController
   end
 
   def advisory
+    @group1 = []; @group2 = []; @group3 = []
+    @pc["members"].each_with_index do |member, index|
+      if index % 3 == 0
+        @group1.push(member)
+      elsif index % 2 == 0
+        @group3.push(member)
+      else
+        @group2.push(member)
+      end
+    end
   end
 
   def partners
