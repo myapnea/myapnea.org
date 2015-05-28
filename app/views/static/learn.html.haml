@@ -1,7 +1,7 @@
 - @active_top_nav_link = :learn
 - @page_title = 'Learn About Sleep Apnea Symptoms, Sleep Apnea Treatments, and Why We Care'
 .content-main-header
-  %h1.f300 Learn more about sleep apnea!
+  %h1 Learn more about sleep apnea!
 
 .content-container
   .full-screen-video
@@ -11,13 +11,12 @@
 .content-container
   .content-body
     %p.lead= @pc['content']
-    %br
     - @pc['questions'].each do |question|
-      %h4.f300= question['question']
-      %h5.f300.spaced{ style: 'margin-bottom:20px;'}= question['answer']
+      %h2.f300= question['question']
+      %p.f300.spaced= question['answer']
     %ul
       - @pc['resources'].each do |resource|
-        %li.f300= markdown resource['description']
+        %li= markdown resource['description']
     %br
 
 .content-container
@@ -27,13 +26,12 @@
 
 .content-container
   .content-header
-    %h3.f300 Additional Resources
+    %h2.f300.centered Additional Resources
   .content-body
     %p.lead
       The following professional and non-profit organizations provide educational resources and are working with MyApnea.Org to promote the Network and sleep apnea research.
     %ul
       %li
-        The
         = link_to "International Surgical Sleep Society (ISSS)", 'http://surgicalsleep.org/'
         is a non-profit organization dedicated to fostering health worldwide by improving the care of people with sleep disorders. Formed in 2006, the society has members from around the globe.
       %li
