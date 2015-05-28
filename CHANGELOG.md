@@ -1,6 +1,8 @@
 ## 7.1.0
 
 ### Enhancements
+- **Profile Changes**
+  - Posts on member profiles now link to the exact post instead of just the topic
 - **Forum Moderation Changes**
   - Forum moderators can no longer delete topics and posts
   - Spam and hidden posts now are displayed in a more consistent way for moderators
