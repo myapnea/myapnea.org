@@ -144,8 +144,3 @@
     %p.lead.centered-text{ style: 'margin-top: 20px' }
       - withdrawn_consent_count = Report.where(user_id: user_scope.where(accepted_consent_at: nil).select(:id)).where.not(value: [nil, ""]).uniq.select(:user_id).count
       = number_with_delimiter withdrawn_consent_count
-
-
-
-
-
