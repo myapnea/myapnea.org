@@ -7,8 +7,9 @@ class TopicsController < ApplicationController
 
   before_action :check_approved_terms
 
-  before_action :set_viewable_topic,      only: [ :show, :destroy, :subscription ]
-  before_action :set_editable_topic,      only: [ :edit, :update, :destroy ]
+  before_action :set_viewable_topic,      only: [ :show, :subscription ]
+  before_action :set_editable_topic,      only: [ :edit, :update ]
+  before_action :set_deletable_topic,     only: [ :destroy ]
 
   before_action :redirect_without_topic,  only: [ :show, :edit, :update, :destroy, :subscription ]
 
@@ -52,7 +53,7 @@ class TopicsController < ApplicationController
   def destroy
     @topic.destroy
     respond_to do |format|
-      format.html { redirect_to @forum }
+      format.html { redirect_to @forum, notice: 'Topic was successfully deleted.' }
       format.json { head :no_content }
     end
   end
@@ -76,8 +77,11 @@ class TopicsController < ApplicationController
     end
 
     def set_editable_topic
-      # @topic = current_user.all_topics.not_banned.where( locked: false ).find_by_slug(params[:id])
-      @topic = current_user.all_topics.where(forum_id: @forum.id).find_by_slug(params[:id])
+      @topic = current_user.editable_topics.where(forum_id: @forum.id).find_by_slug(params[:id])
+    end
+
+    def set_deletable_topic
+      @topic = current_user.deletable_topics.where(forum_id: @forum.id).find_by_slug(params[:id])
     end
 
     def redirect_without_topic

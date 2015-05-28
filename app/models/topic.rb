@@ -49,6 +49,10 @@ class Topic < ActiveRecord::Base
     (not self.locked? and self.user == current_user) or current_user.has_role?(:moderator)
   end
 
+  def deletable_by?(current_user)
+    self.user == current_user or current_user.has_role? :owner
+  end
+
   def get_or_create_subscription(current_user)
     current_user.subscriptions.where( topic_id: self.id ).first_or_create
   end

@@ -1,5 +1,10 @@
 ## 7.1.0
 
+### Enhancements
+- **Forum Moderation Changes**
+  - Forum moderators can no longer delete topics and posts
+  - Spam and hidden posts now are displayed in a more consistent way for moderators
+  - Site owners can now delete topics and posts
 
 ## 7.0.0
 

@@ -3,6 +3,7 @@ require "test_helper"
 class TopicsControllerTest < ActionController::TestCase
 
   setup do
+    @owner = users(:owner)
     @moderator = users(:moderator_1)
     @valid_user = users(:user_1)
   end
@@ -228,7 +229,7 @@ class TopicsControllerTest < ActionController::TestCase
   end
 
   test "should not update topic for user who did not create topic" do
-    login(users(:user_1))
+    login(@valid_user)
     put :update, forum_id: forum, id: topics(:one), topic: { name: "Updated Topic Name" }
     assert_not_nil assigns(:forum)
     assert_nil assigns(:topic)
@@ -236,7 +237,7 @@ class TopicsControllerTest < ActionController::TestCase
   end
 
   test "should update topic for topic creator" do
-    login(users(:user_1))
+    login(@valid_user)
     put :update, forum_id: forum, id: topics(:two), topic: { name: "Updated Topic Name" }
     assert_not_nil assigns(:forum)
     assert_not_nil assigns(:topic)
@@ -263,7 +264,7 @@ class TopicsControllerTest < ActionController::TestCase
   end
 
   test "should not destroy topic for user who did not create topic" do
-    login(users(:user_1))
+    login(@valid_user)
     assert_difference('Topic.current.count', 0) do
       delete :destroy, forum_id: forum, id: topics(:one)
     end
@@ -273,7 +274,7 @@ class TopicsControllerTest < ActionController::TestCase
   end
 
   test "should destroy topic for topic creator" do
-    login(users(:user_1))
+    login(@valid_user)
     assert_difference('Topic.current.count', -1) do
       delete :destroy, forum_id: forum, id: topics(:two)
     end
@@ -282,14 +283,24 @@ class TopicsControllerTest < ActionController::TestCase
     assert_redirected_to assigns(:forum)
   end
 
-  test "should destroy topic for forum moderator" do
-    login(@moderator)
+  test "should destroy topic for owner" do
+    login(@owner)
     assert_difference('Topic.current.count', -1) do
       delete :destroy, forum_id: forum, id: topic
     end
     assert_not_nil assigns(:forum)
     assert_not_nil assigns(:topic)
     assert_redirected_to assigns(:forum)
+  end
+
+  test "should not destroy topic for moderator" do
+    login(@moderator)
+    assert_difference('Topic.current.count', 0) do
+      delete :destroy, forum_id: forum, id: topics(:one)
+    end
+    assert_not_nil assigns(:forum)
+    assert_nil assigns(:topic)
+    assert_redirected_to [assigns(:forum), assigns(:topic)]
   end
 
 end

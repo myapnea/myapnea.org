@@ -33,7 +33,7 @@ class Post < ActiveRecord::Base
   end
 
   def deletable_by?(current_user)
-    self.user == current_user or current_user.has_role? :moderator
+    self.user == current_user or current_user.has_role? :owner
   end
 
   def number

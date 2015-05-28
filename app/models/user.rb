@@ -134,29 +134,46 @@ class User < ActiveRecord::Base
     user_types = [('Adult diagnosed with sleep apnea' if self.adult_diagnosed?), ('Adult at-risk of sleep apnea' if self.adult_at_risk?), ('Caregiver of adult(s) with sleep apnea' if self.caregiver_adult?), ('Caregiver of child(ren) with sleep apnea' if self.caregiver_child?), ('Professional care provider' if self.provider?), ('Researcher' if self.researcher?) ].reject(&:blank?)
   end
 
-  def all_topics
-    if self.has_role? :moderator
-      Topic.current
-    else
-      self.topics.where(locked: false)
-    end
-  end
-
   def viewable_topics
-    if self.has_role? :moderator
+    if self.has_role? :moderator or self.has_role? :owner
       Topic.current
     else
       Topic.viewable_by_user(self.id)
     end
   end
 
-  def all_posts
-    if self.has_role? :moderator
+  def editable_topics
+    if self.has_role? :moderator or self.has_role? :owner
+      Topic.current
+    else
+      self.topics.where(locked: false)
+    end
+  end
+
+  def deletable_topics
+    if self.has_role? :owner
+      Topic.current
+    else
+      self.topics
+    end
+  end
+
+  def editable_posts
+    if self.has_role? :moderator or self.has_role? :owner
       Post.current.with_unlocked_topic
     else
       self.posts.with_unlocked_topic
     end
   end
+
+  def deletable_posts
+    if self.has_role? :owner
+      Post.current.with_unlocked_topic
+    else
+      self.posts.with_unlocked_topic
+    end
+  end
+
 
   # All comments created in the last day, or over the weekend if it is Monday
   # Ex: On Monday, returns tasks created since Friday morning (Time.now - 3.day)
@@ -175,6 +192,10 @@ class User < ActiveRecord::Base
 
   def name
     "#{first_name} #{last_name}"
+  end
+
+  def name_and_email
+    "#{first_name} #{last_name} <#{email}>"
   end
 
   def self.scoped_users(email=nil, role=nil)

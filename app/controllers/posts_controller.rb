@@ -70,7 +70,7 @@ class PostsController < ApplicationController
     @post.destroy
 
     respond_to do |format|
-      format.html { redirect_to forum_topic_post_path(@forum, @topic, @post) }
+      format.html { redirect_to forum_topic_post_path(@forum, @topic, @post), notice: 'Post was successfully deleted.' }
       format.json { head :no_content }
     end
   end
@@ -101,11 +101,11 @@ class PostsController < ApplicationController
     end
 
     def set_editable_post
-      @post = current_user.all_posts.with_unlocked_topic.where(topic_id: @topic.id).find_by_id(params[:id])
+      @post = current_user.editable_posts.with_unlocked_topic.where(topic_id: @topic.id).find_by_id(params[:id])
     end
 
     def set_deletable_post
-      @post = current_user.all_posts.where(topic_id: @topic.id).find_by_id(params[:id])
+      @post = current_user.deletable_posts.where(topic_id: @topic.id).find_by_id(params[:id])
     end
 
     def redirect_without_post
