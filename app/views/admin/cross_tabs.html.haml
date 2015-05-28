@@ -27,7 +27,7 @@
               - count = @user_values.select{ |key, h| h[:sex] == sex and h[:referral].include?(referral) }.count
               %td
                 = count
-                %span.text-muted= '(' + ((count.to_f/total_count.to_f)*100).to_s + ')'
+                %span.text-muted= '(' + ("%0.1f%" % (count.to_f*100/total_count.to_f)) + ')'
             %td
               = total_count
         %tr
@@ -37,7 +37,7 @@
             - count = @user_values.select{ |key, h| h[:sex].present? and h[:referral].include?(referral) }.count
             %td
               = count
-              %span.text-muted= '(' + ((count.to_f/total_count.to_f)*100).to_s + ')'
+              %span.text-muted= '(' + ("%0.1f%" % (count.to_f*100/total_count.to_f)) + ')'
           %td
             = total_count
 
@@ -65,7 +65,7 @@
               - count = @user_values.select{ |key, h| h[:race].present? and h[:race].include?(race) and h[:referral].include?(referral) }.count
               %td
                 = count
-                %span.text-muted= '(' + ((count.to_f/total_count.to_f)*100).to_s + ')'
+                %span.text-muted= '(' + ("%0.1f%" % (count.to_f*100/total_count.to_f)) + ')'
             %td
               = total_count
         %tr
@@ -75,7 +75,7 @@
             - count = @user_values.select{ |key, h| h[:race].present? and h[:referral].include?(referral) }.count
             %td
               = count
-              %span.text-muted= '(' + ((count.to_f/total_count.to_f)*100).to_s + ')'
+              %span.text-muted= '(' + ("%0.1f%" % (count.to_f*100/total_count.to_f)) + ')'
           %td
             = total_count
 
@@ -103,7 +103,7 @@
               - count = @user_values.select{ |key, h| h[:wealth] == wealth_level and h[:referral].include?(referral) }.count
               %td
                 = count
-                %span.text-muted= '(' + ((count.to_f/total_count.to_f)*100).to_s + ')'
+                %span.text-muted= '(' + ("%0.1f%" % (count.to_f*100/total_count.to_f)) + ')'
             %td
               = total_count
         %tr
@@ -113,7 +113,7 @@
             - count = @user_values.select{ |key, h| h[:wealth].present? and h[:referral].include?(referral) }.count
             %td
               = count
-              %span.text-muted= '(' + ((count.to_f/total_count.to_f)*100).to_s + ')'
+              %span.text-muted= '(' + ("%0.1f%" % (count.to_f*100/total_count.to_f)) + ')'
           %td
             = total_count
 
@@ -141,7 +141,7 @@
               - count = @user_values.select{ |key, h| h[:education] == education_level and h[:referral].include?(referral) }.count
               %td
                 = count
-                %span.text-muted= '(' + ((count.to_f/total_count.to_f)*100).to_s + ')'
+                %span.text-muted= '(' + ("%0.1f%" % (count.to_f*100/total_count.to_f)) + ')'
             %td
               = total_count
         %tr
@@ -151,7 +151,7 @@
             - count = @user_values.select{ |key, h| h[:education].present? and h[:referral].include?(referral) }.count
             %td
               = count
-              %span.text-muted= '(' + ((count.to_f/total_count.to_f)*100).to_s + ')'
+              %span.text-muted= '(' + ("%0.1f%" % (count.to_f*100/total_count.to_f)) + ')'
           %td
             = total_count
 
@@ -178,7 +178,7 @@
               - count = @user_values.select{ |key, h| h[:age] == age_display and h[:referral].include?(referral) }.count
               %td
                 = count
-                %span.text-muted= '(' + ((count.to_f/total_count.to_f)*100).to_s + ')'
+                %span.text-muted= '(' + ("%0.1f%" % (count.to_f*100/total_count.to_f)) + ')'
             %td
               = total_count
         %tr
@@ -188,6 +188,6 @@
             - count = @user_values.select{ |key, h| h[:age].present? and h[:referral].include?(referral) }.count
             %td
               = count
-              %span.text-muted= '(' + ((count.to_f/total_count.to_f)*100).to_s + ')'
+              %span.text-muted= '(' + ("%0.1f%" % (count.to_f*100/total_count.to_f)) + ')'
           %td
             = total_count
