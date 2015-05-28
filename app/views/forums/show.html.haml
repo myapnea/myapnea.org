@@ -27,4 +27,4 @@
         %span.input-group-btn{ style: 'width: 1%;' }
           = submit_tag 'Search', class: 'btn btn-primary', name: nil
 
-= render partial: 'forums/show', locals: { forum: @forum, topic_limit: nil }
+= render 'forums/show', forum: @forum, topic_limit: nil
