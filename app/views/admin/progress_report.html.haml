@@ -78,7 +78,7 @@
           %td= number_with_delimiter white_count
           %td= number_with_delimiter black_count
 
-    - date_array = report_scope.where(survey_slug: 'about-me', question_slug: 'date-of-birth', encounter: 'baseline' ).pluck(:value).collect{|d| (Date.parse(d) rescue nil)}.compact
+    - date_array = report_scope.where(survey_slug: 'about-me', question_slug: 'date-of-birth', encounter: 'baseline' ).pluck(:value).collect{|d| (Date.strptime(d, "%m/%d/%Y") rescue nil)}.compact
 
     %table.table.table-bordered.table-condensed{ style: 'table-layout:fixed' }
       %thead
@@ -90,10 +90,10 @@
           %th 76+
       %tbody
         %tr
-          %td= number_with_delimiter date_array.select{|d| d.in?((Date.today - 34.years)..(Date.today - 18.years))}.count
-          %td= number_with_delimiter date_array.select{|d| d.in?((Date.today - 49.years)..(Date.today - 35.years))}.count
-          %td= number_with_delimiter date_array.select{|d| d.in?((Date.today - 64.years)..(Date.today - 50.years))}.count
-          %td= number_with_delimiter date_array.select{|d| d.in?((Date.today - 75.years)..(Date.today - 65.years))}.count
+          %td= number_with_delimiter date_array.select{|d| ((Date.today - 34.years)..(Date.today - 18.years)).cover?(d)}.count
+          %td= number_with_delimiter date_array.select{|d| ((Date.today - 49.years)..(Date.today - 35.years)).cover?(d)}.count
+          %td= number_with_delimiter date_array.select{|d| ((Date.today - 64.years)..(Date.today - 50.years)).cover?(d)}.count
+          %td= number_with_delimiter date_array.select{|d| ((Date.today - 75.years)..(Date.today - 65.years)).cover?(d)}.count
           %td= number_with_delimiter date_array.select{|d| d < (Date.today - 75.years)}.count
 
 .content-container

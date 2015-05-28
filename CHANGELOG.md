@@ -11,6 +11,9 @@
 - **Administrative Changes**
   - Cross tabs report now displays percentages in a cleaner manner
 
+### Bug Fixes
+- Fixed an issue getting counts for age categories on administrative progress report
+
 ## 7.0.0
 
 ### New Features
