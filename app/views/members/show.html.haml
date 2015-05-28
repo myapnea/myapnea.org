@@ -57,11 +57,7 @@
             %p.small.post-time
               = event.created_at.strftime("%-d %B %Y, %-l:%M %p")
           .post-content
-            - if event.description.length > 800
-              = simple_markdown(truncate(event.description, length: 800))
-              .text-right= link_to '...read more', forum_topic_post_path(event.topic.forum.slug, event.topic.slug, event), class: 'no-underline'
-            - else
-              = simple_markdown(event.description)
+            = render 'posts/formatted', post: event
           - if current_user
             .reply-container
               - unless event.topic.locked?

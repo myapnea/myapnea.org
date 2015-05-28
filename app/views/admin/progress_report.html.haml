@@ -1,0 +1,151 @@
+- @title = 'Progress Report'
+.content-main-header
+  %h1= @title
+
+- user_scope = User.current.where(include_in_exports: true)
+- report_scope = Report
+
+.content-container
+  .content-header
+    %h3 Number of members by category
+  .content-body
+    %table.table.table-bordered.table-condensed{ style: 'table-layout:fixed' }
+      %thead
+        %tr
+          - User::TYPE.each do |name, type|
+            %th= name
+          %th Total
+          %th No Role Selected
+      %tbody
+        %tr
+          - total_count = 0
+          - User::TYPE.each do |name, type|
+            - count = user_scope.where(type.to_sym => true).count
+            - total_count += count
+            %td= number_with_delimiter count
+          %td= number_with_delimiter user_scope.where("adult_diagnosed = ? or adult_at_risk = ? or caregiver_adult = ? or caregiver_child = ? or provider = ? or researcher = ?", true, true, true, true, true, true).count
+          %td= number_with_delimiter user_scope.where("adult_diagnosed = ? and adult_at_risk = ? and caregiver_adult = ? and caregiver_child = ? and provider = ? and researcher = ?", false, false, false, false, false, false).count
+    = link_to 'More Breakdown by Category', admin_version_stats_path
+
+.content-container
+  .content-header
+    %h3 Signed consents
+  .content-body
+    %p.lead.centered-text{ style: 'margin-top: 20px' }
+      - signed_consent_count = user_scope.where.not(accepted_consent_at: nil).count
+      - not_signed_consent_count = user_scope.where(accepted_consent_at: nil).count
+      = number_with_delimiter signed_consent_count
+      - if false
+        Signed Consent
+        %br
+        = number_with_delimiter not_signed_consent_count
+
+.content-container
+  .content-header
+    %h3 With any questionnaire data
+  .content-body
+    %p.lead.centered-text{ style: 'margin-top: 20px' }
+      - with_questionnaire_count = report_scope.where.not(value: [nil, ""]).uniq.select(:user_id).count
+      = number_with_delimiter with_questionnaire_count
+
+.content-container
+  .content-header
+    %h3 Demographics on signed consents
+  .content-body
+    - male_count = report_scope.where(survey_slug: 'about-me', question_slug: 'sex', encounter: 'baseline', answer_option_text: 'Male' ).uniq.select(:user_id).count
+    - female_count = report_scope.where(survey_slug: 'about-me', question_slug: 'sex', encounter: 'baseline', answer_option_text: 'Female' ).uniq.select(:user_id).count
+
+    %table.table.table-bordered.table-condensed{ style: 'table-layout:fixed' }
+      %thead
+        %tr
+          %th Male
+          %th Female
+      %tbody
+        %tr
+          %td= number_with_delimiter male_count
+          %td= number_with_delimiter female_count
+
+    - white_count = report_scope.where(survey_slug: 'about-me', question_slug: 'race', encounter: 'baseline', value: '5' ).uniq.select(:user_id).count
+    - black_count = report_scope.where(survey_slug: 'about-me', question_slug: 'race', encounter: 'baseline', value: '3' ).uniq.select(:user_id).count
+
+    %table.table.table-bordered.table-condensed{ style: 'table-layout:fixed' }
+      %thead
+        %tr
+          %th White
+          %th Black
+      %tbody
+        %tr
+          %td= number_with_delimiter white_count
+          %td= number_with_delimiter black_count
+
+    - date_array = report_scope.where(survey_slug: 'about-me', question_slug: 'date-of-birth', encounter: 'baseline' ).pluck(:value).collect{|d| (Date.parse(d) rescue nil)}.compact
+
+    %table.table.table-bordered.table-condensed{ style: 'table-layout:fixed' }
+      %thead
+        %tr
+          %th 18-34
+          %th 35-49
+          %th 50-64
+          %th 65-75
+          %th 76+
+      %tbody
+        %tr
+          %td= number_with_delimiter date_array.select{|d| d.in?((Date.today - 34.years)..(Date.today - 18.years))}.count
+          %td= number_with_delimiter date_array.select{|d| d.in?((Date.today - 49.years)..(Date.today - 35.years))}.count
+          %td= number_with_delimiter date_array.select{|d| d.in?((Date.today - 64.years)..(Date.today - 50.years))}.count
+          %td= number_with_delimiter date_array.select{|d| d.in?((Date.today - 75.years)..(Date.today - 65.years))}.count
+          %td= number_with_delimiter date_array.select{|d| d < (Date.today - 75.years)}.count
+
+.content-container
+  .content-header
+    %h3 Number voting on rank research and number of items
+  .content-body
+    - research_topic_count = ResearchTopic.where.not(topic_id: nil).count
+    - vote_scope = Vote.current
+    - vote_count = vote_scope.count
+    - voters_count = vote_scope.uniq.select(:user_id).count
+
+    %table.table.table-bordered.table-condensed{ style: 'table-layout:fixed' }
+      %thead
+        %tr
+          %th Research Topics
+          %th Votes
+          %th Unique Voters
+      %tbody
+        %tr
+          %td= number_with_delimiter research_topic_count
+          %td= number_with_delimiter vote_count
+          %td= number_with_delimiter voters_count
+
+.content-container
+  .content-header
+    %h3 Number of posts topics and unique individuals posting
+  .content-body
+    - post_scope = Post.current.visible_for_user.not_research
+    - post_count = post_scope.count
+    - posting_user_count = post_scope.uniq.select(:user_id).count
+    - topic_count = Topic.current.where(status: ['pending_review', 'approved']).not_research.count
+    %table.table.table-bordered.table-condensed{ style: 'table-layout:fixed' }
+      %thead
+        %tr
+          %th Posts
+          %th Topics
+          %th Unique Active Posters
+      %tbody
+        %tr
+          %td= number_with_delimiter post_count
+          %td= number_with_delimiter topic_count
+          %td= number_with_delimiter posting_user_count
+
+.content-container
+  .content-header
+    %h3 Number of withdrawn consent
+  .content-body
+    %p.lead.centered-text{ style: 'margin-top: 20px' }
+      - withdrawn_consent_count = Report.where(user_id: user_scope.where(accepted_consent_at: nil).select(:id)).where.not(value: [nil, ""]).uniq.select(:user_id).count
+      = number_with_delimiter withdrawn_consent_count
+
+
+
+
+

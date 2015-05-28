@@ -46,7 +46,7 @@
   .row.reset-layout
     - Highlight.current.where(displayed: true).sort{ |a,b| b.created_at <=> a.created_at }.first(3).each do |highlight|
       .col-sm-4
-        = render 'highlights/display', highlight: highlight
+        = render highlight
 
 %br
 %br

@@ -10,9 +10,7 @@ class Post < ActiveRecord::Base
 
   # Named Scopes
   scope :with_unlocked_topic, -> { where("posts.topic_id in (select topics.id from topics where topics.locked = ?)", false).references(:topics) }
-  ## Temporary exclusion of ResearchTopic forum:
-  #scope :visible_for_user, lambda { |arg| joins(topic: :forum).where("forums.slug != ? and posts.status = ? or posts.user_id = ?", ENV["research_topic_forum_slug"], 'approved', arg) }
-  scope :visible_for_user, lambda { |arg| joins(topic: :forum).where("posts.status = ? or posts.user_id = ?", 'approved', arg) }
+  scope :visible_for_user, -> { where(status: ['approved', 'pending_review']).joins(:topic).where("topics.status IN (?) and topics.deleted = ?", ['approved', 'pending_review'], false) }
   scope :not_research, -> { where('posts.topic_id NOT IN (select research_topics.topic_id from research_topics where research_topics.topic_id IS NOT NULL)')}
 
   # Model Validation

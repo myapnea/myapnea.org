@@ -8,6 +8,12 @@ class AdminControllerTest < ActionController::TestCase
     @regular_user = users(:user_1)
   end
 
+  test "should get progress report for owner" do
+    login(@owner)
+    get :progress_report
+    assert_response :success
+  end
+
   test "should get dashboard for owner" do
     login(@owner)
     get :dashboard

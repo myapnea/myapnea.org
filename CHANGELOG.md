@@ -57,6 +57,8 @@
   - Added Provider Report
     - Shows the number of members who have signed up with each provider
     - Highlights the provider with the most members
+  - Added Progress Report
+  - Admin location report now better shows unmatched locations
 - **Provider Changes**
   - Providers now receive an informational email after updating a completed provider profile
   - Member welcome emails now list their provider if they signed up through a provider page
@@ -83,6 +85,14 @@
 - Welcome modal that introduces research will only appear for nonacademic users
 - Answer session is no longer required to view survey reports
 - Login dropdown on top navigation optimized for internet explorer (text fields no longer spill over)
+- Fixed an issue for forum moderators where topics with hidden posts would no longer be viewable on forum index
+- Videos on learn page no longer cover the navigation bar when using Internet Explorer
+- Improved legibility of call-out text on the landing page
+
+## 6.1.3 (May 26, 2015)
+
+### Bug Fix
+- Fixed an issue where members could post images and links on forum without having explicit permission to post links or images
 
 ## 6.1.2 (May 12, 2015)
 

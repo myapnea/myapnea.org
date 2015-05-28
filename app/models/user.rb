@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   self.authorizer_name = "UserAuthorizer"
 
   #  For recent updates to consent/privacy policy/etc
-  RECENT_UPDATE_DATE = "2015-05-01"
+  RECENT_UPDATE_DATE = "2015-06-01"
 
   # Include default devise modules. Others available are:
   # :confirmable, :omniauthable
@@ -73,7 +73,6 @@ class User < ActiveRecord::Base
   has_many :forums, -> { where deleted: false }
   has_many :topics, -> { where deleted: false }
   has_many :posts, -> { where deleted: false }
-  has_many :approved_posts, -> { where deleted: false, status: 'approved' }, through: :posts, source: :topic
   has_many :subscriptions
   has_many :users, class_name: "User", foreign_key: "provider_id"
 
@@ -248,8 +247,9 @@ class User < ActiveRecord::Base
     self.accepted_terms_of_access_at.present?
   end
 
+  # Should not compare against RECENT_UPDATE_DATE if it is in the future
   def accepted_most_recent_update?
-    self.accepted_update_at.present? and (self.accepted_update_at > Date.parse(RECENT_UPDATE_DATE).at_noon)
+    (self.accepted_update_at.present? and (self.accepted_update_at > Date.parse(RECENT_UPDATE_DATE).at_noon)) or (Date.parse(RECENT_UPDATE_DATE).at_noon > Time.now )
   end
 
   def this_weeks_votes

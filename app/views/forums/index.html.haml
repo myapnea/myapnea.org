@@ -20,5 +20,5 @@
 %br
 
 - @forums.order(:position).each do |forum|
-  = render partial: 'forums/show', locals: { forum: forum, topic_limit: 10 }
+  = render 'forums/show', forum: forum, topic_limit: 10
   %br
