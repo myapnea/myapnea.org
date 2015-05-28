@@ -1,12 +1,15 @@
-= render partial: 'surveys/report_intro'
+.content-main-header
+  %h1 Research Surveys
+= render 'surveys/report_intro'
 
-= render partial: "surveys/reports/#{@survey.slug.underscore}" rescue render partial: 'surveys/reports/default'
+= render "surveys/reports/#{@survey.slug.underscore}" rescue render 'surveys/reports/default'
 
-.panel{ style: 'border: 2px solid #b1d2f6' }
-  .panel-body
-    %p.lead.no-margin
+.content-container
+  .content-footer
+    %p.no-margin.centered
       %span.f500 Note:
       You can view the full-detailed version of the survey report by clicking
-      = link_to 'here.', report_detail_survey_path
+      = succeed '.' do
+        = link_to 'here', report_detail_survey_path
 
-= render partial: 'surveys/report_outro'
+= render 'surveys/report_outro'

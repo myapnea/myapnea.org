@@ -1,9 +1,9 @@
 -# Select next survey for completion
 - next_survey = current_user.next_survey(@survey)
 - continue_path = next_survey.present? ? survey_path(next_survey) : surveys_path
-.row.reset-layout
-  .panel.lighterer-blue-bcg
-    .panel-body
-      %h3.f300.centered-text.text-dark7{ style: 'margin-bottom: 20px;' }
-        Congratulations on finishing this survey - you're doing great!
-      = link_to "Click here to continue", continue_path, class: "btn btn-primary btn-lg btn-block", style: 'width: 70%; margin: 10px auto;'
+.content-container
+  .content-header
+    %h2.f300.centered-text.text-dark7
+      Congratulations on finishing this survey - you're doing great!
+  .content-body
+    = link_to "Click here to continue", continue_path, class: "btn btn-primary btn-lg btn-block", style: 'width: 70%; margin: 10px auto;'
