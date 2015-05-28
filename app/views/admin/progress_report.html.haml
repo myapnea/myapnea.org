@@ -2,7 +2,7 @@
 .content-main-header
   %h1= @title
 
-- user_scope = User.current.where(include_in_exports: true)
+- user_scope = User.where(include_in_exports: true)
 - report_scope = Report
 
 .content-container
