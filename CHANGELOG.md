@@ -11,6 +11,8 @@
   - Spam and hidden posts now are displayed in a more consistent way for moderators
   - Site owners can now delete topics and posts
   - Moderators can now see the total number of spam topics and posts on the member's profile
+- **Learn Page Changes**
+  - Hovering over the carousel pictures now changes the mouse pointer to a cursor to indicate that they are clickable
 - **Administrative Changes**
   - Cross tabs report now displays percentages in a cleaner manner
 
