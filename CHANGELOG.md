@@ -7,6 +7,7 @@
   - Forum moderators can no longer delete topics and posts
   - Spam and hidden posts now are displayed in a more consistent way for moderators
   - Site owners can now delete topics and posts
+  - Moderators can now see the total number of spam topics and posts on the member's profile
 
 ## 7.0.0
 

@@ -4,20 +4,37 @@
     = @member.forum_name
 
 -# Admin information
-- if current_user and current_user.moderator?
+- if current_user and (current_user.moderator? or current_user.owner?)
   .well
     %h4.f300
       Moderator Contact Information
     %br
-    %dl.dl-horizontal
-      %dt
-        %strong Member Name
-      %dd
-        = @member.name
-      %dt
-        %strong Member Email
-      %dd
-        = @member.email
+    .row
+      .col-sm-6
+        %dl.dl-horizontal
+          %dt
+            %strong Member Name
+          %dd
+            = @member.name
+          %dt
+            %strong Member Email
+          %dd
+            = @member.email
+      .col-sm-6
+        %dl.dl-horizontal
+          - spam_topics_count = Topic.where(status: 'spam', user_id: @member.id).count
+          - if spam_topics_count > 0
+            %dt
+              %strong # of Spam Topics
+            %dd
+              = spam_topics_count
+          - spam_posts_count = Post.where(status: 'spam', user_id: @member.id).count
+          - if spam_posts_count > 0
+            %dt
+              %strong # of Spam Posts
+            %dd
+              = spam_posts_count
+
 
 -# About member
 .content-container
