@@ -4,7 +4,7 @@
 
 - @research_topics.each do |rt|
   = link_to research_topic_path(rt), class: 'research-topic-index-display' do
-    - if current_user.cast_vote_for?(rt)
+    - if current_user and current_user.cast_vote_for?(rt)
       %span.badge{ class: "#{current_user.endorsed?(rt) ? 'great-bcg' : 'danger-bcg' }" }
         %i.fa.fa-lg{ class: "#{current_user.endorsed?(rt) ? 'fa-thumbs-up' : 'fa-thumbs-down' }" }
       %p= rt.text
