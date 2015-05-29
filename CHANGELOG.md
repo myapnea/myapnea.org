@@ -17,6 +17,8 @@
   - Hovering over the carousel pictures now changes the mouse pointer to a cursor to indicate that they are clickable
 - **Administrative Changes**
   - Cross tabs report now displays percentages in a cleaner manner
+- **General Changes**
+  - Updated styling for flash notification messages
 
 ### Bug Fixes
 - Fixed an issue getting counts for age categories on administrative progress report
