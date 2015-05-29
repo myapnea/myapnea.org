@@ -39,5 +39,4 @@ $(document)
   .on('click', '[data-object~="remove-max-height"]', () ->
     $(this).css('max-height', 'none')
     $(this).css('cursor', 'default')
-    false
   )
