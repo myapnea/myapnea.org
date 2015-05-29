@@ -16,21 +16,21 @@
       to improve diagnosis, management, and treatments for sleep apnea.
 
 .content-container
+  .content-header
+    %h2.f300.centered Community Success
   .content-body
-    %h2.f300.centered-text Community Success
-    %br
-    %p.lead
+    %p
       Most promising, our community is becoming increasingly active. We currently have
       %span.f500.darkerer-blue= "#{Post.current.count} posts"
       in
       %span.f500.darkerer-blue= "#{Topic.current.count} topics."
       To date, we've watched an overwhelming amount of support grow among the MyApnea community. The forums alone have become an active discussion board where people with sleep apnea, researchers, and care providers help each other address important questions and concerns. Among these are:
     %ul
-      %li.lead
+      %li
         = link_to 'Issues that people have adjusting to new CPAP devices', forum_topic_path('general', 'contribute-community-tips-for-using-pap-devices'), class: 'no-underline'
-      %li.lead
+      %li
         = link_to 'Finding proper care for central/mixed sleep apnea', forum_topic_path('general', 'central-mixed-apnea'), class: 'no-underline'
-      %li.lead
+      %li
         = link_to 'Determining future research for the link between sleep apnea and body weight', forum_topic_path('research', 'does-treatment-of-sleep-apnea-influence-body-weight'), class: 'no-underline'
 
 .content-container.inherit-background
@@ -41,7 +41,7 @@
           %p.user-testimonial-quote
             "Note I look at a lot of support sites and finally pulled the trigger on this one....glad I did!"
           %p.user-testimonial-quoter
-            \-
+            \-=
             = link_to 'JDARZ', forum_topic_post_path('general', 'waking-up-with-dry-mouth', '609')
       .col-sm-4
         .user-testimonial-small
