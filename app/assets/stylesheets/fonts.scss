@@ -68,6 +68,14 @@ p { font-size: 1.3em; font-weight: lighter; font-weight: 300; }
 
 .spaced { line-height: 1.7em; }
 
+h1.half-size { font-size: 1.5em; }
+h2.half-size { font-size: 1.25em; }
+h3.half-size { font-size: 1.0em; }
+h4.half-size { font-size: 0.85em; }
+h5.half-size { font-size: 0.75em; }
+h6.half-size { font-size: 0.65em; }
+p.half-size { font-size: 0.65em; }
+
 .f300 { font-weight:lighter; font-weight:300; }
 .f400 { font-weight:400; }
 .f500 { font-weight:bolder; font-weight:500; }
@@ -104,6 +112,13 @@ li { font-weight: lighter; font-weight: 300; }
   h6{ font-size: 1.17em; }
   p { font-size: 1.17em; }
   ul, ol { font-size: 1.17em; }
+  h1.half-size { font-size: 1.35em; }
+  h2.half-size { font-size: 1.125em; }
+  h3.half-size { font-size: 0.9em; }
+  h4.half-size { font-size: 0.765em; }
+  h5.half-size { font-size: 0.675em; }
+  h6.half-size { font-size: 0.585em; }
+  p.half-size { font-size: 0.585em; }
 }
 
 // 80% of size
@@ -116,6 +131,13 @@ li { font-weight: lighter; font-weight: 300; }
   h6{ font-size: 1.1em; }
   p { font-size: 1.1em; }
   ul, ol { font-size: 1.04em; }
+  h1.half-size { font-size: 1.2em; }
+  h2.half-size { font-size: 1.0em; }
+  h3.half-size { font-size: 0.8em; }
+  h4.half-size { font-size: 0.68em; }
+  h5.half-size { font-size: 0.6em; }
+  h6.half-size { font-size: 0.55em; }
+  p.half-size { font-size: 0.55em; }
 }
 
 // 75% of size
@@ -127,6 +149,13 @@ li { font-weight: lighter; font-weight: 300; }
   h5{ font-size: 1.125em; }
   h6{ font-size: 1.0em; }
   p { font-size: 1.0em; }
+  h1.half-size { font-size: 1.125em; }
+  h2.half-size { font-size: 0.9375em; }
+  h3.half-size { font-size: 0.75em; }
+  h4.half-size { font-size: 0.6375em; }
+  h5.half-size { font-size: 0.5625em; }
+  h6.half-size { font-size: 0.5em; }
+  p.half-size { font-size: 0.5em; }
   ul, ol { font-size: 1.0em; }
 }
 

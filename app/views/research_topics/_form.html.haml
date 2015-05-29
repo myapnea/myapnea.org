@@ -1,7 +1,23 @@
-= form_for research_topic do |f|
+= form_for research_topic, html: { data: { object: "inline-validation"} } do |f|
+  - if research_topic.errors.any?
+    .bs-callout.bs-callout-danger#error_explanation
+      %h4
+        = pluralize(research_topic.errors.count, "error")
+        prohibited this user from being saved
+      %ul
+        - research_topic.errors.messages.each do |key, msg|
+          - if key == :over_eighteen
+            %li= msg.join(", ")
+          - else
+            %li= "#{key.to_s.titleize} #{msg.join(", ")}"
   .form-group
-    = f.label :progress, class: 'sr-only'
-    = f.select :progress, ResearchTopic::PROGRESS, {prompt: "-- Select progress --" }, { class: 'input-lg form-control' }
-  = f.submit("Submit", class: "btn btn-success pull-right")
-  .clearfix
-
+    = f.label :text, class: 'sr-only'
+    = f.text_area :text, placeholder: "Enter your research question here", autocomplete: :off, style: 'resize: none', class: 'form-control input-lg', data: { object: 'inline-validation-item', name: 'research-topic-name' }
+    .col-sm-6.hidden{ style: 'margin-top: 15px; margin-bottom: 30px;', data: { object: 'research-topic-name--error' } }
+      %p.small.centered-text.inline-validation-error
+        Please enter a valid question or research topic!
+  .form-group
+    = f.label :author, class: 'sr-only'
+    = f.text_area :description, placeholder: "Describe why you think this question is important", style: 'resize: none', class: 'form-control input-lg'
+  .centered
+    = f.submit("Submit", class: "btn btn-default")

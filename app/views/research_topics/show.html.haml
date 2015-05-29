@@ -2,7 +2,7 @@
 
 .content-main-header
   %h1 Research Discussion
-  %h5.f300= link_to 'Back to Research Topics', research_topics_path, class: 'no-underline'
+  %p= link_to 'Back to Research Topics', research_topics_path, class: 'no-underline'
 
 - if current_user.owner? or current_user.moderator?
   .well
@@ -27,10 +27,10 @@
           = render 'users/forum_name', user: @research_topic.user
           proposed:
     .research-topic-body
-      %h4.centered-text= @research_topic.text
+      %h4.centered= @research_topic.text
       - if @research_topic.description.present?
         %hr
-        %h5.f300= @research_topic.description
+        %p.lead= @research_topic.description
   -# Display of user's vote choice
   .content-container
     .content-body{ class: "text-white #{current_user.endorsed?(@research_topic) ? 'great-bcg' : 'danger-bcg' }" }
@@ -49,11 +49,12 @@
 .row.horizontal-inset
   .col-sm-4
     - if @research_topic.votes.count > 0
-      %h5.centered-text
+      %h3.centered
         Endorsement:
-        %br.hidden-lg.hidden-md
-        %span.f300= "#{(@research_topic.endorsement*100).round}%"
-        %span.f300.italic= pluralize(@research_topic.votes.current.count, 'vote')
+      %h4.centered.f300
+        = "#{(@research_topic.endorsement*100).round}%"
+        = surround "(", ")" do
+          %span.italic= pluralize(@research_topic.votes.current.count, 'vote')
       .progress-meter
         %span{ data: { object: 'research-topic-meter', progress: "#{@research_topic.endorsement*100}" } }
       %br

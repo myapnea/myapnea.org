@@ -46,6 +46,10 @@ class ResearchTopicsController < ApplicationController
   def edit
   end
 
+  def new
+    @research_topic = current_user.research_topics.new
+  end
+
   def create
     @new_research_topic = current_user.research_topics.new(research_topic_params)
 
