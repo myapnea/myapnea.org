@@ -36,3 +36,8 @@ $(document)
     $("#post_contents_#{$(this).data('post-id')}").toggle()
     false
   )
+  .on('click', '[data-object~="remove-max-height"]', () ->
+    $(this).css('max-height', 'none')
+    $(this).css('cursor', 'default')
+    false
+  )
