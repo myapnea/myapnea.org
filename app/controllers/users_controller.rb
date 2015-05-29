@@ -56,9 +56,9 @@ class UsersController < ApplicationController
     def user_params
       params[:user] ||= {}
 
-      if current_user.has_role? :owner
+      if current_user.owner?
         params.require(:user).permit(
-          :first_name, :last_name, :email, :forum_name, :age, :gender, :include_in_exports
+          :first_name, :last_name, :email, :forum_name, :age, :gender, :include_in_exports, :owner, :moderator
         )
       else
         params.require(:user).permit(

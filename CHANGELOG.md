@@ -19,6 +19,9 @@
 ### Bug Fixes
 - Fixed an issue getting counts for age categories on administrative progress report
 
+### Refactoring
+- Simplified internal role structure for setting owners and moderators
+
 ## 7.0.0
 
 ### New Features

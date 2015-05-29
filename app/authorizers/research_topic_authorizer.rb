@@ -4,15 +4,15 @@ class ResearchTopicAuthorizer < ApplicationAuthorizer
   end
 
   def moderatable_by?(user)
-    user.has_role? :moderator
+    user.moderator?
   end
 
   def self.updatable_by?(user)
-    user.has_role? :moderator
+    user.moderator?
   end
 
   def self.deletable_by?(user)
-    user.has_role? :moderator
+    user.moderator?
   end
 
   def self.readable_by?(user)
@@ -20,15 +20,15 @@ class ResearchTopicAuthorizer < ApplicationAuthorizer
   end
 
   def updatable_by?(user)
-    user.has_role?(:moderator) || resource.user == user
+    user.moderator? || resource.user == user
   end
 
   def deletable_by?(user)
-    user.has_role?(:moderator) || resource.user == user
+    user.moderator? || resource.user == user
   end
 
   def readable_by?(user)
-    user.has_role?(:moderator) || resource.user == user || resource.accepted?
+    user.moderator? || resource.user == user || resource.accepted?
   end
 
   def votable_by?(user)

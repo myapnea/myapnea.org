@@ -61,7 +61,7 @@ moderator_1:
   first_name: Mod
   last_name: Erator1
   email: mod1@mods.com
-  roles: moderator
+  moderator: true
   zip_code: 12345
   over_eighteen: true
   adult_diagnosed: true
@@ -72,7 +72,7 @@ moderator_2:
   first_name: Mod
   last_name: Erator2
   email: mod2@mods.com
-  roles: moderator
+  moderator: true
   zip_code: 12345
   over_eighteen: true
   adult_diagnosed: true
@@ -83,7 +83,7 @@ owner:
   first_name: Own
   last_name: Er
   email: owner@mail.com
-  roles: owner
+  owner: true
   zip_code: 12345
   over_eighteen: true
   adult_diagnosed: true
@@ -129,7 +129,7 @@ deleted_moderator:
   first_name: Deleted
   last_name: Mod
   email: nosupport@myapnea.org
-  roles: moderator
+  moderator: true
   zip_code: 12345
   over_eighteen: true
   encrypted_password: <%= pw %>

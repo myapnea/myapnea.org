@@ -64,7 +64,6 @@ gem 'redcarpet', '~> 3.2.3'
 gem 'acts-as-dag'
 
 # Authorization
-gem 'rolify'
 gem 'authority'
 
 # Facebook

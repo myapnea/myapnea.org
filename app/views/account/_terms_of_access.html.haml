@@ -39,7 +39,7 @@
       - else
         - if part_of_registration
           = link_to "I Agree", accepts_terms_of_access_path, method: :post, class: 'btn btn-primary btn-lg'
-          = link_to "I Decline", current_user.is_provider? ? get_started_provider_profile_path : get_started_social_profile_path, class: 'btn btn-danger btn-lg'
+          = link_to "I Decline", current_user.provider? ? get_started_provider_profile_path : get_started_social_profile_path, class: 'btn btn-danger btn-lg'
         - else
           = form_tag terms_of_access_path do
             %input.btn.btn-primary.btn-lg{:name => "terms_of_access_read", :type => "submit", :value => "I Agree"}

@@ -81,7 +81,7 @@ class AccountController < ApplicationController
     current_user.update(accepted_consent_at: Time.zone.now)
     if !current_user.ready_for_research?
       redirect_to get_started_privacy_path
-    elsif current_user.is_provider?
+    elsif current_user.provider?
         redirect_to get_started_provider_profile_path
     else
       redirect_to get_started_about_me_path

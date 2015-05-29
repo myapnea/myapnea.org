@@ -116,11 +116,11 @@ class PostsController < ApplicationController
       params[:post] ||= { blank: '1' }
 
       # Always set post back to pending review if it's updated by a non-moderator
-      unless current_user.has_role? :moderator
+      unless current_user.moderator?
         params[:post][:status] = 'pending_review'
       end
 
-      if current_user.has_role? :moderator
+      if current_user.moderator?
         params.require(:post).permit(:description, :status, :links_enabled)
       else
         params.require(:post).permit(:description, :status)

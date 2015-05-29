@@ -104,7 +104,7 @@
             - @post.errors.full_messages.each do |msg|
               %li= msg
 
-        - if current_user.has_role? :moderator
+        - if current_user.moderator?
           = f.hidden_field :status, value: 'approved'
 
         .row.reset-layout

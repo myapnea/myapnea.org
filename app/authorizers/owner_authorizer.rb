@@ -4,17 +4,17 @@ class OwnerAuthorizer < ApplicationAuthorizer
   end
 
   def self.createable_by?
-    user.has_role? :owner
+    user.owner?
 
   end
 
   def self.updateable_by?
-    user.has_role? :owner
+    user.owner?
 
   end
 
   def self.deletable_by?
-    user.has_role? :owner
+    user.owner?
 
   end
 

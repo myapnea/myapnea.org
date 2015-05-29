@@ -2,8 +2,6 @@ class User < ActiveRecord::Base
 
   mount_uploader :photo, PhotoUploader
 
-  rolify role_join_table_name: 'roles_users'
-
   include Authority::UserAbilities
   include Authority::Abilities
 
@@ -52,12 +50,12 @@ class User < ActiveRecord::Base
   validates :forum_name, allow_blank: true, uniqueness: true, format: { with: /\A[a-zA-Z0-9]*\Z/i }, unless: :update_by_user?
   validates :forum_name, allow_blank: false, uniqueness: true, format: { with: /\A[a-zA-Z0-9]+\Z/i }, if: :update_by_user?
 
-  with_options unless: :is_provider? do |user|
+  with_options unless: :provider? do |user|
     user.validates :over_eighteen, inclusion: { in: [true], message: "You must be over 18 years of age to sign up" }, allow_nil: true
     #user.validates :year_of_birth, presence: true, numericality: {only_integer: true, allow_nil: false, less_than_or_equal_to: -> (user){ Date.today.year - 18 }, greater_than_or_equal_to: -> (user){ 1900 }}
   end
 
-  with_options if: :is_provider? do |user|
+  with_options if: :provider? do |user|
     user.validates :provider_name, allow_blank: true, uniqueness: true
     user.validates :slug, allow_blank: true, uniqueness: true, format: { with: /\A[a-z][a-z0-9\-]*[a-z0-9]\Z/i }
   end
@@ -91,21 +89,6 @@ class User < ActiveRecord::Base
     super and not self.deleted?
   end
 
-  # Role helpers
-
-  def moderator?
-    self.has_role? :moderator
-  end
-
-  def owner?
-    self.has_role? :owner
-  end
-
-  # Alias to be deprecated
-  def is_provider?
-    self.provider?
-  end
-
   def is_only_provider?
     self.provider? and !self.is_nonacademic?
   end
@@ -135,7 +118,7 @@ class User < ActiveRecord::Base
   end
 
   def viewable_topics
-    if self.has_role? :moderator or self.has_role? :owner
+    if self.moderator? or self.owner?
       Topic.current
     else
       Topic.viewable_by_user(self.id)
@@ -143,7 +126,7 @@ class User < ActiveRecord::Base
   end
 
   def editable_topics
-    if self.has_role? :moderator or self.has_role? :owner
+    if self.moderator? or self.owner?
       Topic.current
     else
       self.topics.where(locked: false)
@@ -151,7 +134,7 @@ class User < ActiveRecord::Base
   end
 
   def deletable_topics
-    if self.has_role? :owner
+    if self.owner?
       Topic.current
     else
       self.topics
@@ -159,7 +142,7 @@ class User < ActiveRecord::Base
   end
 
   def editable_posts
-    if self.has_role? :moderator or self.has_role? :owner
+    if self.moderator? or self.owner?
       Post.current.with_unlocked_topic
     else
       self.posts.with_unlocked_topic
@@ -167,7 +150,7 @@ class User < ActiveRecord::Base
   end
 
   def deletable_posts
-    if self.has_role? :owner
+    if self.owner?
       Post.current.with_unlocked_topic
     else
       self.posts.with_unlocked_topic
@@ -227,7 +210,7 @@ class User < ActiveRecord::Base
   # end
 
   def can_post_links?
-    self.has_role? :moderator or self.has_role? :owner
+    self.moderator? or self.owner?
   end
 
   def to_s

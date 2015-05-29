@@ -5,12 +5,12 @@
     = @title
   %p.lead
     = link_to 'Forums', forums_path, class: 'no-underline'
-- if current_user and (current_user.has_role? :owner or current_user.has_role? :moderator)
+- if current_user and (current_user.owner? or current_user.moderator?)
   .well
     %h4
       For admins:
-      = link_to 'Edit Forum', edit_forum_path(@forum), class: 'btn btn-success btn-xs' if current_user.has_role? :owner
-      = link_to 'Pending Review', forum_path(@forum, status: (params[:status] == 'pending_review' ? nil : 'pending_review')), class: "btn btn-default btn-xs #{'active' if params[:status] == 'pending_review'}" if current_user.has_role? :moderator
+      = link_to 'Edit Forum', edit_forum_path(@forum), class: 'btn btn-success btn-xs' if current_user.owner?
+      = link_to 'Pending Review', forum_path(@forum, status: (params[:status] == 'pending_review' ? nil : 'pending_review')), class: "btn btn-default btn-xs #{'active' if params[:status] == 'pending_review'}" if current_user.moderator?
 - else
   %br
 .content-container.horizontal-inset.inherit-background

@@ -70,15 +70,15 @@ class ApplicationController < ActionController::Base
   end
 
   def check_owner_or_moderator
-    redirect_to root_path, alert: "You do not have sufficient privileges to access that page." unless current_user.has_role? :owner or current_user.has_role? :moderator
+    redirect_to root_path, alert: "You do not have sufficient privileges to access that page." unless current_user.owner? or current_user.moderator?
   end
 
   def check_owner
-    redirect_to root_path, alert: "You do not have sufficient privileges to access that page." unless current_user.has_role? :owner
+    redirect_to root_path, alert: "You do not have sufficient privileges to access that page." unless current_user.owner?
   end
 
   def check_moderator
-    redirect_to root_path, alert: "You do not have sufficient privileges to access that page." unless current_user.has_role? :moderator
+    redirect_to root_path, alert: "You do not have sufficient privileges to access that page." unless current_user.moderator?
   end
 
 
