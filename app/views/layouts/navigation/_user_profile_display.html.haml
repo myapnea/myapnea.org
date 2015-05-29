@@ -11,7 +11,7 @@
     %i.fa.fa-sign-out{ style: 'margin-bottom:10px' }
     Sign out
   %br
-  - if current_user.has_role? :owner or current_user.has_role? :moderator
+  - if current_user.owner? or current_user.moderator?
     = link_to admin_path, class: 'f300 text-light8' do
       %i.fa.fa-wrench
       Admin Dashboard

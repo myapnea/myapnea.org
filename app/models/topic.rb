@@ -45,8 +45,11 @@ class Topic < ActiveRecord::Base
   end
 
   def editable_by?(current_user)
-    # not self.locked? and not self.user.banned? and (self.user == current_user or current_user.has_role?(:moderator))
-    (not self.locked? and self.user == current_user) or current_user.has_role?(:moderator)
+    (not self.locked? and self.user == current_user) or current_user.moderator?
+  end
+
+  def deletable_by?(current_user)
+    self.user == current_user or current_user.owner?
   end
 
   def get_or_create_subscription(current_user)

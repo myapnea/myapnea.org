@@ -1,0 +1,152 @@
+#slide-1p {
+  background-image: asset-url('myapnea/welcome/img-large/seattle2.jpg');
+  background-repeat: no-repeat;
+  background-position: center ;
+  background-size: cover;
+  -ms-behavior: asset-url('ie8/backgroundsize.min.htc');
+  background-color: rgb(15, 18, 27);
+  position:relative;
+  min-height:800px;
+  padding-bottom:100px;
+  font-family: 'Dosis', sans-serif;
+  padding-top: 120px;
+  #btn-join {
+    font-weight: bold;
+    border-radius:100px;
+    margin-top:50px;
+  }
+}
+
+
+#slide-2p {
+  padding-top: 150px;
+  img {
+    margin-top: 60px;
+    width:100%;
+    max-height: 300px;
+    max-width: 300px;
+    padding:20px;
+    border-radius:30px;
+    border:5px solid #FFB839;
+    background-color: white;
+  }
+}
+
+#slide-3p {
+  padding-bottom:170px;
+  img {
+    margin-top:70px;
+    width:100%;
+    max-height: 300px;
+    max-width: 300px;
+    padding:20px;
+    border-radius:30px;
+    border:5px solid #FFB839;
+    background-color: white;
+  }
+}
+
+#slide-4p {
+  background-image: asset-url('myapnea/welcome/img-large/unsplash_tree_nofocus.jpg');
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: cover;
+  -ms-behavior: asset-url('ie8/backgroundsize.min.htc');
+  font-family: 'Dosis', sans-serif;
+  h1 {
+    text-align:center;
+    margin-bottom:20px;
+    font-weight:600;
+    font-size:40px;
+  }
+  li {
+    font-size: 18px;
+  }
+}
+
+
+#provider-view-notice {
+  background-color: #c67f00;
+  color: rgba(255,255,255,.85);
+  padding: 5px 30px;
+  a {
+    font-weight: 400;
+    color: white;
+  }
+  span a {
+    color: #1765bc;
+  }
+}
+
+#provider-header {
+  background-image: asset-url('myapnea/welcome/img-large/SplitShire-starry-night.jpg');
+  background-size: cover;
+  -ms-behavior: asset-url('ie8/backgroundsize.min.htc');
+  background-position:center;
+  min-height:600px;
+  font-family: 'Dosis', sans-serif;
+}
+
+#provider-banner {
+  background-color:white;
+  background-image:none;
+  min-height:115px;
+  border-top: 5px solid #FFA400;
+  border-bottom:5px solid #5999DE;
+  padding:25px 0px;
+}
+
+.fixed-under-nav {
+  position:fixed;
+  top:82px;
+  width:100%;
+  z-index:100;
+}
+
+.fixed-under-nav img {
+  width:50%;
+}
+
+.fixed-under-nav h4 {
+  font-size:14px;
+}
+
+#community-tracker-provider {
+  text-align:center;
+  background-color: rgba(32,43,55,.9); /* #B1D2F6; */
+  border-bottom:5px solid #5999DE;
+  background-image: none;
+  padding:15px;
+}
+
+
+
+.col-button {
+  background-color: rgb(255, 164, 0);
+  background-color:rgba(255, 164, 0, .6);
+  margin-top:50px;
+  margin-right:2.8%;
+  padding-bottom:15px;
+  border-radius:10px;
+  border:5px solid rgb(255, 164, 0);
+  border:5px solid rgba(255,184,57,0);
+  color: #666;
+  font-size:16px;
+}
+
+.col-button {
+  h3 {
+    margin-bottom:20px;
+  }
+ .lead {
+    padding:0;
+  }
+}
+
+.col-button:hover {
+  border: 5px solid #FFB839;
+  color:#777;
+  #visa-gift-card {
+    color:#f0f0f0;
+  }
+}

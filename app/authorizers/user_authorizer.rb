@@ -1,15 +1,15 @@
 class UserAuthorizer < ApplicationAuthorizer
   def self.updatable_by?(user)
-    user.has_role? :owner
+    user.owner?
   end
 
   def self.readable_by?(user)
-    user.has_role?(:owner)
+    user.owner?
   end
 
   def self.deletable_by?(user)
 
-    user.has_role? :owner
+    user.owner?
   end
 
   def updatable_by?(user)

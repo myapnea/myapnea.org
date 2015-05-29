@@ -28,6 +28,16 @@
 @import "components/highlights";
 @import "components/links";
 
+/* Landing Pages */
+@import "landing/users";
+@import "landing/providers";
+@import "landing/provider_show";
+@import "users/landing_redesign";
+
+/* Registration */
+@import "users/welcome";
+@import "users/user_types";
+
 /* Static */
 @import "static/team";
 @import "static/sleep_tips";
@@ -55,9 +65,6 @@
 @import "survey_reports/my_health_conditions";
 
 /* User Interface */
-@import "users/user_types";
-@import "users/welcome";
-@import "users/landing_redesign";
 @import "users/dashboard";
 
 /* Rank the Research */

@@ -33,7 +33,7 @@
 %hr
 
 %a.anchor#change-picture
-- if current_user.is_provider?
+- if current_user.provider?
   = render partial: 'providers/providers_profile'
 - else
   = render partial: 'social/social_profile'

@@ -1,7 +1,7 @@
 - @user = current_user unless defined?(@user)
 
 %p.lead
-  = link_to_if current_user.has_role?(:owner), "Users", users_path
+  = link_to_if current_user.owner?, "Users", users_path
   &middot;
   = @user.name
 .row
@@ -31,7 +31,7 @@
       %dt Terms of Access
       %dd
         = @user.accepted_terms_of_access_at.strftime("%m/%d/%Y") if @user.accepted_terms_of_access_at.present?
-        = simple_check @user.has_role? :moderator
+        = simple_check @user.moderator?
       %dt Completed Surveys
       %dd
         = @user.completed_surveys.count
@@ -40,10 +40,10 @@
         = simple_check @user.include_in_exports
       %dt Owner
       %dd
-        = simple_check @user.has_role? :owner
+        = simple_check @user.owner?
       %dt Moderator
       %dd
-        = simple_check @user.has_role? :moderator
+        = simple_check @user.moderator?
   .col-sm-6
     %ul.f500 User Types
     - @user.user_types.each do |ut|

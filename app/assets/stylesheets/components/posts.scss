@@ -108,6 +108,10 @@ table.topics tr {
   }
 }
 
+.post-hidden, .post-spam {
+  background-color: #efefef;
+}
+
 .post-spam {
   .post-container-right-after {
     background-color: $ma-red;

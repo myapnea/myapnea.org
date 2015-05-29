@@ -1,5 +1,7 @@
-.modal.fade{id: 'landingVideoModal', tabindex: '-1', role:'dialog'}
+#landingVideoModal.modal{ tabindex: '-1', role:'dialog' }
   .modal-dialog{style: 'margin-top:200px; z-index:1050' }
-    %button{style: 'width:50px; height:50px; color:white; background-color: black; border:5px solid white; border-radius:25px; position:absolute; top:2%; left:98%;', data: { object: 'stop-video', dismiss: 'modal'}}
+    %button{ style: 'width:50px; height:50px; color:white; background-color: black; border:5px solid white; border-radius:25px; position:absolute; top:2%; left:98%;', data: { object: 'stop-yt-video', dismiss: 'modal' } }
       X
-    %iframe#landingframe{ allowFullScreen: 'true', frameborder: '0', src: '//www.youtube.com/embed/9Xy33MVgUiY', style: "border:15px solid white; border-radius:20px;height:500px; width:100%;"}
+    %div{ style: "border:15px solid white; border-radius:20px; background-color: white"}
+      .embed-responsive.embed-responsive-16by9
+        %iframe#landingframe.embed-responsive-item{ src: '', allowFullScreen: 'true',  webkitallowfullscreen: 'true', mozallowfullscreen: 'true' }

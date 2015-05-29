@@ -7,7 +7,7 @@
     %h3.f300 Member Management
   .content-body
     .row.centered-text
-      - if current_user.has_role? :owner
+      - if current_user.owner?
         .col-sm-3
           = link_to users_path, class: 'no-underline' do
             .blue-block-link

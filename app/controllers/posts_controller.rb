@@ -70,7 +70,7 @@ class PostsController < ApplicationController
     @post.destroy
 
     respond_to do |format|
-      format.html { redirect_to forum_topic_post_path(@forum, @topic, @post) }
+      format.html { redirect_to forum_topic_post_path(@forum, @topic, @post), notice: 'Post was successfully deleted.' }
       format.json { head :no_content }
     end
   end
@@ -101,11 +101,11 @@ class PostsController < ApplicationController
     end
 
     def set_editable_post
-      @post = current_user.all_posts.with_unlocked_topic.where(topic_id: @topic.id).find_by_id(params[:id])
+      @post = current_user.editable_posts.with_unlocked_topic.where(topic_id: @topic.id).find_by_id(params[:id])
     end
 
     def set_deletable_post
-      @post = current_user.all_posts.where(topic_id: @topic.id).find_by_id(params[:id])
+      @post = current_user.deletable_posts.where(topic_id: @topic.id).find_by_id(params[:id])
     end
 
     def redirect_without_post
@@ -116,11 +116,11 @@ class PostsController < ApplicationController
       params[:post] ||= { blank: '1' }
 
       # Always set post back to pending review if it's updated by a non-moderator
-      unless current_user.has_role? :moderator
+      unless current_user.moderator?
         params[:post][:status] = 'pending_review'
       end
 
-      if current_user.has_role? :moderator
+      if current_user.moderator?
         params.require(:post).permit(:description, :status, :links_enabled)
       else
         params.require(:post).permit(:description, :status)

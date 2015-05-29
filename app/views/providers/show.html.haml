@@ -97,10 +97,10 @@
 / Signup sheet
 %a{:name=>'signup'}
 - unless current_user
-  = render partial: 'users/signup_form', locals: { resource: User.new( provider_id: @provider.id ) }
+  = render 'users/signup_form', resource: User.new( provider_id: @provider.id )
 - else
-  .row.row-fullscreen{id: "slide-5"}
-    .col-md-10.col-md-offset-1.col-lg-8.col-lg-offset-2.panel.panel-signup
+  #slide5.row.row-fullscreen
+    .col-md-10.col-md-offset-1.col-lg-8.col-lg-offset-2.panel.signup-form
       .panel-body#panel-sign-up
         - if current_user.provider? and current_user.id == @provider.id
           %h4.f300.centered-text.spaced

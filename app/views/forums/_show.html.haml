@@ -1,6 +1,6 @@
 - @active_top_nav_link = :community
 
-- topics = if current_user and current_user.has_role? :moderator
+- topics = if current_user and current_user.moderator?
   - forum.topics
 - else
   - forum.topics.viewable_by_user(current_user ? current_user.id : nil)

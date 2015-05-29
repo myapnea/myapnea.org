@@ -28,12 +28,11 @@ class Post < ActiveRecord::Base
   end
 
   def editable_by?(current_user)
-    # not self.topic.locked? and not self.user.banned? and (self.user == current_user.has_role? :moderator)
-    not self.topic.locked? and (self.user == current_user or current_user.has_role? :moderator)
+    not self.topic.locked? and (self.user == current_user or current_user.moderator?)
   end
 
   def deletable_by?(current_user)
-    self.user == current_user or current_user.has_role? :moderator
+    self.user == current_user or current_user.owner?
   end
 
   def number

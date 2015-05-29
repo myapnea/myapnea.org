@@ -26,7 +26,7 @@
           - new_post = post.topic.posts.new
           = form_for [post.topic.forum, post.topic, new_post], html: { class: 'form-horizontal' } do |f|
 
-            - if current_user.has_role? :moderator
+            - if current_user.moderator?
               = f.hidden_field :status, value: 'approved'
 
             .reply

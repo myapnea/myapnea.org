@@ -1,10 +1,10 @@
 - @page_title = "MyApnea | Users"
-- if current_user.has_role?(:owner)
+- if current_user.owner?
   .well
     %h4 For admins:
     = render partial: 'users/admin_view', locals: { user: @user }
 
-    - if current_user.has_role? :owner
+    - if current_user.owner?
       = link_to "Edit User", edit_user_path(@user), class: 'btn btn-primary btn-xs'
       = link_to 'Delete User', @user, method: :delete, class: 'btn btn-xs btn-danger', data: { confirm: "Are you sure you want to delete User #{@user.name}?" } unless current_user == @user
 

@@ -22,9 +22,9 @@
           = time_ago_in_words(user.current_sign_in_at)
           ago
       %td{ style: "text-align:center" }
-        = simple_check user.has_role? :owner
+        = simple_check user.owner?
       %td{ style: "text-align:center" }
-        = simple_check user.has_role? :moderator
+        = simple_check user.moderator?
       %td{ style: "text-align:center" }
         = simple_check !user.include_in_exports?
       %td

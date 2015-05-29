@@ -1,5 +1,26 @@
 ## 7.1.0
 
+### Enhancements
+- **Landing Page Changes**
+  - Added the new MyApnea.Org video to the landing page
+  - Minor stylistic changes and user interface enhancements
+- **Profile Changes**
+  - Posts on member profiles now link to the exact post instead of just the topic
+- **Forum Moderation Changes**
+  - Forum moderators can no longer delete topics and posts
+  - Spam and hidden posts now are displayed in a more consistent way for moderators
+  - Site owners can now delete topics and posts
+  - Moderators can now see the total number of spam topics and posts on the member's profile
+- **Learn Page Changes**
+  - Hovering over the carousel pictures now changes the mouse pointer to a cursor to indicate that they are clickable
+- **Administrative Changes**
+  - Cross tabs report now displays percentages in a cleaner manner
+
+### Bug Fixes
+- Fixed an issue getting counts for age categories on administrative progress report
+
+### Refactoring
+- Simplified internal role structure for setting owners and moderators
 
 ## 7.0.0
 

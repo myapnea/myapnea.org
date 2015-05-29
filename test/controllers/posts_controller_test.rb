@@ -3,6 +3,7 @@ require "test_helper"
 class PostsControllerTest < ActionController::TestCase
 
   setup do
+    @owner = users(:owner)
     @moderator = users(:moderator_1)
     @valid_user = users(:user_1)
     @post = posts(:one)
@@ -262,8 +263,8 @@ class PostsControllerTest < ActionController::TestCase
     assert_redirected_to forum_topic_path(assigns(:forum), assigns(:topic))
   end
 
-  test "should destroy post as moderator" do
-    login(users(:moderator_1))
+  test "should destroy post as owner" do
+    login(@owner)
     assert_difference('Post.current.count', -1) do
       delete :destroy, forum_id: @forum, topic_id: @topic, id: @post
     end
@@ -286,6 +287,19 @@ class PostsControllerTest < ActionController::TestCase
     assert_not_nil assigns(:post)
 
     assert_redirected_to forum_topic_post_path(assigns(:forum), assigns(:topic), assigns(:post))
+  end
+
+  test "should not destroy post as moderator" do
+    login(@moderator)
+    assert_difference('Post.current.count', 0) do
+      delete :destroy, forum_id: @forum, topic_id: @topic, id: @post
+    end
+
+    assert_not_nil assigns(:forum)
+    assert_not_nil assigns(:topic)
+    assert_nil assigns(:post)
+
+    assert_redirected_to forum_topic_path(assigns(:forum), assigns(:topic))
   end
 
   test "should not destroy post as another user" do

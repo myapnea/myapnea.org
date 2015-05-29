@@ -1,2 +1,8 @@
-= link_to edit_forum_topic_post_path(post.forum, post.topic, post), data: { toggle: 'tooltip', container: 'body'}, title: 'Edit Post', class: 'btn btn-xs btn-default' do
-  %i.fa.fa-pencil
+- if current_user and post.editable_by?(current_user)
+  = succeed ' ' do
+    = link_to edit_forum_topic_post_path(post.forum, post.topic, post), data: { toggle: 'tooltip', container: 'body'}, title: 'Edit Post', class: 'btn btn-xs btn-default' do
+      %i.fa.fa-pencil
+- if current_user and post.deletable_by?(current_user)
+  = succeed ' ' do
+    = link_to forum_topic_post_path(post.forum, post.topic, post), method: :delete, data: { confirm: "Are you sure?", toggle: 'tooltip', container: 'body' }, class: 'btn btn-xs btn-danger', title: 'Delete Post' do
+      %i.fa.fa-trash

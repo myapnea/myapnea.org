@@ -36,6 +36,20 @@
         .col-md-10.col-md-offset-2
           .checkbox
             %label
+              = f.check_box :owner
+              Owner
+
+      .form-group
+        .col-md-10.col-md-offset-2
+          .checkbox
+            %label
+              = f.check_box :moderator
+              Moderator
+
+      .form-group
+        .col-md-10.col-md-offset-2
+          .checkbox
+            %label
               = f.check_box :include_in_exports
               Include in Exports and Reports
 

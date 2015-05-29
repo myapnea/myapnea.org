@@ -4,20 +4,37 @@
     = @member.forum_name
 
 -# Admin information
-- if current_user and current_user.has_role? :moderator
+- if current_user and (current_user.moderator? or current_user.owner?)
   .well
     %h4.f300
       Moderator Contact Information
     %br
-    %dl.dl-horizontal
-      %dt
-        %strong Member Name
-      %dd
-        = @member.name
-      %dt
-        %strong Member Email
-      %dd
-        = @member.email
+    .row
+      .col-sm-6
+        %dl.dl-horizontal
+          %dt
+            %strong Member Name
+          %dd
+            = @member.name
+          %dt
+            %strong Member Email
+          %dd
+            = @member.email
+      .col-sm-6
+        %dl.dl-horizontal
+          - spam_topics_count = Topic.where(status: 'spam', user_id: @member.id).count
+          - if spam_topics_count > 0
+            %dt
+              %strong # of Spam Topics
+            %dd
+              = spam_topics_count
+          - spam_posts_count = Post.where(status: 'spam', user_id: @member.id).count
+          - if spam_posts_count > 0
+            %dt
+              %strong # of Spam Posts
+            %dd
+              = spam_posts_count
+
 
 -# About member
 .content-container
@@ -44,6 +61,7 @@
 .horizontal-inset
   - @events.each do |event|
     - if event.class == Post
+      - post = event
       .recent-post-container
         .poster-image
           = render 'forums/user_image_link', user: @member, size: 50
@@ -53,18 +71,18 @@
               %span.f500= link_to @member.forum_name, member_path(@member.forum_name), class: 'no-underline darkerer-blue'
               replied to
               %br.visible-xs
-              = link_to event.topic.name, forum_topic_path(event.topic.forum.slug, event.topic.slug), class: 'no-underline'
+              = link_to post.topic.name, forum_topic_post_path(post.topic.forum, post.topic, post), class: 'no-underline'
             %p.small.post-time
-              = event.created_at.strftime("%-d %B %Y, %-l:%M %p")
+              = post.created_at.strftime("%-d %B %Y, %-l:%M %p")
           .post-content
             = render 'posts/formatted', post: event
           - if current_user
             .reply-container
-              - unless event.topic.locked?
-                - new_post = event.topic.posts.new
-                = form_for [event.topic.forum, event.topic, new_post], html: { class: 'form-horizontal' } do |f|
+              - unless post.topic.locked?
+                - new_post = post.topic.posts.new
+                = form_for [post.topic.forum, post.topic, new_post], html: { class: 'form-horizontal' } do |f|
 
-                  - if current_user.has_role? :moderator
+                  - if current_user.moderator?
                     = f.hidden_field :status, value: 'approved'
 
                   .reply

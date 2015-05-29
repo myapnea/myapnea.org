@@ -27,7 +27,7 @@
         .col-md-10
           = f.text_area :description, rows: 14, class: 'form-control'
 
-      - if current_user.has_role? :moderator
+      - if current_user.moderator?
         .form-group
           = f.label :status, nil, class: 'col-md-2 control-label'
           .col-md-10
