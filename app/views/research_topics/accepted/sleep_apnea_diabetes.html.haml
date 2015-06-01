@@ -9,13 +9,13 @@
       = image_tag 'myapnea/research/jessie_bakker.jpg', class: 'img-responsive pull-right', style: 'width: 100px'
     .col-sm-10.col-xs-8
       %h3.f300
-        Jessie Bakker, MD
+        Jessie Bakker, PhD
       %h4.f300.text-dark7
         Instructor of Medicine, Harvard Medical School
 
 .content-container
   .content-body
-    %h4
+    %h4.research-highlight-header
       Type 2 diabetes and sleep apnea tend to go hand-in-hand
     %p.lead
       Type 2 diabetes mellitus (T2DM) and obstructive sleep apnea (OSA) are both very common, each affecting around 10% of adults in the United States.  Unfortunately, T2DM and OSA often go hand-in-hand.  It has been known for some time that there are a large number of people who have both conditions, although there is evidence that OSA is often undiagnosed.  For example, a recent research study performed sleep tests in 306 obese people with T2DM, and found that 86% had OSA that was previously undiagnosed.
@@ -24,7 +24,7 @@
       %sup 2
       A recent study from our group found that the association between T2DM and OSA was stronger in African-American and Caucasian individuals, compared with Hispanic or Chinese individuals in the United States (results not yet published – watch this space).  In addition to these studies that have looked at T2DM and OSA at a single time point, many studies have been performed over long time periods - in some cases, more than 15 years - and found that people with T2DM are much more likely to develop OSA in the future, compared to people without T2DM.
       %sup 3-8
-    %h4
+    %h4.research-highlight-header
       Is the link between diabetes and sleep apnea just due to weight gain, or is there something more?
     %p.lead
       If T2DM and OSA were completely unrelated to each other, we would not expect such a high number of people with both diseases.  Whenever we see two diseases existing together, we start to think about the four reasons this might happen:
@@ -49,7 +49,7 @@
       These changes can make diabetes control more difficult and contribute to diabetes complications, such as eye disease, nerve damage, or kidney problems.  Furthermore, a study of children ages 13 to 16 years old showed that even mild levels of OSA were associated with an increased prevalence of “metabolic syndrome” (which refers to problems with insulin, glucose, lipids and blood pressure), suggesting that abnormalities in metabolism can occur early in the course of OSA and even in people with relatively mild OSA.
       %sup 13
       Finally, studies show that women with OSA have high rates of diabetes during pregnancy.  This is important since diabetes during pregnancy is a risk factor for pregnancy complications as well as a risk factor for T2DM and heart disease later in life.
-    %h4
+    %h4.research-highlight-header
       What happens to T2DM with CPAP treatment?
     %p.lead
       One way to figure out if OSA can cause T2DM is to treat the OSA using CPAP therapy, and look at what happens to blood sugar and other measures of T2DM.  Only a few studies have done this, and the results are mixed.  One notable study reported that hemoglobin A1C levels (a measurement of how well blood glucose is controlled) were improved more in people with OSA treated with CPAP compared to people not treated with CPAP.
@@ -64,7 +64,7 @@
       %sup 16
       This suggests that perhaps people with pre-diabetes and severe OSA have the most to gain from CPAP therapy, in terms of metabolic outcomes.  In agreement with this conclusion, a very recent study performed in Chicago found that in a group of people who had pre-diabetes and severe OSA on average, large improvements in glucose metabolism and other measures of T2DM occurred with just two weeks of CPAP used eight hours per night.
       %sup 17
-    %h4
+    %h4.research-highlight-header
       What next?
     %p.lead
       Although the evidence that OSA causes T2DM is not conclusive, it is clear that people with T2DM are at high risk of developing OSA, and many of these people might benefit from OSA treatment.  So, what next?  There are several key questions on this topic that still need to be addressed:
@@ -83,23 +83,37 @@
         How do we ensure that people with T2DM have access to sleep studies, and CPAP treatment if they need it?  One study reported that less than 5% of the people with T2DM who were diagnosed with OSA had started treatment one year after both they and their doctors were told about their diagnosis.
         %sup 18
         Clearly, we need to raise awareness of the importance of OSA amongst people with T2DM and their doctors.  The best way to do this is by performing large, high-quality research studies showing improved quality of life and reduced cardiovascular disease in people with T2DM and OSA treated with CPAP, while continuing to look for even better treatments for OSA.
-  .content-footer
-    %h5
+
+.content-container
+  .content-header
+    %h3
       Help us work with people with diabetes, diabetes associations, and others to move this field forward.
-    %h5.f300
+  .content-body
+    %p.lead
       We are currently working on a study in Boston looking at whether CPAP treatment can reduce cardiovascular risk in people with OSA and T2DM.  We are looking for people aged 18-70 with T2DM who are interested in having a home-based sleep test to find out if they have OSA:
+    %ul
+      %li
+        ‘Vascular Impairment in Type 2 Diabetes Mellitus with Co-Morbid Obstructive Sleep Apnea’
+        = surround "(", ")." do
+          = link_to "https://clinicaltrials.gov/ct2/show/NCT01629862", "https://clinicaltrials.gov/ct2/show/NCT01629862"
+      %li
+        Please contact Dr. Jessie Bakker, jpbakker@partners.org or 617-732-5987 for information about this study.
+    %br
     %p.lead
-      ‘Vascular Impairment in Type 2 Diabetes Mellitus with Co-Morbid Obstructive Sleep Apnea’ (https://clinicaltrials.gov/ct2/show/NCT01629862).
-      %br
-      Please contact Dr. Jessie Bakker, jpbakker@partners.org or 617-732-5987 for information about this study.
-    %h5.f300
       Here is a list of some other ongoing research studies investigating the link between T2DM and OSA that you may be interested in:
-    %p.lead
-      ‘Diabetes-Obstructive Sleep Apnea Treatment Trial (DOTT)’ – University of Pittsburgh (https://clinicaltrials.gov/ct2/show/NCT01901055)
-    %p.lead
-      ‘Effects of Continuous Positive Airway Pressure on Glucose Metabolism (SOMNOS)’ – Johns Hopkins University (https://clinicaltrials.gov/ct2/show/NCT01503164)
-    %p.lead
-      ‘Effect of CPAP Treatment on Glycemic Control in Gestational Diabetes: A Pilot Randomized Controlled Trial’ – McGill University Health Center (https://clinicaltrials.gov/ct2/show/NCT02245659)
+    %ul
+      %li
+        ‘Diabetes-Obstructive Sleep Apnea Treatment Trial (DOTT)’ – University of Pittsburgh
+        = surround "(", ")." do
+          = link_to "https://clinicaltrials.gov/ct2/show/NCT01901055", "https://clinicaltrials.gov/ct2/show/NCT01901055"
+      %li
+        ‘Effects of Continuous Positive Airway Pressure on Glucose Metabolism (SOMNOS)’ – Johns Hopkins University
+        = surround "(", ")." do
+          = link_to "https://clinicaltrials.gov/ct2/show/NCT01503164", "https://clinicaltrials.gov/ct2/show/NCT01503164"
+      %li
+        ‘Effect of CPAP Treatment on Glycemic Control in Gestational Diabetes: A Pilot Randomized Controlled Trial’ – McGill University Health Center
+        = surround "(", ")." do
+          = link_to "https://clinicaltrials.gov/ct2/show/NCT02245659", "https://clinicaltrials.gov/ct2/show/NCT02245659"
 
 .content-container.inherit-background.horizontal-inset
   .content-header
