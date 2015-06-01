@@ -1,4 +1,4 @@
-## 7.0.1
+## 7.0.1 (June 1, 2015)
 
 ### Bug Fix
 - Fixed an issue with the URL structure for Facebook and Twitter share links
