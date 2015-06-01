@@ -24,7 +24,7 @@ class HomeController < ApplicationController
   end
 
   def posts
-    @posts = Post.not_research.visible_for_user.where.not(user_id: current_user.id).includes(:user, topic: :forum).order(created_at: :desc).page(params[:page]).per(10)
+    @posts = Post.not_research.visible_for_user.includes(:user, topic: :forum).order(created_at: :desc).page(params[:page]).per(10)
   end
 
 end

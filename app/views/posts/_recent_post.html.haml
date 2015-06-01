@@ -5,7 +5,12 @@
     .post-header
       %h5.f300.poster-details
         %span.f500
-          - if post.user.forum_name.present?
+          - if post.user == current_user
+            - if current_user.forum_name.present?
+              = link_to "You", member_path(current_user.forum_name), class: 'no-underline darkerer-blue'
+            - else
+              You
+          - elsif post.user.forum_name.present?
             = link_to post.user.forum_name, member_path(post.user.forum_name), class: 'no-underline darkerer-blue'
           - else
             Anonymous
