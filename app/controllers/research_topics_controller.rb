@@ -118,7 +118,7 @@ class ResearchTopicsController < ApplicationController
 
       respond_to do |format|
         format.html { redirect_to :back }
-        format.js {  }
+        format.js
       end
     else
       head :ok
@@ -136,7 +136,7 @@ class ResearchTopicsController < ApplicationController
     end
 
     respond_to do |format|
-      format.js {}
+      format.js
     end
   end
 
