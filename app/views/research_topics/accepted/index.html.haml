@@ -5,7 +5,8 @@
 
 .content-container
   .content-header
-    %h2 Does treatment of sleep apnea influence body weight?
+    = link_to sleep_apnea_body_weight_path, class: 'no-underline text-dark8' do
+      %h2 Does treatment of sleep apnea influence body weight?
   .content-body.horizontal-inset
     %p.lead
       By conducting more research on how sleep apnea treatments influence body weight and one’s quality of life, researchers hope to provide the tools necessary for treatment providers to deliver the best possible care to their patients. You can get involved in this research by completing our surveys within the research portal of MyApnea.Org.
@@ -23,7 +24,8 @@
 
 .content-container
   .content-header
-    %h2 Does sleep influence memory and “brain plasticity”?
+    = link_to sleep_apnea_brain_plasticity_path, class: 'no-underline text-dark8' do
+      %h2 Does sleep influence memory and “brain plasticity”?
   .content-body.horizontal-inset
     %p.lead
       Sleep is important to strengthen memories created during the day. Sleep is also important to help the brain get rid of toxins that may impair the brain circuits needed for memory. Poor sleep can negatively impact memory and brain plasticity. There are well-described effects of sleep deprivation, sleep disruption and low levels of oxygen on brain function. Poor sleep negatively affects the brain’s memory center (hippocampus) and also impairs processes associated with “brain plasticity.”
@@ -43,7 +45,8 @@
 
 .content-container
   .content-header
-    %h2 Obstructive Sleep Apnea and Adenotonsillectomy in Children
+    = link_to sleep_apnea_adenotonsillectomy_children_path, class: 'no-underline text-dark8' do
+      %h2 Obstructive Sleep Apnea and Adenotonsillectomy in Children
   .content-body.horizontal-inset
     %p.lead
       While adenotonsillectomy for sleep apnea in children is generally safe, there may be specific groups that have an increased risk of complications related to surgery, including very young and African-American children. In these groups, more intensive monitoring in the post-surgery period may be warranted. The association between severity of sleep apnea and complications points out the importance of obtaining a sleep study before surgery to determine relative risk.
@@ -63,7 +66,8 @@
 
 .content-container
   .content-header
-    %h2 What is the link between type 2 diabetes and obstructive sleep apnea?
+    = link_to sleep_apnea_diabetes_path, class: 'no-underline text-dark8' do
+      %h2 What is the link between type 2 diabetes and obstructive sleep apnea?
   .content-body.horizontal-inset
     %p.lead
       Type 2 diabetes mellitus (T2DM) and obstructive sleep apnea (OSA) are both very common, each affecting around 10% of adults in the United States.  Unfortunately, T2DM and OSA often go hand-in-hand.  It has been known for some time that there are a large number of people who have both conditions, although there is evidence that OSA is often undiagnosed.
@@ -75,13 +79,14 @@
         = image_tag 'myapnea/research/jessie_bakker.jpg', class: 'img-responsive pull-right', style: 'width: 100px'
       .col-sm-10.col-xs-8
         %h4.f300
-          Jessie Bakker, MD
+          Jessie Bakker, PhD
         %h5.f300.text-dark7
           Instructor of Medicine, Harvard Medical School
 
 .content-container
   .content-header
-    %h2 Can Nighttime Oxygen Use Replace CPAP for Treatment of Sleep Apnea?
+    = link_to sleep_apnea_nighttime_oxygen_use_path, class: 'no-underline text-dark8' do
+      %h2 Can Nighttime Oxygen Use Replace CPAP for Treatment of Sleep Apnea?
   .content-body.horizontal-inset
     %p.lead
       Over the years, my colleagues and I have had requests to prescribe oxygen for treating sleep apnea in patients who do not tolerate CPAP. This made some sense since some of the complications of sleep apnea are driven by a lack of oxygen during periods of apnea. However, there has been little research addressing the role of oxygen as a sleep apnea treatment. We therefore designed the Heart Biomarker Evaluation in Apnea Treatment (HeartBEAT) study.
@@ -103,7 +108,8 @@
 -# Template
 / .content-container
 /   .content-header
-/     %h2 What is the link between type 2 diabetes and obstructive sleep apnea?
+/     = link_to '', class: 'no-underline text-dark8' do
+/       %h2 What is the link between type 2 diabetes and obstructive sleep apnea?
 /   .content-body.horizontal-inset
 /     %p.lead
 /   .content-footer

@@ -26,7 +26,7 @@
 ### Refactoring
 - Simplified internal role structure for setting owners and moderators
 
-## 7.0.0
+## 7.0.0 (June 1, 2015)
 
 ### New Features
 - **Rank the Research Overhaul**
