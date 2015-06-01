@@ -26,7 +26,7 @@
 
 ### Bug Fixes
 - Fixed an issue getting counts for age categories on administrative progress report
-  - Users cannot vote from member pages unless they have already completed the Rank the Research tutorial
+- Users cannot vote from member pages unless they have already completed the Rank the Research tutorial
 
 ### Refactoring
 - Simplified internal role structure for setting owners and moderators
