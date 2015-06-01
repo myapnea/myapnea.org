@@ -1,4 +1,13 @@
+- remote_bool = false unless defined?(remote_bool)
+
+- if remote_bool and params[:action] != 'first_topics'
+  - path = remote_vote_path(research_topic: research_topic)
+- else
+  - path = vote_path(research_topic: research_topic)
+
+-# Can we deprecate this catch?
 - if research_topic.present?
+  -# End potential deprecation
   .research-topic-container
     .research-topic-header
       .research-topic-header-details
@@ -14,7 +23,7 @@
           %h5.f300= "#{research_topic.description}"
     - unless current_user.cast_vote_for?(research_topic)
       .research-topic-footer
-        = form_tag vote_path(research_topic: research_topic), remote: research_topic.seeded?, class: 'voting-form' do
+        = form_tag path, remote: remote_bool, class: 'voting-form' do
           = hidden_field_tag :research_topic_id, research_topic.id
           .voting-form-header
             %p.lead This should be a research priority:
@@ -35,4 +44,14 @@
               = text_area_tag "comment_#{research_topic.id}", params["comment_#{research_topic.id}"], rows: 3, style: 'resize: none', class: 'form-control', disabled: current_user.cast_vote_for?(research_topic)
           .voting-form-submit
             = submit_tag "Submit", class: 'btn btn-primary'
-
+    - else
+      -# Display of user's vote choice
+      .content-container
+        .content-body{ class: "text-white #{current_user.endorsed?(research_topic) ? 'great-bcg' : 'danger-bcg' }" }
+          %p.lead.horizontal-inset
+            %i.fa.fa-lg{ class: "#{current_user.endorsed?(research_topic) ? 'fa-thumbs-up' : 'fa-thumbs-down' }" }
+            &nbsp;
+            You
+            = current_user.endorsed?(research_topic) ? "agreed" : "disagreed"
+            that this is a research priority.
+            = link_to 'I changed my mind', change_vote_path(research_topic_id: research_topic.id), method: :patch, class: 'btn btn-default pull-right'

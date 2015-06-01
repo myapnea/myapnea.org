@@ -120,11 +120,24 @@ class ResearchTopicsController < ApplicationController
         format.html { redirect_to :back }
         format.js {  }
       end
-
     else
-      render nothing: true
+      head :ok
+    end
+  end
+
+  def remote_vote
+    @research_topic = ResearchTopic.find(params[:research_topic_id])
+    if params["endorse_#{@research_topic.id}"].to_s == "1"
+      @research_topic.endorse_by(current_user, params["comment_#{@research_topic.id}"])
+    elsif params["endorse_#{@research_topic.id}"].to_s == "0"
+      @research_topic.oppose_by(current_user, params["comment_#{@research_topic.id}"])
+    else
+      @vote_failed = true
     end
 
+    respond_to do |format|
+      format.js {}
+    end
   end
 
   def change_vote

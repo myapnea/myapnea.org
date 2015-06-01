@@ -1,0 +1,10 @@
+<% error_container = "#voting-form-error-#{@research_topic.id}" %>
+<% if @vote_failed %>
+  $("<%= error_container %>").removeClass("hidden");
+<% else %>
+  $("<%= error_container %>").addClass("hidden");
+<% end %>
+
+<% container = "#voting-container-#{@research_topic.id}" %>
+$("<%= container %>").html("<%=j render 'research_topics/voting_form', research_topic: @research_topic, remote_bool: true %>");
+

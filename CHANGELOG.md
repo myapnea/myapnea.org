@@ -19,9 +19,14 @@
   - Cross tabs report now displays percentages in a cleaner manner
 - **General Changes**
   - Updated styling for flash notification messages
+- **Rank the Research Changes**
+  - Voting from member profiles will not dynamically update
+  - Rank the research is now publicly viewable
+  - Research Highlights are now publicly viewable
 
 ### Bug Fixes
 - Fixed an issue getting counts for age categories on administrative progress report
+  - Users cannot vote from member pages unless they have already completed the Rank the Research tutorial
 
 ### Refactoring
 - Simplified internal role structure for setting owners and moderators
