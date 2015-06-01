@@ -14,7 +14,7 @@
         = link_to post.topic.name, forum_topic_post_path(post.topic.forum, post.topic, post), class: 'no-underline'
       %p.small.post-time
         = post.created_at.strftime("%-d %B %Y, %-l:%M %p")
-    .post-content.post-expandable{ data: { object: 'remove-max-height' } }
+    .post-content
       = render 'posts/formatted', post: post
     - if current_user and not post.topic.locked?
       .reply-container

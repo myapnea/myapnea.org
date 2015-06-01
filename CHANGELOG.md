@@ -12,7 +12,8 @@
   - Site owners can now delete topics and posts
   - Moderators can now see the total number of spam topics and posts on the member's profile
 - **Post Changes**
-  - Posts on home page and on member profile pages can now be expanded and also link directly to the post itself not just the topic
+  - Posts on home page now link directly to post instead of just to the topic
+  - Posts on home page and on member profile pages are shown in full
 - **Learn Page Changes**
   - Hovering over the carousel pictures now changes the mouse pointer to a cursor to indicate that they are clickable
 - **Administrative Changes**
