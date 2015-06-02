@@ -4,6 +4,7 @@
 - **Landing Page Changes**
   - Added the new MyApnea.Org video to the landing page
   - Minor stylistic changes and user interface enhancements
+  - Videos on landing and learns page now have controls enabled
 - **Profile Changes**
   - Posts on member profiles now link to the exact post instead of just the topic
 - **Forum Moderation Changes**
