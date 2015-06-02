@@ -1,5 +1,8 @@
 ## 7.0.2
 
+### Bug Fix
+- Fixed URL links in password reset and account unlock emails
+
 ## 7.0.1 (June 1, 2015)
 
 ### Bug Fix
