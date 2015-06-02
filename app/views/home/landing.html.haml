@@ -13,13 +13,6 @@
     .thumbnail#landing-video-play{ data: { object: 'start-yt-video', toggle:"modal", target:'#landingVideoModal', target_iframe: '#landingframe', src: '//www.youtube.com/embed/hzl_4W0Vxds?rel=0&autoplay=1&autohide=1&showinfo=0&wmode=opaque' } }
       %i.fa.fa-play-circle
 
-  / COMMUNITY TRACKER
-  #community-tracker.row.reset-layout
-    .col-sm-8.col-sm-offset-2
-      %h2.lighterer-blue
-        Current community:
-        = succeed " members" do
-          %span.primary-blue= number_with_delimiter User.current.count
 / MISSION
 #slide2.row.row-fullscreen.reset-layout
   .text-content-container
@@ -67,6 +60,12 @@
       = link_to image_tag('myapnea/icons/email_icon.png', class: 'share-icons-animate share-icons-md'), "mailto:?subject=Check%20out%20MyApnea.Org&body=This%20group%20is%20working%20to%20improve%20treatment%20and%20research%20of%20sleep%20apnea!%20You%20can%20learn%20more%20and%20join%20their%20community%20by%20visiting%20www.myapnea.org"
 
 #slide3.row.reset-layout
+  / COMMUNITY TRACKER
+  #community-tracker
+    %h2
+      Current community:
+      = succeed " members" do
+        %span.primary-blue= number_with_delimiter User.current.count
   #testimonial.col-sm-8.col-sm-offset-1
     %p.lead
       As a new CPAP user, I was very happy to find the MyApnea.Org website. My immediate need has been trying to get ideas from experienced CPAP users about dealing with the nightly surprises that go along with adjusting to CPAP. It has been especially helpful to me hearing from people who have successfully used CPAP for 10, 20 and even 25 years. I have found that the experienced CPAP users have a wealth of practical knowledge about solutions as well as further resources.

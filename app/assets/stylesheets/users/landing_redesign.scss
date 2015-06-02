@@ -37,7 +37,7 @@
       border-radius:100%;
     }
   }
-  #community-tracker {
+  #scroll-carat {
     position:absolute;
     bottom:0px;
     width:100%;
@@ -193,6 +193,12 @@
   }
 }
 
+
+#community-tracker {
+  padding: 10px;
+  margin-bottom: 50px;
+  color: white;
+}
 
 /* SIGN UP FORMS */
 

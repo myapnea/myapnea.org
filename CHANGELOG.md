@@ -6,6 +6,7 @@
   - Minor stylistic changes and user interface enhancements
   - Videos on landing and learns page now have controls enabled
   - Shortened and enhanced the intro text above the fold
+  - Moved community counter closer to the testimonial and signup form
 - **Profile Changes**
   - Posts on member profiles now link to the exact post instead of just the topic
 - **Forum Moderation Changes**
