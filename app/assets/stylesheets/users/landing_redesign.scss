@@ -36,6 +36,14 @@
       line-height:118px;
       border-radius:100%;
     }
+    p {
+      margin-top: 20px;
+      margin-bottom: 0px;
+      padding-bottom: 0px;
+      color: rgb(255,255,255);
+      color: rgba(255,255,255,.7);
+      font-size: 16px;
+    }
   }
   #scroll-carat {
     position:absolute;
@@ -197,6 +205,21 @@
   padding: 10px;
   margin-bottom: 50px;
   color: white;
+}
+
+
+@media (max-width: 992px) {
+  /* SMALL SCREENS */
+  #slide1 {
+    #landing-video-play {
+      background-color: rgba(255,255,255,.8);
+      i {}
+      p {
+        color: rgb(0,0,0);
+        color: rgba(0,0,0,.7);
+      }
+    }
+  }
 }
 
 /* SIGN UP FORMS */
