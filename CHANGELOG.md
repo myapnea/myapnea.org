@@ -33,6 +33,11 @@
 ### Refactoring
 - Simplified internal role structure for setting owners and moderators
 
+## 7.0.2 (June 2, 2015)
+
+### Bug Fix
+- Fixed URL links in password reset and account unlock emails
+
 ## 7.0.1 (June 1, 2015)
 
 ### Bug Fix
