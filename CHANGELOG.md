@@ -23,6 +23,9 @@
   - Hovering over the carousel pictures now changes the mouse pointer to a cursor to indicate that they are clickable
 - **Administrative Changes**
   - Cross tabs report now displays percentages in a cleaner manner
+  - Improved links back to main admin dashboard
+  - Easily access social profile from user profile
+  - Research topics now include links and vote count
 - **General Changes**
   - Updated styling for flash notification messages
 - **Rank the Research Changes**
