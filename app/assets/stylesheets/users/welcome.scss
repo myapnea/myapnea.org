@@ -54,34 +54,20 @@
 
 @media (max-width: 1600px) {
   /* LARGE SCREENS */
-  // #community-tracker {
-  //   padding-bottom:80px;
-  // }
-
 }
 
 @media (max-width: 1200px) {
   /* MEDIUM SCREENS */
-  // #community-tracker h2 {
-  //   font-size:36px;
-  //   text-align:center;
-  // }
 }
 
 @media (max-width: 992px) {
   /* SMALL SCREENS */
-  #btn-join {margin-left: 25px;}
 
   .partners-img {
     width:auto;
     max-height:100px;
     padding:10px 0;
   }
-
-  // #community-tracker h2 {
-  //   font-size:36px;
-  //   text-align:center;
-  // }
 
   #slide-2, #slide-3, #slide-2p, #slide-3p {
     text-align:center;
@@ -124,7 +110,6 @@
 
 @media (max-width: 768px) {
   /* XSMALL SCREENS */
-  #btn-join { font-size:16px; }
 
   #btn-login-phone, #btn-welcome-phone {
     float:right;
