@@ -1,5 +1,9 @@
 ## 7.2.0
 
+### Enhancements
+- **General Changes**
+  - Minor changes to display of large numbers on Community page
+
 ## 7.1.0 (June 3, 2015)
 
 ### Enhancements

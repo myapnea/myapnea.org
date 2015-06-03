@@ -21,9 +21,9 @@
     %br
     %p.lead
       Most promising, our community is becoming increasingly active. We currently have
-      %span.f500.darkerer-blue= "#{Post.current.count} posts"
+      %span.f500.darkerer-blue= pluralize(number_with_delimiter(Post.current.visible_for_user.count), 'post')
       in
-      %span.f500.darkerer-blue= "#{Topic.current.count} topics."
+      %span.f500.darkerer-blue= pluralize(number_with_delimiter(Topic.current.where(status: ['approved', 'pending_review']).count), 'topic')
       To date, we've watched an overwhelming amount of support grow among the MyApnea community. The forums alone have become an active discussion board where people with sleep apnea, researchers, and care providers help each other address important questions and concerns. Among these are:
     %ul
       %li.lead
