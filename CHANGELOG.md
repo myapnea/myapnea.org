@@ -3,6 +3,8 @@
 ### Enhancements
 - **General Changes**
   - Minor changes to display of large numbers on Community page
+- **Administrative Changes**
+  - Research topic admin dashboard shows total topic and vote counts
 
 ## 7.1.0 (June 3, 2015)
 
