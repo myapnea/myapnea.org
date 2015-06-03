@@ -6,7 +6,7 @@
   .well
     %h4
       For admins:
-    %h5.f300.horizontal-inset
+    %p.horizontal-inset
       The following topics are pending review:
     %ul
       - ResearchTopic.pending_review.each do |research_topic|
@@ -20,7 +20,7 @@
       and proposals for future studies of sleep apnea.
   - if current_user and current_user.my_research_topics.present?
     .content-footer
-      %h5.f300
+      %p
         = link_to "Check the status of your research topics", my_research_topics_research_topics_path, class: 'no-underline'
 
 
@@ -31,7 +31,7 @@
   .content-body
     .row
       .col-sm-6
-        %h4 Newest
+        %h2 Newest
         .scroll-container
           - @research_topics.newest.first(10).each do |rt|
             = link_to research_topic_path(rt), class: 'research-topic-index-display' do
@@ -42,11 +42,11 @@
                 %span.badge
                   Vote!
                 %p= rt.text
-          .research-topic-index-display
-            = link_to 'More...', newest_research_topics_path
+          = link_to newest_research_topics_path, class: 'research-topic-index-display' do
+            %p More...
 
       .col-sm-6
-        %h4 Most Discussed
+        %h2 Most Discussed
         .scroll-container
           - @research_topics.most_discussed.first(10).each do |rt|
             = link_to research_topic_path(rt), class: 'research-topic-index-display' do
@@ -57,40 +57,18 @@
                 %span.badge
                   Vote!
                 %p= rt.text
-          .research-topic-index-display
-            = link_to 'More...', most_discussed_research_topics_path
+          = link_to most_discussed_research_topics_path, class: 'research-topic-index-display' do
+            %p More...
 
 -# Add your own question
 - if current_user
   .content-container.horizontal-inset
-    .content-body.lighter-blue-bcg
+    .content-header.lighter-blue-bcg
       %h3.text-light9 Propose your own research topic:
-      .list-group-item
-        = form_for @new_research_topic, html: { data: { object: "inline-validation"} } do |f|
-          - if @new_research_topic.errors.any?
-            .bs-callout.bs-callout-danger#error_explanation
-              %h4
-                = pluralize(@new_research_topic.errors.count, "error")
-                prohibited this user from being saved
-              %ul
-                - @new_research_topic.errors.messages.each do |key, msg|
-                  - if key == :over_eighteen
-                    %li= msg.join(", ")
-                  - else
-                    %li= "#{key.to_s.titleize} #{msg.join(", ")}"
+    .content-body.lighter-blue-bcg
+      = render 'research_topics/form', research_topic: @new_research_topic
 
-          .form-group
-            = f.label :text, class: 'sr-only'
-            = f.text_area :text, placeholder: "Enter your research question here", autocomplete: :off, style: 'resize: none', class: 'form-control input-lg', data: { object: 'inline-validation-item', name: 'research-topic-name' }
-            .col-sm-6.hidden{ style: 'margin-top: 15px; margin-bottom: 30px;', data: { object: 'research-topic-name--error' } }
-              %p.small.centered-text.inline-validation-error
-                Please enter a valid question or research topic!
-          .form-group
-            = f.label :author, class: 'sr-only'
-            = f.text_area :description, placeholder: "Describe why you think this question is important", style: 'resize: none', class: 'form-control input-lg'
-          = f.submit("Submit", class: "btn btn-success pull-right")
-          .clearfix
-
+-# Research highlights
 .content-container
   .content-header
     %h3.text-dark7 Recently accepted research topics:
