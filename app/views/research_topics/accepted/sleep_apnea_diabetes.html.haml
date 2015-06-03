@@ -97,8 +97,9 @@
         = surround "(", ")." do
           = link_to "https://clinicaltrials.gov/ct2/show/NCT01629862", "https://clinicaltrials.gov/ct2/show/NCT01629862"
       %li
-        Please contact Dr. Jessie Bakker (
-        = mail_to 'jpbakker@partners.org'
+        Please contact Dr. Jessie Bakker
+        = precede '(' do
+          = mail_to 'jpbakker@partners.org'
         or 617-732-5987) for information about this study.
     %br
     %p.lead
