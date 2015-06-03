@@ -39,6 +39,7 @@
 - Fixed an issue getting counts for age categories on administrative progress report
 - Users cannot vote from member pages unless they have already completed the Rank the Research tutorial
 - Fixed an issue with styling that allowed unwanted left/right scrolling on landing pages
+- Fixed a bug where topic update notifications were sent even after a user had unsubscribed from a topic
 
 ### Refactoring
 - Simplified internal role structure for setting owners and moderators

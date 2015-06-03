@@ -32,7 +32,7 @@ class Topic < ActiveRecord::Base
   has_one :research_topic # For research topic functionality
   has_many :posts, -> { order(:created_at) }
   has_many :subscriptions
-  has_many :subscribers, -> { current.where(emails_enabled: true) }, through: :subscriptions, source: :user
+  has_many :subscribers, -> { current.where(emails_enabled: true).where(subscriptions: { subscribed: true }) }, through: :subscriptions, source: :user
 
   # Topic Methods
 
