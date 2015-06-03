@@ -14,7 +14,7 @@
       %i.fa.fa-play-circle
       %p
         Play Video
-  #scroll-carat
+  #scroll-carat.hidden-sm.hidden-xs
     %p.text-light7
       Scroll to Learn More
     %h4.text-light7
@@ -23,19 +23,23 @@
 / MISSION
 #slide2.row.row-fullscreen.reset-layout
   .text-content-container
-    %h1.darkerer-blue
-      Get Involved!
-    %p.lead
+    %h2.f300.spaced.text-white
       The mission of MyApnea.Org is to improve the diagnosis and treatment of sleep apnea through the
       %span.lighter-orange active engagement of patients, families, researchers, and healthcare providers
       in a community that facilitates patient-centered research.
-    %hr
-    %p.lead
-      We invite you to answer a series of questions about symptoms, treatment, and related health conditions.  Your answers will help the sleep apnea community better understand the disorder and where future research efforts should be directed.
-    %p.lead
-      Each completed survey earns you an entry into our monthly drawing for a
-      %span.f500.lighter-orange $250 Visa Gift card.
+    %br
+    %br
     = link_to 'Get Started', '#signup', class: 'btn btn-primary btn-lg', id: 'get-started-button'
+    - 4.times do
+      %br
+    %h4.f300.spaced.text-white
+      By gathering huge amounts of health information—from you and thousands of others living with sleep apnea—we can discover new patterns that lead to
+      %span.lighter-orange better solutions and cures
+      for this condition.
+    %br
+    %p.lead
+      We invite you to answer a series of questions about symptoms, treatment, and related health conditions. Each completed survey earns you an entry into our monthly drawing for a
+      %span.f500.lighter-orange $250 Visa Gift card.
   %br
   .row
     #value1.col-sm-6
@@ -75,13 +79,13 @@
         %span.primary-blue= number_with_delimiter User.current.count
   #testimonial.col-sm-8.col-sm-offset-1
     %p.lead
-      As a new CPAP user, I was very happy to find the MyApnea.Org website. My immediate need has been trying to get ideas from experienced CPAP users about dealing with the nightly surprises that go along with adjusting to CPAP. It has been especially helpful to me hearing from people who have successfully used CPAP for 10, 20 and even 25 years. I have found that the experienced CPAP users have a wealth of practical knowledge about solutions as well as further resources.
+      It seems as if research is generally driven by funding organizations, which oftentimes is not reflective of the needs of patients. By having large amounts of data provided by and for us, we can now drive the research agenda. This is a way to democratize research—to generate understanding on the part of the researchers and patients together.
     %h4
-      \- Janet Barry
-      %span.f300 (Florida, USA)
+      \- Kathy Page
+      %span.f300 (Missouri, USA)
   #testimonial-giver.col-sm-2
-    .img-centerer
-    = image_tag 'myapnea/users/janet_barry.jpg', class: 'img-responsive', style: 'margin: auto'
+    %br.visible-xs
+    = image_tag 'myapnea/testimonials/KathyPage.jpg', class: 'img-responsive', style: 'margin: auto'
 
 #partners-banner.row.reset-layout
   .col-sm-12.col-md-4.col-lg-4.col-lg-offset-1
