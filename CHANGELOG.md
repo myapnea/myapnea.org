@@ -5,6 +5,9 @@
   - Added the new MyApnea.Org video to the landing page
   - Minor stylistic changes and user interface enhancements
   - Videos on landing and learns page now have controls enabled
+  - Shortened and enhanced the intro text above the fold
+  - Added indicator to encourage users to scroll and learn more about MyApnea
+  - Moved community counter closer to the testimonial and signup form
 - **Profile Changes**
   - Posts on member profiles now link to the exact post instead of just the topic
 - **Forum Moderation Changes**
@@ -20,6 +23,9 @@
   - Hovering over the carousel pictures now changes the mouse pointer to a cursor to indicate that they are clickable
 - **Administrative Changes**
   - Cross tabs report now displays percentages in a cleaner manner
+  - Improved links back to main admin dashboard
+  - Easily access social profile from user profile
+  - Research topics now include links and vote count
 - **General Changes**
   - Updated styling for flash notification messages
   - Added standard "Open Sans" font family to ensure font consistency across devices and operating systems
@@ -31,6 +37,7 @@
 ### Bug Fixes
 - Fixed an issue getting counts for age categories on administrative progress report
 - Users cannot vote from member pages unless they have already completed the Rank the Research tutorial
+- Fixed an issue with styling that allowed unwanted left/right scrolling on landing pages
 
 ### Refactoring
 - Simplified internal role structure for setting owners and moderators
