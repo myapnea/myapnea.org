@@ -126,16 +126,14 @@
     background-color: rgba(255,255,255,.7);
     padding: 20px;
     border: 5px solid white;
-    border-radius: 20px;
-    h4 {
-      color: #387fcf;
-    }
+    border-radius: 5px;
   }
   #testimonial-giver {
-    padding: 20px;
+    padding: 0px 20px;
     img {
       border: 5px solid white;
       border-radius: 5px;
+      max-height: 200px;
     }
   }
   #social-overview-link {
