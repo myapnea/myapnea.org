@@ -88,13 +88,6 @@ gem 'merit'
 # For Third-Party API Connections
 gem 'faraday'
 
-# Development
-group :development, :integration_test, :production_copy do
-  gem "better_errors"
-  gem "meta_request"
-  gem "binding_of_caller"
-end
-
 # Testing
 group :test do
   # Pretty printed test output
@@ -104,10 +97,7 @@ group :test do
   gem 'simplecov',          '~> 0.10.0',           require: false
 end
 
-# # Testing
-# group :development, :test do
-#   gem 'minitest-rails'
-#   gem 'minitest-reporters'
-# end
-
-# gem 'simplecov', require: false, group: :test
+group :development, :test do
+  # Access an IRB console on exceptions page and /console in development
+  gem 'web-console', '~> 2.0'
+end

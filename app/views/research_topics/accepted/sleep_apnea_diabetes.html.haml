@@ -9,7 +9,7 @@
       = image_tag 'myapnea/research/jessie_bakker.jpg', class: 'img-responsive pull-right', style: 'width: 100px'
     .col-sm-10.col-xs-8
       %h2.f300
-        Jessie Bakker, MD
+        Jessie Bakker, PhD
       %p.text-dark7
         Instructor of Medicine, Harvard Medical School
 
@@ -97,7 +97,9 @@
       We are currently working on a study in Boston looking at whether CPAP treatment can reduce cardiovascular risk in people with OSA and T2DM.  We are looking for people aged 18-70 with T2DM who are interested in having a home-based sleep test to find out if they have OSA:
     %ul
       %li
-        ‘Vascular Impairment in Type 2 Diabetes Mellitus with Co-Morbid Obstructive Sleep Apnea’ (https://clinicaltrials.gov/ct2/show/NCT01629862).
+        ‘Vascular Impairment in Type 2 Diabetes Mellitus with Co-Morbid Obstructive Sleep Apnea’
+        = surround "(", ")." do
+          = link_to "https://clinicaltrials.gov/ct2/show/NCT01629862", "https://clinicaltrials.gov/ct2/show/NCT01629862"
       %li
         Please contact Dr. Jessie Bakker, jpbakker@partners.org or 617-732-5987 for information about this study.
     %br
@@ -105,11 +107,17 @@
       Here is a list of some other ongoing research studies investigating the link between T2DM and OSA that you may be interested in:
     %ul
       %li
-        ‘Diabetes-Obstructive Sleep Apnea Treatment Trial (DOTT)’ – University of Pittsburgh (https://clinicaltrials.gov/ct2/show/NCT01901055)
+        ‘Diabetes-Obstructive Sleep Apnea Treatment Trial (DOTT)’ – University of Pittsburgh
+        = surround "(", ")." do
+          = link_to "https://clinicaltrials.gov/ct2/show/NCT01901055", "https://clinicaltrials.gov/ct2/show/NCT01901055"
       %li
-        ‘Effects of Continuous Positive Airway Pressure on Glucose Metabolism (SOMNOS)’ – Johns Hopkins University (https://clinicaltrials.gov/ct2/show/NCT01503164)
+        ‘Effects of Continuous Positive Airway Pressure on Glucose Metabolism (SOMNOS)’ – Johns Hopkins University
+        = surround "(", ")." do
+          = link_to "https://clinicaltrials.gov/ct2/show/NCT01503164", "https://clinicaltrials.gov/ct2/show/NCT01503164"
       %li
-        ‘Effect of CPAP Treatment on Glycemic Control in Gestational Diabetes: A Pilot Randomized Controlled Trial’ – McGill University Health Center (https://clinicaltrials.gov/ct2/show/NCT02245659)
+        ‘Effect of CPAP Treatment on Glycemic Control in Gestational Diabetes: A Pilot Randomized Controlled Trial’ – McGill University Health Center
+        = surround "(", ")." do
+          = link_to "https://clinicaltrials.gov/ct2/show/NCT02245659", "https://clinicaltrials.gov/ct2/show/NCT02245659"
 
 .content-container.inherit-background.horizontal-inset
   .content-header

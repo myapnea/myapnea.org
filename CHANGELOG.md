@@ -4,6 +4,10 @@
 - **Landing Page Changes**
   - Added the new MyApnea.Org video to the landing page
   - Minor stylistic changes and user interface enhancements
+  - Videos on landing and learns page now have controls enabled
+  - Shortened and enhanced the intro text above the fold
+  - Added indicator to encourage users to scroll and learn more about MyApnea
+  - Moved community counter closer to the testimonial and signup form
 - **Profile Changes**
   - Posts on member profiles now link to the exact post instead of just the topic
 - **Forum Moderation Changes**
@@ -11,18 +15,43 @@
   - Spam and hidden posts now are displayed in a more consistent way for moderators
   - Site owners can now delete topics and posts
   - Moderators can now see the total number of spam topics and posts on the member's profile
+- **Dashboard Changes**
+  - Posts on home page now link directly to post instead of just to the topic
+  - Posts on home page and on member profile pages are shown in full
+  - Posts by current user will now appear on the dashboard
 - **Learn Page Changes**
   - Hovering over the carousel pictures now changes the mouse pointer to a cursor to indicate that they are clickable
 - **Administrative Changes**
   - Cross tabs report now displays percentages in a cleaner manner
+  - Improved links back to main admin dashboard
+  - Easily access social profile from user profile
+  - Research topics now include links and vote count
+- **General Changes**
+  - Updated styling for flash notification messages
+- **Rank the Research Changes**
+  - Voting from member profiles will not dynamically update
+  - Rank the research is now publicly viewable
+  - Research Highlights are now publicly viewable
 
 ### Bug Fixes
 - Fixed an issue getting counts for age categories on administrative progress report
+- Users cannot vote from member pages unless they have already completed the Rank the Research tutorial
+- Fixed an issue with styling that allowed unwanted left/right scrolling on landing pages
 
 ### Refactoring
 - Simplified internal role structure for setting owners and moderators
 
-## 7.0.0
+## 7.0.2 (June 2, 2015)
+
+### Bug Fix
+- Fixed URL links in password reset and account unlock emails
+
+## 7.0.1 (June 1, 2015)
+
+### Bug Fix
+- Fixed an issue with the URL structure for Facebook and Twitter share links
+
+## 7.0.0 (June 1, 2015)
 
 ### New Features
 - **Rank the Research Overhaul**

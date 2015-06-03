@@ -1,5 +1,9 @@
+- @title = 'Provider Report'
 .content-main-header
-  %h1.f300 Provider Report
+  %h1
+    = @title
+  %p.lead.text-light8{ style: 'margin-bottom: 0px;'}
+    = link_to 'Admin Dashboard', admin_path
 
 .well
   - max_members = @providers.sort{ |a,b| a.users.count <=> b.users.count }.last.users.count

@@ -4,7 +4,7 @@
   %h1 Research Discussion
   %p= link_to 'Back to Research Topics', research_topics_path, class: 'no-underline'
 
-- if current_user.owner? or current_user.moderator?
+- if current_user and (current_user.owner? or current_user.moderator?)
   .well
     %h4
       For admins:
@@ -17,8 +17,11 @@
         %span.small Currently hidden.
         = link_to 'Approve Research Topic', forum_topic_path(@forum, @topic, topic: { status: 'approved' }), method: :patch, class: 'btn btn-success btn-xs'
 
-- if current_user.cast_vote_for?(@research_topic)
-  -# Display of actual research topic
+- if current_user
+  -# Display voting form
+  = render 'research_topics/voting_form', research_topic: @research_topic
+- else
+  -# Display of actual research topic for non users
   .research-topic-container
     .research-topic-header
       .research-topic-header-details
@@ -30,22 +33,10 @@
       %h4.centered= @research_topic.text
       - if @research_topic.description.present?
         %hr
-        %p.lead= @research_topic.description
-  -# Display of user's vote choice
-  .content-container
-    .content-body{ class: "text-white #{current_user.endorsed?(@research_topic) ? 'great-bcg' : 'danger-bcg' }" }
-      %p.lead.horizontal-inset
-        %i.fa.fa-lg{ class: "#{current_user.endorsed?(@research_topic) ? 'fa-thumbs-up' : 'fa-thumbs-down' }" }
-        &nbsp;
-        You
-        = current_user.endorsed?(@research_topic) ? "agreed" : "disagreed"
-        that this is a research priority.
-        = link_to 'I changed my mind', change_vote_path(research_topic_id: @research_topic.id), method: :patch, class: 'btn btn-default pull-right'
-- else
-  -# Display voting form
-  = render 'research_topics/voting_form', research_topic: @research_topic
+        %h5.f300= @research_topic.description
 
--# Display of comments
+
+-# Display of endorsement and comments
 .row.horizontal-inset
   .col-sm-4
     - if @research_topic.votes.count > 0

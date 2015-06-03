@@ -1,7 +1,10 @@
 - referrals = ["ASAA", "Internet", "Other"]
 - @title = "Cross Tabs"
 .content-main-header
-  %h1= @title
+  %h1
+    = @title
+  %p.lead.text-light8{ style: 'margin-bottom: 0px;'}
+    = link_to 'Admin Dashboard', admin_path
 
 
 .content-container

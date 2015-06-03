@@ -2,7 +2,7 @@
 
 .content-main-header
   %h1.f300 Rank the Research
-- if (current_user.moderator? or current_user.owner?) and ResearchTopic.pending_review.present?
+- if current_user and (current_user.moderator? or current_user.owner?) and ResearchTopic.pending_review.present?
   .well
     %h4
       For admins:
@@ -18,13 +18,13 @@
       Let us know what research questions matter to you most. Join the community in voting and discussing research topics submitted by members like yourself. We will take the most endorsed questions and translate them into
       = link_to 'research highlights', accepted_research_topics_path, class: 'no-underline'
       and proposals for future studies of sleep apnea.
-  - if current_user.my_research_topics.present?
+  - if current_user and current_user.my_research_topics.present?
     .content-footer
       %p
         = link_to "Check the status of your research topics", my_research_topics_research_topics_path, class: 'no-underline'
 
 
-- if current_user.highlighted_research_topic.present?
+- if current_user and current_user.highlighted_research_topic.present?
   = render 'research_topics/voting_form', research_topic: current_user.highlighted_research_topic
 
 .content-container.inherit-background
@@ -35,7 +35,7 @@
         .scroll-container
           - @research_topics.newest.first(10).each do |rt|
             = link_to research_topic_path(rt), class: 'research-topic-index-display' do
-              - if current_user.cast_vote_for?(rt)
+              - if current_user and current_user.cast_vote_for?(rt)
                 = render 'research_topics/voting_badge', rt: rt
                 %p= rt.text
               - else
@@ -50,7 +50,7 @@
         .scroll-container
           - @research_topics.most_discussed.first(10).each do |rt|
             = link_to research_topic_path(rt), class: 'research-topic-index-display' do
-              - if current_user.cast_vote_for?(rt)
+              - if current_user and current_user.cast_vote_for?(rt)
                 = render 'research_topics/voting_badge', rt: rt
                 %p= rt.text
               - else
@@ -61,11 +61,12 @@
             %p More...
 
 -# Add your own question
-.content-container.horizontal-inset
-  .content-header.lighter-blue-bcg
-    %h3.text-light9 Propose your own research topic:
-  .content-body.lighter-blue-bcg
-    = render 'research_topics/form', research_topic: @new_research_topic
+- if current_user
+  .content-container.horizontal-inset
+    .content-header.lighter-blue-bcg
+      %h3.text-light9 Propose your own research topic:
+    .content-body.lighter-blue-bcg
+      = render 'research_topics/form', research_topic: @new_research_topic
 
 -# Research highlights
 .content-container

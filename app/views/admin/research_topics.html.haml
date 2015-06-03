@@ -1,9 +1,9 @@
 - @title = 'Research Topics'
 .content-main-header
   %h1
-    = link_to 'Admin Dashboard', admin_path
-    &middot;
     = @title
+  %p.lead.text-light8{ style: 'margin-bottom: 0px;'}
+    = link_to 'Admin Dashboard', admin_path
 
 .content-container
   .content-header
@@ -13,6 +13,7 @@
       %thead
         %tr
           %th Endorsement
+          %th Votes
           %th Text
           %th User
           %th Submitted
@@ -26,7 +27,8 @@
                 = "#{(research_topic.endorsement * 100).round}%"
               - else
                 0%
-            %td= research_topic.text or research_topic.text_deprecated
+            %td= research_topic.votes.count
+            %td= link_to research_topic.text, research_topic_path(research_topic)
             %td= link_to research_topic.user.forum_name, research_topic.user if research_topic.user
             %td= research_topic.created_at.strftime("%d-%m-%Y")
             %td

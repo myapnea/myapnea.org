@@ -1,25 +1,25 @@
 - @page_title = 'MyApnea | Focusing Sleep Apnea Research on Patient Outcomes'
 / WELCOME / JOIN
-#slide1.row.row-fullscreen.reset-layout
+#slide1.row.reset-layout
   .col-md-6.col-md-offset-1
-    %h2.text-white
-      Finding answers...together!
-    %h3.lighter-orange
-      Sleep apnea affects over 25 million Americans.  We are working together to improve the health and well-being of people with sleep apnea through information sharing, support, and research.
-    %h4.text-white
-      Wake up to a better future - join now!
-    = link_to 'Join the Community', '#signup', class: 'btn btn-primary', id: 'btn-join'
-  .col-md-3.col-md-offset-1.hidden-sm.hidden-xs
-    .thumbnail#landing-video-play{ data: { object: 'start-yt-video', toggle:"modal", target:'#landingVideoModal', target_iframe: '#landingframe', src: '//www.youtube.com/embed/hzl_4W0Vxds?rel=0&autoplay=1&autohide=1&showinfo=0&controls=0&wmode=opaque' } }
+    %h1.text-white
+      Improving the lives of people with sleep apnea
+    %h3.f300.text-light9
+      Awareness, community, research - together we're building it all.
+    %br
+    .centered-text
+      = link_to 'Join Now', '#signup', class: 'btn btn-primary', id: 'btn-join'
+  .col-md-3.col-md-offset-1.col-xs-8.col-xs-offset-2
+    .thumbnail#landing-video-play{ data: { object: 'start-yt-video', toggle:"modal", target:'#landingVideoModal', target_iframe: '#landingframe', src: '//www.youtube.com/embed/hzl_4W0Vxds?rel=0&autoplay=1&autohide=1&showinfo=0&wmode=opaque' } }
       %i.fa.fa-play-circle
+      %p
+        Play Video
+  #scroll-carat
+    %p.text-light7
+      Scroll to Learn More
+    %h4.text-light7
+      %span.glyphicon.glyphicon-chevron-down
 
-  / COMMUNITY TRACKER
-  #community-tracker.row.reset-layout
-    .col-sm-8.col-sm-offset-2
-      %h2.lighterer-blue
-        Current community:
-        = succeed " members" do
-          %span.primary-blue= number_with_delimiter User.current.count
 / MISSION
 #slide2.row.row-fullscreen.reset-layout
   .text-content-container
@@ -67,6 +67,12 @@
       = link_to image_tag('myapnea/icons/email_icon.png', class: 'share-icons-animate share-icons-md'), "mailto:?subject=Check%20out%20MyApnea.Org&body=This%20group%20is%20working%20to%20improve%20treatment%20and%20research%20of%20sleep%20apnea!%20You%20can%20learn%20more%20and%20join%20their%20community%20by%20visiting%20www.myapnea.org"
 
 #slide3.row.reset-layout
+  / COMMUNITY TRACKER
+  #community-tracker
+    %h2
+      Current community:
+      = succeed " members" do
+        %span.primary-blue= number_with_delimiter User.current.count
   #testimonial.col-sm-8.col-sm-offset-1
     %p.lead
       As a new CPAP user, I was very happy to find the MyApnea.Org website. My immediate need has been trying to get ideas from experienced CPAP users about dealing with the nightly surprises that go along with adjusting to CPAP. It has been especially helpful to me hearing from people who have successfully used CPAP for 10, 20 and even 25 years. I have found that the experienced CPAP users have a wealth of practical knowledge about solutions as well as further resources.

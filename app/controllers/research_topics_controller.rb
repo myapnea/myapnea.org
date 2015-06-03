@@ -1,5 +1,6 @@
 class ResearchTopicsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!,      only: [:create]
+  authorize_actions_for ResearchTopic,    only: [:create]
 
   before_action :set_research_topic,      only: [:show, :edit, :update, :destroy]
 
@@ -8,12 +9,12 @@ class ResearchTopicsController < ApplicationController
   before_action :no_layout,                           only: [ :research_topics ]
   before_action :set_active_top_nav_link_to_research
 
-  authorize_actions_for ResearchTopic, only: [:index, :create]
-
   def intro
+    redirect_to research_topics_path and return if !current_user
   end
 
   def first_topics
+    redirect_to research_topics_path and return if !current_user
     redirect_to intro_research_topics_path and return if current_user.no_votes_user? and params[:read_intro].blank?
     redirect_to research_topics_path and return if current_user.experienced_voter?
 
@@ -29,6 +30,7 @@ class ResearchTopicsController < ApplicationController
   end
 
   def my_research_topics
+    redirect_to research_topics_path and return if !current_user
     @research_topics = current_user.my_research_topics
     @new_research_topic = ResearchTopic.new
   end
@@ -120,13 +122,26 @@ class ResearchTopicsController < ApplicationController
 
       respond_to do |format|
         format.html { redirect_to :back }
-        format.js {  }
+        format.js
       end
-
     else
-      render nothing: true
+      head :ok
+    end
+  end
+
+  def remote_vote
+    @research_topic = ResearchTopic.find(params[:research_topic_id])
+    if params["endorse_#{@research_topic.id}"].to_s == "1"
+      @research_topic.endorse_by(current_user, params["comment_#{@research_topic.id}"])
+    elsif params["endorse_#{@research_topic.id}"].to_s == "0"
+      @research_topic.oppose_by(current_user, params["comment_#{@research_topic.id}"])
+    else
+      @vote_failed = true
     end
 
+    respond_to do |format|
+      format.js
+    end
   end
 
   def change_vote
@@ -138,8 +153,8 @@ class ResearchTopicsController < ApplicationController
   private
 
   def redirect_beginner
-    redirect_to intro_research_topics_path if current_user.no_votes_user?
-    redirect_to first_topics_research_topics_path if current_user.novice_voter?
+    redirect_to intro_research_topics_path if current_user and current_user.no_votes_user?
+    redirect_to first_topics_research_topics_path if current_user and current_user.novice_voter?
   end
 
   def set_research_topic

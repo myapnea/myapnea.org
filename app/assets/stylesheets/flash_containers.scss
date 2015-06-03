@@ -1,0 +1,17 @@
+.flash-alert, .flash-notice {
+  padding: 10px 20px;
+  .lead {
+    margin: 0px;
+  }
+}
+
+.flash-alert {
+  background-color: #e54835; // .danger-bcg  in colors.scss
+  background-image: none;
+}
+
+.flash-notice {
+  background-color: #78c679; // .great-bcg in colors.scss
+  color: #333;
+  background-image: none;
+}

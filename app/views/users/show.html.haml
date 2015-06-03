@@ -1,65 +1,18 @@
 - @page_title = "MyApnea | Users"
-- if current_user.owner?
-  .well
-    %h4 For admins:
-    = render partial: 'users/admin_view', locals: { user: @user }
+.content-container
+  .content-header
+    %h1
+      = @user.name
+  - if @user.forum_name.present?
+    .content-body
+      %p.lead
+        View this member's full social profile:
+        %span.f500= link_to @user.forum_name, member_path(@user.forum_name), class: 'no-underline darkerer-blue'
+  - if current_user.owner?
+    .content-footer
+      %h4 For admins:
+      = render partial: 'users/admin_view', locals: { user: @user }
 
-    - if current_user.owner?
-      = link_to "Edit User", edit_user_path(@user), class: 'btn btn-primary btn-xs'
-      = link_to 'Delete User', @user, method: :delete, class: 'btn btn-xs btn-danger', data: { confirm: "Are you sure you want to delete User #{@user.name}?" } unless current_user == @user
-
-.panel
-  .panel-body
-
-    %div{ style: 'padding-bottom: 20px;' }
-      .pull-left{ style: 'padding-right: 20px;' }= render partial: 'forums/user_image', locals: { user: @user, size: 100 }
-      %h1.pull-left
-        = @user.name
-        \(
-        = link_to @user.forum_name, forums_path(a: @user.forum_name) if @user.forum_name.present?
-        \)
-      .clearfix
-
-    %p.lead
-      %span.f500 Member since:
-      = @user.created_at.strftime("%m/%d/%Y") if @user.created_at.present?
-
-    .list-group-item.primary-blue-bcg
-      %h5.text-white Most popular community posts:
-    - posts = @user.posts.collect{ |p| { post: p, popularity: Topic.find_by_id(p.topic_id).posts.current.count } }
-    - if posts.present?
-      - posts.sort_by{ |k| k["popularity"] }.first(3).each do |p|
-        .list-group-item
-          = simple_markdown(p[:post].description)
-          = link_to 'Read more', forum_topic_post_path(Forum.find(Topic.find_by_id(p[:post].topic_id).forum_id).to_param, Topic.find(p[:post].topic_id).to_param, p[:post].id), class: 'btn btn-primary btn-sm pull-right'
-          .clearfix
-    - else
-      .list-group-item
-        - if @user == current_user
-          %p.lead You haven't contributed to any discussions yet!
-          = link_to 'Join the Conversation', forums_path, class: 'btn btn-primary', style: 'margin: auto'
-        - else
-          %p.lead This user hasn't joined the conversation yet!
-
-    %br
-    %br
-
-    .list-group-item.primary-blue-bcg
-      %h5.text-white Most popular research topics
-    .list-group-item
-      - if @user.research_topics.present?
-        .row
-          - @user.research_topics.limit(4).each_with_index do |rt, index|
-            - if index % 2 == 0
-              .col-sm-6
-                = render partial: 'research_topics/voting_form', locals: { research_topic: rt }
-            - else
-              .row
-                .col-sm-6
-                  = render partial: 'research_topics/voting_form', locals: { research_topic: rt }
-      - else
-        - if @user == current_user
-          %p.lead You haven't proposed any research topics!
-          = link_to 'Propose a Topic', research_topics_path, class: 'btn btn-primary', style: 'margin: auto'
-        - else
-          %p.lead This user hasn't proposed any research topics!
+      - if current_user.owner?
+        = link_to "Edit User", edit_user_path(@user), class: 'btn btn-primary btn-xs'
+        = link_to 'Delete User', @user, method: :delete, class: 'btn btn-xs btn-danger', data: { confirm: "Are you sure you want to delete User #{@user.name}?" } unless current_user == @user
