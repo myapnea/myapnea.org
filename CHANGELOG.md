@@ -22,6 +22,7 @@
   - Cross tabs report now displays percentages in a cleaner manner
 - **General Changes**
   - Updated styling for flash notification messages
+  - Added standard "Open Sans" font family to ensure font consistency across devices and operating systems
 - **Rank the Research Changes**
   - Voting from member profiles will not dynamically update
   - Rank the research is now publicly viewable

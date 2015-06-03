@@ -1,5 +1,6 @@
 # Add to assets path
 Rails.application.config.assets.paths << Rails.root.join('vendor', 'assets', 'fonts')
+Rails.application.config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
 
 # Had to add these here to get in Precompile Package
 Rails.application.config.assets.precompile += %w( pages.css )
