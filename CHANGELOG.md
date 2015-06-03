@@ -1,6 +1,8 @@
 ## 7.2.0
 
 ### Enhancements
+- **Layout Changes**
+  - Navigation has been greatly simplified, and dropdowns mostly removed
 - **General Changes**
   - Minor changes to display of large numbers on Community page
 - **Administrative Changes**
