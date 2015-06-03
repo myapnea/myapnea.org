@@ -21,6 +21,7 @@
   - Posts by current user will now appear on the dashboard
 - **Learn Page Changes**
   - Hovering over the carousel pictures now changes the mouse pointer to a cursor to indicate that they are clickable
+  - Updated YouTube link to BWH video
 - **Administrative Changes**
   - Cross tabs report now displays percentages in a cleaner manner
   - Improved links back to main admin dashboard
