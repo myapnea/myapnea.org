@@ -28,6 +28,7 @@
   - Improved links back to main admin dashboard
   - Easily access social profile from user profile
   - Research topics now include links and vote count
+  - Research topics can be edited
 - **General Changes**
   - Updated styling for flash notification messages
 - **Rank the Research Changes**
