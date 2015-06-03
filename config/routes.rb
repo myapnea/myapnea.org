@@ -24,6 +24,7 @@ Rails.application.routes.draw do
     get :theme
     get :version
     get :sitemap
+    get :sizes
   end
 
   # Educational Content

@@ -1,6 +1,6 @@
 .content-main-header
   %h1.f300 Newest Research Questions
-  %h5.f300= link_to 'Back to Research Topics', research_topics_path, class: 'no-underline'
+  %p= link_to 'Back to Research Topics', research_topics_path, class: 'no-underline'
 
 - @research_topics.each do |rt|
   = link_to research_topic_path(rt), class: 'research-topic-index-display' do

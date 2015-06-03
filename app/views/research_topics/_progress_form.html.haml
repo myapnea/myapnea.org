@@ -1,0 +1,7 @@
+= form_for research_topic do |f|
+  .form-group
+    = f.label :progress, class: 'sr-only'
+    = f.select :progress, ResearchTopic::PROGRESS, {prompt: "-- Select progress --" }, { class: 'input-lg form-control' }
+  = f.submit("Submit", class: "btn btn-success pull-right")
+  .clearfix
+

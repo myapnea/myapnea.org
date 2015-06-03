@@ -2,11 +2,14 @@
 
 = render partial: 'surveys/reports/default'
 
-.panel{ style: 'border: 2px solid #b1d2f6' }
-  .panel-body
-    %p.lead.no-margin
+.content-container
+  .content-footer
+    %p.no-margin.centered
       %span.f500 Note:
-      This is the detailed version of the report. You can view the summary reports that members normally see by clicking
-      = link_to 'here.', report_survey_path
+      This is the detailed version of the report.
+      %br
+      You can view the summary reports that members normally see by clicking
+      = succeed '.' do
+        = link_to 'here', report_survey_path
 
 = render partial: 'surveys/report_outro'

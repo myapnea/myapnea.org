@@ -56,7 +56,7 @@
   src: asset-url('myapnea/fonts/Agenda-MediumCondensed.otf') format("opentype");
 }
 
-.centered-text { text-align:center; }
+.centered, .centered-text { text-align:center; }
 .right-justified { text-align: right; }
 .left-justified { text-align: left; }
 
@@ -71,92 +71,117 @@
   white-space: normal;
 }
 
-.italic {
-  font-style: italic;
-}
+.italic { font-style: italic; }
+
 
 /* TYPOGRAPHY */
+/**************/
 
-h1{ font-size: 50px; }
-h2{ font-size: 36px; }
-h3{ font-size: 30px; }
-h4{ font-size: 24px; }
-h5{ font-size: 18px; }
-p { font-size: 14px; }
+/* Headers */
 
-.form-control { font-size:16px; }
+h1{ font-size: 3.0em; }
+h2{ font-size: 2.5em; }
+h3{ font-size: 2.0em; }
+h4{ font-size: 1.7em; }
+h5{ font-size: 1.5em; }
+h6{ font-size: 1.3em; }
+p { font-size: 1.3em; font-weight: lighter; font-weight: 300; }
 
-// Increase line-height by ceiling(30%)
-h1.spaced { line-height: 65px; }
-h2.spaced { line-height: 48px; }
-h3.spaced { line-height: 39px; }
-h4.spaced { line-height: 32px; }
-h5.spaced { line-height: 24px; }
-p.spaced { line-height: 19px; }
+.spaced { line-height: 1.7em; }
+
+h1.half-size { font-size: 1.5em; }
+h2.half-size { font-size: 1.25em; }
+h3.half-size { font-size: 1.0em; }
+h4.half-size { font-size: 0.85em; }
+h5.half-size { font-size: 0.75em; }
+h6.half-size { font-size: 0.65em; }
+p.half-size { font-size: 0.65em; }
 
 .f300 { font-weight:lighter; font-weight:300; }
 .f400 { font-weight:400; }
-.f500 { font-weight:bold; font-weight:500; }
-.f600 { font-weight:bold; font-weight:600; }
+.f500 { font-weight:bolder; font-weight:500; }
+.f600 { font-weight:bolder; font-weight:600; }
 .f700 { font-weight:bold; font-weight:700; }
 
+/* Lists */
 
-@media (max-width: 1200px) {
-  /* MEDIUM SCREENS */
-  h1{ font-size: 42px; }
-  h2{ font-size: 30px; }
-  h3{ font-size: 24px; }
-  h4{ font-size: 20px; }
-  h5{ font-size: 16px; }
-  p { font-size: 14px; }
-  h1.spaced { line-height: 55px; }
-  h2.spaced { line-height: 39px; }
-  h3.spaced { line-height: 32px; }
-  h4.spaced { line-height: 27px; }
-  h5.spaced { line-height: 21px; }
-  p.spaced { line-height: 19px; }
-
-}
-
-@media (max-width: 992px) {
-  /* SMALL SCREENS */
-  h1{ font-size: 42px; }
-  h2{ font-size: 30px; }
-  h3{ font-size: 24px; }
-  h4{ font-size: 20px; }
-  h5{ font-size: 16px; }
-  p { font-size: 16px; }
-  h1.spaced { line-height: 55px; }
-  h2.spaced { line-height: 39px; }
-  h3.spaced { line-height: 32px; }
-  h4.spaced { line-height: 26px; }
-  h5.spaced { line-height: 21px; }
-  p.spaced { line-height: 21px; }
-  p.long { font-size: 14px; }
-  h1,h2,h3,h4,h5,p {
-    padding: 0 15px;
-  }
-}
-
-@media (max-width: 768px) {
-  /* XSMALL SCREENS */
-  h1{ font-size: 30px; }
-  h2{ font-size: 24px; }
-  h3{ font-size: 20px; }
-  h4{ font-size: 18px; }
-  h5{ font-size: 16px; }
-  p { font-size: 16px; }
-  h1.spaced { line-height: 39px; }
-  h2.spaced { line-height: 32px; }
-  h3.spaced { line-height: 26px; }
-  h4.spaced { line-height: 24px; }
-  h5.spaced { line-height: 21px; }
-  p.spaced { line-height: 21px; }
-  p.long { font-size: 14px; }
-  h1,h2,h3,h4,h5,p {
-    padding: 0 10px;
-  }
+ul, ol {
+  font-size: 1.3em;
+  line-height: 1.7em;
   ul, ol {
-    padding: 0 0 0 30px;
+    font-size: 0.9em;
+    line-height: 1.5em;
+    ul, ol {
+      font-size: 0.9em;
+      line-height: 1.4em;
+    }
   }
+  p { font-size: 1em; }
 }
+
+li { font-weight: lighter; font-weight: 300; }
+
+/* Responsive */
+
+// 90% of size
+@media (max-width: 1200px) {
+  h1{ font-size: 2.7em; }
+  h2{ font-size: 2.25em; }
+  h3{ font-size: 1.8em; }
+  h4{ font-size: 1.53em; }
+  h5{ font-size: 1.35em; }
+  h6{ font-size: 1.17em; }
+  p { font-size: 1.17em; }
+  ul, ol { font-size: 1.17em; }
+  h1.half-size { font-size: 1.35em; }
+  h2.half-size { font-size: 1.125em; }
+  h3.half-size { font-size: 0.9em; }
+  h4.half-size { font-size: 0.765em; }
+  h5.half-size { font-size: 0.675em; }
+  h6.half-size { font-size: 0.585em; }
+  p.half-size { font-size: 0.585em; }
+}
+
+// 80% of size
+@media (max-width: 992px) {
+  h1{ font-size: 2.4em; }
+  h2{ font-size: 2.0em; }
+  h3{ font-size: 1.6em; }
+  h4{ font-size: 1.36em; }
+  h5{ font-size: 1.2em; }
+  h6{ font-size: 1.1em; }
+  p { font-size: 1.1em; }
+  ul, ol { font-size: 1.04em; }
+  h1.half-size { font-size: 1.2em; }
+  h2.half-size { font-size: 1.0em; }
+  h3.half-size { font-size: 0.8em; }
+  h4.half-size { font-size: 0.68em; }
+  h5.half-size { font-size: 0.6em; }
+  h6.half-size { font-size: 0.55em; }
+  p.half-size { font-size: 0.55em; }
+}
+
+// 75% of size
+@media (max-width: 768px) {
+  h1{ font-size: 2.25em; }
+  h2{ font-size: 1.875em; }
+  h3{ font-size: 1.5em; }
+  h4{ font-size: 1.275em; }
+  h5{ font-size: 1.125em; }
+  h6{ font-size: 1.0em; }
+  p { font-size: 1.0em; }
+  h1.half-size { font-size: 1.125em; }
+  h2.half-size { font-size: 0.9375em; }
+  h3.half-size { font-size: 0.75em; }
+  h4.half-size { font-size: 0.6375em; }
+  h5.half-size { font-size: 0.5625em; }
+  h6.half-size { font-size: 0.5em; }
+  p.half-size { font-size: 0.5em; }
+  ul, ol { font-size: 1.0em; }
+}
+
+
+
+/* FORMS */
+
+.form-control { font-size:16px; }
