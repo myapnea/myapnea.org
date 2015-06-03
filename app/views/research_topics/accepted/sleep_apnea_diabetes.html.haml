@@ -97,7 +97,9 @@
         = surround "(", ")." do
           = link_to "https://clinicaltrials.gov/ct2/show/NCT01629862", "https://clinicaltrials.gov/ct2/show/NCT01629862"
       %li
-        Please contact Dr. Jessie Bakker, jpbakker@partners.org or 617-732-5987 for information about this study.
+        Please contact Dr. Jessie Bakker (
+        = mail_to 'jpbakker@partners.org'
+        or 617-732-5987) for information about this study.
     %br
     %p.lead
       Here is a list of some other ongoing research studies investigating the link between T2DM and OSA that you may be interested in:
