@@ -1,4 +1,4 @@
-#container-right {
+#container-minor {
   .form-control {
     margin:10px auto;
   }
@@ -8,8 +8,8 @@
     border:2px solid rgb(255,255,255);
     border:2px solid rgba(255,255,255,.8);
   }
-  #right-nav,
-  #right-nav-mobile {
+  #side-nav,
+  #side-nav-mobile {
     margin-top:10px;
     margin-bottom: 10px;
     margin-left: 10%;
@@ -35,9 +35,14 @@
       text-decoration:none;
     }
   }
+}
+
+#user-stats {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: #7fb2eb;
   .user-stats {
     position: relative;
-    background-color: #7fb2eb;
     color: white;
     font-weight:300;
     padding:5px;
@@ -51,15 +56,11 @@
     }
     padding-left:20px;
   }
-  #user-stats {
-    margin-top: 20px;
-    margin-bottom: 20px;
-  }
 }
 
 
 @media all and (max-width: 992px) {
-  #container-right {
+  #container-minor {
     .user-picture {
       float: right;
     }

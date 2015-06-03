@@ -6,10 +6,6 @@ html, body {
 
 html {
   background: white;
-  // background-image: asset-url('myapnea/welcome/textures/grey_faded.png');
-  // background-color: #ffd487;
-  // background-color: rgba(255, 236, 207, 1);
-  // background-color: #ffd8a3;
   background-color: #E6EDF4;
 }
 
@@ -186,9 +182,6 @@ nav {
   }
 }
 
-
-
-// deprecated
 #social-backdrop {
   background-color:black;
   width:100%;
@@ -198,106 +191,14 @@ nav {
   z-index:1000;
 }
 
-#navbar-social {
-  float:right;
-  width:20%;
-  margin-right:-15px;
-}
-
-#myapneanavbar {
-  position:relative;
-  li {
-    font-size:18px;
-    margin:0 1px;
-    border-bottom: 5px solid transparent;
-    a {
-      padding:10px 20px 15px 20px;
-      color: white;
-      display: block;
-      background-color: inherit;
-    }
-    a:hover { background-color: inherit; }
-  }
-  li.dropdown.open {
-    a.dropdown-toggle {
-      background-color: inherit;
-    }
-  }
-  li.active {
-    border-bottom: 5px solid #5999de;
-  }
-  li:hover {
-    border-bottom:5px solid rgb(89, 153, 222);
-  }
-  .dropdown-menu {
-    border-radius: 0 0 5px 5px;
-    li {
-      margin: 2px;
-      border-bottom: none;
-      a {
-        color: #333;
-      }
-    }
-    li:hover {
-      background-color: #eee;
-    }
-  }
-}
-
-
-#menu-logged-out {
-  position:relative;
-  top: 8px;
-  width:80%;
-  float:right;
-  li {
-    font-size:18px;
-    margin:0 1px;
-    border-radius: 10px;
-    border:1px solid #5999de;
-    a:not(.inline-link) {
-      padding:10px 20px 15px 20px;
-      color: white;
-      display: block;
-      background-color: inherit;
-      border-radius: 10px;
-    }
-    a:hover { background-color: inherit; }
-  }
-  li.dropdown.open {
-    border-radius: 10px 10px 0 0;
-    a.dropdown-toggle {
-      background-color: #5999de;
-      border-radius: 10px 10px 0 0;
-    }
-  }
-  li.dropdown {
-    border: none;
-    a.dropdown-toggle {
-      background-color: #5999de;
-    }
-  }
-  li.active {
-    background-color: #5999de;
-  }
-  li:hover {
-    background-color:rgb(89, 153, 222);
-  }
-  .dropdown-menu {
-    border-radius: 0 0 5px 5px;
-    left: inherit;
-    right: -1px;
-    li {
-      margin: 2px;
-    }
-  }
-}
-
 
 .navbar-right {
   margin-top:-5px;
 }
-// end deprecated
+
+.navbar-header {
+    position: relative
+}
 
 // Footer
 

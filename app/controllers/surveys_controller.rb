@@ -17,7 +17,7 @@ class SurveysController < ApplicationController
     unless current_user.accepted_most_recent_update?
       redirect_to accept_update_first_survey_path and return
     end
-    render layout: 'layouts/application'
+    render layout: 'layouts/application-central-padding'
     # We do not want to redirect to survey report path if it's completed, we
     # want to show the survey page, with locked questions instead. ~ Remo
     # redirect_to report_survey_path(@survey, @answer_session) and return if @answer_session.completed?

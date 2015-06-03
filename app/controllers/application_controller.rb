@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   self.view_paths.unshift(*Rails.root.join('app', 'views', 'myapnea'))
 
   # Layout
-  layout 'layouts/application-no-central-padding'
+  layout 'layouts/application'
 
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.

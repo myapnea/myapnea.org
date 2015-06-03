@@ -11,8 +11,6 @@ class HomeController < ApplicationController
 
       @surveys = current_user.visible_surveys.first(3)
       @posts = posts
-
-      render layout: 'layouts/application-no-central-padding'
     else
       render 'landing', layout: 'layouts/application-no-sidebar'
     end

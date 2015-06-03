@@ -1,0 +1,42 @@
+-if current_user
+  %br
+  .centered
+    = link_to (current_user.forum_name.present? ? member_path(current_user.forum_name) : account_path) do
+      = image_tag current_user.photo_url, class: "user-picture", style: 'max-width:100px; max-height:100px;cursor:pointer'
+  .clearfix
+  .centered
+    %h4.f300.text-white
+      = current_user.forum_name
+    %p.text-light7
+      %span.f500 Member since:
+      %span.text-light9 2007
+  #user-stats
+    .col-xs-4.user-stats
+      %p.small.f500.text-dark5
+        POSTS
+      %h5.text-white5
+        = current_user.posts.visible_for_user.not_research.count
+    .col-xs-4.user-stats
+      %p.small.f500.text-dark5
+        SURVEYS
+      %h5.text-white5
+        = current_user.completed_surveys.count
+    .col-xs-4.user-stats
+      %p.small.f500.text-dark5
+        VOTES
+      %h5.large.text-white5
+        = current_user.votes.current.count
+    .clearfix
+
+-else
+  %br
+  .horizontal-inset.centered-text
+    = form_tag user_session_path, method: :post do
+      = text_field_tag 'user[email]', nil, placeholder: 'Email', class: "form-control"
+      = password_field_tag 'user[password]', nil, placeholder: 'Password', class: "form-control"
+      = submit_tag 'Login', class: "btn btn-warning ", style: 'width:70%'
+
+#side-nav.hidden-lg.hidden-md
+  = render partial: 'layouts/navigation/right_nav_main'
+#side-nav-mobile.hidden-lg.hidden-md
+  = render partial: 'layouts/navigation/right_nav_mobile'

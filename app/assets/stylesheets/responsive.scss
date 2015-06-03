@@ -25,10 +25,6 @@
   background-color: orange;
 }
 
-.navbar-header {
-    position: relative
-}
-
 /* MAIN CONTENT */
 #container-main {
   display: table;
@@ -38,19 +34,17 @@
   margin-right:0px;
   overflow:hidden;
   min-height:80vh;
-  #container-left {
+  #container-major-padding {
     padding: 40px 70px;
   }
-  #container-left,
-  #container-left-no-padding {
-    width:80%;
+  #container-major-padding,
+  #container-major {
     display:table-cell;
     vertical-align:top;
     float:none;
   }
-  #container-right {
-    width: 20%;
-    min-width:150px;
+  #container-minor {
+    width:250px;
     box-shadow: -3px 1px 5px #777;
     background-color: #5999DE;
     float:none;
@@ -61,28 +55,23 @@
 
 
 /* RESPONSIVE DESIGN */
-@media all and (min-width: 1600px) {
-  .user-picture {
-    float:right;
-    margin-right:15px;
-  }
-}
+@media all and (min-width: 1600px) {}
 @media all and (max-width: 992px) {
   #slide-nav .navbar-toggle {
     display: block !important;
   }
   #container-main {
-    #container-left {
+    #container-major-padding {
       padding: 20px;
     }
-    #container-left,
-    #container-left-no-padding {
+    #container-major-padding,
+    #container-major {
       width:100%;
       margin:0px;
       margin-left:0;
       float: left;
     }
-    #container-right {
+    #container-minor {
       margin-right:-200%;
       float:left;
       box-shadow: none;
@@ -90,11 +79,11 @@
     }
   }
   #container-main.js.active-sidebar {
-    #container-left,
-    #container-left-no-padding {
+    #container-major-padding,
+    #container-major {
       margin-left:-60%;
     }
-    #container-right {
+    #container-minor {
       margin-left:0;
       width:60%;
       box-shadow: none;
@@ -108,6 +97,6 @@
 }
 @media all and (max-width: 768px) {
   // New methods
-  #container-left { padding: 20px 5px; }
-  #container-left-no-padding { }
+  #container-major-padding { padding: 20px 5px; }
+  #container-major { }
 }

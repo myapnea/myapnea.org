@@ -1,12 +1,9 @@
 /* MAIN CONTENT */
 
-#container-left {
+#container-major {
   .content-main-header {
-    padding: 5px 30px;
+    padding: 5px 20px;
     background-color: #ffa400;
-    border-radius: 16px;
-    box-shadow:0px 1px 5px rgba(0,0,0,.5);
-    margin-bottom:20px;
     h1 {
       color: rgb(255,255,255);
       color: rgba(255,255,255,.85);
@@ -20,10 +17,13 @@
   }
 }
 
-#container-left-no-padding {
+#container-major-padding {
   .content-main-header {
-    padding: 5px 20px;
+    padding: 5px 30px;
     background-color: #ffa400;
+    border-radius: 16px;
+    box-shadow:0px 1px 5px rgba(0,0,0,.5);
+    margin-bottom:20px;
     h1 {
       color: rgb(255,255,255);
       color: rgba(255,255,255,.85);
@@ -56,14 +56,14 @@
   .content-main-header {
     padding: 5px;
   }
-  #container-left {
+  #container-major-padding {
     .content-main-header {
       border-radius:0;
       position:relative;
       box-shadow:3px 1px 3px rgba(0,0,0,.5);
     }
   }
-  #container-left {
+  #container-major-padding {
     .content-main-header:before,
     .content-main-header:after {
       content:'';
