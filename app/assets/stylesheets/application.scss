@@ -1,4 +1,5 @@
 /* This file controls whether base styles or theme styles are used, based on config*/
+@import "default-variables";
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "font-awesome";
