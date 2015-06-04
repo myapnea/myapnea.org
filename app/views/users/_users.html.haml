@@ -1,3 +1,6 @@
+%button.btn.btn-default{data: { object: 'show-new-users' } }
+  New users today:
+  %span.f500= User.where("created_at > ?", DateTime.now.beginning_of_day).count
 = render partial: 'layouts/partials/per_page', locals: { per_page: 40, object_count: @users.total_count }
 
 %table.table.table-striped
@@ -12,7 +15,7 @@
       %th{ style: "white-space:nowrap" } Surveys Completed
       %th
   - @users.each do |user|
-    %tr
+    %tr{ class: "#{'todays-users' if user.created_at.today?}"}
       %td{ style: 'white-space:nowrap' }
         = render 'forums/user_image_no_border', user: user, size: 18
         = link_to user.name, user_path(user)

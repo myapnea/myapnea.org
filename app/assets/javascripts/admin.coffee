@@ -58,3 +58,6 @@ $(document).on 'change', "input:radio[name='search_role']", (event) ->
 $(document).on "submit", "#admin-dashboard #user-search", (event) ->
   $.post($(this).attr("action")+'.js', $(this).serialize())
   event.preventDefault()
+
+$(document).on "click", "[data-object~='show-new-users']", (event) ->
+  $(".todays-users").toggleClass "good-bcg"
