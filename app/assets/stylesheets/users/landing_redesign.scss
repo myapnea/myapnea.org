@@ -1,9 +1,11 @@
 // Main CTA
 #btn-join {
+  margin: auto;
   margin-top: 30px;
   font-size: 40px;
-  padding: 10px 100px;
-  min-width: 200px;
+  padding: 10px;
+  min-width: 70%;
+  max-width: 100%;
   background-color: #FFA400;
   border: 1px solid white;
   border-radius: 100px;
@@ -206,9 +208,21 @@
 }
 
 
+/* SIGN UP FORMS */
+
+.signup-form {
+  margin-top:50px;
+  margin-bottom:50px;
+  background-color: rgb(255, 255, 255);
+  background-color: rgba(255, 255, 255, .8);
+}
+
+
+
 @media (max-width: 992px) {
   /* SMALL SCREENS */
   #slide1 {
+    padding-top: 50px;
     #landing-video-play {
       background-color: rgba(255,255,255,.8);
       i {}
@@ -220,11 +234,33 @@
   }
 }
 
-/* SIGN UP FORMS */
-
-.signup-form {
-  margin-top:50px;
-  margin-bottom:50px;
-  background-color: rgb(255, 255, 255);
-  background-color: rgba(255, 255, 255, .8);
+@media (max-width: 768px) {
+  #slide1 {
+    padding-top: 20px;
+    #landing-video-play {
+      margin-top: 30px;
+      background-color:rgba(250,250,250,.43);
+      padding:10px 30px;
+      text-align:center;
+      border:none;
+      cursor:pointer;
+      border-radius:20px;
+      i {
+        color:rgb(45, 81, 131);
+        font-size:25px;
+        line-height:25px;
+        border-radius:100%;
+        display:inline;
+      }
+      p {
+        margin-top: 20px;
+        margin-bottom: 0px;
+        padding-bottom: 0px;
+        color: rgb(255,255,255);
+        color: rgba(255,255,255,.7);
+        font-size: 20px;
+        display:inline;
+      }
+    }
+  }
 }
