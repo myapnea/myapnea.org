@@ -38,29 +38,68 @@
 
 -# Progress callouts
 %br
-.progress-list
-  %p.lead.text-light8.centered-text
-    Next steps:
-  .progress-item
-    %span.glyphicon.progress-indicator{ class: "#{'progress-indicator-complete glyphicon-ok' if current_user.photo.present?}" }
-    %p
-      Upload your picture
-  .progress-item
-    %span.glyphicon.progress-indicator{ class: "#{'progress-indicator-complete glyphicon-ok' if current_user.posts.current.present?}" }
-    %p
-      Contribute to the discussions
-  .progress-item
-    %span.glyphicon.progress-indicator{ class: "#{'progress-indicator-complete glyphicon-ok' if current_user.completed_surveys.present?}" }
-    %p
-      Complete your first survey
-  .progress-item
-    %span.glyphicon.progress-indicator{ class: "#{'progress-indicator-complete glyphicon-ok' if current_user.experienced_voter?}" }
-    %p
-      Complete the research tutorial
-  .progress-item
-    %span.glyphicon.progress-indicator{ class: "#{'progress-indicator-complete glyphicon-ok' if current_user.research_topics.current.present?}" }
-    %p
-      Submit your own research question
+- if current_user
+  .progress-list
+    %p.lead.text-light8.centered-text
+      Next steps:
+    -# User should have a photo
+    - if current_user.photo.present?
+      .progress-item
+        %span.glyphicon.glyphicon-ok.progress-indicator.progress-indicator-complete
+        %p Your picture is great!
+    - else
+      = link_to account_path(anchor: 'change-picture'), class: 'no-underline' do
+        .progress-item
+          %span.glyphicon.progress-indicator
+          %p Upload your picture
+    -# User should post on the forums
+    - if current_user.posts.current.present?
+      .progress-item
+        %span.glyphicon.glyphicon-ok.progress-indicator.progress-indicator-complete
+        %p
+          Thanks for joining the conversation!
+    - else
+      = link_to forums_path, class: 'no-underline' do
+        .progress-item
+          %span.glyphicon.progress-indicator
+          %p
+            Contribute to the discussions
+    -# User should complete a survey
+    - if current_user.completed_surveys.present?
+      .progress-item
+        %span.glyphicon.glyphicon-ok.progress-indicator.progress-indicator-complete
+        %p
+          Thank you - your survey data is powerful.
+    - else
+      = link_to survey_path('about-me'), class: 'no-underline' do
+        .progress-item
+          %span.glyphicon.progress-indicator
+          %p
+            Complete your first survey
+    -# User should complete the rank the research tutorial
+    - if current_user.experienced_voter?
+      .progress-item
+        %span.glyphicon.glyphicon-ok.progress-indicator.progress-indicator-complete
+        %p
+          Thanks for your opinions - you're shaping the future of research!
+    - else
+      = link_to intro_research_topics_path, class: 'no-underline' do
+        .progress-item
+          %span.glyphicon.progress-indicator
+          %p
+            Complete the research tutorial
+    -# User should submit their own research topic
+    - if current_user.research_topics.current.present?
+      .progress-item
+        %span.glyphicon.glyphicon-ok.progress-indicator.progress-indicator-complete
+        %p
+          Thanks for submitting your question!
+    - else
+      = link_to new_research_topic_path, class: 'no-underline' do
+        .progress-item
+          %span.glyphicon.progress-indicator
+          %p
+            Submit your own research question
 
 - if false
   #side-nav.hidden-lg.hidden-md

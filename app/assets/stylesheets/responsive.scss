@@ -53,6 +53,8 @@
   }
   #container-minor {
     width:250px;
+    max-width:300px;
+    overflow-x:hidden;
     box-shadow: -3px 1px 5px #777;
     background-color: #5999DE;
     float:none;

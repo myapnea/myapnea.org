@@ -2,28 +2,35 @@ class AccountController < ApplicationController
   before_action :authenticate_user!, except: [:consent, :privacy_policy, :terms_and_conditions, :terms_of_access]
 
   def get_started
+    render layout: 'application-no-sidebar'
   end
 
   def get_started_privacy
+    render layout: 'application-no-sidebar'
   end
 
   def get_started_terms_of_access
+    render layout: 'application-no-sidebar'
   end
 
   def get_started_provider_profile
+    render layout: 'application-no-sidebar'
   end
 
   def get_started_social_profile
     current_user.create_social_profile
+    render layout: 'application-no-sidebar'
   end
 
   def get_started_consent
+    render layout: 'application-no-sidebar'
+
   end
 
   def get_started_about_me
     @survey = Survey.find_by_slug("about-me")
     @answer_session = AnswerSession.find_or_create(current_user, @survey)
-    render layout: 'application'
+    render layout: 'application-central-padding'
   end
 
   def accepts_terms_of_access
