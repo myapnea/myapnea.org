@@ -2,14 +2,14 @@
 %nav.navbar.navbar-fixed-top
   .container-fluid.reset-layout
     .navbar-header
-      %button.navbar-toggle.collapsed{ type: "button", aria: { controls: "navbar", expanded: "false" }, data: { target: "#navbar", toggle: "collapse" } }
+      %button.pull-right.navbar-toggle.collapsed{ type: "button", aria: { controls: "navbar", expanded: "false" }, data: { target: "#navbar-myapnea", toggle: "collapse" } }
         %span.sr-only Toggle navigation
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
       = link_to root_path, class: "navbar-brand" do
         = image_tag 'myapnea/logos/MyApneaLogo_border_whitetext_300x80.png', class: 'img-responsive'
-    #navbar.navbar-collapse.collapse
+    #navbar-myapnea.navbar-collapse.collapse
       - if current_user
         %ul#user-nav.nav.navbar-nav.navbar-right
           %li.dropdown

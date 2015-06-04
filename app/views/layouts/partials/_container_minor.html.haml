@@ -36,7 +36,8 @@
       = password_field_tag 'user[password]', nil, placeholder: 'Password', class: "form-control"
       = submit_tag 'Login', class: "btn btn-warning ", style: 'width:70%'
 
-#side-nav.hidden-lg.hidden-md
-  = render partial: 'layouts/navigation/right_nav_main'
-#side-nav-mobile.hidden-lg.hidden-md
-  = render partial: 'layouts/navigation/right_nav_mobile'
+- if false
+  #side-nav.hidden-lg.hidden-md
+    = render partial: 'layouts/navigation/right_nav_main'
+  #side-nav-mobile.hidden-lg.hidden-md
+    = render partial: 'layouts/navigation/right_nav_mobile'
