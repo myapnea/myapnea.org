@@ -8,6 +8,12 @@
 - **Administrative Changes**
   - Research topic admin dashboard shows total topic and vote counts
 
+## 7.1.1 (June 4, 2015)
+
+### Bug Fixes
+- Fixed issue with large play video overspilling on mobile landing page
+- The home page no longer shows posts that have been deleted
+
 ## 7.1.0 (June 3, 2015)
 
 ### Enhancements

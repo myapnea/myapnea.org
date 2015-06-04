@@ -22,7 +22,7 @@ class HomeController < ApplicationController
   end
 
   def posts
-    @posts = Post.not_research.visible_for_user.includes(:user, topic: :forum).order(created_at: :desc).page(params[:page]).per(10)
+    @posts = Post.current.not_research.visible_for_user.includes(:user, topic: :forum).order(created_at: :desc).page(params[:page]).per(10)
   end
 
 end
