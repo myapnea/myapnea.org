@@ -1,4 +1,4 @@
-## 7.1.1
+## 7.1.1 (June 4, 2015)
 
 ### Bug Fixes
 - Fixed issue with large play video overspilling on mobile landing page
