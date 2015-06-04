@@ -52,8 +52,21 @@
         .progress-item
           %span.glyphicon.progress-indicator
           %p Upload your picture
+    -# User should introduce themselves on the forum, if such a forum exists
+    - if introduction_topic = Topic.find_by_slug('introduce-yourself')
+      - if current_user.posts.current.where("topic_id = ?", introduction_topic).present?
+        .progress-item
+          %span.glyphicon.glyphicon-ok.progress-indicator.progress-indicator-complete
+          %p
+            Nice to meet you!
+      - else
+        = link_to forum_topic_path(Forum.find_by_slug('general'), introduction_topic), class: 'no-underline' do
+          .progress-item
+            %span.glyphicon.progress-indicator
+            %p
+              Introduce yourself
     -# User should post on the forums
-    - if current_user.posts.current.present?
+    - if current_user.posts.current.where.not("topic_id = ?", introduction_topic).present?
       .progress-item
         %span.glyphicon.glyphicon-ok.progress-indicator.progress-indicator-complete
         %p

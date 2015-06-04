@@ -3,7 +3,8 @@
     position: relative;
     padding-top: 5px;
     margin-bottom: 3px;
-    background-color: #b1d2f6;
+    // background-color: #b1d2f6;
+    background-color: #387fcf;
     .progress-indicator {
       position: absolute;
       left: 7.5px;
@@ -27,6 +28,14 @@
       margin-left: 35px;
       margin-right: 5px;
       font-size: 16px;
+      color: rgb(255,255,255);
+      color: rgba(255,255,255, .85);
     }
+  }
+}
+
+a:hover .progress-item {
+  p {
+    color: rgb(255,255,255);
   }
 }

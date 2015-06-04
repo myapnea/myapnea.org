@@ -20,17 +20,20 @@
               &nbsp;
               %span.caret
             %ul.dropdown-menu{role: "menu"}
+              - if current_user.forum_name.present?
+                %li
+                  = link_to 'View Profile', member_path(current_user.forum_name)
               %li
                 = link_to 'Settings', account_path
               %li
                 = link_to 'Help', faqs_path
-              %li.divider
-              %li
-                = link_to 'Log out', destroy_user_session_path, method: :delete
               - if current_user.owner? or current_user.moderator?
                 %li.divider
                 %li
                   = link_to 'Admin Dashboard', admin_path
+              %li.divider
+              %li
+                = link_to 'Log out', destroy_user_session_path, method: :delete
       - else
         %ul#log-in-nav.nav.navbar-nav.navbar-right
           %li.dropdown
