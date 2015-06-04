@@ -1,5 +1,9 @@
 ## 7.1.1
 
+### Bug Fixes
+- Fixed issue with large play video overspilling on mobile landing page
+- The home page no longer shows posts that have been deleted
+
 ## 7.1.0 (June 3, 2015)
 
 ### Enhancements
