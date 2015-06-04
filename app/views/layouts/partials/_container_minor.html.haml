@@ -36,6 +36,32 @@
       = password_field_tag 'user[password]', nil, placeholder: 'Password', class: "form-control"
       = submit_tag 'Login', class: "btn btn-warning ", style: 'width:70%'
 
+-# Progress callouts
+%br
+.progress-list
+  %p.lead.text-light8.centered-text
+    Next steps:
+  .progress-item
+    %span.glyphicon.progress-indicator{ class: "#{'progress-indicator-complete glyphicon-ok' if current_user.photo.present?}" }
+    %p
+      Upload your picture
+  .progress-item
+    %span.glyphicon.progress-indicator{ class: "#{'progress-indicator-complete glyphicon-ok' if current_user.posts.current.present?}" }
+    %p
+      Contribute to the discussions
+  .progress-item
+    %span.glyphicon.progress-indicator{ class: "#{'progress-indicator-complete glyphicon-ok' if current_user.completed_surveys.present?}" }
+    %p
+      Complete your first survey
+  .progress-item
+    %span.glyphicon.progress-indicator{ class: "#{'progress-indicator-complete glyphicon-ok' if current_user.experienced_voter?}" }
+    %p
+      Complete the research tutorial
+  .progress-item
+    %span.glyphicon.progress-indicator{ class: "#{'progress-indicator-complete glyphicon-ok' if current_user.research_topics.current.present?}" }
+    %p
+      Submit your own research question
+
 - if false
   #side-nav.hidden-lg.hidden-md
     = render partial: 'layouts/navigation/right_nav_main'
