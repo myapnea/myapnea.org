@@ -9,7 +9,7 @@
   - Minor changes to display of large numbers on Community page
 - **Administrative Changes**
   - Research topic admin dashboard shows total topic and vote counts
-  - Users index can easily highlight who has joined today, along with daily counts
+  - Users index can easily highlight who has joined recently, along with daily counts
 
 ## 7.1.1 (June 4, 2015)
 

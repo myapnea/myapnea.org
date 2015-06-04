@@ -59,5 +59,8 @@ $(document).on "submit", "#admin-dashboard #user-search", (event) ->
   $.post($(this).attr("action")+'.js', $(this).serialize())
   event.preventDefault()
 
-$(document).on "click", "[data-object~='show-new-users']", (event) ->
-  $(".todays-users").toggleClass "good-bcg"
+$(document).on "click", "[data-object~='show-todays-users']", (event) ->
+  $(".todays-users").toggleClass "great-bcg"
+
+$(document).on "click", "[data-object~='show-this-weeks-users']", (event) ->
+  $(".this-weeks-users").toggleClass "good-bcg"

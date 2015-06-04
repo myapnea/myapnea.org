@@ -47,13 +47,13 @@
 .text-dark2 { color: #000; color: rgba(0, 0, 0, .2); }
 .text-dark1 { color: #000; color: rgba(0, 0, 0, .1); }
 
-.emergency-bcg { background-color: #E51519; }
-.danger-bcg { background-color: #e54835; }
-.warning-bcg { background-color: #f4b46d; }
-.moderate-bcg { background-color: #fedf9c; }
-.good-bcg { background-color: #d9f0a3; }
-.great-bcg { background-color: #78c679; }
-.excellent-bcg { background-color: #16C63C; }
+.emergency-bcg { background-color: #E51519 !important; }
+.danger-bcg { background-color: #e54835 !important; }
+.warning-bcg { background-color: #f4b46d !important; }
+.moderate-bcg { background-color: #fedf9c !important; }
+.good-bcg { background-color: #d9f0a3 !important; }
+.great-bcg { background-color: #78c679 !important; }
+.excellent-bcg { background-color: #16C63C !important; }
 
 .primary-blue-border { border: 1px solid #5999de; }
 .lighter-blue-border { border: 1px solid #7fb2eb; }

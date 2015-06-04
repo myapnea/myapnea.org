@@ -1,6 +1,9 @@
-%button.btn.btn-default{data: { object: 'show-new-users' } }
+%button.btn.btn-default{data: { object: 'show-todays-users' } }
   New users today:
-  %span.f500= User.where("created_at > ?", DateTime.now.beginning_of_day).count
+  %span.f500= @users.where("created_at > ?", DateTime.now.beginning_of_day).count
+%button.btn.btn-default{data: { object: 'show-this-weeks-users' } }
+  New users this week:
+  %span.f500= @users.where("created_at > ?", DateTime.now.beginning_of_week(start_day = :sunday)).count
 = render partial: 'layouts/partials/per_page', locals: { per_page: 40, object_count: @users.total_count }
 
 %table.table.table-striped
@@ -15,7 +18,7 @@
       %th{ style: "white-space:nowrap" } Surveys Completed
       %th
   - @users.each do |user|
-    %tr{ class: "#{'todays-users' if user.created_at.today?}"}
+    %tr{ class: "#{'todays-users' if user.created_at.today?} #{'this-weeks-users' if user.created_at > DateTime.now.beginning_of_week(start_day = :sunday)}"}
       %td{ style: 'white-space:nowrap' }
         = render 'forums/user_image_no_border', user: user, size: 18
         = link_to user.name, user_path(user)
