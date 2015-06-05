@@ -12,28 +12,34 @@
           = link_to users_path, class: 'no-underline' do
             .blue-block-link
               Users
-      .col-sm-3
-        = link_to admin_reports_location_path, class: 'no-underline' do
-          .blue-block-link
-            Location
+      - if current_user.owner?
+        .col-sm-3
+          = link_to admin_reports_location_path, class: 'no-underline' do
+            .blue-block-link
+              Location
       .col-sm-3
         = link_to admin_providers_path, class: 'no-underline' do
           .blue-block-link
             Providers
 
-.content-container
-  .content-header
-    %h3.f300 Aggregate Reports
-  .content-body
-    .row.centered-text
-      .col-sm-3
-        = link_to admin_version_stats_path, class: 'no-underline' do
-          .blue-block-link
-            Current Version Stats
-      .col-sm-3
-        = link_to admin_progress_report_path, class: 'no-underline' do
-          .blue-block-link
-            Progress Report
+- if current_user.owner?
+  .content-container
+    .content-header
+      %h3.f300 Aggregate Reports
+    .content-body
+      .row.centered-text
+        .col-sm-3
+          = link_to admin_version_stats_path, class: 'no-underline' do
+            .blue-block-link
+              Current Version Stats
+        .col-sm-3
+          = link_to admin_progress_report_path, class: 'no-underline' do
+            .blue-block-link
+              Progress Report
+        .col-sm-3
+          = link_to admin_engagement_report_path, class: 'no-underline' do
+            .blue-block-link
+              Engagement Report
 
 .content-container
   .content-header
@@ -58,7 +64,8 @@
         = link_to admin_research_topics_path, class: 'no-underline' do
           .blue-block-link
             Research Topics
-      .col-sm-3
-        = link_to highlights_path, class: 'no-underline' do
-          .blue-block-link
-            Dashboard Highlights
+      - if current_user.owner?
+        .col-sm-3
+          = link_to highlights_path, class: 'no-underline' do
+            .blue-block-link
+              Dashboard Highlights

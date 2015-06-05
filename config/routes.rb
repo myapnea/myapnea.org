@@ -162,6 +162,7 @@ Rails.application.routes.draw do
   get 'admin/cross-tabs' => 'admin#cross_tabs', as: 'admin_cross_tabs'
   get 'admin/reports/location' => 'admin#location', as: 'admin_reports_location'
   get 'admin/reports/progress' => 'admin#progress_report', as: 'admin_progress_report'
+  get 'admin/reports/engagement' => 'admin#engagement_report', as: 'admin_engagement_report'
   get 'admin/providers' => 'admin#providers'
 
 

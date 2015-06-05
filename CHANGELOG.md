@@ -10,6 +10,7 @@
 - **Administrative Changes**
   - Research topic admin dashboard shows total topic and vote counts
   - Users index can easily highlight who has joined recently, along with daily counts
+  - Added engagement report, to track how many members are completing the sidebar next steps
 
 ## 7.1.1 (June 4, 2015)
 
