@@ -152,7 +152,7 @@ class AccountController < ApplicationController
     if current_user.update_with_password(user_password_params)
       # Sign in the user by passing validation in case the user's password changed
       sign_in current_user, bypass: true
-      redirect_to account_path, alert: "Your password has been changed."
+      redirect_to account_path, notice: "Your password has been changed."
     else
       @update_for = :password
       render "account"

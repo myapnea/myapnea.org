@@ -260,7 +260,7 @@ class AccountControllerTest < ActionController::TestCase
 
     patch :change_password, user: { current_password: 'password', password: 'newpassword' }
 
-    assert_equal 'Your password has been changed.', flash[:alert]
+    assert_equal 'Your password has been changed.', flash[:notice]
     assert_redirected_to account_path
   end
 
