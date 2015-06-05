@@ -30,7 +30,7 @@ class NavigationTest < ActionDispatch::IntegrationTest
   end
 
   test "should not login deleted user" do
-    get "get-started"
+    get "/get-started"
     assert_redirected_to new_user_session_path
 
     sign_in_as(@deleted, "password", "deleted-2@example.com")
