@@ -28,13 +28,6 @@
         = current_user.votes.current.count
     .clearfix
 
--else
-  %br
-  .horizontal-inset.centered-text
-    = form_tag user_session_path, method: :post do
-      = text_field_tag 'user[email]', nil, placeholder: 'Email', class: "form-control"
-      = password_field_tag 'user[password]', nil, placeholder: 'Password', class: "form-control"
-      = submit_tag 'Login', class: "btn btn-warning ", style: 'width:70%'
 
 -# Progress callouts
 %br
@@ -113,6 +106,38 @@
           %span.glyphicon.progress-indicator
           %p
             Submit your own research question
+- else
+  .progress-list
+    %p.lead.text-light8.centered-text
+      After joining:
+    .progress-item
+      %span.glyphicon.glyphicon-lock.progress-indicator.progress-indicator-locked
+      %p
+        Create a social profile
+    .progress-item
+      %span.glyphicon.glyphicon-lock.progress-indicator.progress-indicator-locked
+      %p
+        Introduce yourself
+    .progress-item
+      %span.glyphicon.glyphicon-lock.progress-indicator.progress-indicator-locked
+      %p
+        Contribute to the discussions
+    .progress-item
+      %span.glyphicon.glyphicon-lock.progress-indicator.progress-indicator-locked
+      %p
+        Finish your first survey
+    .progress-item
+      %span.glyphicon.glyphicon-lock.progress-indicator.progress-indicator-locked
+      %p
+        Complete the research tutorial
+    .progress-item
+      %span.glyphicon.glyphicon-lock.progress-indicator.progress-indicator-locked
+      %p
+        Submit your own research question
+  %br
+  .centered
+    = link_to 'Join for free!', new_user_registration_path, class: 'btn btn-warning btn-lg'
+
 
 - if false
   #side-nav.hidden-lg.hidden-md

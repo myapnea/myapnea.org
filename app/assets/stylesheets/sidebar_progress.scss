@@ -2,9 +2,10 @@
   .progress-item {
     position: relative;
     padding-top: 5px;
-    margin-bottom: 3px;
-    // background-color: #b1d2f6;
+    margin-bottom: 5px;
     background-color: #387fcf;
+    margin-left: 15px;
+    border-radius: 15px 0 0 15px;
     .progress-indicator {
       position: absolute;
       left: 7.5px;
@@ -22,6 +23,12 @@
       background-color: #78c679;
       border-color: #fff;
       color: #fff;
+    }
+    .progress-indicator-locked {
+      background-color: #ccc;
+      border-color: #fff;
+      color: #777;
+      padding-left: 2px;
     }
     p {
       display: inline-block;

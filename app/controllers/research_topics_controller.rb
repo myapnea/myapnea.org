@@ -4,7 +4,7 @@ class ResearchTopicsController < ApplicationController
 
   before_action :set_research_topic,      only: [:show, :edit, :update, :destroy]
 
-  before_action :redirect_beginner,      only: [:newest, :most_discussed, :index, :show, :create, :my_research_topics]
+  before_action :redirect_beginner,      only: [:newest, :most_discussed, :index, :show, :new, :create, :my_research_topics]
 
   before_action :no_layout,                           only: [ :research_topics ]
   before_action :set_active_top_nav_link_to_research
