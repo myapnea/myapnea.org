@@ -6,6 +6,7 @@
   - Mobile navigation uses modern dropdown with basic navigation
   - Sidebar includes next steps, to help new members integrate with the community
   - Public sidebar better explains the features gained as a member
+  - Extra content (including learn pages) are available in the footer
 - **General Changes**
   - Minor changes to display of large numbers on Community page
 - **Administrative Changes**
