@@ -1,3 +1,5 @@
 = render 'account/get_started_indicators', progress1: true, progress2: true
-.item.active
+- if current_user.provider? or current_user.is_only_researcher?
   = render 'account/terms_of_access', part_of_registration: true
+- else
+  = render 'account/consent', part_of_registration: true

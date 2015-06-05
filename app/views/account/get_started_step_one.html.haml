@@ -1,7 +1,7 @@
 = render 'account/get_started_indicators', progress1: true
 .item.active
   = render 'account/privacy', part_of_registration: true
-- if current_user.is_nonacademic?
+- unless (current_user.provider? or current_user.is_only_researcher?)
   .modal.fade.in#introPrivacyModal{ tabindex:'-1', role:'dialog', aria: { labelledby: 'introPrivacyModalLabel', hidden: 'true' } }
     .modal-dialog.modal-lg{ style: 'z-index:1050' }
       .modal-content

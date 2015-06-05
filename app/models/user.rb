@@ -235,15 +235,20 @@ class User < ActiveRecord::Base
     self.accepted_privacy_policy_at.present?
   end
 
+  def accepted_consent?
+    self.accepted_consent_at.present?
+  end
+
   def accepted_terms_conditions?
     self.accepted_terms_conditions_at.present?
   end
 
   def ready_for_research?
-    if is_nonacademic?
-      accepted_privacy_policy? and signed_consent?
+    if self.provider? or is_only_researcher?
+      accepted_privacy_policy? and accepted_terms_of_access?
+      # accepted_privacy_policy? and (accepted_terms_of_access? or signed_consent?) # is this complicating things? Should they just be asked to sign the ToA?
     else
-      accepted_privacy_policy? and (accepted_terms_of_access? or signed_consent?)
+      accepted_privacy_policy? and signed_consent?
     end
   end
 

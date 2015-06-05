@@ -1,0 +1,8 @@
+= render 'account/get_started_indicators', progress1: true, progress2: true, progress3: true
+- if @survey
+  = render 'surveys/partials/show'
+- else
+  - if current_user.provider?
+    = render 'providers/providers_profile'
+  - else
+    = render 'social/social_profile'

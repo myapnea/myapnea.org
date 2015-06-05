@@ -33,8 +33,10 @@
   }
   .circle-progress.viewed {
     background-color: $viewedColor;
-    pointer-events: auto;
     text-decoration: none;
+  }
+  .circle-progress.clickable {
+    pointer-events: auto;
   }
   .track-progress{
     display:inline-block;

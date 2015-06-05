@@ -1,6 +1,8 @@
 class AccountController < ApplicationController
   before_action :authenticate_user!, except: [:consent, :privacy_policy, :terms_and_conditions, :terms_of_access]
 
+  before_action :set_progress_indicators, only: [:get_started_step_one, :get_started_step_two, :get_started_step_three]
+
   def get_started
     render layout: 'application-no-sidebar'
   end
@@ -24,7 +26,6 @@ class AccountController < ApplicationController
 
   def get_started_consent
     render layout: 'application-no-sidebar'
-
   end
 
   def get_started_about_me
@@ -33,76 +34,75 @@ class AccountController < ApplicationController
     render layout: 'application-central-padding'
   end
 
-  def accepts_terms_of_access
-    current_user.update accepted_terms_of_access_at: Time.zone.now
-    if current_user.provider?
-      redirect_to get_started_provider_profile_path
-    elsif current_user.is_only_researcher?
-      redirect_to get_started_social_profile_path
-    else
-      redirect_to root_path
-    end
+  def get_started_step_one
   end
 
-  def privacy_policy
-    if params[:privacy_policy_read]
-      current_user.update accepted_privacy_policy_at: Time.zone.now
-      if current_user.ready_for_research?
-        redirect_to (session[:return_to].present? ? session.delete(:return_to) : surveys_path), notice: "You have now signed the consent and are ready to participate in research. You can opt out any time by visiting your user account settings."
-      else
-        redirect_to consent_path, notice: "Please read over and accept the research consent before participating in research."
-      end
-    else
-      load_content
+  def get_started_step_two
+  end
+
+  def get_started_step_three
+    if !(current_user.provider? or current_user.is_only_researcher?) and current_user.ready_for_research?
+      @survey = Survey.find_by_slug("about-me")
+      @answer_session = AnswerSession.find_or_create(current_user, @survey)
+      render layout: 'application-central-padding'
     end
   end
 
   def accepts_privacy
     current_user.update accepted_privacy_policy_at: Time.zone.now
-    # TODO Remove when update is changed
-    current_user.update(accepted_update_at: Time.zone.now)
-    # end todo
-    if current_user.is_only_academic? and !current_user.ready_for_research?
-      redirect_to get_started_terms_of_access_path
-    elsif !current_user.ready_for_research?
-      redirect_to get_started_consent_path
+    current_user.update accepted_update_at: Time.zone.now
+    if params[:get_started]
+      redirect_to get_started_step_two_path
     else
-      redirect_to get_started_about_me_path
-    end
-  end
-
-  def consent
-    if params[:consent_read]
-      current_user.update_attribute(:accepted_consent_at, Time.zone.now)
-      if current_user.ready_for_research?
-        redirect_to (session[:return_to].present? ? session.delete(:return_to) : surveys_path), notice: "You have now signed the consent and are ready to participate in research."
-      else
-        redirect_to privacy_path, notice: "Please read over and accept the privacy policy before participating in research. You can opt out any time by visiting your user account settings."
-      end
-    else
-      load_content
+      redirect_to current_user.ready_for_research? ? surveys_path : consent_path
     end
   end
 
   def accepts_consent
-    current_user.update(accepted_consent_at: Time.zone.now)
-    if !current_user.ready_for_research?
-      redirect_to get_started_privacy_path
-    elsif current_user.provider?
-        redirect_to get_started_provider_profile_path
+    current_user.update accepted_consent_at: Time.zone.now
+    if params[:get_started]
+      redirect_to get_started_step_three_path
     else
-      redirect_to get_started_about_me_path
+      redirect_to current_user.ready_for_research? ? surveys_path : privacy_path
     end
   end
 
-  def revoke_consent
-    current_user.revoke_consent!
-    redirect_to root_path, notice: "You have successfully left the research study portion of MyApnea.Org. If you ever change your mind, just visit your account settings to view the research consent and privacy policy again."
+  def accepts_terms_of_access
+    current_user.update accepted_terms_of_access_at: Time.zone.now
+    if params[:get_started]
+      redirect_to get_started_step_three_path
+    else
+      redirect_to current_user.ready_for_research? ? surveys_path : privacy_path
+    end
   end
 
   def accepts_update
     current_user.update(accepted_update_at: Time.zone.now)
     redirect_to session[:return_to] || root_path
+  end
+
+  def accepts_terms_and_conditions
+    current_user.update(accepted_terms_conditions_at: Time.zone.now)
+    redirect_to session[:return_to] || forums_path
+  end
+
+  def privacy_policy
+    load_content
+  end
+
+  def consent
+    load_content
+  end
+
+  def terms_of_access
+  end
+
+  def terms_and_conditions
+  end
+
+  def revoke_consent
+    current_user.revoke_consent!
+    redirect_to root_path, notice: "You have successfully left the research study portion of MyApnea.Org. If you ever change your mind, just visit your account settings to view the research consent and privacy policy again."
   end
 
 
@@ -113,7 +113,7 @@ class AccountController < ApplicationController
     user_types = params.required(:user).permit(:provider, :researcher, :adult_diagnosed, :adult_at_risk, :caregiver_adult, :caregiver_child)
     current_user.update_user_types user_types
     if params[:registration_process] == '1'
-      redirect_to get_started_privacy_path
+      redirect_to get_started_step_one_path
     else
       redirect_to account_path
     end
@@ -125,27 +125,6 @@ class AccountController < ApplicationController
 
   def account
     @social_profile = current_user.social_profile || current_user.create_social_profile
-  end
-
-  def terms_and_conditions
-  end
-
-  def accepts_terms_and_conditions
-    current_user.update(accepted_terms_conditions_at: Time.zone.now)
-    redirect_to session[:return_to] || forums_path
-  end
-
-  def terms_of_access
-    if params[:terms_of_access_read]
-      current_user.update(accepted_terms_of_access_at: Time.zone.now)
-      if current_user.ready_for_research?
-        redirect_to (session[:return_to].present? ? session.delete(:return_to) : surveys_path), notice: "You have now signed the terms of access and are ready to participate in research."
-      else
-        redirect_to privacy_path, notice: "Please read over and accept the privacy policy before participating in research. You can opt out any time by visiting your user account settings."
-      end
-    else
-    end
-
   end
 
   def update
@@ -217,6 +196,16 @@ class AccountController < ApplicationController
 
   def load_content
     @pc = YAML.load_file(Rails.root.join('lib', 'data', 'content', "#{action_name}.yml"))[action_name.to_s]
+  end
+
+  def set_progress_indicators
+    if current_user.provider? or current_user.is_only_researcher?
+      @step2_clickable = current_user.accepted_privacy_policy?
+      @step3_clickable = current_user.accepted_privacy_policy? and current_user.accepted_terms_of_access?
+    else
+      @step2_clickable = current_user.accepted_privacy_policy?
+      @step3_clickable = current_user.accepted_privacy_policy? and current_user.accepted_consent?
+    end
   end
 
 end

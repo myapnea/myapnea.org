@@ -1,9 +1,10 @@
 - part_of_registration = false unless defined?(part_of_registration)
 
-.panel
-  .panel-heading
-    %h2.f300{ style: 'margin-bottom:20px;' } Terms of Access for MyApnea.Org
-  .panel-body
+.content-container
+  .content-header
+    %h1.f300
+      Terms of Access for MyApnea.Org
+  .content-body
     #print-area
       %p.lead
         Aggregate research results from the MyApnea.Org research portal are available here to all registered users of MyApnea.Org for viewing.  Aggregate results consist of survey responses and other data provided by participants in MyApnea.Org research, presented in summary form (“Results”).
@@ -22,26 +23,19 @@
     = link_to "#", id: "print-link", class: 'print-link pull-right btn btn-xs btn-primary' do
       %i.fa.fa-print
       Print Terms of Access
-  - if current_user and current_user.is_only_academic?
-    .panel-footer.centered-text
+  - if current_user and (current_user.provider? or current_user.researcher?)
+    .content-footer.centered
       - if current_user.ready_for_research?
-        - unless part_of_registration
-          = link_to :back, class: 'btn btn-lg btn-default' do
-            .fa.fa-arrow-left
-            &nbsp;
-            Go Back
+        = link_to :back, class: 'btn btn-lg btn-default' do
+          .fa.fa-arrow-left
+          &nbsp;
+          Go Back
         = link_to "Leave Research Study", revoke_consent_path, method: :post, class: 'btn btn-warning btn-lg'
-      - elsif current_user.accepted_terms_of_access_at.present?
-        - if part_of_registration
-          = link_to "Continue to review privacy policy", get_started_privacy_path, class: 'btn btn-primary btn-lg'
-        - else
-          = link_to "Continue to review privacy policy", privacy_path, class: 'btn btn-primary btn-lg'
+      - elsif current_user.accepted_terms_of_access?
+        - continue_path = part_of_registration ? get_started_privacy_path : privacy_path
+        = link_to "Continue to review privacy policy", continue_path, class: 'btn btn-primary btn-lg'
       - else
-        - if part_of_registration
-          = link_to "I Agree", accepts_terms_of_access_path, method: :post, class: 'btn btn-primary btn-lg'
-          = link_to "I Decline", current_user.provider? ? get_started_provider_profile_path : get_started_social_profile_path, class: 'btn btn-danger btn-lg'
-        - else
-          = form_tag terms_of_access_path do
-            %input.btn.btn-primary.btn-lg{:name => "terms_of_access_read", :type => "submit", :value => "I Agree"}
-            = link_to "I decline", revoke_consent_path, method: :post, class: 'btn btn-danger btn-lg'
-
+        - continue_path = accepts_terms_of_access_path(get_started: part_of_registration)
+        - cancel_path = part_of_registration ? get_started_step_three_path : :back
+        = link_to "I Agree", continue_path, method: :post, class: 'btn btn-primary btn-lg'
+        = link_to "I Decline", cancel_path, class: 'btn btn-danger btn-lg'

@@ -1,10 +1,10 @@
 - privacy_page_content = page_content('privacy_policy')
 - part_of_registration = false unless defined?(part_of_registration)
 
-.panel
-  .panel-body
+.content-container
+  .content-body
     #print-area
-      %h2.f300= privacy_page_content['title']
+      %h1.f300= privacy_page_content['title']
       - privacy_page_content = page_content('privacy_policy')
       = markdown privacy_page_content['privacy_policy']
       - if current_user and current_user.accepted_privacy_policy_at.blank?
@@ -14,25 +14,18 @@
       %i.fa.fa-print
       Print Privacy Policy
   - if current_user
-    .text-center.panel-footer
+    .content-footer.centered
       - if current_user.ready_for_research?
-        - unless part_of_registration
-          = link_to :back, class: 'btn btn-lg btn-default' do
-            .fa.fa-arrow-left
-            &nbsp;
-            Go Back
-        / = link_to "View Consent", consent_path, class: 'btn btn-lg btn-primary'
+        = link_to :back, class: 'btn btn-lg btn-default' do
+          .fa.fa-arrow-left
+          &nbsp;
+          Go Back
         = link_to "Leave Research Study", revoke_consent_path, method: :post, class: 'btn btn-warning btn-lg'
-      - elsif current_user.accepted_privacy_policy_at.present?
-        - if part_of_registration
-          = link_to "Continue to review consent", get_started_consent_path, class: 'btn btn-primary btn-lg'
-        - else
-          = link_to "Continue to review consent", consent_path, class: 'btn btn-primary btn-lg'
+      - elsif current_user.accepted_privacy_policy?
+        - continue_path = part_of_registration ? get_started_step_two_path : consent_path
+        = link_to "Continue to review consent", continue_path, class: 'btn btn-primary btn-lg'
       - else
-        - if part_of_registration
-          = link_to "I have read the privacy policy", accepts_privacy_path, method: :post, class: 'btn btn-primary btn-lg'
-          = link_to "I decline", get_started_social_profile_path, class: 'btn btn-danger btn-lg'
-        - else
-          = form_tag privacy_path do
-            %input.btn.btn-primary.btn-lg{:name => "privacy_policy_read", :type => "submit", :value => "I have read the privacy policy#{current_user.signed_consent? ? ' and I agree to participate' : ''}"}
-            = link_to "I decline", revoke_consent_path, method: :post, class: 'btn btn-danger btn-lg'
+        - continue_path = accepts_privacy_path(get_started: part_of_registration)
+        - cancel_path = part_of_registration ? get_started_step_two_path : :back
+        = link_to "I have read the privacy policy", continue_path, method: :post, class: 'btn btn-primary btn-lg'
+        = link_to "I decline", cancel_path, class: 'btn btn-danger btn-lg'

@@ -1,3 +1,3 @@
-= render partial: 'account/get_started_indicators', locals: { progress1: true, progress2: true, progress3: true }
+= render 'account/get_started_indicators', progress1: true, progress2: true, progress3: true
 - if current_user and @survey
-  = render partial: 'surveys/partials/show'
+  = render 'surveys/partials/show'

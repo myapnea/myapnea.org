@@ -13,6 +13,12 @@
   - Users index can easily highlight who has joined recently, along with daily counts
   - Added engagement report, to track how many members are completing the sidebar next steps
 
+### Refactoring
+- Simplified get started process
+  - Allows the process to easily integrate new user roles in the future
+  - Gives a unified three step process, regardless of consent status
+- Unified code for consent process
+
 ## 7.1.1 (June 4, 2015)
 
 ### Bug Fixes
