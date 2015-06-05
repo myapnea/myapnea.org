@@ -2,9 +2,13 @@ require 'test_helper.rb'
 
 class SurveysControllerTest < ActionController::TestCase
   # Normal User
-  test "User needs to be logged in to see surveys" do
+  test "User does not need to be logged in to see survey index" do
     get :index
+    assert_response 200
+  end
 
+  test "User needs to be logged in to see survey" do
+    get :show, id: surveys(:new)
     assert_response 302
   end
 

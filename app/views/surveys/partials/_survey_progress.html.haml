@@ -1,4 +1,4 @@
-- percent = survey.completion_percent(current_user).round
+- percent = current_user ? survey.completion_percent(current_user).round : 0
 
 .radial-progress.hidden-xs{ style: 'display:block; margin: 20px auto' }
   .circle{ data: { object: "circle_percentage", percent: "#{percent}", survey_id: survey.id } }
@@ -20,9 +20,9 @@
 %h5.f300.visible-xs.text-muted
   = percent.to_s + '% completed'
 %h5.f300.primary-blue{ style: 'margin-bottom:30px;' }
-  - if survey.complete?(current_user)
+  - if current_user and survey.complete?(current_user)
     = survey.locked?(current_user) ? (link_to 'View report', report_survey_path(survey)) : (link_to 'Review and submit answers', survey)
-  - elsif survey.incomplete?(current_user) and percent!=0
+  - elsif current_user and survey.incomplete?(current_user) and percent!=0
     = link_to 'Work on this survey now!', survey, data: { no_turbolink: true }
   -else
     = link_to 'Start this survey now!', survey, data: { no_turbolink: true }

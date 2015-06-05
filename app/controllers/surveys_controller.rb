@@ -1,7 +1,7 @@
 class SurveysController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:index]
   before_action :set_active_top_nav_link_to_surveys
-  before_action :authenticate_research
+  before_action :authenticate_research, except: [:index]
   before_action :set_survey, only: [:show, :report, :report_detail, :accept_update_first, :start_survey]
 
   def my_health_conditions_data
@@ -9,7 +9,11 @@ class SurveysController < ApplicationController
   end
 
   def index
-    @surveys = current_user.is_only_academic? ? Survey.viewable : current_user.assigned_surveys
+    if current_user
+      @surveys = current_user.is_only_academic? ? Survey.viewable : current_user.assigned_surveys
+    else
+      @surveys = Survey.viewable
+    end
   end
 
   def show

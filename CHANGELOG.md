@@ -9,6 +9,7 @@
   - Extra content (including learn pages) are available in the footer
 - **General Changes**
   - Minor changes to display of large numbers on Community page
+  - Survey index is viewable for logged out users
 - **Administrative Changes**
   - Research topic admin dashboard shows total topic and vote counts
   - Users index can easily highlight who has joined recently, along with daily counts
