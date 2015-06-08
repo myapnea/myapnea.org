@@ -1,0 +1,126 @@
+- @page_title = 'MyApnea | Focusing Sleep Apnea Research on Patient Outcomes'
+/ WELCOME / JOIN
+#slide1.row.reset-layout
+  .col-md-7.centered-text
+    %h1.text-white
+      Improve the lives of
+      %br
+      people with sleep apnea
+    %h3.text-light8
+      Awareness, community, research -
+      %br
+      together, we're building it all.
+  #signup-form-above-fold.col-md-4
+    %p.f500
+      It's within your power to have an impact on the future of sleep apnea - connect with other people, doctors, and researchers and let your voice be heard!
+    - resource = User.new
+    = form_for(resource, url: registration_path(resource), method: :post) do |f|
+      .input-group
+        .col-sm-6
+          = f.text_field :first_name, placeholder: 'First name', class: "form-control"
+        .col-sm-6
+          = f.text_field :last_name, placeholder: 'Last name', class: "form-control"
+      .input-group
+        .col-sm-12
+          = f.email_field :email, placeholder: 'Email address', class: "form-control"
+      .input-group
+        .col-sm-12
+          = f.password_field :password, placeholder: 'Password', class: "form-control"
+      .input-group
+        = f.submit 'Join Today', id: "btn-join"
+
+  #scroll-carat.hidden-sm.hidden-xs
+    %p.text-light7
+      Scroll to Learn More
+    %h4.text-light7
+      %span.glyphicon.glyphicon-chevron-down
+
+#slide2
+  .text-content-container
+    %h2.f300.spaced.text-white
+      Our mission is to improve the diagnosis and treatment of sleep apnea through the
+      %span.lighter-orange active engagement
+      of patients, families, researchers, and healthcare providers.
+    %br
+    .row
+      .col-sm-7.col-sm-offset-1
+        %h3.text-white Your Data is Powerful
+        %p.text-light8
+          Research relies on people like you to help by sharing important data to find the best outcomes.
+        = link_to 'Participate in Research', get_bitly_link(:surveys), class: 'btn btn-warning'
+      .col-sm-4
+        = image_tag 'myapnea/icons/data_powerful.png', class: 'img-responsive', style: 'max-width:150px;'
+    %br
+    %br
+    .row
+      .col-sm-7.col-sm-offset-1
+        %h3.text-white Are You at Risk?
+        %p.text-light8
+          Over 80% of sleep apnea cases go undiagnosed. Take our quick test and see if you're at risk.
+        = link_to 'Check Your Risk', get_bitly_link(:check_risk), class: 'btn btn-warning'
+      .col-sm-4
+        = image_tag 'myapnea/icons/risk2.png', class: 'img-responsive', style: 'max-width:150px;'
+    %br
+    %br
+    .row
+      .col-sm-7.col-sm-offset-1
+        %h3.text-white Welcome to Our Community
+        %p.text-light8
+          Families, researchers, and care providers have all come together to help each other in amazing ways.
+        = link_to 'See the Community', get_bitly_link(:forums), class: 'btn btn-warning'
+      .col-sm-4
+        = image_tag 'myapnea/icons/speech_bubbles.png', class: 'img-responsive', style: 'max-width:150px; '
+
+#slide3
+  #testimonial-giver
+    = image_tag 'myapnea/testimonials/KathyPage.jpg', class: 'img-responsive'
+  #testimonial
+    %p.lead
+      "It seems as if research is generally driven by funding organizations, which oftentimes is not reflective of the needs of patients. By having large amounts of data provided by and for us, we can now drive the research agenda. This is a way to democratize research—to generate understanding on the part of the researchers and patients together."
+    %h4.centered
+      \- Kathy Page
+      %span.f300 (Missouri, USA)
+  .clearfix
+
+#slide4
+  .text-content-container
+    %h1.text-white.centered
+      In ten minutes, you can:
+    %br
+    .row
+      .col-md-4
+        .circle
+          %span Join an awesome, international research project
+      .col-md-4
+        .circle
+          %span Shape research to better benefit people like you
+      .col-md-4
+        .circle
+          %span Connect with thousands of supportive people
+
+    #slide-money
+      %h2.text-white
+        Plus, earn rewards for your help!
+      %h3.f300.text-light8
+        For every survey that you complete, you'll be entered into a
+        %br
+        monthly drawing for a
+        %span.f500.text-white $250 Visa gift card.
+
+
+#slide5
+  .text-content-container.centered
+    %h1.text-white
+      %span.primary-orange= number_with_delimiter User.current.count
+      people are already making a difference
+    = link_to 'Join Today', new_user_registration_path, class: 'btn btn-primary', id: 'btn-join'
+
+#slide6
+  #partners-banner
+    = image_tag 'myapnea/welcome/img-small/asaa_logo.jpg', id: 'partner-ASAA'
+    = image_tag 'myapnea/welcome/img-small/pcornet_logo.jpg', id: 'partner-PCORNET'
+    = image_tag 'myapnea/welcome/img-small/bwh_logo.jpg', id: 'partner-BWH'
+    .clearfix
+
+#slide7
+

@@ -1,0 +1,138 @@
+// Main CTA
+#btn-join {
+  margin: auto;
+  margin-top: 30px;
+  font-size: 40px;
+  padding: 10px;
+  min-width: 70%;
+  max-width: 100%;
+  background-color: #FFA400;
+  color: #fff;
+  border: 1px solid white;
+  border-radius: 100px;
+  font-weight: 500;
+}
+
+#slide1 {
+  background-image: asset-url('myapnea/welcome/img-large/myapnea_landing_05262015_flipped.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  -ms-behavior: asset-url('ie8/backgroundsize.min.htc');
+  position:relative;
+  min-height: 85vh;
+  padding-bottom:100px;
+  padding-top: 50px;
+  #signup-form-above-fold {
+    background-color: rgb(255,255,255);
+    background-color: rgba(255,255,255,.8);
+    border-radius: 5px;
+    padding: 20px;
+    text-align: center;
+    form {
+      width: 100%;
+      padding-top: 20px;
+      .input-group {
+        width: 90%;
+        text-align: center;
+        margin: 10px auto;
+      }
+    }
+  }
+  #scroll-carat {
+    position:absolute;
+    bottom:0px;
+    width:100%;
+    text-align:center;
+  }
+}
+
+.text-content-container {
+  width: 80%;
+  margin: 0% 10%;
+  background-color: inherit;
+}
+
+#slide2 {
+  background-color: #233063;
+  padding: 10vh 0 15vh 0;
+  border-top: 5px solid #ffa400;
+}
+
+#slide3 {
+  background-color: white;
+  border-top: 5px solid #5999de;
+  position: relative;
+  height: 300px;
+  #testimonial-giver {
+    border-right: 5px solid #5999de;
+    width: 241px;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  #testimonial {
+    padding-top: 50px;
+    margin-left: 250px;
+  }
+}
+
+#slide4 {
+  background-color: #5999de;
+  padding: 10vh 0 5vh 0;
+  border-top: 5px solid #5999de;
+  .circle {
+    width: 275px;
+    height: 275px;
+    border-radius: 50%;
+    background-color: white;
+    text-align: center;
+    line-height: 275px;
+    span {
+      display: inline-block;
+      vertical-align: middle;
+      line-height: normal;
+      font-size: 25px;
+      color: #5999de;
+      font-weight: 500;
+    }
+  }
+  #slide-money {
+    margin-top: 150px;
+    text-align: center;
+  }
+}
+
+#slide5 {
+  background-color: #233063;
+  padding: 15vh 0;
+  border-top: 5px solid #5999de;
+}
+
+#slide6 {
+  background-color:white;
+  border-bottom: 5px solid #FFA400;
+  border-top:5px solid #5999DE;
+  #partners-banner {
+    height: 120px;
+    padding-top:20px;
+    width: 1000px;
+    margin: auto;
+    #partner-ASAA {
+      height: 80px;
+      width: 400px;
+      float: left;
+    }
+    #partner-PCORNET {
+      height: 80px;
+      width: 300px;
+      float: left;
+    }
+    #partner-BWH {
+      height: 80px;
+      width: 300px;
+      float: left;
+    }
+  }
+}
+

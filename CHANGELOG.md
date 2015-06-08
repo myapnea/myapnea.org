@@ -1,6 +1,10 @@
 ## 7.2.0
 
 ### Enhancements
+- **Landing Page Changes**
+  - Sign up form above the fold
+  - Better use of white space throughout
+  - Allows for easy integration of other elements in the future
 - **Layout Changes**
   - Navigation has been greatly simplified, and dropdowns mostly removed
   - Mobile navigation uses modern dropdown with basic navigation

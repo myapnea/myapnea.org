@@ -154,21 +154,18 @@ nav {
     li.dropdown.open {
       border-radius: 10px 10px 0 0;
       a.dropdown-toggle {
-        background-color: #5999de;
         border-radius: 10px 10px 0 0;
       }
     }
     li.dropdown {
-      border: none;
+      border: 1px solid white;
+      border-color: rgba(255,255,255,0.4);
       a.dropdown-toggle {
-        background-color: #5999de;
       }
     }
     li.active {
-      background-color: #5999de;
     }
     li:hover {
-      background-color:rgb(89, 153, 222);
     }
     .dropdown-menu {
       border-radius: 0 0 5px 5px;
