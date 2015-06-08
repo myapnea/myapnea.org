@@ -26,6 +26,11 @@
   - Gives a unified three step process, regardless of consent status
 - Unified code for consent process
 
+## 7.1.2 (June 8, 2015)
+
+### Bug Fix
+- The landing page now displays better on iPhones in landscape mode
+
 ## 7.1.1 (June 4, 2015)
 
 ### Bug Fixes
