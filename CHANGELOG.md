@@ -4,6 +4,11 @@
 - **General Changes**
   - Minor changes to display of large numbers on Community page
 
+## 7.1.3 (June 9, 2015)
+
+### Bug Fix
+- Fixed an issue displaying the landing page on iOS 7 devices
+
 ## 7.1.2 (June 8, 2015)
 
 ### Bug Fix
