@@ -1,5 +1,8 @@
 ## 7.1.3
 
+### Bug Fix
+- Fixed an issue displaying the landing page on iOS 7 devices
+
 ## 7.1.2 (June 8, 2015)
 
 ## 7.1.1 (June 4, 2015)

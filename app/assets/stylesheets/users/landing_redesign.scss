@@ -20,7 +20,6 @@
   -ms-behavior: asset-url('ie8/backgroundsize.min.htc');
   background-color: rgb(15, 18, 27);
   position:relative;
-  min-height: 85vh;
   padding-bottom:100px;
   font-family: 'Dosis', sans-serif;
   padding-top: 50px;
@@ -52,6 +51,12 @@
     bottom:0px;
     width:100%;
     text-align:center;
+  }
+}
+
+@media screen and (min-height: 600px) {
+  #slide1 {
+    min-height: 700px;
   }
 }
 
