@@ -1,6 +1,7 @@
 class TopicsController < ApplicationController
 
   before_action :authenticate_user!,      only: [ :new, :create, :edit, :update, :destroy, :subscription ]
+  before_action :set_active_top_nav_link_to_forums
 
   before_action :set_viewable_forum
   before_action :redirect_without_forum

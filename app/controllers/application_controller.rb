@@ -38,16 +38,24 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def set_active_top_nav_link_to_research
-    @active_top_nav_link = :research_questions
-  end
-
-  def set_active_top_nav_link_to_social
+  def set_active_top_nav_link_to_home
     @active_top_nav_link = :home
   end
 
+  def set_active_top_nav_link_to_forums
+    @active_top_nav_link = :forums
+  end
+
   def set_active_top_nav_link_to_surveys
-    @active_top_nav_link = :common
+    @active_top_nav_link = :surveys
+  end
+
+  def set_active_top_nav_link_to_research
+    @active_top_nav_link = :research
+  end
+
+  def set_active_top_nav_link_to_learn
+    @active_top_nav_link = :learn
   end
 
   def no_layout

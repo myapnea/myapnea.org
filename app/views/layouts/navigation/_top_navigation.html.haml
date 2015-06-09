@@ -51,13 +51,13 @@
                 Not a member?
                 = link_to 'Join now!', new_user_registration_path, style: 'color: #5999de;', class: 'inline-link'
       %ul#main-nav.nav.navbar-nav.navbar-right
-        %li
+        %li{ class: "#{'active' if @active_top_nav_link == :home}" }
           = link_to "#{current_user ? 'Dashboard' : 'Home'}", root_path
-        %li
+        %li{ class: "#{'active' if @active_top_nav_link == :forums }" }
           = link_to 'Forums', forums_path
-        %li
+        %li{ class: "#{'active' if @active_top_nav_link == :surveys }" }
           = link_to 'Surveys', surveys_path
-        %li
+        %li{ class: "#{'active' if @active_top_nav_link == :research }" }
           = link_to 'Research', research_topics_path
-        %li
+        %li{ class: "#{'active' if @active_top_nav_link == :learn }" }
           = link_to 'Learn', learn_path

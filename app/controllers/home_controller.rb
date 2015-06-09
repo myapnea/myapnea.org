@@ -1,6 +1,7 @@
 class HomeController < ApplicationController
 
   before_action :authenticate_user!, except: [:dashboard, :landing]
+  before_action :set_active_top_nav_link_to_home
 
   before_action :set_SEO_elements
 
@@ -8,8 +9,6 @@ class HomeController < ApplicationController
     if current_user
       flash.delete(:notice) if I18n.t('devise.sessions.signed_in') == flash[:notice]
       flash.delete(:alert)
-
-      @active_top_nav_link = :home
 
       @surveys = current_user.visible_surveys.first(3)
       @posts = posts

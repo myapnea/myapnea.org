@@ -1,8 +1,6 @@
-- @page_title = @topic.new_record? ? 'New Topic' : 'Edit Topic'
-
 .content-main-header
   %h1
-    = @page_title
+    = @topic.new_record? ? 'New Topic' : 'Edit Topic'
   %p.lead
     = link_to 'Forums', forums_path
     &middot;

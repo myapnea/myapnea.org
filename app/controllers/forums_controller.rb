@@ -2,6 +2,7 @@ class ForumsController < ApplicationController
 
   before_action :authenticate_user!,      only: [:new, :create, :edit, :update, :destroy]
   before_action :check_owner,             only: [:new, :create, :edit, :update, :destroy]
+  before_action :set_active_top_nav_link_to_forums
 
   before_action :set_forum,               only: [:show, :edit, :update, :destroy]
   before_action :redirect_without_forum,  only: [:show, :edit, :update, :destroy]

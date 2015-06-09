@@ -1,6 +1,5 @@
 class SocialController < ApplicationController
   before_action :authenticate_user!, except: [:overview, :locations, :discussion]
-  before_action :set_active_top_nav_link_to_social
 
   def profile
     @social_profile = current_user.social_profile || current_user.create_social_profile
