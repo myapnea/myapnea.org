@@ -34,6 +34,7 @@ class StaticController < ApplicationController
 
   def learn
     @page_content = "If you can't sleep, are experiencing sleep apnea symptoms, have been diagnosed with obstructive sleep apnea or central sleep apnea, MyApnea wants to help you understand sleep apnea and sleep apnea causes."
+    render layout: 'layouts/application-no-sidebar'
   end
 
   def faqs

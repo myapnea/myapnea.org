@@ -1,26 +1,90 @@
-.content-main-header
-  %h1 Learn more about sleep apnea!
-
-.content-container
-  .full-screen-video
-    .embed-responsive.embed-responsive-16by9
-      %iframe.embed-responsive-item{ src: '//www.youtube.com/embed/4JkiWvWn2aU?rel=0&modestbranding=1&autohide=1&showinfo=0&wmode=opaque', allowFullScreen: 'true',  webkitallowfullscreen: 'true', mozallowfullscreen: 'true' }
-
-.content-container
+.content-container.darker-blue-bcg
+  .content-header
+    %h1.f300.white
+      %span.f500 Sleep Apnea:
+      a common and potentially life-threatening sleep and breathing disorder
   .content-body
-    %p.lead= @pc['content']
-    - @pc['questions'].each do |question|
-      %h2.f300= question['question']
-      %p.f300.spaced= question['answer']
-    %ul
-      - @pc['resources'].each do |resource|
-        %li= markdown resource['description']
-    %br
+    %hr.white
+    %h2.f300.white.centered
+      Sleep apnea causes you to repeatedly wake up throughout the night, as you involuntarily
+      = succeed ',' do
+        %span.f500.primary-orange stop breathing
+      sometimes hundreds of times every night.
 
-.content-container
-  .full-screen-video
-    .embed-responsive.embed-responsive-16by9
-      %iframe.embed-responsive-item{ src: '//www.youtube.com/embed/7CcP7MrzJWw?rel=0&modestbranding=1&autohide=1&showinfo=0&wmode=opaque', allowFullScreen: 'true',  webkitallowfullscreen: 'true', mozallowfullscreen: 'true' }
+    .row
+      = image_tag 'myapnea/learn/apnea_episodes_orangeblue.png', class: 'img-responsive'
+    %h2.f300.white.centered
+      Over
+      %span.f500.primary-orange 25 million
+      Americans currently have sleep apnea, but
+      %span.f500.primary-orange 80%
+      of these people don't know they have it
+    .row{ style: 'margin: 0 0 60px 0' }
+      .col-sm-1.col-sm-offset-2.col-xs-2
+        = image_tag 'myapnea/learn/man_orange.png', class: 'img-responsive'
+      .col-sm-1.col-xs-2
+        = image_tag 'myapnea/learn/woman_orange.png', class: 'img-responsive'
+      .col-sm-1.col-xs-2
+        = image_tag 'myapnea/learn/girl_orange.png', class: 'img-responsive'
+      .col-sm-1.col-xs-2
+        = image_tag 'myapnea/learn/old_man_blue.png', class: 'img-responsive'
+      .col-sm-1.col-sm-offset-0.col-xs-2.col-xs-offset-3
+        = image_tag 'myapnea/learn/boy_orange.png', class: 'img-responsive'
+      .col-sm-1.col-xs-2
+        = image_tag 'myapnea/learn/woman_blue.png', class: 'img-responsive'
+      .col-sm-1.col-xs-2
+        = image_tag 'myapnea/learn/girl_orange.png', class: 'img-responsive'
+      .col-sm-1.col-xs-2
+        = image_tag 'myapnea/learn/man_orange.png', class: 'img-responsive'
+    %br
+    %h2.f300.white.centered
+      Left untreated, sleep apnea increases the risk for many serious medical conditions, such as:
+    .horizontal-inset
+      .row{ style: 'margin: 40px 0 40px 0' }
+        .col-xs-4.col-sm-2.col-sm-offset-3
+          = image_tag 'myapnea/learn/heart_issues.png', class: 'img-responsive'
+        .col-sm-7.col-xs-8
+          %h3.text-light9 - High blood pressure
+          %h3.text-light9 - Heart attack
+          %h3.text-light9 - Stroke
+      .row{ style: 'margin: 0 0 60px 0' }
+        .col-xs-4.col-sm-2.col-sm-offset-3
+          = image_tag 'myapnea/learn/brain_issues.png', class: 'img-responsive'
+        .col-sm-7.col-xs-8
+          %h3.text-light9 - Memory loss
+          %h3.text-light9 - Cognitive decline
+          %h3.text-light9 - Mood disorders, like depression
+    %h2.f300.white.centered
+      Once diagnosed, sleep apnea can be successfully treated and should not interfere with your job or quality of life.
+    .darkerer-blue-bcg{ style: 'margin: 150px 50px 0 50px; padding: 50px; border-radius: 10px; '}
+      %h2.f300.white.centered
+        %span.primary-orange MyApnea.Org
+        aims to mobilize the sleep apnea community to work together to get better answers through community support and research.
+    .row{ style: 'margin: 50px 0 100px 0;'}
+      .col-sm-6
+        .darkerer-blue-bcg{ style: 'padding: 20px; border-radius: 10px; '}
+          %h3.white.centered
+            Sleep Apnea Risk Assessment
+          = image_tag 'myapnea/learn/risk_assessment.png', class: 'img-responsive', style: 'border-radius: 5px;'
+      .col-sm-6
+        .darkerer-blue-bcg{ style: 'padding: 20px; border-radius: 10px; '}
+          %h3.white.centered
+            Sleep Apnea and BMI
+          = image_tag 'myapnea/learn/bmi_tool.png', class: 'img-responsive', style: 'border-radius: 5px;'
+    .row{ style: 'margin: 50px 0 100px 0;'}
+      .col-sm-4
+        .darkerer-blue-bcg{ style: 'padding: 10px '}
+          .embed-responsive.embed-responsive-16by9
+            %iframe.embed-responsive-item{ src: '//www.youtube.com/embed/4JkiWvWn2aU?rel=0&modestbranding=1&autohide=1&showinfo=0&wmode=opaque', allowFullScreen: 'true',  webkitallowfullscreen: 'true', mozallowfullscreen: 'true' }
+      .col-sm-4
+        .darkerer-blue-bcg{ style: 'padding: 10px '}
+          .embed-responsive.embed-responsive-16by9
+            %iframe.embed-responsive-item{ src: '//www.youtube.com/embed/hzl_4W0Vxds?rel=0&modestbranding=1&autohide=1&showinfo=0&wmode=opaque', allowFullScreen: 'true',  webkitallowfullscreen: 'true', mozallowfullscreen: 'true' }
+      .col-sm-4
+        .darkerer-blue-bcg{ style: 'padding: 10px '}
+          .embed-responsive.embed-responsive-16by9
+            %iframe.embed-responsive-item{ src: '//www.youtube.com/embed/7CcP7MrzJWw?rel=0&modestbranding=1&autohide=1&showinfo=0&wmode=opaque', allowFullScreen: 'true',  webkitallowfullscreen: 'true', mozallowfullscreen: 'true' }
+
 
 .content-container
   .content-header

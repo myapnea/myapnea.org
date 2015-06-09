@@ -13,6 +13,7 @@
   - Extra content (including learn pages) are available in the footer
   - All major pages now have a callout encouraging people to join the site
     - Tracking established to see which area drives the most conversions
+  - Learn page now acts as a landing page for other content
 - **General Changes**
   - Minor changes to display of large numbers on Community page
   - Survey index is viewable for logged out users
