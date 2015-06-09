@@ -28,14 +28,15 @@
     background-color: rgba(255,255,255,.8);
     border-radius: 5px;
     padding: 20px;
-    text-align: center;
     form {
       width: 100%;
       padding-top: 20px;
       .input-group {
         width: 90%;
-        text-align: center;
         margin: 10px auto;
+        label {
+          text-align: left;
+        }
       }
     }
   }

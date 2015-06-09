@@ -80,3 +80,6 @@
       .col-md-4.col-sm-4.col-xs-6
         = link_to sleep_apnea_brain_plasticity_path do
           = image_tag 'myapnea/research/sleep-apnea-memory.png', class: 'img-responsive'
+
+- unless current_user
+  = render 'home/join_the_community', referrer: 'research'

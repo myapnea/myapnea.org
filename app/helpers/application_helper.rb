@@ -35,4 +35,23 @@ module ApplicationHelper
     YAML.load_file(Rails.root.join('lib', 'data', 'content', "#{name}.yml"))[name]
   end
 
+  def get_bitly_link(link_id)
+    link_with_bitly = "bitly_#{link_id}"
+
+    default_links = {
+      check_risk: sleep_apnea_risk_assessment_path,
+      surveys: surveys_path,
+      forums: forums_path,
+      facebook: "https://www.facebook.com/sharer/sharer.php?u=www.myapnea.org",
+      join_from_landing: new_user_registration_path,
+      join_from_sidebar: new_user_registration_path,
+      join_from_forums: new_user_registration_path,
+      join_from_surveys: new_user_registration_path,
+      join_from_research: new_user_registration_path,
+      join_from_learn: new_user_registration_path
+    }
+
+    ENV[link_with_bitly].present? ? ENV[link_with_bitly] : default_links[link_id]
+  end
+
 end

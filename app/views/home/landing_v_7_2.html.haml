@@ -11,7 +11,7 @@
       %br
       together, we're building it all.
   #signup-form-above-fold.col-md-4
-    %p.f500
+    %p.f500.centered
       It's within your power to have an impact on the future of sleep apnea - connect with other people, doctors, and researchers and let your voice be heard!
     - resource = User.new
     = form_for(resource, url: registration_path(resource), method: :post) do |f|
@@ -26,7 +26,7 @@
       .input-group
         .col-sm-12
           = f.password_field :password, placeholder: 'Password', class: "form-control"
-      .input-group
+      .input-group.centered
         = f.submit 'Join Today', id: "btn-join"
 
   #scroll-carat.hidden-sm.hidden-xs
@@ -113,7 +113,7 @@
     %h1.text-white
       %span.primary-orange= number_with_delimiter User.current.count
       people are already making a difference
-    = link_to 'Join Today', new_user_registration_path, class: 'btn btn-primary', id: 'btn-join'
+    = link_to 'Join Today', get_bitly_link(:join_from_landing), class: 'btn btn-primary', id: 'btn-join'
 
 #slide6
   #partners-banner

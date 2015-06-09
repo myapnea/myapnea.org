@@ -28,3 +28,6 @@
           = submit_tag 'Search', class: 'btn btn-primary', name: nil
 
 = render 'forums/show', forum: @forum, topic_limit: nil
+
+- unless current_user
+  = render 'home/join_the_community', referrer: 'forums'

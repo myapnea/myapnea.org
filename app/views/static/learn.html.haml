@@ -37,3 +37,6 @@
       %li
         If you are interested in partnering with MyApnea.Org and would like your organization listed, please contact
         = link_to "darrel@myapnea.org", "mailto:darrel@myapnea.org?subject=I would like to partner with MyApnea.Org!"
+
+- unless current_user
+  = render 'home/join_the_community', referrer: 'learn'

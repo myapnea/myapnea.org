@@ -104,6 +104,8 @@
           %br
           MyApnea.Org Principal Investigator and Steering Committee Co-chair
 
+- unless current_user
+  = render 'home/join_the_community', referrer: 'research'
 
 -# Template
 / .content-container

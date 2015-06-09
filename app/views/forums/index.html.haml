@@ -22,3 +22,6 @@
 - @forums.order(:position).each do |forum|
   = render 'forums/show', forum: forum, topic_limit: 10
   %br
+
+- unless current_user
+  = render 'home/join_the_community', referrer: 'forums'

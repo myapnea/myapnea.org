@@ -1,0 +1,7 @@
+- bitly_link = "join_from_" + referrer
+#join-the-community-callout
+  .text-content-container.centered
+    %h1.text-white
+      %span.primary-orange= number_with_delimiter User.current.count
+      people are already making a difference
+    = link_to 'Join Today', get_bitly_link(bitly_link.to_sym), class: 'btn btn-primary', id: 'btn-join'
