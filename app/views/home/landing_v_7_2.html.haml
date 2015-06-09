@@ -47,7 +47,7 @@
         %h3.text-white Your Data is Powerful
         %p.text-light8
           Research relies on people like you to help by sharing important data to find the best outcomes.
-        = link_to 'Participate in Research', get_bitly_link(:surveys), class: 'btn btn-warning'
+        = link_to 'Participate in Research', get_tracked_link(:surveys), class: 'btn btn-warning'
       .col-sm-4
         = image_tag 'myapnea/icons/data_powerful.png', class: 'img-responsive', style: 'max-width:150px;'
     %br
@@ -57,7 +57,7 @@
         %h3.text-white Are You at Risk?
         %p.text-light8
           Over 80% of sleep apnea cases go undiagnosed. Take our quick test and see if you're at risk.
-        = link_to 'Check Your Risk', get_bitly_link(:check_risk), class: 'btn btn-warning'
+        = link_to 'Check Your Risk', get_tracked_link(:check_risk), class: 'btn btn-warning'
       .col-sm-4
         = image_tag 'myapnea/icons/risk2.png', class: 'img-responsive', style: 'max-width:150px;'
     %br
@@ -67,7 +67,7 @@
         %h3.text-white Welcome to Our Community
         %p.text-light8
           Families, researchers, and care providers have all come together to help each other in amazing ways.
-        = link_to 'See the Community', get_bitly_link(:forums), class: 'btn btn-warning'
+        = link_to 'See the Community', get_tracked_link(:forums), class: 'btn btn-warning'
       .col-sm-4
         = image_tag 'myapnea/icons/speech_bubbles.png', class: 'img-responsive', style: 'max-width:150px; '
 
@@ -113,7 +113,7 @@
     %h1.text-white
       %span.primary-orange= number_with_delimiter User.current.count
       people are already making a difference
-    = link_to 'Join Today', get_bitly_link(:join_from_landing), class: 'btn btn-primary', id: 'btn-join'
+    = link_to 'Join Today', get_tracked_link(:join_from_landing), class: 'btn btn-primary', id: 'btn-join'
 
 #slide6
   #partners-banner

@@ -35,8 +35,8 @@ module ApplicationHelper
     YAML.load_file(Rails.root.join('lib', 'data', 'content', "#{name}.yml"))[name]
   end
 
-  def get_bitly_link(link_id)
-    link_with_bitly = "bitly_#{link_id}"
+  def get_tracked_link(link_id)
+    link_with_tracking = "tracking_#{link_id}"
 
     default_links = {
       check_risk: sleep_apnea_risk_assessment_path,
@@ -51,7 +51,7 @@ module ApplicationHelper
       join_from_learn: new_user_registration_path
     }
 
-    ENV[link_with_bitly].present? ? ENV[link_with_bitly] : default_links[link_id]
+    ENV[link_with_tracking].present? ? ENV[link_with_tracking] : default_links[link_id]
   end
 
 end
