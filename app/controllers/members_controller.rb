@@ -2,6 +2,8 @@ class MembersController < ApplicationController
   before_action :set_member,                only: :show
   before_action :redirect_without_member,   only: :show
 
+  before_action :set_SEO_elements
+
   def index
     @members = member_scope.page(params[:page]).per( 40 )
   end
@@ -29,6 +31,11 @@ class MembersController < ApplicationController
 
     def member_scope
       User.current.where("users.id IN (SELECT posts.user_id FROM posts WHERE posts.status IN (?) and posts.deleted = ?)", ['pending_review', 'approved'], false).where.not(forum_name: [nil, '']).order("LOWER(forum_name)")
+    end
+
+    def set_SEO_elements
+      @page_title = @member.present? ? ('Sleep Apnea Community - ' + @member.forum_name) : 'Sleep Apnea Community Members, Researchers, and Care Providers'
+      @page_content = 'MyApnea is developing a growing sleep apnea community for sleep apnea patients, sleep researchers, and sleep care providers to discuss issues.'
     end
 
 end

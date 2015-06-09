@@ -3,6 +3,8 @@ class AccountController < ApplicationController
 
   before_action :set_progress_indicators, only: [:get_started_step_one, :get_started_step_two, :get_started_step_three]
 
+  before_action :set_SEO_elements
+
   def get_started
     render layout: 'application-no-sidebar'
   end
@@ -165,47 +167,52 @@ class AccountController < ApplicationController
 
   private
 
-  def user_params
-    params[:user] ||= { blank: '1' }
+    def user_params
+      params[:user] ||= { blank: '1' }
 
-    params[:user][:user_is_updating] = '1'
+      params[:user][:user_is_updating] = '1'
 
-    params.required(:user).permit(
-      # Basic Information
-      :first_name, :last_name, :email,
-      # Forum and Social Profile
-      :photo, :remove_photo, :forum_name, :age, :gender,
-      # Linking to a Provider
-      :provider_id,
-      # Receiving Emails
-      :emails_enabled,
-      # For Provider Profiles
-      :welcome_message, :provider_name, :slug,
-      # Enabling Beta
-      :beta_opt_in,
-      # Enforces that forum name can't be blank
-      :user_is_updating
-      )
-  end
-
-  def user_password_params
-    params.required(:user).permit(
-      :password, :password_confirmation, :current_password
-    )
-  end
-
-  def load_content
-    @pc = YAML.load_file(Rails.root.join('lib', 'data', 'content', "#{action_name}.yml"))[action_name.to_s]
-  end
-
-  def set_progress_indicators
-    if current_user.provider? or current_user.is_only_researcher?
-      @step2_clickable = current_user.accepted_privacy_policy?
-      @step3_clickable = current_user.accepted_privacy_policy? and current_user.accepted_terms_of_access?
-    else
-      @step2_clickable = current_user.accepted_privacy_policy?
-      @step3_clickable = current_user.accepted_privacy_policy? and current_user.accepted_consent?
+      params.required(:user).permit(
+        # Basic Information
+        :first_name, :last_name, :email,
+        # Forum and Social Profile
+        :photo, :remove_photo, :forum_name, :age, :gender,
+        # Linking to a Provider
+        :provider_id,
+        # Receiving Emails
+        :emails_enabled,
+        # For Provider Profiles
+        :welcome_message, :provider_name, :slug,
+        # Enabling Beta
+        :beta_opt_in,
+        # Enforces that forum name can't be blank
+        :user_is_updating
+        )
     end
-  end
+
+    def user_password_params
+      params.required(:user).permit(
+        :password, :password_confirmation, :current_password
+      )
+    end
+
+    def load_content
+      @pc = YAML.load_file(Rails.root.join('lib', 'data', 'content', "#{action_name}.yml"))[action_name.to_s]
+    end
+
+    def set_progress_indicators
+      if current_user.provider? or current_user.is_only_researcher?
+        @step2_clickable = current_user.accepted_privacy_policy?
+        @step3_clickable = current_user.accepted_privacy_policy? and current_user.accepted_terms_of_access?
+      else
+        @step2_clickable = current_user.accepted_privacy_policy?
+        @step3_clickable = current_user.accepted_privacy_policy? and current_user.accepted_consent?
+      end
+    end
+
+    def set_SEO_elements
+      @page_title = 'Welcome to Your Personal Sleep Apnea Account'
+      @page_content = 'Set your sleep apnea community profile, participate in sleep discussions, and join the MyApnea sleep study to help advance sleep apnea research.'
+    end
 
 end

@@ -2,6 +2,8 @@ class HomeController < ApplicationController
 
   before_action :authenticate_user!, except: [:dashboard, :landing]
 
+  before_action :set_SEO_elements
+
   def dashboard
     if current_user
       flash.delete(:notice) if I18n.t('devise.sessions.signed_in') == flash[:notice]
@@ -24,5 +26,12 @@ class HomeController < ApplicationController
   def posts
     @posts = Post.current.not_research.visible_for_user.includes(:user, topic: :forum).order(created_at: :desc).page(params[:page]).per(10)
   end
+
+  private
+
+    def set_SEO_elements
+      @page_title = 'Sleep Apnea Research and Community for Patient Outcomes'
+      @page_content = 'Answer research surveys, submit and vote on new research questions, see the latest forum activity, and get involved in the sleep apnea community here at MyApnea.Org'
+    end
 
 end

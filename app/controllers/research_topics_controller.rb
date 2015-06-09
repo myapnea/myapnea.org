@@ -9,6 +9,8 @@ class ResearchTopicsController < ApplicationController
   before_action :no_layout,                           only: [ :research_topics ]
   before_action :set_active_top_nav_link_to_research
 
+  before_action :set_SEO_elements
+
   def intro
     redirect_to research_topics_path and return if !current_user
   end
@@ -163,5 +165,10 @@ class ResearchTopicsController < ApplicationController
 
   def research_topic_params
     params.require(:research_topic).permit(:text, :description)
+  end
+
+  def set_SEO_elements
+    @page_title = @research_topic.present? ? @research_topic.topic.name : 'Help Create Future Research Topics Related to Sleep Apnea'
+    @page_content = 'Vote on sleep apnea research and encourage sleep research to focus on patient outcomes! The next big sleep study could come from your interest in sleep apnea symptoms and treaments.'
   end
 end

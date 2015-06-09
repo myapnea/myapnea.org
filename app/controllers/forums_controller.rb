@@ -10,6 +10,8 @@ class ForumsController < ApplicationController
 
   before_action :redirect_to_research_topic, only: [ :show ]
 
+  before_action :set_SEO_elements
+
   respond_to :html
 
   def index
@@ -71,5 +73,10 @@ class ForumsController < ApplicationController
         session[:return_to] = request.fullpath
         redirect_to terms_and_conditions_path
       end
+    end
+
+    def set_SEO_elements
+      @page_title = @forum.present? ? ('Sleep Apnea Forums - ' + @forum.name) : 'Sleep Apnea Community Area for Discussions'
+      @page_content = 'Sleep apnea forums, discussions about treatments and CPAP machines, sleep deprivation symptoms, and more topics related to sleep apnea discussed on MyApnea.Org'
     end
 end

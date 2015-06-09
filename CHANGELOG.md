@@ -17,6 +17,7 @@
   - Minor changes to display of large numbers on Community page
   - Survey index is viewable for logged out users
   - Successful password change styled to clearly be a success
+  - Added custom page titles and descriptions for search engine optimization
 - **Administrative Changes**
   - Research topic admin dashboard shows total topic and vote counts
   - Users index can easily highlight who has joined recently, along with daily counts

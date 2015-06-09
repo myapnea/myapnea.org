@@ -13,10 +13,11 @@
     %meta{ itemprop: 'name', content: ENV['pprn_title'] }
     %meta{ itemprop: 'description', content: 'Improving sleep apnea through information, support, and research' }
     %meta{ itemprop: 'image', content: ENV['website_url'] + '/assets/' + asset_path('myapnea/MyApneaLogo_border_whitesub_square.png').split('/assets/').last }
-    / For Google
+    / For Google Analytics
     %meta{ name: 'google-site-verification', content: 'RHApDe4I99r46ZVk4UVIbuJhXi2oIvUhKO0G7zlVHjo' }
-    = render partial: 'layouts/partials/inpage_SEO'
-    %title= @page_title || 'MyApnea'
+    / For SEO
+    %title= 'MyApnea' + (@page_title.present? ? (" | #{@page_title}") : '')
+    %meta{ name: 'description', content: "#{@page_content.present? ? @page_content : 'Sleep Apnea Research and Community for Patient Outcomes'}" }
     = favicon_link_tag
     = csrf_meta_tags
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true

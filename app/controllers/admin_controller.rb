@@ -2,6 +2,8 @@ class AdminController < ApplicationController
   before_action :authenticate_user!
   before_action :check_owner_or_moderator
 
+  before_action :set_SEO_elements
+
   def dashboard
   end
 
@@ -187,5 +189,12 @@ class AdminController < ApplicationController
     @experienced_voter_count = User.current.joins(:votes).group("users.id").having('count(votes.id) > 9').to_a.count
     @submitted_research_topic_count = ResearchTopic.current.uniq.pluck(:user_id).count
   end
+
+  private
+
+    def set_SEO_elements
+      @page_title = 'Admin Panel'
+      @page_content = 'Administrative panel only for owners and moderators of MyApnea.'
+    end
 
 end

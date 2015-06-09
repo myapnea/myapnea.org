@@ -4,6 +4,8 @@ class HighlightsController < ApplicationController
   before_action :check_owner
   before_action :set_highlight,           only: [:show, :edit, :update, :destroy]
 
+  before_action :set_SEO_elements
+
   # GET /highlights
   # GET /highlights.json
   def index
@@ -74,4 +76,10 @@ class HighlightsController < ApplicationController
     def highlight_params
       params.require(:highlight).permit(:title, :description, :photo, :display_date, :displayed, :link)
     end
+
+    def set_SEO_elements
+      @page_title = @highlight.present? ? ('News - ' + @highlight.title) : 'Sleep Apnea Recent News Highlights'
+      @page_content = 'Recent news highlights related to sleep apnea, sleep apnea treatment and CPAP devices, sleep research, and our growing sleep apnea community.'
+    end
+
 end

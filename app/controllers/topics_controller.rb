@@ -15,6 +15,8 @@ class TopicsController < ApplicationController
 
   before_action :redirect_to_research_topic, only: [ :show ]
 
+  before_action :set_SEO_elements
+
   respond_to :html
 
   def subscription
@@ -107,5 +109,9 @@ class TopicsController < ApplicationController
       end
     end
 
+    def set_SEO_elements
+      @page_title = @topic.present? ? @topic.name : ('Sleep Apnea ' + @forum.name + ' Community Discussions')
+      @page_content = 'Sleep apnea forums, discussions about treatments and CPAP machines, sleep deprivation symptoms, and more topics related to sleep apnea discussed on MyApnea.Org'
+    end
 
 end

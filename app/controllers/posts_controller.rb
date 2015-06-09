@@ -16,6 +16,8 @@ class PostsController < ApplicationController
   before_action :set_deletable_post, only: [ :destroy ]
   before_action :redirect_without_post, only: [ :show, :edit, :update, :destroy ]
 
+  before_action :set_SEO_elements
+
   # GET /posts/1/edit
   def edit
   end
@@ -132,5 +134,10 @@ class PostsController < ApplicationController
         session[:return_to] = request.fullpath
         redirect_to terms_and_conditions_path
       end
+    end
+
+    def set_SEO_elements
+      @page_title = @post.present? ? @post.description : ('Sleep Apnea Discussion - ' + @topic.name)
+      @page_content = 'Sleep apnea forums, discussions about treatments and CPAP machines, sleep deprivation symptoms, and more topics related to sleep apnea discussed on MyApnea.Org'
     end
 end

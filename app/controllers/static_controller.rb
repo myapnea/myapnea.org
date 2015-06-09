@@ -2,14 +2,18 @@ class StaticController < ApplicationController
   before_action :load_pc, only: [ :team, :advisory, :learn, :research ]
   before_action :about_layout, only: [ :research ]
 
+  before_action :set_SEO_elements
+
   ## Static
   def about
+    @page_content = "Can't sleep? Sleep apnea is one of the largest causes of chronic sleep deprivation. MyApnea.Org was created by people with sleep apnea, sleep researchers, and sleep doctors to help people with sleep apnea treat their sleep apnea symptoms."
   end
 
   def team
   end
 
   def advisory
+    @page_content = "The MyApnea advisory council consists of sleep researchers, sleep apnea care providers, experts in CPAP and CPAP masks, and people with sleep apnea."
     @group1 = []; @group2 = []; @group3 = []
     @pc["members"].each_with_index do |member, index|
       if index % 3 == 0
@@ -23,12 +27,15 @@ class StaticController < ApplicationController
   end
 
   def partners
+    @page_content = "MyApnea is proud to partner with organizations devoted to improving health and improving sleep quality."
   end
 
   def learn
+    @page_content = "If you can't sleep, are experiencing sleep apnea symptoms, have been diagnosed with obstructive sleep apnea or central sleep apnea, MyApnea wants to help you understand sleep apnea and sleep apnea causes."
   end
 
   def faqs
+    @page_content = "What is MyApnea? What is the difference between OSA and CSA? Where can you take sleep tests? If you are experiencing sleep deprivation or sleep apnea symptoms, MyApnea will explain the basics."
   end
 
   def research
@@ -128,15 +135,20 @@ class StaticController < ApplicationController
 
   private
 
-  def load_pc
-    @pc = page_content(params[:action].to_s)
-  end
+    def load_pc
+      @pc = page_content(params[:action].to_s)
+    end
 
-  def page_content(name)
-    YAML.load_file(Rails.root.join('lib', 'data', 'content', "#{name}.yml"))[name]
-  end
+    def page_content(name)
+      YAML.load_file(Rails.root.join('lib', 'data', 'content', "#{name}.yml"))[name]
+    end
 
-  def about_layout
-  end
+    def about_layout
+    end
+
+    def set_SEO_elements
+      @page_title = ''
+      @page_content = ''
+    end
 
 end

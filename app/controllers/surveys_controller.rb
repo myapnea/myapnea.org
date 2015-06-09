@@ -4,6 +4,8 @@ class SurveysController < ApplicationController
   before_action :authenticate_research, except: [:index]
   before_action :set_survey, only: [:show, :report, :report_detail, :accept_update_first, :start_survey]
 
+  before_action :set_SEO_elements
+
   def my_health_conditions_data
     @data = Report.comorbidity_map.push(["Sleep Apnea", "conditions-sleep-apnea", 100])
   end
@@ -74,6 +76,11 @@ class SurveysController < ApplicationController
 
   def check_report_access
     redirect_to surveys_path and return unless ((@answer_session.present? and @answer_session.completed?) or current_user.is_only_academic?)
+  end
+
+  def set_SEO_elements
+    @page_title = @survey.present? ? ('Surveys - ' + @survey.name) : ('Participate in Research Surveys About Sleep Apnea')
+    @page_content = 'Get paid to take research surveys about sleep apnea! Surveys ask for information about sleep quality, sleep apnea treatments, family involvement, and more.'
   end
 
 end
