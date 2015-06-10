@@ -1,10 +1,9 @@
 .content-container.darker-blue-bcg
-  .content-header
+  .content-header.darkerer-blue-bcg{ style: 'padding-bottom: 20px;'}
     %h1.f300.white
       %span.f500 Sleep Apnea:
       a common and potentially life-threatening sleep and breathing disorder
   .content-body
-    %hr.white
     %h2.f300.white.centered
       Sleep apnea causes you to repeatedly wake up throughout the night, as you involuntarily
       = succeed ',' do
@@ -61,6 +60,19 @@
         %span.primary-orange MyApnea.Org
         aims to mobilize the sleep apnea community to work together to get better answers through community support and research.
     .row{ style: 'margin: 50px 0 100px 0;'}
+      .col-sm-4
+        = link_to learn_pap_path, class: 'no-underline white' do
+          .darkerer-blue-bcg{ style: 'padding: 10px '}
+            %h3.centered Learn about PAP Devices
+      .col-sm-4
+        = link_to team_path, class: 'no-underline white' do
+          .darkerer-blue-bcg{ style: 'padding: 10px '}
+            %h3.centered Learn about Our Team
+      .col-sm-4
+        = link_to about_path, class: 'no-underline white' do
+          .darkerer-blue-bcg{ style: 'padding: 10px '}
+            %h3.centered Learn about MyApnea.Org
+    .row{ style: 'margin: 50px 0 100px 0;'}
       .col-sm-6
         .darkerer-blue-bcg{ style: 'padding: 20px; border-radius: 10px; '}
           %h3.white.centered
@@ -84,6 +96,20 @@
         .darkerer-blue-bcg{ style: 'padding: 10px '}
           .embed-responsive.embed-responsive-16by9
             %iframe.embed-responsive-item{ src: '//www.youtube.com/embed/7CcP7MrzJWw?rel=0&modestbranding=1&autohide=1&showinfo=0&wmode=opaque', allowFullScreen: 'true',  webkitallowfullscreen: 'true', mozallowfullscreen: 'true' }
+
+    .row{ style: 'margin: 150px 0 100px 0;'}
+      .col-sm-4
+        = link_to learn_pap_path, class: 'no-underline white' do
+          .darkerer-blue-bcg{ style: 'padding: 10px '}
+            %h3.centered Learn about PAP Devices
+      .col-sm-4
+        = link_to team_path, class: 'no-underline white' do
+          .darkerer-blue-bcg{ style: 'padding: 10px '}
+            %h3.centered Learn about Our Team
+      .col-sm-4
+        = link_to about_path, class: 'no-underline white' do
+          .darkerer-blue-bcg{ style: 'padding: 10px '}
+            %h3.centered Learn about MyApnea.Org
 
 
 .content-container
