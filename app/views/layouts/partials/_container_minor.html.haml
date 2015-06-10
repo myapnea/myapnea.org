@@ -9,7 +9,7 @@
       = current_user.forum_name
     %p.text-light7
       %span.f500 Member since:
-      %span.text-light9 2007
+      %span.text-light9= current_user.created_at.year
   #user-stats
     .col-xs-4.user-stats
       %p.small.f500.text-dark5
