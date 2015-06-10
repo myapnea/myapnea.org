@@ -83,6 +83,7 @@
   padding: 150px 0 50px 0;
   border-top: 5px solid #5999de;
   .circle {
+    margin: auto;
     width: 275px;
     height: 275px;
     border-radius: 50%;
@@ -115,9 +116,8 @@
   border-bottom: 5px solid #FFA400;
   border-top:5px solid #5999DE;
   #partners-banner {
-    height: 120px;
     padding-top:20px;
-    width: 1000px;
+    max-width: 1000px;
     margin: auto;
     #partner-ASAA {
       height: 80px;
@@ -137,3 +137,50 @@
   }
 }
 
+
+@media (max-width: 1200px) {
+}
+
+@media (max-width: 992px) {
+  #slide1 {
+    #signup-form-above-fold {
+      background-color: rgb(255,255,255);
+      background-color: rgba(255,255,255,.95);
+    }
+  }
+  #slide3 {
+    #testimonial-giver {
+      border-bottom: none;
+    }
+  }
+  #slide4 {
+    .circle {
+      margin-bottom: 20px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  #slide2 {
+    text-align: center;
+    img {
+      margin: auto;
+    }
+  }
+  #slide3 {
+    height: auto;
+    #testimonial-giver {
+      position: static;
+      display: block;
+      text-align: center;
+      border-right: none;
+      border-bottom: 5px solid #5999de;
+      margin: auto;
+      img { margin: auto; }
+    }
+    #testimonial {
+      padding: 10px 15px;
+      margin: 0px;
+    }
+  }
+}

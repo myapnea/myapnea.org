@@ -41,33 +41,33 @@
       of patients, families, researchers, and healthcare providers.
     %br
     .row
-      .col-sm-7.col-sm-offset-1
+      .col-sm-offset-1.col-sm-4.col-sm-push-7
+        = image_tag 'myapnea/icons/data_powerful.png', class: 'img-responsive', style: 'max-width:150px;'
+      .col-sm-7.col-sm-pull-4
         %h3.text-white Your Data is Powerful
         %p.text-light8
           Research relies on people like you to help by sharing important data to find the best outcomes.
         = link_to 'Participate in Research', get_tracked_link(:surveys), class: 'btn btn-warning'
-      .col-sm-4
-        = image_tag 'myapnea/icons/data_powerful.png', class: 'img-responsive', style: 'max-width:150px;'
     %br
     %br
     .row
-      .col-sm-7.col-sm-offset-1
+      .col-sm-offset-1.col-sm-4.col-sm-push-7
+        = image_tag 'myapnea/icons/risk2.png', class: 'img-responsive', style: 'max-width:150px;'
+      .col-sm-7.col-sm-pull-4
         %h3.text-white Are You at Risk?
         %p.text-light8
           Over 80% of sleep apnea cases go undiagnosed. Take our quick test and see if you're at risk.
         = link_to 'Check Your Risk', get_tracked_link(:check_risk), class: 'btn btn-warning'
-      .col-sm-4
-        = image_tag 'myapnea/icons/risk2.png', class: 'img-responsive', style: 'max-width:150px;'
     %br
     %br
     .row
-      .col-sm-7.col-sm-offset-1
+      .col-sm-offset-1.col-sm-4.col-sm-push-7
+        = image_tag 'myapnea/icons/speech_bubbles.png', class: 'img-responsive', style: 'max-width:150px; '
+      .col-sm-7.col-sm-pull-4
         %h3.text-white Welcome to Our Community
         %p.text-light8
           Families, researchers, and care providers have all come together to help each other in amazing ways.
         = link_to 'See the Community', get_tracked_link(:forums), class: 'btn btn-warning'
-      .col-sm-4
-        = image_tag 'myapnea/icons/speech_bubbles.png', class: 'img-responsive', style: 'max-width:150px; '
 
 #slide3
   #testimonial-giver
@@ -114,11 +114,11 @@
     = link_to 'Join Today', get_tracked_link(:join_from_landing), class: 'btn btn-primary', id: 'btn-join'
 
 #slide6
-  #partners-banner
-    = image_tag 'myapnea/welcome/img-small/asaa_logo.jpg', id: 'partner-ASAA'
-    = image_tag 'myapnea/welcome/img-small/pcornet_logo.jpg', id: 'partner-PCORNET'
-    = image_tag 'myapnea/welcome/img-small/bwh_logo.jpg', id: 'partner-BWH'
-    .clearfix
+  .embed-responsive.embed-responsive-16by9
+    %iframe.embed-responsive-item{ src: '//www.youtube.com/embed/hzl_4W0Vxds?rel=0&modestbranding=1&autohide=1&showinfo=0&wmode=opaque', allowFullScreen: 'true',  webkitallowfullscreen: 'true', mozallowfullscreen: 'true' }
 
-#slide7
-
+.warning-bcg.text-dark7.centered-text{ style: 'padding: 10px;'}
+  %p
+    To enhance the user experience, this site enables the use of cookies and remarketing services to target ads to you based on your visit to MyApnea.Org.
+  - if ENV['website_url'] == 'https://myapnea.org'
+    %img{ src: "https://secure.fastclick.net/w/tre?ad_id=34691;evt=27663;cat1=36894;cat2=38051;rand=#{SecureRandom.hex(8)}", width: "1", height: "1", border: "0" }
