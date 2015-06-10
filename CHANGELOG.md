@@ -26,6 +26,7 @@
   - Added engagement report, to track how many members are completing the sidebar next steps
 - **Gem Changes**
   - Updated to redcarpet 3.3.1
+  - Updated to kaminari 0.16.3
 
 ### Refactoring
 - Simplified get started process

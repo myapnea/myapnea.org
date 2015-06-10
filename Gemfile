@@ -67,7 +67,7 @@ gem 'authority'
 gem 'koala'
 
 # Forum
-gem 'kaminari', '~> 0.16.1'
+gem 'kaminari', '~> 0.16.3'
 
 # Blogs and Notifications
 gem 'acts-as-taggable-on'
