@@ -196,6 +196,12 @@ nav {
   }
 }
 
+@media (max-width: 992px) {
+  .navbar.active-sidebar {
+    background-color: #243264;
+  }
+}
+
 
 @media (max-width: 768px) {
   .navbar-brand img {

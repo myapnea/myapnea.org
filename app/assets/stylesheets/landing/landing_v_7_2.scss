@@ -58,6 +58,9 @@
   background-color: #233063;
   padding: 150px 0 200px 0;
   border-top: 5px solid #ffa400;
+  #myapnea-mission {
+    line-height: 1.5em;
+  }
 }
 
 #slide3 {
@@ -162,6 +165,9 @@
 
 @media (max-width: 768px) {
   #slide2 {
+    #myapnea-mission {
+      line-height: 1.2em;
+    }
     text-align: center;
     img {
       margin: auto;
