@@ -105,8 +105,6 @@ namespace :dictionary do
                 r.value
               elsif r.answer and r.answer.answer_values.collect{|av| av.answer_option}.compact.count > 0
                 r.answer.answer_values.collect{|av| av.answer_option}.compact.collect{|ao| ao.value}.uniq.sort.join(', ')
-              elsif r.value.present?
-                r.value
               else
                 nil
               end
