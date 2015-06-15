@@ -37,6 +37,13 @@ namespace :dictionary do
             end
 
             csv << [survey.slug, slug, display_name, nil, question.display_type, unit, answer_options.collect{|ao| "#{ao[0]}: #{ao[1]}"}.join(' | '), nil, nil]
+
+            question.answer_templates.where(data_type: 'text_value').each do |at|
+              slug = at.name
+              display_name = at.text.to_s.chomp
+              csv << [survey.slug, slug, display_name, nil, 'text_value', nil, nil, nil, nil]
+            end
+
           end
         end
       end
