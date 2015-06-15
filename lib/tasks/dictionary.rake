@@ -17,15 +17,15 @@ namespace :dictionary do
           if question.display_type == 'radio_input_multiple'
             question.answer_templates.each do |at|
               slug = at.name
-              display_name = at.text
+              display_name = at.text.to_s.chomp
 
               answer_options = at.answer_options.pluck(:value, :text)
 
-              csv << [survey.slug, slug, display_name, nil, 'radio_input', nil, answer_options.collect{|ao| "#{ao[0]}:#{ao[1]}"}.join(','), nil, nil]
+              csv << [survey.slug, slug, display_name, nil, 'radio_input', nil, answer_options.collect{|ao| "#{ao[0]}:#{ao[1]}"}.join(';'), nil, nil]
             end
           else
             slug = question.slug
-            display_name = question.text_en
+            display_name = question.text_en.to_s.chomp
 
             answer_options = []
             question.answer_templates.each do |at|
@@ -36,7 +36,7 @@ namespace :dictionary do
               unit = question.answer_templates.first.unit
             end
 
-            csv << [survey.slug, slug, question.text_en, nil, question.display_type, unit, answer_options.collect{|ao| "#{ao[0]}:#{ao[1]}"}.join(','), nil, nil]
+            csv << [survey.slug, slug, display_name, nil, question.display_type, unit, answer_options.collect{|ao| "#{ao[0]}:#{ao[1]}"}.join(';'), nil, nil]
           end
         end
       end
