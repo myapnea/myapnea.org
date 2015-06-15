@@ -40,7 +40,12 @@ namespace :dictionary do
 
             question.answer_templates.where(data_type: 'text_value').each do |at|
               slug = at.name
-              display_name = at.text.to_s.chomp
+              ao = answer_options.select{|value, text| value == at.target_answer_option}.first
+              display_name = if ao
+                ao[1]
+              else
+                nil
+              end
               csv << [survey.slug, slug, display_name, nil, 'text_value', nil, nil, nil, nil]
             end
 
