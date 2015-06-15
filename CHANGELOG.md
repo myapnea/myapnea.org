@@ -21,6 +21,8 @@
   - Added custom page titles and descriptions for search engine optimization
   - Moved ISSS from learn page to partners page
   - Updated link to MyApnea.Org welcome video
+- **Survey Exports**
+  - Added a data dictionary export task to export all surveys into CSV format
 - **Administrative Changes**
   - Research topic admin dashboard shows total topic and vote counts
   - Users index can easily highlight who has joined recently, along with daily counts
