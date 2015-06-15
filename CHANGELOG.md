@@ -38,6 +38,9 @@
   - Gives a unified three step process, regardless of consent status
 - Unified code for consent process
 
+### Bug Fix
+- Fixed a bug on the forums that caused email links to be formatted incorrectly
+
 ## 7.1.3 (June 9, 2015)
 
 ### Bug Fix

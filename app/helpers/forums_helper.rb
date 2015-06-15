@@ -9,7 +9,7 @@ module ForumsHelper
     markdown = Redcarpet::Markdown.new( Redcarpet::Render::HTML, no_intra_emphasis: true, fenced_code_blocks: true, autolink: true, strikethrough: true, superscript: true, tables: true, lax_spacing: true, space_after_headers: true, underline: true, highlight: true, footnotes: true )
     result = markdown.render(text.to_s)
     result = add_table_class(result, table_class) unless table_class.blank?
-    # result = replace_p_with_p_lead(result)
+    result = add_link_forum_names_to_paragraph(result)
     result = make_images_responsive(result)
     unless allow_links
       result = remove_links(result)
@@ -40,8 +40,8 @@ module ForumsHelper
     text.to_s.gsub(/<table(.*?)>(.*?)<\/table>/m, '')
   end
 
-  def replace_p_with_p_lead(text)
-    text.to_s.gsub(/<p>/m, '<p class="lead" data-object="link-forum-names">').html_safe
+  def add_link_forum_names_to_paragraph(text)
+    text.to_s.gsub(/<p>/m, '<p data-object="link-forum-names">').html_safe
   end
 
   def add_table_class(text, table_class)

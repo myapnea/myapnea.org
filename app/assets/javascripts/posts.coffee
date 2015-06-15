@@ -5,7 +5,7 @@
 @linkForumNames = () ->
   $("[data-object~='link-forum-names']").each( (index, element) ->
     $(element).html(
-      $(element).html().replace(/@([a-zA-Z0-9]+)/g, (x) -> "<a href=\"#{root_url}members/#{x.replace(/@/,'')}\">#{x}</a>")
+      $(element).html().replace(/\B@([a-zA-Z0-9]+)/g, (x) -> "<a href=\"#{root_url}members/#{x.replace(/@/,'')}\">#{x}</a>")
     )
   )
 
