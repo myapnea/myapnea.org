@@ -27,6 +27,7 @@
   - Research topic admin dashboard shows total topic and vote counts
   - Users index can easily highlight who has joined recently, along with daily counts
   - Added engagement report, to track how many members are completing the sidebar next steps
+  - Changed date format to "%-m/%-d/%Y" for submitted research topics in admin view
 - **Gem Changes**
   - Updated to redcarpet 3.3.1
   - Updated to kaminari 0.16.3

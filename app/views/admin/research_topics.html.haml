@@ -35,7 +35,7 @@
             %td= research_topic.votes.count
             %td= link_to research_topic.text, research_topic_path(research_topic)
             %td= link_to research_topic.user.forum_name, research_topic.user if research_topic.user
-            %td= research_topic.created_at.strftime("%d-%m-%Y")
+            %td= research_topic.created_at.strftime("%-m/%-d/%Y")
             %td
               .btn-group
                 = link_to "Edit Topic", edit_forum_topic_path(research_topic.topic.forum, research_topic.topic), class: "btn btn-primary btn-xs"
