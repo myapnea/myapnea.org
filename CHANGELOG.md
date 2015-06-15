@@ -23,6 +23,7 @@
   - Updated link to MyApnea.Org welcome video
 - **Survey Exports**
   - Added a data dictionary export task to export all surveys into CSV format
+  - Added a data export task that matches the data dictionary format and is exported into CSV format
 - **Administrative Changes**
   - Research topic admin dashboard shows total topic and vote counts
   - Users index can easily highlight who has joined recently, along with daily counts
