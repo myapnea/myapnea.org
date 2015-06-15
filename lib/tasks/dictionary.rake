@@ -21,7 +21,7 @@ namespace :dictionary do
 
               answer_options = at.answer_options.pluck(:value, :text)
 
-              csv << [survey.slug, slug, display_name, nil, 'radio_input', nil, answer_options.collect{|ao| "#{ao[0]}:#{ao[1]}"}.join(';'), nil, nil]
+              csv << [survey.slug, slug, display_name, nil, 'radio_input', nil, answer_options.collect{|ao| "#{ao[0]}: #{ao[1]}"}.join(';'), nil, nil]
             end
           else
             slug = question.slug
@@ -36,7 +36,7 @@ namespace :dictionary do
               unit = question.answer_templates.first.unit
             end
 
-            csv << [survey.slug, slug, display_name, nil, question.display_type, unit, answer_options.collect{|ao| "#{ao[0]}:#{ao[1]}"}.join(';'), nil, nil]
+            csv << [survey.slug, slug, display_name, nil, question.display_type, unit, answer_options.collect{|ao| "#{ao[0]}: #{ao[1]}"}.join(';'), nil, nil]
           end
         end
       end
