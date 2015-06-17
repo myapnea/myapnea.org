@@ -106,6 +106,18 @@
           %span.glyphicon.progress-indicator
           %p
             Submit your own research question
+    -# User should submit their own research topic
+    - if current_user.invites.present?
+      .progress-item
+        %span.glyphicon.glyphicon-ok.progress-indicator.progress-indicator-complete
+        %p
+          Thanks for sharing MyApnea with others!
+    - else
+      = link_to new_invite_path, class: 'no-underline' do
+        .progress-item
+          %span.glyphicon.progress-indicator
+          %p
+            Invite somebody with or at-risk of sleep apnea to join!
 - else
   .progress-list
     %p.lead.text-light8.centered-text
@@ -134,6 +146,10 @@
       %span.glyphicon.glyphicon-lock.progress-indicator.progress-indicator-locked
       %p
         Submit your own research question
+    .progress-item
+      %span.glyphicon.progress-indicator
+      %p
+        Invite others to join the community!
   %br
   .centered
     = link_to 'Join Today!', get_tracked_link(:join_from_sidebar), class: 'btn btn-warning btn-lg'
