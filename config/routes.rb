@@ -97,6 +97,7 @@ Rails.application.routes.draw do
   get 'research-topics/accepted/obstructive-sleep-apnea-and-adenotonsillectomy-in-children', to: "research_topics#sleep_apnea_adenotonsillectomy_children", as: "sleep_apnea_adenotonsillectomy_children"
   get 'research-topics/accepted/link-between-type-2-diabetes-and-sleep-apnea', to: "research_topics#sleep_apnea_diabetes", as: "sleep_apnea_diabetes"
   get 'research-topics/accepted/can-nighttime-oxygen-replace-cpap-for-treatment-of-sleep-apnea', to: "research_topics#sleep_apnea_nighttime_oxygen_use", as: "sleep_apnea_nighttime_oxygen_use"
+  get 'research-topics/accepted/didgeridoo-a-potentially-novel-intervention-for-sleep-apnea', to: "research_topics#sleep_apnea_didgeridoo", as: "sleep_apnea_didgeridoo"
 
   # Surveys
   resources :surveys do

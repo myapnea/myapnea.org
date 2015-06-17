@@ -102,6 +102,24 @@
           %br
           MyApnea.Org Principal Investigator and Steering Committee Co-chair
 
+.content-container
+  .content-header
+    = link_to sleep_apnea_didgeridoo_path, class: 'no-underline text-dark8' do
+      %h2 Didgeridoos: A Potentially Novel Intervention for Sleep Apnea
+  .content-body.horizontal-inset
+    %p.lead
+      In 2005, the British Medical Journal published a research study that made the American Thoracic Society International Conference “Top 5 Articles of the Year”, and since has remained a frequently talked about study that has also seemingly gained a cult following.  In a randomized controlled research study, Dr. Braendli’s team in Switzerland discovered that playing the didgeridoo, a native Australian wind instrument, resulted in improvement in obstructive sleep apnea (or OSA).
+      = link_to 'Read more', sleep_apnea_didgeridoo_path
+  .content-footer
+    .row
+      .col-sm-2.col-xs-4
+        = image_tag 'myapnea/research/dennis_hwang.jpg', class: 'img-responsive pull-right', style: 'width:100px;'
+      .col-sm-10.col-xs-8
+        %h3.f300
+          Dennis Hwang, MD
+        %p.text-dark7
+          Medical Director of the Sleep Program, Kaiser South California
+
 - unless current_user
   = render 'home/join_the_community', referrer: 'research'
 
@@ -112,9 +130,11 @@
 /       %h2 What is the link between type 2 diabetes and obstructive sleep apnea?
 /   .content-body.horizontal-inset
 /     %p.lead
+/       = link_to 'Read more', ''
 /   .content-footer
 /     .row
 /       .col-sm-2.col-xs-4
+/         = image_tag 'myapnea/research/dennis_hwang.jpg', class: 'img-responsive pull-right', style: 'width: 100px;'
 /       .col-sm-10.col-xs-8
 /         %h3.f300
 /         %p.text-dark7
