@@ -1,0 +1,12 @@
+class InviteMailer < ApplicationMailer
+
+  def new_user_invite(invite, user)
+    setup_email
+    @token = invite.token
+    @user = user
+    @email_to = invite.email
+    @custom_url = ENV['website_url']+"?invite_token=#{@token}"
+    mail(to: @email_to, subject: "You're Invited to Join MyApnea.Org!")
+  end
+
+end

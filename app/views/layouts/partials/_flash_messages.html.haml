@@ -6,3 +6,7 @@
   .flash-alert
     .lead.centered-text
       = flash[:alert].html_safe
+- if flash[:warning]
+  .flash-warning
+    .lead.centered-text
+      = flash[:warning].html_safe

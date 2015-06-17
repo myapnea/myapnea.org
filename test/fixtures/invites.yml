@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  email: test1@testemail.org
+  user_id: 1
+  token: facdfioweiorm
+
+two:
+  email: test2@testemail.org
+  user_id: 1
+  token: jcoiqowermmuu

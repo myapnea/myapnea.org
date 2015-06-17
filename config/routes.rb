@@ -60,6 +60,9 @@ Rails.application.routes.draw do
   post 'accepts_update' => 'account#accepts_update'
   post 'accepts_terms_and_conditions' => 'account#accepts_terms_and_conditions'
 
+  # Invites
+  resources :invites
+
   # Provider Pages
   get 'p(/:slug)', to: 'static#provider_page'
   resources :providers

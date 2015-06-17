@@ -1,0 +1,12 @@
+.content-main-header
+  %h1 Invite Others!
+
+.content-container
+  .content-body
+    = form_for @invite do |f|
+      .input-group
+        = f.label :email, class: 'control-label'
+        = f.email_field :email, class: 'form-control'
+      %br
+      .input-group
+        = f.submit 'Send Invitation', class: 'btn btn-primary'

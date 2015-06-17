@@ -22,6 +22,7 @@
   - Moved ISSS from learn page to partners page
   - Updated link to MyApnea.Org welcome video
   - Added didgeridoo research highlight
+  - Added ability for users to invite others via email
 - **Survey Exports**
   - Added a data dictionary export task to export all surveys into CSV format
   - Added a data export task that matches the data dictionary format and is exported into CSV format
