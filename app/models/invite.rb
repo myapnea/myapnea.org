@@ -5,6 +5,7 @@ class Invite < ActiveRecord::Base
 
   scope :members, -> { where(for_provider: false) }
   scope :providers, -> { where(for_provider: true) }
+  scope :successful, -> { where(successful: true) }
 
   belongs_to :user
 

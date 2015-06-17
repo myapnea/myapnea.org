@@ -189,7 +189,9 @@ class AdminController < ApplicationController
     @experienced_voter_count = User.current.joins(:votes).group("users.id").having('count(votes.id) > 9').to_a.count
     @submitted_research_topic_count = ResearchTopic.current.uniq.pluck(:user_id).count
     @invited_members_count = Invite.members.uniq.select(:user_id).count
+    @invited_members_success_count = Invite.members.successful.uniq.select(:user_id).count
     @invited_providers_count = Invite.providers.uniq.select(:user_id).count
+    @invited_providers_success_count = Invite.providers.successful.uniq.select(:user_id).count
   end
 
   private

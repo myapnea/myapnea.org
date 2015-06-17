@@ -70,17 +70,31 @@
     %h3 Invited another member
   .content-body
     %p.lead.centered{ style: 'margin-top: 20px' }
+      %span.f500 Total:
       = number_with_delimiter @invited_members_count
       %span.text-muted
         = surround "(", ")" do
           = "#{(100.0 * @invited_members_count / User.current.count).round(2)}%"
+    %p.lead.centered{ style: 'margin-top: 20px' }
+      %span.f500 Successfully:
+      = number_with_delimiter @invited_members_success_count
+      %span.text-muted
+        = surround "(", ")" do
+          = "#{(100.0 * @invited_members_success_count / @invited_members_count).round(2)}%"
 
 .content-container
   .content-header
     %h3 Invited personal care provider
   .content-body
     %p.lead.centered{ style: 'margin-top: 20px' }
+      %span.f500 Total:
       = number_with_delimiter @invited_providers_count
       %span.text-muted
         = surround "(", ")" do
           = "#{(100.0 * @invited_providers_count / User.current.count).round(2)}%"
+    %p.lead.centered{ style: 'margin-top: 20px' }
+      %span.f500 Successfully:
+      = number_with_delimiter @invited_providers_success_count
+      %span.text-muted
+        = surround "(", ")" do
+          = "#{(100.0 * @invited_providers_success_count / @invited_providers_count).round(2)}%"
