@@ -1,7 +1,9 @@
 class Invite < ActiveRecord::Base
 
-  before_create   :generate_token
+  after_create    :generate_token
   before_save     :check_existing_user
+
+  validates_uniqueness_of :token, allow_nil: true
 
   scope :members, -> { where(for_provider: false) }
   scope :providers, -> { where(for_provider: true) }
@@ -10,7 +12,10 @@ class Invite < ActiveRecord::Base
   belongs_to :user
 
   def generate_token
-    self.token = Digest::SHA1.hexdigest([self.user_id, Time.now, rand].join)
+    begin
+      self.update_column :token, Digest::SHA1.hexdigest([self.user_id, Time.now, rand].join)
+    rescue
+    end
   end
 
   def check_existing_user
