@@ -164,6 +164,13 @@
 }
 
 @media (max-width: 768px) {
+  #slide1 {
+    #signup-form-above-fold {
+      form #user_first_name {
+        margin-bottom: 10px;
+      }
+    }
+  }
   #slide2 {
     #myapnea-mission {
       line-height: 1.2em;

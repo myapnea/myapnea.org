@@ -24,6 +24,10 @@
       .input-group
         .col-sm-12
           = f.password_field :password, placeholder: 'Password', class: "form-control"
+      .input-group
+        .col-sm-12
+          = f.check_box :over_eighteen
+          = f.label :over_eighteen, 'I am over the age of 18'
       .input-group.centered
         = f.submit 'Join Today', id: "btn-join"
 
