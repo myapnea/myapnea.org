@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :timeoutable, :lockable
 
   # Callbacks
-  after_create :set_forum_name, :send_welcome_email
+  after_create :set_forum_name, :send_welcome_email, :check_for_token
 
   # Mappings
   TYPE = [['Diagnosed With Sleep Apnea', 'adult_diagnosed'],
@@ -485,6 +485,12 @@ class User < ActiveRecord::Base
         # In parent
         Process.detach(pid)
       end
+    end
+  end
+
+  def check_for_token
+    if self.invite_token.present?
+      Invite.find_by_token(self.invite_token).update(successful: true)
     end
   end
 

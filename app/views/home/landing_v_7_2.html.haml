@@ -13,6 +13,8 @@
       It's within your power to have an impact on the future of sleep apnea - connect with other people, doctors, and researchers and let your voice be heard!
     - resource = User.new
     = form_for(resource, url: registration_path(resource), method: :post) do |f|
+      - if params[:invite_token].present?
+        = f.hidden_field :invite_token, value: params[:invite_token]
       .input-group
         .col-sm-6
           = f.text_field :first_name, placeholder: 'First name', class: "form-control"

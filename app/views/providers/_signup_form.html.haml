@@ -15,7 +15,8 @@
                 %li= msg
         = f.hidden_field :beta_opt_in,      value: true
         = f.hidden_field :provider,         value: true
-        -# = f.hidden_field :welcome_message,  value: ''
+        - if params[:invite_token].present?
+          = f.hidden_field :invite_token,   value: params[:invite_token]
         .input-group
           = f.text_field :first_name, placeholder: 'First name', class: "form-control"
           - if resource.errors.any? and resource.errors[:first_name].present?
