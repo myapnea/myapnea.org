@@ -6,14 +6,25 @@ class InvitesControllerTest < ActionController::TestCase
     @valid_user = users(:user_1)
   end
 
-  test "should get new for logged in user" do
+  test "should get members for logged in user" do
     login(@valid_user)
-    get :new
+    get :members
     assert_response :success
   end
 
-  test "should not get new for logged out user" do
-    get :new
+  test "should not get members for logged out user" do
+    get :members
+    assert_response :redirect
+  end
+
+  test "should get providers for logged in user" do
+    login(@valid_user)
+    get :providers
+    assert_response :success
+  end
+
+  test "should not get providers for logged out user" do
+    get :providers
     assert_response :redirect
   end
 

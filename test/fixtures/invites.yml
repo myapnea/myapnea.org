@@ -3,9 +3,11 @@
 one:
   email: test1@testemail.org
   user_id: 1
+  for_provider: false
   token: facdfioweiorm
 
 two:
   email: test2@testemail.org
   user_id: 1
+  for_provider: true
   token: jcoiqowermmuu

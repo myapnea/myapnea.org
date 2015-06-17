@@ -3,6 +3,9 @@ class Invite < ActiveRecord::Base
   before_create   :generate_token
   before_save     :check_existing_user
 
+  scope :members, -> { where(for_provider: false) }
+  scope :providers, -> { where(for_provider: true) }
+
   belongs_to :user
 
   def generate_token

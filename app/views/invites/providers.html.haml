@@ -1,0 +1,13 @@
+.content-main-header
+  %h1 Invite Your Personal Care Provider!
+
+.content-container
+  .content-body
+    = form_for @invite do |f|
+      = f.hidden_field :for_provider, value: true
+      .input-group
+        = f.label :email, class: 'control-label'
+        = f.email_field :email, class: 'form-control'
+      %br
+      .input-group
+        = f.submit 'Send Invitation', class: 'btn btn-primary'

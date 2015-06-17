@@ -107,17 +107,28 @@
           %p
             Submit your own research question
     -# User should submit their own research topic
-    - if current_user.invites.present?
+    - if current_user.invites.members.present?
       .progress-item
         %span.glyphicon.glyphicon-ok.progress-indicator.progress-indicator-complete
         %p
           Thanks for sharing MyApnea with others!
     - else
-      = link_to new_invite_path, class: 'no-underline' do
+      = link_to members_invites_path, class: 'no-underline' do
         .progress-item
           %span.glyphicon.progress-indicator
           %p
             Invite somebody with or at-risk of sleep apnea to join!
+    - if current_user.invites.providers.present?
+      .progress-item
+        %span.glyphicon.glyphicon-ok.progress-indicator.progress-indicator-complete
+        %p
+          Thanks for sharing MyApnea with your provider!
+    - else
+      = link_to providers_invites_path, class: 'no-underline' do
+        .progress-item
+          %span.glyphicon.progress-indicator
+          %p
+            Invite your personal care provider to join!
 - else
   .progress-list
     %p.lead.text-light8.centered-text
