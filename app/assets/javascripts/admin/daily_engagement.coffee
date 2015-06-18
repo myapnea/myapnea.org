@@ -89,7 +89,7 @@
     )
 
     svgWeek.append('g').attr('class', 'x axis').attr('transform', 'translate(0,' + height + ')').call xAxis
-    svgWeek.append('g').attr('class', 'y axis').call(yAxis).append('text').attr('transform', 'rotate(-90)').attr('y', 6).attr('dy', '.71em').style('text-anchor', 'end').text 'Counts'
+    svgWeek.append('g').attr('class', 'y axis').call(yAxis).append('text').attr('transform', 'rotate(-90)').attr('y', 6).attr('dy', '.71em').style('text-anchor', 'end').text 'Weekly Counts'
     svgWeek.append('path').datum(weeklyPosts).attr('class', 'posts-line').attr 'd', line
     svgWeek.append('path').datum(weeklyUsers).attr('class', 'users-line').attr 'd', line
     svgWeek.append('path').datum(weeklySurveys).attr('class', 'surveys-line').attr 'd', line

@@ -73,7 +73,7 @@ if typeof Turbolinks isnt 'undefined' and Turbolinks.supported
   autocompleteGenderReady() if $("#user_gender").length > 0
   fileDragReady()
   researchTopicsReady()
-  dailyEngagementReady()
+  dailyEngagementReady() if $(".daily-engagement-report").length > 0
 
 $(document).ready(loaders)
 $(document)
