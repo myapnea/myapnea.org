@@ -14,7 +14,7 @@ class InvitesController < ApplicationController
     @invite = Invite.where(user_id: current_user.id).new(invite_params)
     if @invite.save
       if @invite.recipient_id.present?
-        redirect_to members_invites_path, warning: 'Thank you, but they have already joined!'
+        redirect_to members_invites_path, notice: 'Thank you!'
       else
         if @invite.for_provider?
           InviteMailer.new_provider_invite(@invite, current_user).deliver_later
