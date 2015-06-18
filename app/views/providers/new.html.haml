@@ -6,12 +6,14 @@
       We are working directly with researchers and providers to treat this illness. By creating your own provider page, you can make an important impact.
     = link_to 'Create your page', '#signup', class: "btn btn-primary", id: "btn-join"
   .col-md-3.col-md-offset-1
-    .thumbnail#video-play{:style=>"background-color:rgba(250,250,250,.43); padding:30px; text-align:center; border:none; cursor:pointer; border-radius:20px", data:{ object: 'play-video', toggle:"modal", target:'#welcomeVideoModal'}}
-      %i.fa.fa-play-circle{style:"color:#BFD9F3; font-size:147px; line-height:118px; border-radius:100%;"}
+    .thumbnail#landing-video-play{ data: { object: 'start-yt-video', toggle:"modal", target:'#landingVideoModal', target_iframe: '#landingframe', src: '//www.youtube.com/embed/3I8YbWRgkjw?rel=0&autoplay=1&autohide=1&showinfo=0&wmode=opaque' } }
+      %i.fa.fa-play-circle
+      %p
+        Play Video
 
 #slide-2p.row.row-fullscreen.reset-layout
   .col-md-6.col-md-offset-1.col-sm-8
-    %h1.primary-blue
+    %h1.darker-blue
       Get your patients involved
     %h3.text-dark8
       MyApnea.Org is what's called
@@ -24,7 +26,7 @@
   .col-sm-4.col-md-offset-1.centered-text
     = image_tag 'myapnea/welcome/img-small/heart258_orange.png', class: 'hidden-xs'
   .col-md-6.col-sm-8
-    %h1.primary-blue
+    %h1.darker-blue
       Provide better care
     %h3.text-dark8
       By offering this network to your patients, and engaging with them actively outside of the office, they begin to feel a uniquely incredible quality of care. This community easily shows people with sleep apnea the amount of support they have from an international group of researchers, care providers, and fellow patients.
@@ -60,3 +62,5 @@
         = link_to 'user type', describe_yourself_path
 - else
   = render partial: "providers/signup_form", locals: { resource: @provider }
+
+= render partial: 'layouts/partials/landing_video_modal'

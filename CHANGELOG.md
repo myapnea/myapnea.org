@@ -5,6 +5,7 @@
   - Sign up form above the fold
   - Better use of white space throughout
   - Allows for easy integration of other elements in the future
+  - Minor updates to styling of provider landing page, including new video
 - **Layout Changes**
   - Navigation has been greatly simplified, and dropdowns mostly removed
   - Mobile navigation uses modern dropdown with basic navigation
