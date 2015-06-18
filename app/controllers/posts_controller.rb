@@ -70,7 +70,7 @@ class PostsController < ApplicationController
   # DELETE /posts/1
   # DELETE /posts/1.json
   def destroy
-    @post.destroy
+    @post.destroy_by_user(current_user)
 
     respond_to do |format|
       format.html { redirect_to forum_topic_post_path(@forum, @topic, @post), notice: 'Post was successfully deleted.' }

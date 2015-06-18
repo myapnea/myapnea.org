@@ -32,6 +32,8 @@
   - Users index can easily highlight who has joined recently, along with daily counts
   - Added engagement report, to track how many members are completing the sidebar next steps
   - Changed date format to "%-m/%-d/%Y" for submitted research topics in admin view
+- **Forum Changes**
+  - Posts that are deleted by users are now marked as hidden, and also track who deleted the post
 - **Gem Changes**
   - Updated to rails 4.2.2
   - Updated to redcarpet 3.3.1

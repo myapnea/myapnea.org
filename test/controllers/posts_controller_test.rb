@@ -273,18 +273,24 @@ class PostsControllerTest < ActionController::TestCase
     assert_not_nil assigns(:topic)
     assert_not_nil assigns(:post)
 
+    assert_equal @owner, assigns(:post).deleted_by
+    assert_equal 'approved', assigns(:post).status
+
     assert_redirected_to forum_topic_post_path(assigns(:forum), assigns(:topic), assigns(:post))
   end
 
   test "should destroy post as post author" do
     login(@valid_user)
     assert_difference('Post.current.count', -1) do
-      delete :destroy, forum_id: @forum, topic_id: @topic, id: @post
+      delete :destroy, forum_id: @forum, topic_id: @topic, id: posts(:pending_review)
     end
 
     assert_not_nil assigns(:forum)
     assert_not_nil assigns(:topic)
     assert_not_nil assigns(:post)
+
+    assert_equal @valid_user, assigns(:post).deleted_by
+    assert_equal 'hidden', assigns(:post).status
 
     assert_redirected_to forum_topic_post_path(assigns(:forum), assigns(:topic), assigns(:post))
   end

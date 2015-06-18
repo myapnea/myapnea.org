@@ -10,6 +10,12 @@ one:
   last_moderated_by: moderator_1
   last_moderated_at: 2015-01-09 12:40:00
 
+pending_review:
+  topic: one
+  description: This is pending review that user will delete
+  user: user_1
+  status: pending_review
+
 two:
   topic: two
   description: This is my reply to topic two

@@ -20,11 +20,18 @@ class Post < ActiveRecord::Base
   belongs_to :user
   belongs_to :topic
   belongs_to :last_moderated_by, class_name: 'User'
+  belongs_to :last_moderated_by, class_name: 'User'
+  belongs_to :deleted_by, class_name: 'User'
 
   # Post Methods
 
   def forum
     self.topic.forum
+  end
+
+  def destroy_by_user(current_user)
+    self.update(status: (self.status == 'pending_review' ? 'hidden' : self.status), deleted_by_id: current_user.id)
+    self.destroy
   end
 
   def editable_by?(current_user)
