@@ -54,10 +54,10 @@
         %li{ class: "#{'active' if @active_top_nav_link == :home}" }
           = link_to "#{current_user ? 'Dashboard' : 'Home'}", root_path
         %li{ class: "#{'active' if @active_top_nav_link == :forums }" }
-          = link_to 'Forums', forums_path
+          = link_to 'Forums', forums_path, data: { no_turbolink: true }
         %li{ class: "#{'active' if @active_top_nav_link == :surveys }" }
           = link_to 'Surveys', surveys_path
         %li{ class: "#{'active' if @active_top_nav_link == :research }" }
-          = link_to 'Research', research_topics_path
+          = link_to 'Research', research_topics_path, data: { no_turbolink: true }
         %li{ class: "#{'active' if @active_top_nav_link == :learn }" }
           = link_to 'Learn', learn_path
