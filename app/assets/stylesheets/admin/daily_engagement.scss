@@ -1,0 +1,28 @@
+.daily-engagement-report {
+  .axis path,
+  .axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+  }
+
+  .x.axis path {
+    display: none;
+  }
+
+  .posts-line {
+    fill: none;
+    stroke: steelblue;
+    stroke-width: 1.5px;
+  }
+  .users-line {
+    fill: none;
+    stroke: green;
+    stroke-width: 1.5px;
+  }
+  .surveys-line {
+    fill: none;
+    stroke: red;
+    stroke-width: 1.5px;
+  }
+}

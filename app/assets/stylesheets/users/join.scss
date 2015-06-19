@@ -8,3 +8,52 @@
     width: 100%;
   }
 }
+
+#user-signup-form {
+  background-image: asset-url('myapnea/welcome/img-large/unsplash-standing-group.jpg');
+  background-size: cover;
+  -ms-behavior: asset-url('ie8/backgroundsize.min.htc');
+  background-repeat:no-repeat;
+  background-position: bottom;
+  font-family: 'Dosis', sans-serif;
+  text-align: center;
+  padding-top: 100px;
+  h1 {
+    margin-bottom:20px;
+    font-weight:600;
+    font-size:40px;
+  }
+  ul {
+    li { font-size: 18px; }
+  }
+  span#privacy-policy:hover { cursor:pointer; }
+  #panel-sign-up {
+    h4 {
+      margin-bottom: 15px;
+      padding:0 10px;
+    }
+    .input-group {
+      max-width: 500px;
+      margin: auto;
+      margin-top:10px;
+      margin-bottom:10px;
+      font-size:16px;
+      input {
+        margin: 0px auto;
+        border-radius: 3px;
+      }
+      .signup-error {
+        color: #FCF2F2;
+        background-color: #DF7667;
+      }
+    }
+    #over18.input-group {
+      padding-left: 15px;
+      text-align: left;
+      label {
+        position:relative;
+        top:-5px;
+      }
+    }
+  }
+}

@@ -31,6 +31,7 @@
 //= require pages
 //= require posts
 //= require admin
+//= require admin/daily_engagement
 //= require votes
 //= require surveys
 //= require tools

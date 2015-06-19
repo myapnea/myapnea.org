@@ -5,6 +5,7 @@
   - Sign up form above the fold
   - Better use of white space throughout
   - Allows for easy integration of other elements in the future
+  - Minor updates to styling of provider landing page, including new video
 - **Layout Changes**
   - Navigation has been greatly simplified, and dropdowns mostly removed
   - Mobile navigation uses modern dropdown with basic navigation
@@ -32,6 +33,9 @@
   - Users index can easily highlight who has joined recently, along with daily counts
   - Added engagement report, to track how many members are completing the sidebar next steps
   - Changed date format to "%-m/%-d/%Y" for submitted research topics in admin view
+  - Added a daily engagement tracker
+    - See post creation, user registration, and survey completion over time
+    - See all activity over the past week
 - **Forum Changes**
   - Posts that are deleted by users are now marked as hidden, and also track who deleted the post
 - **Gem Changes**

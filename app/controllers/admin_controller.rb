@@ -194,6 +194,29 @@ class AdminController < ApplicationController
     @invited_providers_success_count = Invite.providers.successful.uniq.select(:user_id).count
   end
 
+  def daily_engagement
+  end
+
+  def daily_engagement_data
+    dates = (Date.parse("02-10-2014").to_date..Date.today).map{ |date| [date.strftime("%a, %d %b %Y").to_date, []] }
+    @posts = dates
+    Post.current.select(:id, :created_at).group_by{ |post| post.created_at.to_date }.each do |post|
+      @posts[dates.index([post[0], []])] = post
+    end
+
+    dates = (Date.parse("02-10-2014").to_date..Date.today).map{ |date| [date.strftime("%a, %d %b %Y").to_date, []] }
+    @surveys = dates
+    AnswerSession.current.where(locked: true).select(:id, :updated_at).group_by{ |as| as.updated_at.to_date }.each do |survey|
+      @surveys[dates.index([survey[0], []])] = survey
+    end
+
+    dates = (Date.parse("02-10-2014").to_date..Date.today).map{ |date| [date.strftime("%a, %d %b %Y").to_date, []] }
+    @users = dates
+    User.current.select(:id, :created_at).group_by{ |user| user.created_at.to_date }.each do |user|
+      @users[dates.index([user[0], []])] = user
+    end
+  end
+
   private
 
     def set_SEO_elements

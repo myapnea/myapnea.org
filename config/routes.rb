@@ -176,6 +176,9 @@ Rails.application.routes.draw do
   get 'admin/reports/progress' => 'admin#progress_report', as: 'admin_progress_report'
   get 'admin/reports/engagement' => 'admin#engagement_report', as: 'admin_engagement_report'
   get 'admin/providers' => 'admin#providers'
+  get 'admin/daily-engagement' => 'admin#daily_engagement', as: 'admin_daily_engagement'
+
+  get 'admin/daily_engagement_data' => 'admin#daily_engagement_data', format: :json
 
 
   # Development/System
