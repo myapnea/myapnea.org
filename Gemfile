@@ -7,9 +7,6 @@ source 'https://rubygems.org'
 # To be removed if fixed in sprockets-rails 2.3.1 or higher
 gem 'sprockets-rails', '2.2.4'
 
-### Rack 1.6.3 breaks navigation tests, hardcoding to 1.6.2 for time being
-gem 'rack',                 '1.6.2'
-
 gem 'thin'
 
 
