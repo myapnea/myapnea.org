@@ -50,7 +50,8 @@
           %h5 Your Desired Weight:
         .col-xs-8
           = number_field_tag 'desired-weight', nil, class: 'number-input', style: 'position:relative; top:4px;'
-          %button.btn.btn-default.disabled{ data: { object: 'calculate-minimum-weight' } }
+          %br.visible-xs
+          %button#calculate-min-weight.btn.btn-default.disabled{ data: { object: 'calculate-minimum-weight' } }
             %p.small.reset-layout Calculate short-term weight goal
     .list-group-item
       #calculate-weight-change-results.centered-text
