@@ -1,7 +1,7 @@
 #slide1.row.reset-layout
   .col-md-7.centered-text
     %h1.text-white
-      Improve the lives of
+      Improving the lives of
       %br.hidden-xs
       people with sleep apnea
     %h3.text-light8
@@ -32,6 +32,9 @@
           = f.label :over_eighteen, 'I am over the age of 18'
       .input-group.centered
         = f.submit 'Join Today', id: "btn-join"
+    #risk-callout.centered
+      Are you always tired?
+      = link_to 'Check your risk now', sleep_apnea_risk_assessment_path, class: 'no-underline darkerer-blue'
 
   #scroll-carat.hidden-sm.hidden-xs
     %p.text-light7

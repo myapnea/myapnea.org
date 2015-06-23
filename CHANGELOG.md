@@ -6,6 +6,7 @@
   - Better use of white space throughout
   - Allows for easy integration of other elements in the future
   - Minor updates to styling of provider landing page, including new video
+  - Link to risk assessment added above the fold
 - **Layout Changes**
   - Navigation has been greatly simplified, and dropdowns mostly removed
   - Mobile navigation uses modern dropdown with basic navigation
