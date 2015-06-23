@@ -77,7 +77,15 @@
   position: relative;
   height: 300px;
   #testimonial-giver {
-    border-right: 5px solid #5999de;
+    border-right: 5px solid transparent;
+    background: #5999de; /* Old browsers */
+    background: -moz-linear-gradient(top,  #5999de 0%, #233063 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#5999de), color-stop(100%,#233063)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #5999de 0%,#233063 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #5999de 0%,#233063 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #5999de 0%,#233063 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #5999de 0%,#233063 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5999de', endColorstr='#233063',GradientType=0 ); /* IE6-9 */
     width: 241px;
     position: absolute;
     top: 0;
