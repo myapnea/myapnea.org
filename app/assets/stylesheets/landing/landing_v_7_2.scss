@@ -55,12 +55,14 @@
 }
 
 #slide2 {
-  background-color: #233063;
-  padding: 150px 0 200px 0;
+  background-color: #fff;
+  padding: 100px 0 150px 0;
   border-top: 5px solid #ffa400;
   #myapnea-mission {
     line-height: 1.5em;
+    color: #233063;
   }
+  h3 { color: #1765BC; }
 }
 
 #slide3 {
@@ -111,7 +113,7 @@
 #slide5 {
   background-color: #233063;
   padding: 200px 0 200px 0;
-  border-top: 5px solid #5999de;
+  // border-top: 5px solid #5999de;
 }
 
 #slide6 {
