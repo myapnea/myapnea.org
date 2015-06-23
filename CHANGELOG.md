@@ -54,6 +54,7 @@
 
 ### Bug Fix
 - Fixed a bug on the forums that caused email links to be formatted incorrectly
+- Fixed a bug where users editing their comments on research topics redirected them to the forums terms and conditions
 
 ## 7.1.4 (June 19, 2015)
 

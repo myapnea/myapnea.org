@@ -131,7 +131,7 @@ class PostsController < ApplicationController
     end
 
     def check_approved_terms
-      if current_user and (current_user.accepted_terms_conditions_at.blank? or current_user.accepted_terms_conditions_at < Date.parse(Forum::RECENT_FORUMS_UPDATE_DATE).at_noon)
+      if current_user and !@forum.for_research_topics? and (current_user.accepted_terms_conditions_at.blank? or current_user.accepted_terms_conditions_at < Date.parse(Forum::RECENT_FORUMS_UPDATE_DATE).at_noon)
         session[:return_to] = request.fullpath
         redirect_to terms_and_conditions_path
       end
