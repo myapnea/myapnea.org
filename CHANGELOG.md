@@ -18,6 +18,7 @@
     - Custom messages developed for different sections of the site
   - Learn page now acts as a landing page for other content
     - Infographic type display, with quick links to other learn content
+  - Increased font size for forum index pages
 - **General Changes**
   - Minor changes to display of large numbers on Community page
   - Survey index is viewable for logged out users

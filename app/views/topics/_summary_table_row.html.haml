@@ -3,7 +3,7 @@
 %tr{ class: "#{"topic-#{topic.status.dasherize}" if current_user and current_user.moderator?} #{"topic-posts-pending-review" if current_user and current_user.moderator? and topic.has_posts_pending_review?}"}
   %td
     = image_tag topic.user.photo_url, size: '30x30', class: "img-thumbnail", alt: '', style: "min-height:#{30+5}px;min-width:#{30+5}px;", title: topic.user.forum_name, data: { toggle: 'tooltip', container: 'body', placement: 'top' }
-  %td{ class: "#{topic.pinned? ? "f500" : "f300"}" }
+  %td{ style: 'font-size: 16px', class: "#{topic.pinned? ? "f500" : "f300"}" }
     .wrapword
       - if topic.pinned?
         %span.glyphicon.glyphicon-star.primary-orange
@@ -20,9 +20,9 @@
         Marked as Spam
       - if topic.hidden?
         Topic Hidden
-  %td.text-muted{ class: "#{topic.pinned? ? "f500" : "f300"}" }
+  %td.text-muted{ style: 'font-size: 16px', class: "#{topic.pinned? ? "f500" : "f300"}" }
     = topic.visible_posts.count
-  %td.text-muted.hidden-xs.hidden-sm{ class: "#{topic.pinned? ? "f500" : "f300"}" }
+  %td.text-muted.hidden-xs.hidden-sm{ style: 'font-size: 16px', class: "#{topic.pinned? ? "f500" : "f300"}" }
     - if post
       %div{ style: 'white-space:nowrap;overflow-x:hidden;max-width:150px' }
         = image_tag post.user.photo_url, size: '18x18'

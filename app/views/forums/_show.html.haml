@@ -47,7 +47,7 @@
               Time
         %tbody
           - topics.each do |topic|
-            = render partial: 'topics/summary_table_row', locals: { topic: topic }
+            = render 'topics/summary_table_row', topic: topic
 
     -# Separate footer for view from index and show
     - if topic_limit
