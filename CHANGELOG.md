@@ -15,6 +15,7 @@
   - Extra content (including learn pages) are available in the footer
   - All major pages now have a callout encouraging people to join the site
     - Tracking established to see which area drives the most conversions
+    - Custom messages developed for different sections of the site
   - Learn page now acts as a landing page for other content
     - Infographic type display, with quick links to other learn content
 - **General Changes**

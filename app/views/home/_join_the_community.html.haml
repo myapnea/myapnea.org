@@ -1,7 +1,11 @@
 - tracked_link = "join_from_" + referrer
+- message = nil unless defined?(message)
 #join-the-community-callout
   .text-content-container.centered
-    %h1.text-white
-      %span.primary-orange= number_with_delimiter User.current.count
-      people are already making a difference
+    - if message.present?
+      %h1.text-white= message
+    - else
+      %h1.text-white
+        %span.primary-orange= number_with_delimiter User.current.count
+        people are already making a difference
     = link_to 'Join Today', get_tracked_link(tracked_link.to_sym), class: 'btn btn-primary', id: 'btn-join'
