@@ -4,3 +4,18 @@ a.anchor {
   display:block;
   visibility: hidden;
 }
+
+#myapnea-aims {
+  margin: 150px 50px 0 50px;
+  padding: 50px;
+  border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+  #myapnea-aims {
+    margin: 100px 0 0 0;
+    padding: 20px;
+    font-size: 14px;
+    h2 { line-height: 1.3em; }
+  }
+}
