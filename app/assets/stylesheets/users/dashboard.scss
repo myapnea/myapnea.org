@@ -37,6 +37,8 @@
       border-radius: 5px 5px 0 0;
       min-height: 55px;
       padding: 10px;
+      .poster-details {
+      }
       .post-time {
         margin-top: 5px;
       }
@@ -98,10 +100,21 @@
 
 @media (max-width: 768px) {
   .recent-post-container {
-    .post-header {
-      .poster-image {
-        top: 7px;
-        left: 7px;
+    margin: 20px 0;
+    .poster-image {
+      width:35px;
+    }
+    .post {
+      margin-left: 40px;
+      .post-header {
+        .poster-details {
+
+        }
+        .post-time {
+
+        }
+      }
+      .post-content {
       }
     }
   }

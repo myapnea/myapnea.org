@@ -7,7 +7,7 @@
     - if post.deleted? or post.user.deleted?
       .col-xs-1.reset-layout{ style: "display:none" }
       .col-xs-11{ style: 'display:none' }
-        .post-container.post-deleted
+        .post-container.wrapword.post-deleted
           .post-container-right-middle-after
             = "##{current_index}"
           %i.text-muted
@@ -15,7 +15,7 @@
     - elsif (post.hidden? or post.spam?) and not (current_user and (current_user.moderator? or current_user.owner?))
       .col-xs-1.reset-layout{ style: 'display:none' }
       .col-xs-11{ style: 'display:none' }
-        .post-container.post-deleted
+        .post-container.wrapword.post-deleted
           .post-container-right-middle-after
             = "##{current_index}"
           %i.text-muted
@@ -24,7 +24,7 @@
       .col-xs-1.reset-layout.text-right
         = render 'forums/user_image', user: post.user, size: 50
       .col-xs-11
-        .post-container{ class: "#{post.spam? ? 'post-spam' : 'post-hidden'}" }
+        .post-container.wrapword{ class: "#{post.spam? ? 'post-spam' : 'post-hidden'}" }
           .post-container-right-after
             = post.spam? ? 'Post is Spam' : 'Post is Hidden'
             - if current_user.moderator?
@@ -53,7 +53,7 @@
       .col-xs-1.reset-layout.text-right
         = render 'forums/user_image', user: post.user, size: 50
       .col-xs-11
-        .post-container.post-under-review
+        .post-container.wrapword.post-under-review
           .post-container-right-after
             %span.f400
               Under Review
@@ -75,7 +75,7 @@
       .col-xs-1.reset-layout.text-right
         = render 'forums/user_image', user: post.user, size: 50
       .col-xs-11
-        .post-container
+        .post-container.wrapword
           .post-container-right-after
             = render 'posts/actions/edit', post: post
             %a{ href: "#c#{current_index}" }
