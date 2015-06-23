@@ -53,7 +53,7 @@
           %p
             Nice to meet you!
       - else
-        = link_to forum_topic_path(Forum.find_by_slug('general'), introduction_topic), class: 'no-underline' do
+        = link_to forum_topic_path(introduction_topic.forum, introduction_topic), class: 'no-underline' do
           .progress-item
             %span.glyphicon.progress-indicator
             %p

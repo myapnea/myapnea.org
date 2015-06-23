@@ -10,7 +10,7 @@
     %h3 Uploaded a photo
   .content-body
     %p.lead.centered{ style: 'margin-top: 20px' }
-      = number_with_delimiter @uploaded_photo_count
+      = number_with_delimiter @uploaded_photo_count rescue 0
       %span.text-muted
         = surround "(", ")" do
           = "#{(100.0 * @uploaded_photo_count / User.current.count).round(2)}%"
@@ -20,7 +20,7 @@
     %h3 Introduced themselves
   .content-body
     %p.lead.centered{ style: 'margin-top: 20px' }
-      = number_with_delimiter @introduced_count
+      = number_with_delimiter @introduced_count rescue 0
       %span.text-muted
         = surround "(", ")" do
           = "#{(100.0 * @introduced_count / User.current.count).round(2)}%"
@@ -30,7 +30,7 @@
     %h3 Joined the conversation
   .content-body
     %p.lead.centered{ style: 'margin-top: 20px' }
-      = number_with_delimiter @discussed_count
+      = number_with_delimiter @discussed_count rescue 0
       %span.text-muted
         = surround "(", ")" do
           = "#{(100.0 * @discussed_count / User.current.count).round(2)}%"
@@ -40,7 +40,7 @@
     %h3 Completed a survey
   .content-body
     %p.lead.centered{ style: 'margin-top: 20px' }
-      = number_with_delimiter @completing_surveys_count
+      = number_with_delimiter @completing_surveys_count rescue 0
       %span.text-muted
         = surround "(", ")" do
           = "#{(100.0 * @completing_surveys_count / User.current.count).round(2)}%"
@@ -50,7 +50,7 @@
     %h3 Completed the research tutorial
   .content-body
     %p.lead.centered{ style: 'margin-top: 20px' }
-      = number_with_delimiter @experienced_voter_count
+      = number_with_delimiter @experienced_voter_count rescue 0
       %span.text-muted
         = surround "(", ")" do
           = "#{(100.0 * @experienced_voter_count / User.current.count).round(2)}%"
@@ -60,7 +60,7 @@
     %h3 Submitted a research question
   .content-body
     %p.lead.centered{ style: 'margin-top: 20px' }
-      = number_with_delimiter @submitted_research_topic_count
+      = number_with_delimiter @submitted_research_topic_count rescue 0
       %span.text-muted
         = surround "(", ")" do
           = "#{(100.0 * @submitted_research_topic_count / User.current.count).round(2)}%"
@@ -71,13 +71,13 @@
   .content-body
     %p.lead.centered{ style: 'margin-top: 20px' }
       %span.f500 Total:
-      = number_with_delimiter @invited_members_count
+      = number_with_delimiter @invited_members_count rescue 0
       %span.text-muted
         = surround "(", ")" do
           = "#{(100.0 * @invited_members_count / User.current.count).round(2)}%"
     %p.lead.centered{ style: 'margin-top: 20px' }
       %span.f500 Successfully:
-      = number_with_delimiter @invited_members_success_count
+      = number_with_delimiter @invited_members_success_count rescue 0
       %span.text-muted
         = surround "(", ")" do
           = "#{(100.0 * @invited_members_success_count / @invited_members_count).round(2)}%"
@@ -88,13 +88,13 @@
   .content-body
     %p.lead.centered{ style: 'margin-top: 20px' }
       %span.f500 Total:
-      = number_with_delimiter @invited_providers_count
+      = number_with_delimiter @invited_providers_count rescue 0
       %span.text-muted
         = surround "(", ")" do
           = "#{(100.0 * @invited_providers_count / User.current.count).round(2)}%"
     %p.lead.centered{ style: 'margin-top: 20px' }
       %span.f500 Successfully:
-      = number_with_delimiter @invited_providers_success_count
+      = number_with_delimiter @invited_providers_success_count rescue 0
       %span.text-muted
         = surround "(", ")" do
           = "#{(100.0 * @invited_providers_success_count / @invited_providers_count).round(2)}%"

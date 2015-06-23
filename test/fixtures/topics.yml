@@ -23,6 +23,16 @@ two:
   views_count: 1
   slug: another-topic
 
+introduction:
+  forum: one
+  user: user_1
+  name: Introduce yourself
+  locked: false
+  pinned: true
+  status: approved
+  views_count: 1
+  slug: introduce-yourself
+
 locked:
   forum: one
   user: owner
