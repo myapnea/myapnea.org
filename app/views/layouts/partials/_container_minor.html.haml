@@ -57,7 +57,7 @@
           .progress-item
             %span.glyphicon.progress-indicator
             %p
-              Introduce yourself
+              Share your story
     -# User should post on the forums
     - if current_user.posts.current.where.not("topic_id = ?", introduction_topic).present?
       .progress-item
@@ -93,7 +93,7 @@
         .progress-item
           %span.glyphicon.progress-indicator
           %p
-            Complete the research tutorial
+            Learn how to influence research
     -# User should submit their own research topic
     - if current_user.research_topics.current.present?
       .progress-item
@@ -105,7 +105,7 @@
         .progress-item
           %span.glyphicon.progress-indicator
           %p
-            Submit your own research question
+            Propose your own research question
     -# User should submit their own research topic
     - if current_user.invites.members.present?
       .progress-item
