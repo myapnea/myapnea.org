@@ -39,7 +39,7 @@
 - **Forum Changes**
   - Posts that are deleted by users are now marked as hidden, and also track who deleted the post
 - **Gem Changes**
-  - Updated to rails 4.2.2
+  - Updated to rails 4.2.3.rc1
   - Updated to redcarpet 3.3.1
   - Updated to kaminari 0.16.3
 
