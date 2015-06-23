@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   self.authorizer_name = "UserAuthorizer"
 
   #  For recent updates to consent/privacy policy/etc
-  RECENT_UPDATE_DATE = "2015-06-01"
+  RECENT_UPDATE_DATE = "2015-06-23"
 
   # Include default devise modules. Others available are:
   # :confirmable, :omniauthable

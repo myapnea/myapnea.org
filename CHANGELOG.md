@@ -31,6 +31,7 @@
   - Added ability for users to invite new members via email
   - Added ability for users to invite their personal care provider via email
   - FAQ research links now link to surveys index, which is publicly viewable
+  - Updates to Privacy Policy to include section on cookies and retargeting
 - **Survey Exports**
   - Added a data dictionary export task to export all surveys into CSV format
   - Added a data export task that matches the data dictionary format and is exported into CSV format
