@@ -1,4 +1,6 @@
 ## 7.2.1
+-**Copy Changes**
+  - Changed word 'awesome' to 'dynamic' on landing page
 
 ## 7.2.0 (June 24, 2015)
 
