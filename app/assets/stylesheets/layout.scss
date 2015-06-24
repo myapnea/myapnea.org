@@ -202,12 +202,52 @@ nav {
   .navbar.active-sidebar {
     background-color: #243264;
   }
+  nav {
+    .navbar-collapse.in {
+      overflow-y: visible;
+    }
+    #main-nav {
+      padding-bottom: 15px;
+      li, li.active, li:hover {
+        border-bottom-width: 0px;
+        a {
+          padding: 10px 15px;
+        }
+      }
+      #mobile-login {
+        margin-left: 15px;
+        margin-bottom: 10px;
+        background-color: #fafafa;
+        color: #333;
+        padding: 10px;
+      }
+      #mobile-join {
+        margin-left: 15px;
+        background-color: #5999de;
+        padding: 10px;
+      }
+    }
+    #user-nav {
+      .dropdown-menu {
+        li {
+          a {
+            color: white;
+          }
+        }
+      }
+    }
+  }
 }
 
 
 @media (max-width: 768px) {
-  .navbar-brand img {
-    top: -10;
+  nav {
+    .navbar-brand {
+      width: 200px;
+      img {
+        top: -5px;
+      }
+    }
   }
   html, body {
     font-size: 16px;

@@ -1,6 +1,6 @@
 / Fixed navbar
 %nav.navbar.navbar-fixed-top
-  .container-fluid.reset-layout
+  .container-fluid
     .navbar-header
       %button.pull-right.navbar-toggle.collapsed{ type: "button", aria: { controls: "navbar", expanded: "false" }, data: { target: "#navbar-myapnea", toggle: "collapse" } }
         %span.sr-only Toggle navigation
@@ -35,7 +35,7 @@
               %li
                 = link_to 'Log out', destroy_user_session_path, method: :delete
       - else
-        %ul#log-in-nav.nav.navbar-nav.navbar-right
+        %ul#log-in-nav.nav.navbar-nav.navbar-right.visible-md.visible-lg
           %li.dropdown
             %a.dropdown-toggle{ href:'#', data:{ toggle: 'dropdown', object: 'login-with-focus' } }
               Login
@@ -61,3 +61,7 @@
           = link_to 'Research', research_topics_path, data: { no_turbolink: true }
         %li{ class: "#{'active' if @active_top_nav_link == :learn }" }
           = link_to 'Learn', learn_path
+        - unless current_user
+          %li.visible-sm.visible-xs
+            = link_to 'Login', new_user_session_path, class: 'btn btn-default', id: 'mobile-login'
+            = link_to 'Join', new_user_registration_path, class: 'btn btn-primary', id: 'mobile-join'
