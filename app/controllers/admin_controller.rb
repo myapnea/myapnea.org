@@ -20,7 +20,8 @@ class AdminController < ApplicationController
 
   def version_stats
     @version_dates = [
-      { version: '7.1.0', release_date: Date.parse('2015-06-03'), next_release_date: nil },
+      { version: '7.2.0', release_date: Date.parse('2015-06-24'), next_release_date: nil },
+      { version: '7.1.0', release_date: Date.parse('2015-06-03'), next_release_date: Date.parse('2015-06-24') },
       { version: '7.0.0', release_date: Date.parse('2015-06-01'), next_release_date: Date.parse('2015-06-03') },
       { version: '6.1.0', release_date: Date.parse('2015-04-27'), next_release_date: Date.parse('2015-06-01') },
       { version: '6.0.0', release_date: Date.parse('2015-04-15'), next_release_date: Date.parse('2015-04-27') },
