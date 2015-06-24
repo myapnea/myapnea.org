@@ -20,5 +20,3 @@
 
   $('.navbar-toggle').click ->
     $('.navbar, .navbar-toggle, #container-main').toggleClass "active-sidebar"
-  $(window).resize ->
-    $('.navbar, .navbar-toggle, #container-main').removeClass "active-sidebar"
