@@ -1,7 +1,7 @@
 ## 7.2.1 (June 24, 2015)
 
 ### Enhancements
--**Copy Changes**
+- **Copy Changes**
   - Changed word 'awesome' to 'dynamic' on landing page
   - Clarified possible treatment outcomes on learn page
 
