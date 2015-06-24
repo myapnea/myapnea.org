@@ -1,4 +1,6 @@
 ## 7.2.1
+
+### Enhancements
 -**Copy Changes**
   - Changed word 'awesome' to 'dynamic' on landing page
   - Clarified possible treatment outcomes on learn page
