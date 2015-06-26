@@ -1,5 +1,9 @@
 ## 7.2.2
 
+### Enhancements
+- **Gem Changes**
+  - Updated to rails 4.2.3
+
 ### Bug Fix
 - Posts on forum now correctly display when a user uses the `<` symbol
 
