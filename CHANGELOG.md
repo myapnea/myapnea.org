@@ -1,5 +1,8 @@
 ## 7.2.2
 
+### Bug Fix
+- Posts on forum now correctly display when a user uses the `<` symbol
+
 ## 7.2.1 (June 24, 2015)
 
 ### Enhancements
