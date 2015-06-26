@@ -1,4 +1,4 @@
-## 7.2.2
+## 7.2.2 (June 25, 2015)
 
 ### Enhancements
 - **Gem Changes**
