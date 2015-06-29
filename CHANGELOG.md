@@ -1,5 +1,9 @@
 ## 7.3.0
 
+### Enhancements
+- **Admin Changes**
+  - Admins can now disable user emails when deactivating accounts
+
 ## 7.2.2 (June 25, 2015)
 
 ### Enhancements

@@ -58,7 +58,9 @@ class UsersController < ApplicationController
 
       if current_user.owner?
         params.require(:user).permit(
-          :first_name, :last_name, :email, :forum_name, :age, :gender, :include_in_exports, :owner, :moderator
+          :first_name, :last_name, :email, :forum_name, :emails_enabled,
+          :age, :gender, :include_in_exports,
+          :owner, :moderator
         )
       else
         params.require(:user).permit(

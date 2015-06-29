@@ -96,19 +96,23 @@ class UsersControllerTest < ActionController::TestCase
 
   test "should update user for owner" do
     login(users(:owner))
-    put :update, id: @user, user: { first_name: 'FirstName', last_name: 'LastName', email: 'valid_updated_email@example.com' }
+    put :update, id: @user, user: { first_name: 'FirstName', last_name: 'LastName', email: 'valid_updated_email@example.com', emails_enabled: '1' }
+
+    assert_not_nil assigns(:user)
+    assert_equal true, assigns(:user).emails_enabled?
+
     assert_redirected_to user_path(assigns(:user))
   end
 
   test "should not update user for regular user" do
     login(users(:user_1))
-    put :update, id: @user, user: { first_name: 'FirstName', last_name: 'LastName', email: 'valid_updated_email@example.com' }
+    put :update, id: @user, user: { first_name: 'FirstName', last_name: 'LastName', email: 'valid_updated_email@example.com', emails_enabled: '1' }
     assert_equal "You do not have sufficient privileges to access that page.", flash[:alert]
     assert_redirected_to root_path
   end
 
   test "should not update user for logged out user" do
-    put :update, id: @user, user: { first_name: 'FirstName', last_name: 'LastName', email: 'valid_updated_email@example.com' }
+    put :update, id: @user, user: { first_name: 'FirstName', last_name: 'LastName', email: 'valid_updated_email@example.com', emails_enabled: '1' }
     assert_redirected_to new_user_session_path
   end
 
@@ -121,7 +125,7 @@ class UsersControllerTest < ActionController::TestCase
 
   test "should not update user with invalid id" do
     login(users(:owner))
-    put :update, id: -1, user: { first_name: 'FirstName', last_name: 'LastName', email: 'valid_updated_email@example.com' }
+    put :update, id: -1, user: { first_name: 'FirstName', last_name: 'LastName', email: 'valid_updated_email@example.com', emails_enabled: '1' }
     assert_nil assigns(:user)
     assert_redirected_to users_path
   end

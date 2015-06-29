@@ -20,6 +20,10 @@
       %dt Age
       %dd= @user.age
 
+      %dt Emails Enabled
+      %dd
+        = simple_check @user.emails_enabled
+
       %dt Privacy Policy
       %dd
         = @user.accepted_privacy_policy_at.strftime("%m/%d/%Y") if @user.accepted_privacy_policy_at.present?
