@@ -245,19 +245,16 @@ class Report < ActiveRecord::Base
     # so, let's do it for CPAP
 
     base_query = Report.where(answer_template_name: template_name, encounter: encounter, locked: true)
-    values = base_query.where.not(value: nil).pluck(:value)
+    values = base_query.where.not(value:  ['5', '6', nil]).pluck(:value)
     satisfaction_percent = values.select{|v| %(3 4).include?(v)}.length.to_f/values.length * 100.0
-    used_treatment = base_query.where.not(value: ['5', '6']).pluck(:answer_session_id)
+    used_treatment = base_query.where.not(value: ['5', '6', nil]).pluck(:answer_session_id)
     used_treatment_percent = (used_treatment.length.to_f/base_query.count.to_f) * 100.0
     outcomes = Report.where(answer_session_id: used_treatment, question_slug: 'treatment-outcomes-components', value: 1..5).group(:answer_template_name, :answer_template_text).select('answer_template_name,answer_template_text,sum(value::int)').map(&:attributes).sort{|a,b| b['sum']<=>a['sum']}
 
     helped_most = (outcomes.present? ? outcomes.first["answer_template_text"] : nil)
     helped_least = (outcomes.present? ? outcomes.last["answer_template_text"] : nil)
 
-
-
-
-    {satisfaction: satisfaction_percent, used_treatment: used_treatment_percent, helped_most: helped_most, helped_least: helped_least}
+    { satisfaction: satisfaction_percent, used_treatment: used_treatment_percent, helped_most: helped_most, helped_least: helped_least }
   end
 
 

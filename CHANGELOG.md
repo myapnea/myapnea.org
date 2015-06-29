@@ -7,6 +7,9 @@
 - **Admin Changes**
   - Admins can now disable user emails when deactivating accounts
 
+### Bug Fix
+- Fixed average satisfaction percentage calculation on My Sleep Apnea Treatment report
+
 ## 7.2.2 (June 25, 2015)
 
 ### Enhancements
