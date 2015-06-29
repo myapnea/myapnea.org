@@ -3,6 +3,7 @@
 ### Enhancements
 - **General Changes**
   - Updated styling on unlock account page
+  - Fixed styling of error message on login page when entering an incorrect password
 - **Admin Changes**
   - Admins can now disable user emails when deactivating accounts
 

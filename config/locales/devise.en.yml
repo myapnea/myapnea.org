@@ -14,7 +14,7 @@ en:
 
         Please double-check the email address to make sure it's the one used to create your MyApnea.Org account.
 
-        If you forgot your password, please use the *Forgot Password?* link below.
+        If you forgot your password, please use the <strong>Forgot Password?</strong> link below.
       locked: "Your account is locked."
       last_attempt: "You have one more attempt before your account will be locked."
       not_found_in_database: |
@@ -22,7 +22,7 @@ en:
 
         Please double-check the email address to make sure it's the one used to create your MyApnea.Org account.
 
-        If you forgot your password, please use the *Forgot Password?* link below.
+        If you forgot your password, please use the <strong>Forgot Password?</strong> link below.
       timeout: "Your session expired. Please sign in again to continue."
       unauthenticated: "You need to sign in or sign up before continuing."
       unconfirmed: "You have to confirm your account before continuing."
