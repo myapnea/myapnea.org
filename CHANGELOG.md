@@ -1,6 +1,8 @@
 ## 7.3.0
 
 ### Enhancements
+- **General Changes**
+  - Updated styling on unlock account page
 - **Admin Changes**
   - Admins can now disable user emails when deactivating accounts
 

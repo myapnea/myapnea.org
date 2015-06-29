@@ -1,0 +1,24 @@
+.content-container
+  .content-header
+    %h3.f300
+      Resend unlock instructions
+  .content-body
+    = form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post, class: 'form-horizontal' }) do |f|
+      - if resource.errors.any?
+        .bs-callout.bs-callout-danger
+          - if resource.errors.messages.keys.include?(:unlock_token)
+            %strong
+              Your unlock token has expired. Please enter an email to regenerate
+              a new unlock token and URL.
+          - elsif resource.errors.messages.keys.include?(:email)
+            %strong
+              Please provide a valid email address to reset your password.
+
+      .form-group
+        = f.label :email, nil, class: 'col-md-2 control-label'
+        .col-md-10
+          = f.email_field :email, autofocus: true, class: 'form-control'
+
+      .form-group
+        .col-md-10.col-md-offset-2
+          = f.submit 'Resend unlock instructions', class: 'btn btn-primary'
