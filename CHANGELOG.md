@@ -4,6 +4,7 @@
 - **General Changes**
   - Updated styling on unlock account page
   - Fixed styling of error message on login page when entering an incorrect password
+  - Added json index of research topics for integration with mobile application
 - **Admin Changes**
   - Admins can now disable user emails when deactivating accounts
 
