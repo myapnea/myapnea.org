@@ -1,15 +1,38 @@
+%div{ data: { object: 'ABtesting', pagename: 'landing' } }
+/ Google Analytics Content Experiment code
+:javascript
+  function utmx_section(){}function utmx(){}(function(){var
+  k='91307595-1',d=document,l=d.location,c=d.cookie;
+  if(l.search.indexOf('utm_expid='+k)>0)return;
+  function f(n){if(c){var i=c.indexOf(n+'=');if(i>-1){var j=c.
+  indexOf(';',i);return escape(c.substring(i+n.length+1,j<0?c.
+  length:j))}}}var x=f('__utmx'),xx=f('__utmxx'),h=l.hash;d.write(
+  '<sc'+'ript src="'+'http'+(l.protocol=='https:'?'s://ssl':
+  '://www')+'.google-analytics.com/ga_exp.js?'+'utmxkey='+k+
+  '&utmx='+(x?x:'')+'&utmxx='+(xx?xx:'')+'&utmxtime='+new Date().
+  valueOf()+(h?'&utmxhash='+escape(h.substr(1)):'')+
+  '" type="text/javascript" charset="utf-8"><\/sc'+'ript>')})();
+:javascript
+  utmx('url','A/B');
+/ End of Google Analytics Content Experiment code
 #slide1.row.reset-layout
-  .col-md-7.centered-text
-    %h1.text-white
+  .col-md-7.centered
+    %h1.white
       Improving the lives of
       %br.hidden-xs
       people with sleep apnea
-    %h3.text-light8
-      Awareness, community, research -
-      %br
-      together, we're building it all.
+    - if params[:v]=="b"
+      #landing-video-play{ data: { object: 'start-yt-video', toggle:"modal", target:'#landingVideoModal', target_iframe: '#landingframe', src: '//www.youtube.com/embed/3I8YbWRgkjw?rel=0&autoplay=1&autohide=1&showinfo=0&wmode=opaque' } }
+        %i.fa.fa-play-circle
+        &nbsp;
+        %p Play video to learn more
+    - else
+      %h3.text-light9
+        Awareness, community, research -
+        %br
+        together, we're building it all.
   #signup-form-above-fold.col-md-4
-    %p.f500.centered
+    %p.f500
       It's within your power to have an impact on the future of sleep apnea - connect with other people, doctors, and researchers and let your voice be heard!
     - resource = User.new
     = form_for(resource, url: registration_path(resource), method: :post) do |f|
@@ -129,3 +152,6 @@
 
 - if ENV['website_url'] == 'https://myapnea.org'
   %img{ src: "https://secure.fastclick.net/w/tre?ad_id=34691;evt=27663;cat1=36894;cat2=38051;rand=#{SecureRandom.hex(8)}", width: "1", height: "1", border: "0" }
+
+- if params[:v]=="b"
+  = render 'layouts/partials/landing_video_modal'

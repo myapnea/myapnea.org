@@ -1,6 +1,9 @@
 ## 7.3.0
 
 ### Enhancements
+- **Landing Page Changes**
+  - Implemented framework for A/B testing
+  - Testing video above the fold versus subtitle
 - **General Changes**
   - Updated styling on unlock account page
   - Fixed styling of error message on login page when entering an incorrect password

@@ -23,7 +23,7 @@
   padding-bottom:100px;
   font-family: 'Dosis', sans-serif;
   padding-top: 50px;
-  #landing-video-play {
+  #landing-video-play-old {
     margin-top: 40px;
     background-color:rgba(250,250,250,.43);
     padding:30px;
@@ -228,7 +228,7 @@
   /* SMALL SCREENS */
   #slide1 {
     padding-top: 50px;
-    #landing-video-play {
+    #landing-video-play-old {
       background-color: rgba(255,255,255,.8);
       i {}
       p {
@@ -242,7 +242,7 @@
 @media (max-width: 768px) {
   #slide1 {
     padding-top: 20px;
-    #landing-video-play {
+    #landing-video-play-old {
       margin-top: 50px;
       padding:10px 30px;
       text-align:center;
