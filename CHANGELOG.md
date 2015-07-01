@@ -11,6 +11,7 @@
   - Removed privacy blurb from bottom of landing page, since it's in the privacy policy
 - **Admin Changes**
   - Admins can now disable user emails when deactivating accounts
+  - Fixed daily/weekly count from user index
 
 ### Bug Fix
 - Fixed average satisfaction percentage calculation on My Sleep Apnea Treatment report
