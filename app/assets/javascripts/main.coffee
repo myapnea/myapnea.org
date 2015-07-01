@@ -74,6 +74,8 @@ if typeof Turbolinks isnt 'undefined' and Turbolinks.supported
   fileDragReady()
   researchTopicsReady()
   dailyEngagementReady() if $(".daily-engagement-report").length > 0
+  ABTestingReady() if $("[data-object~='ABtesting']").length > 0
+  ABSetupReady() if $("[data-object~='ABtesting']").length > 0
 
 $(document).ready(loaders)
 $(document)

@@ -1,4 +1,5 @@
 @researchTopicsReady = () ->
+  console.log document.body
   if $("[data-object~='research-topic-meter']").length > 0
     $("[data-object~='research-topic-meter']").each ->
 

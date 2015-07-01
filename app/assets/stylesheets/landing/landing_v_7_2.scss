@@ -13,6 +13,24 @@
   box-shadow: 0px 2px 0px 0px #ccc;
 }
 
+#landing-video-play {
+  display: inline-block;
+  margin: 10px 50px;
+  font-size: 20px;
+  // padding: 10px 20px;
+  // background-color: rgb(255,255,255);
+  // background-color: rgba(255,255,255,.6);
+  color: rgb(255,255,255);
+  color: rgba(255,255,255,.8);
+  border-radius: 5px;
+  i { font-size: 1.3em; }
+  i, p { display: inline-block; margin-bottom: 0; }
+}
+#landing-video-play:hover {
+  cursor: pointer;
+  color: rgba(255,255,255,.9);
+}
+
 #slide1 {
   background-image: asset-url('myapnea/welcome/img-large/myapnea_landing_05262015_flipped.jpg');
   background-repeat: no-repeat;

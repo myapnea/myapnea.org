@@ -40,6 +40,10 @@ class ResearchTopicsController < ApplicationController
   def index
     @research_topics = ResearchTopic.approved
     @new_research_topic = ResearchTopic.new
+    respond_to do |format|
+      format.html
+      format.json
+    end
   end
 
   def show

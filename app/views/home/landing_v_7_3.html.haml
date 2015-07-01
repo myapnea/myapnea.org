@@ -1,15 +1,22 @@
+%div{ data: { object: 'ABtesting', pagename: 'landing' } }
 #slide1.row.reset-layout
-  .col-md-7.centered-text
-    %h1.text-white
+  .col-md-7.centered
+    %h1.white
       Improving the lives of
       %br.hidden-xs
       people with sleep apnea
-    %h3.text-light8
-      Awareness, community, research -
-      %br
-      together, we're building it all.
+    - if params[:v]=="b"
+      #landing-video-play{ onClick: "_gaq.push(['_trackEvent', 'Video', 'Play', 'Landing page video during A/B testing']);", data: { object: 'start-yt-video', toggle:"modal", target:'#landingVideoModal', target_iframe: '#landingframe', src: '//www.youtube.com/embed/3I8YbWRgkjw?rel=0&modestbranding=1&autoplay=1&autohide=1&showinfo=0&wmode=opaque' } }
+        %i.fa.fa-play-circle
+        &nbsp;
+        %p Play video to learn more
+    - else
+      %h3.text-light9
+        Awareness, community, research -
+        %br
+        together, we're building it all.
   #signup-form-above-fold.col-md-4
-    %p.f500.centered
+    %p.f500
       It's within your power to have an impact on the future of sleep apnea - connect with other people, doctors, and researchers and let your voice be heard!
     - resource = User.new
     = form_for(resource, url: registration_path(resource), method: :post) do |f|
@@ -127,8 +134,8 @@
     .embed-responsive.embed-responsive-16by9
       %iframe.embed-responsive-item{ src: '//www.youtube.com/embed/3I8YbWRgkjw?rel=0&modestbranding=1&autohide=1&showinfo=0&wmode=opaque', allowFullScreen: 'true',  webkitallowfullscreen: 'true', mozallowfullscreen: 'true' }
 
-.warning-bcg.text-dark7.centered-text{ style: 'padding: 10px;'}
-  %p
-    To enhance the user experience, this site enables the use of cookies and remarketing services to target ads to you based on your visit to MyApnea.Org.
-  - if ENV['website_url'] == 'https://myapnea.org'
-    %img{ src: "https://secure.fastclick.net/w/tre?ad_id=34691;evt=27663;cat1=36894;cat2=38051;rand=#{SecureRandom.hex(8)}", width: "1", height: "1", border: "0" }
+- if ENV['website_url'] == 'https://myapnea.org'
+  %img{ src: "https://secure.fastclick.net/w/tre?ad_id=34691;evt=27663;cat1=36894;cat2=38051;rand=#{SecureRandom.hex(8)}", width: "1", height: "1", border: "0" }
+
+- if params[:v]=="b"
+  = render 'layouts/partials/landing_video_modal'

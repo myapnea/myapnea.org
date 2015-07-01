@@ -1,14 +1,23 @@
 ## 7.3.0
 
 ### Enhancements
+- **Landing Page Changes**
+  - Implemented framework for A/B testing
+  - Testing video above the fold versus subtitle
+  - Add event tracking for video views
+  - Removed privacy blurb from bottom of landing page, since it's in the privacy policy
 - **General Changes**
   - Updated styling on unlock account page
   - Fixed styling of error message on login page when entering an incorrect password
+  - Added json index of research topics for integration with mobile application
+  - Academics are properly forwarded to terms of access when trying to review survey data
 - **Admin Changes**
   - Admins can now disable user emails when deactivating accounts
+  - Fixed daily/weekly count from user index
 
 ### Bug Fix
 - Fixed average satisfaction percentage calculation on My Sleep Apnea Treatment report
+- Adjusted size of large image in about me report that caused screen to stretch
 
 ## 7.2.2 (June 25, 2015)
 

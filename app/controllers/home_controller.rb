@@ -13,13 +13,13 @@ class HomeController < ApplicationController
       @surveys = current_user.visible_surveys.first(3)
       @posts = posts
     else
-      render 'home/landing_v_7_2', layout: 'layouts/application-no-sidebar'
+      render 'home/landing_v_7_3', layout: 'layouts/application-no-sidebar'
     end
 
   end
 
   def landing
-    render 'home/landing_v_7_2', layout: 'layouts/application-no-sidebar'
+    render 'home/landing_v_7_3', layout: 'layouts/application-no-sidebar'
   end
 
   def posts
