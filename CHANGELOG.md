@@ -9,6 +9,7 @@
   - Updated styling on unlock account page
   - Fixed styling of error message on login page when entering an incorrect password
   - Added json index of research topics for integration with mobile application
+  - Academics are properly forwarded to terms of access when trying to review survey data
 - **Admin Changes**
   - Admins can now disable user emails when deactivating accounts
   - Fixed daily/weekly count from user index
