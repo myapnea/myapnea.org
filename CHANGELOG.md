@@ -18,6 +18,7 @@
 ### Bug Fix
 - Fixed average satisfaction percentage calculation on My Sleep Apnea Treatment report
 - Adjusted size of large image in about me report that caused screen to stretch
+- Fixed OpenSans font not loading in Internet Explorere by adding `woff` format
 
 ## 7.2.2 (June 25, 2015)
 
