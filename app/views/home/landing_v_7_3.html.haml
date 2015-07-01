@@ -6,7 +6,7 @@
       %br.hidden-xs
       people with sleep apnea
     - if params[:v]=="b"
-      #landing-video-play{ data: { object: 'start-yt-video', toggle:"modal", target:'#landingVideoModal', target_iframe: '#landingframe', src: '//www.youtube.com/embed/3I8YbWRgkjw?rel=0&modestbranding=1&autoplay=1&autohide=1&showinfo=0&wmode=opaque' } }
+      #landing-video-play{ onClick: "_gaq.push(['_trackEvent', 'Video', 'Play', 'Landing page video during A/B testing']);", data: { object: 'start-yt-video', toggle:"modal", target:'#landingVideoModal', target_iframe: '#landingframe', src: '//www.youtube.com/embed/3I8YbWRgkjw?rel=0&modestbranding=1&autoplay=1&autohide=1&showinfo=0&wmode=opaque' } }
         %i.fa.fa-play-circle
         &nbsp;
         %p Play video to learn more

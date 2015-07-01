@@ -4,6 +4,7 @@
 - **Landing Page Changes**
   - Implemented framework for A/B testing
   - Testing video above the fold versus subtitle
+  - Add event tracking for video views
   - Removed privacy blurb from bottom of landing page, since it's in the privacy policy
 - **General Changes**
   - Updated styling on unlock account page
