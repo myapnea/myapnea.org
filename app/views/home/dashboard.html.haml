@@ -16,6 +16,8 @@
   -# Survey data widget if possible
   .widget-container
     .widget-container-body
+      %h4.centered-text Research Surveys
+      %br
       .row.reset-layout
         - @surveys.each do |survey|
           .col-xs-4.centered-text
@@ -40,7 +42,10 @@
     = render 'research_topics/voting_form', research_topic: current_user.highlighted_research_topic
 
 -# Highlights widget
+%br
 .horizontal-inset
+  %h4.centered-text Research Highlights
+  %br
   .row.reset-layout
     - Highlight.current.where(displayed: true).sort{ |a,b| b.created_at <=> a.created_at }.first(3).each do |highlight|
       .col-sm-4
