@@ -16,6 +16,7 @@
 - **Admin Changes**
   - Admins can now disable user emails when deactivating accounts
   - Fixed daily/weekly count from user index
+  - Added display tooltips for daily engagement points
 
 ### Bug Fix
 - Fixed average satisfaction percentage calculation on My Sleep Apnea Treatment report

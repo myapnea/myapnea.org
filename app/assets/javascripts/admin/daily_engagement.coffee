@@ -31,9 +31,10 @@
   d3.json 'daily_engagement_data.json', (error, data) ->
     if error
       throw error
-    data.posts.forEach (d) ->
+    data.posts.forEach (d, i) ->
       d.date = parseDate(d.date)
       d.count = +d.count
+      d.index = i
       return
     x.domain d3.extent(data.posts, (d) ->
       d.date
@@ -44,10 +45,17 @@
     svgPosts.append('g').attr('class', 'x axis').attr('transform', 'translate(0,' + height + ')').call xAxis
     svgPosts.append('g').attr('class', 'y axis').call(yAxis).append('text').attr('transform', 'rotate(-90)').attr('y', 6).attr('dy', '.71em').style('text-anchor', 'end').text 'Posts'
     svgPosts.append('path').datum(data.posts).attr('class', 'posts-line').attr 'd', line
+    # svgPosts.append('g').attr('class', 'line-point').selectAll('circle').data( data.posts ).enter().append('circle').attr('cx', (d) -> x(d.date) ).attr('cy', (d) -> y(d.count) ).attr('r', 2.0).style('fill', 'white').style('stroke', 'steelblue')
+    postPointElem = svgPosts.append('g').attr('class', 'line-point')
+    postPoints = postPointElem.selectAll('circle').data(data.posts).enter().append('circle').attr('cx', (d) -> x(d.date) ).attr('cy', (d) -> y(d.count) ).attr('r', 2.0).style('fill', 'white').style('stroke', 'steelblue')
+    postPoints.on('mouseover', (d) -> document.getElementById('posts'+d.index).style.display = 'block' )
+    postPoints.on('mouseout', (d) -> document.getElementById('posts'+d.index).style.display = 'none' )
+    postTips = postPointElem.selectAll('text').data(data.posts).enter().append('text').attr('dx', (d) -> x(d.date) - 50 ).attr('dy', (d) -> y(d.count) - 10).attr('display', 'none').attr('id', (d) -> 'posts'+d.index ).html((d) -> ("<tspan style='font-weight:bold'>" + d.count + " new posts</tspan> on " + d.date.toDateString()))
 
-    data.users.forEach (d) ->
+    data.users.forEach (d, i) ->
       d.date = parseDate(d.date)
       d.count = +d.count
+      d.index = i
       return
     x.domain d3.extent(data.users, (d) ->
       d.date
@@ -59,11 +67,17 @@
     svgUsers.append('g').attr('class', 'x axis').attr('transform', 'translate(0,' + height + ')').call xAxis
     svgUsers.append('g').attr('class', 'y axis').call(yAxis).append('text').attr('transform', 'rotate(-90)').attr('y', 6).attr('dy', '.71em').style('text-anchor', 'end').text 'Users'
     svgUsers.append('path').datum(data.users).attr('class', 'users-line').attr 'd', line
+    userPointElem = svgUsers.append('g').attr('class', 'line-point')
+    userPoints = userPointElem.selectAll('circle').data( data.users ).enter().append('circle').attr('cx', (d) -> x(d.date) ).attr('cy', (d) -> y(d.count) ).attr('r', 2.0).style('fill', 'white').style('stroke', 'green')
+    userPoints.on('mouseover', (d) -> document.getElementById('users'+d.index).style.display = 'block' )
+    userPoints.on('mouseout', (d) -> document.getElementById('users'+d.index).style.display = 'none' )
+    userTips = userPointElem.selectAll('text').data(data.users).enter().append('text').attr('dx', (d) -> x(d.date) - 50 ).attr('dy', (d) -> y(d.count) - 10).attr('display', 'none').attr('id', (d) -> 'users'+d.index ).html((d) -> ("<tspan style='font-weight:bold'>" + d.count + " new users</tspan> on " + d.date.toDateString()))
 
 
-    data.surveys.forEach (d) ->
+    data.surveys.forEach (d, i) ->
       d.date = parseDate(d.date)
       d.count = +d.count
+      d.index = i
       return
     x.domain d3.extent(data.surveys, (d) ->
       d.date
@@ -75,6 +89,11 @@
     svgSurveys.append('g').attr('class', 'x axis').attr('transform', 'translate(0,' + height + ')').call xAxis
     svgSurveys.append('g').attr('class', 'y axis').call(yAxis).append('text').attr('transform', 'rotate(-90)').attr('y', 6).attr('dy', '.71em').style('text-anchor', 'end').text 'Surveys'
     svgSurveys.append('path').datum(data.surveys).attr('class', 'surveys-line').attr 'd', line
+    surveyPointElem = svgSurveys.append('g').attr('class', 'line-point')
+    surveyPoints = surveyPointElem.selectAll('circle').data( data.surveys ).enter().append('circle').attr('cx', (d) -> x(d.date) ).attr('cy', (d) -> y(d.count) ).attr('r', 3.0).style('fill', 'white').style('stroke', 'red')
+    surveyPoints.on('mouseover', (d) -> document.getElementById('surveys'+d.index).style.display = 'block' )
+    surveyPoints.on('mouseout', (d) -> document.getElementById('surveys'+d.index).style.display = 'none' )
+    surveyTips = surveyPointElem.selectAll('text').data(data.surveys).enter().append('text').attr('dx', (d) -> x(d.date) - 50 ).attr('dy', (d) -> y(d.count) - 10).attr('display', 'none').attr('id', (d) -> 'surveys'+d.index ).html((d) -> ("<tspan style='font-weight:bold'>" + d.count + " new surveys</tspan> on " + d.date.toDateString()))
 
 
     weeklyPosts = data.posts.slice(Math.max(data.posts.length - 7, 1))
@@ -91,6 +110,9 @@
     svgWeek.append('g').attr('class', 'x axis').attr('transform', 'translate(0,' + height + ')').call xAxis
     svgWeek.append('g').attr('class', 'y axis').call(yAxis).append('text').attr('transform', 'rotate(-90)').attr('y', 6).attr('dy', '.71em').style('text-anchor', 'end').text 'Weekly Counts'
     svgWeek.append('path').datum(weeklyPosts).attr('class', 'posts-line').attr 'd', line
+    svgWeek.append('g').attr('class', 'line-point').selectAll('circle').data( weeklyPosts ).enter().append('circle').attr('cx', (d) -> x(d.date) ).attr('cy', (d) -> y(d.count) ).attr('r', 3.5).style('fill', 'white').style('stroke', 'steelblue')
     svgWeek.append('path').datum(weeklyUsers).attr('class', 'users-line').attr 'd', line
+    svgWeek.append('g').attr('class', 'line-point').selectAll('circle').data( weeklyUsers ).enter().append('circle').attr('cx', (d) -> x(d.date) ).attr('cy', (d) -> y(d.count) ).attr('r', 3.5).style('fill', 'white').style('stroke', 'green')
     svgWeek.append('path').datum(weeklySurveys).attr('class', 'surveys-line').attr 'd', line
+    svgWeek.append('g').attr('class', 'line-point').selectAll('circle').data( weeklySurveys ).enter().append('circle').attr('cx', (d) -> x(d.date) ).attr('cy', (d) -> y(d.count) ).attr('r', 3.5).style('fill', 'white').style('stroke', 'red')
     return
