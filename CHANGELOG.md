@@ -12,12 +12,15 @@
   - Added json index of research topics for integration with mobile application
   - Academics are properly forwarded to terms of access when trying to review survey data
   - Minor stlyistic changes to dashboard layout, including headers for widgets
-  - Added image of didgeridoo to research highlihg
+  - Added image of didgeridoos to didgeridoo research highlight
+  - Centered waveform image on Learn page
+  - Added bottom padding to sidebar to look more balanced
 - **Admin Changes**
   - Admins can now disable user emails when deactivating accounts
   - Fixed daily/weekly count from user index
   - Added display tooltips for daily engagement points
   - Added demographic breakdown by time period
+  - User sign in count is visible from admin view
 
 ### Bug Fix
 - Fixed average satisfaction percentage calculation on My Sleep Apnea Treatment report

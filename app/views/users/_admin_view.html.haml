@@ -24,6 +24,10 @@
       %dd
         = simple_check @user.emails_enabled
 
+      %dt Number of Sessions
+      %dd
+        = @user.sign_in_count
+
       %dt Privacy Policy
       %dd
         = @user.accepted_privacy_policy_at.strftime("%m/%d/%Y") if @user.accepted_privacy_policy_at.present?
