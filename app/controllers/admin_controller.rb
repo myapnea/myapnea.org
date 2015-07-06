@@ -257,7 +257,7 @@ class AdminController < ApplicationController
       @ages[3] = {text: "65-75", count: 0}
       @ages[4] = {text: "76+", count: 0}
       dobs.each do |dob|
-        case age_in_years = (Date.today - Date.strptime(dob,"%m/%d/%Y")).days / 1.year
+        case ((Date.today - Date.strptime(dob,"%m/%d/%Y")).days / 1.year rescue nil)
         when 18..35
           @ages[0][:count]+= 1
         when 35..50
