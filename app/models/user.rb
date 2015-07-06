@@ -503,6 +503,7 @@ class User < ActiveRecord::Base
   end
 
   def update_location
+    Map.update_user_location(self)
   end
 
   def assign_default_surveys

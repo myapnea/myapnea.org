@@ -45,6 +45,7 @@ social:
   adult_diagnosed: true
   encrypted_password: <%= pw %>
   forum_name: TomHaverford
+  current_sign_in_ip: 170.223.207.25
 
 participant:
   first_name: Research
