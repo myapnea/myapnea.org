@@ -11,3 +11,4 @@ $("#age-breakdown").html("<%=j render 'demographic_chart', demographic_data: @ag
 $("#racial-breakdown").html("<%=j render 'demographic_chart', demographic_data: Report.frequency_data('race', 1..5, @users_by_date.pluck(:id)) %>")
 $("#ethnicity-breakdown").html("<%=j render 'demographic_chart', demographic_data: Report.frequency_data('ethnicity', 1..2, @users_by_date.pluck(:id)) %>")
 $("#location-breakdown").html("<%=j render 'location_list', users: @users_by_date, selector: 'state' %>");
+$("#location-breakdown").append("<%=j render 'location_list', users: @users_by_date, selector: 'country' %>");
