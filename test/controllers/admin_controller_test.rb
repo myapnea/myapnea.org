@@ -85,4 +85,18 @@ class AdminControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should get daily engagement report for owner" do
+    login(users(:owner))
+
+    get :daily_engagement
+    assert_response :success
+  end
+
+  test "should NOT get daily engagement report for moderator" do
+    login(users(:moderator_1))
+
+    get :daily_engagement
+    assert_redirected_to :admin
+  end
+
 end

@@ -20,6 +20,7 @@
   - Fixed daily/weekly count from user index
   - Added display tooltips for daily engagement points
   - Added demographic breakdown by time period
+    - Daily engagement report now only available to owners
   - User sign in count is visible from admin view
 
 ### Bug Fix

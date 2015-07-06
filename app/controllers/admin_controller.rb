@@ -198,6 +198,7 @@ class AdminController < ApplicationController
   end
 
   def daily_engagement
+    redirect_to admin_path and return unless current_user.owner?
     @date = Date.today
     daily_data(@date, @date)
   end
