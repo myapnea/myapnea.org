@@ -10,13 +10,18 @@ class User < ActiveRecord::Base
   #  For recent updates to consent/privacy policy/etc
   RECENT_UPDATE_DATE = "2015-06-24"
 
+  # Dates
+  MONTHS = [["January", 1], ["February", 2], ["March", 3], ["April", 4], ["May", 5], ["June", 6], ["July", 7], ["August", 8], ["September", 9], ["October", 10], ["November", 11], ["December", 12]]
+  DAYS = [["01", 1], ["02", 2], ["03", 3], ["04", 4], ["05", 5], ["06", 6], ["07", 7], ["08", 8], ["09", 9], ["10", 10], ["11", 11], ["12", 12], ["13", 13], ["14", 14], ["15", 15], ["16", 16], ["17", 17], ["18", 18], ["19", 19], ["20", 20], ["21", 21], ["22", 22], ["23", 23], ["24", 24], ["25", 25], ["26", 26], ["27", 27], ["28", 28], ["29", 29], ["30", 30], ["31", 31]]
+  YEARS = 2014..Time.now.year
+
   # Include default devise modules. Others available are:
   # :confirmable, :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :timeoutable, :lockable
 
   # Callbacks
-  after_create :set_forum_name, :send_welcome_email, :check_for_token
+  after_create :set_forum_name, :send_welcome_email, :check_for_token, :update_location
 
   # Mappings
   TYPE = [['Diagnosed With Sleep Apnea', 'adult_diagnosed'],
@@ -306,6 +311,9 @@ class User < ActiveRecord::Base
     incomplete_surveys.where("surveys.id != ?", survey.id).first
   end
 
+  def completed_demographic_survey?
+    self.answer_sessions.where(survey_id: Survey.find_by_slug('about-me').id).where(locked:true).present?
+  end
 
   def has_no_started_surveys?
     incomplete_surveys.blank? and complete_surveys.blank?
@@ -492,6 +500,9 @@ class User < ActiveRecord::Base
     if self.invite_token.present?
       Invite.find_by_token(self.invite_token).update(successful: true)
     end
+  end
+
+  def update_location
   end
 
   def assign_default_surveys

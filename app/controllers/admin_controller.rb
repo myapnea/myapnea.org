@@ -43,7 +43,9 @@ class AdminController < ApplicationController
   end
 
   def location
+  end
 
+  def ages
   end
 
   def cross_tabs
@@ -196,6 +198,21 @@ class AdminController < ApplicationController
   end
 
   def daily_engagement
+    @date = Date.today
+    daily_data(@date, @date)
+  end
+
+  def daily_demographic_breakdown
+    start_date = params[:breakdown_date_start]
+    @date1 = Date.new start_date["(1i)"].to_i, start_date["(2i)"].to_i, start_date["(3i)"].to_i
+    end_date = params[:breakdown_date_end]
+    @date2 = Date.new end_date["(1i)"].to_i, end_date["(2i)"].to_i, end_date["(3i)"].to_i
+
+    daily_data(@date1, @date2)
+
+    respond_to do |format|
+      format.js
+    end
   end
 
   def daily_engagement_data
@@ -227,6 +244,34 @@ class AdminController < ApplicationController
     def set_SEO_elements
       @page_title = 'Admin Panel'
       @page_content = 'Administrative panel only for owners and moderators of MyApnea.'
+    end
+
+    def daily_data(date1, date2)
+      @users_by_date = User.where("created_at >= ? AND created_at <= ?", date1.beginning_of_day, date2.end_of_day)
+      # Ages
+      dobs = Report.where(question_slug: 'date-of-birth', locked: true, user_id: @users_by_date.pluck(:id)).where.not(value: "").pluck('value')
+      @ages = Hash.new
+      @ages[0] = {text: "18-34", count: 0}
+      @ages[1] = {text: "35-49", count: 0}
+      @ages[2] = {text: "50-64", count: 0}
+      @ages[3] = {text: "65-75", count: 0}
+      @ages[4] = {text: "76+", count: 0}
+      dobs.each do |dob|
+        case age_in_years = (Date.today - Date.strptime(dob,"%m/%d/%Y")).days / 1.year
+        when 18..35
+          @ages[0][:count]+= 1
+        when 35..50
+          @ages[1][:count]+= 1
+        when 50..65
+          @ages[2][:count]+= 1
+        when 65..75
+          @ages[3][:count]+= 1
+        when 75..200
+          @ages[4][:count]+= 1
+        else
+          nil
+        end
+      end
     end
 
 end
