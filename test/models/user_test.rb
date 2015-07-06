@@ -1,6 +1,13 @@
 require "test_helper"
 
 class UserTest < ActiveSupport::TestCase
+
+  # test "should update location for user with valid ip" do
+  #   skip # Should use artifice or something similar to fake a response
+  #   Map.update_user_location(users(:social))
+  #   assert_not_nil users(:social).country_code
+  # end
+
   test "#unlock_survey" do
     u = users(:has_completed_survey)
     as = answer_sessions(:complete)

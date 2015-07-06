@@ -157,10 +157,4 @@ class UsersControllerTest < ActionController::TestCase
     assert_redirected_to new_user_session_path
   end
 
-  test "should update location for user with valid ip" do
-    login(users(:social))
-    Map.update_user_location(users(:social))
-    assert_not_nil users(:social).country_code
-  end
-
 end
