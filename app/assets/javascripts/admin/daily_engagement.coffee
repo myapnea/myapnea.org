@@ -90,7 +90,7 @@
     svgSurveys.append('g').attr('class', 'y axis').call(yAxis).append('text').attr('transform', 'rotate(-90)').attr('y', 6).attr('dy', '.71em').style('text-anchor', 'end').text 'Surveys'
     svgSurveys.append('path').datum(data.surveys).attr('class', 'surveys-line').attr 'd', line
     surveyPointElem = svgSurveys.append('g').attr('class', 'line-point')
-    surveyPoints = surveyPointElem.selectAll('circle').data( data.surveys ).enter().append('circle').attr('cx', (d) -> x(d.date) ).attr('cy', (d) -> y(d.count) ).attr('r', 3.0).style('fill', 'white').style('stroke', 'red')
+    surveyPoints = surveyPointElem.selectAll('circle').data( data.surveys ).enter().append('circle').attr('cx', (d) -> x(d.date) ).attr('cy', (d) -> y(d.count) ).attr('r', 2.0).style('fill', 'white').style('stroke', 'red')
     surveyPoints.on('mouseover', (d) -> document.getElementById('surveys'+d.index).style.display = 'block' )
     surveyPoints.on('mouseout', (d) -> document.getElementById('surveys'+d.index).style.display = 'none' )
     surveyTips = surveyPointElem.selectAll('text').data(data.surveys).enter().append('text').attr('dx', (d) -> x(d.date) - 50 ).attr('dy', (d) -> y(d.count) - 10).attr('display', 'none').attr('id', (d) -> 'surveys'+d.index ).html((d) -> ("<tspan style='font-weight:bold'>" + d.count + " new surveys</tspan> on " + d.date.toDateString()))
@@ -110,9 +110,21 @@
     svgWeek.append('g').attr('class', 'x axis').attr('transform', 'translate(0,' + height + ')').call xAxis
     svgWeek.append('g').attr('class', 'y axis').call(yAxis).append('text').attr('transform', 'rotate(-90)').attr('y', 6).attr('dy', '.71em').style('text-anchor', 'end').text 'Weekly Counts'
     svgWeek.append('path').datum(weeklyPosts).attr('class', 'posts-line').attr 'd', line
-    svgWeek.append('g').attr('class', 'line-point').selectAll('circle').data( weeklyPosts ).enter().append('circle').attr('cx', (d) -> x(d.date) ).attr('cy', (d) -> y(d.count) ).attr('r', 3.5).style('fill', 'white').style('stroke', 'steelblue')
+    weekPostElem = svgWeek.append('g').attr('class', 'line-point')
+    weekPostPoints = weekPostElem.selectAll('circle').data( weeklyPosts ).enter().append('circle').attr('cx', (d) -> x(d.date) ).attr('cy', (d) -> y(d.count) ).attr('r', 3.5).style('fill', 'white').style('stroke', 'steelblue')
+    weekPostPoints.on('mouseover', (d) -> document.getElementById('weekposts'+d.index).style.display = 'block' )
+    weekPostPoints.on('mouseout', (d) -> document.getElementById('weekposts'+d.index).style.display = 'none' )
+    weekPostTips = weekPostElem.selectAll('text').data(weeklyPosts).enter().append('text').attr('dx', (d) -> x(d.date) - 50 ).attr('dy', (d) -> y(d.count) - 10).attr('display', 'none').attr('id', (d) -> 'weekposts'+d.index ).html((d) -> ("<tspan style='font-weight:bold'>" + d.count + " new posts</tspan> on " + d.date.toDateString()))
     svgWeek.append('path').datum(weeklyUsers).attr('class', 'users-line').attr 'd', line
-    svgWeek.append('g').attr('class', 'line-point').selectAll('circle').data( weeklyUsers ).enter().append('circle').attr('cx', (d) -> x(d.date) ).attr('cy', (d) -> y(d.count) ).attr('r', 3.5).style('fill', 'white').style('stroke', 'green')
+    weekUserElem = svgWeek.append('g').attr('class', 'line-point')
+    weekUserPoints = weekUserElem.selectAll('circle').data( weeklyUsers ).enter().append('circle').attr('cx', (d) -> x(d.date) ).attr('cy', (d) -> y(d.count) ).attr('r', 3.5).style('fill', 'white').style('stroke', 'green')
+    weekUserPoints.on('mouseover', (d) -> document.getElementById('weekusers'+d.index).style.display = 'block' )
+    weekUserPoints.on('mouseout', (d) -> document.getElementById('weekusers'+d.index).style.display = 'none' )
+    weekUserTips = weekUserElem.selectAll('text').data(weeklyUsers).enter().append('text').attr('dx', (d) -> x(d.date) - 50 ).attr('dy', (d) -> y(d.count) - 10).attr('display', 'none').attr('id', (d) -> 'weekusers'+d.index ).html((d) -> ("<tspan style='font-weight:bold'>" + d.count + " new users</tspan> on " + d.date.toDateString()))
     svgWeek.append('path').datum(weeklySurveys).attr('class', 'surveys-line').attr 'd', line
-    svgWeek.append('g').attr('class', 'line-point').selectAll('circle').data( weeklySurveys ).enter().append('circle').attr('cx', (d) -> x(d.date) ).attr('cy', (d) -> y(d.count) ).attr('r', 3.5).style('fill', 'white').style('stroke', 'red')
+    weekSurveyElem = svgWeek.append('g').attr('class', 'line-point')
+    weekSurveyPoints = weekSurveyElem.selectAll('circle').data( weeklySurveys ).enter().append('circle').attr('cx', (d) -> x(d.date) ).attr('cy', (d) -> y(d.count) ).attr('r', 3.5).style('fill', 'white').style('stroke', 'red')
+    weekSurveyPoints.on('mouseover', (d) -> document.getElementById('weeksurveys'+d.index).style.display = 'block' )
+    weekSurveyPoints.on('mouseout', (d) -> document.getElementById('weeksurveys'+d.index).style.display = 'none' )
+    weekSurveyTips = weekSurveyElem.selectAll('text').data(weeklySurveys).enter().append('text').attr('dx', (d) -> x(d.date) - 50 ).attr('dy', (d) -> y(d.count) - 10).attr('display', 'none').attr('id', (d) -> 'weeksurveys'+d.index ).html((d) -> ("<tspan style='font-weight:bold'>" + d.count + " new surveys</tspan> on " + d.date.toDateString()))
     return
