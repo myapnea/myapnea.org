@@ -16,3 +16,24 @@
 
 .content-container
   #daily-engagement-surveys.daily-engagement-report
+
+.content-container
+  .content-header
+    %h2 Demographics
+    %br
+    = form_tag daily_demographic_breakdown_path, remote: true do
+      = date_select 'breakdown_date', nil, id: 'breakdown_date'
+      = submit_tag "Calculate", class: 'btn btn-primary'
+  #daily-demographic-breakdown.content-body
+    %h3 Summary:
+    #summary-breakdown.horizontal-inset
+    %h3 Sex:
+    #sex-breakdown.horizontal-inset
+    %h3 Age:
+    #age-breakdown.horizontal-inset
+    %h3 Race:
+    #racial-breakdown.horizontal-inset
+    %h3 Ethnicity:
+    #ethnicity-breakdown.horizontal-inset
+    %h3 Location:
+    #location-breakdown.horizontal-inset

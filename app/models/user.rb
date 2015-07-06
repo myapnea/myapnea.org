@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :timeoutable, :lockable
 
   # Callbacks
-  after_create :set_forum_name, :send_welcome_email, :check_for_token
+  after_create :set_forum_name, :send_welcome_email, :check_for_token, :update_location
 
   # Mappings
   TYPE = [['Diagnosed With Sleep Apnea', 'adult_diagnosed'],
@@ -306,6 +306,9 @@ class User < ActiveRecord::Base
     incomplete_surveys.where("surveys.id != ?", survey.id).first
   end
 
+  def completed_demographic_survey?
+    self.answer_sessions.where(survey_id: Survey.find_by_slug('about-me').id).where(locked:true).present?
+  end
 
   def has_no_started_surveys?
     incomplete_surveys.blank? and complete_surveys.blank?
@@ -492,6 +495,9 @@ class User < ActiveRecord::Base
     if self.invite_token.present?
       Invite.find_by_token(self.invite_token).update(successful: true)
     end
+  end
+
+  def update_location
   end
 
   def assign_default_surveys

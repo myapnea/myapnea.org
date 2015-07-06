@@ -1,0 +1,47 @@
+- location_array = []
+- location_array = users.pluck(:country_code, :state_code)
+
+- if selector == "country"
+  - country_count = location_array.group_by{|item| item[0]}.collect{|key, values| [key, values.count]}.sort{|a,b| b[1] <=> a[1]}
+
+  %table.table.table-striped
+    %thead
+      %tr
+        %th
+          Country
+        %th
+          Regular Member Sign Ups
+    - country_count.each do |country, count|
+      %tr
+        %td
+          - map_location = Map::MAP_COUNTRIES_AND_CODES.select{ |name, code| code == country }.first
+          - if map_location
+            = map_location[0]
+          - else
+            .text-muted
+              = country.inspect
+        %td
+          = pluralize(number_with_delimiter(count), 'user')
+
+
+- elsif selector == "state"
+  - state_count = location_array.select{|item| item[0] == 'us'}.group_by{|item| item[1]}.collect{|key, values| [key, values.count]}.sort{|a,b| b[1] <=> a[1]}
+
+  %table.table.table-striped
+    %thead
+      %tr
+        %th
+          State
+        %th
+          Regular Member Sign Ups
+    - state_count.each do |state, count|
+      %tr
+        %td
+          - map_location = Map::MAP_STATES_AND_CODES.select{ |name, code| code == state }.first
+          - if map_location
+            = map_location[0]
+          - else
+            .text-muted
+              = state.inspect
+        %td
+          = pluralize(number_with_delimiter(count), 'user')

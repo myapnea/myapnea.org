@@ -1,0 +1,9 @@
+<% if @date %>
+  $("#summary-breakdown").html("There were <%= @users_by_date.count %> new users on <%= @date.inspect %>. Of these users, <%= @users_by_date.select{ |u| u.completed_demographic_survey? }.count %> completed the About Me survey.");
+  $("#sex-breakdown").html("<%=j render 'demographic_chart', demographic_data: Report.frequency_data('sex', 1..2, @users_by_date.pluck(:id)) %>")
+  $("#age-breakdown").html("<%=j render 'demographic_chart', demographic_data: @ages %>")
+  $("#racial-breakdown").html("<%=j render 'demographic_chart', demographic_data: Report.frequency_data('race', 1..5, @users_by_date.pluck(:id)) %>")
+  $("#ethnicity-breakdown").html("<%=j render 'demographic_chart', demographic_data: Report.frequency_data('ethnicity', 1..2, @users_by_date.pluck(:id)) %>")
+  $("#location-breakdown").html("<%=j render 'location_list', users: @users_by_date, selector: 'state' %>");
+  // $("#daily-demographic-breakdown").append()
+<% end %>

@@ -43,7 +43,9 @@ class AdminController < ApplicationController
   end
 
   def location
+  end
 
+  def ages
   end
 
   def cross_tabs
@@ -196,6 +198,39 @@ class AdminController < ApplicationController
   end
 
   def daily_engagement
+  end
+
+  def daily_demographic_breakdown
+    @date = Date.new params[:breakdown_date]["(1i)"].to_i, params[:breakdown_date]["(2i)"].to_i, params[:breakdown_date]["(3i)"].to_i
+    @users_by_date = User.where("created_at >= ? AND created_at <= ?", @date.beginning_of_day, @date.end_of_day)
+    # Ages
+    dobs = Report.where(question_slug: 'date-of-birth', locked: true, user_id: @users_by_date.pluck(:id)).where.not(value: "").pluck('value')
+    @ages = Hash.new
+    @ages[0] = {text: "18-34", count: 0}
+    @ages[1] = {text: "35-49", count: 0}
+    @ages[2] = {text: "50-64", count: 0}
+    @ages[3] = {text: "65-75", count: 0}
+    @ages[4] = {text: "76+", count: 0}
+    dobs.each do |dob|
+      case age_in_years = (Date.today - Date.strptime(dob,"%m/%d/%Y")).days / 1.year
+      when 18..35
+        @ages[0][:count]+= 1
+      when 35..50
+        @ages[1][:count]+= 1
+      when 50..65
+        @ages[2][:count]+= 1
+      when 65..75
+        @ages[3][:count]+= 1
+      when 75..200
+        @ages[4][:count]+= 1
+      else
+        nil
+      end
+    end
+
+    respond_to do |format|
+      format.js
+    end
   end
 
   def daily_engagement_data

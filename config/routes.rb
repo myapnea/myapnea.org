@@ -179,6 +179,7 @@ Rails.application.routes.draw do
   get 'admin/daily-engagement' => 'admin#daily_engagement', as: 'admin_daily_engagement'
 
   get 'admin/daily_engagement_data' => 'admin#daily_engagement_data', format: :json
+  post 'daily-demographic-breakdown', to: 'admin#daily_demographic_breakdown', as: :daily_demographic_breakdown
 
 
   # Development/System
