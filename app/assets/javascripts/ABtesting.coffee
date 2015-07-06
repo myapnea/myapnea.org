@@ -1,9 +1,8 @@
+@utmx_section = ->
+
+@utmx = ->
+
 @ABTestingReady = () ->
-  console.log "A/B testing ready"
-  utmx_section = ->
-
-  utmx = ->
-
   do ->
     k = '91307595-1'
     d = document
