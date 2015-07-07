@@ -55,7 +55,7 @@ gem 'devise'
 gem 'fuzzy_match'
 
 # Markdown Support
-gem 'redcarpet', '~> 3.3.1'
+gem 'redcarpet', '~> 3.3.2'
 
 # Directed Acyclic Graph
 gem 'acts-as-dag'

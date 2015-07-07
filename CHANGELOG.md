@@ -21,6 +21,8 @@
   - Added display tooltips for daily engagement points
   - Added demographic breakdown by time period
   - User sign in count is visible from admin view
+- **Gem Changes**
+  - Updated to redcarpet 3.3.2
 
 ### Bug Fix
 - Fixed average satisfaction percentage calculation on My Sleep Apnea Treatment report
