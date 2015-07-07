@@ -1,4 +1,4 @@
-## 7.3.1
+## 7.3.1 (July 7, 2015)
 
 ### Bug Fix
 - Relocated of google analytics A/B testing script to top of landing page header
