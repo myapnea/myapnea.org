@@ -1,4 +1,4 @@
-## 7.3.2
+## 7.3.2 (July 7, 2015)
 
 ### Bug Fix
 - Restructured logic syntax for loading google analytics A/B testing script
