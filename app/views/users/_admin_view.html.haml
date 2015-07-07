@@ -28,9 +28,9 @@
       %dd
         = @user.sign_in_count if @user.sign_in_count.present?
 
-      %dt Last Session
+      %dt Most Recent Session
       %dd
-        = @user.last_sign_in_at.strftime("%m/%d/%Y") if @user.last_sign_in_at.present?
+        = @user.current_sign_in_at.strftime("%m/%d/%Y") if @user.current_sign_in_at.present?
 
       %dt Privacy Policy
       %dd
