@@ -21,7 +21,7 @@
   - Added display tooltips for daily engagement points
   - Added demographic breakdown by time period
     - Daily engagement report now only available to owners
-  - User sign in count is visible from admin view
+  - User sign in count and last session are visible from admin view
 
 ### Bug Fix
 - Fixed average satisfaction percentage calculation on My Sleep Apnea Treatment report
