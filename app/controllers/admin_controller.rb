@@ -20,7 +20,8 @@ class AdminController < ApplicationController
 
   def version_stats
     @version_dates = [
-      { version: '7.2.0', release_date: Date.parse('2015-06-24'), next_release_date: nil },
+      { version: '7.3.0', release_date: Date.parse('2015-07-07'), next_release_date: nil },
+      { version: '7.2.0', release_date: Date.parse('2015-06-24'), next_release_date: Date.parse('2015-07-07') },
       { version: '7.1.0', release_date: Date.parse('2015-06-03'), next_release_date: Date.parse('2015-06-24') },
       { version: '7.0.0', release_date: Date.parse('2015-06-01'), next_release_date: Date.parse('2015-06-03') },
       { version: '6.1.0', release_date: Date.parse('2015-04-27'), next_release_date: Date.parse('2015-06-01') },
@@ -198,6 +199,7 @@ class AdminController < ApplicationController
   end
 
   def daily_engagement
+    redirect_to admin_path and return unless current_user.owner?
     @date = Date.today
     daily_data(@date, @date)
   end
@@ -257,7 +259,7 @@ class AdminController < ApplicationController
       @ages[3] = {text: "65-75", count: 0}
       @ages[4] = {text: "76+", count: 0}
       dobs.each do |dob|
-        case age_in_years = (Date.today - Date.strptime(dob,"%m/%d/%Y")).days / 1.year
+        case ((Date.today - Date.strptime(dob,"%m/%d/%Y")).days / 1.year rescue nil)
         when 18..35
           @ages[0][:count]+= 1
         when 35..50

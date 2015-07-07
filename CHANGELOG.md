@@ -20,7 +20,8 @@
   - Fixed daily/weekly count from user index
   - Added display tooltips for daily engagement points
   - Added demographic breakdown by time period
-  - User sign in count is visible from admin view
+    - Daily engagement report now only available to owners
+  - User sign in count and last session are visible from admin view
 - **Gem Changes**
   - Updated to redcarpet 3.3.2
 
