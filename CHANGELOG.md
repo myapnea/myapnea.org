@@ -1,4 +1,4 @@
-## 7.3.0
+## 7.3.0 (July 7, 2015)
 
 ### Enhancements
 - **Landing Page Changes**
