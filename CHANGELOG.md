@@ -1,5 +1,9 @@
 ## 7.4.0
 
+### New Features
+- **API**
+  - Added ability to create new users via JSON request
+
 ## 7.3.2 (July 7, 2015)
 
 ### Bug Fix

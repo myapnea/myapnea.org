@@ -2,6 +2,19 @@ class RegistrationsController < Devise::RegistrationsController
 
   layout 'layouts/application-no-sidebar'
 
+  def new
+    @user = User.new(first_name: params["first_name"], last_name: params["last_name"], over_eighteen: params["over_eighteen"], email: params["email"], password: params["password"], invite_token: params["invite_token"], provider_id: params["provider_id"])
+    respond_to do |format|
+      if @user.save
+        format.html
+        format.json { render json: @user }
+      else
+        format.html
+        format.json { render json: "Please provide all appropriate parameters (first name, last name, age confirmation, email, and valid password)" }
+      end
+    end
+  end
+
   protected
 
   def after_sign_up_path_for(resource)
