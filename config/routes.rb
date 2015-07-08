@@ -191,7 +191,7 @@ Rails.application.routes.draw do
   match 'remote-vote', to: 'research_topics#remote_vote', via: :post, as: :remote_vote
   match 'change-vote', to: 'research_topics#change_vote', via: :patch, as: :change_vote
 
-  devise_for :users, controllers: { registrations: 'registrations' }, path_names: { sign_up: 'join', sign_in: 'login' }, path: ""
+  devise_for :users, controllers: { registrations: 'registrations', sessions: 'sessions' }, path_names: { sign_up: 'join', sign_in: 'login' }, path: ""
 
   resources :users do
     collection do

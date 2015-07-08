@@ -2,7 +2,7 @@
 
 ### New Features
 - **API**
-  - Added ability to create new users via JSON request
+  - Added ability to create new users and login existing users via JSON request
 
 ## 7.3.2 (July 7, 2015)
 
