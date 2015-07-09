@@ -245,6 +245,10 @@ Rails.application.routes.draw do
       post '/create', to: 'api#research_topic_create'
       post '/vote', to: 'api#vote'
     end
+    scope '/forums' do
+      get '/topics', to: 'api#topic_index'
+      get '/topics/:topic_id', to: 'api#topic_show'
+    end
   end
 
 # # Authentication

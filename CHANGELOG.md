@@ -2,10 +2,14 @@
 
 ### New Features
 - **API**
-  - Added ability to create new users and login existing users via JSON request
-  - Added votes, scopable by relevant fields and ratings
-  - Added ability to cast vote as user
-  - Added ability to create new research topics as user
+  - Users
+    - Added ability to create new users and login existing users via JSON request
+  - Research Topics
+    - Added votes, scopable by relevant fields and ratings
+    - Added ability to cast vote as user
+    - Added ability to create new research topics as user
+  - Forums
+    - Added ability to get topic index and topic show data
 
 ## 7.3.2 (July 7, 2015)
 

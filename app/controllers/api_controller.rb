@@ -67,6 +67,24 @@ class ApiController < ApplicationController
   end
 
 
+  # # Forums
+
+  def topic_index
+    @topics = Topic.current.not_research
+    respond_to do |format|
+      format.json { @topics }
+    end
+  end
+
+  def topic_show
+    @topic = Topic.find(params[:topic_id])
+    @posts = @topic.posts.current
+    respond_to do |format|
+      format.json { @posts }
+    end
+  end
+
+
   private
 
     def authenticate_user!
