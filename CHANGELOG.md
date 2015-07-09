@@ -5,6 +5,7 @@
   - Added ability to create new users and login existing users via JSON request
   - Added votes, scopable by relevant fields and ratings
   - Added ability to cast vote as user
+  - Added ability to create new research topics as user
 
 ## 7.3.2 (July 7, 2015)
 

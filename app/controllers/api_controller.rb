@@ -2,9 +2,9 @@ class ApiController < ApplicationController
 
   # before_action :parse_request, only: [:vote]
   # before_action :authenticate_app_from_token!, only: [:vote]
-  before_action :authenticate_user!, only: [:vote]
+  before_action :authenticate_user!, only: [:vote, :research_topic_create]
 
-  skip_before_action :verify_authenticity_token, only: [:vote]
+  skip_before_action :verify_authenticity_token, only: [:vote, :research_topic_create]
 
   # ## Users
   # def user_signup
@@ -18,6 +18,19 @@ class ApiController < ApplicationController
     @research_topics = ResearchTopic.approved
     respond_to do |format|
       format.json { @research_topics }
+    end
+  end
+
+  def research_topic_create
+    @new_research_topic = @user.research_topics.new(params.require(:research_topic).permit(:text, :description))
+    if @new_research_topic.save
+      respond_to do |format|
+        format.json { @new_research_topic }
+      end
+    else
+      respond_to do |format|
+        format.json { @new_research_topic = nil }
+      end
     end
   end
 
