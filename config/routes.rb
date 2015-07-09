@@ -232,6 +232,19 @@ Rails.application.routes.draw do
   get 'change_password', to: redirect("account")
   get 'social', to: redirect("community")
 
+
+
+  # # API
+  # scope '/users' do
+  #   post '/', to: 'api#user_signup'
+  #   post '/', to: 'api#user_login'
+  scope 'api' do
+    scope '/research-topics' do
+      get '/', to: 'api#research_topic_index'
+      get '/votes', to: 'api#votes'
+    end
+  end
+
 # # Authentication
 #   devise_for :user, skip: [:sessions, :passwords, :confirmations, :registrations]
 #   as :user do
