@@ -3,6 +3,7 @@
 ### New Features
 - **API**
   - Added ability to create new users and login existing users via JSON request
+  - Added votes, scopable by relevant fields and ratings
 
 ## 7.3.2 (July 7, 2015)
 
