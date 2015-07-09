@@ -242,6 +242,7 @@ Rails.application.routes.draw do
     scope '/research-topics' do
       get '/', to: 'api#research_topic_index'
       get '/votes', to: 'api#votes'
+      post '/vote', to: 'api#vote'
     end
   end
 
