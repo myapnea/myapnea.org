@@ -11,6 +11,7 @@
   - Forums
     - Added capability to get topic index and topic show data
     - Added capability to create new forum topics
+    - Added capability to create new posts
 
 ## 7.3.2 (July 7, 2015)
 

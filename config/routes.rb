@@ -249,6 +249,7 @@ Rails.application.routes.draw do
       get '/topics', to: 'api#topic_index'
       get '/topics/:topic_id', to: 'api#topic_show'
       post 'topics/create', to: 'api#topic_create'
+      post 'posts/create', to: 'api#post_create'
     end
   end
 
