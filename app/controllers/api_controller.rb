@@ -114,10 +114,10 @@ class ApiController < ApplicationController
   private
 
     def authenticate_user!
-      unless params[:user_id].present?
+      unless params[:user_forum_name].present?
         render nothing: true, status: :unauthorized
       else
-        unless @user = User.find(params[:user_id])
+        unless @user = User.find_by_forum_name(params[:user_forum_name])
           render nothing: true, status: :bad_request
         end
       end

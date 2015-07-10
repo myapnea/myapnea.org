@@ -1,5 +1,5 @@
 if @post.present?
-  json.extract! @post, :id, :description, :user_id, :topic_id
+  json.extract! @post, :id, :description, :topic_id
 else
   json.success false
 end
