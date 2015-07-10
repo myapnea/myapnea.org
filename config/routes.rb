@@ -248,6 +248,7 @@ Rails.application.routes.draw do
     scope '/forums' do
       get '/topics', to: 'api#topic_index'
       get '/topics/:topic_id', to: 'api#topic_show'
+      post 'topics/create', to: 'api#topic_create'
     end
   end
 

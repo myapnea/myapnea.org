@@ -2,9 +2,9 @@ class ApiController < ApplicationController
 
   # before_action :parse_request, only: [:vote]
   # before_action :authenticate_app_from_token!, only: [:vote]
-  before_action :authenticate_user!, only: [:vote, :research_topic_create]
+  before_action :authenticate_user!, only: [:vote, :research_topic_create, :topic_create]
 
-  skip_before_action :verify_authenticity_token, only: [:vote, :research_topic_create]
+  skip_before_action :verify_authenticity_token, only: [:vote, :research_topic_create, :topic_create]
 
   # ## Users
   # def user_signup
@@ -81,6 +81,19 @@ class ApiController < ApplicationController
     @posts = @topic.posts.current
     respond_to do |format|
       format.json { @posts }
+    end
+  end
+
+  def topic_create
+    @topic = @user.topics.where(forum_id: params[:forum_id]).new(params.require(:topic).permit(:name, :description))
+    if @topic.save
+      respond_to do |format|
+        format.json { @topic }
+      end
+    else
+      respond_to do |format|
+        format.json { @topic = nil }
+      end
     end
   end
 
