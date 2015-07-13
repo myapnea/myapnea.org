@@ -36,8 +36,8 @@ class ApiController < ApplicationController
 
   def votes
     @votes = Vote.current
-    if params[:user_id].present?
-      @votes = @votes.where(user_id: params[:user_id].to_i)
+    if params[:user].present? and User.find_by_forum_name(params[:user]).present?
+      @votes = @votes.where(user_id: User.find_by_forum_name(params[:user]).id)
     end
     if params[:rating].present?
       @votes = @votes.where(rating: params[:rating].to_i)
