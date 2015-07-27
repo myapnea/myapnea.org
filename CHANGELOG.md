@@ -4,6 +4,9 @@
 - **Gem Changes**
   - Only run `web-console` in development mode
 
+### Refactoring
+- Simplified processing single answers from surveys
+
 ## 7.3.2 (July 7, 2015)
 
 ### Bug Fix

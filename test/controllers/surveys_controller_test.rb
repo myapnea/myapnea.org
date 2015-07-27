@@ -27,7 +27,7 @@ class SurveysControllerTest < ActionController::TestCase
 
     refute answer_sessions(:incomplete).completed?
 
-    xhr :post, :process_answer, { 'question_id' => [questions(:checkbox1).id.to_s], 'answer_session_id' => answer_sessions(:incomplete).id.to_s,  questions(:checkbox1).id.to_s => { answer_templates(:race_list).id.to_s => [answer_options(:wookie).id.to_s, answer_options(:other_race).id.to_s], answer_templates(:specified_race).id.to_s => "Polish"}}, format: 'json'
+    xhr :post, :process_answer, question_id: questions(:checkbox1), answer_session_id: answer_sessions(:incomplete), questions(:checkbox1).to_param => { answer_templates(:race_list).to_param => [answer_options(:wookie).id.to_s, answer_options(:other_race).id.to_s], answer_templates(:specified_race).to_param => "Polish"}, format: 'json'
     created_answer = assigns(:answer_session).last_answer
 
     assert created_answer.persisted?
@@ -53,7 +53,7 @@ class SurveysControllerTest < ActionController::TestCase
     refute answer_sessions(:incomplete).completed?
 
     invalid_value = "19999999"
-    xhr :post, :process_answer, { 'question_id' => [questions(:text1).id.to_s], 'answer_session_id' => answer_sessions(:incomplete).id.to_s,  questions(:text1).id.to_s => { answer_templates(:text).id.to_s => invalid_value }}, format: 'json'
+    xhr :post, :process_answer, question_id: questions(:text1), answer_session_id: answer_sessions(:incomplete), questions(:text1).to_param => { answer_templates(:text).to_param => invalid_value }, format: 'json'
     created_answer = assigns(:answer_session).last_answer
 
     assert created_answer.persisted?
@@ -75,7 +75,7 @@ class SurveysControllerTest < ActionController::TestCase
 
     refute answer_sessions(:incomplete).completed?
 
-    xhr :post, :process_answer, { 'question_id' => [questions(:checkbox1).id.to_s], 'answer_session_id' => answer_sessions(:incomplete).id.to_s }, format: 'json'
+    xhr :post, :process_answer, question_id: questions(:checkbox1), answer_session_id: answer_sessions(:incomplete), format: 'json'
 
     assert_response :success
 
@@ -95,7 +95,7 @@ class SurveysControllerTest < ActionController::TestCase
 
     refute answer_sessions(:incomplete).completed?
 
-    xhr :post, :process_answer, { 'question_id' => [questions(:checkbox1).id.to_s], 'answer_session_id' => answer_sessions(:incomplete).id.to_s,  questions(:checkbox1).id.to_s => { preferred_not_to_answer: '1' } }, format: 'json'
+    xhr :post, :process_answer, question_id: questions(:checkbox1), answer_session_id: answer_sessions(:incomplete), questions(:checkbox1).to_param => { preferred_not_to_answer: '1' }, format: 'json'
     created_answer = assigns(:answer_session).last_answer
 
     assert created_answer.persisted?

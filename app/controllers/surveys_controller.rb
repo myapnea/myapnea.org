@@ -43,15 +43,13 @@ class SurveysController < ApplicationController
   end
 
   def process_answer
-    @questions = Question.where(id: params[:question_id])
-    @answer_session = AnswerSession.find(params[:answer_session_id]) # Validate user!
+    @question = Question.find_by_id(params[:question_id])
+    @answer_session = current_user.answer_sessions.find_by_id(params[:answer_session_id])
 
-    @questions.each do |question|
-      @answer = @answer_session.process_answer(question, params)
-    end
-
-    respond_to do |format|
-      format.json { render json: {completed: @answer.complete?, invalid: @answer.invalid?, answer: @answer, value: @answer.string_value, errors: @answer.errors.full_messages, validation_errors: @answer.validation_errors } }
+    if @answer_session and @question and @answer = @answer_session.process_answer(@question, params)
+      render json: { completed: @answer.complete?, invalid: @answer.invalid?, value: @answer.string_value, errors: @answer.errors.full_messages, validation_errors: @answer.validation_errors }
+    else
+      head :no_content
     end
 
   end
