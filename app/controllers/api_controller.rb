@@ -21,6 +21,10 @@ class ApiController < ApplicationController
     end
   end
 
+  def research_topic_show
+    @research_topic = ResearchTopic.find(params[:research_topic_id])
+  end
+
   def research_topic_create
     @new_research_topic = @user.research_topics.new(params.require(:research_topic).permit(:text, :description))
     if @new_research_topic.save

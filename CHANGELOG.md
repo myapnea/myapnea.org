@@ -8,6 +8,7 @@
     - Added votes, scopable by relevant fields and ratings
     - Added capability to cast vote as user
     - Added capability to create new research topics as user
+    - Index page lists all posts
   - Forums
     - Added capability to get topic index and topic show data
     - Added capability to create new forum topics
