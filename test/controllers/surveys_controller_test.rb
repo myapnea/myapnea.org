@@ -47,6 +47,27 @@ class SurveysControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should process answer for date question" do
+
+    login(users(:has_incomplete_survey))
+
+    xhr :post, :process_answer, question_id: questions(:date1), answer_session_id: answer_sessions(:incomplete2), questions(:date1).to_param => { answer_templates(:birth_date).to_param => { month: "3", day: "12", year: "1920" } }, format: 'json'
+    created_answer = assigns(:answer_session).last_answer
+
+    assert created_answer.persisted?
+    assert created_answer.complete?
+    refute created_answer.validation_errors.present?
+
+    refute created_answer.locked?
+
+    assert_equal 1, created_answer.answer_values.count
+    assert_equal "03/12/1920", created_answer.value[questions(:date1).answer_templates.first.id]
+
+    assert_equal 1, assigns(:answer_session).answers.complete.count, "#{assigns(:answer_session).survey.questions.count} #{assigns(:answer_session).answers.to_a}"
+
+    assert_response :success
+  end
+
   test "User can give an invalid answer to a question" do
     login(users(:has_incomplete_survey))
 

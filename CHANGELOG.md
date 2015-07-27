@@ -4,6 +4,9 @@
 - **Gem Changes**
   - Only run `web-console` in development mode
 
+### Bug Fix
+- Fixed and simplified date input parsing to better handle consistency issues across browsers and devices
+
 ### Refactoring
 - Simplified processing single answers from surveys
 

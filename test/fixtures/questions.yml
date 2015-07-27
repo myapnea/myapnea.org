@@ -58,7 +58,7 @@ checkbox1:
 date1:
   text_en: What is your date of birth?
   slug: dob
-  display_type: date_input
+  display_type: custom_date_input
   answer_templates:
   - birth_date
 

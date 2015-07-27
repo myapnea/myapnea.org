@@ -1,5 +1,5 @@
 class Answer < ActiveRecord::Base
-  include Deletable
+  include Deletable, DateAndTimeParser
 
   STATE = %(incomplete complete migrated locked)
 
@@ -73,6 +73,13 @@ class Answer < ActiveRecord::Base
 
       if template.preprocess.present?
         val_for_template = template.preprocess_value(val_for_template)
+      end
+
+      if question.display_type == 'custom_date_input'
+        month = parse_integer(val_for_template[:month])
+        day = parse_integer(val_for_template[:day])
+        year = parse_integer(val_for_template[:year])
+        val_for_template = parse_date_to_s("#{month}/#{day}/#{year}", "")
       end
 
       template_values << val_for_template

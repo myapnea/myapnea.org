@@ -35,6 +35,13 @@ complete:
   last_answer: a13
   encounter: baseline
 
+incomplete2:
+  user: has_incomplete_survey
+  survey: new_2
+  first_answer: date_answer1
+  last_answer: date_answer1
+  encounter: followup
+
 #
 #launched2:
 #  user: social

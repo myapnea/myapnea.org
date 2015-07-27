@@ -62,3 +62,9 @@ country_answer2:
   question: country1
   answer_session: report_test2
   state: complete
+
+# New 2
+date_answer1:
+  question: date1
+  answer_session: incomplete2
+  state: incomplete
