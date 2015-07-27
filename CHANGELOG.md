@@ -1,5 +1,9 @@
 ## 8.0.0
 
+### Enhancements
+- **Gem Changes**
+  - Only run `web-console` in development mode
+
 ## 7.3.2 (July 7, 2015)
 
 ### Bug Fix
