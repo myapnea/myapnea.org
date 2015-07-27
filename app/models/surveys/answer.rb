@@ -79,7 +79,7 @@ class Answer < ActiveRecord::Base
         month = parse_integer(val_for_template[:month])
         day = parse_integer(val_for_template[:day])
         year = parse_integer(val_for_template[:year])
-        val_for_template = parse_date_to_s("#{month}/#{day}/#{year}", "")
+        val_for_template = parse_date_to_s("#{month}/#{day}/#{year}", "#{month}/#{day}/#{year}")
       end
 
       template_values << val_for_template

@@ -31,47 +31,39 @@ class AnswerValidator
 
     if av.present? and av.value.present?
       begin
-        matched_date = /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/.match(av.value)
+        (month, day, year) = av.value.split('/')
 
-        if matched_date
-          day = matched_date[2].to_i
-          month = matched_date[1].to_i
-          year = matched_date[3].to_i
+        day = day.to_i
+        month = month.to_i
+        year = year.to_i
 
-          if year < 1900 or year > 2015
-            valid = false
-            messages << "Year is out of range."
-          end
-
-          if month < 1 or month > 12
-            valid = false
-            messages << "Month is out of range."
-          end
-
-          max_days = Time.days_in_month(month, year)
-
-          if day < 1 or day > max_days
-            valid = false
-            messages << "Day is out of range."
-          end
-
-          if valid
-
-            date_value = Date.strptime(av.value, "%m/%d/%Y")
-
-            difference_in_years = year_diff(Date.today, date_value)
-            if difference_in_years < 18
-              valid = false
-              messages << "You must be over 18 to answer this question"
-            end
-          end
-
-        else
+        if year < 1900 or year > Date.today.year
           valid = false
-          messages << "The date provided is not in the correct format. Please enter date as MM/DD/YYYY"
+          messages << "Year is out of range."
         end
 
+        if month < 1 or month > 12
+          valid = false
+          messages << "Month is out of range."
+        end
 
+        max_days = Time.days_in_month(month, year)
+
+        if day < 1 or day > max_days
+          valid = false
+          messages << "Day is out of range."
+        end
+
+        if valid
+
+          date_value = Date.strptime(av.value, "%m/%d/%Y")
+
+          difference_in_years = year_diff(Date.today, date_value)
+          if difference_in_years < 18
+            valid = false
+            messages << "You must be over 18 to answer this question"
+          end
+        end
 
       rescue ArgumentError => e
         valid = false
