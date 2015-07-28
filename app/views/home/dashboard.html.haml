@@ -32,9 +32,9 @@
   .widget-container
     .widget-container-body
       .row.reset-layout
-        - @surveys.each do |survey|
+        - @answer_sessions.each do |answer_session|
           .col-sm-4.centered-text
-            = render 'surveys/partials/survey_progress', survey: survey
+            = render 'surveys/answer_sessions/progress', answer_session: answer_session
 
 - else
   -# Trending topic widget if applicable

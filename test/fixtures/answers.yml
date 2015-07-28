@@ -66,5 +66,5 @@ country_answer2:
 # New 2
 date_answer1:
   question: date1
-  answer_session: incomplete2
+  answer_session: incomplete2_followup
   state: incomplete

@@ -114,7 +114,8 @@ Rails.application.routes.draw do
       post :submit
     end
     member do
-      get :report
+      get "(/:encounter)/report", action: 'report', as: :report
+      get "(/:encounter)", action: 'show', as: :show
       get 'report-detail', as: :report_detail
       get 'accept-update-first', as: :accept_update_first
     end

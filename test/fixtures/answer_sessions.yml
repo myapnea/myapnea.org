@@ -35,7 +35,14 @@ complete:
   last_answer: a13
   encounter: baseline
 
-incomplete2:
+incomplete2_baseline:
+  user: has_incomplete_survey
+  survey: new_2
+  first_answer: date_answer1
+  last_answer: date_answer1
+  encounter: baseline
+
+incomplete2_followup:
   user: has_incomplete_survey
   survey: new_2
   first_answer: date_answer1

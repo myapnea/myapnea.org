@@ -1,10 +1,19 @@
 require 'test_helper.rb'
 
 class SurveysControllerTest < ActionController::TestCase
-  # Normal User
-  test "User does not need to be logged in to see survey index" do
+
+  test "should get index for logged out user" do
     get :index
-    assert_response 200
+    assert_not_nil assigns(:surveys)
+    assert_response :success
+  end
+
+  test "should get index for regular user" do
+    login(users(:has_launched_survey))
+    get :index
+    assert_equal 1, assigns(:surveys).count
+    assert_equal 1, assigns(:answer_sessions).count
+    assert_response :success
   end
 
   test "User needs to be logged in to see survey" do
@@ -13,11 +22,36 @@ class SurveysControllerTest < ActionController::TestCase
   end
 
   ## Assigned Surveys
-  test "User can view an assigned survey" do
+  test "should show survey for regular user" do
     login(users(:has_launched_survey))
-
     get :show, id: answer_sessions(:launched).survey
+    assert_response :success
+  end
 
+  test "should show baseline survey for regular user without encounter specified" do
+    login(users(:has_incomplete_survey))
+    get :show, id: surveys(:new_2)
+    assert_not_nil assigns(:survey)
+    assert_not_nil assigns(:answer_session)
+    assert_equal answer_sessions(:incomplete2_baseline), assigns(:answer_session)
+    assert_response :success
+  end
+
+  test "should show baseline survey for regular user with encounter specified" do
+    login(users(:has_incomplete_survey))
+    get :show, id: surveys(:new_2), encounter: 'baseline'
+    assert_not_nil assigns(:survey)
+    assert_not_nil assigns(:answer_session)
+    assert_equal answer_sessions(:incomplete2_baseline), assigns(:answer_session)
+    assert_response :success
+  end
+
+  test "should show followup survey for regular user" do
+    login(users(:has_incomplete_survey))
+    get :show, id: surveys(:new_2), encounter: 'followup'
+    assert_not_nil assigns(:survey)
+    assert_not_nil assigns(:answer_session)
+    assert_equal answer_sessions(:incomplete2_followup), assigns(:answer_session)
     assert_response :success
   end
 
@@ -51,7 +85,7 @@ class SurveysControllerTest < ActionController::TestCase
 
     login(users(:has_incomplete_survey))
 
-    xhr :post, :process_answer, question_id: questions(:date1), answer_session_id: answer_sessions(:incomplete2), questions(:date1).to_param => { answer_templates(:birth_date).to_param => { month: "3", day: "12", year: "1920" } }, format: 'json'
+    xhr :post, :process_answer, question_id: questions(:date1), answer_session_id: answer_sessions(:incomplete2_followup), questions(:date1).to_param => { answer_templates(:birth_date).to_param => { month: "3", day: "12", year: "1920" } }, format: 'json'
     created_answer = assigns(:answer_session).last_answer
 
     assert created_answer.persisted?
@@ -192,17 +226,6 @@ class SurveysControllerTest < ActionController::TestCase
 
     assert_response :success
 
-  end
-
-  ## Index
-  test "User can see index of surveys" do
-    login(users(:has_launched_survey))
-
-    get :index
-    assert_equal 1, assigns(:surveys).length
-    assert_equal users(:has_launched_survey).assigned_surveys, assigns(:surveys)
-
-    assert_response :success
   end
 
   ## Survey Submition

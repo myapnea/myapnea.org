@@ -10,7 +10,8 @@ class HomeController < ApplicationController
       flash.delete(:notice) if I18n.t('devise.sessions.signed_in') == flash[:notice]
       flash.delete(:alert)
 
-      @surveys = current_user.visible_surveys.first(3)
+      @surveys = current_user.visible_surveys.limit(3)
+      @answer_sessions = current_user.answer_sessions.joins(:survey).where.not(surveys: { slug: nil }).order(:locked, "surveys.name_en", :encounter).limit(3)
       @posts = posts
     else
       render 'home/landing_v_7_3', layout: 'layouts/application-no-sidebar'

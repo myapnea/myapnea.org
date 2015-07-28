@@ -111,12 +111,12 @@ class SurveyTest < ActiveSupport::TestCase
 
   test "#launch_multiple" do
 
-    assert_difference "AnswerSession.where(encounter: 'baseline').count", User.current.where(adult_diagnosed: true).count do
-      result = surveys(:new_2).launch_multiple(User.current.where("adult_diagnosed = TRUE"), 'baseline')
+    assert_difference "AnswerSession.where(encounter: '6month').count", User.current.where(adult_diagnosed: true).count do
+      result = surveys(:new_2).launch_multiple(User.current.where("adult_diagnosed = TRUE"), '6month')
       assert_empty result
     end
 
-    assert_equal User.current.where(adult_diagnosed: true), surveys(:new_2).launch_multiple(User.current.where("adult_diagnosed = TRUE"), 'baseline')
+    assert_equal User.current.where(adult_diagnosed: true), surveys(:new_2).launch_multiple(User.current.where("adult_diagnosed = TRUE"), '6month')
   end
 
 end

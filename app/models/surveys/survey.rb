@@ -30,6 +30,21 @@ class Survey < ActiveRecord::Base
   scope :viewable, -> { where(status: "show") }
 
   # Class Methods
+
+  def to_param
+    slug
+  end
+
+  def self.find_by_param(input)
+    find_by_slug(input)
+  end
+
+  # OLD DEPRECATED
+  # def to_param
+  #   self[:slug] # || self[:id].to_s
+  # end
+
+
   def self.refresh_all_surveys
     Survey.all.each do |survey|
       survey.refresh_precomputations
@@ -145,10 +160,6 @@ class Survey < ActiveRecord::Base
     already_assigned.compact!
 
     already_assigned
-  end
-
-  def to_param
-    self[:slug] # || self[:id].to_s
   end
 
   ## Need to be fast
