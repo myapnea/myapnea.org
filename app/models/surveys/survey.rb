@@ -139,22 +139,31 @@ class Survey < ActiveRecord::Base
   end
 
   # Instance Methods
-  def launch_single(user, encounter, position=nil)
-    position ||= self[:default_position]
-
+  def launch_single(user, encounter, position: self[:default_position], send_email: false)
     answer_session = user.answer_sessions.find_or_initialize_by(encounter: encounter, survey_id: self.id)
     answer_session.position = position
-    return_object = answer_session.new_record? ? nil : user
+    if answer_session.new_record?
+      return_object = nil
+      newly_created = true
+    else
+      return_object = user
+      newly_created = false
+    end
     answer_session.save!
+
+    if newly_created and send_email
+      Rails.logger.info "Sending followup survey email to #{user.email}"
+      UserMailer.followup_survey(answer_session).deliver_later if Rails.env.production?
+    end
 
     return_object
   end
 
-  def launch_multiple(users, encounter, position=nil)
+  def launch_multiple(users, encounter, options = {})
     already_assigned = []
 
     users.each do |user|
-      already_assigned << launch_single(user, encounter, position)
+      already_assigned << launch_single(user, encounter, options)
     end
 
     already_assigned.compact!

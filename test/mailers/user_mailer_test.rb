@@ -63,5 +63,15 @@ class UserMailerTest < ActionMailer::TestCase
     assert_match(/#{post.user.forum_name} mentioned you in a post on the forums at MyApnea.Org\./, email.encoded)
   end
 
+  test "followup survey email" do
+    answer_session = answer_sessions(:incomplete2_followup)
+
+    email = UserMailer.followup_survey(answer_session).deliver_now
+    assert !ActionMailer::Base.deliveries.empty?
+
+    assert_equal [users(:has_incomplete_survey).email], email.to
+    assert_equal "Followup Survey Available on MyApnea.Org!", email.subject
+    assert_match(/You have a new followup survey waiting to be completed on MyApnea\.Org\./, email.encoded)
+  end
 
 end

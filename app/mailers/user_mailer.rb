@@ -38,4 +38,12 @@ class UserMailer < ApplicationMailer
       subject: "#{post.user.forum_name} Mentioned You on the MyApnea Forums")
   end
 
+  def followup_survey(answer_session)
+    setup_email
+    @answer_session = answer_session
+    @user = answer_session.user
+    @email_to = answer_session.user.email
+    mail(to: @email_to, subject: "Followup Survey Available on MyApnea.Org!")
+  end
+
 end

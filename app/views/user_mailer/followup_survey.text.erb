@@ -1,0 +1,16 @@
+Dear <%= @user.first_name %>,
+
+You have a new followup survey waiting to be completed on <%= ENV['website_name'] %>.
+
+Your participation is important to allow researchers to better understand the
+effects of sleep apnea over time.
+
+Follow the link to start your followup survey:
+
+
+  <%= "#{ENV['website_url']}/surveys" %>
+
+
+Again, thank you for your participation, and we look forward to finding answers together with you!
+
+The MyApnea.Org Team

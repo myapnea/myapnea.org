@@ -4,9 +4,10 @@
 - **Survey Changes**
   - Longitudinal surveys can be launched and assigned to users, ex:
     - `s = Survey.find_by_slug 'about-me'`
-    - `s.launch_single(user, '6month')`
+    - `s.launch_single(user, '6month', send_email: true)`
     - or
-    - `s.launch_multiple(users, '6month')`
+    - `s.launch_multiple(users, '6month', send_email: true)`
+  - Automated survey followup emails can be sent when new surveys are launched
 - **Gem Changes**
   - Only run `web-console` in development mode
 

@@ -28,4 +28,9 @@ class UserMailerPreview < ActionMailer::Preview
     UserMailer.mentioned_in_post(post, user)
   end
 
+  def followup_survey
+    answer_session = AnswerSession.last
+    UserMailer.followup_survey(answer_session)
+  end
+
 end
