@@ -1,9 +1,10 @@
 json.topics @topics do |topic|
   json.id topic.id
-  json.forum Forum.find(topic.forum_id).name
+  json.forum topic.forum.name
   json.name topic.name
   json.slug topic.slug
-  json.user User.find(topic.user_id).forum_name
+  json.user topic.user.forum_name
+  json.user_photo_url topic.user.api_photo_url
   json.pinned topic.pinned
   json.locked topic.locked
 end
