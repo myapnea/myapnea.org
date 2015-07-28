@@ -24,7 +24,10 @@
     = percent
 %h5.f300.primary-blue{ style: 'margin-bottom:30px;' }
   - if answer_session.completed? and answer_session.locked?
-    = link_to 'View report', report_survey_path(answer_session.survey, answer_session.encounter)
+    - if answer_session.child
+      = link_to 'View report', child_survey_report_path(answer_session.child.id, answer_session.survey, answer_session.encounter)
+    - else
+      = link_to 'View report', report_survey_path(answer_session.survey, answer_session.encounter)
   - elsif answer_session.survey.slug.present?
     - if answer_session.percent_completed == 100
       - link_text = 'Review and submit answers'
@@ -33,4 +36,7 @@
     - else
       - link_text = 'Start this survey now!'
 
-    = link_to link_text, show_survey_path(answer_session.survey.to_param, answer_session.encounter)
+    - if answer_session.child
+      = link_to link_text, child_survey_path(answer_session.child.id, answer_session.survey.to_param, answer_session.encounter)
+    - else
+      = link_to link_text, show_survey_path(answer_session.survey.to_param, answer_session.encounter)

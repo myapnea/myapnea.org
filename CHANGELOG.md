@@ -8,6 +8,11 @@
     - or
     - `s.launch_multiple(users, '6month', send_email: true)`
   - Automated survey followup emails can be sent when new surveys are launched
+  - Pediatric surveys have been added
+    - Caregivers of children fill out surveys on their children
+    - Children can be added one at a time and have unique surveys per child
+    - `s = Survey.find_by_slug 'about-my-child'`
+    - `s.launch_single_for_children(user, 'baseline')`
 - **Gem Changes**
   - Only run `web-console` in development mode
 

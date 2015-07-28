@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+
+  get "children/:child_id/surveys/:id/:encounter/report" => 'surveys#report', as: :child_survey_report
+  get "children/:child_id/surveys/:id/:encounter" => 'surveys#show', as: :child_survey
+  resources :children
+
+
   scope module: 'home' do
     get :dashboard
     get :landing

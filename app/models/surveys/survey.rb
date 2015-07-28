@@ -140,7 +140,7 @@ class Survey < ActiveRecord::Base
 
   # Instance Methods
   def launch_single(user, encounter, position: self[:default_position], send_email: false)
-    answer_session = user.answer_sessions.find_or_initialize_by(encounter: encounter, survey_id: self.id)
+    answer_session = user.answer_sessions.find_or_initialize_by(encounter: encounter, survey_id: self.id, child_id: nil)
     answer_session.position = position
     if answer_session.new_record?
       return_object = nil
@@ -169,6 +169,14 @@ class Survey < ActiveRecord::Base
     already_assigned.compact!
 
     already_assigned
+  end
+
+  def launch_single_for_children(user, encounter, position: self[:default_position], send_email: false)
+    user.children.each do |child|
+      answer_session = user.answer_sessions.find_or_initialize_by(encounter: encounter, survey_id: self.id, child_id: child.id)
+      answer_session.position = position
+      answer_session.save
+    end
   end
 
   ## Need to be fast

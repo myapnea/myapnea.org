@@ -7,13 +7,14 @@ class AnswerSession < ActiveRecord::Base
   belongs_to :first_answer, class_name: "Answer", foreign_key: "first_answer_id"
   belongs_to :last_answer, class_name: "Answer", foreign_key: "last_answer_id"
   belongs_to :user
+  belongs_to :child
   has_many :answer_edges
   has_many :answers, -> { where deleted: false }
   has_many :reports
 
   # Validations
   # Unique in terms of survey/encounter
-  validates :survey_id, uniqueness: { scope: [:encounter, :user_id] }
+  validates :survey_id, uniqueness: { scope: [:encounter, :user_id, :child_id] }
   validates :encounter, presence: true
 
   # Class Methods

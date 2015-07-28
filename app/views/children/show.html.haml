@@ -1,0 +1,20 @@
+.content-main-header
+  %h1.f300
+    Edit Child:
+    = @child.first_name
+  %h4
+    = link_to 'Children', children_path
+
+.content-container
+  .content-body
+    %dl.dl-horizontal
+      %dt First name
+      %dd= @child.first_name
+
+      %dt
+        %strong Age
+      %dd= @child.age
+
+      %dt
+        %strong Accepted consent at
+      %dd= @child.accepted_consent_at

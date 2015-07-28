@@ -13,7 +13,7 @@ class SurveysController < ApplicationController
   def index
     if current_user
       @surveys = current_user.is_only_academic? ? Survey.viewable : current_user.assigned_surveys
-      @answer_sessions = current_user.answer_sessions.joins(:survey).where.not(surveys: { slug: nil }).order(:locked, "surveys.name_en", :encounter)
+      @answer_sessions = current_user.answer_sessions.joins(:survey).where(child_id: nil).where.not(surveys: { slug: nil }).order(:locked, "surveys.name_en", :encounter)
     else
       @surveys = Survey.viewable
     end
@@ -66,7 +66,7 @@ class SurveysController < ApplicationController
 
   def set_survey
     @survey = Survey.includes(:ordered_questions).find_by_param(params[:id])
-    @answer_session = current_user.answer_sessions.where(survey_id: @survey.id, encounter: (params[:encounter] || 'baseline')).first if @survey
+    @answer_session = current_user.answer_sessions.where(survey_id: @survey.id, encounter: (params[:encounter] || 'baseline'), child_id: params[:child_id]).first if @survey
 
     if @answer_session.blank?
       redirect_to surveys_path and return unless current_user.is_only_academic?

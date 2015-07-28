@@ -79,6 +79,7 @@ class User < ActiveRecord::Base
   has_many :subscriptions
   has_many :users, class_name: "User", foreign_key: "provider_id"
   has_many :invites
+  has_many :children, -> { where deleted: false }
 
   # CDM
   has_one :cdm_demographic, foreign_key: 'patid'
