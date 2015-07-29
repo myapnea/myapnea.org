@@ -24,7 +24,6 @@
 //= require external/jquery.textcomplete.js
 //= require cleantheme/uservoice_left
 //= require google_analytics
-//= require bootstrap-tagsinput
 //= require main
 //= require pages
 //= require posts
