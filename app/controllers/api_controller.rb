@@ -78,7 +78,7 @@ class ApiController < ApplicationController
   # # Forums
 
   def topic_index
-    @topics = Topic.current.not_research.order(last_post_at: :desc, id: :desc)
+    @topics = Topic.current.viewable_by_user(current_user.present? ? current_user : nil).not_research.order(last_post_at: :desc, id: :desc)
     respond_to do |format|
       format.json { @topics }
     end

@@ -13,7 +13,7 @@
   - Votes
     - Added votes, scopable by relevant fields and ratings
   - Forums
-    - Added capability to get topic index, ordered by activity, and topic show data
+    - Added capability to get viewable topic index, ordered by activity, and topic show data
     - Added capability to create new forum topics
     - Added capability to create new posts
 - **Gem Changes**
