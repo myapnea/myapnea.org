@@ -1,1 +1,0 @@
-json.array! @question.answer_templates.first.answer_options, :value

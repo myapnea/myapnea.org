@@ -25,7 +25,6 @@
 //= require external/jquery.textcomplete.js
 //= require cleantheme/uservoice_left
 //= require google_analytics
-//= require bloodhound
 //= require bootstrap-tagsinput
 //= require main
 //= require pages
@@ -33,7 +32,6 @@
 //= require admin
 //= require admin/daily_engagement
 //= require votes
-//= require surveys
 //= require tools
 //= require fb
 //= require social/autocomplete_gender

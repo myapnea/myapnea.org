@@ -114,10 +114,6 @@ class AnswerSession < ActiveRecord::Base
         .where("parent_ae.child_answer_id is not null or child_ae.parent_answer_id is not null")
   end
 
-  def get_answer(question_id)
-    Answer.current.joins(:question).where(questions: {id: question_id}).where(answer_session_id: self.id).order("updated_at desc").limit(1).first
-  end
-
   def started?
     last_answer.present?
   end

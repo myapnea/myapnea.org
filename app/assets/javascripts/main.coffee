@@ -55,7 +55,6 @@ if typeof Turbolinks isnt 'undefined' and Turbolinks.supported
 @loaders = () ->
   mainLoader()
   consentReady()
-  surveysReady()
   teamReady()
   providersReady() if providersReady?
   questionsReady() if questionsReady?

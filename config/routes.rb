@@ -127,10 +127,6 @@ Rails.application.routes.draw do
   end
   get 'surveys/my-health-conditions/my_health_conditions_data' => 'surveys#my_health_conditions_data', format: :json
 
-  ## JSON
-  get 'questions/frequencies(/:question_id/:answer_session_id)', to: "questions#frequencies", as: :question_frequencies, format: :json
-  get 'questions/typeahead/:question_id', to: "questions#typeahead", as: :question_typeahead, format: :json
-
 
   ## Public Tools
   get 'sleep-apnea-risk-assessment' => 'tools#risk_assessment'
@@ -192,7 +188,6 @@ Rails.application.routes.draw do
   get 'pprn' => 'application#toggle_pprn_cookie'
 
   # Voting on Questions
-  resources :questions
   match 'vote', to: 'research_topics#vote', via: :post, as: :vote
   match 'remote-vote', to: 'research_topics#remote_vote', via: :post, as: :remote_vote
   match 'change-vote', to: 'research_topics#change_vote', via: :patch, as: :change_vote

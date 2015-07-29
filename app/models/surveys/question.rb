@@ -38,10 +38,6 @@ class Question < ActiveRecord::Base
     ce.present? ? ce.select {|edge| edge.condition.blank? }.first.ancestor : nil
   end
 
-  def conditional_children(survey)
-    candidate_edges(survey).select {|edge| edge.condition.present? }.map(&:descendant)
-  end
-
   def parent
     parents.first unless parents.blank?
   end
