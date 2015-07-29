@@ -1,17 +1,9 @@
 class ApiController < ApplicationController
 
-  # before_action :parse_request, only: [:vote]
-  # before_action :authenticate_app_from_token!, only: [:vote]
   before_action :authenticate_user!, only: [:home, :vote, :research_topic_create, :topic_create, :post_create]
 
   skip_before_action :verify_authenticity_token, only: [:vote, :research_topic_create, :topic_create, :post_create]
 
-  # ## Users
-  # def user_signup
-  # end
-
-  # def user_login
-  # end
 
   def home
     render json: { name: current_user.email }
@@ -30,7 +22,7 @@ class ApiController < ApplicationController
   end
 
   def research_topic_create
-    @new_research_topic = @user.research_topics.new(params.require(:research_topic).permit(:text, :description))
+    @new_research_topic = current_user.research_topics.new(params.require(:research_topic).permit(:text, :description))
     if @new_research_topic.save
       respond_to do |format|
         format.json { @new_research_topic }
@@ -62,9 +54,9 @@ class ApiController < ApplicationController
     @research_topic = ResearchTopic.find(params[:research_topic_id])
     @vote_failed = false
     if params["endorse"].to_s == "1"
-      @research_topic.endorse_by(@user, params["comment"])
+      @research_topic.endorse_by(current_user, params["comment"])
     elsif params["endorse"].to_s == "0"
-      @research_topic.oppose_by(@user, params["comment"])
+      @research_topic.oppose_by(current_user, params["comment"])
     else
       @vote_failed = true
     end
@@ -93,7 +85,7 @@ class ApiController < ApplicationController
   end
 
   def topic_create
-    @topic = @user.topics.where(forum_id: params[:forum_id]).new(params.require(:topic).permit(:name, :description))
+    @topic = current_user.topics.where(forum_id: params[:forum_id]).new(params.require(:topic).permit(:name, :description))
     if @topic.save
       respond_to do |format|
         format.json { @topic }
@@ -106,7 +98,7 @@ class ApiController < ApplicationController
   end
 
   def post_create
-    @post = @user.posts.where(topic_id: params[:topic_id]).new(params.require(:post).permit(:description))
+    @post = current_user.posts.where(topic_id: params[:topic_id]).new(params.require(:post).permit(:description))
     if @post.save
       respond_to do |format|
         format.json { @post }
@@ -120,28 +112,6 @@ class ApiController < ApplicationController
 
 
   private
-
-    # def authenticate_user!
-    #   unless params[:user_forum_name].present?
-    #     render nothing: true, status: :unauthorized
-    #   else
-    #     unless @user = User.find_by_forum_name(params[:user_forum_name])
-    #       render nothing: true, status: :bad_request
-    #     end
-    #   end
-    # end
-
-    def authenticate_app_from_token!
-      unless params['api_token'].present?
-        render nothing: true, status: :unauthorized
-      else
-        if Devise.secure_compare(ENV['api_token'], params['api_token'])
-          render nothing: true, status: :ok
-        else
-          render nothing: true, status: :unauthorized
-        end
-      end
-    end
 
     # def parse_request
     #   @json = JSON.parse(request.body.read)
