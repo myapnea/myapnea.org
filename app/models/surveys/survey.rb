@@ -12,11 +12,6 @@ class Survey < ActiveRecord::Base
   localize :description
   localize :short_description
 
-  # Authorization
-  include Authority::Abilities
-  self.authorizer_name = "OwnerAuthorizer"
-
-
   # Associations
   belongs_to :first_question, class_name: "Question"
   has_many :answer_sessions, -> { where deleted: false }

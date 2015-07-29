@@ -11,11 +11,8 @@ class Question < ActiveRecord::Base
   # Concerns
   include Localizable
   include Votable
-  include Authority::Abilities
-
 
   localize :text
-  self.authorizer_name = "OwnerAuthorizer"
 
   ## DAG
   has_dag_links :link_class_name => 'QuestionEdge'

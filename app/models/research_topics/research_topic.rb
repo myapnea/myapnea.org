@@ -3,7 +3,6 @@
 class ResearchTopic < ActiveRecord::Base
   # Concerns
   include Deletable
-  include Authority::Abilities
 
   # Accessors
   attr_writer :description, :text

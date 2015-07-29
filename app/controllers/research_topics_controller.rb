@@ -1,6 +1,6 @@
 class ResearchTopicsController < ApplicationController
   before_action :authenticate_user!,      only: [:create]
-  authorize_actions_for ResearchTopic,    only: [:create]
+  # authorize_actions_for ResearchTopic,    only: [:create]
 
   before_action :set_research_topic,      only: [:show, :edit, :update, :destroy]
 

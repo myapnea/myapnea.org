@@ -2,11 +2,6 @@ class User < ActiveRecord::Base
 
   mount_uploader :photo, PhotoUploader
 
-  include Authority::UserAbilities
-  include Authority::Abilities
-
-  self.authorizer_name = "UserAuthorizer"
-
   #  For recent updates to consent/privacy policy/etc
   RECENT_UPDATE_DATE = "2015-06-24"
 

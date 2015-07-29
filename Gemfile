@@ -60,9 +60,6 @@ gem 'redcarpet', '~> 3.3.2'
 # Directed Acyclic Graph
 gem 'acts-as-dag'
 
-# Authorization
-gem 'authority'
-
 # Facebook
 gem 'koala'
 
