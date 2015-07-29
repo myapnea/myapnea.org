@@ -45,9 +45,6 @@ class StaticController < ApplicationController
 
   end
 
-  def theme
-  end
-
   def version
   end
 

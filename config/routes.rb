@@ -27,7 +27,6 @@ Rails.application.routes.draw do
     get :learn
     get :faqs
     get :research
-    get :theme
     get :version
     get :sitemap
     get :sizes

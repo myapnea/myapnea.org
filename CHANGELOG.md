@@ -21,6 +21,7 @@
 
 ### Refactoring
 - Simplified processing single answers from surveys
+- Reduced JavaScript footprint by removing unused JavaScript files
 
 ## 7.3.2 (July 7, 2015)
 

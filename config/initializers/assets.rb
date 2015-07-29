@@ -6,7 +6,6 @@ Rails.application.config.assets.paths << Rails.root.join('app', 'assets', 'fonts
 Rails.application.config.assets.precompile += %w( pages.css )
 Rails.application.config.assets.precompile += %w( social/maps.js social/places.js typeahead-addresspicker.js google_analytics.js uservoice.js )
 Rails.application.config.assets.precompile += %w( .svg .eot .woff .ttf)
-Rails.application.config.assets.precompile += %w( bootswatch.js )
 Rails.application.config.assets.precompile += %w( home.js dashboard.js)
 Rails.application.config.assets.precompile += %w( reports/default.js reports/report_13.js )
 
