@@ -1,8 +1,5 @@
 class ApplicationController < ActionController::Base
 
-  # Add theme folder to view path
-  self.view_paths.unshift(*Rails.root.join('app', 'views', 'myapnea'))
-
   # Add flash types
   add_flash_types :warning
 
