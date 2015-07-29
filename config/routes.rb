@@ -239,6 +239,7 @@ Rails.application.routes.draw do
   #   post '/', to: 'api#user_signup'
   #   post '/', to: 'api#user_login'
   scope 'api' do
+    get :home, to: 'api#home'
     scope '/research-topics' do
       get '/', to: 'api#research_topic_index'
       get '/:research_topic_id', to: 'api#research_topic_show'

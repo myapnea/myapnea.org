@@ -5,6 +5,7 @@
   - Users
     - Added capability to create new users and login existing users via JSON request
     - Photo url passed for created posts and research topics, if available
+    - Home added to test for current session
   - Research Topics
     - Added capability to create new research topics as user
     - Added capability to cast vote as user

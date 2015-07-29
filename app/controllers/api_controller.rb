@@ -2,7 +2,7 @@ class ApiController < ApplicationController
 
   # before_action :parse_request, only: [:vote]
   # before_action :authenticate_app_from_token!, only: [:vote]
-  before_action :authenticate_user!, only: [:vote, :research_topic_create, :topic_create, :post_create]
+  before_action :authenticate_user!, only: [:home, :vote, :research_topic_create, :topic_create, :post_create]
 
   skip_before_action :verify_authenticity_token, only: [:vote, :research_topic_create, :topic_create, :post_create]
 
@@ -12,6 +12,10 @@ class ApiController < ApplicationController
 
   # def user_login
   # end
+
+  def home
+    render json: { name: current_user.email }
+  end
 
   ## Research Topics
   def research_topic_index
@@ -117,15 +121,15 @@ class ApiController < ApplicationController
 
   private
 
-    def authenticate_user!
-      unless params[:user_forum_name].present?
-        render nothing: true, status: :unauthorized
-      else
-        unless @user = User.find_by_forum_name(params[:user_forum_name])
-          render nothing: true, status: :bad_request
-        end
-      end
-    end
+    # def authenticate_user!
+    #   unless params[:user_forum_name].present?
+    #     render nothing: true, status: :unauthorized
+    #   else
+    #     unless @user = User.find_by_forum_name(params[:user_forum_name])
+    #       render nothing: true, status: :bad_request
+    #     end
+    #   end
+    # end
 
     def authenticate_app_from_token!
       unless params['api_token'].present?
