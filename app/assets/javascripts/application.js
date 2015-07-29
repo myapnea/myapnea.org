@@ -20,7 +20,6 @@
 //= require jquery.slimscroll
 //= require jquery.PrintArea
 //= require d3.min
-//= require bootbox.min
 //= require typeahead
 //= require external/jquery.textcomplete.js
 //= require cleantheme/uservoice_left
