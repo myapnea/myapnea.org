@@ -62,6 +62,17 @@
       .item
         .row.team-header
           .col-sm-3.col-md-offset-2.col-xs-4.col-sm-offset-1.col-xs-offset-4
+            = image_tag 'myapnea/team/PEP/dan_peroney.jpg', class: 'img-responsive team-member-picture-large'
+          .col-md-5.col-sm-6.col-xs-10.col-xs-offset-1
+            %h2.primary-blue Dan Peroney
+            %h3.text-dark7 CRT, MyApnea.Org Patient Engagement Panel Member
+        .row
+          .col-xs-10.col-xs-offset-1
+            %p
+              Daniel Peroney has 15 years of respiratory care experience working in hospitals, sleep labs and in home care.  He has instructed and managed over 7,000, and counting, CPAP users to help better their lives.  He is a graduate of the University of Pittsburgh at Johnstown.  He has sleep apnea and has been an active CPAP user for over 15 years.
+      .item
+        .row.team-header
+          .col-sm-3.col-md-offset-2.col-xs-4.col-sm-offset-1.col-xs-offset-4
             = image_tag 'myapnea/team/PEP/david_keepnews.jpg', class: 'img-responsive team-member-picture-large'
           .col-md-5.col-sm-6.col-xs-10.col-xs-offset-1
             %h2.primary-blue David Keepnews
@@ -149,7 +160,7 @@
             %p
               Formerly a psychologist and a book publishing professional.  Si is recovering form long-undiagnosed sleep disorders, including sleep apnea.  While is regaining her heath she is active on social media in areas of patient activism; using her expertise in differential diagnosis to urge physicians to listen more closely to the patients and ask about their sleep and dietary habits.  She hopes MyApnea.Org will help more physicians to save the lives of more patients.
   .content-footer
-    %ul#steering-committee-list
+    %ul.team-list#steering-committee-list
       %li.active{data: {target: "#carousel-steering-committee", slide: {to: "0"}}}
         = image_tag 'myapnea/team/redline_200x200.jpg', class: 'team-member-picture img-bw img-color'
       %li{data: {target: "#carousel-steering-committee", slide: {to: "1"}}}
@@ -158,13 +169,15 @@
         = image_tag 'myapnea/team/headapohl_200x200.jpg', class: 'team-member-picture img-bw'
       %li{data: {target: "#carousel-steering-committee", slide: {to: "3"}}}
         = image_tag 'myapnea/team/kapur_200x200.jpg', class: 'team-member-picture img-bw'
+    %p.centered
+      = link_to 'Learn more about the steering committee', governance_policy_path, class: 'no-underline'
     %br
-    %p.small.centered-text
-      = link_to 'Learn more about the steering committee', governance_policy_path
     %br
-    %ul#steering-committee-list
+    %ul.team-list#pep-committee-list
       %li.active{data: {target: "#carousel-steering-committee", slide: {to: "4"}}}
         = image_tag 'myapnea/team/PEP/andy_lowe.png', class: 'team-member-picture img-bw'
+      %li.active{data: {target: "#carousel-steering-committee", slide: {to: "12"}}}
+        = image_tag 'myapnea/team/PEP/dan_peroney.jpg', class: 'team-member-picture img-bw'
       %li.active{data: {target: "#carousel-steering-committee", slide: {to: "5"}}}
         = image_tag 'myapnea/team/PEP/david_keepnews.jpg', class: 'team-member-picture img-bw'
       %li.active{data: {target: "#carousel-steering-committee", slide: {to: "6"}}}
@@ -181,6 +194,5 @@
         = image_tag 'myapnea/team/PEP/sherry_hanes.jpg', class: 'team-member-picture img-bw'
       %li.active{data: {target: "#carousel-steering-committee", slide: {to: "12"}}}
         = image_tag 'myapnea/team/PEP/si_baker-goodwin.jpg', class: 'team-member-picture img-bw'
-    %br
-    %p.small.centered
-      = link_to 'Learn more about the patient engagement panel', pep_charter_path
+    %p.centered
+      = link_to 'Learn more about the patient engagement panel', pep_charter_path, class: 'no-underline'
