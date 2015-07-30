@@ -51,7 +51,59 @@
       .item
         .row.team-header
           .col-sm-3.col-md-offset-2.col-xs-4.col-sm-offset-1.col-xs-offset-4
-
+            = image_tag 'myapnea/team/internal/ekontos.jpg', class: 'img-responsive team-member-picture-large'
+          .col-md-5.col-sm-6.col-xs-10.col-xs-offset-1
+            %h2.primary-blue Emily Kontos
+            %h3.text-dark7 ScD, Product Manager
+        .row
+          .col-xs-10.col-xs-offset-1
+            %p
+      .item
+        .row.team-header
+          .col-sm-3.col-md-offset-2.col-xs-4.col-sm-offset-1.col-xs-offset-4
+            = image_tag 'myapnea/team/internal/rueschman.jpg', class: 'img-responsive team-member-picture-large'
+          .col-md-5.col-sm-6.col-xs-10.col-xs-offset-1
+            %h2.primary-blue Michael Rueschman
+            %h3.text-dark7 MPH, Data Manager, Product Manager
+        .row
+          .col-xs-10.col-xs-offset-1
+            %p
+      .item
+        .row.team-header
+          .col-sm-3.col-md-offset-2.col-xs-4.col-sm-offset-1.col-xs-offset-4
+            = image_tag 'myapnea/team/internal/remo.jpg', class: 'img-responsive team-member-picture-large'
+          .col-md-5.col-sm-6.col-xs-10.col-xs-offset-1
+            %h2.primary-blue Remo Mueller
+            %h3.text-dark7 PhD, Director of Informatics
+        .row
+          .col-xs-10.col-xs-offset-1
+            %p
+              Dr. Mueller leads the MyApnea.Org informatics team in designing an engaging, safe, and secure web site experience of MyApnea.Org members.
+      .item
+        .row.team-header
+          .col-sm-3.col-md-offset-2.col-xs-4.col-sm-offset-1.col-xs-offset-4
+            = image_tag 'myapnea/team/internal/kyle.jpg', class: 'img-responsive team-member-picture-large'
+          .col-md-5.col-sm-6.col-xs-10.col-xs-offset-1
+            %h2.primary-blue Kyle Rand
+            %h3.text-dark7 Developer
+        .row
+          .col-xs-10.col-xs-offset-1
+            %p
+              Kyle Rand is the main developer on MyApnea.Org, who brings to the table backgrounds in neuroscience, engineering and academic publishing. He is continuously iterating on both the web and mobile applications to make them more engaging and beneficial to the health of community members.
+      .item
+        .row.team-header
+          .col-sm-3.col-md-offset-2.col-xs-4.col-sm-offset-1.col-xs-offset-4
+            = image_tag 'myapnea/team/internal/cailler.jpg', class: 'img-responsive team-member-picture-large'
+          .col-md-5.col-sm-6.col-xs-10.col-xs-offset-1
+            %h2.primary-blue Michael Cailler
+            %h3.text-dark7 Community Manager
+        .row
+          .col-xs-10.col-xs-offset-1
+            %p
+              Michael Cailler is a sleep researcher in the Division of Sleep and Circadian Disorders at Brigham & Women’s Hospital. He is responsible for user feedback and community engagement on the site. He enjoys working closely with members to ensure that their views are included in the development of the site.
+      .item
+        .row.team-header
+          .col-sm-3.col-md-offset-2.col-xs-4.col-sm-offset-1.col-xs-offset-4
             = image_tag 'myapnea/team/PEP/andy_lowe.png', class: 'img-responsive team-member-picture-large'
           .col-md-5.col-sm-6.col-xs-10.col-xs-offset-1
             %h2.primary-blue William "Andy" Lowe
@@ -173,26 +225,41 @@
       = link_to 'Learn more about the steering committee', governance_policy_path, class: 'no-underline'
     %br
     %br
-    %ul.team-list#pep-committee-list
+    %ul.team-list#internal-list
       %li.active{data: {target: "#carousel-steering-committee", slide: {to: "4"}}}
-        = image_tag 'myapnea/team/PEP/andy_lowe.png', class: 'team-member-picture img-bw'
-      %li.active{data: {target: "#carousel-steering-committee", slide: {to: "12"}}}
-        = image_tag 'myapnea/team/PEP/dan_peroney.jpg', class: 'team-member-picture img-bw'
+        = image_tag 'myapnea/team/internal/ekontos.jpg', class: 'team-member-picture img-bw'
       %li.active{data: {target: "#carousel-steering-committee", slide: {to: "5"}}}
-        = image_tag 'myapnea/team/PEP/david_keepnews.jpg', class: 'team-member-picture img-bw'
-      %li.active{data: {target: "#carousel-steering-committee", slide: {to: "6"}}}
-        = image_tag 'myapnea/team/PEP/ian_dickerson.jpg', class: 'team-member-picture img-bw'
-      %li.active{data: {target: "#carousel-steering-committee", slide: {to: "7"}}}
-        = image_tag 'myapnea/team/PEP/jim_johnston.png', class: 'team-member-picture img-bw'
-      %li.active{data: {target: "#carousel-steering-committee", slide: {to: "8"}}}
-        = image_tag 'myapnea/team/PEP/kathy_page.jpg', class: 'team-member-picture img-bw'
+        = image_tag 'myapnea/team/internal/rueschman.jpg', class: 'team-member-picture img-bw'
+      %li{data: {target: "#carousel-steering-committee", slide: {to: "6"}}}
+        = image_tag 'myapnea/team/internal/remo.jpg', class: 'team-member-picture img-bw'
+      %li{data: {target: "#carousel-steering-committee", slide: {to: "7"}}}
+        = image_tag 'myapnea/team/internal/kyle.jpg', class: 'team-member-picture img-bw'
+      %li{data: {target: "#carousel-steering-committee", slide: {to: "8"}}}
+        = image_tag 'myapnea/team/internal/cailler.jpg', class: 'team-member-picture img-bw'
+    %p.centered
+      = link_to 'Learn more about the steering committee', governance_policy_path, class: 'no-underline'
+    %br
+    %br
+    %ul.team-list#pep-list
       %li.active{data: {target: "#carousel-steering-committee", slide: {to: "9"}}}
-        = image_tag 'myapnea/team/PEP/matt_epstein.png', class: 'team-member-picture img-bw'
+        = image_tag 'myapnea/team/PEP/andy_lowe.png', class: 'team-member-picture img-bw'
       %li.active{data: {target: "#carousel-steering-committee", slide: {to: "10"}}}
-        = image_tag 'myapnea/team/PEP/sarah_gorman.jpg', class: 'team-member-picture img-bw'
+        = image_tag 'myapnea/team/PEP/dan_peroney.jpg', class: 'team-member-picture img-bw'
       %li.active{data: {target: "#carousel-steering-committee", slide: {to: "11"}}}
-        = image_tag 'myapnea/team/PEP/sherry_hanes.jpg', class: 'team-member-picture img-bw'
+        = image_tag 'myapnea/team/PEP/david_keepnews.jpg', class: 'team-member-picture img-bw'
       %li.active{data: {target: "#carousel-steering-committee", slide: {to: "12"}}}
+        = image_tag 'myapnea/team/PEP/ian_dickerson.jpg', class: 'team-member-picture img-bw'
+      %li.active{data: {target: "#carousel-steering-committee", slide: {to: "13"}}}
+        = image_tag 'myapnea/team/PEP/jim_johnston.png', class: 'team-member-picture img-bw'
+      %li.active{data: {target: "#carousel-steering-committee", slide: {to: "14"}}}
+        = image_tag 'myapnea/team/PEP/kathy_page.jpg', class: 'team-member-picture img-bw'
+      %li.active{data: {target: "#carousel-steering-committee", slide: {to: "15"}}}
+        = image_tag 'myapnea/team/PEP/matt_epstein.png', class: 'team-member-picture img-bw'
+      %li.active{data: {target: "#carousel-steering-committee", slide: {to: "16"}}}
+        = image_tag 'myapnea/team/PEP/sarah_gorman.jpg', class: 'team-member-picture img-bw'
+      %li.active{data: {target: "#carousel-steering-committee", slide: {to: "17"}}}
+        = image_tag 'myapnea/team/PEP/sherry_hanes.jpg', class: 'team-member-picture img-bw'
+      %li.active{data: {target: "#carousel-steering-committee", slide: {to: "18"}}}
         = image_tag 'myapnea/team/PEP/si_baker-goodwin.jpg', class: 'team-member-picture img-bw'
     %p.centered
       = link_to 'Learn more about the patient engagement panel', pep_charter_path, class: 'no-underline'
