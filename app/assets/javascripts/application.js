@@ -30,7 +30,6 @@
 //= require admin/daily_engagement
 //= require votes
 //= require tools
-//= require fb
 //= require social/autocomplete_gender
 //= require reports/survey_reports
 //= require reports/display_types/horizontal_bar_graph

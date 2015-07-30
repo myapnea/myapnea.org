@@ -60,9 +60,6 @@ gem 'redcarpet', '~> 3.3.2'
 # Directed Acyclic Graph
 gem 'acts-as-dag'
 
-# Facebook
-gem 'koala'
-
 # Forum
 gem 'kaminari', '~> 0.16.3'
 

@@ -28,11 +28,6 @@ smtp_password:                "<%= print "Enter SMTP Password [password]: "; s =
 uservoice_id:                 "<%= print "Enter uservoice ID: "; gets.chomp %>"
 google_analytics_id:          "<%= print "Google Analytics ID: "; gets.chomp %>"
 google_analytics_report_id:   "<%= print "Google Analytics Report ID: "; gets.chomp %>"
-# database_url:                 "<%#= print "Enter Database URL: "; gets.chomp %>"
-
-# Facebook Integration
-fb_app_id:                    "<%= print "Enter the facebook app ID: "; gets.chomp %>"
-fb_app_secret:                "<%= print "Enter the facebook app secret: "; gets.chomp %>"
 
 # External Accounts
 oodt_enabled:                 "<%= print "Enable OODT? Y/N: "; ga = gets.chomp; ga == "Y" %>"
@@ -43,8 +38,6 @@ test:
   uservoice_id:                 ~
   google_analytics_id:          ~
   google_analytics_report_id:   ~
-  fb_app_id:                    ~
-  fb_app_secret:                ~
   research_topic_forum_slug:    "research-topics"
   research_topic_experience_threshold: "2"
 

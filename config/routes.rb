@@ -78,10 +78,6 @@ Rails.application.routes.draw do
   resources :providers
   get 'bwh', to: redirect("providers/bwh")
 
-  # Facebook Real Updates
-  # match "update_fb_feed", to: "posts#receive_update", as: :update_fb_feed, via: :post
-  # match "verify_fb_subscription", to: "posts#verify_subscription", as: :verify_fb_subscription, via: :get
-
   get "members", to: "members#index", as: :members
   get "members/:forum_name", to: "members#show", as: :member
   get "members_search", to: "members#search", as: :members_search

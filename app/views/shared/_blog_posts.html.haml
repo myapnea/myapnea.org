@@ -1,5 +1,0 @@
-- posts.each do |post|
-  - if post[:type] == :facebook
-    = render partial: "shared/fb_post", locals: { post: post, short: true }
-  - elsif post[:type] == :forum
-    = render partial: "shared/news_post", locals: {post: post, short: true }
