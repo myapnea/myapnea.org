@@ -77,8 +77,6 @@ gem 'mini_magick'
 # Search Engine Optimization (SEO)
 gem 'sitemap_generator'
 
-gem 'merit'
-
 # For Third-Party API Connections
 gem 'faraday'
 
