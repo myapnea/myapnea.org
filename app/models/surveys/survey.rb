@@ -216,7 +216,7 @@ class Survey < ActiveRecord::Base
   end
 
   def longest_path_length
-    path_length(source)
+    path_length(first_question)
   end
 
   def source
@@ -225,7 +225,11 @@ class Survey < ActiveRecord::Base
   ## End Aliases
 
   def path_length(current_question)
-    survey_question_orders.where(question_id: current_question.id).first.remaining_distance
+    if current_question
+      survey_question_orders.where(question_id: current_question.id).first.remaining_distance
+    else
+      0
+    end
   end
 
 
@@ -243,7 +247,11 @@ class Survey < ActiveRecord::Base
   # Fast (uses descendant cache?), returns array
   def all_questions_descendants
     # source .descendants is very fast with no db hits! why? How can we use it? It's type is ActiveRecord::Association::CollectionProxy
-    ([source] + source.descendants)
+    if first_question
+      ([first_question] + first_question.descendants)
+    else
+      []
+    end
   end
 
   def questions

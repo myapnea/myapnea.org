@@ -40,12 +40,12 @@
 # New
 av10:
   answer: a10
-  answer_template: sex
+  answer_template: custom_sex_template
   answer_option: male
 
 av11:
   answer: a11
-  answer_template: sex
+  answer_template: custom_sex_template
   answer_option: female
 
 av12:

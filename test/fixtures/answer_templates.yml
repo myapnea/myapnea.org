@@ -38,7 +38,7 @@
 # New
 
 
-sex:
+custom_sex_template:
   name: fixture_sex
   data_type: answer_option_id
 # answer_options
@@ -62,13 +62,13 @@ race_list:
 # Prefer not to answer
 
 
-specified_race:
+fixture_specified_race:
   name: fixture_specified_race
   data_type: text_value
   target_answer_option: 3
 
 
-birth_date:
+custom_date_template:
   name: fixture_birth_date
   data_type: text_value
 
@@ -110,3 +110,36 @@ spec_countries:
   data_type: text_value
   target_answer_option: 3
 
+## About Me
+birth_date_template:
+  name: fixture_birth_date
+  data_type: text_value
+
+sex_template:
+  name: fixture_sex
+  data_type: answer_option_id
+
+race:
+  name: race
+  data_type: answer_option_id
+  allow_multiple: true
+
+specified_race:
+  name: specified_race
+  data_type: text_value
+  target_answer_option: 6
+
+education_level:
+  name: education_level
+  data_type: answer_option_id
+
+## Additional Information About Me
+afford_difficulty_scale:
+  name: afford_difficulty_scale
+  data_type: answer_option_id
+
+## My Interest In Research
+myapnea_referral_source:
+  name: myapnea_referral_source
+  data_type: answer_option_id
+  allow_multiple: true

@@ -23,6 +23,7 @@
 - Simplified processing single answers from surveys
 - Reduced JavaScript footprint by removing unused JavaScript files
 - Overwriting views are no longer stored in myapnea subfolder
+- Restructured tests for surveys and improved overall test speed
 
 ## 7.3.2 (July 7, 2015)
 

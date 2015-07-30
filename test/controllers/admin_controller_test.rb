@@ -38,43 +38,41 @@ class AdminControllerTest < ActionController::TestCase
     assert_redirected_to new_user_session_path
   end
 
-  test "Owners should GET survey overview" do
+  test "should get admin surveys for owner" do
     login(users(:owner))
-
     get :surveys
     assert_response :success
   end
 
-  test "Moderators should GET survey overview" do
+  test "should get admin surveys for moderator" do
     login(users(:moderator_1))
-
     get :surveys
     assert_response :success
   end
 
 
-  test "should raise SecurityViolation for unauthorized users" do
+  test "should not get admin surveys for regular user" do
     login(users(:user_1))
-
     get :surveys
-
-    assert_authorization_exception
+    assert_redirected_to root_path
   end
 
   test "should get admin version stats" do
     login(users(:moderator_1))
-
     get :version_stats
-
     assert_not_nil assigns(:version_dates)
-
     assert_response :success
   end
 
   test "should get location report for admin" do
     login(users(:moderator_1))
-
     get :location
+    assert_response :success
+  end
+
+  test "should get cross tabs for owner" do
+    login(users(:owner))
+    get :cross_tabs
     assert_response :success
   end
 

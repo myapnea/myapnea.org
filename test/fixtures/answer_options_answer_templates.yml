@@ -54,16 +54,16 @@
 # New
 
 aoat18:
-  answer_template: sex
+  answer_template: custom_sex_template
   answer_option: male
 aoat19:
-  answer_template: sex
+  answer_template: custom_sex_template
   answer_option: female
 aoat20:
-  answer_template: sex
+  answer_template: custom_sex_template
   answer_option: other
 aoat21:
-  answer_template: sex
+  answer_template: custom_sex_template
   answer_option: prefer_not_to_answer
 
 aoat22:
@@ -128,3 +128,141 @@ aoat39:
 aoat40:
   answer_template: countries
   answer_option: prefer_not_to_answer
+
+## About Me Survey
+
+aoat_sex_1:
+  answer_template: sex_template
+  answer_option: sex_1
+aoat_sex_2:
+  answer_template: sex_template
+  answer_option: sex_2
+aoat_sex_3:
+  answer_template: sex_template
+  answer_option: sex_3
+aoat_sex_4:
+  answer_template: sex_template
+  answer_option: sex_4
+
+aoat_race_1:
+  answer_template: race
+  answer_option: race_1
+
+aoat_race_2:
+  answer_template: race
+  answer_option: race_2
+
+aoat_race_3:
+  answer_template: race
+  answer_option: race_3
+
+aoat_race_4:
+  answer_template: race
+  answer_option: race_4
+
+aoat_race_5:
+  answer_template: race
+  answer_option: race_5
+
+aoat_race_6:
+  answer_template: race
+  answer_option: race_6
+
+aoat_race_7:
+  answer_template: race
+  answer_option: race_7
+
+aoat_race_8:
+  answer_template: race
+  answer_option: race_8
+
+aoat_education_level_1:
+  answer_template: education_level
+  answer_option: education-level-1
+aoat_education_level_2:
+  answer_template: education_level
+  answer_option: education-level-2
+aoat_education_level_3:
+  answer_template: education_level
+  answer_option: education-level-3
+aoat_education_level_4:
+  answer_template: education_level
+  answer_option: education-level-4
+aoat_education_level_5:
+  answer_template: education_level
+  answer_option: education-level-5
+aoat_education_level_6:
+  answer_template: education_level
+  answer_option: education-level-6
+aoat_education_level_7:
+  answer_template: education_level
+  answer_option: education-level-7
+
+## Additional Information About Me Survey
+
+aoat_afford_difficulty_scale_1:
+  answer_template: afford_difficulty_scale
+  answer_option: afford-difficulty-scale-1
+aoat_afford_difficulty_scale_2:
+  answer_template: afford_difficulty_scale
+  answer_option: afford-difficulty-scale-2
+aoat_afford_difficulty_scale_3:
+  answer_template: afford_difficulty_scale
+  answer_option: afford-difficulty-scale-3
+aoat_afford_difficulty_scale_4:
+  answer_template: afford_difficulty_scale
+  answer_option: afford-difficulty-scale-4
+aoat_afford_difficulty_scale_5:
+  answer_template: afford_difficulty_scale
+  answer_option: afford-difficulty-scale-5
+aoat_afford_difficulty_scale_6:
+  answer_template: afford_difficulty_scale
+  answer_option: afford-difficulty-scale-6
+
+## My Interest In Research Survey
+
+aoat_myapnea_referral_source_1:
+  answer_template: myapnea_referral_source
+  answer_option: myapnea-referral-source-1
+aoat_myapnea_referral_source_2:
+  answer_template: myapnea_referral_source
+  answer_option: myapnea-referral-source-2
+aoat_myapnea_referral_source_3:
+  answer_template: myapnea_referral_source
+  answer_option: myapnea-referral-source-3
+aoat_myapnea_referral_source_4:
+  answer_template: myapnea_referral_source
+  answer_option: myapnea-referral-source-4
+aoat_myapnea_referral_source_5:
+  answer_template: myapnea_referral_source
+  answer_option: myapnea-referral-source-5
+aoat_myapnea_referral_source_6:
+  answer_template: myapnea_referral_source
+  answer_option: myapnea-referral-source-6
+aoat_myapnea_referral_source_7:
+  answer_template: myapnea_referral_source
+  answer_option: myapnea-referral-source-7
+aoat_myapnea_referral_source_8:
+  answer_template: myapnea_referral_source
+  answer_option: myapnea-referral-source-8
+aoat_myapnea_referral_source_9:
+  answer_template: myapnea_referral_source
+  answer_option: myapnea-referral-source-9
+aoat_myapnea_referral_source_10:
+  answer_template: myapnea_referral_source
+  answer_option: myapnea-referral-source-10
+aoat_myapnea_referral_source_11:
+  answer_template: myapnea_referral_source
+  answer_option: myapnea-referral-source-11
+aoat_myapnea_referral_source_12:
+  answer_template: myapnea_referral_source
+  answer_option: myapnea-referral-source-12
+aoat_myapnea_referral_source_13:
+  answer_template: myapnea_referral_source
+  answer_option: myapnea-referral-source-13
+aoat_myapnea_referral_source_14:
+  answer_template: myapnea_referral_source
+  answer_option: myapnea-referral-source-14
+aoat_myapnea_referral_source_15:
+  answer_template: myapnea_referral_source
+  answer_option: myapnea-referral-source-15

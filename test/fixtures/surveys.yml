@@ -1,10 +1,3 @@
-# To be removed in 6.0.0
-#deprecated:
-#  name_en: Deprecated Survey
-#  first_question: q1
-#  slug: deprecated-survey
-#  status: show
-
 new:
   name_en: New Survey
   first_question: radio1
@@ -32,3 +25,24 @@ for_reports:
   slug: for-reports
   status: hide
   default_position: 4
+
+about_me:
+  name_en: About Me
+  # first_question: date_of_birth
+  slug: about-me
+  status: show
+  default_position: 10
+
+additional_information_about_me:
+  name_en: Additional Information About Me
+  # first_question: height
+  slug: additional-information-about-me
+  status: show
+  default_position: 20
+
+my_interest_in_research:
+  name_en: My Interest in Research
+  # first_question: referral_methods
+  slug: my-interest-in-research
+  status: show
+  default_position: 110

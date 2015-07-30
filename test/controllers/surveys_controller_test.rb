@@ -61,7 +61,7 @@ class SurveysControllerTest < ActionController::TestCase
 
     refute answer_sessions(:incomplete).completed?
 
-    xhr :post, :process_answer, question_id: questions(:checkbox1), answer_session_id: answer_sessions(:incomplete), questions(:checkbox1).to_param => { answer_templates(:race_list).to_param => [answer_options(:wookie).id.to_s, answer_options(:other_race).id.to_s], answer_templates(:specified_race).to_param => "Polish"}, format: 'json'
+    xhr :post, :process_answer, question_id: questions(:checkbox1), answer_session_id: answer_sessions(:incomplete), questions(:checkbox1).to_param => { answer_templates(:race_list).to_param => [answer_options(:wookie).id.to_s, answer_options(:other_race).id.to_s], answer_templates(:fixture_specified_race).to_param => "Polish"}, format: 'json'
     created_answer = assigns(:answer_session).last_answer
 
     assert created_answer.persisted?
@@ -85,7 +85,7 @@ class SurveysControllerTest < ActionController::TestCase
 
     login(users(:has_incomplete_survey))
 
-    xhr :post, :process_answer, question_id: questions(:date1), answer_session_id: answer_sessions(:incomplete2_followup), questions(:date1).to_param => { answer_templates(:birth_date).to_param => { month: "3", day: "12", year: "1920" } }, format: 'json'
+    xhr :post, :process_answer, question_id: questions(:date1), answer_session_id: answer_sessions(:incomplete2_followup), questions(:date1).to_param => { answer_templates(:custom_date_template).to_param => { month: "3", day: "12", year: "1920" } }, format: 'json'
     created_answer = assigns(:answer_session).last_answer
 
     assert created_answer.persisted?

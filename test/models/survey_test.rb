@@ -2,7 +2,9 @@ require "test_helper"
 
 class SurveyTest < ActiveSupport::TestCase
 
+  # Loading from file will be deprecated
   test "#self.load_from_file" do
+    skip "Loading from file will be deprecated. Surveys will be built in online interface"
     assert_difference "Survey.count" do
       Survey.load_from_file("about-me")
     end
@@ -39,7 +41,9 @@ class SurveyTest < ActiveSupport::TestCase
 
   end
 
+
   test "All defined surveys should load with no problem" do
+    skip "Loading from file will be deprecated. Surveys will be built in online interface"
     assert_difference "Survey.count", Survey::SURVEY_LIST.length do
       Survey::SURVEY_LIST.each {|survey_slug| Survey.load_from_file(survey_slug)}
 
@@ -49,6 +53,7 @@ class SurveyTest < ActiveSupport::TestCase
   end
 
   test "Question list methods" do
+    skip "Loading from file will be deprecated. Surveys will be built in online interface"
     assert_difference "Survey.count" do
       Survey.load_from_file("about-me")
     end

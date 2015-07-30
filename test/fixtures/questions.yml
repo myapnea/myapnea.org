@@ -38,7 +38,7 @@ radio1:
   slug: sex-selection
   display_type: radio_input
   answer_templates:
-  - sex
+  - custom_sex_template
 
 radio2:
   text_en: What would your favorite color be?
@@ -53,14 +53,14 @@ checkbox1:
   display_type: checkbox_input
   answer_templates:
   - race_list
-  - specified_race
+  - fixture_specified_race
 
 date1:
   text_en: What is your date of birth?
   slug: dob
   display_type: custom_date_input
   answer_templates:
-  - birth_date
+  - custom_date_template
 
 radio_multiple1:
   text_en: How likely are you to doze off?
@@ -99,3 +99,52 @@ country1:
   answer_templates:
   - countries
   - spec_countries
+
+
+## About Me Survey
+date_of_birth:
+  text_en: What is your date of birth?
+  slug: date-of-birth
+  display_type: custom_date_input
+  answer_templates:
+  - birth_date_template
+
+sex:
+  text_en: What is your sex?
+  slug: sex
+  display_type: radio_input
+  answer_templates:
+  - sex
+
+race:
+  text_en: What is your racial background?
+  slug: race
+  display_type: checkbox_input
+  answer_templates:
+  - race
+  - specified_race
+
+education_level:
+  text_en: What is the highest degree or level of school you have completed?
+  slug: education-level
+  display_type: radio_input
+  answer_templates:
+  - education_level
+
+## Additional Information About Me Survey
+
+affording_basics:
+  text_en: "How hard is it for you (and your family) to pay for basics like food, rent or mortgage, heating, etc.?"
+  slug: affording-basics
+  display_type: radio_input
+  answer_templates:
+  - afford_difficulty_scale
+
+## My Interest In Research Survey
+
+referral_methods:
+  text_en:  How did you hear about MyApnea.Org?
+  slug: referral-methods
+  display_type: checkbox_input
+  answer_templates:
+  - myapnea_referral_source
