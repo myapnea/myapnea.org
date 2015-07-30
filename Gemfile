@@ -30,9 +30,6 @@ gem 'autoprefixer-rails', '4.0.2.2'
 # Directed Acyclic Graph
 gem 'acts-as-dag'
 
-# Blogs and Notifications
-gem 'acts-as-taggable-on'
-
 # Search Engine Optimization (SEO)
 gem 'sitemap_generator'
 
