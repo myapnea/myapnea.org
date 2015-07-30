@@ -1,84 +1,64 @@
 source 'https://rubygems.org'
 
-# Required in Rails 4 for logs to work on heroku production
-# gem 'rails_12factor', group: :production
-# gem 'airbrake'
+gem 'rails',                '4.2.3'
+
+# Database Adapter
+gem 'pg',                   '0.18.2'
+
+
+
+# Gems used by project
+gem 'devise'                                      # Authentication
+gem 'kaminari',             '~> 0.16.3'           # Pagination
+gem 'carrierwave',          '~> 0.10.0'           # File Uploads
+gem 'mini_magick'                                 # Image Resizing
+gem 'redcarpet',            '~> 3.3.2'            # Markdown on forums
+gem 'bootstrap-sass'                              # Bootstrap JS and SCSS
+gem 'font-awesome-rails'                          # Font Awesome Icons
+gem 'haml'                                        # HAML Views
+gem 'figaro',               '~> 1.1.1'            # Centralized Configuration
+gem 'geocoder'                                    # IP Location Lookup
 
 # To be removed if fixed in sprockets-rails 2.3.1 or higher
 gem 'sprockets-rails', '2.2.4'
+# autoprefixer-rails 5.0.0 breaks, locking autoprefixer-rails to 4.0.2.2 for the time being
+gem 'autoprefixer-rails', '4.0.2.2'
 
-gem 'thin'
 
-
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.3'
-# Use postgresql as the database for Active Record
-gem 'pg'
-
-# User HAML for views
-gem 'haml'
+# To Be Removed
 
 # Debugging
 gem 'byebug'
 
-# Helps Store Secrets Securely for Heroku Deploys
-gem 'figaro'
-
-# Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
-# Use CoffeeScript for .js.coffee assets and views
-gem 'coffee-rails', '~> 4.1.0'
-# See https://github.com/sstephenson/execjs#readme for more supported runtimes
-# gem 'therubyracer',  platforms: :ruby
-
-# Use jquery as the JavaScript library
-gem 'jquery-rails'
-# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.0'
-
-# Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-# gem 'spring', group: :development
-
-# Bootstrap and Styles
-gem 'sass-rails', '~> 5.0'
-gem 'bootstrap-sass'
-# autoprefixer-rails 5.0.0 breaks, locking autoprefixer-rails to 4.0.2.2 for the time being
-gem 'autoprefixer-rails', '4.0.2.2'
-gem 'font-awesome-rails'
-
-# Authentication
-gem 'devise'
-
 # String Matching
 gem 'fuzzy_match'
-
-# Markdown Support
-gem 'redcarpet', '~> 3.3.2'
 
 # Directed Acyclic Graph
 gem 'acts-as-dag'
 
-# Forum
-gem 'kaminari', '~> 0.16.3'
-
 # Blogs and Notifications
 gem 'acts-as-taggable-on'
 
-# User Profile
-gem 'geocoder'
-gem 'carrierwave'
-gem 'mini_magick'
-
 # Search Engine Optimization (SEO)
 gem 'sitemap_generator'
+
+# End To Be Removed
+
+
+
+# Rails Defaults
+gem 'coffee-rails',         '~> 4.1.0'
+gem 'sass-rails',           '~> 5.0'
+gem 'uglifier',             '>= 1.3.0'
+
+gem 'jbuilder',             '~> 2.0'
+gem 'jquery-rails'
+gem 'turbolinks'
 
 # Testing
 group :test do
   # Pretty printed test output
   gem 'minitest'
-  gem 'minitest-rails'
   gem 'minitest-reporters'
   gem 'simplecov',          '~> 0.10.0',           require: false
 end
