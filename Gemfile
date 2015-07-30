@@ -5,8 +5,6 @@ gem 'rails',                '4.2.3'
 # Database Adapter
 gem 'pg',                   '0.18.2'
 
-
-
 # Gems used by project
 gem 'devise'                                      # Authentication
 gem 'kaminari',             '~> 0.16.3'           # Pagination
@@ -18,10 +16,6 @@ gem 'font-awesome-rails'                          # Font Awesome Icons
 gem 'haml'                                        # HAML Views
 gem 'figaro',               '~> 1.1.1'            # Centralized Configuration
 gem 'geocoder'                                    # IP Location Lookup
-
-# autoprefixer-rails 5.0.0 breaks, locking autoprefixer-rails to 4.0.2.2 for the time being
-gem 'autoprefixer-rails', '4.0.2.2'
-
 
 # To Be Removed
 
