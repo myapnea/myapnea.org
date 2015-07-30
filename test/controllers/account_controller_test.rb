@@ -275,13 +275,8 @@ class AccountControllerTest < ActionController::TestCase
 
   # User type creation and Survey assignment
   test "should assign correct surveys for adult_diagnosed role" do
-    # Setup
-    load_survey_package
     login(users(:blank_slate))
-
     patch :set_user_type, user: { adult_diagnosed: true }
-
-    assert_equal 4, users(:blank_slate).assigned_surveys.count
 
     assert_includes users(:blank_slate).assigned_surveys, Survey.find_by_slug('about-me')
     assert_includes users(:blank_slate).assigned_surveys, Survey.find_by_slug('about-my-family')
@@ -289,51 +284,19 @@ class AccountControllerTest < ActionController::TestCase
     assert_includes users(:blank_slate).assigned_surveys, Survey.find_by_slug('my-sleep-apnea')
   end
 
-  test "should assign correct position to answer sessions" do
-    # Setup
-    load_survey_package
-    login(users(:blank_slate))
-
-    patch :set_user_type, user: { adult_diagnosed: true }
-
-    # Set a survey as complete
-    users(:blank_slate).answer_sessions.where(survey_id: Survey.find_by_slug("about-my-family").id).first.update(locked: true)
-
-    users(:blank_slate).answer_sessions.each do |as|
-      assert_not_nil as.position
-      assert_equal as.survey.default_position, as.position
-    end
-
-    # Assigned surveys should put completed at the end
-    assert_equal Survey.find_by_slug("about-me"), users(:blank_slate).assigned_surveys.first
-    assert_equal users(:blank_slate).assigned_surveys.second, Survey.find_by_slug("my-sleep-quality")
-    assert_equal users(:blank_slate).assigned_surveys.last, Survey.find_by_slug("about-my-family")
-  end
-
   test "should assign correct surveys for adult_at_risk role" do
-    # Setup
-    load_survey_package
     login(users(:blank_slate))
-
     patch :set_user_type, user: { adult_at_risk: true }
-
-    assert_equal 3, users(:blank_slate).assigned_surveys.count
 
     assert_includes users(:blank_slate).assigned_surveys, Survey.find_by_slug('about-me')
     assert_includes users(:blank_slate).assigned_surveys, Survey.find_by_slug('about-my-family')
     assert_includes users(:blank_slate).assigned_surveys, Survey.find_by_slug('my-sleep-quality')
     refute_includes users(:blank_slate).assigned_surveys, Survey.find_by_slug('my-sleep-apnea')
-
   end
 
   test "should assign correct surveys for caregiver_adult role" do
-    # Setup
-    load_survey_package
     login(users(:blank_slate))
-
     patch :set_user_type, user: { caregiver_adult: true }
-
-    assert_equal 2, users(:blank_slate).assigned_surveys.count
 
     assert_includes users(:blank_slate).assigned_surveys, Survey.find_by_slug('about-me')
     assert_includes users(:blank_slate).assigned_surveys, Survey.find_by_slug('about-my-family')
@@ -342,13 +305,8 @@ class AccountControllerTest < ActionController::TestCase
   end
 
   test "should assign correct surveys for caregiver_child role" do
-    # Setup
-    load_survey_package
     login(users(:blank_slate))
-
     patch :set_user_type, user: { caregiver_child: true }
-
-    assert_equal 2, users(:blank_slate).assigned_surveys.count
 
     assert_includes users(:blank_slate).assigned_surveys, Survey.find_by_slug('about-me')
     assert_includes users(:blank_slate).assigned_surveys, Survey.find_by_slug('about-my-family')
@@ -357,53 +315,27 @@ class AccountControllerTest < ActionController::TestCase
   end
 
   test "should not assign any surveys for researcher" do
-    # Setup
-    load_survey_package
     login(users(:blank_slate))
-
     patch :set_user_type, user: { researcher: true }
 
     assert_empty users(:blank_slate).assigned_surveys
   end
 
   test "should not assign any surveys for provider" do
-    # Setup
-    load_survey_package
     login(users(:blank_slate))
-
     patch :set_user_type, user: { provider: true }
 
     assert_empty users(:blank_slate).assigned_surveys
-
   end
 
   test "should assign adult_diagnosed surveys for provider+adult_diagnosed" do
-    # Setup
-    load_survey_package
     login(users(:blank_slate))
-
     patch :set_user_type, user: { adult_diagnosed: true, provider: true }
-
-    assert_equal 4, users(:blank_slate).assigned_surveys.count
 
     assert_includes users(:blank_slate).assigned_surveys, Survey.find_by_slug('about-me')
     assert_includes users(:blank_slate).assigned_surveys, Survey.find_by_slug('about-my-family')
     assert_includes users(:blank_slate).assigned_surveys, Survey.find_by_slug('my-sleep-quality')
     assert_includes users(:blank_slate).assigned_surveys, Survey.find_by_slug('my-sleep-apnea')
-
-  end
-
-
-  private
-
-  def load_survey_package
-    skip
-    assert_difference "Survey.count", 4 do
-      Survey.load_from_file("about-me")
-      Survey.load_from_file("about-my-family")
-      Survey.load_from_file("my-sleep-quality")
-      Survey.load_from_file("my-sleep-apnea")
-    end
   end
 
 end

@@ -46,3 +46,21 @@ my_interest_in_research:
   slug: my-interest-in-research
   status: show
   default_position: 110
+
+about_my_family:
+  name_en: About My Family
+  slug: about-my-family
+  status: show
+  default_position: 30
+
+my_sleep_quality:
+  name_en: My Sleep Quality
+  slug: my-sleep-quality
+  status: show
+  default_position: 60
+
+my_sleep_apnea:
+  name_en: My Sleep Apnea
+  slug: my-sleep-apnea
+  status: show
+  default_position: 70

@@ -511,7 +511,7 @@ class User < ActiveRecord::Base
             survey.launch_single(self, "baseline")
             survey
           else
-            logger.error "Survey #{survey_slug} could not be assigned to user #{self.email} - Survey could not be found."
+            Rails.logger.error "Survey #{survey_slug} could not be assigned to user #{self.email} - Survey could not be found."
             nil
           end
         end
