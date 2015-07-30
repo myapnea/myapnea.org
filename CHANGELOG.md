@@ -1,5 +1,9 @@
 ## 7.4.0
 
+### Enhancements
+- **Team Page Changes**
+  - Added first group of PEP members to the team page
+
 ## 7.3.2 (July 7, 2015)
 
 ### Bug Fix
