@@ -27,9 +27,6 @@ gem 'autoprefixer-rails', '4.0.2.2'
 
 # To Be Removed
 
-# Debugging
-gem 'byebug'
-
 # String Matching
 gem 'fuzzy_match'
 
