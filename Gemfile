@@ -77,9 +77,6 @@ gem 'mini_magick'
 # Search Engine Optimization (SEO)
 gem 'sitemap_generator'
 
-# For Third-Party API Connections
-gem 'faraday'
-
 # Testing
 group :test do
   # Pretty printed test output
