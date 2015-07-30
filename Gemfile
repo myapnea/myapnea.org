@@ -19,8 +19,6 @@ gem 'haml'                                        # HAML Views
 gem 'figaro',               '~> 1.1.1'            # Centralized Configuration
 gem 'geocoder'                                    # IP Location Lookup
 
-# To be removed if fixed in sprockets-rails 2.3.1 or higher
-gem 'sprockets-rails', '2.2.4'
 # autoprefixer-rails 5.0.0 breaks, locking autoprefixer-rails to 4.0.2.2 for the time being
 gem 'autoprefixer-rails', '4.0.2.2'
 
