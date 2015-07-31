@@ -1,0 +1,13 @@
+.content-main-header
+  %h1
+    = link_to 'Surveys', builder_surveys_path
+    &middot;
+    = link_to @survey.name, builder_survey_path(id: @survey)
+    &middot;
+    = link_to @question.slug_was, builder_survey_path(id: @survey, question_id: @question)
+    &middot;
+    Edit
+
+.content-container
+  .content-body
+    = render 'builder/questions/form'

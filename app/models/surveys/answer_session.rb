@@ -63,9 +63,9 @@ class AnswerSession < ActiveRecord::Base
       answer_modified = false
 
       # We want to update if answer is new, or answer value used to be blank.
-      #if answer.new_record? or answer.string_value != params[question.id.to_s] or answer.show_value.blank?
+      #if answer.new_record? or answer.string_value != params[question.to_param] or answer.show_value.blank?
       # Set Value and Save
-      answer.value = params[question.id.to_s]
+      answer.value = params[question.to_param]
       answer.save
       answer_modified = true
       #end

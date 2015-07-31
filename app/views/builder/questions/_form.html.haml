@@ -1,0 +1,40 @@
+- if @question.new_record?
+  - url = questions_builder_survey_path(id: @survey)
+  - method = :post
+- else
+  - url = question_builder_survey_path(id: @survey, question_id: @question.slug_was)
+  - method = :patch
+= form_for @question, url: url, method: method, html: { class: 'form-horizontal', multipart: true } do |f|
+  - if @question.errors.any?
+    .panel.panel-danger
+      .panel-heading
+        %strong
+          = pluralize(@question.errors.count, "error")
+          prohibited this question from being saved:
+
+      .panel-body
+        %ul
+          - @question.errors.full_messages.each do |message|
+            %li= message
+
+  .form-group
+    = f.label :text_en, 'Text EN', class: 'col-md-2 control-label'
+    .col-md-10
+      = f.text_field :text_en, class: 'form-control'
+
+  .form-group
+    = f.label :slug, 'URL Slug', class: 'col-md-2 control-label'
+    .col-md-10
+      = f.text_field :slug, class: 'form-control'
+      .text-info
+        Please only use lowercase letters, numbers, and dashes.
+
+  .form-group
+    = f.label :display_type, nil, class: 'col-md-2 control-label'
+    .col-md-10
+      = f.select :display_type, Question::DISPLAY_TYPE, { include_blank: true }, class: 'form-control'
+
+  .form-group
+    .col-md-10.col-md-offset-2
+      = f.submit nil, class: 'btn btn-primary'
+      = link_to 'Cancel', url, class: 'btn btn-default'

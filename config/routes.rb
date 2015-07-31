@@ -9,6 +9,15 @@ Rails.application.routes.draw do
     post "surveys", to: 'builder#create', as: :create_builder_surveys
     patch "surveys/:id", to: 'builder#update', as: :update_builder_survey
     delete "surveys/:id", to: 'builder#destroy', as: :destroy_builder_survey
+
+    # get "surveys/:id/questions", to: redirect("builder/surveys/%{id}"), as: :questions_builder_survey
+    get "surveys/:id/questions", to: 'builder#questions', as: :questions_builder_survey
+    get "surveys/:id/questions/new", to: 'builder#new_question', as: :new_question_builder_survey
+    get "surveys/:id/questions/:question_id", to: 'builder#question', as: :question_builder_survey
+    get "surveys/:id/questions/:question_id/edit", to: 'builder#edit_question', as: :edit_question_builder_survey
+    post "surveys/:id/questions", to: 'builder#create_question', as: :create_question_builder_survey
+    patch "surveys/:id/questions/:question_id", to: 'builder#update_question', as: :update_question_builder_survey
+    delete "surveys/:id/questions/:question_id", to: 'builder#destroy_question', as: :destroy_question_builder_survey
   end
 
   get "children/:child_id/surveys/:id/:encounter/report" => 'surveys#report', as: :child_survey_report

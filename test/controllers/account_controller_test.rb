@@ -35,6 +35,7 @@ class AccountControllerTest < ActionController::TestCase
   end
 
   test "should get registration about-me survey for logged in user" do
+    skip "Loading from file will be deprecated. Surveys will be built in online interface"
     Survey.load_from_file("about-me")
     login(users(:social))
     get :get_started_step_three

@@ -19,6 +19,8 @@
     - The target audience (ex: diagnosed, at risk)
     - The age range for pediatric surveys (ex: 2..8, 4..10)
     - The number of encounters and spacing between surveys (ex: baseline, 6 month followup)
+  - Questions can be added to surveys in online builder
+    - Question text, display_type, and slug can be modified
 - **Gem Changes**
   - Only run `web-console` in development mode
 

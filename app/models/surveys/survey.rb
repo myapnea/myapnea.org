@@ -35,22 +35,25 @@ class Survey < ActiveRecord::Base
   # Class Methods
 
   def to_param
-    slug
+    slug.blank? ? id : slug
   end
 
   def self.find_by_param(input)
-    find_by_slug(input)
+    self.where("surveys.slug = ? or surveys.id = ?", input.to_s, input.to_i).first
   end
+
+  # Simplified Version
+  # def to_param
+  #   slug
+  # end
+
+  # def self.find_by_param(input)
+  #   find_by_slug(input)
+  # end
 
   def editable_by?(current_user)
     self.user_id == current_user.id
   end
-
-  # OLD DEPRECATED
-  # def to_param
-  #   self[:slug] # || self[:id].to_s
-  # end
-
 
   def self.refresh_all_surveys
     Survey.all.each do |survey|

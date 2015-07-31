@@ -29,3 +29,20 @@
         %strong Status
       %dd
         = @survey.status
+
+    %table.table.table-bordered.table-striped
+      %thead
+        %tr
+          %th Text EN
+          %th URL Slug
+          %th Actions
+      - @survey.questions.each do |question|
+        %tr
+          %td= link_to question.text_en, question_builder_survey_path(id: @survey, question_id: question)
+          %td
+            %code
+              = question.slug
+          %td= link_to 'Edit', edit_question_builder_survey_path(id: @survey, question_id: question), class: 'btn btn-xs btn-default'
+      %tr
+        %td{ colspan: '3' }
+          = link_to 'Add Another Question', new_question_builder_survey_path(id: @survey), class: 'btn btn-xs btn-default'

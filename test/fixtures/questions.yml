@@ -148,3 +148,13 @@ referral_methods:
   display_type: checkbox_input
   answer_templates:
   - myapnea_referral_source
+
+## Build On Web
+
+web_question:
+  user: builder
+  text_en: Web Question
+  slug: web-question
+  display_type: radio_input
+  # answer_templates:
+  # -
