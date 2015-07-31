@@ -64,3 +64,10 @@ my_sleep_apnea:
   slug: my-sleep-apnea
   status: show
   default_position: 70
+
+built_on_web:
+  name_en: builder
+  user: builder
+  slug: built_on_web
+  status: show
+  # default_position:

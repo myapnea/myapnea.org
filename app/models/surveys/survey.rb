@@ -2,17 +2,25 @@ class Survey < ActiveRecord::Base
   # Constants
   SURVEY_DATA_LOCATION = ['lib', 'data', 'surveys']
   SURVEY_LIST = ['about-me', 'additional-information-about-me', 'about-my-family', 'my-interest-in-research', 'my-sleep-pattern', 'my-sleep-quality', 'my-quality-of-life', 'my-health-conditions', 'my-sleep-apnea', 'my-sleep-apnea-treatment', 'my-risk-profile']
+  STATUS = ['show', 'hide']
 
   # Concerns
   include Localizable
   include TSort
+  include Deletable
 
   # Translations                               position: (Forum.count + 1) * 10
   localize :name
   localize :description
   localize :short_description
 
+  # Model Validation
+  validates_presence_of :name_en, :slug, :status, :user_id
+  validates_uniqueness_of :slug, scope: [ :deleted ]
+  validates_format_of :slug, with: /\A(?!\Anew\Z)[a-z][a-z0-9\-]*\Z/
+
   # Associations
+  belongs_to :user
   belongs_to :first_question, class_name: "Question"
   has_many :answer_sessions, -> { where deleted: false }
   has_many :question_edges, dependent: :delete_all
@@ -32,6 +40,10 @@ class Survey < ActiveRecord::Base
 
   def self.find_by_param(input)
     find_by_slug(input)
+  end
+
+  def editable_by?(current_user)
+    self.user_id == current_user.id
   end
 
   # OLD DEPRECATED

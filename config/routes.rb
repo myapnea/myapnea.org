@@ -1,5 +1,15 @@
 Rails.application.routes.draw do
 
+  scope 'builder' do
+    get "", to: redirect("builder/surveys")
+    get "surveys", to: 'builder#index', as: :builder_surveys
+    get "surveys/new", to: 'builder#new', as: :new_builder_survey
+    get "surveys/:id", to: 'builder#show', as: :builder_survey
+    get "surveys/:id/edit", to: 'builder#edit', as: :edit_builder_survey
+    post "surveys", to: 'builder#create', as: :create_builder_surveys
+    patch "surveys/:id", to: 'builder#update', as: :update_builder_survey
+    delete "surveys/:id", to: 'builder#destroy', as: :destroy_builder_survey
+  end
 
   get "children/:child_id/surveys/:id/:encounter/report" => 'surveys#report', as: :child_survey_report
   get "children/:child_id/surveys/:id/:encounter" => 'surveys#show', as: :child_survey

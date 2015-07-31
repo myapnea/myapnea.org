@@ -61,7 +61,7 @@ class UsersController < ApplicationController
         params.require(:user).permit(
           :first_name, :last_name, :email, :forum_name, :emails_enabled,
           :age, :gender, :include_in_exports,
-          :owner, :moderator
+          :owner, :moderator, :can_build_surveys
         )
       else
         params.require(:user).permit(

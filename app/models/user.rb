@@ -328,6 +328,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  # Can Build Surveys
+  def editable_surveys
+    Survey.current.where(user_id: self.id)
+  end
 
   # Reports
   def answer_present?(params = {})

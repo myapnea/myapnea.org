@@ -13,6 +13,12 @@
     - Children can be added one at a time and have unique surveys per child
     - `s = Survey.find_by_slug 'about-my-child'`
     - `s.launch_single_for_children(user, 'baseline')`
+- **Online Survey Builder**
+  - Started work on an online survey builder for researchers and team members
+  - The online survey builder will let survey builders specify the following:
+    - The target audience (ex: diagnosed, at risk)
+    - The age range for pediatric surveys (ex: 2..8, 4..10)
+    - The number of encounters and spacing between surveys (ex: baseline, 6 month followup)
 - **Gem Changes**
   - Only run `web-console` in development mode
 

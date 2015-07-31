@@ -1,0 +1,31 @@
+.content-main-header
+  %h1
+    = link_to 'Surveys', builder_surveys_path
+    &middot;
+    = @survey.name
+
+  - if @survey.editable_by?(current_user)
+    = link_to 'Edit Survey', edit_builder_survey_path(id: @survey), class: 'btn btn-xs btn-default'
+    = link_to 'Delete Survey', builder_survey_path(id: @survey), method: :delete, class: 'btn btn-xs btn-danger', data: { confirm: "Are you sure you want to delete Survey #{@survey.name}?" }
+
+.content-container
+  .content-body
+
+    %dl.dl-horizontal
+      %dt
+        %strong Name EN
+      %dd= @survey.name_en
+
+      %dt
+        %strong Creator
+      %dd= @survey.user.name if @survey.user
+
+      %dt
+        %strong Slug
+      %dd
+        = @survey.slug
+
+      %dt
+        %strong Status
+      %dd
+        = @survey.status

@@ -56,6 +56,9 @@
       %dt Moderator
       %dd
         = simple_check @user.moderator?
+      %dt Can Build Surveys
+      %dd
+        = simple_check @user.can_build_surveys?
   .col-sm-6
     %ul.f500 User Types
     - @user.user_types.each do |ut|

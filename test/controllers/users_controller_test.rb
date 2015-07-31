@@ -104,6 +104,22 @@ class UsersControllerTest < ActionController::TestCase
     assert_redirected_to user_path(assigns(:user))
   end
 
+  test "should update user and enable survey building for user as owner" do
+    login(users(:owner))
+    put :update, id: @user, user: { can_build_surveys: '1' }
+    assert_not_nil assigns(:user)
+    assert_equal true, assigns(:user).can_build_surveys?
+    assert_redirected_to user_path(assigns(:user))
+  end
+
+  test "should not update user and enable survey building for user as regular user" do
+    login(users(:user_1))
+    put :update, id: @user, user: { can_build_surveys: '1' }
+    assert_nil assigns(:user)
+    assert_equal false, @user.can_build_surveys?
+    assert_redirected_to root_path
+  end
+
   test "should not update user for regular user" do
     login(users(:user_1))
     put :update, id: @user, user: { first_name: 'FirstName', last_name: 'LastName', email: 'valid_updated_email@example.com', emails_enabled: '1' }

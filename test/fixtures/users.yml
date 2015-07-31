@@ -241,3 +241,10 @@ provider_without_slug:
   # slug:
   encrypted_password: <%= pw %>
   provider: true
+
+builder:
+  first_name: Survey
+  last_name: Builder
+  email: builder@example.com
+  encrypted_password: <%= pw %>
+  can_build_surveys: true
