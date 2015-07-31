@@ -65,7 +65,7 @@ class SurveysController < ApplicationController
   private
 
   def set_survey
-    @survey = Survey.includes(:ordered_questions).find_by_param(params[:id])
+    @survey = Survey.includes(:questions).find_by_param(params[:id])
     @answer_session = current_user.answer_sessions.where(survey_id: @survey.id, encounter: (params[:encounter] || 'baseline'), child_id: params[:child_id]).first if @survey
 
     if @answer_session.blank?

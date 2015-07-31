@@ -24,8 +24,8 @@ class Survey < ActiveRecord::Base
   belongs_to :first_question, class_name: "Question"
   has_many :answer_sessions, -> { where deleted: false }
   has_many :question_edges, dependent: :delete_all
-  has_many :survey_question_orders, -> { order "question_number asc" }
-  has_many :ordered_questions, through: :survey_question_orders, foreign_key: "question_id", class_name: "Question", source: :question
+  has_many :survey_question_orders, -> { order :question_number }
+  has_many :questions, through: :survey_question_orders
   has_many :survey_answer_frequencies
   has_many :reports
 
@@ -115,7 +115,7 @@ class Survey < ActiveRecord::Base
     file_hash["description"] = description
     file_hash["status"] = status
 
-    file_hash["questions"] = ordered_questions.map do |q|
+    file_hash["questions"] = questions.map do |q|
       q_hash = {}
       q_hash["text"] = q.text
       q_hash["slug"] = q.slug
@@ -267,10 +267,6 @@ class Survey < ActiveRecord::Base
     else
       []
     end
-  end
-
-  def questions
-    ordered_questions
   end
 
   def question_text(question_slug)

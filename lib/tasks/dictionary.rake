@@ -12,7 +12,7 @@ namespace :dictionary do
       csv << ["folder", "id", "display_name", "description", "type", "units", "domain", "labels", "calculation"]
 
 
-      Survey.viewable.includes(ordered_questions: [ answer_templates: :answer_options]).each do |survey|
+      Survey.viewable.includes(questions: [ answer_templates: :answer_options]).each do |survey|
         survey.questions.each do |question|
           if question.display_type == 'radio_input_multiple'
             question.answer_templates.each do |at|
@@ -73,7 +73,7 @@ namespace :dictionary do
       row = ['encounter']
       question_slugs = []
 
-      Survey.viewable.includes(ordered_questions: [ answer_templates: :answer_options]).each do |survey|
+      Survey.viewable.includes(questions: [ answer_templates: :answer_options]).each do |survey|
         survey.questions.each do |question|
           if question.display_type == 'radio_input_multiple'
             question.answer_templates.each do |at|
