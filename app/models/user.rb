@@ -324,15 +324,6 @@ class User < ActiveRecord::Base
     Answer.current.where(answer_session_id: answer_session.id, question_id: question.id).order("updated_at desc").includes(answer_values: :answer_template).limit(1).first
   end
 
-  def unlock_survey!(slug, encounter)
-    as = answer_sessions.joins(:survey).where(surveys: {slug: slug}, encounter: encounter).first
-    if as.present?
-      as.unlock
-    else
-      nil
-    end
-  end
-
   # Can Build Surveys
   def editable_surveys
     Survey.current.where(user_id: self.id)

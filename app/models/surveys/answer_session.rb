@@ -97,7 +97,7 @@ class AnswerSession < ActiveRecord::Base
     end
   end
 
-  def unlock
+  def unlock!
     answers.each {|answer| answer.update(state: 'incomplete')}
     update(locked: false)
   end
@@ -131,12 +131,11 @@ class AnswerSession < ActiveRecord::Base
     completed_answers.count
   end
 
-
   def percent_completed
     if survey.questions.count > 0
-      answers.complete.count * 100.0 / survey.questions.count
+      (answers.complete.count * 100.0 / survey.questions.count).round
     else
-      100.0
+      100
     end
   end
 

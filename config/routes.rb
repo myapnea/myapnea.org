@@ -178,6 +178,7 @@ Rails.application.routes.draw do
   # Admin Section
   get 'admin' => 'admin#dashboard'
   get 'admin/surveys' => 'admin#surveys', as: 'admin_surveys'
+  post 'admin/unlock_survey' => 'admin#unlock_survey', as: 'admin_unlock_survey'
   get 'admin/research-topics' => 'admin#research_topics', as: 'admin_research_topics'
   get 'admin/version-stats' => 'admin#version_stats', as: 'admin_version_stats'
   get 'admin/cross-tabs' => 'admin#cross_tabs', as: 'admin_cross_tabs'

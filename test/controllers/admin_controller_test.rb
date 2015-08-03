@@ -50,10 +50,53 @@ class AdminControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-
   test "should not get admin surveys for regular user" do
     login(users(:user_1))
     get :surveys
+    assert_redirected_to root_path
+  end
+
+  test "should unlock survey for user as owner" do
+    login(users(:owner))
+    post :unlock_survey, user_id: users(:adult_diagnosed), answer_session_id: answer_sessions(:locked)
+
+    answer_sessions(:locked).reload
+
+    assert_not_nil assigns(:user)
+    assert_equal false, answer_sessions(:locked).locked?
+    assert_redirected_to assigns(:user)
+  end
+
+  test "should not unlock survey for without user as owner" do
+    login(users(:owner))
+    post :unlock_survey, user_id: -1, answer_session_id: answer_sessions(:locked)
+
+    answer_sessions(:locked).reload
+
+    assert_nil assigns(:user)
+    assert_equal true, answer_sessions(:locked).locked?
+    assert_redirected_to users_path
+  end
+
+  test "should unlock survey for user as moderator" do
+    login(users(:moderator_1))
+    post :unlock_survey, user_id: users(:adult_diagnosed), answer_session_id: answer_sessions(:locked)
+
+    answer_sessions(:locked).reload
+
+    assert_not_nil assigns(:user)
+    assert_equal false, answer_sessions(:locked).locked?
+    assert_redirected_to assigns(:user)
+  end
+
+  test "should not unlock survey for user as regular user" do
+    login(users(:user_1))
+    post :unlock_survey, user_id: users(:adult_diagnosed), answer_session_id: answer_sessions(:locked)
+
+    answer_sessions(:locked).reload
+
+    assert_nil assigns(:user)
+    assert_equal true, answer_sessions(:locked).locked?
     assert_redirected_to root_path
   end
 

@@ -8,9 +8,22 @@
   .content-header
     %p
       %span.f500 Total MyApnea.Org members:
-      %span.text-info= User.current.count
+      %span.text-info= number_with_delimiter User.current.count
     %p
       %span.f500 Members with signed consent:
-      %span.text-info= User.current.where("accepted_consent_at is not null").count
+      %span.text-info= number_with_delimiter User.current.where("accepted_consent_at is not null").count
   .content-body
-    = render partial: "surveys/partials/list"
+    %table.table.table-bordered.table-striped
+      %thead
+        %tr
+          %th Name
+          %th Number of Questions
+          %th Number Started
+          %th Number Completed
+      %tbody
+        - Survey.viewable.order(:name_en).each do |survey|
+          %tr
+            %td= link_to_if survey.editable_by?(current_user), survey.name, builder_survey_path(survey)
+            %td= survey.questions.count
+            %td= number_with_delimiter survey.answer_sessions.count
+            %td= number_with_delimiter survey.answer_sessions.where(locked: true).count

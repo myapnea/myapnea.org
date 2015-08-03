@@ -8,25 +8,6 @@ class UserTest < ActiveSupport::TestCase
   #   assert_not_nil users(:social).country_code
   # end
 
-  test "#unlock_survey" do
-    u = users(:has_completed_survey)
-    as = answer_sessions(:complete)
-    encounter = as.encounter
-    survey_slug = as.survey.slug
-
-    as.lock
-
-    assert as.completed?
-    assert as.locked?
-
-    assert_not_nil u.unlock_survey!(survey_slug, encounter)
-
-    as.reload
-    refute as.locked?
-    refute as.completed?
-  end
-
-
   test "#answer_value" do
     # For questions with answer option templates, return the value of the answer option
     assert_equal "2", users(:social).answer_value({survey_slug: 'for-reports', question_slug: 'country', encounter: 'baseline', answer_template_name: 'countries'})

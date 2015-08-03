@@ -76,3 +76,8 @@ without_questions_adult_diagnosed_baseline:
   # first_answer:
   # last_answer:
 
+locked:
+  user: adult_diagnosed
+  survey: built_on_web
+  encounter: baseline
+  locked: true

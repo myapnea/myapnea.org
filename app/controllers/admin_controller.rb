@@ -14,6 +14,18 @@ class AdminController < ApplicationController
   def surveys
   end
 
+  def unlock_survey
+    @user = User.current.find_by_id(params[:user_id])
+    if @user and answer_session = @user.answer_sessions.find_by_id(params[:answer_session_id])
+      answer_session.unlock!
+    end
+    if @user
+      redirect_to @user, notice: 'Survey unlocked successfully.'
+    else
+      redirect_to users_path
+    end
+  end
+
   def providers
     @providers = User.current.where(provider: true)
   end

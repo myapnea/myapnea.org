@@ -17,7 +17,7 @@ class AnswerSessionTest < ActiveSupport::TestCase
     as.lock
     assert as.locked?
 
-    as.unlock
+    as.unlock!
 
     refute as.locked?
 

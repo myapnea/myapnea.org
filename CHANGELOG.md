@@ -23,6 +23,8 @@
     - Question text, display_type, and slug can be modified
     - Answer Templates can be added to questions
     - Answer Options can be added to answer templates
+- **Admin Changes**
+  - Administrators can now unlock surveys for users from the user show page
 - **Gem Changes**
   - Only run `web-console` in development mode
 

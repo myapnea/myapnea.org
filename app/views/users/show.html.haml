@@ -7,7 +7,30 @@
       %p.lead
         View this member's full social profile:
         %span.f500= link_to @user.forum_name, member_path(@user.forum_name), class: 'no-underline darkerer-blue'
-  - if current_user.owner?
+- if current_user.owner?
+  .content-container
+    .content-header
+      %h1
+    .content-body
+      %table.table.table-bordered.table-striped
+        %thead
+          %tr
+            %th Assigned Survey
+            %th Encounter
+            %th Completion
+            %th Locked
+            %th Actions
+        %tbody
+          - @user.answer_sessions.includes(:survey).order("surveys.name_en", :encounter).each do |answer_session|
+            %tr
+              %td= answer_session.survey.name
+              %td= answer_session.encounter
+              %td= answer_session.percent_completed
+              %td= simple_check answer_session.locked?
+              %td
+                - if answer_session.locked?
+                  = link_to 'Unlock Survey', admin_unlock_survey_path(user_id: @user.id, answer_session_id: answer_session.id), method: :post, class: 'btn btn-primary btn-xs'
+
     .content-footer
       %h4 For admins:
       = render partial: 'users/admin_view', locals: { user: @user }
