@@ -51,7 +51,7 @@
   -# End of Survey
   .survey-container{ data: { object: 'survey-submit' } }
     .panel.centered-text{ style: "padding: 20px;"}
-      - if @survey.locked?(current_user)
+      - if @answer_session.locked?
         %p.lead You've already submitted this survey. You can compare your answers to others in the community by viewing the survey report!
         - if @answer_session.child
           = link_to "View Report", child_survey_report_path(@answer_session.child.id, @survey, @answer_session.encounter), class: "btn btn-success btn-lg"
