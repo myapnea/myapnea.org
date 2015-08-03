@@ -6,28 +6,20 @@ launched:
 incomplete:
   user: has_incomplete_survey
   survey: new
-  # first_answer: a10
-  # last_answer: a10
   encounter: baseline
 complete:
   user: has_completed_survey
   survey: new
-  # first_answer: a11
-  # last_answer: a13
   encounter: baseline
 
 incomplete2_baseline:
   user: has_incomplete_survey
   survey: new_2
-  # first_answer: date_answer1
-  # last_answer: date_answer1
   encounter: baseline
 
 incomplete2_followup:
   user: has_incomplete_survey
   survey: new_2
-  # first_answer: date_answer1
-  # last_answer: date_answer1
   encounter: followup
 
 #
@@ -39,15 +31,11 @@ incomplete2_followup:
 report_test1:
   user: social
   survey: for_reports
-  # first_answer: country_answer1
-  # last_answer: country_answer1
   encounter: baseline
 
 report_test2:
   user: participant
   survey: for_reports
-  # first_answer: country_answer2
-  # last_answer: country_answer2
   encounter: baseline
 
 without_questions_participant_baseline:
