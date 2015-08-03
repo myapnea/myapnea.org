@@ -133,7 +133,11 @@ class AnswerSession < ActiveRecord::Base
 
 
   def percent_completed
-    (answers.complete.count / survey.questions.count.to_f) * 100.0
+    if survey.questions.count > 0
+      answers.complete.count * 100.0 / survey.questions.count
+    else
+      100.0
+    end
   end
 
   def destroy

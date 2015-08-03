@@ -16,6 +16,13 @@ class SurveysControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should get index for user assigned a blank survey" do
+    login(users(:adult_diagnosed))
+    get :index
+    assert_not_nil assigns(:answer_sessions)
+    assert_response :success
+  end
+
   test "User needs to be logged in to see survey" do
     get :show, id: surveys(:new)
     assert_response 302

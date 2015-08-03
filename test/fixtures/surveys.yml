@@ -71,3 +71,10 @@ built_on_web:
   slug: built_on_web
   status: show
   # default_position:
+
+without_questions:
+  user: builder
+  name_en: without_questions
+  slug: without_questions
+  status: show
+  # default_position:

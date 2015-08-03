@@ -68,3 +68,11 @@ report_test2:
   first_answer: country_answer2
   last_answer: country_answer2
   encounter: baseline
+
+without_questions_adult_diagnosed_baseline:
+  user: adult_diagnosed
+  survey: without_questions
+  encounter: baseline
+  # first_answer:
+  # last_answer:
+
