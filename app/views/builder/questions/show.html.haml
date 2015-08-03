@@ -2,13 +2,13 @@
   %h1
     = link_to 'Surveys', builder_surveys_path
     &middot;
-    = link_to @survey.name, builder_survey_path(id: @survey)
+    = link_to @survey.name, builder_survey_path(@survey)
     &middot;
     = @question.slug
 
   - if @survey.editable_by?(current_user)
-    = link_to 'Edit Question', edit_question_builder_survey_path(id: @survey, question_id: @question), class: 'btn btn-xs btn-default'
-    = link_to 'Delete Question', question_builder_survey_path(id: @survey, question_id: @question), method: :delete, class: 'btn btn-xs btn-danger', data: { confirm: "Are you sure you want to delete Question #{@question.slug}?" }
+    = link_to 'Edit Question', edit_builder_survey_question_path(@survey, @question), class: 'btn btn-xs btn-default'
+    = link_to 'Delete Question', builder_survey_question_path(@survey, @question), method: :delete, class: 'btn btn-xs btn-danger', data: { confirm: "Are you sure you want to delete Question #{@question.slug}?" }
 
 .content-container
   .content-body
@@ -46,7 +46,7 @@
               %td= simple_check answer_template.allow_multiple
               %td= answer_template.target_answer_option
 
-              %td=# link_to 'Edit', edit_question_builder_survey_path(id: @survey, question_id: question), class: 'btn btn-xs btn-default'
+              %td=# link_to 'Edit', edit_builder_survey_question_path(@survey, question), class: 'btn btn-xs btn-default'
           %tr
             %td{ colspan: '5' }
               = link_to 'Add Another Answer Template', '#', class: 'btn btn-xs btn-default', data: { object: 'suppress-click' }

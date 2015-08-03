@@ -2,7 +2,7 @@
   - url = builder_surveys_path
   - method = :post
 - else
-  - url = builder_survey_path(id: @survey.slug_was)
+  - url = builder_survey_path(@survey.slug_was)
   - method = :patch
 = form_for @survey, url: url, method: method, html: { class: 'form-horizontal', multipart: true } do |f|
   - if @survey.errors.any?

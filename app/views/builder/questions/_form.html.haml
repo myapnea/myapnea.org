@@ -1,8 +1,8 @@
 - if @question.new_record?
-  - url = questions_builder_survey_path(id: @survey)
+  - url = builder_survey_questions_path(@survey)
   - method = :post
 - else
-  - url = question_builder_survey_path(id: @survey, question_id: @question.slug_was)
+  - url = builder_survey_question_path(@survey, @question.slug_was)
   - method = :patch
 = form_for @question, url: url, method: method, html: { class: 'form-horizontal', multipart: true } do |f|
   - if @question.errors.any?

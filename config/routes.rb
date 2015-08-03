@@ -1,23 +1,35 @@
 Rails.application.routes.draw do
 
-  scope 'builder' do
-    get "", to: redirect("builder/surveys")
-    get "surveys", to: 'builder#index', as: :builder_surveys
-    get "surveys/new", to: 'builder#new', as: :new_builder_survey
-    get "surveys/:id", to: 'builder#show', as: :builder_survey
-    get "surveys/:id/edit", to: 'builder#edit', as: :edit_builder_survey
-    post "surveys", to: 'builder#create', as: :create_builder_surveys
-    patch "surveys/:id", to: 'builder#update', as: :update_builder_survey
-    delete "surveys/:id", to: 'builder#destroy', as: :destroy_builder_survey
+  namespace :builder do
 
-    # get "surveys/:id/questions", to: redirect("builder/surveys/%{id}"), as: :questions_builder_survey
-    get "surveys/:id/questions", to: 'builder#questions', as: :questions_builder_survey
-    get "surveys/:id/questions/new", to: 'builder#new_question', as: :new_question_builder_survey
-    get "surveys/:id/questions/:question_id", to: 'builder#question', as: :question_builder_survey
-    get "surveys/:id/questions/:question_id/edit", to: 'builder#edit_question', as: :edit_question_builder_survey
-    post "surveys/:id/questions", to: 'builder#create_question', as: :create_question_builder_survey
-    patch "surveys/:id/questions/:question_id", to: 'builder#update_question', as: :update_question_builder_survey
-    delete "surveys/:id/questions/:question_id", to: 'builder#destroy_question', as: :destroy_question_builder_survey
+    resources :surveys do
+      resources :questions
+    end
+
+    scope 'builder' do
+
+      # get "", to: redirect("builder/surveys")
+      # get "surveys", to: 'builder#index', as: :builder_surveys
+      # get "surveys/new", to: 'builder#new', as: :new_builder_survey
+      # get "surveys/:id", to: 'builder#show', as: :builder_survey
+      # get "surveys/:id/edit", to: 'builder#edit', as: :edit_builder_survey
+      # post "surveys", to: 'builder#create', as: :create_builder_surveys
+      # patch "surveys/:id", to: 'builder#update', as: :update_builder_survey
+      # delete "surveys/:id", to: 'builder#destroy', as: :destroy_builder_survey
+
+
+
+
+      # # get "surveys/:id/questions", to: redirect("builder/surveys/%{id}"), as: :questions_builder_survey
+      # get "surveys/:id/questions", to: 'builder#questions', as: :questions_builder_survey
+      # get "surveys/:id/questions/new", to: 'builder#new_question', as: :new_question_builder_survey
+      # get "surveys/:id/questions/:question_id", to: 'builder#question', as: :question_builder_survey
+      # get "surveys/:id/questions/:question_id/edit", to: 'builder#edit_question', as: :edit_question_builder_survey
+      # post "surveys/:id/questions", to: 'builder#create_question', as: :create_question_builder_survey
+      # patch "surveys/:id/questions/:question_id", to: 'builder#update_question', as: :update_question_builder_survey
+      # delete "surveys/:id/questions/:question_id", to: 'builder#destroy_question', as: :destroy_question_builder_survey
+    end
+
   end
 
   get "children/:child_id/surveys/:id/:encounter/report" => 'surveys#report', as: :child_survey_report

@@ -25,10 +25,10 @@
         - else
           - @surveys.each do |survey|
             %tr
-              %td= link_to survey.name, builder_survey_path(id: survey)
+              %td= link_to survey.name, builder_survey_path(survey)
               %td= survey.slug
               %td= link_to_if current_user.owner?, survey.user.name, survey.user if survey.user
               %td= survey.status
               - if survey.editable_by?(current_user)
-                %td= link_to 'Edit', edit_builder_survey_path(id: survey)
-                %td= link_to 'Destroy', builder_survey_path(id: survey), method: :delete, data: { confirm: "Are you sure you want to delete Survey #{survey.name}?" }
+                %td= link_to 'Edit', edit_builder_survey_path(survey)
+                %td= link_to 'Destroy', builder_survey_path(survey), method: :delete, data: { confirm: "Are you sure you want to delete Survey #{survey.name}?" }
