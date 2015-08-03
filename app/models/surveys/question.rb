@@ -25,9 +25,6 @@ class Question < ActiveRecord::Base
   has_many :votes
   has_many :reports
 
-  ## DAG
-  has_dag_links :link_class_name => 'QuestionEdge'
-
   # Model Methods
 
   def to_param
@@ -42,29 +39,6 @@ class Question < ActiveRecord::Base
     end
   end
 
-  def next_question(survey)
-    candidate_edges(survey).first
-  end
-
-  def previous_question(survey)
-    candidate_edges(survey).first
-  end
-
-  def default_next_question(survey)
-    ce = candidate_edges(survey)
-    ce.present? ? ce.select {|edge| edge.condition.blank? }.first.descendant : nil
-  end
-
-  def default_previous_question(survey)
-    ce = candidate_edges(survey)
-    ce.present? ? ce.select {|edge| edge.condition.blank? }.first.ancestor : nil
-  end
-
-  def parent
-    parents.first unless parents.blank?
-  end
-  ##
-
   def answer_templates=(attribute_list)
     attribute_list.each do |attrs|
       answer_templates.build(attrs)
@@ -78,11 +52,5 @@ class Question < ActiveRecord::Base
   def user_skipped_question?(answer_session)
     applicable_to_user?(answer_session) and (answer_session.answers.where(question_id: self.id).select{|answer| answer.show_value.blank?}.exists?)
   end
-  ## End Reports
 
-  private
-
-  def candidate_edges(survey)
-    QuestionEdge.where(parent_question_id: self[:id], survey_id: survey.id, direct: true)
-  end
 end

@@ -6,8 +6,6 @@ class Answer < ActiveRecord::Base
   has_many :answer_values, -> { where deleted: false }, dependent: :destroy
   belongs_to :question
   belongs_to :answer_session
-  has_one :in_edge, class_name: "AnswerEdge", foreign_key: "child_answer_id", dependent: :destroy
-  has_one :out_edge, class_name: "AnswerEdge", foreign_key: "parent_answer_id", dependent: :destroy
   has_many :reports
 
   # Scopes
@@ -144,52 +142,6 @@ class Answer < ActiveRecord::Base
     end
   end
   ## End Value Methods
-
-  ## DAG methods
-  def next_answer
-    out_edge.present? ? out_edge.child_answer : nil
-  end
-
-  def previous_answer
-    in_edge.present? ? in_edge.parent_answer : nil
-  end
-
-  def descendants
-    descendant_list = []
-
-    head = self.next_answer
-    while head
-      descendant_list << head
-      head = head.next_answer
-    end
-
-    descendant_list
-  end
-
-  def destroy_descendant_edges
-    descendants.each do |d|
-      d.in_edge.destroy if d.in_edge
-      d.out_edge.destroy if d.out_edge
-    end
-  end
-  ## End DAG Methods
-
-  def next_question
-    candidate_edges = QuestionEdge.where(parent_question_id: question.id, direct: true, survey_id: answer_session.survey.id)
-
-    if candidate_edges.empty?
-      nil
-    else
-      if candidate_edges.length == 1
-        chosen_edge = candidate_edges.first
-      else
-        chosen_edge = candidate_edges.select {|e| fits_condition?(e.condition)}.first || candidate_edges.select { |e| e.condition == nil }.first || candidate_edges.first
-      end
-
-      chosen_edge.descendant
-    end
-
-  end
 
   def multiple_options?
     question.links_as_parent.length > 1

@@ -61,12 +61,8 @@ class SurveyTest < ActiveSupport::TestCase
     s = Survey.find_by_slug("about-me")
 
 
-    assert_equal s.all_questions_descendants.length, s.questions.to_a.length
-    assert_equal s.all_questions_descendants.map(&:text_en).sort, s.questions.map(&:text_en).sort
     assert_equal s.questions.count, s.questions.count
     assert_equal s.questions, s.questions
-    assert_equal s.questions.length, s.questions.count
-
   end
 
 

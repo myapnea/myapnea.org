@@ -87,19 +87,19 @@ class SurveysControllerTest < ActionController::TestCase
     refute answer_sessions(:incomplete).completed?
 
     xhr :post, :process_answer, question_id: questions(:checkbox1), answer_session_id: answer_sessions(:incomplete), response: { answer_templates(:race_list).to_param => [answer_options(:wookie).id.to_s, answer_options(:other_race).id.to_s], answer_templates(:fixture_specified_race).to_param => "Polish"}, format: 'json'
-    created_answer = assigns(:answer_session).last_answer
 
-    assert created_answer.persisted?
-    assert created_answer.complete?
-    refute created_answer.validation_errors.present?
+    assert_not_nil assigns(:answer)
 
-    refute created_answer.locked?
+    assert assigns(:answer).persisted?
+    assert assigns(:answer).complete?
+    refute assigns(:answer).validation_errors.present?
+    refute assigns(:answer).locked?
 
-    assert_equal answer_options(:wookie).id, created_answer.answer_values.first.answer_option_id
-    assert_equal 3, created_answer.answer_values.count
-    assert_equal "Wookie", created_answer.answer_values.first.answer_option.text
-    assert_equal "Some other race", created_answer.answer_values.second.answer_option.text
-    assert_equal "Polish", created_answer.answer_values.last.text_value
+    assert_equal answer_options(:wookie).id, assigns(:answer).answer_values.first.answer_option_id
+    assert_equal 3, assigns(:answer).answer_values.count
+    assert_equal "Wookie", assigns(:answer).answer_values.first.answer_option.text
+    assert_equal "Some other race", assigns(:answer).answer_values.second.answer_option.text
+    assert_equal "Polish", assigns(:answer).answer_values.last.text_value
 
     assert_equal 2, assigns(:answer_session).answers.complete.count, "#{assigns(:answer_session).survey.questions.count} #{assigns(:answer_session).answers.to_a}"
 
@@ -111,16 +111,16 @@ class SurveysControllerTest < ActionController::TestCase
     login(users(:has_incomplete_survey))
 
     xhr :post, :process_answer, question_id: questions(:date1), answer_session_id: answer_sessions(:incomplete2_followup), response: { answer_templates(:custom_date_template).to_param => { month: "3", day: "12", year: "1920" } }, format: 'json'
-    created_answer = assigns(:answer_session).last_answer
+    assert_not_nil assigns(:answer)
 
-    assert created_answer.persisted?
-    assert created_answer.complete?
-    refute created_answer.validation_errors.present?
+    assert assigns(:answer).persisted?
+    assert assigns(:answer).complete?
+    refute assigns(:answer).validation_errors.present?
 
-    refute created_answer.locked?
+    refute assigns(:answer).locked?
 
-    assert_equal 1, created_answer.answer_values.count
-    assert_equal "03/12/1920", created_answer.value[questions(:date1).answer_templates.first.id]
+    assert_equal 1, assigns(:answer).answer_values.count
+    assert_equal "03/12/1920", assigns(:answer).value[questions(:date1).answer_templates.first.id]
 
     assert_equal 1, assigns(:answer_session).answers.complete.count, "#{assigns(:answer_session).survey.questions.count} #{assigns(:answer_session).answers.to_a}"
 
@@ -134,16 +134,16 @@ class SurveysControllerTest < ActionController::TestCase
 
     invalid_value = "19999999"
     xhr :post, :process_answer, question_id: questions(:text1), answer_session_id: answer_sessions(:incomplete), response: { answer_templates(:text).to_param => invalid_value }, format: 'json'
-    created_answer = assigns(:answer_session).last_answer
+    assert_not_nil assigns(:answer)
 
-    assert created_answer.persisted?
-    assert created_answer.invalid?
-    assert created_answer.validation_errors.present?
-    refute created_answer.complete?
-    refute created_answer.locked?
+    assert assigns(:answer).persisted?
+    assert assigns(:answer).invalid?
+    assert assigns(:answer).validation_errors.present?
+    refute assigns(:answer).complete?
+    refute assigns(:answer).locked?
 
-    assert_equal 1, created_answer.answer_values.count
-    assert_equal invalid_value, created_answer.answer_values.first.text_value
+    assert_equal 1, assigns(:answer).answer_values.count
+    assert_equal invalid_value, assigns(:answer).answer_values.first.text_value
 
     assert_equal 1, assigns(:answer_session).answers.complete.count
 
@@ -159,15 +159,13 @@ class SurveysControllerTest < ActionController::TestCase
 
     assert_response :success
 
-    created_answer = assigns(:answer_session).last_answer
+    assert_not_nil assigns(:answer)
 
-    assert created_answer.persisted?
-    refute created_answer.complete?
-    refute created_answer.locked?
+    assert assigns(:answer).persisted?
+    refute assigns(:answer).complete?
+    refute assigns(:answer).locked?
 
     assert_equal 1, assigns(:answer_session).answers.complete.count, "#{assigns(:answer_session).survey.questions.count} #{assigns(:answer_session).answers.to_a}"
-
-
   end
 
   test "User can prefer not to answer a question on an assigned survey" do
@@ -176,12 +174,11 @@ class SurveysControllerTest < ActionController::TestCase
     refute answer_sessions(:incomplete).completed?
 
     xhr :post, :process_answer, question_id: questions(:checkbox1), answer_session_id: answer_sessions(:incomplete), response: { preferred_not_to_answer: '1' }, format: 'json'
-    created_answer = assigns(:answer_session).last_answer
+    assert_not_nil assigns(:answer)
 
-    assert created_answer.persisted?
-    assert created_answer.complete?
-
-    assert created_answer.preferred_not_to_answer?
+    assert assigns(:answer).persisted?
+    assert assigns(:answer).complete?
+    assert assigns(:answer).preferred_not_to_answer?
     assert_equal 2, assigns(:answer_session).answers.complete.count, "#{assigns(:answer_session).survey.questions.count} #{assigns(:answer_session).answers.to_a}"
 
     assert_response :success

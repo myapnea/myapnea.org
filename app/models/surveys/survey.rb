@@ -6,7 +6,6 @@ class Survey < ActiveRecord::Base
 
   # Concerns
   include Localizable
-  include TSort
   include Deletable
 
   # Translations                               position: (Forum.count + 1) * 10
@@ -21,9 +20,7 @@ class Survey < ActiveRecord::Base
 
   # Model Relationships
   belongs_to :user
-  belongs_to :first_question, class_name: "Question"
   has_many :answer_sessions, -> { where deleted: false }
-  has_many :question_edges, dependent: :delete_all
   has_many :survey_question_orders, -> { order :question_number }
   has_many :questions, through: :survey_question_orders
   has_many :survey_answer_frequencies
@@ -55,12 +52,6 @@ class Survey < ActiveRecord::Base
     self.user_id == current_user.id
   end
 
-  def self.refresh_all_surveys
-    Survey.all.each do |survey|
-      survey.refresh_precomputations
-    end
-  end
-
   def self.load_from_file(name)
     ## CREATES A NEW SURVEY
 
@@ -69,10 +60,7 @@ class Survey < ActiveRecord::Base
     # Find or Create Survey
     survey = Survey.where(slug: data_file["slug"]).first_or_create
     survey.update(name_en: data_file["name"], description_en: data_file["description"], status: data_file["status"], first_question_id: nil, default_position: data_file["default_position"])
-    QuestionEdge.destroy_all(survey_id: survey.id)
 
-
-    latest_question = nil
     data_file["questions"].each do |question_attributes|
       question = Question.where(slug: question_attributes["slug"]).first_or_create
       question.update(text_en: question_attributes["text"], display_type: question_attributes["display_type"])
@@ -91,19 +79,9 @@ class Survey < ActiveRecord::Base
       end
 
       survey.first_question_id = question.id if survey.first_question_id.blank?
-
-      if latest_question.present?
-        qe = QuestionEdge.build_edge(latest_question, question, nil, survey.id)
-
-        logger.info("Creating edge between #{latest_question.id} and #{question.id}")
-
-        raise StandardError, qe.errors.full_messages unless qe.save
-      end
-      latest_question = question
     end
 
     survey.save
-    survey.refresh_precomputations
   end
 
   def write_to_file
@@ -189,193 +167,14 @@ class Survey < ActiveRecord::Base
     end
   end
 
-  ## Aliases
-  def total_questions
-    longest_path_length
-  end
-
-  def longest_path_length
-    path_length(first_question)
-  end
-
-  def source
-    first_question
-  end
-  ## End Aliases
-
-  def path_length(current_question)
-    if current_question
-      survey_question_orders.where(question_id: current_question.id).first.remaining_distance
-    else
-      0
-    end
-  end
-
-
-  ## Same thing?
-  def most_recent_answer_session(user)
-    answer_sessions.where(user_id: user.id).order(updated_at: :desc).first
-  end
-
-  def most_recent_encounter(user)
-    answer_sessions.where(user_id: user.id).order("created_at desc").first
-  end
-  ##
-
-
-  # Fast (uses descendant cache?), returns array
-  def all_questions_descendants
-    # source .descendants is very fast with no db hits! why? How can we use it? It's type is ActiveRecord::Association::CollectionProxy
-    if first_question
-      ([first_question] + first_question.descendants)
-    else
-      []
-    end
-  end
-
   def question_text(question_slug)
     q = questions.where(slug: question_slug).first
 
     q.present? ? q.text : nil
   end
-  ##
-
-  # private
-
-  ## Called on precomputation:
-
-  ## Cached in database, need to be refreshed on change (when questions are updated!!)
-  # TODO: Put in survey rake task
-
-  # TODO: Rename - it's not tsorted edges but tsorted questions (nodes)
-
-  ## Needed for topographic sort, which is not very fast
-  def tsort_each_node(&block)
-    all_questions_descendants.each(&block)
-  end
-
-  def tsort_each_child(node, &block)
-    node.children.each(&block)
-  end
-
-
-  def tsorted_question_ids
-    if self[:tsored_nodes].blank?
-
-      update(tsorted_nodes: tsort.reverse.map(&:id).to_json)
-
-
-    end
-
-    JSON::parse(self[:tsorted_nodes])
-  end
-
-
-
-
-
-  # Cache ordering in database and allow quick lookup of questions. Need to be run on reload!!
-  # TODO: Put in survey rake task
-  def refresh_precomputations
-    # tsort nodes
-    update(tsorted_nodes: nil)
-    tsorted_question_ids
-
-    # survey_question_order
-    load_survey_question_order
-  end
-
-  def load_survey_question_order
-    survey_question_orders.destroy_all
-
-    tsort.reverse.each_with_index do |question, order|
-
-      SurveyQuestionOrder.create(question_id: question.id, survey_id: self.id, question_number: order + 1, remaining_distance: find_longest_path_length_to_leaf(question) )
-
-    end
-  end
-
-  # Should only be called when precomputing
-  def find_leaf
-    if first_question.descendants.length > 0
-      leaves = first_question.descendants.select {|q| q.leaf?}
-
-      raise StandardError, "Multiple leaves found!" if leaves.length > 1
-      raise StandardError, "No leaf found!" if leaves.length == 0
-
-      leaves.first
-    else
-      # Only one question!
-      first_question
-    end
-
-  end
-
-
-
-
-  def find_leaves
-    if first_question.descendants.length > 0
-      first_question.descendants.select {|q| q.leaf?}
-
-
-    else
-      # Only one question!
-      [first_question]
-    end
-
-  end
-
-
-
-
-  ### Used in calculating remaining path.
-  def find_longest_path_length_to_leaf(source)
-    longest = 0
-
-    find_leaves.each do |a_leaf|
-      begin
-        temp_result = find_longest_path_length(source,a_leaf)
-      rescue
-        temp_result = 0
-      end
-
-      longest = [longest, temp_result].max if temp_result
-    end
-
-    longest
-  end
-
-  def find_longest_path_length(source, destination)
-    # Cached
-    topological_order = tsorted_question_ids[tsorted_question_ids.find_index(source.id)..tsorted_question_ids.find_index(destination.id)]
-
-
-    # Set to -Inifinity
-    distances = Hash[topological_order.map {|q| [q,-1*Float::INFINITY]}]
-
-    distances[source.id] = 1
-
-    topological_order.each do |question_id|
-      question = Question.find(question_id)
-
-      question.children.each do |child|
-
-        eq_test = distances[child.id] < distances[question.id] + 1
-
-        if eq_test
-          distances[child.id] = distances[question.id] + 1
-        end
-      end
-    end
-
-    distances[destination.id]
-  end
-  ## End called on precomputation
 
   def deprecated?
     self[:slug].nil?
   end
-
 
 end

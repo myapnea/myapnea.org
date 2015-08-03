@@ -19,9 +19,6 @@ gem 'geocoder'                                    # IP Location Lookup
 
 # To Be Removed
 
-# Directed Acyclic Graph
-gem 'acts-as-dag'
-
 # Search Engine Optimization (SEO)
 gem 'sitemap_generator'
 
