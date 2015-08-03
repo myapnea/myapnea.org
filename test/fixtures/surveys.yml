@@ -78,3 +78,10 @@ without_questions:
   slug: without_questions
   status: show
   # default_position:
+
+without_answer_templates:
+  user: builder
+  name_en: without_answer_templates
+  slug: without_answer_templates
+  status: show
+  # default_position:

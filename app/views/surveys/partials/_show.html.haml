@@ -46,7 +46,11 @@
   -# Expects a @survey and @answer_session variable
   -# Dynamically Loaded:
   - @survey.questions.each_with_index do |question, index|
-    = render partial: "surveys/question_templates/#{question.display_type}", locals: { question: question, answer_session: @answer_session, answer: Answer.first_or_new(question, @answer_session), question_number: index }
+    - if question.answer_templates.count > 0
+      = render "surveys/question_templates/#{question.display_type}", question: question, answer_session: @answer_session, answer: Answer.first_or_new(question, @answer_session), question_number: index
+    - else
+      = render 'surveys/question_templates/no_answer_templates', question: question, answer_session: @answer_session, answer: Answer.first_or_new(question, @answer_session), question_number: index
+
 
   -# End of Survey
   .survey-container{ data: { object: 'survey-submit' } }

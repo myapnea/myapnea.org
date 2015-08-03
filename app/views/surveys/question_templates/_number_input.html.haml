@@ -6,7 +6,7 @@
       - answer_template = question.answer_templates.first
       .row
         .col-xs-6{ style: 'text-align:right'}
-          = number_field_tag "#{question.id}[#{answer_template.id}]", answer.value[answer_template.id], disabled: answer.locked?, class: 'number-input', data: { object: 'number-validation' }
+          = number_field_tag "#{question.id}[#{answer_template.id}]", answer.value[answer_template.id], disabled: answer.locked?, name: "response[#{answer_template.id}]", class: 'number-input', data: { object: 'number-validation' }
         .col-xs-6{ style: 'text-align:left'}
           .number-label= answer_template.unit if answer_template.unit.present?
       .row

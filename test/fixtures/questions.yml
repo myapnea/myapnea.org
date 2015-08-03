@@ -158,3 +158,10 @@ web_question:
   display_type: radio_input
   answer_templates:
   - web_answer_template
+
+no_answer_template:
+  user: builder
+  text_en: Web Question
+  slug: web-question
+  display_type: radio_input
+  # answer_templates:

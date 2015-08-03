@@ -53,7 +53,7 @@ class AnswerSession < ActiveRecord::Base
     self[:locked]
   end
 
-  def process_answer(question, params)
+  def process_answer(question, response)
     answer = answers.where(question_id: question.id).first || answers.build(question_id: question.id)
 
     if answer.locked?
@@ -63,9 +63,9 @@ class AnswerSession < ActiveRecord::Base
       answer_modified = false
 
       # We want to update if answer is new, or answer value used to be blank.
-      #if answer.new_record? or answer.string_value != params[question.to_param] or answer.show_value.blank?
+      #if answer.new_record? or answer.string_value != response or answer.show_value.blank?
       # Set Value and Save
-      answer.value = params[question.to_param]
+      answer.value = response
       answer.save
       answer_modified = true
       #end

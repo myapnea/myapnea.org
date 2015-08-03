@@ -23,15 +23,33 @@ class SurveysControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "User needs to be logged in to see survey" do
+  test "should not get survey for logged out user" do
     get :show, id: surveys(:new)
-    assert_response 302
+    assert_redirected_to new_user_session_path
   end
 
   ## Assigned Surveys
   test "should show survey for regular user" do
     login(users(:has_launched_survey))
     get :show, id: answer_sessions(:launched).survey
+    assert_response :success
+  end
+
+  test "should show survey that has no questions" do
+    login(users(:participant))
+    get :show, id: answer_sessions(:without_questions_participant_baseline).survey, encounter: answer_sessions(:without_questions_participant_baseline).encounter
+    assert_not_nil assigns(:survey)
+    assert_not_nil assigns(:answer_session)
+    assert_equal 0, assigns(:survey).questions.count
+    assert_response :success
+  end
+
+  test "should show survey that has questions without answer templates" do
+    login(users(:participant))
+    get :show, id: answer_sessions(:without_answer_templates_participant_baseline).survey, encounter: answer_sessions(:without_answer_templates_participant_baseline).encounter
+    assert_not_nil assigns(:survey)
+    assert_not_nil assigns(:answer_session)
+    assert_equal 0, assigns(:survey).questions.first.answer_templates.count
     assert_response :success
   end
 
@@ -68,7 +86,7 @@ class SurveysControllerTest < ActionController::TestCase
 
     refute answer_sessions(:incomplete).completed?
 
-    xhr :post, :process_answer, question_id: questions(:checkbox1), answer_session_id: answer_sessions(:incomplete), questions(:checkbox1).to_param => { answer_templates(:race_list).to_param => [answer_options(:wookie).id.to_s, answer_options(:other_race).id.to_s], answer_templates(:fixture_specified_race).to_param => "Polish"}, format: 'json'
+    xhr :post, :process_answer, question_id: questions(:checkbox1), answer_session_id: answer_sessions(:incomplete), response: { answer_templates(:race_list).to_param => [answer_options(:wookie).id.to_s, answer_options(:other_race).id.to_s], answer_templates(:fixture_specified_race).to_param => "Polish"}, format: 'json'
     created_answer = assigns(:answer_session).last_answer
 
     assert created_answer.persisted?
@@ -92,7 +110,7 @@ class SurveysControllerTest < ActionController::TestCase
 
     login(users(:has_incomplete_survey))
 
-    xhr :post, :process_answer, question_id: questions(:date1), answer_session_id: answer_sessions(:incomplete2_followup), questions(:date1).to_param => { answer_templates(:custom_date_template).to_param => { month: "3", day: "12", year: "1920" } }, format: 'json'
+    xhr :post, :process_answer, question_id: questions(:date1), answer_session_id: answer_sessions(:incomplete2_followup), response: { answer_templates(:custom_date_template).to_param => { month: "3", day: "12", year: "1920" } }, format: 'json'
     created_answer = assigns(:answer_session).last_answer
 
     assert created_answer.persisted?
@@ -115,7 +133,7 @@ class SurveysControllerTest < ActionController::TestCase
     refute answer_sessions(:incomplete).completed?
 
     invalid_value = "19999999"
-    xhr :post, :process_answer, question_id: questions(:text1), answer_session_id: answer_sessions(:incomplete), questions(:text1).to_param => { answer_templates(:text).to_param => invalid_value }, format: 'json'
+    xhr :post, :process_answer, question_id: questions(:text1), answer_session_id: answer_sessions(:incomplete), response: { answer_templates(:text).to_param => invalid_value }, format: 'json'
     created_answer = assigns(:answer_session).last_answer
 
     assert created_answer.persisted?
@@ -157,7 +175,7 @@ class SurveysControllerTest < ActionController::TestCase
 
     refute answer_sessions(:incomplete).completed?
 
-    xhr :post, :process_answer, question_id: questions(:checkbox1), answer_session_id: answer_sessions(:incomplete), questions(:checkbox1).to_param => { preferred_not_to_answer: '1' }, format: 'json'
+    xhr :post, :process_answer, question_id: questions(:checkbox1), answer_session_id: answer_sessions(:incomplete), response: { preferred_not_to_answer: '1' }, format: 'json'
     created_answer = assigns(:answer_session).last_answer
 
     assert created_answer.persisted?

@@ -35,7 +35,11 @@ class Question < ActiveRecord::Base
   end
 
   def self.find_by_param(input)
-    self.where("questions.slug = ? or questions.id = ?", input.to_s, input.to_i).first
+    if input.class == Question
+      input
+    else
+      self.where("questions.slug = ? or questions.id = ?", input.to_s, input.to_i).first
+    end
   end
 
   def next_question(survey)

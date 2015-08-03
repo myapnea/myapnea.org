@@ -224,7 +224,7 @@ class Answer < ActiveRecord::Base
 
     if preferred_not_to_answer
       self[:state] = 'complete'
-    elsif validation_result[:valid]
+    elsif validation_result[:valid] and template_completions.count > 0
       self[:state] = (template_completions.all? ? 'complete' : 'incomplete')
     else
       self[:state] = "invalid"

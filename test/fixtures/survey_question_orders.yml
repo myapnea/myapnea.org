@@ -124,3 +124,9 @@ built_on_web_0:
   survey: built_on_web
   question: web_question
   question_number: 0
+
+## Without Answer Templates
+without_answer_templates_0:
+  survey: without_answer_templates
+  question: no_answer_template
+  question_number: 0

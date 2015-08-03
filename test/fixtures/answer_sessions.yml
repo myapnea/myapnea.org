@@ -69,12 +69,15 @@ report_test2:
   last_answer: country_answer2
   encounter: baseline
 
-without_questions_adult_diagnosed_baseline:
-  user: adult_diagnosed
+without_questions_participant_baseline:
+  user: participant
   survey: without_questions
   encounter: baseline
-  # first_answer:
-  # last_answer:
+
+without_answer_templates_participant_baseline:
+  user: participant
+  survey: without_answer_templates
+  encounter: baseline
 
 locked:
   user: adult_diagnosed

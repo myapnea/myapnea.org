@@ -6,12 +6,12 @@
       - answer_template = question.answer_templates.first
       .row
         .col-xs-6{ style: 'text-align:right'}
-          = select_tag "#{question.id}[#{answer_template.id}][feet]", options_for_select(0..8, selected: answer_template.postprocess_value(answer.value)["feet"].to_i), class: 'height-select', disabled: answer.locked?
+          = select_tag "#{question.id}[#{answer_template.id}][feet]", options_for_select(0..8, selected: answer_template.postprocess_value(answer.value)["feet"].to_i), name: "response[#{answer_template.id}][feet]" class: 'height-select', disabled: answer.locked?
         .col-xs-6{ style: 'text-align:left'}
           = label_tag "#{question.id}[#{answer_template.id}][feet]", "feet", class: 'height-label'
       .row
         .col-xs-6{ style: 'text-align:right'}
-          = select_tag "#{question.id}[#{answer_template.id}][inches]", options_for_select(0..11, selected: answer_template.postprocess_value(answer.value)["inches"].to_i), class: 'height-select', disabled: answer.locked?
+          = select_tag "#{question.id}[#{answer_template.id}][inches]", options_for_select(0..11, selected: answer_template.postprocess_value(answer.value)["inches"].to_i), name: "response[#{answer_template.id}][inches]" class: 'height-select', disabled: answer.locked?
         .col-xs-6{ style: 'text-align:left'}
           = label_tag "#{question.id}[#{answer_template.id}][inches]", "inches", class: 'height-label'
       .row
