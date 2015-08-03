@@ -22,4 +22,12 @@ class Builder::BuilderController < ApplicationController
       empty_response_or_root_path(builder_survey_path(@survey)) unless @question
     end
 
+    def set_editable_answer_template(answer_template_id = :answer_template_id)
+      @answer_template = @question.answer_templates.find_by_id(params[answer_template_id])
+    end
+
+    def redirect_without_answer_template
+      empty_response_or_root_path(builder_survey_question_path(@survey, @question)) unless @answer_template
+    end
+
 end

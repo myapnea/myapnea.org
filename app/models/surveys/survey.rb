@@ -19,7 +19,7 @@ class Survey < ActiveRecord::Base
   validates_uniqueness_of :slug, scope: [ :deleted ]
   validates_format_of :slug, with: /\A(?!\Anew\Z)[a-z][a-z0-9\-]*\Z/
 
-  # Associations
+  # Model Relationships
   belongs_to :user
   belongs_to :first_question, class_name: "Question"
   has_many :answer_sessions, -> { where deleted: false }

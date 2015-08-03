@@ -9,7 +9,7 @@ class Builder::QuestionsController < Builder::BuilderController
   before_action :redirect_without_question, only: [:show, :edit, :update, :destroy]
 
   def index
-    redirect_to builder_survey_path(id: @survey)
+    redirect_to builder_survey_path(@survey)
   end
 
   def new

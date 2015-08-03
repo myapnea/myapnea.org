@@ -156,5 +156,5 @@ web_question:
   text_en: Web Question
   slug: web-question
   display_type: radio_input
-  # answer_templates:
-  # -
+  answer_templates:
+  - web_answer_template

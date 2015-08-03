@@ -21,6 +21,7 @@
     - The number of encounters and spacing between surveys (ex: baseline, 6 month followup)
   - Questions can be added to surveys in online builder
     - Question text, display_type, and slug can be modified
+    - Answer Templates can be added to questions
 - **Gem Changes**
   - Only run `web-console` in development mode
 

@@ -15,9 +15,9 @@ class Question < ActiveRecord::Base
   validates_uniqueness_of :slug, scope: [ :deleted ]
   validates_format_of :slug, with: /\A(?!\Anew\Z)[a-z][a-z0-9\-]*\Z/
 
-  # Associations
+  # Model Relationships
   belongs_to :user
-  has_and_belongs_to_many :answer_templates, -> { order "answer_templates.created_at asc" }
+  has_and_belongs_to_many :answer_templates, -> { current.order("answer_templates.created_at asc") }
   belongs_to :group
   has_many :answers, -> { where deleted: false }
   belongs_to :question_help_message
@@ -28,7 +28,7 @@ class Question < ActiveRecord::Base
   ## DAG
   has_dag_links :link_class_name => 'QuestionEdge'
 
-  # Class Methods
+  # Model Methods
 
   def to_param
     slug.blank? ? id : slug

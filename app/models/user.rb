@@ -76,6 +76,11 @@ class User < ActiveRecord::Base
   has_many :invites
   has_many :children, -> { where deleted: false }
 
+  ## Builder
+
+  has_many :questions, -> { where deleted: false }
+  has_many :answer_templates, -> { where deleted: false }
+
   # CDM
   has_one :cdm_demographic, foreign_key: 'patid'
   has_one :cdm_enrollment, foreign_key: 'patid'

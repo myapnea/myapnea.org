@@ -1,0 +1,50 @@
+- if @answer_template.new_record?
+  - url = builder_survey_question_answer_templates_path(@survey, @question)
+  - method = :post
+- else
+  - url = builder_survey_question_answer_template_path(@survey, @question, @answer_template)
+  - method = :patch
+= form_for @answer_template, url: url, method: method, html: { class: 'form-horizontal', multipart: true } do |f|
+  - if @answer_template.errors.any?
+    .panel.panel-danger
+      .panel-heading
+        %strong
+          = pluralize(@answer_template.errors.count, "error")
+          prohibited this answer template from being saved:
+
+      .panel-body
+        %ul
+          - @answer_template.errors.full_messages.each do |message|
+            %li= message
+
+  .form-group
+    = f.label :name, nil, class: 'col-md-2 control-label'
+    .col-md-10
+      = f.text_field :name, class: 'form-control'
+
+  .form-group
+    = f.label :data_type, 'Data Type', class: 'col-md-2 control-label'
+    .col-md-10
+      = f.select :data_type, AnswerTemplate::DATA_TYPE, { include_blank: true }, class: 'form-control'
+
+  .form-group
+    .col-md-10.col-md-offset-2
+      .checkbox
+        %label
+          = f.check_box :allow_multiple
+          Allow Multiple
+
+  .form-group
+    = f.label :target_answer_option, 'Target Answer Option', class: 'col-md-2 control-label'
+    .col-md-10
+      = f.text_field :target_answer_option, class: 'form-control'
+
+  .form-group
+    = f.label :text, nil, class: 'col-md-2 control-label'
+    .col-md-10
+      = f.text_field :text, class: 'form-control'
+
+  .form-group
+    .col-md-10.col-md-offset-2
+      = f.submit nil, class: 'btn btn-primary'
+      = link_to 'Cancel', url, class: 'btn btn-default'

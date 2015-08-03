@@ -143,3 +143,12 @@ myapnea_referral_source:
   name: myapnea_referral_source
   data_type: answer_option_id
   allow_multiple: true
+
+## Built on Web
+web_answer_template:
+  user: builder
+  name: web_answer_template
+  data_type: answer_option_id
+  allow_multiple: false
+  # target_answer_option:
+  # text:
