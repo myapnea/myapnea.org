@@ -25,7 +25,7 @@ class Builder::AnswerTemplatesController < Builder::BuilderController
     respond_to do |format|
       if @answer_template.save
         @question.answer_templates << @answer_template
-        format.html { redirect_to builder_survey_question_answer_template_path(@survey, @question, @answer_template), notice: 'Survey was successfully created.' }
+        format.html { redirect_to builder_survey_question_answer_template_path(@survey, @question, @answer_template), notice: 'Answer Template was successfully created.' }
         format.json { render :show, status: :created, location: @answer_template }
       else
         format.html { render :new }
@@ -43,7 +43,7 @@ class Builder::AnswerTemplatesController < Builder::BuilderController
   def update
     respond_to do |format|
       if @answer_template.update(answer_template_params)
-        format.html { redirect_to builder_survey_question_answer_template_path(@survey, @question, @answer_template), notice: 'Survey was successfully updated.' }
+        format.html { redirect_to builder_survey_question_answer_template_path(@survey, @question, @answer_template), notice: 'Answer Template was successfully updated.' }
         format.json { render :show, status: :ok, location: @answer_template }
       else
         format.html { render :edit }
@@ -55,7 +55,7 @@ class Builder::AnswerTemplatesController < Builder::BuilderController
   def destroy
     @answer_template.destroy
     respond_to do |format|
-      format.html { redirect_to builder_survey_question_path(@survey, @question), notice: 'Survey was successfully destroyed.' }
+      format.html { redirect_to builder_survey_question_path(@survey, @question), notice: 'Answer Template was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

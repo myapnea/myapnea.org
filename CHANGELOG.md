@@ -22,6 +22,7 @@
   - Questions can be added to surveys in online builder
     - Question text, display_type, and slug can be modified
     - Answer Templates can be added to questions
+    - Answer Options can be added to answer templates
 - **Gem Changes**
   - Only run `web-console` in development mode
 

@@ -4,7 +4,7 @@
     &middot;
     = link_to @survey.name, builder_survey_path(@survey)
     &middot;
-    = link_to @question.slug, builder_survey_path(@question)
+    = link_to @question.slug, builder_survey_question_path(@survey, @question)
     &middot;
     New Answer Template
 

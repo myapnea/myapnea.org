@@ -313,3 +313,16 @@ myapnea-referral-source-15:
   text: Prefer not to answer
   hotkey: O
   value: 15
+
+##
+web_answer_template_01:
+  user: builder
+  text: Web Option 1
+  hotkey: 1
+  value: 1
+
+web_answer_template_02:
+  user: builder
+  text: Web Option 2
+  hotkey: 2
+  value: 2

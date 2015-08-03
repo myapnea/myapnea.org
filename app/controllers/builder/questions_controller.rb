@@ -22,7 +22,7 @@ class Builder::QuestionsController < Builder::BuilderController
     respond_to do |format|
       if @question.save
         @survey.questions << @question
-        format.html { redirect_to builder_survey_question_path(@survey, @question), notice: 'Survey was successfully created.' }
+        format.html { redirect_to builder_survey_question_path(@survey, @question), notice: 'Question was successfully created.' }
         format.json { render :show, status: :created, location: @question }
       else
         format.html { render :new }
@@ -40,7 +40,7 @@ class Builder::QuestionsController < Builder::BuilderController
   def update
     respond_to do |format|
       if @question.update(question_params)
-        format.html { redirect_to builder_survey_question_path(@survey, @question), notice: 'Survey was successfully updated.' }
+        format.html { redirect_to builder_survey_question_path(@survey, @question), notice: 'Question was successfully updated.' }
         format.json { render :show, status: :ok, location: @question }
       else
         format.html { render :edit }
@@ -52,7 +52,7 @@ class Builder::QuestionsController < Builder::BuilderController
   def destroy
     @question.destroy
     respond_to do |format|
-      format.html { redirect_to builder_survey_path(@survey), notice: 'Survey was successfully destroyed.' }
+      format.html { redirect_to builder_survey_path(@survey), notice: 'Question was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

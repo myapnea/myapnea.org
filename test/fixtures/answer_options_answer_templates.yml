@@ -266,3 +266,12 @@ aoat_myapnea_referral_source_14:
 aoat_myapnea_referral_source_15:
   answer_template: myapnea_referral_source
   answer_option: myapnea-referral-source-15
+
+## Built on Web
+aoat_web_answer_template_01:
+  answer_template: web_answer_template
+  answer_option: web_answer_template_01
+
+aoat_web_answer_template_02:
+  answer_template: web_answer_template
+  answer_option: web_answer_template_02

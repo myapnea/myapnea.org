@@ -1,12 +1,22 @@
 class AnswerOption < ActiveRecord::Base
+  # Concerns
+  include Deletable
   include Localizable
 
+  # Model Validation
+  validates_presence_of :text, :hotkey, :value, :user_id
+  # validates_uniqueness_of :text, scope: [ :deleted ]
+
+  # Model Relationships
+  belongs_to :user
   has_many :answer_templates, through: :answer_options_answer_templates, join_table: :answr_options_answer_templates
   has_many :answer_values
   has_many :survey_answer_frequencies
   has_many :reports
 
   localize :text_value
+
+  # Model Methods
 
   def value
     text_value || time_value || numeric_value || self[:value]
