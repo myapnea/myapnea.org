@@ -189,42 +189,6 @@ class Survey < ActiveRecord::Base
     end
   end
 
-  ## Need to be fast
-  def locked?(user)
-    false unless user.present?
-    answer_session = self.answer_sessions.where( user_id: user.id ).order( updated_at: :desc ).first
-    answer_session.present? and answer_session.locked?
-  end
-
-  def complete?(user)
-    false unless user.present?
-    answer_session = self.answer_sessions.where( user_id: user.id ).order( updated_at: :desc ).first
-    answer_session.present? and answer_session.completed?
-  end
-
-  def incomplete?(user)
-    false unless user.present?
-    answer_session = self.answer_sessions.where( user_id: user.id ).order( updated_at: :desc ).first
-    answer_session.present? and !answer_session.completed?
-  end
-
-  def unstarted?(user)
-    false unless user.present?
-    self.answer_sessions.where( user_id: user.id ).empty?
-  end
-  ##
-
-
-  def completion_percent(user)
-    if self.unstarted?(user)
-      0
-    elsif self.complete?(user)
-      100
-    else
-      self.most_recent_encounter(user).percent_completed
-    end
-  end
-
   ## Aliases
   def total_questions
     longest_path_length
@@ -275,8 +239,6 @@ class Survey < ActiveRecord::Base
     q.present? ? q.text : nil
   end
   ##
-
-
 
   # private
 
