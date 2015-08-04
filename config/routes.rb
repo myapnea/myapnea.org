@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   end
 
   get "children/:child_id/surveys/:id/:encounter/report" => 'surveys#report', as: :child_survey_report
+  get "children/:child_id/surveys/:id/:encounter/report-detail" => 'surveys#report_detail', as: :child_survey_report_detail
   get "children/:child_id/surveys/:id/:encounter" => 'surveys#show', as: :child_survey
   resources :children
 
@@ -128,8 +129,8 @@ Rails.application.routes.draw do
     member do
       get "(/:encounter)/report", action: 'report', as: :report
       get "(/:encounter)", action: 'show', as: :show
-      get 'report-detail', as: :report_detail
-      get 'accept-update-first', as: :accept_update_first
+      get "(/:encounter)/report-detail", action: 'report_detail', as: :report_detail
+      get ':encounter/accept-update-first(/:child_id)', action: :accept_update_first, as: :accept_update_first
     end
   end
   get 'surveys/my-health-conditions/my_health_conditions_data' => 'surveys#my_health_conditions_data', format: :json

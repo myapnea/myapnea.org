@@ -1,8 +1,12 @@
 class SurveysController < ApplicationController
-  before_action :authenticate_user!, except: [:index]
   before_action :set_active_top_nav_link_to_surveys
-  before_action :authenticate_research, except: [:index]
-  before_action :set_survey, only: [:show, :report, :report_detail, :accept_update_first, :start_survey]
+  before_action :authenticate_user!,                      except: [:index]
+  before_action :authenticate_research,                   except: [:index]
+  before_action :set_survey,                              only: [:show, :report, :report_detail, :accept_update_first]
+  before_action :set_answer_session,                      only: [:show, :report, :report_detail, :accept_update_first]
+  before_action :redirect_without_answer_session,         only: [:show]
+  before_action :redirect_without_accepted_recent_update, only: [:show]
+  before_action :check_report_access,                     only: [:report, :report_detail]
 
   before_action :set_SEO_elements
 
@@ -12,35 +16,32 @@ class SurveysController < ApplicationController
 
   def index
     if current_user
-      @surveys = current_user.is_only_academic? ? Survey.viewable : current_user.assigned_surveys
-      @answer_sessions = current_user.answer_sessions.joins(:survey).where(child_id: nil).where.not(surveys: { slug: nil }).order(:locked, "surveys.name_en", :encounter)
+      @surveys = Survey.current.viewable
+      @answer_sessions = current_user.answer_sessions.where(child_id: nil).joins(:survey).merge( Survey.current.viewable ).order(:locked, "surveys.name_en", :encounter)
     else
-      @surveys = Survey.viewable
+      @surveys = Survey.current.viewable
     end
   end
 
   def show
-    redirect_to surveys_path and return if @survey.deprecated?
-    unless current_user.accepted_most_recent_update?
-      redirect_to accept_update_first_survey_path and return
-    end
     render layout: 'layouts/application-central-padding'
-    # We do not want to redirect to survey report path if it's completed, we
-    # want to show the survey page, with locked questions instead. ~ Remo
-    # redirect_to report_survey_path(@survey, @answer_session) and return if @answer_session.completed?
   end
 
   def report
-    check_report_access
   end
 
   def report_detail
-    check_report_access
   end
 
   def accept_update_first
-    redirect_to survey_path(@survey) if current_user.accepted_most_recent_update?
-    session[:return_to] = survey_path(@survey)
+    url = if @answer_session.child
+      child_survey_path(@answer_session.child.id, @answer_session.survey, @answer_session.encounter)
+    else
+      show_survey_path(@answer_session.survey, @answer_session.encounter)
+    end
+
+    redirect_to url if current_user.accepted_most_recent_update?
+    session[:return_to] = url
   end
 
   def process_answer
@@ -56,25 +57,44 @@ class SurveysController < ApplicationController
   end
 
   def submit
-    @answer_session = AnswerSession.find(params[:answer_session_id])
-    @answer_session.lock if @answer_session.completed?
-
-    render json: { locked: @answer_session.locked? }
+    if @answer_session = current_user.answer_sessions.find_by_id(params[:answer_session_id])
+      @answer_session.lock if @answer_session.completed?
+      render json: { locked: @answer_session.locked? }
+    else
+      head :no_content
+    end
   end
 
   private
 
   def set_survey
-    @survey = Survey.includes(:questions).find_by_param(params[:id])
-    @answer_session = current_user.answer_sessions.where(survey_id: @survey.id, encounter: (params[:encounter] || 'baseline'), child_id: params[:child_id]).first if @survey
+    @survey = Survey.current.viewable.includes(:questions).find_by_param(params[:id])
+  end
 
-    if @answer_session.blank?
-      redirect_to surveys_path and return unless current_user.is_only_academic?
+  def set_answer_session
+    @answer_session = current_user.answer_sessions.where(survey_id: @survey.id, encounter: (params[:encounter] || 'baseline'), child_id: params[:child_id]).first if @survey
+  end
+
+  def redirect_without_answer_session
+    redirect_to surveys_path unless @answer_session
+  end
+
+  def redirect_without_accepted_recent_update
+    unless current_user.accepted_most_recent_update?
+      redirect_to accept_update_first_survey_path(@answer_session.survey, @answer_session.encounter, @answer_session.child_id)
     end
   end
 
   def check_report_access
-    redirect_to surveys_path and return unless ((@answer_session.present? and @answer_session.completed?) or current_user.is_only_academic?)
+    if @answer_session and !@answer_session.completed?
+      if @answer_session.child
+        redirect_to child_survey_path(@answer_session.child.id, @answer_session.survey, @answer_session.encounter)
+      else
+        redirect_to show_survey_path(@answer_session.survey, @answer_session.encounter)
+      end
+    elsif !@answer_session and !current_user.is_only_academic?
+      redirect_to surveys_path
+    end
   end
 
   def set_SEO_elements

@@ -8,7 +8,7 @@ class Survey < ActiveRecord::Base
   include Localizable
   include Deletable
 
-  # Translations                               position: (Forum.count + 1) * 10
+  # Translations
   localize :name
   localize :description
   localize :short_description
@@ -27,7 +27,7 @@ class Survey < ActiveRecord::Base
   has_many :reports
 
   # Named scopes
-  scope :viewable, -> { where(status: "show") }
+  scope :viewable, -> { where(status: 'show').where.not(slug: nil) }
 
   # Class Methods
 
@@ -172,9 +172,4 @@ class Survey < ActiveRecord::Base
 
     q.present? ? q.text : nil
   end
-
-  def deprecated?
-    self[:slug].nil?
-  end
-
 end

@@ -91,7 +91,7 @@ class SurveyTest < ActiveSupport::TestCase
 
 
   test "#launch_single" do
-    u = users(:social)
+    u = users(:blank_slate)
 
     assert_empty u.assigned_surveys
 

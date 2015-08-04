@@ -11,8 +11,8 @@ class SurveysControllerTest < ActionController::TestCase
   test "should get index for regular user" do
     login(users(:has_launched_survey))
     get :index
-    assert_equal 1, assigns(:surveys).count
-    assert_equal 1, assigns(:answer_sessions).count
+    assert_not_nil assigns(:surveys)
+    assert_not_nil assigns(:answer_sessions)
     assert_response :success
   end
 
@@ -78,6 +78,59 @@ class SurveysControllerTest < ActionController::TestCase
     assert_not_nil assigns(:answer_session)
     assert_equal answer_sessions(:incomplete2_followup), assigns(:answer_session)
     assert_response :success
+  end
+
+  test "should not show survey and get accept update first for user who has not accepted recent update" do
+    login(users(:social))
+    get :show, id: surveys(:new), encounter: 'followup'
+    assert_not_nil assigns(:survey)
+    assert_not_nil assigns(:answer_session)
+    assert_redirected_to accept_update_first_survey_path(assigns(:survey), assigns(:answer_session).encounter)
+  end
+
+  test "should not show child survey and get accept update first for user who has not accepted recent update" do
+    login(users(:social))
+    get :show, id: surveys(:new), encounter: 'followup', child_id: children(:three)
+    assert_not_nil assigns(:survey)
+    assert_not_nil assigns(:answer_session)
+    assert_not_nil assigns(:answer_session).child
+    assert_redirected_to accept_update_first_survey_path(assigns(:survey), assigns(:answer_session).encounter, assigns(:answer_session).child_id)
+  end
+
+  test "should get accept update" do
+    login(users(:social))
+    get :accept_update_first, id: surveys(:new), encounter: 'followup'
+    assert_not_nil assigns(:survey)
+    assert_not_nil assigns(:answer_session)
+    assert_response :success
+  end
+
+  test "should get accept update and redirect to survey if recently accepted" do
+    login(users(:social))
+    users(:social).update accepted_update_at: Date.parse(User::RECENT_UPDATE_DATE).end_of_day
+    get :accept_update_first, id: surveys(:new), encounter: 'followup'
+    assert_not_nil assigns(:survey)
+    assert_not_nil assigns(:answer_session)
+    assert_redirected_to show_survey_path(assigns(:survey), assigns(:answer_session).encounter)
+  end
+
+  test "should get accept update for child survey" do
+    login(users(:social))
+    get :accept_update_first, id: surveys(:new), encounter: 'followup', child_id: children(:three)
+    assert_not_nil assigns(:survey)
+    assert_not_nil assigns(:answer_session)
+    assert_not_nil assigns(:answer_session).child
+    assert_response :success
+  end
+
+  test "should get accept update and redirect to survey if recently accepted for child survey" do
+    login(users(:social))
+    users(:social).update accepted_update_at: Date.parse(User::RECENT_UPDATE_DATE).end_of_day
+    get :accept_update_first, id: surveys(:new), encounter: 'followup', child_id: children(:three)
+    assert_not_nil assigns(:survey)
+    assert_not_nil assigns(:answer_session)
+    assert_not_nil assigns(:answer_session).child
+    assert_redirected_to child_survey_path(assigns(:answer_session).child.id, assigns(:answer_session).survey, assigns(:answer_session).encounter)
   end
 
   test "User can answer question on an assigned survey" do
@@ -184,70 +237,69 @@ class SurveysControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "User can view survey report for completed survey" do
+  test "should get report for user with a completed survey" do
     login(users(:has_completed_survey))
-
     assert answer_sessions(:complete).completed?
-
     get :report, id: answer_sessions(:complete).survey
-
+    assert_not_nil assigns(:answer_session)
     assert_response :success
   end
 
-  test "User can view detailed survey report for completed survey" do
+  test "should get details report for user with a completed survey" do
     login(users(:has_completed_survey))
-
     assert answer_sessions(:complete).completed?
-
     get :report_detail, id: answer_sessions(:complete).survey
-
+    assert_not_nil assigns(:answer_session)
     assert_response :success
   end
 
   ## Unassigned Surveys
 
-  test "User cannot view an unassigned survey" do
+  test "should not show survey to user who has not been assigned the survey" do
     login(users(:social))
-
     get :show, id: surveys(:new)
-
     assert_redirected_to surveys_path
   end
 
   ## Incomplete Survey
 
-  test "User cannot view survey report for assigned but unstarted survey" do
+  test "should not get report for user with an unstarted survey" do
     login(users(:has_launched_survey))
-
     get :report, id: answer_sessions(:launched).survey
-
-    assert_redirected_to surveys_path
-
-
-
+    assert_not_nil assigns(:answer_session)
+    assert_redirected_to show_survey_path(assigns(:answer_session).survey, assigns(:answer_session).encounter)
   end
 
-  test "User cannot view survey report for incomplete survey" do
+  test "should not get report for user with an incomplete survey" do
     login(users(:has_incomplete_survey))
-
     get :report, id: answer_sessions(:incomplete).survey
+    assert_not_nil assigns(:answer_session)
+    assert_redirected_to show_survey_path(assigns(:answer_session).survey, assigns(:answer_session).encounter)
+  end
 
+  test "should not get report for user who is not assigned and is not a researcher" do
+    login(users(:participant))
+    get :report, id: surveys(:new)
+    assert_nil assigns(:answer_session)
     assert_redirected_to surveys_path
   end
 
+  test "should not get report for user with an incomplete child survey" do
+    login(users(:social))
+    get :report, id: answer_sessions(:must_accept_update_first_for_child).survey, encounter: answer_sessions(:must_accept_update_first_for_child).encounter, child_id: answer_sessions(:must_accept_update_first_for_child).child_id
+    assert_not_nil assigns(:answer_session)
+    assert_not_nil assigns(:answer_session).child
+    assert_redirected_to child_survey_path(assigns(:answer_session).child.id, assigns(:answer_session).survey, assigns(:answer_session).encounter)
+  end
 
   ## Complete Surveys
   test "should get completed survey for user" do
     login(users(:has_completed_survey))
-
     assert answer_sessions(:complete).completed?
-
     get :show, id: surveys(:new)
-
     assert_not_nil assigns(:survey)
-
+    assert_not_nil assigns(:answer_session)
     assert_response :success
-
   end
 
   ## Survey Submition

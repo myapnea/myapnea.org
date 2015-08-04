@@ -37,6 +37,6 @@
       - link_text = 'Start this survey now!'
 
     - if answer_session.child
-      = link_to link_text, child_survey_path(answer_session.child.id, answer_session.survey.to_param, answer_session.encounter)
+      = link_to link_text, child_survey_path(answer_session.child.id, answer_session.survey, answer_session.encounter)
     - else
-      = link_to link_text, show_survey_path(answer_session.survey.to_param, answer_session.encounter)
+      = link_to link_text, show_survey_path(answer_session.survey, answer_session.encounter)

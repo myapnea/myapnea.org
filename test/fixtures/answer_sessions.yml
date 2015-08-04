@@ -28,6 +28,17 @@ incomplete2_followup:
 #  survey: new_2
 #  encounter: baseline
 
+must_accept_update_first:
+  user: social
+  survey: new
+  encounter: followup
+
+must_accept_update_first_for_child:
+  user: social
+  child: three
+  survey: new
+  encounter: followup
+
 report_test1:
   user: social
   survey: for_reports

@@ -13,3 +13,10 @@ two:
   age: 1
   accepted_consent_at: 2015-07-28 13:00:30
   deleted: false
+
+three:
+  user: social
+  first_name: Talker
+  age: 1
+  accepted_consent_at: 2015-07-28 13:00:30
+  deleted: false

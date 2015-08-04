@@ -10,6 +10,11 @@
       %span.f500 Note:
       You can view the full-detailed version of the survey report by clicking
       = succeed '.' do
-        = link_to 'here', report_detail_survey_path
+        - if @answer_session and @answer_session.child
+          = link_to 'here', child_survey_report_detail_path(@answer_session.child.id, @answer_session.survey, @answer_session.encounter)
+        - elsif @answer_session
+          = link_to 'here', report_detail_survey_path(@answer_session.survey, @answer_session.encounter)
+        - else
+          = link_to 'here', report_detail_survey_path(@survey)
 
 = render 'surveys/report_outro'

@@ -7,11 +7,11 @@ class Answer < ActiveRecord::Base
   include DateAndTimeParser
 
   # Named Scopes
-  scope :incomplete, -> { where(state: 'incomplete')}
-  scope :invalid, -> { where(state: 'invalid') }
-  scope :migrated, -> { where(state: 'migrated')}
-  scope :complete, -> { where(state: ['complete', 'locked'])}
-  scope :locked, -> { where(state: 'locked')}
+  scope :incomplete,  -> { where state: 'incomplete' }
+  scope :invalid,     -> { where state: 'invalid' }
+  scope :migrated,    -> { where state: 'migrated' }
+  scope :complete,    -> { where state: ['complete', 'locked'] }
+  scope :locked,      -> { where state: 'locked' }
 
   # Model Validation
   validates_uniqueness_of :question_id, scope: [:answer_session_id, :deleted]
