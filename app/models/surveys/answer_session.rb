@@ -42,24 +42,11 @@ class AnswerSession < ActiveRecord::Base
   end
 
   def process_answer(question, response)
-    answer = answers.where(question_id: question.id).first || answers.build(question_id: question.id)
-
+    answer = answers.where(question_id: question.id).first_or_initialize
     if answer.locked?
       nil
     else
-      # New Record: do everything
-      answer_modified = false
-
-      # We want to update if answer is new, or answer value used to be blank.
-      #if answer.new_record? or answer.string_value != response or answer.show_value.blank?
-      # Set Value and Save
-      answer.value = response
-      answer.save
-      answer_modified = true
-      #end
-
-      self.save
-
+      answer.update_response_value!(response)
       answer
     end
   end
@@ -80,10 +67,6 @@ class AnswerSession < ActiveRecord::Base
     Question.joins(:answers).where(answers: { answer_session_id: self.id })
   end
 
-  def started?
-    last_answer.present?
-  end
-
   def percent_completed
     if survey.questions.count > 0
       (answers.complete.count * 100.0 / survey.questions.count).round
@@ -102,7 +85,4 @@ class AnswerSession < ActiveRecord::Base
   def position
     self[:position] || survey.default_position
   end
-
-  private
-
 end

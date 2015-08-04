@@ -3,11 +3,11 @@
   %span#title Progress
   %ul
     - @survey.questions.each_with_index do |question, index|
-      - loaded_answer = Answer.first_or_new(question, @answer_session)
-      - if loaded_answer.locked?
+      - answer = @answer_session.answers.where(question_id: question.id).first_or_initialize
+      - if answer.locked?
         %li.locked{ data: { object: 'survey-indicator', target: "#{index}" } }
           %span.glyphicon.glyphicon-lock{ 'aria-hidden'=>'true' }
-      - elsif loaded_answer.complete?
+      - elsif answer.complete?
         %li.complete{ data: { object: 'survey-indicator', target: "#{index}" } } &#10003;
       - else
         %li.incomplete{ data: { object: 'survey-indicator', target: "#{index}" } }= index + 1
@@ -19,7 +19,7 @@
         %h2.f300
           Welcome to the
           %span.darker-blue
-            = @survey.name.html_safe if @survey.name.present?
+            = @survey.name
           survey!
         %p.lead
           = @survey.description.html_safe if @survey.description.present?
@@ -46,10 +46,11 @@
   -# Expects a @survey and @answer_session variable
   -# Dynamically Loaded:
   - @survey.questions.each_with_index do |question, index|
+    - answer = @answer_session.answers.where(question_id: question.id).first_or_initialize
     - if question.answer_templates.count > 0
-      = render "surveys/question_templates/#{question.display_type}", question: question, answer_session: @answer_session, answer: Answer.first_or_new(question, @answer_session), question_number: index
+      = render "surveys/question_templates/#{question.display_type}", question: question, answer_session: @answer_session, answer: answer, question_number: index
     - else
-      = render 'surveys/question_templates/no_answer_templates', question: question, answer_session: @answer_session, answer: Answer.first_or_new(question, @answer_session), question_number: index
+      = render 'surveys/question_templates/no_answer_templates', question: question, answer_session: @answer_session, answer: answer, question_number: index
 
 
   -# End of Survey

@@ -260,7 +260,7 @@ class SurveysControllerTest < ActionController::TestCase
     answer_sessions(:complete).answers.each do |answer|
       assert answer.locked?
       old_val = answer.value
-      answer.value = nil
+      answer.update_response_value!(nil)
       assert old_val, answer.value
     end
   end
