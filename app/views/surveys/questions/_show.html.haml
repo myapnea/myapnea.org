@@ -1,0 +1,33 @@
+- answer = @answer_session.answers.where(question_id: question.id).first_or_initialize
+
+- progress = false
+- onsubmit = ""
+- extra_class = ""
+- heading = ""
+
+- case question.display_type when 'custom_date_input'
+- when 'radio_input'
+  - progress = true
+- when 'checkbox_input'
+  - onsubmit = "return false;"
+  - heading = "(Check all that apply)"
+- when 'height_input'
+- when 'number_input'
+- when 'radio_input_multiple'
+  - extra_class = "multiple-question-parts"
+
+
+= form_tag process_answer_surveys_path(question_id: question, answer_session_id: answer_session), role: "form", onsubmit: onsubmit, class: "survey-container #{extra_class}", data: { object: "question-container-#{question_number}", progress: progress } do
+  .panel
+    .question-container
+      %h3.f300= question.text
+      - unless heading.blank?
+        %h5.f300.reset-layout= heading
+
+    .input-container
+      - question.answer_templates.where(target_answer_option: [nil, '']).each do |answer_template|
+        - unless answer_template.template_name.blank?
+          = render "surveys/questions/answer_templates/#{answer_template.template_name}", question: question, answer_session: @answer_session, answer_template: answer_template, answer: answer
+      .row
+        .col-sm-8.col-sm-offset-2.col-xs-12
+          = render 'surveys/question_templates/prefer_not_to_answer_box', question: question, answer: answer

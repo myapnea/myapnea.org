@@ -326,7 +326,7 @@ class User < ActiveRecord::Base
 
   # Can Build Surveys
   def editable_surveys
-    Survey.current.where(user_id: self.id)
+    Survey.current.where(user_id: self.id).where.not(slug: nil)
   end
 
   # Reports

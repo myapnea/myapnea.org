@@ -1,6 +1,6 @@
 class AnswerTemplate < ActiveRecord::Base
   # Constants
-  DATA_TYPE = ["answer_option_id", "numeric_value", "text_value", "time_value"]
+  DATA_TYPE = ["answer_option_id", "numeric_value", "text_value"]
 
   # Concerns
   include Deletable
@@ -19,6 +19,43 @@ class AnswerTemplate < ActiveRecord::Base
 
 
   # Model Methods
+
+  # Temporary Function
+  def template_name
+    question = self.questions.first
+    if question
+      if question.display_type == "custom_date_input"        and self.data_type == "text_value"
+        'date'
+      elsif question.display_type == "radio_input"           and self.data_type == "answer_option_id"
+        'radio'
+      elsif question.display_type == "checkbox_input"        and self.data_type == "answer_option_id"
+        'checkbox'
+      elsif question.display_type == "checkbox_input"        and self.data_type == "text_value"
+        'string'
+      elsif question.display_type == "height_input"          and self.data_type == "numeric_value"
+        'height'
+      elsif question.display_type == "number_input"          and self.data_type == "numeric_value"
+        'number'
+      elsif question.display_type == "radio_input_multiple"  and self.data_type == "answer_option_id"
+        'radio'
+      elsif question.display_type == "radio_input"           and self.data_type == "text_value"
+        'string'
+      else
+        nil
+      end
+    else
+      nil
+    end
+  end
+
+  def next_target_template(value)
+    question = self.questions.first
+    if question
+      question.answer_templates.where(target_answer_option: value).first
+    else
+      nil
+    end
+  end
 
   # Preprocessing Functions
   def self.height_conversion(val)

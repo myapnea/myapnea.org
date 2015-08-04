@@ -1,0 +1,12 @@
+%h4.f300= answer_template.text
+- answer_template.answer_options.distinct.each do |answer_option|
+  - targeted_template = answer_template.next_target_template(answer_option.new_value)
+  .radio-input-container{ class: 'label-default label-sm' }
+    = radio_button_tag "#{question.id}[#{answer_template.id}]", answer_option.id, have_checked?(answer, answer_template, answer_option.id), name: "response[#{answer_template.id}]", id: "question_#{question.id}_#{answer_template.id}_#{answer_option.new_value}", data: { hotkey: "#{answer_option.hotkey unless answer.locked?}", object: "#{'reveal-next-input' if targeted_template.present? }", target: "#{('question_'+question.id.to_s+'_answer'+answer_option.id.to_s+'_secondary_'+targeted_template.data_type) if targeted_template.present?}" }, disabled: answer.locked?
+    %label{ for: "question_#{question.id}_#{answer_template.id}_#{answer_option.new_value}", style: "#{'cursor: default' if answer_session.locked?}" }
+      %p= answer_option.text
+      %span.hotkey= answer_option.hotkey if answer_option.hotkey.present?
+    - if targeted_template.present?
+      - if targeted_template.data_type == 'text_value'
+        .hidden-input{ data: { receiver: "#{('question_'+question.id.to_s+'_answer'+answer_option.id.to_s+'_secondary_'+targeted_template.data_type)}" } }
+          = text_field_tag "#{question.id}[#{targeted_template.id}]", answer.value[targeted_template.id], name: "response[#{targeted_template.id}]", class: "survey-short-text survey-text-small", disabled: answer.locked?, data: { secondary: true }

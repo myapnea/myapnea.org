@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       end
     end
 
+    get '', to: redirect("builder/surveys")
   end
 
   get "children/:child_id/surveys/:id/:encounter/report" => 'surveys#report', as: :child_survey_report
