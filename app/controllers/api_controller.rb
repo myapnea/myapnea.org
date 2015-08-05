@@ -14,7 +14,7 @@ class ApiController < ApplicationController
   def survey_answer_sessions
     @answer_sessions = current_user.answer_sessions
     respond_to do |format|
-      format.json { @answer_sessions }
+      format.json
     end
   end
 
@@ -22,7 +22,7 @@ class ApiController < ApplicationController
   def research_topic_index
     @research_topics = ResearchTopic.approved
     respond_to do |format|
-      format.json { @research_topics }
+      format.json
     end
   end
 
@@ -34,7 +34,7 @@ class ApiController < ApplicationController
     @new_research_topic = current_user.research_topics.new(params.require(:research_topic).permit(:text, :description))
     if @new_research_topic.save
       respond_to do |format|
-        format.json { @new_research_topic }
+        format.json
       end
     else
       respond_to do |format|
@@ -55,7 +55,7 @@ class ApiController < ApplicationController
       @votes = @votes.where(research_topic_id: params[:research_topic_id].to_i)
     end
     respond_to do |format|
-      format.json { @votes }
+      format.json
     end
   end
 
@@ -71,7 +71,7 @@ class ApiController < ApplicationController
     end
 
     respond_to do |format|
-      format.json { @vote_failed }
+      format.json
     end
   end
 
@@ -81,7 +81,7 @@ class ApiController < ApplicationController
   def topic_index
     @topics = Topic.current.viewable_by_user(current_user.present? ? current_user : nil).not_research.order(last_post_at: :desc, id: :desc)
     respond_to do |format|
-      format.json { @topics }
+      format.json
     end
   end
 
@@ -89,7 +89,7 @@ class ApiController < ApplicationController
     @topic = Topic.find(params[:topic_id])
     @posts = @topic.posts.current
     respond_to do |format|
-      format.json { @posts }
+      format.json
     end
   end
 
@@ -97,7 +97,7 @@ class ApiController < ApplicationController
     @topic = current_user.topics.where(forum_id: params[:forum_id]).new(params.require(:topic).permit(:name, :description))
     if @topic.save
       respond_to do |format|
-        format.json { @topic }
+        format.json
       end
     else
       respond_to do |format|
@@ -110,7 +110,7 @@ class ApiController < ApplicationController
     @post = current_user.posts.where(topic_id: params[:topic_id]).new(params.require(:post).permit(:description))
     if @post.save
       respond_to do |format|
-        format.json { @post }
+        format.json
       end
     else
       respond_to do |format|

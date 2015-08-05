@@ -1,5 +1,5 @@
 if @topic.present?
-  json.extract! @topic, :id, :name, :description, :forum_id
+  json.partial! 'api/topics/topic', topic: @topic
 else
   json.success false
 end

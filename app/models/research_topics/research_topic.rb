@@ -128,17 +128,24 @@ class ResearchTopic < ActiveRecord::Base
 
   end
 
-
   def oppose_by(user, comment = nil)
     cast_vote(user, 0, comment)
   end
 
+  def voted_by_user?(user = nil)
+    if user == nil
+      return false
+    else
+      return self.votes.current.where(user_id: user.id).present?
+    end
+  end
 
+
+  # Categories
 
   def seeded?
     category == "seeded"
   end
-
 
 
   private

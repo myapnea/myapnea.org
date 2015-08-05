@@ -1,5 +1,5 @@
 if @research_topic.present?
-  json.extract! @research_topic, :id, :text, :description
+  json.partial! 'api/research_topics/research_topic', research_topic: @research_topic
   json.posts @research_topic.topic.posts do |post|
     json.id post.id
     json.description post.description
