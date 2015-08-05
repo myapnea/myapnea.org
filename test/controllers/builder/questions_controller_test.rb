@@ -43,20 +43,19 @@ class Builder::QuestionsControllerTest < ActionController::TestCase
   test "should create question as builder" do
     login(@builder)
     assert_difference('Question.count') do
-      post :create, survey_id: @survey, question: { text_en: 'My New Question', slug: 'my-new-question', display_type: 'radio_input' }
+      post :create, survey_id: @survey, question: { text_en: 'My New Question', slug: 'my-new-question' }
     end
     assert_not_nil assigns(:survey)
     assert_not_nil assigns(:question)
     assert_equal 'My New Question', assigns(:question).text_en
     assert_equal 'my-new-question', assigns(:question).slug
-    assert_equal 'radio_input', assigns(:question).display_type
     assert_redirected_to builder_survey_question_path(assigns(:survey), assigns(:question))
   end
 
   test "should not create question without text" do
     login(@builder)
     assert_difference('Question.count', 0) do
-      post :create, survey_id: @survey, question: { text_en: '', slug: 'my-new-question', display_type: 'radio_input' }
+      post :create, survey_id: @survey, question: { text_en: '', slug: 'my-new-question' }
     end
     assert_not_nil assigns(:survey)
     assert_not_nil assigns(:question)
@@ -69,7 +68,7 @@ class Builder::QuestionsControllerTest < ActionController::TestCase
   test "should not create question as regular user" do
     login(@regular_user)
     assert_difference('Question.count', 0) do
-      post :create, survey_id: @survey, question: { text_en: 'My New Question', slug: 'my-new-question', display_type: 'radio_input' }
+      post :create, survey_id: @survey, question: { text_en: 'My New Question', slug: 'my-new-question' }
     end
     assert_nil assigns(:survey)
     assert_nil assigns(:question)
@@ -110,18 +109,17 @@ class Builder::QuestionsControllerTest < ActionController::TestCase
 
   test "should update question as builder" do
     login(@builder)
-    patch :update, survey_id: @survey, id: @question, question: { text_en: 'Updated Question', slug: 'updated-question', display_type: 'checkbox_input' }
+    patch :update, survey_id: @survey, id: @question, question: { text_en: 'Updated Question', slug: 'updated-question' }
     assert_not_nil assigns(:survey)
     assert_not_nil assigns(:question)
     assert_equal 'Updated Question', assigns(:question).text_en
     assert_equal 'updated-question', assigns(:question).slug
-    assert_equal 'checkbox_input', assigns(:question).display_type
     assert_redirected_to builder_survey_question_path(assigns(:survey), assigns(:question))
   end
 
   test "should not update question without name" do
     login(@builder)
-    patch :update, survey_id: @survey, id: @question, question: { text_en: '', slug: 'updated-question', display_type: 'checkbox_input' }
+    patch :update, survey_id: @survey, id: @question, question: { text_en: '', slug: 'updated-question' }
     assert_not_nil assigns(:survey)
     assert_not_nil assigns(:question)
     assert assigns(:question).errors.size > 0
@@ -132,7 +130,7 @@ class Builder::QuestionsControllerTest < ActionController::TestCase
 
   test "should not update question as regular user" do
     login(@regular_user)
-    patch :update, survey_id: @survey, id: @question, question: { text_en: 'Updated Question', slug: 'updated-question', display_type: 'checkbox_input' }
+    patch :update, survey_id: @survey, id: @question, question: { text_en: 'Updated Question', slug: 'updated-question' }
     assert_nil assigns(:survey)
     assert_nil assigns(:question)
     assert_redirected_to root_path

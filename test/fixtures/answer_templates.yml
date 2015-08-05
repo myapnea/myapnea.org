@@ -40,6 +40,7 @@
 
 custom_sex_template:
   name: fixture_sex
+  template_name: radio
   data_type: answer_option_id
 # answer_options
 # - male
@@ -49,13 +50,15 @@ custom_sex_template:
 
 color_list:
   name: fixture_color_list
+  template_name: radio
   data_type: answer_option_id
 
 
 race_list:
+  name: fixture_race
+  template_name: checkbox
   data_type: answer_option_id
   allow_multiple: true
-  name: fixture_race
 # Wookie
 # Bith
 # Some other race
@@ -64,16 +67,19 @@ race_list:
 
 fixture_specified_race:
   name: fixture_specified_race
+  template_name: string
   data_type: text_value
   target_answer_option: 3
 
 
 custom_date_template:
   name: fixture_birth_date
+  template_name: date
   data_type: text_value
 
 doze_sitting:
   name: doze_sitting
+  template_name: radio
   data_type: answer_option_id
   text: Sitting
 # High chance
@@ -81,6 +87,7 @@ doze_sitting:
 
 doze_tv:
   name: doze_tv
+  template_name: radio
   data_type: answer_option_id
   text: TV
 # High chance
@@ -88,6 +95,7 @@ doze_tv:
 
 doze_public:
   name: doze_public
+  template_name: radio
   data_type: answer_option_id
   text: Public Sitting
 # High chance
@@ -95,52 +103,63 @@ doze_public:
 
 number_of_hours:
   name: fixture_number_of_hours
+  template_name: number
   data_type: numeric_value
 
 text:
   name: fixture_text
+  template_name: string
   data_type: text_value
 
 countries:
   name: countries
+  template_name: radio
   data_type: answer_option_id
 
 spec_countries:
   name: spec_countries
+  template_name: string
   data_type: text_value
   target_answer_option: 3
 
 ## About Me
 birth_date_template:
   name: fixture_birth_date
+  template_name: date
   data_type: text_value
 
 sex_template:
   name: fixture_sex
+  template_name: radio
   data_type: answer_option_id
 
 race:
   name: race
+  template_name: checkbox
   data_type: answer_option_id
   allow_multiple: true
 
 specified_race:
   name: specified_race
+  template_name: string
   data_type: text_value
   target_answer_option: 6
 
 education_level:
   name: education_level
+  template_name: radio
   data_type: answer_option_id
 
 ## Additional Information About Me
 afford_difficulty_scale:
   name: afford_difficulty_scale
+  template_name: radio
   data_type: answer_option_id
 
 ## My Interest In Research
 myapnea_referral_source:
   name: myapnea_referral_source
+  template_name: checkbox
   data_type: answer_option_id
   allow_multiple: true
 
@@ -148,7 +167,5 @@ myapnea_referral_source:
 web_answer_template:
   user: builder
   name: web_answer_template
+  template_name: radio
   data_type: answer_option_id
-  allow_multiple: false
-  # target_answer_option:
-  # text:

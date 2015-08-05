@@ -25,5 +25,33 @@ namespace :surveys do
           #{already_assigned}"
   end
 
+  desc "Add default user to all existing surveys"
+  task add_user: :environment do
+    original_surveys_user_id = 1
+    Survey.where(slug: nil).each do |s|
+      s.update_column :user_id, original_surveys_user_id
+    end
+
+    newer_surveys_user_id = 2
+    Survey.where.not(slug: nil).each do |s|
+      s.update_column :user_id, newer_surveys_user_id
+    end
+    Question.all.each do |q|
+      q.update_column :user_id, newer_surveys_user_id
+    end
+    AnswerTemplate.all.each do |at|
+      at.update_column :user_id, newer_surveys_user_id
+    end
+    AnswerOption.all.each do |ao|
+      ao.update_column :user_id, newer_surveys_user_id
+    end
+  end
+
+  desc "Update all `AnswerTemplate`s with a template name based on their questions display type, and their own data type."
+  task update_answer_templates: :environment do
+    AnswerTemplate.all.each do |at|
+      at.set_template_name!
+    end
+  end
 
 end

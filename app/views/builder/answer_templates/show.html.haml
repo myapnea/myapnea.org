@@ -21,6 +21,11 @@
       %dd= @answer_template.name
 
       %dt
+        %strong Template Name
+      %dd
+        = @answer_template.template_name
+
+      %dt
         %strong Data Type
       %dd
         = @answer_template.data_type
@@ -49,13 +54,14 @@
               %th Text
               %th Hotkey
               %th Value
+              %th Creator
               %th Actions
           - @answer_template.answer_options.each do |answer_option|
             %tr
               %td= answer_option.text
               %td= answer_option.hotkey
               %td= answer_option.value
-
+              %td= link_to_if current_user.owner?, answer_option.user.name, answer_option.user if answer_option.user
               %td= link_to 'Edit', edit_builder_survey_question_answer_template_answer_option_path(@survey, @question, @answer_template, answer_option), class: 'btn btn-xs btn-default'
           %tr
             %td{ colspan: '5' }

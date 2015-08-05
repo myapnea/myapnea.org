@@ -23,30 +23,32 @@
       %dd
         = @question.slug
 
-      %dt
-        %strong Display Type
-      %dd
-        = @question.display_type
+      - if false
+        %dt
+          %strong Display Type
+        %dd
+          = @question.display_type
 
-      %dt
-        %strong Answer Templates
-      %dd
-        %table.table.table-bordered.table-striped
-          %thead
-            %tr
-              %th Name
-              %th Data Type
-              %th Allow Multiple
-              %th Target Answer Option
-              %th Actions
-          - @question.answer_templates.each do |answer_template|
-            %tr
-              %td= link_to answer_template.name, builder_survey_question_answer_template_path(@survey, @question, answer_template)
-              %td= answer_template.data_type
-              %td= simple_check answer_template.allow_multiple
-              %td= answer_template.target_answer_option
-
-              %td= link_to 'Edit', edit_builder_survey_question_answer_template_path(@survey, @question, answer_template), class: 'btn btn-xs btn-default'
+      %h3 Answer Templates
+      %table.table.table-bordered.table-striped
+        %thead
           %tr
-            %td{ colspan: '5' }
-              = link_to 'Add Another Answer Template', new_builder_survey_question_answer_template_path(@survey, @question), class: 'btn btn-xs btn-default'
+            %th Name
+            %th Template
+            %th Data Type
+            %th Allow Multiple
+            %th Target Answer Option
+            %th Creator
+            %th Actions
+        - @question.answer_templates.each do |answer_template|
+          %tr
+            %td= link_to answer_template.name, builder_survey_question_answer_template_path(@survey, @question, answer_template)
+            %td= answer_template.template_name
+            %td= answer_template.data_type
+            %td= simple_check answer_template.allow_multiple
+            %td= answer_template.target_answer_option
+            %td= link_to_if current_user.owner?, answer_template.user.name, answer_template.user if answer_template.user
+            %td= link_to 'Edit', edit_builder_survey_question_answer_template_path(@survey, @question, answer_template), class: 'btn btn-xs btn-default'
+        %tr
+          %td{ colspan: '7' }
+            = link_to 'Add Another Answer Template', new_builder_survey_question_answer_template_path(@survey, @question), class: 'btn btn-xs btn-default'

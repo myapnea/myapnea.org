@@ -1,6 +1,6 @@
 class Question < ActiveRecord::Base
   # Constants
-  DISPLAY_TYPE = ["custom_date_input", "radio_input", "checkbox_input", "height_input", "number_input", "radio_input_multiple"]
+  DISPLAY_TYPES = ["custom_date_input", "radio_input", "checkbox_input", "height_input", "number_input", "radio_input_multiple"]
 
   # Concerns
   include Localizable
@@ -11,7 +11,7 @@ class Question < ActiveRecord::Base
   localize :text
 
   # Model Validation
-  validates_presence_of :text_en, :slug, :user_id, :display_type
+  validates_presence_of :text_en, :slug, :user_id
   validates_uniqueness_of :slug, scope: [ :deleted ]
   validates_format_of :slug, with: /\A(?!\Anew\Z)[a-z][a-z0-9\-]*\Z/
 

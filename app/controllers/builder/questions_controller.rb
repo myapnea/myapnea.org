@@ -64,7 +64,7 @@ class Builder::QuestionsController < Builder::BuilderController
     end
 
     def question_params
-      params.require(:question).permit(:text_en, :slug, :display_type)
+      params.require(:question).permit(:text_en, :slug)
     end
 
 end

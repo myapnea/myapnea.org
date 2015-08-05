@@ -46,12 +46,13 @@ class Builder::AnswerTemplatesControllerTest < ActionController::TestCase
   test "should create answer template as builder" do
     login(@builder)
     assert_difference('AnswerTemplate.count') do
-      post :create, survey_id: @survey, question_id: @question, answer_template: { name: 'My New Answer Template', data_type: 'answer_option_id', allow_multiple: '1', target_answer_option: @answer_template.target_answer_option, text: @answer_template.text }
+      post :create, survey_id: @survey, question_id: @question, answer_template: { name: 'My New Answer Template', template_name: 'checkbox', target_answer_option: @answer_template.target_answer_option, text: @answer_template.text }
     end
     assert_not_nil assigns(:survey)
     assert_not_nil assigns(:question)
     assert_not_nil assigns(:answer_template)
     assert_equal 'My New Answer Template', assigns(:answer_template).name
+    assert_equal 'checkbox', assigns(:answer_template).template_name
     assert_equal 'answer_option_id', assigns(:answer_template).data_type
     assert_equal true, assigns(:answer_template).allow_multiple
     assert_redirected_to builder_survey_question_answer_template_path(assigns(:survey), assigns(:question), assigns(:answer_template))
@@ -60,7 +61,7 @@ class Builder::AnswerTemplatesControllerTest < ActionController::TestCase
   test "should not create answer template without text" do
     login(@builder)
     assert_difference('AnswerTemplate.count', 0) do
-      post :create, survey_id: @survey, question_id: @question, answer_template: { name: '', data_type: 'answer_option_id', allow_multiple: '1', target_answer_option: @answer_template.target_answer_option, text: @answer_template.text }
+      post :create, survey_id: @survey, question_id: @question, answer_template: { name: '', template_name: 'checkbox', target_answer_option: @answer_template.target_answer_option, text: @answer_template.text }
     end
     assert_not_nil assigns(:survey)
     assert_not_nil assigns(:question)
@@ -74,7 +75,7 @@ class Builder::AnswerTemplatesControllerTest < ActionController::TestCase
   test "should not create answer template as regular user" do
     login(@regular_user)
     assert_difference('AnswerTemplate.count', 0) do
-      post :create, survey_id: @survey, question_id: @question, answer_template: { name: 'My New Answer Template', data_type: 'answer_option_id', allow_multiple: '1', target_answer_option: @answer_template.target_answer_option, text: @answer_template.text }
+      post :create, survey_id: @survey, question_id: @question, answer_template: { name: 'My New Answer Template', template_name: 'checkbox', target_answer_option: @answer_template.target_answer_option, text: @answer_template.text }
     end
     assert_nil assigns(:survey)
     assert_nil assigns(:question)
@@ -120,19 +121,20 @@ class Builder::AnswerTemplatesControllerTest < ActionController::TestCase
 
   test "should update answer template as builder" do
     login(@builder)
-    patch :update, survey_id: @survey, question_id: @question, id: @answer_template, answer_template: { name: 'Updated Answer Template', data_type: 'numeric_value', allow_multiple: '0', target_answer_option: @answer_template.target_answer_option, text: @answer_template.text }
+    patch :update, survey_id: @survey, question_id: @question, id: @answer_template, answer_template: { name: 'Updated Answer Template', template_name: 'date', target_answer_option: @answer_template.target_answer_option, text: @answer_template.text }
     assert_not_nil assigns(:survey)
     assert_not_nil assigns(:question)
     assert_not_nil assigns(:answer_template)
     assert_equal 'Updated Answer Template', assigns(:answer_template).name
-    assert_equal 'numeric_value', assigns(:answer_template).data_type
+    assert_equal 'date', assigns(:answer_template).template_name
+    assert_equal 'text_value', assigns(:answer_template).data_type
     assert_equal false, assigns(:answer_template).allow_multiple
     assert_redirected_to builder_survey_question_answer_template_path(assigns(:survey), assigns(:question), assigns(:answer_template))
   end
 
   test "should not update answer template without name" do
     login(@builder)
-    patch :update, survey_id: @survey, question_id: @question, id: @answer_template, answer_template: { name: '', data_type: 'numeric_value', allow_multiple: '0', target_answer_option: @answer_template.target_answer_option, text: @answer_template.text }
+    patch :update, survey_id: @survey, question_id: @question, id: @answer_template, answer_template: { name: '', template_name: 'date', target_answer_option: @answer_template.target_answer_option, text: @answer_template.text }
     assert_not_nil assigns(:survey)
     assert_not_nil assigns(:question)
     assert_not_nil assigns(:answer_template)
@@ -144,7 +146,7 @@ class Builder::AnswerTemplatesControllerTest < ActionController::TestCase
 
   test "should not update answer template as regular user" do
     login(@regular_user)
-    patch :update, survey_id: @survey, question_id: @question, id: @answer_template, answer_template: { name: 'Updated Answer Template', data_type: 'numeric_value', allow_multiple: '0', target_answer_option: @answer_template.target_answer_option, text: @answer_template.text }
+    patch :update, survey_id: @survey, question_id: @question, id: @answer_template, answer_template: { name: 'Updated Answer Template', template_name: 'date', target_answer_option: @answer_template.target_answer_option, text: @answer_template.text }
     assert_nil assigns(:survey)
     assert_nil assigns(:question)
     assert_nil assigns(:answer_template)

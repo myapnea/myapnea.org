@@ -20,9 +20,12 @@
     - The age range for pediatric surveys (ex: 2..8, 4..10)
     - The number of encounters and spacing between surveys (ex: baseline, 6 month followup)
   - Questions can be added to surveys in online builder
-    - Question text, display_type, and slug can be modified
+    - Question text and slug can be modified
     - Answer Templates can be added to questions
     - Answer Options can be added to answer templates
+    - Question `display_type` and AnswerTemplate `data_type` and `allow_multiple` are no longer used to determine how to display questions on surveys
+    - AnswerTemplates now allow a `template_name` to be specified of the following types:
+      - "date", "radio", "checkbox", "string", "height", "number"
 - **Admin Changes**
   - Administrators can now unlock surveys for users from the user show page
 - **Gem Changes**
