@@ -28,9 +28,19 @@ class ApiControllerTest < ActionController::TestCase
   ## Surveys
 
   test "should get answer sessions for logged in user" do
-    login(@user)
+    login(users(:has_launched_survey))
+    @survey = surveys(:new)
+    @answer_session = answer_sessions(:launched)
+
     get :survey_answer_sessions, format: :json
     assert_response :success
+
+    answer_session = json_response['answer_sessions'][0]
+    assert_equal @answer_session.id, answer_session['id']
+    assert_equal @answer_session.survey_id, answer_session['survey_id']
+    assert_equal @answer_session.survey.name, answer_session['survey_name']
+    assert_equal @answer_session.encounter, answer_session['encounter']
+    assert_equal @answer_session.locked, answer_session['locked']
   end
 
   test "should not get answer sessions for logged out user" do
