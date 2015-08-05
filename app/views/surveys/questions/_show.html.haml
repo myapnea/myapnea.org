@@ -5,16 +5,16 @@
 - extra_class = ""
 - heading = ""
 
-- case question.display_type when 'custom_date_input'
-- when 'radio_input'
-  - progress = true
-- when 'checkbox_input'
+- if question.answer_templates.where(template_name: 'checkbox', target_answer_option: nil).count > 0
   - onsubmit = "return false;"
   - heading = "(Check all that apply)"
-- when 'height_input'
-- when 'number_input'
-- when 'radio_input_multiple'
-  - extra_class = "multiple-question-parts"
+
+- if question.answer_templates.where(template_name: 'radio', target_answer_option: nil).count > 0
+  - progress = true
+
+- if false # TODO REMOVE
+  - case question.display_type when 'radio_input_multiple'
+    - extra_class = "multiple-question-parts"
 
 
 = form_tag process_answer_surveys_path(question_id: question, answer_session_id: answer_session), role: "form", onsubmit: onsubmit, class: "survey-container #{extra_class}", data: { object: "question-container-#{question_number}", progress: progress } do
