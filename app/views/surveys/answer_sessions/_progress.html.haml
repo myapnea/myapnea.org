@@ -31,7 +31,7 @@
   - elsif answer_session.survey.slug.present?
     - if answer_session.percent_completed == 100
       - link_text = 'Review and submit answers'
-    - if answer_session.percent_completed > 0
+    - elsif answer_session.percent_completed > 0
       - link_text = 'Work on this survey now!'
     - else
       - link_text = 'Start this survey now!'
