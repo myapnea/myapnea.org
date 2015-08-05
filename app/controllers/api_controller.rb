@@ -1,12 +1,21 @@
 class ApiController < ApplicationController
 
-  before_action :authenticate_user!, only: [:home, :vote, :research_topic_create, :topic_create, :post_create]
+  AUTHENTICATE_ACTIONS = [:home, :survey_answer_sessions, :vote, :research_topic_create, :topic_create, :post_create]
 
-  skip_before_action :verify_authenticity_token, only: [:vote, :research_topic_create, :topic_create, :post_create]
+  before_action :authenticate_user!, only: AUTHENTICATE_ACTIONS
+  skip_before_action :verify_authenticity_token, only: AUTHENTICATE_ACTIONS
 
 
   def home
     render json: { name: current_user.email }
+  end
+
+  ## Surveys
+  def survey_answer_sessions
+    @answer_sessions = current_user.answer_sessions
+    respond_to do |format|
+      format.json { @answer_sessions }
+    end
   end
 
   ## Research Topics

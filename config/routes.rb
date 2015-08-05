@@ -240,6 +240,9 @@ Rails.application.routes.draw do
   #   post '/', to: 'api#user_login'
   scope 'api' do
     get :home, to: 'api#home'
+    scope '/surveys' do
+      get '/answer_sessions', to: 'api#survey_answer_sessions'
+    end
     scope '/research-topics' do
       get '/', to: 'api#research_topic_index'
       get '/:research_topic_id', to: 'api#research_topic_show'

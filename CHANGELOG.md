@@ -17,6 +17,8 @@
     - Added capability to get viewable topic index, ordered by activity, and topic show data
     - Added capability to create new forum topics
     - Added capability to create new posts
+  - Surveys
+    - Added getter for user's answer sessions
 - **Gem Changes**
   - Only run `web-console` in development mode
 
