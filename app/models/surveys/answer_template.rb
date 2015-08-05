@@ -48,13 +48,8 @@ class AnswerTemplate < ActiveRecord::Base
     end
   end
 
-  def next_target_template(value)
-    question = self.questions.first
-    if question
-      question.answer_templates.where(target_answer_option: value).first
-    else
-      nil
-    end
+  def target_templates(question, value)
+    question.answer_templates.where(target_answer_option: value).where.not(target_answer_option: nil)
   end
 
   # Preprocessing Functions

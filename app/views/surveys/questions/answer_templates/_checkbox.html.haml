@@ -1,12 +1,13 @@
 %h4.f300= answer_template.text
 - answer_template.answer_options.distinct.each do |answer_option|
-  - targeted_template = answer_template.next_target_template(answer_option.new_value)
+  - target_templates = answer_template.target_templates(question, answer_option.new_value)
   .check-box-container
-    = check_box_tag "#{question.id}[#{answer_template.id}][]", answer_option.id, have_checked?(answer, answer_template, answer_option.id), id: "question_#{question.id}_#{answer_template.id}_#{answer_option.new_value}", name: "response[#{answer_template.id}][]", data: { hotkey: "#{answer_option.hotkey unless answer.locked?}", object: "#{'reveal-next-input' if targeted_template.present? }", target: "#{('question_'+question.id.to_s+'_answer'+answer_option.id.to_s+'_secondary_'+targeted_template.data_type) if targeted_template.present?}" }, disabled: answer.locked?
+    = check_box_tag "#{question.id}[#{answer_template.id}][]", answer_option.id, have_checked?(answer, answer_template, answer_option.id), id: "question_#{question.id}_#{answer_template.id}_#{answer_option.new_value}", name: "response[#{answer_template.id}][]", data: { hotkey: "#{answer_option.hotkey unless answer.locked?}", object: "#{'reveal-next-input' if target_templates.count > 0 }", target: "#{"question_#{question.id}_answer_#{answer_option.id}_secondary" if target_templates.count > 0}" }, disabled: answer.locked?
     %label{ for: "question_#{question.id}_#{answer_template.id}_#{answer_option.new_value}", style: "#{'cursor: default' if answer.locked?}" }
       %span.hotkey{ style: "#{'cursor: default' if answer.locked?}" }=answer_option.hotkey
       %p=answer_option.text
-    - if targeted_template.present?
-      - if targeted_template.data_type == 'text_value'
-        .hidden-input{ data: { receiver: "#{('question_'+question.id.to_s+'_answer'+answer_option.id.to_s+'_secondary_'+targeted_template.data_type)}" } }
-          = text_field_tag "#{question.id}[#{targeted_template.id}]", answer.value[targeted_template.id], name: "response[#{targeted_template.id}]", class: "survey-short-text survey-text-small", disabled: answer.locked?, data: { secondary: true }
+    - if target_templates.count > 0
+      .hidden-input{ style: 'width: 80%; margin: auto', data: { receiver: "question_#{question.id}_answer_#{answer_option.id}_secondary" } }
+        - target_templates.each do |target_template|
+          - if target_template.template_name.present? and answer_template != target_template
+            = render "surveys/questions/answer_templates/secondary", question: question, answer_session: answer_session, target_template: target_template, answer: answer
