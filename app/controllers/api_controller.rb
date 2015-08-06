@@ -60,14 +60,15 @@ class ApiController < ApplicationController
   end
 
   def vote
-    @research_topic = ResearchTopic.find(params[:research_topic_id])
-    @vote_failed = false
-    if params["endorse"].to_s == "1"
-      @research_topic.endorse_by(current_user, params["comment"])
-    elsif params["endorse"].to_s == "0"
-      @research_topic.oppose_by(current_user, params["comment"])
-    else
-      @vote_failed = true
+    @vote_failed = true
+    if params[:research_topic_id].present? and @research_topic = ResearchTopic.find(params[:research_topic_id])
+      if params["endorse"].to_s == "1"
+        @research_topic.endorse_by(current_user, params["comment"])
+        @vote_failed = false
+      elsif params["endorse"].to_s == "0"
+        @research_topic.oppose_by(current_user, params["comment"])
+        @vote_failed = false
+      end
     end
 
     respond_to do |format|

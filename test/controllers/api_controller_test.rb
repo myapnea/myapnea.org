@@ -82,26 +82,6 @@ class ApiControllerTest < ActionController::TestCase
     assert_equal @rt.user.api_photo_url, json_response['user_photo_url']
   end
 
-  test "should get votes" do
-    get :votes, format: :json
-    assert_response :success
-  end
-
-  test "should cast vote for user" do
-    login(@user)
-    assert_difference('Vote.count') do
-      post :vote, research_topic_id: @rt.id, endorse: "1", format: :json
-    end
-
-    assert_equal true, json_response['success']
-  end
-
-  test "should not cast vote for logged out user" do
-    assert_no_difference('Vote.count') do
-      post :vote, research_topic_id: @rt.id, endorse: "1", format: :json
-    end
-  end
-
   test "should create research topic for logged in user" do
     login(@user)
     assert_difference('ResearchTopic.count') do
@@ -119,6 +99,24 @@ class ApiControllerTest < ActionController::TestCase
     assert_equal assigns(:new_research_topic).user.api_photo_url, json_response['user_photo_url']
   end
 
+  test "should not create research topic without text" do
+    login(@user)
+    assert_no_difference('ResearchTopic.count') do
+      post :research_topic_create, research_topic: { text: "", description: "this is a new research topic" }, format: :json
+    end
+
+    assert_equal false, json_response['success']
+  end
+
+  test "should not create research topic without description" do
+    login(@user)
+    assert_no_difference('ResearchTopic.count') do
+      post :research_topic_create, research_topic: { text: "new rt", description: "" }, format: :json
+    end
+
+    assert_equal false, json_response['success']
+  end
+
   test "should not create research topic for logged out user" do
     assert_no_difference('ResearchTopic.count') do
       post :research_topic_create, research_topic: { text: "new rt", description: "this is a new research topic" }, format: :json
@@ -127,7 +125,68 @@ class ApiControllerTest < ActionController::TestCase
     assert_equal 'You need to sign in or sign up before continuing.', json_response['error']
   end
 
-  ## Forums
+  ## Votes
+
+  test "should get votes" do
+    get :votes, format: :json
+    assert_response :success
+  end
+
+  test "should endorse research topics by casting vote for user" do
+    login(@user)
+    assert_difference('Vote.where(rating: 1).count') do
+      post :vote, research_topic_id: @rt.id, endorse: "1", format: :json
+    end
+
+    assert_equal true, json_response['success']
+  end
+
+  test "should oppose research topics by casting vote for user" do
+    login(@user)
+    assert_difference('Vote.where(rating: 0).count') do
+      post :vote, research_topic_id: @rt.id, endorse: "0", format: :json
+    end
+
+    assert_equal true, json_response['success']
+  end
+
+  test "should cast vote for user with comment" do
+    login(@user)
+    assert_difference('Vote.count') do
+      assert_difference('Post.count') do
+        post :vote, research_topic_id: @rt.id, endorse: "1", comment: "sample comment", format: :json
+      end
+    end
+
+    assert_equal true, json_response['success']
+  end
+
+  test "should not cast vote for user without endorse value" do
+    login(@user)
+    assert_no_difference('Vote.count') do
+      post :vote, research_topic_id: @rt.id, format: :json
+    end
+
+    assert_equal false, json_response['success']
+  end
+
+  test "should not cast vote for user without research topic" do
+    login(@user)
+    assert_no_difference('Vote.count') do
+      post :vote, endorse: "1", format: :json
+    end
+
+    assert_equal false, json_response['success']
+  end
+
+  test "should not cast vote for logged out user" do
+    assert_no_difference('Vote.count') do
+      post :vote, research_topic_id: @rt.id, endorse: "1", format: :json
+    end
+  end
+
+
+  ## Topics
 
   test "should get topic index" do
     get :topic_index, format: :json
@@ -183,6 +242,24 @@ class ApiControllerTest < ActionController::TestCase
     assert_equal assigns(:topic).posts.current.last.created_at.strftime("%Y-%m-%d"), json_response['last_post_at']
   end
 
+  test "should not create topic without name" do
+    login(@user)
+    assert_no_difference('Topic.count') do
+      post :topic_create, forum_id: @forum.id, topic: { name: "", description: "this is a new forum topic" }, format: :json
+    end
+
+    assert_equal false, json_response['success']
+  end
+
+  test "should not create topic without description" do
+    login(@user)
+    assert_no_difference('Topic.count') do
+      post :topic_create, forum_id: @forum.id, topic: { name: "new topic", description: "" }, format: :json
+    end
+
+    assert_equal false, json_response['success']
+  end
+
   test "should not create topic for logged out user" do
     assert_no_difference('Topic.count') do
       post :topic_create, forum_id: @forum.id, topic: { name: "new topic", description: "this is a new forum topic" }, format: :json
@@ -190,6 +267,8 @@ class ApiControllerTest < ActionController::TestCase
 
     assert_equal 'You need to sign in or sign up before continuing.', json_response['error']
   end
+
+  ## Posts
 
   test "should create post for logged in user" do
     login(@user)
@@ -203,6 +282,24 @@ class ApiControllerTest < ActionController::TestCase
     assert_equal assigns(:post).links_enabled, json_response['links_enabled']
     assert_equal assigns(:post).user.forum_name, json_response['user']
     assert_equal assigns(:post).user.api_photo_url, json_response['user_photo_url']
+  end
+
+  test "should not create post without description" do
+    login(@user)
+    assert_no_difference('Post.count') do
+      post :post_create, topic_id: @topic.id, post: { description: "" }, format: :json
+    end
+
+    assert_equal false, json_response['success']
+  end
+
+  test "should not create post without topic id" do
+    login(@user)
+    assert_no_difference('Post.count') do
+      post :post_create, topic_id: nil, post: { description: "this is a new post" }, format: :json
+    end
+
+    assert_equal false, json_response['success']
   end
 
   test "should not create post for logged out user" do
