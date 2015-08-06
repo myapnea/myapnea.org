@@ -1,6 +1,9 @@
 ## 7.4.0
 
 ### Enhancements
+- **Landing Page Changes**
+  - Reduced font weight of subheaders
+  - Made white space more consistent
 - **Team Page Changes**
   - Added first group of PEP members to the team page
   - Added first round of internal team members to the team page
