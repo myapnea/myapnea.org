@@ -5,6 +5,7 @@
       a common and potentially life-threatening sleep and breathing disorder
   .lighter-blue-bcg
     .horizontal-inset
+      = link_to 'General Information', '#general-info', class: 'btn white'
       = link_to 'PAP Devices', '#pap-devices', class: 'btn white'
       = link_to 'Videos', '#videos', class: 'btn white'
       = link_to 'Tools', '#tools', class: 'btn white'
@@ -91,22 +92,54 @@
         %span.primary-orange MyApnea.Org
         aims to mobilize the sleep apnea community to work together to get better answers through community support and research.
 
-    %a.anchor#pap-devices
-    .row{ style: 'margin: 50px 0 100px 0;'}
+    %a.anchor#general-info
+    .row{ style: 'margin: 50px 0 20px 0;'}
       .col-sm-4
-        = link_to learn_pap_path, class: 'no-underline white' do
+        = link_to what_is_sleep_apnea_path, class: 'no-underline white' do
           .primary-blue-bcg{ style: 'padding: 10px; border-radius: 10px; '}
-            %h3.centered.no-margin Learn about PAP Devices
+            %h3.centered.no-margin What is Sleep Apnea
         %br.visible-xs
       .col-sm-4
-        = link_to team_path, class: 'no-underline white' do
+        = link_to obstructive_sleep_apnea_path, class: 'no-underline white' do
           .primary-blue-bcg{ style: 'padding: 10px; border-radius: 10px; '}
-            %h3.centered.no-margin Learn about Our Team
+            %h3.centered.no-margin Obstructive Sleep Apnea
         %br.visible-xs
       .col-sm-4
-        = link_to about_path, class: 'no-underline white' do
+        = link_to central_sleep_apnea_path, class: 'no-underline white' do
           .primary-blue-bcg{ style: 'padding: 10px; border-radius: 10px; '}
-            %h3.centered.no-margin Learn about MyApnea.Org
+            %h3.centered.no-margin Central Sleep Apnea
+        %br.visible-xs
+    .row{ style: 'margin: 20px 0 20px 0;'}
+      .col-sm-4
+        = link_to causes_of_sleep_apnea_path, class: 'no-underline white' do
+          .primary-blue-bcg{ style: 'padding: 10px; border-radius: 10px; '}
+            %h3.centered.no-margin Causes
+        %br.visible-xs
+      .col-sm-4
+        = link_to symptoms_of_sleep_apnea_path, class: 'no-underline white' do
+          .primary-blue-bcg{ style: 'padding: 10px; border-radius: 10px; '}
+            %h3.centered.no-margin Symptoms
+        %br.visible-xs
+      .col-sm-4
+        = link_to risk_factors_for_sleep_apnea_path, class: 'no-underline white' do
+          .primary-blue-bcg{ style: 'padding: 10px; border-radius: 10px; '}
+            %h3.centered.no-margin Risk Factors
+        %br.visible-xs
+    .row{ style: 'margin: 20px 0 20px 0;'}
+      .col-sm-4
+        = link_to diagnosis_of_sleep_apnea_path, class: 'no-underline white' do
+          .primary-blue-bcg{ style: 'padding: 10px; border-radius: 10px; '}
+            %h3.centered.no-margin Diagnosis
+        %br.visible-xs
+      .col-sm-4
+        = link_to treatment_options_for_sleep_apnea_path, class: 'no-underline white' do
+          .primary-blue-bcg{ style: 'padding: 10px; border-radius: 10px; '}
+            %h3.centered.no-margin Treatment Options
+        %br.visible-xs
+      .col-sm-4
+        = link_to pap_path, class: 'no-underline white' do
+          .primary-blue-bcg{ style: 'padding: 10px; border-radius: 10px; '}
+            %h3.centered.no-margin PAP Devices
         %br.visible-xs
 
     %a.anchor#tools

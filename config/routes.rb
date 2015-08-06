@@ -18,26 +18,36 @@ Rails.application.routes.draw do
     get :team
     get :advisory
     get :partners
-    get :learn
     get :faqs
     get :research
     get :theme
     get :version
     get :sitemap
     get :sizes
+    get :learn
   end
 
   # Educational Content
-  get 'learn/obstructive-sleep-apnea' => 'static#obstructive_sleep_apnea'
-  get 'learn/pap' => 'static#pap'
-  get 'learn/pap/about-PAP-therapy' => 'static#about_PAP_therapy'
-  get 'learn/pap/PAP-setup-guide'   => 'static#PAP_setup_guide'
-  get 'learn/pap/PAP-troubleshooting-guide' => 'static#PAP_troubleshooting_guide'
-  get 'learn/pap/PAP-care-and-maintenance' => 'static#PAP_care_maintenance'
-  get 'learn/pap/PAP-masks-and-equipment' => 'static#PAP_masks_equipment'
-  get 'learn/pap/traveling-with-PAP' => 'static#traveling_with_PAP'
-  get 'learn/pap/side-effects-of-PAP' => 'static#side_effects_PAP'
-  get 'learn/sleep-tips'   => 'static#sleep_tips'
+  scope 'learn' do
+    get '/', to: 'static#learn'
+    get '/what-is-sleep-apnea', to: 'static#what_is_sleep_apnea'
+    get '/obstructive-sleep-apnea', to: 'static#obstructive_sleep_apnea'
+    get '/central-sleep-apnea', to: 'static#central_sleep_apnea'
+    get '/causes-of-sleep-apnea', to: 'static#causes'
+    get '/symptoms-of-sleep-apnea', to: 'static#symptoms'
+    get '/risk-factors-for-sleep-apnea', to: 'static#risk_factors'
+    get '/diagnosis-of-sleep-apnea', to: 'static#diagnostic_process'
+    get '/treatment-options-for-sleep-apnea', to: 'static#treatment_options'
+    get '/pap', to: 'static#pap'
+    get '/pap/about-PAP-therapy', to: 'static#about_PAP_therapy'
+    get '/pap/PAP-setup-guide', to: 'static#PAP_setup_guide'
+    get '/pap/PAP-troubleshooting-guide', to: 'static#PAP_troubleshooting_guide'
+    get '/pap/PAP-care-and-maintenance', to: 'static#PAP_care_maintenance'
+    get '/pap/PAP-masks-and-equipment', to: 'static#PAP_masks_equipment'
+    get '/pap/traveling-with-PAP', to: 'static#traveling_with_PAP'
+    get '/pap/side-effects-of-PAP', to: 'static#side_effects_PAP'
+    get '/sleep-tips', to: 'static#sleep_tips'
+  end
 
   # Registration flow
   get 'get-started' => 'account#get_started'

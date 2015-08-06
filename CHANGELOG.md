@@ -1,6 +1,16 @@
 ## 7.4.0
 
 ### Enhancements
+- **Learn Page Changes**
+  - Added educational pages
+    - What is Sleep Apnea
+    - Obstructive Sleep Apnea
+    - Central Sleep Apnea
+    - Causes
+    - Symptoms
+    - Risk Factors
+    - Diagnosis
+    - Treatment
 - **Landing Page Changes**
   - Reduced font weight of subheaders
   - Made white space more consistent
