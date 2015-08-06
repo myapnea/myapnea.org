@@ -31,6 +31,26 @@
 - **Gem Changes**
   - Only run `web-console` in development mode
 
+### API Development
+- **API**
+  - Users
+    - Added capability to create new users and login existing users via JSON request
+      - Cookies are passed back to allow use of devise user authentication
+      - Home added to test for current session
+    - Photo URL passed for created posts and research topics, if available
+  - Research Topics
+    - Added capability to create new research topics as user
+    - Added capability to cast vote as user
+    - Index page lists all posts
+  - Votes
+    - Added votes, scopable by relevant fields and ratings
+  - Forums
+    - Added capability to get viewable topic index, ordered by activity, and topic show data
+    - Added capability to create new forum topics
+    - Added capability to create new posts
+  - Surveys
+    - Added getter for user's answer sessions
+
 ### Bug Fix
 - Fixed and simplified date input parsing to better handle consistency issues across browsers and devices
 

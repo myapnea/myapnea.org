@@ -197,12 +197,13 @@ Rails.application.routes.draw do
   # Development/System
   get 'pprn' => 'application#toggle_pprn_cookie'
 
-  # Voting on Questions
+  # Voting on Research Topics
   match 'vote', to: 'research_topics#vote', via: :post, as: :vote
   match 'remote-vote', to: 'research_topics#remote_vote', via: :post, as: :remote_vote
   match 'change-vote', to: 'research_topics#change_vote', via: :patch, as: :change_vote
+  get 'votes', to: 'research_topics#votes'
 
-  devise_for :users, controllers: { registrations: 'registrations' }, path_names: { sign_up: 'join', sign_in: 'login' }, path: ""
+  devise_for :users, controllers: { registrations: 'registrations', sessions: 'sessions' }, path_names: { sign_up: 'join', sign_in: 'login' }, path: "/"
 
   resources :users do
     collection do
@@ -239,6 +240,34 @@ Rails.application.routes.draw do
   get 'update_account', to: redirect("account")
   get 'change_password', to: redirect("account")
   get 'social', to: redirect("community")
+
+
+
+  # # API
+  # scope '/users' do
+  #   post '/', to: 'api#user_signup'
+  #   post '/', to: 'api#user_login'
+  scope 'api' do
+    get :home, to: 'api#home'
+    scope '/surveys' do
+      get '/answer_sessions', to: 'api#survey_answer_sessions'
+    end
+    scope '/research-topics' do
+      get '/', to: 'api#research_topic_index'
+      get '/:research_topic_id', to: 'api#research_topic_show'
+      post '/create', to: 'api#research_topic_create'
+      post '/vote', to: 'api#vote'
+    end
+    scope '/votes' do
+      get '/', to: 'api#votes'
+    end
+    scope '/forums' do
+      get '/topics', to: 'api#topic_index'
+      get '/topics/:topic_id', to: 'api#topic_show'
+      post 'topics/create', to: 'api#topic_create'
+      post 'posts/create', to: 'api#post_create'
+    end
+  end
 
 # # Authentication
 #   devise_for :user, skip: [:sessions, :passwords, :confirmations, :registrations]

@@ -207,6 +207,14 @@ class User < ActiveRecord::Base
     end
   end
 
+  def api_photo_url
+    if photo.size > 0
+      "#{ENV['website_url']}#{photo.url}"
+    else
+      nil
+    end
+  end
+
   # Should change to this
   # def photo_url
   #   if photo.present?
