@@ -241,7 +241,13 @@ Rails.application.routes.draw do
   get 'change_password', to: redirect("account")
   get 'social', to: redirect("community")
 
-
+  namespace :api do
+    namespace :v1 do
+      resources :topics do
+        resources :posts
+      end
+    end
+  end
 
   # # API
   # scope '/users' do
