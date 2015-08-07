@@ -1,5 +1,9 @@
 ## 7.5.0
 
+### Enhancements
+- **Team Page Changes**
+  - Added additional bios and images to team page
+
 ## 7.4.0 (August 7, 2015)
 
 ### Enhancements
