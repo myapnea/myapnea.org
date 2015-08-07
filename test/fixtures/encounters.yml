@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+web_encounter_baseline:
+  survey: built_on_web
+  name: Baseline
+  slug: baseline
+  launch_days_after_sign_up: 0
+  user: builder
+
+web_encounter_6month:
+  survey: built_on_web
+  name: 6 Month Followup
+  slug: 6month
+  launch_days_after_sign_up: 180
+  user: builder

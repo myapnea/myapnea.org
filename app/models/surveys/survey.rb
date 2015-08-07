@@ -8,6 +8,9 @@ class Survey < ActiveRecord::Base
   include Localizable
   include Deletable
 
+  # Callbacks
+  after_create :create_default_encounters
+
   # Translations
   localize :name
   localize :description
@@ -23,6 +26,7 @@ class Survey < ActiveRecord::Base
   has_many :answer_sessions, -> { where deleted: false }
   has_many :survey_question_orders, -> { order :question_number }
   has_many :questions, through: :survey_question_orders
+  has_many :encounters, -> { where deleted: false }
   has_many :survey_answer_frequencies
   has_many :reports
 
@@ -172,4 +176,11 @@ class Survey < ActiveRecord::Base
 
     q.present? ? q.text : nil
   end
+
+  private
+
+    def create_default_encounters
+      self.encounters.create(name: 'Baseline', slug: 'baseline', user_id: self.user_id) if self.encounters.count == 0
+    end
+
 end

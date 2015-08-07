@@ -1,0 +1,13 @@
+.content-main-header
+  %h1
+    = link_to 'Surveys', builder_surveys_path
+    &middot;
+    = link_to @survey.name, builder_survey_path(@survey)
+    &middot;
+    = link_to @encounter.slug_was, builder_survey_encounter_path(@survey, @encounter.slug_was)
+    &middot;
+    Edit
+
+.content-container
+  .content-body
+    = render 'builder/encounters/form'

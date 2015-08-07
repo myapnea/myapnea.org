@@ -8,6 +8,7 @@ Rails.application.routes.draw do
           resources :answer_options
         end
       end
+      resources :encounters
     end
 
     get '', to: redirect("builder/surveys")

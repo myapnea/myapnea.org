@@ -30,6 +30,32 @@
       %dd
         = @survey.status
 
+    %h3 Encounters
+    %table.table.table-bordered.table-striped
+      %thead
+        %tr
+          %th Name
+          %th URL Slug
+          %th Launch When
+          %th Creator
+          %th Actions
+      - @survey.encounters.each do |encounter|
+        %tr
+          %td= link_to encounter.name, builder_survey_encounter_path(@survey, encounter)
+          %td
+            %code= encounter.slug
+          %td
+            - if encounter.launch_days_after_sign_up == 0
+              At Sign Up
+            - else
+              = pluralize encounter.launch_days_after_sign_up, 'Day'
+              After Sign Up
+          %td= link_to_if current_user.owner?, encounter.user.name, encounter.user if encounter.user
+          %td= link_to 'Edit', edit_builder_survey_encounter_path(@survey, encounter), class: 'btn btn-xs btn-default'
+      %tr
+        %td{ colspan: '5' }
+          = link_to 'Add Another Encounter', new_builder_survey_encounter_path(@survey), class: 'btn btn-xs btn-default'
+
     %h3 Questions
     %table.table.table-bordered.table-striped
       %thead
