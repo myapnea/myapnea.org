@@ -11,6 +11,7 @@
     - Risk Factors
     - Diagnosis
     - Treatment
+  - Updated About PAP Therapy section
 - **Landing Page Changes**
   - Reduced font weight of subheaders
   - Made white space more consistent
