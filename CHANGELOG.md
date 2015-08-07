@@ -1,3 +1,5 @@
+## 7.5.0
+
 ## 7.4.0 (August 7, 2015)
 
 ### Enhancements
