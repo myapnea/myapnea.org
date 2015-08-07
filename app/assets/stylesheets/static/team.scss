@@ -57,15 +57,23 @@
   }
 }
 
+.team-list {
+  li {
+    display:inline-block;
+    list-style-type:none;
+    width:14%;
+    max-width:200px;
+    height:auto;
+    margin-left:2.5%;
+    margin-right:2.5%;
+    cursor: pointer;
+    margin-bottom: 20px;
+  }
+}
+
 #steering-committee-list li {
-  display:inline-block;
-  list-style-type:none;
-  width:14%;
-  max-width:200px;
-  height:auto;
-  margin-left:2.5%;
-  margin-right:2.5%;
-  cursor: pointer;
+  margin-left: 4.5%;
+  margin-right: 4.5%;
 }
 
 .team-member-picture {
@@ -121,7 +129,7 @@
 /* RESPONSIVE */
 
 @media (max-width: 992px) {
-  #steering-committee-list {
+  .team-list {
     padding-left:0px;
   }
 }

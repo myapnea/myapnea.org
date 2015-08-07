@@ -63,6 +63,30 @@
 - Restructured tests for surveys and improved overall test speed
 - Refactored Survey class in favor of an AnswerSession-centric model
 
+## 7.4.0 (August 7, 2015)
+
+### Enhancements
+- **Learn Page Changes**
+  - Added educational pages
+    - What is Sleep Apnea
+    - Obstructive Sleep Apnea
+    - Central Sleep Apnea
+    - Causes
+    - Symptoms
+    - Risk Factors
+    - Diagnosis
+    - Treatment
+  - Updated About PAP Therapy section
+- **Landing Page Changes**
+  - Reduced font weight of subheaders
+  - Made white space more consistent
+- **Team Page Changes**
+  - Added first group of PEP members to the team page
+  - Added first round of internal team members to the team page
+  - Autoscrolling used to accomodate for longer list
+- **Minor Changes**
+  - Altered color of navigation bar and removed its drop shadow
+
 ## 7.3.2 (July 7, 2015)
 
 ### Bug Fix

@@ -46,7 +46,7 @@
 
 #slide2
   .text-content-container
-    %h2#myapnea-mission
+    %h2.f300#myapnea-mission
       Our mission is to improve the diagnosis and treatment of sleep apnea through the
       %span.darkerer-blue active engagement
       of patients, families, researchers, and healthcare providers.
@@ -55,7 +55,7 @@
       .col-sm-offset-1.col-sm-4.col-sm-push-7
         = image_tag 'myapnea/icons/data_powerful.png', class: 'img-responsive', style: 'max-width:150px;'
       .col-sm-7.col-sm-pull-4
-        %h3 Your Data is Powerful
+        %h3.f300 Your Data is Powerful
         %p.text-dark8
           Research relies on people like you to help by sharing important data to find the best outcomes.
         = link_to 'Participate in Research', get_tracked_link(:surveys), class: 'btn btn-warning'
@@ -65,7 +65,7 @@
       .col-sm-offset-1.col-sm-4.col-sm-push-7
         = image_tag 'myapnea/icons/risk2.png', class: 'img-responsive', style: 'max-width:150px;'
       .col-sm-7.col-sm-pull-4
-        %h3 Are You at Risk?
+        %h3.f300 Are You at Risk?
         %p.text-dark8
           Over 80% of sleep apnea cases go undiagnosed. Take our quick test and see if you're at risk.
         = link_to 'Check Your Risk', get_tracked_link(:check_risk), class: 'btn btn-warning'
@@ -75,7 +75,7 @@
       .col-sm-offset-1.col-sm-4.col-sm-push-7
         = image_tag 'myapnea/icons/speech_bubbles.png', class: 'img-responsive', style: 'max-width:150px; '
       .col-sm-7.col-sm-pull-4
-        %h3 Welcome to Our Community
+        %h3.f300 Welcome to Our Community
         %p.text-dark8
           Families, researchers, and care providers have all come together to help each other in amazing ways.
         = link_to 'See the Community', get_tracked_link(:forums), class: 'btn btn-warning'
@@ -107,9 +107,11 @@
 
 
 #slide3
+  %br.visible-xs
   #testimonial-giver
     = image_tag 'myapnea/testimonials/KathyPage.jpg', class: 'img-responsive'
   #testimonial
+    %br
     %p.lead
       "It seems as if research is generally driven by funding organizations, which oftentimes is not reflective of the needs of patients. By having large amounts of data provided by and for us, we can now drive the research agenda. This is a way to democratize research—to generate understanding on the part of the researchers and patients together."
     %h4.centered

@@ -62,9 +62,39 @@ class StaticController < ApplicationController
 
   ## Educational content
 
+  def what_is_sleep_apnea
+    render 'static/SEO_content/what_is_sleep_apnea'
+  end
+
   def obstructive_sleep_apnea
     render 'static/SEO_content/obstructive_sleep_apnea'
   end
+
+  def central_sleep_apnea
+    render 'static/SEO_content/central_sleep_apnea'
+  end
+
+  def causes
+    render 'static/SEO_content/causes'
+  end
+
+  def symptoms
+    render 'static/SEO_content/symptoms'
+  end
+
+  def risk_factors
+    render 'static/SEO_content/risk_factors'
+  end
+
+  def diagnostic_process
+    render 'static/SEO_content/diagnostic_process'
+  end
+
+  def treatment_options
+    render 'static/SEO_content/treatment_options'
+  end
+
+  # PAP Devices
 
   def pap
     render 'static/PAP'

@@ -27,7 +27,7 @@
     - if false
       = javascript_include_tag "//code.jquery.com/ui/1.11.2/jquery-ui.min.js"
   %body{screen_capture_injected: "true", class: "#{params[:night] == '1' ? 'night-mode' : 'day-mode'}", data: { email: "#{current_user.email if current_user}", fullname: "#{current_user.name if current_user}" } }
-    %div#social-backdrop
+    #social-backdrop
     = render partial: 'layouts/navigation/top_navigation'
     .container-fluid.reset-layout.wrapper
       = yield

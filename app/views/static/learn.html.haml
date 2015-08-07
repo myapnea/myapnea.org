@@ -5,7 +5,7 @@
       a common and potentially life-threatening sleep and breathing disorder
   .lighter-blue-bcg
     .horizontal-inset
-      = link_to 'PAP Devices', '#pap-devices', class: 'btn white'
+      = link_to 'General Information', '#general-info', class: 'btn white'
       = link_to 'Videos', '#videos', class: 'btn white'
       = link_to 'Tools', '#tools', class: 'btn white'
       .clearfix
@@ -91,23 +91,47 @@
         %span.primary-orange MyApnea.Org
         aims to mobilize the sleep apnea community to work together to get better answers through community support and research.
 
-    %a.anchor#pap-devices
-    .row{ style: 'margin: 50px 0 100px 0;'}
-      .col-sm-4
-        = link_to learn_pap_path, class: 'no-underline white' do
-          .primary-blue-bcg{ style: 'padding: 10px; border-radius: 10px; '}
-            %h3.centered.no-margin Learn about PAP Devices
-        %br.visible-xs
-      .col-sm-4
-        = link_to team_path, class: 'no-underline white' do
-          .primary-blue-bcg{ style: 'padding: 10px; border-radius: 10px; '}
-            %h3.centered.no-margin Learn about Our Team
-        %br.visible-xs
-      .col-sm-4
-        = link_to about_path, class: 'no-underline white' do
-          .primary-blue-bcg{ style: 'padding: 10px; border-radius: 10px; '}
-            %h3.centered.no-margin Learn about MyApnea.Org
-        %br.visible-xs
+    %a.anchor#general-info
+    %div{ style: 'max-width: 1400px; margin: auto'}
+      .row{ style: 'margin: 50px 0 20px 0;'}
+        .col-sm-4
+          = link_to what_is_sleep_apnea_path, class: 'no-underline white' do
+            = image_tag 'myapnea/learn/sections/what_is_sleep_apnea.png', class: 'img-responsive', style: 'border-radius: 3px; margin: auto'
+          %br.visible-xs
+        .col-sm-4
+          = link_to obstructive_sleep_apnea_path, class: 'no-underline white' do
+            = image_tag 'myapnea/learn/sections/osa.png', class: 'img-responsive', style: 'border-radius: 3px; margin: auto'
+          %br.visible-xs
+        .col-sm-4
+          = link_to central_sleep_apnea_path, class: 'no-underline white' do
+            = image_tag 'myapnea/learn/sections/csa.png', class: 'img-responsive', style: 'border-radius: 3px; margin: auto'
+          %br.visible-xs
+      .row{ style: 'margin: 20px 0 20px 0;'}
+        .col-sm-4
+          = link_to causes_of_sleep_apnea_path, class: 'no-underline white' do
+            = image_tag 'myapnea/learn/sections/causes.png', class: 'img-responsive', style: 'border-radius: 3px; margin: auto'
+          %br.visible-xs
+        .col-sm-4
+          = link_to symptoms_of_sleep_apnea_path, class: 'no-underline white' do
+            = image_tag 'myapnea/learn/sections/symptoms.png', class: 'img-responsive', style: 'border-radius: 3px; margin: auto'
+          %br.visible-xs
+        .col-sm-4
+          = link_to risk_factors_for_sleep_apnea_path, class: 'no-underline white' do
+            = image_tag 'myapnea/learn/sections/risk_factors.png', class: 'img-responsive', style: 'border-radius: 3px; margin: auto'
+          %br.visible-xs
+      .row{ style: 'margin: 20px 0 20px 0;'}
+        .col-sm-4
+          = link_to diagnosis_of_sleep_apnea_path, class: 'no-underline white' do
+            = image_tag 'myapnea/learn/sections/diagnosis.png', class: 'img-responsive', style: 'border-radius: 3px; margin: auto'
+          %br.visible-xs
+        .col-sm-4
+          = link_to treatment_options_for_sleep_apnea_path, class: 'no-underline white' do
+            = image_tag 'myapnea/learn/sections/treatments.png', class: 'img-responsive', style: 'border-radius: 3px; margin: auto'
+          %br.visible-xs
+        .col-sm-4
+          = link_to pap_path, class: 'no-underline white' do
+            = image_tag 'myapnea/learn/sections/pap_devices.png', class: 'img-responsive', style: 'border-radius: 3px; margin: auto'
+          %br.visible-xs
 
     %a.anchor#tools
     .row{ style: 'margin: 50px 0 100px 0;'}
