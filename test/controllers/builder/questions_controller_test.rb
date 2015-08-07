@@ -8,8 +8,6 @@ class Builder::QuestionsControllerTest < ActionController::TestCase
     @question = questions(:web_question)
   end
 
-  ## Questions
-
   test "should get questions as builder" do
     login(@builder)
     get :index, survey_id: @survey
