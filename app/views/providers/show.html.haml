@@ -33,13 +33,13 @@
       = image_tag @provider.photo_url, class: 'team-member-picture-md', style: 'float: right;'
     .col-lg-8.col-md-7.col-xs-7{ style: 'padding-left:20px;' }
       %h4.text-dark7
-        = @provider.get_welcome_message
+        = @provider.welcome_message
       %h4.primary-orange
         = '- ' + @provider.provider_name
   - else
     .col-xs-10.col-xs-offset-1{ style: 'padding-left:20px;' }
       %h4.text-dark7.centered-text
-        = @provider.get_welcome_message
+        = @provider.welcome_message
       %h4.primary-orange.centered-text
         = '-' + @provider.provider_name
   .col-lg-1{ style: 'background-color: white;' }

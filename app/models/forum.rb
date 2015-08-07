@@ -23,7 +23,7 @@ class Forum < ActiveRecord::Base
   end
 
   def self.create_research_topic_forum
-    user = User.with_role(:owner).first
+    user = User.where(owner: true).first
 
     user.forums.create!(slug: ENV["research_topic_forum_slug"], name: 'Research Topics')
   end

@@ -1,14 +1,10 @@
 class User < ActiveRecord::Base
 
+  # Uploaders
   mount_uploader :photo, PhotoUploader
 
   #  For recent updates to consent/privacy policy/etc
   RECENT_UPDATE_DATE = "2015-06-24"
-
-  # Dates
-  MONTHS = [["January", 1], ["February", 2], ["March", 3], ["April", 4], ["May", 5], ["June", 6], ["July", 7], ["August", 8], ["September", 9], ["October", 10], ["November", 11], ["December", 12]]
-  DAYS = [["01", 1], ["02", 2], ["03", 3], ["04", 4], ["05", 5], ["06", 6], ["07", 7], ["08", 8], ["09", 9], ["10", 10], ["11", 11], ["12", 12], ["13", 13], ["14", 14], ["15", 15], ["16", 16], ["17", 17], ["18", 18], ["19", 19], ["20", 20], ["21", 21], ["22", 22], ["23", 23], ["24", 24], ["25", 25], ["26", 26], ["27", 27], ["28", 28], ["29", 29], ["30", 30], ["31", 31]]
-  YEARS = 2014..Time.now.year
 
   # Include default devise modules. Others available are:
   # :confirmable, :omniauthable
@@ -39,7 +35,6 @@ class User < ActiveRecord::Base
   attr_accessor :user_is_updating
 
   # Named Scopes
-  scope :search_by_email, ->(terms) { where("LOWER(#{self.table_name}.email) LIKE ?", terms.to_s.downcase.gsub(/^| |$/, '%')) }
   scope :search, lambda { |arg| where( 'LOWER(first_name) LIKE ? or LOWER(last_name) LIKE ? or LOWER(email) LIKE ?', arg.to_s.downcase.gsub(/^| |$/, '%'), arg.to_s.downcase.gsub(/^| |$/, '%'), arg.to_s.downcase.gsub(/^| |$/, '%') ) }
   scope :providers, -> { current.where(provider: true) }
   scope :include_in_exports_and_reports, -> { where(include_in_exports: true) }
@@ -174,12 +169,6 @@ class User < ActiveRecord::Base
     Post.current.where(status: 'approved').where("created_at > ?", (Time.now.monday? ? Time.now.midnight - 3.day : Time.now.midnight - 1.day))
   end
 
-  def smart_forum
-    forum_id = self.posts.group_by{|p| p.forum.id}.collect{|forum_id, posts| [forum_id, posts.count]}.sort{|a,b| b[1] <=> a[1]}.collect{|a| a[0]}.first
-    forum = Forum.current.find_by_id(forum_id)
-    forum ? forum : Forum.current.order(:position).first
-  end
-
   def name
     "#{first_name} #{last_name}"
   end
@@ -188,20 +177,9 @@ class User < ActiveRecord::Base
     "#{first_name} #{last_name} <#{email}>"
   end
 
-  def self.scoped_users(email=nil, role=nil)
-    users = current
-
-    users = users.search_by_email(email) if email.present?
-    users = users.with_role(role) if role.present?
-
-    users
-  end
-
   def photo_url
     if photo.present?
       photo.url
-    # elsif social_profile
-    #   social_profile.photo_url
     else
       'default-user.jpg'
     end
@@ -215,31 +193,14 @@ class User < ActiveRecord::Base
     end
   end
 
-  # Should change to this
-  # def photo_url
-  #   if photo.present?
-  #     photo.url
-  #   else
-  #     'default-user.jpg'
-  #   end
-  # end
-
   def can_post_links?
     self.moderator? or self.owner?
-  end
-
-  def to_s
-    email
   end
 
   def revoke_consent!
     update_attribute :accepted_terms_of_access_at, nil
     update_attribute :accepted_consent_at, nil
     update_attribute :accepted_privacy_policy_at, nil
-  end
-
-  def created_social_profile?
-    self.social_profile.present? and self.social_profile.name.present?
   end
 
   def signed_consent?
@@ -276,18 +237,6 @@ class User < ActiveRecord::Base
     (self.accepted_update_at.present? and (self.accepted_update_at > Date.parse(RECENT_UPDATE_DATE).at_noon)) or (Date.parse(RECENT_UPDATE_DATE).at_noon > Time.now )
   end
 
-  def this_weeks_votes
-    self.votes.where("votes.updated_at >= ? ", Time.now.beginning_of_week(:sunday)).where.not(rating: '0', research_topic_id: nil)
-  end
-
-  def todays_votes
-    votes.select{|vote| vote.updated_at.today? and vote.rating != 0 and vote.research_topic_id.present?}
-  end
-
-  def available_votes_percent
-    (this_weeks_votes.length.to_f / vote_quota) * 100.0
-  end
-
   # User Types
   def update_user_types(user_types)
     update user_types
@@ -322,10 +271,6 @@ class User < ActiveRecord::Base
 
   def completed_demographic_survey?
     self.answer_sessions.where(survey_id: Survey.find_by_slug('about-me').id).where(locked:true).present?
-  end
-
-  def has_no_started_surveys?
-    incomplete_surveys.blank? and complete_surveys.blank?
   end
 
   def answer_for(answer_session, question)
@@ -406,11 +351,9 @@ class User < ActiveRecord::Base
 
   end
 
-
-
   # Research Topics
   def my_research_topics
-      self.research_topics
+    self.research_topics
   end
 
   def highlighted_research_topic
@@ -452,12 +395,6 @@ class User < ActiveRecord::Base
   end
 
   ## Provider Methods
-
-  def get_welcome_message
-    if welcome_message.present?
-      welcome_message
-    end
-  end
 
   def send_provider_informational_email!
     unless Rails.env.test?
