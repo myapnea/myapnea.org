@@ -18,6 +18,8 @@
   - Added first group of PEP members to the team page
   - Added first round of internal team members to the team page
   - Autoscrolling used to accomodate for longer list
+- **Minor Changes**
+  - Altered color of navigation bar and removed its drop shadow
 
 ## 7.3.2 (July 7, 2015)
 
