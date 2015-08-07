@@ -54,4 +54,11 @@ namespace :surveys do
     end
   end
 
+  desc "Add default baseline encounter to all existing surveys."
+  task add_encounters_to_surveys: :environment do
+    Survey.all.each do |s|
+      s.send('create_default_encounters')
+    end
+  end
+
 end
