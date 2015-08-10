@@ -1,0 +1,28 @@
+- if @survey_user_type.new_record?
+  - url = builder_survey_survey_user_types_path(@survey)
+  - method = :post
+- else
+  - url = builder_survey_survey_user_type_path(@survey, @survey_user_type)
+  - method = :patch
+= form_for @survey_user_type, url: url, method: method, html: { class: 'form-horizontal', multipart: true } do |f|
+  - if @survey_user_type.errors.any?
+    .panel.panel-danger
+      .panel-heading
+        %strong
+          = pluralize(@survey_user_type.errors.count, "error")
+          prohibited this survey user type from being saved:
+
+      .panel-body
+        %ul
+          - @survey_user_type.errors.full_messages.each do |message|
+            %li= message
+
+  .form-group
+    = f.label :user_type, 'User Type', class: 'col-md-2 control-label'
+    .col-md-10
+      = f.select :user_type, User::TYPES, { include_blank: true }, class: 'form-control'
+
+  .form-group
+    .col-md-10.col-md-offset-2
+      = f.submit nil, class: 'btn btn-primary'
+      = link_to 'Cancel', url, class: 'btn btn-default'

@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   after_create :set_forum_name, :send_welcome_email, :check_for_token, :update_location
 
   # Mappings
-  TYPE = [['Diagnosed With Sleep Apnea', 'adult_diagnosed'],
+  TYPES = [['Diagnosed With Sleep Apnea', 'adult_diagnosed'],
           ['Concern That I May Have Sleep Apnea', 'adult_at_risk'],
           ['Family Member of an Adult with Sleep Apnea', 'caregiver_adult'],
           ['Family Member of a Child with Sleep Apnea', 'caregiver_child'],
@@ -448,16 +448,11 @@ class User < ActiveRecord::Base
   end
 
   def assign_default_surveys
-    DEFAULT_SURVEYS.each do |user_type, survey_list|
+    User::TYPES.each do |label, user_type|
       if self[user_type]
-        return survey_list.map do |survey_slug|
-          survey = Survey.find_by_slug(survey_slug)
-          if survey
-            survey.launch_single(self, "baseline")
-            survey
-          else
-            Rails.logger.error "Survey #{survey_slug} could not be assigned to user #{self.email} - Survey could not be found."
-            nil
+        Survey.current.viewable.joins(:survey_user_types).merge(SurveyUserType.current.where(user_type: user_type)).each do |survey|
+          survey.encounters.where(launch_days_after_sign_up: 0).each do |encounter|
+            survey.launch_single(self, encounter.slug)
           end
         end
       end

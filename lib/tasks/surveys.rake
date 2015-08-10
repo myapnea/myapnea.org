@@ -61,4 +61,57 @@ namespace :surveys do
     end
   end
 
+  desc "Add default user types to all existing surveys."
+  task add_user_types_to_surveys: :environment do
+    s = Survey.find_by_slug 'about-me'
+    s.survey_user_types.create user_id: s.user_id, user_type: 'adult_diagnosed'
+    s.survey_user_types.create user_id: s.user_id, user_type: 'adult_at_risk'
+    s.survey_user_types.create user_id: s.user_id, user_type: 'caregiver_adult'
+    s.survey_user_types.create user_id: s.user_id, user_type: 'caregiver_child'
+
+    s = Survey.find_by_slug 'additional-information-about-me'
+    s.survey_user_types.create user_id: s.user_id, user_type: 'adult_diagnosed'
+    s.survey_user_types.create user_id: s.user_id, user_type: 'adult_at_risk'
+    s.survey_user_types.create user_id: s.user_id, user_type: 'caregiver_adult'
+    s.survey_user_types.create user_id: s.user_id, user_type: 'caregiver_child'
+
+    s = Survey.find_by_slug 'about-my-family'
+    s.survey_user_types.create user_id: s.user_id, user_type: 'adult_diagnosed'
+    s.survey_user_types.create user_id: s.user_id, user_type: 'adult_at_risk'
+    s.survey_user_types.create user_id: s.user_id, user_type: 'caregiver_adult'
+    s.survey_user_types.create user_id: s.user_id, user_type: 'caregiver_child'
+
+    s = Survey.find_by_slug 'my-interest-in-research'
+    s.survey_user_types.create user_id: s.user_id, user_type: 'adult_diagnosed'
+    s.survey_user_types.create user_id: s.user_id, user_type: 'adult_at_risk'
+    s.survey_user_types.create user_id: s.user_id, user_type: 'caregiver_adult'
+    s.survey_user_types.create user_id: s.user_id, user_type: 'caregiver_child'
+
+    s = Survey.find_by_slug 'my-health-conditions'
+    s.survey_user_types.create user_id: s.user_id, user_type: 'adult_diagnosed'
+    s.survey_user_types.create user_id: s.user_id, user_type: 'adult_at_risk'
+
+    s = Survey.find_by_slug 'my-sleep-pattern'
+    s.survey_user_types.create user_id: s.user_id, user_type: 'adult_diagnosed'
+    s.survey_user_types.create user_id: s.user_id, user_type: 'adult_at_risk'
+
+    s = Survey.find_by_slug 'my-sleep-quality'
+    s.survey_user_types.create user_id: s.user_id, user_type: 'adult_diagnosed'
+    s.survey_user_types.create user_id: s.user_id, user_type: 'adult_at_risk'
+
+    s = Survey.find_by_slug 'my-quality-of-life'
+    s.survey_user_types.create user_id: s.user_id, user_type: 'adult_diagnosed'
+    s.survey_user_types.create user_id: s.user_id, user_type: 'adult_at_risk'
+
+    s = Survey.find_by_slug 'my-sleep-apnea'
+    s.survey_user_types.create user_id: s.user_id, user_type: 'adult_diagnosed'
+
+    s = Survey.find_by_slug 'my-sleep-apnea-treatment'
+    s.survey_user_types.create user_id: s.user_id, user_type: 'adult_diagnosed'
+
+    s = Survey.find_by_slug 'my-risk-profile'
+    s.survey_user_types.create user_id: s.user_id, user_type: 'adult_at_risk'
+  end
+
+
 end

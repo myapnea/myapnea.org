@@ -1,0 +1,158 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# Web Survey
+web_survey_user_type_adult_diagnosed:
+  survey: built_on_web
+  user: builder
+  user_type: adult_diagnosed
+
+web_survey_user_type_adult_at_risk:
+  survey: built_on_web
+  user: builder
+  user_type: adult_at_risk
+
+# About Me
+about_me_adult_diagnosed:
+  survey: about_me
+  user: builder
+  user_type: adult_diagnosed
+
+about_me_adult_at_risk:
+  survey: about_me
+  user: builder
+  user_type: adult_at_risk
+
+about_me_caregiver_adult:
+  survey: about_me
+  user: builder
+  user_type: caregiver_adult
+
+about_me_caregiver_child:
+  survey: about_me
+  user: builder
+  user_type: caregiver_child
+
+# Additional Information About Me
+additional_information_about_me_adult_diagnosed:
+  survey: additional_information_about_me
+  user: builder
+  user_type: adult_diagnosed
+
+additional_information_about_me_adult_at_risk:
+  survey: additional_information_about_me
+  user: builder
+  user_type: adult_at_risk
+
+additional_information_about_me_caregiver_adult:
+  survey: additional_information_about_me
+  user: builder
+  user_type: caregiver_adult
+
+additional_information_about_me_caregiver_child:
+  survey: additional_information_about_me
+  user: builder
+  user_type: caregiver_child
+
+# About My Family
+about_my_family_adult_diagnosed:
+  survey: about_my_family
+  user: builder
+  user_type: adult_diagnosed
+
+about_my_family_adult_at_risk:
+  survey: about_my_family
+  user: builder
+  user_type: adult_at_risk
+
+about_my_family_caregiver_adult:
+  survey: about_my_family
+  user: builder
+  user_type: caregiver_adult
+
+about_my_family_caregiver_child:
+  survey: about_my_family
+  user: builder
+  user_type: caregiver_child
+
+# My Interest In Research
+my_interest_in_research_adult_diagnosed:
+  survey: my_interest_in_research
+  user: builder
+  user_type: adult_diagnosed
+
+my_interest_in_research_adult_at_risk:
+  survey: my_interest_in_research
+  user: builder
+  user_type: adult_at_risk
+
+my_interest_in_research_caregiver_adult:
+  survey: my_interest_in_research
+  user: builder
+  user_type: caregiver_adult
+
+my_interest_in_research_caregiver_child:
+  survey: my_interest_in_research
+  user: builder
+  user_type: caregiver_child
+
+# My Health Conditions
+my_health_conditions_adult_diagnosed:
+  survey: my_health_conditions
+  user: builder
+  user_type: adult_diagnosed
+
+my_health_conditions_adult_at_risk:
+  survey: my_health_conditions
+  user: builder
+  user_type: adult_at_risk
+
+# My Sleep Pattern
+my_sleep_pattern_adult_diagnosed:
+  survey: my_sleep_pattern
+  user: builder
+  user_type: adult_diagnosed
+
+my_sleep_pattern_adult_at_risk:
+  survey: my_sleep_pattern
+  user: builder
+  user_type: adult_at_risk
+
+# My Sleep Quality
+my_sleep_quality_adult_diagnosed:
+  survey: my_sleep_quality
+  user: builder
+  user_type: adult_diagnosed
+
+my_sleep_quality_adult_at_risk:
+  survey: my_sleep_quality
+  user: builder
+  user_type: adult_at_risk
+
+# My Quality of Life
+my_quality_of_life_adult_diagnosed:
+  survey: my_quality_of_life
+  user: builder
+  user_type: adult_diagnosed
+
+my_quality_of_life_adult_at_risk:
+  survey: my_quality_of_life
+  user: builder
+  user_type: adult_at_risk
+
+# My Sleep Apnea
+my_sleep_apnea_adult_diagnosed:
+  survey: my_sleep_apnea
+  user: builder
+  user_type: adult_diagnosed
+
+# My Sleep Apnea Treatment
+my_sleep_apnea_treatment_adult_diagnosed:
+  survey: my_sleep_apnea_treatment
+  user: builder
+  user_type: adult_diagnosed
+
+# My Risk Profile
+my_risk_profile_adult_at_risk:
+  survey: my_risk_profile
+  user: builder
+  user_type: adult_at_risk

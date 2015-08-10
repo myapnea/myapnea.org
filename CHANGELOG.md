@@ -28,6 +28,7 @@
       - "date", "radio", "checkbox", "string", "height", "number"
   - Encounters can be added to surveys in online builder
     - An encounter specifies when the survey is launched, in days after sign up
+  - Survey User Type can be added to surveys in online builder
 - **Admin Changes**
   - Administrators can now unlock surveys for users from the user show page
 - **Gem Changes**
