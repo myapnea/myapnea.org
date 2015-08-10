@@ -4,6 +4,9 @@
 - **Team Page Changes**
   - Added additional bios and images to team page
 
+### Bug Fix
+- Removed deprecated configuration option previously used by devise
+
 ## 7.4.0 (August 7, 2015)
 
 ### Enhancements
