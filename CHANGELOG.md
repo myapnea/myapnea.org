@@ -64,6 +64,7 @@
 - Restructured tests for surveys and improved overall test speed
 - Refactored Survey class in favor of an AnswerSession-centric model
 - Removed unused methods from the user model
+- Removed unused views and partials
 
 ## 7.4.0 (August 7, 2015)
 
