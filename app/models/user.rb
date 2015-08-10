@@ -22,13 +22,6 @@ class User < ActiveRecord::Base
           ['Provider', 'provider'],
           ['Researcher', 'researcher']]
 
-  DEFAULT_SURVEYS = {
-    adult_diagnosed: ['about-me', 'additional-information-about-me', 'about-my-family', 'my-health-conditions', 'my-sleep-pattern', 'my-sleep-quality', 'my-sleep-apnea', 'my-sleep-apnea-treatment', 'my-quality-of-life', 'my-interest-in-research'],
-    adult_at_risk: ['about-me', 'additional-information-about-me', 'about-my-family', 'my-health-conditions', 'my-sleep-pattern', 'my-sleep-quality', 'my-risk-profile', 'my-quality-of-life', 'my-interest-in-research'],
-    caregiver_adult: ['about-me', 'additional-information-about-me', 'about-my-family', 'my-interest-in-research'],
-    caregiver_child: ['about-me', 'additional-information-about-me', 'about-my-family', 'my-interest-in-research']
-  }
-
   # Concerns
   include CommonDataModel, Deletable
 
