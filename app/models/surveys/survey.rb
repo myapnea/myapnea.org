@@ -1,7 +1,5 @@
 class Survey < ActiveRecord::Base
   # Constants
-  SURVEY_DATA_LOCATION = ['lib', 'data', 'surveys']
-  SURVEY_LIST = ['about-me', 'additional-information-about-me', 'about-my-family', 'my-interest-in-research', 'my-sleep-pattern', 'my-sleep-quality', 'my-quality-of-life', 'my-health-conditions', 'my-sleep-apnea', 'my-sleep-apnea-treatment', 'my-risk-profile']
   STATUS = ['show', 'hide']
 
   # Concerns
@@ -55,80 +53,6 @@ class Survey < ActiveRecord::Base
 
   def editable_by?(current_user)
     self.user_id == current_user.id
-  end
-
-  def self.load_from_file(name)
-    ## CREATES A NEW SURVEY
-
-    data_file = YAML.load_file(Rails.root.join(*(SURVEY_DATA_LOCATION + ["#{name}.yml"])))
-
-    # Find or Create Survey
-    survey = Survey.where(slug: data_file["slug"]).first_or_create
-    survey.update(name_en: data_file["name"], description_en: data_file["description"], status: data_file["status"], first_question_id: nil, default_position: data_file["default_position"])
-
-    data_file["questions"].each do |question_attributes|
-      question = Question.where(slug: question_attributes["slug"]).first_or_create
-      question.update(text_en: question_attributes["text"], display_type: question_attributes["display_type"])
-
-      question_attributes["answer_templates"].each do |answer_template_attributes|
-        answer_template = AnswerTemplate.where(name: answer_template_attributes["name"]).first_or_create
-        answer_template.update(data_type: answer_template_attributes["data_type"], text: answer_template_attributes["text"], display_type_id: answer_template_attributes["display_type_id"], allow_multiple: answer_template_attributes["allow_multiple"].present?, target_answer_option: answer_template_attributes["target_answer_option"], preprocess: answer_template_attributes["preprocess"], unit: answer_template_attributes["unit"])
-        (question.answer_templates << answer_template) unless question.answer_templates.exists?(answer_template.id)
-
-        if answer_template_attributes.has_key?("answer_options")
-          answer_template_attributes["answer_options"].each do |answer_option_attributes|
-            answer_option = answer_template.answer_options.find_or_create_by(slug: answer_option_attributes["slug"])
-            answer_option.update(value: answer_option_attributes["value"], text: answer_option_attributes["text"], hotkey: answer_option_attributes["hotkey"], display_class: answer_option_attributes["display_class"])
-          end
-        end
-      end
-
-      survey.first_question_id = question.id if survey.first_question_id.blank?
-    end
-
-    survey.save
-  end
-
-  def write_to_file
-    file_hash = {}
-
-    file_hash["name"] = name
-    file_hash["slug"] = slug
-    file_hash["default_position"] = default_position
-    file_hash["description"] = description
-    file_hash["status"] = status
-
-    file_hash["questions"] = questions.map do |q|
-      q_hash = {}
-      q_hash["text"] = q.text
-      q_hash["slug"] = q.slug
-      q_hash["display_type"] = q.display_type
-      q_hash["answer_templates"] = q.answer_templates.map do |at|
-        at_hash = {}
-        at_hash["name"] = at.name
-        at_hash["data_type"] = at.data_type
-        at_hash["text"] = at.text if at.text.present?
-        at_hash["unit"] = at.unit if at.unit.present?
-        at_hash["preprocess"] = at.preprocess if at.preprocess.present?
-        at_hash["allow_multiple"] = at.allow_multiple if at.allow_multiple
-        at_hash["target_answer_option"] = at.target_answer_option if at.target_answer_option.present?
-        if at.answer_options.present?
-          at_hash["answer_options"] = at.answer_options.map do |ao|
-            ao_hash = {}
-            ao_hash["slug"] = "#{at.name}_#{ao.value}".dasherize
-            ao_hash["text"] = ao.text
-            ao_hash["hotkey"] = ao.hotkey if ao.hotkey.present?
-            ao_hash["value"] = ao.value
-            ao_hash["display_class"] = ao.display_class if ao.display_class.present?
-            ao_hash
-          end
-        end
-        at_hash
-      end
-      q_hash
-    end
-
-    File.open(File.join(Rails.root, "/lib/data/myapnea/surveys/generated/#{slug}.yml"), 'w') {|f| f.write file_hash.to_yaml }
   end
 
   # Instance Methods
