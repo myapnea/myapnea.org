@@ -52,6 +52,7 @@
     - Added capability to create new posts
   - Surveys
     - Added getter for user's answer sessions
+    - Added survey show page to allow dynamic building on app side
 
 ### Bug Fix
 - Fixed and simplified date input parsing to better handle consistency issues across browsers and devices

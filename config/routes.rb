@@ -262,6 +262,15 @@ Rails.application.routes.draw do
           post :vote
         end
       end
+      resources :surveys do
+        collection do
+          get :answer_sessions
+          post :process_answer
+        end
+        member do
+          get :show
+        end
+      end
     end
   end
 

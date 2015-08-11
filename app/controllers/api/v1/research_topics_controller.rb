@@ -1,5 +1,3 @@
-require 'test_helper'
-
 class Api::V1::ResearchTopicsController < ApplicationController
 
   before_action :authenticate_user!,                       only: [:create, :vote]
