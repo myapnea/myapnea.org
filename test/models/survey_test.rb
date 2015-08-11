@@ -15,7 +15,7 @@ class SurveyTest < ActiveSupport::TestCase
     assert_match /American Indian or Alaskan Native/, cb_q.answer_templates.first.answer_options.first.text
     assert_equal "A", cb_q.answer_templates.first.answer_options.first.hotkey
     assert_equal 1, cb_q.answer_templates.first.answer_options.first.value
-    assert_equal 6, cb_q.answer_templates.last.target_answer_option
+    assert_equal 6, cb_q.answer_templates.last.parent_answer_option_value
     assert_equal 2, cb_q.answer_templates.count
   end
 

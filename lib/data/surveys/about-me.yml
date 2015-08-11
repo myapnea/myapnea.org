@@ -93,7 +93,7 @@ questions:
       value: 8
   - name: specified_race
     data_type: text_value
-    target_answer_option: 6
+    parent_answer_option_value: 6
 - text: |
     Are you of Hispanic, Latino, or Spanish origin or ancestry?
   slug: ethnicity

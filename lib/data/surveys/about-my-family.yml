@@ -56,7 +56,7 @@ questions:
       display_class: label-default label-med
   - name: specified_country
     data_type: text_value
-    target_answer_option: 7
+    parent_answer_option_value: 7
 - text: |
     What language do you mainly speak at home?
   slug: primary-language
@@ -92,7 +92,7 @@ questions:
       display_class: label-default label-med
   - name: specified_language
     data_type: text_value
-    target_answer_option: 4
+    parent_answer_option_value: 4
 - text: |
     How many people, other than you, live in your household most of the time?
   slug: household-members
@@ -212,7 +212,7 @@ questions:
       value: 8
   - name: specified_brothers
     data_type: answer_option_id
-    target_answer_option: 3
+    parent_answer_option_value: 3
     answer_options:
     - slug: specified-brothers-1
       text: '1'
@@ -228,7 +228,7 @@ questions:
       display_class: label-default label-sm
   - name: specified_sisters
     data_type: answer_option_id
-    target_answer_option: 4
+    parent_answer_option_value: 4
     answer_options:
     - slug: specified-sisters-1
       text: '1'
@@ -244,7 +244,7 @@ questions:
       display_class: label-default label-sm
   - name: specified_sons
     data_type: answer_option_id
-    target_answer_option: 5
+    parent_answer_option_value: 5
     answer_options:
     - slug: specified-sons-1
       text: '1'
@@ -260,7 +260,7 @@ questions:
       display_class: label-default label-sm
   - name: specified_daughters
     data_type: answer_option_id
-    target_answer_option: 6
+    parent_answer_option_value: 6
     answer_options:
     - slug: specified-daughters-1
       text: '1'

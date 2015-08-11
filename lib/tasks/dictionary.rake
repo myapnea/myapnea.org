@@ -40,7 +40,7 @@ namespace :dictionary do
 
             question.answer_templates.where(data_type: 'text_value').each do |at|
               slug = at.name
-              ao = answer_options.select{|value, text| value == at.target_answer_option}.first
+              ao = answer_options.select{|value, text| value == at.parent_answer_option_value}.first
               display_name = if ao
                 ao[1]
               else

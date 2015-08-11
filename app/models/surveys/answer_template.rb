@@ -14,9 +14,9 @@ class AnswerTemplate < ActiveRecord::Base
   validates_presence_of :name, :data_type, :user_id, :template_name
   validates_uniqueness_of :name, scope: [ :deleted ]
   validates_inclusion_of :template_name, in: TEMPLATE_NAMES
-  validates_presence_of :parent_answer_template_id, if: :target_answer_option_present?
-  validates_presence_of :target_answer_option, if: :parent_answer_template_present?
-  validates_inclusion_of :target_answer_option, in: :parent_template_option_values, if: :parent_answer_template_present?
+  validates_presence_of :parent_answer_template_id, if: :parent_answer_option_value_present?
+  validates_presence_of :parent_answer_option_value, if: :parent_answer_template_present?
+  validates_inclusion_of :parent_answer_option_value, in: :parent_template_option_values, if: :parent_answer_template_present?
 
   # Model Relationships
   belongs_to :user
@@ -43,7 +43,7 @@ class AnswerTemplate < ActiveRecord::Base
       elsif question.display_type == "radio_input"           and self.data_type == "answer_option_id"
         'radio'
       elsif question.display_type == "checkbox_input"        and self.data_type == "answer_option_id"
-        if self.target_answer_option == nil
+        if self.parent_answer_option_value == nil
           'checkbox'
         else
           'radio'
@@ -90,11 +90,11 @@ class AnswerTemplate < ActiveRecord::Base
   end
 
   def child_templates(question, value)
-    question.answer_templates.where(parent_answer_template_id: self.id, target_answer_option: value)
+    question.answer_templates.where(parent_answer_template_id: self.id, parent_answer_option_value: value)
   end
 
-  def target_answer_option_present?
-    self.target_answer_option.present?
+  def parent_answer_option_value_present?
+    self.parent_answer_option_value.present?
   end
 
   def parent_answer_template_present?

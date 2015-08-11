@@ -76,12 +76,12 @@ class Answer < ActiveRecord::Base
 
       # Test for nested inputs. There is a dependency: all conditionals are one-level, and the first answer template in questions with nested inputs is a categorical question that spawns the nesting.
       # TODO: Add Testing
-      if template.target_answer_option.present? and template_completions.first
+      if template.parent_answer_option_value.present? and template_completions.first
         answer_option_ids = template_values.first.kind_of?(Array) ? template_values.first : [template_values.first]
         answer_options = answer_option_ids.map{ |ao_id| AnswerOption.find(ao_id) }
         answer_option_values = answer_options.map(&:value)
 
-        template_completion = answer_option_values.include?(template.target_answer_option) ? val_for_template.present? : true
+        template_completion = answer_option_values.include?(template.parent_answer_option_value) ? val_for_template.present? : true
       else
         template_completion = val_for_template.present?
       end

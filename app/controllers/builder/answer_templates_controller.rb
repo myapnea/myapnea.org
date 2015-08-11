@@ -67,7 +67,7 @@ class Builder::AnswerTemplatesController < Builder::BuilderController
     end
 
     def answer_template_params
-      params.require(:answer_template).permit(:name, :template_name, :parent_answer_template_id, :target_answer_option, :text)
+      params.require(:answer_template).permit(:name, :template_name, :parent_answer_template_id, :parent_answer_option_value, :text)
     end
 
 end

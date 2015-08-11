@@ -46,7 +46,7 @@ class Builder::AnswerTemplatesControllerTest < ActionController::TestCase
   test "should create answer template as builder" do
     login(@builder)
     assert_difference('AnswerTemplate.count') do
-      post :create, survey_id: @survey, question_id: @question, answer_template: { name: 'My New Answer Template', template_name: 'checkbox', target_answer_option: @answer_template.target_answer_option, text: @answer_template.text }
+      post :create, survey_id: @survey, question_id: @question, answer_template: { name: 'My New Answer Template', template_name: 'checkbox', parent_answer_option_value: @answer_template.parent_answer_option_value, text: @answer_template.text }
     end
     assert_not_nil assigns(:survey)
     assert_not_nil assigns(:question)
@@ -61,7 +61,7 @@ class Builder::AnswerTemplatesControllerTest < ActionController::TestCase
   test "should not create answer template without text" do
     login(@builder)
     assert_difference('AnswerTemplate.count', 0) do
-      post :create, survey_id: @survey, question_id: @question, answer_template: { name: '', template_name: 'checkbox', target_answer_option: @answer_template.target_answer_option, text: @answer_template.text }
+      post :create, survey_id: @survey, question_id: @question, answer_template: { name: '', template_name: 'checkbox', parent_answer_option_value: @answer_template.parent_answer_option_value, text: @answer_template.text }
     end
     assert_not_nil assigns(:survey)
     assert_not_nil assigns(:question)
@@ -75,7 +75,7 @@ class Builder::AnswerTemplatesControllerTest < ActionController::TestCase
   test "should not create answer template as regular user" do
     login(@regular_user)
     assert_difference('AnswerTemplate.count', 0) do
-      post :create, survey_id: @survey, question_id: @question, answer_template: { name: 'My New Answer Template', template_name: 'checkbox', target_answer_option: @answer_template.target_answer_option, text: @answer_template.text }
+      post :create, survey_id: @survey, question_id: @question, answer_template: { name: 'My New Answer Template', template_name: 'checkbox', parent_answer_option_value: @answer_template.parent_answer_option_value, text: @answer_template.text }
     end
     assert_nil assigns(:survey)
     assert_nil assigns(:question)
@@ -121,7 +121,7 @@ class Builder::AnswerTemplatesControllerTest < ActionController::TestCase
 
   test "should update answer template as builder" do
     login(@builder)
-    patch :update, survey_id: @survey, question_id: @question, id: @answer_template, answer_template: { name: 'Updated Answer Template', template_name: 'date', target_answer_option: @answer_template.target_answer_option, text: @answer_template.text }
+    patch :update, survey_id: @survey, question_id: @question, id: @answer_template, answer_template: { name: 'Updated Answer Template', template_name: 'date', parent_answer_option_value: @answer_template.parent_answer_option_value, text: @answer_template.text }
     assert_not_nil assigns(:survey)
     assert_not_nil assigns(:question)
     assert_not_nil assigns(:answer_template)
@@ -134,7 +134,7 @@ class Builder::AnswerTemplatesControllerTest < ActionController::TestCase
 
   test "should not update answer template without name" do
     login(@builder)
-    patch :update, survey_id: @survey, question_id: @question, id: @answer_template, answer_template: { name: '', template_name: 'date', target_answer_option: @answer_template.target_answer_option, text: @answer_template.text }
+    patch :update, survey_id: @survey, question_id: @question, id: @answer_template, answer_template: { name: '', template_name: 'date', parent_answer_option_value: @answer_template.parent_answer_option_value, text: @answer_template.text }
     assert_not_nil assigns(:survey)
     assert_not_nil assigns(:question)
     assert_not_nil assigns(:answer_template)
@@ -146,7 +146,7 @@ class Builder::AnswerTemplatesControllerTest < ActionController::TestCase
 
   test "should not update answer template as regular user" do
     login(@regular_user)
-    patch :update, survey_id: @survey, question_id: @question, id: @answer_template, answer_template: { name: 'Updated Answer Template', template_name: 'date', target_answer_option: @answer_template.target_answer_option, text: @answer_template.text }
+    patch :update, survey_id: @survey, question_id: @question, id: @answer_template, answer_template: { name: 'Updated Answer Template', template_name: 'date', parent_answer_option_value: @answer_template.parent_answer_option_value, text: @answer_template.text }
     assert_nil assigns(:survey)
     assert_nil assigns(:question)
     assert_nil assigns(:answer_template)

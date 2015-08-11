@@ -7,7 +7,7 @@
       - answer_template = question.answer_templates.first
       - secondary_templates = question.answer_templates[1..-1] if question.answer_templates.length > 1
       - answer_template.answer_options.distinct.each do |answer_option|
-        - targeted_template = secondary_templates.select{|t| t.target_answer_option == answer_option.new_value }.first if secondary_templates.present?
+        - targeted_template = secondary_templates.select{|t| t.parent_answer_option_value == answer_option.new_value }.first if secondary_templates.present?
         .check-box-container
           = check_box_tag "#{question.id}[#{answer_template.id}][]", answer_option.id, have_checked?(answer, answer_template, answer_option.id), id: "question_#{question.id}_#{answer_template.id}_#{answer_option.new_value}", name: "response[#{answer_template.id}][]", data: { hotkey: "#{answer_option.hotkey unless answer.locked?}", object: "#{'reveal-next-input' if targeted_template.present? }", target: "#{('question_'+question.id.to_s+'_answer'+answer_option.id.to_s+'_secondary_'+targeted_template.data_type) if targeted_template.present?}" }, disabled: answer.locked?
           %label{ for: "question_#{question.id}_#{answer_template.id}_#{answer_option.new_value}", style: "#{'cursor: default' if answer.locked?}" }

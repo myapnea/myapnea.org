@@ -36,14 +36,14 @@
         = simple_check @answer_template.allow_multiple
 
       %dt
-        %strong Parent Answer Template
+        %strong Parent Template
       %dd
         = @answer_template.parent_answer_template.name if @answer_template.parent_answer_template
 
       %dt
-        %strong Target Answer Option
+        %strong Parent Option Value
       %dd
-        = @answer_template.target_answer_option
+        = @answer_template.parent_answer_option_value
 
       %dt
         %strong Text

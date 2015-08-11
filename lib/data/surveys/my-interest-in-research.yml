@@ -146,7 +146,7 @@ questions:
       value: 9
   - name: specified_contact_method
     data_type: text_value
-    target_answer_option: 8
+    parent_answer_option_value: 8
 - text: |
     If a researcher was studying a condition or health problem that you cared about, how interested would you be in participating for the following study designs?
   slug: interest-in-study-designs
