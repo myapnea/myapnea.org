@@ -70,7 +70,7 @@ class Builder::AnswerOptionsController < Builder::BuilderController
     end
 
     def answer_option_params
-      params.require(:answer_option).permit(:text, :hotkey, :value)
+      params.require(:answer_option).permit(:text, :hotkey, :value, :display_class)
     end
 
 end
