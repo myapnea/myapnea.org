@@ -57,6 +57,8 @@
 
 ### Bug Fix
 - Fixed and simplified date input parsing to better handle consistency issues across browsers and devices
+- Surveys are now correctly reassigned when a user changes their user type
+  - Unstarted surveys that are no longer applicable are discarded, and started surveys are kept
 
 ### Refactoring
 - Simplified processing single answers from surveys

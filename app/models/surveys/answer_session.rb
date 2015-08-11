@@ -41,6 +41,10 @@ class AnswerSession < ActiveRecord::Base
     self[:locked]
   end
 
+  def available_for_user_types?(user_types)
+    self.survey.survey_user_types.where(user_type: user_types).count > 0
+  end
+
   def process_answer(question, response)
     answer = answers.where(question_id: question.id).first_or_initialize
     if answer.locked?

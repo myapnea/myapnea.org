@@ -15,12 +15,12 @@ class User < ActiveRecord::Base
   after_create :set_forum_name, :send_welcome_email, :check_for_token, :update_location
 
   # Mappings
-  TYPES = [['Diagnosed With Sleep Apnea', 'adult_diagnosed'],
-          ['Concern That I May Have Sleep Apnea', 'adult_at_risk'],
-          ['Family Member of an Adult with Sleep Apnea', 'caregiver_adult'],
-          ['Family Member of a Child with Sleep Apnea', 'caregiver_child'],
-          ['Provider', 'provider'],
-          ['Researcher', 'researcher']]
+  TYPES = [['Adult who has been diagnosed with sleep apnea', 'adult_diagnosed'],
+          ['Adult who is at-risk of sleep apnea', 'adult_at_risk'],
+          ['Caregiver of adult diagnosed with or at-risk of sleep apnea', 'caregiver_adult'],
+          ['Caregiver of child(ren) diagnosed with or at-risk of sleep apnea', 'caregiver_child'],
+          ['Professional care provider', 'provider'],
+          ['Research professional', 'researcher']]
 
   # Concerns
   include CommonDataModel, Deletable
@@ -108,8 +108,16 @@ class User < ActiveRecord::Base
     self.adult_diagnosed? or self.adult_at_risk? or self.caregiver_child? or self.caregiver_adult? or self.provider? or self.researcher?
   end
 
+  def user_type_names
+    User::TYPES.collect do |label, user_type|
+      label if self[user_type]
+    end.compact
+  end
+
   def user_types
-    user_types = [('Adult diagnosed with sleep apnea' if self.adult_diagnosed?), ('Adult at-risk of sleep apnea' if self.adult_at_risk?), ('Caregiver of adult(s) with sleep apnea' if self.caregiver_adult?), ('Caregiver of child(ren) with sleep apnea' if self.caregiver_child?), ('Professional care provider' if self.provider?), ('Researcher' if self.researcher?) ].reject(&:blank?)
+    User::TYPES.collect do |label, user_type|
+      user_type if self[user_type]
+    end.compact
   end
 
   def viewable_topics
@@ -441,6 +449,7 @@ class User < ActiveRecord::Base
   end
 
   def assign_default_surveys
+    remove_out_of_range_answer_sessions!
     User::TYPES.each do |label, user_type|
       if self[user_type]
         Survey.current.viewable.non_pediatric.joins(:survey_user_types).merge(SurveyUserType.current.where(user_type: user_type)).each do |survey|
@@ -451,4 +460,13 @@ class User < ActiveRecord::Base
       end
     end
   end
+
+  def remove_out_of_range_answer_sessions!
+    self.answer_sessions.where(child_id: nil).each do |answer_session|
+      if answer_session.answers.count == 0 and not answer_session.available_for_user_types?(self.user_types)
+        answer_session.destroy
+      end
+    end
+  end
+
 end
