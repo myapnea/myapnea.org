@@ -1,117 +1,96 @@
-# Deprecated - remove in 6.0.0
-#
-#all:
-#  text_value_en: All of the time
-#most:
-#  text_value_en: Most of the time
-#good_bit:
-#  text_value_en: A good bit of the time
-#some:
-#  text_value_en: Some of the time
-#little:
-#  text_value_en: A little of the time
-#none:
-#  text_value_en: None of the time
-#excellent:
-#  text_value_en: Excellent
-#very_good:
-#  text_value_en: Very good
-#good:
-#  text_value_en: Good
-#fair:
-#  text_value_en: Fair
-#poor:
-#  text_value_en: Poor
-#red:
-#  text_value_en: red
-#blue:
-#  text_value_en: blue
-#green:
-#  text_value_en: green
-#purple:
-#  text_value_en: purple
-#yellow:
-#  text_value_en: yellow
-#brown:
-#  text_value_en: brown
-
-# New
 male:
+  user: owner
   text: Male
   hotkey: M
   value: 1
 female:
+  user: owner
   text: Female
   hotkey: F
   value: 2
 other:
+  user: owner
   text: Other
   hotkey: O
   value: 3
 prefer_not_to_answer:
+  user: owner
   text: Prefer not to answer
   hotkey: P
   value: 4
 orange:
+  user: owner
   text: Orange
   hotkey: O
   value: 1
 cyan:
+  user: owner
   text: Cyan
   hotkey: C
   value: 2
 green2:
+  user: owner
   text: Green
   hotkey: G
   value: 3
 maroon:
+  user: owner
   text: Maroon
   hotkey: M
   value: 4
 
 wookie:
+  user: owner
   text: Wookie
   hotkey: W
   value: 1
 
 bith:
+  user: owner
   text: Bith
   hotkey: B
   value: 2
 
 rodian:
+  user: owner
   text: Rodian
   hotkey: R
   value: 5
 
 other_race:
+  user: owner
   text: Some other race
   hotkey: O
   value: 3
 
 high_chance:
+  user: owner
   text: High Chance
   hotkey: H
   value: 1
   display_class: option-of-multiple option-of-2 survey-scale survey-scale-danger
 
 low_chance:
+  user: owner
   text: Low Chance
   hotkey: L
   value: 2
   display_class: option-of-multiple option-of-2 survey-scale survey-scale-great
 
 ghana:
+  user: owner
   text: Ghana
   hotkey: G
   value: 1
 
 poland:
+  user: owner
   text: Poland
   hotkey: P
   value: 2
 
 brunei:
+  user: owner
   text: Brunei
   hotkey: B
   value: 5
@@ -120,33 +99,39 @@ brunei:
 # About Me Survey
 
 sex_1:
+  user: owner
   text: Male
   hotkey: A
   value: 1
   display_class: label-default label-med
 sex_2:
+  user: owner
   text: Female
   hotkey: B
   value: 2
   display_class: label-default label-med
 sex_3:
+  user: owner
   text: Other
   hotkey: C
   value: 3
   display_class: label-default label-med
 sex_4:
+  user: owner
   text: Prefer not to answer
   hotkey: D
   value: 4
   display_class: label-default label-med
 
 race-1:
+  user: owner
   text: American Indian or Alaskan Native (a person having origins in any of the
     original peoples of North or South America (including Central America), and
     who maintains tribal affiliation or community attachment)
   hotkey: A
   value: 1
 race-2:
+  user: owner
   text: Asian (a person having origins in any of the original peoples of the Far
     East, Southest Asia, or the Indian subcontinent, including, for example, Cambodia,
     China, India, Japan, Korea, Malaysia, Pakistan, the Philippine islands, Thailand,
@@ -154,64 +139,77 @@ race-2:
   hotkey: B
   value: 2
 race-3:
+  user: owner
   text: Black or African American (a person having origins in any of the black
     racial groups of Africa)
   hotkey: C
   value: 3
 race-4:
+  user: owner
   text: Native Hawaiian or Other Pacific Islander (a person having origins in
     any of the original peoples of Hawaii, Guam, Samoa, or other Pacific Islands)
   hotkey: D
   value: 4
 race-5:
+  user: owner
   text: White (a person having origins in any of the original peoples of Europe,
     the Middle East, or North Africa)
   hotkey: E
   value: 5
 race-6:
+  user: owner
   text: Some other race or origin (please specify)
   hotkey: F
   value: 6
 race-7:
+  user: owner
   text: Unsure
   hotkey: G
   value: 7
 race-8:
+  user: owner
   text: Prefer not to answer
   hotkey: H
   value: 8
 
 education-level-1:
+  user: owner
   text: 8th grade or less
   hotkey: A
   value: 1
   display_class: label-default label-lg
 education-level-2:
+  user: owner
   text: Some high school, but did not graduate
   hotkey: B
   value: 2
   display_class: label-default label-lg
 education-level-3:
+  user: owner
   text: High school graduate or GED
   hotkey: C
   value: 3
   display_class: label-default label-lg
 education-level-4:
+  user: owner
   text: Some college or 2-year degree
   hotkey: D
   value: 4
   display_class: label-default label-lg
 education-level-5:
+  user: owner
   text: 4-year college graduate
   hotkey: E
   value: 5
   display_class: label-default label-lg
 education-level-6:
+  user: owner
   text: More than 4-year college degree
   hotkey: F
   value: 6
   display_class: label-default label-lg
 education-level-7:
+  user: owner
   text: Prefer not to answer
   hotkey: G
   value: 7
@@ -221,31 +219,37 @@ education-level-7:
 ## Additional Information About Me
 
 afford-difficulty-scale-1:
+  user: owner
   text: Very hard
   hotkey: '1'
   value: 1
   display_class: label-default label-med
 afford-difficulty-scale-2:
+  user: owner
   text: Hard
   hotkey: '2'
   value: 2
   display_class: label-default label-med
 afford-difficulty-scale-3:
+  user: owner
   text: Somewhat hard
   hotkey: '3'
   value: 3
   display_class: label-default label-med
 afford-difficulty-scale-4:
+  user: owner
   text: Not very hard
   hotkey: '4'
   value: 4
   display_class: label-default label-med
 afford-difficulty-scale-5:
+  user: owner
   text: Don't know
   hotkey: '5'
   value: 5
   display_class: label-default label-med
 afford-difficulty-scale-6:
+  user: owner
   text: Prefer not to answer
   hotkey: '6'
   value: 6
@@ -254,62 +258,77 @@ afford-difficulty-scale-6:
 ## My Interest In Research
 
 myapnea-referral-source-1:
+  user: owner
   text: American Sleep Apnea Association (ASAA)
   hotkey: A
   value: 1
 myapnea-referral-source-2:
+  user: owner
   text: A.W.A.K.E. Group
   hotkey: B
   value: 2
 myapnea-referral-source-3:
+  user: owner
   text: CPAP company
   hotkey: C
   value: 3
 myapnea-referral-source-4:
+  user: owner
   text: Personal or family doctor
   hotkey: D
   value: 4
 myapnea-referral-source-5:
+  user: owner
   text: Clinic or hospital
   hotkey: E
   value: 5
 myapnea-referral-source-6:
+  user: owner
   text: CPAP provider
   hotkey: F
   value: 6
 myapnea-referral-source-7:
+  user: owner
   text: Poster or other advertisement
   hotkey: G
   value: 7
 myapnea-referral-source-8:
+  user: owner
   text: Facebook
   hotkey: H
   value: 8
 myapnea-referral-source-9:
+  user: owner
   text: Twitter
   hotkey: I
   value: 9
 myapnea-referral-source-10:
+  user: owner
   text: Family member
   hotkey: J
   value: 10
 myapnea-referral-source-11:
+  user: owner
   text: Friend
   hotkey: K
   value: 11
 myapnea-referral-source-12:
+  user: owner
   text: Internet search
   hotkey: L
   value: 12
 myapnea-referral-source-13:
+  user: owner
   text: Other patient-centered network
   hotkey: M
   value: 13
 myapnea-referral-source-14:
+  user: owner
   text: Other
   hotkey: N
   value: 14
 myapnea-referral-source-15:
+  user: owner
   text: Prefer not to answer
   hotkey: O
   value: 15

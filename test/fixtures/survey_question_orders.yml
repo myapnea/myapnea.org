@@ -17,7 +17,7 @@ new_1:
 
 new_2:
   survey: new
-  question: text1
+  question: date2
   question_number: 2
   # remaining_time:
   # remaining_distance:

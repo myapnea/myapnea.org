@@ -73,10 +73,10 @@ number_of_hours:
   template_name: number
   data_type: numeric_value
 
-text:
+date2:
   user: owner
   name: fixture_text
-  template_name: string
+  template_name: date
   data_type: text_value
 
 countries:
