@@ -41,6 +41,13 @@
             Allow Multiple
 
   .form-group
+    = f.label :parent_answer_template_id, 'Parent Template', class: 'col-md-2 control-label'
+    .col-md-10
+      = f.select :parent_answer_template_id, @question.answer_templates.where(parent_answer_template_id: nil).where.not(id: @answer_template.id).collect{|at| [at.name_with_options, at.id]}, { include_blank: true }, class: 'form-control'
+      .text-info
+        Select a Parent Template if you wish for this to be shown or hidden conditionally.
+
+  .form-group
     = f.label :target_answer_option, 'Target Answer Option', class: 'col-md-2 control-label'
     .col-md-10
       = f.text_field :target_answer_option, class: 'form-control'

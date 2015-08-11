@@ -27,6 +27,7 @@
     - Question `display_type` and AnswerTemplate `data_type` and `allow_multiple` are no longer used to determine how to display questions on surveys
     - AnswerTemplates now allow a `template_name` to be specified of the following types:
       - "date", "radio", "checkbox", "string", "height", "number"
+    - Conditional AnswerTemplates now require a valid parent AnswerTemplate as well as a valid value
   - Encounters can be added to surveys in online builder
     - An encounter specifies when the survey is launched, in days after sign up
   - Survey User Type can be added to surveys in online builder
