@@ -448,6 +448,10 @@ class User < ActiveRecord::Base
     Map.update_user_location(self)
   end
 
+  def get_baseline_survey_answer_session(survey)
+    self.answer_sessions.where(encounter: 'baseline', survey_id: survey.id, child_id: nil).first_or_create
+  end
+
   def assign_default_surveys
     remove_out_of_range_answer_sessions!
     User::TYPES.each do |label, user_type|

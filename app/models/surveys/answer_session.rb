@@ -19,16 +19,6 @@ class AnswerSession < ActiveRecord::Base
     answer_sessions.empty? ? nil : answer_sessions.first
   end
 
-  def self.find_or_create(user, survey)
-    answer_sessions = AnswerSession.current.where(user_id: user.id, survey_id: survey.id).order(updated_at: :desc)
-
-    if answer_sessions.empty?
-      AnswerSession.create(user_id: user.id, survey_id: survey.id)
-    else
-      answer_sessions.first
-    end
-  end
-
   def completed?
     answers.complete.count == survey.questions.count
   end
