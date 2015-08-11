@@ -13,7 +13,6 @@ color_list:
   template_name: radio
   data_type: answer_option_id
 
-
 race_list:
   name: fixture_race
   template_name: checkbox
@@ -24,13 +23,12 @@ race_list:
 # Some other race
 # Prefer not to answer
 
-
 fixture_specified_race:
   name: fixture_specified_race
   template_name: string
   data_type: text_value
+  parent_answer_template: race_list
   target_answer_option: 3
-
 
 custom_date_template:
   name: fixture_birth_date
@@ -80,6 +78,7 @@ spec_countries:
   name: spec_countries
   template_name: string
   data_type: text_value
+  parent_answer_template: countries
   target_answer_option: 3
 
 ## About Me
@@ -103,6 +102,7 @@ specified_race:
   name: specified_race
   template_name: string
   data_type: text_value
+  parent_answer_template: race
   target_answer_option: 6
 
 education_level:
