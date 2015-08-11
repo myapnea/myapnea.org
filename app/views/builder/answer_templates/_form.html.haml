@@ -58,6 +58,11 @@
       = f.text_field :text, class: 'form-control'
 
   .form-group
+    = f.label :unit, nil, class: 'col-md-2 control-label'
+    .col-md-10
+      = f.text_field :unit, class: 'form-control'
+
+  .form-group
     .col-md-10.col-md-offset-2
       = f.submit nil, class: 'btn btn-primary'
       = link_to 'Cancel', url, class: 'btn btn-default'

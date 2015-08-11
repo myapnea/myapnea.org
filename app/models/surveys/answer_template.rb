@@ -89,6 +89,10 @@ class AnswerTemplate < ActiveRecord::Base
     true # Before Validations need to return true in order to save record
   end
 
+  def allows_answer_options?
+    self.template_name == 'radio' or self.template_name == 'checkbox'
+  end
+
   def child_templates(question, value)
     question.answer_templates.where(parent_answer_template_id: self.id, parent_answer_option_value: value)
   end
