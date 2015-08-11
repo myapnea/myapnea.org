@@ -1,7 +1,11 @@
 .content-main-header
   %h1.f300
-    Edit Child:
-    = @child.first_name
+    = link_to 'Children', children_path
+    &middot;
+    = link_to @child.first_name_was, @child
+    &middot;
+    Edit
+
 
 .content-container
   .content-body

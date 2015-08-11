@@ -18,6 +18,8 @@ class Survey < ActiveRecord::Base
   validates_presence_of :name_en, :slug, :status, :user_id
   validates_uniqueness_of :slug, scope: [ :deleted ]
   validates_format_of :slug, with: /\A(?!\Anew\Z)[a-z][a-z0-9\-]*\Z/
+  validates_numericality_of :child_min_age, greater_than_or_equal_to: 0, less_than_or_equal_to: 8, if: :pediatric?
+  validates_numericality_of :child_max_age, greater_than_or_equal_to: 0, less_than_or_equal_to: 8, if: :pediatric?
 
   # Model Relationships
   belongs_to :user
@@ -31,6 +33,8 @@ class Survey < ActiveRecord::Base
 
   # Named scopes
   scope :viewable, -> { where(status: 'show').where.not(slug: nil) }
+  scope :pediatric, -> { where pediatric: true }
+  scope :non_pediatric, -> { where pediatric: false }
 
   # Class Methods
 

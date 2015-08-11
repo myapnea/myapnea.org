@@ -1,9 +1,11 @@
 .content-main-header
   %h1.f300
-    Edit Child:
+    = link_to 'Children', children_path
+    &middot;
     = @child.first_name
   %h4
-    = link_to 'Children', children_path
+    = link_to 'Edit Child', edit_child_path(@child), class: 'btn btn-xs btn-default'
+    = link_to 'Remove Child', @child, method: :delete, data: { confirm: 'Are you sure you want to remove records of this child?' }, class: 'btn btn-xs btn-danger'
 
 .content-container
   .content-body

@@ -443,7 +443,7 @@ class User < ActiveRecord::Base
   def assign_default_surveys
     User::TYPES.each do |label, user_type|
       if self[user_type]
-        Survey.current.viewable.joins(:survey_user_types).merge(SurveyUserType.current.where(user_type: user_type)).each do |survey|
+        Survey.current.viewable.non_pediatric.joins(:survey_user_types).merge(SurveyUserType.current.where(user_type: user_type)).each do |survey|
           survey.encounters.where(launch_days_after_sign_up: 0).each do |encounter|
             survey.launch_single(self, encounter.slug)
           end

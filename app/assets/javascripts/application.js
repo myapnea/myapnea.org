@@ -66,3 +66,4 @@
 // require ABtesting
 // require ABsetup
 //= require filedrag
+//= require builder/surveys

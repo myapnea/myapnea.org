@@ -30,6 +30,24 @@
       %dd
         = @survey.status
 
+      %dt
+        %strong Pediatric
+      %dd
+        = simple_check @survey.pediatric?
+
+      - if @survey.pediatric?
+        %dt
+          %strong Child Minimum Age
+        %dd
+          = @survey.child_min_age
+
+        %dt
+          %strong Child Maximum Age
+        %dd
+          = @survey.child_max_age
+
+
+
     %h3 User Types
     %table.table.table-bordered.table-striped
       %thead

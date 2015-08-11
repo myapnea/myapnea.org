@@ -13,6 +13,7 @@
     - Children can be added one at a time and have unique surveys per child
     - `s = Survey.find_by_slug 'about-my-child'`
     - `s.launch_single_for_children(user, 'baseline')`
+    - Baseline surveys are immediately assigned when a child in the proper age range is added by a caregiver of a child
 - **Online Survey Builder**
   - Started work on an online survey builder for researchers and team members
   - The online survey builder will let survey builders specify the following:
