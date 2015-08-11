@@ -15,14 +15,14 @@
     %table.table.table-bordered.table-condensed{ style: 'table-layout:fixed' }
       %thead
         %tr
-          - User::TYPE.each do |name, type|
+          - User::TYPES.each do |name, type|
             %th= name
           %th Total
           %th No Role Selected
       %tbody
         %tr
           - total_count = 0
-          - User::TYPE.each do |name, type|
+          - User::TYPES.each do |name, type|
             - count = user_scope.where(type.to_sym => true).count
             - total_count += count
             %td= number_with_delimiter count

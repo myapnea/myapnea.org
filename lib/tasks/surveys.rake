@@ -49,9 +49,77 @@ namespace :surveys do
 
   desc "Update all `AnswerTemplate`s with a template name based on their questions display type, and their own data type."
   task update_answer_templates: :environment do
+    AnswerTemplate.where.not(target_answer_option: nil).order(:id).each do |at|
+      question = at.questions.first
+      current_index = question.answer_templates.where(parent_answer_template_id: nil).pluck(:id).index(at.id) if question
+      if current_index and current_index > 0 and parent_template = question.answer_templates.where(parent_answer_template_id: nil)[current_index - 1]
+        at.update_column :parent_answer_template_id, parent_template.id
+      end
+    end
+
     AnswerTemplate.all.each do |at|
       at.set_template_name!
     end
   end
+
+  desc "Add default baseline encounter to all existing surveys."
+  task add_encounters_to_surveys: :environment do
+    Survey.all.each do |s|
+      s.send('create_default_encounters')
+    end
+  end
+
+  desc "Add default user types to all existing surveys."
+  task add_user_types_to_surveys: :environment do
+    s = Survey.find_by_slug 'about-me'
+    s.survey_user_types.create user_id: s.user_id, user_type: 'adult_diagnosed'
+    s.survey_user_types.create user_id: s.user_id, user_type: 'adult_at_risk'
+    s.survey_user_types.create user_id: s.user_id, user_type: 'caregiver_adult'
+    s.survey_user_types.create user_id: s.user_id, user_type: 'caregiver_child'
+
+    s = Survey.find_by_slug 'additional-information-about-me'
+    s.survey_user_types.create user_id: s.user_id, user_type: 'adult_diagnosed'
+    s.survey_user_types.create user_id: s.user_id, user_type: 'adult_at_risk'
+    s.survey_user_types.create user_id: s.user_id, user_type: 'caregiver_adult'
+    s.survey_user_types.create user_id: s.user_id, user_type: 'caregiver_child'
+
+    s = Survey.find_by_slug 'about-my-family'
+    s.survey_user_types.create user_id: s.user_id, user_type: 'adult_diagnosed'
+    s.survey_user_types.create user_id: s.user_id, user_type: 'adult_at_risk'
+    s.survey_user_types.create user_id: s.user_id, user_type: 'caregiver_adult'
+    s.survey_user_types.create user_id: s.user_id, user_type: 'caregiver_child'
+
+    s = Survey.find_by_slug 'my-interest-in-research'
+    s.survey_user_types.create user_id: s.user_id, user_type: 'adult_diagnosed'
+    s.survey_user_types.create user_id: s.user_id, user_type: 'adult_at_risk'
+    s.survey_user_types.create user_id: s.user_id, user_type: 'caregiver_adult'
+    s.survey_user_types.create user_id: s.user_id, user_type: 'caregiver_child'
+
+    s = Survey.find_by_slug 'my-health-conditions'
+    s.survey_user_types.create user_id: s.user_id, user_type: 'adult_diagnosed'
+    s.survey_user_types.create user_id: s.user_id, user_type: 'adult_at_risk'
+
+    s = Survey.find_by_slug 'my-sleep-pattern'
+    s.survey_user_types.create user_id: s.user_id, user_type: 'adult_diagnosed'
+    s.survey_user_types.create user_id: s.user_id, user_type: 'adult_at_risk'
+
+    s = Survey.find_by_slug 'my-sleep-quality'
+    s.survey_user_types.create user_id: s.user_id, user_type: 'adult_diagnosed'
+    s.survey_user_types.create user_id: s.user_id, user_type: 'adult_at_risk'
+
+    s = Survey.find_by_slug 'my-quality-of-life'
+    s.survey_user_types.create user_id: s.user_id, user_type: 'adult_diagnosed'
+    s.survey_user_types.create user_id: s.user_id, user_type: 'adult_at_risk'
+
+    s = Survey.find_by_slug 'my-sleep-apnea'
+    s.survey_user_types.create user_id: s.user_id, user_type: 'adult_diagnosed'
+
+    s = Survey.find_by_slug 'my-sleep-apnea-treatment'
+    s.survey_user_types.create user_id: s.user_id, user_type: 'adult_diagnosed'
+
+    s = Survey.find_by_slug 'my-risk-profile'
+    s.survey_user_types.create user_id: s.user_id, user_type: 'adult_at_risk'
+  end
+
 
 end

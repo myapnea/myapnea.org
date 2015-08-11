@@ -1,14 +1,10 @@
 class User < ActiveRecord::Base
 
+  # Uploaders
   mount_uploader :photo, PhotoUploader
 
   #  For recent updates to consent/privacy policy/etc
   RECENT_UPDATE_DATE = "2015-06-24"
-
-  # Dates
-  MONTHS = [["January", 1], ["February", 2], ["March", 3], ["April", 4], ["May", 5], ["June", 6], ["July", 7], ["August", 8], ["September", 9], ["October", 10], ["November", 11], ["December", 12]]
-  DAYS = [["01", 1], ["02", 2], ["03", 3], ["04", 4], ["05", 5], ["06", 6], ["07", 7], ["08", 8], ["09", 9], ["10", 10], ["11", 11], ["12", 12], ["13", 13], ["14", 14], ["15", 15], ["16", 16], ["17", 17], ["18", 18], ["19", 19], ["20", 20], ["21", 21], ["22", 22], ["23", 23], ["24", 24], ["25", 25], ["26", 26], ["27", 27], ["28", 28], ["29", 29], ["30", 30], ["31", 31]]
-  YEARS = 2014..Time.now.year
 
   # Include default devise modules. Others available are:
   # :confirmable, :omniauthable
@@ -19,19 +15,12 @@ class User < ActiveRecord::Base
   after_create :set_forum_name, :send_welcome_email, :check_for_token, :update_location
 
   # Mappings
-  TYPE = [['Diagnosed With Sleep Apnea', 'adult_diagnosed'],
-          ['Concern That I May Have Sleep Apnea', 'adult_at_risk'],
-          ['Family Member of an Adult with Sleep Apnea', 'caregiver_adult'],
-          ['Family Member of a Child with Sleep Apnea', 'caregiver_child'],
-          ['Provider', 'provider'],
-          ['Researcher', 'researcher']]
-
-  DEFAULT_SURVEYS = {
-    adult_diagnosed: ['about-me', 'additional-information-about-me', 'about-my-family', 'my-health-conditions', 'my-sleep-pattern', 'my-sleep-quality', 'my-sleep-apnea', 'my-sleep-apnea-treatment', 'my-quality-of-life', 'my-interest-in-research'],
-    adult_at_risk: ['about-me', 'additional-information-about-me', 'about-my-family', 'my-health-conditions', 'my-sleep-pattern', 'my-sleep-quality', 'my-risk-profile', 'my-quality-of-life', 'my-interest-in-research'],
-    caregiver_adult: ['about-me', 'additional-information-about-me', 'about-my-family', 'my-interest-in-research'],
-    caregiver_child: ['about-me', 'additional-information-about-me', 'about-my-family', 'my-interest-in-research']
-  }
+  TYPES = [['Adult who has been diagnosed with sleep apnea', 'adult_diagnosed'],
+          ['Adult who is at-risk of sleep apnea', 'adult_at_risk'],
+          ['Caregiver of adult diagnosed with or at-risk of sleep apnea', 'caregiver_adult'],
+          ['Caregiver of child(ren) diagnosed with or at-risk of sleep apnea', 'caregiver_child'],
+          ['Professional care provider', 'provider'],
+          ['Research professional', 'researcher']]
 
   # Concerns
   include CommonDataModel, Deletable
@@ -39,7 +28,6 @@ class User < ActiveRecord::Base
   attr_accessor :user_is_updating
 
   # Named Scopes
-  scope :search_by_email, ->(terms) { where("LOWER(#{self.table_name}.email) LIKE ?", terms.to_s.downcase.gsub(/^| |$/, '%')) }
   scope :search, lambda { |arg| where( 'LOWER(first_name) LIKE ? or LOWER(last_name) LIKE ? or LOWER(email) LIKE ?', arg.to_s.downcase.gsub(/^| |$/, '%'), arg.to_s.downcase.gsub(/^| |$/, '%'), arg.to_s.downcase.gsub(/^| |$/, '%') ) }
   scope :providers, -> { current.where(provider: true) }
   scope :include_in_exports_and_reports, -> { where(include_in_exports: true) }
@@ -120,8 +108,16 @@ class User < ActiveRecord::Base
     self.adult_diagnosed? or self.adult_at_risk? or self.caregiver_child? or self.caregiver_adult? or self.provider? or self.researcher?
   end
 
+  def user_type_names
+    User::TYPES.collect do |label, user_type|
+      label if self[user_type]
+    end.compact
+  end
+
   def user_types
-    user_types = [('Adult diagnosed with sleep apnea' if self.adult_diagnosed?), ('Adult at-risk of sleep apnea' if self.adult_at_risk?), ('Caregiver of adult(s) with sleep apnea' if self.caregiver_adult?), ('Caregiver of child(ren) with sleep apnea' if self.caregiver_child?), ('Professional care provider' if self.provider?), ('Researcher' if self.researcher?) ].reject(&:blank?)
+    User::TYPES.collect do |label, user_type|
+      user_type if self[user_type]
+    end.compact
   end
 
   def viewable_topics
@@ -174,12 +170,6 @@ class User < ActiveRecord::Base
     Post.current.where(status: 'approved').where("created_at > ?", (Time.now.monday? ? Time.now.midnight - 3.day : Time.now.midnight - 1.day))
   end
 
-  def smart_forum
-    forum_id = self.posts.group_by{|p| p.forum.id}.collect{|forum_id, posts| [forum_id, posts.count]}.sort{|a,b| b[1] <=> a[1]}.collect{|a| a[0]}.first
-    forum = Forum.current.find_by_id(forum_id)
-    forum ? forum : Forum.current.order(:position).first
-  end
-
   def name
     "#{first_name} #{last_name}"
   end
@@ -188,20 +178,9 @@ class User < ActiveRecord::Base
     "#{first_name} #{last_name} <#{email}>"
   end
 
-  def self.scoped_users(email=nil, role=nil)
-    users = current
-
-    users = users.search_by_email(email) if email.present?
-    users = users.with_role(role) if role.present?
-
-    users
-  end
-
   def photo_url
     if photo.present?
       photo.url
-    # elsif social_profile
-    #   social_profile.photo_url
     else
       'default-user.jpg'
     end
@@ -215,31 +194,14 @@ class User < ActiveRecord::Base
     end
   end
 
-  # Should change to this
-  # def photo_url
-  #   if photo.present?
-  #     photo.url
-  #   else
-  #     'default-user.jpg'
-  #   end
-  # end
-
   def can_post_links?
     self.moderator? or self.owner?
-  end
-
-  def to_s
-    email
   end
 
   def revoke_consent!
     update_attribute :accepted_terms_of_access_at, nil
     update_attribute :accepted_consent_at, nil
     update_attribute :accepted_privacy_policy_at, nil
-  end
-
-  def created_social_profile?
-    self.social_profile.present? and self.social_profile.name.present?
   end
 
   def signed_consent?
@@ -276,18 +238,6 @@ class User < ActiveRecord::Base
     (self.accepted_update_at.present? and (self.accepted_update_at > Date.parse(RECENT_UPDATE_DATE).at_noon)) or (Date.parse(RECENT_UPDATE_DATE).at_noon > Time.now )
   end
 
-  def this_weeks_votes
-    self.votes.where("votes.updated_at >= ? ", Time.now.beginning_of_week(:sunday)).where.not(rating: '0', research_topic_id: nil)
-  end
-
-  def todays_votes
-    votes.select{|vote| vote.updated_at.today? and vote.rating != 0 and vote.research_topic_id.present?}
-  end
-
-  def available_votes_percent
-    (this_weeks_votes.length.to_f / vote_quota) * 100.0
-  end
-
   # User Types
   def update_user_types(user_types)
     update user_types
@@ -322,10 +272,6 @@ class User < ActiveRecord::Base
 
   def completed_demographic_survey?
     self.answer_sessions.where(survey_id: Survey.find_by_slug('about-me').id).where(locked:true).present?
-  end
-
-  def has_no_started_surveys?
-    incomplete_surveys.blank? and complete_surveys.blank?
   end
 
   def answer_for(answer_session, question)
@@ -406,11 +352,9 @@ class User < ActiveRecord::Base
 
   end
 
-
-
   # Research Topics
   def my_research_topics
-      self.research_topics
+    self.research_topics
   end
 
   def highlighted_research_topic
@@ -452,12 +396,6 @@ class User < ActiveRecord::Base
   end
 
   ## Provider Methods
-
-  def get_welcome_message
-    if welcome_message.present?
-      welcome_message
-    end
-  end
 
   def send_provider_informational_email!
     unless Rails.env.test?
@@ -511,19 +449,24 @@ class User < ActiveRecord::Base
   end
 
   def assign_default_surveys
-    DEFAULT_SURVEYS.each do |user_type, survey_list|
+    remove_out_of_range_answer_sessions!
+    User::TYPES.each do |label, user_type|
       if self[user_type]
-        return survey_list.map do |survey_slug|
-          survey = Survey.find_by_slug(survey_slug)
-          if survey
-            survey.launch_single(self, "baseline")
-            survey
-          else
-            Rails.logger.error "Survey #{survey_slug} could not be assigned to user #{self.email} - Survey could not be found."
-            nil
+        Survey.current.viewable.non_pediatric.joins(:survey_user_types).merge(SurveyUserType.current.where(user_type: user_type)).each do |survey|
+          survey.encounters.where(launch_days_after_sign_up: 0).each do |encounter|
+            survey.launch_single(self, encounter.slug)
           end
         end
       end
     end
   end
+
+  def remove_out_of_range_answer_sessions!
+    self.answer_sessions.where(child_id: nil).each do |answer_session|
+      if answer_session.answers.count == 0 and not answer_session.available_for_user_types?(self.user_types)
+        answer_session.destroy
+      end
+    end
+  end
+
 end

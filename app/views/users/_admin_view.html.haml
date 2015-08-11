@@ -61,5 +61,5 @@
         = simple_check @user.can_build_surveys?
   .col-sm-6
     %ul.f500 User Types
-    - @user.user_types.each do |ut|
+    - @user.user_type_names.each do |ut|
       %li= ut

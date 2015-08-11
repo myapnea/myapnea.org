@@ -14,6 +14,9 @@ class AnswerTemplate < ActiveRecord::Base
   validates_presence_of :name, :data_type, :user_id, :template_name
   validates_uniqueness_of :name, scope: [ :deleted ]
   validates_inclusion_of :template_name, in: TEMPLATE_NAMES
+  validates_presence_of :parent_answer_template_id, if: :target_answer_option_present?
+  validates_presence_of :target_answer_option, if: :parent_answer_template_present?
+  validates_inclusion_of :target_answer_option, in: :parent_template_option_values, if: :parent_answer_template_present?
 
   # Model Relationships
   belongs_to :user
@@ -22,9 +25,13 @@ class AnswerTemplate < ActiveRecord::Base
   has_many :answer_options, through: :answer_options_answer_templates, join_table: 'answr_options_answer_templates'
   belongs_to :display_type
   has_many :reports
-
+  belongs_to :parent_answer_template, class_name: "AnswerTemplate", foreign_key: "parent_answer_template_id"
 
   # Model Methods
+
+  def name_with_options
+    "#{self.name} #{self.answer_options.pluck(:text, :value).collect{|text, value| "#{value}: #{text}"}.join(', ')}"
+  end
 
   # Temporary Function
   def set_template_name!
@@ -83,7 +90,7 @@ class AnswerTemplate < ActiveRecord::Base
   end
 
   def target_templates(question, value)
-    question.answer_templates.where(target_answer_option: value).where.not(target_answer_option: nil)
+    question.answer_templates.where(parent_answer_template_id: self.id, target_answer_option: value)
   end
 
   # Preprocessing Functions
@@ -122,6 +129,22 @@ class AnswerTemplate < ActiveRecord::Base
       AnswerTemplate.send("inverse_#{preprocess}", val[self.id])
     else
       val
+    end
+  end
+
+  def target_answer_option_present?
+    self.target_answer_option.present?
+  end
+
+  def parent_answer_template_present?
+    self.parent_answer_template.present?
+  end
+
+  def parent_template_option_values
+    if self.parent_answer_template
+      self.parent_answer_template.answer_options.pluck(:value)
+    else
+      []
     end
   end
 end

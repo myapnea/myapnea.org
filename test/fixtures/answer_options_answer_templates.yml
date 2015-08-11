@@ -146,35 +146,35 @@ aoat_sex_4:
 
 aoat_race_1:
   answer_template: race
-  answer_option: race_1
+  answer_option: race-1
 
 aoat_race_2:
   answer_template: race
-  answer_option: race_2
+  answer_option: race-2
 
 aoat_race_3:
   answer_template: race
-  answer_option: race_3
+  answer_option: race-3
 
 aoat_race_4:
   answer_template: race
-  answer_option: race_4
+  answer_option: race-4
 
 aoat_race_5:
   answer_template: race
-  answer_option: race_5
+  answer_option: race-5
 
 aoat_race_6:
   answer_template: race
-  answer_option: race_6
+  answer_option: race-6
 
 aoat_race_7:
   answer_template: race
-  answer_option: race_7
+  answer_option: race-7
 
 aoat_race_8:
   answer_template: race
-  answer_option: race_8
+  answer_option: race-8
 
 aoat_education_level_1:
   answer_template: education_level

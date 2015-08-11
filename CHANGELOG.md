@@ -13,6 +13,7 @@
     - Children can be added one at a time and have unique surveys per child
     - `s = Survey.find_by_slug 'about-my-child'`
     - `s.launch_single_for_children(user, 'baseline')`
+    - Baseline surveys are immediately assigned when a child in the proper age range is added by a caregiver of a child
 - **Online Survey Builder**
   - Started work on an online survey builder for researchers and team members
   - The online survey builder will let survey builders specify the following:
@@ -26,8 +27,10 @@
     - Question `display_type` and AnswerTemplate `data_type` and `allow_multiple` are no longer used to determine how to display questions on surveys
     - AnswerTemplates now allow a `template_name` to be specified of the following types:
       - "date", "radio", "checkbox", "string", "height", "number"
+    - Conditional AnswerTemplates now require a valid parent AnswerTemplate as well as a valid value
   - Encounters can be added to surveys in online builder
     - An encounter specifies when the survey is launched, in days after sign up
+  - Survey User Type can be added to surveys in online builder
 - **Admin Changes**
   - Administrators can now unlock surveys for users from the user show page
 - **Gem Changes**
@@ -56,6 +59,8 @@
 
 ### Bug Fix
 - Fixed and simplified date input parsing to better handle consistency issues across browsers and devices
+- Surveys are now correctly reassigned when a user changes their user type
+  - Unstarted surveys that are no longer applicable are discarded, and started surveys are kept
 
 ### Refactoring
 - Simplified processing single answers from surveys
@@ -63,6 +68,8 @@
 - Overwriting views are no longer stored in myapnea subfolder
 - Restructured tests for surveys and improved overall test speed
 - Refactored Survey class in favor of an AnswerSession-centric model
+- Removed unused methods from the user model
+- Removed unused views and partials
 
 ## 7.4.0 (August 7, 2015)
 

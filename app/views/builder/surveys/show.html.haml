@@ -30,6 +30,40 @@
       %dd
         = @survey.status
 
+      %dt
+        %strong Pediatric
+      %dd
+        = simple_check @survey.pediatric?
+
+      - if @survey.pediatric?
+        %dt
+          %strong Child Minimum Age
+        %dd
+          = @survey.child_min_age
+
+        %dt
+          %strong Child Maximum Age
+        %dd
+          = @survey.child_max_age
+
+
+
+    %h3 User Types
+    %table.table.table-bordered.table-striped
+      %thead
+        %tr
+          %th User Type
+          %th Creator
+          %th Actions
+      - @survey.survey_user_types.each do |survey_user_type|
+        %tr
+          %td= link_to survey_user_type.user_type, builder_survey_survey_user_type_path(@survey, survey_user_type)
+          %td= link_to_if current_user.owner?, survey_user_type.user.name, survey_user_type.user if survey_user_type.user
+          %td= link_to 'Edit', edit_builder_survey_survey_user_type_path(@survey, survey_user_type), class: 'btn btn-xs btn-default'
+      %tr
+        %td{ colspan: '5' }
+          = link_to 'Add Another User Type', new_builder_survey_survey_user_type_path(@survey), class: 'btn btn-xs btn-default'
+
     %h3 Encounters
     %table.table.table-bordered.table-striped
       %thead

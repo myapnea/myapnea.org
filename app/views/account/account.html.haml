@@ -66,7 +66,7 @@
       %h4
         You describe yourself as:
       .horizontal-inset
-        - current_user.user_types.each do |type|
+        - current_user.user_type_names.each do |type|
           %h5.f300= type
       %br
       %p.lead

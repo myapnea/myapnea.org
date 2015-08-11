@@ -36,5 +36,22 @@
 
   .form-group
     .col-md-10.col-md-offset-2
+      .checkbox
+        %label
+          = f.check_box :pediatric
+          Pediatric Survey
+
+  .form-group{ style: "#{'display:none' unless @survey.pediatric?}", data: { object: 'show-for-pediatric' } }
+    = f.label :child_min_age, 'Child Minimum Age', class: 'col-md-2 control-label'
+    .col-md-10
+      = f.text_field :child_min_age, class: 'form-control'
+
+  .form-group{ style: "#{'display:none' unless @survey.pediatric?}", data: { object: 'show-for-pediatric' } }
+    = f.label :child_max_age, 'Child Maximum Age', class: 'col-md-2 control-label'
+    .col-md-10
+      = f.text_field :child_max_age, class: 'form-control'
+
+  .form-group
+    .col-md-10.col-md-offset-2
       = f.submit nil, class: 'btn btn-primary'
       = link_to 'Cancel', url, class: 'btn btn-default'
