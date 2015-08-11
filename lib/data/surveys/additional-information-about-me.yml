@@ -2,7 +2,7 @@
 name: Additional Information About Me
 slug: additional-information-about-me
 default_position: 20
-description: 
+description:
 status: show
 questions:
 - text: |
@@ -13,7 +13,6 @@ questions:
   - name: height
     data_type: numeric_value
     unit: inches
-    preprocess: height_conversion
 - text: |
     How much do you weigh?
   slug: weight

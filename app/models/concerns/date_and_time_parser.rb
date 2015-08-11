@@ -16,11 +16,11 @@ module DateAndTimeParser
     parse_time(time_string, default_time).strftime("%H:%M:%S") rescue default_time
   end
 
-  def parse_integer(string)
+  def parse_integer(string, default_integer = nil)
     begin
       Integer("%g" % string)
     rescue
-      nil
+      default_integer
     end
   end
 

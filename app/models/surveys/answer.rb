@@ -66,15 +66,16 @@ class Answer < ActiveRecord::Base
         #val_for_template = val
       end
 
-      if template.preprocess.present?
-        val_for_template = template.preprocess_value(val_for_template)
-      end
-
-      if question.display_type == 'custom_date_input'
+      case template.template_name when 'date'
         month = parse_integer(val_for_template[:month])
         day = parse_integer(val_for_template[:day])
         year = parse_integer(val_for_template[:year])
         val_for_template = parse_date_to_s("#{month}/#{day}/#{year}", "#{month}/#{day}/#{year}")
+      when 'height'
+        feet = parse_integer(val_for_template[:feet], 0)
+        inches = parse_integer(val_for_template[:inches], 0)
+        height = (feet * 12 + inches)
+        val_for_template = (height > 0 ? height : nil)
       end
 
       template_values << val_for_template
