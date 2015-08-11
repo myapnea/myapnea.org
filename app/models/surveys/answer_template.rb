@@ -89,7 +89,7 @@ class AnswerTemplate < ActiveRecord::Base
     true # Before Validations need to return true in order to save record
   end
 
-  def target_templates(question, value)
+  def child_templates(question, value)
     question.answer_templates.where(parent_answer_template_id: self.id, target_answer_option: value)
   end
 
