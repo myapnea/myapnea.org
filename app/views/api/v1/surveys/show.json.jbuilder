@@ -9,8 +9,9 @@ json.questions @survey.questions.current.each do |question|
     json.id at.id
     json.name at.name
     json.text at.text
-    json.display_after_question nil
-    json.display_after_answer at.target_answer_option
+    next_at = AnswerTemplate.where(parent_answer_template_id: at.id).first
+    json.display_after_question next_at.present? ? next_at.id : nil
+    json.display_after_answer next_at.present? ? next_at.target_answer_option : nil
     json.data_type at.data_type
     json.allow_multiple at.allow_multiple
     json.answer_options at.answer_options.each do |ao|
