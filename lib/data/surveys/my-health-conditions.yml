@@ -425,4 +425,4 @@ questions:
       display_class: label-default option-of-multiple option-of-4
   - name: specified_health_condition
     data_type: text_value
-    target_answer_option: 1
+    parent_answer_option_value: 1

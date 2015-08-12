@@ -1,39 +1,5 @@
-## Deprecated - remove in 6.0.0
-#
-#q1:
-#  text_en: What are your favorite colors?
-#  time_estimate: 1.0
-#  answer_templates:
-#  - colors
-#q2:
-#  text_en: What is the air-speed velocity of an unladen swallow?
-#  time_estimate: 1.0
-#  answer_templates:
-#  - numeric
-#q3a:
-#  text_en: How often can't I even?
-#  time_estimate: 1.0
-#  group: g2
-#  question_help_message: hm1
-#  answer_templates:
-#  - how_much
-#q3b:
-#  text_en: Seriously, what's up with that?
-#  time_estimate: 1.0
-#  group: g2
-#  question_help_message: hm1
-#  answer_templates:
-#  - text
-#q3c:
-#  text_en: How does that make me feel?
-#  time_estimate: 1.0
-#  group: g2
-#  question_help_message: hm1
-#  answer_templates:
-#  - feeling
-
-# New
 radio1:
+  user: owner
   text_en: What is your sex?
   slug: sex-selection
   display_type: radio_input
@@ -41,6 +7,7 @@ radio1:
   - custom_sex_template
 
 radio2:
+  user: owner
   text_en: What would your favorite color be?
   slug: favorite-color
   display_type: radio_input
@@ -48,6 +15,7 @@ radio2:
   - color_list
 
 checkbox1:
+  user: owner
   text_en: What is your race?
   slug: race-selection
   display_type: checkbox_input
@@ -56,6 +24,7 @@ checkbox1:
   - fixture_specified_race
 
 date1:
+  user: owner
   text_en: What is your date of birth?
   slug: dob
   display_type: custom_date_input
@@ -63,6 +32,7 @@ date1:
   - custom_date_template
 
 radio_multiple1:
+  user: owner
   text_en: How likely are you to doze off?
   slug: ess
   display_type: radio_input_multiple
@@ -72,6 +42,7 @@ radio_multiple1:
   - doze_public
 
 number1:
+  user: owner
   text_en: How many hours do you sleep?
   slug: sleep-hours
   display_type: number_input
@@ -79,20 +50,23 @@ number1:
   - number_of_hours
 
 number2:
+  user: owner
   text_en: How long does it take you to get out of bed?
   slug: crying
   display_type: number_input
   answer_templates:
   - number_of_hours
 
-text1:
+date2:
+  user: owner
   text_en: What is this date?
-  slug: date_of_birth
-  display_type: text_input
+  slug: date2
+  display_type: custom_date_input
   answer_templates:
-  - text
+  - date2
 
 country1:
+  user: owner
   text_en: Where were you born?
   slug: country
   display_type: radio_input
@@ -103,6 +77,7 @@ country1:
 
 ## About Me Survey
 date_of_birth:
+  user: owner
   text_en: What is your date of birth?
   slug: date-of-birth
   display_type: custom_date_input
@@ -110,6 +85,7 @@ date_of_birth:
   - birth_date_template
 
 sex:
+  user: owner
   text_en: What is your sex?
   slug: sex
   display_type: radio_input
@@ -117,6 +93,7 @@ sex:
   - sex
 
 race:
+  user: owner
   text_en: What is your racial background?
   slug: race
   display_type: checkbox_input
@@ -125,6 +102,7 @@ race:
   - specified_race
 
 education_level:
+  user: owner
   text_en: What is the highest degree or level of school you have completed?
   slug: education-level
   display_type: radio_input
@@ -134,6 +112,7 @@ education_level:
 ## Additional Information About Me Survey
 
 affording_basics:
+  user: owner
   text_en: "How hard is it for you (and your family) to pay for basics like food, rent or mortgage, heating, etc.?"
   slug: affording-basics
   display_type: radio_input
@@ -143,6 +122,7 @@ affording_basics:
 ## My Interest In Research Survey
 
 referral_methods:
+  user: owner
   text_en:  How did you hear about MyApnea.Org?
   slug: referral-methods
   display_type: checkbox_input
@@ -162,6 +142,6 @@ web_question:
 no_answer_template:
   user: builder
   text_en: Web Question
-  slug: web-question
+  slug: no-answer-template
   display_type: radio_input
   # answer_templates:

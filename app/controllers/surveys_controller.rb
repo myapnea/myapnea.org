@@ -86,7 +86,7 @@ class SurveysController < ApplicationController
   end
 
   def check_report_access
-    if @answer_session and !@answer_session.completed?
+    if @answer_session and @answer_session.unlocked?
       if @answer_session.child
         redirect_to child_survey_path(@answer_session.child.id, @answer_session.survey, @answer_session.encounter)
       else

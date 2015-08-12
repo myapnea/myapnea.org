@@ -45,12 +45,4 @@ class Question < ActiveRecord::Base
     end
   end
 
-  def applicable_to_user?(answer_session)
-    answer_session.applicable_questions.where(id: self.id).exists?
-  end
-
-  def user_skipped_question?(answer_session)
-    applicable_to_user?(answer_session) and (answer_session.answers.where(question_id: self.id).select{|answer| answer.show_value.blank?}.exists?)
-  end
-
 end

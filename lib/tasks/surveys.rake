@@ -49,7 +49,7 @@ namespace :surveys do
 
   desc "Update all `AnswerTemplate`s with a template name based on their questions display type, and their own data type."
   task update_answer_templates: :environment do
-    AnswerTemplate.where.not(target_answer_option: nil).order(:id).each do |at|
+    AnswerTemplate.where.not(parent_answer_option_value: nil).order(:id).each do |at|
       question = at.questions.first
       current_index = question.answer_templates.where(parent_answer_template_id: nil).pluck(:id).index(at.id) if question
       if current_index and current_index > 0 and parent_template = question.answer_templates.where(parent_answer_template_id: nil)[current_index - 1]

@@ -8,43 +8,43 @@ class AdminControllerTest < ActionController::TestCase
     @regular_user = users(:user_1)
   end
 
-  test "should get progress report for owner" do
+  test "should get progress report as owner" do
     login(@owner)
     get :progress_report
     assert_response :success
   end
 
-  test "should get dashboard for owner" do
+  test "should get dashboard as owner" do
     login(@owner)
     get :dashboard
     assert_response :success
   end
 
-  test "should get dashboard for moderator" do
+  test "should get dashboard as moderator" do
     login(@moderator)
     get :dashboard
     assert_response :success
   end
 
-  test "should not get dashboard for regular user" do
+  test "should not get dashboard as regular user" do
     login(@regular_user)
     get :dashboard
     assert_equal flash[:alert], 'You do not have sufficient privileges to access that page.'
     assert_redirected_to root_path
   end
 
-  test "should not get dashboard for logged out user" do
+  test "should not get dashboard as logged out user" do
     get :dashboard
     assert_redirected_to new_user_session_path
   end
 
-  test "should get admin surveys for owner" do
+  test "should get admin surveys as owner" do
     login(users(:owner))
     get :surveys
     assert_response :success
   end
 
-  test "should get admin surveys for moderator" do
+  test "should get admin surveys as moderator" do
     login(users(:moderator_1))
     get :surveys
     assert_response :success
@@ -100,40 +100,39 @@ class AdminControllerTest < ActionController::TestCase
     assert_redirected_to root_path
   end
 
-  test "should get admin version stats" do
+  test "should get admin timeline report as admin" do
     login(users(:moderator_1))
-    get :version_stats
-    assert_not_nil assigns(:version_dates)
+    get :timeline
     assert_response :success
   end
 
-  test "should get location report for admin" do
+  test "should get location report as admin" do
     login(users(:moderator_1))
     get :location
     assert_response :success
   end
 
-  test "should get cross tabs for owner" do
+  test "should get cross tabs as owner" do
     login(users(:owner))
     get :cross_tabs
     assert_response :success
   end
 
-  test "should get engagement report for admin" do
+  test "should get engagement report as admin" do
     login(users(:moderator_1))
 
     get :engagement_report
     assert_response :success
   end
 
-  test "should get daily engagement report for owner" do
+  test "should get daily engagement report as owner" do
     login(users(:owner))
 
     get :daily_engagement
     assert_response :success
   end
 
-  test "should NOT get daily engagement report for moderator" do
+  test "should NOT get daily engagement report as moderator" do
     login(users(:moderator_1))
 
     get :daily_engagement

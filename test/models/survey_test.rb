@@ -9,14 +9,14 @@ class SurveyTest < ActiveSupport::TestCase
     assert_equal "about-me", survey.slug
     assert_equal 4, survey.questions.count
     assert_match /What is your date of birth?/, survey.questions.first.text
-    cb_q = survey.questions.where(slug: "race").first
-    assert cb_q
-    assert_equal 2, cb_q.answer_templates.length
-    assert_match /American Indian or Alaskan Native/, cb_q.answer_templates.first.answer_options.first.text
-    assert_equal "A", cb_q.answer_templates.first.answer_options.first.hotkey
-    assert_equal 1, cb_q.answer_templates.first.answer_options.first.value
-    assert_equal 6, cb_q.answer_templates.last.target_answer_option
-    assert_equal 2, cb_q.answer_templates.count
+    race = survey.questions.where(slug: "race").first
+    assert race
+    assert_equal 2, race.answer_templates.length
+    assert_match /American Indian or Alaskan Native/, race.answer_templates.first.answer_options.first.text
+    assert_equal "A", race.answer_templates.first.answer_options.first.hotkey
+    assert_equal 1, race.answer_templates.first.answer_options.first.value
+    assert_equal 6, race.answer_templates.last.parent_answer_option_value
+    assert_equal 2, race.answer_templates.count
   end
 
   test "should launch a single survey with an encounter for a user" do

@@ -199,9 +199,9 @@ class User < ActiveRecord::Base
   end
 
   def revoke_consent!
-    update_attribute :accepted_terms_of_access_at, nil
-    update_attribute :accepted_consent_at, nil
-    update_attribute :accepted_privacy_policy_at, nil
+    self.update_column :accepted_terms_of_access_at, nil
+    self.update_column :accepted_consent_at, nil
+    self.update_column :accepted_privacy_policy_at, nil
   end
 
   def signed_consent?
@@ -315,23 +315,23 @@ class User < ActiveRecord::Base
     elsif result_rows.count > 1
       if result_rows.where(allow_multiple: true).count == 0
         # Two answer values, no multiple allowed
-        if result_rows.where(data_type: 'answer_option_id').pluck(:value).map(&:to_i).include? result_rows.pluck(:target_answer_option).compact.first
-          ## Non-answer option with target_answer_option selected
-          result_rows.where("target_answer_option is not null").pluck(:value).first
+        if result_rows.where(data_type: 'answer_option_id').pluck(:value).map(&:to_i).include? result_rows.pluck(:parent_answer_option_value).compact.first
+          ## Non-answer option with parent_answer_option_value selected
+          result_rows.where("parent_answer_option_value is not null").pluck(:value).first
         else
-          ## target_answer_option not selected
+          ## parent_answer_option_value not selected
           result_rows.where(data_type: 'answer_option_id').pluck(:answer_option_text).first
         end
       else
         # Multiple Values Allowed:
-        ## Write-in with target_answer_option selected
+        ## Write-in with parent_answer_option_value selected
 
         all_ao_values = result_rows.where(data_type: 'answer_option_id').pluck(:value)
-        ignore_values = result_rows.pluck(:target_answer_option).compact
+        ignore_values = result_rows.pluck(:parent_answer_option_value).compact
 
 
 
-        write_in_result_rows = result_rows.where("target_answer_option is not null").where(target_answer_option: all_ao_values)
+        write_in_result_rows = result_rows.where("parent_answer_option_value is not null").where(parent_answer_option_value: all_ao_values)
         ao_result_rows = result_rows.where(data_type: 'answer_option_id')
         ao_result_rows = ao_result_rows.where.not(value: ignore_values.map(&:to_s)) if ignore_values
 
@@ -446,6 +446,10 @@ class User < ActiveRecord::Base
 
   def update_location
     Map.update_user_location(self)
+  end
+
+  def get_baseline_survey_answer_session(survey)
+    self.answer_sessions.where(encounter: 'baseline', survey_id: survey.id, child_id: nil).first_or_create
   end
 
   def assign_default_surveys

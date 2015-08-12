@@ -19,16 +19,6 @@ class AnswerSession < ActiveRecord::Base
     answer_sessions.empty? ? nil : answer_sessions.first
   end
 
-  def self.find_or_create(user, survey)
-    answer_sessions = AnswerSession.current.where(user_id: user.id, survey_id: survey.id).order(updated_at: :desc)
-
-    if answer_sessions.empty?
-      AnswerSession.create(user_id: user.id, survey_id: survey.id)
-    else
-      answer_sessions.first
-    end
-  end
-
   def completed?
     answers.complete.count == survey.questions.count
   end
@@ -39,6 +29,10 @@ class AnswerSession < ActiveRecord::Base
     end
 
     self[:locked]
+  end
+
+  def unlocked?
+    !self.locked?
   end
 
   def available_for_user_types?(user_types)
@@ -56,14 +50,12 @@ class AnswerSession < ActiveRecord::Base
   end
 
   def lock
-    answers.each do |answer|
-      answer.update(state: "locked")
-    end
+    self.answers.update_all state: 'locked'
   end
 
   def unlock!
-    answers.each {|answer| answer.update(state: 'incomplete')}
-    update(locked: false)
+    self.answers.where(state: 'locked').update_all(state: 'complete')
+    self.update locked: false
   end
 
   def applicable_questions

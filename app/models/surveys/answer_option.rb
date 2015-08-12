@@ -33,4 +33,9 @@ class AnswerOption < ActiveRecord::Base
   def to_s
     self[:text] || self[:text_value_en]
   end
+
+  def display_class_or_default
+    self.display_class.present? ? self.display_class : 'label-default label-sm'
+  end
+
 end

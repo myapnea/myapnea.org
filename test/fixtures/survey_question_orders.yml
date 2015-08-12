@@ -4,24 +4,16 @@ new_0:
   survey: new
   question: radio1
   question_number: 0
-  # remaining_time:
-  # remaining_distance:
 
 new_1:
   survey: new
   question: checkbox1
   question_number: 1
-  # remaining_time:
-  # remaining_distance:
-
 
 new_2:
   survey: new
-  question: text1
+  question: date2
   question_number: 2
-  # remaining_time:
-  # remaining_distance:
-
 
 ## "Hidden" Survey Questions
 
@@ -29,16 +21,11 @@ hidden_0:
   survey: hidden
   question: radio2
   question_number: 0
-  # remaining_time:
-  # remaining_distance:
 
 hidden_1:
   survey: hidden
   question: number2
   question_number: 1
-  # remaining_time:
-  # remaining_distance:
-
 
 ## "New 2" Survey Questions
 
@@ -46,23 +33,16 @@ new2_0:
   survey: new_2
   question: date1
   question_number: 0
-  # remaining_time:
-  # remaining_distance:
 
 new2_1:
   survey: new_2
   question: radio_multiple1
   question_number: 1
-  # remaining_time:
-  # remaining_distance:
 
 new2_2:
   survey: new_2
   question: number1
   question_number: 2
-  # remaining_time:
-  # remaining_distance:
-
 
 ## "For Reports" Survey Questions
 
@@ -70,9 +50,6 @@ for_reports_0:
   survey: for_reports
   question: country1
   question_number: 0
-  # remaining_time:
-  # remaining_distance:
-
 
 ## "About Me" Survey Questions
 
@@ -80,29 +57,21 @@ about_me_0:
   survey: about_me
   question: date_of_birth
   question_number: 0
-  # remaining_time:
-  # remaining_distance:
 
 about_me_1:
   survey: about_me
   question: sex
   question_number: 1
-  # remaining_time:
-  # remaining_distance:
 
 about_me_2:
   survey: about_me
   question: race
   question_number: 2
-  # remaining_time:
-  # remaining_distance:
 
 about_me_4:
   survey: about_me
   question: education_level
   question_number: 4
-  # remaining_time:
-  # remaining_distance:
 
 ## "Additional Information About Me" Survey Questions
 

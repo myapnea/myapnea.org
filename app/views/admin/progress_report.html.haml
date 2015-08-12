@@ -28,7 +28,7 @@
             %td= number_with_delimiter count
           %td= number_with_delimiter user_scope.where("adult_diagnosed = ? or adult_at_risk = ? or caregiver_adult = ? or caregiver_child = ? or provider = ? or researcher = ?", true, true, true, true, true, true).count
           %td= number_with_delimiter user_scope.where("adult_diagnosed = ? and adult_at_risk = ? and caregiver_adult = ? and caregiver_child = ? and provider = ? and researcher = ?", false, false, false, false, false, false).count
-    = link_to 'More Breakdown by Category', admin_version_stats_path
+    = link_to 'More Breakdown by Category', admin_reports_timeline_path
 
 .content-container
   .content-header

@@ -180,29 +180,6 @@ class SurveysControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "User can give an invalid answer to a question" do
-    login(users(:has_incomplete_survey))
-
-    refute answer_sessions(:incomplete).completed?
-
-    invalid_value = "19999999"
-    xhr :post, :process_answer, question_id: questions(:text1), answer_session_id: answer_sessions(:incomplete), response: { answer_templates(:text).to_param => invalid_value }, format: 'json'
-    assert_not_nil assigns(:answer)
-
-    assert assigns(:answer).persisted?
-    assert assigns(:answer).invalid?
-    assert assigns(:answer).validation_errors.present?
-    refute assigns(:answer).complete?
-    refute assigns(:answer).locked?
-
-    assert_equal 1, assigns(:answer).answer_values.count
-    assert_equal invalid_value, assigns(:answer).answer_values.first.text_value
-
-    assert_equal 1, assigns(:answer_session).answers.complete.count
-
-    assert_response :success
-  end
-
   test "User can remove all answers from a checkbox question" do
     login(users(:has_incomplete_survey))
 
@@ -237,7 +214,7 @@ class SurveysControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should get report for user with a completed survey" do
+  test "should get report for user with a locked survey" do
     login(users(:has_completed_survey))
     assert answer_sessions(:complete).completed?
     get :report, id: answer_sessions(:complete).survey
@@ -245,7 +222,7 @@ class SurveysControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should get details report for user with a completed survey" do
+  test "should get details report for user with a locked survey" do
     login(users(:has_completed_survey))
     assert answer_sessions(:complete).completed?
     get :report_detail, id: answer_sessions(:complete).survey

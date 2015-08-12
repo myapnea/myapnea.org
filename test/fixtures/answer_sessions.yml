@@ -11,6 +11,7 @@ complete:
   user: has_completed_survey
   survey: new
   encounter: baseline
+  locked: true
 
 incomplete2_baseline:
   user: has_incomplete_survey
