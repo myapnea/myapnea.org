@@ -46,14 +46,12 @@ class AnswerSession < ActiveRecord::Base
   end
 
   def lock
-    answers.each do |answer|
-      answer.update(state: "locked")
-    end
+    self.answers.update_all state: 'locked'
   end
 
   def unlock!
-    answers.each {|answer| answer.update(state: 'incomplete')}
-    update(locked: false)
+    self.answers.where(state: 'locked').update_all(state: 'complete')
+    self.update locked: false
   end
 
   def applicable_questions
