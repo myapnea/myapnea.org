@@ -1,6 +1,6 @@
 .content-main-header
   %h1.f300 Research
-- if current_user and (current_user.moderator? or current_user.owner?) and ResearchTopic.pending_review.present?
+- if false and current_user and (current_user.moderator? or current_user.owner?) and ResearchTopic.pending_review.present?
   .well
     %h4
       For admins:
@@ -17,15 +17,10 @@
       = link_to 'research highlights', accepted_research_topics_path, class: 'no-underline'
       and proposals for future studies of sleep apnea.
   .content-footer
-    %p
-      = link_to 'Propose a new research topic', new_research_topic_path, class: 'no-underline'
+    = link_to 'Propose a new research topic', new_research_topic_path, class: 'btn btn-lg btn-primary-custom'
     - if current_user and current_user.my_research_topics.present?
-      %p
-        = link_to "Check the status of your research topics", my_research_topics_research_topics_path, class: 'no-underline'
+      = link_to "Check the status of your research topics", my_research_topics_research_topics_path, class: 'btn btn-lg btn-default-custom'
 
-
-- if current_user and current_user.highlighted_research_topic.present?
-  = render 'research_topics/voting_form', research_topic: current_user.highlighted_research_topic
 
 .content-container.inherit-background
   .content-body
