@@ -41,7 +41,7 @@ class ResearchTopicsController < ApplicationController
     @research_topics = ResearchTopic.approved
     @new_research_topic = ResearchTopic.new
     respond_to do |format|
-      format.html
+      format.html { render layout: 'layouts/application-no-sidebar'}
       format.json
     end
   end

@@ -4,6 +4,10 @@
 - **Team Page Changes**
   - Added additional bios and images to team page
   - Updated Susan's bio
+- **Research Page**
+  - Updated layout to allow for more space
+  - Added current clinical studies
+  - Added display of all highlights listed as research topics
 
 ### Bug Fix
 - Removed deprecated configuration option previously used by devise
