@@ -214,7 +214,7 @@ class SurveysControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should get report for user with a completed survey" do
+  test "should get report for user with a locked survey" do
     login(users(:has_completed_survey))
     assert answer_sessions(:complete).completed?
     get :report, id: answer_sessions(:complete).survey
@@ -222,7 +222,7 @@ class SurveysControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should get details report for user with a completed survey" do
+  test "should get details report for user with a locked survey" do
     login(users(:has_completed_survey))
     assert answer_sessions(:complete).completed?
     get :report_detail, id: answer_sessions(:complete).survey
