@@ -3,6 +3,7 @@
 ### Enhancements
 - **Team Page Changes**
   - Added additional bios and images to team page
+  - Updated Susan's bio
 
 ### Bug Fix
 - Removed deprecated configuration option previously used by devise
