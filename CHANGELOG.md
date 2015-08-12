@@ -3,7 +3,6 @@
 ### Enhancements
 - **Team Page Changes**
   - Added additional bios and images to team page
-  - Updated Susan's bio
 - **Research Page**
   - Updated layout to allow for more space
   - Added current clinical studies
