@@ -68,12 +68,12 @@
               %th.text-right= number_with_delimiter completed_survey_users.count
               %th.text-right.text-muted
                 - percent_completed = completed_survey_users.count * 100 / diagnosed_users.count rescue 0
-                = show_count_difference(percent_completed, last_quarter_percent_consented, append: '%')
+                = show_count_difference(percent_completed, last_quarter_percent_completed, append: '%')
                 - last_quarter_percent_completed = percent_completed
               %th.text-right
                 - average_completed = (completed_survey_users.count == 0 ? 0 : (number_complete_surveys.to_f / completed_survey_users.count))
                 = show_count_difference(average_completed, last_quarter_average_completed, format: "%0.2f")
-                - last_quarter_percent_completed = average_completed
+                - last_quarter_average_completed = average_completed
           - current_month = current_month + 1.month
 
       %tbody
