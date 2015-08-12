@@ -199,9 +199,9 @@ class User < ActiveRecord::Base
   end
 
   def revoke_consent!
-    update_attribute :accepted_terms_of_access_at, nil
-    update_attribute :accepted_consent_at, nil
-    update_attribute :accepted_privacy_policy_at, nil
+    self.update_column :accepted_terms_of_access_at, nil
+    self.update_column :accepted_consent_at, nil
+    self.update_column :accepted_privacy_policy_at, nil
   end
 
   def signed_consent?
