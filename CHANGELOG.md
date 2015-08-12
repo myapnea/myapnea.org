@@ -33,6 +33,7 @@
   - Survey User Type can be added to surveys in online builder
 - **Admin Changes**
   - Administrators can now unlock surveys for users from the user show page
+  - Updated the Version Stats report to be monthly, and renamed to it to the Timeline Report
 - **Gem Changes**
   - Only run `web-console` in development mode
 

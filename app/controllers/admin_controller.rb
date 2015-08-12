@@ -30,30 +30,8 @@ class AdminController < ApplicationController
     @providers = User.current.where(provider: true)
   end
 
-  def version_stats
-    @version_dates = [
-      { version: '7.4.0', release_date: Date.parse('2015-08-07'), next_release_date: nil },
-      { version: '7.3.0', release_date: Date.parse('2015-07-07'), next_release_date: Date.parse('2015-08-07') },
-      { version: '7.2.0', release_date: Date.parse('2015-06-24'), next_release_date: Date.parse('2015-07-07') },
-      { version: '7.1.0', release_date: Date.parse('2015-06-03'), next_release_date: Date.parse('2015-06-24') },
-      { version: '7.0.0', release_date: Date.parse('2015-06-01'), next_release_date: Date.parse('2015-06-03') },
-      { version: '6.1.0', release_date: Date.parse('2015-04-27'), next_release_date: Date.parse('2015-06-01') },
-      { version: '6.0.0', release_date: Date.parse('2015-04-15'), next_release_date: Date.parse('2015-04-27') },
-      { version: '5.2.0', release_date: Date.parse('2015-03-25'), next_release_date: Date.parse('2015-04-15') },
-      { version: '5.1.0', release_date: Date.parse('2015-03-13'), next_release_date: Date.parse('2015-03-25') },
-      { version: '5.0.0', release_date: Date.parse('2015-03-04'), next_release_date: Date.parse('2015-03-13') },
-      { version: '4.2.0', release_date: Date.parse('2015-01-29'), next_release_date: Date.parse('2015-03-04') },
-      { version: '4.1.0', release_date: Date.parse('2015-01-21'), next_release_date: Date.parse('2015-01-29') },
-      { version: '4.0.0', release_date: Date.parse('2015-01-15'), next_release_date: Date.parse('2015-01-21') },
-      { version: '3.2.0', release_date: Date.parse('2015-01-08'), next_release_date: Date.parse('2015-01-15') },
-      { version: '3.1.0', release_date: Date.parse('2015-01-02'), next_release_date: Date.parse('2015-01-08') },
-      { version: '3.0.0', release_date: Date.parse('2014-12-16'), next_release_date: Date.parse('2015-01-02') },
-      { version: '2.1.0', release_date: Date.parse('2014-12-10'), next_release_date: Date.parse('2014-12-16') },
-      { version: '2.0.0', release_date: Date.parse('2014-11-14'), next_release_date: Date.parse('2014-12-10') },
-      { version: '1.1.0', release_date: Date.parse('2014-10-17'), next_release_date: Date.parse('2014-11-14') },
-      { version: '1.0.0', release_date: Date.parse('2014-10-03'), next_release_date: Date.parse('2014-10-17') },
-      { version: 'Before 1.0.0', release_date: nil, next_release_date: Date.parse('2014-10-03') }
-    ]
+  def timeline
+    @first_month = Date.parse("2014-10-01")
   end
 
   def location
