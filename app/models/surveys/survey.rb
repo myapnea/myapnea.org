@@ -110,15 +110,15 @@ class Survey < ActiveRecord::Base
     surveys_launched = 0
     survey_changes = {}
 
-    Survey.current.viewable.non_pediatric.joins(:encounters).merge(Encounter.current.where.not(launch_days_after_sign_up: 0)).distinct.each do |survey|
-      survey.encounters.where.not(launch_days_after_sign_up: 0).each do |encounter|
+    Survey.current.viewable.non_pediatric.where.not(publish_date: nil).each do |survey|
+      survey.encounters.each do |encounter|
         Rails.logger.debug "Followup Survey: #{survey.slug} #{encounter.slug}"
         user_types = survey.survey_user_types.pluck(:user_type)
         Rails.logger.debug "Survey User Types: #{user_types}"
         # Select User Types
         user_scope = User.current.where(user_types.collect{|x| "users.#{x.to_sym} = 't'"}.join(' or '))
         # Select Users created `launch_days_after_sign_up` days before today
-        user_scope = user_scope.where("DATE(users.created_at) <= ?", Date.today - encounter.launch_days_after_sign_up.days)
+        user_scope = user_scope.where("(DATE(users.created_at) > ? and DATE(users.created_at) <= ?) or (DATE(users.created_at) <= ? and ? <= ?)", survey.publish_date.to_date, Date.today - encounter.launch_days_after_sign_up.days, survey.publish_date.to_date, survey.publish_date.to_date, Date.today - encounter.launch_days_after_sign_up.days)
         # Select Users who have not yet been assigned the survey
         users = user_scope.where.not(id: AnswerSession.current.where(survey_id: survey.id, encounter: encounter.slug).select(:user_id))
         Rails.logger.debug "Users: #{users.count}"
