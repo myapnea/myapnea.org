@@ -25,6 +25,11 @@ namespace :surveys do
           #{already_assigned}"
   end
 
+  desc "Automatically launch followup encounters for users who have filled out a corresponding baseline survey"
+  task launch_followup_encounters: :environment do
+    Survey.launch_followup_encounters
+  end
+
   desc "Add default user to all existing surveys"
   task add_user: :environment do
     original_surveys_user_id = 1

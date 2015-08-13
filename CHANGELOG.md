@@ -8,6 +8,7 @@
     - or
     - `s.launch_multiple(users, '6month', send_email: true)`
   - Automated survey followup emails can be sent when new surveys are launched
+  - Followup surveys are launched automatically a specified number of days after sign up
   - Pediatric surveys have been added
     - Caregivers of children fill out surveys on their children
     - Children can be added one at a time and have unique surveys per child
@@ -34,6 +35,7 @@
 - **Admin Changes**
   - Administrators can now unlock surveys for users from the user show page
   - Updated the Version Stats report to be monthly, and renamed to it to the Timeline Report
+  - Owners receive survey followup digest emails when new surveys are assigned to users
 - **Gem Changes**
   - Only run `web-console` in development mode
 

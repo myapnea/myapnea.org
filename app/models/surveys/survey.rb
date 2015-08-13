@@ -106,6 +106,44 @@ class Survey < ActiveRecord::Base
     q.present? ? q.text : nil
   end
 
+  def self.launch_followup_encounters
+    surveys_launched = 0
+    survey_changes = {}
+
+    Survey.current.viewable.non_pediatric.joins(:encounters).merge(Encounter.current.where.not(launch_days_after_sign_up: 0)).distinct.each do |survey|
+      survey.encounters.where.not(launch_days_after_sign_up: 0).each do |encounter|
+        Rails.logger.debug "Followup Survey: #{survey.slug} #{encounter.slug}"
+        user_types = survey.survey_user_types.pluck(:user_type)
+        Rails.logger.debug "Survey User Types: #{user_types}"
+        # Select User Types
+        user_scope = User.current.where(user_types.collect{|x| "users.#{x.to_sym} = 't'"}.join(' or '))
+        # Select Users created `launch_days_after_sign_up` days before today
+        user_scope = user_scope.where("DATE(users.created_at) <= ?", Date.today - encounter.launch_days_after_sign_up.days)
+        # Select Users who have not yet been assigned the survey
+        users = user_scope.where.not(id: AnswerSession.current.where(survey_id: survey.id, encounter: encounter.slug).select(:user_id))
+        Rails.logger.debug "Users: #{users.count}"
+        answer_sessions_count = AnswerSession.count
+        survey.launch_multiple(users, encounter.slug, send_email: true)
+        answer_sessions_change = AnswerSession.count - answer_sessions_count
+        if answer_sessions_change > 0
+          survey_changes[survey.slug] ||= { name: survey.name }
+          survey_changes[survey.slug][:encounters] ||= []
+          survey_changes[survey.slug][:encounters] << { name: encounter.name, answer_sessions_change: answer_sessions_change }
+          surveys_launched += answer_sessions_change
+        end
+      end
+    end
+
+    Rails.logger.debug "Surveys Launched: #{surveys_launched}"
+    Rails.logger.debug survey_changes
+
+    if surveys_launched > 0
+      User.where(owner: true, emails_enabled: true).each do |owner|
+        UserMailer.encounter_digest(owner, surveys_launched, surveys_changes).deliver_later if Rails.env.production?
+      end
+    end
+  end
+
   private
 
     def create_default_encounters

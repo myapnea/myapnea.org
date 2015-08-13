@@ -46,4 +46,13 @@ class UserMailer < ApplicationMailer
     mail(to: @email_to, subject: "Followup Survey Available on MyApnea.Org!")
   end
 
+  def encounter_digest(owner, surveys_launched, survey_changes)
+    setup_email
+    @owner = owner
+    @surveys_launched = surveys_launched
+    @survey_changes = survey_changes
+    @email_to = owner.email
+    mail(to: @email_to, subject: "#{surveys_launched} Followup Survey#{'s' if surveys_launched != 1} Launched on #{Date.today.strftime('%a %d %b %Y')}")
+  end
+
 end
