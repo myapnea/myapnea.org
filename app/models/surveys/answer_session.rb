@@ -51,7 +51,7 @@ class AnswerSession < ActiveRecord::Base
 
   def atomic_first_or_create_answer(question)
     begin
-      self.answers.where(question_id: question.id).first_or_create
+      self.answers.where(question_id: question.id).first_or_create!
     rescue ActiveRecord::RecordNotUnique
       retry
     end
