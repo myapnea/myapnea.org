@@ -58,6 +58,7 @@
 }
 
 .team-list {
+  text-align: center;
   li {
     display:inline-block;
     list-style-type:none;
@@ -69,11 +70,6 @@
     cursor: pointer;
     margin-bottom: 20px;
   }
-}
-
-#steering-committee-list li {
-  margin-left: 4.5%;
-  margin-right: 4.5%;
 }
 
 .team-member-picture {
