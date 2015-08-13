@@ -3,7 +3,7 @@ module WwwMyapneaOrg
     MAJOR = 7
     MINOR = 5
     TINY = 0
-    BUILD = "rc3" # "pre", "beta1", "beta2", "rc", "rc2", nil
+    BUILD = "rc4" # "pre", "beta1", "beta2", "rc", "rc2", nil
 
     STRING = [MAJOR, MINOR, TINY, BUILD].compact.join('.')
   end
