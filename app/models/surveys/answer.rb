@@ -14,6 +14,7 @@ class Answer < ActiveRecord::Base
   scope :locked,      -> { where state: 'locked' }
 
   # Model Validation
+  validates_presence_of :answer_session_id, :question_id
   validates_uniqueness_of :question_id, scope: [:answer_session_id, :deleted]
 
   # Model Relationships

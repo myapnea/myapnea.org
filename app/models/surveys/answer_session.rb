@@ -40,12 +40,20 @@ class AnswerSession < ActiveRecord::Base
   end
 
   def process_answer(question, response)
-    answer = answers.where(question_id: question.id).first_or_initialize
+    answer = atomic_first_or_create_answer(question)
     if answer.locked?
       nil
     else
       answer.update_response_value!(response)
       answer
+    end
+  end
+
+  def atomic_first_or_create_answer(question)
+    begin
+      self.answers.where(question_id: question.id).first_or_create
+    rescue ActiveRecord::RecordNotUnique
+      retry
     end
   end
 
