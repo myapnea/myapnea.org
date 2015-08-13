@@ -121,5 +121,41 @@ namespace :surveys do
     s.survey_user_types.create user_id: s.user_id, user_type: 'adult_at_risk'
   end
 
+  desc "Remove duplicate answers and answer values"
+  task remove_duplicate_answers_and_answer_values: :environment do
+    def answer_session_duplicates_count
+      answer_session_count = AnswerSession.joins("LEFT OUTER JOIN answers ON answer_sessions.id = answers.answer_session_id").group(:answer_session_id, :question_id).having("COUNT(answers.id) > 1").pluck(:answer_session_id).uniq.count
+      puts "AnswerSessions with duplicate answers #{answer_session_count} out of TOTAL COUNT #{AnswerSession.count}"
+      answer_count = AnswerSession.joins("LEFT OUTER JOIN answers ON answer_sessions.id = answers.answer_session_id").group(:answer_session_id, :question_id).having("COUNT(answers.id) > 1").pluck(:answer_session_id).count
+      puts "Answers with validation errors #{answer_count} out of TOTAL COUNT #{Answer.count}"
+      puts "AnswerValues missing parent #{AnswerValue.where(answer_id: nil).count}"
+    end
+
+    answer_session_duplicates_count
+
+    AnswerSession.joins("LEFT OUTER JOIN answers ON answer_sessions.id = answers.answer_session_id").group(:answer_session_id, :question_id).having("COUNT(answers.id) > 1").pluck(:answer_session_id).each do |answer_session_id|
+      as = AnswerSession.find answer_session_id
+      puts as.id
+
+      as.answers.group(:question_id).having("COUNT(answers.id) > 1").count.each do |question_id, count|
+        puts "\n"
+        puts "QUESTION_ID: #{question_id} has #{count} answers"
+        puts "\n"
+        answers = as.answers.where(question_id: question_id)
+
+        puts answers.pluck(:id, :updated_at)
+
+        max_updated_at = answers.pluck(:updated_at).max
+
+        answers.where.not(updated_at: max_updated_at).each do |answer|
+          puts "Deleting Answer #{answer.id}"
+          answer.answer_values.delete_all
+          answer.delete
+        end
+      end
+    end
+
+    answer_session_duplicates_count
+  end
 
 end
