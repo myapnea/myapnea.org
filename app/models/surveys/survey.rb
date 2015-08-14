@@ -106,9 +106,43 @@ class Survey < ActiveRecord::Base
     q.present? ? q.text : nil
   end
 
+  def launch_encounter_for_user(user, encounter)
+    if self.enough_time_has_past?(user, encounter) and self.first_encounter_or_first_encounter_locked?(user, encounter)
+      self.launch_single(user, encounter.slug, send_email: false)
+      true
+    else
+      false
+    end
+  end
+
+  def enough_time_has_past?(user, encounter)
+    if oldest_locked_time = self.first_locked_encounters(user).where.not(locked_at: nil).pluck(:locked_at).min
+      oldest_locked_time.to_date <= (Date.today - encounter.launch_days_after_sign_up.days)
+    elsif self.publish_date and user.created_at.to_date <= self.publish_date
+      self.publish_date <= (Date.today - encounter.launch_days_after_sign_up.days)
+    else
+      user.created_at.to_date <= (Date.today - encounter.launch_days_after_sign_up.days)
+    end
+  end
+
+  def first_encounter_or_first_encounter_locked?(user, encounter)
+    minimum_offset = self.encounters.pluck(:launch_days_after_sign_up).min
+    encounter.launch_days_after_sign_up == minimum_offset || first_locked_encounters(user).count > 0
+  end
+
+  def first_encounters(user)
+    minimum_offset = self.encounters.pluck(:launch_days_after_sign_up).min
+    self.encounters.where(launch_days_after_sign_up: minimum_offset)
+  end
+
+  def first_locked_encounters(user)
+    user.answer_sessions.where(survey_id: self.id, encounter: first_encounters(user).select(:slug), locked: true, child_id: nil)
+  end
+
   def self.launch_followup_encounters
     surveys_launched = 0
     survey_changes = {}
+    assigned_survey_user_ids = []
 
     Survey.current.viewable.non_pediatric.where.not(publish_date: nil).each do |survey|
       survey.encounters.each do |encounter|
@@ -123,7 +157,12 @@ class Survey < ActiveRecord::Base
         users = user_scope.where.not(id: AnswerSession.current.where(survey_id: survey.id, encounter: encounter.slug).select(:user_id))
         Rails.logger.debug "Users: #{users.count}"
         answer_sessions_count = AnswerSession.count
-        survey.launch_multiple(users, encounter.slug, send_email: true)
+
+        users.each do |user|
+          assigned_survey_user_ids << user.id if survey.launch_encounter_for_user(user, encounter)
+        end
+
+
         answer_sessions_change = AnswerSession.count - answer_sessions_count
         if answer_sessions_change > 0
           survey_changes[survey.slug] ||= { name: survey.name }
@@ -137,10 +176,16 @@ class Survey < ActiveRecord::Base
     Rails.logger.debug "Surveys Launched: #{surveys_launched}"
     Rails.logger.debug survey_changes
 
+    users_assigned_new_surveys = User.current.where(id: assigned_survey_user_ids)
+    users_emailed = users_assigned_new_surveys.where(emails_enabled: true)
+
     if surveys_launched > 0
       User.where(owner: true, emails_enabled: true).each do |owner|
         UserMailer.encounter_digest(owner, surveys_launched, surveys_changes).deliver_later if Rails.env.production?
       end
+    end
+    users_emailed.each do |user|
+      UserMailer.new_surveys_available(user).deliver_later if Rails.env.production?
     end
   end
 

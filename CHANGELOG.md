@@ -31,6 +31,10 @@
     - Conditional AnswerTemplates now require a valid parent AnswerTemplate as well as a valid value
   - Encounters can be added to surveys in online builder
     - An encounter specifies when the survey is launched, in days after sign up
+    - Encounters are assigned to users based on the completion date of the first baseline survey
+    - If no baseline survey is completed, then users do not receive followup surveys
+    - The initial baseline is launched after the newer of the survey publish date or the user registration
+    - Users receive a survey digest of new surveys that are available when new surveys are assigned
   - Survey User Type can be added to surveys in online builder
 - **Admin Changes**
   - Administrators can now unlock surveys for users from the user show page

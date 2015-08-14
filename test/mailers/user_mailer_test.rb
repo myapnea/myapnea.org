@@ -74,6 +74,17 @@ class UserMailerTest < ActionMailer::TestCase
     assert_match(/You have a new followup survey waiting to be completed on MyApnea\.Org\./, email.encoded)
   end
 
+  test "new surveys available email" do
+    user = users(:has_launched_survey)
+
+    email = UserMailer.new_surveys_available(user).deliver_now
+    assert !ActionMailer::Base.deliveries.empty?
+
+    assert_equal [users(:has_launched_survey).email], email.to
+    assert_equal "New Surveys Available on MyApnea.Org!", email.subject
+    assert_match(/You have new surveys waiting to be completed on MyApnea\.Org\./, email.encoded)
+  end
+
   test "encounter digest email" do
     owner = users(:owner)
 

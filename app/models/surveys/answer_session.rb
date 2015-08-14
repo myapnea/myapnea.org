@@ -25,7 +25,8 @@ class AnswerSession < ActiveRecord::Base
 
   def locked?
     unless self[:locked]
-      update(locked: (answers.locked.count == survey.questions.count))
+      should_lock = (answers.locked.count == survey.questions.count)
+      self.update locked: should_lock, locked_at: (should_lock ? Time.zone.now : nil)
     end
 
     self[:locked]
@@ -63,7 +64,7 @@ class AnswerSession < ActiveRecord::Base
 
   def unlock!
     self.answers.where(state: 'locked').update_all(state: 'complete')
-    self.update locked: false
+    self.update locked: false, locked_at: nil
   end
 
   def applicable_questions

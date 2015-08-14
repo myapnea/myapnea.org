@@ -46,6 +46,13 @@ class UserMailer < ApplicationMailer
     mail(to: @email_to, subject: "Followup Survey Available on MyApnea.Org!")
   end
 
+  def new_surveys_available(user)
+    setup_email
+    @user = user
+    @email_to = user.email
+    mail(to: @email_to, subject: "New Surveys Available on MyApnea.Org!")
+  end
+
   def encounter_digest(owner, surveys_launched, survey_changes)
     setup_email
     @owner = owner

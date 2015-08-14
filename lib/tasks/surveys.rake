@@ -9,20 +9,6 @@ namespace :surveys do
         as.locked?
       end
     end
-
-  end
-
-  desc "Launch a survey for a given user group - [:survey_slug, :user_where_clause, :encounter]"
-  task :launch, [:survey_slug, :user_where_clause, :encounter] => :environment do |t, args|
-    user_group = User.current.where(args[:where_clause])
-    survey = Survey.find_by_slug(args[:survey_slug])
-
-    already_assigned = survey.launch_multiple(user_group, args[:encounter])
-
-    puts "Total number of users in survey launch: #{user_group.length}\n
-          Users with survey previously launched: #{already_assigned.length}\n
-          List of users with survey previously launched:\n
-          #{already_assigned}"
   end
 
   desc "Automatically launch followup encounters for users who have filled out a corresponding baseline survey"
@@ -168,6 +154,13 @@ namespace :surveys do
     end
 
     answer_session_duplicates_count
+  end
+
+  desc "Set default locked_at time for answer sessions."
+  task add_locked_at_to_answer_sessions: :environment do
+    AnswerSession.where(locked: true, locked_at: nil).each do |answer_session|
+      answer_session.update locked_at: answer_session.updated_at
+    end
   end
 
 end
