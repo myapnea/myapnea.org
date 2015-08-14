@@ -1,4 +1,4 @@
-## 7.5.0
+## 7.5.0 (August 14, 2015)
 
 ### Enhancements
 - **Team Page Changes**
