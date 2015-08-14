@@ -42,6 +42,7 @@
   - Owners receive survey followup digest emails when new surveys are assigned to users
 - **Gem Changes**
   - Only run `web-console` in development mode
+  - Updated to rails 4.2.4.rc1
 
 ### API Development
 - **API**
