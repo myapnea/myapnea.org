@@ -74,7 +74,7 @@ class HighlightsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def highlight_params
-      params.require(:highlight).permit(:title, :description, :photo, :display_date, :displayed, :link)
+      params.require(:highlight).permit(:title, :description, :photo, :display_date, :displayed, :research_highlight, :link)
     end
 
     def set_SEO_elements

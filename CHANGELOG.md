@@ -78,6 +78,19 @@
 - Removed unused methods from the user model
 - Removed unused views and partials
 
+## 7.5.0 (August 14, 2015)
+
+### Enhancements
+- **Team Page Changes**
+  - Added additional bios and images to team page
+- **Research Page**
+  - Updated layout to allow for more space
+  - Added current clinical studies
+  - Added display of all highlights listed as research topics
+
+### Bug Fix
+- Removed deprecated configuration option previously used by devise
+
 ## 7.4.0 (August 7, 2015)
 
 ### Enhancements

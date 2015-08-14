@@ -1,9 +1,9 @@
 - consent_page_content = page_content('consent')
 - part_of_registration = false unless defined?(part_of_registration)
 
-.content-container
+.content-container{ style: 'margin-bottom: 0px;'}
   .content-header{ style: 'background-color: #f3f3f3;' }
-    - if current_user
+    - if current_user #and !part_of_registration
       .before.lead.f500= consent_page_content['before']['head']
     %p
       = consent_page_content['before']['content']['text_1']
@@ -21,7 +21,7 @@
         = link_to "#", id: "print-link", class: 'print-link pull-right btn btn-xs btn-primary' do
           %i.fa.fa-print
           Print Consent
-  - if current_user
+  - if current_user #and !part_of_registration
     .content-footer.centered
       - if current_user.ready_for_research?
         = link_to :back, class: 'btn btn-lg btn-default' do

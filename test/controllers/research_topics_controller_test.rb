@@ -146,6 +146,16 @@ class ResearchTopicsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should not get new as logged out user" do
+    get :new
+    assert_redirected_to new_user_session_path
+  end
+
+  test "should get new as experienced user" do
+    login(@experienced_user)
+    get :new
+    assert_response :success
+  end
 
   # Creation
   test "should create a research topic as experienced user" do
