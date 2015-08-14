@@ -49,7 +49,7 @@ team:
   funder_description: |
     The Patient-Centered Outcomes Research Institute (PCORI) is an independent, non-profit organization authorized by Congress in 2010 to fund research aimed at improving the health of entire populations.
 
-    In December 2013, the Patient-Centered Outcomes Research Institute approved $93.5 million to support 29 clinical research data networks that together will form an ambitious new resource known as PCORnet, or the National Patient-Centered Outcomes Clinical Research Network. PCORnet will be a large, highly representative, national network for conducting clinical outcomes research. PCORnet will integrate data from 11 Clinical Data Research Networks—networks that originate in healthcare systems such as hospitals, health plans, and practice-based networks and securely collect real-time health information during the routine course of patient care—and 18 Patient-Powered Research Networks—networks operated and governed by groups of patients and their partners who are focused on a particular condition and interested in sharing health information and participating in research.
+    In December 2013, the Patient-Centered Outcomes Research Institute approved $93.5 million to support 29 clinical research data networks that together will form an ambitious new resource known as PCORnet, or the National Patient-Centered Outcomes Clinical Research Network. PCORnet will be a large, highly representative, national network for conducting clinical outcomes research. PCORnet will integrate data from 11 Clinical Data Research Networks—networks that originate in healthcare systems such as hospitals, health plans, and practice-based networks and securely collect real-time health information during the routine course of patient care—and 18 Patient-Powered Research Networks—networks operated and governed by groups of patients and their partners who are focused on a particular condition and interested in sharing health information and participating in research.
   partners_header: Our partners
   partners:
     - name: American Sleep Apnea Association
@@ -72,7 +72,7 @@ team:
     - name: The Sleep Research Network (SRN)
       link: http://www.sleepresearchnetwork.org
       description: |
-        The Sleep Research Network (SRN) promotes sustainable, multi-institutional collaborations in clinical and translational research that address significant public health questions related to sleep medicine and circadian biology. SRN also supports the training of the next generation of sleep medicine investigators and is currently comprised of researchers representing 40 institutions that participate in the Clinical and Translational Science Award program across the nation.
+        The Sleep Research Network (SRN) promotes sustainable, multi-institutional collaborations in clinical and translational research that address significant public health questions related to sleep medicine and circadian biology. SRN also supports the training of the next generation of sleep medicine investigators and is currently comprised of researchers representing 40 institutions that participate in the Clinical and Translational Science Award program across the nation.
 
     - name: Informatics for Integrating Biology and the Bedside (i2b2)
       link: https://www.i2b2.org
