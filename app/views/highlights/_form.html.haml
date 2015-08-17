@@ -49,5 +49,11 @@
               Highlight Displayed
       .form-group
         .col-md-offset-2.col-md-10
+          .checkbox
+            %label
+              = f.check_box :research_highlight
+              Research Highlight
+      .form-group
+        .col-md-offset-2.col-md-10
           = f.submit nil, class: 'btn btn-primary'
           = link_to 'Cancel', (@highlight.new_record? ? highlights_path : @highlight), class: 'btn btn-default'

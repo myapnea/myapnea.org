@@ -1,0 +1,33 @@
+- if @survey_encounter.new_record?
+  - url = builder_survey_survey_encounters_path(@survey)
+  - method = :post
+- else
+  - url = builder_survey_survey_encounter_path(@survey, @survey_encounter)
+  - method = :patch
+= form_for @survey_encounter, url: url, method: method, html: { class: 'form-horizontal', multipart: true } do |f|
+  - if @survey_encounter.errors.any?
+    .panel.panel-danger
+      .panel-heading
+        %strong
+          = pluralize(@survey_encounter.errors.count, "error")
+          prohibited this survey encounter from being saved:
+
+      .panel-body
+        %ul
+          - @survey_encounter.errors.full_messages.each do |message|
+            %li= message
+
+  .form-group
+    = f.label :encounter_id, 'Survey Encounter', class: 'col-md-2 control-label'
+    .col-md-10
+      = f.select :encounter_id, Encounter.current.pluck(:name, :id), { include_blank: true }, class: 'form-control'
+
+  .form-group
+    = f.label :parent_survey_encounter_id, 'Only Launch If Following Survey is Completed', class: 'col-md-2 control-label'
+    .col-md-10
+      = f.select :parent_survey_encounter_id, SurveyEncounter.joins(:survey).merge(Survey.current.non_pediatric.where.not(slug: nil)).where.not(id: @survey_encounter.id).collect{|se| [se.encounter_survey_name, se.id]}.sort, { include_blank: true }, class: 'form-control'
+
+  .form-group
+    .col-md-10.col-md-offset-2
+      = f.submit nil, class: 'btn btn-primary'
+      = link_to 'Cancel', url, class: 'btn btn-default'

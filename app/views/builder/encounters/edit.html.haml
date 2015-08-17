@@ -1,10 +1,8 @@
 .content-main-header
   %h1
-    = link_to 'Surveys', builder_surveys_path
+    = link_to 'Encounters', builder_encounters_path
     &middot;
-    = link_to @survey.name, builder_survey_path(@survey)
-    &middot;
-    = link_to @encounter.slug_was, builder_survey_encounter_path(@survey, @encounter.slug_was)
+    = link_to @encounter.slug_was, builder_encounter_path(@encounter.slug_was)
     &middot;
     Edit
 

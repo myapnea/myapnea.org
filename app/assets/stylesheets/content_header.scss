@@ -1,19 +1,16 @@
 /* MAIN CONTENT */
-
-#container-major {
-  .content-main-header {
-    padding: 5px 20px;
-    background-color: #ffa400;
-    h1 {
-      color: rgb(255,255,255);
-      color: rgba(255,255,255,.85);
-      font-weight: 300;
-    }
-    p.lead {
-      margin-bottom: 0px;
-      color: rgb(255,255,255);
-      color: rgba(255,255,255,0.8);
-    }
+.content-main-header {
+  padding: 5px 20px;
+  background-color: #ffa400;
+  h1 {
+    color: rgb(255,255,255);
+    color: rgba(255,255,255,.85);
+    font-weight: 300;
+  }
+  p.lead {
+    margin-bottom: 0px;
+    color: rgb(255,255,255);
+    color: rgba(255,255,255,0.8);
   }
 }
 

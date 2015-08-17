@@ -37,6 +37,7 @@ class AccountController < ApplicationController
   end
 
   def get_started_step_one
+    # render 'account/get_started_step_onetwo'
   end
 
   def get_started_step_two

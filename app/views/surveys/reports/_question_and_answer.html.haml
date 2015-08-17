@@ -4,44 +4,37 @@
 - elsif answer_template_index > 0 and answer_template.name.present?
   .col-sm-5.rectangle-speech-border.rectangle-speech-border-left.rectangle-speech-border-orange
     %h4.f300= answer_template.name.gsub('_', ' ').capitalize
+
+- data = []
+- community_answer_values = AnswerValue.current.joins(:answer).where(answers: { question_id: question.id }, answer_template: answer_template).where.not(answer_option_id: nil)
+- all_counts = community_answer_values.group(:answer_option_id).select(:answer_option_id).order(:answer_option_id).count
+- total_count = community_answer_values.count
+
 .row.reset-layout
   .col-sm-11.col-sm-offset-1.rectangle-speech-border.rectangle-speech-border-right.rectangle-speech-border-blue
-    - if answer_session.present?
+    - if user_answer_values
       %h5.f500{ style: 'margin-bottom:30px;' }
         My answer:
         %span.f300
-          - if answer_value.present?
-            = answer_value.collect(&:show_value).join(', ')
-          - else
-            You were unable to answer this question due to previous responses!
+          = user_answer_values.collect(&:show_value).join(', ')
 
     .col-sm-4{ style: 'margin:20px auto;' }
       %table.table.table-bordered{ style: 'padding:10px; width:100%;' }
         %thead
-          %th{ style: 'text-align:center;' } Option
-          %th{ style: 'text-align:center;' } Percentage
+          %th Option
+          %th.text-right Percentage
         %tbody
-          /- user_selected = answer_frequencies[:label].to_s.strip.include? answer.show_value.to_s.strip.split(', ')
-          - user_selected = []
-          - answer_frequencies.each do |answer_frequency|
-            - if false
-              /answer_value.present? and answer_value.show_value.to_s.strip.split(', ').include? answer_frequency.answer_option_text.strip
-              - user_selected << 1
-              %tr{ style: 'background-color:rgba(245,245,245,.7)' }
-                %td
-                  = answer_frequency.answer_option_text
-                %td
-                  = (answer_frequency.frequency * 100).round
-            - else
-              - user_selected << 0
-              %tr
-                %td
-                  = answer_frequency.answer_option_text
-                %td
-                  = (answer_frequency.frequency * 100).round
-    - # TODO: This part could be refactored to use a to_json method in the SurveyAnswerFrequency model
+          - all_counts.each do |answer_option_id, count|
+            - answer_option = AnswerOption.find_by_id(answer_option_id)
+            - selected_response = (user_answer_values and user_answer_values.pluck(:answer_option_id).include?(answer_option.id))
+            - name = answer_option.text
+            - percent = (count * 100 / total_count rescue 0)
+            - color = (selected_response ? '#7FB2EB' : '#FFB839')
+            - data << { name: name, y: count, color: color }
+            %tr{ style: "#{'background-color:rgba(127,178,235,.5)' if selected_response}"}
+              %td= name
+              %td.text-right
+                = succeed '%' do
+                  = percent
     .col-sm-7{ style: 'margin:20px auto;' }
-      - data = answer_frequencies.each_with_index.map{ |af,i| { name: af.answer_option_text.to_s.strip, y: af.answer_count, color: (user_selected[i] == 1 ? '#7FB2EB' : '#FFB839') } }
-      - if answer_frequencies.length == 2
-        - chartHeight = 200
-      %div{ data: { object: 'draw-chart', name: 'abc', info: { chartHeight: chartHeight, series: [{ name: 'question', data: data }] }.to_json } }
+      %div{ data: { object: 'draw-chart', name: 'abc', info: { chartHeight: nil, series: [{ name: 'question', data: data }] }.to_json } }

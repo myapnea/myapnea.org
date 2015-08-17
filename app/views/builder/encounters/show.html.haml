@@ -1,14 +1,12 @@
 .content-main-header
   %h1
-    = link_to 'Surveys', builder_surveys_path
-    &middot;
-    = link_to @survey.name, builder_survey_path(@survey)
+    = link_to 'Encounters', builder_encounters_path
     &middot;
     = @encounter.slug
 
-  - if @survey.editable_by?(current_user)
-    = link_to 'Edit Encounter', edit_builder_survey_encounter_path(@survey, @encounter), class: 'btn btn-xs btn-default'
-    = link_to 'Delete Encounter', builder_survey_encounter_path(@survey, @encounter), method: :delete, class: 'btn btn-xs btn-danger', data: { confirm: "Are you sure you want to delete Encounter #{@encounter.slug}?" }
+  - if @encounter.editable_by?(current_user)
+    = link_to 'Edit Encounter', edit_builder_encounter_path(@encounter), class: 'btn btn-xs btn-default'
+    = link_to 'Delete Encounter', builder_encounter_path(@encounter), method: :delete, class: 'btn btn-xs btn-danger', data: { confirm: "Are you sure you want to delete Encounter #{@encounter.slug}?" }
 
 .content-container
   .content-body

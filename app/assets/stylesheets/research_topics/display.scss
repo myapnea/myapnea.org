@@ -43,6 +43,18 @@ a.research-topic-index-display:hover {
   overflow-y: auto;
 }
 
+.scroll-container-large {
+  height: 870px;
+  overflow-y: auto;
+}
+
+.clinical-trial-container {
+  border: 1px solid #ddd;
+  background-color: white;
+  padding: 10px;
+  color: #555;
+}
+
 // Progress meter
 .progress-meter {
   height: 30px;

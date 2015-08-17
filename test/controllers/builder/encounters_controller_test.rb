@@ -2,61 +2,55 @@ require 'test_helper'
 
 class Builder::EncountersControllerTest < ActionController::TestCase
   setup do
-    @builder = users(:builder)
+    @owner = users(:owner)
     @regular_user = users(:user_1)
-    @survey = surveys(:built_on_web)
-    @encounter = encounters(:web_encounter_baseline)
+    @encounter = encounters(:baseline)
   end
 
-  test "should get encounters as builder" do
-    login(@builder)
-    get :index, survey_id: @survey
-    assert_not_nil assigns(:survey)
-    assert_redirected_to builder_survey_path(assigns(:survey))
+  test "should get encounters as owner" do
+    login(@owner)
+    get :index
+    assert_not_nil assigns(:encounters)
   end
 
   test "should not get encounters as regular user" do
     login(@regular_user)
-    get :index, survey_id: @survey
-    assert_nil assigns(:survey)
+    get :index
+    assert_nil assigns(:encounters)
     assert_redirected_to root_path
   end
 
-  test "should get new encounter as builder" do
-    login(@builder)
-    get :new, survey_id: @survey
-    assert_not_nil assigns(:survey)
+  test "should get new encounter as owner" do
+    login(@owner)
+    get :new
     assert_not_nil assigns(:encounter)
     assert_response :success
   end
 
   test "should not get new encounter as regular user" do
     login(@regular_user)
-    get :new, survey_id: @survey
-    assert_nil assigns(:survey)
+    get :new
     assert_nil assigns(:encounter)
     assert_redirected_to root_path
   end
 
   test "should create encounter as builder" do
-    login(@builder)
+    login(@owner)
     assert_difference('Encounter.count') do
-      post :create, survey_id: @survey, encounter: { name: 'My New Encounter', slug: 'my-new-encounter', launch_days_after_sign_up: 10 }
+      post :create, encounter: { name: 'My New Encounter', slug: 'my-new-encounter', launch_days_after_sign_up: 10 }
     end
-    assert_not_nil assigns(:survey)
     assert_not_nil assigns(:encounter)
     assert_equal 'My New Encounter', assigns(:encounter).name
     assert_equal 'my-new-encounter', assigns(:encounter).slug
     assert_equal 10, assigns(:encounter).launch_days_after_sign_up
-    assert_redirected_to builder_survey_encounter_path(assigns(:survey), assigns(:encounter))
+    assert_redirected_to builder_encounter_path(assigns(:encounter))
   end
 
   test "should not create encounter without text" do
-    login(@builder)
+    login(@owner)
     assert_difference('Encounter.count', 0) do
-      post :create, survey_id: @survey, encounter: { name: '', slug: 'my-new-encounter', launch_days_after_sign_up: 10 }
+      post :create, encounter: { name: '', slug: 'my-new-encounter', launch_days_after_sign_up: 10 }
     end
-    assert_not_nil assigns(:survey)
     assert_not_nil assigns(:encounter)
     assert assigns(:encounter).errors.size > 0
     assert_equal ["can't be blank"], assigns(:encounter).errors[:name]
@@ -67,60 +61,53 @@ class Builder::EncountersControllerTest < ActionController::TestCase
   test "should not create encounter as regular user" do
     login(@regular_user)
     assert_difference('Encounter.count', 0) do
-      post :create, survey_id: @survey, encounter: { name: 'My New Encounter', slug: 'my-new-encounter', launch_days_after_sign_up: 10 }
+      post :create, encounter: { name: 'My New Encounter', slug: 'my-new-encounter', launch_days_after_sign_up: 10 }
     end
-    assert_nil assigns(:survey)
     assert_nil assigns(:encounter)
     assert_redirected_to root_path
   end
 
-  test "should show encounter as builder" do
-    login(@builder)
-    get :show, survey_id: @survey, id: @encounter
-    assert_not_nil assigns(:survey)
+  test "should show encounter as owner" do
+    login(@owner)
+    get :show, id: @encounter
     assert_not_nil assigns(:encounter)
     assert_response :success
   end
 
   test "should not show encounter as regular user" do
     login(@regular_user)
-    get :show, survey_id: @survey, id: @encounter
-    assert_nil assigns(:survey)
+    get :show, id: @encounter
     assert_nil assigns(:encounter)
     assert_redirected_to root_path
   end
 
-  test "should get edit encounter as builder" do
-    login(@builder)
-    get :edit, survey_id: @survey, id: @encounter
-    assert_not_nil assigns(:survey)
+  test "should get edit encounter as owner" do
+    login(@owner)
+    get :edit, id: @encounter
     assert_not_nil assigns(:encounter)
     assert_response :success
   end
 
   test "should not get edit encounter as regular user" do
     login(@regular_user)
-    get :edit, survey_id: @survey, id: @encounter
-    assert_nil assigns(:survey)
+    get :edit, id: @encounter
     assert_nil assigns(:encounter)
     assert_redirected_to root_path
   end
 
-  test "should update encounter as builder" do
-    login(@builder)
-    patch :update, survey_id: @survey, id: @encounter, encounter: { name: 'Updated Encounter', slug: 'updated-encounter', launch_days_after_sign_up: 90 }
-    assert_not_nil assigns(:survey)
+  test "should update encounter as owner" do
+    login(@owner)
+    patch :update, id: @encounter, encounter: { name: 'Updated Encounter', slug: 'updated-encounter', launch_days_after_sign_up: 90 }
     assert_not_nil assigns(:encounter)
     assert_equal 'Updated Encounter', assigns(:encounter).name
     assert_equal 'updated-encounter', assigns(:encounter).slug
     assert_equal 90, assigns(:encounter).launch_days_after_sign_up
-    assert_redirected_to builder_survey_encounter_path(assigns(:survey), assigns(:encounter))
+    assert_redirected_to builder_encounter_path(assigns(:encounter))
   end
 
   test "should not update encounter without name" do
-    login(@builder)
-    patch :update, survey_id: @survey, id: @encounter, encounter: { name: '', slug: 'updated-encounter', launch_days_after_sign_up: 90 }
-    assert_not_nil assigns(:survey)
+    login(@owner)
+    patch :update, id: @encounter, encounter: { name: '', slug: 'updated-encounter', launch_days_after_sign_up: 90 }
     assert_not_nil assigns(:encounter)
     assert assigns(:encounter).errors.size > 0
     assert_equal ["can't be blank"], assigns(:encounter).errors[:name]
@@ -130,28 +117,25 @@ class Builder::EncountersControllerTest < ActionController::TestCase
 
   test "should not update encounter as regular user" do
     login(@regular_user)
-    patch :update, survey_id: @survey, id: @encounter, encounter: { name: 'Updated Encounter', slug: 'updated-encounter', launch_days_after_sign_up: 90 }
-    assert_nil assigns(:survey)
+    patch :update, id: @encounter, encounter: { name: 'Updated Encounter', slug: 'updated-encounter', launch_days_after_sign_up: 90 }
     assert_nil assigns(:encounter)
     assert_redirected_to root_path
   end
 
-  test "should destroy encounter as builder" do
-    login(@builder)
+  test "should destroy encounter as owner" do
+    login(@owner)
     assert_difference('Encounter.current.count', -1) do
-      delete :destroy, survey_id: @survey, id: @encounter
+      delete :destroy, id: @encounter
     end
-    assert_not_nil assigns(:survey)
     assert_not_nil assigns(:encounter)
-    assert_redirected_to builder_survey_path(assigns(:survey))
+    assert_redirected_to builder_encounters_path
   end
 
   test "should not destroy encounter as regular user" do
     login(@regular_user)
     assert_difference('Encounter.current.count', 0) do
-      delete :destroy, survey_id: @survey, id: @encounter
+      delete :destroy, id: @encounter
     end
-    assert_nil assigns(:survey)
     assert_nil assigns(:encounter)
     assert_redirected_to root_path
   end

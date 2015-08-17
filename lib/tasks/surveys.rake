@@ -9,20 +9,11 @@ namespace :surveys do
         as.locked?
       end
     end
-
   end
 
-  desc "Launch a survey for a given user group - [:survey_slug, :user_where_clause, :encounter]"
-  task :launch, [:survey_slug, :user_where_clause, :encounter] => :environment do |t, args|
-    user_group = User.current.where(args[:where_clause])
-    survey = Survey.find_by_slug(args[:survey_slug])
-
-    already_assigned = survey.launch_multiple(user_group, args[:encounter])
-
-    puts "Total number of users in survey launch: #{user_group.length}\n
-          Users with survey previously launched: #{already_assigned.length}\n
-          List of users with survey previously launched:\n
-          #{already_assigned}"
+  desc "Automatically launch followup encounters for users who have filled out a corresponding baseline survey"
+  task launch_followup_encounters: :environment do
+    Survey.launch_followup_encounters
   end
 
   desc "Add default user to all existing surveys"
@@ -62,10 +53,20 @@ namespace :surveys do
     end
   end
 
-  desc "Add default baseline encounter to all existing surveys."
-  task add_encounters_to_surveys: :environment do
+  desc "Add default baseline encounter."
+  task add_baseline_encounter: :environment do
+    ActiveRecord::Base.connection.execute("TRUNCATE encounters RESTART IDENTITY")
+    owner = User.where(owner: true).first
+    baseline = Encounter.create(user_id: owner.id, name: 'Baseline', slug: 'baseline', launch_days_after_sign_up: 0)
     Survey.all.each do |s|
-      s.send('create_default_encounters')
+      s.survey_encounters.create(user: s.user, encounter: baseline)
+    end
+  end
+
+  desc "Add default publish date to all existing surveys."
+  task add_publish_date_to_surveys: :environment do
+    Survey.all.each do |s|
+      s.update publish_date: s.answer_sessions.pluck(:created_at).min
     end
   end
 
@@ -156,6 +157,13 @@ namespace :surveys do
     end
 
     answer_session_duplicates_count
+  end
+
+  desc "Set default locked_at time for answer sessions."
+  task add_locked_at_to_answer_sessions: :environment do
+    AnswerSession.where(locked: true, locked_at: nil).each do |answer_session|
+      answer_session.update locked_at: answer_session.updated_at
+    end
   end
 
 end

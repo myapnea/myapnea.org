@@ -8,6 +8,7 @@
     - or
     - `s.launch_multiple(users, '6month', send_email: true)`
   - Automated survey followup emails can be sent when new surveys are launched
+  - Followup surveys are launched automatically a specified number of days after sign up
   - Pediatric surveys have been added
     - Caregivers of children fill out surveys on their children
     - Children can be added one at a time and have unique surveys per child
@@ -30,12 +31,17 @@
     - Conditional AnswerTemplates now require a valid parent AnswerTemplate as well as a valid value
   - Encounters can be added to surveys in online builder
     - An encounter specifies when the survey is launched, in days after sign up
+    - Encounters are assigned to users based on the completion of any dependent surveys
+    - The initial baseline is launched after the newer of the survey publish date or the user registration
+    - Users receive a survey digest of new surveys that are available when new surveys are assigned
   - Survey User Type can be added to surveys in online builder
 - **Admin Changes**
   - Administrators can now unlock surveys for users from the user show page
   - Updated the Version Stats report to be monthly, and renamed to it to the Timeline Report
+  - Owners receive survey followup digest emails when new surveys are assigned to users
 - **Gem Changes**
   - Only run `web-console` in development mode
+  - Updated to rails 4.2.4.rc1
 
 ### API Development
 - **API**
@@ -72,6 +78,19 @@
 - Refactored Survey class in favor of an AnswerSession-centric model
 - Removed unused methods from the user model
 - Removed unused views and partials
+
+## 7.5.0 (August 14, 2015)
+
+### Enhancements
+- **Team Page Changes**
+  - Added additional bios and images to team page
+- **Research Page**
+  - Updated layout to allow for more space
+  - Added current clinical studies
+  - Added display of all highlights listed as research topics
+
+### Bug Fix
+- Removed deprecated configuration option previously used by devise
 
 ## 7.4.0 (August 7, 2015)
 

@@ -1,5 +1,5 @@
 .highlight-container
-  - if current_user.owner?
+  - if current_user and current_user.owner?
     .highlight-container-right-after
       - if highlight.displayed?
         = link_to highlight_path(highlight, highlight: { displayed: false }), method: :patch do

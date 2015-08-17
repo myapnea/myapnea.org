@@ -31,12 +31,4 @@ class SurveyTest < ActiveSupport::TestCase
     assert_equal u, surveys(:new).launch_single(u, "baseline")
   end
 
-  test "should launch multiple surveys with a specified encounter for a type of user" do
-    assert_difference "AnswerSession.where(encounter: '6month').count", User.current.where(adult_diagnosed: true).count do
-      result = surveys(:new_2).launch_multiple(User.current.where("adult_diagnosed = TRUE"), '6month')
-      assert_empty result
-    end
-    assert_equal User.current.where(adult_diagnosed: true), surveys(:new_2).launch_multiple(User.current.where("adult_diagnosed = TRUE"), '6month')
-  end
-
 end
