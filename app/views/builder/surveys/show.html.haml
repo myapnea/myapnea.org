@@ -82,10 +82,16 @@
             %code= survey_encounter.encounter.slug
           %td
             - if survey_encounter.encounter.launch_days_after_sign_up == 0
-              At Sign Up
+              At
             - else
               = pluralize survey_encounter.encounter.launch_days_after_sign_up, 'Day'
-              After Sign Up
+              After
+            - if survey_encounter.parent_survey_encounter
+              = link_to survey_encounter.parent_survey_encounter.survey_encounter_name, builder_survey_survey_encounter_path(survey_encounter.parent_survey_encounter.survey, survey_encounter.parent_survey_encounter)
+              Is Completed
+            - else
+              Sign Up
+
           %td= link_to_if current_user.owner?, survey_encounter.encounter.user.name, survey_encounter.encounter.user if survey_encounter.encounter.user
           %td= link_to 'Edit', edit_builder_survey_survey_encounter_path(@survey, survey_encounter), class: 'btn btn-xs btn-default'
       %tr

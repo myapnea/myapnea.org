@@ -23,6 +23,11 @@
       = f.select :encounter_id, Encounter.current.pluck(:name, :id), { include_blank: true }, class: 'form-control'
 
   .form-group
+    = f.label :parent_survey_encounter_id, 'Only Launch If Following Survey is Completed', class: 'col-md-2 control-label'
+    .col-md-10
+      = f.select :parent_survey_encounter_id, SurveyEncounter.joins(:survey).merge(Survey.current.non_pediatric.where.not(slug: nil)).where.not(id: @survey_encounter.id).collect{|se| [se.encounter_survey_name, se.id]}.sort, { include_blank: true }, class: 'form-control'
+
+  .form-group
     .col-md-10.col-md-offset-2
       = f.submit nil, class: 'btn btn-primary'
       = link_to 'Cancel', url, class: 'btn btn-default'

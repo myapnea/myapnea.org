@@ -31,4 +31,9 @@
           immediately
         - else
           = pluralize @survey_encounter.encounter.launch_days_after_sign_up, 'day'
-        after sign up.
+        after
+        - if @survey_encounter.parent_survey_encounter
+          = link_to @survey_encounter.parent_survey_encounter.survey_encounter_name, builder_survey_survey_encounter_path(@survey_encounter.parent_survey_encounter.survey, @survey_encounter.parent_survey_encounter)
+          is completed.
+        - else
+          sign up.

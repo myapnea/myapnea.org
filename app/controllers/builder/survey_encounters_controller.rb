@@ -67,7 +67,7 @@ class Builder::SurveyEncountersController <  Builder::BuilderController
     end
 
     def survey_encounter_params
-      params.require(:survey_encounter).permit(:encounter_id)
+      params.require(:survey_encounter).permit(:encounter_id, :parent_survey_encounter_id)
     end
 
 end

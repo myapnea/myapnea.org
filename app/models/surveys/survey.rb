@@ -106,28 +106,31 @@ class Survey < ActiveRecord::Base
     q.present? ? q.text : nil
   end
 
-  def launch_encounter_for_user(user, encounter)
-    if self.enough_time_has_past?(user, encounter) and self.first_encounter_or_first_encounter_locked?(user, encounter)
-      self.launch_single(user, encounter.slug, send_email: false)
+  def launch_encounter_for_user(user, survey_encounter)
+    if self.enough_time_has_past?(user, survey_encounter) and self.no_dependency_or_parent_encounter_locked?(user, survey_encounter)
+      self.launch_single(user, survey_encounter.encounter.slug, send_email: false)
       true
     else
       false
     end
   end
 
-  def enough_time_has_past?(user, encounter)
-    if oldest_locked_time = self.first_locked_encounters(user).where.not(locked_at: nil).pluck(:locked_at).min
-      oldest_locked_time.to_date <= (Date.today - encounter.launch_days_after_sign_up.days)
+  def enough_time_has_past?(user, survey_encounter)
+    if oldest_locked_time = self.dependent_locked_answer_sessions(user, survey_encounter).pluck(:locked_at).min
+      oldest_locked_time.to_date <= (Date.today - survey_encounter.encounter.launch_days_after_sign_up.days)
     elsif self.publish_date and user.created_at.to_date <= self.publish_date
-      self.publish_date <= (Date.today - encounter.launch_days_after_sign_up.days)
+      self.publish_date <= (Date.today - survey_encounter.encounter.launch_days_after_sign_up.days)
     else
-      user.created_at.to_date <= (Date.today - encounter.launch_days_after_sign_up.days)
+      user.created_at.to_date <= (Date.today - survey_encounter.encounter.launch_days_after_sign_up.days)
     end
   end
 
-  def first_encounter_or_first_encounter_locked?(user, encounter)
-    minimum_offset = self.encounters.pluck(:launch_days_after_sign_up).min
-    encounter.launch_days_after_sign_up == minimum_offset || first_locked_encounters(user).count > 0
+  def no_dependency_or_parent_encounter_locked?(user, survey_encounter)
+    if survey_encounter.parent_survey_encounter
+      user.answer_sessions.where(survey_id: survey_encounter.parent_survey_encounter.survey.id, encounter: survey_encounter.parent_survey_encounter.encounter.slug, locked: true, child_id: nil).count > 0
+    else
+      true
+    end
   end
 
   def first_encounters(user)
@@ -135,8 +138,12 @@ class Survey < ActiveRecord::Base
     self.encounters.where(launch_days_after_sign_up: minimum_offset)
   end
 
-  def first_locked_encounters(user)
-    user.answer_sessions.where(survey_id: self.id, encounter: first_encounters(user).select(:slug), locked: true, child_id: nil)
+  def dependent_locked_answer_sessions(user, survey_encounter)
+    if survey_encounter.parent_survey_encounter
+      user.answer_sessions.where(survey_id: survey_encounter.parent_survey_encounter.survey.id, encounter: survey_encounter.parent_survey_encounter.encounter.slug, locked: true, child_id: nil).where.not(locked_at: nil)
+    else
+      user.answer_sessions.none
+    end
   end
 
   def self.launch_followup_encounters
@@ -145,21 +152,21 @@ class Survey < ActiveRecord::Base
     assigned_survey_user_ids = []
 
     Survey.current.viewable.non_pediatric.where.not(publish_date: nil).each do |survey|
-      survey.encounters.each do |encounter|
-        Rails.logger.debug "Followup Survey: #{survey.slug} #{encounter.slug}"
+      survey.survey_encounters.each do |survey_encounter|
+        Rails.logger.debug "Followup Survey: #{survey.slug} #{survey_encounter.encounter.slug}"
         user_types = survey.survey_user_types.pluck(:user_type)
         Rails.logger.debug "Survey User Types: #{user_types}"
         # Select User Types
         user_scope = User.current.where(user_types.collect{|x| "users.#{x.to_sym} = 't'"}.join(' or '))
         # Select Users created `launch_days_after_sign_up` days before today
-        user_scope = user_scope.where("(DATE(users.created_at) > ? and DATE(users.created_at) <= ?) or (DATE(users.created_at) <= ? and ? <= ?)", survey.publish_date.to_date, Date.today - encounter.launch_days_after_sign_up.days, survey.publish_date.to_date, survey.publish_date.to_date, Date.today - encounter.launch_days_after_sign_up.days)
+        user_scope = user_scope.where("(DATE(users.created_at) > ? and DATE(users.created_at) <= ?) or (DATE(users.created_at) <= ? and ? <= ?)", survey.publish_date.to_date, Date.today - survey_encounter.encounter.launch_days_after_sign_up.days, survey.publish_date.to_date, survey.publish_date.to_date, Date.today - survey_encounter.encounter.launch_days_after_sign_up.days)
         # Select Users who have not yet been assigned the survey
-        users = user_scope.where.not(id: AnswerSession.current.where(survey_id: survey.id, encounter: encounter.slug).select(:user_id))
+        users = user_scope.where.not(id: AnswerSession.current.where(survey_id: survey.id, encounter: survey_encounter.encounter.slug).select(:user_id))
         Rails.logger.debug "Users: #{users.count}"
         answer_sessions_count = AnswerSession.count
 
         users.each do |user|
-          assigned_survey_user_ids << user.id if survey.launch_encounter_for_user(user, encounter)
+          assigned_survey_user_ids << user.id if survey.launch_encounter_for_user(user, survey_encounter)
         end
 
 
@@ -167,7 +174,7 @@ class Survey < ActiveRecord::Base
         if answer_sessions_change > 0
           survey_changes[survey.slug] ||= { name: survey.name }
           survey_changes[survey.slug][:encounters] ||= []
-          survey_changes[survey.slug][:encounters] << { name: encounter.name, answer_sessions_change: answer_sessions_change }
+          survey_changes[survey.slug][:encounters] << { name: survey_encounter.encounter.name, answer_sessions_change: answer_sessions_change }
           surveys_launched += answer_sessions_change
         end
       end
