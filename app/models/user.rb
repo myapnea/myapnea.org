@@ -63,6 +63,7 @@ class User < ActiveRecord::Base
   has_many :users, class_name: "User", foreign_key: "provider_id"
   has_many :invites
   has_many :children, -> { where deleted: false }
+  has_many :encounters, -> { where deleted: false }
 
   ## Builder
 

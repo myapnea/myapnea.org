@@ -1,11 +1,7 @@
 - if @survey
-  - all_answer_frequencies = @survey.survey_answer_frequencies
-  - @survey.questions.each do |question|
-    - question_answer_frequencies = all_answer_frequencies.where(question_id: question.id) #select {|af| af.question_id == question.id} #@survey.survey_answer_frequencies.where(question_id: question.id)
-    - if question_answer_frequencies.present?
-      = render partial: 'surveys/reports/question_text', locals: {question: question}
-      - question.answer_templates.each_with_index do |answer_template, index|
-        - answer_frequencies = question_answer_frequencies.where(answer_template_id: answer_template.id)
-        - if answer_frequencies.present?
-          - answer_value = @answer_session.user.answer_for(@answer_session, question).answer_values.where(answer_template_id: answer_template.id).all if @answer_session and @answer_session.user.answer_for(@answer_session, question)
-          = render partial: 'surveys/reports/question_and_answer', locals: { survey: @survey, question: question, answer_template: answer_template, answer_value: answer_value, answer_session: @answer_session, answer_frequencies: answer_frequencies, answer_template_index: index}
+  .horizontal-inset
+    - @survey.questions.joins(:answer_templates).where(answer_templates: { template_name: ['radio', 'checkbox'] }).each do |question|
+      = render 'surveys/reports/question_text', question: question
+      - question.answer_templates.where(template_name: ['radio', 'checkbox']).each_with_index do |answer_template, index|
+        - user_answer_values = @answer_session.user.answer_for(@answer_session, question).answer_values.where(answer_template_id: answer_template.id) if @answer_session and @answer_session.user.answer_for(@answer_session, question)
+        = render 'surveys/reports/question_and_answer', survey: @survey, question: question, answer_template: answer_template, user_answer_values: user_answer_values, answer_template_index: index

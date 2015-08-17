@@ -53,10 +53,13 @@ namespace :surveys do
     end
   end
 
-  desc "Add default baseline encounter to all existing surveys."
-  task add_encounters_to_surveys: :environment do
+  desc "Add default baseline encounter."
+  task add_baseline_encounter: :environment do
+    ActiveRecord::Base.connection.execute("TRUNCATE encounters RESTART IDENTITY")
+    owner = User.where(owner: true).first
+    baseline = Encounter.create(user_id: owner.id, name: 'Baseline', slug: 'baseline', launch_days_after_sign_up: 0)
     Survey.all.each do |s|
-      s.send('create_default_encounters')
+      s.survey_encounters.create(user: s.user, encounter: baseline)
     end
   end
 

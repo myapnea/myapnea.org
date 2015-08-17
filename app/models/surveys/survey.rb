@@ -26,9 +26,9 @@ class Survey < ActiveRecord::Base
   has_many :answer_sessions, -> { where deleted: false }
   has_many :survey_question_orders, -> { order :question_number }
   has_many :questions, through: :survey_question_orders
-  has_many :encounters, -> { where deleted: false }
+  has_many :survey_encounters
+  has_many :encounters, -> { where deleted: false }, through: :survey_encounters
   has_many :survey_user_types, -> { where deleted: false }
-  has_many :survey_answer_frequencies
   has_many :reports
 
   # Named scopes

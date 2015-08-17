@@ -4,14 +4,15 @@ class Encounter < ActiveRecord::Base
   include Deletable
 
   # Model Validation
-  validates_presence_of :name, :slug, :launch_days_after_sign_up
-  validates_uniqueness_of :slug, scope: [ :survey_id, :deleted ]
+  validates_presence_of :name, :slug, :launch_days_after_sign_up, :user_id
+  validates_uniqueness_of :slug, scope: [ :deleted ]
   validates_format_of :slug, with: /\A(?!\Anew\Z)[a-z0-9][a-z0-9\-]*\Z/
   validates_numericality_of :launch_days_after_sign_up, greater_than_or_equal_to: 0, less_than_or_equal_to: 5000
 
   # Model Relationships
   belongs_to :user
-  belongs_to :survey
+  has_many :survey_encounters
+  has_many :surveys, -> { where deleted: false }, through: :survey_encounters
 
   # Model Methods
 
@@ -21,6 +22,10 @@ class Encounter < ActiveRecord::Base
 
   def self.find_by_param(input)
     find_by_slug(input)
+  end
+
+  def editable_by?(u)
+    u.owner?
   end
 
 end

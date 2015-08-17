@@ -1,94 +1,19 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-web_encounter_baseline:
-  survey: built_on_web
+baseline:
   name: Baseline
   slug: baseline
   launch_days_after_sign_up: 0
-  user: builder
+  user: owner
 
-web_encounter_6month:
-  survey: built_on_web
+6month:
   name: 6 Month Followup
   slug: 6month
-  launch_days_after_sign_up: 180
-  user: builder
+  launch_days_after_sign_up: 183
+  user: owner
 
-# Default Surveys
-
-about_me_baseline:
-  survey: about_me
-  name: Baseline
-  slug: baseline
-  launch_days_after_sign_up: 0
-  user: builder
-
-additional_information_about_me_baseline:
-  survey: additional_information_about_me
-  name: Baseline
-  slug: baseline
-  launch_days_after_sign_up: 0
-  user: builder
-
-about_my_family_baseline:
-  survey: about_my_family
-  name: Baseline
-  slug: baseline
-  launch_days_after_sign_up: 0
-  user: builder
-
-my_interest_in_research_baseline:
-  survey: my_interest_in_research
-  name: Baseline
-  slug: baseline
-  launch_days_after_sign_up: 0
-  user: builder
-
-my_sleep_pattern_baseline:
-  survey: my_sleep_pattern
-  name: Baseline
-  slug: baseline
-  launch_days_after_sign_up: 0
-  user: builder
-
-my_sleep_quality_baseline:
-  survey: my_sleep_quality
-  name: Baseline
-  slug: baseline
-  launch_days_after_sign_up: 0
-  user: builder
-
-my_quality_of_life_baseline:
-  survey: my_quality_of_life
-  name: Baseline
-  slug: baseline
-  launch_days_after_sign_up: 0
-  user: builder
-
-my_health_conditions_baseline:
-  survey: my_health_conditions
-  name: Baseline
-  slug: baseline
-  launch_days_after_sign_up: 0
-  user: builder
-
-my_sleep_apnea_baseline:
-  survey: my_sleep_apnea
-  name: Baseline
-  slug: baseline
-  launch_days_after_sign_up: 0
-  user: builder
-
-my_sleep_apnea_treatment_baseline:
-  survey: my_sleep_apnea_treatment
-  name: Baseline
-  slug: baseline
-  launch_days_after_sign_up: 0
-  user: builder
-
-my_risk_profile_baseline:
-  survey: my_risk_profile
-  name: Baseline
-  slug: baseline
-  launch_days_after_sign_up: 0
-  user: builder
+12month:
+  name: 12 Month Followup
+  slug: 12month
+  launch_days_after_sign_up: 365
+  user: owner

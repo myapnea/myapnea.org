@@ -8,9 +8,11 @@ Rails.application.routes.draw do
           resources :answer_options
         end
       end
-      resources :encounters
       resources :survey_user_types
+      resources :survey_encounters
     end
+
+    resources :encounters
 
     get '', to: redirect("builder/surveys")
   end
