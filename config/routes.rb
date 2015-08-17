@@ -148,8 +148,6 @@ Rails.application.routes.draw do
       get ':encounter/accept-update-first(/:child_id)', action: :accept_update_first, as: :accept_update_first
     end
   end
-  get 'surveys/my-health-conditions/my_health_conditions_data' => 'surveys#my_health_conditions_data', format: :json
-
 
   ## Public Tools
   get 'sleep-apnea-risk-assessment' => 'tools#risk_assessment'

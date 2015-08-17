@@ -77,6 +77,7 @@
 - Refactored Survey class in favor of an AnswerSession-centric model
 - Removed unused methods from the user model
 - Removed unused views and partials
+- Health Conditions report no longer relies on extra server JSON request
 
 ## 7.5.0 (August 14, 2015)
 

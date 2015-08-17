@@ -10,10 +10,6 @@ class SurveysController < ApplicationController
 
   before_action :set_SEO_elements
 
-  def my_health_conditions_data
-    @data = Report.comorbidity_map.push(["Sleep Apnea", "conditions-sleep-apnea", 100])
-  end
-
   def index
     if current_user
       @surveys = Survey.current.viewable

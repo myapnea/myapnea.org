@@ -1,10 +1,7 @@
 @healthConditionsReady = () ->
   # Creating network
   myNetwork = Network()
-
-  d3.json "my_health_conditions_data.json", (json) ->
-    myNetwork("#health-conditions", json)
-  myNetwork.toggleLayout("force")
+  myNetwork("#health-conditions", $("#health-conditions").data('health-conditions-json'))
 
 Network = () ->
   width = 800
