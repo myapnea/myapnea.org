@@ -9,11 +9,11 @@
         = ENV['pprn_title']
         will remain within the study results.
       - if (current_user.is_only_academic?) and (current_user.accepted_consent_at.blank?)
-        = link_to 'Review Terms of Access', terms_of_access_path, class: 'btn btn-primary', style: 'width: 49%; margin:.5%; float:left;'
+        = link_to 'Review Terms of Access', terms_of_access_path, class: 'btn btn-primary-custom', style: 'width: 49%; margin:.5%; float:left;'
       - else
-        = link_to 'Review Consent', consent_path, class: 'btn btn-primary', style: 'width: 49%; margin:.5%; float:left;'
-      = link_to 'Review Privacy Policy', privacy_path, class: 'btn btn-primary', style: 'width: 49%; margin:.5%; float:left;'
-      = link_to 'Leave Research Study', revoke_consent_path, method: :post, class: 'btn btn-warning', style: 'width: 99%; margin: .5%; float:left;'
+        = link_to 'Review Consent', consent_path, class: 'btn btn-primary-custom', style: 'width: 49%; margin:.5%; float:left;'
+      = link_to 'Review Privacy Policy', privacy_path, class: 'btn btn-primary-custom', style: 'width: 49%; margin:.5%; float:left;'
+      = link_to 'Leave Research Study', revoke_consent_path, method: :post, class: 'btn btn-warning-custom', style: 'width: 99%; margin: .5%; float:left;'
       .clearfix
 
 - else
@@ -32,8 +32,8 @@
         = link_to 'Privacy Policy', privacy_path
         in order to join the research study and fill out surveys.
       - if (current_user.is_only_academic?) and (current_user.accepted_consent_at.blank?)
-        = link_to 'Review Terms of Access', terms_of_access_path, class: 'btn btn-primary', style: 'width: 49%; margin:.5%; float:left;'
+        = link_to 'Review Terms of Access', terms_of_access_path, class: 'btn btn-primary-custom', style: 'width: 49%; margin:.5%; float:left;'
       - else
-        = link_to 'Read the Consent', consent_path, class: 'btn btn-primary', style: 'width: 49%; margin:.5%; float:left;'
-      = link_to 'Read our Privacy Policy', privacy_path, class: 'btn btn-primary', style: 'width: 49%; margin:.5%; float:left;'
+        = link_to 'Read the Consent', consent_path, class: 'btn btn-primary-custom', style: 'width: 49%; margin:.5%; float:left;'
+      = link_to 'Read our Privacy Policy', privacy_path, class: 'btn btn-primary-custom', style: 'width: 49%; margin:.5%; float:left;'
       .clearfix

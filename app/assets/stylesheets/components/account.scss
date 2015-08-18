@@ -46,13 +46,11 @@
 
 @media (max-width: 998px) {
   #account-link-container {
-    margin-top: 20px;
-    position: static;
-    width: 100%;
-    padding: 20px;
+    display: none;
   }
 
   #account-section-container {
+    margin-right: 0px;
     margin-left: 0px;
   }
 }

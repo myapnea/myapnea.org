@@ -68,7 +68,6 @@
           %p.small.centered-text.inline-validation-error
             Please enter a unique URL so users can easily find you! Only use numbers and lower-case letters, separated by hyphens (e.g. provider-example-1).
 
-      %br
       .form-group
         %label.control-label.col-sm-3
           Welcome Message
@@ -78,9 +77,8 @@
           %p.small.centered-text.inline-validation-error
             Please enter a unique message for your incoming members!
 
-      %br
-      .form-group
-        =f.submit("Save and Preview Changes", class: 'btn btn-primary col-sm-6 col-sm-offset-3 centered-text')
+      .row
+        =f.submit "Save and Preview Changes", class: 'btn btn-primary-custom col-sm-6 col-sm-offset-3'
 
     .content-footer
       - if current_user.provider_name.present? and current_user.slug.present?

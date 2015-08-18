@@ -30,7 +30,8 @@
           = f.label :email, class: 'col-sm-3 control-label'
           .col-sm-6
             = f.email_field :email, class: 'form-control', placeholder: User.human_attribute_name(:email), autocomplete: :off
-        = f.submit "Save Changes", class: 'btn btn-primary col-xs-4 col-xs-offset-4 centered-text'
+        .row
+          = f.submit "Save Changes", class: 'btn btn-primary-custom col-xs-4 col-xs-offset-4'
 
     %a.anchor#change-member-type
     .content-footer.centered-text
@@ -69,8 +70,8 @@
             - if errors = current_user.errors[:password] and errors.present?
               .bs-callout.bs-callout-danger
                 Please enter a new password that is at least 8 characters long.
-        .form-group
-          = f.submit "Change Password", class: 'btn btn-primary col-xs-4 col-xs-offset-4 centered-text'
+        .row
+          = f.submit "Change Password", class: 'btn btn-primary-custom col-xs-4 col-xs-offset-4'
 
 
   %a.anchor#select-provider
@@ -114,7 +115,7 @@
           = ENV['pprn_title']
           %br
           If you prefer, you can
-          = link_to 'enable', update_account_path(user: { emails_enabled: '1' }), method: :patch, class: 'btn btn-primary btn-xs'
+          = link_to 'enable', update_account_path(user: { emails_enabled: '1' }), method: :patch, class: 'btn btn-primary-custom btn-xs'
           emails.
 
 
