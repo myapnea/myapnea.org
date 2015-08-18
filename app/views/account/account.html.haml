@@ -1,151 +1,142 @@
-#account-link-container.well
-  %h2.f300
-    Welcome to your settings.
+#account-section-container
+  - unless current_user.ready_for_research?
+    = render partial: 'account/join_leave_research_study'
+
+  %hr
+
+  %a.anchor#change-picture
+  - if current_user.provider?
+    = render partial: 'providers/providers_profile'
+  - else
+    = render partial: 'social/social_profile'
+
+
+  %a.anchor#change-information
+  .content-container
+    .content-header
+      %h3.f300.centered-text
+        Basic Information
+    .content-body
+      = form_for current_user, url: update_account_path, html: { class: 'form-horizontal' } do |f|
+        .form-group
+          = f.label :first_name, class: 'col-sm-3 control-label'
+          .col-sm-6
+            = f.text_field :first_name, class: 'form-control', placeholder: User.human_attribute_name(:first_name), autocomplete: :off
+        .form-group
+          = f.label :last_name, class: 'col-sm-3 control-label'
+          .col-sm-6
+            = f.text_field :last_name, class: 'form-control', placeholder: User.human_attribute_name(:last_name), autocomplete: :off
+        .form-group
+          = f.label :email, class: 'col-sm-3 control-label'
+          .col-sm-6
+            = f.email_field :email, class: 'form-control', placeholder: User.human_attribute_name(:email), autocomplete: :off
+        = f.submit "Save Changes", class: 'btn btn-primary col-xs-4 col-xs-offset-4 centered-text'
+
+    %a.anchor#change-member-type
+    .content-footer.centered-text
+      - if current_user.has_user_type?
+        %h4
+          You describe yourself as:
+        .horizontal-inset
+          - current_user.user_type_names.each do |type|
+            %h5.f300= type
+        %br
+        %p.lead
+          If this is incorrect, please
+          = link_to 'change your user type.', describe_yourself_path, class: 'no-underline'
+
+
+  %a.anchor#change-password
+  .content-container
+    .content-header
+      %h3.f300.centered-text
+        Change Your Password
+    .content-body
+      = form_for current_user, url: change_password_path, html: { class: 'form-horizontal' } do |f|
+        .form-group
+          = f.label :current_password, class: 'col-sm-3 control-label'
+          .col-sm-6
+            = f.password_field :current_password, class: 'form-control', placeholder: 'Current password'
+            - if errors = current_user.errors[:current_password] and errors.present?
+              .bs-callout.bs-callout-danger
+                Please enter your
+                %strong current
+                password in order to set a new password.
+        .form-group
+          = f.label :password, class: 'col-sm-3 control-label'
+          .col-sm-6
+            = f.password_field :password, class: 'form-control', placeholder: "New password"
+            - if errors = current_user.errors[:password] and errors.present?
+              .bs-callout.bs-callout-danger
+                Please enter a new password that is at least 8 characters long.
+        .form-group
+          = f.submit "Change Password", class: 'btn btn-primary col-xs-4 col-xs-offset-4 centered-text'
+
+
+  %a.anchor#select-provider
+  .content-container.centered-text
+    .content-header
+      %h3.f300
+        Your Provider
+    .content-body
+      - if current_user.my_provider.present?
+        %p.lead
+          You have listed
+          %strong= current_user.my_provider.provider_name
+          as your preferred provider.
+          If you wish, you may
+          = link_to 'unlist', update_account_path(user: { provider_id: nil }), method: :patch, class: 'btn btn-warning btn-xs'
+          yourself from this provider's network.
+      - else
+        %p.lead
+          You have not listed a provider. You can search through the registered providers
+          = link_to 'here', providers_path
+          and see if your provider has registered. If they haven't you should
+          = link_to 'invite them!', "mailto:?subject=Join MyApnea.Org"
+
+  %a.anchor#notification-preferences
+  .content-container.centered-text
+    .content-header
+      %h3.f300
+        Notification Preferences
+    .content-body
+      - if current_user.emails_enabled?
+        %p.lead
+          You are currently set to receive emails from
+          = ENV['pprn_title']
+          %br
+          If you prefer, you can
+          = link_to 'unsubscribe', update_account_path(user: { emails_enabled: '0' }), method: :patch, class: 'btn btn-warning btn-xs'
+          from emails.
+      - else
+        %p.lead
+          You are currently unsubscribed from emails from
+          = ENV['pprn_title']
+          %br
+          If you prefer, you can
+          = link_to 'enable', update_account_path(user: { emails_enabled: '1' }), method: :patch, class: 'btn btn-primary btn-xs'
+          emails.
+
+
+  - if current_user.ready_for_research?
+    %a.anchor#leave-study
+    = render partial: 'account/join_leave_research_study'
+
+#account-link-container
   %p.lead
     Need help with a specific topic? Click on one of these links to get there quickly.
   = link_to '#change-picture' do
-    .list-group-item
-      I want to change my picture that appears on the forums
+    Changing my picture
   = link_to '#change-information' do
-    .list-group-item
-      I want to change my basic information (name, email, etc)
+    Changing my basic information (name, email, etc)
   = link_to '#change-member-type' do
-    .list-group-item
-      I want to change my member description (at-risk patient, diagnosed, care provider, etc.)
+    Changing my role (patient, researcher, care provider, etc)
   = link_to '#change-password' do
-    .list-group-item
-      I want to change my password
+    Changing my password
   = link_to '#select-provider' do
-    .list-group-item
-      I want to link with my care provider
+    Linking with my care provider
   = link_to '#notification-preferences' do
-    .list-group-item
-      I want to change how I receive notifications
+    Receiving notifications
   - if current_user.ready_for_research?
     = link_to '#leave-study' do
-      .list-group-item
-        I want to leave the research study
-
-- unless current_user.ready_for_research?
-  = render partial: 'account/join_leave_research_study'
-
-%hr
-
-%a.anchor#change-picture
-- if current_user.provider?
-  = render partial: 'providers/providers_profile'
-- else
-  = render partial: 'social/social_profile'
-
-
-%a.anchor#change-information
-.content-container
-  .content-header
-    %h3.f300.centered-text
-      Basic Information
-  .content-body
-    = form_for current_user, url: update_account_path, html: { class: 'form-horizontal' } do |f|
-      .form-group
-        = f.label :first_name, class: 'col-sm-3 control-label'
-        .col-sm-6
-          = f.text_field :first_name, class: 'form-control', placeholder: User.human_attribute_name(:first_name), autocomplete: :off
-      .form-group
-        = f.label :last_name, class: 'col-sm-3 control-label'
-        .col-sm-6
-          = f.text_field :last_name, class: 'form-control', placeholder: User.human_attribute_name(:last_name), autocomplete: :off
-      .form-group
-        = f.label :email, class: 'col-sm-3 control-label'
-        .col-sm-6
-          = f.email_field :email, class: 'form-control', placeholder: User.human_attribute_name(:email), autocomplete: :off
-      .row
-        = f.submit "Save Changes", class: 'btn btn-primary col-xs-4 col-xs-offset-4 centered-text'
-
-  %a.anchor#change-member-type
-  .content-footer.centered-text
-    - if current_user.has_user_type?
-      %h4
-        You describe yourself as:
-      .horizontal-inset
-        - current_user.user_type_names.each do |type|
-          %h5.f300= type
-      %br
-      %p.lead
-        If this is incorrect, please
-        = link_to 'change your user type.', describe_yourself_path, class: 'no-underline'
-
-
-%a.anchor#change-password
-.content-container
-  .content-header
-    %h3.f300.centered-text
-      Change Your Password
-  .content-body
-    = form_for current_user, url: change_password_path, html: { class: 'form-horizontal' } do |f|
-      .form-group
-        = f.label :current_password, class: 'col-sm-3 control-label'
-        .col-sm-6
-          = f.password_field :current_password, class: 'form-control', placeholder: 'Current password'
-          - if errors = current_user.errors[:current_password] and errors.present?
-            .bs-callout.bs-callout-danger
-              Please enter your
-              %strong current
-              password in order to set a new password.
-      .form-group
-        = f.label :password, class: 'col-sm-3 control-label'
-        .col-sm-6
-          = f.password_field :password, class: 'form-control', placeholder: "New password"
-          - if errors = current_user.errors[:password] and errors.present?
-            .bs-callout.bs-callout-danger
-              Please enter a new password that is at least 8 characters long.
-      .form-group
-        = f.submit "Change Password", class: 'btn btn-primary col-xs-4 col-xs-offset-4 centered-text'
-
-
-%a.anchor#select-provider
-.content-container.centered-text
-  .content-header
-    %h3.f300
-      Your Provider
-  .content-body
-    - if current_user.my_provider.present?
-      %p.lead
-        You have listed
-        %strong= current_user.my_provider.provider_name
-        as your preferred provider.
-        If you wish, you may
-        = link_to 'unlist', update_account_path(user: { provider_id: nil }), method: :patch, class: 'btn btn-warning btn-xs'
-        yourself from this provider's network.
-    - else
-      %p.lead
-        You have not listed a provider. You can search through the registered providers
-        = link_to 'here', providers_path
-        and see if your provider has registered. If they haven't you should
-        = link_to 'invite them!', "mailto:?subject=Join MyApnea.Org"
-
-%a.anchor#notification-preferences
-.content-container.centered-text
-  .content-header
-    %h3.f300
-      Notification Preferences
-  .content-body
-    - if current_user.emails_enabled?
-      %p.lead
-        You are currently set to receive emails from
-        = ENV['pprn_title']
-        %br
-        If you prefer, you can
-        = link_to 'unsubscribe', update_account_path(user: { emails_enabled: '0' }), method: :patch, class: 'btn btn-warning btn-xs'
-        from emails.
-    - else
-      %p.lead
-        You are currently unsubscribed from emails from
-        = ENV['pprn_title']
-        %br
-        If you prefer, you can
-        = link_to 'enable', update_account_path(user: { emails_enabled: '1' }), method: :patch, class: 'btn btn-primary btn-xs'
-        emails.
-
-
-- if current_user.ready_for_research?
-  %a.anchor#leave-study
-  = render partial: 'account/join_leave_research_study'
+      I want to leave the research study

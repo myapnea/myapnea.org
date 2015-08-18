@@ -41,6 +41,8 @@
   - Minor updates to layout, specifically in the headers
 - **Highlight Changes**
   - Minor updates to layout to keep consistency with other internal links
+- **Other Changes**
+  - Account settings layout updated with improved, less intrusive navigation
 - **Admin Changes**
   - Administrators can now unlock surveys for users from the user show page
   - Updated the Version Stats report to be monthly, and renamed to it to the Timeline Report
