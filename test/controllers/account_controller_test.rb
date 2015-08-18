@@ -22,12 +22,6 @@ class AccountControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should get registration privacy page for logged in user" do
-    login(users(:user_1))
-    get :get_started_step_one
-    assert_response :success
-  end
-
   test "should get registration consent for logged in user" do
     login(users(:user_1))
     get :get_started_step_two
@@ -43,7 +37,7 @@ class AccountControllerTest < ActionController::TestCase
   test "should set user_type page for logged in user and redirect to get started" do
     login(users(:user_1))
     post :set_user_type, user: { researcher: "1" }, registration_process: '1'
-    assert_redirected_to get_started_step_one_path
+    assert_redirected_to get_started_step_two_path
   end
 
   test "should change user_type page for logged in user and redirect to account" do

@@ -247,6 +247,10 @@ class User < ActiveRecord::Base
   end
 
   # Surveys
+  def get_baseline_survey_answer_session(survey)
+    self.answer_sessions.where(encounter: 'baseline', survey_id: survey.id, child_id: nil).first_or_create
+  end
+
   def assigned_surveys
     Survey.viewable.joins(:answer_sessions).where(answer_sessions: {user_id: self.id}).order("answer_sessions.locked asc, answer_sessions.position asc, surveys.default_position asc, answer_sessions.encounter")
   end
@@ -447,10 +451,6 @@ class User < ActiveRecord::Base
 
   def update_location
     Map.update_user_location(self)
-  end
-
-  def get_baseline_survey_answer_session(survey)
-    self.answer_sessions.where(encounter: 'baseline', survey_id: survey.id, child_id: nil).first_or_create
   end
 
   def assign_default_surveys
