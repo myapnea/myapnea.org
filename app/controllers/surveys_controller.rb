@@ -54,7 +54,7 @@ class SurveysController < ApplicationController
 
   def submit
     if @answer_session = current_user.answer_sessions.find_by_id(params[:answer_session_id])
-      @answer_session.lock if @answer_session.completed?
+      @answer_session.lock! if @answer_session.completed?
       render json: { locked: @answer_session.locked? }
     else
       head :no_content
