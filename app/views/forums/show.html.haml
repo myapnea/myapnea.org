@@ -15,13 +15,11 @@
   %br
 .content-container.horizontal-inset.inherit-background
   .row.reset-layout
-    .col-sm-2.col-xs-3.centered-text
-      - if current_user
+    - if current_user
+      .col-sm-2.col-xs-3.centered
         = link_to 'New Topic', new_forum_topic_path(@forum), class: 'btn btn-primary hidden-xs'
         = link_to 'New', new_forum_topic_path(@forum), class: 'btn btn-primary visible-xs'
-      - else
-        = link_to 'Sign In', new_forum_topic_path(@forum), class: 'btn btn-warning'
-    = form_tag @forum, method: :get, class: 'form-inline col-sm-10 col-xs-9' do
+    = form_tag @forum, method: :get, class: "form-inline #{current_user ? 'col-sm-10 col-xs-9' : 'col-xs-12'}" do
       .input-group
         = text_field_tag 's', params[:s], class: 'form-control'
         %span.input-group-btn{ style: 'width: 1%;' }

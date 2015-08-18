@@ -38,6 +38,8 @@
 - **Onboarding Changes**
   - Reduced consent and privacy into one step in the process
   - Removed progress indicators (due to shorter process) and switched to simple layout (without sidebar)
+- **Forum Changes**
+  - Minor updates to layout
 - **Admin Changes**
   - Administrators can now unlock surveys for users from the user show page
   - Updated the Version Stats report to be monthly, and renamed to it to the Timeline Report

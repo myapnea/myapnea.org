@@ -3,7 +3,7 @@ class AccountController < ApplicationController
   before_action :authenticate_user!, except: [:consent, :privacy_policy, :terms_and_conditions, :terms_of_access]
   before_action :set_SEO_elements
 
-  layout 'application-no-sidebar', only: [:get_started, :get_started_step_two, :get_started_step_three]
+  layout 'application-no-sidebar', only: [:get_started, :get_started_step_two, :get_started_step_three, :terms_and_conditions]
 
   ## Onboarding process
 
