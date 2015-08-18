@@ -1,8 +1,8 @@
 class ChildrenController < ApplicationController
   before_action :authenticate_user!
 
-  before_action :set_child,               only: [:show, :edit, :update, :destroy]
-  before_action :redirect_without_child,  only: [:show, :edit, :update, :destroy]
+  before_action :set_child,               only: [:show, :edit, :update, :accept_consent, :destroy]
+  before_action :redirect_without_child,  only: [:show, :edit, :update, :accept_consent, :destroy]
 
   # GET /children
   # GET /children.json
@@ -33,9 +33,11 @@ class ChildrenController < ApplicationController
       if @child.save
         format.html { redirect_to @child, notice: 'Child was successfully created.' }
         format.json { render :show, status: :created, location: @child }
+        format.js { render :show }
       else
         format.html { render :new }
         format.json { render json: @child.errors, status: :unprocessable_entity }
+        format.js { render :new }
       end
     end
   end
@@ -47,10 +49,21 @@ class ChildrenController < ApplicationController
       if @child.update(child_params)
         format.html { redirect_to @child, notice: 'Child was successfully updated.' }
         format.json { render :show, status: :ok, location: @child }
+        format.js { render :show }
       else
         format.html { render :edit }
         format.json { render json: @child.errors, status: :unprocessable_entity }
+        format.js { render :edit }
       end
+    end
+  end
+
+  def accept_consent
+    respond_to do |format|
+      @child.update accepted_consent_at: Time.zone.now
+      format.html { redirect_to @child, notice: 'Child consent was successfully accepted.' }
+      format.json { render :show, status: :ok, location: @child }
+      format.js { render :show }
     end
   end
 
@@ -61,6 +74,7 @@ class ChildrenController < ApplicationController
     respond_to do |format|
       format.html { redirect_to children_path, notice: 'Child was successfully destroyed.' }
       format.json { head :no_content }
+      format.js { render :index }
     end
   end
 

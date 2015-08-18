@@ -71,42 +71,19 @@
                 = render 'surveys/partials/survey_progress', survey: survey
 
 - if current_user and current_user.caregiver_child?
+  - @child = current_user.children.first
   .content-container
     .content-body
       .row
-        .col-sm-2.hidden-xs
-          = image_tag 'myapnea/user_types/caregiver_child.png', class: 'img-responsive', style: 'max-height:109px'
-        .col-sm-10
-          %p
-            You have set your role as
-            = succeed '.' do
-              %strong Family Member of a Child with Sleep Apnea
-            To get started, you can add one or more of your children by clicking below.
-            Once you have added the child, your child will get a list of surveys assigned.
-            You may fill out surveys for each child.
-          %p
-            - if current_user.children.count == 0
-              = link_to 'Add More Children', new_child_path, class: 'btn btn-primary'
+        .col-sm-4
+          #children-index
+            = render "children/index"
+        .col-sm-8
+          #child-surveys
+            - if @child
+              = render "children/show"
             - else
-              = link_to 'Add More Children', children_path, class: 'btn btn-primary'
-  - current_user.children.each do |child|
-    .content-container
-      .content-body
-        %h2.f300.centered
-          = succeed "'s" do
-            = child.first_name
-          Surveys
-        - if child.sorted_answer_sessions.count == 0
-          %p
-            No surveys have been assigned to
-            = succeed '.' do
-              = child.first_name
-        - else
-          - child.sorted_answer_sessions.in_groups_of(3, false) do |answer_session_group|
-            .row
-              - answer_session_group.each do |answer_session|
-                .col-sm-4.centered{ style: 'margin-bottom:30px' }
-                  = render 'surveys/answer_sessions/progress', answer_session: answer_session
+              = render "children/new"
 
 - unless current_user
   = render 'home/join_the_community', referrer: 'surveys', message: 'Your data has the power to change the future of sleep apnea'

@@ -62,7 +62,7 @@ class User < ActiveRecord::Base
   has_many :subscriptions
   has_many :users, class_name: "User", foreign_key: "provider_id"
   has_many :invites
-  has_many :children, -> { where deleted: false }
+  has_many :children, -> { where(deleted: false).order("age desc", :first_name) }
   has_many :encounters, -> { where deleted: false }
 
   ## Builder

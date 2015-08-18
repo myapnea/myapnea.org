@@ -1,0 +1,14 @@
+%h3
+  Add A Child
+
+%p
+  You have set your role as
+  = succeed '.' do
+    %strong Caregiver of child(ren) diagnosed with or at-risk of sleep apnea
+  To get started, you can add your first child below.
+  Once you have added the child, your child will get a list of surveys assigned.
+  Each child will have their own surveys. Get started now!
+
+- @child = current_user.children.new unless @child
+
+= render 'children/remote_form'

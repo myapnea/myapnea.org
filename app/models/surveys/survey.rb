@@ -199,7 +199,8 @@ class Survey < ActiveRecord::Base
   private
 
     def create_default_encounters
-      self.encounters.create(name: 'Baseline', slug: 'baseline', user_id: self.user_id) if self.encounters.count == 0
+      baseline = Encounter.current.find_by_slug 'baseline'
+      self.survey_encounters.create(encounter_id: baseline.id, user_id: self.user_id) if baseline
     end
 
 end
