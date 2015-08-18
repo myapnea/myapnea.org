@@ -4,9 +4,7 @@
 - **Survey Changes**
   - Longitudinal surveys can be launched and assigned to users, ex:
     - `s = Survey.find_by_slug 'about-me'`
-    - `s.launch_single(user, '6month', send_email: true)`
-    - or
-    - `s.launch_multiple(users, '6month', send_email: true)`
+    - `s.launch_single(user, '6month')`
   - Automated survey followup emails can be sent when new surveys are launched
   - Followup surveys are launched automatically a specified number of days after sign up
   - Pediatric surveys have been added
@@ -85,6 +83,7 @@
 - Removed unused views and partials
 - Health Conditions report no longer relies on extra server JSON request
 - Removed old registration views and methods
+- Removed unused attributes from answer sessions
 
 ## 7.5.0 (August 14, 2015)
 

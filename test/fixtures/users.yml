@@ -250,3 +250,52 @@ builder:
   encrypted_password: <%= pw %>
   can_build_surveys: true
 
+
+## For survey encounter assignment tests
+created_today:
+  first_name: Created
+  last_name: Today
+  email: created_today@example.com
+  over_eighteen: true
+  encrypted_password: <%= pw %>
+  created_at: <%= Date.today.to_s(:db) %>
+
+created_five_days_ago:
+  first_name: Created
+  last_name: FiveDaysAgo
+  email: created_five_days_ago@example.com
+  over_eighteen: true
+  encrypted_password: <%= pw %>
+  created_at: <%= 5.day.ago.to_s(:db) %>
+
+created_fourteen_days_ago:
+  first_name: Created
+  last_name: FourteenDaysAgo
+  email: created_fourteen_days_ago@example.com
+  over_eighteen: true
+  encrypted_password: <%= pw %>
+  created_at: <%= 14.day.ago.to_s(:db) %>
+
+created_today_with_locked_baseline:
+  first_name: Created
+  last_name: Today
+  email: created_today_with_locked_baseline@example.com
+  over_eighteen: true
+  encrypted_password: <%= pw %>
+  created_at: <%= Date.today.to_s(:db) %>
+
+created_five_days_ago_with_locked_baseline:
+  first_name: Created
+  last_name: FiveDaysAgo
+  email: created_five_days_ago_with_locked_baseline@example.com
+  over_eighteen: true
+  encrypted_password: <%= pw %>
+  created_at: <%= 5.day.ago.to_s(:db) %>
+
+created_fourteen_days_ago_with_locked_baseline:
+  first_name: Created
+  last_name: FourteenDaysAgo
+  email: created_fourteen_days_ago_with_locked_baseline@example.com
+  over_eighteen: true
+  encrypted_password: <%= pw %>
+  created_at: <%= 14.day.ago.to_s(:db) %>

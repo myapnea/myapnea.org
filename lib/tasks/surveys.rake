@@ -63,13 +63,6 @@ namespace :surveys do
     end
   end
 
-  desc "Add default publish date to all existing surveys."
-  task add_publish_date_to_surveys: :environment do
-    Survey.all.each do |s|
-      s.update publish_date: s.answer_sessions.pluck(:created_at).min
-    end
-  end
-
   desc "Add default user types to all existing surveys."
   task add_user_types_to_surveys: :environment do
     s = Survey.find_by_slug 'about-me'

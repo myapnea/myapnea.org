@@ -61,9 +61,7 @@ class Builder::SurveysController < Builder::BuilderController
     end
 
     def survey_params
-      params[:survey] ||= { blank: '1' }
-      params[:survey][:publish_date] = parse_date(params[:survey][:publish_date]) if params[:survey].has_key?(:publish_date)
-      params.require(:survey).permit(:name_en, :slug, :status, :pediatric, :child_min_age, :child_max_age, :publish_date)
+      params.require(:survey).permit(:name_en, :slug, :status, :pediatric, :child_min_age, :child_max_age)
     end
 
 end

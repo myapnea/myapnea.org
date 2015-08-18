@@ -46,10 +46,6 @@
         %dd
           = @survey.child_max_age
 
-      %dt
-        %strong Publish Date
-      %dd= @survey.publish_date.strftime("%a, %B %d, %Y").html_safe unless @survey.publish_date.blank?
-
     %h3 User Types
     %table.table.table-bordered.table-striped
       %thead
