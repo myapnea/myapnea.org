@@ -4,7 +4,7 @@ class SurveyTest < ActiveSupport::TestCase
 
   # Loading from file will be deprecated
   test "should read certain attributes of a survey" do
-    survey = Survey.find_by_slug("about-me")
+    survey = surveys(:about_me)
     assert_not_nil survey
     assert_equal "about-me", survey.slug
     assert_equal 4, survey.questions.count
@@ -23,12 +23,73 @@ class SurveyTest < ActiveSupport::TestCase
     u = users(:blank_slate)
     assert_empty u.assigned_surveys
     assert_difference "u.assigned_surveys.count" do
-      result = surveys(:new).launch_single(u, "baseline")
-      assert_nil result
+      surveys(:new).launch_single(u, "baseline")
     end
     assert_equal surveys(:new), u.assigned_surveys.last
-    assert_equal surveys(:new).default_position, u.answer_sessions.last.position
-    assert_equal u, surveys(:new).launch_single(u, "baseline")
+  end
+
+  test "should launch encounter for users created 10 or more days ago" do
+    survey_encounter = survey_encounters(:web_encounter_10day)
+    survey = survey_encounter.survey
+
+    user = users(:created_today)
+    assert_difference "AnswerSession.count", 0 do
+      assert_equal false, survey.launch_encounter_for_user(user, survey_encounter)
+    end
+
+    user = users(:created_five_days_ago)
+    assert_difference "AnswerSession.count", 0 do
+      assert_equal false, survey.launch_encounter_for_user(user, survey_encounter)
+    end
+
+    user = users(:created_fourteen_days_ago)
+    assert_difference "AnswerSession.count" do
+      assert_equal true, survey.launch_encounter_for_user(user, survey_encounter)
+    end
+  end
+
+  test "should not launch dependent encounter for users who do not have the dependent encounter completed and locked" do
+    survey_encounter = survey_encounters(:web_encounter_10day_dependent)
+    survey = survey_encounter.survey
+
+    user = users(:created_today)
+    assert_difference "AnswerSession.count", 0 do
+      assert_equal false, survey.launch_encounter_for_user(user, survey_encounter)
+    end
+
+    user = users(:created_five_days_ago)
+    assert_difference "AnswerSession.count", 0 do
+      assert_equal false, survey.launch_encounter_for_user(user, survey_encounter)
+    end
+
+    user = users(:created_fourteen_days_ago)
+    assert_difference "AnswerSession.count", 0 do
+      assert_equal false, survey.launch_encounter_for_user(user, survey_encounter)
+    end
+  end
+
+  test "should launch dependent encounter for user with completed and locked baseline 10 or more days ago" do
+    survey_encounter = survey_encounters(:web_encounter_10day_dependent)
+    survey = survey_encounter.survey
+
+    user = users(:created_today_with_locked_baseline)
+    assert_difference "AnswerSession.count", 0 do
+      assert_equal false, survey.launch_encounter_for_user(user, survey_encounter)
+    end
+
+    user = users(:created_five_days_ago_with_locked_baseline)
+    assert_difference "AnswerSession.count", 0 do
+      assert_equal false, survey.launch_encounter_for_user(user, survey_encounter)
+    end
+
+    user = users(:created_fourteen_days_ago_with_locked_baseline)
+    assert_difference "AnswerSession.count" do
+      assert_equal true, survey.launch_encounter_for_user(user, survey_encounter)
+    end
+  end
+
+  test "should launch followup surveys" do
+    assert_equal true, Survey.launch_followup_encounters
   end
 
 end

@@ -36,7 +36,7 @@ class Survey < ActiveRecord::Base
   scope :pediatric, -> { where pediatric: true }
   scope :non_pediatric, -> { where pediatric: false }
 
-  # Class Methods
+  # Survey Methods
 
   def to_param
     slug.blank? ? id : slug
@@ -59,56 +59,32 @@ class Survey < ActiveRecord::Base
     self.user_id == current_user.id
   end
 
-  # Instance Methods
-  def launch_single(user, encounter, position: self[:default_position], send_email: false)
-    answer_session = user.answer_sessions.find_or_initialize_by(encounter: encounter, survey_id: self.id, child_id: nil)
-    answer_session.position = position
-    if answer_session.new_record?
-      return_object = nil
-      newly_created = true
-    else
-      return_object = user
-      newly_created = false
+  def atomic_first_or_create_answer_session(user, encounter_slug, child_id: nil)
+    begin
+      self.answer_sessions.where(user_id: user.id, encounter: encounter_slug, child_id: child_id).first_or_create!
+    rescue ActiveRecord::RecordNotUnique
+      retry
     end
-    answer_session.save!
-
-    if newly_created and send_email
-      Rails.logger.info "Sending followup survey email to #{user.email}"
-      UserMailer.followup_survey(answer_session).deliver_later if Rails.env.production?
-    end
-
-    return_object
   end
 
-  def launch_multiple(users, encounter, options = {})
-    already_assigned = []
-
-    users.each do |user|
-      already_assigned << launch_single(user, encounter, options)
-    end
-
-    already_assigned.compact!
-
-    already_assigned
+  def launch_single(user, encounter_slug)
+    self.atomic_first_or_create_answer_session(user, encounter_slug)
   end
 
-  def launch_single_for_children(user, encounter, position: self[:default_position], send_email: false)
+  def launch_single_for_children(user, encounter_slug)
     user.children.each do |child|
-      answer_session = user.answer_sessions.find_or_initialize_by(encounter: encounter, survey_id: self.id, child_id: child.id)
-      answer_session.position = position
-      answer_session.save
+      self.atomic_first_or_create_answer_session(user, encounter_slug, child_id: child.id)
     end
   end
 
   def question_text(question_slug)
     q = questions.where(slug: question_slug).first
-
     q.present? ? q.text : nil
   end
 
   def launch_encounter_for_user(user, survey_encounter)
     if self.enough_time_has_past?(user, survey_encounter) and self.no_dependency_or_parent_encounter_locked?(user, survey_encounter)
-      self.launch_single(user, survey_encounter.encounter.slug, send_email: false)
+      self.launch_single(user, survey_encounter.encounter.slug)
       true
     else
       false
@@ -118,8 +94,6 @@ class Survey < ActiveRecord::Base
   def enough_time_has_past?(user, survey_encounter)
     if oldest_locked_time = self.dependent_locked_answer_sessions(user, survey_encounter).pluck(:locked_at).min
       oldest_locked_time.to_date <= (Date.today - survey_encounter.encounter.launch_days_after_sign_up.days)
-    elsif self.publish_date and user.created_at.to_date <= self.publish_date
-      self.publish_date <= (Date.today - survey_encounter.encounter.launch_days_after_sign_up.days)
     else
       user.created_at.to_date <= (Date.today - survey_encounter.encounter.launch_days_after_sign_up.days)
     end
@@ -131,11 +105,6 @@ class Survey < ActiveRecord::Base
     else
       true
     end
-  end
-
-  def first_encounters(user)
-    minimum_offset = self.encounters.pluck(:launch_days_after_sign_up).min
-    self.encounters.where(launch_days_after_sign_up: minimum_offset)
   end
 
   def dependent_locked_answer_sessions(user, survey_encounter)
@@ -151,18 +120,15 @@ class Survey < ActiveRecord::Base
     survey_changes = {}
     assigned_survey_user_ids = []
 
-    Survey.current.viewable.non_pediatric.where.not(publish_date: nil).each do |survey|
+    Survey.current.viewable.non_pediatric.each do |survey|
       survey.survey_encounters.each do |survey_encounter|
-        Rails.logger.debug "Followup Survey: #{survey.slug} #{survey_encounter.encounter.slug}"
         user_types = survey.survey_user_types.pluck(:user_type)
-        Rails.logger.debug "Survey User Types: #{user_types}"
         # Select User Types
         user_scope = User.current.where(user_types.collect{|x| "users.#{x.to_sym} = 't'"}.join(' or '))
         # Select Users created `launch_days_after_sign_up` days before today
-        user_scope = user_scope.where("(DATE(users.created_at) > ? and DATE(users.created_at) <= ?) or (DATE(users.created_at) <= ? and ? <= ?)", survey.publish_date.to_date, Date.today - survey_encounter.encounter.launch_days_after_sign_up.days, survey.publish_date.to_date, survey.publish_date.to_date, Date.today - survey_encounter.encounter.launch_days_after_sign_up.days)
+        user_scope = user_scope.where("DATE(users.created_at) <= ?", Date.today - survey_encounter.encounter.launch_days_after_sign_up.days)
         # Select Users who have not yet been assigned the survey
         users = user_scope.where.not(id: AnswerSession.current.where(survey_id: survey.id, encounter: survey_encounter.encounter.slug).select(:user_id))
-        Rails.logger.debug "Users: #{users.count}"
         answer_sessions_count = AnswerSession.count
 
         users.each do |user|
@@ -180,9 +146,6 @@ class Survey < ActiveRecord::Base
       end
     end
 
-    Rails.logger.debug "Surveys Launched: #{surveys_launched}"
-    Rails.logger.debug survey_changes
-
     users_assigned_new_surveys = User.current.where(id: assigned_survey_user_ids)
     users_emailed = users_assigned_new_surveys.where(emails_enabled: true)
 
@@ -194,6 +157,7 @@ class Survey < ActiveRecord::Base
     users_emailed.each do |user|
       UserMailer.new_surveys_available(user).deliver_later if Rails.env.production?
     end
+    true
   end
 
   private
