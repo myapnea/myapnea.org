@@ -10,7 +10,7 @@
     .shadow
   .inset
     .percentage
-      .numbers
+      .numbers{ class: "#{'numbers-complete' if percent >= 100}"}
         %br
         .span{ data: { object: "circle_percentage_display", survey_id: answer_session.survey.id } }
           = succeed '%' do
@@ -22,12 +22,12 @@
 %h5.f300.visible-xs.text-muted
   = succeed '% completed' do
     = percent
-%h5.f300.primary-blue{ style: 'margin-bottom:30px;' }
+%p.f300.primary-blue{ style: 'margin-bottom:30px;' }
   - if answer_session.completed? and answer_session.locked?
     - if answer_session.child
-      = link_to 'View report', child_survey_report_path(answer_session.child.id, answer_session.survey, answer_session.encounter)
+      = link_to 'View report', child_survey_report_path(answer_session.child.id, answer_session.survey, answer_session.encounter), class: 'no-underline'
     - else
-      = link_to 'View report', report_survey_path(answer_session.survey, answer_session.encounter)
+      = link_to 'View report', report_survey_path(answer_session.survey, answer_session.encounter), class: 'no-underline'
   - elsif answer_session.survey.slug.present?
     - if answer_session.percent_completed == 100
       - link_text = 'Review and submit answers'
@@ -37,6 +37,6 @@
       - link_text = 'Start this survey now!'
 
     - if answer_session.child
-      = link_to link_text, child_survey_path(answer_session.child.id, answer_session.survey, answer_session.encounter)
+      = link_to link_text, child_survey_path(answer_session.child.id, answer_session.survey, answer_session.encounter), class: 'no-underline'
     - else
-      = link_to link_text, show_survey_path(answer_session.survey, answer_session.encounter)
+      = link_to link_text, show_survey_path(answer_session.survey, answer_session.encounter), class: 'no-underline'

@@ -13,6 +13,7 @@
     - `s = Survey.find_by_slug 'about-my-child'`
     - `s.launch_single_for_children(user, 'baseline')`
     - Baseline surveys are immediately assigned when a child in the proper age range is added by a caregiver of a child
+  - Minor UI updates to completion display
 - **Online Survey Builder**
   - Started work on an online survey builder for researchers and team members
   - The online survey builder will let survey builders specify the following:
@@ -37,7 +38,9 @@
   - Reduced consent and privacy into one step in the process
   - Removed progress indicators (due to shorter process) and switched to simple layout (without sidebar)
 - **Forum Changes**
-  - Minor updates to layout
+  - Minor updates to layout, specifically in the headers
+- **Highlight Changes**
+  - Minor updates to layout to keep consistency with other internal links
 - **Admin Changes**
   - Administrators can now unlock surveys for users from the user show page
   - Updated the Version Stats report to be monthly, and renamed to it to the Timeline Report
