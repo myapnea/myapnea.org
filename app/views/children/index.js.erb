@@ -1,0 +1,9 @@
+$("#children-index").html("<%=j render 'children/index' %>");
+
+<% @child = current_user.children.first %>
+<% if @child %>
+  $("#child-surveys").html("<%=j render 'children/show' %>");
+  drawSurveyProgressReady();
+<% else %>
+  $("#child-surveys").html("<%=j render 'children/new' %>");
+<% end %>

@@ -1,0 +1,36 @@
+- if @child.consented?
+  %h3
+    = succeed "'s" do
+      = @child.first_name
+    Surveys
+    = succeed ' ' do
+      = link_to edit_child_path(@child), remote: true, class: 'btn btn-xs btn-default' do
+        %i.fa.fa-pencil
+        Edit
+    = link_to child_path(@child), method: :delete, remote: true, class: 'btn btn-xs btn-danger', data: { confirm: "Are you sure you want to remove your child #{@child.first_name} from your records?" } do
+      %i.fa.fa-trash
+      Remove
+  - if @child.sorted_answer_sessions.count == 0
+    %p
+      No surveys have been assigned to
+      = succeed '.' do
+        = @child.first_name
+      New surveys become available over time based on the age of your child. We will send you an email if your child is eligible to complete a new survey.
+  - else
+    - @child.sorted_answer_sessions.in_groups_of(3, false) do |answer_session_group|
+      .row
+        - answer_session_group.each do |answer_session|
+          .col-sm-4.centered{ style: 'margin-bottom:30px' }
+            = render 'surveys/answer_sessions/progress', answer_session: answer_session
+- else
+  %h3
+    Consent Form:
+    Child
+    %strong= @child.first_name
+  %p You must read through and accept the following consent before being able to complete available surveys for this child.
+
+  - consent_page_content = page_content('consent')
+  %div.show-scrollbar{ style: 'height: 400px;border: 2px solid gray;padding-left:10px;padding-right:10px;margin-bottom:20px' }
+    = markdown consent_page_content['consent']
+  = link_to 'I Accept', accept_consent_child_path(@child), method: :post, remote: true, class: 'btn btn-xs btn-primary-custom'
+  = link_to 'I Do Not Accept', @child, method: :delete, remote: true, class: 'btn btn-xs btn-default-custom'

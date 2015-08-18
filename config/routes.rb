@@ -20,8 +20,11 @@ Rails.application.routes.draw do
   get "children/:child_id/surveys/:id/:encounter/report" => 'surveys#report', as: :child_survey_report
   get "children/:child_id/surveys/:id/:encounter/report-detail" => 'surveys#report_detail', as: :child_survey_report_detail
   get "children/:child_id/surveys/:id/:encounter" => 'surveys#show', as: :child_survey
-  resources :children
-
+  resources :children do
+    member do
+      post :accept_consent
+    end
+  end
 
   scope module: 'home' do
     get :dashboard

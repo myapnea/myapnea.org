@@ -1,0 +1,12 @@
+.show-scrollbar {
+  overflow-y: scroll;
+}
+
+.show-scrollbar::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 7px;
+}
+.show-scrollbar::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: #ffa400;
+}
