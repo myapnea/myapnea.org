@@ -81,6 +81,7 @@
 - Removed unused views and partials
 - Health Conditions report no longer relies on extra server JSON request
 - Removed old registration views and methods
+- Removed unused attributes from answer sessions
 
 ## 7.5.0 (August 14, 2015)
 
