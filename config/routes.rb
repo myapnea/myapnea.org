@@ -258,6 +258,20 @@ Rails.application.routes.draw do
       resources :topics do
         resources :posts
       end
+      resources :research_topics do
+        collection do
+          post :vote
+        end
+      end
+      resources :surveys do
+        collection do
+          get :answer_sessions
+          post :process_answer
+        end
+        member do
+          get :show
+        end
+      end
     end
   end
 
