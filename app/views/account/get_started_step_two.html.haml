@@ -1,5 +1,36 @@
-= render 'account/get_started_indicators', progress1: true, progress2: true
-- if current_user.provider? or current_user.is_only_researcher?
-  = render 'account/terms_of_access', part_of_registration: true
-- else
-  = render 'account/consent', part_of_registration: true
+.content-container
+  .content-header
+    %h1.f300.centered Welcome to MyApnea.Org!
+  .content-body
+    - if current_user.provider? or current_user.is_only_researcher?
+      %p.lead
+        MyApnea.Org is part of a growing national network of patients, health care providers and researchers. This partnership is built upon the open exchange of information about sleep apnea.
+        %span.f500
+          The following terms of access are required for researchers and care providers to accept in order to access aggregate data for academic purposes.
+    - else
+      %p.lead
+        Your valuable input can help shape the future direction of sleep apnea research, but first we need your permission to participate in the research community. Please read the
+        = link_to 'privacy policy', privacy_path, class: 'no-underline'
+        and informed consent below so that you may begin the research surveys and engage with all aspects of the community! For each survey that you complete, you will be entered into our monthly lottery for a
+        %span.f500 $250 Visa Gift card.
+    %br
+    #consent-container
+      - if current_user.provider? or current_user.is_only_researcher?
+        = render 'account/terms_of_access', part_of_registration: true
+      - else
+        = render 'account/consent', part_of_registration: true
+    %br
+    %br
+    .centered
+      - cancel_path = get_started_step_three_path
+      - if current_user.provider? or current_user.is_only_researcher?
+        = link_to "I agree and accept", accepts_terms_of_access_path(get_started: true), method: :post, class: 'btn btn-primary-custom btn-lg'
+      - else
+        = link_to "I agree and accept", accepts_consent_path(get_started: true), method: :post, class: 'btn btn-primary-custom btn-lg'
+      = link_to "I decline", cancel_path, class: 'btn btn-default-custom btn-lg'
+    %br
+    %br
+  .content-footer
+    %p
+      %span.f500 Please note:
+      You can sign the informed consent at any time. Forums are available to all users, even those who haven't signed the informed consent.

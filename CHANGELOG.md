@@ -35,6 +35,9 @@
     - The initial baseline is launched after the newer of the survey publish date or the user registration
     - Users receive a survey digest of new surveys that are available when new surveys are assigned
   - Survey User Type can be added to surveys in online builder
+- **Onboarding Changes**
+  - Reduced consent and privacy into one step in the process
+  - Removed progress indicators (due to shorter process) and switched to simple layout (without sidebar)
 - **Admin Changes**
   - Administrators can now unlock surveys for users from the user show page
   - Updated the Version Stats report to be monthly, and renamed to it to the Timeline Report
@@ -79,6 +82,7 @@
 - Removed unused methods from the user model
 - Removed unused views and partials
 - Health Conditions report no longer relies on extra server JSON request
+- Removed old registration views and methods
 
 ## 7.5.0 (August 14, 2015)
 
