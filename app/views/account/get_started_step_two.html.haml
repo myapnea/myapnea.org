@@ -14,13 +14,11 @@
         and informed consent below so that you may begin the research surveys and engage with all aspects of the community! For each survey that you complete, you will be entered into our monthly lottery for a
         %span.f500 $250 Visa Gift card.
     %br
-    #consent-container
+    .consent-container.show-scrollbar
       - if current_user.provider? or current_user.is_only_researcher?
         = render 'account/terms_of_access', part_of_registration: true
       - else
         = render 'account/consent', part_of_registration: true
-    %br
-    %br
     .centered
       - cancel_path = get_started_step_three_path
       - if current_user.provider? or current_user.is_only_researcher?

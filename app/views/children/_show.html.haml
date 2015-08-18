@@ -30,7 +30,7 @@
   %p You must read through and accept the following consent before being able to complete available surveys for this child.
 
   - consent_page_content = page_content('consent')
-  %div.show-scrollbar{ style: 'height: 400px;border: 2px solid gray;padding-left:10px;padding-right:10px;margin-bottom:20px' }
+  .show-scrollbar.consent-container{ style: 'padding-left: 10px; padding-right: 10px;' }
     = markdown consent_page_content['consent']
   = link_to 'I Accept', accept_consent_child_path(@child), method: :post, remote: true, class: 'btn btn-xs btn-primary-custom'
   = link_to 'I Do Not Accept', @child, method: :delete, remote: true, class: 'btn btn-xs btn-default-custom'
