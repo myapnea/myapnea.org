@@ -101,6 +101,10 @@ class AnswerTemplate < ActiveRecord::Base
     self.parent_answer_option_value.present?
   end
 
+  def parent_answer_option_id
+    self.parent_answer_template.answer_options.find_by_value(self.parent_answer_option_value).id
+  end
+
   def parent_answer_template_present?
     self.parent_answer_template.present?
   end
