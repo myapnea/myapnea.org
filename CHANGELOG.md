@@ -15,6 +15,7 @@
     - Baseline surveys are immediately assigned when a child in the proper age range is added by a caregiver of a child
   - Minor UI updates to completion display
   - Reports are now additionally scoped by encounter (ex: baseline, followup)
+  - Reports that do not have custom reports, now redirect to the detailed report view
 - **Online Survey Builder**
   - Started work on an online survey builder for researchers and team members
   - The online survey builder will let survey builders specify the following:

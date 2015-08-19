@@ -2,19 +2,20 @@
 
 = render 'surveys/reports/default'
 
-.content-container
-  .content-footer
-    %p.no-margin.centered
-      %span.f500 Note:
-      This is the detailed version of the report.
-      %br
-      You can view the summary reports that members normally see by clicking
-      = succeed '.' do
-        - if @answer_session and @answer_session.child
-          = link_to 'here', child_survey_report_path(@answer_session.child.id, @answer_session.survey, @answer_session.encounter)
-        - elsif @answer_session
-          = link_to 'here', report_survey_path(@answer_session.survey, @answer_session.encounter)
-        - else
-          = link_to 'here', report_survey_path(@survey, @encounter)
+- if @survey.has_custom_report?
+  .content-container
+    .content-footer
+      %p.no-margin.centered
+        %span.f500 Note:
+        This is the detailed version of the report.
+        %br
+        You can view the summary reports that members normally see by clicking
+        = succeed '.' do
+          - if @answer_session and @answer_session.child
+            = link_to 'here', child_survey_report_path(@answer_session.child.id, @answer_session.survey, @answer_session.encounter)
+          - elsif @answer_session
+            = link_to 'here', report_survey_path(@answer_session.survey, @answer_session.encounter)
+          - else
+            = link_to 'here', report_survey_path(@survey, @encounter)
 
 = render 'surveys/report_outro'

@@ -155,6 +155,10 @@ class Survey < ActiveRecord::Base
     true
   end
 
+  def has_custom_report?
+    File.exists?(Rails.root.join("app", "views", "surveys", "reports", "_#{self.slug.underscore}.html.haml"))
+  end
+
   private
 
     def create_default_encounters

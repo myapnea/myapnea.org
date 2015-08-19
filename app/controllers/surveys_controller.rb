@@ -25,6 +25,16 @@ class SurveysController < ApplicationController
   end
 
   def report
+    unless @survey.has_custom_report?
+      redirect_url = if @answer_session and @answer_session.child
+        child_survey_report_detail_path(@answer_session.child.id, @answer_session.survey, @answer_session.encounter)
+      elsif @answer_session
+        report_detail_survey_path(@answer_session.survey, @answer_session.encounter)
+      else
+        report_detail_survey_path(@survey, @encounter)
+      end
+      redirect_to redirect_url
+    end
   end
 
   def report_detail

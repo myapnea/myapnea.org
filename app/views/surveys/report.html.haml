@@ -2,7 +2,7 @@
   %h1 Research Surveys
 = render 'surveys/report_intro'
 
-= render "surveys/reports/#{@survey.slug.underscore}" rescue render 'surveys/reports/default'
+= render "surveys/reports/#{@survey.slug.underscore}"
 
 .content-container
   .content-footer
