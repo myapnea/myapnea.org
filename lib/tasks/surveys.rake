@@ -1,5 +1,38 @@
 namespace :surveys do
 
+  desc "Add text values to secondary answer templates"
+  task add_text_values_to_secondary_templates: :environment do
+    AnswerTemplate.where.not(parent_answer_template_id: nil).where(text: nil).each do |at|
+      new_text = case at.name when "specified_country"
+        'Where were you born?'
+      when "specified_brothers"
+        'How many brothers have been diagnosed?'
+      when "specified_sisters"
+        'How many sisters have been diagnosed?'
+      when "specified_daughters"
+        'How many daughters have been diagnosed?'
+      when "specified_sons"
+        'How many sons have been diagnosed?'
+      when "specified_health_conditions"
+        'What other health conditions do you have?'
+      when "specified_race"
+        'What is your race?'
+      when "specified_contact_method"
+        'How would you prefer to be contacted?'
+      when "specified_language"
+        'What language do you speak at home?'
+      else
+        nil
+      end
+      if new_text
+        at.update text: new_text
+        puts "Updated answer template with name #{at.name} to have new text: #{new_text}"
+      else
+        puts "WARNING: Found an unexpected answer template with name: #{at.name}"
+      end
+    end
+  end
+
   desc "Automatically launch followup encounters for users who have filled out a corresponding baseline survey"
   task launch_followup_encounters: :environment do
     Survey.launch_followup_encounters
