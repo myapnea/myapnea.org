@@ -13,7 +13,7 @@ namespace :surveys do
         'How many daughters have been diagnosed?'
       when "specified_sons"
         'How many sons have been diagnosed?'
-      when "specified_health_conditions"
+      when "specified_health_condition"
         'What other health conditions do you have?'
       when "specified_race"
         'What is your race?'
