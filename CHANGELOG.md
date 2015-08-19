@@ -78,6 +78,7 @@
   - Unstarted surveys that are no longer applicable are discarded, and started surveys are kept
 - Fixed a bug that could cause users to have above 100% completion on surveys
 - Fixed a bug where new users weren't always marked as ready for research due to consent update dates
+- Flash notices are now being rendered on every page, to ensure they appear at the proper time
 
 ### Refactoring
 - Simplified processing single answers from surveys

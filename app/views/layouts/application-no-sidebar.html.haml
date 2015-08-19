@@ -30,6 +30,7 @@
     #social-backdrop
     = render partial: 'layouts/navigation/top_navigation'
     .container-fluid.reset-layout.wrapper
+      = render partial: 'layouts/partials/flash_messages'
       = yield
     = render partial: 'layouts/partials/footer'
     = render partial: 'layouts/registration/privacy_modal'
