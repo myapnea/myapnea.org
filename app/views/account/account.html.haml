@@ -1,20 +1,18 @@
 #account-section-container
   - unless current_user.ready_for_research?
-    = render partial: 'account/join_leave_research_study'
+    = render 'account/join_leave_research_study'
 
-  %hr
-
-  %a.anchor#change-picture
+  %a.settings-anchor#change-picture
   - if current_user.provider?
-    = render partial: 'providers/providers_profile'
+    = render 'providers/providers_profile'
   - else
-    = render partial: 'social/social_profile'
+    = render 'social/social_profile'
 
 
-  %a.anchor#change-information
+  %a.settings-anchor#change-information
   .content-container
     .content-header
-      %h3.f300.centered-text
+      %h3.f300.centered
         Basic Information
     .content-body
       = form_for current_user, url: update_account_path, html: { class: 'form-horizontal' } do |f|
@@ -33,11 +31,13 @@
         .row
           = f.submit "Save Changes", class: 'btn btn-primary-custom col-xs-4 col-xs-offset-4'
 
-    %a.anchor#change-member-type
-    .content-footer.centered-text
+  %a.settings-anchor#change-member-type
+  .content-container
+    .content-header
+      %h3.f300.centered
+        Your Role
+    .content-body.centered
       - if current_user.has_user_type?
-        %h4
-          You describe yourself as:
         .horizontal-inset
           - current_user.user_type_names.each do |type|
             %h5.f300= type
@@ -47,10 +47,10 @@
           = link_to 'change your user type.', describe_yourself_path, class: 'no-underline'
 
 
-  %a.anchor#change-password
+  %a.settings-anchor#change-password
   .content-container
     .content-header
-      %h3.f300.centered-text
+      %h3.f300.centered
         Change Your Password
     .content-body
       = form_for current_user, url: change_password_path, html: { class: 'form-horizontal' } do |f|
@@ -74,8 +74,8 @@
           = f.submit "Change Password", class: 'btn btn-primary-custom col-xs-4 col-xs-offset-4'
 
 
-  %a.anchor#select-provider
-  .content-container.centered-text
+  %a.settings-anchor#select-provider
+  .content-container.centered
     .content-header
       %h3.f300
         Your Provider
@@ -95,8 +95,8 @@
           and see if your provider has registered. If they haven't you should
           = link_to 'invite them!', "mailto:?subject=Join MyApnea.Org"
 
-  %a.anchor#notification-preferences
-  .content-container.centered-text
+  %a.settings-anchor#notification-preferences
+  .content-container.centered
     .content-header
       %h3.f300
         Notification Preferences
@@ -120,24 +120,26 @@
 
 
   - if current_user.ready_for_research?
-    %a.anchor#leave-study
+    %a.settings-anchor#leave-study
     = render partial: 'account/join_leave_research_study'
 
 #account-link-container
-  %p.lead
-    Need help with a specific topic? Click on one of these links to get there quickly.
-  = link_to '#change-picture' do
-    Changing my picture
-  = link_to '#change-information' do
-    Changing my basic information (name, email, etc)
-  = link_to '#change-member-type' do
-    Changing my role (patient, researcher, care provider, etc)
-  = link_to '#change-password' do
-    Changing my password
-  = link_to '#select-provider' do
-    Linking with my care provider
-  = link_to '#notification-preferences' do
-    Receiving notifications
-  - if current_user.ready_for_research?
-    = link_to '#leave-study' do
-      I want to leave the research study
+  .content-container
+    .content-body
+      %p.lead
+        What do you need help with?
+      = link_to '#change-picture' do
+        Changing my picture
+      = link_to '#change-information' do
+        Changing my basic info (name, email, etc)
+      = link_to '#change-member-type' do
+        Changing my role (patient, caregiver, etc)
+      = link_to '#change-password' do
+        Changing my password
+      = link_to '#select-provider' do
+        Linking with my care provider
+      = link_to '#notification-preferences' do
+        Receiving email notifications
+      - if current_user.ready_for_research?
+        = link_to '#leave-study' do
+          I want to leave the research study

@@ -27,3 +27,17 @@ a.white:hover {color: rgb(255,255,255); color: rgba(255,255,255,.8); }
 a.darkerer-blue:hover {
   color: #233063 !important;
 }
+
+a.anchor {
+  position:relative;
+  top:-81px;
+  display:block;
+  visibility: hidden;
+}
+
+a.settings-anchor {
+  position:relative;
+  top:-121px;
+  display:block;
+  visibility: hidden;
+}
