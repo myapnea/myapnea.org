@@ -45,4 +45,16 @@ class Question < ActiveRecord::Base
     end
   end
 
+  # Returns how the community answered to a question and answer template for a given encounter
+  def community_answer_values(encounter, answer_template)
+    answer_value_scope = AnswerValue.current.joins(:answer).where(answers: { question_id: self.id, state: 'locked' }, answer_template: answer_template).where.not(answer_option_id: nil)
+    if encounter
+      answer_value_scope = answer_value_scope.joins(answer: :answer_session).where(answer_sessions: { encounter: encounter.slug })
+    end
+  end
+
+  def first_radio_or_checkbox_answer_template
+    self.answer_templates.where(template_name: ['radio', 'checkbox']).first
+  end
+
 end

@@ -3,6 +3,7 @@ class SurveysController < ApplicationController
   before_action :authenticate_user!,                      except: [:index]
   before_action :authenticate_research,                   except: [:index]
   before_action :set_survey,                              only: [:show, :report, :report_detail, :accept_update_first]
+  before_action :set_encounter,                           only: [:show, :report, :report_detail, :accept_update_first]
   before_action :set_answer_session,                      only: [:show, :report, :report_detail, :accept_update_first]
   before_action :redirect_without_answer_session,         only: [:show]
   before_action :redirect_without_accepted_recent_update, only: [:show]
@@ -65,6 +66,10 @@ class SurveysController < ApplicationController
 
   def set_survey
     @survey = Survey.current.viewable.includes(:questions).find_by_param(params[:id])
+  end
+
+  def set_encounter
+    @encounter = Encounter.current.find_by_param(params[:encounter] || 'baseline')
   end
 
   def set_answer_session

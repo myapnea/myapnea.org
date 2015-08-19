@@ -59,6 +59,11 @@ class AnswerSession < ActiveRecord::Base
     self.update locked: false, locked_at: nil
   end
 
+  # Returns all answer values for a specific question and answer template
+  def answer_values(question, answer_template)
+    AnswerValue.joins(:answer).where(answers: { answer_session_id: self.id, question_id: question.id }).where(answer_template_id: answer_template.id)
+  end
+
   def applicable_questions
     # all questions in answer session's answers
     Question.joins(:answers).where(answers: { answer_session_id: self.id })

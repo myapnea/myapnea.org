@@ -279,20 +279,12 @@ class User < ActiveRecord::Base
     self.answer_sessions.where(survey_id: Survey.find_by_slug('about-me').id).where(locked:true).present?
   end
 
-  def answer_for(answer_session, question)
-    Answer.current.where(answer_session_id: answer_session.id, question_id: question.id).order("updated_at desc").includes(answer_values: :answer_template).limit(1).first
-  end
-
   # Can Build Surveys
   def editable_surveys
     Survey.current.where(user_id: self.id).where.not(slug: nil)
   end
 
   # Reports
-  def answer_present?(params = {})
-    Report.where({ user: self[:id] }.merge(params)).count > 0
-  end
-
   def answer_value(params = {})
     result_rows = Report.where({ user: self[:id] }.merge(params))
 
@@ -344,17 +336,6 @@ class User < ActiveRecord::Base
         write_in_result_rows.pluck(:value) + ao_result_rows.pluck(:answer_option_text)
       end
     end
-  end
-
-  def answer_formatted_text(params={})
-    answer = answer_text(params)
-
-    if answer.kind_of?(Array)
-      answer.delete_if{|x| x.blank? }.join(", ")
-    else
-      answer
-    end
-
   end
 
   # Research Topics

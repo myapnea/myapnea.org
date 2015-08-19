@@ -1,9 +1,14 @@
+- question = survey.questions.where(slug: question_slug).first
+- answer_template = question.answer_templates.where(template_name: ['radio', 'checkbox']).first
+- if @answer_session and question and answer_template
+  - user_answer_values = @answer_session.answer_values(question, answer_template)
 .survey-report-question.rounded-top
-  %h3= survey.question_text(question_slug)
-- question_params = {survey_slug: survey.slug, question_slug: question_slug, encounter: encounter}
-- if current_user.answer_present?(question_params) and !defined?(skip_answer)
+  %h3
+    - if question
+      = question.text
+- if user_answer_values and !defined?(skip_answer)
   .survey-report-answer
     %p
       Your answer:
       %span.f500
-        = current_user.answer_formatted_text(question_params)
+        = user_answer_values.collect(&:show_value).join(', ')

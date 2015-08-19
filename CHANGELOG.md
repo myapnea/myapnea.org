@@ -14,6 +14,7 @@
     - `s.launch_single_for_children(user, 'baseline')`
     - Baseline surveys are immediately assigned when a child in the proper age range is added by a caregiver of a child
   - Minor UI updates to completion display
+  - Reports are now additionally scoped by encounter (ex: baseline, followup)
 - **Online Survey Builder**
   - Started work on an online survey builder for researchers and team members
   - The online survey builder will let survey builders specify the following:

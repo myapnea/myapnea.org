@@ -77,11 +77,6 @@ class Survey < ActiveRecord::Base
     end
   end
 
-  def question_text(question_slug)
-    q = questions.where(slug: question_slug).first
-    q.present? ? q.text : nil
-  end
-
   def launch_encounter_for_user(user, survey_encounter)
     if self.enough_time_has_past?(user, survey_encounter) and self.no_dependency_or_parent_encounter_locked?(user, survey_encounter)
       self.launch_single(user, survey_encounter.encounter.slug)

@@ -15,6 +15,6 @@
         - elsif @answer_session
           = link_to 'here', report_detail_survey_path(@answer_session.survey, @answer_session.encounter)
         - else
-          = link_to 'here', report_detail_survey_path(@survey)
+          = link_to 'here', report_detail_survey_path(@survey, @encounter)
 
 = render 'surveys/report_outro'

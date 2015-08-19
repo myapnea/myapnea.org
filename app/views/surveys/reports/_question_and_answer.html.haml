@@ -1,3 +1,6 @@
+- if @answer_session
+  - user_answer_values = @answer_session.answer_values(question, answer_template)
+
 - if answer_template.text.present?
   .col-sm-5.rectangle-speech-border.rectangle-speech-border-left.rectangle-speech-border-orange
     %h4.f300= answer_template.text
@@ -6,7 +9,7 @@
     %h4.f300= answer_template.name.gsub('_', ' ').capitalize
 
 - data = []
-- community_answer_values = AnswerValue.current.joins(:answer).where(answers: { question_id: question.id }, answer_template: answer_template).where.not(answer_option_id: nil)
+- community_answer_values = question.community_answer_values(@encounter, answer_template)
 - all_counts = community_answer_values.group(:answer_option_id).select(:answer_option_id).order(:answer_option_id).count
 - total_count = community_answer_values.count
 
@@ -14,7 +17,7 @@
   .col-sm-11.col-sm-offset-1.rectangle-speech-border.rectangle-speech-border-right.rectangle-speech-border-blue
     - if user_answer_values
       %h5.f500{ style: 'margin-bottom:30px;' }
-        My answer:
+        Your answer:
         %span.f300
           = user_answer_values.collect(&:show_value).join(', ')
 
