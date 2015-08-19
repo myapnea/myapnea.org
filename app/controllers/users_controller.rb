@@ -7,6 +7,7 @@ class UsersController < ApplicationController
   def index
     @all_users = User.current.search(params[:search]).order(current_sign_in_at: :desc)
     @users = @all_users.page(params[:page]).per( 40 )
+    render layout: 'application-no-sidebar'
   end
 
   def export

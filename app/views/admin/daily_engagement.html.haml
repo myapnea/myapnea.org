@@ -6,18 +6,6 @@
     = link_to 'Admin Dashboard', admin_path
 
 .content-container
-  #daily-engagement-week.daily-engagement-report
-
-.content-container
-  #daily-engagement-posts.daily-engagement-report
-
-.content-container
-  #daily-engagement-users.daily-engagement-report
-
-.content-container
-  #daily-engagement-surveys.daily-engagement-report
-
-.content-container
   .content-header
     %h2 Demographics
     %br
@@ -53,3 +41,15 @@
     #location-breakdown.horizontal-inset
       = render 'location_list', users: @users_by_date, selector: 'state'
       = render 'location_list', users: @users_by_date, selector: 'country'
+
+.content-container
+  #daily-engagement-week.daily-engagement-report
+
+.content-container
+  #daily-engagement-posts.daily-engagement-report
+
+.content-container
+  #daily-engagement-users.daily-engagement-report
+
+.content-container
+  #daily-engagement-surveys.daily-engagement-report

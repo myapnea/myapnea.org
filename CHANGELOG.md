@@ -47,6 +47,7 @@
   - Administrators can now unlock surveys for users from the user show page
   - Updated the Version Stats report to be monthly, and renamed to it to the Timeline Report
   - Owners receive survey followup digest emails when new surveys are assigned to users
+  - All admin pages are now using the fullscreen layout
 - **Gem Changes**
   - Only run `web-console` in development mode
   - Updated to rails 4.2.4.rc1

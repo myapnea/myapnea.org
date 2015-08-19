@@ -6,6 +6,8 @@ class HighlightsController < ApplicationController
 
   before_action :set_SEO_elements
 
+  layout 'application-no-sidebar'
+
   # GET /highlights
   # GET /highlights.json
   def index
