@@ -173,14 +173,16 @@ class AccountControllerTest < ActionController::TestCase
     assert_redirected_to privacy_path
   end
 
+  # Deprecated in use, can be removed
   test "should accept privacy during get-started for new user" do
     login(@regular_user)
     assert_nil @regular_user.accepted_privacy_policy_at
     post :accepts_privacy, get_started: true
     @regular_user.reload
     assert_not_nil @regular_user.accepted_privacy_policy_at
-    assert_redirected_to get_started_step_two_path
+    assert_redirected_to consent_path
   end
+  # end deprecated
 
   test "should accept consent during get started for new user and redirect to step three" do
     login(@regular_user)

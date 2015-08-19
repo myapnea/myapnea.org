@@ -416,6 +416,16 @@ class User < ActiveRecord::Base
     end
   end
 
+  def accepts_consent!
+    current_time = Time.zone.now
+    self.update accepted_consent_at: current_time, accepted_update_at: current_time
+  end
+
+  def accepts_terms_of_access!
+    current_time = Time.zone.now
+    self.update accepted_terms_of_access_at: current_time, accepted_update_at: current_time
+  end
+
   private
 
   # This happens when any user updates changes from dashboard

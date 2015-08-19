@@ -22,13 +22,13 @@
   - if current_user and !part_of_registration
     .content-footer.centered
       - if current_user.ready_for_research?
-        = link_to :back, class: 'btn btn-lg btn-default' do
+        = link_to :back, class: 'btn btn-lg btn-default-custom' do
           .fa.fa-arrow-left
           &nbsp;
           Go Back
-        = link_to "Leave Research Study", revoke_consent_path, method: :post, class: 'btn btn-warning btn-lg'
+        = link_to "Leave Research Study", revoke_consent_path, method: :post, class: 'btn btn-warning-custom btn-lg'
       - elsif current_user.accepted_consent?
-        = link_to "Continue to review privacy policy", privacy_path, class: 'btn btn-primary btn-lg'
+        = link_to "Continue to review privacy policy", privacy_path, class: 'btn btn-primary-custom btn-lg'
       - else
-        = link_to "I agree and accept", accepts_consent_path(get_started: part_of_registration), method: :post, class: 'btn btn-primary btn-lg'
-        = link_to "I decline", :back, class: 'btn btn-danger btn-lg'
+        = link_to "I agree and accept", accepts_consent_path(get_started: part_of_registration), method: :post, class: 'btn btn-primary-custom btn-lg'
+        = link_to "I decline", :back, class: 'btn btn-default-custom btn-lg'

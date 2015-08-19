@@ -25,15 +25,11 @@ class AccountController < ApplicationController
 
   def accepts_privacy
     current_user.update accepted_privacy_policy_at: Time.zone.now
-    if params[:get_started]
-      redirect_to get_started_step_two_path
-    else
-      redirect_to current_user.ready_for_research? ? surveys_path : consent_path
-    end
+    redirect_to current_user.ready_for_research? ? surveys_path : consent_path
   end
 
   def accepts_consent
-    current_user.update accepted_consent_at: Time.zone.now
+    current_user.accepts_consent!
     if params[:get_started]
       current_user.update accepted_privacy_policy_at: Time.zone.now
       redirect_to get_started_step_three_path
@@ -43,7 +39,7 @@ class AccountController < ApplicationController
   end
 
   def accepts_terms_of_access
-    current_user.update accepted_terms_of_access_at: Time.zone.now
+    current_user.accepts_terms_of_access!
     if params[:get_started]
       current_user.update accepted_privacy_policy_at: Time.zone.now
       redirect_to get_started_step_three_path
@@ -52,9 +48,9 @@ class AccountController < ApplicationController
     end
   end
 
-  def accepts_update(redirect_user: true)
-    current_user.update(accepted_update_at: Time.zone.now)
-    redirect_to (session[:return_to] || root_path) if redirect_user
+  def accepts_update
+    (current_user.provider? or current_user.is_only_researcher?) ? current_user.accepts_terms_of_access! : current_user.accepts_consent!
+    redirect_to (session[:return_to] || root_path)
   end
 
   def accepts_terms_and_conditions
