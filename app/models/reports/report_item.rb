@@ -3,6 +3,8 @@ class ReportItem
   attr_accessor :answer_option, :count, :total_count, :percent
 
   def initialize(answer_options_hash, answer_template, value)
+    # answer_option_ids = answer_options_hash.collect{|ao, count| ao.id}
+    # @total_count = AnswerSession.current.joins(answers: :answer_values).where(answer_values: { answer_template_id: (answer_template ? answer_template.id : nil), answer_option_id: answer_option_ids }, encounter: encounter).distinct.count
     @total_count = answer_options_hash.collect{|ao, count| count}.sum
     (@answer_option, @count) = answer_options_hash.select{|ao, count| ao.value == value}.collect{|ao, count| [ao, count]}.first
     set_percent

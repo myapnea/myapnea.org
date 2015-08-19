@@ -51,6 +51,7 @@ class Question < ActiveRecord::Base
     if encounter
       answer_value_scope = answer_value_scope.joins(answer: :answer_session).where(answer_sessions: { encounter: encounter.slug })
     end
+    answer_value_scope
   end
 
   def first_radio_or_checkbox_answer_template
