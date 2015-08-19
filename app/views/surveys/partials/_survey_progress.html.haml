@@ -10,7 +10,7 @@
     .shadow
   .inset
     .percentage
-      .numbers{ class: "#{'numbers-complete' if true}"}
+      .numbers
         %br
         .span{ data: { object: "circle_percentage_display", survey_id: survey.id } }
           = percent.to_s + '%'
