@@ -97,6 +97,7 @@
 - Health Conditions report no longer relies on extra server JSON request
 - Removed old registration views and methods
 - Removed unused attributes from answer sessions
+- Removed unused attributes from survey
 
 ## 7.5.1 (August 20, 2015)
 
