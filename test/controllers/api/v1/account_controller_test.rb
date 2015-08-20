@@ -4,6 +4,7 @@ class Api::V1::AccountControllerTest < ActionController::TestCase
 
   setup do
     @user = users(:user_2)
+    @participant = users(:participant)
   end
 
   def json_response
@@ -32,6 +33,23 @@ class Api::V1::AccountControllerTest < ActionController::TestCase
 
     assert_equal json_response['adult_diagnosed'], true
     assert_equal json_response['caregiver_adult'], true
+  end
+
+  test "should get ready for research" do
+    login(@participant)
+    get :ready_for_research, format: :json
+    assert_response :success
+
+    assert_equal json_response['ready_for_research'], true
+  end
+
+  test "should accept consent" do
+    login(@user)
+    assert_difference('User.where.not(accepted_consent_at: nil).count') do
+      post :accept_consent, format: :json
+    end
+
+    assert_equal json_response['ready_for_research'], true
   end
 
 end

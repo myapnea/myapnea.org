@@ -13,4 +13,12 @@ class Api::V1::AccountController < ApplicationController
     current_user.update_user_types user_types
   end
 
+  def ready_for_research?
+  end
+
+  def accept_consent
+    current_user.accepts_consent!
+    current_user.update accepted_privacy_policy_at: Time.zone.now
+  end
+
 end
