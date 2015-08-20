@@ -39,6 +39,17 @@ class ChildrenControllerTest < ActionController::TestCase
     assert_redirected_to child_path(assigns(:child))
   end
 
+  test "should not create child with blank first name" do
+    assert_difference('Child.count', 0) do
+      post :create, child: { first_name: '', age: @child.age }
+    end
+    assert_not_nil assigns(:child)
+    assert assigns(:child).errors.size > 0
+    assert_equal ["can't be blank"], assigns(:child).errors[:first_name]
+    assert_template 'new'
+    assert_response :success
+  end
+
   test "should create child as js" do
     assert_difference('Child.count') do
       xhr :post, :create, child: { first_name: @child.first_name, age: @child.age }, format: 'js'
@@ -74,6 +85,16 @@ class ChildrenControllerTest < ActionController::TestCase
   test "should update child" do
     patch :update, id: @child, child: { first_name: @child.first_name, age: @child.age }
     assert_redirected_to child_path(assigns(:child))
+  end
+
+  test "should not update child with blank first name" do
+    patch :update, id: @child, child: { first_name: '', age: @child.age }
+
+    assert_not_nil assigns(:child)
+    assert assigns(:child).errors.size > 0
+    assert_equal ["can't be blank"], assigns(:child).errors[:first_name]
+    assert_template 'edit'
+    assert_response :success
   end
 
   test "should update child as js" do
