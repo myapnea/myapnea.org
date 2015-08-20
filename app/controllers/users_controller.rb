@@ -36,7 +36,7 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       redirect_to @user, notice: 'User was successfully updated.'
     else
-      render action: 'edit'
+      render :edit
     end
   end
 
@@ -56,19 +56,11 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      params[:user] ||= {}
-
-      if current_user.owner?
-        params.require(:user).permit(
-          :first_name, :last_name, :email, :forum_name, :emails_enabled,
-          :age, :gender, :include_in_exports,
-          :owner, :moderator, :can_build_surveys
-        )
-      else
-        params.require(:user).permit(
-          :first_name, :last_name, :email, :forum_name, :age, :gender
-        )
-      end
+      params.require(:user).permit(
+        :first_name, :last_name, :email, :forum_name, :emails_enabled,
+        :age, :gender, :include_in_exports,
+        :owner, :moderator, :can_build_surveys
+      )
     end
 
 end
