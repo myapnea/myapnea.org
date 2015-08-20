@@ -102,6 +102,40 @@ class TemporaryReport
     "#{percent.round(1)}%"
   end
 
+  # My Sleep Apnea Treatment
+  def self.treatment_popularity(survey, question, answer_option_value, encounter: nil)
+    current_to_satisfaction_map = {
+      2 => 'satisfaction_with_cpap',
+      3 => 'satisfaction_with_apap',
+      4 => 'satisfaction_with_bipap',
+      5 => 'satisfaction_with_asv',
+      6 => 'satisfaction_with_oral_appliance',
+      7 => 'satisfaction_with_behavioral_therapy',
+      8 => 'satisfaction_with_tongue_stimulation',
+      9 => 'satisfaction_with_tonsillectomy',
+      10 => 'satisfaction_with_uppp',
+      11 => 'satisfaction_with_naval_deviation',
+      12 => 'satisfaction_with_tongue_surgery',
+      13 => 'satisfaction_with_jaw_surgery',
+      14 => 'satisfaction_with_bariatric_surgery'
+    }
+
+    answer_template = question.answer_templates.find_by_name(current_to_satisfaction_map[answer_option_value])
+    answer_option_counts = TemporaryReport.answer_option_counts(survey, question, answer_template, encounter: encounter, range: 1..6)
+    percent_use_at_some_point = 0
+    (1..4).each do |aov|
+      ri = ReportItem.new(answer_option_counts, answer_template, aov)
+      percent_use_at_some_point = percent_use_at_some_point + ri.percent_number
+    end
+
+    answer_option_counts = TemporaryReport.answer_option_counts(survey, question, answer_template, encounter: encounter, range: 1..4)
+    ri3 = ReportItem.new(answer_option_counts, answer_template, 3)
+    ri4 = ReportItem.new(answer_option_counts, answer_template, 4)
+
+    [percent_use_at_some_point, ri3.percent_number + ri4.percent_number]
+  end
+
+
   # General single value returned
   def self.get_value(question_slug, answer_session)
     if answer_session and question = answer_session.survey.questions.find_by_slug(question_slug)
