@@ -61,7 +61,7 @@ class PostsController < ApplicationController
         format.html { redirect_to forum_topic_post_path(@forum, @topic, @post), notice: 'Post was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { redirect_to forum_topic_post_path(@forum, @topic, @post), warning: 'Post can\'t be blank.' }
+        format.html { render :edit }
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end

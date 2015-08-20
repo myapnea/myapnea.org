@@ -11,6 +11,15 @@ class PostsControllerTest < ActionController::TestCase
     @forum = forums(:one)
   end
 
+  test "should get index and redirect to topic" do
+    get :index, forum_id: posts(:six).forum, topic_id: posts(:six).topic, id: posts(:six)
+
+    assert_not_nil assigns(:forum)
+    assert_not_nil assigns(:topic)
+
+    assert_redirected_to [assigns(:forum), assigns(:topic)]
+  end
+
   test "should get show and redirect to specific page and location on topic" do
     login(users(:user_2))
     get :show, forum_id: posts(:six).forum, topic_id: posts(:six).topic, id: posts(:six)
@@ -20,6 +29,15 @@ class PostsControllerTest < ActionController::TestCase
     assert_not_nil assigns(:post)
 
     assert_redirected_to forum_topic_path(assigns(:forum), assigns(:topic)) + "?page=1#c2"
+  end
+
+  test "should not show post for user who has not accepted terms and conditions" do
+    login(users(:created_today))
+    get :show, forum_id: posts(:six).forum, topic_id: posts(:six).topic, id: posts(:six)
+    assert_not_nil assigns(:forum)
+    assert_not_nil assigns(:topic)
+    assert_nil assigns(:post)
+    assert_redirected_to terms_and_conditions_path
   end
 
   test "should get post preview" do
@@ -109,6 +127,20 @@ class PostsControllerTest < ActionController::TestCase
     assert_equal true, assigns(:topic).subscribed?(users(:moderator_1))
 
     assert_redirected_to forum_topic_post_path(assigns(:forum), assigns(:topic), assigns(:post))
+  end
+
+  test "should not create post with blank description" do
+    login(users(:user_1))
+    assert_difference('Post.count', 0) do
+      post :create, forum_id: @forum, topic_id: @topic, post: { description: "" }
+    end
+
+    assert_not_nil assigns(:forum)
+    assert_not_nil assigns(:topic)
+    assert_not_nil assigns(:post)
+    assert assigns(:post).errors.size > 0
+    assert_equal ["can't be blank"], assigns(:post).errors[:description]
+    assert_redirected_to [assigns(:forum), assigns(:topic)]
   end
 
   test "should create post and mark new last post at" do
@@ -240,6 +272,18 @@ class PostsControllerTest < ActionController::TestCase
     assert_nil assigns(:post)
 
     assert_redirected_to forum_topic_path(assigns(:forum), assigns(:topic))
+  end
+
+  test "should not update post with blank description" do
+    login(@valid_user)
+    patch :update, forum_id: @forum, topic_id: @topic, id: @post, post: { description: "" }
+    assert_not_nil assigns(:forum)
+    assert_not_nil assigns(:topic)
+    assert_not_nil assigns(:post)
+    assert assigns(:post).errors.size > 0
+    assert_equal ["can't be blank"], assigns(:post).errors[:description]
+    assert_template 'edit'
+    assert_response :success
   end
 
   # test "should not update post as banned user" do
