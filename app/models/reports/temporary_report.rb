@@ -135,6 +135,61 @@ class TemporaryReport
     [percent_use_at_some_point, ri3.percent_number + ri4.percent_number]
   end
 
+  # My Sleep Pattern
+  def self.percent_different_sleep_weekends_weekdays(survey, encounter)
+    weekdays = survey.questions.find_by_slug('sleep-hours-weekdays')
+    weekdays_answer_template = weekdays.first_radio_or_checkbox_answer_template
+    weekdays_answer_values = weekdays.community_answer_values(encounter, weekdays_answer_template)
+    weekdays_answer_values = weekdays_answer_values.joins(:answer_option).where(answer_options: { value: 1..6 })
+    weekdays_answer_values = weekdays_answer_values.includes(:answer).collect{|av| [av.answer.answer_session_id, av.answer_option.value]}
+
+    weekends = survey.questions.find_by_slug('sleep-hours-weekends')
+    weekends_answer_template = weekends.first_radio_or_checkbox_answer_template
+    weekends_answer_values = weekends.community_answer_values(encounter, weekends_answer_template)
+    weekends_answer_values = weekends_answer_values.joins(:answer_option).where(answer_options: { value: 1..6 })
+    weekends_answer_values = weekends_answer_values.includes(:answer).collect{|av| [av.answer.answer_session_id, av.answer_option.value]}
+
+    total_values = (weekdays_answer_values + weekends_answer_values).uniq
+    max_count = [weekdays_answer_values.count, weekends_answer_values.count].max
+    difference = (total_values - weekdays_answer_values)
+    percent = if max_count == 0
+      0.0
+    else
+      difference.count * 100.0 / max_count
+    end
+    "#{percent.round(1)}%"
+  end
+
+  def self.compute_ess(answer_session)
+    if answer_session
+      ess_values = self.get_values('epworth-sleepiness-scale', answer_session)
+      answer_options = AnswerOption.where(id: ess_values, value: 0..3)
+      if answer_options.count == 8
+        answer_options.pluck(:value).sum
+      else
+        nil
+      end
+    else
+      nil
+    end
+  end
+
+  def self.avg_ess(survey, encounter)
+    question = survey.questions.find_by_slug('epworth-sleepiness-scale')
+
+    answer_value_scope = AnswerValue.current.joins(:answer).where(answers: { question_id: question.id, state: 'locked' }).where.not(answer_option_id: nil)
+    if encounter
+      answer_value_scope = answer_value_scope.joins(answer: :answer_session).where(answer_sessions: { encounter: encounter.slug })
+    end
+
+    values = answer_value_scope.joins(:answer_option).where(answer_options: { value: 0..3 }).group(:answer_session_id).having('count(value) = 8').pluck('sum(value::int)')
+    average = if values.count == 0
+      0.0
+    else
+      values.sum.to_f / values.count
+    end
+    average.round(1)
+  end
 
   # General single value returned
   def self.get_value(question_slug, answer_session)
