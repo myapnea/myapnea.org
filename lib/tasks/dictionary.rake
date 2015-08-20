@@ -73,7 +73,7 @@ namespace :dictionary do
       row = ['encounter']
       question_slugs = []
 
-      Survey.viewable.includes(questions: [ answer_templates: :answer_options]).each do |survey|
+      Survey.current.viewable.non_pediatric.includes(questions: [ answer_templates: :answer_options]).each do |survey|
         survey.questions.each do |question|
           if question.display_type == 'radio_input_multiple'
             question.answer_templates.each do |at|
