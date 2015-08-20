@@ -26,9 +26,9 @@ class Lottery
       user_count = 0
 
       User.current.each do |u|
-        u.completed_surveys.each_with_index do |survey, index|
+        u.completed_answer_sessions.each_with_index do |answer_session, index|
           user_count += 1 if index == 0
-          tickets << ::Ticket.new(u.id, survey.id)
+          tickets << ::Ticket.new(u.id, answer_session.id)
           count += 1
         end
         print "\r#{count} Ticket#{'s' if count != 1} Generated for #{user_count} User#{'s' if user_count != 1}"

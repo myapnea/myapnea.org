@@ -46,7 +46,7 @@
         = simple_check @user.moderator?
       %dt Completed Surveys
       %dd
-        = @user.completed_surveys.count
+        = @user.completed_answer_sessions.count
       %dt Include in Data
       %dd
         = simple_check @user.include_in_exports

@@ -251,8 +251,8 @@ class User < ActiveRecord::Base
     self.answer_sessions.where(encounter: 'baseline', survey_id: survey.id, child_id: nil).first_or_create
   end
 
-  def completed_surveys
-    Survey.viewable.joins(:answer_sessions).where(answer_sessions: {user_id: self.id, locked: true}).order("answer_sessions.locked asc, answer_sessions.position asc, answer_sessions.encounter")
+  def completed_answer_sessions
+    self.answer_sessions.where(child_id: nil, locked: true).joins(:survey).merge(Survey.current.viewable)
   end
 
   def incomplete_answer_sessions

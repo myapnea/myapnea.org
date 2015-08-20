@@ -34,7 +34,7 @@
       %td{ style: "text-align:center" }
         = simple_check !user.include_in_exports?
       %td
-        = user.completed_surveys.count
+        = user.completed_answer_sessions.count
       %td{ style: 'white-space:nowrap' }
         = link_to 'Edit', edit_user_path(user), class: 'btn btn-default btn-xs'
         - unless current_user == user
