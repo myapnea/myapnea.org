@@ -266,64 +266,64 @@ class AccountControllerTest < ActionController::TestCase
     login(users(:blank_slate))
     patch :set_user_type, user: { adult_diagnosed: true }
 
-    assert_includes users(:blank_slate).assigned_surveys, Survey.find_by_slug('about-me')
-    assert_includes users(:blank_slate).assigned_surveys, Survey.find_by_slug('about-my-family')
-    assert_includes users(:blank_slate).assigned_surveys, Survey.find_by_slug('my-sleep-quality')
-    assert_includes users(:blank_slate).assigned_surveys, Survey.find_by_slug('my-sleep-apnea')
+    assert_includes users(:blank_slate).answer_sessions.collect(&:survey), Survey.find_by_slug('about-me')
+    assert_includes users(:blank_slate).answer_sessions.collect(&:survey), Survey.find_by_slug('about-my-family')
+    assert_includes users(:blank_slate).answer_sessions.collect(&:survey), Survey.find_by_slug('my-sleep-quality')
+    assert_includes users(:blank_slate).answer_sessions.collect(&:survey), Survey.find_by_slug('my-sleep-apnea')
   end
 
   test "should assign correct surveys for adult_at_risk role" do
     login(users(:blank_slate))
     patch :set_user_type, user: { adult_at_risk: true }
 
-    assert_includes users(:blank_slate).assigned_surveys, Survey.find_by_slug('about-me')
-    assert_includes users(:blank_slate).assigned_surveys, Survey.find_by_slug('about-my-family')
-    assert_includes users(:blank_slate).assigned_surveys, Survey.find_by_slug('my-sleep-quality')
-    refute_includes users(:blank_slate).assigned_surveys, Survey.find_by_slug('my-sleep-apnea')
+    assert_includes users(:blank_slate).answer_sessions.collect(&:survey), Survey.find_by_slug('about-me')
+    assert_includes users(:blank_slate).answer_sessions.collect(&:survey), Survey.find_by_slug('about-my-family')
+    assert_includes users(:blank_slate).answer_sessions.collect(&:survey), Survey.find_by_slug('my-sleep-quality')
+    refute_includes users(:blank_slate).answer_sessions.collect(&:survey), Survey.find_by_slug('my-sleep-apnea')
   end
 
   test "should assign correct surveys for caregiver_adult role" do
     login(users(:blank_slate))
     patch :set_user_type, user: { caregiver_adult: true }
 
-    assert_includes users(:blank_slate).assigned_surveys, Survey.find_by_slug('about-me')
-    assert_includes users(:blank_slate).assigned_surveys, Survey.find_by_slug('about-my-family')
-    refute_includes users(:blank_slate).assigned_surveys, Survey.find_by_slug('my-sleep-quality')
-    refute_includes users(:blank_slate).assigned_surveys, Survey.find_by_slug('my-sleep-apnea')
+    assert_includes users(:blank_slate).answer_sessions.collect(&:survey), Survey.find_by_slug('about-me')
+    assert_includes users(:blank_slate).answer_sessions.collect(&:survey), Survey.find_by_slug('about-my-family')
+    refute_includes users(:blank_slate).answer_sessions.collect(&:survey), Survey.find_by_slug('my-sleep-quality')
+    refute_includes users(:blank_slate).answer_sessions.collect(&:survey), Survey.find_by_slug('my-sleep-apnea')
   end
 
   test "should assign correct surveys for caregiver_child role" do
     login(users(:blank_slate))
     patch :set_user_type, user: { caregiver_child: true }
 
-    assert_includes users(:blank_slate).assigned_surveys, Survey.find_by_slug('about-me')
-    assert_includes users(:blank_slate).assigned_surveys, Survey.find_by_slug('about-my-family')
-    refute_includes users(:blank_slate).assigned_surveys, Survey.find_by_slug('my-sleep-quality')
-    refute_includes users(:blank_slate).assigned_surveys, Survey.find_by_slug('my-sleep-apnea')
+    assert_includes users(:blank_slate).answer_sessions.collect(&:survey), Survey.find_by_slug('about-me')
+    assert_includes users(:blank_slate).answer_sessions.collect(&:survey), Survey.find_by_slug('about-my-family')
+    refute_includes users(:blank_slate).answer_sessions.collect(&:survey), Survey.find_by_slug('my-sleep-quality')
+    refute_includes users(:blank_slate).answer_sessions.collect(&:survey), Survey.find_by_slug('my-sleep-apnea')
   end
 
   test "should not assign any surveys for researcher" do
     login(users(:blank_slate))
     patch :set_user_type, user: { researcher: true }
 
-    assert_empty users(:blank_slate).assigned_surveys
+    assert_empty users(:blank_slate).answer_sessions
   end
 
   test "should not assign any surveys for provider" do
     login(users(:blank_slate))
     patch :set_user_type, user: { provider: true }
 
-    assert_empty users(:blank_slate).assigned_surveys
+    assert_empty users(:blank_slate).answer_sessions
   end
 
   test "should assign adult_diagnosed surveys for provider+adult_diagnosed" do
     login(users(:blank_slate))
     patch :set_user_type, user: { adult_diagnosed: true, provider: true }
 
-    assert_includes users(:blank_slate).assigned_surveys, Survey.find_by_slug('about-me')
-    assert_includes users(:blank_slate).assigned_surveys, Survey.find_by_slug('about-my-family')
-    assert_includes users(:blank_slate).assigned_surveys, Survey.find_by_slug('my-sleep-quality')
-    assert_includes users(:blank_slate).assigned_surveys, Survey.find_by_slug('my-sleep-apnea')
+    assert_includes users(:blank_slate).answer_sessions.collect(&:survey), Survey.find_by_slug('about-me')
+    assert_includes users(:blank_slate).answer_sessions.collect(&:survey), Survey.find_by_slug('about-my-family')
+    assert_includes users(:blank_slate).answer_sessions.collect(&:survey), Survey.find_by_slug('my-sleep-quality')
+    assert_includes users(:blank_slate).answer_sessions.collect(&:survey), Survey.find_by_slug('my-sleep-apnea')
   end
 
 end

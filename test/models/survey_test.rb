@@ -21,11 +21,11 @@ class SurveyTest < ActiveSupport::TestCase
 
   test "should launch a single survey with an encounter for a user" do
     u = users(:blank_slate)
-    assert_empty u.assigned_surveys
-    assert_difference "u.assigned_surveys.count" do
+    assert_empty u.answer_sessions
+    assert_difference "u.answer_sessions.count" do
       surveys(:new).launch_single(u, "baseline")
     end
-    assert_equal surveys(:new), u.assigned_surveys.last
+    assert_equal surveys(:new), u.answer_sessions.last.survey
   end
 
   test "should launch encounter for users created 10 or more days ago" do

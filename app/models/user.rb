@@ -251,20 +251,12 @@ class User < ActiveRecord::Base
     self.answer_sessions.where(encounter: 'baseline', survey_id: survey.id, child_id: nil).first_or_create
   end
 
-  def assigned_surveys
-    Survey.viewable.joins(:answer_sessions).where(answer_sessions: {user_id: self.id}).order("answer_sessions.locked asc, answer_sessions.position asc, surveys.default_position asc, answer_sessions.encounter")
-  end
-
   def completed_surveys
     Survey.viewable.joins(:answer_sessions).where(answer_sessions: {user_id: self.id, locked: true}).order("answer_sessions.locked asc, answer_sessions.position asc, answer_sessions.encounter")
   end
 
   def incomplete_answer_sessions
     self.answer_sessions.where(child_id: nil, locked: false).joins(:survey).merge(Survey.current.viewable)
-  end
-
-  def visible_surveys
-    is_only_academic? ? Survey.viewable : assigned_surveys
   end
 
   def completed_assigned_answer_sessions?
