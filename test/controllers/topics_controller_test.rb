@@ -6,6 +6,7 @@ class TopicsControllerTest < ActionController::TestCase
     @owner = users(:owner)
     @moderator = users(:moderator_1)
     @valid_user = users(:user_1)
+    @another_user = users(:user_3)
   end
 
   def topic
@@ -105,6 +106,26 @@ class TopicsControllerTest < ActionController::TestCase
     assert assigns(:topic).valid?
     refute_equal "new", assigns(:topic).slug
 
+    assert_redirected_to [assigns(:forum), assigns(:topic)]
+  end
+
+  test "should unsubscribe for valid user" do
+    login(@valid_user)
+    assert_equal true, topic.subscribed?(@valid_user)
+    post :subscription, forum_id: forum, id: topic, notify: '0'
+    assert_not_nil assigns(:forum)
+    assert_not_nil assigns(:topic)
+    assert_equal false, assigns(:topic).subscribed?(@valid_user)
+    assert_redirected_to [assigns(:forum), assigns(:topic)]
+  end
+
+  test "should subscribe for another user" do
+    login(@another_user)
+    assert_equal false, topic.subscribed?(@another_user)
+    post :subscription, forum_id: forum, id: topic, notify: '1'
+    assert_not_nil assigns(:forum)
+    assert_not_nil assigns(:topic)
+    assert_equal true, assigns(:topic).subscribed?(@another_user)
     assert_redirected_to [assigns(:forum), assigns(:topic)]
   end
 
