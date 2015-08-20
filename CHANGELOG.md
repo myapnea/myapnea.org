@@ -1,5 +1,8 @@
 ## 7.5.1
 
+### Enhancements
+- Changed the copy for the join message on the landing page
+
 ## 7.5.0 (August 14, 2015)
 
 ### Enhancements
