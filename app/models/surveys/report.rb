@@ -13,8 +13,7 @@ class Report < ActiveRecord::Base
   def self.frequency_data(question_slug, values=nil, users=nil)
 
     q = Question.where(slug: question_slug).includes(answer_templates: :answer_options).first
-    answer_options = q.answer_templates.first.answer_options
-
+    answer_options = (q.answer_templates.first.answer_options rescue AnswerOption.none)
 
     base_query = Report.where(question_slug: question_slug)
     base_query = base_query.where(value: values.map(&:to_s)) if values.present?

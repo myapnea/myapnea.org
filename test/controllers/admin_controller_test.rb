@@ -8,6 +8,37 @@ class AdminControllerTest < ActionController::TestCase
     @regular_user = users(:user_1)
   end
 
+  test "should get providers as owner" do
+    login(@owner)
+    get :providers
+    assert_not_nil assigns(:providers)
+    assert_response :success
+  end
+
+  test "should get research topics as owner" do
+    login(@owner)
+    get :research_topics
+    assert_not_nil assigns(:research_topics)
+    assert_response :success
+  end
+
+  test "should get daily demographic breakdown as owner" do
+    login(@owner)
+    xhr :get, :daily_demographic_breakdown, breakdown_date_start: { "(1i)" => '2014', "(2i)" => "8", "(3i)" => "20" }, breakdown_date_end: { "(1i)" => '2015', "(2i)" => "8", "(3i)" => "20" }, format: 'js'
+    assert_not_nil assigns(:date1)
+    assert_not_nil assigns(:date2)
+    assert_response :success
+  end
+
+  test "should get daily engagement data as owner" do
+    login(@owner)
+    xhr :get, :daily_engagement_data
+    assert_not_nil assigns(:posts)
+    assert_not_nil assigns(:surveys)
+    assert_not_nil assigns(:users)
+    assert_response :success
+  end
+
   test "should get progress report as owner" do
     login(@owner)
     get :progress_report
