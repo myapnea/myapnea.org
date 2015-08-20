@@ -259,8 +259,8 @@ class User < ActiveRecord::Base
     Survey.viewable.joins(:answer_sessions).where(answer_sessions: {user_id: self.id, locked: true}).order("answer_sessions.locked asc, answer_sessions.position asc, answer_sessions.encounter")
   end
 
-  def incomplete_surveys
-    Survey.viewable.joins(:answer_sessions).where(answer_sessions: {user_id: self.id, locked: [false, nil]}).order("answer_sessions.locked asc, answer_sessions.position asc, answer_sessions.encounter")
+  def incomplete_answer_sessions
+    self.answer_sessions.where(child_id: nil, locked: false).joins(:survey).merge(Survey.current.viewable)
   end
 
   def visible_surveys
@@ -271,8 +271,8 @@ class User < ActiveRecord::Base
     self.answer_sessions.where(child_id: nil, locked: false).joins(:survey).merge(Survey.current.viewable).count == 0
   end
 
-  def next_survey(survey)
-    incomplete_surveys.where("surveys.id != ?", survey.id).first
+  def next_answer_session(answer_session)
+    incomplete_answer_sessions.where.not(id: answer_session.id).first if answer_session
   end
 
   def completed_demographic_survey?

@@ -27,7 +27,7 @@
             %h6.f300.primary-blue{ style: 'margin-bottom:30px;' }
               = link_to 'View Data', report_survey_path(survey)
 
-- elsif current_user.incomplete_surveys.present?
+- elsif current_user.incomplete_answer_sessions.count > 0
   -# Survey widget if applicable
   .widget-container
     .widget-container-body
