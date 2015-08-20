@@ -268,6 +268,10 @@ Rails.application.routes.draw do
           get :show
         end
       end
+      scope module: :account do
+        get 'account/user_types', to: :user_types
+        post 'account/set_user_types', to: :set_user_types
+      end
     end
   end
 
