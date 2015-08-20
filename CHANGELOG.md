@@ -95,6 +95,11 @@
 - Removed old registration views and methods
 - Removed unused attributes from answer sessions
 
+## 7.5.1 (August 20, 2015)
+
+### Enhancements
+- Changed the copy for the join message on the landing page
+
 ## 7.5.0 (August 14, 2015)
 
 ### Enhancements

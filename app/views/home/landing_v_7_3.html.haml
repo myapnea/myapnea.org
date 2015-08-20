@@ -122,8 +122,13 @@
 #slide5
   .text-content-container.centered
     %h1.text-white
-      %span.primary-orange= number_with_delimiter User.current.count
-      people are already making a difference
+      - if false
+        %span.primary-orange= number_with_delimiter User.current.count
+        people are already making a difference
+      - else
+        Join
+        %span.primary-orange thousands
+        of people already making a difference on MyApnea.Org.
     = link_to 'Join Today', get_tracked_link(:join_from_landing), class: 'btn btn-primary', id: 'btn-join'
 
 #slide6
