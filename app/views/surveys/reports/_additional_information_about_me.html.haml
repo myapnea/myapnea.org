@@ -1,15 +1,22 @@
-- bmi = Report.bmi('baseline', current_user)
-- unless bmi.nan?
+- height = TemporaryReport.get_value('height', @answer_session)
+- weight = TemporaryReport.get_value('weight', @answer_session)
+- bmi = TemporaryReport.compute_bmi(@answer_session)
+
+- if bmi
   .survey-report-container.panel
     .survey-report-question.rounded-top
       %h3 Based on your height and weight, we are able to calculate your body mass index (BMI).
     .survey-report-answer
       %p
         Your height:
-        %span.f500= "#{Report.height('baseline', current_user)} inches"
+        %span.f500
+          = height
+          inches
       %p
         Your weight:
-        %span.f500= "#{Report.weight('baseline', current_user)} pounds"
+        %span.f500
+          = weight
+          pounds
     .survey-report-info
       %p.lead
         Your BMI:

@@ -23,3 +23,16 @@
 .btn-default-custom:hover {
   color: #555;
 }
+
+.btn-warning-custom {
+  padding: 10px;
+  border-radius: 3px;
+  background-color: #ffa400;
+  border: 1px solid #e69400;
+  color: #fff;
+  font-weight: 400;
+}
+
+.btn-warning-custom:hover {
+  color: #eee;
+}

@@ -1,21 +1,21 @@
 - part_of_registration = false unless defined?(part_of_registration)
 
-.content-container
+.content-container{ style: 'margin-bottom: 0px;'}
   .content-header
-    %h1.f300
+    %h3.f300
       Terms of Access for MyApnea.Org
   .content-body
     #print-area
-      %p.lead
+      %p
         Aggregate research results from the MyApnea.Org research portal are available here to all registered users of MyApnea.Org for viewing.  Aggregate results consist of survey responses and other data provided by participants in MyApnea.Org research, presented in summary form (“Results”).
-      %p.lead
+      %p
         By clicking on the “I Agree" button below, you, the user (“You”) agree to the following Terms of Access to the MyApnea.Org research Results, which terms are in addition to any other applicable Terms of Use, Web Policy Statements, Disclaimers, or other terms applicable to Your use of the MyApnea.Org website:
       %ul
         %li You understand and agree that the Results are being provided to You solely for the purpose of stimulating interest in and awareness of sleep apnea among patients, clinicians, researchers, family and friends, and other individuals affected by the disorder.  Results are NOT being provided for the purpose of providing medical treatment or advice and should not be relied upon for such purposes.  Any use of the Results is at Your own risk, and We are not responsible for such use.
         %li Results reflect self-reported information from participants in the Research portal of MyApnea.Org.   We believe that our summaries as presented on this website are generally accurate, but they have not to date been peer-reviewed or undergone rigorous scientific analysis.  The Results are updated periodically as new participants enroll in the Research Portal of MyApnea.Org and may not be current at the time of Your access.
         %li You understand and agree that the Results are presented in an aggregate or summary form that is intended to avoid identification of any individual participants in the MyApnea.Org Research.  You will not use the Results to identify or attempt to identify any individual MyApnea.Org research participant(s).
         %li Any use of the Results by you in any written publication, presentation, or analysis must acknowledge the MyApnea.Org Research portal as the source of the information with the following text: [“The results in this publication/presentation/analysis (choose one as appropriate) were accessed through the Sleep Apnea Patient Centered Outcomes Network (SAPCON)-MyApnea.Org website.”]
-      %p.lead
+      %p
         Individual de-identified participant-level data can be obtained but will require completion of a Data Use Agreement available on the Research Portal section of MyApnea.Org which will be made available at a later date.
       - if current_user and !current_user.accepted_terms_of_access? and current_user.is_only_academic?
         = markdown 'If you wish to be in this study please click the button that says **"I Agree"**'
@@ -23,19 +23,20 @@
     = link_to "#", id: "print-link", class: 'print-link pull-right btn btn-xs btn-primary' do
       %i.fa.fa-print
       Print Terms of Access
-  - if current_user and (current_user.provider? or current_user.researcher?)
+  - if current_user and !part_of_registration and (current_user.provider? or current_user.researcher?)
     .content-footer.centered
       - if current_user.ready_for_research?
-        = link_to :back, class: 'btn btn-lg btn-default' do
-          .fa.fa-arrow-left
-          &nbsp;
-          Go Back
-        = link_to "Leave Research Study", revoke_consent_path, method: :post, class: 'btn btn-warning btn-lg'
+        = succeed ' ' do
+          = link_to :back, class: 'btn btn-lg btn-default-custom' do
+            .fa.fa-arrow-left
+            &nbsp;
+            Go Back
+        = link_to "Leave Research Study", revoke_consent_path, method: :post, class: 'btn btn-warning-custom btn-lg'
       - elsif current_user.accepted_terms_of_access?
-        - continue_path = part_of_registration ? get_started_privacy_path : privacy_path
-        = link_to "Continue to review privacy policy", continue_path, class: 'btn btn-primary btn-lg'
+        - continue_path = privacy_path
+        = link_to "Continue to review privacy policy", continue_path, class: 'btn btn-primary-custom btn-lg'
       - else
         - continue_path = accepts_terms_of_access_path(get_started: part_of_registration)
-        - cancel_path = part_of_registration ? get_started_step_three_path : :back
-        = link_to "I Agree", continue_path, method: :post, class: 'btn btn-primary btn-lg'
-        = link_to "I Decline", cancel_path, class: 'btn btn-danger btn-lg'
+        - cancel_path = :back
+        = link_to "I Agree", continue_path, method: :post, class: 'btn btn-primary-custom btn-lg'
+        = link_to "I Decline", cancel_path, class: 'btn btn-default-custom btn-lg'

@@ -1,23 +1,26 @@
 .row.reset-layout{ style: 'background-color: rgb(207, 226, 248)'}
 
 .survey-report-container.panel
-  = render partial: 'surveys/reports/question_and_user_answer', locals: { survey: @survey, question_slug: 'sex', encounter: 'baseline'}
+  = render 'surveys/reports/question_and_user_answer', survey: @survey, question_slug: 'sex'
   .survey-report-info
-    - table_data = Report.frequency_data('sex', 1..2)
+    - question = @survey.questions.find_by_slug('sex')
+    - answer_template = question.first_radio_or_checkbox_answer_template if question
+    - answer_option_counts = TemporaryReport.answer_option_counts(@survey, question, answer_template, encounter: @encounter, range: 1..2)
     .row.reset-layout
       .col-xs-3.col-xs-offset-3
         = image_tag 'myapnea/surveys/about-me/male_color.png', class: 'img-responsive'
-        %p.lead= "#{table_data[1][:text]}: #{table_data[1][:freq].round(1)}%"
+        - report_item = ReportItem.new(answer_option_counts, answer_template, 1)
+        %p.lead= report_item.text_and_percent
       .col-xs-3
         = image_tag 'myapnea/surveys/about-me/female_color.png', class: 'img-responsive'
-        %p.lead= "#{table_data[2][:text]}: #{table_data[2][:freq].round(1)}%"
+        - report_item = ReportItem.new(answer_option_counts, answer_template, 2)
+        %p.lead= report_item.text_and_percent
     %p.lead
       Members of either sex can develop sleep apnea. Men are 2-to-3 times more likely to have sleep apnea, but as women reach menopause their risk increases.
 
 .survey-report-container.panel
-  = render partial: 'surveys/reports/question_and_user_answer', locals: { survey: @survey, question_slug: 'race', encounter: 'baseline'}
+  = render 'surveys/reports/question_and_user_answer', survey: @survey, question_slug: 'race'
   .survey-report-info
-    - table_data = Report.frequency_data('race', 1..5)
     .row.reset-layout
       .col-lg-3.col-sm-4.col-sm-offset-0.col-xs-6.col-xs-offset-3
         = image_tag 'myapnea/surveys/about-me/globe.png', class: 'img-responsive', style: 'max-width: 250px'
@@ -25,85 +28,80 @@
         %br
         %p.lead.text-left
           Sleep apnea occurs in all races of people. Understanding associations between sleep apnea and race may help shed light on the genes and environmental risk factors that influence sleep apnea.
-      - if false
-        .col-xs-4
-          = image_tag 'myapnea/surveys/about-me/americas_highlighted.png', class: 'img-responsive'
-          %p.lead= "#{table_data[1][:text]}: #{table_data[1][:freq].round(1)}%"
-        .col-xs-4
-          = image_tag 'myapnea/surveys/about-me/asia_highlighted.png', class: 'img-responsive'
-          %p.lead= "#{table_data[2][:text]}: #{table_data[2][:freq].round(1)}%"
-        .col-xs-4
-          = image_tag 'myapnea/surveys/about-me/africa_highlighted.png', class: 'img-responsive'
-          %p.lead= "#{table_data[3][:text]}: #{table_data[3][:freq].round(1)}%"
-        .row.reset-layout
-          .col-xs-4.col-xs-offset-2
-            = image_tag 'myapnea/surveys/about-me/pacific_islands_highlighted.png', class: 'img-responsive'
-            %p.lead= "#{table_data[4][:text]}: #{table_data[4][:freq].round(1)}%"
-          .col-xs-4
-            = image_tag 'myapnea/surveys/about-me/europe_highlighted.png', class: 'img-responsive'
-          %p.lead= "#{table_data[5][:text]}: #{table_data[5][:freq].round(1)}%"
 
 .survey-report-container.panel
-  = render partial: 'surveys/reports/question_and_user_answer', locals: { survey: @survey, question_slug: 'ethnicity', encounter: 'baseline'}
+  = render 'surveys/reports/question_and_user_answer', survey: @survey, question_slug: 'ethnicity'
   .survey-report-info
-    - table_data = Report.frequency_data('ethnicity', 1..2)
+    - question = @survey.questions.find_by_slug('ethnicity')
+    - answer_template = question.first_radio_or_checkbox_answer_template if question
+    - answer_option_counts = TemporaryReport.answer_option_counts(@survey, question, answer_template, encounter: @encounter, range: 1..2)
     .row.reset-layout
       .col-xs-6
         %h1.report-statistic Yes
         %p.lead
           Yes:
-          %span.f500.darkerer-blue= "#{table_data[2][:freq].round(1)}%"
+          - report_item = ReportItem.new(answer_option_counts, answer_template, 2)
+          %span.f500.darkerer-blue= report_item.percent
       .col-xs-6
         %h1.report-statistic No
         %p.lead
           No:
-          %span.f500.darkerer-blue= "#{table_data[1][:freq].round(1)}%"
+          - report_item = ReportItem.new(answer_option_counts, answer_template, 1)
+          %span.f500.darkerer-blue= report_item.percent
     %p.lead
       Sleep apnea occurs among people of all ethnicities. Our culture can play an important role in determining where we live, what we eat and how we live our lives. Understanding associations between sleep apnea and one’s ethnicity or culture may help shed light on the genetic and environmental risk factors that influence sleep apnea.
 
 .survey-report-container.panel
-  = render partial: 'surveys/reports/question_and_user_answer', locals: { survey: @survey, question_slug: 'education-level', encounter: 'baseline'}
+  = render 'surveys/reports/question_and_user_answer', survey: @survey, question_slug: 'education-level'
   .survey-report-info
-    - table_data = Report.frequency_data('education-level', 1..6)
+    - question = @survey.questions.find_by_slug('education-level')
+    - answer_template = question.first_radio_or_checkbox_answer_template if question
+    - answer_option_counts = TemporaryReport.answer_option_counts(@survey, question, answer_template, encounter: @encounter, range: 1..6)
     .row.reset-layout{ style: 'margin: 40px 0'}
       .col-xs-2.col-sm-offset-1
         = image_tag 'myapnea/surveys/about-me/education1_color.png', class: 'img-responsive'
       .col-xs-8
         %h4.f300.text-left
-          = "#{table_data[1][:text]}: #{table_data[1][:freq].round(1)}%"
+          - report_item = ReportItem.new(answer_option_counts, answer_template, 1)
+          = report_item.text_and_percent
     .row.reset-layout{ style: 'margin: 40px 0'}
       .col-xs-2.col-sm-offset-1
         = image_tag 'myapnea/surveys/about-me/education2_color.png', class: 'img-responsive'
       .col-xs-8
         %h4.f300.text-left
-          = "#{table_data[2][:text]}: #{table_data[2][:freq].round(1)}%"
+          - report_item = ReportItem.new(answer_option_counts, answer_template, 2)
+          = report_item.text_and_percent
     .row.reset-layout{ style: 'margin: 40px 0'}
       .col-xs-2.col-sm-offset-1
         = image_tag 'myapnea/surveys/about-me/education3_color.png', class: 'img-responsive'
       .col-xs-8
         %h4.f300.text-left
-          = "#{table_data[3][:text]}: #{table_data[3][:freq].round(1)}%"
+          - report_item = ReportItem.new(answer_option_counts, answer_template, 3)
+          = report_item.text_and_percent
     .row.reset-layout{ style: 'margin: 40px 0'}
       .col-xs-2.col-sm-offset-1
         = image_tag 'myapnea/surveys/about-me/education4_color.png', class: 'img-responsive'
       .col-xs-8
         %h4.f300.text-left
-          = "#{table_data[4][:text]}: #{table_data[4][:freq].round(1)}%"
+          - report_item = ReportItem.new(answer_option_counts, answer_template, 4)
+          = report_item.text_and_percent
     .row.reset-layout{ style: 'margin: 40px 0'}
       .col-xs-2.col-sm-offset-1
         = image_tag 'myapnea/surveys/about-me/education5_color.png', class: 'img-responsive'
       .col-xs-8
         %h4.f300.text-left
-          = "#{table_data[5][:text]}: #{table_data[5][:freq].round(1)}%"
+          - report_item = ReportItem.new(answer_option_counts, answer_template, 5)
+          = report_item.text_and_percent
     .row.reset-layout{ style: 'margin: 40px 0'}
       .col-xs-2.col-sm-offset-1
         = image_tag 'myapnea/surveys/about-me/education6_color.png', class: 'img-responsive'
       .col-xs-8
         %h4.f300.text-left
-          = "#{table_data[6][:text]}: #{table_data[6][:freq].round(1)}%"
+          - report_item = ReportItem.new(answer_option_counts, answer_template, 6)
+          = report_item.text_and_percent
 
 .survey-report-container.panel
-  = render partial: 'surveys/reports/question_and_user_answer', locals: { survey: @survey, question_slug: 'income-level', encounter: 'baseline'}
+  = render 'surveys/reports/question_and_user_answer', survey: @survey, question_slug: 'income-level'
   .survey-report-info
     %p.lead
       Years in school and what you may earn does not directly determine whether or not you will have sleep apnea. However, education and income may affect whether or not you have access to health insurance and therefore medical care.

@@ -50,11 +50,10 @@
             = render 'topics/summary_table_row', topic: topic
 
     -# Separate footer for view from index and show
-    - if topic_limit
-      -# On Index
-      .content-footer.centered-text
+    .content-footer.centered
+      - if topic_limit
+        -# On Index
         = link_to 'Enter forum to view more posts', forum, class: 'no-underline'
-    - else
-      -# On Show Page
-      .content-footer.centered-text
+      - else
+        -# On Show Page
         = paginate topics, theme: 'bootstrap-small'

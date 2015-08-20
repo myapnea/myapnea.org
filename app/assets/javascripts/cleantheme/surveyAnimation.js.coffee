@@ -243,9 +243,9 @@
       # Handle hidden inputs first to prevent extra entering
       else if $("input:focus").is(":text")
         return
-      # Handle 'prefer not to answer checkbox'
-      else if $('.survey-container.active').find('.preferred-not-to-answer').length
-        return
+      # # Handle 'prefer not to answer checkbox'
+      # else if $('.survey-container.active').find('.preferred-not-to-answer').length
+      #   return
       # Handle radio_input_multiple
       else if $(".survey-container.active").hasClass "multiple-question-parts"
         inputs = $(".survey-container.active .multiple-question-container.current").find("input:radio")
@@ -270,7 +270,7 @@
               if $(inputs[index]).data('object') == "reveal-next-input" then revealNextInput($(inputs[index]).data('target')) else assignQuestion(true, false)
         # Otherwise, check answer
         else
-          inputs = $(".survey-container.active").find("input:checkbox")
+          inputs = $(".survey-container.active").find("input:checkbox:not(.preferred-not-to-answer-input)")
           keyCode = if window.event then e.which else e.keyCode
           if $(inputs).data('hotkey')
             inputs.each (index) ->

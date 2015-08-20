@@ -7,6 +7,7 @@ class UsersController < ApplicationController
   def index
     @all_users = User.current.search(params[:search]).order(current_sign_in_at: :desc)
     @users = @all_users.page(params[:page]).per( 40 )
+    render layout: 'application-no-sidebar'
   end
 
   def export
@@ -18,7 +19,7 @@ class UsersController < ApplicationController
           user.email,
           user.first_name,
           user.last_name,
-          user.completed_surveys.count
+          user.completed_answer_sessions.count
         ]
         csv << row
       end

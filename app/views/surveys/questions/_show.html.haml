@@ -12,9 +12,8 @@
 - if question.answer_templates.where(template_name: 'radio', parent_answer_option_value: nil).count > 0
   - progress = true
 
-- if false # TODO REMOVE
-  - case question.display_type when 'radio_input_multiple'
-    - extra_class = "multiple-question-parts"
+- if question.answer_templates.where(template_name: 'radio', parent_answer_template_id: nil).count > 1
+  - extra_class = "multiple-question-parts"
 
 
 = form_tag process_answer_surveys_path(question_id: question, answer_session_id: answer_session), role: "form", onsubmit: onsubmit, class: "survey-container #{extra_class}", data: { object: "question-container-#{question_number}", progress: progress } do

@@ -22,6 +22,10 @@ class Child < ActiveRecord::Base
     self.answer_sessions.joins(:survey).where.not(surveys: { slug: nil }).order(:locked, "surveys.name_en", :encounter)
   end
 
+  def consented?
+    self.accepted_consent_at and self.accepted_consent_at < Time.zone.now
+  end
+
   private
 
     def assign_child_surveys

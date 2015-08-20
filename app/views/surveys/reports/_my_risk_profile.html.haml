@@ -2,11 +2,13 @@
   .survey-report-question.rounded-top
     %h3
       What symptoms do you currently experience?
-  - if Report.selected_symptoms("baseline", "risk-symptoms", current_user).present?
+  - my_risk_symptoms = TemporaryReport.risk_symptoms(@answer_session, 'risk-symptoms').collect{|ao| ao.answer_templates.first.text}
+  - if my_risk_symptoms.count > 0
     .survey-report-answer
       %p
         Your symptoms include:
-        %span.f500= Report.selected_symptoms("baseline", "risk-symptoms", current_user).join(", ")
+        %span.f500= my_risk_symptoms.join(", ")
   .survey-report-info
     %h3 The following symptoms were commonly experienced by members of MyApnea.Org before their diagnosis:
-    = render partial: 'surveys/reports/sleep_apnea_symptoms_statistics'
+    - question = @survey.questions.find_by_slug('risk-symptoms')
+    = render 'surveys/reports/sleep_apnea_symptoms_statistics', question: question

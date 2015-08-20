@@ -20,7 +20,7 @@
       %p.small.f500.text-dark5
         SURVEYS
       %h5.text-white5
-        = current_user.completed_surveys.count
+        = current_user.completed_answer_sessions.count
     .col-xs-4.user-stats
       %p.small.f500.text-dark5
         VOTES
@@ -71,7 +71,7 @@
           %p
             Contribute to the discussions
     -# User should complete a survey
-    - if current_user.completed_surveys.present?
+    - if current_user.completed_answer_sessions.count > 0
       .progress-item
         %span.glyphicon.glyphicon-ok.progress-indicator.progress-indicator-complete
         %p

@@ -1,0 +1,22 @@
+.consent-container {
+  height: 400px;
+  max-width: 700px;
+  margin: auto;
+  margin-bottom: 20px;
+  background-color: #fafafa;
+  border: 1px solid #ddd;
+}
+
+.show-scrollbar {
+  overflow-y: scroll;
+}
+
+.show-scrollbar::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 7px;
+}
+.show-scrollbar::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: #d6d6d6;
+}
+

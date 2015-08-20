@@ -1,7 +1,6 @@
 - if @survey
   .horizontal-inset
-    - @survey.questions.joins(:answer_templates).where(answer_templates: { template_name: ['radio', 'checkbox'] }).each do |question|
+    - @survey.questions.joins(:answer_templates).where(answer_templates: { template_name: ['radio', 'checkbox'] }).to_a.uniq.each do |question|
       = render 'surveys/reports/question_text', question: question
       - question.answer_templates.where(template_name: ['radio', 'checkbox']).each_with_index do |answer_template, index|
-        - user_answer_values = @answer_session.user.answer_for(@answer_session, question).answer_values.where(answer_template_id: answer_template.id) if @answer_session and @answer_session.user.answer_for(@answer_session, question)
-        = render 'surveys/reports/question_and_answer', survey: @survey, question: question, answer_template: answer_template, user_answer_values: user_answer_values, answer_template_index: index
+        = render 'surveys/reports/question_and_answer', survey: @survey, question: question, answer_template: answer_template, answer_template_index: index

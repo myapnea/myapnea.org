@@ -1,12 +1,18 @@
-- if current_user.is_nonacademic? and !current_user.provider?
+- if @answer_session
   .content-container
     .content-header
       %h2.f300
         Thank you for completing the
-        %span.darkerer-blue.f500= @survey.name
+        %span.darkerer-blue.f500
+          - if @encounter and @encounter.slug != 'baseline'
+            = succeed ':' do
+              = @answer_session.survey.name
+            = @encounter.name
+          - else
+            = @answer_session.survey.name
         survey!
     .content-body
-      %h3.lighter-blue
+      %h3{ style: 'color: #0FA730' }
         Congratulations, you have received one entry into the next monthly drawing!
       %br
       %p
@@ -21,7 +27,13 @@
     .content-header
       %h2.f300
         Welcome to the data viewer for the
-        %span.darker-blue= @survey.name
+        %span.darkerer-blue.f500
+          - if @encounter and @encounter.slug != 'baseline'
+            = succeed ':' do
+              = @survey.name
+            = @encounter.name
+          - else
+            = @survey.name
         survey!
     .content-body
       %p

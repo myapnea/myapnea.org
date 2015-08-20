@@ -23,15 +23,6 @@ class AnswerSession < ActiveRecord::Base
     answers.complete.count == survey.questions.count
   end
 
-  def locked?
-    unless self[:locked]
-      should_lock = (answers.locked.count == survey.questions.count)
-      self.update locked: should_lock, locked_at: (should_lock ? Time.zone.now : nil)
-    end
-
-    self[:locked]
-  end
-
   def unlocked?
     !self.locked?
   end
@@ -58,13 +49,19 @@ class AnswerSession < ActiveRecord::Base
     end
   end
 
-  def lock
+  def lock!
     self.answers.update_all state: 'locked'
+    self.update locked: true, locked_at: Time.zone.now
   end
 
   def unlock!
     self.answers.where(state: 'locked').update_all(state: 'complete')
     self.update locked: false, locked_at: nil
+  end
+
+  # Returns all answer values for a specific question and answer template
+  def answer_values(question, answer_template)
+    AnswerValue.joins(:answer).where(answers: { answer_session_id: self.id, question_id: question.id }).where(answer_template_id: answer_template.id)
   end
 
   def applicable_questions

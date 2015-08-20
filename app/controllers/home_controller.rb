@@ -10,7 +10,7 @@ class HomeController < ApplicationController
       flash.delete(:notice) if I18n.t('devise.sessions.signed_in') == flash[:notice]
       flash.delete(:alert)
 
-      @surveys = current_user.visible_surveys.limit(3)
+      @surveys = Survey.current.viewable.non_pediatric.limit(3)
       @answer_sessions = current_user.answer_sessions.joins(:survey).where(child_id: nil).where.not(surveys: { slug: nil }).order(:locked, "surveys.name_en", :encounter).limit(3)
       @posts = posts
     else

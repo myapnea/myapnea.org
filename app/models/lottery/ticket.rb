@@ -1,18 +1,22 @@
 class Ticket
 
-  attr_accessor :user_id, :survey_id
+  attr_accessor :user_id, :answer_session_id
 
-  def initialize(user_id, survey_id)
+  def initialize(user_id, answer_session_id)
     @user_id = user_id
-    @survey_id = survey_id
+    @answer_session_id = answer_session_id
   end
 
   def user
     User.find_by_id(@user_id)
   end
 
+  def answer_session
+    AnswerSession.find_by_id(@answer_session_id)
+  end
+
   def survey
-    Survey.find_by_id(@survey_id)
+    self.answer_session.survey
   end
 
 end

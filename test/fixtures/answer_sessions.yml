@@ -12,6 +12,12 @@ complete:
   survey: new
   encounter: baseline
   locked: true
+complete_about_me:
+  user: has_completed_survey
+  survey: about_me
+  encounter: baseline
+  locked: true
+
 
 incomplete2_baseline:
   user: has_incomplete_survey
@@ -65,3 +71,26 @@ locked:
   survey: built_on_web
   encounter: baseline
   locked: true
+  locked_at: <%= 6.months.ago.to_s(:db) %>
+
+##
+locked_today:
+  user: created_today_with_locked_baseline
+  survey: built_on_web
+  encounter: baseline
+  locked: true
+  locked_at: <%= Date.today.to_s(:db) %>
+
+locked_five_days_ago:
+  user: created_five_days_ago_with_locked_baseline
+  survey: built_on_web
+  encounter: baseline
+  locked: true
+  locked_at: <%= 5.day.ago.to_s(:db) %>
+
+locked_fourteen_days_ago:
+  user: created_fourteen_days_ago_with_locked_baseline
+  survey: built_on_web
+  encounter: baseline
+  locked: true
+  locked_at: <%= 14.day.ago.to_s(:db) %>

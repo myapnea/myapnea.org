@@ -4,9 +4,7 @@
 - **Survey Changes**
   - Longitudinal surveys can be launched and assigned to users, ex:
     - `s = Survey.find_by_slug 'about-me'`
-    - `s.launch_single(user, '6month', send_email: true)`
-    - or
-    - `s.launch_multiple(users, '6month', send_email: true)`
+    - `s.launch_single(user, '6month')`
   - Automated survey followup emails can be sent when new surveys are launched
   - Followup surveys are launched automatically a specified number of days after sign up
   - Pediatric surveys have been added
@@ -15,6 +13,10 @@
     - `s = Survey.find_by_slug 'about-my-child'`
     - `s.launch_single_for_children(user, 'baseline')`
     - Baseline surveys are immediately assigned when a child in the proper age range is added by a caregiver of a child
+    - Data export excludes pediatric surveys
+  - Minor UI updates to completion display
+  - Reports are now additionally scoped by encounter (ex: baseline, followup)
+  - Reports that do not have custom reports, now redirect to the detailed report view
 - **Online Survey Builder**
   - Started work on an online survey builder for researchers and team members
   - The online survey builder will let survey builders specify the following:
@@ -35,11 +37,22 @@
     - The initial baseline is launched after the newer of the survey publish date or the user registration
     - Users receive a survey digest of new surveys that are available when new surveys are assigned
   - Survey User Type can be added to surveys in online builder
+- **Onboarding Changes**
+  - Reduced consent and privacy into one step in the process
+  - Removed progress indicators (due to shorter process) and switched to simple layout (without sidebar)
+- **Forum Changes**
+  - Minor updates to layout, specifically in the headers
+- **Highlight Changes**
+  - Minor updates to layout to keep consistency with other internal links
+- **Other Changes**
+  - Account settings layout updated with improved, less intrusive navigation
 - **Admin Changes**
   - Administrators can now unlock surveys for users from the user show page
   - Updated the Version Stats report to be monthly, and renamed to it to the Timeline Report
   - Owners receive survey followup digest emails when new surveys are assigned to users
+  - All admin pages are now using the fullscreen layout
 - **Gem Changes**
+  - Updated to Ruby 2.2.3
   - Only run `web-console` in development mode
   - Updated to rails 4.2.4.rc1
 
@@ -69,6 +82,9 @@
 - Surveys are now correctly reassigned when a user changes their user type
   - Unstarted surveys that are no longer applicable are discarded, and started surveys are kept
 - Fixed a bug that could cause users to have above 100% completion on surveys
+- Fixed a bug where new users weren't always marked as ready for research due to consent update dates
+- Flash notices are now being rendered on every page, to ensure they appear at the proper time
+- Fixed an issue displaying pie charts for My Quality of Life survey report
 
 ### Refactoring
 - Simplified processing single answers from surveys
@@ -78,6 +94,15 @@
 - Refactored Survey class in favor of an AnswerSession-centric model
 - Removed unused methods from the user model
 - Removed unused views and partials
+- Health Conditions report no longer relies on extra server JSON request
+- Removed old registration views and methods
+- Removed unused attributes from answer sessions
+- Removed unused attributes from survey
+
+## 7.5.1 (August 20, 2015)
+
+### Enhancements
+- Changed the copy for the join message on the landing page
 
 ## 7.5.0 (August 14, 2015)
 

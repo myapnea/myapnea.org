@@ -1,4 +1,4 @@
-- promis_score = Report.personal_promis_score('baseline', current_user)
+- promis_score = TemporaryReport.compute_promis_score(@answer_session)
 
 .survey-report-container.panel
   .survey-report-question.rounded-top
@@ -10,12 +10,12 @@
         .range-text.range-left 0
         .range-text.range-center 50
         .range-text.range-right 100
-    - if promis_score.present? and !promis_score.nan?
+    - if promis_score
       %p.lead
         Your sleep disturbance score:
         %span.f500= "%0.2f" % promis_score
   .survey-report-info.rounded-bottom
-    - if promis_score.present? and !promis_score.nan?
+    - if promis_score
       %p.lead
         %span.f500
           = "You did a great job with your sleep this week!" if promis_score < 50

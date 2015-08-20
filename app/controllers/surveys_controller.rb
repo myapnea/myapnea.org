@@ -3,16 +3,13 @@ class SurveysController < ApplicationController
   before_action :authenticate_user!,                      except: [:index]
   before_action :authenticate_research,                   except: [:index]
   before_action :set_survey,                              only: [:show, :report, :report_detail, :accept_update_first]
+  before_action :set_encounter,                           only: [:show, :report, :report_detail, :accept_update_first]
   before_action :set_answer_session,                      only: [:show, :report, :report_detail, :accept_update_first]
   before_action :redirect_without_answer_session,         only: [:show]
   before_action :redirect_without_accepted_recent_update, only: [:show]
   before_action :check_report_access,                     only: [:report, :report_detail]
 
   before_action :set_SEO_elements
-
-  def my_health_conditions_data
-    @data = Report.comorbidity_map.push(["Sleep Apnea", "conditions-sleep-apnea", 100])
-  end
 
   def index
     if current_user
@@ -28,6 +25,16 @@ class SurveysController < ApplicationController
   end
 
   def report
+    unless @survey.has_custom_report?
+      redirect_url = if @answer_session and @answer_session.child
+        child_survey_report_detail_path(@answer_session.child.id, @answer_session.survey, @answer_session.encounter)
+      elsif @answer_session
+        report_detail_survey_path(@answer_session.survey, @answer_session.encounter)
+      else
+        report_detail_survey_path(@survey, @encounter)
+      end
+      redirect_to redirect_url
+    end
   end
 
   def report_detail
@@ -58,7 +65,7 @@ class SurveysController < ApplicationController
 
   def submit
     if @answer_session = current_user.answer_sessions.find_by_id(params[:answer_session_id])
-      @answer_session.lock if @answer_session.completed?
+      @answer_session.lock! if @answer_session.completed?
       render json: { locked: @answer_session.locked? }
     else
       head :no_content
@@ -69,6 +76,10 @@ class SurveysController < ApplicationController
 
   def set_survey
     @survey = Survey.current.viewable.includes(:questions).find_by_param(params[:id])
+  end
+
+  def set_encounter
+    @encounter = Encounter.current.find_by_param(params[:encounter] || 'baseline')
   end
 
   def set_answer_session

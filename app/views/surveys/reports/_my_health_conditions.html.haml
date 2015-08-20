@@ -1,3 +1,5 @@
+- result = TemporaryReport.health_conditions(@survey, @encounter)
+
 .survey-report-container.panel
   .survey-report-question.rounded-top
     %h3 Health Conditions Related to Sleep Apnea
@@ -13,5 +15,5 @@
       %span.f500 click on
       each circle to learn more!
     #health-conditions-info
-    #health-conditions{ style: 'position:relative', data: { object: 'd3-report', question: 'health-conditions' } }
+    #health-conditions{ style: 'position:relative', data: { object: 'd3-report', question: 'health-conditions', health_conditions_json: "#{result.to_json}" } }
       #tooltip.hidden.hidden-xs{ style: 'position: absolute;' }

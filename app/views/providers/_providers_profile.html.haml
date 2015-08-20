@@ -1,9 +1,14 @@
+- part_of_registration = false unless defined?(part_of_registration)
 - validation = 'inline-validation'
 = form_for current_user, html: { role: "form", class: 'form-horizontal', data: { object: "#{validation}"} }, url: update_account_path, method: :patch do |f|
   .content-container
     .content-header
-      %h3.f300.centered-text
-        My Provider Profile
+      - if part_of_registration
+        %h1.f300.centered{ style: 'margin-bottom: 20px;' } My Provider Profile
+        %p.lead
+          By offering this network to your patients, and engaging with them actively outside of the office, they begin to feel a uniquely incredible quality of care. This community gives people with sleep apnea a high level of support from researchers, care providers, and fellow patients across the world.
+      - else
+        %h3.f300.centered My Provider Profile
     .content-body
       .form-group
         .col-sm-3.col-sm-offset-3
@@ -63,7 +68,6 @@
           %p.small.centered-text.inline-validation-error
             Please enter a unique URL so users can easily find you! Only use numbers and lower-case letters, separated by hyphens (e.g. provider-example-1).
 
-      %br
       .form-group
         %label.control-label.col-sm-3
           Welcome Message
@@ -73,9 +77,8 @@
           %p.small.centered-text.inline-validation-error
             Please enter a unique message for your incoming members!
 
-      %br
-      .form-group
-        =f.submit("Save and Preview Changes", class: 'btn btn-primary col-sm-6 col-sm-offset-3 centered-text')
+      .row
+        =f.submit "Save and Preview Changes", class: 'btn btn-primary-custom col-sm-6 col-sm-offset-3'
 
     .content-footer
       - if current_user.provider_name.present? and current_user.slug.present?

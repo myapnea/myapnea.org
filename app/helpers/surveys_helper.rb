@@ -14,9 +14,9 @@ module SurveysHelper
 
   end
 
-  def next_survey_path(survey)
-    next_survey = current_user.next_survey(survey)
-    next_survey.present? ? survey_path(next_survey) : surveys_path
+  def next_answer_session_path(answer_session)
+    next_answer_session = current_user.next_answer_session(answer_session)
+    next_answer_session ? survey_path(next_answer_session.survey, answer_session.encounter) : surveys_path
   end
 
 end

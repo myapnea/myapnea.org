@@ -20,8 +20,11 @@ Rails.application.routes.draw do
   get "children/:child_id/surveys/:id/:encounter/report" => 'surveys#report', as: :child_survey_report
   get "children/:child_id/surveys/:id/:encounter/report-detail" => 'surveys#report_detail', as: :child_survey_report_detail
   get "children/:child_id/surveys/:id/:encounter" => 'surveys#show', as: :child_survey
-  resources :children
-
+  resources :children do
+    member do
+      post :accept_consent
+    end
+  end
 
   scope module: 'home' do
     get :dashboard
@@ -73,15 +76,8 @@ Rails.application.routes.draw do
 
   # Registration flow
   get 'get-started' => 'account#get_started'
-  get 'get-started/privacy' => 'account#get_started_privacy'
-  get 'get-started/step-one' => 'account#get_started_step_one'
   get 'get-started/step-two' => 'account#get_started_step_two'
   get 'get-started/step-three' => 'account#get_started_step_three'
-  get 'get-started/consent' => 'account#get_started_consent'
-  get 'get-started/about-me' => 'account#get_started_about_me'
-  get 'get-started/terms-of-access' => 'account#get_started_terms_of_access'
-  get 'get-started/provider-profile' => 'account#get_started_provider_profile'
-  get 'get-started/social-profile' => 'account#get_started_social_profile'
 
   get 'describe-yourself' => 'account#user_type'
   patch 'set_user_type' => 'account#set_user_type'
@@ -148,8 +144,6 @@ Rails.application.routes.draw do
       get ':encounter/accept-update-first(/:child_id)', action: :accept_update_first, as: :accept_update_first
     end
   end
-  get 'surveys/my-health-conditions/my_health_conditions_data' => 'surveys#my_health_conditions_data', format: :json
-
 
   ## Public Tools
   get 'sleep-apnea-risk-assessment' => 'tools#risk_assessment'

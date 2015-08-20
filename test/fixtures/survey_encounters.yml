@@ -5,6 +5,17 @@ web_encounter_baseline:
   encounter: baseline
   user: builder
 
+web_encounter_10day:
+  survey: built_on_web
+  encounter: 10day
+  user: builder
+
+web_encounter_10day_dependent:
+  survey: built_on_web_followup
+  encounter: 10day
+  user: builder
+  parent_survey_encounter: web_encounter_baseline
+
 web_encounter_6month:
   survey: built_on_web
   encounter: 6month
