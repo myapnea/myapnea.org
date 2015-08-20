@@ -160,6 +160,14 @@ class TopicsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should not show topic for user who has not accepted terms and conditions" do
+    login(users(:created_today))
+    get :show, forum_id: forum, id: topic
+    assert_not_nil assigns(:forum)
+    assert_nil assigns(:topic)
+    assert_redirected_to terms_and_conditions_path
+  end
+
   test "should not show topic marked as spam for logged out user" do
     get :show, forum_id: topics(:spam).forum, id: topics(:spam)
     assert_not_nil assigns(:forum)
