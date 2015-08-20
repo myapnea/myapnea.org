@@ -108,6 +108,13 @@ class ForumsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should not show forum for user who has not accepted terms and conditions" do
+    login(users(:created_today))
+    get :show, id: forum
+    assert_not_nil assigns(:forum)
+    assert_redirected_to terms_and_conditions_path
+  end
+
   test "should not get edit for logged out user" do
     get :edit, id: forum
     assert_nil assigns(:forum)
