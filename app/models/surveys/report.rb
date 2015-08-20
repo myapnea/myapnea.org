@@ -238,67 +238,6 @@ class Report < ActiveRecord::Base
     { satisfaction: satisfaction_percent, used_treatment: used_treatment_percent, helped_most: helped_most, helped_least: helped_least }
   end
 
-
-  # My Sleep Apnea
-
-  def self.median_age_of_diagnosis(encounter)
-    values = Report.where(encounter: encounter, question_slug: 'age-of-diagnosis', locked: true, value: 1..7).select('value,answer_option_text').map{|row| {value: row.value, text: row.answer_option_text}}.sort{|x,y| x[:value] <=> y[:value]}
-    values[values.length/2][:text]
-  end
-
-  def self.percent_length_before_diagnosis(encounter)
-    base_query = Report.where(encounter: encounter, question_slug: 'apnea-before-diagnosis', locked: true)
-    more_than_two_years = base_query.where(value: '6')
-
-    percentage(more_than_two_years.count, base_query.count)
-
-  end
-
-  def self.symptoms_before_diagnosis
-    base_query = Report.where(question_slug: 'symptoms-before-diagnosis', locked: true)
-
-
-    # number !N/A vs. all
-
-    # Median length
-
-    by_symptom = base_query.group(:answer_template_name,:answer_template_text).select("answer_template_name,answer_template_text,count(answer_value_id) as total,array_agg(value) as values, array_agg(answer_option_text) as texts").map(&:attributes)
-
-    by_symptom = by_symptom.map do |symp|
-      zipped_values = symp["values"].map(&:to_i).zip(symp["texts"])
-      not_na_values = zipped_values.select{|x| x[0] != 5}.sort{|a,b| b[0]<=>a[0]}
-
-      median_length = not_na_values[not_na_values.length/2][1]
-      above_year = symp["values"].select{|x| x == '4'}.length
-
-      {name: symp["answer_template_name"], text: symp["answer_template_text"], freq: percentage(not_na_values.length, symp["total"]), median: median_length, above_year: percentage(above_year, symp["total"])}
-    end
-
-    by_symptom.sort{|a,b| b[:freq]<=>a[:freq]}
-  end
-
-  def self.sleep_test_stats
-    test_query = Report.where(question_slug: 'diagnostic-study', locked: true, value: ['1', '2'])
-
-    total = test_query.count
-    home_percent = percentage(test_query.where(value: '1').count, total)
-    center_percent = percentage(test_query.where(value: '2').count, total)
-
-    home_as = test_query.where(value: '1').group(:answer_session_id).pluck(:answer_session_id)
-    center_as = test_query.where(value: '2').group(:answer_session_id).pluck(:answer_session_id)
-
-    satisfaction_query = Report.where(question_slug: 'sleep-study-satisfaction', locked: true)
-
-    home_values = satisfaction_query.where(answer_session_id: home_as).pluck(:value)
-    center_values = satisfaction_query.where(answer_session_id: center_as).pluck(:value)
-
-    home_sat_percent = percentage(home_values.select{|x| ['5','6','7'].include? x }.length, home_values.length)
-    center_sat_percent = percentage(center_values.select{|x| ['5','6','7'].include? x }.length, center_values.length)
-
-    {home_percent: home_percent, home_sat_percent: home_sat_percent, center_percent: center_percent, center_sat_percent: center_sat_percent}
-  end
-
-
   ## Additional Info About Me
   def self.current_marital_status_data
     table_data = Report.frequency_data('marital-status', 1..6)

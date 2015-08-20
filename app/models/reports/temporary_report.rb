@@ -66,13 +66,40 @@ class TemporaryReport
   end
 
   # My Risk Profile
-  def self.risk_symptoms(answer_session)
+  def self.risk_symptoms(answer_session, question_slug)
     if answer_session
-      my_risk_symptoms = self.get_values('risk-symptoms', answer_session)
+      my_risk_symptoms = self.get_values(question_slug, answer_session)
       answer_options = AnswerOption.where(id: my_risk_symptoms, value: 1..4)
     else
       AnswerOption.none
     end
+  end
+
+  # My Sleep Apnea
+  def self.satistification_percent_by_study(survey, study_value, encounter: nil)
+    satisfaction = survey.questions.find_by_slug('sleep-study-satisfaction')
+    study = survey.questions.find_by_slug('diagnostic-study')
+
+    base_answer_sessions = AnswerSession.current.where(locked: true, encounter: (encounter ? encounter.slug : nil), survey_id: survey.id)
+    base_answer_sessions = base_answer_sessions.joins(:user).merge(User.where(include_in_exports: true))
+
+    answer_sessions = base_answer_sessions.joins(:answers).where(answers: { question_id: study.id })
+    answer_sessions = answer_sessions.joins(answers: { answer_values: :answer_option }).merge(AnswerOption.where(value: study_value))
+    ids_in_study = answer_sessions.pluck(:id).uniq
+
+    answer_sessions = base_answer_sessions.joins(:answers).where(answers: { question_id: satisfaction.id }, id: ids_in_study)
+    answer_sessions = answer_sessions.joins(answers: { answer_values: :answer_option }).merge(AnswerOption.where(value: [5..7]))
+    ids_satistified = answer_sessions.pluck(:id).uniq
+
+    study_count = ids_in_study.count
+    satisfied_count = ids_satistified.count
+
+    percent = if study_count == 0
+      0.0
+    else
+      satisfied_count * 100.0 / study_count
+    end
+    "#{percent.round(1)}%"
   end
 
   # General single value returned
@@ -92,6 +119,21 @@ class TemporaryReport
     else
       []
     end
+  end
+
+  def self.get_median_report_item(survey, question, answer_template, encounter: nil, range: nil)
+    answer_option_counts = TemporaryReport.answer_option_counts(survey, question, answer_template, encounter: encounter, range: range)
+    median = nil
+    total = 0
+    (range || []).each do |answer_option_value|
+      ri = ReportItem.new(answer_option_counts, answer_template, answer_option_value)
+      total = total + ri.percent_number
+      if total >= 50
+        median = ri
+        break
+      end
+    end
+    median
   end
 
 end
