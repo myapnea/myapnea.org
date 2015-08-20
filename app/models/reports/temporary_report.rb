@@ -10,7 +10,7 @@ class TemporaryReport
     end.group(:answer_option).count
   end
 
-  ## Additional Info About Me
+  # Additional Info About Me
   def self.compute_bmi(answer_session)
     if answer_session
       weight = self.get_value('weight', answer_session)
@@ -21,7 +21,7 @@ class TemporaryReport
     end
   end
 
-  ## My Health Conditions
+  # My Health Conditions
   def self.health_conditions(survey, encounter)
     result = { nodes: [], links: [] }
     if encounter and question = survey.questions.find_by_slug('health-conditions-list')
@@ -36,6 +36,23 @@ class TemporaryReport
     result
   end
 
+  # My Sleep Quality
+  def self.compute_promis_score(answer_session)
+    if answer_session
+      sleep_quality = self.get_value('sleep-quality-week', answer_session)
+      sleep_quality_components = self.get_values('sleep-quality-week-components', answer_session)
+      all_values = [sleep_quality] + sleep_quality_components
+      answer_options = AnswerOption.where(id: all_values, value: 1..5)
+      if answer_options.count == 8
+        10*(answer_options.pluck(:value).sum-20)/5.6872 + 50
+      else
+        nil
+      end
+    else
+      nil
+    end
+  end
+
   # General single value returned
   def self.get_value(question_slug, answer_session)
     if answer_session and question = answer_session.survey.questions.find_by_slug(question_slug)
@@ -44,6 +61,14 @@ class TemporaryReport
       answer_value.value if answer_value
     else
       nil
+    end
+  end
+
+  def self.get_values(question_slug, answer_session)
+    if answer_session and question = answer_session.survey.questions.find_by_slug(question_slug)
+      AnswerValue.joins(:answer).where(answers: { answer_session_id: answer_session.id, question_id: question.id }).where(answer_template_id: question.answer_templates.select(:id)).collect(&:value)
+    else
+      []
     end
   end
 

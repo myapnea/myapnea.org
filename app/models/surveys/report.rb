@@ -188,26 +188,6 @@ class Report < ActiveRecord::Base
     values.sum/values.length.to_f
   end
 
-  # My Sleep Quality
-  def self.average_promis_score(encounter)
-    db_values = Report.where(encounter: encounter, survey_slug: 'my-sleep-quality', value: %w(1 2 3 4 5), locked: true).group("answer_session_id").having('count(value) = 8').pluck("sum(value::int)")
-
-    avg_raw_val = db_values.sum/db_values.length.to_f
-
-    score = 10*(avg_raw_val-20)/5.6872 + 50
-
-    score
-  end
-
-  def self.personal_promis_score(encounter, user)
-    raw_value = Report.where(encounter: encounter, survey_slug: 'my-sleep-quality', value: %w(1 2 3 4 5), user_id: user.id).group("answer_session_id").having("count(value) = 8").pluck("sum(value::int)").first
-    if raw_value
-      10*(raw_value-20)/5.6872 + 50
-    else
-      nil
-    end
-  end
-
   # My Sleep Apnea Treatment
   def self.current_treatment_popularity(encounter)
 
