@@ -1,7 +1,4 @@
-- @data = Report.comorbidity_map.push(["Sleep Apnea", "conditions-sleep-apnea", 100])
-- result = { nodes: [], links: [] }
-- result[:nodes] = @data.collect{|d| { name: d[0], id: d[1], frequency: d[2] }}
-- result[:links] = @data.collect{|d| { source: d[1], target: 'conditions-sleep-apnea' }}
+- result = TemporaryReport.health_conditions(@survey, @encounter)
 
 .survey-report-container.panel
   .survey-report-question.rounded-top

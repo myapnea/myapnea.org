@@ -1,6 +1,6 @@
 class ReportItem
 
-  attr_accessor :answer_option, :count, :total_count, :percent
+  attr_accessor :answer_option, :count, :total_count, :percent, :percent_number
 
   def initialize(answer_options_hash, answer_template, value)
     # answer_option_ids = answer_options_hash.collect{|ao, count| ao.id}
@@ -18,12 +18,12 @@ class ReportItem
   private
 
   def set_percent
-    percent_number = if @total_count == 0
+    @percent_number = if @total_count == 0
       0.0
     else
-      ((@count * 100.0 / @total_count).round(1) rescue 0.0)
+      ((@count * 100.0 / @total_count) rescue 0.0)
     end
-    @percent = "#{percent_number}%"
+    @percent = "#{@percent_number.round(1)}%"
   end
 
   def set_answer_option(answer_template, value)

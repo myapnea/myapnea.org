@@ -21,6 +21,21 @@ class TemporaryReport
     end
   end
 
+  ## My Health Conditions
+  def self.health_conditions(survey, encounter)
+    result = { nodes: [], links: [] }
+    if encounter and question = survey.questions.find_by_slug('health-conditions-list')
+      question.answer_templates.each do |answer_template|
+        answer_option_counts = self.answer_option_counts(survey, question, answer_template, encounter: encounter, range: 1..2)
+        ri = ReportItem.new(answer_option_counts, answer_template, 1)
+        result[:nodes] << { name: answer_template.text, id: answer_template.name, frequency: ri.percent_number }
+        result[:links] << { source: answer_template.name, target: 'conditions-sleep-apnea' }
+      end
+      result[:nodes] << { name: 'Sleep Apnea', id: 'conditions-sleep-apnea', frequency: 100.0 }
+    end
+    result
+  end
+
   # General single value returned
   def self.get_value(question_slug, answer_session)
     if answer_session and question = answer_session.survey.questions.find_by_slug(question_slug)
