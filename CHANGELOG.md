@@ -51,6 +51,7 @@
   - Owners receive survey followup digest emails when new surveys are assigned to users
   - All admin pages are now using the fullscreen layout
 - **Gem Changes**
+  - Updated to Ruby 2.2.3
   - Only run `web-console` in development mode
   - Updated to rails 4.2.4.rc1
 
