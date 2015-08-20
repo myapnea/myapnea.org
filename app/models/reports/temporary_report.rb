@@ -53,6 +53,18 @@ class TemporaryReport
     end
   end
 
+  # My Quality of Life
+  def self.quality_of_life_scale(survey, encounter, question_slug)
+    range = 1..5
+    question = survey.questions.find_by_slug(question_slug)
+    answer_template = question.first_radio_or_checkbox_answer_template if question
+    answer_option_counts = TemporaryReport.answer_option_counts(survey, question, answer_template, encounter: encounter, range: range)
+    range.collect do |answer_option_value|
+      report_item = ReportItem.new(answer_option_counts, answer_template, answer_option_value)
+      report_item.percent_number
+    end
+  end
+
   # General single value returned
   def self.get_value(question_slug, answer_session)
     if answer_session and question = answer_session.survey.questions.find_by_slug(question_slug)

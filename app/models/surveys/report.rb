@@ -315,25 +315,6 @@ class Report < ActiveRecord::Base
     return self.table_to_freq_array(table_data)
   end
 
-
-  ## My Quality of Life
-
-  def self.health_rating_data
-    table_data = Report.frequency_data('general-health-rate', 1..5)
-    return self.table_to_freq_array(table_data)
-  end
-
-  def self.health_improvement_data
-    table_data = Report.frequency_data('improved-health-rate', 1..5)
-    return self.table_to_freq_array(table_data)
-  end
-
-  def self.qol_rating_data
-    table_data = Report.frequency_data('general-quality-life-rate', 1..5)
-    return self.table_to_freq_array(table_data)
-  end
-
-
   ## About my family
 
   def self.family_diagnostic_answer(encounter, user)
