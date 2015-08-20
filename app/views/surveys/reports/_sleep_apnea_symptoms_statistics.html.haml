@@ -1,14 +1,31 @@
-- Report.symptoms_before_diagnosis.each do |symptom|
+- question = @survey.questions.find_by_slug('risk-symptoms')
+- question.answer_templates.where(template_name: ['radio', 'checkbox']).each do |answer_template|
+  - answer_option_counts = TemporaryReport.answer_option_counts(@survey, question, answer_template, encounter: @encounter, range: 1..4)
+  - median = nil
+  - total = 0
+  - (1..4).each do |answer_option_value|
+    - ri = ReportItem.new(answer_option_counts, answer_template, answer_option_value)
+    - total = total + ri.percent_number
+    - if total >= 50 and !median
+      - median = ri
+
+  - answer_option_counts = TemporaryReport.answer_option_counts(@survey, question, answer_template, encounter: @encounter, range: 1..5)
+  - ri1 = ReportItem.new(answer_option_counts, answer_template, 1)
+  - ri2 = ReportItem.new(answer_option_counts, answer_template, 2)
+  - ri3 = ReportItem.new(answer_option_counts, answer_template, 3)
+  - ri4 = ReportItem.new(answer_option_counts, answer_template, 4)
+  - all_ri = [ri1, ri2, ri3, ri4]
+
   %br
   .row
     .col-sm-3
-      %h1.report-statistic= "#{symptom[:freq].round(1)}%"
+      %h1.report-statistic= "#{all_ri.collect{|ri| ri.percent_number}.sum.round(1)}%"
     .col-sm-9
       %p.lead.text-left
         of members report that
-        %span.darkerer-blue.f500= symptom[:text]
+        %span.darkerer-blue.f500= answer_template.text
         caused them to be evaluated for sleep apnea, with this symptom lasting for an average of
-        %span.darker-blue= symptom[:median]
+        %span.darker-blue= median.answer_option.text if median
         before diagnosis.
-        %span.primary-orange= "#{symptom[:above_year].round(1)}%"
+        %span.primary-orange= ri4.percent
         of MyApnea users report experiencing this symptom at least one year before diagnosis.

@@ -65,6 +65,16 @@ class TemporaryReport
     end
   end
 
+  # My Risk Profile
+  def self.risk_symptoms(answer_session)
+    if answer_session
+      my_risk_symptoms = self.get_values('risk-symptoms', answer_session)
+      answer_options = AnswerOption.where(id: my_risk_symptoms, value: 1..4)
+    else
+      AnswerOption.none
+    end
+  end
+
   # General single value returned
   def self.get_value(question_slug, answer_session)
     if answer_session and question = answer_session.survey.questions.find_by_slug(question_slug)
