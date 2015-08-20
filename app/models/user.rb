@@ -267,8 +267,8 @@ class User < ActiveRecord::Base
     is_only_academic? ? Survey.viewable : assigned_surveys
   end
 
-  def completed_assigned_surveys?
-    assigned_surveys == completed_surveys
+  def completed_assigned_answer_sessions?
+    self.answer_sessions.where(child_id: nil, locked: false).joins(:survey).merge(Survey.current.viewable).count == 0
   end
 
   def next_survey(survey)
