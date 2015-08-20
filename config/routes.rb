@@ -39,7 +39,6 @@ Rails.application.routes.draw do
   # Static Pages
   root 'home#dashboard'
   scope module: 'static' do
-    get :home
     get :about
     get :team
     get :advisory

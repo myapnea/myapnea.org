@@ -140,10 +140,6 @@ class StaticController < ApplicationController
   ## NON-STATIC
   ## TODO: Move out of here
 
-  def home
-    redirect_to root_path
-  end
-
   def provider_page
     @provider = User.current.providers.find_by_slug(params[:slug])
     if @provider and @provider.slug.present?
