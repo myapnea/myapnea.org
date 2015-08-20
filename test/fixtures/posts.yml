@@ -112,3 +112,11 @@ rt4:
   last_moderated_by: moderator_1
   last_moderated_at: 2015-01-09 12:40:00
   deleted: true
+
+toms:
+  topic: toms
+  description: "I thought I'd introduce myself"
+  user: social
+  status: approved
+  last_moderated_by: moderator_1
+  last_moderated_at: 2015-08-20 12:40:00

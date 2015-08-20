@@ -16,4 +16,10 @@ class MembersControllerTest < ActionController::TestCase
     assert_redirected_to members_path
   end
 
+  test "should get search" do
+    get :search, q: 'Tom', format: 'json'
+    members_json = JSON.parse(response.body)
+    assert_includes members_json, 'TomHaverford'
+    assert_response :success
+  end
 end

@@ -103,3 +103,12 @@ rt4:
   deleted: true
   slug: what-what-what
   status: approved
+
+toms:
+  forum: one
+  user: social
+  name: Hi I am Tom
+  locked: false
+  pinned: false
+  slug: hi-im-tom
+  status: approved
