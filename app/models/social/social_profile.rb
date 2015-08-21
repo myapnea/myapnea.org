@@ -1,9 +1,5 @@
 class SocialProfile
 
-  def self.get_anonymous_name(input)
-    "Member#{Digest::MD5.hexdigest(input.to_s).hex.to_s[0..5]}"
-  end
-
   def self.generate_forum_name(input, additional_seed = nil)
     input    += additional_seed if additional_seed
     seed      = Digest::MD5.hexdigest(input.to_s).hex.to_s
