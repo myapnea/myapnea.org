@@ -17,6 +17,83 @@ class ResearchTopicsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should get accepted_research_topics_index for logged out user" do
+    get :accepted_research_topics_index
+    assert_response :success
+  end
+
+  test "should get sleep_apnea_body_weight for logged out user" do
+    get :sleep_apnea_body_weight
+    assert_response :success
+  end
+
+  test "should get sleep_apnea_brain_plasticity for logged out user" do
+    get :sleep_apnea_brain_plasticity
+    assert_response :success
+  end
+
+  test "should get sleep_apnea_adenotonsillectomy_children for logged out user" do
+    get :sleep_apnea_adenotonsillectomy_children
+    assert_response :success
+  end
+
+  test "should get sleep_apnea_diabetes for logged out user" do
+    get :sleep_apnea_diabetes
+    assert_response :success
+  end
+
+  test "should get sleep_apnea_nighttime_oxygen_use for logged out user" do
+    get :sleep_apnea_nighttime_oxygen_use
+    assert_response :success
+  end
+
+  test "should get sleep_apnea_didgeridoo for logged out user" do
+    get :sleep_apnea_didgeridoo
+    assert_response :success
+  end
+
+  test "should get accepted_research_topics_index for experienced user" do
+    login(@experienced_user)
+    get :accepted_research_topics_index
+    assert_response :success
+  end
+
+  test "should get sleep_apnea_body_weight for experienced user" do
+    login(@experienced_user)
+    get :sleep_apnea_body_weight
+    assert_response :success
+  end
+
+  test "should get sleep_apnea_brain_plasticity for experienced user" do
+    login(@experienced_user)
+    get :sleep_apnea_brain_plasticity
+    assert_response :success
+  end
+
+  test "should get sleep_apnea_adenotonsillectomy_children for experienced user" do
+    login(@experienced_user)
+    get :sleep_apnea_adenotonsillectomy_children
+    assert_response :success
+  end
+
+  test "should get sleep_apnea_diabetes for experienced user" do
+    login(@experienced_user)
+    get :sleep_apnea_diabetes
+    assert_response :success
+  end
+
+  test "should get sleep_apnea_nighttime_oxygen_use for experienced user" do
+    login(@experienced_user)
+    get :sleep_apnea_nighttime_oxygen_use
+    assert_response :success
+  end
+
+  test "should get sleep_apnea_didgeridoo for experienced user" do
+    login(@experienced_user)
+    get :sleep_apnea_didgeridoo
+    assert_response :success
+  end
+
   test "should get index for experienced user" do
     # Displays normal index
     login(@experienced_user)
@@ -37,7 +114,6 @@ class ResearchTopicsControllerTest < ActionController::TestCase
     assert_redirected_to first_topics_research_topics_path
   end
 
-
   # Intro : page explaining rank the research and allowing user to press "get started"
   test "should get intro and redirect for logged out user" do
     get :intro
@@ -49,7 +125,6 @@ class ResearchTopicsControllerTest < ActionController::TestCase
     get :intro
     assert_response :success
   end
-
 
   # First Topics - first 10 topics
   test "should get first topics and redirect for logged out user" do
@@ -157,6 +232,31 @@ class ResearchTopicsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should get edit as experienced user" do
+    login(@experienced_user)
+    get :edit, id: @rt
+    assert_response :success
+  end
+
+  test "should update research topic as experienced user" do
+    login(@experienced_user)
+    patch :update, id: @rt, research_topic: { progress: 'accepted' }
+
+    assert_not_nil assigns(:research_topic)
+    assert_equal 'accepted', assigns(:research_topic).progress
+    assert_template 'show'
+    assert_response :success
+  end
+
+  test "should destroy research topic as experienced user" do
+    login(@experienced_user)
+    assert_difference('ResearchTopic.current.count', -1) do
+      delete :destroy, id: @rt
+    end
+
+    assert_redirected_to research_topics_path
+  end
+
   # Creation
   test "should create a research topic as experienced user" do
     login(@experienced_user)
@@ -164,6 +264,19 @@ class ResearchTopicsControllerTest < ActionController::TestCase
       post :create, research_topic: { text: 'Some new research topic', description: 'Why I think this is important'}
     end
     assert_redirected_to research_topic_path(ResearchTopic.last)
+  end
+
+  test "should not create a research topic with blank text" do
+    login(@experienced_user)
+    assert_difference('ResearchTopic.count', 0) do
+      post :create, research_topic: { text: '', description: 'Why I think this is important'}
+    end
+    assert_not_nil assigns(:new_research_topic)
+    assert_not_nil assigns(:research_topics)
+    assert assigns(:new_research_topic).errors.size > 0
+    assert_equal ["can't be blank"], assigns(:new_research_topic).errors[:text]
+    assert_template 'index'
+    assert_response :success
   end
 
   test "should not create research topic as novice user" do
