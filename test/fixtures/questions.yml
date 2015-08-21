@@ -111,6 +111,22 @@ education_level:
 
 ## Additional Information About Me Survey
 
+height:
+  user: owner
+  text_en: "What is your height?"
+  slug: height
+  display_type: height_input
+  answer_templates:
+  - height
+
+weight:
+  user: owner
+  text_en: "What is your weight?"
+  slug: weight
+  display_type: number_input
+  answer_templates:
+  - weight
+
 affording_basics:
   user: owner
   text_en: "How hard is it for you (and your family) to pay for basics like food, rent or mortgage, heating, etc.?"

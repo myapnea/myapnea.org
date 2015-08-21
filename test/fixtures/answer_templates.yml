@@ -128,6 +128,18 @@ education_level:
   data_type: answer_option_id
 
 ## Additional Information About Me
+height:
+  user: owner
+  name: height
+  template_name: height
+  data_type: numeric_value
+
+weight:
+  user: owner
+  name: weight
+  template_name: number
+  data_type: numeric_value
+
 afford_difficulty_scale:
   user: owner
   name: afford_difficulty_scale

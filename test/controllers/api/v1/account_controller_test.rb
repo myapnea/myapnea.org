@@ -52,4 +52,23 @@ class Api::V1::AccountControllerTest < ActionController::TestCase
     assert_equal json_response['ready_for_research'], true
   end
 
+  test "should process date of birth" do
+    login(users(:api_user))
+    post :set_dob, month: '01', day: '01', year: '1950', format: :json
+
+    assert_equal '01/01/1950', assigns(:dob_answer).answer_values.first.text_value
+
+    assert_equal true, json_response['success']
+  end
+
+  test "should process height and weight" do
+    login(users(:api_user))
+    post :set_height_weight, feet: '5', inches: '01', pounds: '500', format: :json
+
+    assert_equal 500, assigns(:weight_answer).answer_values.first.numeric_value
+    assert_equal 61, assigns(:height_answer).answer_values.first.numeric_value
+
+    assert_equal true, json_response['success']
+  end
+
 end

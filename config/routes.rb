@@ -270,6 +270,8 @@ Rails.application.routes.draw do
         post 'account/set_user_types', action: :set_user_types
         get 'account/ready_for_research', action: :ready_for_research
         post 'account/accept_consent', action: :accept_consent
+        post 'account/set_dob', action: :set_dob
+        post 'account/set_height_weight', action: :set_height_weight
       end
     end
   end

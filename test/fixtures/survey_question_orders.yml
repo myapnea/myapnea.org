@@ -75,6 +75,16 @@ about_me_4:
 
 ## "Additional Information About Me" Survey Questions
 
+additional_information_about_me_0:
+  survey: additional_information_about_me
+  question: height
+  question_number: 0
+
+additional_information_about_me_1:
+  survey: additional_information_about_me
+  question: weight
+  question_number: 1
+
 additional_information_about_me_4:
   survey: additional_information_about_me
   question: affording_basics

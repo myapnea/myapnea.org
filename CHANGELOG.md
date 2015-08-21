@@ -54,6 +54,8 @@
       - Cookies are passed back to allow use of devise user authentication
       - Home added to test for current session
     - Photo URL passed for created posts and research topics, if available
+    - Allows capturing of information during onboarding process
+      - Includes consent, user_type, and basic demographic information
   - Research Topics
     - Added capability to create new research topics as user
     - Added capability to cast vote as user
