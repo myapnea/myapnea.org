@@ -37,6 +37,7 @@
   - Minor updates to layout of forums, specifically in the headers
   - Minor updates to layout of highlights to keep consistency with other internal links
   - Account settings layout updated with improved, less intrusive navigation
+  - Terms and conditions forums displayed in scroll container
 - **Admin Changes**
   - Administrators can now unlock surveys for users from the user show page
   - Updated the Version Stats report to be monthly, and renamed to it to the Timeline Report

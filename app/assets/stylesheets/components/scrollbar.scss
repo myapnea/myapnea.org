@@ -7,6 +7,12 @@
   border: 1px solid #ddd;
 }
 
+.after-scrollbar {
+  max-width: 700px;
+  margin: auto;
+  margin-bottom: 20px;
+}
+
 .show-scrollbar {
   overflow-y: scroll;
 }
