@@ -97,7 +97,6 @@ class AccountController < ApplicationController
   end
 
   def account
-    @social_profile = current_user.social_profile || current_user.create_social_profile
   end
 
   def update

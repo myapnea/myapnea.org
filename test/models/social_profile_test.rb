@@ -2,14 +2,6 @@ require "test_helper"
 
 class SocialProfileTest < ActiveSupport::TestCase
 
-  def social_profile
-    @social_profile ||= SocialProfile.new
-  end
-
-  def test_valid
-    assert social_profile.valid?
-  end
-
   test "should generate valid forum names" do
     assert_operator 10, :<=, SocialProfile.generate_forum_name(nil).size
     assert_operator 10, :<=, SocialProfile.generate_forum_name('').size

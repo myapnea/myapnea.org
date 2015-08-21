@@ -156,12 +156,10 @@ Rails.application.routes.draw do
 
   # Social Section
   get 'community', to: 'social#overview', via: :get, as: :community
-  # match 'social', to: 'social#overview', via: :get, as: 'social' # show
-  match 'social/profile', to: 'social#profile', as: 'social_profile', via: :get #edit
-  match 'social/profile', to: 'social#update_profile', as: 'update_social_profile', via: [:put, :post, :patch] # update
-  match 'locations', via: :get, as: :locations, format: :json, to: 'social#locations'
   get 'social/discussion', to: redirect("forums")
   get 'social/discussion(/*path)', to: redirect("forums/%{path}")
+  get 'social/profile', to: redirect("account")
+  get 'profile', to: redirect("account")
 
   # Account Section
   scope module: 'account' do
