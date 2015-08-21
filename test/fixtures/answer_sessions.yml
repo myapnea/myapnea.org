@@ -29,6 +29,9 @@ incomplete2_followup:
   survey: new_2
   encounter: followup
 
+incomplete_api:
+  user: api_user
+
 #
 #launched2:
 #  user: social
@@ -94,3 +97,8 @@ locked_fourteen_days_ago:
   encounter: baseline
   locked: true
   locked_at: <%= 14.day.ago.to_s(:db) %>
+
+api_user:
+  user: api_user
+  survey: new
+  encounter: baseline

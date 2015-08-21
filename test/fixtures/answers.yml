@@ -35,3 +35,14 @@ date_answer1:
   question: date1
   answer_session: incomplete2_followup
   state: incomplete
+
+# API User
+api_user_answer_new_1:
+  question: radio1
+  answer_session: api_user
+  state: complete
+
+api_user_answer_new_2:
+  question: checkbox1
+  answer_session: api_user
+  state: complete

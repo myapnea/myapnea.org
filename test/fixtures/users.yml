@@ -299,3 +299,15 @@ created_fourteen_days_ago_with_locked_baseline:
   over_eighteen: true
   encrypted_password: <%= pw %>
   created_at: <%= 14.day.ago.to_s(:db) %>
+
+api_user:
+  first_name: API
+  last_name: User
+  email: api_user@example.com
+  zip_code: 12345
+  accepted_consent_at: <%= 5.day.ago.to_s(:db) %>
+  accepted_privacy_policy_at: <%= 6.day.ago.to_s(:db) %>
+  accepted_update_at: <%= Date.parse(User::RECENT_UPDATE_DATE).end_of_day %>
+  over_eighteen: true
+  adult_diagnosed: true
+  encrypted_password: <%= pw %>
