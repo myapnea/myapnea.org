@@ -85,10 +85,6 @@ class User < ActiveRecord::Base
     super and not self.deleted?
   end
 
-  def is_only_provider?
-    self.provider? and !self.is_nonacademic?
-  end
-
   def is_only_researcher?
     self.researcher? and !self.is_nonacademic?
   end
@@ -99,10 +95,6 @@ class User < ActiveRecord::Base
 
   def is_nonacademic?
     self.adult_diagnosed? or self.adult_at_risk? or self.caregiver_child? or self.caregiver_adult?
-  end
-
-  def is_academic?
-    self.researcher? or self.provider?
   end
 
   def has_user_type?
