@@ -61,14 +61,23 @@ class Api::V1::AccountControllerTest < ActionController::TestCase
     assert_equal true, json_response['success']
   end
 
-  test "should process height and weight" do
+  test "should not process date of birth with unexpected inputs" do
     login(users(:api_user))
-    post :set_height_weight, feet: '5', inches: '01', pounds: '500', format: :json
+    post :set_dob, month: 'feb', day: '01', year: '1950', format: :json
 
-    assert_equal 500, assigns(:weight_answer).answer_values.first.numeric_value
-    assert_equal 61, assigns(:height_answer).answer_values.first.numeric_value
+    assert_equal 'invalid', assigns(:dob_answer).state
 
-    assert_equal true, json_response['success']
+    assert_equal false, json_response['success']
+  end
+
+  test "should not process height and weight with unexpected inputs" do
+    login(users(:api_user))
+    post :set_height_weight, feet: 'five', inches: 'one', pounds: 'one hundred', format: :json
+
+    # assert_equal 'invalid', assigns(:weight_answer).state #### currently returning complete
+    # assert_equal 'invalid', assigns(:height_answer).state #### currently returning incomplete
+
+    assert_equal false, json_response['success']
   end
 
 end

@@ -29,7 +29,7 @@ class Api::V1::AccountController < ApplicationController
     @question = Question.find_by_slug('date-of-birth')
     response = { @question.answer_templates.first.to_param => { month: params[:month], day: params[:day], year: params[:year] } }
     if @answer_session and @question and @dob_answer = @answer_session.process_answer(@question, response)
-      render json: { success: true }
+      render json: { success: @dob_answer.state == 'complete' }
     else
       render json: { success: false }
     end
@@ -43,7 +43,7 @@ class Api::V1::AccountController < ApplicationController
     @weight_question = Question.find_by_slug('weight')
     weight_response = { @weight_question.answer_templates.first.to_param => params[:pounds] }
     if @answer_session and @weight_question and @height_question and @weight_answer = @answer_session.process_answer(@weight_question, weight_response) and @height_answer = @answer_session.process_answer(@height_question, height_response)
-      render json: { success: true }
+      render json: { success: (@weight_answer.state == 'complete' and @height_answer.state == 'complete') }
     else
       render json: { success: false }
     end
