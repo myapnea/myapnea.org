@@ -11,7 +11,7 @@ json.questions @survey.questions.current.each do |question|
     json.text at.text.present? ? at.text : ""
     next_at = AnswerTemplate.where(parent_answer_template_id: at.id)
     json.display_after_question next_at.present? ? next_at.pluck(:id) : nil
-    json.display_after_answer next_at.present? ? next_at.pluck(:parent_answer_option_value) : nil
+    json.display_after_answer next_at.present? ? next_at.collect{ |at| at.parent_answer_option_id} : nil
     json.data_type at.data_type
     json.allow_multiple at.allow_multiple
     json.answer_options at.answer_options.each do |ao|

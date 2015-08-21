@@ -1,0 +1,1 @@
+json.ready_for_research current_user.ready_for_research?
