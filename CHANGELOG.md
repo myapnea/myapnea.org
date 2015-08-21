@@ -5,18 +5,15 @@
   - Longitudinal surveys can be launched and assigned to users, ex:
     - `s = Survey.find_by_slug 'about-me'`
     - `s.launch_single(user, '6month')`
-  - Automated survey followup emails can be sent when new surveys are launched
-  - Followup surveys are launched automatically a specified number of days after sign up
-  - Pediatric surveys have been added
-    - Caregivers of children fill out surveys on their children
-    - Children can be added one at a time and have unique surveys per child
-    - `s = Survey.find_by_slug 'about-my-child'`
-    - `s.launch_single_for_children(user, 'baseline')`
+  - Followup surveys are launched automatically based on encounter conditions
+    - Email are sent to alert users of new available surveys
+  - Pediatric survey functionality has been added
+    - Caregivers of children can fill out surveys about their children
     - Baseline surveys are immediately assigned when a child in the proper age range is added by a caregiver of a child
     - Data export excludes pediatric surveys
-  - Minor UI updates to completion display
   - Reports are now additionally scoped by encounter (ex: baseline, followup)
-  - Reports that do not have custom reports, now redirect to the detailed report view
+  - Reports that do not have custom reports now redirect to the detailed report view
+  - Minor UI updates to completion display
 - **Online Survey Builder**
   - Started work on an online survey builder for researchers and team members
   - The online survey builder will let survey builders specify the following:
@@ -33,24 +30,18 @@
     - Conditional AnswerTemplates now require a valid parent AnswerTemplate as well as a valid value
   - Encounters can be added to surveys in online builder
     - An encounter specifies when the survey is launched, in days after sign up
-    - Encounters are assigned to users based on the completion of any dependent surveys
-    - The initial baseline is launched after the newer of the survey publish date or the user registration
-    - Users receive a survey digest of new surveys that are available when new surveys are assigned
-  - Survey User Type can be added to surveys in online builder
 - **Onboarding Changes**
   - Reduced consent and privacy into one step in the process
   - Removed progress indicators (due to shorter process) and switched to simple layout (without sidebar)
-- **Forum Changes**
-  - Minor updates to layout, specifically in the headers
-- **Highlight Changes**
-  - Minor updates to layout to keep consistency with other internal links
-- **Other Changes**
+- **General Changes**
+  - Minor updates to layout of forums, specifically in the headers
+  - Minor updates to layout of highlights to keep consistency with other internal links
   - Account settings layout updated with improved, less intrusive navigation
 - **Admin Changes**
   - Administrators can now unlock surveys for users from the user show page
   - Updated the Version Stats report to be monthly, and renamed to it to the Timeline Report
   - Owners receive survey followup digest emails when new surveys are assigned to users
-  - All admin pages are now using the fullscreen layout
+  - All admin pages now use fullscreen layout
 - **Gem Changes**
   - Updated to Ruby 2.2.3
   - Only run `web-console` in development mode
@@ -76,6 +67,7 @@
   - Surveys
     - Added getter for user's answer sessions
     - Added survey show page to allow dynamic building on app side
+    - Survey submission will automatically lock surveys if complete
 
 ### Bug Fix
 - Fixed and simplified date input parsing to better handle consistency issues across browsers and devices
@@ -87,17 +79,17 @@
 - Fixed an issue displaying pie charts for My Quality of Life survey report
 
 ### Refactoring
-- Simplified processing single answers from surveys
+- Simplified processing single answers for surveys
 - Reduced JavaScript footprint by removing unused JavaScript files
 - Overwriting views are no longer stored in myapnea subfolder
 - Restructured tests for surveys and improved overall test speed
 - Refactored Survey class in favor of an AnswerSession-centric model
-- Removed unused methods from the user model
+- Removed unused methods from the User model
 - Removed unused views and partials
 - Health Conditions report no longer relies on extra server JSON request
 - Removed old registration views and methods
-- Removed unused attributes from answer sessions
-- Removed unused attributes from survey
+- Removed unused attributes from AnswerSession model
+- Removed unused attributes from Survey model
 
 ## 7.5.1 (August 20, 2015)
 
