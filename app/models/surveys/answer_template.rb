@@ -33,7 +33,7 @@ class AnswerTemplate < ActiveRecord::Base
     "#{self.name} #{self.answer_options.pluck(:text, :value).collect{|text, value| "#{value}: #{text}"}.join(', ')}"
   end
 
-  # Temporary Function
+  # Temporary Function (Rewrite/remove in 8.1)
   def set_template_name!
     new_template_name = nil
     question = self.questions.first
@@ -88,6 +88,7 @@ class AnswerTemplate < ActiveRecord::Base
     self.allow_multiple = (self.template_name == 'checkbox')
     true # Before Validations need to return true in order to save record
   end
+  # End Rewrite In 8.1
 
   def allows_answer_options?
     self.template_name == 'radio' or self.template_name == 'checkbox'
