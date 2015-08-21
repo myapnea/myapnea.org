@@ -8,6 +8,12 @@ class ProvidersControllerTest < ActionController::TestCase
     @provider = users(:provider)
   end
 
+  test "should get new for logged out user" do
+    get :new
+    assert_not_nil assigns(:provider)
+    assert_response :success
+  end
+
   test "should get index for logged out user" do
     get :index
     assert_not_nil assigns(:providers)
