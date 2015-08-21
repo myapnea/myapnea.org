@@ -65,6 +65,13 @@ class AccountControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should suggest forum name for regular user" do
+    login(@regular_user)
+    xhr :get, :suggest_random_forum_name, format: 'js'
+    assert_not_nil assigns(:new_forum_name)
+    assert_response :success
+  end
+
   test "should get privacy policy" do
     get :privacy_policy
     assert_response :success
