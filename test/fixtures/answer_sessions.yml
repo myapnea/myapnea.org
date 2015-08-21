@@ -94,3 +94,81 @@ locked_fourteen_days_ago:
   encounter: baseline
   locked: true
   locked_at: <%= 14.day.ago.to_s(:db) %>
+
+##
+finished_about_me_1:
+  user: finished_about_me_1
+  survey: about_me
+  encounter: baseline
+  locked: true
+  locked_at: <%= Date.today.to_s(:db) %>
+
+finished_about_me_2:
+  user: finished_about_me_2
+  survey: about_me
+  encounter: baseline
+  locked: true
+  locked_at: <%= Date.today.to_s(:db) %>
+
+finished_about_me_3:
+  user: finished_about_me_3
+  survey: about_me
+  encounter: baseline
+  locked: true
+  locked_at: <%= Date.today.to_s(:db) %>
+
+finished_about_me_4:
+  user: finished_about_me_4
+  survey: about_me
+  encounter: baseline
+  locked: true
+  locked_at: <%= Date.today.to_s(:db) %>
+
+finished_about_me_5:
+  user: finished_about_me_5
+  survey: about_me
+  encounter: baseline
+  locked: true
+  locked_at: <%= Date.today.to_s(:db) %>
+
+finished_about_me_6:
+  user: finished_about_me_6
+  survey: about_me
+  encounter: baseline
+  locked: true
+  locked_at: <%= Date.today.to_s(:db) %>
+
+finished_additional_information_about_me_1:
+  user: finished_about_me_1
+  survey: about_me
+  encounter: baseline
+  locked: true
+  locked_at: <%= Date.today.to_s(:db) %>
+
+finished_additional_information_about_me_2:
+  user: finished_about_me_2
+  survey: about_me
+  encounter: baseline
+  locked: true
+  locked_at: <%= Date.today.to_s(:db) %>
+
+finished_my_interest_in_research_1:
+  user: finished_about_me_1
+  survey: about_me
+  encounter: baseline
+  locked: true
+  locked_at: <%= Date.today.to_s(:db) %>
+
+finished_my_interest_in_research_2:
+  user: finished_about_me_2
+  survey: about_me
+  encounter: baseline
+  locked: true
+  locked_at: <%= Date.today.to_s(:db) %>
+
+finished_my_interest_in_research_3:
+  user: finished_about_me_3
+  survey: about_me
+  encounter: baseline
+  locked: true
+  locked_at: <%= Date.today.to_s(:db) %>

@@ -25,7 +25,7 @@
         - sexes.each do |sex|
           %tr
             %td= sex
-            - total_count = @user_values.select{ |key, h| h[:sex] == sex and h[:referral].present? }.count
+            - total_count = @user_values.select{ |key, h| h[:sex] == sex and h[:referral] }.count
             - referrals.each do |referral|
               - count = @user_values.select{ |key, h| h[:sex] == sex and h[:referral].include?(referral) }.count
               %td
@@ -35,9 +35,9 @@
               = total_count
         %tr
           %td Total
-          - total_count = @user_values.select{ |key, h| h[:sex].present? and h[:referral].present? }.count
+          - total_count = @user_values.select{ |key, h| h[:sex] and h[:referral] }.count
           - referrals.each do |referral|
-            - count = @user_values.select{ |key, h| h[:sex].present? and h[:referral].include?(referral) }.count
+            - count = @user_values.select{ |key, h| h[:sex] and h[:referral].include?(referral) }.count
             %td
               = count
               %span.text-muted= '(' + ("%0.1f%" % (count.to_f*100/total_count.to_f)) + ')'
@@ -61,11 +61,11 @@
       %tbody
         - races = ["White", "Black", "Other"]
         - races.each do |race|
-          - total_count = @user_values.select{ |key, h| h[:race].present? and h[:race].include?(race) and h[:referral].present? }.count
+          - total_count = @user_values.select{ |key, h| h[:race] and h[:race].include?(race) and h[:referral] }.count
           %tr
             %td= race
             - referrals.each do |referral|
-              - count = @user_values.select{ |key, h| h[:race].present? and h[:race].include?(race) and h[:referral].include?(referral) }.count
+              - count = @user_values.select{ |key, h| h[:race] and h[:race].include?(race) and h[:referral].include?(referral) }.count
               %td
                 = count
                 %span.text-muted= '(' + ("%0.1f%" % (count.to_f*100/total_count.to_f)) + ')'
@@ -73,9 +73,9 @@
               = total_count
         %tr
           %td Total
-          - total_count = @user_values.select{ |key, h| h[:race].present? and h[:referral].present? }.count
+          - total_count = @user_values.select{ |key, h| h[:race] and h[:referral] }.count
           - referrals.each do |referral|
-            - count = @user_values.select{ |key, h| h[:race].present? and h[:referral].include?(referral) }.count
+            - count = @user_values.select{ |key, h| h[:race] and h[:referral].include?(referral) }.count
             %td
               = count
               %span.text-muted= '(' + ("%0.1f%" % (count.to_f*100/total_count.to_f)) + ')'
@@ -99,7 +99,7 @@
       %tbody
         - wealth_levels = ["Not very hard", "All other options"]
         - wealth_levels.each do |wealth_level|
-          - total_count = @user_values.select{ |key, h| h[:wealth] == wealth_level and h[:referral].present? }.count
+          - total_count = @user_values.select{ |key, h| h[:wealth] == wealth_level and h[:referral] }.count
           %tr
             %td= wealth_level
             - referrals.each do |referral|
@@ -111,9 +111,9 @@
               = total_count
         %tr
           %td Total
-          - total_count = @user_values.select{ |key, h| h[:wealth].present? and h[:referral].present? }.count
+          - total_count = @user_values.select{ |key, h| h[:wealth] and h[:referral] }.count
           - referrals.each do |referral|
-            - count = @user_values.select{ |key, h| h[:wealth].present? and h[:referral].include?(referral) }.count
+            - count = @user_values.select{ |key, h| h[:wealth] and h[:referral].include?(referral) }.count
             %td
               = count
               %span.text-muted= '(' + ("%0.1f%" % (count.to_f*100/total_count.to_f)) + ')'
@@ -135,9 +135,9 @@
           %th Other
           %th Total
       %tbody
-        - education_levels = ["High school or less", "Some college", "4-year college graduate", "More than 4-year college", "Other"]
+        - education_levels = ["High school or less", "Some college", "4-year college graduate", "More than 4-year college"]
         - education_levels.each do |education_level|
-          - total_count = @user_values.select{ |key, h| h[:education] == education_level and h[:referral].present? }.count
+          - total_count = @user_values.select{ |key, h| h[:education] == education_level and h[:referral] }.count
           %tr
             %td= education_level
             - referrals.each do |referral|
@@ -149,9 +149,9 @@
               = total_count
         %tr
           %td Total
-          - total_count = @user_values.select{ |key, h| h[:education].present? and h[:referral].present? }.count
+          - total_count = @user_values.select{ |key, h| h[:education] and h[:referral] }.count
           - referrals.each do |referral|
-            - count = @user_values.select{ |key, h| h[:education].present? and h[:referral].include?(referral) }.count
+            - count = @user_values.select{ |key, h| h[:education] and h[:referral].include?(referral) }.count
             %td
               = count
               %span.text-muted= '(' + ("%0.1f%" % (count.to_f*100/total_count.to_f)) + ')'
@@ -174,7 +174,7 @@
           %th Total
       %tbody
         - @age_ranges.each do |age_display, age_range|
-          - total_count = @user_values.select{ |key, h| h[:age] == age_display and h[:referral].present? }.count
+          - total_count = @user_values.select{ |key, h| h[:age] == age_display and h[:referral] }.count
           %tr
             %td= age_display
             - referrals.each do |referral|
@@ -186,9 +186,9 @@
               = total_count
         %tr
           %td Total
-          - total_count = @user_values.select{ |key, h| h[:age].present? and h[:referral].present? }.count
+          - total_count = @user_values.select{ |key, h| h[:age] and h[:referral] }.count
           - referrals.each do |referral|
-            - count = @user_values.select{ |key, h| h[:age].present? and h[:referral].include?(referral) }.count
+            - count = @user_values.select{ |key, h| h[:age] and h[:referral].include?(referral) }.count
             %td
               = count
               %span.text-muted= '(' + ("%0.1f%" % (count.to_f*100/total_count.to_f)) + ')'

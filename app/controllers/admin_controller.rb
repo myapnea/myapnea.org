@@ -97,17 +97,14 @@ class AdminController < ApplicationController
         'White'
       when "Black or African American (a person having origins in any of the black racial groups of Africa)"
         'Black'
-      when nil
+      when 'Prefer not to answer'
         nil
       else
         'Other'
       end
 
       user_values[user_id.to_s][:race] = (user_values[user_id.to_s][:race] | [new_race]) if new_race
-      puts user_values[user_id.to_s][:race]
-
     end
-
 
     # Education level
     question = survey.questions.find_by_slug 'education-level'
@@ -124,10 +121,8 @@ class AdminController < ApplicationController
         '4-year college graduate'
       when "More than 4-year college degree"
         'More than 4-year college'
-      when nil
-        nil
       else
-        'Other'
+        nil
       end
 
       user_values[user_id.to_s][:education] = education_level
@@ -143,8 +138,6 @@ class AdminController < ApplicationController
       user_values[user_id.to_s][:referral] ||= []
       wealth_difficulty = case v when "Not very hard"
         'Not very hard'
-      when nil
-        nil
       else
         'All other options'
       end
@@ -165,8 +158,6 @@ class AdminController < ApplicationController
         'ASAA'
       when "Facebook", "Twitter", "Internet search", "Other patient-centered network"
         'Internet'
-      when nil
-        nil
       else
         'Other'
       end
