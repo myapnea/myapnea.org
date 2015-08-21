@@ -35,16 +35,28 @@ class HighlightsControllerTest < ActionController::TestCase
   test "should create highlight" do
     login(@owner)
     assert_difference('Highlight.count') do
-      post :create, highlight: { description: @highlight.description, display_date: @highlight.display_date, photo: @highlight.photo, title: @highlight.title }
+      post :create, highlight: { title: @highlight.title, description: @highlight.description, display_date: @highlight.display_date, photo: @highlight.photo }
     end
 
     assert_redirected_to highlight_path(assigns(:highlight))
   end
 
+  test "should not create highlight with blank title" do
+    login(@owner)
+    assert_difference('Highlight.count', 0) do
+      post :create, highlight: { title: '', description: @highlight.description, display_date: @highlight.display_date, photo: @highlight.photo }
+    end
+    assert_not_nil assigns(:highlight)
+    assert assigns(:highlight).errors.size > 0
+    assert_equal ["can't be blank"], assigns(:highlight).errors[:title]
+    assert_template 'new'
+    assert_response :success
+  end
+
   test "should not create highlight for regular user" do
     login(@regular_user)
     assert_difference('Highlight.count', 0) do
-      post :create, highlight: { description: @highlight.description, display_date: @highlight.display_date, photo: @highlight.photo, title: @highlight.title }
+      post :create, highlight: { title: @highlight.title, description: @highlight.description, display_date: @highlight.display_date, photo: @highlight.photo }
     end
 
     assert_redirected_to root_path
@@ -76,9 +88,20 @@ class HighlightsControllerTest < ActionController::TestCase
 
   test "should update highlight" do
     login(@owner)
-    patch :update, id: @highlight, highlight: { description: @highlight.description, display_date: @highlight.display_date, photo: @highlight.photo, title: @highlight.title }
+    patch :update, id: @highlight, highlight: { title: @highlight.title, description: @highlight.description, display_date: @highlight.display_date, photo: @highlight.photo }
     assert_redirected_to highlights_path
   end
+
+  test "should not update highlight with blank title" do
+    login(@owner)
+    patch :update, id: @highlight, highlight: { title: '', description: @highlight.description, display_date: @highlight.display_date, photo: @highlight.photo }
+    assert_not_nil assigns(:highlight)
+    assert assigns(:highlight).errors.size > 0
+    assert_equal ["can't be blank"], assigns(:highlight).errors[:title]
+    assert_template 'edit'
+    assert_response :success
+  end
+
 
   test "should not update highlight for regular user" do
     login(@regular_user)
