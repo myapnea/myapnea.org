@@ -103,19 +103,26 @@ module CommonDataModel
 
   extend ActiveSupport::Concern
 
+  include DateAndTimeParser
+
   # Helpers
 
-  def pcornet_get_answer(survey_id, question_id)
-    survey_id = survey_id
-    question = Question.find_by_id question_id
+  def pcornet_get_answer(survey_slug, question_slug, encounter)
+    survey = Survey.current.viewable.find_by_slug survey_slug
+    question = survey.questions.find_by_slug question_slug
 
-    answer_session = AnswerSession.most_recent(survey_id, self.id)
-    answer = question.user_answer(answer_session) if answer_session
+    answer_session = self.answer_sessions.where(survey: survey, encounter: encounter).first
+    answer = nil
+    if survey and question and answer_session
+      answer_template = question.answer_templates.first
+      answer_value = answer_session.answer_values(question, answer_template).first
+      answer = answer_value.answer if answer_value
+    end
     answer
   end
 
-  def pcornet_get_response(survey_id, question_id)
-    answer = pcornet_get_answer(survey_id, question_id)
+  def pcornet_get_response(survey_slug, question_slug, encounter)
+    answer = pcornet_get_answer(survey_slug, question_slug, encounter)
     answer ? answer.show_value : nil
   end
 
@@ -128,38 +135,27 @@ module CommonDataModel
 
   # TEXT(10): YYYY-MM-DD or YYYY
   def pcornet_birth_date
-    begin
-      pcornet_get_response(16, 578).strftime("%Y-%m-%d")
-    rescue
-      nil
-    end
+    date = parse_date(pcornet_get_response('about-me', 'date-of-birth', 'baseline'))
+    date ? date.strftime("%Y-%m-%d") : nil
   end
 
   # TEXT(x)
   def pcornet_raw_sex
-    pcornet_get_response(16, 546)
+    pcornet_get_response('about-me', 'sex', 'baseline')
   end
 
   # TEXT(x)
   def pcornet_raw_hispanic
-    # pcornet_get_response(16, 552) # Original Question
-    answer = pcornet_get_answer(16,551)
-    if answer and answer.answer_values.pluck(:answer_option_id).include?(9913)
-      "Hispanic"
-    else
+    if pcornet_get_response('about-me', 'ethnicity', 'baseline') == "No"
       nil
+    else
+      "Hispanic"
     end
   end
 
   # TEXT(x)
   def pcornet_raw_race
-    answer = pcornet_get_answer(16, 551)
-    values = []
-    if answer
-      values = answer.answer_values.map(&:show_value)
-    end
-
-    (values + [pcornet_get_response(16, 1551)]).flatten.compact
+    pcornet_get_response('about-me', 'race', 'baseline')
   end
 
   ## VITAL
@@ -171,20 +167,11 @@ module CommonDataModel
 
   # NUMBER(8) Height in inches
   def pcornet_ht
-    answer = pcornet_get_answer(16, 547)
-    if answer
-      height_in_feet = answer.answer_values.where( answer_template_id: 8 ).first
-      height_in_inches = answer.answer_values.where( answer_template_id: 9 ).first
-      begin
-        height_in_feet.value * 12 + height_in_inches.value
-      rescue
-        nil
-      end
-    end
+    pcornet_get_response('additional-information-about-me', 'height', 'baseline')
   end
 
   def pcornet_ht_measure_date
-    if answer = pcornet_get_answer(16, 547)
+    if answer = pcornet_get_answer('additional-information-about-me', 'height', 'baseline')
       answer.created_at.strftime("%Y-%m-%d")
     else
       nil
@@ -192,7 +179,7 @@ module CommonDataModel
   end
 
   def pcornet_ht_measure_time
-    if answer = pcornet_get_answer(16, 547)
+    if answer = pcornet_get_answer('additional-information-about-me', 'height', 'baseline')
       answer.created_at.strftime("%H:%M")
     else
       nil
@@ -201,46 +188,56 @@ module CommonDataModel
 
   # NUMBER(8) Weight in pounds
   def pcornet_wt
-    pcornet_get_response(16, 548)
+    pcornet_get_response('additional-information-about-me', 'weight', 'baseline')
   end
-
 
   ## PRO_CM
 
+  # general-health-rate/general_health_rating     ==>   PN_0001/61577-3
+  # general-quality-life-rate/general_quality_life_rating     ==>   PN_0002/61578-1
+  # everyday-physical-activities/everyday_physical_activities     ==>   PN_0003/61582-3
+  # errands-and-shop/errands_and_shop     ==>   PN_0004/61635-9
+  # last-week-depression/last_week_depression     ==>   PN_0005/61967-6
+  # last-week-fatigue/last_week_fatigue     ==>   PN_0006/61878-5
+  # last-week-problem-sleep/last_week_problem_sleep     ==>   PN_0007/61998-1
+  # trouble-with-leisure/trouble_with_leisure     ==>   PN_0008/75417-6
+  # last-week-pain-interference/last_week_pain_interference     ==>   PN_0009/61758-9
+
+
   def pcornet_pn_0001
-    pcornet_get_answer(16, 529)
+    pcornet_get_answer('my-quality-of-life', 'general-health-rate', 'baseline')
   end
 
   def pcornet_pn_0002
-    pcornet_get_answer(16, 570)
+    pcornet_get_answer('my-quality-of-life', 'general-quality-life-rate', 'baseline')
   end
 
   def pcornet_pn_0003
-    pcornet_get_answer(16, 571)
+    pcornet_get_answer('my-quality-of-life', 'everyday-physical-activities', 'baseline')
   end
 
   def pcornet_pn_0004
-    pcornet_get_answer(16, 572)
+    pcornet_get_answer('my-quality-of-life', 'errands-and-shop', 'baseline')
   end
 
   def pcornet_pn_0005
-    pcornet_get_answer(16, 573)
+    pcornet_get_answer('my-quality-of-life', 'last-week-depression', 'baseline')
   end
 
   def pcornet_pn_0006
-    pcornet_get_answer(16, 574)
+    pcornet_get_answer('my-quality-of-life', 'last-week-fatigue', 'baseline')
   end
 
   def pcornet_pn_0007
-    pcornet_get_answer(16, 575)
+    pcornet_get_answer('my-quality-of-life', 'last-week-problem-sleep', 'baseline')
   end
 
   def pcornet_pn_0008
-    pcornet_get_answer(16, 576)
+    pcornet_get_answer('my-quality-of-life', 'trouble-with-leisure', 'baseline')
   end
 
   def pcornet_pn_0009
-    pcornet_get_answer(16, 577)
+    pcornet_get_answer('my-quality-of-life', 'last-week-pain-interference', 'baseline')
   end
 
 end
