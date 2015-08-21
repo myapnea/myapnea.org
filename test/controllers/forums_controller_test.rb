@@ -31,6 +31,13 @@ class ForumsControllerTest < ActionController::TestCase
     assert_not_nil assigns(:forums)
   end
 
+  test "should not show index for user who has not accepted terms and conditions" do
+    login(users(:created_today))
+    get :index
+    assert_nil assigns(:forums)
+    assert_redirected_to terms_and_conditions_path
+  end
+
   test "should not get new for logged out user" do
     get :new
     assert_redirected_to new_user_session_path
