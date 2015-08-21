@@ -36,7 +36,6 @@ date_answer1:
   answer_session: incomplete2_followup
   state: incomplete
 
-
 # About Me
 
 date_of_birth_answer_1:
@@ -167,4 +166,13 @@ referral_methods_answer_3:
   answer_session: finished_my_interest_in_research_3
   state: locked
 
+# API User
+api_user_answer_new_1:
+  question: radio1
+  answer_session: api_user
+  state: complete
 
+api_user_answer_new_2:
+  question: checkbox1
+  answer_session: api_user
+  state: complete

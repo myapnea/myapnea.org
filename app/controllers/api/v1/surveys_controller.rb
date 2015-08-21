@@ -18,7 +18,8 @@ class Api::V1::SurveysController < ApplicationController
     response = params[:response] || {}
 
     if @answer_session and @question and @answer = @answer_session.process_answer(@question, response)
-      render json: { success: true, completed: @answer.complete?, invalid: @answer.invalid?, value: @answer.string_value, errors: @answer.errors.full_messages, validation_errors: @answer.validation_errors }
+      @answer_session.lock! if @answer_session.completed?
+      render json: { success: true, survey_complete: @answer_session.completed?, completed: @answer.complete?, invalid: @answer.invalid?, value: @answer.string_value, errors: @answer.errors.full_messages, validation_errors: @answer.validation_errors }
     else
       render json: { success: false }
       # head :no_content

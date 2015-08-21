@@ -266,10 +266,10 @@ Rails.application.routes.draw do
         end
       end
       scope module: :account do
-        get 'account/user_types', to: :user_types
-        post 'account/set_user_types', to: :set_user_types
-        get 'account/ready_for_research', to: :ready_for_research
-        post 'account/accept_consent', to: :accept_consent
+        get 'account/user_types', action: :user_types
+        post 'account/set_user_types', action: :set_user_types
+        get 'account/ready_for_research', action: :ready_for_research
+        post 'account/accept_consent', action: :accept_consent
       end
     end
   end
