@@ -79,11 +79,6 @@ class ApplicationController < ActionController::Base
     redirect_to root_path, alert: "You do not have sufficient privileges to access that page." unless current_user.owner?
   end
 
-  def check_moderator
-    redirect_to root_path, alert: "You do not have sufficient privileges to access that page." unless current_user.moderator?
-  end
-
-
   def after_sign_in_path_for(resource)
     session[:previous_url] || root_path
   end
