@@ -1,5 +1,9 @@
 ## 8.1.0
 
+### Enhancements
+- **Gem Changes**
+  - Updated to rails 4.2.4
+
 ## 8.0.0
 
 ### Enhancements
