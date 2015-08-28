@@ -15,6 +15,10 @@ class ReportItem
     "#{@answer_option.text if @answer_option}: #{@percent}"
   end
 
+  def only_percent
+    @percent_number
+  end
+
   private
 
   def set_percent

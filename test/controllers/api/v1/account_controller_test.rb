@@ -28,7 +28,7 @@ class Api::V1::AccountControllerTest < ActionController::TestCase
   test "should set user type for logged in user" do
     login(@user)
     assert_difference('User.where(caregiver_adult: true).count') do
-      post :set_user_types, user: {id: @user.id, caregiver_adult: true }, format: :json
+      post :set_user_types, caregiver_adult: true, format: :json
     end
 
     assert_equal json_response['adult_diagnosed'], true
@@ -57,8 +57,10 @@ class Api::V1::AccountControllerTest < ActionController::TestCase
     post :set_dob, month: '01', day: '01', year: '1950', format: :json
 
     assert_equal '01/01/1950', assigns(:dob_answer).answer_values.first.text_value
-
     assert_equal true, json_response['success']
+
+    get :check_dob
+    assert_equal true, json_response['present']
   end
 
   test "should not process date of birth with unexpected inputs" do
@@ -66,8 +68,19 @@ class Api::V1::AccountControllerTest < ActionController::TestCase
     post :set_dob, month: 'feb', day: '01', year: '1950', format: :json
 
     assert_equal 'invalid', assigns(:dob_answer).state
-
     assert_equal false, json_response['success']
+  end
+
+  test "should process height and weight" do
+    login(users(:api_user))
+    post :set_height_weight, feet: '5', inches: '1', pounds: '100', format: :json
+
+    assert_equal 'complete', assigns(:weight_answer).state #### currently returning complete
+    assert_equal 'complete', assigns(:height_answer).state #### currently returning incomplete
+    assert_equal true, json_response['success']
+
+    get :check_height_weight
+    assert_equal true, json_response['present']
   end
 
   test "should not process height and weight with unexpected inputs" do
@@ -78,6 +91,24 @@ class Api::V1::AccountControllerTest < ActionController::TestCase
     # assert_equal 'invalid', assigns(:height_answer).state #### currently returning incomplete
 
     assert_equal false, json_response['success']
+  end
+
+  test "should get forum name" do
+    login(users(:social))
+    get :forum_name
+    assert_equal 'TomHaverford', json_response['forum_name']
+  end
+
+  test "should get photo if present" do
+    login(users(:social))
+    get :photo
+    assert_equal nil, json_response['photo_url']
+  end
+
+  test "should get dashboard" do
+    login(users(:api_user))
+    get :dashboard, format: :json
+    assert_not_nil assigns(:about_me_survey)
   end
 
 end
