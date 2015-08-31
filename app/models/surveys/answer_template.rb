@@ -34,38 +34,6 @@ class AnswerTemplate < ActiveRecord::Base
   end
 
   # Temporary Function (Rewrite/remove in 8.1)
-  def set_template_name!
-    new_template_name = nil
-    question = self.questions.first
-    if question
-      new_template_name = if question.display_type == "custom_date_input" and self.data_type == "text_value"
-        'date'
-      elsif question.display_type == "radio_input"           and self.data_type == "answer_option_id"
-        'radio'
-      elsif question.display_type == "checkbox_input"        and self.data_type == "answer_option_id"
-        if self.parent_answer_option_value == nil
-          'checkbox'
-        else
-          'radio'
-        end
-      elsif question.display_type == "checkbox_input"        and self.data_type == "text_value"
-        'string'
-      elsif question.display_type == "height_input"          and self.data_type == "numeric_value"
-        'height'
-      elsif question.display_type == "number_input"          and self.data_type == "numeric_value"
-        'number'
-      elsif question.display_type == "radio_input_multiple"  and self.data_type == "answer_option_id"
-        'radio'
-      elsif question.display_type == "radio_input"           and self.data_type == "text_value"
-        'string'
-      else
-        nil
-      end
-    else
-      nil
-    end
-    self.update template_name: new_template_name
-  end
 
   # Will replace "data_type" and be renamed to simply "data_type" when data_type
   # is removed as a database column.

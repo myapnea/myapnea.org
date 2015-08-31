@@ -6,6 +6,9 @@
 - **Gem Changes**
   - Updated to rails 4.2.4
 
+### Refactoring
+- Removed helper methods used to transition answer_template to newer format
+
 ## 8.0.0 (August 31, 2015)
 
 ### Enhancements
