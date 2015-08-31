@@ -1,0 +1,5 @@
+languages:
+  Ruby: true
+#   JavaScript: true
+# exclude_paths:
+# - "app/assets/javascripts/external/highcharts-4.0.4.src.js"

@@ -3,6 +3,7 @@
 ### Enhancements
 - **General Changes**
   - Minor spelling fixes
+  - Added a Code Climate configuration file
 - **Gem Changes**
   - Updated to rails 4.2.4
 
