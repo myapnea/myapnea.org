@@ -4,7 +4,7 @@
 - **Gem Changes**
   - Updated to rails 4.2.4
 
-## 8.0.0
+## 8.0.0 (August 31, 2015)
 
 ### Enhancements
 - **Survey Changes**
