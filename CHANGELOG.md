@@ -1,6 +1,8 @@
 ## 8.1.0
 
 ### Enhancements
+- **General Changes**
+  - Minor spelling fixes
 - **Gem Changes**
   - Updated to rails 4.2.4
 
