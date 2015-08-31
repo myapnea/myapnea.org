@@ -10,6 +10,7 @@ class Api::V1::SurveysController < ApplicationController
   respond_to :json
 
   def show
+    @answer_session = current_user.answer_sessions.find_by_survey_id(@survey.id)
   end
 
   def process_answer

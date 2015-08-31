@@ -1,5 +1,9 @@
 ## 8.1.0
 
+### API Development
+- Surveys
+  - Now limit survey show response to questions that haven't been answered
+
 ## 8.0.0
 
 ### Enhancements
