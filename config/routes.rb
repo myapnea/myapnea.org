@@ -266,6 +266,7 @@ Rails.application.routes.draw do
         end
       end
       scope module: :account do
+        get 'account/home', action: :home
         get 'account/dashboard', action: :dashboard
         get 'account/photo', action: :photo
         get 'account/forum_name', action: :forum_name

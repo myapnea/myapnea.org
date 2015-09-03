@@ -11,6 +11,17 @@ class Api::V1::AccountControllerTest < ActionController::TestCase
     ActiveSupport::JSON.decode @response.body
   end
 
+  test "should get home for logged in user" do
+    login(@user)
+    get :home, format: :json
+    assert_response :success
+  end
+
+  test "should not get home for logged out user" do
+    get :home, format: :json
+    assert_equal 'You need to sign in or sign up before continuing.', json_response['error']
+  end
+
   test "should get user types for logged in user" do
     login(@user)
     get :user_types, format: :json

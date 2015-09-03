@@ -8,6 +8,10 @@ class Api::V1::AccountController < ApplicationController
 
   respond_to :json
 
+  def home
+    render json: { name: current_user.email }
+  end
+
   def dashboard
     @about_me_survey = Survey.find_by_slug 'about-me'
   end
