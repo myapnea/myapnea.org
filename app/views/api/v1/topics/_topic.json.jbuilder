@@ -8,4 +8,4 @@ json.pinned topic.pinned
 json.locked topic.locked
 json.postCount topic.posts.current.count
 json.viewCount topic.views_count
-json.last_post_at topic.posts.current.present? ? topic.posts.current.last.created_at.strftime("%Y-%m-%d") : topic.created_at.strftime("%Y-%m-%d")
+json.last_post_at topic.posts.current.present? ? topic.posts.current.last.created_at.strftime("%Y-%m-%d %I:%M %p") : topic.created_at.strftime("%Y-%m-%d %I:%M %p")
