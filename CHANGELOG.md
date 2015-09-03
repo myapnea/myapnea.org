@@ -3,6 +3,7 @@
 ### API Development
 - Surveys
   - Now limit survey show response to questions that haven't been answered
+- Old, test version of API removed
 
 ## 8.0.0
 

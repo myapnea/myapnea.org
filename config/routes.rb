@@ -281,32 +281,6 @@ Rails.application.routes.draw do
     end
   end
 
-  # # API
-  # scope '/users' do
-  #   post '/', to: 'api#user_signup'
-  #   post '/', to: 'api#user_login'
-  scope 'api' do
-    get :home, to: 'api#home'
-    scope '/surveys' do
-      get '/answer_sessions', to: 'api#survey_answer_sessions'
-    end
-    scope '/research-topics' do
-      get '/', to: 'api#research_topic_index'
-      get '/:research_topic_id', to: 'api#research_topic_show'
-      post '/create', to: 'api#research_topic_create'
-      post '/vote', to: 'api#vote'
-    end
-    scope '/votes' do
-      get '/', to: 'api#votes'
-    end
-    scope '/forums' do
-      get '/topics', to: 'api#topic_index'
-      get '/topics/:topic_id', to: 'api#topic_show'
-      post 'topics/create', to: 'api#topic_create'
-      post 'posts/create', to: 'api#post_create'
-    end
-  end
-
 # # Authentication
 #   devise_for :user, skip: [:sessions, :passwords, :confirmations, :registrations]
 #   as :user do

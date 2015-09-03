@@ -20,7 +20,7 @@ class Api::V1::PostsControllerTest < ActionController::TestCase
 
     assert_equal assigns(:post).id, json_response['id']
     assert_equal assigns(:post).description, json_response['description']
-    assert_equal assigns(:post).created_at.strftime("%Y-%m-%d"), json_response['created_at']
+    assert_equal assigns(:post).created_at.strftime("%Y-%m-%d %I:%M %p"), json_response['created_at']
     assert_equal assigns(:post).links_enabled, json_response['links_enabled']
     assert_equal assigns(:post).user.forum_name, json_response['user']
     assert_equal assigns(:post).user.api_photo_url, json_response['user_photo_url']

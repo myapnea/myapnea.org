@@ -46,7 +46,7 @@ class Api::V1::TopicsControllerTest < ActionController::TestCase
     assert_equal @topic.locked, json_response['locked']
     assert_equal @topic.posts.current.count, json_response['postCount']
     assert_equal @topic.views_count, json_response['viewCount']
-    assert_equal @topic.posts.current.last.created_at.strftime("%Y-%m-%d"), json_response['last_post_at']
+    assert_equal @topic.posts.current.last.created_at.strftime("%Y-%m-%d %I:%M %p"), json_response['last_post_at']
   end
 
   test "should create topic for logged in user" do
@@ -65,7 +65,7 @@ class Api::V1::TopicsControllerTest < ActionController::TestCase
     assert_equal assigns(:topic).locked, json_response['locked']
     assert_equal assigns(:topic).posts.current.count, json_response['postCount']
     assert_equal assigns(:topic).views_count, json_response['viewCount']
-    assert_equal assigns(:topic).posts.current.last.created_at.strftime("%Y-%m-%d"), json_response['last_post_at']
+    assert_equal assigns(:topic).posts.current.last.created_at.strftime("%Y-%m-%d %I:%M %p"), json_response['last_post_at']
   end
 
   test "should not create topic without name" do
