@@ -62,7 +62,7 @@ class Survey < ActiveRecord::Base
   def atomic_first_or_create_answer_session(user, encounter_slug, child_id: nil)
     begin
       self.answer_sessions.where(user_id: user.id, encounter: encounter_slug, child_id: child_id).first_or_create!
-    rescue ActiveRecord::RecordNotUnique
+    rescue ActiveRecord::RecordNotUnique, ActiveRecord::RecordInvalid
       retry
     end
   end
