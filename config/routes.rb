@@ -260,6 +260,7 @@ Rails.application.routes.draw do
         collection do
           get :answer_sessions
           post :process_answer
+          post :lock_answer_session
         end
         member do
           get :show

@@ -32,12 +32,16 @@ class Api::V1::SurveysControllerTest < ActionController::TestCase
     assert_equal false, json_response['survey_complete']
   end
 
-  test "should process answer and mark survey as complete" do
+  test "should process answer and mark survey as complete then lock" do
     login(@user)
     post :process_answer, answer_session_id: @answer_session, question_id: questions(:date2), response: { answer_templates(:date2).to_param => { month: '01', day: '01', year: '1950' } }, format: :json
 
     assert_equal true, json_response['success']
     assert_equal true, json_response['survey_complete']
+
+    post :lock_answer_session, answer_session_id: @answer_session, format: :json
+
+    assert_equal true, json_response['success']
   end
 
 end
