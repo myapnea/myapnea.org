@@ -105,7 +105,7 @@ class Answer < ActiveRecord::Base
 
     template = AnswerTemplate.find_by_id(val.keys[0])
     response_value = val.values[0]
-    answer_values.where(answer_template_id: template.id).update_all(deleted: true)
+    answer_values.where(answer_template_id: template.id).delete_all
 
     if template.allow_multiple
       response_value.each { |v| answer_values.build(template.data_type => v, answer_template_id: template.id) }
