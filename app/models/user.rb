@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   mount_uploader :photo, PhotoUploader
 
   #  For recent updates to consent/privacy policy/etc
-  RECENT_UPDATE_DATE = "2015-06-24"
+  RECENT_UPDATE_DATE = "2015-09-11"
 
   # Include default devise modules. Others available are:
   # :confirmable, :omniauthable
@@ -218,7 +218,7 @@ class User < ActiveRecord::Base
 
   # Should not compare against RECENT_UPDATE_DATE if it is in the future
   def accepted_most_recent_update?
-    (self.accepted_update_at.present? and (self.accepted_update_at > Date.parse(RECENT_UPDATE_DATE).at_noon)) or (Date.parse(RECENT_UPDATE_DATE).at_noon > Time.now )
+    (self.accepted_update_at.present? and (self.accepted_update_at > Date.parse(RECENT_UPDATE_DATE).at_noon)) or (Date.parse(RECENT_UPDATE_DATE).at_noon > Time.now and !Rails.env.test?)
   end
 
   # User Types
