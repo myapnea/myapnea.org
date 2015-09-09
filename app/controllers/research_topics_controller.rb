@@ -115,6 +115,10 @@ class ResearchTopicsController < ApplicationController
     render 'research_topics/accepted/sleep_apnea_didgeridoo'
   end
 
+  def sleep_apnea_hypoglossal_stimulation
+    render 'research_topics/accepted/sleep_apnea_hypoglossal_stimulation'
+  end
+
   # Voting
 
   def vote

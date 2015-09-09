@@ -17,7 +17,11 @@ complete_about_me:
   survey: about_me
   encounter: baseline
   locked: true
-
+complete_not_locked:
+  user: api_user
+  survey: new
+  encounter: baseline
+  locked: false
 
 incomplete2_baseline:
   user: has_incomplete_survey

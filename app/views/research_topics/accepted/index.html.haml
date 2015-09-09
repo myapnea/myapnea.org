@@ -120,6 +120,25 @@
         %p.text-dark7
           Medical Director of the Sleep Program, Kaiser South California
 
+.content-container
+  .content-header
+    = link_to sleep_apnea_hypoglossal_stimulation_path, class: 'no-underline text-dark8' do
+      %h2 New Frontiers in the Treatment of Sleep Apnea: Unilateral Hypoglossal Nerve Stimulation
+  .content-body.horizontal-inset
+    %p.lead
+      Unilateral stimulation of the hypoglossal nerve (the nerve that controls the movement of the tongue) is a new treatment for people with moderate to severe OSA who are unable to use continuous positive prtessure therapy (CPAP).
+      = link_to 'Read more', sleep_apnea_hypoglossal_stimulation_path
+  .content-footer
+    .row
+      .col-sm-2.col-xs-4
+        = image_tag 'default-user.jpg', class: 'img-responsive pull-right', style: 'width: 100px;'
+      .col-sm-10.col-xs-8
+        %h3.f300
+          Kingman P Strohl, MD
+        %p.text-dark7
+          Professor of Medicine, Case Western Reserve University
+
+
 - unless current_user
   = render 'home/join_the_community', referrer: 'research', message: 'Make a direct impact on the future of sleep apnea research'
 

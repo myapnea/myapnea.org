@@ -7,6 +7,7 @@
   - Removed lottery language
   - Fixed changing color of navigation bar
   - Updated partnerships and relationships
+  - Added hypoglossal nerve stimulation research highlight
 - **Gem Changes**
   - Updated to rails 4.2.4
   - Set minitest-reporters to use '~> 1.0.20'
@@ -14,6 +15,11 @@
 ### Refactoring
 - Removed helper methods used to transition answer_template to newer format
 - Removed deleted columns from answers and answer_values
+
+### API Development
+- Surveys
+  - Now limit survey show response to questions that haven't been answered
+- Old, test version of API removed
 
 ## 8.0.0 (August 31, 2015)
 

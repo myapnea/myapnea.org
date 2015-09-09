@@ -101,6 +101,42 @@ class Answer < ActiveRecord::Base
     self.save
   end
 
+  def update_response_value_from_api!(val)
+
+    template = AnswerTemplate.find_by_id(val.keys[0])
+    response_value = val.values[0]
+    answer_values.where(answer_template_id: template.id).update_all(deleted: true)
+
+    if template.allow_multiple
+      response_value.each { |v| answer_values.build(template.data_type => v, answer_template_id: template.id) }
+    else
+      answer_values.build(template.data_type => response_value, answer_template_id: template.id)
+    end
+
+    self.save
+    check_completion_from_api
+  end
+
+  def check_completion_from_api
+
+    template_completions = []
+
+    question.answer_templates.each do |template|
+      template_answer_values = answer_values.where(answer_template_id: template.id)
+      if template.parent_answer_template_id.present?
+        parent_template = AnswerTemplate.find_by_id(template.parent_answer_template_id)
+        parent_response_value = answer_values.where(answer_template_id: parent_template.id).collect{|rv| rv.answer_option.value }
+
+        template_completion = parent_response_value.include?(template.parent_answer_option_value) ? template_answer_values.present? : true
+      else
+        template_completion = template_answer_values.present?
+      end
+      template_completions << template_completion
+    end
+
+    set_completion_state_from_api(template_completions)
+  end
+
   def value
     res = {}
     answer_values.each do |av|
@@ -167,6 +203,16 @@ class Answer < ActiveRecord::Base
       self[:state] = (template_completions.all? ? 'complete' : 'incomplete')
     else
       self[:state] = "invalid"
+    end
+  end
+
+  def set_completion_state_from_api(template_completions)
+    if preferred_not_to_answer
+      self.update(state: 'complete')
+    elsif template_completions.count > 0
+      template_completions.all? ? self.update(state: 'complete') : self.update(state: 'incomplete')
+    else
+      self.update(state: 'invalid')
     end
   end
 end

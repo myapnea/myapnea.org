@@ -129,6 +129,7 @@ Rails.application.routes.draw do
   get 'research-topics/accepted/link-between-type-2-diabetes-and-sleep-apnea', to: "research_topics#sleep_apnea_diabetes", as: "sleep_apnea_diabetes"
   get 'research-topics/accepted/can-nighttime-oxygen-replace-cpap-for-treatment-of-sleep-apnea', to: "research_topics#sleep_apnea_nighttime_oxygen_use", as: "sleep_apnea_nighttime_oxygen_use"
   get 'research-topics/accepted/didgeridoo-a-potentially-novel-intervention-for-sleep-apnea', to: "research_topics#sleep_apnea_didgeridoo", as: "sleep_apnea_didgeridoo"
+  get 'research-topics/accepted/unilateral-hypoglossal-nerve-stimulation-sleep-apnea-treatment', to: "research_topics#sleep_apnea_hypoglossal_stimulation", as: "sleep_apnea_hypoglossal_stimulation"
 
   # Surveys
   resources :surveys do
@@ -260,45 +261,26 @@ Rails.application.routes.draw do
         collection do
           get :answer_sessions
           post :process_answer
+          post :lock_answer_session
         end
         member do
           get :show
         end
       end
       scope module: :account do
+        get 'account/home', action: :home
+        get 'account/dashboard', action: :dashboard
+        get 'account/photo', action: :photo
+        get 'account/forum_name', action: :forum_name
         get 'account/user_types', action: :user_types
         post 'account/set_user_types', action: :set_user_types
         get 'account/ready_for_research', action: :ready_for_research
         post 'account/accept_consent', action: :accept_consent
         post 'account/set_dob', action: :set_dob
         post 'account/set_height_weight', action: :set_height_weight
+        get 'account/check_dob', action: :check_dob
+        get 'account/check_height_weight', action: :check_height_weight
       end
-    end
-  end
-
-  # # API
-  # scope '/users' do
-  #   post '/', to: 'api#user_signup'
-  #   post '/', to: 'api#user_login'
-  scope 'api' do
-    get :home, to: 'api#home'
-    scope '/surveys' do
-      get '/answer_sessions', to: 'api#survey_answer_sessions'
-    end
-    scope '/research-topics' do
-      get '/', to: 'api#research_topic_index'
-      get '/:research_topic_id', to: 'api#research_topic_show'
-      post '/create', to: 'api#research_topic_create'
-      post '/vote', to: 'api#vote'
-    end
-    scope '/votes' do
-      get '/', to: 'api#votes'
-    end
-    scope '/forums' do
-      get '/topics', to: 'api#topic_index'
-      get '/topics/:topic_id', to: 'api#topic_show'
-      post 'topics/create', to: 'api#topic_create'
-      post 'posts/create', to: 'api#post_create'
     end
   end
 

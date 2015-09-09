@@ -10,6 +10,7 @@ class Api::V1::SurveysController < ApplicationController
   respond_to :json
 
   def show
+    @answer_session = current_user.answer_sessions.find_by_survey_id(@survey.id)
   end
 
   def process_answer
@@ -17,8 +18,7 @@ class Api::V1::SurveysController < ApplicationController
     @answer_session = current_user.answer_sessions.find_by_id(params[:answer_session_id])
     response = params[:response] || {}
 
-    if @answer_session and @question and @answer = @answer_session.process_answer(@question, response)
-      @answer_session.lock! if @answer_session.completed?
+    if @answer_session and @question and @answer = @answer_session.process_answer_from_api(@question, response)
       render json: { success: true, survey_complete: @answer_session.completed?, completed: @answer.complete?, invalid: @answer.invalid?, value: @answer.string_value, errors: @answer.errors.full_messages, validation_errors: @answer.validation_errors }
     else
       render json: { success: false }
@@ -31,6 +31,12 @@ class Api::V1::SurveysController < ApplicationController
     respond_to do |format|
       format.json
     end
+  end
+
+  def lock_answer_session
+    @answer_session = current_user.answer_sessions.find_by_id(params[:answer_session_id])
+    @answer_session.lock! if @answer_session.completed?
+    render json: { success: @answer_session.locked? }
   end
 
   private
