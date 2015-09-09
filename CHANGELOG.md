@@ -6,6 +6,7 @@
   - Added a Code Climate configuration file
 - **Gem Changes**
   - Updated to rails 4.2.4
+  - Set minitest-reporters to use '~> 1.0.20'
 
 ### Refactoring
 - Removed helper methods used to transition answer_template to newer format
