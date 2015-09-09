@@ -53,6 +53,14 @@ must_accept_update_first_for_child:
   survey: new
   encounter: followup
 
+completed_survey_child_for_child:
+  user: social
+  child: three
+  survey: new
+  encounter: baseline
+  locked: true
+  locked_at: <%= 6.months.ago.to_s(:db) %>
+
 report_test1:
   user: social
   survey: for_reports

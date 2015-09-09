@@ -16,6 +16,7 @@
 - Removed helper methods used to transition answer_template to newer format
 - Removed deleted columns from answers and answer_values
 - Removed dependency on report view
+- Improved test coverage for surveys controller
 
 ### API Development
 - Surveys
