@@ -48,7 +48,7 @@ class AdminController < ApplicationController
     # Age
     survey = Survey.find_by_slug 'about-me'
     question = survey.questions.find_by_slug 'date-of-birth'
-    values_and_ids = AnswerValue.current.where( answer_id: question.answers.select(:id) ).where.not( text_value: [nil, '']).includes(answer: :answer_session).pluck(:text_value, "answer_sessions.user_id")
+    values_and_ids = AnswerValue.where( answer_id: question.answers.select(:id) ).where.not( text_value: [nil, '']).includes(answer: :answer_session).pluck(:text_value, "answer_sessions.user_id")
     date_values_and_ids = values_and_ids.collect{|v, user_id| [Date.parse(v), user_id] rescue nil}.compact.select{|d, user_id| d.year.in?(1900..Date.today.year)}
 
     age_ranges = [["18-34", (18..34)],
@@ -68,7 +68,7 @@ class AdminController < ApplicationController
 
     # Sex
     question = survey.questions.find_by_slug 'sex'
-    values_and_ids = AnswerValue.current.where( answer_id: question.answers.select(:id) ).where.not( answer_option_id: nil ).includes(:answer_option, answer: :answer_session).pluck("answer_options.text", "answer_sessions.user_id")
+    values_and_ids = AnswerValue.where( answer_id: question.answers.select(:id) ).where.not( answer_option_id: nil ).includes(:answer_option, answer: :answer_session).pluck("answer_options.text", "answer_sessions.user_id")
 
     values_and_ids.each do |v,user_id|
       user_values[user_id.to_s] ||= {}
@@ -86,7 +86,7 @@ class AdminController < ApplicationController
 
     # Race
     question = survey.questions.find_by_slug 'race'
-    values_and_ids = AnswerValue.current.where( answer_id: question.answers.select(:id) ).where.not( answer_option_id: nil ).includes(:answer_option, answer: :answer_session).pluck("answer_options.text", "answer_sessions.user_id")
+    values_and_ids = AnswerValue.where( answer_id: question.answers.select(:id) ).where.not( answer_option_id: nil ).includes(:answer_option, answer: :answer_session).pluck("answer_options.text", "answer_sessions.user_id")
 
     values_and_ids.each do |v,user_id|
       user_values[user_id.to_s] ||= {}
@@ -108,7 +108,7 @@ class AdminController < ApplicationController
 
     # Education level
     question = survey.questions.find_by_slug 'education-level'
-    values_and_ids = AnswerValue.current.where( answer_id: question.answers.select(:id) ).where.not( answer_option_id: nil ).includes(:answer_option, answer: :answer_session).pluck("answer_options.text", "answer_sessions.user_id")
+    values_and_ids = AnswerValue.where( answer_id: question.answers.select(:id) ).where.not( answer_option_id: nil ).includes(:answer_option, answer: :answer_session).pluck("answer_options.text", "answer_sessions.user_id")
 
     values_and_ids.each do |v,user_id|
       user_values[user_id.to_s] ||= {}
@@ -131,7 +131,7 @@ class AdminController < ApplicationController
     # Wealth
     survey = Survey.find_by_slug 'additional-information-about-me'
     question = survey.questions.find_by_slug 'affording-basics'
-    values_and_ids = AnswerValue.current.where( answer_id: question.answers.select(:id) ).where.not( answer_option_id: nil ).includes(:answer_option, answer: :answer_session).pluck("answer_options.text", "answer_sessions.user_id")
+    values_and_ids = AnswerValue.where( answer_id: question.answers.select(:id) ).where.not( answer_option_id: nil ).includes(:answer_option, answer: :answer_session).pluck("answer_options.text", "answer_sessions.user_id")
 
     values_and_ids.each do |v,user_id|
       user_values[user_id.to_s] ||= {}
@@ -148,7 +148,7 @@ class AdminController < ApplicationController
     # Referral
     survey = Survey.find_by_slug 'my-interest-in-research'
     question = survey.questions.find_by_slug 'referral-methods'
-    values_and_ids = AnswerValue.current.where( answer_id: question.answers.select(:id) ).where.not( answer_option_id: nil ).includes(:answer_option, answer: :answer_session).pluck("answer_options.text", "answer_sessions.user_id")
+    values_and_ids = AnswerValue.where( answer_id: question.answers.select(:id) ).where.not( answer_option_id: nil ).includes(:answer_option, answer: :answer_session).pluck("answer_options.text", "answer_sessions.user_id")
 
     values_and_ids.each do |v,user_id|
       user_values[user_id.to_s] ||= {}

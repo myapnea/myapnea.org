@@ -6,7 +6,7 @@ class AnswerSession < ActiveRecord::Base
   belongs_to :survey
   belongs_to :user
   belongs_to :child
-  has_many :answers, -> { where deleted: false }
+  has_many :answers
   has_many :reports
 
   # Validations

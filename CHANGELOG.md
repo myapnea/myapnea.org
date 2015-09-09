@@ -13,6 +13,7 @@
 
 ### Refactoring
 - Removed helper methods used to transition answer_template to newer format
+- Removed deleted columns from answers and answer_values
 
 ## 8.0.0 (August 31, 2015)
 
