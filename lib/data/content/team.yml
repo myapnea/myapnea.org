@@ -52,12 +52,6 @@ team:
     In December 2013, the Patient-Centered Outcomes Research Institute approved $93.5 million to support 29 clinical research data networks that together will form an ambitious new resource known as PCORnet, or the National Patient-Centered Outcomes Clinical Research Network. PCORnet will be a large, highly representative, national network for conducting clinical outcomes research. PCORnet will integrate data from 11 Clinical Data Research Networks—networks that originate in healthcare systems such as hospitals, health plans, and practice-based networks and securely collect real-time health information during the routine course of patient care—and 18 Patient-Powered Research Networks—networks operated and governed by groups of patients and their partners who are focused on a particular condition and interested in sharing health information and participating in research.
   partners_header: Our partners
   partners:
-    - name: American Sleep Apnea Association
-      link: http://www.sleepapnea.org
-      description: |
-        The American Sleep Apnea Association (ASAA), founded in 1990, is a 501(c)(3) nonprofit organization that promotes awareness of sleep apnea, works for continuing improvements in treatments for this serious disease, and advocates for the interests of sleep apnea patients. Its mission is to reduce injury, disability, and death from sleep apnea and to enhance the wellbeing of those affected by this common disorder. The ASAA promotes education and awareness, coordinates the A.W.A.K.E. Network of voluntary support groups, and promotes research and continuous improvement of care.
-
-        The Association's governing board of directors includes healthcare professionals, patients, and patient advocates among its members. ASAA policy requires that a majority of its directors always be patients and their advocates. Its bylaws also require that the chair of the board be a patient or patient advocate to ensure that ASAA will always be a patient-driven organization.
     - name: Division of Sleep and Circadian Disorders, Brigham and Women's Hospital
       link: http://www.brighamandwomens.org/Departments_and_Services/medicine/services/sleepmedicine/default.aspx
       description: |

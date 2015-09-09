@@ -14,6 +14,7 @@
       %br
       %span.wrapword
         = link_to (ENV['website_url'] + '/p/' + current_user.slug), provider_path(current_user.slug)
+
 .row.row-fullscreen#provider-header
   .col-md-7.col-md-offset-5.darker-blue-bcg{ style: 'border-radius: 30px 0 0 30px; margin-top:50px; padding:25px; background-color: #387FCF; background-color: rgba(56, 127, 207, 0.7)' }
     %h1.centered-text.text-white Wake up to a better future
@@ -24,11 +25,11 @@
       apnea to work together and help us improve treament outcomes, etc.
   .col-md-7.col-md-offset-5{ style: 'margin-top:70px' }
     .col-sm-4.col-xs-7.pull-right
-      = image_tag "myapnea/welcome/img-small/asaa-logo_white_3x1.png", class: 'partners-img img-responsive', id: 'partner-AASA'
     .col-sm-4.col-xs-7.pull-right
       = image_tag "myapnea/welcome/img-small/pcornet_logo_3x1.png", class: "partners-img img-responsive", id: "partner-PCORnet"
     .col-sm-4.col-xs-7.pull-right
       = image_tag "myapnea/welcome/img-small/bwh-logo_3x1.png", class: "partners-img img-responsive", id: "partner-BWH"
+
 .row.row-fullscreen#provider-banner{style: 'margin-left:0px; margin-right:0px;'}
   - if @provider.photo_url != 'default-user.jpg'
     .col-lg-2.col-lg-offset-1.col-md-3.col-md-offset-1.col-xs-4
@@ -104,9 +105,7 @@
         and if data is lacking they will endorse the topic as an important
         direction for future research.
 .row#partners-banner
-  .col-sm-12.col-md-4.col-lg-4.col-lg-offset-1
-    = image_tag 'myapnea/welcome/img-small/asaa_logo.jpg', class: "partners-img img-responsive", id: "partner-AASA"
-  .col-sm-12.col-md-4.col-lg-3
+  .col-sm-12.col-md-4.col-md-offset-2.col-lg-3.col-lg-offset-3
     = image_tag 'myapnea/welcome/img-small/pcornet_logo.jpg', class: "partners-img img-responsive", id: "partner-PCORnet"
   .col-sm-12.col-md-4.col-lg-3
     = image_tag 'myapnea/welcome/img-small/bwh_logo.jpg', class: "partners-img img-responsive", id: "partner-BWH"

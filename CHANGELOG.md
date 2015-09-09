@@ -6,6 +6,7 @@
   - Added a Code Climate configuration file
   - Removed lottery language
   - Fixed changing color of navigation bar
+  - Updated partnerships and relationships
 - **Gem Changes**
   - Updated to rails 4.2.4
   - Set minitest-reporters to use '~> 1.0.20'
