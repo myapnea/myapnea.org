@@ -3,7 +3,6 @@ class Answer < ActiveRecord::Base
   STATE = %(incomplete complete migrated locked)
 
   # Concerns
-  include Deletable
   include DateAndTimeParser
 
   # Named Scopes
@@ -15,10 +14,10 @@ class Answer < ActiveRecord::Base
 
   # Model Validation
   validates_presence_of :answer_session_id, :question_id
-  validates_uniqueness_of :question_id, scope: [:answer_session_id, :deleted]
+  validates_uniqueness_of :question_id, scope: [:answer_session_id]
 
   # Model Relationships
-  has_many :answer_values, -> { where deleted: false }, dependent: :destroy
+  has_many :answer_values, dependent: :destroy
   belongs_to :question
   belongs_to :answer_session
   has_many :reports

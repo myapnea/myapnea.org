@@ -51,7 +51,7 @@ class User < ActiveRecord::Base
   # Model Relationships
   belongs_to :my_provider, class_name: "User", foreign_key: 'provider_id'
   has_many :answer_sessions, -> { where deleted: false }
-  has_many :answers, -> { where deleted: false }
+  has_many :answers
   has_many :votes, -> { where deleted: false }
   has_one :social_profile, -> { where deleted: false }
   has_many :notifications, -> { where deleted: false }
@@ -69,13 +69,6 @@ class User < ActiveRecord::Base
 
   has_many :questions, -> { where deleted: false }
   has_many :answer_templates, -> { where deleted: false }
-
-  # CDM
-  has_one :cdm_demographic, foreign_key: 'patid'
-  has_one :cdm_enrollment, foreign_key: 'patid'
-  has_many :cdm_encounters, foreign_key: 'patid'
-  has_many :cdm_vitals, foreign_key: 'patid'
-  has_many :cdm_pro_cms, foreign_key: 'patid'
 
   # Reports
   has_many :reports

@@ -19,7 +19,7 @@ class Question < ActiveRecord::Base
   belongs_to :user
   has_and_belongs_to_many :answer_templates, -> { current.order("answer_templates.created_at asc") }
   belongs_to :group
-  has_many :answers, -> { where deleted: false }
+  has_many :answers
   belongs_to :question_help_message
   has_many :survey_answer_frequencies
   has_many :votes
@@ -47,7 +47,7 @@ class Question < ActiveRecord::Base
 
   # Returns how the community answered to a question and answer template for a given encounter
   def community_answer_values(encounter, answer_template)
-    answer_value_scope = AnswerValue.current.joins(:answer).where(answers: { question_id: self.id, state: 'locked' }, answer_template: answer_template).where.not(answer_option_id: nil)
+    answer_value_scope = AnswerValue.joins(:answer).where(answers: { question_id: self.id, state: 'locked' }, answer_template: answer_template).where.not(answer_option_id: nil)
     if encounter
       answer_value_scope = answer_value_scope.joins(answer: :answer_session).where(answer_sessions: { encounter: encounter.slug })
     end
