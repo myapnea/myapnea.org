@@ -19,7 +19,9 @@
     %h1.centered-text.text-white Wake up to a better future
   .col-md-7.col-md-offset-5.darker-blue-bcg{ style: 'border-radius: 30px 0 0 30px; margin-top:20px; padding:25px; background-color: #387FCF; background-color: rgba(56, 127, 207, 0.7)' }
     %h3.text-light9.f600.spaced Let's work together to find a cure for sleep apnea
-    %h4.text-light7 Join my network of care providers, researchers, and people with sleep apnea to work together and help us improve treament outcomes, etc.
+    %h4.text-light7
+      Join my network of care providers, researchers, and people with sleep
+      apnea to work together and help us improve treament outcomes, etc.
   .col-md-7.col-md-offset-5{ style: 'margin-top:70px' }
     .col-sm-4.col-xs-7.pull-right
       = image_tag "myapnea/welcome/img-small/asaa-logo_white_3x1.png", class: 'partners-img img-responsive', id: 'partner-AASA'
@@ -65,27 +67,42 @@
   .col-md-6.col-md-offset-1
     %h1.primary-blue Our Goal
     %h3{style: 'color:rgba(0,0,0,.7)' }
-      By offering this network to your patients, and engaging with them actively outside of the office, they begin to feel a uniquely incredible quality of care. This community easily shows people with sleep apnea the amount of support they have from an international group of researchers, care providers, and fellow patients.
+      By offering this network to your patients, and engaging with them actively
+      outside of the office, they begin to feel a uniquely incredible quality of
+      care. This community easily shows people with sleep apnea the amount of
+      support they have from an international group of researchers, care
+      providers, and fellow patients.
 .row.row-fullscreen#slide-4
   .col-md-10.col-md-offset-1
     %h1.primary-blue.f500.centered-text Our Community
-    %h3 MyApnea.Org is a community built by people with sleep apnea, family members, providers, and researchers to share and learn from one another.
+    %h3
+      MyApnea.Org is a community built by people with sleep apnea, family
+      members, providers, and researchers to share and learn from one another.
   .col-md-1
   = link_to forums_path, class: 'community-highlight-links ' do
     .col-md-3.col-md-offset-1.col-xs-12.col-button.community-highlight.centered-text#community-highlight-1
       %h3.text-white Active Forums
-      %p.lead Discuss with others about living with sleep apnea and what is important to you.  Share ideas on how to promote the website to others.  The more members we have, the more we can learn from each other and contribute to future research.
+      %p.lead
+        Discuss with others about living with sleep apnea and what is important
+        to you. Share ideas on how to promote the website to others. The more
+        members we have, the more we can learn from each other and contribute to
+        future research.
   = link_to surveys_path, class: 'community-highlight-links' do
     .col-md-3.col-xs-12.col-button.community.highlight.centered-text#community-highlight-2
       %h3.text-white Research Surveys
-      %p.lead Answer a series of questions about symptoms, treatment, and related health conditions.  Your answers will help the sleep apnea community better understand the disorder and where future research efforts should be directed.
       %p.lead
-        Each completed survey earns you an entry into our monthly drawing for a
-        %span.text-white#visa-gift-card $250 Visa Gift card.
+        Answer a series of questions about symptoms, treatment, and related
+        health conditions. Your answers will help the sleep apnea community
+        better understand the disorder and where future research efforts should
+        be directed.
   = link_to research_topics_path, class: 'community-highlight-links' do
     .col-md-3.col-xs-12.col-button.community.highlight.centered-text#community-highlight-2
       %h3.text-white Impact Questions
-      %p.lead Cast your vote on which research questions matter to you most. Providers and researchers will share what is known about the highest ranked topics and if data is lacking they will endorse the topic as an important direction for future research.
+      %p.lead
+        Cast your vote on which research questions matter to you most. Providers
+        and researchers will share what is known about the highest ranked topics
+        and if data is lacking they will endorse the topic as an important
+        direction for future research.
 .row#partners-banner
   .col-sm-12.col-md-4.col-lg-4.col-lg-offset-1
     = image_tag 'myapnea/welcome/img-small/asaa_logo.jpg', class: "partners-img img-responsive", id: "partner-AASA"
@@ -103,7 +120,11 @@
       .panel-body#panel-sign-up
         - if current_user.provider? and current_user.id == @provider.id
           %h4.f300.centered-text.spaced
-            This is where potential members will be able to register and list you as their care provider. You can share this page with your patients and community members by using the link below. If you have any questions about this process or would like any help, please feel free to
+            This is where potential members will be able to register and list
+            you as their care provider. You can share this page with your
+            patients and community members by using the link below. If you have
+            any questions about this process or would like any help, please feel
+            free to
             %a{ href: "mailto:support@myapnea.org" } contact us.
           %h4.f300.centered-text.spaced
             %strong Your personal url:
