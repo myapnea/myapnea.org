@@ -2,7 +2,6 @@ class AnswerValue < ActiveRecord::Base
   belongs_to :answer
   belongs_to :answer_option
   belongs_to :answer_template
-  has_one :report
 
   def value
     self[answer_template.data_type]
