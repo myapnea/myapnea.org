@@ -23,7 +23,6 @@ class Question < ActiveRecord::Base
   belongs_to :question_help_message
   has_many :survey_answer_frequencies
   has_many :votes
-  has_many :reports
 
   # Model Methods
 
@@ -48,6 +47,16 @@ class Question < ActiveRecord::Base
   # Returns how the community answered to a question and answer template for a given encounter
   def community_answer_values(encounter, answer_template)
     answer_value_scope = AnswerValue.joins(:answer).where(answers: { question_id: self.id, state: 'locked' }, answer_template: answer_template).where.not(answer_option_id: nil)
+    if encounter
+      answer_value_scope = answer_value_scope.joins(answer: :answer_session).where(answer_sessions: { encounter: encounter.slug })
+    end
+    answer_value_scope
+  end
+
+  # This is for text answers, like date-of-birth
+  def community_answer_text_values(encounter)
+    answer_template = self.answer_templates.first
+    answer_value_scope = AnswerValue.joins(:answer).where(answers: { question_id: self.id, state: 'locked' }, answer_template: answer_template)
     if encounter
       answer_value_scope = answer_value_scope.joins(answer: :answer_session).where(answer_sessions: { encounter: encounter.slug })
     end

@@ -99,18 +99,18 @@ namespace :dictionary do
         encounters.each do |encounter|
           row = [encounter]
           question_slugs.each do |slug|
-            r = Report.where(user_id: user.id, encounter: encounter).where("question_slug = ? or answer_template_name = ?", slug, slug).first
-            row << if r
-              if r.value.present?
-                r.value
-              elsif r.answer and r.answer.answer_values.collect{|av| av.answer_option}.compact.count > 0
-                r.answer.answer_values.collect{|av| av.answer_option}.compact.collect{|ao| ao.value}.uniq.sort.join(', ')
-              else
-                nil
-              end
-            else
-              nil
-            end
+            # r = Report.where(user_id: user.id, encounter: encounter).where("question_slug = ? or answer_template_name = ?", slug, slug).first
+            # row << if r
+            #   if r.value.present?
+            #     r.value
+            #   elsif r.answer and r.answer.answer_values.collect{|av| av.answer_option}.compact.count > 0
+            #     r.answer.answer_values.collect{|av| av.answer_option}.compact.collect{|ao| ao.value}.uniq.sort.join(', ')
+            #   else
+            #     nil
+            #   end
+            # else
+            #   nil
+            # end
           end
           csv << row
         end

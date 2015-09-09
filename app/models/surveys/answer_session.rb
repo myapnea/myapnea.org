@@ -7,7 +7,6 @@ class AnswerSession < ActiveRecord::Base
   belongs_to :user
   belongs_to :child
   has_many :answers
-  has_many :reports
 
   # Validations
   validates_presence_of :survey_id, :encounter

@@ -184,21 +184,10 @@ class AdminController < ApplicationController
 
   def daily_engagement
     redirect_to admin_path and return unless current_user.owner?
-    @date = Date.today
-    daily_data(@date, @date)
-  end
-
-  def daily_demographic_breakdown
-    start_date = params[:breakdown_date_start]
-    @date1 = Date.new start_date["(1i)"].to_i, start_date["(2i)"].to_i, start_date["(3i)"].to_i
-    end_date = params[:breakdown_date_end]
-    @date2 = Date.new end_date["(1i)"].to_i, end_date["(2i)"].to_i, end_date["(3i)"].to_i
+    @date1 = parse_date(params[:start_date], Date.today)
+    @date2 = parse_date(params[:end_date], Date.today)
 
     daily_data(@date1, @date2)
-
-    respond_to do |format|
-      format.js
-    end
   end
 
   def daily_engagement_data
@@ -234,8 +223,13 @@ class AdminController < ApplicationController
 
     def daily_data(date1, date2)
       @users_by_date = User.where("created_at >= ? AND created_at <= ?", date1.beginning_of_day, date2.end_of_day)
-      # Ages
-      dobs = Report.where(question_slug: 'date-of-birth', locked: true, user_id: @users_by_date.pluck(:id)).where.not(value: "").pluck('value')
+
+      @survey = Survey.current.find_by_slug 'about-me'
+      @encounter = Encounter.current.find_by_slug 'baseline'
+
+      question = @survey.questions.find_by_slug 'date-of-birth'
+      dobs = question.community_answer_text_values(@encounter).joins(answer: :answer_session).where(answer_sessions: { user_id: @users_by_date.select(:id) }).where.not(text_value: ['', nil]).pluck(:text_value)
+
       @ages = Hash.new
       @ages[0] = {text: "18-34", count: 0}
       @ages[1] = {text: "35-49", count: 0}

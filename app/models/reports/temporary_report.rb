@@ -1,9 +1,10 @@
 class TemporaryReport
 
-  def self.answer_option_counts(survey, question, answer_template, encounter: nil, range: nil)
+  def self.answer_option_counts(survey, question, answer_template, encounter: nil, range: nil, users: nil)
     if question
       answer_value_scope = question.community_answer_values(encounter, answer_template).joins(:answer_option)
       answer_value_scope = answer_value_scope.where(answer_options: { value: range }) if range
+      answer_value_scope = answer_value_scope.joins(answer: :answer_session).where(answer_sessions: { user_id: users.select(:id) }) if users
       answer_value_scope
     else
       AnswerValue.joins(:answer_option).none

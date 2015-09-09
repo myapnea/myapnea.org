@@ -20,7 +20,6 @@ class Answer < ActiveRecord::Base
   has_many :answer_values, dependent: :destroy
   belongs_to :question
   belongs_to :answer_session
-  has_many :reports
 
   # Model Methods
 

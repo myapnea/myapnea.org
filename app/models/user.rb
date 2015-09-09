@@ -70,9 +70,6 @@ class User < ActiveRecord::Base
   has_many :questions, -> { where deleted: false }
   has_many :answer_templates, -> { where deleted: false }
 
-  # Reports
-  has_many :reports
-
   # Overriding Devise built-in active_for_authentication? method
   def active_for_authentication?
     super and not self.deleted?

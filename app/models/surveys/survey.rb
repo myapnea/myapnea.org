@@ -29,7 +29,6 @@ class Survey < ActiveRecord::Base
   has_many :survey_encounters
   has_many :encounters, -> { where deleted: false }, through: :survey_encounters
   has_many :survey_user_types, -> { where deleted: false }
-  has_many :reports
 
   # Named scopes
   scope :viewable, -> { where(status: 'show').where.not(slug: nil) }

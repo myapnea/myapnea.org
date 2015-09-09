@@ -9,13 +9,13 @@
   .content-header
     %h2 Demographics
     %br
-    = form_tag daily_demographic_breakdown_path, remote: true do
-      %label{ for: 'breakdown_date_start' } Start date:
-      = date_select 'breakdown_date_start', nil, order: [:month, :day, :year], id: 'breakdown_date_start'
+    = form_tag admin_daily_engagement_path, method: :get do
+      %label{ for: 'start_date' } Start date:
+      = text_field_tag :start_date, @date1.strftime("%m/%d/%Y"), class: 'datepicker'
       &nbsp;
       &nbsp;
       %label{ for: 'breakdown_date_end' } End date:
-      = date_select 'breakdown_date_end', nil, order: [:month, :day, :year], id: 'breakdown_date_end'
+      = text_field_tag :end_date, @date2.strftime("%m/%d/%Y"), class: 'datepicker'
       &nbsp;
       &nbsp;
       &nbsp;
@@ -23,20 +23,52 @@
   #daily-demographic-breakdown.content-body
     %h3 Summary:
     #summary-breakdown.horizontal-inset
-      = "We had #{@users_by_date.count rescue 0 } new user(s) on #{@date.inspect}. Of these users, #{ @users_by_date.select{ |u| u.completed_demographic_survey? }.count rescue 0} completed the About Me survey."
+      - if @date1.present? and @date2.present? and @date1!=@date2
+        There were
+        = @users_by_date.count
+        new users between
+        = @date1.inspect
+        and
+        = succeed '.' do
+          = @date2.inspect
+        Of these users,
+        = @users_by_date.select{ |u| u.completed_demographic_survey? }.count
+        completed the About Me survey.
+      - elsif @date1.present?
+        There were
+        = @users_by_date.count
+        new users on
+        = succeed '.' do
+          = @date1.inspect
+        Of these users,
+        = @users_by_date.select{ |u| u.completed_demographic_survey? }.count
+        completed the About Me survey.
+      - elsif @date2.present?
+        There were
+        = @users_by_date.count
+        new users on
+        = succeed '.' do
+          = @date2.inspect
+        Of these users,
+        = @users_by_date.select{ |u| u.completed_demographic_survey? }.count
+        completed the About Me survey.
+
       = render 'user_type_table', users: @users_by_date
     %h3 Sex:
     #sex-breakdown.horizontal-inset
-      = render 'demographic_chart', demographic_data: Report.frequency_data('sex', 1..2, @users_by_date.pluck(:id)) rescue nil
+      = render 'demographic_chart', question_slug: 'sex', range: 1..2
     %h3 Age:
     #age-breakdown.horizontal-inset
-      = render 'demographic_chart', demographic_data: @ages
+      - @ages.each do |data|
+        %p
+          %span.f500= "#{data[1][:text]}: "
+          %span.primary-blue= data[1][:count]
     %h3 Race:
     #racial-breakdown.horizontal-inset
-      = render 'demographic_chart', demographic_data: Report.frequency_data('race', 1..5, @users_by_date.pluck(:id)) rescue nil
+      = render 'demographic_chart', question_slug: 'race', range: 1..5
     %h3 Ethnicity:
     #ethnicity-breakdown.horizontal-inset
-      = render 'demographic_chart', demographic_data: Report.frequency_data('ethnicity', 1..2, @users_by_date.pluck(:id)) rescue nil
+      = render 'demographic_chart', question_slug: 'ethnicity', range: 1..2
     %h3 Location:
     #location-breakdown.horizontal-inset
       = render 'location_list', users: @users_by_date, selector: 'state'

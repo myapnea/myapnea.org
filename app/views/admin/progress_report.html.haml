@@ -6,7 +6,8 @@
     = link_to 'Admin Dashboard', admin_path
 
 - user_scope = User.where(include_in_exports: true)
-- report_scope = Report
+- @survey = Survey.current.find_by_slug 'about-me'
+- @encounter = Encounter.current.find_by_slug 'baseline'
 
 .content-container
   .content-header
@@ -48,15 +49,16 @@
     %h3 With any questionnaire data
   .content-body
     %p.lead.centered-text{ style: 'margin-top: 20px' }
-      - with_questionnaire_count = report_scope.where.not(value: [nil, ""]).uniq.select(:user_id).count
+      - with_questionnaire_count = AnswerValue.joins(answer: :answer_session).where(answers: { state: 'locked' }).uniq.select("answer_sessions.user_id").count
       = number_with_delimiter with_questionnaire_count
 
 .content-container
   .content-header
     %h3 Demographics on signed consents
   .content-body
-    - male_count = report_scope.where(survey_slug: 'about-me', question_slug: 'sex', encounter: 'baseline', answer_option_text: 'Male' ).uniq.select(:user_id).count
-    - female_count = report_scope.where(survey_slug: 'about-me', question_slug: 'sex', encounter: 'baseline', answer_option_text: 'Female' ).uniq.select(:user_id).count
+    - question = @survey.questions.find_by_slug 'sex'
+    - answer_template = question.first_radio_or_checkbox_answer_template if question
+    - answer_option_counts = TemporaryReport.answer_option_counts(@survey, question, answer_template, encounter: @encounter, range: 1..2)
 
     %table.table.table-bordered.table-condensed{ style: 'table-layout:fixed' }
       %thead
@@ -65,11 +67,16 @@
           %th Female
       %tbody
         %tr
-          %td= number_with_delimiter male_count
-          %td= number_with_delimiter female_count
+          %td
+            - report_item = ReportItem.new(answer_option_counts, answer_template, 1)
+            = number_with_delimiter report_item.count
+          %td
+            - report_item = ReportItem.new(answer_option_counts, answer_template, 2)
+            = number_with_delimiter report_item.count
 
-    - white_count = report_scope.where(survey_slug: 'about-me', question_slug: 'race', encounter: 'baseline', value: '5' ).uniq.select(:user_id).count
-    - black_count = report_scope.where(survey_slug: 'about-me', question_slug: 'race', encounter: 'baseline', value: '3' ).uniq.select(:user_id).count
+    - question = @survey.questions.find_by_slug 'race'
+    - answer_template = question.first_radio_or_checkbox_answer_template if question
+    - answer_option_counts = TemporaryReport.answer_option_counts(@survey, question, answer_template, encounter: @encounter, range: [3,5])
 
     %table.table.table-bordered.table-condensed{ style: 'table-layout:fixed' }
       %thead
@@ -78,10 +85,16 @@
           %th Black
       %tbody
         %tr
-          %td= number_with_delimiter white_count
-          %td= number_with_delimiter black_count
+          %td
+            - report_item = ReportItem.new(answer_option_counts, answer_template, 5)
+            = number_with_delimiter report_item.count
+          %td
+            - report_item = ReportItem.new(answer_option_counts, answer_template, 3)
+            = number_with_delimiter report_item.count
 
-    - date_array = report_scope.where(survey_slug: 'about-me', question_slug: 'date-of-birth', encounter: 'baseline' ).pluck(:value).collect{|d| (Date.strptime(d, "%m/%d/%Y") rescue nil)}.compact
+
+    - question = @survey.questions.find_by_slug 'date-of-birth'
+    - date_array = question.community_answer_text_values(@encounter).pluck(:text_value).collect{|d| (Date.strptime(d, "%m/%d/%Y") rescue nil)}.compact
 
     %table.table.table-bordered.table-condensed{ style: 'table-layout:fixed' }
       %thead
@@ -145,5 +158,5 @@
     %h3 Number of withdrawn consent
   .content-body
     %p.lead.centered-text{ style: 'margin-top: 20px' }
-      - withdrawn_consent_count = Report.where(user_id: user_scope.where(accepted_consent_at: nil).select(:id)).where.not(value: [nil, ""]).uniq.select(:user_id).count
+      - withdrawn_consent_count = AnswerValue.joins(answer: :answer_session).where(answers: { state: 'locked' }).where(answer_sessions: { user_id: user_scope.where(accepted_consent_at: nil).select(:id) }).uniq.select("answer_sessions.user_id").count
       = number_with_delimiter withdrawn_consent_count

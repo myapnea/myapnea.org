@@ -22,14 +22,6 @@ class AdminControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should get daily demographic breakdown as owner" do
-    login(@owner)
-    xhr :get, :daily_demographic_breakdown, breakdown_date_start: { "(1i)" => '2014', "(2i)" => "8", "(3i)" => "20" }, breakdown_date_end: { "(1i)" => '2015', "(2i)" => "8", "(3i)" => "20" }, format: 'js'
-    assert_not_nil assigns(:date1)
-    assert_not_nil assigns(:date2)
-    assert_response :success
-  end
-
   test "should get daily engagement data as owner" do
     login(@owner)
     xhr :get, :daily_engagement_data
