@@ -28,4 +28,33 @@ class InvitesControllerTest < ActionController::TestCase
     assert_response :redirect
   end
 
+  test "should create invite for new member" do
+    login(@valid_user)
+    assert_difference('Invite.count') do
+      post :create, invite: { email: 'test@test.com', for_provider: false }
+    end
+
+    assert_redirected_to members_invites_path
+  end
+
+  test "should create invite for existing member" do
+    login(@valid_user)
+    assert_difference('Invite.count') do
+      post :create, invite: { email: @valid_user.email, for_provider: false }
+    end
+
+    assert_redirected_to members_invites_path
+  end
+
+  test "should create invite for provider" do
+    login(@valid_user)
+    assert_difference('Invite.count') do
+      post :create, invite: { email: 'test@test.com', for_provider: true }
+    end
+
+    assert_redirected_to providers_invites_path
+  end
+
+
+
 end
