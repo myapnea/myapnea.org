@@ -22,75 +22,48 @@ class ResearchTopicsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should get sleep_apnea_body_weight for logged out user" do
-    get :sleep_apnea_body_weight
-    assert_response :success
-  end
-
-  test "should get sleep_apnea_brain_plasticity for logged out user" do
-    get :sleep_apnea_brain_plasticity
-    assert_response :success
-  end
-
-  test "should get sleep_apnea_adenotonsillectomy_children for logged out user" do
-    get :sleep_apnea_adenotonsillectomy_children
-    assert_response :success
-  end
-
-  test "should get sleep_apnea_diabetes for logged out user" do
-    get :sleep_apnea_diabetes
-    assert_response :success
-  end
-
-  test "should get sleep_apnea_nighttime_oxygen_use for logged out user" do
-    get :sleep_apnea_nighttime_oxygen_use
-    assert_response :success
-  end
-
-  test "should get sleep_apnea_didgeridoo for logged out user" do
-    get :sleep_apnea_didgeridoo
-    assert_response :success
-  end
-
-  test "should get accepted_research_topics_index for experienced user" do
-    login(@experienced_user)
+  test "should get accepted_research_topics_index" do
     get :accepted_research_topics_index
     assert_response :success
   end
 
-  test "should get sleep_apnea_body_weight for experienced user" do
-    login(@experienced_user)
+  test "should get sleep_apnea_body_weight" do
     get :sleep_apnea_body_weight
     assert_response :success
   end
 
-  test "should get sleep_apnea_brain_plasticity for experienced user" do
-    login(@experienced_user)
+  test "should get sleep_apnea_brain_plasticity" do
     get :sleep_apnea_brain_plasticity
     assert_response :success
   end
 
-  test "should get sleep_apnea_adenotonsillectomy_children for experienced user" do
-    login(@experienced_user)
+  test "should get sleep_apnea_adenotonsillectomy_children" do
     get :sleep_apnea_adenotonsillectomy_children
     assert_response :success
   end
 
-  test "should get sleep_apnea_diabetes for experienced user" do
-    login(@experienced_user)
+  test "should get sleep_apnea_diabetes" do
     get :sleep_apnea_diabetes
     assert_response :success
   end
 
-  test "should get sleep_apnea_nighttime_oxygen_use for experienced user" do
-    login(@experienced_user)
+  test "should get sleep_apnea_nighttime_oxygen_use" do
     get :sleep_apnea_nighttime_oxygen_use
     assert_response :success
   end
 
-  test "should get sleep_apnea_didgeridoo for experienced user" do
-    login(@experienced_user)
+  test "should get sleep_apnea_didgeridoo" do
     get :sleep_apnea_didgeridoo
+    assert_response :success
+  end
+
+  test "should get sleep_apnea_hypoglossal_stimulation" do
+    get :sleep_apnea_hypoglossal_stimulation
+    assert_response :success
+  end
+
+  test "should get sleep_apnea_women_heart_disease" do
+    get :sleep_apnea_women_heart_disease
     assert_response :success
   end
 
@@ -386,6 +359,43 @@ class ResearchTopicsControllerTest < ActionController::TestCase
     end
     assert_difference "Vote.count" do
       xhr :post, :vote, research_topic_id: rt.id, "endorse_#{rt.id}" => 1, format: 'js'
+    end
+  end
+
+  test "should add remote votes for research topics" do
+    login(@novice_user)
+    ResearchTopic.load_seeds
+    rt = ResearchTopic.where(category: "seeded").first
+    rt2 = ResearchTopic.where(category: "seeded").second
+
+    assert_difference "Vote.count" do
+      post :remote_vote, research_topic_id: rt.id, "endorse_#{rt.id}" => 1, format: 'js'
+    end
+
+    assert_difference "Vote.count" do
+      post :remote_vote, research_topic_id: rt2.id, "endorse_#{rt2.id}" => 0, format: 'js'
+    end
+  end
+
+  test "should not add remote vote with unexpected input for research topic" do
+    login(@novice_user)
+    ResearchTopic.load_seeds
+    rt = ResearchTopic.where(category: "seeded").first
+
+    assert_no_difference "Vote.count" do
+      post :remote_vote, research_topic_id: rt.id, "endorse_#{rt.id}" => 3, format: 'js'
+    end
+
+    assert_equal true, assigns(:vote_failed)
+  end
+
+  test "should change vote" do
+    @request.env['HTTP_REFERER'] = 'http://localhost:3000/sessions/new'
+    login(@experienced_user)
+    get :show, id: @rt
+    assert_response :success
+    assert_no_difference "Vote.count" do
+      post :change_vote, research_topic_id: @rt.id
     end
   end
 

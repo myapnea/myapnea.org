@@ -208,7 +208,6 @@ Rails.application.routes.draw do
   match 'vote', to: 'research_topics#vote', via: :post, as: :vote
   match 'remote-vote', to: 'research_topics#remote_vote', via: :post, as: :remote_vote
   match 'change-vote', to: 'research_topics#change_vote', via: :patch, as: :change_vote
-  get 'votes', to: 'research_topics#votes'
 
   devise_for :users, controllers: { registrations: 'registrations', sessions: 'sessions' }, path_names: { sign_up: 'join', sign_in: 'login' }, path: "/"
 

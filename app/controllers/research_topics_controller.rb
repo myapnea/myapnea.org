@@ -167,23 +167,6 @@ class ResearchTopicsController < ApplicationController
     redirect_to :back
   end
 
-  def votes
-    @votes = Vote.current
-    if params[:user_id].present?
-      @votes = @votes.where(user_id: params[:user_id].to_i)
-    end
-    if params[:rating].present?
-      @votes = @votes.where(rating: params[:rating].to_i)
-    end
-    if params[:research_topic_id].present?
-      @votes = @votes.where(research_topic_id: params[:research_topic_id].to_i)
-    end
-    respond_to do |format|
-      format.json
-    end
-  end
-
-
   private
 
   def redirect_beginner
