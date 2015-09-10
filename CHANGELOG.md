@@ -8,6 +8,7 @@
   - Fixed changing color of navigation bar
   - Updated partnerships and relationships
   - Added hypoglossal nerve stimulation research highlight
+  - Added women comorbidity (sleep apnea/heart disease) research highlight
 - **Gem Changes**
   - Updated to rails 4.2.4
   - Set minitest-reporters to use '~> 1.0.20'

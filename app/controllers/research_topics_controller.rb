@@ -119,6 +119,10 @@ class ResearchTopicsController < ApplicationController
     render 'research_topics/accepted/sleep_apnea_hypoglossal_stimulation'
   end
 
+  def sleep_apnea_women_heart_disease
+    render 'research_topics/accepted/sleep_apnea_women_heart_disease'
+  end
+
   # Voting
 
   def vote
