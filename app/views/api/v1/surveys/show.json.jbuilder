@@ -1,5 +1,5 @@
 json.name @survey.name_en
-json.description "Example survey description"
+json.description @survey.description_en if @survey.description_en.present?
 json.questions @survey.questions.current.select{ |q| q.answers.where(answer_session_id: @answer_session.id).complete.count == 0 }.each do |question|
   json.id question.id
   json.text question.text_en

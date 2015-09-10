@@ -20,6 +20,7 @@
 ### API Development
 - Surveys
   - Now limit survey show response to questions that haven't been answered
+  - Survey description loading from database
 - Old, test version of API removed
 
 ## 8.0.0 (August 31, 2015)
