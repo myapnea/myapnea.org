@@ -201,6 +201,53 @@ class AccountControllerTest < ActionController::TestCase
     assert_redirected_to get_started_step_three_path
   end
 
+  test "should retrieve about me survey for nonacademic user" do
+    login(@participant)
+    get :get_started_step_three
+    assert_not_nil assigns(:survey)
+    assert_not_nil assigns(:answer_session)
+  end
+
+  test "should accept terms of access" do
+    login(@regular_user)
+    assert_nil @regular_user.accepted_terms_of_access_at
+    post :accepts_terms_of_access
+    @regular_user.reload
+    assert_not_nil @regular_user.accepted_terms_of_access_at
+  end
+
+  test "should accept terms of access during registration" do
+    login(@regular_user)
+    assert_nil @regular_user.accepted_terms_of_access_at
+    post :accepts_terms_of_access, get_started: true
+    @regular_user.reload
+    assert_not_nil @regular_user.accepted_terms_of_access_at
+  end
+
+  test "should accept update as nonacademic user" do
+    login(@participant)
+    assert_not_nil @participant.accepted_consent_at
+    post :accepts_update
+    @participant.reload
+    assert_not_nil @participant.accepted_consent_at
+  end
+
+  test "should accept update as academic user" do
+    login(@provider)
+    assert_not_nil @provider.accepted_terms_of_access_at
+    post :accepts_update
+    @provider.reload
+    assert_not_nil @provider.accepted_terms_of_access_at
+  end
+
+  test "should accept terms and conditions" do
+    login(@provider)
+    assert_nil @provider.accepted_terms_conditions_at
+    post :accepts_terms_and_conditions
+    @provider.reload
+    assert_not_nil @provider.accepted_terms_conditions_at
+  end
+
   test "should update account information for user" do
     login(users(:social))
     new_last = "Boylston"
@@ -227,6 +274,14 @@ class AccountControllerTest < ActionController::TestCase
     assert_equal new_gender, users(:social).gender
     assert_equal new_age, users(:social).age
     assert_equal new_forum_name, users(:social).forum_name
+  end
+
+  test "should update account information for provider" do
+    login(@provider)
+    patch :update, user: { welcome_message: "Welcome to my page!", slug: 'doctor-joe-smith', provider_name: 'Dr Joe Smith' }
+    @provider.reload
+    assert_equal :user_info, assigns(:update_for)
+    assert_template "account"
   end
 
   test "should not allow user to enter blank forum name" do
