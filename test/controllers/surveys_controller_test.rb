@@ -214,6 +214,15 @@ class SurveysControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should not process answer without valid question" do
+    login(users(:has_incomplete_survey))
+    xhr :post, :process_answer, question_id: nil, answer_session_id: answer_sessions(:incomplete), response: { }, format: 'json'
+
+    assert_not_nil assigns(:answer_session)
+    assert_nil assigns(:question)
+    assert_response :no_content
+  end
+
   test "should get report for user with a locked survey" do
     login(users(:has_completed_survey))
     # TODO: Add fixtures to actually complete the users survey
@@ -229,6 +238,30 @@ class SurveysControllerTest < ActionController::TestCase
     get :report_detail, id: answer_sessions(:complete).survey
     assert_not_nil assigns(:answer_session)
     assert_response :success
+  end
+
+  test "should get standard survey report for web built surveys for user with completed survey" do
+    login(users(:has_completed_survey))
+    get :report, id: answer_sessions(:complete).survey
+    assert_not_nil assigns(:survey)
+    assert_not_nil assigns(:answer_session)
+    assert_redirected_to report_detail_survey_path(answer_sessions(:complete).survey, answer_sessions(:complete).encounter)
+  end
+
+  test "should get standard survey report for web built surveys for researcher" do
+    login(users(:researcher))
+    get :report, id: surveys(:new)
+    assert_not_nil assigns(:survey)
+    assert_nil assigns(:answer_session)
+    assert_redirected_to report_detail_survey_path(assigns(:survey), 'baseline')
+  end
+
+  test "should get standard survey report for web built surveys for caregivers of children" do
+    login(users(:social))
+    get :report, id: answer_sessions(:completed_survey_child_for_child).survey, child_id: children(:three), encounter: answer_sessions(:completed_survey_child_for_child).encounter
+    assert_not_nil assigns(:survey)
+    assert_not_nil assigns(:answer_session)
+    assert_redirected_to child_survey_report_detail_path(assigns(:answer_session).child.id, assigns(:answer_session).survey, assigns(:answer_session).encounter)
   end
 
   ## Unassigned Surveys
@@ -293,6 +326,13 @@ class SurveysControllerTest < ActionController::TestCase
       answer.update_response_value!(nil)
       assert old_val, answer.value
     end
+  end
+
+  test "should not submit and lock survey with invalid answer session" do
+    login(users(:has_completed_survey))
+    xhr :post, :submit, answer_session_id: -1, format: 'json'
+    assert_nil assigns(:answer_session)
+    assert_response :no_content
   end
 
   ## Academic Users
