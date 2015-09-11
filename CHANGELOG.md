@@ -20,6 +20,7 @@
 - Improved test coverage for surveys controller
 - Improved test coverage for account controller
 - Improved test coverage for invites controller
+- Improved test coverage for research topics controller
 
 ### API Development
 - Surveys
