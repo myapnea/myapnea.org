@@ -65,31 +65,31 @@ class ResearchTopic < ActiveRecord::Base
     where("research_topics.category = ?", "seeded").highlighted(user)
   end
 
-  def self.load_seeds
-    loaded_successfully = []
-    loaded_with_problems = []
-    msgs = []
+  # def self.load_seeds
+  #   loaded_successfully = []
+  #   loaded_with_problems = []
+  #   msgs = []
 
-    data_file = YAML.load_file(Rails.root.join(*(RESEARCH_TOPIC_DATA_LOCATION + ["original_seeding.yml"])))
+  #   data_file = YAML.load_file(Rails.root.join(*(RESEARCH_TOPIC_DATA_LOCATION + ["original_seeding.yml"])))
 
-    data_file['research_topics'].each do |research_topic_attributes|
-      user = User.find_by_email(research_topic_attributes.delete("user_email"))
+  #   data_file['research_topics'].each do |research_topic_attributes|
+  #     user = User.find_by_email(research_topic_attributes.delete("user_email"))
 
-      if user.present?
-        loaded_successfully << research_topic_attributes
-      else
-        loaded_with_problems << research_topic_attributes
-        user = User.first
-        msgs << "User #{research_topic_attributes["user_email"]} not found for research topic #{research_topic_attributes["text"]}\nAssigning #{user.email} as a fallback."
-      end
+  #     if user.present?
+  #       loaded_successfully << research_topic_attributes
+  #     else
+  #       loaded_with_problems << research_topic_attributes
+  #       user = User.first
+  #       msgs << "User #{research_topic_attributes["user_email"]} not found for research topic #{research_topic_attributes["text"]}\nAssigning #{user.email} as a fallback."
+  #     end
 
-      rt = create({category: 'seeded', progress: 'proposed', user_id: user.id}.merge(research_topic_attributes))
-      rt.topic.update(status: 'approved')
-      rt.topic.posts.first.update(status: 'approved') if rt.topic.posts.first.present?
-    end
+  #     rt = create({category: 'seeded', progress: 'proposed', user_id: user.id}.merge(research_topic_attributes))
+  #     rt.topic.update(status: 'approved')
+  #     rt.topic.posts.first.update(status: 'approved') if rt.topic.posts.first.present?
+  #   end
 
-    {successful: loaded_successfully, with_problems: loaded_with_problems, messages: msgs }
-  end
+  #   {successful: loaded_successfully, with_problems: loaded_with_problems, messages: msgs }
+  # end
 
   # Getters
   def status

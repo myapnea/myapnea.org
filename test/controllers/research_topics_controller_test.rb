@@ -106,6 +106,7 @@ class ResearchTopicsControllerTest < ActionController::TestCase
   end
 
   test "should get first topics for novice user" do
+    skip
     login(@novice_user)
     ResearchTopic.load_seeds
     get :first_topics
@@ -113,6 +114,7 @@ class ResearchTopicsControllerTest < ActionController::TestCase
   end
 
   test "should get first topics for no_votes user that read the intro" do
+    skip
     login(@no_votes_user)
     ResearchTopic.load_seeds
     get :first_topics, read_intro: 1
@@ -331,6 +333,7 @@ class ResearchTopicsControllerTest < ActionController::TestCase
   end
 
   test "should vote for only the seeded research topics as a no_votes user" do
+    skip
     @request.env['HTTP_REFERER'] = 'http://localhost:3000/sessions/new'
 
     login(@no_votes_user)
@@ -348,6 +351,7 @@ class ResearchTopicsControllerTest < ActionController::TestCase
 
 
   test "should vote for only the seeded research topics as a novice user" do
+    skip
     @request.env['HTTP_REFERER'] = 'http://localhost:3000/sessions/new'
 
     login(@novice_user)
@@ -363,6 +367,7 @@ class ResearchTopicsControllerTest < ActionController::TestCase
   end
 
   test "should add remote votes for research topics" do
+    skip
     login(@novice_user)
     ResearchTopic.load_seeds
     rt = ResearchTopic.where(category: "seeded").first
@@ -378,6 +383,7 @@ class ResearchTopicsControllerTest < ActionController::TestCase
   end
 
   test "should not add remote vote with unexpected input for research topic" do
+    skip
     login(@novice_user)
     ResearchTopic.load_seeds
     rt = ResearchTopic.where(category: "seeded").first
