@@ -102,11 +102,7 @@ class AccountController < ApplicationController
   def update
     if current_user.update(user_params)
       if [:welcome_message, :slug, :provider_name].all? {|k| user_params.key? k}
-
-        if current_user.provider?
-          current_user.send_provider_informational_email!
-        end
-
+        current_user.send_provider_informational_email! if current_user.provider?
         redirect_to provider_path(current_user.slug)
       else
         respond_to do |format|
@@ -115,7 +111,6 @@ class AccountController < ApplicationController
         end
       end
     else
-      @update_for = :user_info
       render "account"
     end
   end
@@ -126,7 +121,6 @@ class AccountController < ApplicationController
       sign_in current_user, bypass: true
       redirect_to account_path, notice: "Your password has been changed."
     else
-      @update_for = :password
       render "account"
     end
   end

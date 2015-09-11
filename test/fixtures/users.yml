@@ -234,6 +234,7 @@ provider:
   encrypted_password: <%= pw %>
   accepted_privacy_policy_at: <%= 6.day.ago.to_s(:db) %>
   accepted_terms_of_access_at: <%= 6.day.ago.to_s(:db) %>
+  forum_name: ProviderForumName012345
 
 # This provider hasn't filled anything in yet
 provider_without_slug:

@@ -280,8 +280,12 @@ class AccountControllerTest < ActionController::TestCase
     login(@provider)
     patch :update, user: { welcome_message: "Welcome to my page!", slug: 'doctor-joe-smith', provider_name: 'Dr Joe Smith' }
     @provider.reload
-    assert_equal :user_info, assigns(:update_for)
-    assert_template "account"
+
+    assert_equal 'Welcome to my page!', @provider.welcome_message
+    assert_equal 'doctor-joe-smith', @provider.slug
+    assert_equal 'Dr Joe Smith', @provider.provider_name
+
+    assert_redirected_to provider_path(@provider.slug)
   end
 
   test "should not allow user to enter blank forum name" do
@@ -297,12 +301,10 @@ class AccountControllerTest < ActionController::TestCase
 
   test "should not update account for regular user with invalid user information" do
     login(@regular_user)
-
     patch :update, user: { email: "" }
 
-    assert_equal :user_info, assigns(:update_for)
-
     assert_template "account"
+    assert_response :success
   end
 
   test "should change password for regular user" do
@@ -316,11 +318,9 @@ class AccountControllerTest < ActionController::TestCase
 
   test "should not change password for regular user with invalid current password" do
     login(@regular_user)
-
     patch :change_password, user: { current_password: 'invalid', password: 'newpassword' }
-
-    assert_equal :password, assigns(:update_for)
     assert_template "account"
+    assert_response :success
   end
 
   # User type creation and Survey assignment

@@ -18,6 +18,7 @@
 - Removed deleted columns from answers and answer_values
 - Removed dependency on report view
 - Improved test coverage for surveys controller
+- Improved test coverage for account controller
 
 ### API Development
 - Surveys
