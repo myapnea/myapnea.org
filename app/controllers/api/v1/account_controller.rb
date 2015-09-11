@@ -44,21 +44,16 @@ class Api::V1::AccountController < ApplicationController
 
   def set_dob
     response = { @question.answer_templates.first.to_param => { month: params[:month], day: params[:day], year: params[:year] } }
-    if @answer_session and @question and @dob_answer = @answer_session.process_answer(@question, response)
-      render json: { success: @dob_answer.state == 'complete' }
-    else
-      render json: { success: false }
-    end
+    @dob_answer = @answer_session.process_answer(@question, response)
+    render json: { success: @dob_answer.state == 'complete' }
   end
 
   def set_height_weight
     height_response = { @height_question.answer_templates.first.to_param => { feet: params[:feet], inches: params[:inches] } }
     weight_response = { @weight_question.answer_templates.first.to_param => params[:pounds] }
-    if @answer_session and @weight_question and @height_question and @weight_answer = @answer_session.process_answer(@weight_question, weight_response) and @height_answer = @answer_session.process_answer(@height_question, height_response)
-      render json: { success: (@weight_answer.state == 'complete' and @height_answer.state == 'complete') }
-    else
-      render json: { success: false }
-    end
+    @weight_answer = @answer_session.process_answer(@weight_question, weight_response)
+    @height_answer = @answer_session.process_answer(@height_question, height_response)
+    render json: { success: (@weight_answer.state == 'complete' and @height_answer.state == 'complete') }
   end
 
   # Check onboarding
@@ -76,14 +71,14 @@ class Api::V1::AccountController < ApplicationController
     def get_dob_question
       @survey = Survey.current.viewable.find_by_slug('about-me')
       @answer_session = current_user.get_baseline_survey_answer_session(@survey)
-      @question = Question.find_by_slug('date-of-birth')
+      @question = @survey.questions.find_by_slug('date-of-birth')
     end
 
     def get_height_weight_question
       @survey = Survey.current.viewable.find_by_slug('additional-information-about-me')
       @answer_session = current_user.get_baseline_survey_answer_session(@survey)
-      @height_question = Question.find_by_slug('height')
-      @weight_question = Question.find_by_slug('weight')
+      @height_question = @survey.questions.find_by_slug('height')
+      @weight_question = @survey.questions.find_by_slug('weight')
     end
 
 end
