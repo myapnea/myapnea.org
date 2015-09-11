@@ -51,7 +51,6 @@
 //= require external/world.js
 //= require cleantheme/maps
 //= require cleantheme/navigationUX
-//= require cleantheme/navigationToggle.js
 //= require cleantheme/circle.coffee
 //= require cookies
 //= require video_controls

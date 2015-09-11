@@ -21,6 +21,7 @@
 - Improved test coverage for account controller
 - Improved test coverage for invites controller
 - Improved test coverage for research topics controller
+- Removed deprecated JavaScript and associated views
 
 ### API Development
 - Surveys
