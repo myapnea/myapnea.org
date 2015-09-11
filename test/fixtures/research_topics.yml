@@ -20,3 +20,15 @@ deleted:
   created_at: <%= Time.zone.now - 10.hour %>
   topic: rt4
   deleted: true
+
+seeded_rt:
+  progress: proposed
+  user: user_1
+  topic: seeded_rt
+  category: seeded
+
+seeded_rt2:
+  progress: proposed
+  user: user_2
+  topic: seeded_rt2
+  category: seeded

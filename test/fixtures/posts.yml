@@ -90,7 +90,7 @@ rt1a:
 
 rt2:
   topic: rt2
-  description: I sleep all the time, but can't remember noticing myself breathing.
+  description: "I sleep all the time, but can't remember noticing myself breathing."
   user: user_2
   status: approved
   last_moderated_by: moderator_1
@@ -98,7 +98,7 @@ rt2:
 
 rt3:
   topic: rt3
-  description: I've always wonder this, but I can't be bothered to look for an answer.
+  description: "I've always wonder this, but I can't be bothered to look for an answer."
   user: user_3
   status: approved
   last_moderated_by: moderator_1
@@ -120,3 +120,20 @@ toms:
   status: approved
   last_moderated_by: moderator_1
   last_moderated_at: 2015-08-20 12:40:00
+
+
+seeded_rt:
+  topic: seeded_rt
+  description: Sleepiness is a major problem for patients. Understanding why sleepiness persists in some patients may lead to better treatment and improve quality of life for millions.
+  user: user_1
+  status: approved
+  last_moderated_by: moderator_1
+  last_moderated_at: 2015-01-09 12:40:00
+
+seeded_rt2:
+  topic: seeded_rt2
+  description: Obstructive sleep apnea is manageable and great results can be achieved from CPAP and other treatments. It is frustrating for patients with mixed/central apnea to learn that there are no answers and no success stories to provide some encouragement along the way. What is preventing similar success rates for those with mixed/central apnea?
+  user: user_2
+  status: approved
+  last_moderated_by: moderator_1
+  last_moderated_at: 2015-01-09 12:40:00

@@ -106,17 +106,13 @@ class ResearchTopicsControllerTest < ActionController::TestCase
   end
 
   test "should get first topics for novice user" do
-    skip
     login(@novice_user)
-    ResearchTopic.load_seeds
     get :first_topics
     assert_response :success
   end
 
   test "should get first topics for no_votes user that read the intro" do
-    skip
     login(@no_votes_user)
-    ResearchTopic.load_seeds
     get :first_topics, read_intro: 1
     assert_response :success
   end
@@ -333,11 +329,8 @@ class ResearchTopicsControllerTest < ActionController::TestCase
   end
 
   test "should vote for only the seeded research topics as a no_votes user" do
-    skip
     @request.env['HTTP_REFERER'] = 'http://localhost:3000/sessions/new'
-
     login(@no_votes_user)
-    ResearchTopic.load_seeds
     rt = ResearchTopic.where(category: "seeded").first
 
     assert_no_difference "Vote.count" do
@@ -346,16 +339,13 @@ class ResearchTopicsControllerTest < ActionController::TestCase
     assert_difference "Vote.count" do
       xhr :post, :vote, research_topic_id: rt.id, "endorse_#{rt.id}" => 1, format: 'js'
     end
-
   end
 
 
   test "should vote for only the seeded research topics as a novice user" do
-    skip
     @request.env['HTTP_REFERER'] = 'http://localhost:3000/sessions/new'
 
     login(@novice_user)
-    ResearchTopic.load_seeds
     rt = ResearchTopic.where(category: "seeded").first
 
     assert_no_difference "Vote.count" do
@@ -367,9 +357,7 @@ class ResearchTopicsControllerTest < ActionController::TestCase
   end
 
   test "should add remote votes for research topics" do
-    skip
     login(@novice_user)
-    ResearchTopic.load_seeds
     rt = ResearchTopic.where(category: "seeded").first
     rt2 = ResearchTopic.where(category: "seeded").second
 
@@ -383,9 +371,7 @@ class ResearchTopicsControllerTest < ActionController::TestCase
   end
 
   test "should not add remote vote with unexpected input for research topic" do
-    skip
     login(@novice_user)
-    ResearchTopic.load_seeds
     rt = ResearchTopic.where(category: "seeded").first
 
     assert_no_difference "Vote.count" do

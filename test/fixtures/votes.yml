@@ -44,3 +44,11 @@ v11:
   rating: 1
   research_topic: rt1
   deleted: true
+v12:
+  user: user_1
+  research_topic: seeded_rt
+  rating: 1
+v13:
+  user: user_1
+  research_topic: seeded_rt2
+  rating: 1

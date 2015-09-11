@@ -112,3 +112,21 @@ toms:
   pinned: false
   slug: hi-im-tom
   status: approved
+
+seeded_rt:
+  forum: research_topics
+  user: user_1
+  name: What is the reason for persistent sleepiness despite treatment of sleep apnea?
+  locked: false
+  pinned: false
+  slug: persistent-sleepiness
+  status: approved
+
+seeded_rt2:
+  forum: research_topics
+  user: user_2
+  name: What are the barriers to treating patients with mixed/central apnea?
+  locked: false
+  pinned: false
+  slug: treatment-barriers
+  status: approved
