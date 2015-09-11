@@ -19,6 +19,7 @@
 - Removed dependency on report view
 - Improved test coverage for surveys controller
 - Improved test coverage for account controller
+- Improved test coverage for invites controller
 
 ### API Development
 - Surveys
