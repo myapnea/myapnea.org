@@ -5,6 +5,8 @@
   - Added PEP Chair to Steering Committee list
   - Temporarily removed advisory council
   - Added UW to Partners page
+- **Gem Changes**
+  - Updated to pg 0.18.3
 
 ## 8.1.0 (September 11, 2015)
 
