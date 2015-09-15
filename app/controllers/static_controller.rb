@@ -15,6 +15,7 @@ class StaticController < ApplicationController
   end
 
   def advisory
+    redirect_to team_path and return
     @page_content = "The MyApnea advisory council consists of sleep researchers, sleep apnea care providers, experts in CPAP and CPAP masks, and people with sleep apnea."
     @group1 = []; @group2 = []; @group3 = []
     @pc["members"].each_with_index do |member, index|
@@ -58,6 +59,7 @@ class StaticController < ApplicationController
   end
 
   def AC_charter
+    redirect_to team_path and return
   end
 
   ## Educational content

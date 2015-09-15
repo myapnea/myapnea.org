@@ -31,7 +31,24 @@ class StaticControllerTest < ActionController::TestCase
 
   test "should get advisory" do
     get :advisory
+    # assert_response :success
+    assert_redirected_to team_path
+  end
+
+  test "should get governance charter" do
+    get :governance_policy
     assert_response :success
+  end
+
+  test "should get PEP charter" do
+    get :PEP_charter
+    assert_response :success
+  end
+
+  test "should get advisory charter" do
+    get :AC_charter
+    # assert_response :success
+    assert_redirected_to team_path
   end
 
   test "should get partners" do
