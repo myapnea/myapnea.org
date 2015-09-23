@@ -3,7 +3,7 @@ module SurveysHelper
     if answer.present? and answer.value.present? and answer.value[answer_template.id].present?
       saved_val = answer.value[answer_template.id]
 
-      if saved_val.kind_of?(Array)
+      if saved_val.is_a?(Array)
         saved_val.include? val
       else
         saved_val == val

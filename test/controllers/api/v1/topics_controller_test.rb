@@ -18,7 +18,7 @@ class Api::V1::TopicsControllerTest < ActionController::TestCase
 
     topics = json_response['topics']
     topic = topics[0]
-    assert topics.kind_of?(Array)
+    assert topics.is_a?(Array)
     assert topic.has_key?('id')
     assert topic.has_key?('forum')
     assert topic.has_key?('name')
