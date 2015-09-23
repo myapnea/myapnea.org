@@ -5,6 +5,8 @@
   - Temporarily disabled automatic forum reply emails
 - **General Changes**
   - Updated and added Forgot my Email and Login links
+- **Gem Changes**
+  - Removed minitest-reporters
 
 ## 8.2.0 (September 15, 2015)
 
