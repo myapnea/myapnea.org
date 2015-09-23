@@ -19,6 +19,8 @@
       %li= link_to 'Partners', partners_path
       %li= link_to 'Privacy', privacy_path
       %li= link_to 'FAQs', faqs_path
+      - unless current_user
+        %li= link_to 'I forgot my password!', new_user_password_path
   .col-sm-2.col-xs-4
     %ul
       %p.small Features

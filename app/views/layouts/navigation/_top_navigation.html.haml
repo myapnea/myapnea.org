@@ -37,22 +37,6 @@
               %li.divider
               %li
                 = link_to 'Log out', destroy_user_session_path, method: :delete
-      - else
-        %ul#log-in-nav.nav.navbar-nav.navbar-right.visible-md.visible-lg
-          %li.dropdown
-            %a.dropdown-toggle{ href:'#', data:{ toggle: 'dropdown', object: 'login-with-focus' } }
-              Login
-            .dropdown-menu{ style: 'padding:15px;' }
-              = form_tag user_session_path, method: :post, class: "navbar-form centered-text" do
-                = text_field_tag 'user[email]', nil, placeholder: 'Email', class: 'form-control', style: 'margin-bottom:10px;', autofocus: true, autocomplete: 'off'
-                = password_field_tag 'user[password]', nil, placeholder: 'Password', class: 'form-control', style: 'margin-bottom:10px;'
-                = check_box_tag 'user[remember_me]', '1'
-                %label{ for: 'user_remember_me' } Remember me
-                %br
-                = submit_tag 'Login', class: "btn btn-primary"
-              %p.small.centered-text
-                Not a member?
-                = link_to 'Join now!', new_user_registration_path, style: 'color: #5999de;', class: 'inline-link'
       %ul#main-nav.nav.navbar-nav.navbar-right
         %li{ class: "#{'active' if @active_top_nav_link == :home}" }
           = link_to "#{current_user ? 'Dashboard' : 'Home'}", root_path
@@ -65,6 +49,8 @@
         %li{ class: "#{'active' if @active_top_nav_link == :learn }" }
           = link_to 'Learn', learn_path
         - unless current_user
+          %li.hidden-xs{ style: 'border-color: transparent' }
+            = link_to 'Login', new_user_session_path, class: 'btn btn-default'
           %li.visible-sm.visible-xs
             = link_to 'Login', new_user_session_path, class: 'btn btn-default', id: 'mobile-login'
             = link_to 'Join', new_user_registration_path, class: 'btn btn-primary', id: 'mobile-join'
