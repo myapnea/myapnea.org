@@ -1,4 +1,4 @@
-## 8.2.1
+## 8.2.1 (September 23, 2015)
 
 ### Enhancements
 - **Forum Changes**
