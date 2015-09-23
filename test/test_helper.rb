@@ -1,13 +1,3 @@
-=begin
-To reset database, since global migrate does not create views for test database
-```
-bundle exec rake db:drop RAILS_ENV=test
-bundle exec rake db:create RAILS_ENV=test
-bundle exec rake db:migrate RAILS_ENV=test
-
-```
-=end
-
 require 'simplecov'
 require 'minitest/pride'
 
@@ -26,18 +16,15 @@ class ActionController::TestCase
   include Devise::TestHelpers
 
   def login(resource)
-    @request.env["devise.mapping"] = Devise.mappings[resource]
+    @request.env['devise.mapping'] = Devise.mappings[resource]
     sign_in(resource.class.name.downcase.to_sym, resource)
   end
 end
 
 class ActionDispatch::IntegrationTest
-  def sign_in_as(user_template, password, email)
-    user = User.create(password: password, password_confirmation: password, email: email,
-                       first_name: user_template.first_name, last_name: user_template.last_name)
-    user.save!
-    user.update_column :deleted, user_template.deleted?
-    post_via_redirect '/login', user: { email: email, password: password }
+  def sign_in_as(user, password)
+    user.update password: password, password_confirmation: password
+    post_via_redirect '/login', user: { email: user.email, password: password }
     user
   end
 end
@@ -45,9 +32,7 @@ end
 module Rack
   module Test
     class UploadedFile
-      def tempfile
-        @tempfile
-      end
+      attr_reader :tempfile
     end
   end
 end
