@@ -145,12 +145,12 @@ class User < ActiveRecord::Base
 
 
   # All comments created in the last day, or over the weekend if it is Monday
-  # Ex: On Monday, returns tasks created since Friday morning (Time.now - 3.day)
-  # Ex: On Tuesday, returns tasks created since Monday morning (Time.now - 1.day)
+  # Ex: On Monday, returns tasks created since Friday morning (Time.zone.now - 3.day)
+  # Ex: On Tuesday, returns tasks created since Monday morning (Time.zone.now - 1.day)
   def digest_posts
-    # Comment.digest_visible.where( topic_id: self.subscribed_topics.pluck(:id) ).where("created_at > ?", (Time.now.monday? ? Time.now.midnight - 3.day : Time.now.midnight - 1.day))
-    # Post.digest_visible.where( topic_id: self.subscribed_topics.pluck(:id) ).where("created_at > ?", (Time.now.monday? ? Time.now.midnight - 3.day : Time.now.midnight - 1.day))
-    Post.current.where(status: 'approved').where("created_at > ?", (Time.now.monday? ? Time.now.midnight - 3.day : Time.now.midnight - 1.day))
+    # Comment.digest_visible.where( topic_id: self.subscribed_topics.pluck(:id) ).where("created_at > ?", (Time.zone.now.monday? ? Time.zone.now.midnight - 3.day : Time.zone.now.midnight - 1.day))
+    # Post.digest_visible.where( topic_id: self.subscribed_topics.pluck(:id) ).where("created_at > ?", (Time.zone.now.monday? ? Time.zone.now.midnight - 3.day : Time.zone.now.midnight - 1.day))
+    Post.current.where(status: 'approved').where("created_at > ?", (Time.zone.now.monday? ? Time.zone.now.midnight - 3.day : Time.zone.now.midnight - 1.day))
   end
 
   def name
@@ -218,7 +218,7 @@ class User < ActiveRecord::Base
 
   # Should not compare against RECENT_UPDATE_DATE if it is in the future
   def accepted_most_recent_update?
-    (self.accepted_update_at.present? and (self.accepted_update_at > Date.parse(RECENT_UPDATE_DATE).at_noon)) or (Date.parse(RECENT_UPDATE_DATE).at_noon > Time.now and !Rails.env.test?)
+    (self.accepted_update_at.present? and (self.accepted_update_at > Date.parse(RECENT_UPDATE_DATE).at_noon)) or (Date.parse(RECENT_UPDATE_DATE).at_noon > Time.zone.now and !Rails.env.test?)
   end
 
   # User Types
@@ -336,7 +336,7 @@ class User < ActiveRecord::Base
 
   def set_forum_name
     if self.forum_name.blank?
-      self.update forum_name: SocialProfile.generate_forum_name(self.email, Time.now.usec.to_s)
+      self.update forum_name: SocialProfile.generate_forum_name(self.email, Time.zone.now.usec.to_s)
     end
   end
 

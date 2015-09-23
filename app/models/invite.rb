@@ -13,7 +13,7 @@ class Invite < ActiveRecord::Base
 
   def generate_token
     begin
-      self.update_column :token, Digest::SHA1.hexdigest([self.user_id, Time.now, rand].join)
+      self.update_column :token, Digest::SHA1.hexdigest([self.user_id, Time.zone.now, rand].join)
     rescue
     end
   end

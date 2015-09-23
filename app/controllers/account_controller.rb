@@ -126,7 +126,7 @@ class AccountController < ApplicationController
   end
 
   def suggest_random_forum_name
-    @new_forum_name = SocialProfile.generate_forum_name(Time.now.nsec.to_s)
+    @new_forum_name = SocialProfile.generate_forum_name(Time.zone.now.nsec.to_s)
   end
 
   private
