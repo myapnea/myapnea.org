@@ -1,5 +1,9 @@
 ## 8.2.1
 
+### Enhancements
+- **Forum Changes**
+  - Temporarily disabled automatic forum reply emails
+
 ## 8.2.0 (September 15, 2015)
 
 ### Enhancements
