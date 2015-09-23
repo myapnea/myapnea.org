@@ -19,17 +19,17 @@ class Api::V1::TopicsControllerTest < ActionController::TestCase
     topics = json_response['topics']
     topic = topics[0]
     assert topics.is_a?(Array)
-    assert topic.has_key?('id')
-    assert topic.has_key?('forum')
-    assert topic.has_key?('name')
-    assert topic.has_key?('slug')
-    assert topic.has_key?('user')
-    assert topic.has_key?('user_photo_url')
-    assert topic.has_key?('pinned')
-    assert topic.has_key?('locked')
-    assert topic.has_key?('postCount')
-    assert topic.has_key?('viewCount')
-    assert topic.has_key?('last_post_at')
+    assert topic.key?('id')
+    assert topic.key?('forum')
+    assert topic.key?('name')
+    assert topic.key?('slug')
+    assert topic.key?('user')
+    assert topic.key?('user_photo_url')
+    assert topic.key?('pinned')
+    assert topic.key?('locked')
+    assert topic.key?('postCount')
+    assert topic.key?('viewCount')
+    assert topic.key?('last_post_at')
   end
 
   test "should show topic" do
