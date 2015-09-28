@@ -4,6 +4,7 @@
 - **General Changes**
   - Updated professional titles on research pages
   - Corrected style of login button to match style used in 8.2.0
+- **Research Highlight Changes**
   - Improved visibility of accepted research topics link on main Research page
   - Fixed layout of multiple research highlights on research index
   - Accepted research highlights are now arranged with the most recent at the top
