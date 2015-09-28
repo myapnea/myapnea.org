@@ -3,6 +3,7 @@
 ### Enhancements
 - **General Changes**
   - Updated professional titles on research pages
+  - Corrected style of login button to match style used in 8.2.0
 
 ## 8.2.1 (September 23, 2015)
 
