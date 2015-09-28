@@ -94,10 +94,11 @@
   .content-header
     %h3.text-light9 Recently accepted research topics:
   .content-body
-    .row
-      - Highlight.current.where(research_highlight: true).sort{ |a,b| b.created_at <=> a.created_at }.each do |highlight|
-        .col-sm-4
-          = render highlight
+    - Highlight.current.where(research_highlight: true).order(created_at: :desc).in_groups_of(3, false) do |highlights_row|
+      .row
+        - highlights_row.each do |highlight|
+          .col-sm-4
+            = render highlight
 
 - unless current_user
   = render 'home/join_the_community', referrer: 'research', message: 'Make a direct impact on the future of sleep apnea research'
