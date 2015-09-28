@@ -1,5 +1,9 @@
 ## 8.2.2
 
+### Enhancements
+- **General Changes**
+  - Updated professional titles on research pages
+
 ## 8.2.1 (September 23, 2015)
 
 ### Enhancements
