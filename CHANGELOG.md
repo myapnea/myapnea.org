@@ -6,6 +6,7 @@
   - Corrected style of login button to match style used in 8.2.0
   - Improved visibility of accepted research topics link on main Research page
   - Fixed layout of multiple research highlights on research index
+  - Accepted research highlights are now arranged with the most recent at the top
 
 ## 8.2.1 (September 23, 2015)
 
