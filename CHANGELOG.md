@@ -1,3 +1,5 @@
+## 8.2.2
+
 ## 8.2.1 (September 23, 2015)
 
 ### Enhancements
