@@ -13,8 +13,10 @@
 .content-container
   .content-body
     %p.lead
-      Let us know what research questions matter to you most. Join the community in voting and discussing research topics submitted by members like yourself. We will take the most endorsed questions and translate them into
-      = link_to 'research highlights', accepted_research_topics_path, class: 'no-underline'
+      Let us know what research questions matter to you most. Join the community
+      in voting and discussing research topics submitted by members like
+      yourself. We will take the most endorsed questions and translate them into
+      %strong= link_to 'research highlights', accepted_research_topics_path
       and proposals for future studies of sleep apnea.
   .content-footer
     = link_to 'Propose a new research topic', new_research_topic_path, class: 'btn btn-lg btn-primary-custom'
