@@ -1,0 +1,8 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: "Division of Sleep and Circadian Disorders, Brigham and Women's Hospital"
+  description: "Boston's Brigham and Women's Hospital (BWH) is an international leader in virtually every area of medicine and has been the site of pioneering breakthroughs that have improved lives around the world. A major teaching hospital of Harvard Medical School, BWH has a legacy of excellence that continues to grow year after year. The Division of Sleep and Circadian Disorders was formed in 2013 by the Departments of Medicine and Neurology to unify the delivery of clinical care, increase educational opportunities, and promote interdisciplinary research in the fields of sleep and circadian biology. Its mission is to forge a path of discovery in sleep medicine while providing the highest standard of clinical care for patients with sleep disorders and training the next generation of leaders in sleep and circadian biology."
+  link: http://www.brighamandwomens.org/Departments_and_Services/medicine/services/sleepmedicine/default.aspx
+  group: main
+  position: 0

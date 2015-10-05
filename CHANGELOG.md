@@ -3,6 +3,7 @@
 ## 8.2.2 (September 28, 2015)
 - **Admin Changes**
   - Team members can be modified from the admin dashboard
+  - Partners can be modified from the admin dashboard
 
 ### Enhancements
 - **General Changes**
