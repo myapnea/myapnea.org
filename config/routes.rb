@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  namespace :admin do
+    resources :team_members
+  end
+
   namespace :builder do
 
     resources :surveys do

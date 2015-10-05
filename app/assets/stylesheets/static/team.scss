@@ -45,15 +45,12 @@
 
 /* STEERING COMMITTEE*/
 
-#carousel-steering-committee {
+#carousel-team {
   clear:both;
   position:relative;
   border-radius:20px ;
   .item {
     min-height:465px;
-    .row.team-header {
-      margin-bottom: 30px;
-    }
   }
 }
 
@@ -131,11 +128,4 @@
 }
 
 @media (max-width: 768px) {
-  #carousel-steering-committee {
-    .item {
-      .row.team-header {
-        margin-bottom: 10px;
-      }
-    }
-  }
 }

@@ -60,15 +60,19 @@
     %h3.f300 Website Features
   .content-body
     .row.centered-text
-      .col-sm-3
-        = link_to admin_research_topics_path, class: 'no-underline' do
-          .blue-block-link
-            Research Topics
       - if current_user.owner?
+        .col-sm-3
+          = link_to admin_research_topics_path, class: 'no-underline' do
+            .blue-block-link
+              Research Topics
         .col-sm-3
           = link_to highlights_path, class: 'no-underline' do
             .blue-block-link
               Dashboard Highlights
+        .col-sm-3
+          = link_to admin_team_members_path, class: 'no-underline' do
+            .blue-block-link
+              Team Members
         .col-sm-3
           = link_to admin_daily_engagement_path, class: 'no-underline' do
             .blue-block-link

@@ -12,6 +12,7 @@ class StaticController < ApplicationController
   end
 
   def team
+    @team_members = Admin::TeamMember.current.order('position')
   end
 
   def advisory
