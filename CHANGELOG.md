@@ -4,6 +4,7 @@
 - **Admin Changes**
   - Team members can be modified from the admin dashboard
   - Partners can be modified from the admin dashboard
+  - Clinical trials can be modified from the admin dashboard
 
 ### Enhancements
 - **General Changes**

@@ -62,10 +62,6 @@
     .content-body
       .row.centered
         .col-sm-3
-          = link_to admin_research_topics_path, class: 'no-underline' do
-            .blue-block-link
-              Research Topics
-        .col-sm-3
           = link_to highlights_path, class: 'no-underline' do
             .blue-block-link
               Dashboard Highlights
@@ -77,9 +73,17 @@
           = link_to admin_partners_path, class: 'no-underline' do
             .blue-block-link
               Partners
+        .col-sm-3
+          = link_to admin_clinical_trials_path, class: 'no-underline' do
+            .blue-block-link
+              Clinical Trials
       %br
       .row.centered
         .col-sm-3
           = link_to admin_daily_engagement_path, class: 'no-underline' do
             .blue-block-link
               Daily Engagement
+        .col-sm-3
+          = link_to admin_research_topics_path, class: 'no-underline' do
+            .blue-block-link
+              Research Topics

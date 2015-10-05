@@ -1,0 +1,24 @@
+.clinical-trial-container
+  %h3
+    = clinical_trial.title
+  %p.italic
+    = clinical_trial.overview
+  %p
+    = clinical_trial.description
+  %p{ style: 'font-size: 14px' }
+    %span.f500 Eligibility:
+    = clinical_trial.eligibility
+  %p{ style: 'font-size: 14px' }
+    %span.f500 Contact Info:
+    If you are interested in participating, please contact the study team:
+    %ul{ style: 'font-size: 14px' }
+      - if clinical_trial.phone.present?
+        %li
+          %span.f500 Phone:
+          = clinical_trial.phone
+      - if clinical_trial.email.present?
+        %li
+          %span.f500 Email:
+          = link_to clinical_trial.email, "mailto:#{clinical_trial.email}"
+      - if clinical_trial.link.present?
+        %li= link_to 'Site Website', clinical_trial.link

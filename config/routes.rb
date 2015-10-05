@@ -1,10 +1,9 @@
 Rails.application.routes.draw do
 
   namespace :admin do
-    resources :partners
-  end
-  namespace :admin do
     resources :team_members
+    resources :partners
+    resources :clinical_trials
   end
 
   namespace :builder do
