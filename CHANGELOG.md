@@ -1,10 +1,12 @@
 ## 8.3.0
 
-## 8.2.2 (September 28, 2015)
+### Enhancements
 - **Admin Changes**
   - Team members can be modified from the admin dashboard
   - Partners can be modified from the admin dashboard
   - Clinical trials can be modified from the admin dashboard
+
+## 8.2.2 (September 28, 2015)
 
 ### Enhancements
 - **General Changes**
