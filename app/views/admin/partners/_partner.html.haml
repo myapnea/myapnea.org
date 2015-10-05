@@ -1,0 +1,13 @@
+.row.partner-container
+  .col-md-8
+    %h3.f300.darker-blue
+      - if partner.link.present?
+        = link_to partner.name, partner.link, class: 'no-underline'
+      - else
+        = partner.name
+    %p
+      = partner.description
+  .col-md-4.hidden-sm.hidden-xs.partner-img-wrapper
+    .img-centerer
+    = image_tag partner.photo_url, class: 'partners-logo-square'
+

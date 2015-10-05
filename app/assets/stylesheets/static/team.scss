@@ -45,15 +45,12 @@
 
 /* STEERING COMMITTEE*/
 
-#carousel-steering-committee {
+#carousel-team {
   clear:both;
   position:relative;
   border-radius:20px ;
   .item {
     min-height:465px;
-    .row.team-header {
-      margin-bottom: 30px;
-    }
   }
 }
 
@@ -109,19 +106,6 @@
   -webkit-backface-visibility: hidden; /* Fix for transition flickering */
 }
 
-.img-centerer {
-  display:inline-block;
-  vertical-align:middle;
-  height:100%;
-}
-
-.partners-logo-square {
-  display:inline-block;
-  vertical-align:middle;
-  max-width:80%;
-}
-
-
 /* RESPONSIVE */
 
 @media (max-width: 992px) {
@@ -131,11 +115,4 @@
 }
 
 @media (max-width: 768px) {
-  #carousel-steering-committee {
-    .item {
-      .row.team-header {
-        margin-bottom: 10px;
-      }
-    }
-  }
 }

@@ -1,6 +1,6 @@
 @teamReady = () ->
   body = $("html, body")
-  top = $("#carousel-steering-committee").scrollTop() + 85
+  top = $("#carousel-team").scrollTop() + 85
 
   $(".team-member-picture").hover ->
     $(this).toggleClass "img-bw"

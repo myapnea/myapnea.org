@@ -12,6 +12,7 @@ class StaticController < ApplicationController
   end
 
   def team
+    @team_members = Admin::TeamMember.current.order('position')
   end
 
   def advisory
@@ -30,7 +31,7 @@ class StaticController < ApplicationController
   end
 
   def partners
-    @page_content = "MyApnea is proud to partner with organizations devoted to improving health and improving sleep quality."
+    @partners = Admin::Partner.current.where(displayed: true).order('position')
   end
 
   def learn

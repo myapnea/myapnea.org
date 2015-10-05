@@ -39,6 +39,7 @@ class ResearchTopicsController < ApplicationController
   def index
     @research_topics = ResearchTopic.approved
     @new_research_topic = ResearchTopic.new
+    @clinical_trials = Admin::ClinicalTrial.where(displayed: true).order(:updated_at).first(3)
     respond_to do |format|
       format.html { render layout: 'layouts/application-no-sidebar'}
       format.json
