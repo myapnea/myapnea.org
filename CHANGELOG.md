@@ -1,5 +1,9 @@
 ## 8.3.0
 
+### Enhancements
+- **General Changes**
+  - Fixed some minor typos across the website
+
 ## 8.2.2 (September 28, 2015)
 
 ### Enhancements
