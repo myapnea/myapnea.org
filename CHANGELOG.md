@@ -3,6 +3,7 @@
 ### Enhancements
 - **General Changes**
   - Fixed some minor typos across the website
+  - Added article on sleep apnea and atrial fibrillation
 - **Admin Changes**
   - Team members can be modified from the admin dashboard
   - Partners can be modified from the admin dashboard

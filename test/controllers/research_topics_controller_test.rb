@@ -67,6 +67,11 @@ class ResearchTopicsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should get sleep_apnea_afib" do
+    get :sleep_apnea_afib
+    assert_response :success
+  end
+
   test "should get index for experienced user" do
     # Displays normal index
     login(@experienced_user)
