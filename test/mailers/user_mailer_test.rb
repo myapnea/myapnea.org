@@ -96,4 +96,14 @@ class UserMailerTest < ActionMailer::TestCase
     assert_match(/Today, 48 surveys were launched to members of MyApnea\.Org\./, email.encoded)
   end
 
+  test 'export ready email' do
+    export = admin_exports(:completed)
+
+    email = UserMailer.export_ready(export).deliver_now
+    assert !ActionMailer::Base.deliveries.empty?
+
+    assert_equal [export.user.email], email.to
+    assert_equal "Your Data Export #{export.name} is now Ready", email.subject
+    assert_match(/The data export you requested #{export.name} is now ready for download\./, email.encoded)
+  end
 end

@@ -1,0 +1,24 @@
+.content-main-header
+  %h1
+    Data Exports
+.content-container
+  .content-header
+    = link_to 'Start New Export', admin_exports_path, class: 'btn btn-primary-custom', method: :post
+  .content-body
+    %table.table.table-striped
+      %thead
+        %tr
+          %th File
+          %th Creator
+          %th Total steps
+          %th Current step
+          %th{ colspan: 2 }
+      %tbody
+        - @admin_exports.each do |admin_export|
+          %tr
+            %td= admin_export.file
+            %td= admin_export.user_id
+            %td= admin_export.total_steps
+            %td= admin_export.current_step
+            %td= link_to 'Show', admin_export
+            %td= link_to 'Destroy', admin_export, method: :delete, data: { confirm: 'Are you sure?' }

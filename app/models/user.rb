@@ -49,7 +49,7 @@ class User < ActiveRecord::Base
   end
 
   # Model Relationships
-  belongs_to :my_provider, class_name: "User", foreign_key: 'provider_id'
+  belongs_to :my_provider, class_name: 'User', foreign_key: 'provider_id'
   has_many :answer_sessions, -> { where deleted: false }
   has_many :answers
   has_many :votes, -> { where deleted: false }
@@ -60,10 +60,11 @@ class User < ActiveRecord::Base
   has_many :topics, -> { where deleted: false }
   has_many :posts, -> { where deleted: false }
   has_many :subscriptions
-  has_many :users, class_name: "User", foreign_key: "provider_id"
+  has_many :users, class_name: 'User', foreign_key: 'provider_id'
   has_many :invites
-  has_many :children, -> { where(deleted: false).order("age desc", :first_name) }
+  has_many :children, -> { where(deleted: false).order('age desc', :first_name) }
   has_many :encounters, -> { where deleted: false }
+  has_many :exports, class_name: 'Admin::Export'
 
   ## Builder
 

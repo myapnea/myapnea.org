@@ -1,7 +1,6 @@
 namespace :dictionary do
-  desc "Export data dictionary"
+  desc 'Export data dictionary'
   task export: :environment do
-
     tmp_folder = Rails.root.join('tmp', 'dictionary')
 
     FileUtils.mkdir_p tmp_folder
@@ -10,7 +9,6 @@ namespace :dictionary do
 
     CSV.open(export_csv_path, 'wb') do |csv|
       csv << ["folder", "id", "display_name", "description", "type", "units", "domain", "labels", "calculation"]
-
 
       Survey.viewable.includes(questions: [ answer_templates: :answer_options]).each do |survey|
         survey.questions.each do |question|
@@ -52,28 +50,22 @@ namespace :dictionary do
           end
         end
       end
-
     end
-
   end
 
-  desc "Export data in data dictionary format"
+  desc 'Export data in data dictionary format'
   task data_export: :environment do
-
     tmp_folder = Rails.root.join('tmp', 'dictionary')
 
     FileUtils.mkdir_p tmp_folder
 
-    export_csv_path = File.join(tmp_folder, "data.csv")
-
-
+    export_csv_path = File.join(tmp_folder, 'data.csv')
 
     CSV.open(export_csv_path, 'wb') do |csv|
-
       row = ['encounter']
       question_slugs = []
 
-      Survey.current.viewable.non_pediatric.includes(questions: [ answer_templates: :answer_options]).each do |survey|
+      Survey.current.viewable.non_pediatric.includes(questions: [answer_templates: :answer_options]).each do |survey|
         survey.questions.each do |question|
           if question.display_type == 'radio_input_multiple'
             question.answer_templates.each do |at|
@@ -93,7 +85,7 @@ namespace :dictionary do
 
       csv << (row + question_slugs)
 
-      User.include_in_exports_and_reports.order(:id).each do |user| #.where(id: 3703)
+      User.include_in_exports_and_reports.order(:id).each do |user| # .where(id: 3703)
         puts "Exporting User ##{user.id}"
         encounters = ['baseline']
         encounters.each do |encounter|
@@ -115,9 +107,6 @@ namespace :dictionary do
           csv << row
         end
       end
-
     end
-
   end
-
 end

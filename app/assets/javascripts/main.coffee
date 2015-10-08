@@ -58,6 +58,7 @@ if typeof Turbolinks isnt 'undefined' and Turbolinks.supported
   dailyEngagementReady() if $(".daily-engagement-report").length > 0
   ABTestingReady() if ($("[data-object~='ABtesting']").length > 0 and false)
   ABSetupReady() if ($("[data-object~='ABtesting']").length > 0 and false)
+  exportsReady()
 
 $(document).ready(loaders)
 $(document)

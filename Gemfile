@@ -16,6 +16,7 @@ gem 'font-awesome-rails'                          # Font Awesome Icons
 gem 'haml'                                        # HAML Views
 gem 'figaro',               '~> 1.1.1'            # Centralized Configuration
 gem 'geocoder'                                    # IP Location Lookup
+gem 'rubyzip',              '~> 1.1.7'
 
 # To Be Removed
 
@@ -23,8 +24,6 @@ gem 'geocoder'                                    # IP Location Lookup
 gem 'sitemap_generator'
 
 # End To Be Removed
-
-
 
 # Rails Defaults
 gem 'coffee-rails',         '~> 4.1.0'

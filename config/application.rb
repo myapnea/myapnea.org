@@ -29,5 +29,4 @@ module MyApnea
 
     config.action_view.field_error_proc = Proc.new { |html_tag, instance| "<span class=\"has-error\">#{html_tag}</span>".html_safe }
   end
-
 end

@@ -1,0 +1,42 @@
+- percent = @admin_export.total_steps > 0 ? @admin_export.current_step * 100 / @admin_export.total_steps : 100
+- percent = 0 if @admin_export.total_steps == 0 && %w(started failed).include?(@admin_export.status)
+- status = 'danger'
+- status = 'warning' if percent >= 33
+- status = 'success' if percent == 100
+
+%p
+  %strong Export Progress
+
+.progress.progress-striped
+  .progress-bar{ class: "progress-bar-#{status}", style: "width: #{percent}%" }
+    = @admin_export.current_step
+    of
+    = @admin_export.total_steps
+    = surround '(', '%)' do
+      = percent
+
+%p
+  %strong File
+  - if @admin_export.file.size > 0
+    - full_url = file_admin_export_path(@admin_export)
+    = link_to @admin_export.file.to_s.split('/').last, full_url, target: '_blank', class: 'btn btn-default btn-xs'
+    = number_to_human_size @admin_export.file.size
+    %span.text-muted
+      Export took
+      = succeed '.' do
+        = distance_of_time_in_words @admin_export.created_at, @admin_export.file_created_at, { include_seconds: true }
+  - elsif @admin_export.status == 'failed'
+    %span.text-muted
+      Export took
+      = succeed '.' do
+        = distance_of_time_in_words @admin_export.created_at, @admin_export.updated_at, { include_seconds: true }
+    = @admin_export.details
+  - else
+    %span.text-muted
+      Export started
+      = distance_of_time_in_words @admin_export.created_at, Time.zone.now, { include_seconds: true }
+      ago...
+
+%p
+  %strong Status
+  = @admin_export.status

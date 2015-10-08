@@ -1,13 +1,17 @@
 Rails.application.routes.draw do
-
   namespace :admin do
+    resources :exports do
+      member do
+        get :file
+        post :progress
+      end
+    end
     resources :team_members
     resources :partners
     resources :clinical_trials
   end
 
   namespace :builder do
-
     resources :surveys do
       resources :questions do
         resources :answer_templates do
@@ -20,12 +24,12 @@ Rails.application.routes.draw do
 
     resources :encounters
 
-    get '', to: redirect("builder/surveys")
+    get '', to: redirect('builder/surveys')
   end
 
-  get "children/:child_id/surveys/:id/:encounter/report" => 'surveys#report', as: :child_survey_report
-  get "children/:child_id/surveys/:id/:encounter/report-detail" => 'surveys#report_detail', as: :child_survey_report_detail
-  get "children/:child_id/surveys/:id/:encounter" => 'surveys#show', as: :child_survey
+  get 'children/:child_id/surveys/:id/:encounter/report' => 'surveys#report', as: :child_survey_report
+  get 'children/:child_id/surveys/:id/:encounter/report-detail' => 'surveys#report_detail', as: :child_survey_report_detail
+  get 'children/:child_id/surveys/:id/:encounter' => 'surveys#show', as: :child_survey
   resources :children do
     member do
       post :accept_consent
@@ -104,17 +108,17 @@ Rails.application.routes.draw do
   # Provider Pages
   get 'p(/:slug)', to: 'static#provider_page'
   resources :providers
-  get 'bwh', to: redirect("providers/bwh")
+  get 'bwh', to: redirect('providers/bwh')
 
-  get "members", to: "members#index", as: :members
-  get "members/:forum_name", to: "members#show", as: :member
-  get "members_search", to: "members#search", as: :members_search
+  get 'members', to: 'members#index', as: :members
+  get 'members/:forum_name', to: 'members#show', as: :member
+  get 'members_search', to: 'members#search', as: :members_search
 
   # Research Topics
-  #match 'research_topic/:id', to: "research_topics#show", as: :research_topic, via: :get
-  #match 'research_questions', to: 'research_topics#index', via: :get, as: :research_topics
-  #match 'research_questions/new', to: 'research_topics#new', via: :get, as: :new_research_topic
-  match 'research_topics_tab', to: "research_topics#research_topics", via: :get, as: :research_topics_ajax
+  # match 'research_topic/:id', to: "research_topics#show", as: :research_topic, via: :get
+  # match 'research_questions', to: 'research_topics#index', via: :get, as: :research_topics
+  # match 'research_questions/new', to: 'research_topics#new', via: :get, as: :new_research_topic
+  match 'research_topics_tab', to: 'research_topics#research_topics', via: :get, as: :research_topics_ajax
 
   resources :research_topics, path: 'research-topics' do
     collection do
@@ -145,9 +149,9 @@ Rails.application.routes.draw do
       post :submit
     end
     member do
-      get "(/:encounter)/report", action: 'report', as: :report
-      get "(/:encounter)", action: 'show', as: :show
-      get "(/:encounter)/report-detail", action: 'report_detail', as: :report_detail
+      get '(/:encounter)/report', action: 'report', as: :report
+      get '(/:encounter)', action: 'show', as: :show
+      get '(/:encounter)/report-detail', action: 'report_detail', as: :report_detail
       get ':encounter/accept-update-first(/:child_id)', action: :accept_update_first, as: :accept_update_first
     end
   end
@@ -164,10 +168,10 @@ Rails.application.routes.draw do
 
   # Social Section
   get 'community', to: 'social#overview', via: :get, as: :community
-  get 'social/discussion', to: redirect("forums")
-  get 'social/discussion(/*path)', to: redirect("forums/%{path}")
-  get 'social/profile', to: redirect("account")
-  get 'profile', to: redirect("account")
+  get 'social/discussion', to: redirect('forums')
+  get 'social/discussion(/*path)', to: redirect('forums/%{path}')
+  get 'social/profile', to: redirect('account')
+  get 'profile', to: redirect('account')
 
   # Account Section
   scope module: 'account' do
@@ -176,10 +180,10 @@ Rails.application.routes.draw do
 
   get 'account' => 'account#account'
   get 'account_export' => 'account#account_export'
-  match 'consent', to: "account#consent", as: :consent, via: [:get, :post]
+  match 'consent', to: 'account#consent', as: :consent, via: [:get, :post]
   post 'revoke_consent' => 'account#revoke_consent'
 
-  match 'privacy-policy', to: "account#privacy_policy", as: :privacy, via: [:get, :post]
+  match 'privacy-policy', to: 'account#privacy_policy', as: :privacy, via: [:get, :post]
   match 'update_account', to: 'account#update', as: 'update_account', via: :patch
   match 'change_password', to: 'account#change_password', as: 'change_password', via: :patch
 
@@ -206,7 +210,6 @@ Rails.application.routes.draw do
   get 'admin/daily_engagement_data' => 'admin#daily_engagement_data', format: :json
   post 'daily-demographic-breakdown', to: 'admin#daily_demographic_breakdown', as: :daily_demographic_breakdown
 
-
   # Development/System
   get 'pprn' => 'application#toggle_pprn_cookie'
 
@@ -215,7 +218,7 @@ Rails.application.routes.draw do
   match 'remote-vote', to: 'research_topics#remote_vote', via: :post, as: :remote_vote
   match 'change-vote', to: 'research_topics#change_vote', via: :patch, as: :change_vote
 
-  devise_for :users, controllers: { registrations: 'registrations', sessions: 'sessions' }, path_names: { sign_up: 'join', sign_in: 'login' }, path: "/"
+  devise_for :users, controllers: { registrations: 'registrations', sessions: 'sessions' }, path_names: { sign_up: 'join', sign_in: 'login' }, path: ''
 
   resources :users do
     collection do
@@ -225,10 +228,10 @@ Rails.application.routes.draw do
 
   # Forums
   # TODO remove redirects in 8.0
-  get 'forums/introductions', to: redirect("forums/general")
-  get 'forums/introductions(/*path)', to: redirect("forums/general/%{path}")
-  get 'forums/rank-the-research', to: redirect("forums/research")
-  get 'forums/rank-the-research(/*path)', to: redirect("forums/research/%{path}")
+  get 'forums/introductions', to: redirect('forums/general')
+  get 'forums/introductions(/*path)', to: redirect('forums/general/%{path}')
+  get 'forums/rank-the-research', to: redirect('forums/research')
+  get 'forums/rank-the-research(/*path)', to: redirect('forums/research/%{path}')
   # get 'forums/research-topics(/*path)', to: redirect("research-%{path}")
   # end TODO from 5.1
   resources :forums do
@@ -247,11 +250,11 @@ Rails.application.routes.draw do
     end
   end
 
-  get 'forum', to: redirect("forums")
-  get 'research_surveys', to: redirect("surveys")
-  get 'update_account', to: redirect("account")
-  get 'change_password', to: redirect("account")
-  get 'social', to: redirect("community")
+  get 'forum', to: redirect('forums')
+  get 'research_surveys', to: redirect('surveys')
+  get 'update_account', to: redirect('account')
+  get 'change_password', to: redirect('account')
+  get 'social', to: redirect('community')
 
   namespace :api do
     namespace :v1 do
@@ -289,87 +292,4 @@ Rails.application.routes.draw do
       end
     end
   end
-
-# # Authentication
-#   devise_for :user, skip: [:sessions, :passwords, :confirmations, :registrations]
-#   as :user do
-#     # session handling
-#     get     '/login'  => 'devise/sessions#new',     as: 'new_user_session'
-#     post    '/login'  => 'devise/sessions#create',  as: 'user_session'
-#     delete  '/logout' => 'devise/sessions#destroy', as: 'destroy_user_session'
-
-#     # joining
-#     # get   '/join' => 'devise/registrations#new',    as: 'new_user_registration'
-#     # post  '/join' => 'devise/registrations#create', as: 'user_registration'
-
-#     # scope '/account' do
-#     #   # password reset
-#     #   get   '/reset-password'        => 'devise/passwords#new',    as: 'new_user_password'
-#     #   put   '/reset-password'        => 'devise/passwords#update', as: 'user_password'
-#     #   post  '/reset-password'        => 'devise/passwords#create'
-#     #   get   '/reset-password/change' => 'devise/passwords#edit',   as: 'edit_user_password'
-
-#     #   # confirmation
-#     #   get   '/confirm'        => 'devise/confirmations#show',   as: 'user_confirmation'
-#     #   post  '/confirm'        => 'devise/confirmations#create'
-#     #   get   '/confirm/resend' => 'devise/confirmations#new',    as: 'new_user_confirmation'
-
-#     #   # settings & cancellation
-#     #   get '/cancel'   => 'devise/registrations#cancel', as: 'cancel_user_registration'
-#     #   get '/settings' => 'devise/registrations#edit',   as: 'edit_user_registration'
-#     #   put '/settings' => 'devise/registrations#update'
-
-#     #   # account deletion
-#     #   delete '' => 'devise/registrations#destroy', as: 'destroy_user_registration'
-#     # end
-#   end
-
-  # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
-
-  # Example of named route that can be invoked with purchase_url(id: product.id)
-  #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
-
-  # Example resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
-
-  # Example resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
-
-  # Example resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
-
-  # Example resource route with more complex sub-resources:
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', on: :collection
-  #     end
-  #   end
-
-  # Example resource route with concerns:
-  #   concern :toggleable do
-  #     post 'toggle'
-  #   end
-  #   resources :posts, concerns: :toggleable
-  #   resources :photos, concerns: :toggleable
-
-  # Example resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
 end

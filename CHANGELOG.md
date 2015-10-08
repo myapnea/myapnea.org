@@ -1,5 +1,9 @@
 ## 8.4.0
 
+### Enhancements
+- **Admin Changes**
+  - Added a data dictionary and data export task for admins
+
 ## 8.3.0
 
 ### Enhancements

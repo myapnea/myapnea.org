@@ -62,4 +62,10 @@ class UserMailer < ApplicationMailer
     mail(to: @email_to, subject: "#{surveys_launched} Followup Survey#{'s' if surveys_launched != 1} Launched on #{Date.today.strftime('%a %d %b %Y')}")
   end
 
+  def export_ready(export)
+    @export = export
+    @email_to = export.user.email
+    mail(to: "#{export.user.name} <#{export.user.email}>",
+         subject: "Your Data Export #{export.name} is now Ready")
+  end
 end

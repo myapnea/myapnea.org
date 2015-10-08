@@ -1,0 +1,13 @@
+Dear <%= @export.user.first_name %>,
+
+The data export you requested <%= @export.name %> is now ready for download.
+
+Click the following link to download your data export:
+
+
+    <%= "#{ENV['website_url']}/admin/exports/#{@export.id}" %>
+
+
+Thank you!
+
+<%= ENV['website_name'] %> Mailer

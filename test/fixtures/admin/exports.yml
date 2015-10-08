@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+started:
+  file: MyString
+  user: owner
+  total_steps: 0
+  current_step: 1
+  status: started
+
+completed:
+  file: rails.png
+  user: owner
+  total_steps: 1
+  current_step: 1
+  created_at: <%= 5.hours.ago.to_s(:db) %>
+  file_created_at: <%= 4.hours.ago.to_s(:db) %>
+  status: completed

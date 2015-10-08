@@ -49,6 +49,10 @@ pickle-email-*.html
 /config/initializers/db.rb
 /config/secrets.yml
 
+# CarrierWave
+/carrierwave/**/*
+/test/support/*
+
 # Ignore OS generated files
 .DS_Store
 

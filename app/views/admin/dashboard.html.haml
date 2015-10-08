@@ -54,6 +54,11 @@
         = link_to admin_cross_tabs_path, class: 'no-underline' do
           .blue-block-link
             Cross Tabs
+      - if current_user.owner?
+        .col-sm-3
+          = link_to admin_exports_path, class: 'no-underline' do
+            .blue-block-link
+              Exports
 
 - if current_user.owner?
   .content-container
