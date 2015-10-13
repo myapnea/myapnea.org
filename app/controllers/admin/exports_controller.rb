@@ -7,7 +7,7 @@ class Admin::ExportsController < ApplicationController
 
   # GET /admin/exports
   def index
-    @admin_exports = Admin::Export.all
+    @admin_exports = current_user.exports
   end
 
   # GET /admin/exports/1
@@ -58,7 +58,10 @@ class Admin::ExportsController < ApplicationController
   # DELETE /admin/exports/1
   def destroy
     @admin_export.destroy
-    redirect_to admin_exports_path, notice: 'Export was successfully destroyed.'
+    respond_to do |format|
+      format.html { redirect_to admin_exports_path, notice: 'Export was successfully destroyed.' }
+      format.js
+    end
   end
 
   private

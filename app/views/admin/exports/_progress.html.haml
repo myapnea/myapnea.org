@@ -1,5 +1,4 @@
-- percent = @admin_export.total_steps > 0 ? @admin_export.current_step * 100 / @admin_export.total_steps : 100
-- percent = 0 if @admin_export.total_steps == 0 && %w(started failed).include?(@admin_export.status)
+- percent = @admin_export.percent
 - status = 'danger'
 - status = 'warning' if percent >= 33
 - status = 'success' if percent == 100

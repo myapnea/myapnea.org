@@ -81,13 +81,23 @@ class Admin::ExportsControllerTest < ActionController::TestCase
     assert_redirected_to root_path
   end
 
-  test 'should destroy admin_export as owner' do
+  test 'should destroy admin export as owner' do
     login(@owner)
     assert_difference('Admin::Export.count', -1) do
       delete :destroy, id: @admin_export
     end
 
     assert_redirected_to admin_exports_path
+  end
+
+  test 'should destroy admin export using ajax' do
+    login(@owner)
+    assert_difference('Admin::Export.count', -1) do
+      delete :destroy, id: @admin_export, format: 'js'
+    end
+
+    assert_template 'destroy'
+    assert_response :success
   end
 
   test 'should not destroy admin export as regular user' do

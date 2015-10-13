@@ -18,4 +18,13 @@ class AnswerValue < ActiveRecord::Base
       value
     end
   end
+
+  def raw_value
+    if answer_template.data_type == 'answer_option_id'
+      answer_option ? answer_option.value : nil
+    else
+      value
+    end
+  end
+
 end

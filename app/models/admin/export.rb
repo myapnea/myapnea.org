@@ -17,7 +17,12 @@ class Admin::Export < ActiveRecord::Base
   # Model Methods
 
   def name
-    'EXPORT NAME'
+    created_at.strftime('%-d %B %Y, %-l:%M %p')
+  end
+
+  def percent
+    return 0 if total_steps == 0 && %w(started failed).include?(status)
+    total_steps > 0 ? current_step * 100 / total_steps : 100
   end
 
   private
@@ -40,7 +45,7 @@ class Admin::Export < ActiveRecord::Base
   # Zip multiple files, or zip one file if it's part of the sheet uploaded
   # files, always zip folder
   def generate_zip_file
-    filename = "myapnea-data-#{created_at.strftime('%H%M')}"
+    filename = "myapnea-data-#{created_at.strftime('%Y%m%d%H%M')}"
     all_files = generate_all_files(filename)
 
     return if all_files.empty?
@@ -112,21 +117,10 @@ class Admin::Export < ActiveRecord::Base
 
       Survey.current.viewable.non_pediatric.includes(questions: [answer_templates: :answer_options]).each do |survey|
         survey.questions.each do |question|
-          if question.display_type == 'radio_input_multiple'
-            question.answer_templates.each do |at|
-              slug = at.name
-              question_slugs << slug
-              surveys_answer_templates << [survey.id, question.id, at.id]
-            end
-          else
-            slug = question.slug
+          question.answer_templates.each do |at|
+            slug = at.name
             question_slugs << slug
-            surveys_answer_templates << [survey.id, question.id, -1]
-            question.answer_templates.where(data_type: 'text_value').each do |at|
-              slug = at.name
-              question_slugs << slug
-              surveys_answer_templates << [survey.id, question.id, at.id]
-            end
+            surveys_answer_templates << [survey.id, question.id, at.id]
           end
         end
       end
@@ -136,12 +130,13 @@ class Admin::Export < ActiveRecord::Base
       exportable_users.each do |user|
         encounters = ['baseline']
         encounters.each do |encounter|
-          row = [user.id, encounter]
+          myapnea_id = 'MA%06d' % user.id
+          row = [myapnea_id, encounter]
           surveys_answer_templates.each do |survey_id, question_id, answer_template_id|
             answer_session = user.answer_sessions.find_by_survey_id survey_id
             if answer_session
-              values = AnswerValue.joins(:answer).where(answers: { answer_session_id: answer_session.id, question_id: question_id }).where(answer_template_id: answer_template_id).collect(&:show_value)
-              row << values.collect(&:to_s).join(',')
+              values = AnswerValue.joins(:answer).where(answers: { answer_session_id: answer_session.id, question_id: question_id }).where(answer_template_id: answer_template_id).collect(&:raw_value)
+              row << values.collect(&:to_s).sort.join(',')
             else
               row << nil
             end
@@ -155,40 +150,24 @@ class Admin::Export < ActiveRecord::Base
 
   def write_data_dictionary_csv(dictionary_csv)
     CSV.open(dictionary_csv, 'wb') do |csv|
-      csv << %w(folder id display_name description type units domain labels calculation)
+      csv << %w(folder id display_name type domain)
 
       Survey.viewable.includes(questions: [answer_templates: :answer_options]).each do |survey|
         survey.questions.each do |question|
-          if question.display_type == 'radio_input_multiple'
-            question.answer_templates.each do |at|
-              slug = at.name
-              display_name = at.text.to_s.chomp
+          question.answer_templates.each do |at|
+            slug = at.name
+            display_name = at.text.to_s.chomp
+            display_name = question.text_en if display_name.blank?
 
-              answer_options = at.answer_options.pluck(:value, :text)
+            answer_options = at.answer_options.order(:value).pluck(:value, :text)
+            domain = answer_options.collect { |ao| "#{ao[0]}: #{ao[1]}" }.join(' | ')
 
-              csv << [survey.slug, slug, display_name, nil, 'radio_input', nil, answer_options.sort { |a, b| a[0] <=> b[0] }.collect { |ao| "#{ao[0]}: #{ao[1]}" }.join(' | '), nil, nil]
-            end
-          else
-            slug = question.slug
-            display_name = question.text_en.to_s.chomp
-
-            answer_options = []
-            question.answer_templates.each do |at|
-              answer_options += at.answer_options.pluck(:value, :text)
-            end
-
-            if question.answer_templates.count == 1
-              unit = question.answer_templates.first.unit
-            end
-
-            csv << [survey.slug, slug, display_name, nil, question.display_type, unit, answer_options.sort { |a, b| a[0] <=> b[0] }.collect { |ao| "#{ao[0]}: #{ao[1]}" }.join(' | '), nil, nil]
-
-            question.answer_templates.where(data_type: 'text_value').each do |at|
-              slug = at.name
-              ao = answer_options.select { |value, _text| value == at.parent_answer_option_value }.first
-              display_name = (ao ? ao[1] : nil)
-              csv << [survey.slug, slug, display_name, nil, 'text_value', nil, nil, nil, nil]
-            end
+            csv << [survey.slug,
+                    slug,
+                    display_name,
+                    at.template_name,
+                    domain
+                   ]
           end
         end
       end

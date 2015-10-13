@@ -8,17 +8,36 @@
     %table.table.table-striped
       %thead
         %tr
+          %th Name
           %th File
-          %th Creator
-          %th Total steps
-          %th Current step
-          %th{ colspan: 2 }
+          %th Progress
+          %th Actions
       %tbody
         - @admin_exports.each do |admin_export|
-          %tr
-            %td= admin_export.file
-            %td= admin_export.user_id
-            %td= admin_export.total_steps
-            %td= admin_export.current_step
-            %td= link_to 'Show', admin_export
-            %td= link_to 'Destroy', admin_export, method: :delete, data: { confirm: 'Are you sure?' }
+          %tr{ id: "admin-export-#{admin_export.id}" }
+            %td= link_to admin_export.name, admin_export
+            %td
+              - if admin_export.file.size > 0
+                = link_to admin_export.file.to_s.split('/').last, file_admin_export_path(admin_export), target: '_blank', class: 'btn btn-default btn-xs'
+                = number_to_human_size admin_export.file.size
+            %td
+              - percent = admin_export.percent
+              - status = 'danger'
+              - status = 'warning' if percent >= 33
+              - status = 'success' if percent == 100
+              - if percent == 0
+                %span.label{ class: "label-#{status}" }= admin_export.status
+              - else
+                .progress.progress-striped{ style: 'margin: 0px' }
+                  .progress-bar{ class: "progress-bar-#{status}", style: "width: #{percent}%" }
+                    = admin_export.current_step
+                    of
+                    = admin_export.total_steps
+                    = surround '(', '%)' do
+                      = percent
+            %td
+              %div{ id: "admin-export-#{admin_export.id}-request-delete" }
+                = link_to 'Delete', '#', class: 'btn btn-xs btn-danger', data: { object: 'toggle-delete-buttons', target_show: "#admin-export-#{admin_export.id}-confirm-delete", target_hide: "#admin-export-#{admin_export.id}-request-delete" }
+              %div{ id: "admin-export-#{admin_export.id}-confirm-delete", style: 'display:none' }
+                = link_to 'Confirm Delete', admin_export, method: :delete, remote: true, class: 'btn btn-xs btn-danger'
+                = link_to 'Cancel', '#', class: 'btn btn-xs btn-default', data: { object: 'toggle-delete-buttons', target_show: "#admin-export-#{admin_export.id}-request-delete", target_hide: "#admin-export-#{admin_export.id}-confirm-delete" }
