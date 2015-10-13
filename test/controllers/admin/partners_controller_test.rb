@@ -6,6 +6,11 @@ class Admin::PartnersControllerTest < ActionController::TestCase
     @admin_partner = admin_partners(:one)
   end
 
+  test 'should get photo for logged out user' do
+    get :photo, id: @admin_partner
+    assert_response :success
+  end
+
   test "should get index" do
     login(@admin)
     get :index

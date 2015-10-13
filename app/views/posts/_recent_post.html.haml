@@ -31,7 +31,7 @@
 
           .reply
             .reply-user
-              = image_tag current_user.photo_url, class: 'reply-user-image'
+              = image_tag user_photo_url(current_user), alt: '', class: 'reply-user-image'
             .reply-field
               = f.text_area :description, rows: 1, style: 'resize: none;', class: 'reply-text-area', data: { object: 'text-area-autocomplete' }
             .reply-submit

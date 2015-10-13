@@ -6,8 +6,16 @@ Rails.application.routes.draw do
         post :progress
       end
     end
-    resources :team_members
-    resources :partners
+    resources :team_members do
+      member do
+        get :photo
+      end
+    end
+    resources :partners do
+      member do
+        get :photo
+      end
+    end
     resources :clinical_trials
   end
 
@@ -42,7 +50,12 @@ Rails.application.routes.draw do
     post :posts
   end
 
-  resources :highlights
+  resources :highlights do
+    member do
+      get :photo
+    end
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -224,6 +237,9 @@ Rails.application.routes.draw do
   resources :users do
     collection do
       get :export
+    end
+    member do
+      get :photo
     end
   end
 

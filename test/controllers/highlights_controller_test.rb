@@ -7,6 +7,11 @@ class HighlightsControllerTest < ActionController::TestCase
     @regular_user = users(:user_1)
   end
 
+  test 'should get photo for logged out user' do
+    get :photo, id: @highlight
+    assert_response :success
+  end
+
   test "should get index for owner" do
     login(@owner)
     get :index

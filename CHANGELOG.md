@@ -3,6 +3,8 @@
 ### Enhancements
 - **Admin Changes**
   - Added a data dictionary and data export task for admins
+- **General Changes**
+  - Improved display of uploaded user, highlight, partner, and team member photos
 
 ## 8.3.0 (October 13, 2015)
 

@@ -17,6 +17,7 @@ gem 'haml'                                        # HAML Views
 gem 'figaro',               '~> 1.1.1'            # Centralized Configuration
 gem 'geocoder'                                    # IP Location Lookup
 gem 'rubyzip',              '~> 1.1.7'
+gem 'colorize',             '~> 0.7.5'
 
 # To Be Removed
 

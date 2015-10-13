@@ -14,7 +14,7 @@
         %ul#user-nav.nav.navbar-nav.navbar-right
           %li.dropdown
             %a.dropdown-toggle{ href: "#", role: "button", aria: { expanded: "false" }, data: { toggle: "dropdown" } }
-              = image_tag current_user.photo_url, size: '25', class: 'img-rounded'
+              = image_tag user_photo_url(current_user), alt: '', size: '25', class: 'img-rounded'
               &nbsp;
               = current_user.name
               &nbsp;

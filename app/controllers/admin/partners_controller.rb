@@ -1,7 +1,15 @@
 class Admin::PartnersController < ApplicationController
-  before_action :authenticate_user!
-  before_action :check_owner
-  before_action :set_admin_partner, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!,  except: [:photo]
+  before_action :check_owner,         except: [:photo]
+  before_action :set_admin_partner,   only: [:show, :edit, :update, :destroy, :photo]
+
+  def photo
+    if @admin_partner.photo.size > 0
+      send_file File.join(CarrierWave::Uploader::Base.root, @admin_partner.photo.url)
+    else
+      head :ok
+    end
+  end
 
   # GET /admin/partners
   # GET /admin/partners.json

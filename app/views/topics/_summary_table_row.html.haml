@@ -2,7 +2,7 @@
 
 %tr{ class: "#{"topic-#{topic.status.dasherize}" if current_user and current_user.moderator?} #{"topic-posts-pending-review" if current_user and current_user.moderator? and topic.has_posts_pending_review?}"}
   %td
-    = image_tag topic.user.photo_url, size: '30x30', class: "img-thumbnail", alt: '', style: "min-height:#{30+5}px;min-width:#{30+5}px;", title: topic.user.forum_name, data: { toggle: 'tooltip', container: 'body', placement: 'top' }
+    = image_tag user_photo_url(topic.user), size: '30x30', class: "img-thumbnail", alt: '', style: "min-height:#{30+5}px;min-width:#{30+5}px;", title: topic.user.forum_name, data: { toggle: 'tooltip', container: 'body', placement: 'top' }
   %td{ style: 'font-size: 16px', class: "#{topic.pinned? ? "f500" : "f300"}" }
     .wrapword
       - if topic.pinned?
@@ -25,7 +25,7 @@
   %td.text-muted.hidden-xs.hidden-sm{ style: 'font-size: 16px', class: "#{topic.pinned? ? "f500" : "f300"}" }
     - if post
       %div{ style: 'white-space:nowrap;overflow-x:hidden;max-width:150px' }
-        = image_tag post.user.photo_url, size: '18x18'
+        = image_tag user_photo_url(post.user), alt: '', size: '18x18'
         - unless post.user.forum_name.blank?
           = link_to post.user.forum_name, member_path(forum_name: post.user.forum_name)
   %td.text-muted.hidden-xs.hidden-sm{ class: "#{topic.pinned? ? "f500" : "f300"}" }

@@ -1,7 +1,7 @@
 .team-member-container
   .row
     .col-md-5.team-member-image-wrapper
-      = image_tag team_member.photo_url, class: 'team-member-img'
+      = image_tag team_member_photo_url(team_member), alt: '', class: 'team-member-img'
     .col-md-7
       %h2
         = team_member.name

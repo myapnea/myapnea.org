@@ -162,17 +162,9 @@ class User < ActiveRecord::Base
     "#{first_name} #{last_name} <#{email}>"
   end
 
-  def photo_url
-    if photo.present?
-      photo.url
-    else
-      'default-user.jpg'
-    end
-  end
-
   def api_photo_url
     if photo.size > 0
-      "#{ENV['website_url']}#{photo.url}"
+      "#{ENV['website_url']}/users/#{id}/photo"
     else
       nil
     end

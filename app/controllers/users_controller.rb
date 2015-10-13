@@ -1,8 +1,16 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!
-  before_action :check_owner
-  before_action :set_user, only: [ :show, :edit, :update, :destroy ]
-  before_action :redirect_without_user, only: [ :show, :edit, :update, :destroy ]
+  before_action :authenticate_user!,    except: [:photo]
+  before_action :check_owner,           except: [:photo]
+  before_action :set_user,              only: [:show, :photo, :edit, :update, :destroy]
+  before_action :redirect_without_user, only: [:show, :photo, :edit, :update, :destroy]
+
+  def photo
+    if @user.photo.size > 0
+      send_file File.join(CarrierWave::Uploader::Base.root, @user.photo.url)
+    else
+      head :ok
+    end
+  end
 
   def index
     @all_users = User.current.search(params[:search]).order(current_sign_in_at: :desc)

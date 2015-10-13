@@ -31,9 +31,9 @@
       = image_tag "myapnea/welcome/img-small/bwh-logo_3x1.png", class: "partners-img img-responsive", id: "partner-BWH"
 
 .row.row-fullscreen#provider-banner{style: 'margin-left:0px; margin-right:0px;'}
-  - if @provider.photo_url != 'default-user.jpg'
+  - if @provider.photo.present?
     .col-lg-2.col-lg-offset-1.col-md-3.col-md-offset-1.col-xs-4
-      = image_tag @provider.photo_url, class: 'team-member-picture-md', style: 'float: right;'
+      = image_tag user_photo_url(@provider), alt: '', class: 'team-member-picture-md', style: 'float: right;'
     .col-lg-8.col-md-7.col-xs-7{ style: 'padding-left:20px;' }
       %h4.text-dark7
         = @provider.welcome_message

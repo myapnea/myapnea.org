@@ -1,12 +1,19 @@
 class HighlightsController < ApplicationController
-
-  before_action :authenticate_user!
-  before_action :check_owner
-  before_action :set_highlight,           only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!,      except: [:photo]
+  before_action :check_owner,             except: [:photo]
+  before_action :set_highlight,           only: [:show, :edit, :update, :destroy, :photo]
 
   before_action :set_SEO_elements
 
   layout 'application-no-sidebar'
+
+  def photo
+    if @highlight.photo.size > 0
+      send_file File.join(CarrierWave::Uploader::Base.root, @highlight.photo.url)
+    else
+      head :ok
+    end
+  end
 
   # GET /highlights
   # GET /highlights.json

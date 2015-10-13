@@ -13,7 +13,7 @@
   .centered-text
     = link_to ((highlight.link.present? and safe_url?(highlight.link)) ? highlight.link : "#") do
       - if highlight.photo_url.present?
-        = image_tag highlight.photo, class: 'img-responsive', style: 'margin: auto;'
+        = image_tag highlight_photo_url(highlight), alt: '', class: 'img-responsive', style: 'margin: auto;'
       - elsif highlight.display_date.present?
         = render 'static/home_news_image', day: highlight.display_date.day.to_s, month: Date::MONTHNAMES[highlight.display_date.month][0..2], year: highlight.display_date.year.to_s[2..3]
       %h4.f300.text-dark9

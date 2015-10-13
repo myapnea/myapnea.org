@@ -33,7 +33,7 @@
       %tbody
         - @admin_partners.where(group: 'promotional').each do |partner|
           %tr
-            %td= image_tag partner.photo_url, class: 'img-responsive'
+            %td= image_tag partner_photo_url(partner), alt: '', class: 'img-responsive'
             %td= partner.name
             %td= partner.link
             %td= simple_check partner.displayed?

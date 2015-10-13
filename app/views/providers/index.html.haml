@@ -32,7 +32,7 @@
                 .f500.centered{ style: "white-space:nowrap;position:relative;margin-bottom:10px;overflow-x:hidden" }
                   = link_to provider.provider_name, provider_path(provider.slug), data: { toggle: 'tooltip', title: provider.provider_name, container: 'body', placement: 'top' }
                 .centered{ style: "padding-bottom:5px;height:145px;line-height:145px" }
-                  = link_to image_tag( provider.photo_url, style: 'max-width:100%;max-height:140px' ), provider_path(provider.slug)
+                  = link_to image_tag( user_photo_url(provider), alt: '', style: 'max-width:100%;max-height:140px' ), provider_path(provider.slug)
                 .centered.f300{ style: 'margin-top:5px' }
                   %p
                     - member_count = provider.users.count

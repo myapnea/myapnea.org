@@ -14,11 +14,4 @@ class Admin::TeamMember < ActiveRecord::Base
 
   # Named scopes
   # Methods
-  def photo_url
-    if photo.present?
-      photo.url
-    else
-      'default-user.jpg'
-    end
-  end
 end

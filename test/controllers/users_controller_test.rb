@@ -6,6 +6,11 @@ class UsersControllerTest < ActionController::TestCase
     @user = users(:user_2)
   end
 
+  test 'should get photo for logged out user' do
+    get :photo, id: users(:user_1)
+    assert_response :success
+  end
+
   test "should export users as owner" do
     login(users(:owner))
     get :export, format: 'csv'

@@ -2,7 +2,7 @@
   %br
   .centered
     = link_to (current_user.forum_name.present? ? member_path(current_user.forum_name) : account_path) do
-      = image_tag current_user.photo_url, class: "user-picture", style: 'max-width:100px; max-height:100px;cursor:pointer'
+      = image_tag user_photo_url(current_user), alt: '', class: "user-picture", style: 'max-width:100px; max-height:100px;cursor:pointer'
   .clearfix
   .centered
     %h4.f300.text-white
