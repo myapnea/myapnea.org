@@ -1,4 +1,4 @@
-## 8.3.0
+## 8.3.0 (October 13, 2015)
 
 ### Enhancements
 - **General Changes**
