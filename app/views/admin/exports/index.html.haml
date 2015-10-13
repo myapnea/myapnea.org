@@ -25,15 +25,13 @@
               - status = 'danger'
               - status = 'warning' if percent >= 33
               - status = 'success' if percent == 100
-              - if percent == 0
+              - status = 'danger' if admin_export.status == 'failed'
+              - if percent == 0 || admin_export.status == 'failed'
                 %span.label{ class: "label-#{status}" }= admin_export.status
               - else
                 .progress.progress-striped{ style: 'margin: 0px' }
                   .progress-bar{ class: "progress-bar-#{status}", style: "width: #{percent}%" }
-                    = admin_export.current_step
-                    of
-                    = admin_export.total_steps
-                    = surround '(', '%)' do
+                    = succeed '%' do
                       = percent
             %td
               %div{ id: "admin-export-#{admin_export.id}-request-delete" }

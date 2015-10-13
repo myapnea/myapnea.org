@@ -1,1 +1,86 @@
-sas_export.sas.erb
+/*    MyApnea.Org: v<%= WwwMyapneaOrg::VERSION::STRING %> */
+/* Date Generated: <%= Time.zone.now.strftime("%a, %B %d, %Y at %-l:%M %p") %> */
+
+%let a=%sysget(SAS_EXECFILEPATH);
+%let b=%sysget(SAS_EXECFILENAME);
+
+%let path_file= %sysfunc(tranwrd(&a,&b,<%= @filename %>));
+
+/* Replace carriage returns inside delimiters */
+data _null_;
+  infile "&path_file..csv" recfm=n;
+  file "&path_file._sas.csv" recfm=n;
+  input a $char1.;
+  retain open 0;
+  if a='"' then open=not open;
+  if (a='0A'x or a='0D'x) and open then put '00'x @;
+  else put a $char1. @;
+run;
+
+/* Step 1: Import data into myapnea work library */
+
+data myapnea;
+  infile "&path_file._sas.csv" delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=2 ;
+
+  /* Subject and Encounter Information */
+  informat myapnea_id           $10.      ;   * MyApnea ID ;
+  informat consented            best32.   ;   * Consented ;
+  informat encounter            $500.     ;   * Encounter ;
+
+  /* Survey Answer Templates */
+<%= @export_formatter.column_informats.join("\n") %>
+
+  /* Design and Subject Variables */
+  format myapnea_id             $10.      ;
+  format consented              best32.   ;
+  format encounter              $500.     ;
+
+  /* Survey Answer Templates */
+<%= @export_formatter.column_formats.join("\n") %>
+
+  /* Define Column Names */
+
+  input
+    myapnea_id
+    consented
+    encounter
+<%= @export_formatter.column_headers.collect{ |c| "    #{c}" }.join("\n") %>
+  ;
+run;
+
+
+
+/* Step 2: Apply labels to columns */
+
+data myapnea;
+  set myapnea;
+
+  /* Subject and Encounter Information */
+  label myapnea_id='MyApnea ID';
+  label consented='Consented?';
+  label encounter='Encounter';
+
+  /* Survey Answer Templates */
+<%= @export_formatter.format_labels.join("\n") %>
+run;
+
+
+/* Step 3: Create formats for survey options */
+
+proc format;
+<%= @export_formatter.domains.collect{ |d| d.sas_value_domain }.join("\n") %>
+run;
+
+
+/* Step 4: Apply format to all of the variables */
+
+data myapnea;
+  set myapnea;
+
+<%= @export_formatter.format_domains.join("\n") %>
+run;
+
+/* Step 5: Output summary of dataset */
+
+proc contents data=myapnea;
+run;

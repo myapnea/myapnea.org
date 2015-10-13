@@ -1,7 +1,7 @@
 class AnswerTemplate < ActiveRecord::Base
   # Constants
   DATA_TYPES = ["answer_option_id", "numeric_value", "text_value"]
-  TEMPLATE_NAMES = ["date", "radio", "checkbox", "string", "height", "number"]
+  TEMPLATE_NAMES = %w(date radio checkbox string height number)
 
   # Concerns
   include Deletable
@@ -84,4 +84,70 @@ class AnswerTemplate < ActiveRecord::Base
       []
     end
   end
+
+  # For Exports
+  def csv_column
+    if template_name == 'checkbox'
+      [name] + answer_options.collect do |answer_option|
+        option_template_name(answer_option.value)
+      end
+    else
+      name
+    end
+  end
+
+  def sas_informat
+    case template_name
+    when 'date'
+      'yymmdd10'
+    when 'radio', 'checkbox', 'height', 'number'
+      'best32'
+    when 'string'
+      '$500'
+    else
+      '$5000'
+    end
+  end
+
+  def sas_format
+    sas_informat
+  end
+
+
+  def sas_informat_definition
+    if template_name == 'checkbox'
+      option_informat = 'best32'
+      ["  informat #{name} #{sas_informat}. ;"] + answer_options.collect do |answer_option|
+        "  informat #{option_template_name(answer_option.value)} best32. ;"
+      end
+    else
+      "  informat #{name} #{sas_informat}. ;"
+    end
+  end
+
+  def sas_format_definition
+    if template_name == 'checkbox'
+      ["  format #{name} #{sas_format}. ;"] + answer_options.collect do |answer_option|
+        "  format #{option_template_name(answer_option.value)} best32. ;"
+      end
+    else
+      "  format #{name} #{sas_format}. ;"
+    end
+  end
+
+  def sas_format_label
+    display_name = name
+    if template_name == 'checkbox'
+      ["  label #{name}='#{display_name.gsub("'", "''")}';"] + answer_options.collect do |answer_option|
+        "  label #{option_template_name(answer_option.value)}='#{display_name.gsub("'", "''")} (#{answer_option.text.to_s.gsub("'", "''")})' ;"
+      end
+    else
+      "  label #{name}='#{display_name.gsub("'", "''")}';"
+    end
+  end
+
+  def option_template_name(value)
+    "#{name}__#{value}".last(28)
+  end
+
 end

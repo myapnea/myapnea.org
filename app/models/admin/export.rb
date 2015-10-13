@@ -25,6 +25,31 @@ class Admin::Export < ActiveRecord::Base
     total_steps > 0 ? current_step * 100 / total_steps : 100
   end
 
+  def column_headers
+    answer_templates.collect(&:csv_column).flatten
+  end
+
+  def column_informats
+    answer_templates.collect(&:sas_informat_definition).flatten
+  end
+
+  def column_formats
+    answer_templates.collect(&:sas_format_definition).flatten
+  end
+
+  def format_labels
+    answer_templates.collect(&:sas_format_label).flatten
+  end
+
+  def domains
+    []
+  end
+
+  def format_domains
+    []
+    # answer_templates.collect(&:sas_format_domain).flatten.compact.uniq
+  end
+
   private
 
   def number_of_steps
@@ -177,6 +202,7 @@ class Admin::Export < ActiveRecord::Base
 
   def write_sas(sas_file)
     @export_formatter = self
+    @filename = sas_file.gsub(/\.sas$/, '')
 
     erb_file = File.join('app', 'views', 'admin', 'exports', 'sas_export.sas.erb')
 
@@ -186,7 +212,20 @@ class Admin::Export < ActiveRecord::Base
     update current_step: current_step + 1
   end
 
+  def answer_templates
+    surveys_answer_templates = []
+    Survey.current.viewable.non_pediatric.includes(questions: [answer_templates: :answer_options]).each do |survey|
+      survey.questions.each do |question|
+        question.answer_templates.each do |at|
+          surveys_answer_templates << at
+          # surveys_answer_templates << [survey.id, question.id, at.id]
+        end
+      end
+    end
+    surveys_answer_templates
+  end
+
   def exportable_users
-    User.include_in_exports_and_reports.order(:id)
+    User.include_in_exports_and_reports.order(:id).limit(100)
   end
 end
