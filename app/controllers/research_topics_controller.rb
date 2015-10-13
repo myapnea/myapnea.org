@@ -124,6 +124,10 @@ class ResearchTopicsController < ApplicationController
     render 'research_topics/accepted/sleep_apnea_women_heart_disease'
   end
 
+  def sleep_apnea_afib
+    render 'research_topics/accepted/sleep_apnea_afib'
+  end
+
   # Voting
 
   def vote

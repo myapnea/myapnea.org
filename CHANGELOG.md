@@ -4,11 +4,12 @@
 - **Admin Changes**
   - Added a data dictionary and data export task for admins
 
-## 8.3.0
+## 8.3.0 (October 13, 2015)
 
 ### Enhancements
 - **General Changes**
   - Fixed some minor typos across the website
+  - Added article on sleep apnea and atrial fibrillation
 - **Admin Changes**
   - Team members can be modified from the admin dashboard
   - Partners can be modified from the admin dashboard

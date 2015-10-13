@@ -21,6 +21,25 @@
 
 .content-container
   .content-header
+    = link_to sleep_apnea_afib_path, class: 'no-underline text-dark8' do
+      %h2 Atrial fibrillation and its links to sleep apnea
+  .content-body.horizontal-inset
+    %p.lead
+      Given the close links between sleep apnea and atrial fibrillation, many doctors now consider sleep apnea in patients who have atrial fibrillation.  Some cardiologists now even routinely screen their patients for sleep apnea. Patients with atrial fibrillation may want to talk to their doctors about sleep apnea and find out if they may benefit from evaluation and treatment.
+      = link_to 'Read more', sleep_apnea_afib_path
+  .content-footer
+    .row
+      .col-sm-2.col-xs-4
+        = image_tag 'myapnea/research/sbert.jpg', class: 'img-responsive pull-right', style: 'width: 100px;'
+      .col-sm-10.col-xs-8
+        %h3.f300
+          Suzie Bertisch, MD, MPH, Reena Mehra, MD MS, and Patty Tung, MD
+        %p.text-dark7
+          Beth Israel Deaconess Medical Center, Cleveland Clinic Foundation
+
+
+.content-container
+  .content-header
     = link_to sleep_apnea_women_heart_disease_path, class: 'no-underline text-dark8' do
       %h2
         New Study Shows Women with Sleep Apnea at Increased Risk for Heart
