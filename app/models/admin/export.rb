@@ -22,12 +22,12 @@ class Admin::Export < ActiveRecord::Base
 
   private
 
-  def start_export_in_background
-    fork_process :start_export
-  end
-
   def number_of_steps
     exportable_users.count + 2
+  end
+
+  def start_export_in_background
+    fork_process :start_export
   end
 
   def start_export
