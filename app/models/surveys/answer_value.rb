@@ -26,5 +26,4 @@ class AnswerValue < ActiveRecord::Base
       value
     end
   end
-
 end

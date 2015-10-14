@@ -29,7 +29,7 @@ class AnswerTemplate < ActiveRecord::Base
   # Model Methods
 
   def name_with_options
-    "#{self.name} #{self.answer_options.pluck(:text, :value).collect{|text, value| "#{value}: #{text}"}.join(', ')}"
+    "#{name} #{answer_options.pluck(:text, :value).collect { |text, value| "#{value}: #{text}" }.join(', ')}"
   end
 
   # Temporary Function (Rewrite/remove in 8.1)
@@ -37,7 +37,7 @@ class AnswerTemplate < ActiveRecord::Base
   # Will replace "data_type" and be renamed to simply "data_type" when data_type
   # is removed as a database column.
   def stored_data_type
-    case self.template_name when 'number', 'height'
+    case template_name when 'number', 'height'
       'numeric_value'
     when 'radio', 'checkbox'
       'answer_option_id'
@@ -58,7 +58,7 @@ class AnswerTemplate < ActiveRecord::Base
   # End Rewrite In 8.1
 
   def allows_answer_options?
-    self.template_name == 'radio' or self.template_name == 'checkbox'
+    template_name == 'radio' || template_name == 'checkbox'
   end
 
   def child_templates(question, value)
@@ -66,20 +66,20 @@ class AnswerTemplate < ActiveRecord::Base
   end
 
   def parent_answer_option_value_present?
-    self.parent_answer_option_value.present?
+    parent_answer_option_value.present?
   end
 
   def parent_answer_option_id
-    self.parent_answer_template.answer_options.find_by_value(self.parent_answer_option_value).id
+    parent_answer_template.answer_options.find_by_value(parent_answer_option_value).id
   end
 
   def parent_answer_template_present?
-    self.parent_answer_template.present?
+    parent_answer_template.present?
   end
 
   def parent_template_option_values
-    if self.parent_answer_template
-      self.parent_answer_template.answer_options.pluck(:value)
+    if parent_answer_template
+      parent_answer_template.answer_options.pluck(:value)
     else
       []
     end
@@ -88,11 +88,11 @@ class AnswerTemplate < ActiveRecord::Base
   # For Exports
   def csv_column
     if template_name == 'checkbox'
-      [name] + answer_options.collect do |answer_option|
+      [sas_name] + answer_options.collect do |answer_option|
         option_template_name(answer_option.value)
       end
     else
-      name
+      sas_name
     end
   end
 
@@ -113,41 +113,43 @@ class AnswerTemplate < ActiveRecord::Base
     sas_informat
   end
 
-
   def sas_informat_definition
     if template_name == 'checkbox'
       option_informat = 'best32'
-      ["  informat #{name} #{sas_informat}. ;"] + answer_options.collect do |answer_option|
+      ["  informat #{sas_name} #{sas_informat}. ;"] + answer_options.collect do |answer_option|
         "  informat #{option_template_name(answer_option.value)} best32. ;"
       end
     else
-      "  informat #{name} #{sas_informat}. ;"
+      "  informat #{sas_name} #{sas_informat}. ;"
     end
   end
 
   def sas_format_definition
     if template_name == 'checkbox'
-      ["  format #{name} #{sas_format}. ;"] + answer_options.collect do |answer_option|
+      ["  format #{sas_name} #{sas_format}. ;"] + answer_options.collect do |answer_option|
         "  format #{option_template_name(answer_option.value)} best32. ;"
       end
     else
-      "  format #{name} #{sas_format}. ;"
+      "  format #{sas_name} #{sas_format}. ;"
     end
   end
 
   def sas_format_label
-    display_name = name
+    display_name = sas_name
     if template_name == 'checkbox'
-      ["  label #{name}='#{display_name.gsub("'", "''")}';"] + answer_options.collect do |answer_option|
+      ["  label #{sas_name}='#{display_name.gsub("'", "''")}';"] + answer_options.collect do |answer_option|
         "  label #{option_template_name(answer_option.value)}='#{display_name.gsub("'", "''")} (#{answer_option.text.to_s.gsub("'", "''")})' ;"
       end
     else
-      "  label #{name}='#{display_name.gsub("'", "''")}';"
+      "  label #{sas_name}='#{display_name.gsub("'", "''")}';"
     end
   end
 
   def option_template_name(value)
-    "#{name}__#{value}".last(28)
+    "#{sas_name}__#{value}".last(28)
   end
 
+  def sas_name
+    name.gsub('-', '_').last(28)
+  end
 end
