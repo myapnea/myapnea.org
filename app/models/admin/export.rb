@@ -143,7 +143,7 @@ class Admin::Export < ActiveRecord::Base
       Survey.current.viewable.non_pediatric.includes(questions: [answer_templates: :answer_options]).each do |survey|
         survey.questions.each do |question|
           question.answer_templates.each do |at|
-            slug = at.name
+            slug = at.sas_name
             question_slugs << slug
             surveys_answer_templates << [survey.id, question.id, at.id]
           end
