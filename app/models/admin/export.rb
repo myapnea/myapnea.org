@@ -143,9 +143,16 @@ class Admin::Export < ActiveRecord::Base
       Survey.current.viewable.non_pediatric.includes(questions: [answer_templates: :answer_options]).each do |survey|
         survey.questions.each do |question|
           question.answer_templates.each do |at|
-            slug = at.sas_name
-            question_slugs << slug
-            surveys_answer_templates << [survey.id, question.id, at.id]
+            if at.template_name == 'checkbox'
+              at.answer_options.each do |answer_option|
+                question_slugs << at.option_template_name(answer_option.value)
+                surveys_answer_templates << [survey.id, question.id, at.id, answer_option.id]
+              end
+            else
+              slug = at.sas_name
+              question_slugs << slug
+              surveys_answer_templates << [survey.id, question.id, at.id]
+            end
           end
         end
       end
@@ -157,10 +164,12 @@ class Admin::Export < ActiveRecord::Base
         encounters.each do |encounter|
           myapnea_id = 'MA%06d' % user.id
           row = [myapnea_id, (user.accepted_consent? ? '1' : '0'), encounter]
-          surveys_answer_templates.each do |survey_id, question_id, answer_template_id|
+          surveys_answer_templates.each do |survey_id, question_id, answer_template_id, answer_option_id|
             answer_session = user.answer_sessions.find_by_survey_id survey_id
             if answer_session
-              values = AnswerValue.joins(:answer).where(answers: { answer_session_id: answer_session.id, question_id: question_id }).where(answer_template_id: answer_template_id).collect(&:raw_value)
+              answer_value_scope = AnswerValue.joins(:answer).where(answers: { answer_session_id: answer_session.id, question_id: question_id }).where(answer_template_id: answer_template_id)
+              answer_value_scope = answer_value_scope.where(answer_option_id: answer_option_id) unless answer_option_id.nil?
+              values = answer_value_scope.collect(&:raw_value)
               row << values.collect(&:to_s).sort.join(',')
             else
               row << nil
@@ -180,19 +189,31 @@ class Admin::Export < ActiveRecord::Base
       Survey.viewable.includes(questions: [answer_templates: :answer_options]).each do |survey|
         survey.questions.each do |question|
           question.answer_templates.each do |at|
-            slug = at.name
-            display_name = at.text.to_s.chomp
-            display_name = question.text_en if display_name.blank?
-
-            answer_options = at.answer_options.order(:value).pluck(:value, :text)
-            domain = answer_options.collect { |ao| "#{ao[0]}: #{ao[1]}" }.join(' | ')
-
-            csv << [survey.slug,
-                    slug,
-                    display_name,
-                    at.template_name,
-                    domain
-                   ]
+            at_display_name = at.text.to_s.chomp
+            at_display_name = question.text_en if at_display_name.blank?
+            domain_options = at.answer_options.order(:value).pluck(:value, :text)
+            domain = domain_options.collect { |ao| "#{ao[0]}: #{ao[1]}" }.join(' | ')
+            if at.template_name == 'checkbox'
+              at.answer_options.each do |answer_option|
+                slug = at.option_template_name(answer_option.value)
+                display_name = [at_display_name, answer_option.text.to_s.chomp].join(' - ')
+                csv << [survey.slug,
+                        slug,
+                        display_name,
+                        at.template_name,
+                        domain
+                       ]
+              end
+            else
+              slug = at.sas_name
+              display_name = at_display_name
+              csv << [survey.slug,
+                      slug,
+                      display_name,
+                      at.template_name,
+                      domain
+                     ]
+            end
           end
         end
       end
@@ -226,6 +247,6 @@ class Admin::Export < ActiveRecord::Base
   end
 
   def exportable_users
-    User.include_in_exports_and_reports.order(:id).limit(100)
+    User.include_in_exports_and_reports.order(:id)
   end
 end
