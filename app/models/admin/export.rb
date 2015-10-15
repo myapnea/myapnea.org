@@ -42,12 +42,11 @@ class Admin::Export < ActiveRecord::Base
   end
 
   def domains
-    []
+    answer_templates.collect(&:sas_value_domain).flatten
   end
 
   def format_domains
-    []
-    # answer_templates.collect(&:sas_format_domain).flatten.compact.uniq
+    answer_templates.collect(&:sas_format_domain).flatten.compact.uniq
   end
 
   private
@@ -105,8 +104,9 @@ class Admin::Export < ActiveRecord::Base
   end
 
   def export_sas(filename)
-    sas_file = File.join('tmp', 'exports', "#{filename}-#{created_at.strftime('%I%M%P')}.sas")
-    write_sas(sas_file)
+    sas_filename = "#{filename}-#{created_at.strftime('%I%M%P')}.sas"
+    sas_file = File.join('tmp', 'exports', sas_filename)
+    write_sas(sas_file, sas_filename)
     [["#{sas_file.split('/').last}", sas_file]]
   end
 
@@ -221,9 +221,9 @@ class Admin::Export < ActiveRecord::Base
     update current_step: current_step + 1
   end
 
-  def write_sas(sas_file)
+  def write_sas(sas_file, sas_filename)
     @export_formatter = self
-    @filename = sas_file.gsub(/\.sas$/, '')
+    @filename = sas_filename.gsub(/\.sas$/, '')
 
     erb_file = File.join('app', 'views', 'admin', 'exports', 'sas_export.sas.erb')
 
@@ -247,6 +247,6 @@ class Admin::Export < ActiveRecord::Base
   end
 
   def exportable_users
-    User.include_in_exports_and_reports.order(:id)
+    User.include_in_exports_and_reports.order(:id).limit(0)
   end
 end

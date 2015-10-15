@@ -68,7 +68,7 @@ run;
 /* Step 3: Create formats for survey options */
 
 proc format;
-<%= @export_formatter.domains.collect{ |d| d.sas_value_domain }.join("\n") %>
+<%= @export_formatter.domains.join("\n") %>
 run;
 
 

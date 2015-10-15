@@ -152,4 +152,33 @@ class AnswerTemplate < ActiveRecord::Base
   def sas_name
     name.gsub('-', '_').last(28)
   end
+
+  def sas_value_domain
+    if answer_options.count > 0
+      answer_options_strings = answer_options.reorder(:value).collect do |ao|
+        "    #{ao.value}='#{ao.value}: #{ao.text.to_s.gsub("'", "''")}'"
+      end
+      "  value #{sas_domain_name}\n#{answer_options_strings.join("\n")}\n  ;"
+    else
+      []
+    end
+  end
+
+  def sas_domain_name
+    "#{sas_name}f"
+  end
+
+  def sas_format_domain
+    if answer_options.count > 0
+      if template_name == 'checkbox'
+        answer_options.collect do |answer_option|
+          "  format #{option_template_name(answer_option.value)} #{sas_domain_name}. ;"
+        end
+      else
+        "  format #{sas_name} #{sas_domain_name}. ;"
+      end
+    else
+      nil
+    end
+  end
 end
