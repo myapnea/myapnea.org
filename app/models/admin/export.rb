@@ -144,7 +144,7 @@ class Admin::Export < ActiveRecord::Base
         survey.questions.each do |question|
           question.answer_templates.each do |at|
             if at.template_name == 'checkbox'
-              at.answer_options.each do |answer_option|
+              at.sorted_answer_options.each do |answer_option|
                 question_slugs << at.option_template_name(answer_option.value)
                 surveys_answer_templates << [survey.id, question.id, at.id, answer_option.id]
               end
@@ -191,10 +191,10 @@ class Admin::Export < ActiveRecord::Base
           question.answer_templates.each do |at|
             at_display_name = at.text.to_s.chomp
             at_display_name = question.text_en if at_display_name.blank?
-            domain_options = at.answer_options.order(:value).pluck(:value, :text)
+            domain_options = at.sorted_answer_options.pluck(:value, :text)
             domain = domain_options.collect { |ao| "#{ao[0]}: #{ao[1]}" }.join(' | ')
             if at.template_name == 'checkbox'
-              at.answer_options.each do |answer_option|
+              at.sorted_answer_options.each do |answer_option|
                 slug = at.option_template_name(answer_option.value)
                 display_name = [at_display_name, answer_option.text.to_s.chomp].join(' - ')
                 csv << [survey.slug,
@@ -247,6 +247,6 @@ class Admin::Export < ActiveRecord::Base
   end
 
   def exportable_users
-    User.include_in_exports_and_reports.order(:id).limit(0)
+    User.include_in_exports_and_reports.order(:id).limit(2)
   end
 end
