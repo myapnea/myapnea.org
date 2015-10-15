@@ -17,6 +17,7 @@ data _null_;
   else put a $char1. @;
 run;
 
+
 /* Step 1: Import data into myapnea work library */
 
 data myapnea;
@@ -49,7 +50,6 @@ data myapnea;
 run;
 
 
-
 /* Step 2: Apply labels to columns */
 
 data myapnea;
@@ -79,6 +79,7 @@ data myapnea;
 
 <%= @export_formatter.format_domains.join("\n") %>
 run;
+
 
 /* Step 5: Output summary of dataset */
 
