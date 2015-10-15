@@ -223,7 +223,7 @@ class Admin::Export < ActiveRecord::Base
 
   def write_sas(sas_file, sas_filename)
     @export_formatter = self
-    @filename = sas_filename.gsub(/\.sas$/, '')
+    @filename = sas_filename.gsub(/\.sas$/, '-data')
 
     erb_file = File.join('app', 'views', 'admin', 'exports', 'sas_export.sas.erb')
 
