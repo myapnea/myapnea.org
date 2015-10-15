@@ -247,6 +247,6 @@ class Admin::Export < ActiveRecord::Base
   end
 
   def exportable_users
-    User.include_in_exports_and_reports.order(:id).limit(2)
+    User.include_in_exports_and_reports.order(:id)
   end
 end
