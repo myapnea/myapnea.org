@@ -54,6 +54,7 @@ exclude_paths:
 - test/**/*
 - vendor/**/*
 - "CHANGELOG.md"
+- "config.ru"
 - Gemfile
 - "LICENSE.md"
 - "PREREQUISITES.md"
