@@ -7,7 +7,7 @@
   %strong Export Progress
 
 .progress.progress-striped
-  .progress-bar{ class: "progress-bar-#{status}", style: "width: #{percent}%" }
+  .progress-bar{ class: "progress-bar-#{status}", style: "width: #{percent}%;min-width: 2em;" }
     = @admin_export.current_step
     of
     = @admin_export.total_steps
