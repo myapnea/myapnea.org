@@ -10,7 +10,7 @@
     %h3.f300 Export Status
   .content-body
 
-    #progress{ data: { object: "#{'ajax-timer' if @admin_export.total_steps != @admin_export.current_step}", path: progress_admin_export_path(@admin_export) } }
+    #progress{ data: { object: "#{'ajax-timer' if @admin_export.status == 'started'}", path: progress_admin_export_path(@admin_export) } }
       = render 'admin/exports/progress'
 
     %p

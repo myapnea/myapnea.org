@@ -1,5 +1,5 @@
 $("#progress").html("<%=j render 'admin/exports/progress' %>");
 
-<% if @admin_export.total_steps > 0 && @admin_export.total_steps == @admin_export.current_step %>
+<% if %w(failed completed).include?(@admin_export.status) %>
 clearInterval(<%= params[:interval] %>);
 <% end %>
