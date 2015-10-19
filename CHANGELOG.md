@@ -5,6 +5,7 @@
   - Added a data dictionary and data export task for admins
 - **General Changes**
   - Improved display of uploaded user, highlight, partner, and team member photos
+  - Members page now redirects to forums
 
 ## 8.3.0 (October 13, 2015)
 

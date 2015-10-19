@@ -5,7 +5,8 @@ class MembersController < ApplicationController
   before_action :set_SEO_elements
 
   def index
-    @members = member_scope.page(params[:page]).per( 40 )
+    # @members = member_scope.page(params[:page]).per( 40 )
+    redirect_to forums_path
   end
 
   def show
