@@ -30,7 +30,7 @@
                 %span.label{ class: "label-#{status}" }= admin_export.status
               - else
                 .progress.progress-striped{ style: 'margin: 0px' }
-                  .progress-bar{ class: "progress-bar-#{status}", style: "width: #{percent}%" }
+                  .progress-bar{ class: "progress-bar-#{status}", style: "width: #{percent}%;min-width: 2em" }
                     = succeed '%' do
                       = percent
             %td
