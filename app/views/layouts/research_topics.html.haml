@@ -1,0 +1,33 @@
+!!!
+%html
+  %head
+    %meta{ charset: 'utf-8'}
+    %meta{ content: 'IE=Edge,chrome=1', http: {equiv: 'X-UA-Compatible'}}
+    %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1.0'}
+    / For Facebook
+    %meta{ property: 'og:url', content: ENV['website_url'] + '/' }
+    %meta{ property: 'og:title', content: ENV['pprn_title'] }
+    %meta{ property: 'og:description', content: 'Improving sleep apnea through information, support, and research' }
+    %meta{ property: 'og:image', content: ENV['website_url'] + '/assets/' + asset_path('myapnea/logos/MyApneaLogo_border_whitetext_square.png').split('/assets/').last }
+    / For Google+
+    %meta{ itemprop: 'name', content: ENV['pprn_title'] }
+    %meta{ itemprop: 'description', content: 'Improving sleep apnea through information, support, and research' }
+    %meta{ itemprop: 'image', content: ENV['website_url'] + '/assets/' + asset_path('myapnea/MyApneaLogo_border_whitesub_square.png').split('/assets/').last }
+    / For Google Analytics
+    %meta{ name: 'google-site-verification', content: 'RHApDe4I99r46ZVk4UVIbuJhXi2oIvUhKO0G7zlVHjo' }
+    / For SEO
+    %title= 'MyApnea' + (@page_title.present? ? (" | #{@page_title}") : '')
+    %meta{ name: 'description', content: "#{@page_content.present? ? @page_content : 'Sleep Apnea Research and Community for Patient Outcomes'}" }
+    = favicon_link_tag
+    = csrf_meta_tags
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag "application", "data-turbolinks-track" => true
+    = javascript_tag "var root_url='#{request.script_name + '/'}';var auth_token='#{form_authenticity_token}';"
+    - if false
+      = javascript_include_tag "//code.jquery.com/ui/1.11.2/jquery-ui.min.js"
+  %body{style: 'background-color: #E6EDF4', screen_capture_injected: "true", data: { email: "#{current_user.email if current_user}", fullname: "#{current_user.name if current_user}" } }
+    = render partial: 'layouts/navigation/top_navigation'
+    = render partial: 'layouts/partials/flash_messages'
+    = yield
+    = render partial: 'layouts/partials/footer'
+    #body-javascripts

@@ -1,44 +1,81 @@
-.panel-rank-research tr td:nth-of-type(1) {
-  width:15%;
-  text-align:center;
-  padding-top:0;
-}
-.panel-rank-research tr td:nth-of-type(2) {
-  width:85%;
+.rt-list-item {
+  position: relative;
+  margin: 20px 0px;
+  .rt-user-img {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    width: 50px;
+    border-radius: 50%;
+    border: 1px solid #c5c5c5;
+  }
+  .rt-content {
+    padding: 5px;
+    background-color: white;
+    border: 1px solid #c5c5c5;
+    border-radius: 2px;
+    margin-left: 60px;
+    .rt-detail {
+      font-size: 12px;
+      color: gray;
+      a {
+        display: inline-block;
+      }
+    }
+    .rt-voters {
+      font-size: 12px;
+      color: gray;
+      .commenter-thumbnail {
+        width: 20px;
+        height: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 2px 1px #eee;
+      }
+      .commenter-thumbnail-more {
+        display: inline-block;
+        min-width: 20px;
+        height: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 2px 1px #eee;
+        background-color: #F2F1EC;
+        color: #848484;
+        line-height: 20px;
+        text-align: center;
+      }
+    }
+  }
 }
 
-.fa-rank:hover {
-  color: #B1D2F6;
+.highlight-header {
+  margin-top: 20px;
+  padding: 5px;
+  background-color: #5999de;
+  color: white;
+  border: 1px solid #c5c5c5;
+  border-radius: 2px 2px 0 0;
+  border-bottom-width: 0px;
+  font-weight: 400;
+  p {
+    margin-bottom: 0px;
+  }
+}
+.rt-highlight {
+  margin-bottom: 20px;
+  padding: 5px;
+  background-color: white;
+  border: 1px solid #c5c5c5;
+  border-radius: 0 0 2px 2px;
 }
 
-.expand-research-topic {
-  color: #B1D2F6;
-  text-decoration: underline;
-  cursor: pointer;
-}
 
+
+
+
+// Probably deprecated
 .progress {
   margin-top:20px;
 }
 .progress-bar {
   -webkit-transition: width 1.5s ease-in-out;
   transition: width 1.5s ease-in-out;
-}
-
-
-
-.panel-rank-research {
-  table {
-    tr {
-      td {
-        a i, a i.disabled {
-          color: grey;
-          color: rgba(0,0,0,.8);
-        }
-        a i.voted {
-          color: rgb(89, 153, 222);
-        }
-      }
-    }
-  }
 }

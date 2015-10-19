@@ -12,6 +12,7 @@ user_<%= i %>:
   adult_diagnosed: true
   encrypted_password: <%= pw %>
   accepted_terms_conditions_at: <%= Time.zone.now %>
+  forum_name: User<%= i %>
 <% end %>
 
 has_accepted_privacy:
