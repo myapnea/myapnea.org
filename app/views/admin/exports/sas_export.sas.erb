@@ -1,5 +1,5 @@
 /*    MyApnea.Org: v<%= WwwMyapneaOrg::VERSION::STRING %> */
-/* Date Generated: <%= Time.zone.now.strftime("%a, %B %d, %Y at %-l:%M %p") %> */
+/* Date Generated: <%= Time.zone.now.strftime('%a, %B %d, %Y at %-l:%M %p') %> */
 
 %let a=%sysget(SAS_EXECFILEPATH);
 %let b=%sysget(SAS_EXECFILENAME);
@@ -27,6 +27,8 @@ data myapnea;
   informat myapnea_id           $10.      ;   * MyApnea ID ;
   informat consented            best32.   ;   * Consented ;
   informat encounter            $500.     ;   * Encounter ;
+  informat state_code           $10.      ;   * State Code ;
+  informat country_code         $10.      ;   * Country Code ;
 
   /* Survey Answer Templates */
 <%= @export_formatter.column_informats.join("\n") %>
@@ -35,6 +37,8 @@ data myapnea;
   format myapnea_id             $10.      ;
   format consented              best32.   ;
   format encounter              $500.     ;
+  format state_code             $10.      ;
+  format country_code           $10.      ;
 
   /* Survey Answer Templates */
 <%= @export_formatter.column_formats.join("\n") %>
@@ -45,6 +49,8 @@ data myapnea;
     myapnea_id
     consented
     encounter
+    state_code
+    country_code
 <%= @export_formatter.column_headers.collect{ |c| "    #{c}" }.join("\n") %>
   ;
 run;
@@ -59,6 +65,8 @@ data myapnea;
   label myapnea_id='MyApnea ID';
   label consented='Consented?';
   label encounter='Encounter';
+  label state_code='State Code';
+  label country_code='Country Code';
 
   /* Survey Answer Templates */
 <%= @export_formatter.format_labels.join("\n") %>
