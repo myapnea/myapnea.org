@@ -1,140 +1,135 @@
 .content-main-header
-  %h1.f300.wrapword
-    = @topic.name
-  %p.lead.text-light8{ style: 'margin-bottom: 0px;'}
-    = link_to 'Forums', forums_path
-    &middot;
-    = link_to @forum.name, @forum
-    &middot;
-    = link_to image_tag('myapnea/icons/facebook_icon.png', class: 'share-icons-sm'), "http://www.facebook.com/share.php?u=#{ENV['website_url'] + forum_topic_path(@forum, @topic)}"
-    = link_to image_tag('myapnea/icons/twitter_icon.png', class: 'share-icons-sm'), "http://twitter.com/home?status=#{truncate(@topic.name, length: 92)}%20#{ENV['website_url'] + forum_topic_path(@forum, @topic)}%20via%20%40MyApneaOrg%20%23myapnea"
-    = link_to image_tag('myapnea/icons/email_icon.png', class: 'share-icons-sm'), "mailto:?subject=Check%20out%20this%20conversation%20on%20MyApnea.Org&body=I%20think%20you%20will%20like%20this%20discussion%20happening%20on%20MyApnea.Org:%20#{@topic.name}%20%28#{forum_topic_path(@forum, @topic)}%29"
+  .container
+    %h1.wrapword= @topic.name
+    %p.lead.text-light8{ style: 'margin-bottom: 0px;'}
+      = link_to 'Forums', forums_path
+      &middot;
+      = link_to @forum.name, @forum
+      &middot;
+      = link_to image_tag('myapnea/icons/facebook_icon.png', class: 'share-icons-sm'), "http://www.facebook.com/share.php?u=#{ENV['website_url'] + forum_topic_path(@forum, @topic)}"
+      = link_to image_tag('myapnea/icons/twitter_icon.png', class: 'share-icons-sm'), "http://twitter.com/home?status=#{truncate(@topic.name, length: 92)}%20#{ENV['website_url'] + forum_topic_path(@forum, @topic)}%20via%20%40MyApneaOrg%20%23myapnea"
+      = link_to image_tag('myapnea/icons/email_icon.png', class: 'share-icons-sm'), "mailto:?subject=Check%20out%20this%20conversation%20on%20MyApnea.Org&body=I%20think%20you%20will%20like%20this%20discussion%20happening%20on%20MyApnea.Org:%20#{@topic.name}%20%28#{forum_topic_path(@forum, @topic)}%29"
 
-- if current_user and (current_user.owner? or current_user.moderator?)
-  .well
-    %h4
-      For admins:
-      = link_to 'Edit Topic', edit_forum_topic_path(@forum, @topic), class: 'btn btn-xs btn-primary' if current_user and @topic.editable_by?(current_user)
-      - if @topic.deletable_by?(current_user)
-        = link_to 'Delete Topic', [@forum, @topic], method: :delete, class: 'btn btn-xs btn-danger', data: { confirm: "Are you sure you want to delete this topic?" }
-    -# Show moderator information for topics with any status (except approved)
-    - if current_user.owner?
-      This topic was created by
-      = link_to @topic.user.name_and_email, @topic.user
-      - if @topic.user.forum_name.present?
-        = succeed "." do
-          = link_to @topic.user.forum_name, member_path(@topic.user.forum_name), class: 'no-underline darkerer-blue'
-    This topic has had
-    = @topic.views_count ? @topic.views_count : 'unknown'
-    views since
-    = @topic.created_at.strftime("%Y-%m-%d")
+.container
+  %br
+  .row
+    .col-sm-8
+      - @posts = @topic.posts.includes(:user, topic: :forum).page(params[:page]).per( Topic::POSTS_PER_PAGE )
+      = render @posts
+      -# Display status of the topic to members
+      - if @topic.locked?
+        .text-muted{ style: 'text-align:center' }
+          This topic is locked
+          %span.glyphicon.glyphicon-lock
 
+      - elsif @topic.status == 'pending_review'
+        .text-muted{ style: 'text-align:center' }
+          This topic is currently under review.
+          %i.fa.fa-eye
+          - if current_user == @topic.user
+            %br
+            You will be notified by email when your topic has been approved.
 
-    - if @topic.status == 'pending_review'
-      %i.fa.fa-eye-slash
-      This topic is currently pending review. You can either
-      = link_to 'approve', forum_topic_path(@forum, @topic, topic: { status: 'approved' }), method: :patch, class: 'btn btn-success btn-xs'
-      this topic or
-      = link_to 'mark the topic as spam.', forum_topic_path(@forum, @topic, topic: { status: 'spam' }), method: :patch, class: 'btn btn-danger btn-xs'
-    - if @topic.status == 'spam'
-      %i.fa.fa-eye-slash
-      This topic is marked as spam. If this was a mistake, you can
-      = link_to 'undo', forum_topic_path(@forum, @topic, topic: { status: 'pending_review' }), method: :patch, class: 'btn btn-danger btn-xs'
-      this and set the topic back to pending review.
-    - if @topic.hidden?
-      %i.fa.fa-eye-slash
-      This topic has been hidden, and is not viewable to regular forum members. You can
-      = link_to 'edit this topic', edit_forum_topic_path(@forum, @topic)
-      to make it viewable again.
-    - if @topic.hidden? and @topic.locked?
-      %br
-      %br
-    - if @topic.locked?
-      %span.glyphicon.glyphicon-lock
-      This topic has been locked, and no longer allows users to edit or add new posts. You can
-      = link_to 'edit this topic', edit_forum_topic_path(@forum, @topic)
-      to unlock it.
+      - else
+        - if @topic.posts.where(status: 'pending_review').count > 0
+          .well.well-sm
+            %p
+              This topic includes at least one post that has not been approved by a
+              moderator. Please be advised that these posts may contain sensitive
+              material or unsolicited medical advice. MyApnea does not endorse the
+              content of these posts. The information provided on this site is not
+              intended nor recommended as a substitute for advice from a health care
+              professional who has evaluated you.
 
-- @posts = @topic.posts.includes(:user, topic: :forum).page(params[:page]).per( Topic::POSTS_PER_PAGE )
+        - if current_user
+          .content-container.horizontal-inset.inherit-background
+            - @post = @topic.posts.new
+            = form_for [@forum, @topic, @post], html: { class: 'form-horizontal' } do |f|
+              - if @post.errors.any?
+                #error_explanation.bs-callout.bs-callout-danger
+                  %h4
+                    = pluralize(@post.errors.count, "error")
+                    prohibited this comment from being saved
+                  %ul
+                  - @post.errors.full_messages.each do |msg|
+                    %li= msg
 
-.pull-right{ style: 'margin-right: 40px;'}
-  = paginate @posts, theme: 'bootstrap-small'
-.clearfix
+              - if current_user.moderator?
+                = f.hidden_field :status, value: 'approved'
 
-= render @posts
+              .row.reset-layout
+                .col-xs-1.reset-layout
+                  = render partial: 'forums/user_image', locals: { user: current_user, size: 50 }
 
-- if @topic.posts.where(status: 'pending_review').count > 0
-  .well.horizontal-inset
-    %p
-      This topic includes at least one post that has not been approved by a
-      moderator. Please be advised that these posts may contain sensitive
-      material or unsolicited medical advice. MyApnea does not endorse the
-      content of these posts. The information provided on this site is not
-      intended nor recommended as a substitute for advice from a health care
-      professional who has evaluated you.
+                .col-xs-11
+                  %ul.nav.nav-tabs
+                    %li.active
+                      %a{ href: '#write-new', data: { toggle: 'tab' } }
+                        Write
+                    %li
+                      %a{ href: '#preview-new', data: { toggle: 'tab', forum_id: "#{@forum.to_param}", topic_id: "#{@topic.to_param}", object: 'preview-post', post_id: 'new' } }
+                        Preview
+                    %li
+                      = link_to 'Markup', '#markup-new', data: { toggle: 'tab' }
 
+                  .tab-content
+                    #write-new.tab-pane.active
+                      = f.text_area :description, rows: 7, class: 'form-control', id: 'post_description_new', data: { object: 'text-area-autocomplete' }
+                    #preview-new.tab-pane{ style: 'min-height:177px;padding-top:10px' }
+                      #preview-new.post-container
+                    #markup-new.tab-pane{ style: 'padding-top:15px' }
+                      = render partial: 'topics/markup'
+              %br
+              .row.reset-layout
+                .col-xs-11.col-xs-offset-1
+                  = f.submit "Comment", class: 'btn btn-primary', data: { disable_with: "Posting comment..." }
+              .text-right= paginate @posts, theme: 'bootstrap-small'
 
-.centered= paginate @posts, theme: 'bootstrap-small'
+    .col-sm-4
+      = paginate @posts, theme: 'bootstrap-small'
+      - if current_user and (current_user.owner? or current_user.moderator?)
+        .well.well-sm
+          Admins:
+          = link_to 'Edit Topic', edit_forum_topic_path(@forum, @topic), class: 'btn btn-xs btn-primary' if current_user and @topic.editable_by?(current_user)
+          - if @topic.deletable_by?(current_user)
+            = link_to 'Delete Topic', [@forum, @topic], method: :delete, class: 'btn btn-xs btn-danger', data: { confirm: "Are you sure you want to delete this topic?" }
+          -# Show moderator information for topics with any status (except approved)
+          - if current_user.owner?
+            This topic was created by
+            = link_to @topic.user.name_and_email, @topic.user
+            - if @topic.user.forum_name.present?
+              = succeed "." do
+                = link_to @topic.user.forum_name, member_path(@topic.user.forum_name), class: 'no-underline darkerer-blue'
+          This topic has had
+          = @topic.views_count ? @topic.views_count : 'unknown'
+          views since
+          = @topic.created_at.strftime("%Y-%m-%d")
 
--# Display status of the topic to members
-- if @topic.locked?
-  .text-muted{ style: 'text-align:center' }
-    This topic is locked
-    %span.glyphicon.glyphicon-lock
-
-- elsif @topic.status == 'pending_review'
-  .text-muted{ style: 'text-align:center' }
-    This topic is currently under review.
-    %i.fa.fa-eye
-    - if current_user == @topic.user
-      %br
-      You will be notified by email when your topic has been approved.
-
-- else
-  - if current_user
-    .content-container.horizontal-inset.inherit-background
-      - @post = @topic.posts.new
-      = form_for [@forum, @topic, @post], html: { class: 'form-horizontal' } do |f|
-        - if @post.errors.any?
-          #error_explanation.bs-callout.bs-callout-danger
-            %h4
-              = pluralize(@post.errors.count, "error")
-              prohibited this comment from being saved
-            %ul
-            - @post.errors.full_messages.each do |msg|
-              %li= msg
-
-        - if current_user.moderator?
-          = f.hidden_field :status, value: 'approved'
-
-        .row.reset-layout
-          .col-xs-1.reset-layout
-            = render partial: 'forums/user_image', locals: { user: current_user, size: 50 }
-
-          .col-xs-11
-            %ul.nav.nav-tabs
-              %li.active
-                %a{ href: '#write-new', data: { toggle: 'tab' } }
-                  Write
-              %li
-                %a{ href: '#preview-new', data: { toggle: 'tab', forum_id: "#{@forum.to_param}", topic_id: "#{@topic.to_param}", object: 'preview-post', post_id: 'new' } }
-                  Preview
-              %li
-                = link_to 'Markup', '#markup-new', data: { toggle: 'tab' }
-
-            .tab-content
-              #write-new.tab-pane.active
-                = f.text_area :description, rows: 7, class: 'form-control', id: 'post_description_new', data: { object: 'text-area-autocomplete' }
-              #preview-new.tab-pane{ style: 'min-height:177px;padding-top:10px' }
-                #preview-new.post-container
-              #markup-new.tab-pane{ style: 'padding-top:15px' }
-                = render partial: 'topics/markup'
-
-        .row.reset-layout{ style: 'margin-top: 15px;'}
-          .col-xs-1
-          .col-md-11.col-xs-10.col-xs-offset-1.col-md-offset-0
-            = f.submit "Comment", class: 'btn btn-primary', data: { disable_with: "Posting comment..." }
-
-      = render 'topics/subscribe_unsubscribe', topic: @topic
-  - else
-    = render 'home/join_the_community', referrer: 'forums', message: 'Share stories directly with sleep researchers and others with sleep apnea'
+          - if @topic.status == 'pending_review'
+            %i.fa.fa-eye-slash
+            This topic is currently pending review. You can either
+            = link_to 'approve', forum_topic_path(@forum, @topic, topic: { status: 'approved' }), method: :patch, class: 'btn btn-success btn-xs'
+            this topic or
+            = link_to 'mark the topic as spam.', forum_topic_path(@forum, @topic, topic: { status: 'spam' }), method: :patch, class: 'btn btn-danger btn-xs'
+          - if @topic.status == 'spam'
+            %i.fa.fa-eye-slash
+            This topic is marked as spam. If this was a mistake, you can
+            = link_to 'undo', forum_topic_path(@forum, @topic, topic: { status: 'pending_review' }), method: :patch, class: 'btn btn-danger btn-xs'
+            this and set the topic back to pending review.
+          - if @topic.hidden?
+            %i.fa.fa-eye-slash
+            This topic has been hidden, and is not viewable to regular forum members. You can
+            = link_to 'edit this topic', edit_forum_topic_path(@forum, @topic)
+            to make it viewable again.
+          - if @topic.hidden? and @topic.locked?
+            %br
+            %br
+          - if @topic.locked?
+            %span.glyphicon.glyphicon-lock
+            This topic has been locked, and no longer allows users to edit or add new posts. You can
+            = link_to 'edit this topic', edit_forum_topic_path(@forum, @topic)
+            to unlock it.
+      - if current_user
+        .well.well-sm= render 'topics/subscribe_unsubscribe', topic: @topic
+      - else
+        = render 'home/join_the_community', referrer: 'forums', message: 'Share stories directly with sleep researchers and others with sleep apnea'

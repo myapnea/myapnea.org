@@ -15,6 +15,8 @@ class ForumsController < ApplicationController
 
   respond_to :html
 
+  layout 'forums'
+
   def index
     @forums = Forum.current.main
     respond_with(@forums)

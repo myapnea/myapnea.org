@@ -20,6 +20,8 @@ class TopicsController < ApplicationController
 
   respond_to :html
 
+  layout 'topics'
+
   def subscription
     @topic.set_subscription!(params[:notify].to_s == '1', current_user)
     redirect_to [@forum, @topic]

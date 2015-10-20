@@ -93,6 +93,7 @@ owner:
   adult_diagnosed: true
   encrypted_password: <%= pw %>
   accepted_terms_conditions_at: <%= Time.zone.now %>
+  forum_name: owner
 
 has_completed_survey:
   first_name: Complete

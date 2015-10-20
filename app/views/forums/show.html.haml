@@ -1,31 +1,43 @@
 - @title = @forum.name
 
-.content-main-header
-  %h1
-    = @title
-  %p.lead
-    = link_to 'Forums', forums_path, class: 'no-underline'
-- if current_user and (current_user.owner? or current_user.moderator?)
-  .well
-    %h4
-      For admins:
-      = link_to 'Edit Forum', edit_forum_path(@forum), class: 'btn btn-success btn-xs' if current_user.owner?
-      = link_to 'Pending Review', forum_path(@forum, status: (params[:status] == 'pending_review' ? nil : 'pending_review')), class: "btn btn-default btn-xs #{'active' if params[:status] == 'pending_review'}" if current_user.moderator?
-- else
+.container
   %br
-.content-container.horizontal-inset.inherit-background
-  .row.reset-layout
-    - if current_user
-      .col-sm-2.col-xs-3.centered
-        = link_to 'New Topic', new_forum_topic_path(@forum), class: 'btn btn-primary hidden-xs'
-        = link_to 'New', new_forum_topic_path(@forum), class: 'btn btn-primary visible-xs'
-    = form_tag @forum, method: :get, class: "form-inline #{current_user ? 'col-sm-10 col-xs-9' : 'col-xs-12'}" do
-      .input-group
-        = text_field_tag 's', params[:s], class: 'form-control'
-        %span.input-group-btn{ style: 'width: 1%;' }
-          = submit_tag 'Search', class: 'btn btn-primary', name: nil
-
-= render 'forums/show', forum: @forum, topic_limit: nil
-
-- unless current_user
-  = render 'home/join_the_community', referrer: 'forums', message: 'Share stories directly with sleep researchers and others with sleep apnea'
+  .row
+    .col-sm-8
+      = render 'forums/show', forum: @forum, topic_limit: nil
+      %br
+    .col-sm-4
+      = form_tag @forum, method: :get, class: "form-inline" do
+        .input-group
+          = text_field_tag 's', params[:s], class: 'form-control'
+          %span.input-group-btn{ style: 'width: 1%;' }
+            = submit_tag 'Search', class: 'btn btn-primary', name: nil
+      .clearfix
+      %br
+      - if current_user and (current_user.owner? or current_user.moderator?)
+        .well.well-sm
+          Admins:
+          = link_to 'Edit Forum', edit_forum_path(@forum), class: 'btn btn-success btn-xs' if current_user.owner?
+          = link_to 'Pending Review', forum_path(@forum, status: (params[:status] == 'pending_review' ? nil : 'pending_review')), class: "btn btn-default btn-xs #{'active' if params[:status] == 'pending_review'}" if current_user.moderator?
+      - if @most_viewed = @forum.topics.order(views_count: :desc).first
+        .topic-highlight-container
+          Popular in
+          %span.f700= @forum.name
+          .topic-highlight
+            = link_to member_path(@most_viewed.user.forum_name), class: 'no-underline' do
+              = image_tag user_photo_url(@most_viewed.user), class: 'user-image'
+            .topic-highlight-content
+              = link_to @most_viewed.name, [@most_viewed.forum, @most_viewed]
+      - if @most_discussed = @forum.topics.current.joins(:posts).group('topics.id').order('count(posts)').last
+        .topic-highlight-container
+          Trending in
+          %span.f700= @forum.name
+          .topic-highlight
+            = link_to member_path(@most_viewed.user.forum_name), class: 'no-underline' do
+              = image_tag user_photo_url(@most_viewed.user), class: 'user-image'
+            .topic-highlight-content
+              = link_to @most_discussed.name, [@most_discussed.forum, @most_discussed]
+      - if current_user
+        = link_to 'New Topic', new_forum_topic_path(@forum), class: 'btn btn-primary-custom col-xs-12'
+      - else
+        = render 'home/join_the_community', referrer: 'forums', message: 'Share stories directly with sleep researchers and others with sleep apnea'
