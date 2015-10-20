@@ -1,5 +1,9 @@
 ## 9.0.0
 
+### Enhancements
+- **Design Changes**
+  - Moving to fixed-width version of site
+
 ## 8.4.0 (October 19, 2015)
 
 ### Enhancements

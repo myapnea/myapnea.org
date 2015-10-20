@@ -1,0 +1,20 @@
+.topic-highlight-container {
+  padding: 5px;
+  background-color: white;
+  margin-bottom: 20px;
+  border-radius: 2px;
+  border: 1px solid #c5c5c5;
+  .topic-highlight {
+    position: relative;
+    .user-image {
+      width: 30px;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    .topic-highlight-content {
+      margin-left: 40px;
+      min-height: 30px;
+    }
+  }
+}
