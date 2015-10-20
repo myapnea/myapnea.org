@@ -1,63 +1,23 @@
-.content-main-header
-  %h1.f300
-    = "Welcome #{current_user.first_name}!"
-
-- if !current_user.has_user_type?
-  -# Users need to set a user type
-  .centered-text
-    = image_tag 'myapnea/user_types/role_confused.png', class: 'img-responsive', style: 'margin: 0 auto; width: 150px;'
-    %h4.f300{ style: 'margin: 0 10px;' }
-      You have not listed your role in the sleep apnea community. In order to participate in this part of the research community, please
-      = link_to 'select a role.', describe_yourself_path, style: 'text-decoration: none;'
-  %br
-  %br
-
-- elsif current_user.is_only_academic?
-  -# Survey data widget if possible
-  .widget-container
-    .widget-container-body
-      %h4.centered-text Research Surveys
-      %br
-      .row.reset-layout
-        - @surveys.each do |survey|
-          .col-xs-4.centered-text
-            = image_tag 'myapnea/icons/data_display'+rand(1..3).to_s+'.png', class: 'img-responsive', style: 'margin: 0 auto; width: 60%; max-width:250px; border-radius: 10px;'
-            %h5.f300.centered-text
-              = survey.name
-            %h6.f300.primary-blue{ style: 'margin-bottom:30px;' }
-              = link_to 'View Data', report_survey_path(survey)
-
-- elsif current_user.incomplete_answer_sessions.count > 0
-  -# Survey widget if applicable
-  .widget-container
-    .widget-container-body
-      .row.reset-layout
-        - @answer_sessions.each do |answer_session|
-          .col-sm-4.centered-text
-            = render 'surveys/answer_sessions/progress', answer_session: answer_session
-
-- else
-  -# Trending topic widget if applicable
-  - if current_user.experienced_voter?
-    = render 'research_topics/voting_form', research_topic: current_user.highlighted_research_topic
-
--# Highlights widget
 %br
-.horizontal-inset
-  %h4.centered-text Research Highlights
-  %br
-  .row.reset-layout
-    - Highlight.current.where(displayed: true).sort{ |a,b| b.created_at <=> a.created_at }.first(3).each do |highlight|
-      .col-sm-4
+.container
+  .row
+    .col-sm-2
+      .content-container
+        = link_to (current_user.forum_name.present? ? member_path(current_user.forum_name) : account_path) do
+          = image_tag user_photo_url(current_user), class: "img-responsive"
+        %br
+        %p.f500= "Welcome, #{current_user.first_name}!"
+        - if current_user.incomplete_answer_sessions.present?
+          %p.f500.small
+            = link_to pluralize(current_user.incomplete_answer_sessions.count, 'incomplete survey'), surveys_path
+        - if current_user.research_topics.approved.present?
+          %p.f500.small
+            = link_to pluralize(current_user.research_topics.approved.count, 'research proposal'), surveys_path
+    .col-sm-7
+      #recent-posts
+        = render 'home/show_from_home'
+      #read-more-recent-posts
+        = render 'home/show_more_button'
+    .col-sm-3
+      - Highlight.current.where(displayed: true).sort{ |a,b| b.created_at <=> a.created_at }.first(5).each do |highlight|
         = render highlight
-
-%br
-%br
-.horizontal-inset
-  %h4.centered-text Recent Forum Activity
-  .recent-posts-container
-    / Forums widget
-    #recent-posts
-      = render 'home/show_from_home'
-    #read-more-recent-posts
-      = render 'home/show_more_button'

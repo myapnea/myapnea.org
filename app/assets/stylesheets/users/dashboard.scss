@@ -1,121 +1,30 @@
-.widget-container {
+.post-content-container {
   background-color: white;
-  box-shadow:0px 0px 5px rgba(0,0,0,.5);
+  box-shadow:0px 0px 2px rgba(0,0,0,.5);
   margin-bottom: 20px;
-  .widget-container-header {
-    padding: 5px 40px;
-    background-color: #F2F1EC;
-  }
-  .widget-container-body {
-    padding: 20px;
-  }
-}
-
-/* ALL RECENT POSTS */
-.recent-posts-container {
-  background-color: inherit;
-  margin-bottom: 20px;
-}
-
-/* EACH RECENT POST */
-.recent-post-container {
-  position: relative;
-  margin: 20px;
-  .poster-image {
-    position: absolute;
-    top: 0;
-    left: 0;
+  padding: 10px;
+  .post-header {
+    position: relative;
+    min-height: 70px;
+    .poster-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 70px;
+    }
+    .poster-details {
+      margin-left: 80px;
+      font-size: 18px;
+      p {
+        margin-bottom: 0px;
+        color: #8A8A8A;
+      }
+    }
   }
   .post {
-    margin-left: 70px;
-    border: 1px solid #bbb;
-    border-radius: 5px;
-    background-color: #fff;
-    .post-header {
-      background-color: #fcfcfc;
-      border-bottom: 1px solid #f0f0f0;
-      border-radius: 5px 5px 0 0;
-      min-height: 55px;
-      padding: 10px;
-      .poster-details {
-      }
-      .post-time {
-        margin-top: 5px;
-      }
-    }
-    .post-content {
-      padding: 10px;
-    }
-    .reply-container {
-      height: 35px;
-      .reply {
-        margin: 0;
-        width: 100%;
-        position: relative;
-        border-top: 1px solid #bbb;
-        .reply-user {
-          position: absolute;
-          left: 0;
-          top: 0;
-          width: 35px;
-          border-radius: 0 0 0 3px;
-          img {
-            height: 34px;
-            width: 100%;
-            border-radius: 0 0 0 3px;
-          }
-        }
-        .reply-field {
-          margin: 0 75px 0 35px;
-          height: 35px;
-          .reply-text-area {
-            width: 100%;
-            height: 35px;
-            padding: 3px;
-            font-size: 18px;
-            border-color: #bbb;
-            border-top:none;
-            border-right:none;
-          }
-          .reply-text-area:focus {
-            border-color: #66afe9;
-            outline: 0;
-            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
-          }
-        }
-        .reply-submit {
-          width:75px;
-          position: absolute;
-          right: 0;
-          top: 0;
-          .reply-button {
-            width: 100%;
-            border-radius: 0 0 3px 0;
-          }
-        }
-      }
-    }
+    margin-top: 10px;
+    margin-left: 0px;
   }
 }
 
-@media (max-width: 768px) {
-  .recent-post-container {
-    margin: 20px 0;
-    .poster-image {
-      width:35px;
-    }
-    .post {
-      margin-left: 40px;
-      .post-header {
-        .poster-details {
-
-        }
-        .post-time {
-
-        }
-      }
-      .post-content {
-      }
-    }
-  }
-}
+@media (max-width: 768px) {}
