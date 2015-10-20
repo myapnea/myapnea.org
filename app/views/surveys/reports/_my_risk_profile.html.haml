@@ -1,5 +1,5 @@
-.survey-report-container.panel
-  .survey-report-question.rounded-top
+.rounded-top
+  .survey-report-question
     %h3
       What symptoms do you currently experience?
   - my_risk_symptoms = TemporaryReport.risk_symptoms(@answer_session, 'risk-symptoms').collect{|ao| ao.answer_templates.first.text}

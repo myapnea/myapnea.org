@@ -1,36 +1,30 @@
 - if @answer_session
-  .content-container
-    .content-header
-      %h2.f300
-        Thank you for completing the
-        %span.darkerer-blue.f500
-          - if @encounter and @encounter.slug != 'baseline'
-            = succeed ':' do
-              = @answer_session.survey.name
-            = @encounter.name
-          - else
-            = @answer_session.survey.name
-        survey!
-    .content-body
-    .content-footer
-      %p
-        We would love your feedback
-        %a.u-voice.primary-blue Get in touch with us.
+  %h2.f300
+    Thank you for completing the
+    %span.f500
+      - if @encounter and @encounter.slug != 'baseline'
+        = succeed ':' do
+          = @answer_session.survey.name
+        = @encounter.name
+      - else
+        = @answer_session.survey.name
+    survey!
+  .content-footer
+    %p
+      We would love your feedback
+      %a.u-voice.primary-blue Get in touch with us.
 
 - elsif (current_user.is_only_academic?)
-  .content-container
-    .content-header
-      %h2.f300
-        Welcome to the data viewer for the
-        %span.darkerer-blue.f500
-          - if @encounter and @encounter.slug != 'baseline'
-            = succeed ':' do
-              = @survey.name
-            = @encounter.name
-          - else
-            = @survey.name
-        survey!
-    .content-body
-      %p
-        Please only use this data in accordance with our
-        = link_to('Terms of Access', terms_of_access_path) + '.'
+  %h2.f300
+    Welcome to the data viewer for the
+    %span.darkerer-blue.f500
+      - if @encounter and @encounter.slug != 'baseline'
+        = succeed ':' do
+          = @survey.name
+        = @encounter.name
+      - else
+        = @survey.name
+    survey!
+    %p
+      Please only use this data in accordance with our
+      = link_to('Terms of Access', terms_of_access_path) + '.'

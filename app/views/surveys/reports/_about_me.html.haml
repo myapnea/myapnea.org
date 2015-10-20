@@ -1,6 +1,4 @@
-.row.reset-layout{ style: 'background-color: rgb(207, 226, 248)'}
-
-.survey-report-container.panel
+.content-container
   = render 'surveys/reports/question_and_user_answer', survey: @survey, question_slug: 'sex'
   .survey-report-info
     - question = @survey.questions.find_by_slug('sex')
@@ -18,7 +16,7 @@
     %p.lead
       Members of either sex can develop sleep apnea. Men are 2-to-3 times more likely to have sleep apnea, but as women reach menopause their risk increases.
 
-.survey-report-container.panel
+.content-container
   = render 'surveys/reports/question_and_user_answer', survey: @survey, question_slug: 'race'
   .survey-report-info
     .row.reset-layout
@@ -29,20 +27,20 @@
         %p.lead.text-left
           Sleep apnea occurs in all races of people. Understanding associations between sleep apnea and race may help shed light on the genes and environmental risk factors that influence sleep apnea.
 
-.survey-report-container.panel
+.content-container
   = render 'surveys/reports/question_and_user_answer', survey: @survey, question_slug: 'ethnicity'
   .survey-report-info
     - question = @survey.questions.find_by_slug('ethnicity')
     - answer_template = question.first_radio_or_checkbox_answer_template if question
     - answer_option_counts = TemporaryReport.answer_option_counts(@survey, question, answer_template, encounter: @encounter, range: 1..2)
     .row.reset-layout
-      .col-xs-6
+      .col-xs-6.centered
         %h1.report-statistic Yes
         %p.lead
           Yes:
           - report_item = ReportItem.new(answer_option_counts, answer_template, 2)
           %span.f500.darkerer-blue= report_item.percent
-      .col-xs-6
+      .col-xs-6.centered
         %h1.report-statistic No
         %p.lead
           No:
@@ -51,7 +49,7 @@
     %p.lead
       Sleep apnea occurs among people of all ethnicities. Our culture can play an important role in determining where we live, what we eat and how we live our lives. Understanding associations between sleep apnea and one’s ethnicity or culture may help shed light on the genetic and environmental risk factors that influence sleep apnea.
 
-.survey-report-container.panel
+.content-container
   = render 'surveys/reports/question_and_user_answer', survey: @survey, question_slug: 'education-level'
   .survey-report-info
     - question = @survey.questions.find_by_slug('education-level')
@@ -100,7 +98,7 @@
           - report_item = ReportItem.new(answer_option_counts, answer_template, 6)
           = report_item.text_and_percent
 
-.survey-report-container.panel
+.content-container
   = render 'surveys/reports/question_and_user_answer', survey: @survey, question_slug: 'income-level'
   .survey-report-info
     %p.lead

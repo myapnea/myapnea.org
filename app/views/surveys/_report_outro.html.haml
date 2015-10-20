@@ -1,7 +1,5 @@
--# Select next survey for completion
-.content-container
-  .content-header
-    %h2.f300.centered-text.text-dark7
-      Congratulations on finishing this survey - you're doing great!
-  .content-body
-    = link_to "Click here to continue", next_answer_session_path(@answer_session), class: "btn btn-primary btn-lg btn-block", style: 'width: 70%; margin: 10px auto;'
+%h2.f300.centered
+  Congratulations on finishing this survey - you're doing great!
+%br
+.centered
+  = link_to "Click here to continue", next_answer_session_path(@answer_session), class: "btn btn-primary-custom btn-lg"

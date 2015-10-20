@@ -11,6 +11,8 @@ class SurveysController < ApplicationController
 
   before_action :set_SEO_elements
 
+  layout 'surveys'
+
   def index
     if current_user
       @surveys = Survey.current.viewable

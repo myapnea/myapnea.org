@@ -2,7 +2,7 @@
 - answer_template = question.answer_templates.where(template_name: ['radio', 'checkbox']).first if question
 - if @answer_session and question and answer_template
   - user_answer_values = @answer_session.answer_values(question, answer_template)
-.survey-report-question.rounded-top
+.survey-report-question
   %h3
     - if question
       = question.text

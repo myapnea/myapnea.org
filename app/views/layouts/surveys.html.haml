@@ -23,11 +23,9 @@
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag "application", "data-turbolinks-track" => true
     = javascript_tag "var root_url='#{request.script_name + '/'}';var auth_token='#{form_authenticity_token}';"
-  %body{screen_capture_injected: "true", class: "#{params[:night] == '1' ? 'night-mode' : 'day-mode'}", data: { email: "#{current_user.email if current_user}", fullname: "#{current_user.name if current_user}" } }
-    = render 'layouts/navigation/top_navigation'
-    .container.wrapper
-      #container-main.no-js
-        #container-major-padding
-          = render 'layouts/partials/container_major'
-    = render 'layouts/partials/footer'
+  %body{style: 'background-color: #E6EDF4', screen_capture_injected: "true", data: { email: "#{current_user.email if current_user}", fullname: "#{current_user.name if current_user}" } }
+    = render partial: 'layouts/navigation/top_navigation'
+    = render partial: 'layouts/partials/flash_messages'
+    = yield
+    = render partial: 'layouts/partials/footer'
     #body-javascripts
