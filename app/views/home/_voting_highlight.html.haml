@@ -1,0 +1,24 @@
+- if research_topic = current_user.highlighted_research_topic
+  .research-topic-container
+    .research-topic-body.full-width
+      %p= research_topic.text
+    .research-topic-footer.full-width
+      = form_tag remote_vote_path(research_topic: research_topic, src: 'dashboard'), remote: true, class: 'voting-form' do
+        = hidden_field_tag :research_topic_id, research_topic.id
+        %label This should be a research priority:
+        .row
+          .col-xs-6
+            .endorse-button-container.endorse-positive
+              = radio_button_tag "endorse_#{research_topic.id}", 1, current_user.endorsed?(research_topic)
+              %label.centered.endorse-label{ for: "endorse_#{research_topic.id}_1" } Agree
+          .col-xs-6
+            .endorse-button-container.endorse-negative
+              = radio_button_tag "endorse_#{research_topic.id}", 0, current_user.opposed?(research_topic)
+              %label.centered.endorse-label{ for: "endorse_#{research_topic.id}_0" } Disagree
+        %br
+        %label.text-left{ for: "comment_#{research_topic.id}", style: 'width:100%'}
+          Add a comment:
+          %span.f300.italic (optional)
+        = text_area_tag "comment_#{research_topic.id}", params["comment_#{research_topic.id}"], rows: 3, style: 'resize: none', class: 'form-control', disabled: current_user.cast_vote_for?(research_topic)
+        .voting-form-submit
+          = submit_tag "Submit", class: 'btn btn-primary'

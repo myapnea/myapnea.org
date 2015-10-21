@@ -1,25 +1,28 @@
 /* COLOR PALETTE */
+$primary-blue: #5999de;
+$primary-orange: #ffa400;
 
+/* Classes */
 .logo-color { color: #233063; }
 .logo-color-bcg { background-color: #233063; }
 
-.primary-blue { color: #5999DE !important; }
+.primary-blue { color: $primary-blue }
 .lighter-blue { color: #7FB2EB !important; }
 .lighterer-blue { color: #B1D2F6 !important; }
 .darker-blue { color: #387FCF !important; }
 .darkerer-blue { color: #1765BC !important; }
-.primary-orange { color: #FFA400 !important; }
+.primary-orange { color: $primary-orange; }
 .lighter-orange { color: #FFB839 !important; }
 .lighterer-orange { color: #FFC864 !important; }
 .darker-orange { color: #EF9A00 !important; }
 .darkerer-orange { color: #E29100 !important; }
 
-.primary-blue-bcg { background-color: #5999DE !important; }
+.primary-blue-bcg { background-color: $primary-blue }
 .lighter-blue-bcg { background-color: #7FB2EB !important; }
 .lighterer-blue-bcg { background-color: #B1D2F6 !important; }
 .darker-blue-bcg { background-color: #387FCF !important; }
 .darkerer-blue-bcg { background-color: #1765BC !important; }
-.primary-orange-bcg { background-color: #FFA400 !important; }
+.primary-orange-bcg { background-color: $primary-orange; }
 .lighter-orange-bcg { background-color: #FFB839 !important; }
 .lighterer-orange-bcg { background-color: #FFC864 !important; }
 .darker-orange-bcg { background-color: #EF9A00 !important; }

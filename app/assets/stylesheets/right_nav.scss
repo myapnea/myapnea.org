@@ -37,28 +37,6 @@
   }
 }
 
-#user-stats {
-  margin-top: 20px;
-  margin-bottom: 20px;
-  background-color: #7fb2eb;
-  .user-stats {
-    position: relative;
-    color: white;
-    font-weight:300;
-    padding:5px;
-    line-height:100%;
-    p.small {
-      margin-bottom:3px;
-    }
-    h5 {
-      margin-top:0px;
-      margin-bottom:0px;
-    }
-    padding-left:20px;
-  }
-}
-
-
 @media all and (max-width: 992px) {
   #container-minor {
     .user-picture {

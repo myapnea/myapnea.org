@@ -19,6 +19,18 @@
     max-width: 800px;
     margin: auto;
   }
+  .research-topic-body.full-width {
+    width: 100%;
+    max-width: 100%;
+    padding: 10px;
+  }
+  .research-topic-footer.full-width {
+    .voting-form {
+      width: 100%;
+      max-width: 100%;
+      padding: 10px;
+    }
+  }
   .research-topic-footer {
     border-top: 1px solid #ddd;
     background-color: #f7f7f7;
