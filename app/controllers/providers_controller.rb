@@ -4,6 +4,8 @@ class ProvidersController < ApplicationController
 
   before_action :set_SEO_elements
 
+  layout 'providers'
+
   def index
     provider_scope = User.current.where(provider: true).where.not(slug: [nil,''], provider_name: [nil,''])
     provider_scope = provider_scope.where("users.provider_name ~* ?", params[:s].to_s.split(/\s/).collect{|l| l.to_s.gsub(/[^\w\d%]/, '')}.collect{|l| "(\\m#{l})"}.join("|")) if params[:s].present?
@@ -12,11 +14,9 @@ class ProvidersController < ApplicationController
 
   def new
     @provider = User.new
-    render layout: 'layouts/application-no-sidebar'
   end
 
   def show
-    render layout: 'layouts/application-no-sidebar'
   end
 
   protected

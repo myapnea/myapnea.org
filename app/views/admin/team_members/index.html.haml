@@ -1,10 +1,11 @@
 .content-main-header
-  %h1 Team Members
+  .container
+    %h1 Team Members
 
-.content-container
-  .content-body
+.container
+  .content-container
     - @admin_team_members.each do |team_member|
       = render team_member
       %hr
-  .content-footer
-    = link_to 'New Team Member', new_admin_team_member_path, class: 'btn btn-primary'
+    .content-footer
+      = link_to 'New Team Member', new_admin_team_member_path, class: 'btn btn-primary'

@@ -25,6 +25,7 @@
     = javascript_tag "var root_url='#{request.script_name + '/'}';var auth_token='#{form_authenticity_token}';"
   %body{screen_capture_injected: "true", class: "#{params[:night] == '1' ? 'night-mode' : 'day-mode'}", data: { email: "#{current_user.email if current_user}", fullname: "#{current_user.name if current_user}" } }
     = render 'layouts/navigation/top_navigation'
+    = raise StandardError
     .container.wrapper
       #container-main.no-js
         #container-major-padding

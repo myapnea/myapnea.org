@@ -1,0 +1,13 @@
+.content-main-header
+  .container
+    %h1 New Post
+    %p
+      = link_to 'Forums', forums_path
+      &middot;
+      = link_to @forum.name, @forum
+      &middot;
+      = link_to @topic.name, [@forum, @topic]
+
+.container
+  .content-container
+    = render 'form'

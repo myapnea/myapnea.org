@@ -4,6 +4,8 @@ class UsersController < ApplicationController
   before_action :set_user,              only: [:show, :photo, :edit, :update, :destroy]
   before_action :redirect_without_user, only: [:show, :photo, :edit, :update, :destroy]
 
+  layout 'admin'
+
   def photo
     if @user.photo.size > 0
       send_file File.join(CarrierWave::Uploader::Base.root, @user.photo.url)
@@ -15,7 +17,6 @@ class UsersController < ApplicationController
   def index
     @all_users = User.current.search(params[:search]).order(current_sign_in_at: :desc)
     @users = @all_users.page(params[:page]).per( 40 )
-    render layout: 'application-no-sidebar'
   end
 
   def export

@@ -1,22 +1,20 @@
 .content-main-header
-  %h1
-    Frequently Asked Questions
+  .container
+    %h1 Frequently Asked Questions
 
 .content-container
-  .content-body
+  .container
     %ul
       %li= link_to 'General questions', '#general'
       %li= link_to 'Registration process', '#registration'
       %li= link_to 'Participating in the research portal', '#participation'
       %li= link_to 'Privacy and security', '#privacy'
 
-
-%a.anchor#general
-.content-container
-  .content-header
+.container
+  %a.anchor#general
+  .content-container
     %h2.f300.centered
       General
-  .content-body
     %h3
       What is MyApnea.Org?
     %p
@@ -43,12 +41,10 @@
       = link_to "RESEARCH", surveys_path
       portal, which allows consenting members to participate in research with the aim of improving sleep apnea care and treatments. To accomplish this research, you will be asked to take easy-to-complete surveys and to join other study activities. As we post new surveys, we’ll invite you to complete them, too. You’ll also receive special invitations (at least twice per year) to participate in other parts of the study. We will only ask for your participation in such a study after you've consented to that specific study. You will see all of your study activities and special invitations on your “dashboard” once you join the study.
 
-%a.anchor#registration
-.content-container
-  .content-header
+  %a.anchor#registration
+  .content-container
     %h2.f300.centered
       Registration
-  .content-body
     %h3
       Who can join MyApnea.Org?
     %p
@@ -83,12 +79,10 @@
       The goal of MyApnea.Org is to actively engage thousands of people with sleep apnea to share health information needed for research to improve the health and wellbeing of people with apnea. To collect your information, we need your permission, which you give by signing the consent form.
 
 
-%a.anchor#participation
-.content-container
-  .content-header
+  %a.anchor#participation
+  .content-container
     %h2.f300.centered
       Participating in the Research Portal
-  .content-body
     %h3
       What's expected of me if I join the research portal?
     %p
@@ -109,12 +103,10 @@
     %p
       You will be asked to update information on these surveys every 2 to 6 months, or as your health changes. You’ll also receive occasional special invitations to participate in other studies or take special surveys, depending on your specific health status. The surveys will usually give you an estimate of how long it’ll take to complete them, so you can choose to take them when most convenient for you.
 
-%a.anchor#privacy
-.content-container
-  .content-header
+  %a.anchor#privacy
+  .content-container
     %h2.f300.centered
       Privacy and Security
-  .content-body
     %h3
       Is my data safe?
     %p
@@ -124,8 +116,7 @@
       = link_to 'Privacy Policy', privacy_path
       for more information. We will never sell, rent, or lease your contact information. If information from the MyApnea.Org network is published or presented at scientific meetings, your name and other personal information will not be used.
 
-.content-container.horizontal-inset
-  .content-body
+  .content-container
     %h3.f300.centered
       Have another question?
       = link_to 'Contact Us', "mailto:support@myapnea.org", class: 'no-underline darkerer-blue'

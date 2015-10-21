@@ -1,14 +1,15 @@
 .content-main-header
-  %h1
-    = link_to admin_exports_path do
-      Data Exports
-    &middot;
-    Export
-    = @admin_export.name
-.content-container
-  .content-header
+  .container
+    %h1
+      = link_to admin_exports_path do
+        Data Exports
+      &middot;
+      Export
+      = @admin_export.name
+
+.container
+  .content-container
     %h3.f300 Export Status
-  .content-body
 
     #progress{ data: { object: "#{'ajax-timer' if @admin_export.status == 'started'}", path: progress_admin_export_path(@admin_export) } }
       = render 'admin/exports/progress'

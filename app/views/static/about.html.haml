@@ -1,14 +1,14 @@
 .content-main-header
-  %h1 About Us
+  .container
+    %h1 About Us
 
-.content-container
-  = image_tag 'myapnea/welcome/img-small/finding_answers_together.png', class: 'img-responsive', style: 'margin: auto;'
-  .content-header
+.container
+  .content-container
+    = image_tag 'myapnea/welcome/img-small/finding_answers_together.png', class: 'img-responsive', style: 'margin: auto;'
     %h2.f300.centered
       MyApnea.Org is all about improving sleep apnea through
       %br
       %span.darker-blue information, support, and research
-  .content-body
     %p.lead
       Join a new patient-led community created to fight sleep apnea. MyApnea.Org is a network created by people with sleep apnea to empower others and to help get needed answers.
     %p
@@ -16,10 +16,8 @@
     %p
       MyApnea.Org is what’s called patient-powered research. Together, members share health information, discuss experiences regarding treatment, and express views directly to researchers and sleep experts on future research projects that can make a difference. In return, you will get easy-to-use tools to track your health and will be able to learn from others about treatments, symptoms, and coping with sleep apnea to take control of your life. And we will report back on all interesting research findings, in language you don’t have to be a scientist to understand.
 
-.content-container
-  .content-header
+  .content-container
     %h3.f300.centered Help us spread the word!
-  .content-body
     %p
       Collaboration is key to defeating sleep apnea. We have a few ways you can help us spread the word in order to get more people involved. Whether it's a quick tweet or telling a friend over coffee, we appreciate your help immensely -
       %span.f500 we can't do this without you!

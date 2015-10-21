@@ -1,11 +1,11 @@
 .content-main-header
-  %h1
-    Admin Dashboard
+  .container
+    %h1 Admin Dashboard
 
-.content-container
-  .content-header
+.container
+  .content-container
     %h3.f300 Member Management
-  .content-body
+    %br
     .row.centered
       - if current_user.owner?
         .col-sm-3
@@ -22,11 +22,10 @@
           .blue-block-link
             Providers
 
-- if current_user.owner?
-  .content-container
-    .content-header
+    - if current_user.owner?
+      %hr
       %h3.f300 Aggregate Reports
-    .content-body
+      %br
       .row.centered
         .col-sm-3
           = link_to admin_reports_timeline_path, class: 'no-underline' do
@@ -41,10 +40,9 @@
             .blue-block-link
               Engagement Report
 
-.content-container
-  .content-header
+    %hr
     %h3.f300 Survey Results
-  .content-body
+    %br
     .row.centered
       .col-sm-3
         = link_to admin_surveys_path, class: 'no-underline' do
@@ -60,11 +58,10 @@
             .blue-block-link
               Exports
 
-- if current_user.owner?
-  .content-container
-    .content-header
+    - if current_user.owner?
+      %hr
       %h3.f300 Website Features
-    .content-body
+      %br
       .row.centered
         .col-sm-3
           = link_to highlights_path, class: 'no-underline' do

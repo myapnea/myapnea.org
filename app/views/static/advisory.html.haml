@@ -1,37 +1,36 @@
 .content-main-header
-  %h1 Advisory Council
+  .container
+    %h1 Advisory Council
 
-.content-container
-  .content-body
+.container
+  .content-container
     %p.lead
       The
       = link_to 'MyApnea.Org Advisory Council', ac_charter_path, class: 'no-underline'
       brings together a diverse group of people with sleep apnea, family members, professionals, clinicians and researchers to help us develop our network. Each member has unique viewpoints, experiences and has been active in treating, researching or spreading awareness about sleep apnea treatment and research.
 
-.content-container.inherit-background
-  .content-body
-    .row
-      .col-sm-4
-        - @group1.each do |member|
-          .panel.advisory-small{ data: { toggle: 'collapse', target: "#collapse#{member['name'].gsub(/\s+/, '')}" } }
-            %h5
-              = member["name"]
-              %span= member["title"] if member["title"]
-            %h6= member["loc"]
-            %p.long.collapse{ id: "collapse#{member['name'].gsub(/\s+/, '')}"}= member["bio"]
-      .col-sm-4
-        - @group2.each do |member|
-          .panel.advisory-small{ data: { toggle: 'collapse', target: "#collapse#{member['name'].gsub(/\s+/, '')}" } }
-            %h5
-              = member["name"]
-              %span= member["title"] if member["title"]
-            %h6= member["loc"]
-            %p.long.collapse{ id: "collapse#{member['name'].gsub(/\s+/, '')}"}= member["bio"]
-      .col-sm-4
-        - @group3.each do |member|
-          .panel.advisory-small{ data: { toggle: 'collapse', target: "#collapse#{member['name'].gsub(/\s+/, '')}" } }
-            %h5
-              = member["name"]
-              %span= member["title"] if member["title"]
-            %h6= member["loc"]
-            %p.long.collapse{ id: "collapse#{member['name'].gsub(/\s+/, '')}"}= member["bio"]
+  .row
+    .col-sm-4
+      - @group1.each do |member|
+        .panel.advisory-small{ data: { toggle: 'collapse', target: "#collapse#{member['name'].gsub(/\s+/, '')}" } }
+          %h5
+            = member["name"]
+            %span= member["title"] if member["title"]
+          %h6= member["loc"]
+          %p.long.collapse{ id: "collapse#{member['name'].gsub(/\s+/, '')}"}= member["bio"]
+    .col-sm-4
+      - @group2.each do |member|
+        .panel.advisory-small{ data: { toggle: 'collapse', target: "#collapse#{member['name'].gsub(/\s+/, '')}" } }
+          %h5
+            = member["name"]
+            %span= member["title"] if member["title"]
+          %h6= member["loc"]
+          %p.long.collapse{ id: "collapse#{member['name'].gsub(/\s+/, '')}"}= member["bio"]
+    .col-sm-4
+      - @group3.each do |member|
+        .panel.advisory-small{ data: { toggle: 'collapse', target: "#collapse#{member['name'].gsub(/\s+/, '')}" } }
+          %h5
+            = member["name"]
+            %span= member["title"] if member["title"]
+          %h6= member["loc"]
+          %p.long.collapse{ id: "collapse#{member['name'].gsub(/\s+/, '')}"}= member["bio"]

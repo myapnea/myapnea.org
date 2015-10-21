@@ -1,7 +1,6 @@
 .content-container
-  .content-header
+  .container
     %h1.f300.centered Welcome to MyApnea.Org!
-  .content-body
     - if current_user.provider? or current_user.is_only_researcher?
       %p.lead
         MyApnea.Org is part of a growing national network of patients, health care providers and researchers. This partnership is built upon the open exchange of information about sleep apnea.
@@ -27,7 +26,7 @@
       = link_to "I decline", cancel_path, class: 'btn btn-default-custom btn-lg'
     %br
     %br
-  .content-footer
-    %p
-      %span.f500 Please note:
-      You can sign the informed consent at any time. Forums are available to all users, even those who haven't signed the informed consent.
+    .content-footer
+      %p
+        %span.f500 Please note:
+        You can sign the informed consent at any time. Forums are available to all users, even those who haven't signed the informed consent.

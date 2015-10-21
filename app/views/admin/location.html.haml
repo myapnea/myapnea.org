@@ -1,17 +1,16 @@
 - @title = 'Location'
 .content-main-header
-  %h1
-    = @title
-  %p.lead.text-light8{ style: 'margin-bottom: 0px;'}
-    = link_to 'Admin Dashboard', admin_path
+  .container
+    %h1
+      = @title
+    %p.lead.text-light8{ style: 'margin-bottom: 0px;'}
+      = link_to 'Admin Dashboard', admin_path
 
-.content-container
-  .content-header
-    %h3 Regular Member Sign Ups by Country
-  .content-body
+.container
+  .content-container
+    %h3 Regular Member Sign Ups by Country\
     = render 'location_list', users: User.current, selector: "country"
-.content-container
-  .content-header
+
+  .content-container
     %h3 Regular Member Sign Ups by State in the United States
-  .content-body
     = render 'location_list', users: User.current, selector: "state"

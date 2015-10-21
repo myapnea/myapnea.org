@@ -1,6 +1,6 @@
 class RegistrationsController < Devise::RegistrationsController
 
-  layout 'layouts/application-no-sidebar'
+  layout 'home'
 
   respond_to :json
 

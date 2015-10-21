@@ -1,18 +1,18 @@
 .content-main-header
-  %h1
-    Surveys
-  %p.lead.text-light8{ style: 'margin-bottom: 0px;'}
-    = link_to 'Admin Dashboard', admin_path
+  .container
+    %h1
+      Surveys
+    %p.lead.text-light8{ style: 'margin-bottom: 0px;'}
+      = link_to 'Admin Dashboard', admin_path
 
-.content-container
-  .content-header
+.container
+  .content-container
     %p
       %span.f500 Total MyApnea.Org members:
       %span.text-info= number_with_delimiter User.current.count
     %p
       %span.f500 Members with signed consent:
       %span.text-info= number_with_delimiter User.current.where("accepted_consent_at is not null").count
-  .content-body
     %table.table.table-bordered.table-striped
       %thead
         %tr

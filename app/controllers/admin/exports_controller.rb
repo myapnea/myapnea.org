@@ -5,6 +5,8 @@ class Admin::ExportsController < ApplicationController
   before_action :set_admin_export,              only: [:show, :progress, :file, :destroy]
   before_action :redirect_without_admin_export, only: [:show, :progress, :file, :destroy]
 
+  layout 'admin'
+
   # GET /admin/exports
   def index
     @admin_exports = current_user.exports

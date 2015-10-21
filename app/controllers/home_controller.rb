@@ -5,6 +5,8 @@ class HomeController < ApplicationController
 
   before_action :set_SEO_elements
 
+  layout 'home'
+
   def dashboard
     if current_user
       flash.delete(:notice) if I18n.t('devise.sessions.signed_in') == flash[:notice]
@@ -13,15 +15,14 @@ class HomeController < ApplicationController
       @surveys = Survey.current.viewable.non_pediatric.limit(3)
       @answer_sessions = current_user.answer_sessions.joins(:survey).where(child_id: nil).where.not(surveys: { slug: nil }).order(:locked, "surveys.name_en", :encounter).limit(3)
       @posts = posts
-      render layout: 'dashboard'
     else
-      render 'home/landing_v_7_3', layout: 'layouts/application-no-sidebar'
+      render 'home/landing_v_7_3'
     end
 
   end
 
   def landing
-    render 'home/landing_v_7_3', layout: 'layouts/application-no-sidebar'
+    render 'home/landing_v_7_3'
   end
 
   def posts

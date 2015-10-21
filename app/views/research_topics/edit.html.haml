@@ -1,9 +1,9 @@
 .content-main-header
-  %h1 Edit Research Topic
+  .container
+    %h1 Edit Research Topic
 
-.content-container
-  .content-header
+.container
+  .content-container
     %p.lead= @research_topic.topic.name
-  .content-body
     = render "research_topics/progress_form", research_topic: @research_topic
 

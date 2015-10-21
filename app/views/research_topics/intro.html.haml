@@ -1,6 +1,6 @@
-.content-container
-  .content-body.centered-text
-    %h1.300 Welcome to Rank the Research!
+.container
+  .content-container
+    %h1.300.centered Welcome to Rank the Research!
     %p.lead
       The questions you have about sleep apnea are important. MyApnea.Org is different in that it is focused on patient-centered research. Who else knows more about your condition and your lived experience than you?
     %p
@@ -12,4 +12,5 @@
     %p
       Once you've finished these ten questions, we'll bring you to the full view where you can see topics by all members, and get the chance to ask your own questions.
     %br
-    = link_to 'Get Started!', first_topics_research_topics_path(read_intro: 1), class: 'btn btn-primary btn-lg'
+    .centered
+      = link_to 'Get Started!', first_topics_research_topics_path(read_intro: 1), class: 'btn btn-primary btn-lg'

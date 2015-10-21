@@ -10,6 +10,8 @@ class ResearchTopicsController < ApplicationController
 
   before_action :set_SEO_elements
 
+  layout 'research_topics'
+
   def intro
     redirect_to research_topics_path and return if !current_user
   end

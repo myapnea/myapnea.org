@@ -1,3 +1,8 @@
-- @title = "Edit User: #{@user.name}"
+.content-main-header
+  .container
+    %h1= "Edit User: #{@user.name}"
+    %p= link_to 'Users', users_path
 
-= render 'form'
+.container
+  .content-container
+    = render 'form'

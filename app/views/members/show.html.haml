@@ -1,70 +1,73 @@
 .content-main-header
-  %h1
-    = render 'forums/user_image', user: @member, size: 100
-    = @member.forum_name
+  .container
+    %h1
+      = render 'forums/user_image', user: @member, size: 100
+      = @member.forum_name
 
 -# Admin information
 - if current_user and (current_user.moderator? or current_user.owner?)
   .well
-    %h4.f300
-      Moderator Contact Information
-    %br
-    .row
-      .col-sm-6
-        %dl.dl-horizontal
-          %dt
-            %strong Member Name
-          %dd
-            = @member.name
-          %dt
-            %strong Member Email
-          %dd
-            = @member.email
-      .col-sm-6
-        %dl.dl-horizontal
-          - spam_topics_count = Topic.where(status: 'spam', user_id: @member.id).count
-          - if spam_topics_count > 0
+    .container
+      %h4.f300
+        Moderator Contact Information
+      %br
+      .row
+        .col-sm-6
+          %dl.dl-horizontal
             %dt
-              %strong # of Spam Topics
+              %strong Member Name
             %dd
-              = spam_topics_count
-          - spam_posts_count = Post.where(status: 'spam', user_id: @member.id).count
-          - if spam_posts_count > 0
+              = @member.name
             %dt
-              %strong # of Spam Posts
+              %strong Member Email
             %dd
-              = spam_posts_count
-
+              = @member.email
+        .col-sm-6
+          %dl.dl-horizontal
+            - spam_topics_count = Topic.where(status: 'spam', user_id: @member.id).count
+            - if spam_topics_count > 0
+              %dt
+                %strong # of Spam Topics
+              %dd
+                = spam_topics_count
+            - spam_posts_count = Post.where(status: 'spam', user_id: @member.id).count
+            - if spam_posts_count > 0
+              %dt
+                %strong # of Spam Posts
+              %dd
+                = spam_posts_count
 
 -# About member
 .content-container
-  .content-body
-    .row
-      .col-sm-3
-      .col-sm-3
-        %p.text-dark8
-          %span.f500.text-dark5 Member since:
-          %br
-          = @member.created_at.strftime("%b %-d, %Y")
-      .col-sm-3
-        %p.text-dark8
-          %span.f500.text-dark5 Number of posts:
-          %br
-          = @posts.count
-      .col-sm-3
-        %p.text-dark8
-          %span.f500.text-dark5 Number of votes:
-          %br
-          = @member.votes.current.count
+  .container
+    .content-body
+      .row
+        .col-sm-3
+        .col-sm-3
+          %p.text-dark8
+            %span.f500.text-dark5 Member since:
+            %br
+            = @member.created_at.strftime("%b %-d, %Y")
+        .col-sm-3
+          %p.text-dark8
+            %span.f500.text-dark5 Number of posts:
+            %br
+            = @posts.count
+        .col-sm-3
+          %p.text-dark8
+            %span.f500.text-dark5 Number of votes:
+            %br
+            = @member.votes.current.count
 
 -# Recent posts
-.horizontal-inset
-  - @events.each do |event|
-    - if event.class == Post
-      = render 'posts/recent_post', post: event
-    - elsif event.class == ResearchTopic and current_user and current_user.experienced_voter?
-      .hidden{ id: "voting-form-error-#{event.id}" }
-        .emergency-bcg.text-white{ style: 'padding: 10px; border-radius: 3px; margin-bottom: 10px;' }
-          Please either 'Agree' or 'Disagree'.
-      .voting-container{ id: "voting-container-#{event.id}", style: 'width: 80%; margin: auto'}
-        = render 'research_topics/voting_form', research_topic: event, remote_bool: true
+.container
+  .horizontal-inset
+    - @events.each do |event|
+      - if event.class == Post
+        = render 'posts/recent_post', post: event
+      - elsif event.class == ResearchTopic and current_user and current_user.experienced_voter?
+        .hidden{ id: "voting-form-error-#{event.id}" }
+          .emergency-bcg.text-white{ style: 'padding: 10px; border-radius: 3px; margin-bottom: 10px;' }
+            Please either 'Agree' or 'Disagree'.
+        .voting-container{ id: "voting-container-#{event.id}", style: 'width: 80%; margin: auto'}
+          = render 'research_topics/voting_form', research_topic: event, remote_bool: true

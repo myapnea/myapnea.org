@@ -3,6 +3,8 @@ class Admin::ClinicalTrialsController < ApplicationController
   before_action :check_owner
   before_action :set_admin_clinical_trial, only: [:show, :edit, :update, :destroy]
 
+  layout 'admin'
+
   # GET /admin/clinical_trials
   # GET /admin/clinical_trials.json
   def index

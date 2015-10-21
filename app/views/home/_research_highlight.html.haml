@@ -10,7 +10,7 @@
   .content-container
     - answer_session = current_user.answer_sessions.where(child_id: nil).joins(:survey).merge( Survey.current.viewable ).order(:locked, "surveys.name_en", :encounter).first
     = render 'surveys/answer_sessions/progress', answer_session: answer_session
-- elsif current_user.research_topics.current.present? and false
+- elsif current_user.research_topics.current.present?
   .content-container.less-padding
     - current_user.research_topics.order(:progress).each do |rt|
       = link_to rt.topic.name, rt

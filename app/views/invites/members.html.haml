@@ -1,8 +1,9 @@
 .content-main-header
-  %h1 Invite Others!
+  .container
+    %h1 Invite Others!
 
-.content-container
-  .content-body
+.container
+  .content-container
     = form_for @invite do |f|
       .input-group
         = f.label :email, class: 'control-label'

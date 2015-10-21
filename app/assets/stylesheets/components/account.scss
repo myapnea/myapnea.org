@@ -1,9 +1,6 @@
 #account-link-container {
   margin-top: 20px;
   position: fixed;
-  top: 81px;
-  right: 0px;
-  width: 400px;
   padding: 20px;
   a {
     text-decoration: none;
@@ -17,8 +14,6 @@
 
 #account-section-container {
   margin-top: 40px;
-  margin-right: 400px;
-  margin-left: 20px;
 }
 
 // Fix for input form-controls losing border radius when error field is applied

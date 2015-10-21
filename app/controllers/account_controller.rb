@@ -3,7 +3,7 @@ class AccountController < ApplicationController
   before_action :authenticate_user!, except: [:consent, :privacy_policy, :terms_and_conditions, :terms_of_access]
   before_action :set_SEO_elements
 
-  layout 'application-no-sidebar', only: [:get_started, :get_started_step_two, :get_started_step_three, :terms_and_conditions, :account]
+  layout 'admin'
 
   ## Onboarding process
 
@@ -17,7 +17,7 @@ class AccountController < ApplicationController
     if !(current_user.provider? or current_user.is_only_researcher?) and current_user.ready_for_research?
       @survey = Survey.current.viewable.find_by_slug("about-me")
       @answer_session = current_user.get_baseline_survey_answer_session(@survey)
-      render layout: 'application-central-padding'
+      render layout: 'surveys'
     end
   end
 

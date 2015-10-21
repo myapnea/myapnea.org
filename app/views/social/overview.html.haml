@@ -1,64 +1,66 @@
 .content-main-header
-  %h1 Our Community
+  .container
+    %h1 Our Community
 
-.content-container
-  .content-body
-    %p.lead
-      MyApnea.Org is a network created by people with sleep apnea to empower others like us to get the answers we want and need through sharing and promoting research. MyApnea.Org offers sleep apnea patients and caregivers the opportunity to
-      = link_to "learn", learn_path, class: 'no-underline'
-      more about apnea and effective treatments,
-      = link_to "share", forums_path, class: 'no-underline'
-      experiences with other members of the community, and contribute to
-      = link_to "research", surveys_path, class: 'no-underline'
-      to improve diagnosis, management, and treatments for sleep apnea.
+.container
+  .content-container
+    .content-body
+      %p.lead
+        MyApnea.Org is a network created by people with sleep apnea to empower others like us to get the answers we want and need through sharing and promoting research. MyApnea.Org offers sleep apnea patients and caregivers the opportunity to
+        = link_to "learn", learn_path, class: 'no-underline'
+        more about apnea and effective treatments,
+        = link_to "share", forums_path, class: 'no-underline'
+        experiences with other members of the community, and contribute to
+        = link_to "research", surveys_path, class: 'no-underline'
+        to improve diagnosis, management, and treatments for sleep apnea.
 
-.content-container
-  .content-header
-    %h2.f300.centered Community Success
-  .content-body
-    %p
-      Most promising, our community is becoming increasingly active. We currently have
-      %span.f500.darkerer-blue= pluralize(number_with_delimiter(Post.current.visible_for_user.count), 'post')
-      in
-      %span.f500.darkerer-blue= pluralize(number_with_delimiter(Topic.current.where(status: ['approved', 'pending_review']).count), 'topic')
-      To date, we've watched an overwhelming amount of support grow among the MyApnea community. The forums alone have become an active discussion board where people with sleep apnea, researchers, and care providers help each other address important questions and concerns. Among these are:
-    %ul
-      %li
-        = link_to 'Issues that people have adjusting to new CPAP devices', forum_topic_path('general', 'contribute-community-tips-for-using-pap-devices'), class: 'no-underline'
-      %li
-        = link_to 'Finding proper care for central/mixed sleep apnea', forum_topic_path('general', 'central-mixed-apnea'), class: 'no-underline'
-      %li
-        = link_to 'Determining future research for the link between sleep apnea and body weight', forum_topic_path('research', 'does-treatment-of-sleep-apnea-influence-body-weight'), class: 'no-underline'
+  .content-container
+    .content-header
+      %h2.f300.centered Community Success
+    .content-body
+      %p
+        Most promising, our community is becoming increasingly active. We currently have
+        %span.f500.darkerer-blue= pluralize(number_with_delimiter(Post.current.visible_for_user.count), 'post')
+        in
+        %span.f500.darkerer-blue= pluralize(number_with_delimiter(Topic.current.where(status: ['approved', 'pending_review']).count), 'topic')
+        To date, we've watched an overwhelming amount of support grow among the MyApnea community. The forums alone have become an active discussion board where people with sleep apnea, researchers, and care providers help each other address important questions and concerns. Among these are:
+      %ul
+        %li
+          = link_to 'Issues that people have adjusting to new CPAP devices', forum_topic_path('general', 'contribute-community-tips-for-using-pap-devices'), class: 'no-underline'
+        %li
+          = link_to 'Finding proper care for central/mixed sleep apnea', forum_topic_path('general', 'central-mixed-apnea'), class: 'no-underline'
+        %li
+          = link_to 'Determining future research for the link between sleep apnea and body weight', forum_topic_path('research', 'does-treatment-of-sleep-apnea-influence-body-weight'), class: 'no-underline'
 
-.content-container.inherit-background
-  .content-body
-    .row.centered-text
-      .col-sm-4
-        .user-testimonial-small
-          %p.user-testimonial-quote
-            "Note I look at a lot of support sites and finally pulled the trigger on this one....glad I did!"
-          %p.user-testimonial-quoter
-            \-
-            = link_to 'JDARZ', forum_topic_post_path('general', 'waking-up-with-dry-mouth', '609')
-      .col-sm-4
-        .user-testimonial-small
-          %p.user-testimonial-quote
-            "I got up this morning feeling completely different...thank you guys for helping me ease into this next phase."
-          %p.user-testimonial-quoter
-            \-
-            = link_to 'Bhek', forum_topic_post_path('general', 'contribute-community-tips-for-using-pap-devices', '531')
-      .col-sm-4
-        .user-testimonial-small
-          %p.user-testimonial-quote
-            "I belong to a bunch of SA support groups...this one has the people that honestly want to help."
-          %p.user-testimonial-quoter
-            \-
-            = link_to 'Pat', forum_topic_post_path('general', 'waking-up-with-dry-mouth', '614')
+  .content-container.inherit-background
+    .content-body
+      .row.centered-text
+        .col-sm-4
+          .user-testimonial-small
+            %p.user-testimonial-quote
+              "Note I look at a lot of support sites and finally pulled the trigger on this one....glad I did!"
+            %p.user-testimonial-quoter
+              \-
+              = link_to 'JDARZ', forum_topic_post_path('general', 'waking-up-with-dry-mouth', '609')
+        .col-sm-4
+          .user-testimonial-small
+            %p.user-testimonial-quote
+              "I got up this morning feeling completely different...thank you guys for helping me ease into this next phase."
+            %p.user-testimonial-quoter
+              \-
+              = link_to 'Bhek', forum_topic_post_path('general', 'contribute-community-tips-for-using-pap-devices', '531')
+        .col-sm-4
+          .user-testimonial-small
+            %p.user-testimonial-quote
+              "I belong to a bunch of SA support groups...this one has the people that honestly want to help."
+            %p.user-testimonial-quoter
+              \-
+              = link_to 'Pat', forum_topic_post_path('general', 'waking-up-with-dry-mouth', '614')
 
 
-.content-container
-  .content-body
-    .list-group-item
-      %div{ style: "height: 500px; min-width: 310px; max-width: 600px; margin: 0 auto", data: { object: 'draw-map', membership: Map.states_for_map.to_json } }
-    .list-group-item
-      %div{ style: "height: 500px; min-width: 310px; max-width: 600px; margin: 0 auto", data: { object: 'draw-world-map', membership: Map.countries_for_map.to_json } }
+  .content-container
+    .content-body
+      .list-group-item
+        %div{ style: "height: 500px; min-width: 310px; max-width: 600px; margin: 0 auto", data: { object: 'draw-map', membership: Map.states_for_map.to_json } }
+      .list-group-item
+        %div{ style: "height: 500px; min-width: 310px; max-width: 600px; margin: 0 auto", data: { object: 'draw-world-map', membership: Map.countries_for_map.to_json } }

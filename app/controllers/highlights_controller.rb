@@ -5,7 +5,7 @@ class HighlightsController < ApplicationController
 
   before_action :set_SEO_elements
 
-  layout 'application-no-sidebar'
+  layout 'admin'
 
   def photo
     if @highlight.photo.size > 0

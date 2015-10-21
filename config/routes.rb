@@ -67,7 +67,6 @@ Rails.application.routes.draw do
     get :advisory
     get :partners
     get :faqs
-    get :research
     get :version
     get :sitemap
     get :sizes
@@ -139,7 +138,6 @@ Rails.application.routes.draw do
       get 'first-topics', as: :first_topics
       get :newest
       get 'most-discussed', as: :most_discussed
-      get :all
       get 'my-research-topics', as: :my_research_topics
       # Accepted research topics
       get 'accepted', to: 'research_topics#accepted_research_topics_index', as: :accepted

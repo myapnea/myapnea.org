@@ -1,32 +1,32 @@
 - @title = 'Provider Report'
 .content-main-header
-  %h1
-    = @title
-  %p.lead.text-light8{ style: 'margin-bottom: 0px;'}
-    = link_to 'Admin Dashboard', admin_path
+  .container
+    %h1
+      = @title
+    %p.lead.text-light8{ style: 'margin-bottom: 0px;'}
+      = link_to 'Admin Dashboard', admin_path
 
 .well
-  - max_members = @providers.sort{ |a,b| a.users.count <=> b.users.count }.last.users.count
-  - providers = @providers.select{ |p| p.users.count == max_members }
-  %h4.f300
-    = "Provider".pluralize(providers.count)
-    with most members:
-  %ul
-    - providers.each do |provider|
-      %li
-        = provider.slug.present? ? link_to(provider.name, (ENV['website_url'] + '/p/'+ provider.slug)) : ""
-        &middot;
-        = link_to "mailto:#{provider.email}" do
-          %span.glyphicon.glyphicon-envelope
-  %h4.f300
-    Number of members:
-    %span.f500.darkerer-blue= providers.first.users.count
+  .container
+    - max_members = @providers.sort{ |a,b| a.users.count <=> b.users.count }.last.users.count
+    - providers = @providers.select{ |p| p.users.count == max_members }
+    %h4.f300
+      = "Provider".pluralize(providers.count)
+      with most members:
+    %ul
+      - providers.each do |provider|
+        %li
+          = provider.slug.present? ? link_to(provider.name, (ENV['website_url'] + '/p/'+ provider.slug)) : ""
+          &middot;
+          = link_to "mailto:#{provider.email}" do
+            %span.glyphicon.glyphicon-envelope
+    %h4.f300
+      Number of members:
+      %span.f500.darkerer-blue= providers.first.users.count
 
-
-.content-container
-  .content-header
+.container
+  .content-container
     %h3 Providers
-  .content-body
     %table.table.table-striped
       %thead
         %tr

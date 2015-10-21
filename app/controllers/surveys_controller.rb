@@ -23,7 +23,6 @@ class SurveysController < ApplicationController
   end
 
   def show
-    render layout: 'layouts/application-central-padding'
   end
 
   def report

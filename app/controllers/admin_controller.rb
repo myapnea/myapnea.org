@@ -4,7 +4,7 @@ class AdminController < ApplicationController
 
   before_action :set_SEO_elements
 
-  layout 'application-no-sidebar'
+  layout 'admin'
 
   def dashboard
   end

@@ -1,10 +1,10 @@
 .content-main-header
-  %h1
-    Data Exports
-.content-container
-  .content-header
+  .container
+    %h1 Data Exports
+
+.container
+  .content-container
     = link_to 'Start New Export', admin_exports_path, class: 'btn btn-primary-custom', method: :post
-  .content-body
     %table.table.table-striped
       %thead
         %tr

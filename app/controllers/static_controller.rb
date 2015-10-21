@@ -38,15 +38,10 @@ class StaticController < ApplicationController
 
   def learn
     @page_content = "If you can't sleep, are experiencing sleep apnea symptoms, have been diagnosed with obstructive sleep apnea or central sleep apnea, MyApnea wants to help you understand sleep apnea and sleep apnea causes."
-    render layout: 'layouts/application-no-sidebar'
   end
 
   def faqs
     @page_content = "What is MyApnea? What is the difference between OSA and CSA? Where can you take sleep tests? If you are experiencing sleep deprivation or sleep apnea symptoms, MyApnea will explain the basics."
-  end
-
-  def research
-
   end
 
   def version

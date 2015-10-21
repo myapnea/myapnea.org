@@ -1,14 +1,15 @@
 .content-main-header
-  %h1.f300
-    = link_to 'Children', children_path
-    &middot;
-    = @child.first_name
-  %h4
-    = link_to 'Edit Child', edit_child_path(@child), class: 'btn btn-xs btn-default'
-    = link_to 'Remove Child', @child, method: :delete, data: { confirm: 'Are you sure you want to remove records of this child?' }, class: 'btn btn-xs btn-danger'
+  .container
+    %h1.f300
+      = link_to 'Children', children_path
+      &middot;
+      = @child.first_name
+    %p
+      = link_to 'Edit Child', edit_child_path(@child), class: 'btn btn-xs btn-default'
+      = link_to 'Remove Child', @child, method: :delete, data: { confirm: 'Are you sure you want to remove records of this child?' }, class: 'btn btn-xs btn-danger'
 
-.content-container
-  .content-body
+.container
+  .content-container
     %dl.dl-horizontal
       %dt First name
       %dd= @child.first_name

@@ -3,33 +3,32 @@
 
 .content-container{ style: "margin-bottom: 0px; #{'background-color: #fafafa' if part_of_registration}"}
   - if current_user and !part_of_registration
-    .content-header{ style: 'background-color: #f3f3f3;' }
+    %div{ style: 'background-color: #f3f3f3; margin: -20px; padding: 20px;' }
       .before.lead.f500= consent_page_content['before']['head']
       %p
         = consent_page_content['before']['content']['text_1']
         = link_to "privacy policy", privacy_path, target: '_blank'
         = consent_page_content['before']['content']['text_2']
-      %br
-  .content-body
-    #print-area
-      = markdown consent_page_content['consent']
-      - if current_user.present? and !current_user.accepted_consent_at.present?
-        = markdown "If you wish to be in this study, please click the button that says **“I agree and accept”**"
-    %br/
-    = link_to "#", id: "print-link", class: 'print-link pull-right btn btn-xs btn-primary' do
-      %i.fa.fa-print
-      Print Consent
-  - if current_user and !part_of_registration
-    .content-footer.centered
-      - if current_user.ready_for_research?
-        = succeed ' ' do
-          = link_to :back, class: 'btn btn-lg btn-default-custom' do
-            .fa.fa-arrow-left
-            &nbsp;
-            Go Back
-        = link_to "Leave Research Study", revoke_consent_path, method: :post, class: 'btn btn-warning-custom btn-lg'
-      - elsif current_user.accepted_consent?
-        = link_to "Continue to review privacy policy", privacy_path, class: 'btn btn-primary-custom btn-lg'
-      - else
-        = link_to "I agree and accept", accepts_consent_path(get_started: part_of_registration), method: :post, class: 'btn btn-primary-custom btn-lg'
-        = link_to "I decline", :back, class: 'btn btn-default-custom btn-lg'
+    %br
+  #print-area
+    = markdown consent_page_content['consent']
+    - if current_user.present? and !current_user.accepted_consent_at.present?
+      = markdown "If you wish to be in this study, please click the button that says **“I agree and accept”**"
+  %br/
+  = link_to "#", id: "print-link", class: 'print-link pull-right btn btn-xs btn-primary' do
+    %i.fa.fa-print
+    Print Consent
+- if current_user and !part_of_registration
+  .content-footer.centered
+    - if current_user.ready_for_research?
+      = succeed ' ' do
+        = link_to :back, class: 'btn btn-lg btn-default-custom' do
+          .fa.fa-arrow-left
+          &nbsp;
+          Go Back
+      = link_to "Leave Research Study", revoke_consent_path, method: :post, class: 'btn btn-warning-custom btn-lg'
+    - elsif current_user.accepted_consent?
+      = link_to "Continue to review privacy policy", privacy_path, class: 'btn btn-primary-custom btn-lg'
+    - else
+      = link_to "I agree and accept", accepts_consent_path(get_started: part_of_registration), method: :post, class: 'btn btn-primary-custom btn-lg'
+      = link_to "I decline", :back, class: 'btn btn-default-custom btn-lg'

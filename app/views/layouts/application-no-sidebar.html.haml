@@ -30,6 +30,7 @@
     - if (!current_user and params[:action] == 'dashboard') or params[:action] == 'landing'
       #dark-navbar-backdrop
     = render partial: 'layouts/navigation/top_navigation'
+    = raise StandardError
     .container-fluid.reset-layout.wrapper
       = render partial: 'layouts/partials/flash_messages'
       = yield

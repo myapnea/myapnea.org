@@ -1,8 +1,9 @@
 .content-main-header
-  %h1 Invite Your Personal Care Provider!
+  .container
+    %h1 Invite Your Personal Care Provider!
 
-.content-container
-  .content-body
+.container
+  .content-container
     = form_for @invite do |f|
       = f.hidden_field :for_provider, value: true
       .input-group

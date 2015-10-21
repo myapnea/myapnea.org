@@ -1,12 +1,13 @@
 - @title = 'Daily Engagement'
 .content-main-header
-  %h1
-    = @title
-  %p.lead.text-light8{ style: 'margin-bottom: 0px;'}
-    = link_to 'Admin Dashboard', admin_path
+  .container
+    %h1
+      = @title
+    %p.lead.text-light8{ style: 'margin-bottom: 0px;'}
+      = link_to 'Admin Dashboard', admin_path
 
-.content-container
-  .content-header
+.container
+  .content-container
     %h2 Demographics
     %br
     = form_tag admin_daily_engagement_path, method: :get do
@@ -20,68 +21,72 @@
       &nbsp;
       &nbsp;
       = submit_tag "Calculate", class: 'btn btn-primary'
-  #daily-demographic-breakdown.content-body
-    %h3 Summary:
-    #summary-breakdown.horizontal-inset
-      - if @date1.present? and @date2.present? and @date1!=@date2
-        There were
-        = @users_by_date.count
-        new users between
-        = @date1.inspect
-        and
-        = succeed '.' do
-          = @date2.inspect
-        Of these users,
-        = @users_by_date.select{ |u| u.completed_demographic_survey? }.count
-        completed the About Me survey.
-      - elsif @date1.present?
-        There were
-        = @users_by_date.count
-        new users on
-        = succeed '.' do
+    #daily-demographic-breakdown
+      %h3 Summary:
+      #summary-breakdown.horizontal-inset
+        - if @date1.present? and @date2.present? and @date1!=@date2
+          There were
+          = @users_by_date.count
+          new users between
           = @date1.inspect
-        Of these users,
-        = @users_by_date.select{ |u| u.completed_demographic_survey? }.count
-        completed the About Me survey.
-      - elsif @date2.present?
-        There were
-        = @users_by_date.count
-        new users on
-        = succeed '.' do
-          = @date2.inspect
-        Of these users,
-        = @users_by_date.select{ |u| u.completed_demographic_survey? }.count
-        completed the About Me survey.
+          and
+          = succeed '.' do
+            = @date2.inspect
+          Of these users,
+          = @users_by_date.select{ |u| u.completed_demographic_survey? }.count
+          completed the About Me survey.
+        - elsif @date1.present?
+          There were
+          = @users_by_date.count
+          new users on
+          = succeed '.' do
+            = @date1.inspect
+          Of these users,
+          = @users_by_date.select{ |u| u.completed_demographic_survey? }.count
+          completed the About Me survey.
+        - elsif @date2.present?
+          There were
+          = @users_by_date.count
+          new users on
+          = succeed '.' do
+            = @date2.inspect
+          Of these users,
+          = @users_by_date.select{ |u| u.completed_demographic_survey? }.count
+          completed the About Me survey.
 
-      = render 'user_type_table', users: @users_by_date
-    %h3 Sex:
-    #sex-breakdown.horizontal-inset
-      = render 'demographic_chart', question_slug: 'sex', range: 1..2
-    %h3 Age:
-    #age-breakdown.horizontal-inset
-      - @ages.each do |data|
-        %p
-          %span.f500= "#{data[1][:text]}: "
-          %span.primary-blue= data[1][:count]
-    %h3 Race:
-    #racial-breakdown.horizontal-inset
-      = render 'demographic_chart', question_slug: 'race', range: 1..5
-    %h3 Ethnicity:
-    #ethnicity-breakdown.horizontal-inset
-      = render 'demographic_chart', question_slug: 'ethnicity', range: 1..2
-    %h3 Location:
-    #location-breakdown.horizontal-inset
-      = render 'location_list', users: @users_by_date, selector: 'state'
-      = render 'location_list', users: @users_by_date, selector: 'country'
+        = render 'user_type_table', users: @users_by_date
+      %h3 Sex:
+      #sex-breakdown.horizontal-inset
+        = render 'demographic_chart', question_slug: 'sex', range: 1..2
+      %h3 Age:
+      #age-breakdown.horizontal-inset
+        - @ages.each do |data|
+          %p
+            %span.f500= "#{data[1][:text]}: "
+            %span.primary-blue= data[1][:count]
+      %h3 Race:
+      #racial-breakdown.horizontal-inset
+        = render 'demographic_chart', question_slug: 'race', range: 1..5
+      %h3 Ethnicity:
+      #ethnicity-breakdown.horizontal-inset
+        = render 'demographic_chart', question_slug: 'ethnicity', range: 1..2
+      %h3 Location:
+      #location-breakdown.horizontal-inset
+        = render 'location_list', users: @users_by_date, selector: 'state'
+        = render 'location_list', users: @users_by_date, selector: 'country'
 
 .content-container
-  #daily-engagement-week.daily-engagement-report
+  .container
+    #daily-engagement-week.daily-engagement-report
 
 .content-container
-  #daily-engagement-posts.daily-engagement-report
+  .container
+    #daily-engagement-posts.daily-engagement-report
 
 .content-container
-  #daily-engagement-users.daily-engagement-report
+  .container
+    #daily-engagement-users.daily-engagement-report
 
 .content-container
-  #daily-engagement-surveys.daily-engagement-report
+  .container
+    #daily-engagement-surveys.daily-engagement-report

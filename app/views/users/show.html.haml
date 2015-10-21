@@ -1,17 +1,13 @@
-.content-container
-  .content-header
+.container
+  .content-container
     %h1
       = @user.name
-  - if @user.forum_name.present?
-    .content-body
-      %p.lead
-        View this member's full social profile:
-        %span.f500= link_to @user.forum_name, member_path(@user.forum_name), class: 'no-underline darkerer-blue'
-- if current_user.owner?
-  .content-container
-    .content-header
-      %h1
-    .content-body
+    %p
+      View this member's full social profile:
+      %span.f500= link_to @user.forum_name, member_path(@user.forum_name), class: 'no-underline darkerer-blue'
+
+  - if current_user.owner?
+    .content-container
       %table.table.table-bordered.table-striped
         %thead
           %tr
@@ -31,10 +27,10 @@
                 - if answer_session.locked?
                   = link_to 'Unlock Survey', admin_unlock_survey_path(user_id: @user.id, answer_session_id: answer_session.id), method: :post, class: 'btn btn-primary btn-xs'
 
-    .content-footer
-      %h4 For admins:
-      = render partial: 'users/admin_view', locals: { user: @user }
+      .content-footer
+        %h4 For admins:
+        = render partial: 'users/admin_view', locals: { user: @user }
 
-      - if current_user.owner?
-        = link_to "Edit User", edit_user_path(@user), class: 'btn btn-primary btn-xs'
-        = link_to 'Delete User', @user, method: :delete, class: 'btn btn-xs btn-danger', data: { confirm: "Are you sure you want to delete User #{@user.name}?" } unless current_user == @user
+        - if current_user.owner?
+          = link_to "Edit User", edit_user_path(@user), class: 'btn btn-primary btn-xs'
+          = link_to 'Delete User', @user, method: :delete, class: 'btn btn-xs btn-danger', data: { confirm: "Are you sure you want to delete User #{@user.name}?" } unless current_user == @user

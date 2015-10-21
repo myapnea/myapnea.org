@@ -1,18 +1,20 @@
 .content-main-header
-  %h1 What is the link between type 2 diabetes and obstructive sleep apnea?
+  .container
+    %h1 What is the link between type 2 diabetes and obstructive sleep apnea?
 
 .well
-  .row
-    .col-sm-2.col-xs-4
-      = image_tag 'myapnea/research/jessie_bakker.jpg', class: 'img-responsive pull-right', style: 'width: 100px'
-    .col-sm-10.col-xs-8
-      %h2.f300
-        Jessie Bakker, PhD
-      %p.text-dark7
-        Instructor of Medicine, Harvard Medical School
+  .container
+    .row
+      .col-sm-2.col-xs-4
+        = image_tag 'myapnea/research/jessie_bakker.jpg', class: 'img-responsive pull-right', style: 'width: 100px'
+      .col-sm-10.col-xs-8
+        %h2.f300
+          Jessie Bakker, PhD
+        %p.text-dark7
+          Instructor of Medicine, Harvard Medical School
 
 .content-container
-  .content-body
+  .container
     %h3
       Type 2 diabetes and sleep apnea tend to go hand-in-hand
     %p
@@ -120,47 +122,45 @@
         = surround "(", ")." do
           = link_to "https://clinicaltrials.gov/ct2/show/NCT02245659", "https://clinicaltrials.gov/ct2/show/NCT02245659"
 
-.content-container.inherit-background.horizontal-inset
-  .content-header
-    %h4.f300 References
-  .content-body
-    %ol
-      %li
-        Foster, G.D., Sanders, M.H., Millman, R., Zammit, G., Borradaile, K.E., Newman, A.B., Wadden, T.A., Kelley, D., Wing, R.R., Sunyer, F.X., Darcey, V. & Kuna, S.T. Obstructive sleep apnea among obese patients with type 2 diabetes. Diabetes Care 32, 1017-9 (2009).
-      %li
-        Reichmuth, K.J., Austin, D., Skatrud, J.B. & Young, T. Association of sleep apnea and type II diabetes: a population-based study. American Journal of Respiratory & Critical Care Medicine 172, 1590-5 (2005).
-      %li
-        Marshall, N.S., Wong, K.K., Phillips, C.L., Liu, P.Y., Knuiman, M.W. & Grunstein, R.R. Is sleep apnea an independent risk factor for prevalent and incident diabetes in the Busselton Health Study? Journal of Clinical Sleep Medicine 5, 15-20 (2009).
-      %li
-        Kendzerska, T., Gershon, A.S., Hawker, G., Tomlinson, G. & Leung, R.S. Obstructive sleep apnea and incident diabetes. A historical cohort study. Am J Respir Crit Care Med 190, 218-25 (2014).
-      %li
-        Botros, N., Concato, J., Mohsenin, V., Selim, B., Doctor, K. & Yaggi, H.K. Obstructive sleep apnea as a risk factor for type 2 diabetes. American Journal of Medicine 122, 1122-7 (2009).
-      %li
-        Celen, Y.T., Hedner, J., Carlson, J. & Peker, Y. Impact of gender on incident diabetes mellitus in obstructive sleep apnea: a 16-year follow-up. J Clin Sleep Med 6, 244-50 (2010).
-      %li
-        Lindberg, E., Berne, C., Franklin, K.A., Svensson, M. & Janson, C. Snoring and daytime sleepiness as risk factors for hypertension and diabetes in women--a population-based study. Respiratory Medicine 101, 1283-90 (2007).
-      %li
-        Muraki, I., Tanigawa, T., Yamagishi, K., Sakurai, S., Ohira, T., Imano, H., Kitamura, A., Kiyama, M., Sato, S., Shimamoto, T., Konishi, M. & Iso, H. Nocturnal intermittent hypoxia and the development of type 2 diabetes: the Circulatory Risk in Communities Study (CIRCS). Diabetologia 53, 481-8 (2010).
-      %li
-        Punjabi, N.M., Shahar, E., Redline, S., Gottlieb, D.J., Givelber, R. & Resnick, H.E. Sleep-disordered breathing, glucose intolerance, and insulin resistance: the Sleep Heart Health Study. American Journal of Epidemiology 160, 521-30 (2004).
-      %li
-        Sulit, L., Storfer-Isser, A., Kirchner, H.L. & Redline, S. Differences in polysomnography predictors for hypertension and impaired glucose tolerance. Sleep 29, 777-83 (2006).
-      %li
-        Barcelo, A., Pierola, J., de la Pena, M., Esquinas, C., Fuster, A., Sanchez-de-la-Torre, M., Carrera, M., Alonso-Fernandez, A., Ladaria, A., Bosch, M. & Barbe, F. Free fatty acids and the metabolic syndrome in patients with obstructive sleep apnoea. Eur Respir J 37, 1418-23 (2011).
-      %li
-        Azuma, M., Chihara, Y., Yoshimura, C., Murase, K., Hamada, S., Tachikawa, R., Matsumoto, T., Inouchi, M., Tanizawa, K., Handa, T., Oga, T., Mishima, M. & Chin, K. Association between endothelial function (assessed on reactive hyperemia peripheral arterial tonometry) and obstructive sleep apnea, visceral fat accumulation, and serum adiponectin. Circ J 79, 1381-9 (2015).
-      %li
-        Javaheri, S., Storfer-Isser, A., Rosen, C.L. & Redline, S. Sleep quality and elevated blood pressure in adolescents. Circulation 118, 1034-40 (2008).
-      %li
-        Hassaballa, H.A., Tulaimat, A., Herdegen, J.J. & Mokhlesi, B. The effect of continuous positive airway pressure on glucose control in diabetic patients with severe obstructive sleep apnea. Sleep Breath 9, 176-80 (2005).
-      %li
-        West, S.D., Nicoll, D.J., Wallace, T.M., Matthews, D.R. & Stradling, J.R. Effect of CPAP on insulin resistance and HbA1c in men with obstructive sleep apnoea and type 2 diabetes. Thorax 62, 969-74 (2007).
-      %li
-        Weinstock, T.G., Wang, X., Rueschman, M., Ismail-Beigi, F., Aylor, J., Babineau, D.C., Mehra, R. & Redline, S. A controlled trial of CPAP therapy on metabolic control in individuals with impaired glucose tolerance and sleep apnea. Sleep 35, 617-625B (2012).
-      %li
-        Pamidi, S., Wroblewski, K., Stepien, M., Sharif-Sidi, K., Kilkus, J., Whitmore, H. & Tasali, E. Eight Hours of Nightly CPAP Treatment of Obstructive Sleep Apnea Improves Glucose Metabolism in Prediabetes: A Randomized Controlled Trial. Am J Respir Crit Care Med (2015).
-      %li
-        Foster, G.D., Borradaile, K.E., Sanders, M.H., Millman, R., Zammit, G., Newman, A.B., Wadden, T.A., Kelley, D., Wing, R.R., Pi-Sunyer, F.X., Reboussin, D. & Kuna, S.T. A randomized study on the effect of weight loss on obstructive sleep apnea among obese patients with type 2 diabetes: the Sleep AHEAD study. Archives of Internal Medicine 169, 1619-26 (2009).
+.container
+  %h4.f300 References
+  %ol
+    %li
+      Foster, G.D., Sanders, M.H., Millman, R., Zammit, G., Borradaile, K.E., Newman, A.B., Wadden, T.A., Kelley, D., Wing, R.R., Sunyer, F.X., Darcey, V. & Kuna, S.T. Obstructive sleep apnea among obese patients with type 2 diabetes. Diabetes Care 32, 1017-9 (2009).
+    %li
+      Reichmuth, K.J., Austin, D., Skatrud, J.B. & Young, T. Association of sleep apnea and type II diabetes: a population-based study. American Journal of Respiratory & Critical Care Medicine 172, 1590-5 (2005).
+    %li
+      Marshall, N.S., Wong, K.K., Phillips, C.L., Liu, P.Y., Knuiman, M.W. & Grunstein, R.R. Is sleep apnea an independent risk factor for prevalent and incident diabetes in the Busselton Health Study? Journal of Clinical Sleep Medicine 5, 15-20 (2009).
+    %li
+      Kendzerska, T., Gershon, A.S., Hawker, G., Tomlinson, G. & Leung, R.S. Obstructive sleep apnea and incident diabetes. A historical cohort study. Am J Respir Crit Care Med 190, 218-25 (2014).
+    %li
+      Botros, N., Concato, J., Mohsenin, V., Selim, B., Doctor, K. & Yaggi, H.K. Obstructive sleep apnea as a risk factor for type 2 diabetes. American Journal of Medicine 122, 1122-7 (2009).
+    %li
+      Celen, Y.T., Hedner, J., Carlson, J. & Peker, Y. Impact of gender on incident diabetes mellitus in obstructive sleep apnea: a 16-year follow-up. J Clin Sleep Med 6, 244-50 (2010).
+    %li
+      Lindberg, E., Berne, C., Franklin, K.A., Svensson, M. & Janson, C. Snoring and daytime sleepiness as risk factors for hypertension and diabetes in women--a population-based study. Respiratory Medicine 101, 1283-90 (2007).
+    %li
+      Muraki, I., Tanigawa, T., Yamagishi, K., Sakurai, S., Ohira, T., Imano, H., Kitamura, A., Kiyama, M., Sato, S., Shimamoto, T., Konishi, M. & Iso, H. Nocturnal intermittent hypoxia and the development of type 2 diabetes: the Circulatory Risk in Communities Study (CIRCS). Diabetologia 53, 481-8 (2010).
+    %li
+      Punjabi, N.M., Shahar, E., Redline, S., Gottlieb, D.J., Givelber, R. & Resnick, H.E. Sleep-disordered breathing, glucose intolerance, and insulin resistance: the Sleep Heart Health Study. American Journal of Epidemiology 160, 521-30 (2004).
+    %li
+      Sulit, L., Storfer-Isser, A., Kirchner, H.L. & Redline, S. Differences in polysomnography predictors for hypertension and impaired glucose tolerance. Sleep 29, 777-83 (2006).
+    %li
+      Barcelo, A., Pierola, J., de la Pena, M., Esquinas, C., Fuster, A., Sanchez-de-la-Torre, M., Carrera, M., Alonso-Fernandez, A., Ladaria, A., Bosch, M. & Barbe, F. Free fatty acids and the metabolic syndrome in patients with obstructive sleep apnoea. Eur Respir J 37, 1418-23 (2011).
+    %li
+      Azuma, M., Chihara, Y., Yoshimura, C., Murase, K., Hamada, S., Tachikawa, R., Matsumoto, T., Inouchi, M., Tanizawa, K., Handa, T., Oga, T., Mishima, M. & Chin, K. Association between endothelial function (assessed on reactive hyperemia peripheral arterial tonometry) and obstructive sleep apnea, visceral fat accumulation, and serum adiponectin. Circ J 79, 1381-9 (2015).
+    %li
+      Javaheri, S., Storfer-Isser, A., Rosen, C.L. & Redline, S. Sleep quality and elevated blood pressure in adolescents. Circulation 118, 1034-40 (2008).
+    %li
+      Hassaballa, H.A., Tulaimat, A., Herdegen, J.J. & Mokhlesi, B. The effect of continuous positive airway pressure on glucose control in diabetic patients with severe obstructive sleep apnea. Sleep Breath 9, 176-80 (2005).
+    %li
+      West, S.D., Nicoll, D.J., Wallace, T.M., Matthews, D.R. & Stradling, J.R. Effect of CPAP on insulin resistance and HbA1c in men with obstructive sleep apnoea and type 2 diabetes. Thorax 62, 969-74 (2007).
+    %li
+      Weinstock, T.G., Wang, X., Rueschman, M., Ismail-Beigi, F., Aylor, J., Babineau, D.C., Mehra, R. & Redline, S. A controlled trial of CPAP therapy on metabolic control in individuals with impaired glucose tolerance and sleep apnea. Sleep 35, 617-625B (2012).
+    %li
+      Pamidi, S., Wroblewski, K., Stepien, M., Sharif-Sidi, K., Kilkus, J., Whitmore, H. & Tasali, E. Eight Hours of Nightly CPAP Treatment of Obstructive Sleep Apnea Improves Glucose Metabolism in Prediabetes: A Randomized Controlled Trial. Am J Respir Crit Care Med (2015).
+    %li
+      Foster, G.D., Borradaile, K.E., Sanders, M.H., Millman, R., Zammit, G., Newman, A.B., Wadden, T.A., Kelley, D., Wing, R.R., Pi-Sunyer, F.X., Reboussin, D. & Kuna, S.T. A randomized study on the effect of weight loss on obstructive sleep apnea among obese patients with type 2 diabetes: the Sleep AHEAD study. Archives of Internal Medicine 169, 1619-26 (2009).
 
 - unless current_user
   = render 'home/join_the_community', referrer: 'research', message: 'Make a direct impact on the future of sleep apnea research'

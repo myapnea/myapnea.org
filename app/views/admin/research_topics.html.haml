@@ -1,19 +1,19 @@
 - @title = 'Research Topics'
 .content-main-header
-  %h1
-    = @title
-  %p.lead.text-light8{ style: 'margin-bottom: 0px;'}
-    = link_to 'Admin Dashboard', admin_path
+  .container
+    %h1
+      = @title
+    %p.lead.text-light8{ style: 'margin-bottom: 0px;'}
+      = link_to 'Admin Dashboard', admin_path
 
-.content-container
-  .content-header
+.container
+  .content-container
     %p
       Number of research topics:
       %span.f500= @research_topics.count
     %p
       Number of votes:
       %span.f500= Vote.current.count
-  .content-body
     %table.table.table-responsive.table-striped
       %thead
         %tr
