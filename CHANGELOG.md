@@ -9,6 +9,7 @@
     - Vote on new research topics
   - Includes free response to diagnostic experience and device usage
   - Users are able to like posts
+  - Users are able to request expert advice for posts
 
 ## 8.4.0 (October 19, 2015)
 

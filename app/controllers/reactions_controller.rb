@@ -3,7 +3,8 @@ class ReactionsController < ApplicationController
   before_action :set_post
 
   def create
-    current_user.reactions.where(post_id: @post.id).first_or_create(reaction_params).update(deleted: false)
+    reaction = current_user.reactions.where(post_id: @post.id).first_or_create
+    reaction.update(reaction_params.merge(deleted: false))
   end
 
   def destroy

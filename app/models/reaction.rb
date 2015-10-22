@@ -3,6 +3,7 @@ class Reaction < ActiveRecord::Base
   # Constants
   FORM_LIKE = 'like'
   FORM_DISLIKE = 'dislike'
+  FORM_REQUEST = 'request_expert_comment'
 
   # Attribute related macros
   # Associations
