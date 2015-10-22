@@ -1,0 +1,34 @@
+- if current_user.photo.blank?
+  .engagement-highlight
+    %p.white.f500 Add a picture!
+    %p.white
+      If you prefer to stay anonymous, we encourage you to use a picture of an object or scene that you identify with.
+    = form_for current_user, url: update_from_engagements_path, method: :patch do |f|
+      = f.file_field :photo, class: 'white'
+      %br
+      .pull-right
+        = f.submit 'Save', class: 'btn btn-warning-custom'
+      .clearfix
+- elsif current_user.experience.blank? and current_user.adult_diagnosed?
+  .engagement-highlight
+    %p.500.white
+      Please give an overview of your experience getting diagnosed with sleep apnea:
+    = form_for current_user, url: update_from_engagements_path, remote: true, method: :patch do |f|
+      = f.text_area :experience, rows: 3, class: 'form-control'
+      %br
+      .pull-right
+        = f.submit 'Save', class: 'btn btn-warning-custom'
+      .clearfix
+
+- elsif current_user.device.blank? and current_user.adult_diagnosed?
+  .engagement-highlight
+    %p.500.white
+      What device are you currently using to treat your sleep apnea?
+    = form_for current_user, url: update_from_engagements_path, remote: true, method: :patch do |f|
+      = f.text_field :device, class: 'form-control'
+      %br
+      .pull-right
+        = f.submit 'Save', class: 'btn btn-warning-custom'
+      .clearfix
+- elsif false
+  .engagement-highlight

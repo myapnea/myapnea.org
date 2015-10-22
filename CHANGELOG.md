@@ -3,6 +3,11 @@
 ### Enhancements
 - **Design Changes**
   - Switched to fixed-width version of site
+- **Engagment Changes**
+  - More dynamic widgets located on the dashboard
+    - Update social profile field
+    - Vote on new research topics
+  - Includes free response to diagnostic experience and device usage
 
 ## 8.4.0 (October 19, 2015)
 

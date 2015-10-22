@@ -188,6 +188,7 @@ Rails.application.routes.draw do
   # Account Section
   scope module: 'account' do
     post :suggest_random_forum_name
+    patch :update_from_engagements
   end
 
   get 'account' => 'account#account'

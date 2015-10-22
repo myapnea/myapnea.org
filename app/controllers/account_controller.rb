@@ -93,7 +93,14 @@ class AccountController < ApplicationController
   end
 
   def dashboard
+  end
 
+  def update_from_engagements
+    current_user.update(user_params)
+    respond_to do |format|
+      format.html { redirect_to :dashboard }
+      format.js { }
+    end
   end
 
   def account
@@ -140,7 +147,7 @@ class AccountController < ApplicationController
         # Basic Information
         :first_name, :last_name, :email,
         # Forum and Social Profile
-        :photo, :remove_photo, :forum_name, :age, :gender,
+        :photo, :remove_photo, :forum_name, :age, :gender, :experience, :device,
         # Linking to a Provider
         :provider_id,
         # Receiving Emails

@@ -248,6 +248,14 @@ class AccountControllerTest < ActionController::TestCase
     assert_not_nil @provider.accepted_terms_conditions_at
   end
 
+  test "should update information from engagement highlights" do
+    login(users(:social))
+    patch :update_from_engagements, format: 'js', user: { experience: 'Experience getting diagnosed', device: 'My device' }
+    assert_response :success
+    users(:social).reload
+    assert_not_nil users(:social).experience
+  end
+
   test "should update account information for user" do
     login(users(:social))
     new_last = "Boylston"
