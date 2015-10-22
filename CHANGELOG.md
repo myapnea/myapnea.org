@@ -8,6 +8,7 @@
     - Update social profile field
     - Vote on new research topics
   - Includes free response to diagnostic experience and device usage
+  - Users are able to like posts
 
 ## 8.4.0 (October 19, 2015)
 

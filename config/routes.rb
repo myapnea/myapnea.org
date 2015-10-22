@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+
+  resources :reactions, only: [:create, :destroy]
+
   namespace :admin do
     resources :exports do
       member do

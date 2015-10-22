@@ -1,0 +1,5 @@
+<% reaction_container = "#reaction-container-#{@post.id}" %>
+
+$("<%= reaction_container %>").html("<%=j render 'reactions/like_form', post: @post %>");
+
+console.log("destroyed reaction");

@@ -1,0 +1,11 @@
+- if current_user.reactions.current.where(post_id: post).present?
+  = link_to current_user.reactions.where(post_id: post).first, method: :delete, remote: :true, class: 'btn btn-blank btn-like liked' do
+    %i.fa.fa-thumbs-up
+    Unlike
+- else
+  = form_for current_user.reactions.where(post_id: post.id).new, method: :post, remote: true do |f|
+    = f.hidden_field :form, value: Reaction::FORM_LIKE
+    = f.hidden_field :post_id, value: post.id
+    = f.button :submit, class: 'btn btn-blank btn-like' do
+      %i.fa.fa-thumbs-up
+      Like

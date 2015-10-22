@@ -16,6 +16,9 @@
   .post.wrapword
     .post-content
       = render 'posts/formatted', post: post
+      %div{ id: "reaction-container-#{post.id}"}
+        - if current_user
+          = render 'reactions/like_form', post: post
 
 
 - if false

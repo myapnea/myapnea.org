@@ -22,6 +22,7 @@ class Post < ActiveRecord::Base
   belongs_to :last_moderated_by, class_name: 'User'
   belongs_to :last_moderated_by, class_name: 'User'
   belongs_to :deleted_by, class_name: 'User'
+  has_many :reactions
 
   # Post Methods
 
