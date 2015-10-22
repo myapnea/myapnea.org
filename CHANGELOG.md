@@ -1,5 +1,8 @@
 ## 8.4.1
 
+### Bug Fixes
+- Removed deprecated calls to `AnswerValue.current` that caused the 'My Sleep Pattern' report to error
+
 ## 8.4.0 (October 19, 2015)
 
 ### Enhancements

@@ -178,7 +178,7 @@ class TemporaryReport
   def self.avg_ess(survey, encounter)
     question = survey.questions.find_by_slug('epworth-sleepiness-scale')
 
-    answer_value_scope = AnswerValue.current.joins(:answer).where(answers: { question_id: question.id, state: 'locked' }).where.not(answer_option_id: nil)
+    answer_value_scope = AnswerValue.joins(:answer).where(answers: { question_id: question.id, state: 'locked' }).where.not(answer_option_id: nil)
     if encounter
       answer_value_scope = answer_value_scope.joins(answer: :answer_session).where(answer_sessions: { encounter: encounter.slug })
     end
