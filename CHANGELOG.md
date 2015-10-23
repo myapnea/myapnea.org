@@ -10,6 +10,9 @@
   - Includes free response to diagnostic experience and device usage
   - Users are able to like posts
   - Users are able to request expert advice for posts
+  - Users are able to commenton individual posts
+- **Provider Changes**
+  - Provider dashboard shows posts sorted by advice requests
 
 ## 8.4.0 (October 19, 2015)
 
