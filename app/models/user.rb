@@ -60,6 +60,7 @@ class User < ActiveRecord::Base
   has_many :topics, -> { where deleted: false }
   has_many :posts, -> { where deleted: false }
   has_many :reactions
+  has_many :comments, -> { where deleted: false }
   has_many :subscriptions
   has_many :users, class_name: 'User', foreign_key: 'provider_id'
   has_many :invites

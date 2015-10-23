@@ -1,0 +1,77 @@
+// Place all the styles related to the comments controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.comment-group {
+  border-top: 1px solid #CACACA;
+  margin-left: -10px;
+  margin-right: -10px;
+  margin-top: 5px;
+  background-color: #FAFAFA;
+  .comment-group-item {
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 5px;
+    margin-bottom: 10px;
+  }
+  .comment-group-item:last-of-type {
+    margin-bottom: 0;
+  }
+}
+
+.comment-group-item {
+  position: relative;
+  .comment-usr-img {
+    width: 25px;
+    position: absolute;
+    top: 5px;
+    left: 0;
+    img {
+      width: 25px;
+      height: 25px;
+    }
+  }
+  .comment-content {
+    margin-left: 30px;
+    .small {
+      color: #777;
+    }
+  }
+}
+
+
+.reply {
+  position: relative;
+  $reply-height: 35px;
+  margin-left: -10px;
+  margin-right: -10px;
+  margin-bottom: -10px;
+  height: $reply-height;
+  background-color: #FAFAFA;
+  .reply-user {
+    width: $reply-height;
+    position: absolute;
+    top: 5px;
+    left: 10px;
+    img {
+      width: 25px;
+      height: 25px;
+    }
+  }
+  .reply-field {
+    margin-left: 40px;
+    height: $reply-height;
+    input[type='text'] {
+      height: $reply-height;
+      padding: 2px;
+      font-size: 12px;
+      border-color: #ddd;
+      border-radius: 0 0 0px 0;
+    }
+    input[type='text']:focus {
+      border-color: #bbb;
+      outline: 0;
+      box-shadow: none;
+    }
+  }
+}

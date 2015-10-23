@@ -18,9 +18,8 @@
       = render 'posts/formatted', post: post
       - if current_user
         %div{ id: "reaction-container-#{post.id}"}
-          = render 'reactions/like_form', post: post
-          = render 'reactions/request_form', post: post
-        .clearfix
+          = render 'posts/reactions_and_comments', post: post
+
 
 
 
