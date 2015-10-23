@@ -45,6 +45,10 @@ class Survey < ActiveRecord::Base
     self.where("surveys.slug = ? or surveys.id = ?", input.to_s, input.to_i).first
   end
 
+  def self.columns_for_group
+    column_names.collect { |cn| "#{table_name}.#{cn}" }.join(', ')
+  end
+
   # Simplified Version
   # def to_param
   #   slug
