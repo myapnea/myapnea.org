@@ -5,6 +5,7 @@ class Survey < ActiveRecord::Base
   # Concerns
   include Localizable
   include Deletable
+  include Groupable
 
   # Callbacks
   after_create :create_default_encounters
@@ -43,10 +44,6 @@ class Survey < ActiveRecord::Base
 
   def self.find_by_param(input)
     self.where("surveys.slug = ? or surveys.id = ?", input.to_s, input.to_i).first
-  end
-
-  def self.columns_for_group
-    column_names.collect { |cn| "#{table_name}.#{cn}" }.join(', ')
   end
 
   # Simplified Version

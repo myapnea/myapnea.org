@@ -23,7 +23,9 @@ class User < ActiveRecord::Base
           ['Research professional', 'researcher']]
 
   # Concerns
-  include CommonDataModel, Deletable
+  include CommonDataModel
+  include Deletable
+  include Groupable
 
   attr_accessor :user_is_updating
 

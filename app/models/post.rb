@@ -4,6 +4,7 @@ class Post < ActiveRecord::Base
 
   # Concerns
   include Deletable
+  include Groupable
 
   # Callbacks
   after_save :touch_topic
@@ -26,7 +27,6 @@ class Post < ActiveRecord::Base
   has_many :comments, -> { where deleted: false }
 
   # Post Methods
-
   def forum
     self.topic.forum
   end

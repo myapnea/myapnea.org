@@ -13,6 +13,8 @@
   - Users are able to commenton individual posts
 - **Provider Changes**
   - Provider dashboard shows posts sorted by advice requests
+- **Other**
+  - Added Groupable concern for compatibility with PostgreSQL 8.3
 
 ## 8.4.0 (October 19, 2015)
 
