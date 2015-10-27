@@ -1,4 +1,4 @@
-- if post.reactions.present?
+- if post.reactions.current.present?
   .reaction-summary
     %p
       - if post.reactions.current.likes.present? and post.reactions.current.requests.present?
