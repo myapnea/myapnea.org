@@ -1,6 +1,4 @@
-// Place all the styles related to the reactions controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+$reaction-color: #BD7A00;
 
 .btn-blank {
   border: none;
@@ -12,11 +10,11 @@
 }
 
 .btn-like.liked {
-  color: $primary-blue;
+  color: $reaction-color;
 }
 
 .btn-like.liked:hover {
-  color: darken($primary-blue, 8.5%);
+  color: darken($reaction-color, 8.5%);
 }
 
 .btn-like:focus,
@@ -26,3 +24,11 @@
   box-shadow: none;
 }
 
+.reaction-summary {
+  padding: 10px 10px 0 10px;
+  p {
+    color: $reaction-color;
+    font-size: 14px;
+    font-weight: 700;
+  }
+}

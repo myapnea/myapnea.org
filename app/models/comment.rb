@@ -8,6 +8,7 @@ class Comment < ActiveRecord::Base
 
   # Validations
   validates :post_id, presence: true
+  validates :content, presence: true
 
   # Callback
   # Other macros

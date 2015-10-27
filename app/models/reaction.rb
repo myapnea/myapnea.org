@@ -19,5 +19,8 @@ class Reaction < ActiveRecord::Base
   include Deletable
 
   # Named scopes
+  scope :likes, -> { where(form: "#{FORM_LIKE}") }
+  scope :requests, -> { where(form: "#{FORM_REQUEST}") }
+
   # Methods
 end
