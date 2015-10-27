@@ -1,0 +1,7 @@
+.post.post-muted
+  - if current_user
+    %i.text-muted
+      = post.spam? ? "Post is Spam" : "Post is Hidden"
+    - if (current_user.owner? or current_user.admin?) or current_user==post.user
+      .pull-right
+        = render 'posts/actions/edit', post: post

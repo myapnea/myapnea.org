@@ -5,15 +5,21 @@
       = link_to 'Forums', forums_path
       &middot;
       = link_to @forum.name, @forum
-      &middot;
-      = link_to image_tag('myapnea/icons/facebook_icon.png', class: 'share-icons-sm'), "http://www.facebook.com/share.php?u=#{ENV['website_url'] + forum_topic_path(@forum, @topic)}"
-      = link_to image_tag('myapnea/icons/twitter_icon.png', class: 'share-icons-sm'), "http://twitter.com/home?status=#{truncate(@topic.name, length: 92)}%20#{ENV['website_url'] + forum_topic_path(@forum, @topic)}%20via%20%40MyApneaOrg%20%23myapnea"
-      = link_to image_tag('myapnea/icons/email_icon.png', class: 'share-icons-sm'), "mailto:?subject=Check%20out%20this%20conversation%20on%20MyApnea.Org&body=I%20think%20you%20will%20like%20this%20discussion%20happening%20on%20MyApnea.Org:%20#{@topic.name}%20%28#{forum_topic_path(@forum, @topic)}%29"
 
 .container
   %br
   .row
     .col-sm-8
+      - if @topic.posts.where(status: 'pending_review').count > 0
+        .forum-post-content-container
+          .post.post-muted
+            %p
+              This topic includes at least one post that has not been approved by a
+              moderator. Please be advised that these posts may contain sensitive
+              material or unsolicited medical advice. MyApnea does not endorse the
+              content of these posts. The information provided on this site is not
+              intended nor recommended as a substitute for advice from a health care
+              professional who has evaluated you.
       - @posts = @topic.posts.includes(:user, topic: :forum).page(params[:page]).per( Topic::POSTS_PER_PAGE )
       = render @posts
       -# Display status of the topic to members
@@ -31,18 +37,8 @@
             You will be notified by email when your topic has been approved.
 
       - else
-        - if @topic.posts.where(status: 'pending_review').count > 0
-          .well.well-sm
-            %p
-              This topic includes at least one post that has not been approved by a
-              moderator. Please be advised that these posts may contain sensitive
-              material or unsolicited medical advice. MyApnea does not endorse the
-              content of these posts. The information provided on this site is not
-              intended nor recommended as a substitute for advice from a health care
-              professional who has evaluated you.
-
         - if current_user
-          .content-container.horizontal-inset.inherit-background
+          .inherit-background
             - @post = @topic.posts.new
             = form_for [@forum, @topic, @post], html: { class: 'form-horizontal' } do |f|
               - if @post.errors.any?
@@ -57,11 +53,8 @@
               - if current_user.moderator?
                 = f.hidden_field :status, value: 'approved'
 
-              .row.reset-layout
-                .col-xs-1.reset-layout
-                  = render partial: 'forums/user_image', locals: { user: current_user, size: 50 }
-
-                .col-xs-11
+              .row
+                .col-xs-11.col-xs-offset-1
                   %ul.nav.nav-tabs
                     %li.active
                       %a{ href: '#write-new', data: { toggle: 'tab' } }
@@ -83,52 +76,14 @@
               .row.reset-layout
                 .col-xs-11.col-xs-offset-1
                   = f.submit "Comment", class: 'btn btn-primary', data: { disable_with: "Posting comment..." }
+              %br
               .text-right= paginate @posts, theme: 'bootstrap-small'
-
+              %br
     .col-sm-4
       = paginate @posts, theme: 'bootstrap-small'
+      = render 'topics/share_icons'
       - if current_user and (current_user.owner? or current_user.moderator?)
-        .well.well-sm
-          Admins:
-          = link_to 'Edit Topic', edit_forum_topic_path(@forum, @topic), class: 'btn btn-xs btn-primary' if current_user and @topic.editable_by?(current_user)
-          - if @topic.deletable_by?(current_user)
-            = link_to 'Delete Topic', [@forum, @topic], method: :delete, class: 'btn btn-xs btn-danger', data: { confirm: "Are you sure you want to delete this topic?" }
-          -# Show moderator information for topics with any status (except approved)
-          - if current_user.owner?
-            This topic was created by
-            = link_to @topic.user.name_and_email, @topic.user
-            - if @topic.user.forum_name.present?
-              = succeed "." do
-                = link_to @topic.user.forum_name, member_path(@topic.user.forum_name), class: 'no-underline darkerer-blue'
-          This topic has had
-          = @topic.views_count ? @topic.views_count : 'unknown'
-          views since
-          = @topic.created_at.strftime("%Y-%m-%d")
-
-          - if @topic.status == 'pending_review'
-            %i.fa.fa-eye-slash
-            This topic is currently pending review. You can either
-            = link_to 'approve', forum_topic_path(@forum, @topic, topic: { status: 'approved' }), method: :patch, class: 'btn btn-success btn-xs'
-            this topic or
-            = link_to 'mark the topic as spam.', forum_topic_path(@forum, @topic, topic: { status: 'spam' }), method: :patch, class: 'btn btn-danger btn-xs'
-          - if @topic.status == 'spam'
-            %i.fa.fa-eye-slash
-            This topic is marked as spam. If this was a mistake, you can
-            = link_to 'undo', forum_topic_path(@forum, @topic, topic: { status: 'pending_review' }), method: :patch, class: 'btn btn-danger btn-xs'
-            this and set the topic back to pending review.
-          - if @topic.hidden?
-            %i.fa.fa-eye-slash
-            This topic has been hidden, and is not viewable to regular forum members. You can
-            = link_to 'edit this topic', edit_forum_topic_path(@forum, @topic)
-            to make it viewable again.
-          - if @topic.hidden? and @topic.locked?
-            %br
-            %br
-          - if @topic.locked?
-            %span.glyphicon.glyphicon-lock
-            This topic has been locked, and no longer allows users to edit or add new posts. You can
-            = link_to 'edit this topic', edit_forum_topic_path(@forum, @topic)
-            to unlock it.
+        = render 'topics/admin_info'
       - if current_user
         .well.well-sm= render 'topics/subscribe_unsubscribe', topic: @topic
       - else

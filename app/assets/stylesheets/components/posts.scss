@@ -1,173 +1,70 @@
-
-// COPIED
-$ma-light-yellow:       #ffbb52;
-$ma-light-blue:         #5999de;
-$ma-black-blue:         #0b173a;
-$ma-red:                #de5c59;
-$ma-lighter-blue:       #9faac9;
-
-$text-color:            $ma-black-blue;
-$text-muted:                  $ma-lighter-blue;
-
-.action-bar-forum,
-.search-bar-forum {
-  float: right;
-  padding:0px;
-}
-.action-bar-forum-mobile {
-  display: none;
-}
-.btn-forum-header {
-  padding: 7px;
-}
-
-@media (max-width: $screen-md) {
-  .btn-forum-header {
-    padding:10px;
-    border-radius:5px;
-  }
-  .search-bar-forum {
-    float: none;
-    padding-bottom: 10px;
-    .input-group {
-      width:100%;
-    }
-  }
-  .action-bar-forum {
-    float: none;
-    display:none;
-  }
-  .action-bar-forum-mobile {
-    display: block;
-  }
-}
-
-.forum-container {
-
-  .topic-container {
-    margin-bottom: 20px;
-  }
-
-}
-
-table.topics tr {
-  cursor: pointer;
-}
-
-.post-container {
-  background-color: white;
+.forum-post-content-container {
   position: relative;
-  padding: 15px;
-  word-wrap: break-word;
-  border: 1px solid #cccccc;
-  border-radius: 4px;
-  margin-bottom: 20px;
-  .wrapword {
-    p {
-      padding: 0px;
+  .poster {
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 70px;
+  }
+  .post {
+    background-color: white;
+    box-shadow:0px 0px 2px rgba(0,0,0,.5);
+    margin-bottom: 20px;
+    margin-left: 70px;
+    padding: 10px;
+    .post-details {
+      p {
+        color: #8A8A8A;
+        margin-bottom: 0px;
+      }
+    }
+    .post-content {
+      margin-top: 10px;
+      margin-left: 0px;
+      .wrapword {
+        p {
+          padding: 0px;
+        }
+      }
+      blockquote {
+        color: $text-muted;
+        font-weight: 300;
+        border-left-width: 2px;
+      }
+      .table {
+        th[align=left] {
+          text-align: left;
+        }
+        th[align=right] {
+          text-align: right;
+        }
+        th[align=center] {
+          text-align: center;
+        }
+      }
+      img {
+        max-width: 100%;
+      }
     }
   }
-  blockquote {
-    color: $text-muted;
-    font-weight: 300;
-    border-left-width: 2px;
+  .post-actions-btn {
+    background-color: inherit;
+    color: #8A8A8A;
+    border: none;
   }
-  .table {
-    th[align=left] {
-      text-align: left;
-    }
-    th[align=right] {
-      text-align: right;
-    }
-    th[align=center] {
-      text-align: center;
-    }
+  .pending-review-warning {
+    background-color: #ffa400;
+    padding: 5px;
+    border-radius:3px;
+    color: white;
+    font-weight: 500;
   }
-  img {
-    max-width: 100%;
+  .post.post-muted {
+    background-color: #eaeaea;
   }
 }
 
-.post-deleted {
-  padding: 4px 34px 4px 8px;
-  font-weight: 200;
-  background-color: #efefef;
-}
-
-.post-under-review {
-  .post-container-right-after {
-    background-color: $ma-light-yellow;
-    color: $text-color;
-  }
-}
-
-.post-hidden, .post-spam {
-  background-color: #efefef;
-}
-
-.post-spam {
-  .post-container-right-after {
-    background-color: $ma-red;
-    color: $text-color;
-  }
-}
-
-
-.post-user-name-container {
-  padding-bottom: 10px;
-  font-size: 20px;
-}
-
-.post-container-after, .post-container-right-after, .post-container-right-bottom-after, .post-container-right-middle-after {
-  position: absolute;
-  padding: 3px 7px;
-  font-size: 12px;
-  font-weight: 300;
-  background-color: #f5f5f5;
-  border: 1px solid #ddd;
-  color: #9da0a4;
-}
-
-.post-container-after {
-  left: -1px;
-}
-
-.post-container-after, .post-container-right-after, .post-container-right-middle-after {
-  top: -1px;
-}
-
-.post-container-right-bottom-after, .post-container-right-middle-after {
-  bottom: -1px;
-}
-
-.post-container-right-after, .post-container-right-bottom-after, .post-container-right-middle-after {
-  right: -1px;
-}
-
-.post-container-after, .post-container-right-bottom-after {
-  -webkit-border-radius: 4px 0 4px 0;
-  -moz-border-radius: 4px 0 4px 0;
-  border-radius: 4px 0 4px 0;
-}
-
-.post-container-right-after {
-  -webkit-border-radius: 0 4px 0 4px;
-  -moz-border-radius: 0 4px 0 4px;
-  border-radius: 0 4px 0 4px;
-}
-
-.post-container-right-middle-after {
-  -webkit-border-radius: 0 4px 4px 0;
-  -moz-border-radius: 0 4px 4px 0;
-  border-radius: 0 4px 4px 0;
-}
-
-
-.original-poster-badge {
-  background-color: $ma-light-blue;
-  color: white;
-}
-
+// User thumbnails
 .user-thumbnail-forum-no-border {
   width:100%;
   border-radius: 3px;
@@ -187,6 +84,7 @@ table.topics tr {
   border-radius: 3px;
   box-shadow: 0px 0px 3px #ccc;
 }
+
 
 @media (max-width: $screen-md) {
   .user-thumbnail-forum {
@@ -209,6 +107,7 @@ table.topics tr {
 
 }
 
+// Anchors
 .anchor-top {
   position: relative;
   top:-102px;

@@ -2,90 +2,33 @@
 %a.anchor-top{ name: "post-#{post.id}" }
 %a.anchor-top{ name: "c#{current_index}" }
 
-.horizontal-inset
-  .row.reset-layout
-    - if post.deleted? or post.user.deleted?
-      .col-xs-1.reset-layout{ style: "display:none" }
-      .col-xs-11{ style: 'display:none' }
-        .post-container.wrapword.post-deleted
-          .post-container-right-middle-after
-            = "##{current_index}"
-          %i.text-muted
-            Post Deleted
-    - elsif (post.hidden? or post.spam?) and not (current_user and (current_user.moderator? or current_user.owner?))
-      .col-xs-1.reset-layout{ style: 'display:none' }
-      .col-xs-11{ style: 'display:none' }
-        .post-container.wrapword.post-deleted
-          .post-container-right-middle-after
-            = "##{current_index}"
-          %i.text-muted
-            = post.spam? ? "Post is Spam" : "Post is Hidden"
-    - elsif (post.hidden? or post.spam?) and current_user and (current_user.moderator? or current_user.owner?)
-      .col-xs-1.reset-layout.text-right
-        = render 'forums/user_image', user: post.user, size: 50
-      .col-xs-11
-        .post-container.wrapword{ class: "#{post.spam? ? 'post-spam' : 'post-hidden'}" }
-          .post-container-right-after
-            = post.spam? ? 'Post is Spam' : 'Post is Hidden'
-            - if current_user.moderator?
-              = succeed ' ' do
-                = link_to forum_topic_post_path(post.forum, post.topic, post, post: { status: 'pending_review' }), method: :patch, class: 'btn btn-xs btn-default' do
-                  %i.fa.fa-undo
-                  Undo
-              = render 'posts/actions/edit', post: post
-            %a{ href: "#c#{current_index}" }
-              = "##{current_index}"
-          - if post.topic.user == post.user
-            .post-container-right-bottom-after.original-poster-badge
-              Original Poster
-          %div{ id: "post_#{post.id}_container" }
-            .post-user-name-container
-              = render 'users/forum_name', user: post.user
-            %p.italic
-              %i.fa.fa-eye-slash
-              = link_to '#', data: { object: 'toggle-post', post_id: post.id } do
-                Click to View Original Post
-            .text-muted{ style: 'text-decoration:line-through;display:none', id: "post_contents_#{post.id}" }
-              = simple_markdown(sanitize(post.description).gsub('&gt;', '>'), false)
-            .small.text-muted.f300
-              = post.created_at.strftime("%-d %B %Y, %-l:%M %p")
-    - elsif post.pending_review?
-      .col-xs-1.reset-layout.text-right
-        = render 'forums/user_image', user: post.user, size: 50
-      .col-xs-11
-        .post-container.wrapword.post-under-review
-          .post-container-right-after
-            %span.f400
-              Under Review
-            - if current_user and current_user.moderator?
-              = render 'posts/actions/pending_review_as_moderator', post: post
-            = render 'posts/actions/edit', post: post
-            %a{ href: "#c#{current_index}" }
-              = "##{current_index}"
-          - if post.topic.user == post.user
-            .post-container-right-bottom-after.original-poster-badge
-              Original Poster
-          %div{ id: "post_#{post.id}_container" }
-            .post-user-name-container
-              = render 'users/forum_name', user: post.user
-            = render 'posts/formatted', post: post
-            .small.text-muted{ style: 'font-weight: 300' }
-              = post.created_at.strftime("%-d %B %Y, %-l:%M %p")
-    - else
-      .col-xs-1.reset-layout.text-right
-        = render 'forums/user_image', user: post.user, size: 50
-      .col-xs-11
-        .post-container.wrapword
-          .post-container-right-after
-            = render 'posts/actions/edit', post: post
-            %a{ href: "#c#{current_index}" }
-              = "##{current_index}"
-          - if post.topic.user == post.user
-            .post-container-right-bottom-after.original-poster-badge
-              Original Poster
-          %div{ id: "post_#{post.id}_container" }
-          .post-user-name-container
-            = render 'users/forum_name', user: post.user
-          = render 'posts/formatted', post: post
-          .small.text-muted{ style: 'font-weight: 300' }
-            = post.created_at.strftime("%-d %B %Y, %-l:%M %p")
+.forum-post-content-container
+  - if post.deleted? or post.user.deleted?
+    = render 'posts/deleted', post: post
+  - elsif post.hidden? or post.spam?
+    = render 'posts/hidden_spam', post: post
+  - else
+    .poster
+      = render 'forums/user_image_link', user: post.user, size: 50
+    .post
+      .post-details
+        .pull-right
+          - if post.pending_review?
+            %span.pending-review-warning Pending Review
+          - if current_user and (current_user==post.user or current_user.moderator?)
+            .dropdown.inline-block
+              %button.post-actions-btn#dLabel{ 'aria-expanded' => 'false', 'aria-haspopup' => 'true', 'data-toggle' => 'dropdown', type: 'button' }
+                %span.caret
+              %ul.dropdown-menu.dropdown-menu-right{ 'aria-labelledby' => 'dLabel'}
+                %li= link_to 'Link to this post', forum_topic_post_path(post.forum, post.topic, post)
+                %li= link_to 'Edit', edit_forum_topic_post_path(post.forum, post.topic, post)
+                %li= link_to 'Delete', forum_topic_post_path(post.forum, post.topic, post), method: :delete, data: { confirm: "Are you sure?" }
+        %p.f500
+          = link_to post.user.forum_name, member_path(post.user.forum_name), class: 'no-underline darkerer-blue'
+        %p.small
+          %span.post-time= time_ago_in_words(post.created_at) + ' ago'
+      .post-content.wrapword
+        = render 'posts/formatted', post: post
+        - if current_user
+          %div{ id: "reaction-container-#{post.id}"}
+            = render 'posts/reactions_and_comments', post: post

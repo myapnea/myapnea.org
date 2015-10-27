@@ -18,6 +18,7 @@
 
 ### Refactoring
 - Refactored stylesheets to make better use of SCSS variables
+- Simplified forum views and actions
 
 
 ## 8.4.0 (October 19, 2015)
