@@ -23,7 +23,7 @@
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#12bc00', endColorstr='#ff0000',GradientType=1 ); /* IE6-8 */
 }
 @mixin range-input-slider {
-  background-color: #fff;
+  background-color: $white;
   width: 20px;
   height: 40px;
   border-radius:7px;
@@ -31,9 +31,9 @@
 }
 
 #risk-assessment-container {
-  background-color: #fff;
-  border-top: 5px solid #ffa400;
-  border-bottom: 5px solid #ffa400;
+  background-color: $white;
+  border-top: 5px solid $primary-orange;
+  border-bottom: 5px solid $primary-orange;
   #risk-assessment-logo {
     margin-top: 20px;
     margin-bottom: 10px;
@@ -76,13 +76,13 @@
       border-radius:20px;
       width: 100px;
       text-align: center;
-      background-color: #b1d2f6;
+      background-color: $lightest-blue;
       border:6px double transparent;
       cursor: pointer;
     }
     input[type=radio]:checked ~ label {
-      border:6px double #b1d2f6;
-      background-color: #5999DE;
+      border:6px double $lightest-blue;
+      background-color: $primary-blue;
       color: white;
     }
   }
@@ -97,7 +97,7 @@
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    background: asset-url("myapnea/icons/arrowdown.png") 96% / 15% no-repeat #fff;
+    background: asset-url("myapnea/icons/arrowdown.png") 96% / 15% no-repeat $white;
   }
   .select-label {
     font-weight: 300;
@@ -194,9 +194,9 @@
 }
 
 #risk-assessment-results-container {
-  background-color: #fff;
-  border-top: 5px solid #ffa400;
-  border-bottom: 5px solid #ffa400;
+  background-color: $white;
+  border-top: 5px solid $primary-orange;
+  border-bottom: 5px solid $primary-orange;
   #risk-assessment-logo {
     margin-top: 20px;
     margin-bottom: 10px;

@@ -24,11 +24,11 @@
 }
 
 a.open-tab {
-  color: #387fcf;
+  color: $darker-blue;
 }
 
 a.open-tab:hover {
-  color: #1765bc;
+  color: $darkest-blue;
   cursor: pointer;
 }
 
@@ -37,7 +37,7 @@ a#provider-link {
   text-align:center;
   display: block;
   .btn {
-    background-color: #ffa400;
+    background-color: $primary-orange;
     border-radius:20px;
     color:white;
   }
@@ -51,7 +51,7 @@ a.home-news-link:hover {
   text-decoration:none;
   h4 {
     text-decoration:none;
-    color: #ffc864;
+    color: $lightest-orange;
   }
 }
 

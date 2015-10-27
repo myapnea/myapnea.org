@@ -5,26 +5,26 @@
       = image_tag user_photo_url(current_user), alt: '', class: "user-picture", style: 'max-width:100px; max-height:100px;cursor:pointer'
   .clearfix
   .centered
-    %h4.f300.text-white
+    %h4.f300.white
       = current_user.forum_name
-    %p.text-light7
+    %p.light7
       %span.f500 Member since:
-      %span.text-light9= current_user.created_at.year
+      %span.light9= current_user.created_at.year
   #user-stats
     .col-xs-4.user-stats
-      %p.small.f500.text-dark5
+      %p.small.f500.dark5
         POSTS
-      %h5.text-white5
+      %h5.white5
         = current_user.posts.visible_for_user.not_research.count
     .col-xs-4.user-stats
-      %p.small.f500.text-dark5
+      %p.small.f500.dark5
         SURVEYS
-      %h5.text-white5
+      %h5.white5
         = current_user.completed_answer_sessions.count
     .col-xs-4.user-stats
-      %p.small.f500.text-dark5
+      %p.small.f500.dark5
         VOTES
-      %h5.large.text-white5
+      %h5.large.light5
         = current_user.votes.current.count
     .clearfix
 
@@ -33,7 +33,7 @@
 %br
 - if current_user
   .progress-list
-    %p.lead.text-light8.centered-text
+    %p.lead.light8.centered-text
       Next steps:
     -# User should have a photo
     - if current_user.photo.present?
@@ -131,7 +131,7 @@
             Invite your personal care provider to join!
 - else
   .progress-list
-    %p.lead.text-light8.centered-text
+    %p.lead.light8.centered-text
       After joining:
     .progress-item
       %span.glyphicon.glyphicon-lock.progress-indicator.progress-indicator-locked

@@ -1,15 +1,17 @@
 .comment-group {
-  border-top: 1px solid #CACACA;
+  background-color: $footer-color;
+  border-top: 1px solid $border-top-color;
   margin-left: -10px;
   margin-right: -10px;
   margin-top: 5px;
-  background-color: #FAFAFA;
+
   .comment-group-item {
+    margin-bottom: 10px;
     margin-left: 10px;
     margin-right: 10px;
     padding: 5px;
-    margin-bottom: 10px;
   }
+
   .comment-group-item:last-of-type {
     margin-bottom: 0;
   }
@@ -17,55 +19,64 @@
 
 .comment-group-item {
   position: relative;
+
   .comment-usr-img {
-    width: 25px;
+    left: 0;
     position: absolute;
     top: 5px;
-    left: 0;
+    width: 25px;
+
     img {
-      width: 25px;
       height: 25px;
+      width: 25px;
     }
   }
+
   .comment-content {
     margin-left: 30px;
+
     .small {
-      color: #777;
+      color: $dark-gray;
     }
   }
 }
 
 
 .reply {
-  position: relative;
   $reply-height: 35px;
-  margin-bottom: -10px;
+  background-color: $footer-color;
   height: $reply-height;
-  background-color: #FAFAFA;
+  margin-bottom: -10px;
+  position: relative;
+
   .reply-user {
-    width: $reply-height;
+    left: 10px;
     position: absolute;
     top: 5px;
-    left: 10px;
+    width: $reply-height;
+
     img {
-      width: 25px;
       height: 25px;
+      width: 25px;
     }
   }
+
   .reply-field {
-    margin-left: 40px;
     height: $reply-height;
-    input[type='text'] {
+    margin-left: 40px;
+
+    input {
+      border-color: $lighter-gray;
+      border-radius: 0;
+      font-size: 12px;
       height: $reply-height;
       padding: 2px;
-      font-size: 12px;
-      border-color: #ddd;
-      border-radius: 0 0 0px 0;
     }
-    input[type='text']:focus {
-      border-color: #bbb;
-      outline: 0;
+
+    input:focus {
+      border-color: $light-gray;
       box-shadow: none;
+      outline: 0;
     }
   }
 }

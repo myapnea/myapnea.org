@@ -10,7 +10,7 @@ https://medium.com/@andsens/radial-progress-indicator-using-css-a917b80c43f9
   border-radius: 50%;
   // Colors
   $circle-background: #eee;
-  $circle-color: #78c679;
+  $circle-color: $great;
   background-color: $circle-background;
   // Rotation animation
   $transition-length: 1s;

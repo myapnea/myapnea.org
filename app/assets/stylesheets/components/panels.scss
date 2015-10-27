@@ -13,13 +13,13 @@
   }
 
   .panel-heading-orange {
-    background-color: #FFB839;
+    background-color: $lighter-orange;
     color: rgb(255,255,255);
     color: rgba(255,255,255,.85);
   }
 
   .panel-heading-blue {
-    background-color: #B1D2F6;
+    background-color: $lightest-blue;
     color: rgb(0,0,0);
     color: rgba(0,0,0,.85);
   }
@@ -47,12 +47,12 @@
 
 /* ABOUT US */
 .about-links {
-  border:1px solid #ffc864;
+  border:1px solid $lightest-orange;
   padding:0;
 }
 
 .about-links:hover {
-  background-color: #ffc864;
+  background-color: $lightest-orange;
 }
 
 .about-links a {

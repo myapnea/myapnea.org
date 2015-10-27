@@ -1,10 +1,8 @@
 - @title = 'Progress Report'
 .content-main-header
   .container
-    %h1
-      = @title
-    %p.lead.text-light8{ style: 'margin-bottom: 0px;'}
-      = link_to 'Admin Dashboard', admin_path
+    %h1= @title
+    %p= link_to 'Admin Dashboard', admin_path
 
 - user_scope = User.where(include_in_exports: true)
 - @survey = Survey.current.find_by_slug 'about-me'

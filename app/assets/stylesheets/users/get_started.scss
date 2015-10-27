@@ -10,7 +10,7 @@
   margin-top: 30px;
   margin-bottom: 30px;
   text-align:center;
-  $viewedColor: #78c679;
+  $viewedColor: $great;
   $unviewedColor: #d5ecd2;
   a, a:active {
     text-decoration: none;
@@ -62,7 +62,7 @@
 
   #registration-progress {
   margin-bottom:20px;
-  $viewedColor: #78c679;
+  $viewedColor: $great;
   $unviewedColor: #d5ecd2;
   .circle-progress {
     display:inline-block;

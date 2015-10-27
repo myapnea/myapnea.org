@@ -5,68 +5,63 @@
   padding: 15px;
   border-width:3px;
   border-style: solid;
-  background:#fff;
+  background: $white;
   color:rgb(0,0,0);
   color:rgba(0,0,0,.7);
-  /* css3 */
   -webkit-border-radius:20px;
   -moz-border-radius:20px;
   border-radius:20px;
 }
 
 .rectangle-speech-border-orange {
-  border-color: #FFC864;
+  border-color: $lightest-orange;
   margin-bottom: 30px;
 }
 
 .rectangle-speech-border-blue {
-  border-color: #B1D2F6;
+  border-color: $lightest-blue;
   margin-bottom: 60px;
 }
 
 /* creates larger curve */
 .rectangle-speech-border-left:before {
-  content:"";
-  position:absolute;
-  z-index:10;
-  bottom:-30px;
-  left:53px;
-  width:39px;
-  height:30px;
-  border-style:solid;
-  border-width:0 3px 3px 0;
-  border-color:#FFC864;
+  content: "";
+  position: absolute;
+  z-index: 10;
+  bottom: -30px;
+  left: 53px;
+  width: 39px;
+  height: 30px;
+  border-style: solid;
+  border-width: 0 3px 3px 0;
+  border-color: $lightest-orange;
   background:transparent;
-  /* css3 */
-  -webkit-border-bottom-right-radius:80px 50px;
-  -moz-border-radius-bottomright:80px 50px;
-  border-bottom-right-radius:80px 50px;
-  /* reduce the damage in FF3.0 */
-  display:block;
-  background-color: white;
+  -webkit-border-bottom-right-radius: 80px 50px;
+  -moz-border-radius-bottomright: 80px 50px;
+  border-bottom-right-radius: 80px 50px;
+  display: block;
+  background-color: $white;
 }
 
 /* creates smaller curve */
 .rectangle-speech-border-left:after {
-  content:"";
-  position:absolute;
-  z-index:10;
-  bottom:-30px;
-  left:50px;
-  width:20px;
-  height:30px;
-  border-style:solid;
-  border-width:0 3px 3px 0;
-  border-color:#FFC864;
-  background:transparent;
-  /* css3 */
-  -webkit-border-bottom-right-radius:40px 50px;
-  -moz-border-radius-bottomright:40px 50px;
-  border-bottom-right-radius:40px 50px;
-  /* reduce the damage in FF3.0 */
-  display:block;
+  content: "";
+  position: absolute;
+  z-index: 10;
+  bottom: -30px;
+  left: 50px;
+  width: 20px;
+  height: 30px;
+  border-style: solid;
+  border-width: 0 3px 3px 0;
+  border-color: $lightest-orange;
+  background: transparent;
+  -webkit-border-bottom-right-radius: 40px 50px;
+  -moz-border-radius-bottomright: 40px 50px;
+  border-bottom-right-radius: 40px 50px;
+  display: block;
   background-color: #E6EDF4;
-  border-top: 3px solid #FFC864;
+  border-top: 3px solid $lightest-orange;
 }
 
 /* creates a white rectangle to cover part of the oval border*/
@@ -77,7 +72,7 @@
   left:70px;
   width:20px;
   height:15px;
-  background:#fff;
+  background: $white;
 }
 
 
@@ -93,13 +88,9 @@
   height:30px;
   border-style:solid;
   border-width:0 0 3px 3px;
-  border-color:#B1D2F6;
+  border-color: $lightest-blue;
   background:transparent;
-  /* css3 */
-  // -webkit-border-bottom-left-radius:80px 50px;
-  // -moz-border-radius-bottomleft:80px 50px;
   border-bottom-left-radius:80px 50px;
-  /* reduce the damage in FF3.0 */
   display:block;
   background-color: white;
 }
@@ -115,7 +106,7 @@
   height:30px;
   border-style:solid;
   border-width:0 0 3px 3px;
-  border-color:#B1D2F6;
+  border-color:$lightest-blue;
   background:transparent;
   /* css3 */
   -webkit-border-bottom-left-radius:40px 50px;
@@ -124,7 +115,7 @@
   /* reduce the damage in FF3.0 */
   display:block;
   background-color: #E6EDF4;
-  border-top: 3px solid #B1D2F6;
+  border-top: 3px solid $lightest-blue;
 }
 
 /* creates a white rectangle to cover part of the oval border*/
@@ -135,7 +126,7 @@
   right:70px;
   width:20px;
   height:15px;
-  background:#fff;
+  background:$white;
 }
 
 

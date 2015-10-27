@@ -44,18 +44,18 @@
       .row
         .col-sm-3
         .col-sm-3
-          %p.text-dark8
-            %span.f500.text-dark5 Member since:
+          %p.dark8
+            %span.f500.dark5 Member since:
             %br
             = @member.created_at.strftime("%b %-d, %Y")
         .col-sm-3
-          %p.text-dark8
-            %span.f500.text-dark5 Number of posts:
+          %p.dark8
+            %span.f500.dark5 Number of posts:
             %br
             = @posts.count
         .col-sm-3
-          %p.text-dark8
-            %span.f500.text-dark5 Number of votes:
+          %p.dark8
+            %span.f500.dark5 Number of votes:
             %br
             = @member.votes.current.count
 
@@ -67,7 +67,7 @@
         = render 'posts/recent_post', post: event
       - elsif event.class == ResearchTopic and current_user and current_user.experienced_voter?
         .hidden{ id: "voting-form-error-#{event.id}" }
-          .emergency-bcg.text-white{ style: 'padding: 10px; border-radius: 3px; margin-bottom: 10px;' }
+          .emergency-bcg.white{ style: 'padding: 10px; border-radius: 3px; margin-bottom: 10px;' }
             Please either 'Agree' or 'Disagree'.
         .voting-container{ id: "voting-container-#{event.id}", style: 'width: 80%; margin: auto'}
           = render 'research_topics/voting_form', research_topic: event, remote_bool: true

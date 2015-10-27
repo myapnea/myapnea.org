@@ -1,7 +1,6 @@
 .full-survey-container:not(#simple-survey) {
   .survey-container.active .panel .input-container .multiple-question-container.current {
-    background-color: #b1d2f6;
-    background-color: transparentize(#b1d2f6, .9);
+    background-color: transparentize($lightest-blue, .9);
     border-radius:20px;
   }
   .input-container .multiple-question-container {

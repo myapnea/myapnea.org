@@ -6,7 +6,7 @@
   padding: 10px;
   min-width: 70%;
   max-width: 100%;
-  background-color: #FFA400;
+  background-color: $primary-orange;
   border: 1px solid white;
   border-radius: 100px;
   font-weight: 500;
@@ -148,11 +148,11 @@
     padding-top: 40px;
     a {
       text-decoration: none;
-      color: #ffa400;
+      color: $primary-orange;
       font-size: 18px;
     }
     a:hover {
-      color: #ffc864;
+      color: $lightest-orange;
     }
   }
 }

@@ -52,7 +52,7 @@
 .axis path,
 .axis line {
   fill: none;
-  stroke: #000;
+  stroke: $black;
   shape-rendering: crispEdges;
 }
 
@@ -94,11 +94,11 @@
 #severity-graph {
   margin: 10px;
   padding: 20px;
-  border: 2px solid #1765bc;
+  border: 2px solid $darkest-blue;
   border-radius: 20px;
   .row {
     .col-xs-3:first-of-type {
-      border-right:1px solid #1765bc;
+      border-right:1px solid $darkest-blue;
       padding: 0px;
     }
     .col-xs-3 {
@@ -108,16 +108,16 @@
         height:50px;
         border-radius:50%;
         margin:auto;
-        background-color: #1765cd;
+        background-color: $darkest-blue;
       }
     }
   }
   .row.active {
-    color: #ffa400;
-    .circle { background-color: #ffa400; }
+    color: $primary-orange;
+    .circle { background-color: $primary-orange; }
   }
   .row:last-of-type {
-    border-top: 1px solid #1765bc;
+    border-top: 1px solid $darkest-blue;
   }
 }
 

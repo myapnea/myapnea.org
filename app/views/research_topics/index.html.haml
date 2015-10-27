@@ -120,7 +120,7 @@
   -# Research highlights
   .content-container.lighter-blue-bcg
     .content-header
-      %h3.text-light9 Recently accepted research topics:
+      %h3.light9 Recently accepted research topics:
     .content-body
       - Highlight.current.where(research_highlight: true).order(created_at: :desc).in_groups_of(3, false) do |highlights_row|
         .row

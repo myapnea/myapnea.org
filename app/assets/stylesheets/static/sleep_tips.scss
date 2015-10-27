@@ -1,5 +1,5 @@
 .sleep-tip-container {
-  background-color: #ffb839;
+  background-color: $lighter-orange;
   width:100%;
   border-radius:30px;
   font-family: 'Agenda Condensed';
@@ -30,14 +30,14 @@
   .sleep-tip-content {
     position:relative;
     padding: 30px 10%;
-    background-color: #5999de;
+    background-color: $primary-blue;
     border-radius: 0 0 30px 30px;
     width: 100%;
     color:white;
     h2 {
     }
     h4 {
-      color: #b1d2f6;
+      color: $lightest-blue;
     }
   }
 }

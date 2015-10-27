@@ -3,7 +3,7 @@
   text-align:center;
   h5 {
     font-weight:300;
-    color: #5999de;
+    color: $primary-blue;
     span {
       font-size:14px;
       color: gray;
@@ -12,7 +12,7 @@
   }
   h6 {
     font-weight:300;
-    color: #387fcf;
+    color: $darker-blue;
   }
   p {
     font-weight:300;
@@ -22,7 +22,7 @@
 
 .advisory-small:hover {
   cursor: pointer;
-  background-color: #b1d2f6;
+  background-color: $lightest-blue;
   h5 {
     color: white;
     span {

@@ -1,4 +1,3 @@
-/* FONTS */
 @font-face {
   font-family: 'Open Sans';
   font-style: normal;
@@ -25,166 +24,136 @@
 
 @font-face {
   font-family: 'Dosis';
-  src: asset-url('myapnea/fonts/Dosis-Regular.otf') format("opentype");
+  src: asset-url('myapnea/fonts/Dosis-Regular.otf') format('opentype');
 }
 
 @font-face {
   font-family: 'Dosis';
   font-weight: 600;
-  src: asset-url('myapnea/fonts/Dosis-Bold.otf') format("opentype");
+  src: asset-url('myapnea/fonts/Dosis-Bold.otf') format('opentype');
 }
 
 @font-face {
   font-family: 'Cabin Sketch';
   font-weight: 500;
-  src: asset-url('myapnea/fonts/CabinSketch-Bold.otf') format("opentype");
+  src: asset-url('myapnea/fonts/CabinSketch-Bold.otf') format('opentype');
 }
 
 @font-face {
   font-family: 'Oswald';
-  src: asset-url('myapnea/fonts/Oswald-Regular.ttf') format("opentype");
+  src: asset-url('myapnea/fonts/Oswald-Regular.ttf') format('opentype');
 }
 
 @font-face {
   font-family: 'Oswald';
   font-weight: 500;
-  src: asset-url('myapnea/fonts/Oswald-Bold.ttf') format("opentype");
+  src: asset-url('myapnea/fonts/Oswald-Bold.ttf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Agenda Condensed';
+  src: asset-url('myapnea/fonts/Agenda-MediumCondensed.otf') format('opentype');
 }
 
 .cabin-sketch { font-family: 'Cabin Sketch', sans-serif; }
 .oswald { font-family: 'Oswald', sans-serif; }
 
-@font-face {
-  font-family: 'Agenda Condensed';
-  src: asset-url('myapnea/fonts/Agenda-MediumCondensed.otf') format("opentype");
-}
-
-.centered, .centered-text { text-align:center; }
+.centered { text-align: center; }
 .right-justified { text-align: right; }
 .left-justified { text-align: left; }
 
-.wrapword{
-  white-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */
-  white-space: -pre-wrap;      /* Opera 4-6 */
-  white-space: -o-pre-wrap;    /* Opera 7 */
-  white-space: pre-wrap;       /* css-3 */
-  word-wrap: break-word;       /* Internet Explorer 5.5+ */
-  white-space: -webkit-pre-wrap; /* Newer versions of Chrome/Safari*/
-  word-break: break-word;
+.wrapword {
   white-space: normal;
+  word-break: break-word;
 }
 
 .italic { font-style: italic; }
 
 
-/* TYPOGRAPHY */
-/**************/
+// TYPOGRAPHY
 
-/* Headers */
+// Headers
 
-h1{ font-size: 3.0em; }
-h2{ font-size: 2.5em; }
-h3{ font-size: 2.0em; }
-h4{ font-size: 1.7em; }
-h5{ font-size: 1.5em; }
-h6{ font-size: 1.3em; }
-p { font-size: 1.3em; font-weight: lighter; font-weight: 300; }
+h1 { font-size: 3em; }
+h2 { font-size: 2.5em; }
+h3 { font-size: 2em; }
+h4 { font-size: 1.7em; }
+h5 { font-size: 1.5em; }
+h6 { font-size: 1.3em; }
+p { font-size: 1.3em; }
 
 .spaced { line-height: 1.7em; }
 
-h1.half-size { font-size: 1.5em; }
-h2.half-size { font-size: 1.25em; }
-h3.half-size { font-size: 1.0em; }
-h4.half-size { font-size: 0.85em; }
-h5.half-size { font-size: 0.75em; }
-h6.half-size { font-size: 0.65em; }
-p.half-size { font-size: 0.65em; }
+.f300 { font-weight: 300; }
+.f400 { font-weight: 400; }
+.f500 { font-weight: 500; }
+.f600 { font-weight: 600; }
+.f700 { font-weight: 700; }
 
-.f300 { font-weight:lighter; font-weight:300; }
-.f400 { font-weight:400; }
-.f500 { font-weight:bolder; font-weight:500; }
-.f600 { font-weight:bolder; font-weight:600; }
-.f700 { font-weight:bold; font-weight:700; }
+// Lists
 
-/* Lists */
-
-ul, ol {
+ul,
+ol {
   font-size: 1.3em;
   line-height: 1.7em;
-  ul, ol {
-    font-size: 0.9em;
+
+  ul,
+  ol {
+    font-size: .9em;
     line-height: 1.5em;
-    ul, ol {
-      font-size: 0.9em;
+
+    ul,
+    ol {
+      font-size: .9em;
       line-height: 1.4em;
     }
   }
+
   p { font-size: 1em; }
 }
 
-li { font-weight: lighter; font-weight: 300; }
-
-/* Responsive */
+// Responsive
 
 // 90% of size
 @media (max-width: $screen-lg) {
-  h1{ font-size: 2.7em; }
-  h2{ font-size: 2.25em; }
-  h3{ font-size: 1.8em; }
-  h4{ font-size: 1.53em; }
-  h5{ font-size: 1.35em; }
-  h6{ font-size: 1.17em; }
+  h1 { font-size: 2.7em; }
+  h2 { font-size: 2.25em; }
+  h3 { font-size: 1.8em; }
+  h4 { font-size: 1.53em; }
+  h5 { font-size: 1.35em; }
+  h6 { font-size: 1.17em; }
   p { font-size: 1.17em; }
-  ul, ol { font-size: 1.17em; }
-  h1.half-size { font-size: 1.35em; }
-  h2.half-size { font-size: 1.125em; }
-  h3.half-size { font-size: 0.9em; }
-  h4.half-size { font-size: 0.765em; }
-  h5.half-size { font-size: 0.675em; }
-  h6.half-size { font-size: 0.585em; }
-  p.half-size { font-size: 0.585em; }
+  ul,
+  ol { font-size: 1.17em; }
 }
 
 // 80% of size
 @media (max-width: $screen-md) {
-  h1{ font-size: 2.4em; }
-  h2{ font-size: 2.0em; }
-  h3{ font-size: 1.6em; }
-  h4{ font-size: 1.36em; }
-  h5{ font-size: 1.2em; }
-  h6{ font-size: 1.1em; }
+  h1 { font-size: 2.4em; }
+  h2 { font-size: 2em; }
+  h3 { font-size: 1.6em; }
+  h4 { font-size: 1.36em; }
+  h5 { font-size: 1.2em; }
+  h6 { font-size: 1.1em; }
   p { font-size: 1.1em; }
-  ul, ol { font-size: 1.04em; }
-  h1.half-size { font-size: 1.2em; }
-  h2.half-size { font-size: 1.0em; }
-  h3.half-size { font-size: 0.8em; }
-  h4.half-size { font-size: 0.68em; }
-  h5.half-size { font-size: 0.6em; }
-  h6.half-size { font-size: 0.55em; }
-  p.half-size { font-size: 0.55em; }
+  ul,
+  ol { font-size: 1.04em; }
 }
 
 // 75% of size
 @media (max-width: $screen-sm) {
-  h1{ font-size: 2.25em; }
-  h2{ font-size: 1.875em; }
-  h3{ font-size: 1.5em; }
-  h4{ font-size: 1.275em; }
-  h5{ font-size: 1.125em; }
-  h6{ font-size: 1.0em; }
-  p { font-size: 1.0em; }
-  h1.half-size { font-size: 1.125em; }
-  h2.half-size { font-size: 0.9375em; }
-  h3.half-size { font-size: 0.75em; }
-  h4.half-size { font-size: 0.6375em; }
-  h5.half-size { font-size: 0.5625em; }
-  h6.half-size { font-size: 0.5em; }
-  p.half-size { font-size: 0.5em; }
-  ul, ol { font-size: 1.0em; }
+  h1 { font-size: 2.25em; }
+  h2 { font-size: 1.875em; }
+  h3 { font-size: 1.5em; }
+  h4 { font-size: 1.275em; }
+  h5 { font-size: 1.125em; }
+  h6 { font-size: 1em; }
+  p { font-size: 1em; }
+  ul,
+  ol { font-size: 1em; }
 }
 
 
 
-/* FORMS */
-
-.form-control { font-size:16px; }
+// Forms
+.form-control { font-size: 16px; }

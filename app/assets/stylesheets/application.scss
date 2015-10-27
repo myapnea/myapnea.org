@@ -1,100 +1,100 @@
-/* This file controls whether base styles or theme styles are used, based on config*/
-@import "default-variables";
-@import "bootstrap-sprockets";
-@import "bootstrap";
-@import "font-awesome";
-@import "typeahead";
+// This file controls whether base styles or theme styles are used, based on config
+@import 'default-variables';
+@import 'bootstrap-sprockets';
+@import 'bootstrap';
+@import 'font-awesome';
+@import 'typeahead';
 
-/* Layout */
-@import "layout";
-@import "right_nav";
-@import "responsive";
-@import "content_header";
-@import "fonts";
-@import "colors";
-@import "full_screen_layout";
-@import "flash_containers";
-@import "sidebar_progress";
-@import "footer";
+// Layout
+@import 'colors';
+@import 'layout';
+@import 'right_nav';
+@import 'responsive';
+@import 'content_header';
+@import 'fonts';
+@import 'content';
+@import 'flash_containers';
+@import 'sidebar_progress';
+@import 'footer';
 
-/* Components */
-@import "components/alignment";
-@import "components/callouts";
-@import "components/posts";
-@import "components/topics";
-@import "components/floating_indicator";
-@import "components/home_news_image";
-@import "components/panels";
-@import "components/modals";
-@import "components/validation";
-@import "components/share_icons";
-@import "components/turbolinks";
-@import "components/account";
-@import "components/highlights";
-@import "components/links";
-@import "components/forms";
-@import "components/tables";
-@import "components/buttons";
-@import "components/scrollbar";
+// Components
+@import 'components/alignment';
+@import 'components/callouts';
+@import 'components/posts';
+@import 'components/topics';
+@import 'components/floating_indicator';
+@import 'components/home_news_image';
+@import 'components/panels';
+@import 'components/modals';
+@import 'components/validation';
+@import 'components/share_icons';
+@import 'components/turbolinks';
+@import 'components/account';
+@import 'components/highlights';
+@import 'components/links';
+@import 'components/forms';
+@import 'components/tables';
+@import 'components/buttons';
+@import 'components/scrollbar';
 
-/* Landing Pages */
-@import "landing/users";
-@import "landing/providers";
-@import "landing/provider_show";
-@import "landing/landing_v_7_2";
-@import "users/join";
+// Landing Pages
+@import 'landing/users';
+@import 'landing/providers';
+@import 'landing/provider_show';
+@import 'landing/landing_v_7_2';
+@import 'users/join';
 
-/* Registration */
-@import "users/get_started";
-@import "users/user_types";
+// Registration
+@import 'users/get_started';
+@import 'users/user_types';
 
-/* Static */
-@import "static/team";
-@import "static/sleep_tips";
-@import "static/social";
-@import "static/learn";
+// Static
+@import 'static/team';
+@import 'static/sleep_tips';
+@import 'static/social';
+@import 'static/learn';
 
-/* Surveys */
-@import "surveys/surveys";
-@import "surveys/checkbox_input";
-@import "surveys/date_input";
-@import "surveys/hidden_input";
-@import "surveys/radio_input";
-@import "surveys/radio_input_multiple";
-@import "surveys/range_input";
-@import "surveys/text_input";
-@import "surveys/height_input";
-@import "surveys/number_input";
-@import "surveys/simple_display";
+// Surveys
+@import 'surveys/surveys';
+@import 'surveys/checkbox_input';
+@import 'surveys/date_input';
+@import 'surveys/hidden_input';
+@import 'surveys/radio_input';
+@import 'surveys/radio_input_multiple';
+@import 'surveys/range_input';
+@import 'surveys/text_input';
+@import 'surveys/height_input';
+@import 'surveys/number_input';
+@import 'surveys/simple_display';
 
-/* Survey Reports */
-@import "survey_reports/radial_progress";
-@import "survey_reports/speech_bubbles";
-@import "survey_reports/clock";
-@import "survey_reports/reports";
-@import "survey_reports/my_health_conditions";
+// Survey Reports
+@import 'survey_reports/radial_progress';
+@import 'survey_reports/speech_bubbles';
+@import 'survey_reports/clock';
+@import 'survey_reports/reports';
+@import 'survey_reports/my_health_conditions';
 
-/* User Interface */
-@import "users/dashboard";
+// User Interface
+@import 'users/dashboard';
 
-/* Rank the Research */
-@import "research_topics/ranking";
-@import "research_topics/display";
-@import "research_topics/voting_form";
-@import "research_topics/accepted";
+// Rank the Research
+@import 'research_topics/ranking';
+@import 'research_topics/display';
+@import 'research_topics/voting_form';
+@import 'research_topics/accepted';
 
-/* Forums */
-@import "forums";
-@import "reactions";
-@import "comments";
+// Forums
+@import 'forums';
+@import 'reactions';
+@import 'comments';
 
-/* Tools */
-@import "tools/risk_assessment";
-@import "tools/risk_assessment_results";
-@import "tools/bmi_ahi";
+// Tools
+@import 'tools/risk_assessment';
+@import 'tools/risk_assessment_results';
+@import 'tools/bmi_ahi';
 
-/* Admin */
-@import "admin/daily_engagement";
-@import "admin/team_members";
-@import "admin/partners";
-@import "admin/clinical_trials";
+// Admin
+@import 'admin/daily_engagement';
+@import 'admin/team_members';
+@import 'admin/partners';
+@import 'admin/clinical_trials';

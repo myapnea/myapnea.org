@@ -1,70 +1,91 @@
-/* COLOR PALETTE */
+// COLOR PALETTE
+$logo-color: #233063;
+$logo-similar: #1b244b;
+$body-background: #E6EDF4;
+// Blue
 $primary-blue: #5999de;
+$lighter-blue: #7fb2eb;
+$lightest-blue: #b1d2f6;
+$darker-blue: #387fcf;
+$darkest-blue: #1765bc;
+// Orange
 $primary-orange: #ffa400;
+$lighter-orange: #ffb839;
+$lightest-orange: #ffc864;
+$darker-orange: #ef9a00;
+$darkest-orange: #e29100;
+// Grayscale
+$white: #fff;
+$lighter-gray: #ddd;
+$light-gray: #bbb;
+$dark-gray: #777;
+$darker-gray: #444;
+$black: #000;
+// Success scale
+$emergency: #e51519;
+$danger: #e54835;
+$warning: #f4b46d;
+$moderate: #fedf9c;
+$good: #d9f0a3;
+$great: #78c679;
+$excellent: #16c63c;
+// Content separation
+$border-color: #C5C5C5;
+$border-top-color: #CACACA;
+$footer-color: #FAFAFA;
 
-/* Classes */
-.logo-color { color: #233063; }
-.logo-color-bcg { background-color: #233063; }
+// Classes
+.logo-color { color: $logo-color; }
+.logo-color-bcg { background-color: $logo-color; }
 
-.primary-blue { color: $primary-blue }
-.lighter-blue { color: #7FB2EB !important; }
-.lighterer-blue { color: #B1D2F6 !important; }
-.darker-blue { color: #387FCF !important; }
-.darkerer-blue { color: #1765BC !important; }
+.primary-blue { color: $primary-blue; }
+.lighter-blue { color: $lighter-blue; }
+.lighterer-blue { color: $lightest-blue; }
+.darker-blue { color: $darker-blue; }
+.darkerer-blue { color: $darkest-blue; }
 .primary-orange { color: $primary-orange; }
-.lighter-orange { color: #FFB839 !important; }
-.lighterer-orange { color: #FFC864 !important; }
-.darker-orange { color: #EF9A00 !important; }
-.darkerer-orange { color: #E29100 !important; }
+.lighter-orange { color: $lighter-orange; }
+.lighterer-orange { color: $lightest-orange; }
+.darker-orange { color: $darker-orange; }
+.darkerer-orange { color: $darkest-orange; }
 
 .primary-blue-bcg { background-color: $primary-blue !important; }
-.lighter-blue-bcg { background-color: #7FB2EB !important; }
-.lighterer-blue-bcg { background-color: #B1D2F6 !important; }
-.darker-blue-bcg { background-color: #387FCF !important; }
-.darkerer-blue-bcg { background-color: #1765BC !important; }
+.lighter-blue-bcg { background-color: $lighter-blue !important; }
+.lighterer-blue-bcg { background-color: $lightest-blue !important; }
+.darker-blue-bcg { background-color: $darker-blue !important; }
+.darkerer-blue-bcg { background-color: $darkest-blue !important; }
 .primary-orange-bcg { background-color: $primary-orange; }
-.lighter-orange-bcg { background-color: #FFB839 !important; }
-.lighterer-orange-bcg { background-color: #FFC864 !important; }
-.darker-orange-bcg { background-color: #EF9A00 !important; }
-.darkerer-orange-bcg { background-color: #E29100 !important; }
+.lighter-orange-bcg { background-color: $lighter-orange !important; }
+.lighterer-orange-bcg { background-color: $lightest-orange !important; }
+.darker-orange-bcg { background-color: $darker-orange !important; }
+.darkerer-orange-bcg { background-color: $darkest-orange !important; }
 
-.white, .text-white { color: #fff; }
-.text-light9 { color: #fff; color: rgba(255, 255, 255, .9); }
-.text-light8 { color: #fff; color: rgba(255, 255, 255, .8); }
-.text-light7 { color: #fff; color: rgba(255, 255, 255, .7); }
-.text-light6 { color: #fff; color: rgba(255, 255, 255, .6); }
-.text-light5 { color: #fff; color: rgba(255, 255, 255, .5); }
-.text-light4 { color: #fff; color: rgba(255, 255, 255, .4); }
-.text-light3 { color: #fff; color: rgba(255, 255, 255, .3); }
-.text-light2 { color: #fff; color: rgba(255, 255, 255, .2); }
-.text-light1 { color: #fff; color: rgba(255, 255, 255, .1); }
+.white { color: transparentize($white, .0); }
+.light9 { color: transparentize($white, .1); }
+.light8 { color: transparentize($white, .2); }
+.light7 { color: transparentize($white, .3); }
+.light6 { color: transparentize($white, .4); }
+.light5 { color: transparentize($white, .5); }
+.light4 { color: transparentize($white, .6); }
+.light3 { color: transparentize($white, .7); }
+.light2 { color: transparentize($white, .8); }
+.light1 { color: transparentize($white, .9); }
 
-.black, .text-black { color: #000; }
-.text-dark9 { color: #000; color: rgba(0, 0, 0, .9); }
-.text-dark8 { color: #000; color: rgba(0, 0, 0, .8); }
-.text-dark7 { color: #000; color: rgba(0, 0, 0, .7); }
-.text-dark6 { color: #000; color: rgba(0, 0, 0, .6); }
-.text-dark5 { color: #000; color: rgba(0, 0, 0, .5); }
-.text-dark4 { color: #000; color: rgba(0, 0, 0, .4); }
-.text-dark3 { color: #000; color: rgba(0, 0, 0, .3); }
-.text-dark2 { color: #000; color: rgba(0, 0, 0, .2); }
-.text-dark1 { color: #000; color: rgba(0, 0, 0, .1); }
+.black { color: transparentize($black, .0); }
+.dark9 { color: transparentize($black, .1); }
+.dark8 { color: transparentize($black, .2); }
+.dark7 { color: transparentize($black, .3); }
+.dark6 { color: transparentize($black, .4); }
+.dark5 { color: transparentize($black, .5); }
+.dark4 { color: transparentize($black, .6); }
+.dark3 { color: transparentize($black, .7); }
+.dark2 { color: transparentize($black, .8); }
+.dark1 { color: transparentize($black, .9); }
 
-.emergency-bcg { background-color: #E51519 !important; }
-.danger-bcg { background-color: #e54835 !important; }
-.warning-bcg { background-color: #f4b46d !important; }
-.moderate-bcg { background-color: #fedf9c !important; }
-.good-bcg { background-color: #d9f0a3 !important; }
-.great-bcg { background-color: #78c679 !important; }
-.excellent-bcg { background-color: #16C63C !important; }
-
-.primary-blue-border { border: 1px solid #5999de; }
-.lighter-blue-border { border: 1px solid #7fb2eb; }
-.lighterer-blue-border { border: 1px solid #b1d2f6; }
-.darker-blue-border { border: 1px solid #387FCF; }
-.darkerer-blue-border { border: 1px solid #1765BC; }
-.primary-orange-border { border: 1px solid #ffa400; }
-.lighter-orange-border { border: 1px solid #ffb839; }
-.lighterer-orange-border { border: 1px solid #FFC864; }
-.darker-orange-border { border: 1px solid #EF9A00; }
-.darkerer-orange-border { border: 1px solid #e29100; }
+.emergency-bcg { background-color: $emergency !important; }
+.danger-bcg { background-color: $danger !important; }
+.warning-bcg { background-color: $warning !important; }
+.moderate-bcg { background-color: $moderate !important; }
+.good-bcg { background-color: $good !important; }
+.great-bcg { background-color: $great !important; }
+.excellent-bcg { background-color: $excellent !important; }

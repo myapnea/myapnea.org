@@ -3,9 +3,9 @@
 #join-the-community-callout
   .text-content-container.centered
     - if message.present?
-      %h1.text-white= message
+      %h1.white= message
     - else
-      %h1.text-white
+      %h1.white
         - if false
           %span.primary-orange= number_with_delimiter User.current.count
           people are already making a difference

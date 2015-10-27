@@ -1,6 +1,6 @@
 .user-type-container:not(#foo) > input + label {
   font-weight:300;
-  border: 5px solid #b1d2f6;
+  border: 5px solid $lightest-blue;
   background-color: white;
   border-radius:10px;
   vertical-align: middle;
@@ -21,9 +21,8 @@
 }
 
 .user-type-container:not(#foo) > input[type=checkbox]:checked + label {
-  border-color: #1765bc;
-  background-color: #b1d2f6;
-  background-color: transparentize(#b1d2f6, .5);
+  border-color: $darkest-blue;
+  background-color: transparentize($lightest-blue, .5);
 }
 
 @media (max-width: $screen-lg) {

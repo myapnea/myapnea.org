@@ -1,14 +1,14 @@
 .survey-short-text {
   font-size:50px;
   border-radius:20px;
-  border-color: #b1d2f6;
+  border-color: $lightest-blue;
   padding:7px;
   max-width:100%;
 }
 
 .survey-short-text:focus {
   outline:none;
-  box-shadow:0 0 10px #b1d2f6;
+  box-shadow:0 0 10px $lightest-blue;
 }
 
 .survey-short-number {

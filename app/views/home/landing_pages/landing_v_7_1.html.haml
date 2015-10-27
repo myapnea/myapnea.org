@@ -1,8 +1,8 @@
 #slide1.row.reset-layout
   .col-md-6.col-md-offset-1
-    %h1.text-white
+    %h1.white
       Improving the lives of people with sleep apnea
-    %h3.f300.text-light9
+    %h3.f300.light9
       Awareness, community, research - together we're building it all.
     %br
     .centered-text
@@ -13,15 +13,15 @@
       %p
         Play Video
   #scroll-carat.hidden-sm.hidden-xs
-    %p.text-light7
+    %p.light7
       Scroll to Learn More
-    %h4.text-light7
+    %h4.light7
       %span.glyphicon.glyphicon-chevron-down
 
 / MISSION
 #slide2.row.row-fullscreen.reset-layout
   .text-content-container
-    %h2.f300.spaced.text-white
+    %h2.f300.spaced.white
       The mission of MyApnea.Org is to improve the diagnosis and treatment of sleep apnea through the
       %span.lighter-orange active engagement of patients, families, researchers, and healthcare providers
       in a community that facilitates patient-centered research.
@@ -30,7 +30,7 @@
     = link_to 'Get Started', '#signup', class: 'btn btn-primary btn-lg', id: 'get-started-button'
     - 4.times do
       %br
-    %h4.f300.spaced.text-white
+    %h4.f300.spaced.white
       By gathering huge amounts of health information—from you and thousands of others living with sleep apnea—we can discover new patterns that lead to
       %span.lighter-orange better solutions and cures
       for this condition.
@@ -93,7 +93,7 @@
 %a{:name => "signup"}
 = render 'users/signup_form', resource: User.new
 
-.warning-bcg.text-dark7.centered-text{ style: 'padding: 10px;'}
+.warning-bcg.dark7.centered{ style: 'padding: 10px;'}
   To enhance the user experience, this site enables the use of cookies and remarketing services to target ads to you based on your visit to MyApnea.Org.
   - if ENV['website_url'] == 'https://myapnea.org'
     %img{ src: "https://secure.fastclick.net/w/tre?ad_id=34691;evt=27663;cat1=36894;cat2=38051;rand=#{SecureRandom.hex(8)}", width: "1", height: "1", border: "0" }

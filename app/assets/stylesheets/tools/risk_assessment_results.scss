@@ -12,13 +12,9 @@ $row-height: 150px;
     color: #777;
   }
   p.f500 {
-    color: #fff;
+    color: $white;
   }
 }
-
-$danger: #e54835;
-$warning: #f4b46d;
-$excellent: #16C63C;
 
 #high-risk-bar {
   background-color: $danger;

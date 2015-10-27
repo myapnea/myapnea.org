@@ -1,9 +1,9 @@
 - if current_user and current_user.provider? and current_user.id == @provider.id
   .row.row-fullscreen#provider-view-notice
-    %h4.f300.centered-text.text-white
+    %h4.f300.centered.white
       Hi there,
       = (current_user.provider_name || current_user.first_name) + '!'
-    %h5.f300.centered-text
+    %h5.f300.centered
       This is what your provider profile currently looks like to the public.
       %br
       If you would like to make changes, go to your
@@ -17,10 +17,10 @@
 
 .row.row-fullscreen#provider-header
   .col-md-7.col-md-offset-5.darker-blue-bcg{ style: 'border-radius: 30px 0 0 30px; margin-top:50px; padding:25px; background-color: #387FCF; background-color: rgba(56, 127, 207, 0.7)' }
-    %h1.centered-text.text-white Wake up to a better future
+    %h1.centered-text.white Wake up to a better future
   .col-md-7.col-md-offset-5.darker-blue-bcg{ style: 'border-radius: 30px 0 0 30px; margin-top:20px; padding:25px; background-color: #387FCF; background-color: rgba(56, 127, 207, 0.7)' }
-    %h3.text-light9.f600.spaced Let's work together to find a cure for sleep apnea
-    %h4.text-light7
+    %h3.light9.f600.spaced Let's work together to find a cure for sleep apnea
+    %h4.light7
       Join my network of care providers, researchers, and people with sleep
       apnea to work together and help us improve treament outcomes, etc.
   .col-md-7.col-md-offset-5{ style: 'margin-top:70px' }
@@ -35,13 +35,13 @@
     .col-lg-2.col-lg-offset-1.col-md-3.col-md-offset-1.col-xs-4
       = image_tag user_photo_url(@provider), alt: '', class: 'team-member-picture-md', style: 'float: right;'
     .col-lg-8.col-md-7.col-xs-7{ style: 'padding-left:20px;' }
-      %h4.text-dark7
+      %h4.dark7
         = @provider.welcome_message
       %h4.primary-orange
         = '- ' + @provider.provider_name
   - else
     .col-xs-10.col-xs-offset-1{ style: 'padding-left:20px;' }
-      %h4.text-dark7.centered-text
+      %h4.dark7.centered-text
         = @provider.welcome_message
       %h4.primary-orange.centered-text
         = '-' + @provider.provider_name
@@ -82,7 +82,7 @@
   .col-md-1
   = link_to forums_path, class: 'community-highlight-links ' do
     .col-md-3.col-md-offset-1.col-xs-12.col-button.community-highlight.centered-text#community-highlight-1
-      %h3.text-white Active Forums
+      %h3.white Active Forums
       %p.lead
         Discuss with others about living with sleep apnea and what is important
         to you. Share ideas on how to promote the website to others. The more
@@ -90,7 +90,7 @@
         future research.
   = link_to surveys_path, class: 'community-highlight-links' do
     .col-md-3.col-xs-12.col-button.community.highlight.centered-text#community-highlight-2
-      %h3.text-white Research Surveys
+      %h3.white Research Surveys
       %p.lead
         Answer a series of questions about symptoms, treatment, and related
         health conditions. Your answers will help the sleep apnea community
@@ -98,7 +98,7 @@
         be directed.
   = link_to research_topics_path, class: 'community-highlight-links' do
     .col-md-3.col-xs-12.col-button.community.highlight.centered-text#community-highlight-2
-      %h3.text-white Impact Questions
+      %h3.white Impact Questions
       %p.lead
         Cast your vote on which research questions matter to you most. Providers
         and researchers will share what is known about the highest ranked topics
