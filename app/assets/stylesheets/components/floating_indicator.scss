@@ -59,13 +59,13 @@
   margin: auto;
 }
 
-@media (max-width: 992px) {
+@media (max-width: $screen-md) {
   .survey-container {
     width: 85%;
     margin: auto;
   }
 }
-@media (max-width: 768px) {
+@media (max-width: $screen-sm) {
   .survey-container {
     width: 95%;
     margin: auto;

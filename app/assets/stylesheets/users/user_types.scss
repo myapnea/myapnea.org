@@ -26,13 +26,13 @@
   background-color: transparentize(#b1d2f6, .5);
 }
 
-@media all and (max-width: 1200px) {
+@media (max-width: $screen-lg) {
   .user-type-container:not(#foo) {
     input + label {
     }
   }
 }
-@media all and (max-width: 992px) {
+@media (max-width: $screen-md) {
   .user-type-container:not(#foo) {
     padding:5px;
     input + label {
@@ -44,7 +44,7 @@
     }
   }
 }
-@media all and (max-width: 778px) {
+@media (max-width: $screen-sm) {
   .user-type-container:not(#foo) {
     input + label {
       height: 240px;

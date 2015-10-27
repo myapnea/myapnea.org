@@ -34,21 +34,21 @@
   }
 }
 
-@media (max-width: 1200px) {
+@media (max-width: $screen-lg) {
   /* MEDIUM SCREENS */
   .content-main-header {
     padding: 5px 20px;
   }
 }
 
-@media (max-width: 992px) {
+@media (max-width: $screen-md) {
   /* SMALL SCREENS */
   .content-main-header {
     padding: 10px 5px 5px 5px;
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: $screen-sm) {
   /* XSMALL SCREENS */
   .content-main-header {
     padding: 5px;

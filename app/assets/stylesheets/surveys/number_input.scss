@@ -16,7 +16,7 @@
   }
 }
 
-@media all and (max-width:778px) {
+@media all and (max-width:$screen-sm) {
   .full-survey-container:not(#simple-survey) {
     input[type=number].number-input {
       width:130px;

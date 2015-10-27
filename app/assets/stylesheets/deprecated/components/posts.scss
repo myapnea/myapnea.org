@@ -9,9 +9,6 @@ $ma-lighter-blue:       #9faac9;
 $text-color:            $ma-black-blue;
 $text-muted:                  $ma-lighter-blue;
 
-/* FORUM HEADER
-********************/
-
 .action-bar-forum,
 .search-bar-forum {
   float: right;
@@ -24,8 +21,7 @@ $text-muted:                  $ma-lighter-blue;
   padding: 7px;
 }
 
-@media (max-width: 992px) {
-  /* SMALL SCREENS */
+@media (max-width: $screen-md) {
   .btn-forum-header {
     padding:10px;
     border-radius:5px;
@@ -45,9 +41,6 @@ $text-muted:                  $ma-lighter-blue;
     display: block;
   }
 }
-
-/* FORUM POSTS
-********************/
 
 .forum-container {
 
@@ -176,19 +169,13 @@ table.topics tr {
   box-shadow: 0px 0px 3px #ccc;
 }
 
-@media (max-width: 1200px) {
-  /* MEDIUM SCREENS */
-}
-
-@media (max-width: 992px) {
-  /* SMALL SCREENS */
+@media (max-width: $screen-md) {
   .user-thumbnail-forum {
     border-width:4px;
   }
 }
 
-@media (max-width: 768px) {
-  /* XSMALL SCREENS */
+@media (max-width: $screen-sm) {
   .user-thumbnail-forum {
     border-width:3px;
   }

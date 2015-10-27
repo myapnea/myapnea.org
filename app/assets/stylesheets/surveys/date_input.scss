@@ -23,11 +23,8 @@
   .survey-custom-date:-ms-placeholder { color: #333; }
 }
 
-/* RESPONSIVE */
-@media all and (max-width: 1200px) {}
-@media all and (max-width: 992px) {
+@media all and (max-width: $screen-md) {
   .survey-custom-date {
     font-size: 20px;
   }
 }
-@media all and (max-width: 768px) {}

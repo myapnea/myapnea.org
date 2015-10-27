@@ -95,10 +95,7 @@
   }
 }
 
-
-/* RESPONSIVE */
-@media all and (max-width: 1200px) {}
-@media all and (max-width: 992px) {
+@media all and (max-width: $screen-md) {
   .full-survey-container:not(#simple-survey) {
     .check-box-container:not(.preferred-not-to-answer) > input + label {
       width:100%;
@@ -136,4 +133,3 @@
     }
   }
 }
-@media all and (max-width: 768px) {}

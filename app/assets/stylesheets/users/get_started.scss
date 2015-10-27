@@ -49,22 +49,7 @@
   }
 }
 
-
-
-
-/* RESPONSIVE DESIGN */
-
-@media (max-width: 1600px) {
-  /* LARGE SCREENS */
-}
-
-@media (max-width: 1200px) {
-  /* MEDIUM SCREENS */
-}
-
-@media (max-width: 992px) {
-  /* SMALL SCREENS */
-
+@media (max-width: $screen-md) {
   .partners-img {
     width:auto;
     max-height:100px;
@@ -110,9 +95,7 @@
 
 }
 
-@media (max-width: 768px) {
-  /* XSMALL SCREENS */
-
+@media (max-width: $screen-sm) {
   #btn-login-phone, #btn-welcome-phone {
     float:right;
     width:20%;
@@ -125,7 +108,6 @@
     font-size:18px;
     margin:auto auto 10px auto;
   }
-
 }
 
 

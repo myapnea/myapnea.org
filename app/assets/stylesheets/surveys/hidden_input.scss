@@ -5,10 +5,3 @@
 input[data-object='reveal-next-input']:checked ~ .hidden-input:not(#foo) {
   display:inline-block;
 }
-
-
-
-/* RESPONSIVE */
-@media all and (max-width: 1200px) {}
-@media all and (max-width: 992px) {}
-@media all and (max-width: 768px) {}

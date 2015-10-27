@@ -126,7 +126,7 @@
         text-align: center;
       }
 
-      @media screen and (min-width:992px) {
+      @media (min-width:$screen-md) {
         .testimonial-img-container {
           border-radius: 0 237px 237px 0;
           height: 237px;

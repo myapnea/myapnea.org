@@ -219,7 +219,7 @@
   }
 }
 
-@media all and (max-width:768px) {
+@media (max-width: $screen-sm) {
   #risk-assessment-logo {
     width: 200px;
     margin: 0px auto;

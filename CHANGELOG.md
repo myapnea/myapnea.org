@@ -16,6 +16,10 @@
 - **Other**
   - Added Groupable concern for compatibility with PostgreSQL 8.3
 
+### Refactoring
+- Refactored stylesheets to make better use of SCSS variables
+
+
 ## 8.4.0 (October 19, 2015)
 
 ### Enhancements

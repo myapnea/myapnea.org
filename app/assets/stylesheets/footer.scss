@@ -56,7 +56,7 @@
   }
 }
 
-@media (max-width: 992px) {
+@media (max-width: $screen-md) {
   .footer {
     ul {
       p {}

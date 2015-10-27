@@ -25,10 +25,8 @@
   font-size: 18px;
 }
 
-@media all and (max-width: 1200px) {}
-@media all and (max-width: 992px) {
+@media all and (max-width: $screen-md) {
   .survey-short-text {
     font-size: 20px;
   }
 }
-@media all and (max-width: 768px) {}

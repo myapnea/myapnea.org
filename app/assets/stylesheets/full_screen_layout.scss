@@ -30,7 +30,7 @@
   margin: auto;
 }
 
-@media (max-width: 992px) {
+@media (max-width: $screen-md) {
   .full-screen-video {
     width: 100%;
   }

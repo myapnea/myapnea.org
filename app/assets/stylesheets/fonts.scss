@@ -127,7 +127,7 @@ li { font-weight: lighter; font-weight: 300; }
 /* Responsive */
 
 // 90% of size
-@media (max-width: 1200px) {
+@media (max-width: $screen-lg) {
   h1{ font-size: 2.7em; }
   h2{ font-size: 2.25em; }
   h3{ font-size: 1.8em; }
@@ -146,7 +146,7 @@ li { font-weight: lighter; font-weight: 300; }
 }
 
 // 80% of size
-@media (max-width: 992px) {
+@media (max-width: $screen-md) {
   h1{ font-size: 2.4em; }
   h2{ font-size: 2.0em; }
   h3{ font-size: 1.6em; }
@@ -165,7 +165,7 @@ li { font-weight: lighter; font-weight: 300; }
 }
 
 // 75% of size
-@media (max-width: 768px) {
+@media (max-width: $screen-sm) {
   h1{ font-size: 2.25em; }
   h2{ font-size: 1.875em; }
   h3{ font-size: 1.5em; }

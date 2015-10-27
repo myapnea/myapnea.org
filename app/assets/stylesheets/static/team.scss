@@ -108,11 +108,8 @@
 
 /* RESPONSIVE */
 
-@media (max-width: 992px) {
+@media (max-width: $screen-md) {
   .team-list {
     padding-left:0px;
   }
-}
-
-@media (max-width: 768px) {
 }

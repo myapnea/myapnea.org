@@ -37,7 +37,7 @@
   }
 }
 
-@media all and (max-width: 992px) {
+@media (max-width: $screen-md) {
   #container-minor {
     .user-picture {
       float: right;

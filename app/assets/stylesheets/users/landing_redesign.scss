@@ -224,7 +224,7 @@
 
 
 
-@media (max-width: 992px) {
+@media (max-width: $screen-md) {
   /* SMALL SCREENS */
   #slide1 {
     padding-top: 50px;
@@ -239,7 +239,7 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: $screen-sm) {
   #slide1 {
     padding-top: 20px;
     #landing-video-play-old {

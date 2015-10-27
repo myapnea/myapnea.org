@@ -65,8 +65,7 @@
 
 
 /* RESPONSIVE DESIGN */
-@media all and (min-width: 1600px) {}
-@media all and (max-width: 992px) {
+@media all and (max-width: $screen-md) {
   #container-main {
     #container-major-padding {
       padding: 20px;
@@ -89,7 +88,7 @@
     text-align:center;
   }
 }
-@media all and (max-width: 768px) {
+@media all and (max-width: $screen-sm) {
   // New methods
   #container-major-padding { padding: 20px 5px; }
   #container-major { }

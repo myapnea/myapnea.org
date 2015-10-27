@@ -28,9 +28,7 @@
   border-radius: 3px;
 }
 
-@media all and (max-width: 1200px) {}
-@media all and (max-width: 992px) {}
-@media all and (max-width: 768px) {
+@media all and (max-width: $screen-sm) {
   .survey-report-info {
     svg {
       max-width: 100% !important;

@@ -192,8 +192,8 @@
   .option-of-3{ width:33%; }
   .option-of-2{ width:50%; }
 }
-/* RESPONSIVE */
-@media all and (max-width: 1200px) {
+
+@media all and (max-width: $screen-lg) {
   .full-survey-container:not(#simple-survey) {
     .option-of-7 {
       width: 100%;
@@ -209,7 +209,7 @@
     }
   }
 }
-@media all and (max-width: 992px) {
+@media all and (max-width: $screen-md) {
   .full-survey-container:not(#simple-survey) {
     .input-container {
       .label-med {
@@ -259,4 +259,3 @@
     }
   }
 }
-@media all and (max-width: 768px) {}

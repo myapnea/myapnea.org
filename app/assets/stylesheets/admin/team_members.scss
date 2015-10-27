@@ -1,7 +1,3 @@
-// Place all the styles related to the admin/team_members controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-
 .team-member-container {
   position: relative;
   .team-member-image-wrapper {
@@ -32,7 +28,7 @@
   }
 }
 
-@media (max-width: 992px) {
+@media (max-width: $screen-md) {
   .team-member-container {
     .team-member-image-wrapper {
       text-align: center;

@@ -167,10 +167,7 @@
 }
 
 
-@media (max-width: 1200px) {
-}
-
-@media (max-width: 992px) {
+@media (max-width: $screen-md) {
   #slide1 {
     #signup-form-above-fold {
       background-color: rgb(255,255,255);
@@ -189,7 +186,7 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: $screen-sm) {
   #slide1 {
     #signup-form-above-fold {
       form #user_first_name {
