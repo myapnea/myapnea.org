@@ -18,6 +18,7 @@ $darkest-orange: #e29100;
 $white: #fff;
 $lighter-gray: #ddd;
 $light-gray: #bbb;
+$gray: gray;
 $dark-gray: #777;
 $darker-gray: #444;
 $black: #000;
@@ -30,9 +31,13 @@ $good: #d9f0a3;
 $great: #78c679;
 $excellent: #16c63c;
 // Content separation
-$border-color: #C5C5C5;
-$border-top-color: #CACACA;
-$footer-color: #FAFAFA;
+$border-color: #c5c5c5;
+$border-top-color: #cacaca;
+$footer-color: #fafafa;
+// Other
+$error-color: #fcf2f2;
+$error-background: #df7667;
+$user-image: #f3f3f3;
 
 // Classes
 .logo-color { color: $logo-color; }

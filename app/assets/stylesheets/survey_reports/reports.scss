@@ -1,31 +1,36 @@
 .survey-report-question {
   font-weight: 500;
 }
+
 .survey-report-answer {
-  border-top: 1px solid #c5c5c5;
-  border-bottom: 1px solid #c5c5c5;
-  padding: 10px 0;
+  border-bottom: 1px solid $border-color;
+  border-top: 1px solid $border-color;
   font-weight: 300;
+  padding: 10px 0;
 }
+
 .survey-report-info {
   padding: 20px 10px;
 }
+
 .report-statistic {
-  font-family: 'Oswald', sans-serif;
   color: $primary-orange;
-  font-size:60px;
-  font-weight:300;
-  margin-top: 0px;
-}
-.report-statistic-descriptor {
+  font-family: 'Oswald', sans-serif;
+  font-size: 60px;
   font-weight: 300;
-  font-size: 21px;
+  margin-top: 0;
 }
+
+.report-statistic-descriptor {
+  font-size: 21px;
+  font-weight: 300;
+}
+
 #tooltip {
-  background-color: #333;
-  color: #ddd;
-  padding: 5px;
+  background-color: $darker-gray;
   border-radius: 3px;
+  color: $light-gray;
+  padding: 5px;
 }
 
 @media all and (max-width: $screen-sm) {

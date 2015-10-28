@@ -1,49 +1,51 @@
 .progress-list {
   margin-bottom: 40px;
+
   .progress-item {
-    position: relative;
-    padding-top: 5px;
-    margin-bottom: 5px;
     background-color: $darker-blue;
-    margin-left: 15px;
     border-radius: 15px 0 0 15px;
+    margin-bottom: 5px;
+    margin-left: 15px;
+    padding-top: 5px;
+    position: relative;
+
     .progress-indicator {
-      position: absolute;
+      background-color: $white;
+      border: 1px solid $light-gray;
+      border-radius: 50%;
+      font-size: 12px;
+      height: 20px;
       left: 7.5px;
+      line-height: 18px;
+      position: absolute;
+      text-align: center;
       top: 20%;
       width: 20px;
-      height: 20px;
-      font-size: 12px;
-      line-height: 18px;
-      text-align: center;
-      border-radius: 50%;
-      background-color: $white;
-      border: 1px solid #ddd;
     }
+
     .progress-indicator-complete {
       background-color: $great;
       border-color: $white;
       color: $white;
     }
+
     .progress-indicator-locked {
-      background-color: #ccc;
+      background-color: $light-gray;
       border-color: $white;
-      color: #777;
+      color: $dark-gray;
       padding-left: 2px;
     }
+
     p {
+      color: rgba(255, 255, 255, .85);
       display: inline-block;
+      font-size: 16px;
       margin-left: 35px;
       margin-right: 5px;
-      font-size: 16px;
-      color: rgb(255,255,255);
-      color: rgba(255,255,255, .85);
     }
   }
 }
 
-a:hover .progress-item {
-  p {
-    color: rgb(255,255,255);
-  }
+a:hover .progress-item p {
+  color: $white;
 }

@@ -1,9 +1,13 @@
+$user-color: #008000;
+$survey-color: #f00;
+$post-color: #4682b4;
+
 .daily-engagement-report {
   .axis path,
   .axis line {
     fill: none;
-    stroke: $black;
     shape-rendering: crispEdges;
+    stroke: $black;
   }
 
   .x.axis path {
@@ -12,17 +16,19 @@
 
   .posts-line {
     fill: none;
-    stroke: steelblue;
+    stroke: $post-color;
     stroke-width: 1.5px;
   }
+
   .users-line {
     fill: none;
-    stroke: green;
+    stroke: $user-color;
     stroke-width: 1.5px;
   }
+
   .surveys-line {
     fill: none;
-    stroke: red;
+    stroke: $survey-color;
     stroke-width: 1.5px;
   }
 }

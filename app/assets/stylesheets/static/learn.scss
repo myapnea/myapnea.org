@@ -1,11 +1,12 @@
-#myapnea-aims {
+.myapnea-aims {
   padding: 50px;
 }
 
 @media (max-width: $screen-sm) {
-  #myapnea-aims {
-    padding: 20px;
+  .myapnea-aims {
     font-size: 14px;
+    padding: 20px;
+
     h2 { line-height: 1.3em; }
   }
 }

@@ -1,121 +1,123 @@
 .row-fullscreen {
-  padding-bottom:70px;
+  padding-bottom: 70px;
 }
 
-/* WELCOME */
-/* REGISTRATION */
+$viewed-color: $great;
+$unviewed-color: #d5ecd2;
 
 #registration-progress {
-  position:relative;
-  margin-top: 30px;
   margin-bottom: 30px;
-  text-align:center;
-  $viewedColor: $great;
-  $unviewedColor: #d5ecd2;
-  a, a:active {
+  margin-top: 30px;
+  position: relative;
+  text-align: center;
+
+  a,
+  a:active {
     text-decoration: none;
   }
+
   .circle-progress {
-    display:inline-block;
-    width: 100px;
-    height:100px;
-    -moz-border-radius: 50%;
-    -webkit-border-radius: 50%;
     border-radius: 50%;
-    background-color: $unviewedColor;
-    text-align: center;
+    background-color: $unviewed-color;
+    display: inline-block;
+    height: 100px;
     pointer-events: none;
+    text-align: center;
+    width: 100px;
+
     h3 {
-      line-height:100px;
-      color:white;
-      margin:0px;
+      color: $white;
+      line-height: 100px;
+      margin: 0;
+    }
+
+    &.viewed {
+      background-color: $viewed-color;
+      text-decoration: none;
+    }
+
+    &.clickable {
+      pointer-events: auto;
     }
   }
-  .circle-progress.viewed {
-    background-color: $viewedColor;
-    text-decoration: none;
-  }
-  .circle-progress.clickable {
-    pointer-events: auto;
-  }
-  .track-progress{
-    display:inline-block;
-    height:10px;
-    width:100px;
-    background-color: $unviewedColor;
-  }
-  .track-progress.viewed {
-    background-color: $viewedColor;
+
+  .track-progress {
+    background-color: $unviewed-color;
+    display: inline-block;
+    height: 10px;
+    width: 100px;
+
+    &.viewed {
+      background-color: $viewed-color;
+    }
   }
 }
 
 @media (max-width: $screen-md) {
   .partners-img {
-    width:auto;
-    max-height:100px;
-    padding:10px 0;
+    max-height: 100px;
+    padding: 10px 0;
+    width: auto;
   }
 
-  #slide-2, #slide-3, #slide-2p, #slide-3p {
-    text-align:center;
+  #slide-2,
+  #slide-3,
+  #slide-2p,
+  #slide-3p {
+    text-align: center;
   }
 
   #registration-progress {
-  margin-bottom:20px;
-  $viewedColor: $great;
-  $unviewedColor: #d5ecd2;
-  .circle-progress {
-    display:inline-block;
-    width: 60px;
-    height:60px;
-    -moz-border-radius: 50%;
-    -webkit-border-radius: 50%;
-    border-radius: 50%;
-    background-color: $unviewedColor;
-    text-align: center;
-    h3 {
-      line-height:60px;
-      color:white;
-      margin:0px;
+    margin-bottom: 20px;
+
+    .circle-progress {
+      background-color: $unviewed-color;
+      border-radius: 50%;
+      display: inline-block;
+      height: 60px;
+      text-align: center;
+      width: 60px;
+
+      h3 {
+        color: $white;
+        line-height: 60px;
+        margin: 0;
+      }
+    }
+
+    &.viewed {
+      background-color: $viewed-color;
     }
   }
-  .circle-progress.viewed {
-    background-color: $viewedColor;
-  }
-  .track-progress{
-    display:inline-block;
-    height:10px;
-    width:30px;
-    background-color: $unviewedColor;
-  }
-  .track-progress.viewed {
-    background-color: $viewedColor;
-  }
-}
 
+  .track-progress {
+    background-color: $unviewed-color;
+    display: inline-block;
+    height: 10px;
+    width: 30px;
+
+    &.viewed {
+      background-color: $viewed-color;
+    }
+  }
 }
 
 @media (max-width: $screen-sm) {
-  #btn-login-phone, #btn-welcome-phone {
-    float:right;
-    width:20%;
-    margin-right:10px;
-    margin-left:0px;
+  #btn-login-phone,
+  #btn-welcome-phone {
+    float: right;
+    margin-left: 0;
+    margin-right: 10px;
+    width: 20%;
   }
 
   #btn-welcome-phone {
-    width:30%;
-    font-size:18px;
-    margin:auto auto 10px auto;
+    font-size: 18px;
+    margin: auto auto 10px;
+    width: 30%;
   }
 }
 
-
-/* FIX - Divs within link tags  */
-a.community-highlight-links:hover {
+.community-highlight-links:hover {
   text-decoration: none;
-}
-
-#myModal p, #myModal li {
-  font-size:18px;
 }

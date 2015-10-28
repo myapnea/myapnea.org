@@ -1,45 +1,53 @@
 .rt-list-item {
+  margin: 20px 0;
   position: relative;
-  margin: 20px 0px;
+
   .rt-user-img {
+    border: 1px solid $border-color;
+    border-radius: 50%;
+    left: 0;
     position: absolute;
     top: 10px;
-    left: 0;
     width: 50px;
-    border-radius: 50%;
-    border: 1px solid #c5c5c5;
+
   }
+
   .rt-content {
-    padding: 5px;
-    background-color: white;
-    border: 1px solid #c5c5c5;
+    background-color: $white;
+    border: 1px solid $border-color;
     border-radius: 2px;
     margin-left: 60px;
+    padding: 5px;
+
     .rt-detail {
+      color: $gray;
       font-size: 12px;
-      color: gray;
+
       a {
         display: inline-block;
       }
     }
+
     .rt-voters {
+      color: $gray;
       font-size: 12px;
-      color: gray;
+
       .commenter-thumbnail {
+        border-radius: 10px;
+        box-shadow: 0 0 2px 1px $lighter-gray;
+        height: 20px;
         width: 20px;
-        height: 20px;
-        border-radius: 10px;
-        box-shadow: 0px 0px 2px 1px #eee;
       }
+
       .commenter-thumbnail-more {
-        display: inline-block;
-        min-width: 20px;
-        height: 20px;
+        background-color: $light-gray;
         border-radius: 10px;
-        box-shadow: 0px 0px 2px 1px #eee;
-        background-color: #F2F1EC;
-        color: #848484;
+        box-shadow: 0 0 2px 1px $light-gray;
+        color: $dark-gray;
+        display: inline-block;
+        height: 20px;
         line-height: 20px;
+        min-width: 20px;
         text-align: center;
       }
     }
@@ -47,35 +55,32 @@
 }
 
 .highlight-header {
+  background-color: $primary-blue;
+  border: 1px solid $border-color;
+  border-bottom: 0;
+  border-radius: 2px 2px 0 0;
+  color: $white;
+  font-weight: 400;
   margin-top: 20px;
   padding: 5px;
-  background-color: $primary-blue;
-  color: white;
-  border: 1px solid #c5c5c5;
-  border-radius: 2px 2px 0 0;
-  border-bottom-width: 0px;
-  font-weight: 400;
+
   p {
-    margin-bottom: 0px;
+    margin-bottom: 0;
   }
 }
+
 .rt-highlight {
+  background-color: $white;
+  border: 1px solid $border-color;
+  border-radius: 0 0 2px 2px;
   margin-bottom: 20px;
   padding: 5px;
-  background-color: white;
-  border: 1px solid #c5c5c5;
-  border-radius: 0 0 2px 2px;
 }
 
-
-
-
-
-// Probably deprecated
 .progress {
-  margin-top:20px;
+  margin-top: 20px;
 }
+
 .progress-bar {
-  -webkit-transition: width 1.5s ease-in-out;
   transition: width 1.5s ease-in-out;
 }

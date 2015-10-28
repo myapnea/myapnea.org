@@ -1,163 +1,165 @@
 // Main CTA
 #btn-join {
+  background-color: $primary-orange;
+  border: 1px solid $white;
+  border-radius: 100px;
+  box-shadow: 0 2px 0 0 $light-gray;
+  color: $white;
+  font-size: 40px;
+  font-weight: 500;
   margin: auto;
   margin-top: 30px;
-  font-size: 40px;
   padding: 10px;
   width: 100%;
-  background-color: $primary-orange;
-  color: $white;
-  border: 1px solid white;
-  border-radius: 100px;
-  font-weight: 500;
-  box-shadow: 0px 2px 0px 0px #ccc;
 }
 
 #landing-video-play {
-  display: inline-block;
-  margin: 10px 50px;
-  font-size: 20px;
-  color: rgb(255,255,255);
-  color: rgba(255,255,255,.8);
   border-radius: 5px;
+  color: rgba(255, 255, 255, .8);
+  display: inline-block;
+  font-size: 20px;
+  margin: 10px 50px;
+
   i { font-size: 1.3em; }
-  i, p { display: inline-block; margin-bottom: 0; }
+
+  p {
+    display: inline-block;
+    font-size: 1.3em;
+    margin-bottom: 0;
+  }
 }
+
 #landing-video-play:hover {
+  color: $white;
   cursor: pointer;
-  color: rgba(255,255,255,.9);
 }
 
 #slide1 {
   background-image: asset-url('myapnea/welcome/img-large/myapnea_landing_05262015_flipped.jpg');
-  background-repeat: no-repeat;
   background-position: center;
+  background-repeat: no-repeat;
   background-size: cover;
   -ms-behavior: asset-url('ie8/backgroundsize.min.htc');
-  position:relative;
   min-height: 700px;
-  padding-bottom:100px;
+  padding-bottom: 100px;
   padding-top: 50px;
+  position: relative;
+
   #signup-form-above-fold {
-    background-color: rgb(255,255,255);
-    background-color: rgba(255,255,255,.8);
+    background-color: rgba(255, 255, 255,.8);
     border-radius: 5px;
     padding: 20px;
+
     form {
-      width: 100%;
       padding-top: 20px;
+      width: 100%;
+
       .input-group {
-        width: 90%;
         margin: 10px auto;
+        width: 90%;
+
         label {
           text-align: left;
         }
       }
     }
+
     #btn-join {
       margin-top: 10px;
     }
+
     #risk-callout {
       margin-top: 30px;
     }
   }
-  #scroll-carat {
-    position:absolute;
-    bottom:0px;
-    width:100%;
-    text-align:center;
-  }
 }
 
 .text-content-container {
-  width: 80%;
-  margin: 0% 10%;
   background-color: inherit;
+  margin: 0% 10%;
+  width: 80%;
 }
 
 #slide2 {
-  background-color: #fff;
-  padding: 100px 0 150px 0;
+  background-color: $white;
   border-top: 5px solid $primary-orange;
+  padding: 100px 0 150px;
+
   #myapnea-mission {
+    color: $logo-color;
     line-height: 1.3em;
-    color: #233063;
     margin-bottom: 70px;
   }
+
   h3 { color: $darkest-blue; }
 }
 
 #slide3 {
-  background-color: white;
+  background-color: $white;
   border-top: 5px solid $primary-blue;
-  position: relative;
   height: 300px;
+  position: relative;
+
   #testimonial-giver {
+    background: linear-gradient(to bottom, $primary-blue 0%, $logo-color 100%);
     border-right: 5px solid transparent;
-    background: $primary-blue; /* Old browsers */
-    background: -moz-linear-gradient(top,  $primary-blue 0%, #233063 100%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$primary-blue), color-stop(100%,#233063)); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top,  $primary-blue 0%,#233063 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top,  $primary-blue 0%,#233063 100%); /* Opera 11.10+ */
-    background: -ms-linear-gradient(top,  $primary-blue 0%,#233063 100%); /* IE10+ */
-    background: linear-gradient(to bottom,  $primary-blue 0%,#233063 100%); /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$primary-blue', endColorstr='#233063',GradientType=0 ); /* IE6-9 */
-    width: 241px;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$primary-blue', endColorstr='$logo-color',GradientType=0);
+    left: 0;
     position: absolute;
     top: 0;
-    left: 0;
+    width: 241px;
   }
+
   #testimonial {
-    padding-top: 50px;
     margin-left: 250px;
+    padding-top: 50px;
   }
 }
 
 #slide4 {
   background-color: $primary-blue;
-  padding: 150px 0 170px 0;
   border-top: 5px solid $primary-blue;
+  padding: 150px 0 170px;
+
   .circle {
-    margin: auto;
-    width: 275px;
-    height: 275px;
+    background-color: $white;
     border-radius: 50%;
-    background-color: white;
-    text-align: center;
+    height: 275px;
     line-height: 275px;
+    margin: auto;
+    text-align: center;
+    width: 275px;
+
     span {
-      display: inline-block;
-      vertical-align: middle;
-      line-height: normal;
-      font-size: 25px;
       color: $primary-blue;
+      display: inline-block;
+      font-size: 25px;
       font-weight: 500;
+      line-height: normal;
+      vertical-align: middle;
     }
   }
 }
 
 #slide5 {
-  background-color: #233063;
-  padding: 200px 0 200px 0;
+  background-color: $logo-color;
+  padding: 200px 0;
 }
 
 #slide6 {
-  background-color: black;
-  border-top: 5px solid $primary-blue;
+  background-color: $black;
   border-bottom: 5px solid $primary-orange;
+  border-top: 5px solid $primary-blue;
+
   #partners-banner {
-    padding-top:20px;
-    max-width: 1000px;
     margin: auto;
-    #partner-PCORNET {
-      height: 80px;
-      width: 300px;
-      float: left;
-    }
+    max-width: 1000px;
+    padding-top: 20px;
+
     #partner-BWH {
+      float: left;
       height: 80px;
       width: 300px;
-      float: left;
     }
   }
 }
@@ -166,15 +168,16 @@
 @media (max-width: $screen-md) {
   #slide1 {
     #signup-form-above-fold {
-      background-color: rgb(255,255,255);
-      background-color: rgba(255,255,255,.95);
+      background-color: rgba(255, 255, 255, .95);
     }
   }
+
   #slide3 {
     #testimonial-giver {
-      border-bottom: none;
+      border-bottom: 0;
     }
   }
+
   #slide4 {
     .circle {
       margin-bottom: 20px;
@@ -190,29 +193,38 @@
       }
     }
   }
+
   #slide2 {
+    text-align: center;
+
     #myapnea-mission {
       line-height: 1.2em;
     }
-    text-align: center;
+
     img {
       margin: auto;
     }
   }
+
   #slide3 {
     height: auto;
+
     #testimonial-giver {
-      position: static;
-      display: block;
-      text-align: center;
-      border-right: none;
       border-bottom: 5px solid $primary-blue;
+      border-right: 0;
+      display: block;
       margin: auto;
-      img { margin: auto; }
+      position: static;
+      text-align: center;
+
+      img {
+        margin: auto;
+      }
     }
+
     #testimonial {
+      margin: 0;
       padding: 10px 15px;
-      margin: 0px;
     }
   }
 }

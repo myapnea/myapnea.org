@@ -1,70 +1,83 @@
+$box-shadow: 0 0 3px rgba(0, 0, 0, .5);
+
 .user-profile-container {
-  background-color: white;
-  box-shadow:0px 0px 3px rgba(0,0,0,.5);
-  border-radius:2px;
+  background-color: $white;
+  border-radius: 2px;
+  box-shadow: $box-shadow;
+
   img {
-    border-radius:2px;
+    border-radius: 2px;
   }
+
   .user-profile-content {
     padding: 5px;
+
     a {
-      color: white;
+      color: $white;
     }
   }
 }
 
 #user-stats {
   background-color: $lighter-blue;
+
   .user-stats {
+    color: $white;
+    font-weight: 300;
+    line-height: 100%;
+    padding: 5px;
     position: relative;
-    color: white;
-    font-weight:300;
-    padding:5px;
-    line-height:100%;
-    p.small {
-      margin-bottom:3px;
+
+    p {
+      margin-bottom: 3px;
     }
+
     h5 {
-      margin-top:0px;
-      margin-bottom:0px;
+      margin-bottom: 0;
+      margin-top: 0;
     }
   }
 }
 
 .engagement-highlight {
-  padding: 10px;
   background-color: $primary-blue;
   border-radius: 2px;
-  box-shadow:0px 0px 3px rgba(0,0,0,.5);
+  box-shadow: $box-shadow;
   margin-bottom: 20px;
   margin-top: 20px;
+  padding: 10px;
 }
 
 .post-content-container {
-  background-color: white;
-  box-shadow:0px 0px 2px rgba(0,0,0,.5);
+  background-color: $white;
+  box-shadow: $box-shadow;
   margin-bottom: 20px;
   padding: 10px;
+
   .post-header {
-    position: relative;
     min-height: 70px;
+    position: relative;
+
     .poster-image {
+      left: 0;
       position: absolute;
       top: 0;
-      left: 0;
       width: 70px;
     }
+
     .poster-details {
-      margin-left: 80px;
       font-size: 18px;
+      margin-left: 80px;
+
       p {
-        margin-bottom: 0px;
-        color: #8A8A8A;
+        color: $dark-gray;
+        margin-bottom: 0;
       }
     }
   }
+
   .post {
+    margin-left: 0;
     margin-top: 10px;
-    margin-left: 0px;
   }
 }

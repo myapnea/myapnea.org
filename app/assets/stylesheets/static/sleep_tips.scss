@@ -1,41 +1,48 @@
 .sleep-tip-container {
   background-color: $lighter-orange;
-  width:100%;
-  border-radius:30px;
+  border-radius: 30px;
   font-family: 'Agenda Condensed';
+  width: 100%;
+
   .sleep-tip-header {
-    position:relative;
-    width:50%;
-    max-width:400px;
+    max-width: 400px;
+    position: relative;
+    width: 50%;
   }
+
   .sleep-tip-header:after {
-    padding-top:80%;
-    display:block;
-    content:'';
+    content: '';
+    display: block;
+    padding-top: 80%;
   }
+
   .sleep-tip-heading {
-    position:absolute;
-    top: 30%; bottom: -50%; left: 17.5%; right: -17.5%;
-    background-color: white;
-    text-align:center;
-    font-size: 50px;
+    background-color: $white;
     border-radius: 50%;
+    bottom: -50%;
+    font-size: 50px;
+    left: 17.5%;
+    position: absolute;
+    right: -17.5%;
+    text-align: center;
+    top: 30%;
+
     h1 {
-      position:absolute;
-      bottom:45%;
-      width:100%;
-      color: #233065;
+      bottom: 45%;
+      color: $logo-color;
+      position: absolute;
+      width: 100%;
     }
   }
+
   .sleep-tip-content {
-    position:relative;
-    padding: 30px 10%;
     background-color: $primary-blue;
     border-radius: 0 0 30px 30px;
+    color: $white;
+    padding: 30px 10%;
+    position: relative;
     width: 100%;
-    color:white;
-    h2 {
-    }
+
     h4 {
       color: $lightest-blue;
     }

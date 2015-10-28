@@ -1,41 +1,37 @@
-span#privacy-policy:hover {
-  cursor:pointer;
-}
-
-#panel-sign-up h4 {
-  margin-bottom: 15px;
-  padding:0 10px;
+#privacy-policy:hover {
+  cursor: pointer;
 }
 
 #panel-sign-up {
+  h4 {
+    margin-bottom: 15px;
+    padding: 0 10px;
+  }
+
   input {
     margin: 10px auto;
   }
+
   .input-group {
-    width:100%;
-    margin-top:10px;
-    margin-bottom:10px;
-    font-size:16px;
+    font-size: 16px;
+    margin: 10px 0;
+    width: 100%;
+
     input {
-      margin: 0px auto;
+      margin: 0 auto;
     }
+
     .signup-error {
-      color: #FCF2F2;
-      background-color: #DF7667;
+      background-color: $error-background;
+      color: $error-color;
     }
   }
-}
-
-/* If input groups are needed */
-#panel-sign-up .input-group {
-}
-#panel-sign-up .input-group-addon {
 }
 
 #submit-join {
   background-color: $primary-blue;
-  color:white;
+  color: $white;
   font-size: 18px;
-  padding: 10px;
   height: auto;
+  padding: 10px;
 }

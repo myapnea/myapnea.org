@@ -1,38 +1,40 @@
-// Place all the styles related to the admin/partners controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-
 .partner-container {
-  position: relative;
   padding: 20px;
+  position: relative;
+
   .partner-img-wrapper {
-    position:absolute; top:0; right:0; bottom:0;
-    text-align:center;
+    bottom: 0;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    top: 0;
   }
+
   .admin-bar {
     position: absolute;
-    top:0;
-    right:0;
+    right: 0;
+    top: 0;
   }
 }
 
 .promotional-partner-container {
-  text-align: center;
-  img {
-    max-height:75px
-  }
   margin-bottom: 20px;
+  text-align: center;
+
+  img {
+    max-height: 75px;
+  }
 }
 
 .img-centerer {
-  display:inline-block;
-  vertical-align:middle;
-  height:100%;
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
 }
 
 .partners-logo-square {
-  display:inline-block;
-  vertical-align:middle;
-  max-width:80%;
+  display: inline-block;
+  max-width: 80%;
+  vertical-align: middle;
 }
 

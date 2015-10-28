@@ -1,31 +1,26 @@
 .survey-short-text {
-  font-size:50px;
-  border-radius:20px;
   border-color: $lightest-blue;
-  padding:7px;
-  max-width:100%;
+  border-radius: 20px;
+  font-size: 50px;
+  max-width: 100%;
+  padding: 7px;
 }
 
 .survey-short-text:focus {
-  outline:none;
-  box-shadow:0 0 10px $lightest-blue;
+  box-shadow: 0 0 10px $lightest-blue;
+  outline: none;
 }
 
 .survey-short-number {
   text-align: center;
-  width:150px;
-}
-
-.survey-short-number {
-  text-align: center;
-  width:300px;
+  width: 300px;
 }
 
 .survey-text-small {
   font-size: 18px;
 }
 
-@media all and (max-width: $screen-md) {
+@media (max-width: $screen-md) {
   .survey-short-text {
     font-size: 20px;
   }
