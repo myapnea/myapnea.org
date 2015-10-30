@@ -67,3 +67,4 @@
 //= require filedrag
 //= require builder/surveys
 //= require admin/exports
+//= require social/sleep_tips

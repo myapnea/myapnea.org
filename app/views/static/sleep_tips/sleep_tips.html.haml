@@ -1,10 +1,10 @@
-.sleep-tip-container
-  .sleep-tip-header
-    .sleep-tip-heading
-      %h1
-        Sleep Tips
-  .sleep-tip-content
-    %h2.spaced
-      Finish eating at least 2-3 hours before your regular bedtime.
-    %h4.spaced
-      This will give your body the right amount of energy until bedtime, and will give your metabolism a chance to cool down.
+.content-container
+  .container
+    %h3 Add your sleep tip here:
+    = text_field_tag :sleep_tip, 'This is an example sleep tip', class: 'form-control'
+
+.container.centered
+  %canvas.sleep-tip-canvas#sleepTipCanvas{ height: '800', width: '800' }
+    Your browser does not support the HTML5 canvas tag.
+
+%img#logo.hidden{ src: "http://myapnea.org/assets/myapnea/logos/MyApneaLogo_border_whitetext_300x80-3a8a516250225945d0bad4766caa32d838072e25b54f69baaf7ec8aef79c3dd2.png" }
