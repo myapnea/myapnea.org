@@ -34,11 +34,11 @@
     ctx.drawImage img, 490, 139
 
     # Title
-    ctx.font = '100px Arial'
+    ctx.font = "100px 'Open Sans'"
     ctx.fillText 'Sleep Tip', 50, 175
 
     # Content
-    ctx.font = '40px Arial'
+    ctx.font = "40px 'Open Sans'"
     wrapText(ctx, tipText, 50, 280, 700, 50)
 
 

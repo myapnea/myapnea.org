@@ -1,7 +1,7 @@
 .content-container
   .container
     %h3 Add your sleep tip here:
-    = text_field_tag :sleep_tip, 'This is an example sleep tip', class: 'form-control'
+    = text_area_tag :sleep_tip, 'This is an example sleep tip', rows: 4, class: 'form-control'
 
 .container.centered
   %canvas.sleep-tip-canvas#sleepTipCanvas{ height: '800', width: '800' }
