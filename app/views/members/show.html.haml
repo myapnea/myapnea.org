@@ -65,9 +65,9 @@
     - @events.each do |event|
       - if event.class == Post
         = render 'posts/recent_post', post: event
-      - elsif event.class == ResearchTopic and current_user and current_user.experienced_voter?
-        .hidden{ id: "voting-form-error-#{event.id}" }
-          .emergency-bcg.white{ style: 'padding: 10px; border-radius: 3px; margin-bottom: 10px;' }
-            Please either 'Agree' or 'Disagree'.
-        .voting-container{ id: "voting-container-#{event.id}", style: 'width: 80%; margin: auto'}
-          = render 'research_topics/voting_form', research_topic: event, remote_bool: true
+      / - elsif event.class == ResearchTopic and current_user and current_user.experienced_voter?
+      /   .hidden{ id: "voting-form-error-#{event.id}" }
+      /     .emergency-bcg.white{ style: 'padding: 10px; border-radius: 3px; margin-bottom: 10px;' }
+      /       Please either 'Agree' or 'Disagree'.
+      /   .voting-container{ id: "voting-container-#{event.id}", style: 'width: 80%; margin: auto'}
+      /     = render 'research_topics/voting_forms/voting_form_from_show', research_topic: event, remote_bool: true

@@ -4,7 +4,7 @@
     .research-topic-body.full-width
       %p= research_topic.text
     .research-topic-footer.full-width
-      = form_tag remote_vote_path(research_topic: research_topic, src: 'dashboard'), remote: true, class: 'voting-form' do
+      = form_tag remote_vote_path(research_topic: research_topic, src: 'dashboard'), remote: true, class: 'voting-form with-padding' do
         = hidden_field_tag :research_topic_id, research_topic.id
         %label This should be a research priority:
         .row

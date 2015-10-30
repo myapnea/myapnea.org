@@ -10,9 +10,11 @@
   - Includes free response to diagnostic experience and device usage
   - Users are able to like posts
   - Users are able to request expert advice for posts
-  - Users are able to commenton individual posts
+  - Users are able to comment on individual posts
 - **Provider Changes**
   - Provider dashboard shows posts sorted by advice requests
+- **Research Changes**
+  - Research topic restructuring for enhanced usability
 - **Other**
   - Added Groupable concern for compatibility with PostgreSQL 8.3
 

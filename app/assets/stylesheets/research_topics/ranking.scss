@@ -14,14 +14,23 @@
 
   .rt-content {
     background-color: $white;
-    border: 1px solid $border-color;
-    border-radius: 2px;
+    box-shadow: $box-shadow;
     margin-left: 60px;
-    padding: 5px;
+    padding: 10px;
 
     .rt-detail {
       color: $gray;
       font-size: 12px;
+
+      i {
+        color: $link-color;
+
+        &:hover {
+          color: darken($link-color, 8);
+          cursor: pointer;
+          text-decoration: underline;
+        }
+      }
 
       a {
         display: inline-block;
@@ -31,27 +40,27 @@
     .rt-voters {
       color: $gray;
       font-size: 12px;
-
-      .commenter-thumbnail {
-        border-radius: 10px;
-        box-shadow: 0 0 2px 1px $lighter-gray;
-        height: 20px;
-        width: 20px;
-      }
-
-      .commenter-thumbnail-more {
-        background-color: $light-gray;
-        border-radius: 10px;
-        box-shadow: 0 0 2px 1px $light-gray;
-        color: $dark-gray;
-        display: inline-block;
-        height: 20px;
-        line-height: 20px;
-        min-width: 20px;
-        text-align: center;
-      }
     }
   }
+}
+
+.commenter-thumbnail {
+  border-radius: 10px;
+  box-shadow: 0 0 2px 1px $lightest-gray;
+  height: 20px;
+  width: 20px;
+}
+
+.commenter-thumbnail-more {
+  background-color: $lightest-gray;
+  border-radius: 10px;
+  box-shadow: 0 0 2px 1px $lightest-gray;
+  color: $dark-gray;
+  display: inline-block;
+  height: 20px;
+  line-height: 20px;
+  min-width: 20px;
+  text-align: center;
 }
 
 .highlight-header {

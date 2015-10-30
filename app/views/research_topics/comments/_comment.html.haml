@@ -10,7 +10,7 @@
 - elsif comment.spam? or comment.hidden?
   - if current_user and current_user.moderator?
     .comment-container.comment-container-spam
-      = render 'research_topics/comment_contents', comment: comment
+      = render 'research_topics/comments/comment_contents', comment: comment
       .comment-toolbar
         = render 'posts/actions/edit_min', post: comment
   - elsif current_user and current_user == comment.user
@@ -22,7 +22,7 @@
   // but only moderators and current users can edit them
 - elsif comment.pending_review?
   .comment-container.comment-container-review
-    = render 'research_topics/comment_contents', comment: comment
+    = render 'research_topics/comments/comment_contents', comment: comment
     - if current_user and current_user.moderator?
       .comment-toolbar
         = render 'posts/actions/pending_review_min', post: comment
@@ -34,7 +34,7 @@
   // Approved comments will be simply displayed
 - elsif comment.approved?
   .comment-container
-    = render 'research_topics/comment_contents', comment: comment
+    = render 'research_topics/comments/comment_contents', comment: comment
     - if current_user and (current_user.moderator? or current_user == comment.user)
       .comment-toolbar
         = render 'posts/actions/edit_min', post: comment

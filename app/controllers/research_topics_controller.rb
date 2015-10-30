@@ -14,6 +14,7 @@ class ResearchTopicsController < ApplicationController
 
   def intro
     redirect_to research_topics_path and return if !current_user
+    render 'research_topics/intro/intro'
   end
 
   def first_topics
@@ -22,14 +23,7 @@ class ResearchTopicsController < ApplicationController
     redirect_to research_topics_path and return if current_user.experienced_voter?
 
     @research_topic = current_user.seeded_research_topic
-  end
-
-  def newest
-    @research_topics = ResearchTopic.approved.newest
-  end
-
-  def most_discussed
-    @research_topics = ResearchTopic.approved.most_discussed
+    render 'research_topics/intro/first_topics'
   end
 
   def my_research_topics
@@ -144,8 +138,7 @@ class ResearchTopicsController < ApplicationController
       end
 
       respond_to do |format|
-        format.html { redirect_to :back }
-        format.js
+        format.html { redirect_to @research_topic }
       end
     else
       head :ok

@@ -1,0 +1,14 @@
+= form_tag remote_vote_path(research_topic: rt), remote: true, class: 'voting-form' do
+  = hidden_field_tag :research_topic_id, rt.id
+  %label This should be a research priority:
+  %br
+  .form-inline
+    .endorse-button-container.endorse-positive.inline-block
+      = radio_button_tag "endorse_#{rt.id}", 1, current_user.endorsed?(rt)
+      %label.centered.endorse-label{ for: "endorse_#{rt.id}_1" } Agree
+    .endorse-button-container.endorse-negative.inline-block
+      = radio_button_tag "endorse_#{rt.id}", 0, current_user.opposed?(rt)
+      %label.centered.endorse-label{ for: "endorse_#{rt.id}_0" } Disagree
+    = text_area_tag "comment_#{rt.id}", params["comment_#{rt.id}"], rows: 2, style: 'resize: none', placeholder: 'Add a comment (optional)', class: 'form-control inline-block', disabled: current_user.cast_vote_for?(rt)
+  .voting-form-submit
+    = submit_tag "Submit", class: 'btn btn-primary-custom btn-block'

@@ -4,7 +4,7 @@
   margin-bottom: 20px;
 
   .research-topic-header {
-    background-color: $light-gray;
+    background-color: $lightest-gray;
     border-bottom: 1px solid $border-color;
     padding: 5px 0;
 
@@ -36,64 +36,64 @@
   }
 
   .research-topic-footer {
-    background-color: $light-gray;
-    border-top: 1px solid $border-color;
+    background-color: $lightest-gray;
+    border-top: 1px solid $border-top-color;
+  }
+}
 
-    .voting-form {
-      margin: auto;
-      max-width: 800px;
-      width: 80%;
+.voting-form {
+  &.with-padding {
+    padding: 10px;
+  }
 
-      .voting-form-header {
-        font-weight: 500;
-        padding: 20px 30px 0;
-      }
+  .voting-form-header {
+    font-weight: 500;
+    padding: 20px 30px 0;
+  }
 
-      .endorse-button-container {
-        input[type=radio] {
-          display: none;
-        }
-
-        .endorse-label {
-          background-color: $white;
-          border: 2px solid $primary-blue;
-          border-radius: 20px;
-          cursor: pointer;
-          display: inline-block;
-          padding: 10px;
-          width: 120px;
-        }
-
-        input[type=radio]:checked ~ .endorse-label {
-          background-color: $lightest-blue;
-          color: $white;
-        }
-      }
-
-      .endorse-positive {
-        .endorse-label {
-          border-color: $great;
-        }
-
-        input[type=radio]:checked ~ .endorse-label {
-          background-color: $great;
-        }
-      }
-
-      .endorse-negative {
-        .endorse-label {
-          border-color: $danger;
-        }
-
-        input[type=radio]:checked ~ .endorse-label {
-          background-color: $danger;
-        }
-      }
-
-      .voting-form-submit {
-        padding: 20px;
-        text-align: center;
-      }
+  .endorse-button-container {
+    input[type=radio] {
+      display: none;
     }
+
+    .endorse-label {
+      background-color: $white;
+      border: 2px solid $primary-blue;
+      border-radius: 2px;
+      cursor: pointer;
+      display: inline-block;
+      padding: 10px;
+      width: 80px;
+    }
+
+    input[type=radio]:checked ~ .endorse-label {
+      background-color: $lightest-blue;
+      color: $white;
+    }
+  }
+
+  .endorse-positive {
+    .endorse-label {
+      border-color: $great;
+    }
+
+    input[type=radio]:checked ~ .endorse-label {
+      background-color: $great;
+    }
+  }
+
+  .endorse-negative {
+    .endorse-label {
+      border-color: $danger;
+    }
+
+    input[type=radio]:checked ~ .endorse-label {
+      background-color: $danger;
+    }
+  }
+
+  .voting-form-submit {
+    padding-top: 10px;
+    text-align: center;
   }
 }

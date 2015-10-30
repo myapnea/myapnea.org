@@ -1,57 +1,35 @@
 .content-main-header
   .container
-    %h1 Research Discussion
+    %h1 Research Proposal
     %p= link_to 'Back to Research Topics', research_topics_path, class: 'no-underline'
-
-- if current_user and (current_user.owner? or current_user.moderator?)
-  .well
-    .container
-      %h4
-        For admins:
-        - if @topic.status=="approved"
-          = link_to 'Update Progress', edit_research_topic_path(@research_topic), class: 'btn btn-xs btn-primary' if current_user.owner?
-        - elsif @topic.status=="pending_review"
-          = link_to 'Approve Research Topic', forum_topic_path(@forum, @topic, topic: { status: 'approved' }), method: :patch, class: 'btn btn-success btn-xs'
-          = link_to 'Reject Research Topic', forum_topic_path(@forum, @topic, topic: { status: 'hidden' }), method: :patch, class: 'btn btn-danger btn-xs'
-        - elsif @topic.status=="hidden"
-          %span.small Currently hidden.
-          = link_to 'Approve Research Topic', forum_topic_path(@forum, @topic, topic: { status: 'approved' }), method: :patch, class: 'btn btn-success btn-xs'
-
+%br
 .container
-  - if current_user
-    -# Display voting form
-    = render 'research_topics/voting_form', research_topic: @research_topic
-  - else
-    -# Display of actual research topic for non users
-    .research-topic-container
-      .research-topic-header
-        .research-topic-header-details
-          = image_tag user_photo_url(@research_topic.user), alt: '', class: 'img-responsive', style: 'width: 50px; height: 50px; float: left'
-          %p.dark6.question-asked-by
-            = render 'users/forum_name', user: @research_topic.user
-            proposed:
-      .research-topic-body
-        %h4.centered= @research_topic.text
-        - if @research_topic.description.present?
-          %hr
-          %h5.f300= @research_topic.description
-
-
-  -# Display of endorsement and comments
-  .row.horizontal-inset
-    .col-sm-4
-      - if @research_topic.votes.count > 0
-        %h3.centered
-          Endorsement:
-        %h4.centered.f300
-          = "#{(@research_topic.endorsement*100).round}%"
-          = surround "(", ")" do
-            %span.italic= pluralize(@research_topic.votes.current.count, 'vote')
-        .progress-meter
-          %span{ data: { object: 'research-topic-meter', progress: "#{@research_topic.endorsement*100}" } }
-        %br
+  .row
     .col-sm-8
-      - @topic.posts.offset(1).each do |post|
-        = render 'research_topics/comments', comment: post
-  - 3.times do
-    %br
+      = render 'research_topics/displays/standard', research_topic: @research_topic
+      - if current_user
+        - if current_user.cast_vote_for?(@research_topic)
+          = render 'research_topics/interactions/already_voted', research_topic: @research_topic
+        - if @research_topic.votes.count > 0
+          .content-container
+            = render 'research_topics/interactions/endorsement', research_topic: @research_topic
+            %hr
+            - @topic.posts.offset(1).each do |post|
+              = render 'research_topics/comments/comment', comment: post
+
+    .col-sm-4
+      - if current_user
+        - if current_user.owner? or current_user.moderator?
+          .well
+            %h4 Admins:
+            %br
+            - if @topic.status == "approved"
+              = link_to 'Update Progress', edit_research_topic_path(@research_topic), class: 'btn btn-xs btn-primary' if current_user.owner?
+            - elsif @topic.status == "pending_review"
+              = link_to 'Approve Research Topic', forum_topic_path(@forum, @topic, topic: { status: 'approved' }), method: :patch, class: 'btn btn-success btn-xs'
+              = link_to 'Reject Research Topic', forum_topic_path(@forum, @topic, topic: { status: 'hidden' }), method: :patch, class: 'btn btn-danger btn-xs'
+            - elsif @topic.status == "hidden"
+              %span.small Currently hidden.
+              = link_to 'Approve Research Topic', forum_topic_path(@forum, @topic, topic: { status: 'approved' }), method: :patch, class: 'btn btn-success btn-xs'
+      - else
+        = render 'home/join_the_community', referrer: 'research', message: 'Make a direct impact on the future of sleep apnea research'

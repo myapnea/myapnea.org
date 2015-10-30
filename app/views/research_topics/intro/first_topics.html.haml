@@ -2,10 +2,10 @@
   .row
     .col-sm-10.col-sm-offset-1
       #first-topics-progress-bar
-        = render 'research_topics/progress_bar', progress: (100 * current_user.votes.count / ENV['research_topic_experience_threshold'].to_i)
+        = render 'research_topics/intro/progress_bar', progress: (100 * current_user.votes.count / ENV['research_topic_experience_threshold'].to_i)
       #first-topics-error-form.hidden
         .danger-bcg.white{ style: 'padding: 10px; border-radius: 3px; margin-bottom: 10px;' }
           Please either 'Agree' or 'Disagree'.
       #first-topics-voting-form
-        = render 'research_topics/voting_form', research_topic: @research_topic, remote_bool: true
+        = render 'research_topics/displays/standard', research_topic: @research_topic, remote_bool: true
       #first-topics-completed

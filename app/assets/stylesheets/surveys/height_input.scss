@@ -17,7 +17,7 @@
 }
 
 
-@media (max-width:778px) {
+@media (max-width:$screen-sm) {
   .full-survey-container:not(#simple-survey) {
     .height-select {
       font-size: 18px;

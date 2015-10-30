@@ -131,17 +131,10 @@ Rails.application.routes.draw do
   get 'members_search', to: 'members#search', as: :members_search
 
   # Research Topics
-  # match 'research_topic/:id', to: "research_topics#show", as: :research_topic, via: :get
-  # match 'research_questions', to: 'research_topics#index', via: :get, as: :research_topics
-  # match 'research_questions/new', to: 'research_topics#new', via: :get, as: :new_research_topic
-  match 'research_topics_tab', to: 'research_topics#research_topics', via: :get, as: :research_topics_ajax
-
   resources :research_topics, path: 'research-topics' do
     collection do
       get :intro
       get 'first-topics', as: :first_topics
-      get :newest
-      get 'most-discussed', as: :most_discussed
       get 'my-research-topics', as: :my_research_topics
       # Accepted research topics
       get 'accepted', to: 'research_topics#accepted_research_topics_index', as: :accepted
