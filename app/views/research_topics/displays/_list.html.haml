@@ -4,13 +4,20 @@
     %p.f400
       = link_to rt.text, rt
     .pull-left
-      - if current_user and !current_user.cast_vote_for?(rt)
-        .rt-detail
-          %i.fa.fa-thumbs-up{ data: { object: 'rt-upvote', rt: rt.id, toggle: 'collapse', target: "#rt-vote-#{rt.id}"}, aria: { expanded: 'false', controls: "rt-vote-#{rt.id}" } }
+      .rt-detail
+        - if current_user and !current_user.cast_vote_for?(rt)
+          %i.fa.fa-thumbs-up{ data: { object: 'rt-upvote', rt: rt.id, target: "#rt-vote-#{rt.id}"} }
           &nbsp;
-          %i.fa.fa-thumbs-down{ data: { object: 'rt-downvote', rt: rt.id, toggle: 'collapse', target: "#rt-vote-#{rt.id}"}, aria: { expanded: 'false', controls: "rt-vote-#{rt.id}" } }
+          %i.fa.fa-thumbs-down{ data: { object: 'rt-downvote', rt: rt.id, target: "#rt-vote-#{rt.id}"} }
           &middot;
-          = time_ago_in_words(rt.created_at) + ' ago'
+        - elsif current_user and current_user.endorsed?(rt)
+          %i.fa.fa-thumbs-up.great{ data: { object: 'rt-already-voted', rt: rt.id, toggle: 'collapse', target: "#rt-vote-#{rt.id}"} }
+          &middot;
+        - elsif current_user
+          %i.fa.fa-thumbs-down.danger{ data: { object: 'rt-already-voted', rt: rt.id, toggle: 'collapse', target: "#rt-vote-#{rt.id}"} }
+          &middot;
+        = time_ago_in_words(rt.created_at) + ' ago'
+
     .pull-right
       .rt-voters
         - rt.topic.posts.first(3).each do |comment|
@@ -21,5 +28,9 @@
     .clearfix
     - if current_user
       .rt-vote-container.collapse{ id: "rt-vote-#{rt.id}"}
-        = render 'research_topics/voting_forms/inline', rt: rt
+        %hr
+        - if !current_user.cast_vote_for?(rt)
+          = render 'research_topics/voting_forms/inline', rt: rt
+        - else
+          = render 'research_topics/interactions/endorsement', research_topic: rt
 

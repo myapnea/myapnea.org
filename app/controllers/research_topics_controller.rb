@@ -137,8 +137,10 @@ class ResearchTopicsController < ApplicationController
         flash[:notice] = "Please either endorse or oppose this research topic." unless @research_topic.seeded?
       end
 
-      respond_to do |format|
-        format.html { redirect_to @research_topic }
+      if @research_topic.seeded?
+        redirect_to first_topics_research_topics_path
+      else
+        redirect_to @research_topic
       end
     else
       head :ok

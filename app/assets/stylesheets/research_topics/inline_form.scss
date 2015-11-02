@@ -1,0 +1,34 @@
+$endorse-button-width: 80px;
+$endorse-button-height: 44px;
+
+.rt-vote-container {
+  position: relative;
+
+  .endorse-button-container {
+    height: $endorse-button-height;
+    position: absolute;
+    width: $endorse-button-width;
+
+    &.endorse-positive {
+      left: 0;
+    }
+
+    &.endorse-negative {
+      left: $endorse-button-width + 10px;
+    }
+
+    &.submit-vote-button-container {
+      right: 0;
+    }
+  }
+
+  .text-area-container {
+    margin-left: $endorse-button-width * 2 + 20;
+    margin-right: $endorse-button-width + 10;
+
+    textarea {
+      height: $endorse-button-height;
+      resize: vertical;
+    }
+  }
+}

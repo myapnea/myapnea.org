@@ -59,7 +59,7 @@ if typeof Turbolinks isnt 'undefined' and Turbolinks.supported
   ABTestingReady() if ($("[data-object~='ABtesting']").length > 0 and false)
   ABSetupReady() if ($("[data-object~='ABtesting']").length > 0 and false)
   exportsReady()
-  sleepTipsReady()
+  sleepTipsReady() if $('#sleep_tip').length > 0
 
 $(document).ready(loaders)
 $(document)

@@ -5,8 +5,8 @@
 .container
   .row
     .col-sm-8
-      - @research_topics.newest.each do |rt|
-        = render 'research_topics/displays/list', rt: rt
+      #research-topic-list-group
+        = render 'research_topics/displays/list_group', research_topics: @research_topics
 
     .col-sm-4
       -# Clinical Trial Highlight
@@ -21,12 +21,5 @@
             .centered= link_to 'View all clinical trials', '#'
 
       -# Research Article Highlight
-      - Highlight.current.where(research_highlight: true).order(created_at: :desc).first(3).each do |highlight|
-        = link_to highlight.link, class: 'no-underline' do
-          .rt-highlight
-            - if highlight.photo_url.present?
-              = image_tag highlight_photo_url(highlight), alt: '', class: 'img-responsive', style: 'margin: auto;'
-            %h4
-              = highlight.title
-            %p.black
-              = highlight.description
+      - Highlight.current.where(research_highlight: true).order(created_at: :desc).first(5).each do |highlight|
+        = render highlight
