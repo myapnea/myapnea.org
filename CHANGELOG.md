@@ -13,6 +13,7 @@
   - Users are able to comment on individual posts
 - **Provider Changes**
   - Provider dashboard shows posts sorted by advice requests
+  - Fixed issue with possible redirect loop during consent procedure
 - **Research Changes**
   - Research topic restructuring for enhanced usability
 - **Other**

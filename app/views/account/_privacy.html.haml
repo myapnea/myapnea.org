@@ -23,8 +23,11 @@
             Go Back
         = link_to "Leave Research Study", revoke_consent_path, method: :post, class: 'btn btn-warning-custom btn-lg'
       - elsif current_user.accepted_privacy_policy?
-        - continue_path = part_of_registration ? get_started_step_two_path : consent_path
-        = link_to "Continue to review consent", continue_path, class: 'btn btn-primary-custom btn-lg'
+        - if current_user.is_only_academic?
+          = link_to "Continue to review terms of access", terms_of_access_path, class: 'btn btn-primary-custom btn-lg'
+        - else
+          - continue_path = part_of_registration ? get_started_step_two_path : consent_path
+          = link_to "Continue to review consent", continue_path, class: 'btn btn-primary-custom btn-lg'
       - else
         - continue_path = accepts_privacy_path(get_started: part_of_registration)
         - cancel_path = part_of_registration ? get_started_step_two_path : :back
