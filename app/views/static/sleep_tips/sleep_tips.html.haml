@@ -1,10 +1,26 @@
 .content-container
   .container
-    %h3 Add your sleep tip here:
-    = text_area_tag :sleep_tip, 'This is an example sleep tip', rows: 4, class: 'form-control'
+    %ul.nav.nav-tabs{ role: 'tablist' }
+      %li.active{ role: 'presentation' }
+        %a{ 'data-toggle' => 'tab', href: '#sleep-tip', role: 'tab'} Sleep Tips
+      %li{:role => 'presentation'}
+        %a{ 'data-toggle' => 'tab', href: '#did-you-know', role: 'tab'} Did You Know?
 
-.container.centered
-  %canvas.sleep-tip-canvas#sleepTipCanvas{ height: '800', width: '800' }
-    Your browser does not support the HTML5 canvas tag.
+    .tab-content
+      #sleep-tip.tab-pane.active{ role: 'tabpanel'}
+        %h3 Add your sleep tip here:
+        = text_area_tag :sleep_tip, 'This is an example sleep tip', rows: 4, class: 'form-control'
+        %br
+        .centered
+          %canvas.sleep-tip-canvas#sleepTipCanvas{ height: '800', width: '800' }
+            Your browser does not support the HTML5 canvas tag.
 
-%img#logo.hidden{ src: "http://myapnea.org/assets/myapnea/logos/MyApneaLogo_border_whitetext_300x80-3a8a516250225945d0bad4766caa32d838072e25b54f69baaf7ec8aef79c3dd2.png" }
+      #did-you-know.tab-pane{ role: 'tabpanel'}
+        %h3 Add your fact here:
+        = text_area_tag :did_you_know, 'This is an example did you know', rows: 4, class: 'form-control'
+        %br
+        .centered
+          %canvas.did-you-know-canvas#didYouKnowCanvas{ height: '800', width: '800' }
+            Your browser does not support the HTML5 canvas tag.
+
+%img#logo.hidden{ src: 'http://myapnea.org/assets/myapnea/logos/MyApneaLogo_border_whitetext_300x80-3a8a516250225945d0bad4766caa32d838072e25b54f69baaf7ec8aef79c3dd2.png' }

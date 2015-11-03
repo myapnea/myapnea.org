@@ -72,11 +72,11 @@ class ApplicationController < ActionController::Base
   end
 
   def check_owner_or_moderator
-    redirect_to root_path, alert: "You do not have sufficient privileges to access that page." unless current_user.owner? or current_user.moderator?
+    redirect_to root_path, alert: "You do not have sufficient privileges to access that page." unless current_user and (current_user.owner? or current_user.moderator?)
   end
 
   def check_owner
-    redirect_to root_path, alert: "You do not have sufficient privileges to access that page." unless current_user.owner?
+    redirect_to root_path, alert: "You do not have sufficient privileges to access that page." unless current_user and current_user.owner?
   end
 
   def after_sign_in_path_for(resource)

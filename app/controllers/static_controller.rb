@@ -2,7 +2,9 @@ class StaticController < ApplicationController
   before_action :set_active_top_nav_link_to_learn, only: [:learn]
 
   before_action :load_pc, only: [ :team, :advisory, :learn, :research ]
-  before_action :about_layout, only: [ :research ]
+  before_action :about_layout, only: :research
+
+  before_action :check_owner_or_moderator, only: :sleep_tips
 
   before_action :set_SEO_elements
 
@@ -128,6 +130,7 @@ class StaticController < ApplicationController
     render 'static/SEO_content/side_effects_PAP'
   end
 
+  # Social media content
   def sleep_tips
     render 'static/sleep_tips/sleep_tips'
   end

@@ -19,34 +19,52 @@
     context.fillText line, x, y
     return
 
-  drawSleepTip = (tipText) ->
-    c = document.getElementById('sleepTipCanvas')
+  drawCanvas = (canvasTypeId, canvasText) ->
+    c = document.getElementById(canvasTypeId)
     ctx = c.getContext('2d')
 
     # Layout
-    ctx.fillStyle = '#5999de'
-    ctx.fillRect 0, 0, 1000, 200
     ctx.fillStyle = '#ffa400'
+    ctx.fillRect 0, 0, 1000, 200
+    ctx.fillStyle = '#5999de'
     ctx.fillRect 0, 200, 1000, 800
     ctx.fillStyle = '#fff'
     ctx.fillRect 0, 195, 1000, 10
-    img = document.getElementById('logo')
-    ctx.drawImage img, 490, 139
+    ctx.fillStyle = '#233063'
+    ctx.fillRect 0, 700, 1000, 100
 
     # Title
     ctx.font = "100px 'Open Sans'"
-    ctx.fillText 'Sleep Tip', 50, 175
+    if canvasTypeId == 'sleepTipCanvas'
+      canvasTitle = 'Sleep Tip'
+    else if canvasTypeId == 'didYouKnowCanvas'
+      canvasTitle = 'Did You Know?'
+    ctx.fillStyle = '#fff'
+    ctx.fillText canvasTitle, 50, 175
 
     # Content
     ctx.font = "40px 'Open Sans'"
-    wrapText(ctx, tipText, 50, 280, 700, 50)
+    wrapText(ctx, canvasText, 50, 280, 700, 50)
+
+    # Footer
+    img = document.getElementById('logo')
+    ctx.drawImage img, 465, 710
+    ctx.font = "38px 'Open Sans'"
+    ctx.fillText 'Learn more by visiting', 50, 757
 
 
-  tipText = $('#sleep_tip').val()
-  drawSleepTip(tipText)
+  sleepTipText = $('#sleep_tip').val()
+  drawCanvas('sleepTipCanvas', sleepTipText)
+
+  didYouKnowText = $('#did_you_know').val()
+  drawCanvas('didYouKnowCanvas', didYouKnowText)
 
   $(document)
     .on('input', '#sleep_tip', () ->
       tip = $(this).val()
-      drawSleepTip(tip)
+      drawCanvas('sleepTipCanvas', tip)
+    )
+    .on('input', '#did_you_know', () ->
+      tip = $(this).val()
+      drawCanvas('didYouKnowCanvas', tip)
     )
