@@ -5,9 +5,11 @@
 .container
   .row
     .col-sm-2
-      .user-profile-container.primary-blue-bcg.white
+      .user-profile-container
         = link_to (current_user.forum_name.present? ? member_path(current_user.forum_name) : account_path) do
           = image_tag user_photo_url(current_user), class: "img-responsive"
+          = link_to account_path, data: { toggle: 'tooltip', container: 'body' }, title: 'Change Photo', class: 'user-profile-photo-link' do
+            .glyphicon.glyphicon-camera
       %br
       = render 'home/research_highlight'
     .col-sm-7
@@ -23,8 +25,14 @@
       #read-more-recent-posts
         = render 'home/show_more_button'
     .col-sm-3
-      #research-topic-highlight
-        = render 'home/voting_highlight'
+      - if current_user.experienced_voter?
+        #research-topic-highlight
+          = render 'home/voting_highlight'
+      - else
+        = link_to intro_research_topics_path do
+          .content-container
+            %h4 Direct the future of sleep apnea research
+            %p Click here to get started
       %p.f500.logo-color Research Highlights
       - Highlight.current.where(displayed: true).sort{ |a,b| b.created_at <=> a.created_at }.first(5).each do |highlight|
         = render highlight
