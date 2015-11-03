@@ -13,14 +13,28 @@
 
   $(document)
     .on('click', "[data-object~='rt-upvote']", (e) ->
-      $('#endorse_'+$(this).data('rt')+'_1').prop 'checked', true
       target = $(this).data('target')
-      $(target).collapse 'show'
+      radio = $('#endorse_'+$(this).data('rt')+'_1')
+      if radio.prop 'checked'
+        $(target).collapse('hide')
+        $(target).on('hidden.bs.collapse', () ->
+          radio.prop 'checked', false
+        )
+      else
+        radio.prop 'checked', true
+        $(target).collapse 'show'
     )
     .on('click', "[data-object~='rt-downvote']", () ->
-      $('#endorse_'+$(this).data('rt')+'_0').prop 'checked', true
       target = $(this).data('target')
-      $(target).collapse 'show'
+      radio = $('#endorse_'+$(this).data('rt')+'_0')
+      if radio.prop 'checked'
+        $(target).collapse 'hide'
+        $(target).on('hidden.bs.collapse', () ->
+          radio.prop 'checked', false
+        )
+      else
+        radio.prop 'checked', true
+        $(target).collapse 'show'
     )
     .on('click', "[data-object~='rt-already-voted']", () ->
       target = $(this).data('target')
