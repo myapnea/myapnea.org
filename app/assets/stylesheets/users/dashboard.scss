@@ -7,14 +7,16 @@
   }
 
   .user-profile-photo-link {
-    bottom: 0px;
-    color: $darker-gray;
-    opacity: .5;
+    background-color: transparentize($lightest-gray, .1);
+    border-radius: 1px 1px 2px;
+    bottom: 0;
+    color: transparentize($darker-gray, .5);
+    padding: 1px 3px;
     position: absolute;
-    right: 3px;
+    right: 0;
 
     &:hover {
-      opacity: 1;
+      color: $darker-gray;
     }
   }
 }
