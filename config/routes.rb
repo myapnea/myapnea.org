@@ -35,6 +35,15 @@ Rails.application.routes.draw do
     get '', to: redirect('builder/surveys')
   end
 
+  scope module: :coenrollment do
+    get :join_health_eheart, path: 'join-health-eheart'
+    get :goto_health_eheart, path: 'goto-health-eheart'
+    get 'welcome-health-eheart-members(/:incoming_heh_token)', action: 'welcome_health_eheart_members', as: :welcome_health_eheart_members
+    get :link_health_eheart_member
+    get :congratulations_health_eheart_members, path: 'congratulations-health-eheart-members'
+    patch :remove_health_eheart
+  end
+
   get 'children/:child_id/surveys/:id/:encounter/report' => 'surveys#report', as: :child_survey_report
   get 'children/:child_id/surveys/:id/:encounter/report-detail' => 'surveys#report_detail', as: :child_survey_report_detail
   get 'children/:child_id/surveys/:id/:encounter' => 'surveys#show', as: :child_survey

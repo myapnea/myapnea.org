@@ -386,3 +386,16 @@ api_user:
   over_eighteen: true
   adult_diagnosed: true
   encrypted_password: <%= pw %>
+
+heh_1:
+  email: heh_1@mail.com
+  first_name: HeH
+  last_name: Member
+  zip_code: 12345
+  over_eighteen: true
+  adult_diagnosed: true
+  encrypted_password: <%= pw %>
+  accepted_terms_conditions_at: <%= Time.zone.now %>
+  incoming_heh_token: 0987654321
+  incoming_heh_at: <%= Time.zone.now %>
+  outgoing_heh_at: <%= Time.zone.now %>

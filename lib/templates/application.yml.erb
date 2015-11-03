@@ -33,6 +33,9 @@ google_analytics_report_id:   "<%= print "Google Analytics Report ID: "; gets.ch
 oodt_enabled:                 "<%= print "Enable OODT? Y/N: "; ga = gets.chomp; ga == "Y" %>"
 validic_enabled:              "<%= print "Enable Validic? Y/N: "; ga = gets.chomp; ga == "Y" %>"
 
+# Coenrollment Tokens
+heh_referral_key:             "<%= print "Health eHeart Referral Key: "; ga = gets.chomp; ga %>"
+
 # Prevent API and other requests in testing environment
 test:
   uservoice_id:                 ~

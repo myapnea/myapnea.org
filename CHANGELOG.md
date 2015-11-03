@@ -1,5 +1,9 @@
 ## 10.0.0
 
+### Enhancements
+- **Co-enrollment Changes**
+  - MyApnea.Org members can now coenroll with Health eHeart and vice versa
+
 ## 9.0.0
 
 ## 8.4.1 (October 22, 2015)

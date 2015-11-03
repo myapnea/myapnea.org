@@ -118,10 +118,12 @@
           = link_to 'enable', update_account_path(user: { emails_enabled: '1' }), method: :patch, class: 'btn btn-primary-custom btn-xs'
           emails.
 
+  = render 'account/coenrollment'
 
   - if current_user.ready_for_research?
     %a.settings-anchor#leave-study
     = render partial: 'account/join_leave_research_study'
+
 
 #account-link-container
   .content-container
@@ -140,6 +142,8 @@
         Linking with my care provider
       = link_to '#notification-preferences' do
         Receiving email notifications
+      = link_to '#coenrollment-status' do
+        Co-enrolling with Health eHeart
       - if current_user.ready_for_research?
         = link_to '#leave-study' do
           I want to leave the research study
