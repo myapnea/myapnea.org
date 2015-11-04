@@ -1,0 +1,11 @@
+one:
+  user: user_1
+  adult_diagnosed: true
+  text: First engagement question
+  response_placeholder: My response to the question starts with...
+
+two:
+  user: user_1
+  adult_at_risk: true
+  text: First engagement question for at-risk
+  response_placeholder: My response to the question starts with...

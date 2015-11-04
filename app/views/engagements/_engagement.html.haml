@@ -1,0 +1,17 @@
+.row
+  .col-sm-8
+    .engagement-highlight
+      %p.500.white= engagement.text
+      = text_area_tag :experience, nil, placeholder: engagement.response_placeholder, rows: 3, class: 'form-control'
+  .col-sm-4
+    %p.f300
+      %span.f500 Directed at:
+      = engagement.user_types.join(', ')
+    %p.f300
+      %span.f500 Admins:
+      - unless params[:action] == 'show'
+        = link_to 'Show', engagement
+        |
+      = link_to 'Edit', edit_engagement_path(engagement)
+      |
+      = link_to 'Delete', engagement_path(engagement), method: :delete

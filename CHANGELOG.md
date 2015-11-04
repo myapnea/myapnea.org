@@ -7,7 +7,8 @@
   - More dynamic widgets located on the dashboard
     - Update social profile field
     - Vote on new research topics
-  - Includes free response to diagnostic experience and device usage
+  - Module added to ask free response questions to different user groups
+    - For example, ask diagnosed patients about their diagnostic experience
   - Users are able to like posts
   - Users are able to request expert advice for posts
   - Users are able to comment on individual posts

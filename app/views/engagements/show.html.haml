@@ -1,0 +1,15 @@
+.content-main-header
+  .container
+    %h1 Engagement
+    %p= link_to 'Back to index', engagements_path
+
+%br
+.container
+  = render @engagement
+  .content-container
+    %h3= pluralize(@engagement.engagement_responses.count, 'response')
+    %hr
+    .list-group
+      - @engagement.engagement_responses.each do |response|
+        .list-group-item
+          = response.response
