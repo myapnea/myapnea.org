@@ -23,7 +23,7 @@
       #high-risk-connector.row.reset-layout.risk-connector{ class: "#{'risk-level-active' if @risk_category==3}" }
       #middle-risk-connector.row.reset-layout.risk-connector{ class: "#{'risk-level-active' if @risk_category==2}" }
       #low-risk-connector.row.reset-layout.risk-connector{ class: "#{'risk-level-active' if @risk_category==1}" }
-    .col-sm-5.centered-text{ id: "#{'risk-assessment-results-' + @risk_category.to_s }" }
+    .col-sm-5.centered{ id: "#{'risk-assessment-results-' + @risk_category.to_s }" }
       %h2.f300
         Your risk score is:
         %br

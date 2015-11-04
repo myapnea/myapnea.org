@@ -33,7 +33,7 @@
 %br
 - if current_user
   .progress-list
-    %p.lead.light8.centered-text
+    %p.lead.light8.centered
       Next steps:
     -# User should have a photo
     - if current_user.photo.present?
@@ -131,7 +131,7 @@
             Invite your personal care provider to join!
 - else
   .progress-list
-    %p.lead.light8.centered-text
+    %p.lead.light8.centered
       After joining:
     .progress-item
       %span.glyphicon.glyphicon-lock.progress-indicator.progress-indicator-locked

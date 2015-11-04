@@ -4,7 +4,7 @@
 %br
 .container
   .row
-    .col-sm-2
+    .col-md-2.visible-md.visible-lg
       .user-profile-container
         = link_to (current_user.forum_name.present? ? member_path(current_user.forum_name) : account_path) do
           = image_tag user_photo_url(current_user), class: "img-responsive"
@@ -12,19 +12,7 @@
             .glyphicon.glyphicon-camera
       %br
       = render 'home/research_highlight'
-    .col-sm-7
-      #engagement-highlight
-        = render 'home/engagement_highlight'
-      %p.f500.logo-color
-        - if current_user.is_only_academic?
-          Recent Requests
-        - else
-          Recent Forum Activity
-      #recent-posts
-        = render 'home/show_from_home'
-      #read-more-recent-posts
-        = render 'home/show_more_button'
-    .col-sm-3
+    .col-md-3.col-md-push-7
       - if current_user.experienced_voter?
         #research-topic-highlight
           = render 'home/voting_highlight'
@@ -36,3 +24,15 @@
       %p.f500.logo-color Research Highlights
       - Highlight.current.where(displayed: true).sort{ |a,b| b.created_at <=> a.created_at }.first(5).each do |highlight|
         = render highlight
+    .col-md-7.col-md-pull-3
+      #engagement-highlight
+        = render 'home/engagement_highlight'
+      %p.f500.logo-color
+        - if current_user.is_only_academic?
+          Recent Requests
+        - else
+          Recent Forum Activity
+      #recent-posts
+        = render 'home/show_from_home'
+      #read-more-recent-posts
+        = render 'home/show_more_button'

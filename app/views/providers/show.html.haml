@@ -17,7 +17,7 @@
 
 .row.row-fullscreen#provider-header
   .col-md-7.col-md-offset-5.darker-blue-bcg{ style: 'border-radius: 30px 0 0 30px; margin-top:50px; padding:25px; background-color: #387FCF; background-color: rgba(56, 127, 207, 0.7)' }
-    %h1.centered-text.white Wake up to a better future
+    %h1.centered.white Wake up to a better future
   .col-md-7.col-md-offset-5.darker-blue-bcg{ style: 'border-radius: 30px 0 0 30px; margin-top:20px; padding:25px; background-color: #387FCF; background-color: rgba(56, 127, 207, 0.7)' }
     %h3.light9.f600.spaced Let's work together to find a cure for sleep apnea
     %h4.light7
@@ -41,14 +41,14 @@
         = '- ' + @provider.provider_name
   - else
     .col-xs-10.col-xs-offset-1{ style: 'padding-left:20px;' }
-      %h4.dark7.centered-text
+      %h4.dark7.centered
         = @provider.welcome_message
-      %h4.primary-orange.centered-text
+      %h4.primary-orange.centered
         = '-' + @provider.provider_name
   .col-lg-1{ style: 'background-color: white;' }
 .row.row-fullscreen#community-tracker-provider
   .col-xs-10.col-xs-offset-1
-    %h2.lighterer-blue.centered-text{ style: 'margin-top:5px;' }
+    %h2.lighterer-blue.centered{ style: 'margin-top:5px;' }
       Current Community:
       %span.primary-blue
         = number_with_delimiter User.current.count
@@ -75,13 +75,13 @@
       providers, and fellow patients.
 .row.row-fullscreen#slide-4
   .col-md-10.col-md-offset-1
-    %h1.primary-blue.f500.centered-text Our Community
+    %h1.primary-blue.f500.centered Our Community
     %h3
       MyApnea.Org is a community built by people with sleep apnea, family
       members, providers, and researchers to share and learn from one another.
   .col-md-1
   = link_to forums_path, class: 'community-highlight-links ' do
-    .col-md-3.col-md-offset-1.col-xs-12.col-button.community-highlight.centered-text#community-highlight-1
+    .col-md-3.col-md-offset-1.col-xs-12.col-button.community-highlight.centered#community-highlight-1
       %h3.white Active Forums
       %p.lead
         Discuss with others about living with sleep apnea and what is important
@@ -89,7 +89,7 @@
         members we have, the more we can learn from each other and contribute to
         future research.
   = link_to surveys_path, class: 'community-highlight-links' do
-    .col-md-3.col-xs-12.col-button.community.highlight.centered-text#community-highlight-2
+    .col-md-3.col-xs-12.col-button.community.highlight.centered#community-highlight-2
       %h3.white Research Surveys
       %p.lead
         Answer a series of questions about symptoms, treatment, and related
@@ -97,7 +97,7 @@
         better understand the disorder and where future research efforts should
         be directed.
   = link_to research_topics_path, class: 'community-highlight-links' do
-    .col-md-3.col-xs-12.col-button.community.highlight.centered-text#community-highlight-2
+    .col-md-3.col-xs-12.col-button.community.highlight.centered#community-highlight-2
       %h3.white Impact Questions
       %p.lead
         Cast your vote on which research questions matter to you most. Providers
@@ -118,35 +118,35 @@
     .col-md-10.col-md-offset-1.col-lg-8.col-lg-offset-2.panel.signup-form
       .panel-body#panel-sign-up
         - if current_user.provider? and current_user.id == @provider.id
-          %h4.f300.centered-text.spaced
+          %h4.f300.centered.spaced
             This is where potential members will be able to register and list
             you as their care provider. You can share this page with your
             patients and community members by using the link below. If you have
             any questions about this process or would like any help, please feel
             free to
             %a{ href: "mailto:support@myapnea.org" } contact us.
-          %h4.f300.centered-text.spaced
+          %h4.f300.centered.spaced
             %strong Your personal url:
             %br
             %span.lighter-blue.wrapword= link_to ENV['website_url'] + '/p/' + current_user.slug, ENV['website_url'] + '/p/'+ current_user.slug
         - elsif current_user.provider_id == @provider.id
-          %h3.f300.centered-text
+          %h3.f300.centered
             Hi there,
             = current_user.first_name + '!'
             It looks like
             = @provider.provider_name
             is your provider.
-          %h4.f300.centered-text
+          %h4.f300.centered
             If you want to get in touch with them, feel free to
             = link_to('send them an email', "mailto:#{@provider.email}")+"."
         - else
-          %h3.f300.centered-text
+          %h3.f300.centered
             Hi there,
             = current_user.first_name + '!'
             It looks like
             = @provider.provider_name
             is not your provider.
-          %h4.f300.centered-text
+          %h4.f300.centered
             Do you want to list them as your primary care provider?
           %div{ style: 'text-align:center' }
             = link_to "Yes, list #{@provider.provider_name} as my provider!", update_account_path(:user => { provider_id: @provider.id }), method: :patch, class: 'btn btn-primary btn-lg'

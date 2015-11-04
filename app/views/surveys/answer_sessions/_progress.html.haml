@@ -15,7 +15,7 @@
         .span{ data: { object: "circle_percentage_display", survey_id: answer_session.survey.id } }
           = succeed '%' do
             = percent
-%h4.f300.centered-text
+%h4.f300.centered
   = answer_session.survey.name
   %small.text-muted= answer_session.encounter.humanize unless answer_session.encounter == 'baseline'
 // Mobile display for survey progress

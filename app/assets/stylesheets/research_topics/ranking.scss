@@ -46,7 +46,7 @@
 
 .commenter-thumbnail {
   border-radius: 10px;
-  box-shadow: 0 0 2px 1px $lightest-gray;
+  box-shadow: $box-shadow;
   height: 20px;
   width: 20px;
 }
@@ -54,7 +54,7 @@
 .commenter-thumbnail-more {
   background-color: $lightest-gray;
   border-radius: 10px;
-  box-shadow: 0 0 2px 1px $lightest-gray;
+  box-shadow: $box-shadow;
   color: $dark-gray;
   display: inline-block;
   height: 20px;

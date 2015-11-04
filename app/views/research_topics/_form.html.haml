@@ -14,7 +14,7 @@
     = f.label :text, class: 'sr-only'
     = f.text_area :text, placeholder: "Enter your research question here", autocomplete: :off, style: 'resize: none', class: 'form-control input-lg', data: { object: 'inline-validation-item', name: 'research-topic-name' }
     .col-sm-6.hidden{ style: 'margin-top: 15px; margin-bottom: 30px;', data: { object: 'research-topic-name--error' } }
-      %p.small.centered-text.inline-validation-error
+      %p.small.centered.inline-validation-error
         Please enter a valid question or research topic!
   .form-group
     = f.label :author, class: 'sr-only'

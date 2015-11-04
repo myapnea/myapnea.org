@@ -1,7 +1,7 @@
 = form_for current_user, html: { role: "form", class: 'form-horizontal' }, url: update_account_path, method: :patch do |f|
   .content-container
     .content-header
-      %h3.f300.centered-text
+      %h3.f300.centered
         My Social Profile
     .content-body
       .form-group
@@ -13,7 +13,7 @@
             %h4.f300
               Change Photo
             %br
-            .centered-text
+            .centered
               =f.file_field :photo
             %br
             #filedrag{ data: { object: 'dropfile' } }
@@ -55,8 +55,8 @@
         .col-sm-6
           = f.text_field :gender, autocomplete: "off", data: { object: 'typeahead', local: ["Male", "Female", "Genderqueer", "Androgynous", "Intersex", "Transgender", "Transsexual", "Cross-dresser", "Male-to-female (MTF)", "Female-to-male (FTM)"].to_json }, class: 'form-control'
 
-    .content-footer.centered-text
+    .content-footer.centered
       %p.lead
         This is how you will appear to other members of MyApnea.Org
       .row
-        = f.submit "Save Changes", class: 'btn btn-primary-custom col-xs-4 col-xs-offset-4 centered-text'
+        = f.submit "Save Changes", class: 'btn btn-primary-custom col-xs-4 col-xs-offset-4 centered'

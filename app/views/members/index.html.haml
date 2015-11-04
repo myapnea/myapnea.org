@@ -22,4 +22,4 @@
           %td
             = member.posts.where(status: ['pending_review', 'approved']).count
 
-    .centered-text= paginate @members, theme: 'bootstrap'
+    .centered= paginate @members, theme: 'bootstrap'

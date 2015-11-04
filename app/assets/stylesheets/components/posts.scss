@@ -8,7 +8,7 @@
   }
   .post {
     background-color: white;
-    box-shadow:0px 0px 2px rgba(0,0,0,.5);
+    box-shadow: $box-shadow;
     margin-bottom: 20px;
     margin-left: 70px;
     padding: 10px;
@@ -74,7 +74,7 @@
   width:100%;
   border: 2px solid white;
   border-radius: 3px;
-  box-shadow: 0px 0px 3px #ccc;
+  box-shadow: $box-shadow;
 }
 
 .user-thumbnail-forum {
@@ -82,7 +82,7 @@
   // height:100%;
   border: 5px solid white;
   border-radius: 3px;
-  box-shadow: 0px 0px 3px #ccc;
+  box-shadow: $box-shadow;
 }
 
 
