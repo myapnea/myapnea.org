@@ -3,6 +3,7 @@
 ### Enhancements
 - **Design Changes**
   - Switched to fixed-width version of site
+  - Minor updates to landing page
 - **Engagment Changes**
   - More dynamic widgets located on the dashboard
     - Update social profile field
