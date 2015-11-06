@@ -27,7 +27,7 @@
           .commenter-thumbnail-more= "+#{rt.topic.posts.count - 3}"
     .clearfix
     - if current_user
-      .rt-vote-container.collapse{ id: "rt-vote-#{rt.id}"}
+      .inline-vote-container.collapse{ id: "rt-vote-#{rt.id}"}
         %hr
         - if !current_user.cast_vote_for?(rt)
           = render 'research_topics/voting_forms/inline', rt: rt

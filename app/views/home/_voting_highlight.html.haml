@@ -8,11 +8,11 @@
         = hidden_field_tag :research_topic_id, research_topic.id
         %label This should be a research priority:
         .row
-          .col-xs-6
+          .col-xs-6.centered
             .endorse-button-container.endorse-positive
               = radio_button_tag "endorse_#{research_topic.id}", 1, current_user.endorsed?(research_topic)
               %label.centered.endorse-label{ for: "endorse_#{research_topic.id}_1" } Agree
-          .col-xs-6
+          .col-xs-6.centered
             .endorse-button-container.endorse-negative
               = radio_button_tag "endorse_#{research_topic.id}", 0, current_user.opposed?(research_topic)
               %label.centered.endorse-label{ for: "endorse_#{research_topic.id}_0" } Disagree
