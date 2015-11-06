@@ -46,6 +46,7 @@
   .centered
     = paginate @providers, theme: 'bootstrap-small'
 
-  .content-container
-    .centered
-      = link_to 'Become a Provider', new_provider_path, class: 'btn btn-lg btn-primary'
+  - unless current_user
+    .content-container
+      .centered
+        = link_to 'Become a Provider', new_provider_path, class: 'btn btn-lg btn-primary'

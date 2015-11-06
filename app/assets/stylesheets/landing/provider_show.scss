@@ -1,139 +1,45 @@
-#slide-1 {
-  background-image: asset-url('myapnea/welcome/img-large/unsplash-standing-colors.jpg');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  -ms-behavior: asset-url('ie8/backgroundsize.min.htc');
-  background-color: rgb(15, 18, 27);
-  position:relative;
-  min-height:800px;
-  padding-bottom:100px;
-}
+.provider-view-notice {
+  background-color: $darkest-blue;
+  color: rgba(255, 255, 255, .9);
+  padding: 10px;
 
-
-#slide-1 h2 {
-  margin-top:120px;
-  font-family: 'Dosis', sans-serif;
-}
-
-#slide-1 h3 {
-  font-family: 'Dosis', sans-serif;
-}
-
-#slide-1 h4 {
-  margin-top:50px;
-  font-family: 'Dosis', sans-serif;
-}
-
-// MISSION
-
-#slide-2 {
-  background-image: asset-url('myapnea/welcome/textures/grey.png');
-  position:relative;
-  overflow:hidden;
-  padding-top:100px;
-}
-
-#slide-2:before {
-  content: ' ';
-  display:block; z-index:0;
-  position:absolute; left:0; top:0px;
-  width:100%; height: 100%;
-  opacity:1;
-  background-image: asset-url('myapnea/welcome/transitions/dot_backdrop_top_color.png');
-  background-repeat: repeat-x;
-}
-
-#slide-2 h1 {
-  margin-top:150px;
-}
-
-#slide-2 h3 {
-  color:rgb(0,0,0);
-  color:rgba(0,0,0,.7);
-}
-
-#slide-2 h5 {
-  margin-top:20px;
-  line-height:28px;
-}
-
-#slide-2 img {
-  margin-top:150px;
-  margin-left:20%;
-  width:60%;
-  max-height: 400px;
-  max-width: 300px;
-  border-radius:30px;
-  border:5px solid $lighter-orange;
-}
-
-
-/* PLATFORM*/
-
-#slide-3 {
-  background-image: asset-url('myapnea/welcome/textures/grey.png');
-
-}
-
-#slide-3 h1 {
-}
-
-#slide-3 h3 {
-  color:rgb(0,0,0);
-  color:rgba(0,0,0,.7);
-}
-
-#slide-3 h5 {
-  margin-top:20px;
-  line-height:28px;
-}
-
-#slide-3 img {
-  margin-top:70px;
-  width:100%;
-  max-height: 400px;
-  max-width: 600px;
-  border-radius:30px;
-  border:5px solid $lighter-orange;
-  margin-bottom:40px;
-}
-
-
-
-/* COMMUNITY HIGHLIGHTS */
-
-#slide-4 {
-  background-image: asset-url('myapnea/welcome/textures/grey.png');
-  position:relative;
-  padding-bottom:150px;
-}
-
-#slide-4 h2 {
-  color:rgb(0,0,0);
-  color:rgba(0,0,0,.7);
-}
-
-
-/* SIGN UP */
-
-#slide-5 {
-  background-image: asset-url('myapnea/welcome/img-large/unsplash-standing-group.jpg');
-  background-size: cover;
-  -ms-behavior: asset-url('ie8/backgroundsize.min.htc');
-  background-repeat:no-repeat;
-  background-position: bottom;
-  font-family: 'Dosis', sans-serif;
-  h1 {
-    text-align:center;
-    margin-bottom:20px;
-    font-weight:600;
-    font-size:40px;
-  }
-  li {
-    font-size: 18px;
+  a {
+    color: $primary-orange;
   }
 }
 
+.slide-provider-welcome {
+  background-color: $primary-blue;
+  color: $white;
+  padding: 100px 0;
+}
 
+.slide-provider-explanation {
+  background-color: $white;
+  padding: 100px 0;
 
+  img {
+    margin: auto;
+    max-width: 300px;
+  }
+}
+
+.community-highlight-links {
+  border: 5px solid $primary-orange;
+  border-radius: 5px;
+  color: $darker-gray;
+  padding: 10px;
+
+  &:hover {
+    background-color: $lighter-orange;
+    text-decoration: none;
+  }
+}
+
+@media (max-width: $screen-sm) {
+  .slide-provider-explanation {
+    .centered {
+      text-align: left;
+    }
+  }
+}
