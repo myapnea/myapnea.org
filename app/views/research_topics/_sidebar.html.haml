@@ -6,7 +6,7 @@
       %h4= @clinical_trial.title
       %p.black= @clinical_trial.overview
       %hr
-      .centered= link_to 'View all clinical trials', '#'
+      .centered= link_to 'View all clinical trials', clinical_trials_path
 
 - Highlight.current.where(research_highlight: true).order(created_at: :desc).first(5).each do |highlight|
   = render highlight

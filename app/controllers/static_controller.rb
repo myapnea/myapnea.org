@@ -46,6 +46,10 @@ class StaticController < ApplicationController
     @page_content = "What is MyApnea? What is the difference between OSA and CSA? Where can you take sleep tests? If you are experiencing sleep deprivation or sleep apnea symptoms, MyApnea will explain the basics."
   end
 
+  def clinical_trials
+    @clinical_trials = Admin::ClinicalTrial.current.order(:created_at)
+  end
+
   def version
   end
 

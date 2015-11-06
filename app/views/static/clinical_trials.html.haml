@@ -1,0 +1,9 @@
+.content-main-header
+  .container
+    %h1 Clinical Trials
+
+.container
+  %br
+  - @clinical_trials.each do |ct|
+    = render ct
+    %br

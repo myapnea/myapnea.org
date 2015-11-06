@@ -19,6 +19,7 @@
   - Research topic restructuring for enhanced usability
 - **Other**
   - Added Groupable concern for compatibility with PostgreSQL 8.3
+  - Added list of clinical trials
 
 ### Refactoring
 - Refactored stylesheets to make better use of SCSS variables
