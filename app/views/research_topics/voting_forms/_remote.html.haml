@@ -4,7 +4,7 @@
     .voting-form-header
       %p.lead This should be a research priority:
     .row
-      .col-sm-3.col-sm-offset-2.centered-text
+      .col-sm-3.col-sm-offset-2.centered
         %br.visible-xs
         .endorse-button-container.endorse-positive
           = radio_button_tag "endorse_#{research_topic.id}", 1, current_user.endorsed?(research_topic)

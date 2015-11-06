@@ -14,12 +14,12 @@ class HomeController < ApplicationController
 
       current_user.is_only_academic? ? load_academic_dashboard_resources : load_member_dashboard_resources
     else
-      render 'home/landing_v_7_3'
+      render 'home/landing'
     end
   end
 
   def landing
-    render 'home/landing_v_7_3'
+    render 'home/landing'
   end
 
   def posts

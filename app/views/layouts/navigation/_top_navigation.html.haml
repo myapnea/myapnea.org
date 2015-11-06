@@ -16,8 +16,6 @@
             %a.dropdown-toggle{ href: "#", role: "button", aria: { expanded: "false" }, data: { toggle: "dropdown" } }
               = image_tag user_photo_url(current_user), alt: '', size: '25', class: 'img-rounded'
               &nbsp;
-              = current_user.name
-              &nbsp;
               %span.caret
             %ul.dropdown-menu{role: "menu"}
               - if current_user.forum_name.present?

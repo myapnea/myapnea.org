@@ -1,37 +1,31 @@
-#slide-4p.row.row-fullscreen.reset-layout
-  .col-md-10.col-md-offset-1.col-lg-8.col-lg-offset-2.panel.signup-form
-    #panel-sign-up.panel-body
-      %h1.darker-blue.centered-text Help us now!
-      %h4.centered-text By joining, you are creating the foundation for people with sleep apnea to receive better care and support.
+.slide-provider-signup
+  .container
+    .row
+      .col-md-10.col-md-offset-1
+        .provider-signup-form
+          %h1.darker-blue.centered Join the Community
+          %h4.centered Help create the foundation for people with sleep apnea to receive better care and support.
 
-      = form_for(resource, url: registration_path(resource), class: "form-horizontal", method: :post) do |f|
-        - if resource.errors.any?
-          .bs-callout.bs-callout-danger#error_explanation
-            %h4
-              = pluralize(resource.errors.count, "error")
-              prohibited this user from being saved
-            %ul
-              - resource.errors.full_messages.each do |msg|
-                %li= msg
-        = f.hidden_field :beta_opt_in,      value: true
-        = f.hidden_field :provider,         value: true
-        - if params[:invite_token].present?
-          = f.hidden_field :invite_token,   value: params[:invite_token]
-        .input-group
-          = f.text_field :first_name, placeholder: 'First name', class: "form-control"
-          - if resource.errors.any? and resource.errors[:first_name].present?
-            %span.input-group-addon.signup-error !
-        .input-group
-          = f.text_field :last_name, placeholder: 'Last name', class: "form-control"
-          - if resource.errors.any? and resource.errors[:last_name].present?
-            %span.input-group-addon.signup-error !
-        .input-group
-          = f.email_field :email, placeholder: 'Email address', class: "form-control"
-          - if resource.errors.any? and resource.errors[:email].present?
-            %span.input-group-addon.signup-error !
-        .input-group
-          = f.password_field :password, placeholder: 'Password', class: "form-control"
-          - if resource.errors.any? and resource.errors[:password].present?
-            %span.input-group-addon.signup-error !
-        .input-group
-          = f.submit 'Sign up!', class: "form-control", id: "submit-join"
+          = form_for(resource, url: registration_path(resource), class: 'form-horizontal', method: :post) do |f|
+            - if resource.errors.any?
+              .bs-callout.bs-callout-danger#error_explanation
+                %h4
+                  = pluralize(resource.errors.count, "error")
+                  prohibited this user from being saved
+                %ul
+                  - resource.errors.full_messages.each do |msg|
+                    %li= msg
+            = f.hidden_field :beta_opt_in, value: true
+            = f.hidden_field :provider, value: true
+            - if params[:invite_token].present?
+              = f.hidden_field :invite_token,   value: params[:invite_token]
+            .form-group
+              = f.text_field :first_name, placeholder: 'First name', class: 'form-control'
+            .form-group
+              = f.text_field :last_name, placeholder: 'Last name', class: 'form-control'
+            .form-group
+              = f.email_field :email, placeholder: 'Email address', class: 'form-control'
+            .form-group
+              = f.password_field :password, placeholder: 'Password', class: 'form-control'
+            .form-group
+              = f.submit 'Sign up!', class: 'btn btn-block btn-primary-custom'

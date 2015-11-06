@@ -22,6 +22,7 @@
         - if current_user.owner? or current_user.moderator?
           .well
             Admins:
+            %br
             - if @topic.status == 'approved'
               = link_to 'Update Progress', edit_research_topic_path(@research_topic), class: 'btn btn-xs btn-primary' if current_user.owner?
             - elsif @topic.status == 'pending_review'
@@ -30,6 +31,8 @@
             - elsif @topic.status == 'hidden'
               %span.small Currently hidden.
               = link_to 'Approve Research Topic', forum_topic_path(@forum, @topic, topic: { status: 'approved' }), method: :patch, class: 'btn btn-success btn-xs'
+            = link_to "Edit Topic", edit_forum_topic_path(@research_topic.topic.forum, @research_topic.topic), class: "btn btn-primary btn-xs"
+            = link_to "Edit Post", edit_forum_topic_post_path(@research_topic.topic.forum, @research_topic.topic, @research_topic.topic.posts.first), class: "btn btn-primary btn-xs"
       - else
         = render 'home/join_the_community', referrer: 'research', message: 'Make a direct impact on the future of sleep apnea research'
       = render 'research_topics/sidebar'

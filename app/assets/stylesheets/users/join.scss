@@ -1,67 +1,41 @@
-#join-the-community-callout {
+.join-the-community-callout {
   background-color: $darker-blue;
   border-top: 5px solid $primary-orange;
   padding: 15vh 0;
 
-  #btn-join {
+  .btn-join {
     width: 100%;
   }
 }
 
-#user-signup-form {
+.slide-user-signup {
   background-image: asset-url('myapnea/welcome/img-large/unsplash-standing-group.jpg');
   background-position: bottom;
   background-repeat: no-repeat;
   background-size: cover;
   -ms-behavior: asset-url('ie8/backgroundsize.min.htc');
   font-family: 'Dosis', sans-serif;
-  padding-top: 100px;
+  padding: 100px 0;
   text-align: center;
 
   h1 {
     font-size: 40px;
-    font-weight: 600;
-    margin-bottom: 20px;
+    font-weight: 700;
   }
 
   ul li {
     font-size: 18px;
   }
+}
 
-  #privacy-policy:hover {
-    cursor: pointer;
+.user-signup-form {
+  background-color: $white;
+  border-radius: 3px;
+  padding: 30px;
+
+  h4 {
+    margin-bottom: 15px;
+    padding: 0 10px;
   }
 
-  #panel-sign-up {
-    h4 {
-      margin-bottom: 15px;
-      padding: 0 10px;
-    }
-
-    .input-group {
-      font-size: 16px;
-      margin: 10px auto;
-      max-width: 500px;
-
-      input {
-        border-radius: 3px;
-        margin: 0 auto;
-      }
-
-      .signup-error {
-        background-color: $error-background;
-        color: $error-color;
-      }
-    }
-
-    #over18.input-group {
-      padding-left: 15px;
-      text-align: left;
-
-      label {
-        position: relative;
-        top: -5px;
-      }
-    }
-  }
 }

@@ -1,0 +1,170 @@
+.video-play-button {
+  border-radius: 5px;
+  color: rgba(255, 255, 255, .8);
+  display: inline-block;
+  font-size: 20px;
+  margin: 10px 50px;
+
+  i { font-size: 1.3em; }
+
+  p {
+    display: inline-block;
+    font-size: 1.3em;
+    margin-bottom: 0;
+  }
+
+  &:hover {
+    color: $white;
+    cursor: pointer;
+  }
+}
+
+
+.slide-signup-form {
+  background-image: asset-url('myapnea/welcome/img-large/myapnea_landing_05262015_flipped.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  -ms-behavior: asset-url('ie8/backgroundsize.min.htc');
+  min-height: 700px;
+  padding-bottom: 100px;
+  padding-top: 50px;
+  position: relative;
+}
+
+.simple-signup-form {
+  background-color: rgba(255, 255, 255,.8);
+  border-radius: 5px;
+  padding: 20px;
+
+  form {
+    padding-top: 20px;
+    width: 100%;
+
+    .input-group {
+      margin: 10px auto;
+      width: 90%;
+
+      label {
+        text-align: left;
+      }
+    }
+  }
+
+  .btn-join {
+    margin-top: 10px;
+  }
+}
+
+.slide-mission {
+  background-color: $white;
+  border-top: 5px solid $primary-orange;
+  padding: 100px 0 150px;
+
+  .myapnea-mission {
+    color: $logo-color;
+    line-height: 1.3em;
+    margin-bottom: 70px;
+  }
+
+  h3 { color: $darkest-blue; }
+}
+
+.slide-testimonial {
+  background: linear-gradient(to bottom, $primary-blue 0%, $logo-color 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$primary-blue', endColorstr='$logo-color',GradientType=0);
+  padding: 40px 0;
+
+  .testimonial-giver {
+    img {
+      border-radius: 3px;
+    }
+  }
+
+  .testimonial {
+    background-color: $white;
+    border-radius: 3px;
+    padding: 10px;
+  }
+}
+
+.slide-highlights {
+  background-color: $primary-blue;
+  border-top: 5px solid $primary-blue;
+  padding: 150px 0 170px;
+
+  .circle {
+    background-color: $white;
+    border-radius: 50%;
+    height: 275px;
+    line-height: 275px;
+    margin: auto;
+    text-align: center;
+    width: 275px;
+
+    span {
+      color: $primary-blue;
+      display: inline-block;
+      font-size: 25px;
+      font-weight: 500;
+      line-height: normal;
+      vertical-align: middle;
+    }
+  }
+}
+
+.slide-join {
+  background-color: $logo-color;
+  padding: 200px 50px;
+}
+
+.slide-full-video {
+  background-color: $black;
+  border-bottom: 5px solid $primary-orange;
+  border-top: 5px solid $primary-blue;
+
+  .partners-banner {
+    margin: auto;
+    max-width: 1000px;
+    padding-top: 20px;
+
+    .partner-BWH {
+      float: left;
+      height: 80px;
+      width: 300px;
+    }
+  }
+}
+
+
+@media (max-width: $screen-md) {
+  .simple-signup-form {
+    background-color: rgba(255, 255, 255, .95);
+  }
+
+  .slide-highlights {
+    .circle {
+      margin-bottom: 20px;
+    }
+  }
+}
+
+@media (max-width: $screen-sm) {
+  .simple-signup-form {
+    form #user_first_name {
+      margin-bottom: 10px;
+    }
+  }
+
+  .slide-mission {
+    text-align: center;
+
+    .myapnea-mission {
+      line-height: 1.2em;
+    }
+
+    img {
+      margin: auto;
+    }
+  }
+}

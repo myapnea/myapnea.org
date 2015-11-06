@@ -66,6 +66,11 @@ class StaticControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should get clinical trials" do
+    get :clinical_trials
+    assert_response :success
+  end
+
   test "should get version" do
     get :version
     assert_response :success

@@ -60,13 +60,6 @@ $unviewed-color: #d5ecd2;
     width: auto;
   }
 
-  #slide-2,
-  #slide-3,
-  #slide-2p,
-  #slide-3p {
-    text-align: center;
-  }
-
   #registration-progress {
     margin-bottom: 20px;
 
@@ -116,8 +109,4 @@ $unviewed-color: #d5ecd2;
     margin: auto auto 10px;
     width: 30%;
   }
-}
-
-.community-highlight-links:hover {
-  text-decoration: none;
 }

@@ -16,10 +16,11 @@
 
 .container
   - if @highlights.count == 0
-    %p.lead.centered-text{ style: 'margin-top: 20px' }
-      You can
-      = link_to 'create highlights', new_highlight_path
-      here that promote content on the site on members' dashboards.
+    .content-container
+      %p.lead.centered
+        You can
+        = link_to 'create highlights', new_highlight_path
+        here that promote content on the site on members' dashboards.
   - else
     - @highlights.each do |highlight|
       %hr

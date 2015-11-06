@@ -3,6 +3,7 @@
 ### Enhancements
 - **Design Changes**
   - Switched to fixed-width version of site
+  - Minor updates to landing page
 - **Engagment Changes**
   - More dynamic widgets located on the dashboard
     - Update social profile field
@@ -19,6 +20,7 @@
   - Research topic restructuring for enhanced usability
 - **Other**
   - Added Groupable concern for compatibility with PostgreSQL 8.3
+  - Added list of clinical trials
 
 ### Refactoring
 - Refactored stylesheets to make better use of SCSS variables

@@ -1,6 +1,6 @@
 .research-topic-container {
   background-color: $white;
-  box-shadow: 0 0 3px rgba(0, 0, 0, .5);
+  box-shadow: $box-shadow;
   margin-bottom: 20px;
 
   .research-topic-header {
@@ -62,8 +62,8 @@
       border-radius: 2px;
       cursor: pointer;
       display: inline-block;
-      padding: 10px;
-      width: 80px;
+      padding: 10px 5px;
+      width: 90px;
     }
 
     input[type=radio]:checked ~ .endorse-label {

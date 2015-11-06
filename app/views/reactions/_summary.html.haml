@@ -1,6 +1,6 @@
 - if post.reactions.current.present?
   .reaction-summary
-    %p
+    %p{ style: 'margin-bottom: 0; padding-bottom: 10px; '}
       - if post.reactions.current.likes.present? and post.reactions.current.requests.present?
         = succeed ', ' do
           = pluralize(post.reactions.current.likes.count, 'like')

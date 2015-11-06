@@ -74,6 +74,7 @@ Rails.application.routes.draw do
     get :advisory
     get :partners
     get :faqs
+    get 'clinical-trials', action: :clinical_trials
     get :version
     get :sitemap
     get :sizes

@@ -11,4 +11,4 @@
   .endorse-button-container.submit-vote-button-container
     = submit_tag 'Submit', data: { disable_with: "Thanks!" }, class: 'btn btn-primary-custom btn-w-border'
   .text-area-container
-    = text_area_tag "comment_#{rt.id}", params["comment_#{rt.id}"], placeholder: 'Add a comment (optional)', class: 'form-control', disabled: current_user.cast_vote_for?(rt)
+    = text_area_tag "comment_#{rt.id}", params["comment_#{rt.id}"], placeholder: 'Comment', class: 'form-control', disabled: current_user.cast_vote_for?(rt)

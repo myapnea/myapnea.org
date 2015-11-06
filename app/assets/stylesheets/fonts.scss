@@ -72,16 +72,6 @@
 
 // TYPOGRAPHY
 
-// Headers
-
-h1 { font-size: 3em; }
-h2 { font-size: 2.5em; }
-h3 { font-size: 2em; }
-h4 { font-size: 1.7em; }
-h5 { font-size: 1.5em; }
-h6 { font-size: 1.3em; }
-p { font-size: 1.3em; }
-
 .spaced { line-height: 1.7em; }
 
 .f300 { font-weight: 300; }
@@ -90,65 +80,3 @@ p { font-size: 1.3em; }
 .f600 { font-weight: 600; }
 .f700 { font-weight: 700; }
 
-// Lists
-
-ul,
-ol {
-  font-size: 1.3em;
-  line-height: 1.7em;
-
-  ul,
-  ol {
-    font-size: .9em;
-    line-height: 1.5em;
-
-    ul,
-    ol {
-      font-size: .9em;
-      line-height: 1.4em;
-    }
-  }
-
-  p { font-size: 1em; }
-}
-
-// Responsive
-
-// 90% of size
-@media (max-width: $screen-lg) {
-  h1 { font-size: 2.7em; }
-  h2 { font-size: 2.25em; }
-  h3 { font-size: 1.8em; }
-  h4 { font-size: 1.53em; }
-  h5 { font-size: 1.35em; }
-  h6 { font-size: 1.17em; }
-  p { font-size: 1.17em; }
-  ul,
-  ol { font-size: 1.17em; }
-}
-
-// 80% of size
-@media (max-width: $screen-md) {
-  h1 { font-size: 2.4em; }
-  h2 { font-size: 2em; }
-  h3 { font-size: 1.6em; }
-  h4 { font-size: 1.36em; }
-  h5 { font-size: 1.2em; }
-  h6 { font-size: 1.1em; }
-  p { font-size: 1.1em; }
-  ul,
-  ol { font-size: 1.04em; }
-}
-
-// 75% of size
-@media (max-width: $screen-sm) {
-  h1 { font-size: 2.25em; }
-  h2 { font-size: 1.875em; }
-  h3 { font-size: 1.5em; }
-  h4 { font-size: 1.275em; }
-  h5 { font-size: 1.125em; }
-  h6 { font-size: 1em; }
-  p { font-size: 1em; }
-  ul,
-  ol { font-size: 1em; }
-}

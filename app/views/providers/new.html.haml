@@ -1,63 +1,58 @@
-#slide-1p.row.row-fullscreen.reset-layout
-  .col-md-6.col-md-offset-1
-    %h2.darker-blue.f700
-      Help us put an end to sleep apnea!
-    %h3.dark6.f500
-      We are working directly with researchers and providers to treat this illness. By creating your own provider page, you can make an important impact.
-    = link_to 'Create your page', '#signup', class: "btn btn-primary", id: "btn-join"
-  .col-md-3.col-md-offset-1
-    .thumbnail#landing-video-play{ data: { object: 'start-yt-video', toggle:"modal", target:'#landingVideoModal', target_iframe: '#landingframe', src: '//www.youtube.com/embed/3I8YbWRgkjw?rel=0&autoplay=1&autohide=1&showinfo=0&wmode=opaque' } }
-      %i.fa.fa-play-circle
-      %p
-        Play Video
+.slide-providers-signup
+  .container
+    .row
+      .col-md-6.col-sm-8
+        %h2.darker-blue.f700
+          Help us put an end to sleep apnea!
+        %h3.dark6
+          We are working directly with researchers and providers to treat this illness. By creating your own provider page, you can make an important impact.
+        = link_to 'Create your page', '#signup', class: 'btn btn-join'
+      .col-md-3.col-md-offset-2.col-sm-4
+        %br.visible-xs
+        .thumbnail.providers-video-play{ data: { object: 'start-yt-video', toggle:"modal", target:'#landingVideoModal', target_iframe: '#landingframe', src: '//www.youtube.com/embed/3I8YbWRgkjw?rel=0&autoplay=1&autohide=1&showinfo=0&wmode=opaque' } }
+          %i.fa.fa-play-circle
+          %p Play Video
 
-#slide-2p.row.row-fullscreen.reset-layout
-  .col-md-6.col-md-offset-1.col-sm-8
-    %h1.darker-blue
-      Get your patients involved
-    %h3.dark8
-      MyApnea.Org is what's called
-      %span.lighter-blue patient-powered research.
-      We're creating a platform that allows people with sleep apnea to have a direct impact on research priorities, in order to give them faster improvements in treatment methods. Input from people with sleep apnea is crucial to seeing how we can care for them better. By giving your provider page to your patients, you're joining an important movement to stop this disorder.
-  .col-sm-4.centered-text
-    = image_tag 'myapnea/welcome/img-small/first35_orange.png', class: 'hidden-xs'
+.slide-providers-mission
+  .container
+    .row
+      .col-sm-7
+        %h1.darker-blue
+          Get your patients involved
+        %h3.dark8
+          MyApnea.Org is what's called
+          %span.lighter-blue patient-powered research.
+          We're creating a platform that allows people with sleep apnea to have a direct impact on research priorities, in order to give them faster improvements in treatment methods. Input from people with sleep apnea is crucial to seeing how we can care for them better. By giving your provider page to your patients, you're joining an important movement to stop this disorder.
+      .col-sm-4.col-sm-offset-1
+        = image_tag 'myapnea/welcome/img-small/first35_orange.png', class: 'img-responsive'
 
-#slide-3p.row.row-fullscreen.reset-layout
-  .col-sm-4.col-md-offset-1.centered-text
-    = image_tag 'myapnea/welcome/img-small/heart258_orange.png', class: 'hidden-xs'
-  .col-md-6.col-sm-8
-    %h1.darker-blue
-      Provide better care
-    %h3.dark8
-      By offering this network to your patients, and engaging with them actively outside of the office, they begin to feel a uniquely incredible quality of care. This community easily shows people with sleep apnea the amount of support they have from an international group of researchers, care providers, and fellow patients.
+    - 3.times do
+      %br
 
-#partners-banner.row.reset-layout
-  .col-sm-12.col-md-4.col-md-offset-2.col-lg-3.col-lg-offset-3
-    = image_tag 'myapnea/welcome/img-small/pcornet_logo.jpg', class: "partners-img img-responsive", id: "partner-PCORnet"
-  .col-sm-12.col-md-4.col-lg-3
-    = image_tag 'myapnea/welcome/img-small/bwh_logo.jpg', class: "partners-img img-responsive", id: "partner-BWH"
+    .row
+      .col-sm-7
+        %h1.darker-blue
+          Provide better care
+        %h3.dark8
+          By offering this network to your patients, and engaging with them actively outside of the office, they begin to feel a uniquely incredible quality of care. This community easily shows people with sleep apnea the amount of support they have from an international group of researchers, care providers, and fellow patients.
+      .col-sm-4.col-sm-offset-1
+        = image_tag 'myapnea/welcome/img-small/heart258_orange.png', class: 'img-responsive'
 
 %a{ name: 'signup' }
 - if current_user
-  %div{ style: 'height:375px;background-color:white;text-align:center;padding-top:125px' }
-    - if current_user.provider?
-      %p.lead
-        You are currently signed in as
-        %strong= "#{current_user.name}."
-        Thank you for signing up as a provider.
-      %p.lead
-        You may customize your personal provider page in your
-        - if current_user.beta_opt_in?
-          = link_to('Account Settings', account_path) + "."
-        - else
-          = link_to('Account Settings (Beta)', update_account_path(user: { beta_opt_in: '1' }), method: :patch) + "."
-    - else
-      %p.lead
-        You are currently signed in as
-        %strong= "#{current_user.name}."
-      %p.lead
-        If you are a professional care provider and want to set up your custom page, please select 'Professional care provider' as your
-        = link_to 'user type', describe_yourself_path
+  %br
+  .container
+    .content-container
+      - if current_user.provider?
+        %p.lead
+          You may customize your personal provider page in your
+          = succeed '.' do
+            = link_to('account settings', account_path)
+      - else
+        %p.lead
+          If you are a professional care provider and want to set up your custom page, please select 'Professional care provider' as your
+          = succeed '.' do
+            = link_to 'user type', describe_yourself_path
 - else
   = render partial: "providers/signup_form", locals: { resource: @provider }
 

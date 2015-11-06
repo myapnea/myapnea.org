@@ -7,6 +7,8 @@ $reaction-color: #bd7a00;
 .btn-like {
   background-color: transparent;
   color: $dark-gray;
+  font-size: 12px;
+  padding-left: 0;
 
   &.liked {
     color: $reaction-color;
@@ -29,7 +31,7 @@ $reaction-color: #bd7a00;
 
   p {
     color: $gray;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 700;
   }
 }

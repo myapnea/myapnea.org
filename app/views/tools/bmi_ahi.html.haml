@@ -26,11 +26,11 @@
       .col-xs-6
         = number_field_tag 'weight', nil, class: 'number-input', id: 'my-weight', data: { object: 'weight-input' }
         %label.select-label{ for: 'weight' } pounds
-    #calculate-bmi-placeholder.row.list-group-item.centered-text
+    #calculate-bmi-placeholder.row.list-group-item.centered
       %button.btn.btn-success.disabled{ data: { object: 'submit-bmi'} }
         %h3 Calculate My BMI
     #bmi-graph.row.list-group-item.hidden
-      %h3.centered-text.f300
+      %h3.centered.f300
         Your BMI:
         %span#bmi.f500
       #my-bmi{ style: 'margin-top: 20px;'}
@@ -54,7 +54,7 @@
           %button#calculate-min-weight.btn.btn-default.disabled{ data: { object: 'calculate-minimum-weight' } }
             %p.small.reset-layout Calculate short-term weight goal
     .list-group-item
-      #calculate-weight-change-results.centered-text
+      #calculate-weight-change-results.centered
         %button.btn.btn-primary.disabled{ data: { object: 'submit-weight-change'} }
           %h4 See Your Results
     #weight-change-results-container.hidden
@@ -68,7 +68,7 @@
         %p#bmi-change-result-text.hidden.lead{ style: 'font-size: 18px; padding-left: 5px; padding-right: 5px'}
           %br
           %span#bmi-change-result-custom-text.darkerer-blue
-          #severity-graph.centered-text
+          #severity-graph.centered
             #severe.row.reset-layout
               .col-xs-3
                 %h4.darkerer-blue Severe

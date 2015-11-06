@@ -1,7 +1,7 @@
-$endorse-button-width: 80px;
+$endorse-button-width: 90px;
 $endorse-button-height: 44px;
 
-.rt-vote-container {
+.inline-vote-container {
   position: relative;
 
   .endorse-button-container {
@@ -29,6 +29,46 @@ $endorse-button-height: 44px;
     textarea {
       height: $endorse-button-height;
       resize: vertical;
+    }
+  }
+}
+
+@media (max-width: $screen-xs) {
+  $endorse-button-width: 90px;
+  $endorse-button-height: 30px;
+
+  .inline-vote-container {
+    position: relative;
+
+    .endorse-button-container {
+      height: $endorse-button-height;
+      width: $endorse-button-width;
+
+      &.endorse-positive {
+      }
+
+      &.endorse-negative {
+      }
+
+      &.submit-vote-button-container {
+        text-align: right;
+      }
+
+      label,
+      input[type='submit'] {
+        font-size: 14px !important;
+      }
+    }
+
+    .text-area-container {
+      margin-left: 0;
+      margin-right: 0;
+      margin-top: $endorse-button-height + 20;
+
+      textarea {
+        font-size: 14px;
+        resize: vertical;
+      }
     }
   }
 }

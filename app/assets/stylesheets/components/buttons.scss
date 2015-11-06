@@ -40,3 +40,29 @@
 .btn-w-border {
   border-width: 2px;
 }
+
+.btn-join {
+  background-color: $primary-orange;
+  border: 1px solid $white;
+  border-radius: 100px;
+  box-shadow: 0 2px 0 0 $light-gray;
+  color: $white;
+  font-size: 40px;
+  font-weight: 500;
+  margin: auto;
+  margin-top: 30px;
+  padding: 10px;
+  width: 100%;
+}
+
+.btn-clear {
+  color: $dark-gray;
+
+  &:hover {
+    color: $darker-gray
+  }
+
+  &:active {
+    box-shadow: none;
+  }
+}
