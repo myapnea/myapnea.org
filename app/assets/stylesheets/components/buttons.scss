@@ -54,3 +54,15 @@
   padding: 10px;
   width: 100%;
 }
+
+.btn-clear {
+  color: $dark-gray;
+
+  &:hover {
+    color: $darker-gray
+  }
+
+  &:active {
+    box-shadow: none;
+  }
+}

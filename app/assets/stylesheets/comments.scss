@@ -1,6 +1,7 @@
 .comment-group {
   background-color: $footer-color;
   border-top: 1px solid $border-top-color;
+  margin-bottom: -10px;
   margin-left: -10px;
   margin-right: -10px;
   margin-top: 5px;
@@ -33,10 +34,12 @@
   }
 
   .comment-content {
+    font-size: 14px;
     margin-left: 30px;
 
     .small {
       color: $dark-gray;
+      font-size: 12px;
     }
   }
 }
