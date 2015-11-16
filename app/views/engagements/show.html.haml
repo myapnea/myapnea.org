@@ -6,12 +6,20 @@
 %br
 .container
   = render @engagement
-  - engagement_response_data = engagement_data(@engagement.engagement_responses.current, Time.zone.now.beginning_of_week, Time.zone.now.end_of_week)
-  %h2 Responses this week
+  - this_weeks_data = @engagement.engagement_responses.current.where("updated_at > ? and updated_at < ?", Time.zone.now.beginning_of_week, Time.zone.now.end_of_week)
+  - engagement_response_data = engagement_data(this_weeks_data, Time.zone.now.beginning_of_week, Time.zone.now.end_of_week)
+  %h2
+    This week
+    = surround '(', ')' do
+      = pluralize(this_weeks_data.count, 'response')
   #engagement-response-heatmap.engagement-heatmap{ 'data-array' => engagement_response_data.to_json }
-  .content-container
-    %h2 All responses
-    .list-group
-      - @engagement.engagement_responses.each do |response|
-        .list-group-item
-          = response.response
+  %br
+  %h2
+    All time
+    = surround '(', ')' do
+      = pluralize(@engagement.engagement_responses.current.count, 'response')
+  .list-group
+    - @engagement.engagement_responses.each do |response|
+      .list-group-item
+        = response.response
+  %br

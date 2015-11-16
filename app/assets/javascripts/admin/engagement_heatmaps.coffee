@@ -31,6 +31,7 @@
     'Su'
   ]
   times = [
+    '12a'
     '1a'
     '2a'
     '3a'
@@ -42,7 +43,7 @@
     '9a'
     '10a'
     '11a'
-    '12a'
+    '12p'
     '1p'
     '2p'
     '3p'
@@ -54,7 +55,6 @@
     '9p'
     '10p'
     '11p'
-    '12p'
   ]
 
   heatmapChart = (data, mapId) ->
@@ -77,9 +77,7 @@
     colorScale = d3.scale.quantile().domain([
       0
       buckets - 1
-      d3.max(data, (d) ->
-        d.value
-      )
+      d3.max(buckets, d3.max(data, (d) -> d.value))
     ]).range(colors)
     cards = svg.selectAll('.hour').data(data, (d) ->
       d.day + ':' + d.hour
