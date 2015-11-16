@@ -1,0 +1,10 @@
+.content-main-header
+  .container
+    %h1 Editing Engagement
+    %p
+      = link_to 'Show', @engagement
+      %span.white |
+      = link_to 'Back', engagements_path
+
+.container
+  = render 'form'

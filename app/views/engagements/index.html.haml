@@ -1,0 +1,14 @@
+.content-main-header
+  .container
+    %h1 Engagements
+    %p
+      = link_to 'Admin Dashboard', admin_path
+      %span.white
+        |
+      = link_to 'New Engagement', new_engagement_path
+
+%br
+.container
+  - @engagements.each do |engagement|
+    = render engagement
+

@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  resources :engagements do
+    resources :engagement_responses
+  end
   resources :reactions, only: [:create, :destroy]
   resources :comments, only: [:create, :destroy]
 

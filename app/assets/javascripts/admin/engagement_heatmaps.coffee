@@ -111,22 +111,15 @@
     legend.exit().remove()
     return
 
-  rawData = $("#like-heatmap").data('array')
-  data = []
-  dayAdjustment = rawData[0][0] - 1
-  for i of rawData
-    data.push
-      'day' : rawData[i][0] - dayAdjustment
-      'hour' : rawData[i][1] + 1
-      'value' : rawData[i][2]
-  heatmapChart data, '#like-heatmap'
-
-  rawData = $("#request-heatmap").data('array')
-  data = []
-  dayAdjustment = rawData[0][0] - 1
-  for i of rawData
-    data.push
-      'day' : rawData[i][0] - dayAdjustment
-      'hour' : rawData[i][1] + 1
-      'value' : rawData[i][2]
-  heatmapChart data, '#request-heatmap'
+  $('.engagement-heatmap').each (heatmap) ->
+    heatmapId = '#'+$(this).attr('id')
+    console.log heatmapId
+    rawData = $(this).data('array')
+    data = []
+    dayAdjustment = rawData[0][0] - 1
+    for i of rawData
+      data.push
+        'day' : rawData[i][0] - dayAdjustment
+        'hour' : rawData[i][1] + 1
+        'value' : rawData[i][2]
+    heatmapChart data, heatmapId

@@ -67,5 +67,5 @@
 //= require filedrag
 //= require builder/surveys
 //= require admin/exports
-//= require admin/engagement_report
+//= require admin/engagement_heatmaps
 //= require social/sleep_tips

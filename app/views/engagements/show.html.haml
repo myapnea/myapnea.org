@@ -1,0 +1,17 @@
+.content-main-header
+  .container
+    %h1 Engagement
+    %p= link_to 'Back to index', engagements_path
+
+%br
+.container
+  = render @engagement
+  - engagement_response_data = engagement_data(@engagement.engagement_responses.current, Time.zone.now.beginning_of_week, Time.zone.now.end_of_week)
+  %h2 Responses this week
+  #engagement-response-heatmap.engagement-heatmap{ 'data-array' => engagement_response_data.to_json }
+  .content-container
+    %h2 All responses
+    .list-group
+      - @engagement.engagement_responses.each do |response|
+        .list-group-item
+          = response.response
