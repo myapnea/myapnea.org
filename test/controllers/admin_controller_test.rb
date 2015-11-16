@@ -141,10 +141,10 @@ class AdminControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should get engagement report as admin" do
+  test "should get reaction summary as admin" do
     login(users(:moderator_1))
 
-    get :engagement_report
+    get :reactions
     assert_response :success
   end
 

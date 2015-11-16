@@ -17,6 +17,8 @@
   - Fixed issue with possible redirect loop during consent procedure
 - **Research Changes**
   - Research topic restructuring for enhanced usability
+- **Admin Changes**
+  - Replaced engagement report with reaction heatmap
 - **Other**
   - Added Groupable concern for compatibility with PostgreSQL 8.3
   - Added list of clinical trials

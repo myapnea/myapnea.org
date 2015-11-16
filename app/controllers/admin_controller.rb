@@ -169,17 +169,7 @@ class AdminController < ApplicationController
     @user_values = user_values
   end
 
-  def engagement_report
-    @uploaded_photo_count = User.current.where.not(photo: nil).count
-    @introduced_count = Topic.find_by_slug('introduce-yourself').posts.current.uniq.count
-    @discussed_count = Post.current.not_research.where.not(topic_id: Topic.find_by_slug('introduce-yourself')).uniq.select(:user_id).count
-    @completing_surveys_count = AnswerSession.current.where(completed: true).uniq.select(:user_id).count
-    @experienced_voter_count = User.current.joins(:votes).group(User.columns_for_group).having('count(votes.id) > 9').to_a.count
-    @submitted_research_topic_count = ResearchTopic.current.uniq.pluck(:user_id).count
-    @invited_members_count = Invite.members.uniq.select(:user_id).count
-    @invited_members_success_count = Invite.members.successful.uniq.select(:user_id).count
-    @invited_providers_count = Invite.providers.uniq.select(:user_id).count
-    @invited_providers_success_count = Invite.providers.successful.uniq.select(:user_id).count
+  def reactions
   end
 
   def daily_engagement

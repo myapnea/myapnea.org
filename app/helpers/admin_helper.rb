@@ -38,4 +38,12 @@ module AdminHelper
     )
   end
 
+  def engagement_data(record_data, start_date, end_date)
+    data = []
+    (start_date.beginning_of_day.to_i..end_date.end_of_day.to_i).step(1.hour) do |d|
+      data.push([Time.at(d).day, Time.at(d).hour, record_data.where("updated_at > ? and updated_at < ?", Time.at(d), Time.at(d)+1.hour).count])
+    end
+    data
+  end
+
 end

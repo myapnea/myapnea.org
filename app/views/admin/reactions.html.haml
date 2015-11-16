@@ -1,0 +1,13 @@
+.content-main-header
+  .container
+    %h1 Engagement Report
+    %p= link_to 'Admin Dashboard', admin_path
+
+.container
+  - like_data = engagement_data(Reaction.current.likes, Time.zone.now.beginning_of_week, Time.zone.now.end_of_week)
+  %h1 Likes
+  #like-heatmap.engagement-heatmap{ 'data-array' => like_data.to_json }
+
+  - request_data = engagement_data(Reaction.current.requests, Time.zone.now.beginning_of_week, Time.zone.now.end_of_week)
+  %h1 Requests
+  #request-heatmap.engagement-heatmap{ 'data-array' => request_data.to_json }

@@ -214,7 +214,7 @@ Rails.application.routes.draw do
   get 'admin/reports/timeline' => 'admin#timeline', as: 'admin_reports_timeline'
   get 'admin/reports/location' => 'admin#location', as: 'admin_reports_location'
   get 'admin/reports/progress' => 'admin#progress_report', as: 'admin_progress_report'
-  get 'admin/reports/engagement' => 'admin#engagement_report', as: 'admin_engagement_report'
+  get 'admin/reports/reactions' => 'admin#reactions', as: 'admin_reactions'
   get 'admin/providers' => 'admin#providers'
   get 'admin/daily-engagement' => 'admin#daily_engagement', as: 'admin_daily_engagement'
 
