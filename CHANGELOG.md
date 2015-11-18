@@ -21,6 +21,7 @@
 - **Admin Changes**
   - Replaced engagement report with reaction heatmap
   - Heatmaps added to individual engagements
+  - Moderators receive alert emails for new forum replies
 - **Other**
   - Added Groupable concern for compatibility with PostgreSQL 8.3
   - Added list of clinical trials

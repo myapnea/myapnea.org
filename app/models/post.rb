@@ -81,12 +81,11 @@ class Post < ActiveRecord::Base
   # AND
   # 2) The topic subscriber is not the post creator
   def send_reply_emails!
-    return # Temporarily disable forum reply emails
     unless Rails.env.test? or Rails.env.development?
       pid = Process.fork
       if pid.nil? then
         # In child
-        self.topic.subscribers.where.not(id: self.user_id).each do |u|
+        self.topic.subscribers.where(moderator: true).where.not(id: self.user_id).each do |u|
           UserMailer.post_replied(self, u).deliver_later if Rails.env.production?
         end
         Kernel.exit!
