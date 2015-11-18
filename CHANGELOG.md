@@ -3,6 +3,8 @@
 ### Enhancement
 - **Admin Changes**
   - Updated the location report to provide a summary of the previous week's signups
+- **Gem Changes**
+  - Updated to Rails 4.2.5
 
 ## 8.4.1 (October 22, 2015)
 
