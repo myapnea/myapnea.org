@@ -25,6 +25,7 @@
 - **Other**
   - Added Groupable concern for compatibility with PostgreSQL 8.3
   - Added list of clinical trials
+  - Improved purpose and navigation between invites
 
 ### Refactoring
 - Refactored stylesheets to make better use of SCSS variables

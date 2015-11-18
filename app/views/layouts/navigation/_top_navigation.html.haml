@@ -18,9 +18,8 @@
               &nbsp;
               %span.caret
             %ul.dropdown-menu{role: "menu"}
-              - if current_user.forum_name.present?
-                %li
-                  = link_to 'View Profile', member_path(current_user.forum_name)
+              %li
+                = link_to 'Invite others', members_invites_path
               %li
                 = link_to 'Settings', account_path
               %li

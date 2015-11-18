@@ -1,13 +1,22 @@
 .content-main-header
   .container
-    %h1 Invite Others!
+    %h1 Invite others!
 
-.container
+.container.with-padding-y
   .content-container
-    = form_for @invite do |f|
-      .input-group
-        = f.label :email, class: 'control-label'
-        = f.email_field :email, class: 'form-control'
-      %br
-      .input-group
-        = f.submit 'Send Invitation', class: 'btn btn-primary'
+    %p
+      It takes a large community to make an impact. Invite other people you know who have been impacted by sleep apnea, and help us make a difference!
+    = form_for @invite, html: { class: 'form-horizontal' } do |f|
+      .form-group
+        = f.label :email, class: 'control-label col-md-2'
+        .col-md-8
+          = f.email_field :email, class: 'form-control'
+      .form-group
+        .col-md-8.col-md-offset-2
+          = f.submit 'Send Invitation', class: 'btn btn-primary'
+    %br
+    .content-footer
+      %p.small
+        You can also
+        = succeed '.' do
+          = link_to 'invite your personal care provider', providers_invites_path
