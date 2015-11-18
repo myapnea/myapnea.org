@@ -1,5 +1,9 @@
 ## 8.5.0
 
+### Enhancement
+- **Admin Changes**
+  - Updated the location report to provide a summary of the previous week's signups
+
 ## 8.4.1 (October 22, 2015)
 
 ### Bug Fixes
