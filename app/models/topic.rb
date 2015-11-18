@@ -8,6 +8,7 @@ class Topic < ActiveRecord::Base
 
   # Concerns
   include Deletable
+  include Groupable
 
   # Callbacks
   before_validation :set_slug

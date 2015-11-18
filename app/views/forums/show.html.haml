@@ -1,12 +1,8 @@
 - @title = @forum.name
 
-.container
-  %br
+.container.with-padding-y
   .row
-    .col-sm-8
-      = render 'forums/show', forum: @forum, topic_limit: nil
-      %br
-    .col-sm-4
+    .col-sm-4.col-sm-push-8
       - if current_user and (current_user.owner? or current_user.moderator?)
         .admin-container
           %span.logo-color Admins:
@@ -19,25 +15,31 @@
             = submit_tag 'Search', class: 'btn btn-primary', name: nil
       .clearfix
       %br
+
       - if @most_viewed = @forum.topics.order(views_count: :desc).first
         .topic-highlight-container
           Popular in
-          %span.f700= @forum.name
+          %strong= @forum.name
           .topic-highlight
             = link_to member_path(@most_viewed.user.forum_name), class: 'no-underline' do
               = image_tag user_photo_url(@most_viewed.user), class: 'user-image'
             .topic-highlight-content
               = link_to @most_viewed.name, [@most_viewed.forum, @most_viewed]
-      - if @most_discussed = @forum.topics.current.joins(:posts).group('topics.id').order('count(posts)').last
+
+      - if @most_discussed = @forum.topics.current.joins(:posts).group(Topic.columns_for_group).order('count(posts)').last
         .topic-highlight-container
           Trending in
-          %span.f700= @forum.name
+          %strong= @forum.name
           .topic-highlight
             = link_to member_path(@most_viewed.user.forum_name), class: 'no-underline' do
               = image_tag user_photo_url(@most_viewed.user), class: 'user-image'
             .topic-highlight-content
               = link_to @most_discussed.name, [@most_discussed.forum, @most_discussed]
+
       - if current_user
         = link_to 'New Topic', new_forum_topic_path(@forum), class: 'btn btn-primary-custom col-xs-12'
       - else
         = render 'home/join_the_community', referrer: 'forums', message: 'Share stories directly with sleep researchers and others with sleep apnea'
+
+    .col-sm-8.col-sm-pull-4
+      = render 'forums/show', forum: @forum, topic_limit: nil

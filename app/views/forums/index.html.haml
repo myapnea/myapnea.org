@@ -1,11 +1,6 @@
-.container
-  %br
+.container.with-padding-y
   .row
-    .col-sm-8
-      - @forums.order(:position).each do |forum|
-        = render 'forums/show', forum: forum, topic_limit: 10
-        %br
-    .col-sm-4
+    .col-sm-4.col-sm-push-8
       = form_tag forums_path, method: :get, class: 'form-inline col-md-12 search-bar-forum' do
         .input-group
           = text_field_tag 's', params[:s], class: 'form-control'
@@ -13,11 +8,13 @@
             = submit_tag 'Search', class: 'btn btn-primary', name: nil
       .clearfix
       %br
+
       - if current_user and (current_user.owner? or current_user.moderator?)
         .admin-container
           %span.logo-color Admins:
           = link_to 'New Forum', new_forum_path, class: 'btn btn-xs btn-primary' if current_user.owner?
           = link_to 'Pending Review', forums_path(status: (params[:status] == 'pending_review' ? nil : 'pending_review')), class: "btn btn-default btn-xs #{'active' if params[:status] == 'pending_review'}" if current_user.moderator?
+
       - if @most_viewed = Topic.order(views_count: :desc).first
         .topic-highlight-container
           Most Viewed
@@ -26,7 +23,8 @@
               = image_tag user_photo_url(@most_viewed.user), class: 'user-image'
             .topic-highlight-content
               = link_to @most_viewed.name, [@most_viewed.forum, @most_viewed]
-      - if @most_discussed = Topic.current.joins(:posts).group('topics.id').order('count(posts)').last
+
+      - if @most_discussed = Topic.current.joins(:posts).group(Topic.columns_for_group).order('count(posts)').last
         .topic-highlight-container
           Most Discussed
           .topic-highlight
@@ -34,5 +32,11 @@
               = image_tag user_photo_url(@most_viewed.user), class: 'user-image'
             .topic-highlight-content
               = link_to @most_discussed.name, [@most_discussed.forum, @most_discussed]
+
       - unless current_user
         = render 'home/join_the_community', referrer: 'forums', message: 'Share stories directly with sleep researchers and others with sleep apnea'
+
+    .col-sm-8.col-sm-pull-4
+      - @forums.order(:position).each do |forum|
+        = render 'forums/show', forum: forum, topic_limit: 10
+        %br
