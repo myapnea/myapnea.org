@@ -22,12 +22,3 @@
         Topic Hidden
   %td.text-muted{ style: 'font-size: 16px', class: "#{topic.pinned? ? "f500" : "f300"}" }
     = topic.visible_posts.count
-  %td.text-muted.hidden-xs.hidden-sm{ style: 'font-size: 16px', class: "#{topic.pinned? ? "f500" : "f300"}" }
-    - if post
-      %div{ style: 'white-space:nowrap;overflow-x:hidden;max-width:150px' }
-        = image_tag user_photo_url(post.user), alt: '', size: '18x18'
-        - unless post.user.forum_name.blank?
-          = link_to post.user.forum_name, member_path(forum_name: post.user.forum_name)
-  %td.text-muted.hidden-xs.hidden-sm{ class: "#{topic.pinned? ? "f500" : "f300"}" }
-    - if post
-      = post.created_at.strftime("%-m/%-d/%Y at %-l:%M %p")

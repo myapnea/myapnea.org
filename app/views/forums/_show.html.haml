@@ -33,18 +33,12 @@
         %col{ width: "50px" }
         %col
         %col{ width: "70px" }
-        %col{ width: "150px" }
-        %col{ width: "170px" }
         %thead
           %tr
             %th
             %th
             %th
               Posts
-            %th.hidden-xs.hidden-sm
-              Last Post By
-            %th.hidden-xs.hidden-sm
-              Time
         %tbody
           - topics.each do |topic|
             = render 'topics/summary_table_row', topic: topic
