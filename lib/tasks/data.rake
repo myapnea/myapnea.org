@@ -15,7 +15,7 @@ namespace :data do
     answer_template_names.each do |answer_template_name|
       answer_template = AnswerTemplate.find_by_name answer_template_name
 
-      values_and_ids = AnswerValue.current.where( answer_id: question.answers.pluck(:id), answer_template_id: answer_template.id ).where.not( answer_option_id: nil ).includes(:answer_option, answer: :answer_session).pluck("answer_options.text", "answer_options.value", "answer_sessions.user_id")
+      values_and_ids = AnswerValue.where( answer_id: question.answers.pluck(:id), answer_template_id: answer_template.id ).where.not( answer_option_id: nil ).includes(:answer_option, answer: :answer_session).pluck("answer_options.text", "answer_options.value", "answer_sessions.user_id")
 
       values_and_ids.each do |text, value, user_id|
         user_values[user_id.to_s] ||= {}
@@ -69,7 +69,7 @@ namespace :data do
     answer_template_names.each do |answer_template_name|
       answer_template = AnswerTemplate.find_by_name answer_template_name
 
-      values_and_ids = AnswerValue.current.where( answer_id: question_main.answers.pluck(:id) + question_others.answers.pluck(:id), answer_template_id: answer_template.id ).where.not( answer_option_id: nil ).includes(:answer_option, answer: :answer_session).pluck("answer_options.text", "answer_options.value", "answer_sessions.user_id")
+      values_and_ids = AnswerValue.where( answer_id: question_main.answers.pluck(:id) + question_others.answers.pluck(:id), answer_template_id: answer_template.id ).where.not( answer_option_id: nil ).includes(:answer_option, answer: :answer_session).pluck("answer_options.text", "answer_options.value", "answer_sessions.user_id")
 
       values_and_ids.each do |text, value, user_id|
         user_values[user_id.to_s] ||= {}

@@ -6,7 +6,61 @@
 
 .container
   .content-container
-    %h3 Regular Member Sign Ups by Country\
+    %h3 Sign ups in the Past Week (States)
+    - last_week_users = User.where('created_at >= ?', Time.zone.now - 7.days)
+    - location_array = last_week_users.group(:state_code).count.to_a.sort { |a,b| [(b.first.nil? ? 0 : 1), b.second] <=> [(a.first.nil? ? 0 : 1), a.second] }
+    %table.table.table-striped.table-fixed
+      %thead
+        %tr
+          %th State
+          %th Sign Ups
+      - location_array.each do |code, count|
+        %tr
+          %td
+            - if code.nil?
+              %span.text-muted Unknown
+            - else
+              = Map.get_state_name(code)
+          %td
+            - if code.nil?
+              %span.text-muted= count
+            - else
+              = count
+      %tfoot
+        %tr{ style: 'color: #fff; background-color: #333; border: 2px solid #333;' }
+          %th Total
+          %th= last_week_users.count
+
+.container
+  .content-container
+    %h3 Sign ups in the Past Week (Countries)
+    - location_array = last_week_users.group(:country_code).count.to_a.sort { |a,b| [(b.first.nil? ? 0 : 1), b.second] <=> [(a.first.nil? ? 0 : 1), a.second] }
+    %table.table.table-striped.table-fixed
+      %thead
+        %tr
+          %th Country
+          %th Sign Ups
+      - location_array.each do |code, count|
+        %tr
+          %td
+            - if code.nil?
+              %span.text-muted Unknown
+            - else
+              = Map.get_country_name(code)
+          %td
+            - if code.nil?
+              %span.text-muted= count
+            - else
+              = count
+      %tfoot
+        %tr{ style: 'color: #fff; background-color: #333; border: 2px solid #333;' }
+          %th Total
+          %th= last_week_users.count
+
+
+.container
+  .content-container
+    %h3 Regular Member Sign Ups by Country
     = render 'location_list', users: User.current, selector: "country"
 
   .content-container

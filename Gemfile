@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 
-gem 'rails',                '4.2.4'
+gem 'rails',                '4.2.5'
 
 # Database Adapter
-gem 'pg',                   '0.18.3'
+gem 'pg',                   '0.18.4'
 
 # Gems used by project
 gem 'devise'                                      # Authentication

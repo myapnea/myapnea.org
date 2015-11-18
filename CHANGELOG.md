@@ -29,6 +29,19 @@
 - Refactored stylesheets to make better use of SCSS variables
 - Simplified forum views and actions
 
+## 8.5.0 (November 18, 2015)
+
+### Enhancement
+- **Admin Changes**
+  - Updated the location report to provide a summary of the previous week's signups
+- **Gem Changes**
+  - Updated to rails 4.2.5
+  - Updated to pg 0.18.4
+
+## 8.4.1 (October 22, 2015)
+
+### Bug Fixes
+- Removed deprecated calls to `AnswerValue.current` that caused the 'My Sleep Pattern' report to error
 
 ## 8.4.0 (October 19, 2015)
 
