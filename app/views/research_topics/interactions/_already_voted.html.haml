@@ -1,8 +1,10 @@
-.content-container{ class: "white #{current_user.endorsed?(research_topic) ? 'great-bcg' : 'danger-bcg' }" }
-  %p.lead.horizontal-inset
+.vote-status-container.content-container{ class: "white #{current_user.endorsed?(research_topic) ? 'great-bcg' : 'danger-bcg' }" }
+  .current-vote-icon
     %i.fa.fa-lg{ class: "#{current_user.endorsed?(research_topic) ? 'fa-thumbs-up' : 'fa-thumbs-down' }" }
-    &nbsp;
-    You
-    = current_user.endorsed?(research_topic) ? "agreed" : "disagreed"
-    that this is a research priority.
-    = link_to 'I changed my mind', change_vote_path(research_topic_id: research_topic.id), method: :patch, class: 'btn btn-default pull-right'
+  .current-vote-status
+    %p
+      You
+      = current_user.endorsed?(research_topic) ? "agreed" : "disagreed"
+      that this is a research priority.
+  .change-vote-container
+    = link_to 'I changed my mind', change_vote_path(research_topic_id: research_topic.id), method: :patch, class: 'btn btn-default pull-right btn-sm'

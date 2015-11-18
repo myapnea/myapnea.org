@@ -20,7 +20,7 @@
     .col-sm-4
       - if current_user
         - if current_user.owner? or current_user.moderator?
-          .well
+          .admin-container
             Admins:
             %br
             - if @topic.status == 'approved'

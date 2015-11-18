@@ -14,8 +14,8 @@
       .clearfix
       %br
       - if current_user and (current_user.owner? or current_user.moderator?)
-        .well.well-sm
-          Admins:
+        .admin-container
+          %span.logo-color Admins:
           = link_to 'New Forum', new_forum_path, class: 'btn btn-xs btn-primary' if current_user.owner?
           = link_to 'Pending Review', forums_path(status: (params[:status] == 'pending_review' ? nil : 'pending_review')), class: "btn btn-default btn-xs #{'active' if params[:status] == 'pending_review'}" if current_user.moderator?
       - if @most_viewed = Topic.order(views_count: :desc).first

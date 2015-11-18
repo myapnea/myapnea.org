@@ -2,7 +2,7 @@
   = form_tag remote_vote_path(research_topic: research_topic), remote: true, class: 'voting-form' do
     = hidden_field_tag :research_topic_id, research_topic.id
     .voting-form-header
-      %p.lead This should be a research priority:
+      %p This should be a research priority:
     .row
       .col-sm-3.col-sm-offset-2.centered
         %br.visible-xs
@@ -19,4 +19,4 @@
           %span.f300.italic (optional)
         = text_area_tag "comment_#{research_topic.id}", params["comment_#{research_topic.id}"], rows: 3, style: 'resize: none', class: 'form-control', disabled: current_user.cast_vote_for?(research_topic)
     .voting-form-submit
-      = submit_tag "Submit", class: 'btn btn-primary'
+      = submit_tag "Submit", class: 'btn btn-primary-custom'

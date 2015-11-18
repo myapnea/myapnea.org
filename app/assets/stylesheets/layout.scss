@@ -189,9 +189,11 @@ nav {
 
 @media (max-width: $screen-md) {
   nav {
-    .navbar-collapse.in {
-      overflow-y: visible;
-      background-color: #243264;
+    .navbar-collapse {
+      &.in,
+      &.collapsing {
+        background-color: #243264;
+      }
     }
 
     #main-nav {

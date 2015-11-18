@@ -69,8 +69,10 @@
     margin-left: 40px;
 
     input {
+      border-bottom: 0;
       border-color: $lighter-gray;
       border-radius: 0;
+      border-right: 0;
       font-size: 12px;
       height: $reply-height;
       padding: 2px;
@@ -81,5 +83,28 @@
       box-shadow: none;
       outline: 0;
     }
+  }
+}
+
+.vote-status-container {
+  position: relative;
+
+  .current-vote-icon {
+    left: 20px;
+    position: absolute;
+    top: 20px;
+    width: 30px;
+  }
+
+  .current-vote-status {
+    margin-left: 30px;
+    margin-right: 150px;
+  }
+
+  .change-vote-container {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    width: 150px;
   }
 }

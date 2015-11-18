@@ -76,8 +76,8 @@
 
     colorScale = d3.scale.quantile().domain([
       0
-      buckets - 1
-      d3.max(buckets, d3.max(data, (d) -> d.value))
+      buckets-1
+      Math.max(buckets, d3.max(data, (d) -> d.value))
     ]).range(colors)
     cards = svg.selectAll('.hour').data(data, (d) ->
       d.day + ':' + d.hour
@@ -111,7 +111,6 @@
 
   $('.engagement-heatmap').each (heatmap) ->
     heatmapId = '#'+$(this).attr('id')
-    console.log heatmapId
     rawData = $(this).data('array')
     data = []
     dayAdjustment = rawData[0][0] - 1

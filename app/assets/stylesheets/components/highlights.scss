@@ -1,10 +1,10 @@
 .highlight-container {
-  position: relative;
-  background-color: white;
-  padding: 10px;
-  border-radius: 3px;
+  background-color: $white;
   box-shadow: $box-shadow;
   margin-bottom: 20px;
+  padding: 10px;
+  position: relative;
+
   .highlight-container-right-after {
     position: absolute;
     top: 0;
@@ -12,10 +12,12 @@
     border-radius: 0px 20px 0px 0px;
     padding: 5px;
   }
+
   a {
-    text-decoration: none !important;
-  }
-  a:hover {
-    text-decoration: none !important;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: none;
+    }
   }
 }

@@ -2,9 +2,9 @@
   = form_tag vote_path(research_topic: research_topic), class: 'voting-form' do
     = hidden_field_tag :research_topic_id, research_topic.id
     .voting-form-header
-      %p.lead This should be a research priority:
+      %p This should be a research priority:
     .row
-      .col-sm-3.col-sm-offset-2.centered
+      .col-sm-3.col-sm-offset-1.centered
         %br.visible-xs
         .endorse-button-container.endorse-positive
           = radio_button_tag "endorse_#{research_topic.id}", 1, current_user.endorsed?(research_topic)
@@ -12,11 +12,10 @@
         .endorse-button-container.endorse-negative
           = radio_button_tag "endorse_#{research_topic.id}", 0, current_user.opposed?(research_topic)
           %label.endorse-label{ for: "endorse_#{research_topic.id}_0" } Disagree
-      .col-sm-4.col-sm-offset-0.col-xs-10.col-xs-offset-1
+      .col-sm-6.col-sm-offset-0.col-xs-10.col-xs-offset-1
         %br.visible-xs
         %label.text-left{ for: "comment_#{research_topic.id}", style: 'width:100%'}
           Add a comment:
-          %span.f300.italic (optional)
         = text_area_tag "comment_#{research_topic.id}", params["comment_#{research_topic.id}"], rows: 3, style: 'resize: none', class: 'form-control', disabled: current_user.cast_vote_for?(research_topic)
     .voting-form-submit
-      = submit_tag 'Submit', class: 'btn btn-primary'
+      = submit_tag 'Submit', class: 'btn btn-primary-custom'

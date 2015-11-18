@@ -1,12 +1,3 @@
-- if @clinical_trial = Admin::ClinicalTrial.where(displayed: true).order(:updated_at).first
-  .highlight-header
-    %p New Clinical Trial
-  = link_to '#', class: 'no-underline' do
-    .rt-highlight
-      %h4= @clinical_trial.title
-      %p.black= @clinical_trial.overview
-      %hr
-      .centered= link_to 'View all clinical trials', clinical_trials_path
-
-- Highlight.current.where(research_highlight: true).order(created_at: :desc).first(5).each do |highlight|
+%p.f500.logo-color Research Highlights
+- Highlight.displayed.where(research_highlight: true).order(created_at: :desc).first(5).each do |highlight|
   = render highlight

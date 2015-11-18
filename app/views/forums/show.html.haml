@@ -7,6 +7,11 @@
       = render 'forums/show', forum: @forum, topic_limit: nil
       %br
     .col-sm-4
+      - if current_user and (current_user.owner? or current_user.moderator?)
+        .admin-container
+          %span.logo-color Admins:
+          = link_to 'Edit Forum', edit_forum_path(@forum), class: 'btn btn-success btn-xs' if current_user.owner?
+          = link_to 'Pending Review', forum_path(@forum, status: (params[:status] == 'pending_review' ? nil : 'pending_review')), class: "btn btn-default btn-xs #{'active' if params[:status] == 'pending_review'}" if current_user.moderator?
       = form_tag @forum, method: :get, class: "form-inline" do
         .input-group
           = text_field_tag 's', params[:s], class: 'form-control'
@@ -14,11 +19,6 @@
             = submit_tag 'Search', class: 'btn btn-primary', name: nil
       .clearfix
       %br
-      - if current_user and (current_user.owner? or current_user.moderator?)
-        .well.well-sm
-          Admins:
-          = link_to 'Edit Forum', edit_forum_path(@forum), class: 'btn btn-success btn-xs' if current_user.owner?
-          = link_to 'Pending Review', forum_path(@forum, status: (params[:status] == 'pending_review' ? nil : 'pending_review')), class: "btn btn-default btn-xs #{'active' if params[:status] == 'pending_review'}" if current_user.moderator?
       - if @most_viewed = @forum.topics.order(views_count: :desc).first
         .topic-highlight-container
           Popular in

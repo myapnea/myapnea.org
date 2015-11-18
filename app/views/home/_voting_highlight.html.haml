@@ -1,5 +1,5 @@
 - if research_topic = current_user.highlighted_research_topic
-  %p.f500 New Research Proposal
+  %p.f500.logo-color New Research Proposal
   .research-topic-container
     .research-topic-body.full-width
       %p= research_topic.text
@@ -22,4 +22,4 @@
           %span.f300.italic (optional)
         = text_area_tag "comment_#{research_topic.id}", params["comment_#{research_topic.id}"], rows: 3, style: 'resize: none', class: 'form-control', disabled: current_user.cast_vote_for?(research_topic)
         .voting-form-submit
-          = submit_tag "Submit", class: 'btn btn-primary'
+          = submit_tag "Submit", class: 'btn btn-primary-custom'

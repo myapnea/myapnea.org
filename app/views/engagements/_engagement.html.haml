@@ -9,7 +9,7 @@
         %span.f500 Directed at:
         = engagement.user_types.join(', ')
       %p.f300
-        %span.f500 Admins:
+        %span.f500.logo-color Admins:
         = pluralize(engagement.engagement_responses.current.count, 'response')
         %br
         - unless params[:action] == 'show'
