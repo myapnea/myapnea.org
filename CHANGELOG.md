@@ -4,7 +4,8 @@
 - **Admin Changes**
   - Updated the location report to provide a summary of the previous week's signups
 - **Gem Changes**
-  - Updated to Rails 4.2.5
+  - Updated to rails 4.2.5
+  - Updated to pg 0.18.4
 
 ## 8.4.1 (October 22, 2015)
 
