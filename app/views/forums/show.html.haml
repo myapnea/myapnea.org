@@ -22,7 +22,7 @@
           %strong= @forum.name
           .topic-highlight
             = link_to member_path(@most_viewed.user.forum_name), class: 'no-underline' do
-              = image_tag user_photo_url(@most_viewed.user), class: 'user-image'
+              = image_tag user_photo_url(@most_viewed.user), class: 'user-image img-thumbnail'
             .topic-highlight-content
               = link_to @most_viewed.name, [@most_viewed.forum, @most_viewed]
 
@@ -32,7 +32,7 @@
           %strong= @forum.name
           .topic-highlight
             = link_to member_path(@most_viewed.user.forum_name), class: 'no-underline' do
-              = image_tag user_photo_url(@most_viewed.user), class: 'user-image'
+              = image_tag user_photo_url(@most_viewed.user), class: 'user-image img-thumbnail'
             .topic-highlight-content
               = link_to @most_discussed.name, [@most_discussed.forum, @most_discussed]
 

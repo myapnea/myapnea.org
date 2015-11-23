@@ -12,12 +12,17 @@
       left: 0;
       position: absolute;
       top: 0;
-      width: 30px;
+      width: 35px;
+      height: 35px;
     }
 
     .topic-highlight-content {
       margin-left: 40px;
-      min-height: 30px;
+      min-height: 35px;
     }
   }
+}
+
+.img-thumbnail {
+  padding: 2px;
 }
