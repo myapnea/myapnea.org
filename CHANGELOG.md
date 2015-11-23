@@ -1,4 +1,4 @@
-## 9.0.1
+## 9.0.1 (November 23, 2015)
 
 ### Bug Fixes
 - Fixed dashboard to welcome current user by correct name
