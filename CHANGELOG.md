@@ -1,4 +1,4 @@
-## 9.0.0
+## 9.0.0 (November 23, 2015)
 
 ### Enhancements
 - **Design Changes**
