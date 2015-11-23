@@ -16,7 +16,7 @@
       .clearfix
       %br
 
-      - if @most_viewed = @forum.topics.order(views_count: :desc).first
+      - if @most_viewed = Topic.current.where(forum_id: @forum.id).order(views_count: :desc).first
         .topic-highlight-container
           Popular in
           %strong= @forum.name
@@ -26,13 +26,13 @@
             .topic-highlight-content
               = link_to @most_viewed.name, [@most_viewed.forum, @most_viewed]
 
-      - if @most_discussed = @forum.topics.current.joins(:posts).group(Topic.columns_for_group).order('count(posts)').last
+      - if @most_discussed = Topic.current.where(forum_id: @forum.id).joins(:posts).group(Topic.columns_for_group).order('count(posts)').last
         .topic-highlight-container
           Trending in
           %strong= @forum.name
           .topic-highlight
-            = link_to member_path(@most_viewed.user.forum_name), class: 'no-underline' do
-              = image_tag user_photo_url(@most_viewed.user), class: 'user-image img-thumbnail'
+            = link_to member_path(@most_discussed.user.forum_name), class: 'no-underline' do
+              = image_tag user_photo_url(@most_discussed.user), class: 'user-image img-thumbnail'
             .topic-highlight-content
               = link_to @most_discussed.name, [@most_discussed.forum, @most_discussed]
 

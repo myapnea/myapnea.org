@@ -1,5 +1,9 @@
 ## 9.0.1
 
+### Bug Fixes
+- Fixed dashboard to welcome current user by correct name
+- Fixed forum show page to highlight popular topics
+
 ## 9.0.0 (November 23, 2015)
 
 ### Enhancements
