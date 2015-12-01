@@ -1,9 +1,9 @@
 - post = topic.last_visible_post
 
-%tr{ class: "#{"topic-#{topic.status.dasherize}" if current_user and current_user.moderator?} #{"topic-posts-pending-review" if current_user and current_user.moderator? and topic.has_posts_pending_review?}"}
-  %td
+%tr.topic-row{ class: "#{"topic-#{topic.status.dasherize}" if current_user and current_user.moderator?} #{"topic-posts-pending-review" if current_user and current_user.moderator? and topic.has_posts_pending_review?}"}
+  %td.hidden-xs.hidden-sm
     = image_tag user_photo_url(topic.user), size: '30x30', class: "img-thumbnail", alt: '', style: "min-height:#{30+5}px;min-width:#{30+5}px;", title: topic.user.forum_name, data: { toggle: 'tooltip', container: 'body', placement: 'top' }
-  %td{ style: 'font-size: 16px', class: "#{topic.pinned? ? "f500" : "f300"}" }
+  %td
     .wrapword
       - if topic.pinned?
         %span.glyphicon.glyphicon-star.primary-orange
@@ -20,5 +20,10 @@
         Marked as Spam
       - if topic.hidden?
         Topic Hidden
-  %td.text-muted{ style: 'font-size: 16px', class: "#{topic.pinned? ? "f500" : "f300"}" }
-    = topic.visible_posts.count
+  %td.text-muted
+    %span.small= number_with_delimiter topic.visible_posts.count
+  %td.text-muted.hidden-xs.hidden-sm{ class: "#{topic.pinned? ? "f500" : "f300"}" }
+    %span.small= number_with_delimiter topic.views_count
+  %td.text-muted
+    - if post
+      %span.small= time_ago_in_words(post.created_at) + ' ago'
