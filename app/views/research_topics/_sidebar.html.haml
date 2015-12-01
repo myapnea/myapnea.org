@@ -1,3 +1,6 @@
-%p.f500.logo-color Research Highlights
-- Highlight.displayed.where(research_highlight: true).order(created_at: :desc).first(5).each do |highlight|
+%p.f500.logo-color
+  Research Highlights
+  &middot;
+  %span.small= link_to 'View all', accepted_research_topics_path
+- Highlight.displayed.where(research_highlight: true).order(created_at: :desc).first(10).each do |highlight|
   = render highlight

@@ -21,9 +21,13 @@
           .content-container
             %h4 Direct the future of sleep apnea research
             %p Click here to get started
-      %p.f500.logo-color Research Highlights
-      - Highlight.current.where(displayed: true).sort{ |a,b| b.created_at <=> a.created_at }.first(5).each do |highlight|
+      %p.f500.logo-color
+        Research Highlights
+        &middot;
+        %span.small= link_to 'View all', accepted_research_topics_path
+      - Highlight.displayed.where(research_highlight: true).order(created_at: :desc).first(10).each do |highlight|
         = render highlight
+      %br
     .col-md-7.col-md-pull-3
       #engagement-highlight
         = render 'home/engagement_highlight'

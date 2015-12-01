@@ -8,6 +8,8 @@
 - Reintroduced easy moderation links for forum posts
 - Included more information about clinical trials
   - Added industry sponsor flag
+- Increase number of highlights displayed on dashboard and research index
+  - Added quick link to view all
 
 ## 9.0.1 (November 23, 2015)
 

@@ -5,12 +5,10 @@
 - if false
   -# Template, Add new research templates at top!
   / .content-container
-  /   .content-header
-  /     = link_to '', class: 'no-underline dark8' do
-  /       %h2 What is the link between type 2 diabetes and obstructive sleep apnea?
-  /   .content-body.horizontal-inset
-  /     %p.lead
-  /       = link_to 'Read more', ''
+  /   = link_to '', class: 'no-underline dark8' do
+  /     %h2 What is the link between type 2 diabetes and obstructive sleep apnea?
+  /   %p.lead
+  /     = link_to 'Read more', ''
   /   .content-footer
   /     .row
   /       .col-sm-2.col-xs-4
@@ -22,13 +20,11 @@
 
 .container
   .content-container
-    .content-header
-      = link_to sleep_apnea_afib_path, class: 'no-underline dark8' do
-        %h2 Atrial fibrillation and its links to sleep apnea
-    .content-body.horizontal-inset
-      %p.lead
-        Given the close links between sleep apnea and atrial fibrillation, many doctors now consider sleep apnea in patients who have atrial fibrillation.  Some cardiologists now even routinely screen their patients for sleep apnea. Patients with atrial fibrillation may want to talk to their doctors about sleep apnea and find out if they may benefit from evaluation and treatment.
-        = link_to 'Read more', sleep_apnea_afib_path
+    = link_to sleep_apnea_afib_path, class: 'no-underline dark8' do
+      %h2 Atrial fibrillation and its links to sleep apnea
+    %p.lead
+      Given the close links between sleep apnea and atrial fibrillation, many doctors now consider sleep apnea in patients who have atrial fibrillation.  Some cardiologists now even routinely screen their patients for sleep apnea. Patients with atrial fibrillation may want to talk to their doctors about sleep apnea and find out if they may benefit from evaluation and treatment.
+      = link_to 'Read more', sleep_apnea_afib_path
     .content-footer
       .row
         .col-sm-2.col-xs-4
@@ -41,20 +37,18 @@
 
 
   .content-container
-    .content-header
-      = link_to sleep_apnea_women_heart_disease_path, class: 'no-underline dark8' do
-        %h2
-          New Study Shows Women with Sleep Apnea at Increased Risk for Heart
-          Disease As They Age
-    .content-body.horizontal-inset
-      %p.lead
-        In a recent study, my colleagues at Brigham and Women's Hospital, Columbia
-        University and Baylor Medical Center and I found that older women are at
-        higher relative risk of developing sleep apnea-related heart disease than
-        older men. This study turns on its head the notion that sleep apnea is a
-        "man's" disease- that is, traditional thinking that men are both more
-        likely to have sleep apnea and have sleep apnea-related health problems.
-        = link_to 'Read more', sleep_apnea_women_heart_disease_path
+    = link_to sleep_apnea_women_heart_disease_path, class: 'no-underline dark8' do
+      %h2
+        New Study Shows Women with Sleep Apnea at Increased Risk for Heart
+        Disease As They Age
+    %p.lead
+      In a recent study, my colleagues at Brigham and Women's Hospital, Columbia
+      University and Baylor Medical Center and I found that older women are at
+      higher relative risk of developing sleep apnea-related heart disease than
+      older men. This study turns on its head the notion that sleep apnea is a
+      "man's" disease- that is, traditional thinking that men are both more
+      likely to have sleep apnea and have sleep apnea-related health problems.
+      = link_to 'Read more', sleep_apnea_women_heart_disease_path
     .content-footer
       .row
         .col-sm-2.col-xs-4
@@ -68,18 +62,16 @@
             MyApnea.Org Principal Investigator and Steering Committee Co-chair
 
   .content-container
-    .content-header
-      = link_to sleep_apnea_hypoglossal_stimulation_path, class: 'no-underline dark8' do
-        %h2
-          New Frontiers in the Treatment of Sleep Apnea: Unilateral Hypoglossal
-          Nerve Stimulation
-    .content-body.horizontal-inset
-      %p.lead
-        Unilateral stimulation of the hypoglossal nerve (the nerve that controls
-        the movement of the tongue) is a new treatment for people with moderate to
-        severe OSA who are unable to use continuous positive prtessure therapy
-        (CPAP).
-        = link_to 'Read more', sleep_apnea_hypoglossal_stimulation_path
+    = link_to sleep_apnea_hypoglossal_stimulation_path, class: 'no-underline dark8' do
+      %h2
+        New Frontiers in the Treatment of Sleep Apnea: Unilateral Hypoglossal
+        Nerve Stimulation
+    %p.lead
+      Unilateral stimulation of the hypoglossal nerve (the nerve that controls
+      the movement of the tongue) is a new treatment for people with moderate to
+      severe OSA who are unable to use continuous positive prtessure therapy
+      (CPAP).
+      = link_to 'Read more', sleep_apnea_hypoglossal_stimulation_path
     .content-footer
       .row
         .col-sm-2.col-xs-4
@@ -91,19 +83,17 @@
             Professor of Medicine, Case Western Reserve University
 
   .content-container
-    .content-header
-      = link_to sleep_apnea_didgeridoo_path, class: 'no-underline dark8' do
-        %h2 Didgeridoos: A Potentially Novel Intervention for Sleep Apnea
-    .content-body.horizontal-inset
-      %p.lead
-        In 2005, the British Medical Journal published a research study that made
-        the American Thoracic Society International Conference "Top 5 Articles of
-        the Year", and since has remained a frequently talked about study that has
-        also seemingly gained a cult following. In a randomized controlled
-        research study, Dr. Braendli's team in Switzerland discovered that playing
-        the didgeridoo, a native Australian wind instrument, resulted in
-        improvement in obstructive sleep apnea (or OSA).
-        = link_to 'Read more', sleep_apnea_didgeridoo_path
+    = link_to sleep_apnea_didgeridoo_path, class: 'no-underline dark8' do
+      %h2 Didgeridoos: A Potentially Novel Intervention for Sleep Apnea
+    %p.lead
+      In 2005, the British Medical Journal published a research study that made
+      the American Thoracic Society International Conference "Top 5 Articles of
+      the Year", and since has remained a frequently talked about study that has
+      also seemingly gained a cult following. In a randomized controlled
+      research study, Dr. Braendli's team in Switzerland discovered that playing
+      the didgeridoo, a native Australian wind instrument, resulted in
+      improvement in obstructive sleep apnea (or OSA).
+      = link_to 'Read more', sleep_apnea_didgeridoo_path
     .content-footer
       .row
         .col-sm-2.col-xs-4
@@ -116,19 +106,17 @@
 
 
   .content-container
-    .content-header
-      = link_to sleep_apnea_nighttime_oxygen_use_path, class: 'no-underline dark8' do
-        %h2 Can Nighttime Oxygen Use Replace CPAP for Treatment of Sleep Apnea?
-    .content-body.horizontal-inset
-      %p.lead
-        Over the years, my colleagues and I have had requests to prescribe oxygen
-        for treating sleep apnea in patients who do not tolerate CPAP. This made
-        some sense since some of the complications of sleep apnea are driven by a
-        lack of oxygen during periods of apnea. However, there has been little
-        research addressing the role of oxygen as a sleep apnea treatment. We
-        therefore designed the Heart Biomarker Evaluation in Apnea Treatment
-        (HeartBEAT) study.
-        = link_to 'Read more', sleep_apnea_nighttime_oxygen_use_path
+    = link_to sleep_apnea_nighttime_oxygen_use_path, class: 'no-underline dark8' do
+      %h2 Can Nighttime Oxygen Use Replace CPAP for Treatment of Sleep Apnea?
+    %p.lead
+      Over the years, my colleagues and I have had requests to prescribe oxygen
+      for treating sleep apnea in patients who do not tolerate CPAP. This made
+      some sense since some of the complications of sleep apnea are driven by a
+      lack of oxygen during periods of apnea. However, there has been little
+      research addressing the role of oxygen as a sleep apnea treatment. We
+      therefore designed the Heart Biomarker Evaluation in Apnea Treatment
+      (HeartBEAT) study.
+      = link_to 'Read more', sleep_apnea_nighttime_oxygen_use_path
     .content-footer
       .row
         .col-sm-2.col-xs-4
@@ -142,17 +130,15 @@
             MyApnea.Org Principal Investigator and Steering Committee Co-chair
 
   .content-container
-    .content-header
-      = link_to sleep_apnea_diabetes_path, class: 'no-underline dark8' do
-        %h2 What is the link between type 2 diabetes and obstructive sleep apnea?
-    .content-body.horizontal-inset
-      %p.lead
-        Type 2 diabetes mellitus (T2DM) and obstructive sleep apnea (OSA) are both
-        very common, each affecting around 10% of adults in the United States.
-        Unfortunately, T2DM and OSA often go hand-in-hand. It has been known for
-        some time that there are a large number of people who have both
-        conditions, although there is evidence that OSA is often undiagnosed.
-        = link_to 'Read more', sleep_apnea_diabetes_path
+    = link_to sleep_apnea_diabetes_path, class: 'no-underline dark8' do
+      %h2 What is the link between type 2 diabetes and obstructive sleep apnea?
+    %p.lead
+      Type 2 diabetes mellitus (T2DM) and obstructive sleep apnea (OSA) are both
+      very common, each affecting around 10% of adults in the United States.
+      Unfortunately, T2DM and OSA often go hand-in-hand. It has been known for
+      some time that there are a large number of people who have both
+      conditions, although there is evidence that OSA is often undiagnosed.
+      = link_to 'Read more', sleep_apnea_diabetes_path
     .content-footer
       .row
         .col-sm-2.col-xs-4
@@ -164,19 +150,17 @@
             Instructor of Medicine, Harvard Medical School
 
   .content-container
-    .content-header
-      = link_to sleep_apnea_adenotonsillectomy_children_path, class: 'no-underline dark8' do
-        %h2 Obstructive Sleep Apnea and Adenotonsillectomy in Children
-    .content-body.horizontal-inset
-      %p.lead
-        While adenotonsillectomy for sleep apnea in children is generally safe,
-        there may be specific groups that have an increased risk of complications
-        related to surgery, including very young and African-American children. In
-        these groups, more intensive monitoring in the post-surgery period may be
-        warranted. The association between severity of sleep apnea and
-        complications points out the importance of obtaining a sleep study before
-        surgery to determine relative risk.
-        = link_to 'Read more', sleep_apnea_adenotonsillectomy_children_path
+    = link_to sleep_apnea_adenotonsillectomy_children_path, class: 'no-underline dark8' do
+      %h2 Obstructive Sleep Apnea and Adenotonsillectomy in Children
+    %p.lead
+      While adenotonsillectomy for sleep apnea in children is generally safe,
+      there may be specific groups that have an increased risk of complications
+      related to surgery, including very young and African-American children. In
+      these groups, more intensive monitoring in the post-surgery period may be
+      warranted. The association between severity of sleep apnea and
+      complications points out the importance of obtaining a sleep study before
+      surgery to determine relative risk.
+      = link_to 'Read more', sleep_apnea_adenotonsillectomy_children_path
     .content-footer
       .row
         .col-sm-2.col-xs-4
@@ -190,19 +174,17 @@
             MyApnea.Org Steering Committee Member
 
   .content-container
-    .content-header
-      = link_to sleep_apnea_brain_plasticity_path, class: 'no-underline dark8' do
-        %h2 Does sleep influence memory and "brain plasticity"?
-    .content-body.horizontal-inset
-      %p.lead
-        Sleep is important to strengthen memories created during the day. Sleep is
-        also important to help the brain get rid of toxins that may impair the
-        brain circuits needed for memory. Poor sleep can negatively impact memory
-        and brain plasticity. There are well-described effects of sleep
-        deprivation, sleep disruption and low levels of oxygen on brain function.
-        Poor sleep negatively affects the brain's memory center (hippocampus) and
-        also impairs processes associated with "brain plasticity."
-        = link_to 'Read more', sleep_apnea_brain_plasticity_path
+    = link_to sleep_apnea_brain_plasticity_path, class: 'no-underline dark8' do
+      %h2 Does sleep influence memory and "brain plasticity"?
+    %p.lead
+      Sleep is important to strengthen memories created during the day. Sleep is
+      also important to help the brain get rid of toxins that may impair the
+      brain circuits needed for memory. Poor sleep can negatively impact memory
+      and brain plasticity. There are well-described effects of sleep
+      deprivation, sleep disruption and low levels of oxygen on brain function.
+      Poor sleep negatively affects the brain's memory center (hippocampus) and
+      also impairs processes associated with "brain plasticity."
+      = link_to 'Read more', sleep_apnea_brain_plasticity_path
     .content-footer
       .row
         .col-sm-2.col-xs-4
@@ -217,17 +199,15 @@
             Departments of Medicine and Neurology, Brigham and Women's Hospital
 
   .content-container
-    .content-header
-      = link_to sleep_apnea_body_weight_path, class: 'no-underline dark8' do
-        %h2 Does treatment of sleep apnea influence body weight?
-    .content-body.horizontal-inset
-      %p.lead
-        By conducting more research on how sleep apnea treatments influence body
-        weight and one's quality of life, researchers hope to provide the tools
-        necessary for treatment providers to deliver the best possible care to
-        their patients. You can get involved in this research by completing our
-        surveys within the research portal of MyApnea.Org.
-        = link_to 'Read more', sleep_apnea_body_weight_path
+    = link_to sleep_apnea_body_weight_path, class: 'no-underline dark8' do
+      %h2 Does treatment of sleep apnea influence body weight?
+    %p.lead
+      By conducting more research on how sleep apnea treatments influence body
+      weight and one's quality of life, researchers hope to provide the tools
+      necessary for treatment providers to deliver the best possible care to
+      their patients. You can get involved in this research by completing our
+      surveys within the research portal of MyApnea.Org.
+      = link_to 'Read more', sleep_apnea_body_weight_path
     .content-footer
       .row
         .col-sm-2.col-xs-4
