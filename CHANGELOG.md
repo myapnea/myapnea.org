@@ -1,5 +1,12 @@
 ## 9.1.0
 
+### Enhancements
+- Improved layout of forum index
+  - Mobile view includes more information
+  - View count is visible to all members
+  - Recent activity is included
+- Included more information about clinical trials
+
 ## 9.0.1 (November 23, 2015)
 
 ### Bug Fixes
