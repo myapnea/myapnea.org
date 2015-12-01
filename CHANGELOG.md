@@ -5,6 +5,7 @@
   - Mobile view includes more information
   - View count is visible to all members
   - Recent activity is included
+- Reintroduced easy moderation links for forum posts
 - Included more information about clinical trials
   - Added industry sponsor flag
 

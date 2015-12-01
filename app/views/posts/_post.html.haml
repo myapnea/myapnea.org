@@ -14,12 +14,16 @@
       .post-details
         .pull-right
           - if post.pending_review?
-            %span.pending-review-warning Pending Review
+            %span.pending-review-warning.small Pending Review
           - if current_user and (current_user==post.user or current_user.moderator?)
             .dropdown.inline-block
               %button.post-actions-btn#dLabel{ 'aria-expanded' => 'false', 'aria-haspopup' => 'true', 'data-toggle' => 'dropdown', type: 'button' }
                 %span.caret
               %ul.dropdown-menu.dropdown-menu-right{ 'aria-labelledby' => 'dLabel'}
+                - if post.pending_review? and current_user.moderator?
+                  %li= link_to 'Approve', forum_topic_post_path(post.forum, post.topic, post, post: { status: 'approved' }), method: :patch
+                  %li= link_to 'Mark as Spam', forum_topic_post_path(post.forum, post.topic, post, post: { status: 'spam' }), method: :patch
+                  %li= link_to 'Hide', forum_topic_post_path(post.forum, post.topic, post, post: { status: 'hidden' }), method: :patch
                 %li= link_to 'Link to this post', forum_topic_post_path(post.forum, post.topic, post)
                 %li= link_to 'Edit', edit_forum_topic_post_path(post.forum, post.topic, post)
                 %li= link_to 'Delete', forum_topic_post_path(post.forum, post.topic, post), method: :delete, data: { confirm: "Are you sure?" }
