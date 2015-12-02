@@ -17,6 +17,9 @@ Rails.application.routes.draw do
       member do
         get :photo
       end
+      collection do
+        get :order
+      end
     end
     resources :partners do
       member do

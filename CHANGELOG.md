@@ -10,6 +10,8 @@
   - Added industry sponsor flag
 - Increase number of highlights displayed on dashboard and research index
   - Added quick link to view all
+- Improved usability of admin content organization
+  - Can more simply reorder team member list
 
 ## 9.0.1 (November 23, 2015)
 
