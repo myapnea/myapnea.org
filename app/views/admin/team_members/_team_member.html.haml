@@ -15,3 +15,5 @@
     .admin-bar
       = link_to edit_admin_team_member_path(team_member) do
         %span.glyphicon.glyphicon-pencil
+      = link_to admin_team_member_path(team_member), method: :delete, data: { confirm: 'Are you sure?' } do
+        %span.glyphicon.glyphicon-trash

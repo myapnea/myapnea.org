@@ -12,6 +12,7 @@
   - Added quick link to view all
 - Improved usability of admin content organization
   - Can more simply reorder team member list
+  - Able to delete team members from admin dashboard
 
 ## 9.0.1 (November 23, 2015)
 
