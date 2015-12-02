@@ -6,6 +6,7 @@
   - View count is visible to all members
   - Recent activity is included
 - Reintroduced easy moderation links for forum posts
+- Reintroduced links to propose new research topics and contextual overview to research topic index
 - Included more information about clinical trials
   - Added industry sponsor flag
 - Increase number of highlights displayed on dashboard and research index
