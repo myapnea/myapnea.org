@@ -1,4 +1,4 @@
-- question.answer_templates.where(template_name: ['radio', 'checkbox']).each do |answer_template|
+- question.answer_templates.unarchived.where(template_name: ['radio', 'checkbox']).each do |answer_template|
   - median = TemporaryReport.get_median_report_item(@survey, question, answer_template, encounter: @encounter, range: 1..4)
 
   - answer_option_counts = TemporaryReport.answer_option_counts(@survey, question, answer_template, encounter: @encounter, range: 1..5)

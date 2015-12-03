@@ -1,24 +1,11 @@
 class AnswerTemplate < ActiveRecord::Base
+  # Default Scope
   # Constants
   DATA_TYPES = ["answer_option_id", "numeric_value", "text_value"]
   TEMPLATE_NAMES = %w(date radio checkbox string height number)
 
-  # Concerns
-  include Deletable
-
-  # Callbacks
-  before_validation :set_data_type
-  before_validation :set_allow_multiple
-
-  # Model Validation
-  validates_presence_of :name, :data_type, :user_id, :template_name
-  validates_uniqueness_of :name, scope: [ :deleted ]
-  validates_inclusion_of :template_name, in: TEMPLATE_NAMES
-  validates_presence_of :parent_answer_template_id, if: :parent_answer_option_value_present?
-  validates_presence_of :parent_answer_option_value, if: :parent_answer_template_present?
-  validates_inclusion_of :parent_answer_option_value, in: :parent_template_option_values, if: :parent_answer_template_present?
-
-  # Model Relationships
+  # Attribute related macros
+  # Associations
   belongs_to :user
   has_and_belongs_to_many :questions
   has_many :answer_options_answer_templates, -> { order("answr_options_answer_templates.created_at") }
@@ -26,8 +13,27 @@ class AnswerTemplate < ActiveRecord::Base
   belongs_to :display_type
   belongs_to :parent_answer_template, class_name: "AnswerTemplate", foreign_key: "parent_answer_template_id"
 
-  # Model Methods
+  # Validations
+  validates_presence_of :name, :data_type, :user_id, :template_name
+  validates_uniqueness_of :name, scope: [ :deleted ]
+  validates_inclusion_of :template_name, in: TEMPLATE_NAMES
+  validates_presence_of :parent_answer_template_id, if: :parent_answer_option_value_present?
+  validates_presence_of :parent_answer_option_value, if: :parent_answer_template_present?
+  validates_inclusion_of :parent_answer_option_value, in: :parent_template_option_values, if: :parent_answer_template_present?
 
+  # Callback
+  before_validation :set_data_type
+  before_validation :set_allow_multiple
+
+  # Other macros
+  # Concerns
+  include Deletable
+
+  # Named scopes
+  scope :archived, -> { where archived: true }
+  scope :unarchived, -> { where archived: false }
+
+  # Methods
   def name_with_options
     "#{name} #{answer_options.pluck(:text, :value).collect { |text, value| "#{value}: #{text}" }.join(', ')}"
   end

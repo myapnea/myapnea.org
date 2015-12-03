@@ -14,6 +14,7 @@
 - Improved usability of admin content organization
   - Can more simply reorder team member list
   - Able to delete team members from admin dashboard
+- Added ability to archive answer templates in surveys
 - **SEO Improvements**
   - Included expansive sitemap in txt/xml formats
 

@@ -1,5 +1,5 @@
 %h4.f300= answer_template.text
-%div{ class: "#{'multiple-question-container' if question.answer_templates.where(template_name: 'radio', parent_answer_template_id: nil).count > 1 } "}
+%div{ class: "#{'multiple-question-container' if question.answer_templates.unarchived.where(template_name: 'radio', parent_answer_template_id: nil).count > 1 } "}
   - answer_template.answer_options.distinct.each do |answer_option|
     - child_templates = answer_template.child_templates(question, answer_option.new_value)
     .radio-input-container{ class: answer_option.display_class_or_default }
