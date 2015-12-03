@@ -54,6 +54,11 @@ class StaticController < ApplicationController
   end
 
   def sitemap
+    respond_to do |format|
+      format.html
+      format.xml
+      format.text
+    end
   end
 
   def governance_policy

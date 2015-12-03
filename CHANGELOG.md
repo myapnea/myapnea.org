@@ -14,6 +14,8 @@
 - Improved usability of admin content organization
   - Can more simply reorder team member list
   - Able to delete team members from admin dashboard
+- **SEO Improvements**
+  - Included expansive sitemap in txt/xml formats
 
 ## 9.0.1 (November 23, 2015)
 
