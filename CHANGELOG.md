@@ -1,20 +1,24 @@
 ## 9.1.0
 
 ### Enhancements
-- Improved layout of forum index
-  - Mobile view includes more information
-  - View count is visible to all members
-  - Recent activity is included
-- Reintroduced easy moderation links for forum posts
-- Reintroduced links to propose new research topics and contextual overview to research topic index
-- Included more information about clinical trials
-  - Added industry sponsor flag
-- Increase number of highlights displayed on dashboard and research index
-  - Added quick link to view all
-- Improved usability of admin content organization
-  - Can more simply reorder team member list
-  - Able to delete team members from admin dashboard
-- Added ability to archive answer templates in surveys
+- **Forum Changes**
+  - Improved layout of forum index
+    - Mobile view includes more information
+    - View count is visible to all members
+    - Recent activity is included
+  - Reintroduced easy moderation links for forum posts
+- **Research Changes**
+  - Reintroduced links to propose new research topics and contextual overview to research topic index
+  - Included more information about clinical trials
+    - Added industry sponsor flag
+  - Increase number of highlights displayed on dashboard and research index
+    - Added quick link to view all
+- **Admin Changes**
+  - Improved usability of admin content organization
+    - Can more simply reorder team member list
+    - Able to delete team members from admin dashboard
+- **Survey Changes**
+  - Added ability to archive answer templates in surveys
 - **SEO Improvements**
   - Included expansive sitemap in txt/xml formats
 
