@@ -17,6 +17,7 @@
   - Improved usability of admin content organization
     - Can more simply reorder team member list
     - Able to delete team members from admin dashboard
+  - Added provider column to data export
 - **Survey Changes**
   - Added ability to archive answer templates in surveys
 - **SEO Improvements**
