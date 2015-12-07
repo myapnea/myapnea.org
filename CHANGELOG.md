@@ -21,6 +21,8 @@
   - Added ability to archive answer templates in surveys
 - **SEO Improvements**
   - Included expansive sitemap in txt/xml formats
+- **Gem Changes**
+  - Updated to simplecov 0.11.1
 
 ## 9.0.1 (November 23, 2015)
 
