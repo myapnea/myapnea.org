@@ -73,6 +73,6 @@ class Admin::ClinicalTrialsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def admin_clinical_trial_params
-      params.require(:admin_clinical_trial).permit(:title, :overview, :description, :eligibility, :phone, :email, :link, :displayed)
+      params.require(:admin_clinical_trial).permit(:title, :overview, :description, :eligibility, :phone, :email, :link, :displayed, :industry_sponsored)
     end
 end
