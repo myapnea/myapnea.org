@@ -2,6 +2,7 @@ sudo: false
 language: ruby
 rvm:
   - 2.2.3
+  - 2.3.0-preview1
 before_script:
   - "ruby lib/initial_setup.rb ../.travis_setup"
   - "psql -c 'create database \"myapnea_test\";' -U postgres"

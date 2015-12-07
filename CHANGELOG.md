@@ -22,6 +22,7 @@
 - **SEO Improvements**
   - Included expansive sitemap in txt/xml formats
 - **Gem Changes**
+  - Started testing Ruby 2.3.0-preview1
   - Updated to simplecov 0.11.1
 
 ## 9.0.1 (November 23, 2015)
