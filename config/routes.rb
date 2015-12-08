@@ -26,7 +26,11 @@ Rails.application.routes.draw do
         get :photo
       end
     end
-    resources :clinical_trials
+    resources :clinical_trials do
+      collection do
+        get :order
+      end
+    end
   end
 
   namespace :builder do

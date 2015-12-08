@@ -35,7 +35,7 @@ class StaticController < ApplicationController
   end
 
   def partners
-    @partners = Admin::Partner.current.where(displayed: true).order('position')
+    @partners = Admin::Partner.current.where(displayed: true).order(:position)
   end
 
   def learn
@@ -47,7 +47,7 @@ class StaticController < ApplicationController
   end
 
   def clinical_trials
-    @clinical_trials = Admin::ClinicalTrial.current.order(:created_at)
+    @clinical_trials = Admin::ClinicalTrial.current.order(:position)
   end
 
   def version

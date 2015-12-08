@@ -23,5 +23,6 @@
             %td= admin_clinical_trial.industry_sponsored
             %td= link_to 'Edit', edit_admin_clinical_trial_path(admin_clinical_trial)
             %td= link_to 'Destroy', admin_clinical_trial, method: :delete, data: { confirm: 'Are you sure?' }
-  .content-footer
-    = link_to 'New Clinical Trial', new_admin_clinical_trial_path, class: 'btn btn-primary'
+    .content-footer
+      = link_to 'New Clinical Trial', new_admin_clinical_trial_path, class: 'btn btn-primary'
+      = link_to 'Edit Order', order_admin_clinical_trials_path, class: 'btn btn-default'

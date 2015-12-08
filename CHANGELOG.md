@@ -1,5 +1,10 @@
 ## 9.2.0
 
+### Enhancements
+- **Admin Changes**
+  - Added ability to flag industry sponsored clinical trials from admin interface
+  - Added order option for clinical trials
+
 ## 9.1.0 (December 7, 2015)
 
 ### Enhancements
