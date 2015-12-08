@@ -36,6 +36,15 @@
     .col-md-10
       = f.text_field :link, class: 'form-control'
   .form-group
+    = f.label :position, nil, class: 'control-label col-md-2'
+    .col-md-10
+      = f.number_field :position, class: 'form-control'
+      = surround '(', ')' do
+        There are currently
+        = pluralize(Admin::ClinicalTrial.current.count, 'clinical trial')
+        listed.
+        = link_to 'Check the ordering', order_admin_clinical_trials_path, target: '_blank'
+  .form-group
     = f.label :displayed, nil, class: 'control-label col-md-2'
     .col-md-10
       = f.check_box :displayed
