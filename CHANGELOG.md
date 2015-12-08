@@ -4,6 +4,7 @@
 - **Admin Changes**
   - Added ability to flag industry sponsored clinical trials from admin interface
   - Added order option for clinical trials
+  - Added interface to create new research articles
 
 ## 9.1.0 (December 7, 2015)
 

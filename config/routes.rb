@@ -31,6 +31,15 @@ Rails.application.routes.draw do
         get :order
       end
     end
+    resources :research_articles do
+      member do
+        get :photo
+        post :preview
+      end
+      collection do
+        get :order
+      end
+    end
   end
 
   namespace :builder do

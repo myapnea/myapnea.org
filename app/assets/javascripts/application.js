@@ -68,4 +68,5 @@
 //= require builder/surveys
 //= require admin/exports
 //= require admin/engagement_heatmaps
+//= require admin/research_articles
 //= require social/sleep_tips
