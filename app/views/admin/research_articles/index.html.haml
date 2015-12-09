@@ -1,38 +1,8 @@
 .content-main-header
   .container
     %h1 Listing Admin Research Articles
-    %p
+    %p= link_to 'Admin dashboard', admin_path
 
 .container
-  .content-container
-    %table.table.table-striped
-      %thead
-        %tr
-          %th Title
-          %th Slug
-          %th Description
-          %th Content
-          %th Position
-          %th Photo
-          %th Author
-          %th Credentials
-          %th References
-          %th{:colspan => "3"}
-      %tbody
-        - @admin_research_articles.each do |admin_research_article|
-          %tr
-            %td= admin_research_article.title
-            %td= admin_research_article.slug
-            %td= admin_research_article.description
-            %td= admin_research_article.content
-            %td= admin_research_article.position
-            %td= admin_research_article.photo
-            %td= admin_research_article.author
-            %td= admin_research_article.credentials
-            %td= admin_research_article.references
-            %td= link_to 'Show', admin_research_article
-            %td= link_to 'Edit', edit_admin_research_article_path(admin_research_article)
-            %td= link_to 'Destroy', admin_research_article, method: :delete, data: { confirm: 'Are you sure?' }
-    .content-footer
-      = link_to 'New Research article', new_admin_research_article_path, class: 'btn btn-primary'
-      = link_to 'Edit order', order_admin_research_articles_path, class: 'btn btn-default'
+  - @admin_research_articles.each do |research_article|
+    = render 'admin/research_articles/preview', research_article: research_article, admin_access: true

@@ -84,44 +84,53 @@ class ResearchTopicsController < ApplicationController
 
   # Accepted research topics
   def accepted_research_topics_index
+    @research_articles = Admin::ResearchArticle.current.order(:position)
     render 'research_topics/accepted/index'
   end
 
-  def sleep_apnea_body_weight
-    render 'research_topics/accepted/sleep_apnea_body_weight'
+  def accepted_article
+    @research_article = Admin::ResearchArticle.find_by_slug(params[:slug])
+    render 'research_topics/accepted/show'
   end
 
-  def sleep_apnea_brain_plasticity
-    render 'research_topics/accepted/sleep_apnea_brain_plasticity'
-  end
+  # BEGIN DEPRECATED 9.2
+  # NOTE: Keeping views to allow due time to import them in new format
+  # def sleep_apnea_body_weight
+  #   render 'research_topics/accepted/sleep_apnea_body_weight'
+  # end
 
-  def sleep_apnea_adenotonsillectomy_children
-    render 'research_topics/accepted/sleep_apnea_adenotonsillectomy_children'
-  end
+  # def sleep_apnea_brain_plasticity
+  #   render 'research_topics/accepted/sleep_apnea_brain_plasticity'
+  # end
 
-  def sleep_apnea_diabetes
-    render 'research_topics/accepted/sleep_apnea_diabetes'
-  end
+  # def sleep_apnea_adenotonsillectomy_children
+  #   render 'research_topics/accepted/sleep_apnea_adenotonsillectomy_children'
+  # end
 
-  def sleep_apnea_nighttime_oxygen_use
-    render 'research_topics/accepted/sleep_apnea_nighttime_oxygen_use'
-  end
+  # def sleep_apnea_diabetes
+  #   render 'research_topics/accepted/sleep_apnea_diabetes'
+  # end
 
-  def sleep_apnea_didgeridoo
-    render 'research_topics/accepted/sleep_apnea_didgeridoo'
-  end
+  # def sleep_apnea_nighttime_oxygen_use
+  #   render 'research_topics/accepted/sleep_apnea_nighttime_oxygen_use'
+  # end
 
-  def sleep_apnea_hypoglossal_stimulation
-    render 'research_topics/accepted/sleep_apnea_hypoglossal_stimulation'
-  end
+  # def sleep_apnea_didgeridoo
+  #   render 'research_topics/accepted/sleep_apnea_didgeridoo'
+  # end
 
-  def sleep_apnea_women_heart_disease
-    render 'research_topics/accepted/sleep_apnea_women_heart_disease'
-  end
+  # def sleep_apnea_hypoglossal_stimulation
+  #   render 'research_topics/accepted/sleep_apnea_hypoglossal_stimulation'
+  # end
 
-  def sleep_apnea_afib
-    render 'research_topics/accepted/sleep_apnea_afib'
-  end
+  # def sleep_apnea_women_heart_disease
+  #   render 'research_topics/accepted/sleep_apnea_women_heart_disease'
+  # end
+
+  # def sleep_apnea_afib
+  #   render 'research_topics/accepted/sleep_apnea_afib'
+  # end
+  # END DEPRECATED 9.2
 
   # Voting
 

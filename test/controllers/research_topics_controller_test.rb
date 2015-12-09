@@ -23,55 +23,55 @@ class ResearchTopicsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should get accepted_research_topics_index" do
-    get :accepted_research_topics_index
+  test "should get accepted article" do
+    get :accepted_article, slug: admin_research_articles(:one)
     assert_response :success
   end
 
-  test "should get sleep_apnea_body_weight" do
-    get :sleep_apnea_body_weight
-    assert_response :success
-  end
+  # test "should get sleep_apnea_body_weight" do
+  #   get :sleep_apnea_body_weight
+  #   assert_response :success
+  # end
 
-  test "should get sleep_apnea_brain_plasticity" do
-    get :sleep_apnea_brain_plasticity
-    assert_response :success
-  end
+  # test "should get sleep_apnea_brain_plasticity" do
+  #   get :sleep_apnea_brain_plasticity
+  #   assert_response :success
+  # end
 
-  test "should get sleep_apnea_adenotonsillectomy_children" do
-    get :sleep_apnea_adenotonsillectomy_children
-    assert_response :success
-  end
+  # test "should get sleep_apnea_adenotonsillectomy_children" do
+  #   get :sleep_apnea_adenotonsillectomy_children
+  #   assert_response :success
+  # end
 
-  test "should get sleep_apnea_diabetes" do
-    get :sleep_apnea_diabetes
-    assert_response :success
-  end
+  # test "should get sleep_apnea_diabetes" do
+  #   get :sleep_apnea_diabetes
+  #   assert_response :success
+  # end
 
-  test "should get sleep_apnea_nighttime_oxygen_use" do
-    get :sleep_apnea_nighttime_oxygen_use
-    assert_response :success
-  end
+  # test "should get sleep_apnea_nighttime_oxygen_use" do
+  #   get :sleep_apnea_nighttime_oxygen_use
+  #   assert_response :success
+  # end
 
-  test "should get sleep_apnea_didgeridoo" do
-    get :sleep_apnea_didgeridoo
-    assert_response :success
-  end
+  # test "should get sleep_apnea_didgeridoo" do
+  #   get :sleep_apnea_didgeridoo
+  #   assert_response :success
+  # end
 
-  test "should get sleep_apnea_hypoglossal_stimulation" do
-    get :sleep_apnea_hypoglossal_stimulation
-    assert_response :success
-  end
+  # test "should get sleep_apnea_hypoglossal_stimulation" do
+  #   get :sleep_apnea_hypoglossal_stimulation
+  #   assert_response :success
+  # end
 
-  test "should get sleep_apnea_women_heart_disease" do
-    get :sleep_apnea_women_heart_disease
-    assert_response :success
-  end
+  # test "should get sleep_apnea_women_heart_disease" do
+  #   get :sleep_apnea_women_heart_disease
+  #   assert_response :success
+  # end
 
-  test "should get sleep_apnea_afib" do
-    get :sleep_apnea_afib
-    assert_response :success
-  end
+  # test "should get sleep_apnea_afib" do
+  #   get :sleep_apnea_afib
+  #   assert_response :success
+  # end
 
   test "should get index for experienced user" do
     # Displays normal index
