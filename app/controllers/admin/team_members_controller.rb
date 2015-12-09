@@ -86,6 +86,6 @@ class Admin::TeamMembersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def admin_team_member_params
-      params.require(:admin_team_member).permit(:name, :designations, :role, :position, :bio, :photo, :group)
+      params.require(:admin_team_member).permit(:name, :designations, :role, :position, :bio, :photo, :group, :interview)
     end
 end

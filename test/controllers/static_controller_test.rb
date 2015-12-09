@@ -35,6 +35,16 @@ class StaticControllerTest < ActionController::TestCase
     assert_redirected_to team_path
   end
 
+  test "should get PEP corner" do
+    get :pep_corner
+    assert_response :success
+  end
+
+  test "should get PEP corner show" do
+    get :pep_corner_show, pep_id: admin_team_members(:one)
+    assert_response :success
+  end
+
   test "should get governance charter" do
     get :governance_policy
     assert_response :success

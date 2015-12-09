@@ -1,3 +1,40 @@
+// PEP Corner
+.pep-corner-profile {
+  $pep-height: 70px;
+  $pep-border-radius: 2px;
+  background-color: $white;
+  border-radius: $pep-border-radius;
+  margin: 20px auto;
+  position: relative;
+  text-align: center;
+
+  .pep-header {
+    background-color: $primary-blue;
+    border-radius: $pep-border-radius $pep-border-radius 0 0;
+    height: $pep-height;
+  }
+
+  img {
+    background-color: $white;
+    border: 4px solid $white;
+    border-radius: $pep-height/2;
+    height: $pep-height;
+    left: 0;
+    margin: auto;
+    position: absolute;
+    right: 0;
+    top: $pep-height/2;
+    width: $pep-height;
+  }
+
+  .pep-footer {
+    border: 1px solid #ddd;
+    border-radius: 0 0 $pep-border-radius $pep-border-radius;
+    padding: $pep-height/2 10px 10px;
+    text-align: left;
+  }
+}
+
 // ADVISORY COUNCIL
 .advisory-small {
   font-weight: 300;

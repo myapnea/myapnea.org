@@ -6,6 +6,8 @@
   - Added order option for clinical trials
   - Added interface to create new research articles
     - Added ability to link approved research topic to research article
+- **Other Changes**
+  - Added PEP corner
 
 ## 9.1.0 (December 7, 2015)
 

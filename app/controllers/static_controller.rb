@@ -19,6 +19,14 @@ class StaticController < ApplicationController
     @team_members = Admin::TeamMember.current.order('position')
   end
 
+  def pep_corner
+    @pep_members = Admin::TeamMember.current.where(group: 'patient').where.not(interview: nil).order('position')
+  end
+
+  def pep_corner_show
+    @pep_member = Admin::TeamMember.find(params[:pep_id])
+  end
+
   def advisory
     redirect_to team_path and return
     @page_content = "The MyApnea advisory council consists of sleep researchers, sleep apnea care providers, experts in CPAP and CPAP masks, and people with sleep apnea."
