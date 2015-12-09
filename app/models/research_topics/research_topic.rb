@@ -11,6 +11,7 @@ class ResearchTopic < ActiveRecord::Base
   belongs_to :user
   belongs_to :topic
   has_many :votes, -> { where(deleted: false) }
+  has_one :research_article, class_name: Admin::ResearchArticle
 
   # Constants
   PROGRESS = [:proposed, :accepted, :ongoing_research, :complete]
@@ -38,6 +39,7 @@ class ResearchTopic < ActiveRecord::Base
   scope :least_voted, lambda { current.select("research_topics.*, count(votes.id) as vote_count").joins("left outer join votes on votes.research_topic_id = research_topics.id and votes.deleted = 'f'").group(group_columns).order("vote_count asc") }
   scope :most_discussed, lambda { current.select("research_topics.*, count(posts.id) as post_count").joins(topic: :posts).group(group_columns).order("post_count desc") }
   scope :newest, lambda { current.order("research_topics.created_at desc") }
+  scope :article_eligible, -> { current.where(progress: [:accepted, :ongoing_research, :complete]) }
 
   # Class methods
   def self.find_by_slug(slug)

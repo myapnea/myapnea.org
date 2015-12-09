@@ -1,9 +1,7 @@
-.content-main-header
-  .container
-    %h1= research_article.title
-
 .content-container
   .container
+    %h1= research_article.title
+    %hr
     .row
       .col-sm-2.col-xs-4
         = image_tag research_article_photo_url(research_article), alt: '', class: 'img-responsive author-img'
@@ -12,7 +10,13 @@
           = research_article.author
         %p.dark7
           = research_article.credentials
-    %hr
+  - if research_article.research_topic.present?
+    .article-topic-relation-container
+      .container
+        This article was written in response to one of the top rated research questions on MyApnea.Org, according to our users.
+        = succeed '.' do
+          = link_to 'Review the original question', research_article.research_topic, target: '_blank'
+  .container
     = simple_markdown research_article.content
 
 - if research_article.references.present?

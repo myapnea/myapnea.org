@@ -90,6 +90,6 @@ class Admin::ResearchArticlesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def admin_research_article_params
-      params.require(:admin_research_article).permit(:title, :slug, :description, :content, :position, :photo, :author, :credentials, :references)
+      params.require(:admin_research_article).permit(:title, :slug, :description, :content, :position, :photo, :author, :credentials, :references, :research_topic_id)
     end
 end

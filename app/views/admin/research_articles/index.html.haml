@@ -5,4 +5,11 @@
 
 .container
   - @admin_research_articles.each do |research_article|
-    = render 'admin/research_articles/preview', research_article: research_article, admin_access: true
+    .row
+      .col-sm-8
+        = render 'admin/research_articles/preview', research_article: research_article, admin_access: true
+      .col-sm-4
+        %br.hidden-xs
+        = link_to 'Edit', edit_admin_research_article_path(research_article), class: 'btn btn-default'
+        = link_to 'Delete', research_article, class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' }
+        %hr.visible-xs

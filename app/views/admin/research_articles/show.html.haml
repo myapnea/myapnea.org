@@ -1,1 +1,10 @@
+.content-main-header
+  .container
+    %h1 Admin Research Article
+    %p
+      = link_to 'Edit', edit_admin_research_article_path(@admin_research_article)
+      |
+      = link_to 'Public view', accepted_article_research_topics_path(@admin_research_article)
+      |
+      = link_to 'Back', admin_research_articles_path
 = render @admin_research_article
