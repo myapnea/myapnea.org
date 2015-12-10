@@ -162,4 +162,13 @@ class AdminControllerTest < ActionController::TestCase
     assert_redirected_to :admin
   end
 
+  test "should only get social media for admin" do
+    get :social_media
+    assert_response :redirect
+
+    login(users(:owner))
+    get :social_media
+    assert_response :success
+  end
+
 end

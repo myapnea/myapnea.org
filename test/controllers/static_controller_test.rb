@@ -186,15 +186,6 @@ class StaticControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should only get sleep tips for admin" do
-    get :sleep_tips
-    assert_response :redirect
-
-    login(users(:moderator_1))
-    get :sleep_tips
-    assert_response :success
-  end
-
   test "should get sizes" do
     get :sizes
     assert_response :success

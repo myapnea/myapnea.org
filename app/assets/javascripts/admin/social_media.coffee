@@ -1,4 +1,4 @@
-@sleepTipsReady = () ->
+@socialMediaReady = () ->
 
   # Wraptext tutorial thanks to http://www.html5canvastutorials.com/tutorials/html5-canvas-wrap-text-tutorial/
   wrapText = (context, text, x, y, maxWidth, lineHeight) ->
@@ -19,7 +19,7 @@
     context.fillText line, x, y
     return
 
-  drawCanvas = (canvasTypeId, canvasText) ->
+  drawCanvas = (canvasTypeId, canvasText, optionalTitle) ->
     c = document.getElementById(canvasTypeId)
     ctx = c.getContext('2d')
 
@@ -39,6 +39,8 @@
       canvasTitle = 'Sleep Tip'
     else if canvasTypeId == 'didYouKnowCanvas'
       canvasTitle = 'Did You Know?'
+    else
+      canvasTitle = optionalTitle
     ctx.fillStyle = '#fff'
     ctx.fillText canvasTitle, 50, 175
 
@@ -59,12 +61,26 @@
   didYouKnowText = $('#did_you_know').val()
   drawCanvas('didYouKnowCanvas', didYouKnowText)
 
+  announcementText = $('#announcement').val()
+  announcementTitle = $('#announcement_title').val()
+  drawCanvas('announcementCanvas', announcementText, announcementTitle)
+
   $(document)
     .on('input', '#sleep_tip', () ->
-      tip = $(this).val()
-      drawCanvas('sleepTipCanvas', tip)
+      newText = $(this).val()
+      drawCanvas('sleepTipCanvas', newText)
     )
     .on('input', '#did_you_know', () ->
-      tip = $(this).val()
-      drawCanvas('didYouKnowCanvas', tip)
+      newText = $(this).val()
+      drawCanvas('didYouKnowCanvas', newText)
+    )
+    .on('input', '#announcement', () ->
+      newText = $(this).val()
+      titleText = $('#announcement_title').val()
+      drawCanvas('announcementCanvas', newText, titleText)
+    )
+    .on('input', '#announcement_title', () ->
+      newText = $('#announcement').val()
+      titleText = $(this).val()
+      drawCanvas('announcementCanvas', newText, titleText)
     )

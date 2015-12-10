@@ -6,6 +6,7 @@
   - Added order option for clinical trials
   - Added interface to create new research articles
     - Added ability to link approved research topic to research article
+  - Improved dynamic social media content creation
 - **Other Changes**
   - Added PEP corner
 

@@ -118,7 +118,6 @@ Rails.application.routes.draw do
     get '/pap/PAP-masks-and-equipment', to: 'static#PAP_masks_equipment'
     get '/pap/traveling-with-PAP', to: 'static#traveling_with_PAP'
     get '/pap/side-effects-of-PAP', to: 'static#side_effects_PAP'
-    get '/sleep-tips', to: 'static#sleep_tips'
   end
 
   # Registration flow
@@ -242,6 +241,8 @@ Rails.application.routes.draw do
 
   get 'admin/daily_engagement_data' => 'admin#daily_engagement_data', format: :json
   post 'daily-demographic-breakdown', to: 'admin#daily_demographic_breakdown', as: :daily_demographic_breakdown
+
+  get 'admin/social-media', to: 'admin#social_media'
 
   # Development/System
   get 'pprn' => 'application#toggle_pprn_cookie'
