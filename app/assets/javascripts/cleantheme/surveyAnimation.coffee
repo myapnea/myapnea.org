@@ -90,7 +90,7 @@
         $("[data-object~='date--error-message']").html(data['validation_errors'][0])
       else if data['completed']
         $("[data-object~='date--error']").addClass 'hidden'
-      indicator = $(questionForm).data('object').slice(-1)
+      indicator = $(questionForm).data('object').split('-').slice(-1)[0]
       indicatorSelector = $("[data-object~='survey-indicator'][data-target~='"+indicator+"']")
       if data['completed']
         indicatorSelector.removeClass 'incomplete'

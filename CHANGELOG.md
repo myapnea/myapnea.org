@@ -9,6 +9,7 @@
   - Improved dynamic social media content creation
 - **Survey Changes**
   - Fixed bug where dropdowns were showing two arrow options
+  - Fixed bug that only allowed surveys with <10 questions
 - **Other Changes**
   - Added PEP corner
   - Improved display and usability of risk assessment tool
