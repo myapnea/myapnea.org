@@ -11,6 +11,7 @@
   - Fixed bug where dropdowns were showing two arrow options
 - **Other Changes**
   - Added PEP corner
+  - Improved display and usability of risk assessment tool
 
 ## 9.1.0 (December 7, 2015)
 

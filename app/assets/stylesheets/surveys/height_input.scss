@@ -1,9 +1,9 @@
 // Thanks to help from danield770 http://jsfiddle.net/danield770/YvCHW/4232/
 .full-survey-container:not(#simple-survey) {
   .height-select {
-    appearance: none;
-    -webkit-appearance: none;
     -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
     background: asset-url('myapnea/icons/arrowdown.png') 96% / 15% no-repeat $white;
     border: 1px solid $border-color;
     font-size: 34px;

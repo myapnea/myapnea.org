@@ -11,10 +11,18 @@ weight_updated = false
   $('#risk-assessment-container .radio-container').click (event) ->
     $(this).find("input:radio").prop "checked", !$(this).find('input:radio').prop("checked")
 
+  $(document)
+    .on('click', '#risk-assessment-container', () ->
+      $("[data-object~='submit-risk-assessment']").removeClass 'disabled' if checkRiskAssessmentCompletion()
+    )
+    .on('keydown', '#risk-assessment-container', () ->
+      $("[data-object~='submit-risk-assessment']").removeClass 'disabled' if checkRiskAssessmentCompletion()
+    )
+
   ### Submit ###
   $("[data-object~='submit-risk-assessment']").click (e) ->
     params = submitRiskAssessment()
-    if params == false
+    if params == false || checkRiskAssessmentCompletion() == false
       e.preventDefault()
 
   ### Track changes of BMI categories ###
@@ -78,7 +86,17 @@ weight_updated = false
   if feet_updated and inches_updated and weight_updated
     document.getElementById('stopbang-bmi-output').innerHTML = Math.round(calculateBMI() * 100)/100
 
-
+@checkRiskAssessmentCompletion = () ->
+  return (document.getElementById('gender_male').checked || document.getElementById('gender_female').checked) &&
+  document.getElementById('age').value.length!=0 &&
+  document.getElementById('feet').value.length!=0 &&
+  document.getElementById('inches').value.length!=0 &&
+  document.getElementById('weight').value.length!=0 &&
+  (document.getElementById('hbp_yes').checked || document.getElementById('hbp_no').checked) &&
+  (document.getElementById('observation_yes').checked || document.getElementById('observation_no').checked) &&
+  (document.getElementById('tiredness_yes').checked || document.getElementById('tiredness_no').checked) &&
+  (document.getElementById('snoring_yes').checked || document.getElementById('snoring_no').checked) &&
+  (document.getElementById('neck_yes').checked || document.getElementById('neck_no').checked)
 
 
 #### Check answers using the following syntax ####
