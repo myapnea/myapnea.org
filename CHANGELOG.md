@@ -7,6 +7,8 @@
   - Added interface to create new research articles
     - Added ability to link approved research topic to research article
   - Improved dynamic social media content creation
+- **Survey Changes**
+  - Fixed bug where dropdowns were showing two arrow options
 - **Other Changes**
   - Added PEP corner
 
