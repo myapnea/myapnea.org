@@ -80,59 +80,6 @@
     return
 
 
-  ########## DATES ########## TODO Remove, this frontend validation is deprecated
-  $("[data-validation~='inline-validation-date'] [data-object~='inline-validation-item']").blur (e) ->
-    validationItem = $("[data-validation~='inline-validation-date'] [data-object~='inline-validation-item']")
-    dateString = validationItem.val()
-    errorMessage = validateDate(dateString)
-    if validationItem.data('over18')
-      errorMessage += validateOver18(dateString)
-    if errorMessage != ''
-      $("[data-object~='date--error']").removeClass("hidden")
-      $("[data-object~='date--error-message']").html errorMessage
-    else
-      $("[data-object~='date--error']").addClass("hidden")
-
-
-  @validateDate = (dateString) ->
-    if dateString.length == 0
-      return ""
-    if !(/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(dateString))
-      return "Please use the mm/dd/yyyy format when entering your date of birth."
-
-    parts = dateString.split("/")
-    month = parseInt(parts[0], 10)
-    day = parseInt(parts[1], 10)
-    year = parseInt(parts[2], 10)
-
-    if (year < 1900 or year > 2015)
-      return "Year is out of range. Please use the mm/dd/yyyy format when entering your date of birth."
-    if (month < 1 or month > 12)
-      return "Month is out of range. Please use the mm/dd/yyyy format when entering your date of birth."
-
-    monthLength = [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ]
-    if (year % 400 == 0 || (year % 100 != 0 && year % 4 == 0))
-        monthLength[1] = 29
-
-    unless (day > 0 && day <= monthLength[month - 1])
-      return "Day is out of range. Please use the mm/dd/yyyy format when entering your date of birth."
-
-    return ""
-
-  @validateOver18 = (dateString) ->
-    parts = dateString.split("/")
-    month = parseInt(parts[0], 10)
-    day = parseInt(parts[1], 10)
-    year = parseInt(parts[2], 10)
-
-    birthDate = new Date(year, month-1, day)
-    minimumDate = new Date(year+18, month-1, day)
-    todaysDate = new Date()
-
-    if minimumDate > todaysDate
-      return "You must be over 18 to join MyApnea.Org."
-    return ""
-
   $("[data-object~='number-validation']").keydown (e) ->
     if $.inArray(e.keyCode, [
         46

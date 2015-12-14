@@ -84,12 +84,6 @@
   @submitAnswer = (inputElement) ->
     questionForm = inputElement.closest("form")
     $.post(questionForm.attr("action"), questionForm.serialize(), (data) ->
-      # console.log data
-      if !data['completed'] and data['validation_errors'].length > 0
-        $("[data-object~='date--error']").removeClass 'hidden'
-        $("[data-object~='date--error-message']").html(data['validation_errors'][0])
-      else if data['completed']
-        $("[data-object~='date--error']").addClass 'hidden'
       indicator = $(questionForm).data('object').split('-').slice(-1)[0]
       indicatorSelector = $("[data-object~='survey-indicator'][data-target~='"+indicator+"']")
       if data['completed']
@@ -286,10 +280,8 @@
   # the :checked property is changed, handleChangedValue has to be called.
   $(".survey-container input").not(":radio").change (event) ->
     if $(this).hasClass "survey-custom-date"
-      dateStr = $(this).val()
-      if true #validateDate(dateStr) == "" and validateOver18(dateStr) == ""
-        target = event.target or event.srcElement
-        handleChangedValue($(target))
+      target = event.target or event.srcElement
+      handleChangedValue($(target))
     else
       target = event.target or event.srcElement
       handleChangedValue($(target))
