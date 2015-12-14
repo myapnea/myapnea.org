@@ -146,7 +146,7 @@ class AccountController < ApplicationController
 
       params.required(:user).permit(
         # Basic Information
-        :first_name, :last_name, :email,
+        :first_name, :last_name, :email, :address_1, :address_2, :city, :zip_code,
         # Forum and Social Profile
         :photo, :remove_photo, :forum_name, :age, :gender, :experience, :device,
         # Linking to a Provider

@@ -1,6 +1,27 @@
 .container{ style: 'position: relative' }
   .row
-    .col-sm-8
+    .col-sm-4.col-sm-push-8
+      #account-link-container
+        .content-container
+          .content-body
+            %p.lead
+              What do you need help with?
+            = link_to '#change-picture' do
+              Changing my picture
+            = link_to '#change-information' do
+              Changing my basic info (name, email, etc)
+            = link_to '#change-member-type' do
+              Changing my role (patient, caregiver, etc)
+            = link_to '#change-password' do
+              Changing my password
+            = link_to '#select-provider' do
+              Linking with my care provider
+            = link_to '#notification-preferences' do
+              Receiving email notifications
+            - if current_user.ready_for_research?
+              = link_to '#leave-study' do
+                I want to leave the research study
+    .col-sm-8.col-sm-pull-4
       #account-section-container
         - unless current_user.ready_for_research?
           = render 'account/join_leave_research_study'
@@ -31,7 +52,23 @@
                 = f.label :email, class: 'col-sm-3 control-label'
                 .col-sm-6
                   = f.email_field :email, class: 'form-control', placeholder: User.human_attribute_name(:email), autocomplete: :off
-              .row
+              .form-group
+                = f.label :address_1, 'Address', class: 'col-sm-3 control-label'
+                .col-sm-6
+                  = f.text_field :address_1, class: 'form-control', placeholder: 'Street address', autocomplete: :off
+              .form-group
+                .col-sm-3
+                .col-sm-6
+                  = f.text_field :address_2, class: 'form-control', placeholder: 'Apt, suite, unit, etc.', autocomplete: :off
+              .form-group
+                = f.label :city, class: 'col-sm-3 control-label'
+                .col-sm-6
+                  = f.text_field :city, class: 'form-control', placeholder: User.human_attribute_name(:city), autocomplete: :off
+              .form-group
+                = f.label :zip_code, class: 'col-sm-3 control-label'
+                .col-sm-6
+                  = f.text_field :zip_code, class: 'form-control', placeholder: User.human_attribute_name(:zip_code), autocomplete: :off
+              .form-group
                 = f.submit "Save Changes", class: 'btn btn-primary-custom col-xs-4 col-xs-offset-4'
 
         %a.settings-anchor#change-member-type
@@ -125,24 +162,3 @@
         - if current_user.ready_for_research?
           %a.settings-anchor#leave-study
           = render partial: 'account/join_leave_research_study'
-    .col-sm-4
-      #account-link-container
-        .content-container
-          .content-body
-            %p.lead
-              What do you need help with?
-            = link_to '#change-picture' do
-              Changing my picture
-            = link_to '#change-information' do
-              Changing my basic info (name, email, etc)
-            = link_to '#change-member-type' do
-              Changing my role (patient, caregiver, etc)
-            = link_to '#change-password' do
-              Changing my password
-            = link_to '#select-provider' do
-              Linking with my care provider
-            = link_to '#notification-preferences' do
-              Receiving email notifications
-            - if current_user.ready_for_research?
-              = link_to '#leave-study' do
-                I want to leave the research study
