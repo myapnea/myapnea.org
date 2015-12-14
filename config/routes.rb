@@ -144,7 +144,11 @@ Rails.application.routes.draw do
 
   # Provider Pages
   get 'p(/:slug)', to: 'static#provider_page'
-  resources :providers
+  resources :providers do
+    collection do
+      post :more
+    end
+  end
   get 'bwh', to: redirect('providers/bwh')
 
   get 'members', to: 'members#index', as: :members

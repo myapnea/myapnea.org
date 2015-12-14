@@ -9,7 +9,7 @@ class ProvidersController < ApplicationController
   def index
     provider_scope = User.current.where(provider: true).where.not(slug: [nil,''], provider_name: [nil,''])
     provider_scope = provider_scope.where("users.provider_name ~* ?", params[:s].to_s.split(/\s/).collect{|l| l.to_s.gsub(/[^\w\d%]/, '')}.collect{|l| "(\\m#{l})"}.join("|")) if params[:s].present?
-    @providers = provider_scope.page(params[:page]).per( 12 ).order("LOWER(provider_name)")
+    @providers = provider_scope.page(params[:page]).per( 30 ).order("LOWER(provider_name)")
   end
 
   def new
@@ -17,6 +17,12 @@ class ProvidersController < ApplicationController
   end
 
   def show
+  end
+
+  def more
+    provider_scope = User.current.where(provider: true).where.not(slug: [nil,''], provider_name: [nil,''])
+    provider_scope = provider_scope.where("users.provider_name ~* ?", params[:s].to_s.split(/\s/).collect{|l| l.to_s.gsub(/[^\w\d%]/, '')}.collect{|l| "(\\m#{l})"}.join("|")) if params[:s].present?
+    @providers = provider_scope.page(params[:page]).per( 30 ).order("LOWER(provider_name)")
   end
 
   protected

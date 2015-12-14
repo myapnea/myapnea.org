@@ -1,0 +1,18 @@
+- @providers.order(:provider_name).in_groups_of(3, false) do |provider_group|
+  .row
+    - provider_group.each do |provider|
+      .col-sm-4
+        .provider-container
+          .provider-header
+          = link_to image_tag(user_photo_url(provider)), provider_path(provider.slug)
+          .provider-footer
+            .centered{ style: 'whie-space:nowrap; position:relative; overflow-x:hidden' }
+              = link_to provider.provider_name, provider_path(provider.slug), data: { toggle: 'tooltip', title: provider.provider_name, container: 'body', placement: 'top' }
+            %p
+              - member_count = provider.users.count
+              - if member_count < 100
+                Recruiting new members
+              - elsif member_count < 1000
+                Hundreds of members
+              - else
+                Thousands of members

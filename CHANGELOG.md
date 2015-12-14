@@ -11,6 +11,8 @@
   - Fixed bug where dropdowns were showing two arrow options
   - Fixed bug that only allowed surveys with <10 questions
   - Birthdays can be listed as after 1997 to account for children
+- **Provider Changes**
+  - Updated and simplified loading of provider index
 - **Other Changes**
   - Added PEP corner
   - Improved display and usability of risk assessment tool

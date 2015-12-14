@@ -8,17 +8,6 @@
     padding: 10px 0;
     width: auto;
   }
-
-  .track-progress {
-    background-color: $unviewed-color;
-    display: inline-block;
-    height: 10px;
-    width: 30px;
-
-    &.viewed {
-      background-color: $viewed-color;
-    }
-  }
 }
 
 @media (max-width: $screen-sm) {

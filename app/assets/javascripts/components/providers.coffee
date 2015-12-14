@@ -10,13 +10,13 @@
       backgroundColor: "#FFA400"
       , 300
     return
-  # allow provider quote to stay static at top
+
+  isLoading = false
+  pageParam = 1
   $(window).scroll ->
-    if window.innerWidth > 768
-      if $(this).scrollTop() > 600
-        $("#provider-banner").addClass "fixed-under-nav"
-        $("#community-tracker-provider").css('padding-top', $("#provider-banner").outerHeight() + 10)
-      else
-        $("#provider-banner").removeClass "fixed-under-nav"
-        $("#community-tracker-provider").css('padding-top', 15)
-      return
+    if $(document).height() - $(this).height() - $(this).scrollTop() < 200 && !isLoading
+      isLoading = true
+      pageParam = pageParam + 1
+      $.post(root_url + 'providers/more', page: pageParam, (->
+        isLoading = false
+      ), "script")
