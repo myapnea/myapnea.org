@@ -13,6 +13,7 @@
 - **Other Changes**
   - Added PEP corner
   - Improved display and usability of risk assessment tool
+  - Removed deprecated research topic columns
 
 ## 9.1.0 (December 7, 2015)
 
