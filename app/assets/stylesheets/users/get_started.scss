@@ -2,85 +2,11 @@
   padding-bottom: 70px;
 }
 
-$viewed-color: $great;
-$unviewed-color: #d5ecd2;
-
-#registration-progress {
-  margin-bottom: 30px;
-  margin-top: 30px;
-  position: relative;
-  text-align: center;
-
-  a,
-  a:active {
-    text-decoration: none;
-  }
-
-  .circle-progress {
-    border-radius: 50%;
-    background-color: $unviewed-color;
-    display: inline-block;
-    height: 100px;
-    pointer-events: none;
-    text-align: center;
-    width: 100px;
-
-    h3 {
-      color: $white;
-      line-height: 100px;
-      margin: 0;
-    }
-
-    &.viewed {
-      background-color: $viewed-color;
-      text-decoration: none;
-    }
-
-    &.clickable {
-      pointer-events: auto;
-    }
-  }
-
-  .track-progress {
-    background-color: $unviewed-color;
-    display: inline-block;
-    height: 10px;
-    width: 100px;
-
-    &.viewed {
-      background-color: $viewed-color;
-    }
-  }
-}
-
 @media (max-width: $screen-md) {
   .partners-img {
     max-height: 100px;
     padding: 10px 0;
     width: auto;
-  }
-
-  #registration-progress {
-    margin-bottom: 20px;
-
-    .circle-progress {
-      background-color: $unviewed-color;
-      border-radius: 50%;
-      display: inline-block;
-      height: 60px;
-      text-align: center;
-      width: 60px;
-
-      h3 {
-        color: $white;
-        line-height: 60px;
-        margin: 0;
-      }
-    }
-
-    &.viewed {
-      background-color: $viewed-color;
-    }
   }
 
   .track-progress {

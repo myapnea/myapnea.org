@@ -43,7 +43,7 @@ if typeof Turbolinks isnt 'undefined' and Turbolinks.supported
   questionsReady() if questionsReady?
   landingReady() if landingReady?
   mapsReady() if mapsReady?
-  navigationUXReady() if navigationUXReady?
+  shareIconsReady() if shareIconsReady?
   drawSurveyProgressReady() if drawSurveyProgressReady?
   videoControlsReady() if videoControlsReady?
   surveyAnimationReady() if surveyAnimationReady?
