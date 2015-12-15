@@ -13,6 +13,7 @@
   - Birthdays can be listed as after 1997 to account for children
 - **Provider Changes**
   - Updated and simplified loading of provider index
+  - Added membership count and callout to dashboard
 - **Other Changes**
   - Added PEP corner
   - Improved display and usability of risk assessment tool

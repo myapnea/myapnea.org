@@ -32,6 +32,7 @@ class User < ActiveRecord::Base
   # Named Scopes
   scope :search, lambda { |arg| where( 'LOWER(first_name) LIKE ? or LOWER(last_name) LIKE ? or LOWER(email) LIKE ?', arg.to_s.downcase.gsub(/^| |$/, '%'), arg.to_s.downcase.gsub(/^| |$/, '%'), arg.to_s.downcase.gsub(/^| |$/, '%') ) }
   scope :providers, -> { current.where(provider: true) }
+  scope :providers_with_profiles, -> { providers.where.not(slug: [nil,''], provider_name: [nil,'']) }
   scope :include_in_exports_and_reports, -> { where(include_in_exports: true) }
 
   # Model Validation
