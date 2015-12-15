@@ -14,11 +14,9 @@ class SurveysController < ApplicationController
   layout 'surveys'
 
   def index
+    @surveys = Survey.current.viewable
     if current_user
-      @surveys = Survey.current.viewable
       @answer_sessions = current_user.answer_sessions.where(child_id: nil).joins(:survey).merge( Survey.current.viewable ).order(:locked, "surveys.name_en", :encounter)
-    else
-      @surveys = Survey.current.viewable
     end
   end
 

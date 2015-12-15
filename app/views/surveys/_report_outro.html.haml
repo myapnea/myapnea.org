@@ -2,4 +2,7 @@
   Congratulations on finishing this survey - you're doing great!
 %br
 .centered
-  = link_to "Click here to continue", next_answer_session_path(@answer_session), class: "btn btn-primary-custom btn-lg"
+  - if @answer_session and @answer_session.child
+    = link_to "Click here to continue", next_child_answer_session_path(@answer_session), class: "btn btn-primary-custom btn-lg"
+  - else
+    = link_to "Click here to continue", next_answer_session_path(@answer_session), class: "btn btn-primary-custom btn-lg"

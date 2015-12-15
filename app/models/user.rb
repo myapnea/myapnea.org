@@ -249,6 +249,25 @@ class User < ActiveRecord::Base
     incomplete_answer_sessions.where.not(id: answer_session.id).first if answer_session
   end
 
+  # Child Surveys
+  def completed_child_answer_sessions(child_input)
+    self.answer_sessions.where(child_id: child_input, locked: true).joins(:survey).merge(Survey.current.viewable)
+  end
+
+  def incomplete_child_answer_sessions(child_input)
+    self.answer_sessions.where(child_id: child_input, locked: false).joins(:survey).merge(Survey.current.viewable)
+  end
+
+  def completed_child_assigned_answer_sessions?(child_input)
+    self.answer_sessions.where(child_id: child_input, locked: false).joins(:survey).merge(Survey.current.viewable).count == 0
+  end
+
+  def next_child_answer_session(answer_session)
+    if answer_session && answer_session.child_id.present?
+      self.answer_sessions.where(child_id: answer_session.child_id, locked: false).where.not(id: answer_session.id).joins(:survey).merge(Survey.current.viewable).first
+    end
+  end
+
   def completed_demographic_survey?
     self.answer_sessions.where(survey_id: Survey.find_by_slug('about-me').id).where(locked:true).present?
   end
@@ -302,7 +321,6 @@ class User < ActiveRecord::Base
   end
 
   ## Provider Methods
-
   def send_provider_informational_email!
     unless Rails.env.test?
       pid = Process.fork
