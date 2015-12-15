@@ -1,5 +1,5 @@
-%h4.f300= answer_template.text
-%div{ class: "#{'multiple-question-container' if question.answer_templates.unarchived.where(template_name: 'radio', parent_answer_template_id: nil).count > 1 } "}
+%h4.spaced= answer_template.text
+%div{ class: "radio-question-inputs #{'multiple-question-container' if question.answer_templates.unarchived.where(template_name: 'radio', parent_answer_template_id: nil).count > 1 } "}
   - answer_template.answer_options.distinct.each do |answer_option|
     - child_templates = answer_template.child_templates(question, answer_option.new_value)
     .radio-input-container{ class: answer_option.display_class_or_default }
@@ -12,3 +12,4 @@
           - child_templates.each do |child_template|
             - if child_template.template_name.present? and answer_template != child_template
               = render "surveys/questions/answer_templates/child", question: question, answer_session: answer_session, child_template: child_template, answer: answer
+  .clearfix

@@ -48,15 +48,13 @@
   }
 
   .label-med {
-    float: left;
-    margin: 4px;
+    margin: 4px auto;
     padding: 5px;
     width: 45%;
   }
 
   .label-lg {
-    margin-left: 15%;
-    margin-right: 15%;
+    margin: 4px auto;
     width: 70%;
   }
 
@@ -217,7 +215,7 @@
   .full-survey-container:not(#simple-survey) {
     .input-container {
       .label-med {
-        margin: 2px 10%;
+        margin: 2px auto;
         padding: 3px;
         width: 80%;
 
