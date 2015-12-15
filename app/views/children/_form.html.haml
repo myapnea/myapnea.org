@@ -24,6 +24,13 @@
         Child's Age must be between 0 and 8 years old.
 
   .form-group
+    .col-md-10.col-md-offset-2
+      .checkbox
+        %label
+          = f.check_box :diagnosed
+          Diagnosed with sleep apnea
+
+  .form-group
     .col-md-offset-2.col-md-10
       = f.submit nil, class: 'btn btn-primary'
       = link_to 'Cancel', (@child.new_record? ? children_path : @child), class: 'btn btn-default'

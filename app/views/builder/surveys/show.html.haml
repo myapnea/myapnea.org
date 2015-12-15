@@ -36,6 +36,12 @@
         = simple_check @survey.pediatric?
 
       - if @survey.pediatric?
+
+        %dt
+          %strong Only Diagnosed
+        %dd
+          = simple_check @survey.pediatric_diagnosed?
+
         %dt
           %strong Child Minimum Age
         %dd

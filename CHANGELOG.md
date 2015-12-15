@@ -13,6 +13,7 @@
   - Birthdays can be listed as after 1997 to account for children
   - Improved layout of radio style questions
   - Added flow for completing multiple pediatric surveys
+  - Pediatric surveys can now be assigned specifically to diagnosed children
 - **Provider Changes**
   - Updated and simplified loading of provider index
   - Added membership count and callout to dashboard
