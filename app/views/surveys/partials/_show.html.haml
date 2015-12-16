@@ -2,7 +2,7 @@
 .survey-indicator
   %span#title Progress
   %ul
-    - @survey.questions.each_with_index do |question, index|
+    - @survey.questions.unarchived.each_with_index do |question, index|
       - answer = @answer_session.answers.where(question_id: question.id).first_or_initialize
       - if answer.locked?
         %li.locked{ data: { object: 'survey-indicator', target: "#{index}" } }
@@ -44,7 +44,7 @@
 
   -# Expects a @survey and @answer_session variable
   -# Dynamically Loaded:
-  - @survey.questions.each_with_index do |question, index|
+  - @survey.questions.unarchived.each_with_index do |question, index|
     = render 'surveys/questions/show', question: question, answer_session: @answer_session, question_number: index
 
     - if false

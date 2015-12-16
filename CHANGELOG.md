@@ -17,6 +17,7 @@
   - Minor wording changes to custom report for sleep apnea symptoms
   - **Builder Changes**
     - Added ability to add/edit survey description
+    - Added ability to archive questions
 - **Provider Changes**
   - Updated and simplified loading of provider index
   - Added membership count and callout to dashboard
