@@ -23,6 +23,11 @@
       = f.text_field :name_en, class: 'form-control'
 
   .form-group
+    = f.label :description_en, 'Description EN', class: 'col-md-2 control-label'
+    .col-md-10
+      = f.text_area :description_en, class: 'form-control'
+
+  .form-group
     = f.label :slug, 'URL Slug', class: 'col-md-2 control-label'
     .col-md-10
       = f.text_field :slug, class: 'form-control'

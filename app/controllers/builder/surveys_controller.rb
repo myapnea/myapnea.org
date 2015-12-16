@@ -61,7 +61,7 @@ class Builder::SurveysController < Builder::BuilderController
     end
 
     def survey_params
-      params.require(:survey).permit(:name_en, :slug, :status, :pediatric, :pediatric_diagnosed, :child_min_age, :child_max_age)
+      params.require(:survey).permit(:name_en, :description_en, :slug, :status, :pediatric, :pediatric_diagnosed, :child_min_age, :child_max_age)
     end
 
 end

@@ -14,6 +14,8 @@
   - Improved layout of radio style questions
   - Added flow for completing multiple pediatric surveys
   - Pediatric surveys can now be assigned specifically to diagnosed children
+  - **Builder Changes**
+    - Added ability to add/edit survey description
 - **Provider Changes**
   - Updated and simplified loading of provider index
   - Added membership count and callout to dashboard
