@@ -14,10 +14,11 @@
       %h1.report-statistic= "#{all_ri.collect{|ri| ri.percent_number}.sum.round(1)}%"
     .col-sm-9
       %p.lead.text-left
-        of members report that
-        %span.darkerer-blue.f500= answer_template.text
-        caused them to be evaluated for sleep apnea, with this symptom lasting for an average of
-        %span.darker-blue= median.answer_option.text if median
-        before diagnosis.
-        %span.primary-orange= ri4.percent
-        of MyApnea users report experiencing this symptom at least one year before diagnosis.
+        of members report experiencing
+        = succeed ',' do
+          %span.darkerer-blue.f500= answer_template.text
+        with this symptom lasting for an average of
+        = succeed '.' do
+          %span.darker-blue= median.answer_option.text if median
+        / %span.primary-orange= ri4.percent
+        / of MyApnea users report experiencing this symptom at least one year before diagnosis.
