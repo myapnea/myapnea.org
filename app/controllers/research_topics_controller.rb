@@ -10,8 +10,11 @@ class ResearchTopicsController < ApplicationController
 
   before_action :set_SEO_elements
 
+  layout 'research_topics'
+
   def intro
     redirect_to research_topics_path and return if !current_user
+    render 'research_topics/intro/intro'
   end
 
   def first_topics
@@ -20,14 +23,7 @@ class ResearchTopicsController < ApplicationController
     redirect_to research_topics_path and return if current_user.experienced_voter?
 
     @research_topic = current_user.seeded_research_topic
-  end
-
-  def newest
-    @research_topics = ResearchTopic.approved.newest
-  end
-
-  def most_discussed
-    @research_topics = ResearchTopic.approved.most_discussed
+    render 'research_topics/intro/first_topics'
   end
 
   def my_research_topics
@@ -39,9 +35,8 @@ class ResearchTopicsController < ApplicationController
   def index
     @research_topics = ResearchTopic.approved
     @new_research_topic = ResearchTopic.new
-    @clinical_trials = Admin::ClinicalTrial.where(displayed: true).order(:updated_at).first(3)
     respond_to do |format|
-      format.html { render layout: 'layouts/application-no-sidebar'}
+      format.html { render layout: 'layouts/research_topics'}
       format.json
     end
   end
@@ -89,44 +84,53 @@ class ResearchTopicsController < ApplicationController
 
   # Accepted research topics
   def accepted_research_topics_index
+    @research_articles = Admin::ResearchArticle.current.order(:position)
     render 'research_topics/accepted/index'
   end
 
-  def sleep_apnea_body_weight
-    render 'research_topics/accepted/sleep_apnea_body_weight'
+  def accepted_article
+    @research_article = Admin::ResearchArticle.find_by_slug(params[:slug])
+    render 'research_topics/accepted/show'
   end
 
-  def sleep_apnea_brain_plasticity
-    render 'research_topics/accepted/sleep_apnea_brain_plasticity'
-  end
+  # BEGIN DEPRECATED 9.2
+  # NOTE: Keeping views to allow due time to import them in new format
+  # def sleep_apnea_body_weight
+  #   render 'research_topics/accepted/sleep_apnea_body_weight'
+  # end
 
-  def sleep_apnea_adenotonsillectomy_children
-    render 'research_topics/accepted/sleep_apnea_adenotonsillectomy_children'
-  end
+  # def sleep_apnea_brain_plasticity
+  #   render 'research_topics/accepted/sleep_apnea_brain_plasticity'
+  # end
 
-  def sleep_apnea_diabetes
-    render 'research_topics/accepted/sleep_apnea_diabetes'
-  end
+  # def sleep_apnea_adenotonsillectomy_children
+  #   render 'research_topics/accepted/sleep_apnea_adenotonsillectomy_children'
+  # end
 
-  def sleep_apnea_nighttime_oxygen_use
-    render 'research_topics/accepted/sleep_apnea_nighttime_oxygen_use'
-  end
+  # def sleep_apnea_diabetes
+  #   render 'research_topics/accepted/sleep_apnea_diabetes'
+  # end
 
-  def sleep_apnea_didgeridoo
-    render 'research_topics/accepted/sleep_apnea_didgeridoo'
-  end
+  # def sleep_apnea_nighttime_oxygen_use
+  #   render 'research_topics/accepted/sleep_apnea_nighttime_oxygen_use'
+  # end
 
-  def sleep_apnea_hypoglossal_stimulation
-    render 'research_topics/accepted/sleep_apnea_hypoglossal_stimulation'
-  end
+  # def sleep_apnea_didgeridoo
+  #   render 'research_topics/accepted/sleep_apnea_didgeridoo'
+  # end
 
-  def sleep_apnea_women_heart_disease
-    render 'research_topics/accepted/sleep_apnea_women_heart_disease'
-  end
+  # def sleep_apnea_hypoglossal_stimulation
+  #   render 'research_topics/accepted/sleep_apnea_hypoglossal_stimulation'
+  # end
 
-  def sleep_apnea_afib
-    render 'research_topics/accepted/sleep_apnea_afib'
-  end
+  # def sleep_apnea_women_heart_disease
+  #   render 'research_topics/accepted/sleep_apnea_women_heart_disease'
+  # end
+
+  # def sleep_apnea_afib
+  #   render 'research_topics/accepted/sleep_apnea_afib'
+  # end
+  # END DEPRECATED 9.2
 
   # Voting
 
@@ -142,9 +146,10 @@ class ResearchTopicsController < ApplicationController
         flash[:notice] = "Please either endorse or oppose this research topic." unless @research_topic.seeded?
       end
 
-      respond_to do |format|
-        format.html { redirect_to :back }
-        format.js
+      if @research_topic.seeded?
+        redirect_to first_topics_research_topics_path
+      else
+        redirect_to @research_topic
       end
     else
       head :ok

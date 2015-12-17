@@ -1,35 +1,35 @@
 #bmi-ahi-calculator {
   select {
-    border: 1px solid #111;
-    background: transparent;
-    width: 70px;
-    padding: 3px;
-    font-size: 20px;
-    border: 1px solid #ccc;
-    height: 35px;
-    -webkit-appearance: none;
-    -moz-appearance: none;
     appearance: none;
-    background: asset-url("myapnea/icons/arrowdown.png") 96% / 15% no-repeat #fff;
+    background: asset-url('myapnea/icons/arrowdown.png') 96% / 15% no-repeat $white;
+    border: 1px solid $light-gray;
+    font-size: 20px;
+    height: 35px;
+    padding: 3px;
+    width: 70px;
   }
+
   .select-label {
     font-size: 18px;
     font-weight: 300;
-    margin-right:10px;
+    margin-right: 10px;
   }
+
   input[type=text] {
+    border-radius: 5px;
     font-size: 20px;
-    width: 60%;
+    margin-bottom: 10px;
     max-width: 100px;
-    border-radius:5px;
-    margin-bottom:10px;
+    width: 60%;
   }
+
   input[type=number] {
+    border-radius: 5px;
     font-size: 20px;
-    width:80%;
-    max-width:150px;
-    border-radius:5px;
+    max-width: 150px;
+    width: 80%;
   }
+
   input[type=number]::-webkit-inner-spin-button,
   input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;
@@ -37,91 +37,104 @@
   }
 }
 
+$bar-color: #4682b4;
+$bar-hover: #a52a2a;
+
 .bar {
-  fill: steelblue;
+  fill: $bar-color;
 }
 
 .bar:hover {
-  fill: brown;
+  fill: $bar-hover;
 }
 
 .axis {
   font: 10px sans-serif;
+
+  path,
+  line {
+    fill: none;
+    shape-rendering: crispEdges;
+    stroke: $black;
+  }
+
+  &.x path {
+    display: none;
+  }
 }
 
-.axis path,
-.axis line {
-  fill: none;
-  stroke: #000;
-  shape-rendering: crispEdges;
-}
 
-.x.axis path {
-  display: none;
-}
+$underweight: #00cbe7;
+$overweight: #f4f328;
+$normal: #00da3c;
+$obese: #fd8603;
+
 
 #ahi-graph cite {
   font-size: 10px;
 }
 
+.underweight { fill: $underweight; }
 
-.underweight {
-  fill: #00CBE7;
-}
-.overweight {
-  fill: #F4F328;
-}
-.normal {
-  fill: #00DA3C ;
-}
-.obese {
-  fill: #FD8603;
-}
+.overweight { fill: $overweight; }
+
+.normal { fill: $normal; }
+
+.obese { fill: $obese; }
 
 #bmi-ahi-results-container {
-  margin-top:20px;
-}
+  margin-top: 20px;
 
-#bmi-ahi-results-container.dimmed-and-disabled {
-  display:none;
-  .list-group-item {
-    background-color: #eee;
-    color: #777;
+  &.dimmed-and-disabled {
+    display: none;
+    pointer-events: none;
+
+    .list-group-item {
+      background-color: $lighter-gray;
+      color: $dark-gray;
+    }
   }
-  pointer-events: none;
 }
 
 #severity-graph {
+  border: 2px solid $darkest-blue;
+  border-radius: 20px;
   margin: 10px;
   padding: 20px;
-  border: 2px solid #1765bc;
-  border-radius: 20px;
+
   .row {
     .col-xs-3:first-of-type {
-      border-right:1px solid #1765bc;
-      padding: 0px;
+      border-right: 1px solid $darkest-blue;
+      padding: 0;
     }
+
     .col-xs-3 {
-      height:70px;
+      height: 70px;
+
       .circle {
-        width:50px;
-        height:50px;
-        border-radius:50%;
-        margin:auto;
-        background-color: #1765cd;
+        background-color: $darkest-blue;
+        border-radius: 50%;
+        height: 50px;
+        margin: auto;
+        width: 50px;
+      }
+    }
+
+    &.active {
+      color: $primary-orange;
+
+      .circle {
+        background-color: $primary-orange;
       }
     }
   }
-  .row.active {
-    color: #ffa400;
-    .circle { background-color: #ffa400; }
-  }
+
   .row:last-of-type {
-    border-top: 1px solid #1765bc;
+    border-top: 1px solid $darkest-blue;
   }
 }
 
-@media (max-width:768px) {
+@media (max-width: $screen-sm) {
   #calculate-min-weight {
     margin-top: 10px;
   }

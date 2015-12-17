@@ -1,8 +1,8 @@
 .full-survey-container:not(#simple-survey) {
   input[type=number].number-input {
+    border-radius: 5px;
     font-size: 34px;
-    width:150px;
-    border-radius:5px;
+    width: 150px;
   }
 
   .number-label {
@@ -16,16 +16,17 @@
   }
 }
 
-@media all and (max-width:778px) {
+@media all and (max-width:$screen-sm) {
   .full-survey-container:not(#simple-survey) {
     input[type=number].number-input {
-      width:130px;
-      font-size:18px;
-      margin:5px;
+      font-size: 18px;
+      margin: 5px;
+      width: 130px;
     }
+
     .number-label {
-      margin:5px;
-      font-size:22px;
+      font-size: 22px;
+      margin: 5px;
     }
   }
 }

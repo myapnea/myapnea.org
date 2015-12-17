@@ -20,3 +20,9 @@ $text-muted:            $ma-lighter-blue;
 .topic-posts-pending-review {
   background-color: $ma-lightest-yellow;
 }
+
+@media (max-width:$screen-sm) {
+  .topic-row {
+    font-size: 13px;
+  }
+}

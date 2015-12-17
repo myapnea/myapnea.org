@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+
+  resources :engagements do
+    resources :engagement_responses
+  end
+  resources :reactions, only: [:create, :destroy]
+  resources :comments, only: [:create, :destroy]
+
   namespace :admin do
     resources :exports do
       member do
@@ -10,13 +17,29 @@ Rails.application.routes.draw do
       member do
         get :photo
       end
+      collection do
+        get :order
+      end
     end
     resources :partners do
       member do
         get :photo
       end
     end
-    resources :clinical_trials
+    resources :clinical_trials do
+      collection do
+        get :order
+      end
+    end
+    resources :research_articles do
+      member do
+        get :photo
+        post :preview
+      end
+      collection do
+        get :order
+      end
+    end
   end
 
   namespace :builder do
@@ -73,10 +96,12 @@ Rails.application.routes.draw do
   scope module: 'static' do
     get :about
     get :team
+    get 'pep-corner', action: :pep_corner
+    get 'pep-corner/:pep_id', action: :pep_corner_show, as: :pep_corner_show
     get :advisory
     get :partners
     get :faqs
-    get :research
+    get 'clinical-trials', action: :clinical_trials
     get :version
     get :sitemap
     get :sizes
@@ -102,7 +127,6 @@ Rails.application.routes.draw do
     get '/pap/PAP-masks-and-equipment', to: 'static#PAP_masks_equipment'
     get '/pap/traveling-with-PAP', to: 'static#traveling_with_PAP'
     get '/pap/side-effects-of-PAP', to: 'static#side_effects_PAP'
-    get '/sleep-tips', to: 'static#sleep_tips'
   end
 
   # Registration flow
@@ -129,7 +153,11 @@ Rails.application.routes.draw do
 
   # Provider Pages
   get 'p(/:slug)', to: 'static#provider_page'
-  resources :providers
+  resources :providers do
+    collection do
+      post :more
+    end
+  end
   get 'bwh', to: redirect('providers/bwh')
 
   get 'members', to: 'members#index', as: :members
@@ -137,33 +165,26 @@ Rails.application.routes.draw do
   get 'members_search', to: 'members#search', as: :members_search
 
   # Research Topics
-  # match 'research_topic/:id', to: "research_topics#show", as: :research_topic, via: :get
-  # match 'research_questions', to: 'research_topics#index', via: :get, as: :research_topics
-  # match 'research_questions/new', to: 'research_topics#new', via: :get, as: :new_research_topic
-  match 'research_topics_tab', to: 'research_topics#research_topics', via: :get, as: :research_topics_ajax
-
   resources :research_topics, path: 'research-topics' do
     collection do
       get :intro
       get 'first-topics', as: :first_topics
-      get :newest
-      get 'most-discussed', as: :most_discussed
-      get :all
       get 'my-research-topics', as: :my_research_topics
       # Accepted research topics
       get 'accepted', to: 'research_topics#accepted_research_topics_index', as: :accepted
+      get 'accepted/:slug', to: 'research_topics#accepted_article', as: :accepted_article
     end
   end
 
-  get 'research-topics/accepted/does-treatment-of-sleep-apnea-influence-body-weight', to: 'research_topics#sleep_apnea_body_weight', as: 'sleep_apnea_body_weight'
-  get 'research-topics/accepted/does-sleep-influence-memory-and-brain-plasticity', to: 'research_topics#sleep_apnea_brain_plasticity', as: 'sleep_apnea_brain_plasticity'
-  get 'research-topics/accepted/obstructive-sleep-apnea-and-adenotonsillectomy-in-children', to: 'research_topics#sleep_apnea_adenotonsillectomy_children', as: 'sleep_apnea_adenotonsillectomy_children'
-  get 'research-topics/accepted/link-between-type-2-diabetes-and-sleep-apnea', to: 'research_topics#sleep_apnea_diabetes', as: 'sleep_apnea_diabetes'
-  get 'research-topics/accepted/can-nighttime-oxygen-replace-cpap-for-treatment-of-sleep-apnea', to: 'research_topics#sleep_apnea_nighttime_oxygen_use', as: 'sleep_apnea_nighttime_oxygen_use'
-  get 'research-topics/accepted/didgeridoo-a-potentially-novel-intervention-for-sleep-apnea', to: 'research_topics#sleep_apnea_didgeridoo', as: 'sleep_apnea_didgeridoo'
-  get 'research-topics/accepted/unilateral-hypoglossal-nerve-stimulation-sleep-apnea-treatment', to: 'research_topics#sleep_apnea_hypoglossal_stimulation', as: 'sleep_apnea_hypoglossal_stimulation'
-  get 'research-topics/accepted/women-with-sleep-apnea-increased-risk-for-heart-disease-with-age', to: 'research_topics#sleep_apnea_women_heart_disease', as: 'sleep_apnea_women_heart_disease'
-  get 'research-topics/accepted/atrial-fibrillation-and-its-links-to-sleep-apnea', to: 'research_topics#sleep_apnea_afib', as: 'sleep_apnea_afib'
+  # get 'research-topics/accepted/does-treatment-of-sleep-apnea-influence-body-weight', to: 'research_topics#sleep_apnea_body_weight', as: 'sleep_apnea_body_weight'
+  # get 'research-topics/accepted/does-sleep-influence-memory-and-brain-plasticity', to: 'research_topics#sleep_apnea_brain_plasticity', as: 'sleep_apnea_brain_plasticity'
+  # get 'research-topics/accepted/obstructive-sleep-apnea-and-adenotonsillectomy-in-children', to: 'research_topics#sleep_apnea_adenotonsillectomy_children', as: 'sleep_apnea_adenotonsillectomy_children'
+  # get 'research-topics/accepted/link-between-type-2-diabetes-and-sleep-apnea', to: 'research_topics#sleep_apnea_diabetes', as: 'sleep_apnea_diabetes'
+  # get 'research-topics/accepted/can-nighttime-oxygen-replace-cpap-for-treatment-of-sleep-apnea', to: 'research_topics#sleep_apnea_nighttime_oxygen_use', as: 'sleep_apnea_nighttime_oxygen_use'
+  # get 'research-topics/accepted/didgeridoo-a-potentially-novel-intervention-for-sleep-apnea', to: 'research_topics#sleep_apnea_didgeridoo', as: 'sleep_apnea_didgeridoo'
+  # get 'research-topics/accepted/unilateral-hypoglossal-nerve-stimulation-sleep-apnea-treatment', to: 'research_topics#sleep_apnea_hypoglossal_stimulation', as: 'sleep_apnea_hypoglossal_stimulation'
+  # get 'research-topics/accepted/women-with-sleep-apnea-increased-risk-for-heart-disease-with-age', to: 'research_topics#sleep_apnea_women_heart_disease', as: 'sleep_apnea_women_heart_disease'
+  # get 'research-topics/accepted/atrial-fibrillation-and-its-links-to-sleep-apnea', to: 'research_topics#sleep_apnea_afib', as: 'sleep_apnea_afib'
 
   # Surveys
   resources :surveys do
@@ -199,6 +220,7 @@ Rails.application.routes.draw do
   # Account Section
   scope module: 'account' do
     post :suggest_random_forum_name
+    patch :update_from_engagements
   end
 
   get 'account' => 'account#account'
@@ -226,12 +248,14 @@ Rails.application.routes.draw do
   get 'admin/reports/timeline' => 'admin#timeline', as: 'admin_reports_timeline'
   get 'admin/reports/location' => 'admin#location', as: 'admin_reports_location'
   get 'admin/reports/progress' => 'admin#progress_report', as: 'admin_progress_report'
-  get 'admin/reports/engagement' => 'admin#engagement_report', as: 'admin_engagement_report'
+  get 'admin/reports/reactions' => 'admin#reactions', as: 'admin_reactions'
   get 'admin/providers' => 'admin#providers'
   get 'admin/daily-engagement' => 'admin#daily_engagement', as: 'admin_daily_engagement'
 
   get 'admin/daily_engagement_data' => 'admin#daily_engagement_data', format: :json
   post 'daily-demographic-breakdown', to: 'admin#daily_demographic_breakdown', as: :daily_demographic_breakdown
+
+  get 'admin/social-media', to: 'admin#social_media'
 
   # Development/System
   get 'pprn' => 'application#toggle_pprn_cookie'

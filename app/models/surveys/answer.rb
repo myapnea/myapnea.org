@@ -55,7 +55,7 @@ class Answer < ActiveRecord::Base
     template_completions = []
     template_values = []
 
-    question.answer_templates.each do |template|
+    question.answer_templates.unarchived.each do |template|
       target_field = template.data_type
 
       val_for_template = val[template.id.to_s]

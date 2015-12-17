@@ -14,7 +14,7 @@ class AnswerSession < ActiveRecord::Base
 
   # Model Methods
   def completed?
-    answers.complete.count == survey.questions.count
+    answers.where(question_id: survey.questions.unarchived.pluck(:id)).complete.count == survey.questions.unarchived.count
   end
 
   def unlocked?
@@ -69,8 +69,8 @@ class AnswerSession < ActiveRecord::Base
   end
 
   def percent_completed
-    if survey.questions.count > 0
-      (answers.complete.count * 100.0 / survey.questions.count).round
+    if survey.questions.unarchived.count > 0
+      (answers.where(question_id: survey.questions.unarchived.pluck(:id)).complete.count * 100.0 / survey.questions.unarchived.count).round
     else
       100
     end

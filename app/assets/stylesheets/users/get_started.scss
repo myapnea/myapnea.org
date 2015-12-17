@@ -1,139 +1,27 @@
 .row-fullscreen {
-  padding-bottom:70px;
+  padding-bottom: 70px;
 }
 
-/* WELCOME */
-/* REGISTRATION */
-
-#registration-progress {
-  position:relative;
-  margin-top: 30px;
-  margin-bottom: 30px;
-  text-align:center;
-  $viewedColor: #78c679;
-  $unviewedColor: #d5ecd2;
-  a, a:active {
-    text-decoration: none;
-  }
-  .circle-progress {
-    display:inline-block;
-    width: 100px;
-    height:100px;
-    -moz-border-radius: 50%;
-    -webkit-border-radius: 50%;
-    border-radius: 50%;
-    background-color: $unviewedColor;
-    text-align: center;
-    pointer-events: none;
-    h3 {
-      line-height:100px;
-      color:white;
-      margin:0px;
-    }
-  }
-  .circle-progress.viewed {
-    background-color: $viewedColor;
-    text-decoration: none;
-  }
-  .circle-progress.clickable {
-    pointer-events: auto;
-  }
-  .track-progress{
-    display:inline-block;
-    height:10px;
-    width:100px;
-    background-color: $unviewedColor;
-  }
-  .track-progress.viewed {
-    background-color: $viewedColor;
-  }
-}
-
-
-
-
-/* RESPONSIVE DESIGN */
-
-@media (max-width: 1600px) {
-  /* LARGE SCREENS */
-}
-
-@media (max-width: 1200px) {
-  /* MEDIUM SCREENS */
-}
-
-@media (max-width: 992px) {
-  /* SMALL SCREENS */
-
+@media (max-width: $screen-md) {
   .partners-img {
-    width:auto;
-    max-height:100px;
-    padding:10px 0;
-  }
-
-  #slide-2, #slide-3, #slide-2p, #slide-3p {
-    text-align:center;
-  }
-
-  #registration-progress {
-  margin-bottom:20px;
-  $viewedColor: #78c679;
-  $unviewedColor: #d5ecd2;
-  .circle-progress {
-    display:inline-block;
-    width: 60px;
-    height:60px;
-    -moz-border-radius: 50%;
-    -webkit-border-radius: 50%;
-    border-radius: 50%;
-    background-color: $unviewedColor;
-    text-align: center;
-    h3 {
-      line-height:60px;
-      color:white;
-      margin:0px;
-    }
-  }
-  .circle-progress.viewed {
-    background-color: $viewedColor;
-  }
-  .track-progress{
-    display:inline-block;
-    height:10px;
-    width:30px;
-    background-color: $unviewedColor;
-  }
-  .track-progress.viewed {
-    background-color: $viewedColor;
+    max-height: 100px;
+    padding: 10px 0;
+    width: auto;
   }
 }
 
-}
-
-@media (max-width: 768px) {
-  /* XSMALL SCREENS */
-
-  #btn-login-phone, #btn-welcome-phone {
-    float:right;
-    width:20%;
-    margin-right:10px;
-    margin-left:0px;
+@media (max-width: $screen-sm) {
+  #btn-login-phone,
+  #btn-welcome-phone {
+    float: right;
+    margin-left: 0;
+    margin-right: 10px;
+    width: 20%;
   }
 
   #btn-welcome-phone {
-    width:30%;
-    font-size:18px;
-    margin:auto auto 10px auto;
+    font-size: 18px;
+    margin: auto auto 10px;
+    width: 30%;
   }
-
-}
-
-
-/* FIX - Divs within link tags  */
-a.community-highlight-links:hover {
-  text-decoration: none;
-}
-
-#myModal p, #myModal li {
-  font-size:18px;
 }

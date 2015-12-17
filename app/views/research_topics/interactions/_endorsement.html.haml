@@ -1,0 +1,8 @@
+%h3
+  Endorsement:
+%p
+  = "#{(research_topic.endorsement*100).round}%"
+  = surround "(", ")" do
+    %span.italic= pluralize(research_topic.votes.current.count, 'vote')
+.progress-meter
+  %span{ data: { object: 'research-topic-meter', progress: "#{research_topic.endorsement*100}" } }

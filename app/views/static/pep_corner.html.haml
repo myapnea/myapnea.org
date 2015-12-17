@@ -1,0 +1,16 @@
+.content-main-header
+  .container
+    %h1 PEP Corner
+
+.container
+  .row
+    - @pep_members.each do |pep|
+      .col-sm-6
+        .pep-corner-profile
+          .pep-header
+          = image_tag team_member_photo_url(pep)
+          .pep-footer
+            %h3.centered= pep.name
+            %hr
+            %p= simple_markdown(pep.interview.truncate(500))
+            %p= link_to "Meet #{pep.name}", pep_corner_show_path(pep), class: 'btn btn-sm btn-default btn-block'

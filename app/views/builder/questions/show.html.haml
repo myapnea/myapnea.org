@@ -30,6 +30,8 @@
           = @question.display_type
 
       %h3 Answer Templates
+
+      %h4 Displayed
       %table.table.table-bordered.table-striped
         %thead
           %tr
@@ -41,7 +43,7 @@
             %th Parent Option Value
             %th Creator
             %th Actions
-        - @question.answer_templates.each do |answer_template|
+        - @question.answer_templates.unarchived.each do |answer_template|
           %tr
             %td= link_to answer_template.name, builder_survey_question_answer_template_path(@survey, @question, answer_template)
             %td= answer_template.template_name
@@ -54,3 +56,28 @@
         %tr
           %td{ colspan: '8' }
             = link_to 'Add Another Answer Template', new_builder_survey_question_answer_template_path(@survey, @question), class: 'btn btn-xs btn-default'
+
+
+      %h4 Archived
+      %table.table.table-bordered.table-striped
+        %thead
+          %tr
+            %th Name
+            %th Template
+            %th Data Type
+            %th Allow Multiple
+            %th Parent Template
+            %th Parent Option Value
+            %th Creator
+            %th Actions
+        - @question.answer_templates.archived.each do |answer_template|
+          %tr
+            %td= link_to answer_template.name, builder_survey_question_answer_template_path(@survey, @question, answer_template)
+            %td= answer_template.template_name
+            %td= answer_template.data_type
+            %td= simple_check answer_template.allow_multiple
+            %td= answer_template.parent_answer_template.name if answer_template.parent_answer_template
+            %td= answer_template.parent_answer_option_value
+            %td= link_to_if current_user.owner?, answer_template.user.name, answer_template.user if answer_template.user
+            %td= link_to 'Edit', edit_builder_survey_question_answer_template_path(@survey, @question, answer_template), class: 'btn btn-xs btn-default'
+

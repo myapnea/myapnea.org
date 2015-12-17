@@ -23,13 +23,14 @@ class User < ActiveRecord::Base
           ['Research professional', 'researcher']]
 
   # Concerns
-  include CommonDataModel, Deletable, Coenrollment
+  include CommonDataModel, Deletable, Groupable, Coenrollment
 
   attr_accessor :user_is_updating
 
   # Named Scopes
   scope :search, lambda { |arg| where( 'LOWER(first_name) LIKE ? or LOWER(last_name) LIKE ? or LOWER(email) LIKE ?', arg.to_s.downcase.gsub(/^| |$/, '%'), arg.to_s.downcase.gsub(/^| |$/, '%'), arg.to_s.downcase.gsub(/^| |$/, '%') ) }
   scope :providers, -> { current.where(provider: true) }
+  scope :providers_with_profiles, -> { providers.where.not(slug: [nil,''], provider_name: [nil,'']) }
   scope :include_in_exports_and_reports, -> { where(include_in_exports: true) }
 
   # Model Validation
@@ -59,12 +60,16 @@ class User < ActiveRecord::Base
   has_many :forums, -> { where deleted: false }
   has_many :topics, -> { where deleted: false }
   has_many :posts, -> { where deleted: false }
+  has_many :reactions
+  has_many :comments, -> { where deleted: false }
   has_many :subscriptions
   has_many :users, class_name: 'User', foreign_key: 'provider_id'
   has_many :invites
   has_many :children, -> { where(deleted: false).order('age desc', :first_name) }
   has_many :encounters, -> { where deleted: false }
   has_many :exports, -> { order id: :desc }, class_name: 'Admin::Export'
+  has_many :engagements
+  has_many :engagement_responses
 
   ## Builder
 
@@ -242,6 +247,25 @@ class User < ActiveRecord::Base
     incomplete_answer_sessions.where.not(id: answer_session.id).first if answer_session
   end
 
+  # Child Surveys
+  def completed_child_answer_sessions(child_input)
+    self.answer_sessions.where(child_id: child_input, locked: true).joins(:survey).merge(Survey.current.viewable)
+  end
+
+  def incomplete_child_answer_sessions(child_input)
+    self.answer_sessions.where(child_id: child_input, locked: false).joins(:survey).merge(Survey.current.viewable)
+  end
+
+  def completed_child_assigned_answer_sessions?(child_input)
+    self.answer_sessions.where(child_id: child_input, locked: false).joins(:survey).merge(Survey.current.viewable).count == 0
+  end
+
+  def next_child_answer_session(answer_session)
+    if answer_session && answer_session.child_id.present?
+      self.answer_sessions.where(child_id: answer_session.child_id, locked: false).where.not(id: answer_session.id).joins(:survey).merge(Survey.current.viewable).first
+    end
+  end
+
   def completed_demographic_survey?
     self.answer_sessions.where(survey_id: Survey.find_by_slug('about-me').id).where(locked:true).present?
   end
@@ -295,7 +319,6 @@ class User < ActiveRecord::Base
   end
 
   ## Provider Methods
-
   def send_provider_informational_email!
     unless Rails.env.test?
       pid = Process.fork

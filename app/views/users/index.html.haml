@@ -1,12 +1,13 @@
 - @title = 'Users'
 .content-main-header
-  %h1
-    = @title
-  %p.lead.text-light8{ style: 'margin-bottom: 0px;'}
-    = link_to 'Admin Dashboard', admin_path
+  .container
+    %h1
+      = @title
+    %p
+      = link_to 'Admin Dashboard', admin_path
 
-.content-container.inherit-background.horizontal-inset
-  .content-body
+.content-container.inherit-background
+  .container
     = form_tag users_path, method: :get, class: 'form-inline' do
       = text_field_tag 'search', params[:search], class: 'form-control'
       = submit_tag 'Search', class: 'btn btn-primary', name: nil
@@ -17,5 +18,5 @@
 
 
 .content-container
-  .content-body
+  .container
     = render 'users/users'

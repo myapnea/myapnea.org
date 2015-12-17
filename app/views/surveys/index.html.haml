@@ -1,25 +1,23 @@
 .content-main-header
-  %h1 Research Surveys
+  .container
+    %h1 Research Surveys
 
 .content-container
-  .content-body
+  .container
     %p
       MyApnea.Org is part of a growing national network of patients, health care providers and researchers. This partnership is built upon the open exchange of information about sleep apnea. Here we provide a series of questions to help the sleep apnea community better understand the symptoms found in patients with sleep apnea or at risk for sleep apnea, their experiences with getting diagnosed, and their health conditions.
 
-.content-container
-  .content-body
-    - if current_user and current_user.is_only_academic?
+- if current_user and current_user.is_only_academic?
+  .content-container
+    .container
       %h2.f300.centered
         You may view aggregate data for these surveys.
       %h3.f300.centered
         All information is reported from community members, and should be used in accordance with our
         = link_to('Terms of Access', terms_of_access_path) + '.'
-    - else
-      %p
-        Some of you will have answered some of these questions before but it is important for us to ask them again so that we have an understanding of the MyApnea community now and over time. After you complete each survey, you will see how your answers compare to others within the network.
 
-.content-container
-  .content-body
+.container
+  .content-container
     - if current_user and current_user.is_only_academic?
       - @surveys.in_groups_of(3, false) do |survey_group|
         .row
@@ -30,7 +28,7 @@
                 = survey.name
               %p= link_to 'View Data', report_survey_path(survey)
     - elsif current_user and !current_user.has_user_type?
-      .centered-text
+      .centered
         = image_tag 'myapnea/user_types/role_confused.png', class: 'img-responsive', style: 'margin: 0 auto; width: 150px;'
         %p
           You have not listed your role in the sleep apnea community. In order to participate in this part of the research community, please
@@ -59,7 +57,7 @@
 - if current_user and current_user.caregiver_child?
   - @child = current_user.children.first
   .content-container
-    .content-body
+    .container
       .row
         .col-sm-4
           #children-index

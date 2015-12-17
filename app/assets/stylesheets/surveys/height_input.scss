@@ -1,17 +1,16 @@
-/* Thanks to help from danield770 http://jsfiddle.net/danield770/YvCHW/4232/ */
+// Thanks to help from danield770 http://jsfiddle.net/danield770/YvCHW/4232/
 .full-survey-container:not(#simple-survey) {
-  select.height-select {
-    border: 1px solid #111;
-    background: transparent;
-    width: 150px;
-    padding: 5px;
-    font-size: 34px;
-    border: 1px solid #ccc;
-    height: 50px;
-    -webkit-appearance: none;
+  .height-select {
     -moz-appearance: none;
+    -webkit-appearance: none;
     appearance: none;
-    background: asset-url("myapnea/icons/arrowdown.png") 96% / 15% no-repeat #fff;
+    background: asset-url('myapnea/icons/arrowdown.png') 96% / 15% no-repeat $white;
+    border: 1px solid $border-color;
+    font-size: 34px;
+    height: 50px;
+    padding: 5px;
+    text-overflow: '';
+    width: 150px;
   }
 
   .height-label {
@@ -21,25 +20,26 @@
 }
 
 
-@media all and (max-width:778px) {
+@media (max-width:$screen-sm) {
   .full-survey-container:not(#simple-survey) {
-    select.height-select {
-      width:100px;
-      font-size:18px;
-      margin:5px;
+    .height-select {
+      font-size: 18px;
+      margin: 5px;
+      width: 100px;
     }
+
     .height-label {
-      margin:5px;
-      font-size:22px;
+      font-size: 22px;
+      margin: 5px;
     }
   }
 }
 
-/*target Internet Explorer 9 and Internet Explorer 10:*/
+// Target Internet Explorer 9 and Internet Explorer 10:
 @media screen and (min-width:0\0) {
   .full-survey-container:not(#simple-survey) {
-    select.height-select {
-      background:none;
+    .height-select {
+      background: none;
       padding: 5px;
     }
   }

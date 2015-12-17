@@ -4,40 +4,6 @@
   overflow-y: auto;
 }
 
-.question-asked-by {
-  float: left;
-  padding-left: 20px;
-  padding-top: 20px;
-  font-size: 15px;
-}
-
-// Index display
-.research-topic-index-display {
-  border: 1px solid #ddd;
-  background-color: white;
-  padding: 10px;
-  color: #555;
-  .badge {
-    float: right;
-    padding: 7px 10px;
-  }
-  p {
-    margin-right: 50px;
-  }
-}
-
-a.research-topic-index-display {
-  display: block;
-  color: #333;
-  text-decoration: none;
-}
-
-a.research-topic-index-display:hover {
-  background-color: #fbfbfb;
-  border-color: #b1d2f6;
-  color: #111;
-}
-
 .scroll-container {
   height: 400px;
   overflow-y: auto;
@@ -48,69 +14,108 @@ a.research-topic-index-display:hover {
   overflow-y: auto;
 }
 
+.question-asked-by {
+  float: left;
+  font-size: 15px;
+  padding-left: 20px;
+  padding-top: 20px;
+}
+
+// Index display
+.research-topic-index-display {
+  background-color: $white;
+  border: 1px solid $lighter-gray;
+  color: $darker-gray;
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+
+  .badge {
+    float: right;
+    padding: 7px 10px;
+  }
+
+  p {
+    margin-right: 50px;
+  }
+}
+
+.research-topic-index-display:hover {
+  background-color: $white;
+  border-color: $lightest-blue;
+  color: $darker-gray;
+}
+
 // Progress meter
 .progress-meter {
-  height: 30px;
-  width: 100%;
-  position: relative;
-  background-color: #ddd;
-  border: 5px solid white;
+  background-color: $lighter-gray;
+  border: 5px solid $white;
   border-radius: 20px;
-  box-shadow: inset 0 -1px 1px rgba(255,255,255,.3);
-  z-index:2;
+  box-shadow: inset 0 -1px 1px rgba(255, 255, 255, .3);
+  height: 30px;
+  position: relative;
+  width: 100%;
+  z-index: 2;
+
   span {
-    background-color: #78c679;
+    background-color: $great;
     border-radius: 20px 5px 5px 20px;
-    overflow: hidden;
     height: 100%;
-    z-index:1;
+    overflow: hidden;
+    z-index: 1;
   }
-  span.border20 {
+
+  .border20 {
     border-radius: 20px;
   }
 }
 
 // Comments from show page
 .comment-container {
-  position: relative;
-  min-height: 50px;
+  background-color: $white;
   margin-bottom: 20px;
-  background-color: #fcfcfc;
+  min-height: 50px;
+  position: relative;
+
   .user-image {
-    width: 50px;
+    background-color: $white;
     height: 100%;
-    background-color: #f3f3f3;
+    left: 0;
     position: absolute;
-    top:0px;
-    left:0px;
+    top: 0;
+    width: 50px;
   }
+
   .comment-description {
-    padding-top:5px;
     margin-left: 60px;
     margin-right: 30px;
+    padding-top: 5px;
   }
+
   .comment-toolbar {
+    background-color: $lightest-gray;
     position: absolute;
-    top:0px;
-    right:0px;
-    width:25px;
-    height: 100%;
-    border-left: 1px solid #fdfdfd;
-    background-color: #f3f3f3;
+    right: 0;
     text-align: center;
+    top: 0;
+    width: 25px;
+
     a {
       margin: auto;
     }
   }
 }
+
 .comment-container-review {
   min-height: 90px;
+
   .comment-toolbar {
-    background-color: #f4b46d;
+    background-color: $warning;
   }
 }
+
 .comment-container-spam {
   .comment-toolbar {
-    background-color: #e54835;
+    background-color: $danger;
   }
 }

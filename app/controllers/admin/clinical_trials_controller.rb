@@ -3,10 +3,16 @@ class Admin::ClinicalTrialsController < ApplicationController
   before_action :check_owner
   before_action :set_admin_clinical_trial, only: [:show, :edit, :update, :destroy]
 
+  layout 'admin'
+
+  def order
+    @admin_clinical_trials = Admin::ClinicalTrial.current.order(:position)
+  end
+
   # GET /admin/clinical_trials
   # GET /admin/clinical_trials.json
   def index
-    @admin_clinical_trials = Admin::ClinicalTrial.all
+    @admin_clinical_trials = Admin::ClinicalTrial.current.order(:position)
   end
 
   # GET /admin/clinical_trials/1
@@ -44,7 +50,7 @@ class Admin::ClinicalTrialsController < ApplicationController
   def update
     respond_to do |format|
       if @admin_clinical_trial.update(admin_clinical_trial_params)
-        format.html { redirect_to @admin_clinical_trial, notice: 'Clinical trial was successfully updated.' }
+        format.html { redirect_to params[:redirect_back] ? :back : @admin_clinical_trial, notice: 'Clinical trial was successfully updated.' }
         format.json { render :show, status: :ok, location: @admin_clinical_trial }
       else
         format.html { render :edit }
@@ -71,6 +77,6 @@ class Admin::ClinicalTrialsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def admin_clinical_trial_params
-      params.require(:admin_clinical_trial).permit(:title, :overview, :description, :eligibility, :phone, :email, :link, :displayed)
+      params.require(:admin_clinical_trial).permit(:title, :overview, :description, :eligibility, :phone, :email, :link, :displayed, :industry_sponsored, :position)
     end
 end

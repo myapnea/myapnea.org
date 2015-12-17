@@ -1,179 +1,184 @@
 // Document structure
+$default-margin-size: 20px;
 
-html, body {
+html,
+body {
   height: 100%;
   width: 100%;
 }
 
 html {
-  background: white;
-  background-color: #E6EDF4;
+  background: $white;
+  background-color: $body-background;
 }
 
 body {
-  margin:0px;
-  padding:0px;
-  padding-top:81px;
-}
-
-body.day-mode {
-  background-color: transparent;
-}
-
-body.night-mode {
-    /* IE 8 */
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=65)";
-  /* IE 5-7 */
-  filter: alpha(opacity=65);
-  /* Netscape */
-  -moz-opacity: 0.65;
-  /* Safari 1.x */
-  -khtml-opacity: 0.65;
-  opacity:.65;
-  background-color: orange;
+  margin: 0;
+  padding: 81px 0 0;
 }
 
 // Helper classes
 
 .reset-layout {
-  margin:0;
-  padding:0;
+  margin: 0;
+  padding: 0;
 }
 
 .no-padding {
-  padding:0px !important;
+  padding: 0;
 }
 
 .no-margin {
-  margin:0px !important;
+  margin: 0;
+}
+
+.with-padding-y {
+  padding-bottom: $default-margin-size;
+  padding-top: $default-margin-size;
 }
 
 .wrapper {
-  min-height: 100%;
-  height: auto !important;
   height: 100%;
   margin: 0 auto -222px;
+  min-height: 100%;
 }
 
 .wrapper:after {
   height: 222px;
 }
 
-.nowrap { white-space:nowrap }
+.nowrap { white-space: nowrap; }
 
 // Navigation
 nav {
-  padding-top:20px;
-  padding-bottom:10px;
-  background-color:rgb(36,50,100); // NEW LOGO
-  background-color:rgba(36,50,100,.75); // NEW LOGO
-  background-color:rgba(15,30,68,.87);
-  z-index:2;
+  background-color: rgba(15, 30, 68, .87);
+  padding-bottom: 10px;
+  padding-top: 20px;
+  z-index: 2;
+
   .navbar-brand {
-    line-height:100%;
-    width:260px;
-    padding:0;
-    padding-left:15px;
+    line-height: 100%;
+    padding: 0;
+    padding-left: 15px;
+    width: 260px;
+
     img {
+      position: relative;
+      top: -15px;
       width: 100%;
-      position:relative;
-      top:-15px;
     }
   }
+
   #main-nav {
-    color:white;
-    margin-right:30px;
-    position:relative;
-    top:15px;
+    color: $white;
+    margin-right: 30px;
+    position: relative;
+    top: 15px;
+
     li {
-      font-size:18px;
-      margin:0 1px;
       border-bottom: 5px solid transparent;
+      font-size: 18px;
+      margin: 0 1px;
+
       a {
-        padding:10px 20px 15px 20px;
-        color: white;
+        padding: 10px 20px 15px;
+        color: $white;
         display: block;
         background-color: inherit;
       }
+
       a:hover { background-color: inherit; }
+
+      &.active {
+        border-bottom: 5px solid $primary-blue;
+      }
     }
-    li.active {
-      border-bottom: 5px solid #5999de;
-    }
+
     li:hover {
-      border-bottom:5px solid rgb(89, 153, 222);
+      border-bottom: 5px solid $primary-blue;
     }
   }
+
   #user-nav {
-    margin-right:15px;
-    color:white;
-    position:relative;
-    top:15px;
+    color: $white;
+    margin-right: 15px;
+    position: relative;
+    top: 15px;
+
     li {
-      font-size:18px;
-      margin:0 1px;
       border-bottom: 5px solid transparent;
+      font-size: 18px;
+      margin: 0 1px;
+
       a {
-        padding:10px 20px 15px 20px;
-        color: white;
-        display: block;
         background-color: inherit;
+        color: $white;
+        display: block;
+        padding: 10px 20px 15px;
       }
+
       a:hover { background-color: inherit; }
     }
+
     .dropdown-menu {
       border-radius: 0 0 5px 5px;
+
       li {
+        border-bottom: 0;
         margin: 2px;
-        border-bottom: none;
+
         a {
-          color: #333;
+          color: $darker-gray;
         }
       }
+
       li:hover {
-        background-color: #eee;
+        background-color: $lighter-gray;
       }
     }
   }
+
   #log-in-nav {
-    margin-right:15px;
-    color:white;
-    position:relative;
-    top:15px;
+    color: $white;
+    margin-right: 15px;
+    position: relative;
+    top: 15px;
+
     li {
-      font-size:18px;
-      margin:0 1px;
+      border: 1px solid $primary-blue;
       border-radius: 10px;
-      border:1px solid #5999de;
+      font-size: 18px;
+      margin: 0 1px;
+
       a {
-        padding:10px 20px 15px 20px;
-        color: white;
         background-color: inherit;
         border-radius: 10px;
+        color: $white;
+        padding: 10px 20px 15px;
       }
+
       a:hover { background-color: inherit; }
     }
-    li.dropdown.open {
-      border-radius: 10px 10px 0 0;
-      a.dropdown-toggle {
-        border-radius: 10px 10px 0 0;
-      }
-    }
+
     li.dropdown {
-      border: 1px solid white;
-      border-color: rgba(255,255,255,0.4);
-      a.dropdown-toggle {
+      border: 1px solid $white;
+      border-color: rgba(255, 255, 255, .4);
+
+      &.open {
+        border-radius: 10px 10px 0 0;
+
+        a.dropdown-toggle {
+          border-radius: 10px 10px 0 0;
+        }
       }
     }
-    li.active {
-    }
-    li:hover {
-    }
+
     .dropdown-menu {
       border-radius: 0 0 5px 5px;
+      color: $dark-gray;
       left: inherit;
       right: -1px;
-      color: #333;
+
       li {
         margin: 2px;
       }
@@ -181,58 +186,41 @@ nav {
   }
 }
 
-#dark-navbar-backdrop {
-  background-color:black;
-  width:100%;
-  height:81px;
-  position:absolute;
-  top:0;
-  z-index:1000;
-}
 
-
-
-@media (max-width: 1100px) {
+@media (max-width: $screen-lg) {
   .navbar-brand {
     max-width: 240px;
   }
 }
 
-@media (max-width: 992px) {
-  .navbar.active-sidebar {
-    background-color: #243264;
-  }
+@media (max-width: $screen-md) {
   nav {
-    .navbar-collapse.in {
-      overflow-y: visible;
-      background-color: #243264;
+    .navbar-collapse {
+      &.in,
+      &.collapsing {
+        background-color: #243264;
+      }
     }
+
     #main-nav {
       padding-bottom: 15px;
-      li, li.active, li:hover {
-        border-bottom-width: 0px;
+
+      li,
+      li.active,
+      li:hover {
+        border-bottom-width: 0;
+
         a {
           padding: 10px 15px;
         }
       }
-      #mobile-login {
-        margin-left: 15px;
-        margin-bottom: 10px;
-        background-color: #fafafa;
-        color: #333;
-        padding: 10px;
-      }
-      #mobile-join {
-        margin-left: 15px;
-        background-color: #5999de;
-        padding: 10px;
-      }
     }
+
     #user-nav {
       .dropdown-menu {
         li {
           a {
-            color: white;
+            color: $white;
           }
         }
       }
@@ -241,17 +229,15 @@ nav {
 }
 
 
-@media (max-width: 768px) {
+@media (max-width: $screen-sm) {
   nav {
     .navbar-brand {
       width: 200px;
+
       img {
         top: -5px;
       }
     }
-  }
-  html, body {
-    font-size: 16px;
   }
 }
 

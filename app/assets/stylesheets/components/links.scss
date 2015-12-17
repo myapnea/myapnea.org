@@ -8,20 +8,21 @@ a.inline-link { display: inline; }
 a.white:hover {color: rgb(255,255,255); color: rgba(255,255,255,.8); }
 
 .blue-block-link {
-  border: 2px solid #1765bc;
+  border: 2px solid $darkest-blue;
   background-color: white;
-  color: black;
-  text-decoration: none;
   border-radius: 5px;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  color: $black;
   font-size: 18px;
   font-weight: 300;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  text-decoration: none;
 }
 
 .blue-block-link:hover {
-  background-color: #1765bc;
-  color: white;
+  background-color: $darkest-blue;
+  color: $white;
 }
 
 a.darkerer-blue:hover {
@@ -40,4 +41,8 @@ a.settings-anchor {
   top:-121px;
   display:block;
   visibility: hidden;
+}
+
+.hover-hand:hover {
+  cursor: pointer;
 }

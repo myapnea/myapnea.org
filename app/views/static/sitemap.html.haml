@@ -1,21 +1,23 @@
-.col-xs-6
-  %ul
-    %p MyApnea
-    %li= link_to 'Learn', learn_path
-    %li= link_to 'Community', community_path
-    %li= link_to 'Forums', forums_path
-    %li= link_to 'Research', research_topics_path
-    %li= link_to 'Surveys', surveys_path
-    %li= link_to 'Providers', providers_path
-    %li= link_to 'Team', team_path
-    %li= link_to 'Advisors', advisory_path
-    %li= link_to 'Partners', partners_path
-    %li= link_to 'Privacy Policy', privacy_path
-    %li= link_to 'Terms of Access', terms_and_conditions_path
-    %li= link_to 'FAQs', faqs_path
-.col-xs-4
-  = link_to image_tag('myapnea/icons/facebook_icon.png', class: 'share-icons-md'), "http://www.facebook.com/MyApnea"
-  = link_to image_tag('myapnea/icons/twitter_icon.png', class: 'share-icons-md'), 'http://www.twitter.com/myapneaorg'
-  = link_to image_tag('myapnea/icons/email_icon.png', class: 'share-icons-md'), "mailto:support@myapnea.org"
-  = link_to image_tag("myapnea/welcome/img-small/pcornet_logo_3x1.png", class: "partners-img-footer img-responsive", id: "partner-PCORnet"), 'http://www.pcornet.org/'
-  = link_to image_tag("myapnea/welcome/img-small/bwh-logo_3x1.png", class: "partners-img-footer img-responsive", id: "partner-BWH"), 'http://www.brighamandwomens.org/'
+.content-container
+  .container
+    .row
+      .col-xs-6
+        %ul
+          %p MyApnea
+          %li= link_to 'Learn', learn_path
+          %li= link_to 'Community', community_path
+          %li= link_to 'Forums', forums_path
+          %li= link_to 'Research', research_topics_path
+          %li= link_to 'Surveys', surveys_path
+          %li= link_to 'Providers', providers_path
+          %li= link_to 'Team', team_path
+          %li= link_to 'Advisors', advisory_path
+          %li= link_to 'Partners', partners_path
+          %li= link_to 'Privacy Policy', privacy_path
+          %li= link_to 'Terms of Access', terms_and_conditions_path
+          %li= link_to 'FAQs', faqs_path
+      .col-xs-4
+        = link_to image_tag('myapnea/icons/facebook_icon.png', class: 'share-icons-md'), "http://www.facebook.com/MyApnea"
+        = link_to image_tag('myapnea/icons/twitter_icon.png', class: 'share-icons-md'), 'http://www.twitter.com/myapneaorg'
+        = link_to image_tag('myapnea/icons/email_icon.png', class: 'share-icons-md'), "mailto:support@myapnea.org"
+        = link_to image_tag("myapnea/welcome/img-small/bwh-logo_3x1.png", class: "partners-img-footer img-responsive", id: "partner-BWH"), 'http://www.brighamandwomens.org/'

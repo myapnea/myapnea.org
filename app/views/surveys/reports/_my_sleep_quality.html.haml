@@ -1,7 +1,7 @@
 - promis_score = TemporaryReport.compute_promis_score(@answer_session)
 
-.survey-report-container.panel
-  .survey-report-question.rounded-top
+.content-container
+  .survey-report-question
     %h3 The PROMIS Sleep Disturbance Scale
   .survey-report-answer
     .row
@@ -14,7 +14,7 @@
       %p.lead
         Your sleep disturbance score:
         %span.f500= "%0.2f" % promis_score
-  .survey-report-info.rounded-bottom
+  .survey-report-info
     - if promis_score
       %p.lead
         %span.f500

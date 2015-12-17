@@ -1,143 +1,116 @@
-
 // Thanks to http://nicolasgallagher.com/pure-css-speech-bubbles/demo/
 .rectangle-speech-border {
-  position:relative;
-  padding: 15px;
-  border-width:3px;
+  background: $white;
+  border-radius: 20px;
   border-style: solid;
-  background:#fff;
-  color:rgb(0,0,0);
-  color:rgba(0,0,0,.7);
-  /* css3 */
-  -webkit-border-radius:20px;
-  -moz-border-radius:20px;
-  border-radius:20px;
+  border-width: 3px;
+  color: rgba(0, 0, 0, .7);
+  padding: 15px;
+  position: relative;
 }
 
 .rectangle-speech-border-orange {
-  border-color: #FFC864;
+  border-color: $lightest-orange;
   margin-bottom: 30px;
 }
 
 .rectangle-speech-border-blue {
-  border-color: #B1D2F6;
+  border-color: $lightest-blue;
   margin-bottom: 60px;
 }
 
-/* creates larger curve */
+// Creates larger curve
 .rectangle-speech-border-left:before {
-  content:"";
-  position:absolute;
-  z-index:10;
-  bottom:-30px;
-  left:53px;
-  width:39px;
-  height:30px;
-  border-style:solid;
-  border-width:0 3px 3px 0;
-  border-color:#FFC864;
-  background:transparent;
-  /* css3 */
-  -webkit-border-bottom-right-radius:80px 50px;
-  -moz-border-radius-bottomright:80px 50px;
-  border-bottom-right-radius:80px 50px;
-  /* reduce the damage in FF3.0 */
-  display:block;
-  background-color: white;
+  background: transparent;
+  background-color: $white;
+  border-bottom-right-radius: 80px 50px;
+  border-color: $lightest-orange;
+  border-style: solid;
+  border-width: 0 3px 3px 0;
+  bottom: -30px;
+  content: '';
+  display: block;
+  height: 30px;
+  left: 53px;
+  position: absolute;
+  width: 39px;
+  z-index: 10;
 }
 
-/* creates smaller curve */
+// Creates smaller curve
 .rectangle-speech-border-left:after {
-  content:"";
-  position:absolute;
-  z-index:10;
-  bottom:-30px;
-  left:50px;
-  width:20px;
-  height:30px;
-  border-style:solid;
-  border-width:0 3px 3px 0;
-  border-color:#FFC864;
-  background:transparent;
-  /* css3 */
-  -webkit-border-bottom-right-radius:40px 50px;
-  -moz-border-radius-bottomright:40px 50px;
-  border-bottom-right-radius:40px 50px;
-  /* reduce the damage in FF3.0 */
-  display:block;
-  background-color: #E6EDF4;
-  border-top: 3px solid #FFC864;
+  background: transparent;
+  background-color: $body-background;
+  border-bottom-right-radius: 40px 50px;
+  border-color: $lightest-orange;
+  border-style: solid;
+  border-top: 3px solid $lightest-orange;
+  border-width: 0 3px 3px 0;
+  bottom: -30px;
+  content: '';
+  display: block;
+  height: 30px;
+  left: 50px;
+  position: absolute;
+  width: 20px;
+  z-index: 10;
 }
 
-/* creates a white rectangle to cover part of the oval border*/
+// Creates a white rectangle to cover part of the oval border
 .rectangle-speech-border-left > :first-child:after {
-  content:"";
-  position:absolute;
-  bottom:-10px;
-  left:70px;
-  width:20px;
-  height:15px;
-  background:#fff;
+  background: $white;
+  bottom: -10px;
+  content: '';
+  height: 15px;
+  left: 70px;
+  position: absolute;
+  width: 20px;
 }
 
-
-
-/* creates larger curve */
+// Creates larger curve
 .rectangle-speech-border-right:before {
-  content:"";
-  position:absolute;
-  z-index:10;
-  bottom:-30px;
-  right:53px;
-  width:39px;
-  height:30px;
-  border-style:solid;
-  border-width:0 0 3px 3px;
-  border-color:#B1D2F6;
-  background:transparent;
-  /* css3 */
-  // -webkit-border-bottom-left-radius:80px 50px;
-  // -moz-border-radius-bottomleft:80px 50px;
-  border-bottom-left-radius:80px 50px;
-  /* reduce the damage in FF3.0 */
-  display:block;
-  background-color: white;
+  background: transparent;
+  background-color: $white;
+  border-bottom-left-radius: 80px 50px;
+  border-color: $lightest-blue;
+  border-style: solid;
+  border-width: 0 0 3px 3px;
+  bottom: -30px;
+  content: '';
+  display: block;
+  height: 30px;
+  position: absolute;
+  right: 53px;
+  width: 39px;
+  z-index: 10;
 }
 
-/* creates smaller curve */
+// Creates smaller curve
 .rectangle-speech-border-right:after {
-  content:"";
-  position:absolute;
-  z-index:10;
-  bottom:-30px;
-  right:50px;
-  width:20px;
-  height:30px;
-  border-style:solid;
-  border-width:0 0 3px 3px;
-  border-color:#B1D2F6;
-  background:transparent;
-  /* css3 */
-  -webkit-border-bottom-left-radius:40px 50px;
-  -moz-border-radius-bottomleft:40px 50px;
-  border-bottom-left-radius:40px 50px;
-  /* reduce the damage in FF3.0 */
-  display:block;
-  background-color: #E6EDF4;
-  border-top: 3px solid #B1D2F6;
+  background: transparent;
+  background-color: $body-background;
+  border-bottom-left-radius: 40px 50px;
+  border-color: $lightest-blue;
+  border-style: solid;
+  border-top: 3px solid $lightest-blue;
+  border-width: 0 0 3px 3px;
+  bottom: -30px;
+  content: '';
+  display: block;
+  height: 30px;
+  position: absolute;
+  right: 50px;
+  width: 20px;
+  z-index: 10;
 }
 
-/* creates a white rectangle to cover part of the oval border*/
+// Creates a white rectangle to cover part of the oval border
 .rectangle-speech-border-right > :first-child:after {
-  content:"";
-  position:absolute;
-  bottom:-10px;
-  right:70px;
-  width:20px;
-  height:15px;
-  background:#fff;
+  background: $white;
+  bottom: -10px;
+  content: '';
+  height: 15px;
+  position: absolute;
+  right: 70px;
+  width: 20px;
 }
-
-
-
-

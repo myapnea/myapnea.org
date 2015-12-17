@@ -1,0 +1,11 @@
+.content-main-header
+  .container
+    %h1 Editing Admin Research Article
+    %p
+      = link_to 'Show', @admin_research_article
+      |
+      = link_to 'Back', admin_research_articles_path
+
+.container
+  .content-container
+    = render 'form'

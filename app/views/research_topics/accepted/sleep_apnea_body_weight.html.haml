@@ -1,18 +1,20 @@
 .content-main-header
-  %h1 Does treatment of sleep apnea influence body weight?
+  .container
+    %h1 Does treatment of sleep apnea influence body weight?
 
 .well
-  .row
-    .col-sm-2.col-xs-4
-      = image_tag 'myapnea/research/kevin_gleason.jpg', class: 'img-responsive pull-right', style: 'width: 100px'
-    .col-sm-10.col-xs-8
-      %h2.f300
-        Kevin Gleason
-      %p.text-dark7
-        Sleep Researcher, Brigham and Women's Hospital Division of Sleep and Circadian Disorders
+  .container
+    .row
+      .col-sm-2.col-xs-4
+        = image_tag 'myapnea/research/kevin_gleason.jpg', class: 'img-responsive pull-right', style: 'width: 100px'
+      .col-sm-10.col-xs-8
+        %h2.f300
+          Kevin Gleason
+        %p.dark7
+          Sleep Researcher, Brigham and Women's Hospital Division of Sleep and Circadian Disorders
 
 .content-container
-  .content-body
+  .container
     %p
       Researchers and providers continually explore how treatments for sleep apnea may impact an individual’s quality of life. One current debate regarding treatment is the influence of positive airway pressure (PAP) devices and other sleep apnea treatments on body weight. On the one hand, treatment for sleep apnea can improve one’s quality of sleep, which can then lead to improved alertness, energy and mood. Such improvements may then increase one’s ability to exercise and engage in other wellness activities that can reduce body weight. On the other hand, because treatment for sleep apnea may decrease the effort used for breathing during sleep, it is plausible that such treatments may reduce the amount of energy (and calories) burned during sleep
       = surround '(', ').' do
@@ -60,25 +62,23 @@
         = link_to 'exercise', 'http://www.heart.org/HEARTORG/GettingHealthy/PhysicalActivity/FitnessBasics/American-Heart-Association-Recommendations-for-Physical-Activity-in-Adults_UCM_307976_Article.jsp'
       People who are overweight and starting PAP may want to identify this time as an opportunity to “start fresh”--with their renewed alertness, use this as the moment for a renewed commitment to eating right and being more active.
 
-.content-container.inherit-background.horizontal-inset
-  .content-header
-    %h4 References
-  .content-body
-    %ol
-      %li
-        Quan SF, Budhiraja R, Clarke DP, et al. Impact of treatment with continuous positive airway pressure (CPAP) on weight in obstructive sleep apnea. J Clin Sleep Med 2013;9:989-93.
-      %li
-        Stenlöf K, Grunstein R, Hedner J, Sjöström L. Energy expenditure in obstructive sleep apnea: effects of treatment with continuous positive airway pressure. Am J Physiol 1996;271:E1036-43.
-      %li
-        Patel SR. The complex relationship between weight and sleep apnoea. Thorax 2014 (epub ahead of print).
-      %li
-        Redenius R, Murphy C, O'Neill E, Al-Hamwi M, Zallek S. Does CPAP lead to change in BMI? J Clin Sleep Med 2008;4:205-9.
-      %li
-        Fujii H, Miyamoto M, Miyamoto T, Muto T. Weight loss approach during routine follow-up is effective for obstructive sleep apnea hypopnea syndrome subjects receiving nasal continuous positive airway pressure treatment. Ind Health 2010;48:511-6.
-      %li
-        Garcia JM, Sharafkhaneh H, Hirshkowitz M, Elkhatib R, Sharafkhaneh A. Weight and metabolic effects of CPAP in obstructive sleep apnea patients with obesity. Respir Res 2011;12:80.
-      %li
-        Drager LF, Brunoni AR, Jenner R, Lorenzi-Filho G, Bensenor IM, Lotufo PA. Effects of CPAP on body weight in patients with obstructive sleep apnoea: a meta-analysis of randomised trials. Thorax 2014 (epub ahead of print).
+.container
+  %h4 References
+  %ol
+    %li
+      Quan SF, Budhiraja R, Clarke DP, et al. Impact of treatment with continuous positive airway pressure (CPAP) on weight in obstructive sleep apnea. J Clin Sleep Med 2013;9:989-93.
+    %li
+      Stenlöf K, Grunstein R, Hedner J, Sjöström L. Energy expenditure in obstructive sleep apnea: effects of treatment with continuous positive airway pressure. Am J Physiol 1996;271:E1036-43.
+    %li
+      Patel SR. The complex relationship between weight and sleep apnoea. Thorax 2014 (epub ahead of print).
+    %li
+      Redenius R, Murphy C, O'Neill E, Al-Hamwi M, Zallek S. Does CPAP lead to change in BMI? J Clin Sleep Med 2008;4:205-9.
+    %li
+      Fujii H, Miyamoto M, Miyamoto T, Muto T. Weight loss approach during routine follow-up is effective for obstructive sleep apnea hypopnea syndrome subjects receiving nasal continuous positive airway pressure treatment. Ind Health 2010;48:511-6.
+    %li
+      Garcia JM, Sharafkhaneh H, Hirshkowitz M, Elkhatib R, Sharafkhaneh A. Weight and metabolic effects of CPAP in obstructive sleep apnea patients with obesity. Respir Res 2011;12:80.
+    %li
+      Drager LF, Brunoni AR, Jenner R, Lorenzi-Filho G, Bensenor IM, Lotufo PA. Effects of CPAP on body weight in patients with obstructive sleep apnoea: a meta-analysis of randomised trials. Thorax 2014 (epub ahead of print).
 
 - unless current_user
   = render 'home/join_the_community', referrer: 'research', message: 'Make a direct impact on the future of sleep apnea research'

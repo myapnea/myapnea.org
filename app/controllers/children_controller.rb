@@ -88,6 +88,6 @@ class ChildrenController < ApplicationController
     end
 
     def child_params
-      params.require(:child).permit(:first_name, :age)
+      params.require(:child).permit(:first_name, :age, :diagnosed)
     end
 end

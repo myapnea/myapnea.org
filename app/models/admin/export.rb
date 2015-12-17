@@ -75,7 +75,7 @@ class Admin::Export < ActiveRecord::Base
     return if all_files.empty?
 
     # Create a zip file
-    zipfile_name = File.join('tmp', 'exports', "#{filename}-#{Digest::SHA1.hexdigest(Time.zone.now.usec.to_s)[0..8]}.zip")
+    zipfile_name = File.join('tmp', 'exports', "#{filename}-#{SecureRandom.hex(4)}.zip")
     Zip::File.open(zipfile_name, Zip::File::CREATE) do |zipfile|
       all_files.uniq.each do |location, input_file|
         # Two arguments:
@@ -136,7 +136,7 @@ class Admin::Export < ActiveRecord::Base
 
   def write_data_csv(data_csv)
     CSV.open(data_csv, 'wb') do |csv|
-      row = %w(myapnea_id consented encounter state_code country_code)
+      row = %w(myapnea_id joined consented encounter state_code country_code provider_id provider_name)
       question_slugs = []
       surveys_answer_templates = []
 
@@ -163,7 +163,7 @@ class Admin::Export < ActiveRecord::Base
         encounters = ['baseline']
         encounters.each do |encounter|
           myapnea_id = 'MA%06d' % user.id
-          row = [myapnea_id, (user.accepted_consent? ? '1' : '0'), encounter, user.state_code, user.country_code]
+          row = [myapnea_id, (user.created_at.strftime('%Y-%m-%d')), (user.accepted_consent? ? '1' : '0'), encounter, user.state_code, user.country_code, (user.my_provider ? user.provider_id : nil), (user.my_provider ? user.my_provider.name : nil)]
           surveys_answer_templates.each do |survey_id, question_id, answer_template_id, answer_option_id|
             answer_session = user.answer_sessions.find_by_survey_id survey_id
             if answer_session

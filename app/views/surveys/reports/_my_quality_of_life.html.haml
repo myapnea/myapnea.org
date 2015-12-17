@@ -1,4 +1,4 @@
-.survey-report-container.panel
+.content-container
   = render 'surveys/reports/question_and_user_answer', survey: @survey, question_slug: 'general-health-rate'
   .survey-report-info
     %p.lead
@@ -9,7 +9,7 @@
     %br
     #health-rating{ data: { object: 'd3-report', question: 'health-rating', array: "#{data_array}" } }
 
-.survey-report-container.panel
+.content-container
   = render 'surveys/reports/question_and_user_answer', survey: @survey, question_slug: 'improved-health-rate'
   .survey-report-info
     %p.lead
@@ -19,7 +19,7 @@
     - data_array = TemporaryReport.quality_of_life_scale(@survey, @encounter, 'improved-health-rate')
     #health-improvement{ data: { object: 'd3-report', question: 'health-improvement', array: "#{data_array}" } }
 
-.survey-report-container.panel
+.content-container
   = render 'surveys/reports/question_and_user_answer', survey: @survey, question_slug: 'general-quality-life-rate'
   .survey-report-info
     %p.lead

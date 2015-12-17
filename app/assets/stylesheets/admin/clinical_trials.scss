@@ -1,10 +1,16 @@
-// Place all the styles related to the admin/clinical_trials controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-
 .clinical-trial-container {
-  border: 1px solid #ddd;
-  background-color: white;
+  background-color: $white;
+  border: 1px solid $light-gray;
+  color: $darker-gray;
   padding: 10px;
-  color: #555;
+  position: relative;
+
+  .industry-sponsored-alert {
+    background-color: lighten($primary-orange, 3);
+    border-radius: 0 0 0 2px;
+    padding: 3px;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
 }

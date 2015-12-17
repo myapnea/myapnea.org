@@ -5,6 +5,10 @@
   $("<%= error_container %>").addClass("hidden");
 <% end %>
 
-<% container = "#voting-container-#{@research_topic.id}" %>
-$("<%= container %>").html("<%=j render 'research_topics/voting_form', research_topic: @research_topic, remote_bool: true %>");
-
+<% if params[:src] == 'dashboard' %>
+  console.log("voted");
+  $("#research-topic-highlight").html("<%=j render 'home/voting_highlight' %>");
+<% else %>
+  <% container = "#research-topic-list-group" %>
+  $("<%= container %>").html("<%=j render 'research_topics/displays/list_group', research_topics: ResearchTopic.approved %>");
+<% end %>

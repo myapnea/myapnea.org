@@ -5,7 +5,7 @@
   margin-top: -100px;
   padding: 3px;
   border-radius:0 5px 5px 0;
-  background-color: #ffc864;
+  background-color: $lightest-orange;
   color: #444;
   span#title {
     font-size: 16px;
@@ -59,13 +59,13 @@
   margin: auto;
 }
 
-@media (max-width: 992px) {
+@media (max-width: $screen-md) {
   .survey-container {
     width: 85%;
     margin: auto;
   }
 }
-@media (max-width: 768px) {
+@media (max-width: $screen-sm) {
   .survey-container {
     width: 95%;
     margin: auto;

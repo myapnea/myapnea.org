@@ -15,7 +15,7 @@
 // $gray-light:             lighten($gray-base, 46.7%) !default; // #777
 // $gray-lighter:           lighten($gray-base, 93.5%) !default; // #eee
 
-// $brand-primary:         darken(#428bca, 6.5%) !default; // #337ab7
+$brand-primary:         #5999de !default; //darken(#428bca, 6.5%) !default; // #337ab7
 // $brand-success:         #5cb85c !default;
 // $brand-info:            #5bc0de !default;
 $brand-warning:         #ffa400 !default; //#f0ad4e !default;
@@ -49,7 +49,7 @@ $font-family-sans-serif:  'Open Sans', sans-serif; // $font-family-sans-serif:  
 // $font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace !default;
 $font-family-base:        $font-family-sans-serif;
 
-// $font-size-base:          14px !default;
+$font-size-base:          16px !default; //14px !default;
 // $font-size-large:         ceil(($font-size-base * 1.25)) !default; // ~18px
 // $font-size-small:         ceil(($font-size-base * 0.85)) !default; // ~12px
 
@@ -107,9 +107,9 @@ $font-family-base:        $font-family-sans-serif;
 // $line-height-large:         1.3333333 !default; // extra decimals for Win 8.1 Chrome
 // $line-height-small:         1.5 !default;
 
-// $border-radius-base:        4px !default;
-// $border-radius-large:       6px !default;
-// $border-radius-small:       3px !default;
+$border-radius-base:        2px; //4px !default;
+$border-radius-large:       3px; //6px !default;
+$border-radius-small:       1px; //3px !default;
 
 // //** Global color for active items (e.g., navs or dropdowns).
 // $component-active-color:    #fff !default;
@@ -327,7 +327,7 @@ $screen-sm-max:              ($screen-md-min - 1) !default;
 // $grid-gutter-width:         30px !default;
 // // Navbar collapse
 // //** Point at which the navbar becomes uncollapsed.
-$grid-float-breakpoint:     $screen-sm-max !default; // $grid-float-breakpoint:     $screen-sm-min !default;
+$grid-float-breakpoint:     $screen-md-min !default; // $grid-float-breakpoint:     $screen-sm-min !default;
 // //** Point at which the navbar begins collapsing.
 // $grid-float-breakpoint-max: ($grid-float-breakpoint - 1) !default;
 

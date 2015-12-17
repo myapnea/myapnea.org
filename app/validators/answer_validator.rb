@@ -58,11 +58,12 @@ class AnswerValidator
 
           date_value = Date.strptime(av.value, "%m/%d/%Y")
 
-          difference_in_years = year_diff(Date.today, date_value)
-          if difference_in_years < 18
-            valid = false
-            messages << "You must be over 18 to answer this question"
-          end
+          # DEPRECATED IN 9.2
+          # difference_in_years = year_diff(Date.today, date_value)
+          # if difference_in_years < 18
+          #   valid = false
+          #   messages << "You must be over 18 to answer this question"
+          # end
         end
 
       rescue ArgumentError => e

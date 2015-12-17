@@ -1,8 +1,9 @@
 .content-main-header
-  %h1 Editing Clinical Trial
-  %p= link_to 'Show', @admin_clinical_trial
-  %p= link_to 'Back', admin_clinical_trials_path
+  .container
+    %h1 Editing Clinical Trial
+    %p= link_to 'Show', @admin_clinical_trial
+    %p= link_to 'Back', admin_clinical_trials_path
 
-.content-container
-  .content-body
+.container
+  .content-container
     = render 'form'

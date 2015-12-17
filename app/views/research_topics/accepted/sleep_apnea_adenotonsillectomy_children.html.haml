@@ -1,20 +1,22 @@
 .content-main-header
-  %h1 Obstructive Sleep Apnea and Adenotonsillectomy in Children
+  .container
+    %h1 Obstructive Sleep Apnea and Adenotonsillectomy in Children
 
 .well
-  .row
-    .col-sm-2.col-xs-4
-      = image_tag 'myapnea/team/owens_200x200.jpg', class: 'img-responsive pull-right', style: 'width: 100px'
-    .col-sm-10.col-xs-8
-      %h2.f300
-        Judith Owens, MD, MPH
-      %p.text-dark7
-        Director of Sleep Medicine at Children's National Medical Center
-        %br
-        MyApnea.Org Steering Committee Member.
+  .container
+    .row
+      .col-sm-2.col-xs-4
+        = image_tag 'myapnea/team/owens_200x200.jpg', class: 'img-responsive pull-right', style: 'width: 100px'
+      .col-sm-10.col-xs-8
+        %h2.f300
+          Judith Owens, MD, MPH
+        %p.dark7
+          Director of Sleep Medicine at Children's National Medical Center
+          %br
+          MyApnea.Org Steering Committee Member.
 
 .content-container
-  .content-body
+  .container
     %h3 Background
     %p
       Obstructive sleep apnea is now the number one reason for performing adenotonsillectomy (surgical removal of the tonsils and adenoids) in children in the U.S. It is estimated that over 500,000 adenotonsillectomies are performed annually in children. While in general this procedure is considered low risk, there are known potential consequences include bleeding and blockage of the airway due to swelling in the immediate post-operative period. Media attention paid to the unfortunate brain death of a 13-year-old girl in Oakland, California following an adenotonsillectomy last December raised understandable concerns for parents regarding the safety of this procedure.
@@ -31,14 +33,13 @@
     %h3 What does this research mean to you?
     %p
       While adenotonsillectomy for sleep apnea in children is generally safe, there may be specific groups that have an increased risk of complications related to surgery, including very young and African-American children. In these groups, more intensive monitoring in the post-surgery period may be warranted. The association between severity of sleep apnea and complications points out the importance of obtaining a sleep study before surgery to determine relative risk.
-.content-container.inherit-background.horizontal-inset
-  .content-header
-    %h4.f300 References
-  .content-body
-    %ol
-      %li
-        = link_to 'http://www.ncbi.nlm.nih.gov/pubmed/25301788' do
-          Thongyam A, Marcus CL, Lockman JL, Cornaglia MA, Caroff A, Gallagher PR, Shults J, Traylor JT, Rizzi MD, Elden L. Predictors of Perioperative Complications in Higher Risk Children after Adenotonsillectomy for Obstructive Sleep Apnea: A Prospective Study. Otolaryngol Head Neck Surg. 2014 Oct 9. pii: 0194599814552059. [Epub ahead of print]
+
+.container
+  %h4.f300 References
+  %ol
+    %li
+      = link_to 'http://www.ncbi.nlm.nih.gov/pubmed/25301788' do
+        Thongyam A, Marcus CL, Lockman JL, Cornaglia MA, Caroff A, Gallagher PR, Shults J, Traylor JT, Rizzi MD, Elden L. Predictors of Perioperative Complications in Higher Risk Children after Adenotonsillectomy for Obstructive Sleep Apnea: A Prospective Study. Otolaryngol Head Neck Surg. 2014 Oct 9. pii: 0194599814552059. [Epub ahead of print]
 
 - unless current_user
   = render 'home/join_the_community', referrer: 'research', message: 'Make a direct impact on the future of sleep apnea research'

@@ -1,22 +1,24 @@
 .content-main-header
-  %h1 Atrial fibrillation and its links to sleep apnea
+  .container
+    %h1 Atrial fibrillation and its links to sleep apnea
 
 .well
-  .row
-    .col-sm-2.col-xs-4
-      = image_tag 'myapnea/research/sbert.jpg', class: 'img-responsive pull-right', style: 'width: 100px'
-    .col-sm-10.col-xs-8
-      %h2.f300
-        Suzie Bertisch, MD, MPH
-        %br
-        Reena Mehra, MD MS
-        %br
-        Patty Tung, MD
-      %p.text-dark7
-        Beth Israel Deaconess Medical Center, Cleveland Clinic Foundation
+  .container
+    .row
+      .col-sm-2.col-xs-4
+        = image_tag 'myapnea/research/sbert.jpg', class: 'img-responsive pull-right', style: 'width: 100px'
+      .col-sm-10.col-xs-8
+        %h2.f300
+          Suzie Bertisch, MD, MPH
+          %br
+          Reena Mehra, MD MS
+          %br
+          Patty Tung, MD
+        %p.dark7
+          Beth Israel Deaconess Medical Center, Cleveland Clinic Foundation
 
 .content-container
-  .content-body
+  .container
     %h3 What is atrial fibrillation?
     %p
       Atrial fibrillation is an abnormal heart rhythm that causes the heart to beat in an “irregularly irregular”
@@ -80,7 +82,7 @@
       therapies can be tailored accordingly.
 
 .content-container
-  .content-body
+  .container
     %h3
       Here are some ongoing studies examining sleep apnea and atrial fibrillation
       = surround '(from ', ')' do

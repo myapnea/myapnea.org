@@ -18,11 +18,18 @@
     = f.label :age, nil, class: 'col-md-2 control-label'
     .col-md-10
       = f.text_field :age, class: 'form-control'
-      .bs-callout.bs-callout-info
+      .bs-callout.bs-callout-info{ style: 'margin-bottom: 0;' }
         %h4
           Child's Age
         Child's Age must be between 0 and 8 years old.
 
+  .form-group
+    .col-md-10.col-md-offset-2
+      .checkbox
+        %label
+          = f.check_box :diagnosed
+          Diagnosed with sleep apnea
+  %br
   .form-group
     .col-md-offset-2.col-md-10
       = f.submit (@child.new_record? ? 'Add Child' : 'Update Child'), class: 'btn btn-primary'

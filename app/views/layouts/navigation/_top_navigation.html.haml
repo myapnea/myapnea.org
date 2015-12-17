@@ -1,6 +1,6 @@
 / Fixed navbar
 %nav.navbar.navbar-fixed-top
-  .container-fluid
+  .container
     .navbar-header
       %button.pull-right.navbar-toggle.collapsed{ type: "button", aria: { controls: "navbar", expanded: "false" }, data: { target: "#navbar-myapnea", toggle: "collapse" } }
         %span.sr-only Toggle navigation
@@ -16,13 +16,10 @@
             %a.dropdown-toggle{ href: "#", role: "button", aria: { expanded: "false" }, data: { toggle: "dropdown" } }
               = image_tag user_photo_url(current_user), alt: '', size: '25', class: 'img-rounded'
               &nbsp;
-              = current_user.name
-              &nbsp;
               %span.caret
             %ul.dropdown-menu{role: "menu"}
-              - if current_user.forum_name.present?
-                %li
-                  = link_to 'View Profile', member_path(current_user.forum_name)
+              %li
+                = link_to 'Invite others', members_invites_path
               %li
                 = link_to 'Settings', account_path
               %li
@@ -49,8 +46,8 @@
         %li{ class: "#{'active' if @active_top_nav_link == :learn }" }
           = link_to 'Learn', learn_path
         - unless current_user
-          %li.hidden-xs{ style: 'border-color: transparent' }
-            = link_to 'Login', new_user_session_path, class: 'btn btn-default f300', style: 'border-radius: 10px;font-size:18px;'
-          %li.visible-sm.visible-xs
+          %li.hidden-xs.hidden-sm{ style: 'border-color: transparent' }
+            = link_to 'Login', new_user_session_path, class: 'btn btn-default f300', style: 'border-radius:5px;font-size:18px; margin-left: 5px;'
+          %li.visible-xs.visible-sm
             = link_to 'Login', new_user_session_path, class: 'btn btn-default', id: 'mobile-login'
             = link_to 'Join', new_user_registration_path, class: 'btn btn-primary', id: 'mobile-join'

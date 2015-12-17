@@ -1,18 +1,16 @@
 - @title = 'Progress Report'
 .content-main-header
-  %h1
-    = @title
-  %p.lead.text-light8{ style: 'margin-bottom: 0px;'}
-    = link_to 'Admin Dashboard', admin_path
+  .container
+    %h1= @title
+    %p= link_to 'Admin Dashboard', admin_path
 
 - user_scope = User.where(include_in_exports: true)
 - @survey = Survey.current.find_by_slug 'about-me'
 - @encounter = Encounter.current.find_by_slug 'baseline'
 
-.content-container
-  .content-header
+.container
+  .content-container
     %h3 Number of members by category
-  .content-body
     %table.table.table-bordered.table-condensed{ style: 'table-layout:fixed' }
       %thead
         %tr
@@ -31,11 +29,9 @@
           %td= number_with_delimiter user_scope.where("adult_diagnosed = ? and adult_at_risk = ? and caregiver_adult = ? and caregiver_child = ? and provider = ? and researcher = ?", false, false, false, false, false, false).count
     = link_to 'More Breakdown by Category', admin_reports_timeline_path
 
-.content-container
-  .content-header
+  .content-container
     %h3 Signed consents
-  .content-body
-    %p.lead.centered-text{ style: 'margin-top: 20px' }
+    %p.lead.centered
       - signed_consent_count = user_scope.where.not(accepted_consent_at: nil).count
       - not_signed_consent_count = user_scope.where(accepted_consent_at: nil).count
       = number_with_delimiter signed_consent_count
@@ -44,18 +40,14 @@
         %br
         = number_with_delimiter not_signed_consent_count
 
-.content-container
-  .content-header
+  .content-container
     %h3 With any questionnaire data
-  .content-body
-    %p.lead.centered-text{ style: 'margin-top: 20px' }
+    %p.lead.centered
       - with_questionnaire_count = AnswerValue.joins(answer: :answer_session).where(answers: { state: 'locked' }).uniq.select("answer_sessions.user_id").count
       = number_with_delimiter with_questionnaire_count
 
-.content-container
-  .content-header
+  .content-container
     %h3 Demographics on signed consents
-  .content-body
     - question = @survey.questions.find_by_slug 'sex'
     - answer_template = question.first_radio_or_checkbox_answer_template if question
     - answer_option_counts = TemporaryReport.answer_option_counts(@survey, question, answer_template, encounter: @encounter, range: 1..2)
@@ -112,10 +104,8 @@
           %td= number_with_delimiter date_array.select{|d| ((Date.today - 75.years)..(Date.today - 65.years)).cover?(d)}.count
           %td= number_with_delimiter date_array.select{|d| d < (Date.today - 75.years)}.count
 
-.content-container
-  .content-header
+  .content-container
     %h3 Number voting on rank research and number of items
-  .content-body
     - research_topic_count = ResearchTopic.where.not(topic_id: nil).count
     - vote_scope = Vote.current
     - vote_count = vote_scope.count
@@ -133,10 +123,8 @@
           %td= number_with_delimiter vote_count
           %td= number_with_delimiter voters_count
 
-.content-container
-  .content-header
+  .content-container
     %h3 Number of posts topics and unique individuals posting
-  .content-body
     - post_scope = Post.current.visible_for_user.not_research
     - post_count = post_scope.count
     - posting_user_count = post_scope.uniq.select(:user_id).count
@@ -153,10 +141,8 @@
           %td= number_with_delimiter topic_count
           %td= number_with_delimiter posting_user_count
 
-.content-container
-  .content-header
+  .content-container
     %h3 Number of withdrawn consent
-  .content-body
-    %p.lead.centered-text{ style: 'margin-top: 20px' }
+    %p.lead.centered
       - withdrawn_consent_count = AnswerValue.joins(answer: :answer_session).where(answers: { state: 'locked' }).where(answer_sessions: { user_id: user_scope.where(accepted_consent_at: nil).select(:id) }).uniq.select("answer_sessions.user_id").count
       = number_with_delimiter withdrawn_consent_count

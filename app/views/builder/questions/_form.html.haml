@@ -29,11 +29,12 @@
       .text-info
         Please only use lowercase letters, numbers, and dashes.
 
-  - if false
-    .form-group
-      = f.label :display_type, nil, class: 'col-md-2 control-label'
-      .col-md-10
-        = f.select :display_type, Question::DISPLAY_TYPES, { include_blank: true }, class: 'form-control'
+  .form-group
+    .col-md-10.col-md-offset-2
+      .checkbox
+        %label
+          = f.check_box :archived
+          Archived
 
   .form-group
     .col-md-10.col-md-offset-2

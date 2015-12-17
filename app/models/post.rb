@@ -4,6 +4,7 @@ class Post < ActiveRecord::Base
 
   # Concerns
   include Deletable
+  include Groupable
 
   # Callbacks
   after_save :touch_topic
@@ -22,9 +23,10 @@ class Post < ActiveRecord::Base
   belongs_to :last_moderated_by, class_name: 'User'
   belongs_to :last_moderated_by, class_name: 'User'
   belongs_to :deleted_by, class_name: 'User'
+  has_many :reactions
+  has_many :comments, -> { where deleted: false }
 
   # Post Methods
-
   def forum
     self.topic.forum
   end
@@ -79,12 +81,11 @@ class Post < ActiveRecord::Base
   # AND
   # 2) The topic subscriber is not the post creator
   def send_reply_emails!
-    return # Temporarily disable forum reply emails
     unless Rails.env.test? or Rails.env.development?
       pid = Process.fork
       if pid.nil? then
         # In child
-        self.topic.subscribers.where.not(id: self.user_id).each do |u|
+        self.topic.subscribers.where(moderator: true).where.not(id: self.user_id).each do |u|
           UserMailer.post_replied(self, u).deliver_later if Rails.env.production?
         end
         Kernel.exit!

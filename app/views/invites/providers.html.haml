@@ -1,13 +1,22 @@
 .content-main-header
-  %h1 Invite Your Personal Care Provider!
+  .container
+    %h1 Invite your personal care provider!
 
-.content-container
-  .content-body
-    = form_for @invite do |f|
+.container.with-padding-y
+  .content-container
+    %p
+      It takes a large community to make an impact. Invite your personal care provider, and help us make a difference!
+    = form_for @invite, html: { class: 'form-horizontal' } do |f|
       = f.hidden_field :for_provider, value: true
-      .input-group
-        = f.label :email, class: 'control-label'
-        = f.email_field :email, class: 'form-control'
-      %br
-      .input-group
-        = f.submit 'Send Invitation', class: 'btn btn-primary'
+      .form-group
+        = f.label :email, class: 'control-label col-md-2'
+        .col-md-8
+          = f.email_field :email, class: 'form-control'
+      .form-group
+        .col-md-8.col-md-offset-2
+          = f.submit 'Send Invitation', class: 'btn btn-primary'
+    %br
+    .content-footer
+      %p.small
+        Is your provider already a member of MyApnea.Org?
+        = link_to 'Check here!', providers_path, target: '_blank'

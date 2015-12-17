@@ -3,8 +3,8 @@
 - bmi = TemporaryReport.compute_bmi(@answer_session)
 
 - if bmi
-  .survey-report-container.panel
-    .survey-report-question.rounded-top
+  .content-container
+    .survey-report-question
       %h3 Based on your height and weight, we are able to calculate your body mass index (BMI).
     .survey-report-answer
       %p
@@ -18,10 +18,11 @@
           = weight
           pounds
     .survey-report-info
-      %p.lead
-        Your BMI:
-        %br
-        %span.report-statistic= "%0.2f" % bmi
+      .centered
+        %p.lead
+          Your BMI:
+          %br
+          %span.report-statistic= "%0.2f" % bmi
       - if bmi < 25
         %p.lead
           A BMI between 18 and 25 puts you in the

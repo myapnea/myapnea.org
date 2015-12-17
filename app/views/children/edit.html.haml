@@ -1,12 +1,12 @@
 .content-main-header
-  %h1.f300
-    = link_to 'Children', children_path
-    &middot;
-    = link_to @child.first_name_was, @child
-    &middot;
-    Edit
+  .container
+    %h1
+      = link_to 'Children', children_path
+      &middot;
+      = link_to @child.first_name_was, @child
+      &middot;
+      Edit
 
-
-.content-container
-  .content-body
+.container
+  .content-container
     = render 'form'

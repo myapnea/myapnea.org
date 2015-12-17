@@ -1,12 +1,13 @@
-.content-main-header
-  %h1 Research Surveys
-= render 'surveys/report_intro'
-
-= render "surveys/reports/#{@survey.slug.underscore}"
-
 .content-container
-  .content-footer
-    %p.no-margin.centered
+  .container
+    = render 'surveys/report_intro'
+
+.container
+  = render "surveys/reports/#{@survey.slug.underscore}"
+
+.container
+  .content-container
+    %p
       %span.f500 Note:
       You can view the full-detailed version of the survey report by clicking
       = succeed '.' do
@@ -17,4 +18,6 @@
         - else
           = link_to 'here', report_detail_survey_path(@survey, @encounter)
 
-= render 'surveys/report_outro'
+.content-container
+  .container
+    = render 'surveys/report_outro'

@@ -64,5 +64,12 @@
 
   .form-group
     .col-md-10.col-md-offset-2
+      .checkbox
+        %label
+          = f.check_box :archived
+          Archived
+
+  .form-group
+    .col-md-10.col-md-offset-2
       = f.submit nil, class: 'btn btn-primary'
       = link_to 'Cancel', url, class: 'btn btn-default'

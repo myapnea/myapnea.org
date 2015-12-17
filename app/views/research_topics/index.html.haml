@@ -1,77 +1,35 @@
 .content-main-header
-  %h1.f300 Research
-- if false and current_user and (current_user.moderator? or current_user.owner?) and ResearchTopic.pending_review.present?
-  .well
-    %h4
-      For admins:
-    %p.horizontal-inset
-      The following topics are pending review:
-    %ul
-      - ResearchTopic.pending_review.each do |research_topic|
-        %li= link_to research_topic.text, research_topic_path(research_topic)
+  .container
+    %h1 Research
 
 .content-container
-  .content-body
-    %p.lead
-      Let us know what research questions matter to you most. Join the community
-      in voting and discussing research topics submitted by members like
-      yourself. We will take the most endorsed questions and translate them into
-      %strong= link_to 'research highlights', accepted_research_topics_path
-      and proposals for future studies of sleep apnea.
-  .content-footer
-    = link_to 'Propose a new research topic', new_research_topic_path, class: 'btn btn-lg btn-primary-custom'
-    - if current_user and current_user.my_research_topics.present?
-      = link_to "Check the status of your research topics", my_research_topics_research_topics_path, class: 'btn btn-lg btn-default-custom'
-
-
-.content-container.inherit-background
-  .content-body
+  .container
     .row
-      .col-sm-6
-        %h2 Newest
-        .scroll-container
-          - @research_topics.newest.first(10).each do |rt|
-            = link_to research_topic_path(rt), class: 'research-topic-index-display' do
-              - if current_user and current_user.cast_vote_for?(rt)
-                = render 'research_topics/voting_badge', rt: rt
-                %p= rt.text
-              - else
-                %span.badge
-                  Vote!
-                %p= rt.text
-          = link_to newest_research_topics_path, class: 'research-topic-index-display' do
-            %p More...
+      .col-sm-8
+        %p
+          Let us know what research questions matter to you most. Join the community in voting and discussing research topics submitted by members like yourself. We will take the most endorsed questions and translate them into
+          %strong= link_to 'research highlights', accepted_research_topics_path
+          and proposals for future studies of sleep apnea.
+      .col-sm-4
+        = link_to 'Propose a new research topic', new_research_topic_path, class: 'btn btn-primary', style: 'width: 100%'
+        - if current_user && current_user.my_research_topics.present?
+          = link_to "Check the status of your research topics", my_research_topics_research_topics_path, class: 'btn btn-default', style: 'width: 100%'
 
-        %h2 Most Discussed
-        .scroll-container
-          - @research_topics.most_discussed.first(10).each do |rt|
-            = link_to research_topic_path(rt), class: 'research-topic-index-display' do
-              - if current_user and current_user.cast_vote_for?(rt)
-                = render 'research_topics/voting_badge', rt: rt
-                %p= rt.text
-              - else
-                %span.badge
-                  Vote!
-                %p= rt.text
-          = link_to most_discussed_research_topics_path, class: 'research-topic-index-display' do
-            %p More...
-      - if @clinical_trials.present?
-        .col-sm-6
-          %h2 Current Clinical Studies
-          .scroll-container-large
-            - @clinical_trials.each do |clinical_trial|
-              = render clinical_trial
+.container
+  .row
+    .col-sm-8
+      #research-topic-list-group
+        = render 'research_topics/displays/list_group', research_topics: @research_topics
 
--# Research highlights
-.content-container.lighter-blue-bcg
-  .content-header
-    %h3.text-light9 Recently accepted research topics:
-  .content-body
-    - Highlight.current.where(research_highlight: true).order(created_at: :desc).in_groups_of(3, false) do |highlights_row|
-      .row
-        - highlights_row.each do |highlight|
-          .col-sm-4
-            = render highlight
-
-- unless current_user
-  = render 'home/join_the_community', referrer: 'research', message: 'Make a direct impact on the future of sleep apnea research'
+    .col-sm-4
+      %br
+      - if current_user && current_user.moderator? && ResearchTopic.pending_review.present?
+        .well
+          %h4
+            For admins:
+          %p
+            The following topics are pending review:
+          %ul
+            - ResearchTopic.pending_review.each do |research_topic|
+              %li= link_to research_topic.text, research_topic_path(research_topic)
+      = render 'research_topics/sidebar'

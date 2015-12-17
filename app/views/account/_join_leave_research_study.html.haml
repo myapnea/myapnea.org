@@ -1,7 +1,7 @@
 - if current_user.ready_for_research?
   .content-container
     .content-header
-      %h3.f300.centered-text
+      %h3.f300.centered
         Leave Research Study
     .content-body
       %p.lead
@@ -19,19 +19,19 @@
 - else
   .content-container
     .content-header
-      %h3.f300.centered-text
+      %h3.f300.centered
         Join Research Study
     .content-body
       %p.lead
         You need to read and accept the
-        - if (current_user.is_only_academic?) and (current_user.accepted_consent_at.blank?)
+        - if (current_user.is_only_academic?) and (current_user.accepted_terms_of_access_at.blank?)
           = link_to 'Terms of Access', terms_of_access_path
         - else
           = link_to 'Consent', consent_path
         and
         = link_to 'Privacy Policy', privacy_path
         in order to join the research study and fill out surveys.
-      - if (current_user.is_only_academic?) and (current_user.accepted_consent_at.blank?)
+      - if (current_user.is_only_academic?) and (current_user.accepted_terms_of_access_at.blank?)
         = link_to 'Review Terms of Access', terms_of_access_path, class: 'btn btn-primary-custom', style: 'width: 49%; margin:.5%; float:left;'
       - else
         = link_to 'Read the Consent', consent_path, class: 'btn btn-primary-custom', style: 'width: 49%; margin:.5%; float:left;'

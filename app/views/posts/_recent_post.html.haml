@@ -1,38 +1,21 @@
-.recent-post-container
-  .poster-image
-    = render 'forums/user_image_link', user: post.user, size: 50
-  .post.wrapword
-    .post-header
-      %h5.f300.poster-details
-        %span.f500
-          - if post.user == current_user
-            - if current_user.forum_name.present?
-              = link_to "You", member_path(current_user.forum_name), class: 'no-underline darkerer-blue'
-            - else
-              You
-          - elsif post.user.forum_name.present?
-            = link_to post.user.forum_name, member_path(post.user.forum_name), class: 'no-underline darkerer-blue'
-          - else
-            Anonymous
+.post-content-container
+  .post-header
+    .poster-image
+      = render 'forums/user_image_link', user: post.user, size: 50
+    .poster-details
+      %p
+        - if post.user == current_user
+          = link_to "You", member_path(current_user.forum_name), class: 'no-underline darkerer-blue'
+        - else
+          = link_to post.user.forum_name, member_path(post.user.forum_name), class: 'no-underline darkerer-blue'
+      %p.small
         = post.is_first_post? ? "started the topic" : "replied to"
-        %br.visible-xs
-        = link_to post.topic.name, forum_topic_post_path(post.topic.forum, post.topic, post), class: 'no-underline'
-      %p.small.post-time
-        = post.created_at.strftime("%-d %B %Y, %-l:%M %p")
+        = link_to post.topic.name, forum_topic_post_path(post.topic.forum, post.topic, post)
+        &middot;
+        %span.post-time= time_ago_in_words(post.created_at) + ' ago'
+  .post.wrapword
     .post-content
       = render 'posts/formatted', post: post
-    - if current_user and not post.topic.locked?
-      .reply-container
-        - new_post = post.topic.posts.new
-        = form_for [post.topic.forum, post.topic, new_post], html: { class: 'form-horizontal' } do |f|
-
-          - if current_user.moderator?
-            = f.hidden_field :status, value: 'approved'
-
-          .reply
-            .reply-user
-              = image_tag user_photo_url(current_user), alt: '', class: 'reply-user-image'
-            .reply-field
-              = f.text_area :description, rows: 1, style: 'resize: none;', class: 'reply-text-area', data: { object: 'text-area-autocomplete' }
-            .reply-submit
-              = f.submit "Reply", class: 'btn btn-primary reply-button', data: { disable_with: "Posting" }
+      - if current_user
+        %div{ id: "reaction-container-#{post.id}"}
+          = render 'posts/reactions_and_comments', post: post

@@ -1,0 +1,2 @@
+<% reaction_container = "#reaction-container-#{@post.id}" %>
+$("<%= reaction_container %>").html("<%=j render 'posts/reactions_and_comments', post: @post %>");

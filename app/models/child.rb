@@ -32,8 +32,10 @@ class Child < ActiveRecord::Base
       remove_out_of_range_child_answer_sessions!
       user_type = 'caregiver_child'
       Survey.current.viewable.pediatric.where("surveys.child_min_age <= ? and surveys.child_max_age >= ?", self.age, self.age).joins(:survey_user_types).merge(SurveyUserType.current.where(user_type: user_type)).each do |survey|
-        survey.encounters.where(launch_days_after_sign_up: 0).each do |encounter|
-          self.answer_sessions.where(encounter: encounter.slug, survey_id: survey.id, user_id: self.user_id).first_or_create
+        unless survey.pediatric_diagnosed? && !self.diagnosed?
+          survey.encounters.where(launch_days_after_sign_up: 0).each do |encounter|
+            self.answer_sessions.where(encounter: encounter.slug, survey_id: survey.id, user_id: self.user_id).first_or_create
+          end
         end
       end
     end

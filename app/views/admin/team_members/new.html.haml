@@ -1,7 +1,8 @@
 .content-main-header
-  %h1 New Team Member
-  %p= link_to 'Back', admin_team_members_path
+  .container
+    %h1 New Team Member
+    %p= link_to 'Back', admin_team_members_path
 
-.content-container
-  .content-body
+.container
+  .content-container
     = render 'form'

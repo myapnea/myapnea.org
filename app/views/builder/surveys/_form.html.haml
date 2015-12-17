@@ -23,6 +23,11 @@
       = f.text_field :name_en, class: 'form-control'
 
   .form-group
+    = f.label :description_en, 'Description EN', class: 'col-md-2 control-label'
+    .col-md-10
+      = f.text_area :description_en, class: 'form-control'
+
+  .form-group
     = f.label :slug, 'URL Slug', class: 'col-md-2 control-label'
     .col-md-10
       = f.text_field :slug, class: 'form-control'
@@ -39,7 +44,14 @@
       .checkbox
         %label
           = f.check_box :pediatric
-          Pediatric Survey
+          Pediatric survey
+
+  .form-group{ style: "#{'display:none' unless @survey.pediatric?}", data: { object: 'show-for-pediatric' } }
+    .col-md-10.col-md-offset-2
+      .checkbox
+        %label
+          = f.check_box :pediatric_diagnosed
+          Limit to diagnosed children
 
   .form-group{ style: "#{'display:none' unless @survey.pediatric?}", data: { object: 'show-for-pediatric' } }
     = f.label :child_min_age, 'Child Minimum Age', class: 'col-md-2 control-label'

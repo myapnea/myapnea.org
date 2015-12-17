@@ -141,10 +141,10 @@ class AdminControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should get engagement report as admin" do
+  test "should get reaction summary as admin" do
     login(users(:moderator_1))
 
-    get :engagement_report
+    get :reactions
     assert_response :success
   end
 
@@ -160,6 +160,15 @@ class AdminControllerTest < ActionController::TestCase
 
     get :daily_engagement
     assert_redirected_to :admin
+  end
+
+  test "should only get social media for admin" do
+    get :social_media
+    assert_response :redirect
+
+    login(users(:owner))
+    get :social_media
+    assert_response :success
   end
 
 end

@@ -1,20 +1,22 @@
 .content-main-header
-  %h1 Does sleep influence memory and “brain plasticity”?
+  .container
+    %h1 Does sleep influence memory and “brain plasticity”?
 
 .well
-  .row
-    .col-sm-2.col-xs-4
-      = image_tag 'myapnea/research/Ina_Djonlagic.jpg', class: 'img-responsive pull-right', style: 'width: 100px'
-    .col-sm-10.col-xs-8
-      %h2.f300
-        Ina Djonlagic, MD
-      %p.text-dark7
-        Instructor in Medicine, Harvard Medical School
-        %br
-        Associate Physician, Division of Sleep and Circadian Disorders, Departments of Medicine and Neurology, Brigham and Women's Hospital
+  .container
+    .row
+      .col-sm-2.col-xs-4
+        = image_tag 'myapnea/research/Ina_Djonlagic.jpg', class: 'img-responsive pull-right', style: 'width: 100px'
+      .col-sm-10.col-xs-8
+        %h2.f300
+          Ina Djonlagic, MD
+        %p.dark7
+          Instructor in Medicine, Harvard Medical School
+          %br
+          Associate Physician, Division of Sleep and Circadian Disorders, Departments of Medicine and Neurology, Brigham and Women's Hospital
 
 .content-container
-  .content-body
+  .container
     %h3 Key Stages in Memory
     %p
       Before addressing the role of sleep in memory, let’s review what goes into making memories and how the underlying brain activities that form memory can change over time.
@@ -107,18 +109,16 @@
     %p
       Let's talk more about these questions and identify how to develop the research to fill these important knowledge gaps.
 
-.content-container.inherit-background.horizontal-inset
-  .content-header
-    %h4.f300 References
-  .content-body
-    %ol
-      %li Stickgold R. Sleep-dependent memory consolidation. Nature. Oct 27 2005;437(7063):1272-1278.
-      %li Diekelmann S, Born J. The memory function of sleep. Nature reviews. Feb;11(2):114-126.
-      %li Djonlagic I, Saboisky J, Carusona A, Stickgold R, Malhotra A. Increased sleep fragmentation leads to impaired off-line consolidation of motor memories in humans. PLoS One. 2012;7(3):e34106. Epub 2012 Mar 28.
-      %li Djonlagic I, Guo M, Carusona A, Matteis P, Stickgold R, Malhotra A. Untreated Sleep-disordered Breathing: Links to Aging-related Decline in Sleep-Dependent Memory Consolidation. PLoS One. 2014 Jan 29;9(1).
-      %li Djonlagic I, Guo M, Carusona A, Matteis P, Stickgold R, Malhotra A. First-Night of CPAP: Impact on Memory Consolidation, Attention and Subjective Experience. Sleep Medicine (in press)
-      %li Varga, A. W., Kishi, A., Mantua, J., Lim, J., Koushyk, V., Leibert, D. P., & Ayappa, I. (2014). Apnea-Induced Rapid Eye Movement Sleep Disruption Impairs Human Spatial Navigational Memory.Journal of Neuroscience, 34(44), 14571–14577.
-      %li Kushida CA, Nichols DA, Holmes TH, et al. Effects of continuous positive airway pressure on neurocognitive function in obstructive sleep apnea patients: The Apnea Positive Pressure Long-term Efficacy Study (APPLES). Sleep 2012;35(12):1593-602
+.container
+  %h4.f300 References
+  %ol
+    %li Stickgold R. Sleep-dependent memory consolidation. Nature. Oct 27 2005;437(7063):1272-1278.
+    %li Diekelmann S, Born J. The memory function of sleep. Nature reviews. Feb;11(2):114-126.
+    %li Djonlagic I, Saboisky J, Carusona A, Stickgold R, Malhotra A. Increased sleep fragmentation leads to impaired off-line consolidation of motor memories in humans. PLoS One. 2012;7(3):e34106. Epub 2012 Mar 28.
+    %li Djonlagic I, Guo M, Carusona A, Matteis P, Stickgold R, Malhotra A. Untreated Sleep-disordered Breathing: Links to Aging-related Decline in Sleep-Dependent Memory Consolidation. PLoS One. 2014 Jan 29;9(1).
+    %li Djonlagic I, Guo M, Carusona A, Matteis P, Stickgold R, Malhotra A. First-Night of CPAP: Impact on Memory Consolidation, Attention and Subjective Experience. Sleep Medicine (in press)
+    %li Varga, A. W., Kishi, A., Mantua, J., Lim, J., Koushyk, V., Leibert, D. P., & Ayappa, I. (2014). Apnea-Induced Rapid Eye Movement Sleep Disruption Impairs Human Spatial Navigational Memory.Journal of Neuroscience, 34(44), 14571–14577.
+    %li Kushida CA, Nichols DA, Holmes TH, et al. Effects of continuous positive airway pressure on neurocognitive function in obstructive sleep apnea patients: The Apnea Positive Pressure Long-term Efficacy Study (APPLES). Sleep 2012;35(12):1593-602
 
 - unless current_user
   = render 'home/join_the_community', referrer: 'research', message: 'Make a direct impact on the future of sleep apnea research'

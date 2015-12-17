@@ -8,6 +8,7 @@ class ResearchTopicsControllerTest < ActionController::TestCase
     @experienced_user = users(:user_1)
 
     @rt = research_topics(:rt1)
+    @rt2 = research_topics(:rt2)
   end
 
   # Index
@@ -22,55 +23,55 @@ class ResearchTopicsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should get accepted_research_topics_index" do
-    get :accepted_research_topics_index
+  test "should get accepted article" do
+    get :accepted_article, slug: admin_research_articles(:one)
     assert_response :success
   end
 
-  test "should get sleep_apnea_body_weight" do
-    get :sleep_apnea_body_weight
-    assert_response :success
-  end
+  # test "should get sleep_apnea_body_weight" do
+  #   get :sleep_apnea_body_weight
+  #   assert_response :success
+  # end
 
-  test "should get sleep_apnea_brain_plasticity" do
-    get :sleep_apnea_brain_plasticity
-    assert_response :success
-  end
+  # test "should get sleep_apnea_brain_plasticity" do
+  #   get :sleep_apnea_brain_plasticity
+  #   assert_response :success
+  # end
 
-  test "should get sleep_apnea_adenotonsillectomy_children" do
-    get :sleep_apnea_adenotonsillectomy_children
-    assert_response :success
-  end
+  # test "should get sleep_apnea_adenotonsillectomy_children" do
+  #   get :sleep_apnea_adenotonsillectomy_children
+  #   assert_response :success
+  # end
 
-  test "should get sleep_apnea_diabetes" do
-    get :sleep_apnea_diabetes
-    assert_response :success
-  end
+  # test "should get sleep_apnea_diabetes" do
+  #   get :sleep_apnea_diabetes
+  #   assert_response :success
+  # end
 
-  test "should get sleep_apnea_nighttime_oxygen_use" do
-    get :sleep_apnea_nighttime_oxygen_use
-    assert_response :success
-  end
+  # test "should get sleep_apnea_nighttime_oxygen_use" do
+  #   get :sleep_apnea_nighttime_oxygen_use
+  #   assert_response :success
+  # end
 
-  test "should get sleep_apnea_didgeridoo" do
-    get :sleep_apnea_didgeridoo
-    assert_response :success
-  end
+  # test "should get sleep_apnea_didgeridoo" do
+  #   get :sleep_apnea_didgeridoo
+  #   assert_response :success
+  # end
 
-  test "should get sleep_apnea_hypoglossal_stimulation" do
-    get :sleep_apnea_hypoglossal_stimulation
-    assert_response :success
-  end
+  # test "should get sleep_apnea_hypoglossal_stimulation" do
+  #   get :sleep_apnea_hypoglossal_stimulation
+  #   assert_response :success
+  # end
 
-  test "should get sleep_apnea_women_heart_disease" do
-    get :sleep_apnea_women_heart_disease
-    assert_response :success
-  end
+  # test "should get sleep_apnea_women_heart_disease" do
+  #   get :sleep_apnea_women_heart_disease
+  #   assert_response :success
+  # end
 
-  test "should get sleep_apnea_afib" do
-    get :sleep_apnea_afib
-    assert_response :success
-  end
+  # test "should get sleep_apnea_afib" do
+  #   get :sleep_apnea_afib
+  #   assert_response :success
+  # end
 
   test "should get index for experienced user" do
     # Displays normal index
@@ -133,57 +134,6 @@ class ResearchTopicsControllerTest < ActionController::TestCase
     get :first_topics
     assert_redirected_to research_topics_path
   end
-
-
-  # Newest - index of newest topic pages
-  test "should get newest for logged out user" do
-    get :newest
-    assert_response :success
-  end
-
-  test "should get newest for experienced user" do
-    login(@experienced_user)
-    get :newest
-    assert_response :success
-  end
-
-  test "should redirect from newest to intro action for no_votes user" do
-    login(@no_votes_user)
-    get :newest
-    assert_redirected_to intro_research_topics_path
-  end
-
-  test "should redirect from newest to first_topics action for novice_user" do
-    login(@novice_user)
-    get :newest
-    assert_redirected_to first_topics_research_topics_path
-  end
-
-
-  # Most Discussed
-  test "should get most discussed for logged out user" do
-    get :most_discussed
-    assert_response :success
-  end
-
-  test "should get most_discussed for experienced user" do
-    login(@experienced_user)
-    get :most_discussed
-    assert_response :success
-  end
-
-  test "should redirect from most discussed to intro action for no_votes user" do
-    login(@no_votes_user)
-    get :most_discussed
-    assert_redirected_to intro_research_topics_path
-  end
-
-  test "should redirect from most discussed to first_topics action for novice_user" do
-    login(@novice_user)
-    get :most_discussed
-    assert_redirected_to first_topics_research_topics_path
-  end
-
 
   # Show pages
   test "should get show page as experienced user" do
@@ -308,56 +258,49 @@ class ResearchTopicsControllerTest < ActionController::TestCase
   # Endorsement
   # Test w/ and w/o comment
   test "should endorse any approved research topic as experienced user" do
-    @request.env['HTTP_REFERER'] = 'http://localhost:3000/sessions/new'
-
     login(@experienced_user)
-    assert_nil research_topics(:rt2).endorsement
+    assert_nil @rt2.endorsement
 
     assert_difference "Vote.count" do
-      xhr :post, :vote, research_topic_id: research_topics(:rt2).id, "endorse_#{research_topics(:rt2).id}" => 1, format: 'js'
+      post :vote, research_topic_id: @rt2.id, "endorse_#{research_topics(:rt2).id}" => 1
     end
     assert_equal 1.0, research_topics(:rt2).endorsement
     assert_not_nil assigns(:research_topic)
-    assert_response :success
+    assert_redirected_to @rt2
   end
 
   test "should add comment when voting for topic" do
-    @request.env['HTTP_REFERER'] = 'http://localhost:3000/sessions/new'
-
     login(@experienced_user)
     comment = "Hi there i'm commenting"
 
     assert_difference "Post.count" do
-      xhr :post, :vote, research_topic_id: research_topics(:rt2).id, "endorse_#{research_topics(:rt2).id}" => 1, "comment_#{research_topics(:rt2).id}" => comment, format: 'js'
+      xhr :post, :vote, research_topic_id: @rt2.id, "endorse_#{research_topics(:rt2).id}" => 1, "comment_#{research_topics(:rt2).id}" => comment
     end
     assert_equal comment, research_topics(:rt2).topic.posts.last.description
   end
 
   test "should vote for only the seeded research topics as a no_votes user" do
-    @request.env['HTTP_REFERER'] = 'http://localhost:3000/sessions/new'
     login(@no_votes_user)
     rt = ResearchTopic.where(category: "seeded").first
 
     assert_no_difference "Vote.count" do
-      xhr :post, :vote, research_topic_id: research_topics(:rt2).id, "endorse_#{research_topics(:rt2).id}" => 1, format: 'js'
+      post :vote, research_topic_id: @rt2.id, "endorse_#{research_topics(:rt2).id}" => 1
     end
     assert_difference "Vote.count" do
-      xhr :post, :vote, research_topic_id: rt.id, "endorse_#{rt.id}" => 1, format: 'js'
+      post :vote, research_topic_id: rt.id, "endorse_#{rt.id}" => 1
     end
   end
 
 
   test "should vote for only the seeded research topics as a novice user" do
-    @request.env['HTTP_REFERER'] = 'http://localhost:3000/sessions/new'
-
     login(@novice_user)
     rt = ResearchTopic.where(category: "seeded").first
 
     assert_no_difference "Vote.count" do
-      xhr :post, :vote, research_topic_id: research_topics(:rt2).id, "endorse_#{research_topics(:rt2).id}" => 1, format: 'js'
+      post :vote, research_topic_id: @rt2.id, "endorse_#{research_topics(:rt2).id}" => 1
     end
     assert_difference "Vote.count" do
-      xhr :post, :vote, research_topic_id: rt.id, "endorse_#{rt.id}" => 1, format: 'js'
+      post :vote, research_topic_id: rt.id, "endorse_#{rt.id}" => 1
     end
   end
 
@@ -399,26 +342,28 @@ class ResearchTopicsControllerTest < ActionController::TestCase
 
   # Opposition
   test "should oppose any approved research topic as experienced user" do
-    @request.env['HTTP_REFERER'] = 'http://localhost:3000/sessions/new'
-
     login(@experienced_user)
 
-    assert_nil research_topics(:rt2).endorsement
+    assert_nil @rt2.endorsement
+    assert_not_nil @rt2
+
+    get :show, id: @rt2
+    assert_response :success
+
     assert_difference "Vote.count" do
-      xhr :post, :vote, research_topic_id: research_topics(:rt2).id, "endorse_#{research_topics(:rt2).id}" => 0, format: 'js'
+      post :vote, research_topic_id: @rt2.id, "endorse_#{research_topics(:rt2).id}" => 0
     end
     assert_equal 0.0, research_topics(:rt2).endorsement
     assert_not_nil assigns(:research_topic)
-    assert_response :success
+    assert_redirected_to @rt2
   end
 
   # Invalid votes
   test "should not accept votes with no endorsement or opposition chosen" do
-    @request.env['HTTP_REFERER'] = 'http://localhost:3000/sessions/new'
     login(@experienced_user)
 
     assert_no_difference "Vote.count" do
-      xhr :post, :vote, research_topic_id: research_topics(:rt2).id, format: 'js'
+      post :vote, research_topic_id: research_topics(:rt2).id
     end
   end
 

@@ -6,17 +6,17 @@
           %span.glyphicon.glyphicon-star.primary-orange
       - else
         = link_to highlight_path(highlight, highlight: { displayed: true }), method: :patch do
-          %span.glyphicon.glyphicon-star-empty.text-dark4
+          %span.glyphicon.glyphicon-star-empty.dark4
       %br
       = link_to edit_highlight_path(highlight) do
         %i.fa.fa-pencil
-  .centered-text
+  %div
     = link_to ((highlight.link.present? and safe_url?(highlight.link)) ? highlight.link : "#") do
       - if highlight.photo_url.present?
         = image_tag highlight_photo_url(highlight), alt: '', class: 'img-responsive', style: 'margin: auto;'
       - elsif highlight.display_date.present?
         = render 'static/home_news_image', day: highlight.display_date.day.to_s, month: Date::MONTHNAMES[highlight.display_date.month][0..2], year: highlight.display_date.year.to_s[2..3]
-      %h4.f300.text-dark9
+      %h4.f300.dark9
         = highlight.title
-      %p.f300
+      %p.f500.small.gray
         = highlight.description

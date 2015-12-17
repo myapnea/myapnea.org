@@ -1,9 +1,13 @@
+$user-color: #008000;
+$survey-color: #f00;
+$post-color: #4682b4;
+
 .daily-engagement-report {
   .axis path,
   .axis line {
     fill: none;
-    stroke: #000;
     shape-rendering: crispEdges;
+    stroke: $black;
   }
 
   .x.axis path {
@@ -12,17 +16,41 @@
 
   .posts-line {
     fill: none;
-    stroke: steelblue;
+    stroke: $post-color;
     stroke-width: 1.5px;
   }
+
   .users-line {
     fill: none;
-    stroke: green;
+    stroke: $user-color;
     stroke-width: 1.5px;
   }
+
   .surveys-line {
     fill: none;
-    stroke: red;
+    stroke: $survey-color;
     stroke-width: 1.5px;
   }
+}
+
+
+// Engagement report
+
+rect.bordered {
+  stroke: #E6E6E6;
+  stroke-width:2px;
+}
+
+text.mono {
+  font-size: 9pt;
+  font-family: Consolas, courier;
+  fill: #aaa;
+}
+
+text.axis-workweek {
+  fill: #000;
+}
+
+text.axis-worktime {
+  fill: #000;
 }

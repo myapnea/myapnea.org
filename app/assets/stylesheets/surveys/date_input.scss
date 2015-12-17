@@ -2,32 +2,32 @@
   input[type=date] {
     line-height: normal;
   }
+
   .survey-custom-date {
-    font-size:35px;
-    border-radius:20px;
-    border-color: #b1d2f6;
-    padding:7px;
-    width:80%;
+    border-color: $lightest-blue;
+    border-radius: 20px;
+    font-size: 35px;
     margin: 0 auto;
+    padding: 7px;
+    width: 80%;
   }
 
   .survey-custom-date:focus {
-    outline:none;
-    box-shadow:0 0 10px #b1d2f6;
+    box-shadow: 0 0 10px $lightest-blue;
+    outline: none;
   }
 
-  .survey-custom-date {}
-  .survey-custom-date::-webkit-input-placeholder { color: #555; }
-  .survey-custom-date:-moz-placeholder { color: #333; }
-  .survey-custom-date::-moz-placeholder { color: #333; }
-  .survey-custom-date:-ms-placeholder { color: #333; }
+  .survey-custom-date::-webkit-input-placeholder { color: $darker-gray; }
+
+  .survey-custom-date:-moz-placeholder { color: $darker-gray; }
+
+  .survey-custom-date::-moz-placeholder { color: $darker-gray; }
+
+  .survey-custom-date:-ms-placeholder { color: $darker-gray; }
 }
 
-/* RESPONSIVE */
-@media all and (max-width: 1200px) {}
-@media all and (max-width: 992px) {
+@media (max-width: $screen-md) {
   .survey-custom-date {
     font-size: 20px;
   }
 }
-@media all and (max-width: 768px) {}

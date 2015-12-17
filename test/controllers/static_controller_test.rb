@@ -35,6 +35,16 @@ class StaticControllerTest < ActionController::TestCase
     assert_redirected_to team_path
   end
 
+  test "should get PEP corner" do
+    get :pep_corner
+    assert_response :success
+  end
+
+  test "should get PEP corner show" do
+    get :pep_corner_show, pep_id: admin_team_members(:one)
+    assert_response :success
+  end
+
   test "should get governance charter" do
     get :governance_policy
     assert_response :success
@@ -66,8 +76,8 @@ class StaticControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should get research" do
-    get :research
+  test "should get clinical trials" do
+    get :clinical_trials
     assert_response :success
   end
 
@@ -173,11 +183,6 @@ class StaticControllerTest < ActionController::TestCase
 
   test "should get side effects PAP" do
     get :side_effects_PAP
-    assert_response :success
-  end
-
-  test "should get sleep tips" do
-    get :sleep_tips
     assert_response :success
   end
 

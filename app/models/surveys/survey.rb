@@ -5,6 +5,7 @@ class Survey < ActiveRecord::Base
   # Concerns
   include Localizable
   include Deletable
+  include Groupable
 
   # Callbacks
   after_create :create_default_encounters

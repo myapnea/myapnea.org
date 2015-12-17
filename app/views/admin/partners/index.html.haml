@@ -1,10 +1,11 @@
 .content-main-header
-  %h1 Partners
+  .container
+    %h1 Partners
+    %p= link_to 'Admin Dashboard', admin_path
 
-.content-container
-  .content-header
+.container
+  .content-container
     %h2 Main
-  .content-body
     - @admin_partners.where(group: 'main').each do |partner|
       = render partner
       .horizontal-inset
@@ -17,11 +18,11 @@
           %span.glyphicon.glyphicon-pencil
       - unless partner == @admin_partners.where(group: 'main').last
         %hr
-  .content-footer
-    = link_to 'New Partner', new_admin_partner_path, class: 'btn btn-primary'
+    .content-footer
+      = link_to 'New Partner', new_admin_partner_path, class: 'btn btn-primary'
 
-.content-container
-  .content-header
+.container
+  .content-container
     %h2 Promotional
     %table.table.table-striped
       %thead
@@ -42,5 +43,5 @@
                 %span.glyphicon.glyphicon-pencil
               = link_to admin_partner_path(partner), method: :delete, class: 'btn btn-sm btn-danger' do
                 %span.glyphicon.glyphicon-trash
-  .content-footer
-    = link_to 'New Partner', new_admin_partner_path, class: 'btn btn-primary'
+    .content-footer
+      = link_to 'New Partner', new_admin_partner_path, class: 'btn btn-primary'

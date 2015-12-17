@@ -1,9 +1,10 @@
 .content-main-header
-  %h1 Editing Partner
-  %p= link_to 'Back', admin_partners_path
+  .container
+    %h1 Editing Partner
+    %p= link_to 'Back', admin_partners_path
 
-.content-container
-  .content-body
+.container
+  .content-container
     = render 'form'
 
 

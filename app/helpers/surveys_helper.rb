@@ -19,4 +19,9 @@ module SurveysHelper
     next_answer_session ? show_survey_path(next_answer_session.survey, answer_session.encounter) : surveys_path
   end
 
+  def next_child_answer_session_path(answer_session)
+    next_answer_session = current_user.next_child_answer_session(answer_session)
+    next_answer_session ? child_survey_path(next_answer_session.child.id, next_answer_session.survey, next_answer_session.encounter) : surveys_path
+  end
+
 end

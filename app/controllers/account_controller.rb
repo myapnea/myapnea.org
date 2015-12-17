@@ -3,7 +3,7 @@ class AccountController < ApplicationController
   before_action :authenticate_user!, except: [:consent, :privacy_policy, :terms_and_conditions, :terms_of_access]
   before_action :set_SEO_elements
 
-  layout 'application-no-sidebar', only: [:get_started, :get_started_step_two, :get_started_step_three, :terms_and_conditions, :account]
+  layout 'admin'
 
   ## Onboarding process
 
@@ -17,7 +17,7 @@ class AccountController < ApplicationController
     if !(current_user.provider? or current_user.is_only_researcher?) and current_user.ready_for_research?
       @survey = Survey.current.viewable.find_by_slug("about-me")
       @answer_session = current_user.get_baseline_survey_answer_session(@survey)
-      render layout: 'application-central-padding'
+      render layout: 'surveys'
     end
   end
 
@@ -25,7 +25,8 @@ class AccountController < ApplicationController
 
   def accepts_privacy
     current_user.update accepted_privacy_policy_at: Time.zone.now
-    redirect_to current_user.ready_for_research? ? surveys_path : consent_path
+    not_ready_path = current_user.is_only_academic? ? terms_of_access_path : consent_path
+    redirect_to current_user.ready_for_research? ? surveys_path : not_ready_path
   end
 
   def accepts_consent
@@ -93,7 +94,14 @@ class AccountController < ApplicationController
   end
 
   def dashboard
+  end
 
+  def update_from_engagements
+    current_user.update(user_params)
+    respond_to do |format|
+      format.html { redirect_to :dashboard }
+      format.js { }
+    end
   end
 
   def account
@@ -138,9 +146,9 @@ class AccountController < ApplicationController
 
       params.required(:user).permit(
         # Basic Information
-        :first_name, :last_name, :email,
+        :first_name, :last_name, :email, :address_1, :address_2, :city, :zip_code,
         # Forum and Social Profile
-        :photo, :remove_photo, :forum_name, :age, :gender,
+        :photo, :remove_photo, :forum_name, :age, :gender, :experience, :device,
         # Linking to a Provider
         :provider_id,
         # Receiving Emails

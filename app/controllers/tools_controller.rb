@@ -1,6 +1,8 @@
 class ToolsController < ApplicationController
+
+  layout 'tools'
+
   def risk_assessment
-    render layout: 'layouts/application-only-footer'
   end
 
   def risk_assessment_results
@@ -14,11 +16,9 @@ class ToolsController < ApplicationController
   end
 
   def risk_assessment_results_display
-    render layout: 'layouts/application-only-footer'
   end
 
   def bmi_ahi
-    render layout: 'layouts/application-no-sidebar'
   end
 
   private

@@ -4,7 +4,113 @@
 - **Co-enrollment Changes**
   - MyApnea.Org members can now coenroll with Health eHeart and vice versa
 
-## 9.0.0
+## 9.2.0 (December 17, 2015)
+
+### Enhancements
+- **Admin Changes**
+  - Added ability to flag industry sponsored clinical trials from admin interface
+  - Added order option for clinical trials
+  - Added interface to create new research articles
+    - Added ability to link approved research topic to research article
+  - Improved dynamic social media content creation
+- **Survey Changes**
+  - Fixed bug where dropdowns were showing two arrow options
+  - Fixed bug that only allowed surveys with <10 questions
+  - Birthdays can be listed as after 1997 to account for children
+  - Improved layout of radio style questions
+  - Added flow for completing multiple pediatric surveys
+  - Pediatric surveys can now be assigned specifically to diagnosed children
+  - Minor wording changes to custom report for sleep apnea symptoms
+  - **Builder Changes**
+    - Added ability to add/edit survey description
+    - Added ability to archive questions
+- **Provider Changes**
+  - Updated and simplified loading of provider index
+  - Added membership count and callout to dashboard
+- **Other Changes**
+  - Added PEP corner
+  - Improved display and usability of risk assessment tool
+  - Added address to user settings
+
+### Refactoring
+- Cleaned out unused javascript files
+- Removed deprecated research topic columns
+
+## 9.1.0 (December 7, 2015)
+
+### Enhancements
+- **Forum Changes**
+  - Improved layout of forum index
+    - Mobile view includes more information
+    - View count is visible to all members
+    - Recent activity is included
+  - Reintroduced easy moderation links for forum posts
+- **Research Changes**
+  - Reintroduced links to propose new research topics and contextual overview to research topic index
+  - Included more information about clinical trials
+    - Added industry sponsor flag
+  - Increase number of highlights displayed on dashboard and research index
+    - Added quick link to view all
+- **Admin Changes**
+  - Improved usability of admin content organization
+    - Can more simply reorder team member list
+    - Able to delete team members from admin dashboard
+  - Added provider column to data export
+- **Survey Changes**
+  - Added ability to archive answer templates in surveys
+- **SEO Improvements**
+  - Included expansive sitemap in txt/xml formats
+- **Gem Changes**
+  - Started testing Ruby 2.3.0-preview1
+  - Updated to simplecov 0.11.1
+
+## 9.0.1 (November 23, 2015)
+
+### Bug Fixes
+- Fixed dashboard to welcome current user by correct name
+- Fixed forum show page to highlight popular topics
+
+## 9.0.0 (November 23, 2015)
+
+### Enhancements
+- **Design Changes**
+  - Switched to fixed-width version of site
+  - Minor updates to landing page
+- **Engagment Changes**
+  - More dynamic widgets located on the dashboard
+    - Update social profile field
+    - Vote on new research topics
+  - Module added to ask free response questions to different user groups
+    - For example, ask diagnosed patients about their diagnostic experience
+  - Users are able to like posts
+  - Users are able to request expert advice for posts
+  - Users are able to comment on individual posts
+- **Provider Changes**
+  - Provider dashboard shows posts sorted by advice requests
+  - Fixed issue with possible redirect loop during consent procedure
+- **Research Changes**
+  - Research topic restructuring for enhanced usability
+- **Admin Changes**
+  - Replaced engagement report with reaction heatmap
+  - Heatmaps added to individual engagements
+  - Moderators receive alert emails for new forum replies
+- **Other**
+  - Added Groupable concern for compatibility with PostgreSQL 8.3
+  - Added list of clinical trials
+  - Improved purpose and navigation between invites
+
+### Refactoring
+- Refactored stylesheets to make better use of SCSS variables
+- Simplified forum views and actions
+
+## 8.5.0 (November 18, 2015)
+
+### Enhancement
+- **Admin Changes**
+  - Updated the location report to provide a summary of the previous week's signups
+- **Gem Changes**
+  - Updated to rails 4.2.5
+  - Updated to pg 0.18.4
 
 ## 8.4.1 (October 22, 2015)
 

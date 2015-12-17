@@ -1,0 +1,10 @@
+= render 'reactions/like_form', post: post
+= render 'reactions/request_form', post: post
+.pull-right.hidden
+  .btn.btn-clear{ 'aria-controls' => 'collapseExample', 'aria-expanded' => 'false', 'data-target' => "#comments-container-#{post.id}", 'data-toggle' => 'collapse' } Comments
+.clearfix
+.comment-group
+  = render 'reactions/summary', post: post
+  .collapse.in{ id: "comments-container-#{post.id}"}
+    = render 'comments/previous_comments', post: post
+    = render 'comments/comment_form', post: post

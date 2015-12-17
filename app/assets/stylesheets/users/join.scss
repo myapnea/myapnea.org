@@ -1,59 +1,41 @@
-#join-the-community-callout {
-  background-color: #233063;
-  background-color: #387fcf;
-  padding: 15vh 0;
-  border-top: 5px solid #5999de;
-  border-top: 5px solid #ffa400;
-  #btn-join {
+.join-the-community-callout {
+  background-color: $darker-blue;
+  border-top: 5px solid $primary-orange;
+  padding: 50px 10px;
+
+  .btn-join {
     width: 100%;
   }
 }
 
-#user-signup-form {
+.slide-user-signup {
   background-image: asset-url('myapnea/welcome/img-large/unsplash-standing-group.jpg');
+  background-position: bottom;
+  background-repeat: no-repeat;
   background-size: cover;
   -ms-behavior: asset-url('ie8/backgroundsize.min.htc');
-  background-repeat:no-repeat;
-  background-position: bottom;
   font-family: 'Dosis', sans-serif;
+  padding: 100px 0;
   text-align: center;
-  padding-top: 100px;
+
   h1 {
-    margin-bottom:20px;
-    font-weight:600;
-    font-size:40px;
+    font-size: 40px;
+    font-weight: 700;
   }
-  ul {
-    li { font-size: 18px; }
+
+  ul li {
+    font-size: 18px;
   }
-  span#privacy-policy:hover { cursor:pointer; }
-  #panel-sign-up {
-    h4 {
-      margin-bottom: 15px;
-      padding:0 10px;
-    }
-    .input-group {
-      max-width: 500px;
-      margin: auto;
-      margin-top:10px;
-      margin-bottom:10px;
-      font-size:16px;
-      input {
-        margin: 0px auto;
-        border-radius: 3px;
-      }
-      .signup-error {
-        color: #FCF2F2;
-        background-color: #DF7667;
-      }
-    }
-    #over18.input-group {
-      padding-left: 15px;
-      text-align: left;
-      label {
-        position:relative;
-        top:-5px;
-      }
-    }
+}
+
+.user-signup-form {
+  background-color: $white;
+  border-radius: 3px;
+  padding: 30px;
+
+  h4 {
+    margin-bottom: 15px;
+    padding: 0 10px;
   }
+
 }

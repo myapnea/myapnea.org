@@ -1,41 +1,43 @@
 .footer
-  .col-sm-3.hidden-xs
-    %ul
-      %p &copy; 2015 MyApnea.Org
-      %p.address Division of Sleep and Circadian Disorders
-      %p.address Brigham and Women's Hospital
-      %p.address 221 Longwood Avenue
-      %p.address Boston, MA 02115
-      %br
-      = link_to image_tag('myapnea/icons/facebook_icon.png', class: 'share-icons-md'), "http://www.facebook.com/MyApnea"
-      = link_to image_tag('myapnea/icons/twitter_icon.png', class: 'share-icons-md'), 'http://www.twitter.com/myapneaorg'
-      = link_to image_tag('myapnea/icons/email_icon.png', class: 'share-icons-md'), "mailto:support@myapnea.org"
-  .col-sm-2.col-xs-4
-    %ul
-      %p MyApnea
-      %li= link_to 'About', about_path
-      %li= link_to 'Team', team_path
-      -# %li= link_to 'Advisors', advisory_path
-      %li= link_to 'Partners', partners_path
-      %li= link_to 'Privacy', privacy_path
-      %li= link_to 'FAQs', faqs_path
-      - unless current_user
-        %li= link_to 'I forgot my password!', new_user_password_path
-  .col-sm-2.col-xs-4
-    %ul
-      %p.small Features
-      %li= link_to 'Community', community_path
-      %li= link_to 'Providers', providers_path
-      %li= link_to 'Forums', forums_path, data: { no_turbolink: true }
-      %li= link_to 'Research', research_topics_path, data: { no_turbolink: true }
-      %li= link_to 'Surveys', surveys_path, data: { no_turbolink: true }
-  .col-sm-2.col-xs-4
-    %ul
-      %p.small Learn
-      %li= link_to 'Learn', learn_path
-      %li= link_to 'Devices', pap_path
-      %li= link_to 'Research Highlights', accepted_research_topics_path
+  .container
+    .row
+      .col-sm-3.hidden-xs
+        %ul
+          %p &copy; 2015 MyApnea.Org
+          %p.address Division of Sleep and Circadian Disorders
+          %p.address Brigham and Women's Hospital
+          %p.address 221 Longwood Avenue
+          %p.address Boston, MA 02115
+          %br
+          = link_to image_tag('myapnea/icons/facebook_icon.png', class: 'share-icons-md'), "http://www.facebook.com/MyApnea"
+          = link_to image_tag('myapnea/icons/twitter_icon.png', class: 'share-icons-md'), 'http://www.twitter.com/myapneaorg'
+          = link_to image_tag('myapnea/icons/email_icon.png', class: 'share-icons-md'), "mailto:support@myapnea.org"
+      .col-sm-2.col-xs-4
+        %ul
+          %p MyApnea
+          %li= link_to 'About', about_path
+          %li= link_to 'Team', team_path
+          -# %li= link_to 'Advisors', advisory_path
+          %li= link_to 'Partners', partners_path
+          %li= link_to 'Privacy', privacy_path
+          %li= link_to 'FAQs', faqs_path
+          - unless current_user
+            %li= link_to 'I forgot my password!', new_user_password_path
+      .col-sm-2.col-xs-4
+        %ul
+          %p.small Features
+          %li= link_to 'Community', community_path
+          %li= link_to 'Providers', providers_path
+          %li= link_to 'Forums', forums_path, data: { no_turbolink: true }
+          %li= link_to 'Research', research_topics_path, data: { no_turbolink: true }
+          %li= link_to 'Surveys', surveys_path, data: { no_turbolink: true }
+      .col-sm-2.col-xs-4
+        %ul
+          %p.small Learn
+          %li= link_to 'Learn', learn_path
+          %li= link_to 'Devices', pap_path
+          %li= link_to 'Research Highlights', accepted_research_topics_path
 
-  .col-md-2.col-md-offset-1.col-sm-3.col-sm-offset-0.hidden-xs
-    = link_to image_tag("myapnea/welcome/img-small/bwh_footer.png", class: "partners-img-footer img-responsive", id: "partner-BWH"), 'http://www.brighamandwomens.org/'
-    = link_to image_tag("myapnea/welcome/img-small/pcornet_footer.png", class: "partners-img-footer img-responsive", id: "partner-PCORnet"), 'http://www.pcornet.org/'
+      .col-md-2.col-md-offset-1.col-sm-3.col-sm-offset-0.hidden-xs
+        = link_to image_tag("myapnea/welcome/img-small/bwh_footer.png", class: "partners-img-footer img-responsive", id: "partner-BWH"), 'http://www.brighamandwomens.org/'
+        = link_to image_tag("myapnea/welcome/img-small/pcornet_footer.png", class: "partners-img-footer img-responsive", id: "partner-PCORnet"), 'http://www.pcornet.org/'

@@ -1,8 +1,7 @@
-- @title = 'Highlights'
 .content-main-header
-  %h1= @title
-  %p.lead.text-light8{ style: 'margin-bottom: 0px;'}
-    = link_to 'Admin Dashboard', admin_path
+  .container
+    %h1 Highlights
+    %p= link_to 'Admin Dashboard', admin_path
 
 .well
   %h4
@@ -11,17 +10,18 @@
 
 - if Highlight.current.where(displayed: true).count > 3
   .alert.alert-danger
-    %p.lead
-      There are more than 3 items currently marked as 'displayed'. Only three will be displayed at a time, so you should untag certain items to make sure only the three most important items will be displayed.
+    .container
+      %p
+        There are more than 3 items currently marked as 'displayed'. Only three will be displayed at a time, so you should untag certain items to make sure only the three most important items will be displayed.
 
-.content-container
-  .content-body
-    - if @highlights.count == 0
-      %p.lead.centered-text{ style: 'margin-top: 20px' }
+.container
+  - if @highlights.count == 0
+    .content-container
+      %p.lead.centered
         You can
         = link_to 'create highlights', new_highlight_path
         here that promote content on the site on members' dashboards.
-    - else
-      - @highlights.each do |highlight|
-        %hr
-        = render highlight
+  - else
+    - @highlights.each do |highlight|
+      %hr
+      = render highlight

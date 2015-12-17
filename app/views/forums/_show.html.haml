@@ -24,27 +24,27 @@
     - if topic_limit
       -# Forums/Index view
       .content-header
-        %h2.f300.centered-text
+        %h2.f300.centered
           = link_to forum.name, forum, class: 'no-underline'
 
     -# Body displayed in the same way for both views
     .content-body
       %table.table
-        %col{ width: "50px" }
+        %col.hidden-xs.hidden-sm{ width: "50px" }
         %col
-        %col{ width: "70px" }
-        %col{ width: "150px" }
-        %col{ width: "170px" }
+        %col{ width: "50px" }
+        %col.hidden-xs.hidden-sm{ width: "50px" }
+        %col{ width: "100px" }
         %thead
-          %tr
+          %tr.topic-row
+            %th.hidden-xs.hidden-sm
             %th
-            %th
-            %th
+            %th.small
               Posts
-            %th.hidden-xs.hidden-sm
-              Last Post By
-            %th.hidden-xs.hidden-sm
-              Time
+            %th.small.hidden-xs.hidden-sm
+              Views
+            %th.small
+              Last Post
         %tbody
           - topics.each do |topic|
             = render 'topics/summary_table_row', topic: topic

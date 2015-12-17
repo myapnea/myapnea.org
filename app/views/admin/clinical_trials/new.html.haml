@@ -1,7 +1,8 @@
 .content-main-header
-  %h1 New Clinical Trial
-  %p= link_to 'Back', admin_clinical_trials_path
+  .container
+    %h1 New Clinical Trial
+    %p= link_to 'Back', admin_clinical_trials_path
 
-.content-container
-  .content-body
+.container
+  .content-container
     = render 'form'

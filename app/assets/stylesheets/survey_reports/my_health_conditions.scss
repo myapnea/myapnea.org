@@ -1,20 +1,18 @@
 #health-conditions-info {
-  width: 80%;
-  margin: auto;
+  background-color: $primary-orange;
+  border: 5px solid $lightest-orange;
   border-radius: 20px;
-  border: 5px solid #ffc864;
-  background-color: #ffa400;
-  color: white;
-  h2 {
-    // text-decoration: underline;
-  }
+  color: $white;
+  margin: auto;
+  width: 80%;
+
   p {
-    color: rgba(255,255,255,.95);
+    color: rgba(255, 255, 255, .95);
   }
 }
 
 #conditions-sleep-apnea {
-  fill: #5999de !important;
-  stroke: #5999de !important;
-  position:relative;
+  fill: $primary-blue !important;
+  position: relative;
+  stroke: $primary-blue !important;
 }

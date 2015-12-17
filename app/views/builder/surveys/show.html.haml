@@ -36,6 +36,12 @@
         = simple_check @survey.pediatric?
 
       - if @survey.pediatric?
+
+        %dt
+          %strong Only Diagnosed
+        %dd
+          = simple_check @survey.pediatric_diagnosed?
+
         %dt
           %strong Child Minimum Age
         %dd
@@ -46,6 +52,7 @@
         %dd
           = @survey.child_max_age
 
+    %hr
     %h3 User Types
     %table.table.table-bordered.table-striped
       %thead
@@ -62,6 +69,7 @@
         %td{ colspan: '5' }
           = link_to 'Add Another User Type', new_builder_survey_survey_user_type_path(@survey), class: 'btn btn-xs btn-default'
 
+    %hr
     %h3 Encounters
     %table.table.table-bordered.table-striped
       %thead
@@ -94,7 +102,10 @@
         %td{ colspan: '5' }
           = link_to 'Add Another Encounter', new_builder_survey_survey_encounter_path(@survey), class: 'btn btn-xs btn-default'
 
+    %hr
     %h3 Questions
+
+    %h4 Displayed
     %table.table.table-bordered.table-striped
       %thead
         %tr
@@ -102,7 +113,7 @@
           %th URL Slug
           %th Creator
           %th Actions
-      - @survey.questions.each do |question|
+      - @survey.questions.unarchived.each do |question|
         %tr
           %td= link_to question.text_en, builder_survey_question_path(@survey, question)
           %td
@@ -112,3 +123,20 @@
       %tr
         %td{ colspan: '4' }
           = link_to 'Add Another Question', new_builder_survey_question_path(@survey), class: 'btn btn-xs btn-default'
+
+    - if @survey.questions.archived.present?
+      %h4 Archived
+      %table.table.table-bordered.table-striped
+        %thead
+          %tr
+            %th Text EN
+            %th URL Slug
+            %th Creator
+            %th Actions
+        - @survey.questions.archived.each do |question|
+          %tr
+            %td= link_to question.text_en, builder_survey_question_path(@survey, question)
+            %td
+              %code= question.slug
+            %td= link_to_if current_user.owner?, question.user.name, question.user if question.user
+            %td= link_to 'Edit', edit_builder_survey_question_path(@survey, question), class: 'btn btn-xs btn-default'

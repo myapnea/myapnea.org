@@ -1,9 +1,10 @@
 .content-main-header
-  %h1.f300
-    = link_to 'Children', children_path
-    &middot;
-    Add New Child
+  .container
+    %h1
+      = link_to 'Children', children_path
+      &middot;
+      Add New Child
 
-.content-container
-  .content-body
+.container
+  .content-container
     = render 'form'

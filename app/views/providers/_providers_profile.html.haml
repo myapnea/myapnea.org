@@ -19,7 +19,7 @@
             %h4.f300
               Change Photo
             %br
-            .centered-text
+            .centered
               =f.file_field :photo
             %br
             #filedrag{ data: { object: 'dropfile' } }
@@ -56,7 +56,7 @@
         .col-sm-6
           =f.text_field :provider_name, class: 'form-control', placeholder: 'Your official name (eg. John Smith Medical)', data: { object: 'inline-validation-item', name: 'provider-name' }
         .col-sm-3.hidden{ data: { object: 'provider-name--error' } }
-          %p.small.centered-text.inline-validation-error
+          %p.small.centered.inline-validation-error
             Please enter your official provider name!
 
       .form-group
@@ -65,7 +65,7 @@
         .col-sm-6
           =f.text_field :slug, class: 'form-control', placeholder: 'Your unique URL (eg. john-smith-medical)', data: { object: 'inline-validation-item', name: 'provider-slug' }
         .col-sm-3.hidden{ data: { object: 'provider-slug--error' } }
-          %p.small.centered-text.inline-validation-error
+          %p.small.centered.inline-validation-error
             Please enter a unique URL so users can easily find you! Only use numbers and lower-case letters, separated by hyphens (e.g. provider-example-1).
 
       .form-group
@@ -74,10 +74,10 @@
         .col-sm-6
           =f.text_area :welcome_message, class: 'form-control', placeholder: 'Welcome to my page!', value: current_user.welcome_message, rows: '3', data: { object: 'inline-validation-item', name: 'provider-welcome-message' }
         .col-sm-3.hidden{ data: { object: 'provider-welcome-message--error' } }
-          %p.small.centered-text.inline-validation-error
+          %p.small.centered.inline-validation-error
             Please enter a unique message for your incoming members!
 
-      .row
+      .form-group
         =f.submit "Save and Preview Changes", class: 'btn btn-primary-custom col-sm-6 col-sm-offset-3'
 
     .content-footer

@@ -1,15 +1,15 @@
-#risk-assessment-container
-  .row.reset-layout.logo-color-bcg{ style: 'padding-bottom:10px;' }
+.container#risk-assessment-container
+  .row.logo-color-bcg{ style: 'padding-bottom:10px;' }
     .col-sm-8
-      %h1.centered-text.text-white
+      %h1.centered.white
         Sleep Apnea Risk Assessment
     #risk-assessment-logo.col-sm-2.col-sm-offset-1
       = link_to root_path do
         = image_tag 'myapnea/logos/MyApneaLogo_border_whitetext_300x80.png', class: 'img-responsive'
   = form_tag sleep_apnea_risk_assessment_results_path do
-    .row.reset-layout
-      .col-sm-6.reset-layout
-        #stopbang-gender.row.reset-layout
+    .row
+      .col-sm-6
+        #stopbang-gender.row
           .col-xs-6
             %h4
               What is your sex?
@@ -22,39 +22,38 @@
               = radio_button_tag 'gender', 'female'
               %label{ for: 'gender' }
                 %p Female
-        #stopbang-age.row.reset-layout
+        #stopbang-age.row
           .col-xs-6
             %h4
               What is your age?
           .col-xs-6
             = number_field_tag 'age'
-            %label.select-label{ for: 'years' } years
-        #stopbang-bmi
-          #stopbang-height.row.reset-layout
+        #stopbang-bmi.row
+          #stopbang-height.row
             .col-xs-6
               %h4
                 What is your height?
             .col-xs-6
-              .row.reset-layout
-                .col-sm-6.no-padding
+              .row
+                .col-sm-6
                   = select_tag 'feet', options_for_select(0..8), include_blank: true, data: { object: 'feet-input' }
-                  %label.select-label{ for: 'feet'} feet
-                .col-sm-6.no-padding
+                  %label.select-label{ for: 'feet'} ft
+                .col-sm-6
                   = select_tag 'inches', options_for_select(0..11), include_blank: true, data: { object: 'inches-input' }
-                  %label.select-label{ for: 'inches' } inches
-          #stopbang-weight.row.reset-layout
+                  %label.select-label{ for: 'inches' } in
+          #stopbang-weight.row
             .col-xs-6
               %h4
                 What is your weight?
             .col-xs-6
               = number_field_tag 'weight', nil, class: 'number-input', data: { object: 'weight-input' }
-              %label.f300{ for: 'weight' } pounds
-          .row.reset-layout
+              %label.f300{ for: 'weight' } lbs
+          .row
             .col-xs-6
               %h4 Your BMI:
             .col-xs-6
               %h4#stopbang-bmi-output.f300
-        #stopbang-bp.row.reset-layout
+        #stopbang-bp.row
           .col-xs-6
             %h4
               Are you currently being treated for high blood pressure?
@@ -67,7 +66,7 @@
               = radio_button_tag 'hbp', 'no'
               %label{ for: 'snoring' }
                 %p No
-        #stopbang-snoring.row.reset-layout
+        #stopbang-snoring.row
           .col-xs-6
             %h4
               Do you snore loudly?
@@ -82,8 +81,8 @@
               = radio_button_tag 'snoring', 'no'
               %label{ for: 'snoring' }
                 %p No
-      .col-sm-6.reset-layout
-        #stopbang-tiredness.row.reset-layout
+      .col-sm-6
+        #stopbang-tiredness.row
           .col-xs-6
             %h4
               Do you often feel tired, fatigued, or sleepy during the daytime?
@@ -96,7 +95,7 @@
               = radio_button_tag 'tiredness', 'no'
               %label{ for: 'tiredness' }
                 %p No
-        #stopbang-observation.row.reset-layout
+        #stopbang-observation.row
           .col-xs-6
             %h4
               Has anyone ever observed you stop breathing or start choking/gasping during your sleep?
@@ -109,7 +108,7 @@
               = radio_button_tag 'observation', 'no'
               %label{ for: 'observation' }
                 %p No
-        #stopbang-neck.row.reset-layout
+        #stopbang-neck.row
           .col-xs-6
             %h4
               Do you have a large neck size?
@@ -127,10 +126,10 @@
               = radio_button_tag 'neck', 'no'
               %label{ for: 'neck' }
                 %p No
-        #stopbang-submit.centered-text
-          %button.btn.btn-success{ data: { object: 'submit-risk-assessment'} }
+        #stopbang-submit.centered
+          %button.btn.btn-success.disabled{ data: { object: 'submit-risk-assessment'} }
             %h3 Check My Risk
-  .row.reset-layout.primary-orange-bcg
+  .row.primary-orange-bcg
     .col-sm-4
     .col-sm-4
     .col-sm-4

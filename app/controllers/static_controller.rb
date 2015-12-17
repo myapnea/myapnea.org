@@ -2,9 +2,11 @@ class StaticController < ApplicationController
   before_action :set_active_top_nav_link_to_learn, only: [:learn]
 
   before_action :load_pc, only: [ :team, :advisory, :learn, :research ]
-  before_action :about_layout, only: [ :research ]
+  before_action :about_layout, only: :research
 
   before_action :set_SEO_elements
+
+  layout 'static'
 
   ## Static
   def about
@@ -13,6 +15,14 @@ class StaticController < ApplicationController
 
   def team
     @team_members = Admin::TeamMember.current.order('position')
+  end
+
+  def pep_corner
+    @pep_members = Admin::TeamMember.current.where(group: 'patient').where.not(interview: nil).order('position')
+  end
+
+  def pep_corner_show
+    @pep_member = Admin::TeamMember.find(params[:pep_id])
   end
 
   def advisory
@@ -31,26 +41,30 @@ class StaticController < ApplicationController
   end
 
   def partners
-    @partners = Admin::Partner.current.where(displayed: true).order('position')
+    @partners = Admin::Partner.current.where(displayed: true).order(:position)
   end
 
   def learn
     @page_content = "If you can't sleep, are experiencing sleep apnea symptoms, have been diagnosed with obstructive sleep apnea or central sleep apnea, MyApnea wants to help you understand sleep apnea and sleep apnea causes."
-    render layout: 'layouts/application-no-sidebar'
   end
 
   def faqs
     @page_content = "What is MyApnea? What is the difference between OSA and CSA? Where can you take sleep tests? If you are experiencing sleep deprivation or sleep apnea symptoms, MyApnea will explain the basics."
   end
 
-  def research
-
+  def clinical_trials
+    @clinical_trials = Admin::ClinicalTrial.current.order(:position)
   end
 
   def version
   end
 
   def sitemap
+    respond_to do |format|
+      format.html
+      format.xml
+      format.text
+    end
   end
 
   def governance_policy
@@ -129,10 +143,6 @@ class StaticController < ApplicationController
 
   def side_effects_PAP
     render 'static/SEO_content/side_effects_PAP'
-  end
-
-  def sleep_tips
-    render 'static/sleep_tips/sleep_tips'
   end
 
   ## THEME

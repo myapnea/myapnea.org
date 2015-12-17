@@ -1,43 +1,41 @@
-.content-container
-  .content-header.darkerer-blue-bcg{ style: 'padding-bottom: 20px;'}
-    %h1.f300.white
-      %span.f500 Sleep Apnea:
+.content-main-header
+  .container
+    %h1
+      %span.f500.white Sleep Apnea:
       a common and potentially life-threatening sleep and breathing disorder
-  .lighter-blue-bcg
-    .horizontal-inset
-      = link_to 'General Information', '#general-info', class: 'btn white'
-      = link_to 'Videos', '#videos', class: 'btn white'
-      = link_to 'Tools', '#tools', class: 'btn white'
-      .clearfix
-  .content-body
-    %h2.f300.centered
+
+.content-container
+  .container
+    = link_to 'General Information', '#general-info'
+    &middot;
+    = link_to 'Videos', '#videos'
+    &middot;
+    = link_to 'Tools', '#tools'
+    %hr
+    %h3.f300
       Sleep apnea causes you to repeatedly wake up throughout the night, as you involuntarily
       = succeed ',' do
         %span.f500 stop breathing
       sometimes hundreds of times every night.
     .row.centered
       = image_tag 'myapnea/learn/apnea_episodes_orangeblue.png', class: 'img-responsive', style: 'margin: auto'
-    %h2.f300.centered
+    %h3.f300
       This results in a number of serious symptoms and side effects, including:
-    .row.reset-layout{ style: 'font-size: 16px; '}
-      .col-lg-6.col-lg-offset-4.col-sm-5.col-sm-offset-1.col-xs-10.col-xs-offset-1
-        %ul{ style: 'margin-bottom: 0px; '}
-          %li Excessive daytime sleepiness
-          %li Waking with a dry mouth or sore throat
-          %li Morning headaches
-          %li Loud snoring and choking noises
-          %li Waking up gasping for air
-      .col-lg-2.visible-lg
-      .col-lg-6.col-lg-offset-4.col-sm-5.col-xs-10.col-xs-offset-1
-        %ul
-          %li Lack of energy
-          %li Drowsiness while driving
-          %li Difficulty paying attention
-          %li Memory loss
-          %li Irritability and personality changes
+    .row
+      %ul.horizontal-inset
+        %li Excessive daytime sleepiness
+        %li Waking with a dry mouth or sore throat
+        %li Morning headaches
+        %li Loud snoring and choking noises
+        %li Waking up gasping for air
+        %li Lack of energy
+        %li Drowsiness while driving
+        %li Difficulty paying attention
+        %li Memory loss
+        %li Irritability and personality changes
     %br
     %br
-    %h2.f300.centered
+    %h3.f300
       Over
       %span.f500 25 million
       Americans currently have sleep apnea, but
@@ -61,7 +59,7 @@
       .col-sm-1.col-xs-2
         = image_tag 'myapnea/learn/man_orange.png', class: 'img-responsive'
     %br
-    %h2.f300.centered
+    %h3.f300
       Left untreated, sleep apnea increases the risk for many serious medical conditions, such as:
     .horizontal-inset
       .row{ style: 'margin: 40px 0 40px 0; font-size: 16px;' }
@@ -70,7 +68,7 @@
           = image_tag 'myapnea/learn/heart_issues.png', class: 'img-responsive'
         .col-xs-3.visible-xs
         .col-sm-7.col-xs-12
-          %ul.text-dark9
+          %ul.dark9
             %li High blood pressure
             %li Heart attack
             %li Stroke
@@ -80,89 +78,104 @@
           = image_tag 'myapnea/learn/brain_issues.png', class: 'img-responsive'
         .col-xs-3.visible-xs
         .col-sm-7.col-xs-12
-          %ul.text-dark9
+          %ul.dark9
             %li Memory loss
             %li Cognitive decline
             %li Mood disorders, like depression
-    %h2.f300.centered.horizontal-inset
+    %h3.f300
       However, once diagnosed, sleep apnea can be successfully treated. Treatment can restore normal breathing during sleep, reduce stress on your heart, relieve symptoms, and improve quality of life.
-    #myapnea-aims.darkerer-blue-bcg
-      %h2.f300.white.centered
-        %span.primary-orange MyApnea.Org
-        aims to mobilize the sleep apnea community to work together to get better answers through community support and research.
 
-    %a.anchor#general-info
-    %div{ style: 'max-width: 1400px; margin: auto'}
-      .row{ style: 'margin: 50px 0 20px 0;'}
-        .col-sm-4
-          = link_to what_is_sleep_apnea_path, class: 'no-underline white' do
-            = image_tag 'myapnea/learn/sections/what_is_sleep_apnea.png', class: 'img-responsive', style: 'border-radius: 3px; margin: auto'
-          %br.visible-xs
-        .col-sm-4
-          = link_to obstructive_sleep_apnea_path, class: 'no-underline white' do
-            = image_tag 'myapnea/learn/sections/osa.png', class: 'img-responsive', style: 'border-radius: 3px; margin: auto'
-          %br.visible-xs
-        .col-sm-4
-          = link_to central_sleep_apnea_path, class: 'no-underline white' do
-            = image_tag 'myapnea/learn/sections/csa.png', class: 'img-responsive', style: 'border-radius: 3px; margin: auto'
-          %br.visible-xs
-      .row{ style: 'margin: 20px 0 20px 0;'}
-        .col-sm-4
-          = link_to causes_of_sleep_apnea_path, class: 'no-underline white' do
-            = image_tag 'myapnea/learn/sections/causes.png', class: 'img-responsive', style: 'border-radius: 3px; margin: auto'
-          %br.visible-xs
-        .col-sm-4
-          = link_to symptoms_of_sleep_apnea_path, class: 'no-underline white' do
-            = image_tag 'myapnea/learn/sections/symptoms.png', class: 'img-responsive', style: 'border-radius: 3px; margin: auto'
-          %br.visible-xs
-        .col-sm-4
-          = link_to risk_factors_for_sleep_apnea_path, class: 'no-underline white' do
-            = image_tag 'myapnea/learn/sections/risk_factors.png', class: 'img-responsive', style: 'border-radius: 3px; margin: auto'
-          %br.visible-xs
-      .row{ style: 'margin: 20px 0 20px 0;'}
-        .col-sm-4
-          = link_to diagnosis_of_sleep_apnea_path, class: 'no-underline white' do
-            = image_tag 'myapnea/learn/sections/diagnosis.png', class: 'img-responsive', style: 'border-radius: 3px; margin: auto'
-          %br.visible-xs
-        .col-sm-4
-          = link_to treatment_options_for_sleep_apnea_path, class: 'no-underline white' do
-            = image_tag 'myapnea/learn/sections/treatments.png', class: 'img-responsive', style: 'border-radius: 3px; margin: auto'
-          %br.visible-xs
-        .col-sm-4
-          = link_to pap_path, class: 'no-underline white' do
-            = image_tag 'myapnea/learn/sections/pap_devices.png', class: 'img-responsive', style: 'border-radius: 3px; margin: auto'
-          %br.visible-xs
+.myapnea-aims.primary-blue-bcg
+  .container
+    .row
+      .col-sm-4
+        %br
+        = image_tag 'myapnea/logos/MyApneaLogo_border_whitetext_300x80.png', class: 'img-responsive'
+      .col-sm-8
+        %h2.f300.white
+          aims to mobilize the sleep apnea community to work together to get better answers through community support and research.
 
-    %a.anchor#tools
-    .row{ style: 'margin: 50px 0 100px 0;'}
-      .col-sm-6
-        = link_to sleep_apnea_risk_assessment_path, class: 'no-underline white' do
-          .primary-blue-bcg{ style: 'padding: 20px; border-radius: 10px; '}
-            %h3.centered
-              Sleep Apnea Risk Assessment
-            = image_tag 'myapnea/learn/risk_assessment.png', class: 'img-responsive', style: 'border-radius: 5px;'
-        %br.visible-xs
-      .col-sm-6
-        = link_to sleep_apnea_and_bmi_path, class: 'no-underline white' do
-          .primary-blue-bcg{ style: 'padding: 20px; border-radius: 10px; '}
-            %h3.centered
-              Sleep Apnea and BMI
-            = image_tag 'myapnea/learn/bmi_tool.png', class: 'img-responsive', style: 'border-radius: 5px;'
+.container
+  %a.anchor#general-info
+  %br
+  .row
+    .col-sm-4
+      = link_to what_is_sleep_apnea_path, class: 'no-underline white' do
+        = image_tag 'myapnea/learn/sections/what_is_sleep_apnea.png', class: 'img-responsive', style: 'border-radius: 3px; margin: auto'
+      %br
+    .col-sm-4
+      = link_to obstructive_sleep_apnea_path, class: 'no-underline white' do
+        = image_tag 'myapnea/learn/sections/osa.png', class: 'img-responsive', style: 'border-radius: 3px; margin: auto'
+      %br
+    .col-sm-4
+      = link_to central_sleep_apnea_path, class: 'no-underline white' do
+        = image_tag 'myapnea/learn/sections/csa.png', class: 'img-responsive', style: 'border-radius: 3px; margin: auto'
+      %br
+  .row
+    .col-sm-4
+      = link_to causes_of_sleep_apnea_path, class: 'no-underline white' do
+        = image_tag 'myapnea/learn/sections/causes.png', class: 'img-responsive', style: 'border-radius: 3px; margin: auto'
+      %br
+    .col-sm-4
+      = link_to symptoms_of_sleep_apnea_path, class: 'no-underline white' do
+        = image_tag 'myapnea/learn/sections/symptoms.png', class: 'img-responsive', style: 'border-radius: 3px; margin: auto'
+      %br
+    .col-sm-4
+      = link_to risk_factors_for_sleep_apnea_path, class: 'no-underline white' do
+        = image_tag 'myapnea/learn/sections/risk_factors.png', class: 'img-responsive', style: 'border-radius: 3px; margin: auto'
+      %br
+  .row
+    .col-sm-4
+      = link_to diagnosis_of_sleep_apnea_path, class: 'no-underline white' do
+        = image_tag 'myapnea/learn/sections/diagnosis.png', class: 'img-responsive', style: 'border-radius: 3px; margin: auto'
+      %br
+    .col-sm-4
+      = link_to treatment_options_for_sleep_apnea_path, class: 'no-underline white' do
+        = image_tag 'myapnea/learn/sections/treatments.png', class: 'img-responsive', style: 'border-radius: 3px; margin: auto'
+      %br
+    .col-sm-4
+      = link_to pap_path, class: 'no-underline white' do
+        = image_tag 'myapnea/learn/sections/pap_devices.png', class: 'img-responsive', style: 'border-radius: 3px; margin: auto'
+      %br
 
-    %a.anchor#videos
-    .row{ style: 'margin: 50px 0 100px 0;'}
-      .col-sm-4
-        .primary-blue-bcg{ style: 'padding: 10px '}
-          .embed-responsive.embed-responsive-16by9
-            %iframe.embed-responsive-item{ src: '//www.youtube.com/embed/4JkiWvWn2aU?rel=0&modestbranding=1&autohide=1&showinfo=0&wmode=opaque', allowFullScreen: 'true',  webkitallowfullscreen: 'true', mozallowfullscreen: 'true' }
-      .col-sm-4
-        .primary-blue-bcg{ style: 'padding: 10px '}
-          .embed-responsive.embed-responsive-16by9
-            %iframe.embed-responsive-item{ src: '//www.youtube.com/embed/3I8YbWRgkjw?rel=0&modestbranding=1&autohide=1&showinfo=0&wmode=opaque', allowFullScreen: 'true',  webkitallowfullscreen: 'true', mozallowfullscreen: 'true' }
-      .col-sm-4
-        .primary-blue-bcg{ style: 'padding: 10px '}
-          .embed-responsive.embed-responsive-16by9
-            %iframe.embed-responsive-item{ src: '//www.youtube.com/embed/7CcP7MrzJWw?rel=0&modestbranding=1&autohide=1&showinfo=0&wmode=opaque', allowFullScreen: 'true',  webkitallowfullscreen: 'true', mozallowfullscreen: 'true' }
+  %br
+  %br
+  %a.anchor#tools
+  .row
+    .col-sm-6
+      = link_to sleep_apnea_risk_assessment_path, class: 'no-underline white' do
+        .primary-blue-bcg{ style: 'padding: 20px; border-radius: 10px; '}
+          %h3.centered
+            Sleep Apnea Risk Assessment
+          = image_tag 'myapnea/learn/risk_assessment.png', class: 'img-responsive', style: 'border-radius: 5px;'
+      %br
+    .col-sm-6
+      = link_to sleep_apnea_and_bmi_path, class: 'no-underline white' do
+        .primary-blue-bcg{ style: 'padding: 20px; border-radius: 10px; '}
+          %h3.centered
+            Sleep Apnea and BMI
+          = image_tag 'myapnea/learn/bmi_tool.png', class: 'img-responsive', style: 'border-radius: 5px;'
+      %br
+
+  %br
+  %br
+  %a.anchor#videos
+  .row
+    .col-sm-4
+      .primary-blue-bcg{ style: 'padding: 10px '}
+        .embed-responsive.embed-responsive-16by9
+          %iframe.embed-responsive-item{ src: '//www.youtube.com/embed/4JkiWvWn2aU?rel=0&modestbranding=1&autohide=1&showinfo=0&wmode=opaque', allowFullScreen: 'true',  webkitallowfullscreen: 'true', mozallowfullscreen: 'true' }
+      %br
+    .col-sm-4
+      .primary-blue-bcg{ style: 'padding: 10px '}
+        .embed-responsive.embed-responsive-16by9
+          %iframe.embed-responsive-item{ src: '//www.youtube.com/embed/3I8YbWRgkjw?rel=0&modestbranding=1&autohide=1&showinfo=0&wmode=opaque', allowFullScreen: 'true',  webkitallowfullscreen: 'true', mozallowfullscreen: 'true' }
+      %br
+    .col-sm-4
+      .primary-blue-bcg{ style: 'padding: 10px '}
+        .embed-responsive.embed-responsive-16by9
+          %iframe.embed-responsive-item{ src: '//www.youtube.com/embed/7CcP7MrzJWw?rel=0&modestbranding=1&autohide=1&showinfo=0&wmode=opaque', allowFullScreen: 'true',  webkitallowfullscreen: 'true', mozallowfullscreen: 'true' }
+      %br
 
 - unless current_user
   = render 'home/join_the_community', referrer: 'learn', message: 'Learn more and share your own story'

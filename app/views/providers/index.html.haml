@@ -1,52 +1,27 @@
 .content-main-header
-  %h1
-    Providers on
-    = ENV['pprn_title']
+  .container
+    %h1 Providers on MyApnea.Org
 
-
-
-.centered
+.container
   .pull-right
     = form_tag providers_path, method: :get, class: 'form-inline', style: 'margin: 20px 20px;' do
       .input-group
         = text_field_tag 's', params[:s], class: 'form-control'
         %span.input-group-btn
           = submit_tag 'Search', class: 'btn btn-primary', name: nil
-  = paginate @providers, theme: 'bootstrap-small'
 
-.clearfix
+  .clearfix
 
-.content-container.inherit-background
-  .content-body
-    .row.reset-layout
-      - if @providers.count == 0 and params[:s].present?
-        .col-xs-12.centered
-          %p.lead
-            Sorry, we could not find any providers matching your search:
-            %code= params[:s]
-      - else
-        - @providers.order(:provider_name).each do |provider|
-          .col-xs-12.col-sm-6.col-md-4
-            .panel
-              .panel-body
-                .f500.centered{ style: "white-space:nowrap;position:relative;margin-bottom:10px;overflow-x:hidden" }
-                  = link_to provider.provider_name, provider_path(provider.slug), data: { toggle: 'tooltip', title: provider.provider_name, container: 'body', placement: 'top' }
-                .centered{ style: "padding-bottom:5px;height:145px;line-height:145px" }
-                  = link_to image_tag( user_photo_url(provider), alt: '', style: 'max-width:100%;max-height:140px' ), provider_path(provider.slug)
-                .centered.f300{ style: 'margin-top:5px' }
-                  %p
-                    - member_count = provider.users.count
-                    - if member_count < 100
-                      Recruiting New Members
-                    - elsif member_count < 1000
-                      Hundreds of members
-                    - else
-                      Thousands of members
-                  = link_to "Join Provider Group", provider_path(provider.slug), class: 'btn btn-xs btn-primary'
+  - if @providers.count == 0 and params[:s].present?
+    %p.lead.centered
+      Sorry, we could not find any providers matching your search:
+      %code= params[:s]
+  - else
+    #current-provider-list
+      = render 'providers/show_group'
 
-.centered
-  = paginate @providers, theme: 'bootstrap-small'
 
-.content-container
-  .content-body.centered
-    = link_to 'Become a Provider', new_provider_path, class: 'btn btn-lg btn-primary'
+  - unless current_user
+    .content-container
+      .centered
+        = link_to 'Become a Provider', new_provider_path, class: 'btn btn-lg btn-primary'

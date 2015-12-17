@@ -6,6 +6,12 @@ class Admin::TeamMembersControllerTest < ActionController::TestCase
     @admin_team_member = admin_team_members(:one)
   end
 
+  test 'should get order for admin' do
+    login(@admin)
+    get :order
+    assert_response :success
+  end
+
   test 'should get photo for logged out user' do
     get :photo, id: @admin_team_member
     assert_response :success

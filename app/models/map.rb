@@ -44,6 +44,16 @@ class Map
     end
   end
 
+  def self.get_state_name(code)
+    state = MAP_STATES_AND_CODES.find { |_state, state_code| state_code == code }
+    state.first if state
+  end
+
+  def self.get_country_name(code)
+    country = MAP_COUNTRIES_AND_CODES.find { |_country, country_code| country_code == code }
+    country.first if country
+  end
+
   private
 
   def self.filter_by_key(key, names_and_codes)

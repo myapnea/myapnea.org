@@ -1,0 +1,111 @@
+.comment-group {
+  background-color: $footer-color;
+  border-top: 1px solid $border-top-color;
+  margin-bottom: -10px;
+  margin-left: -10px;
+  margin-right: -10px;
+  margin-top: 5px;
+
+  .comment-group-item {
+    margin-bottom: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 5px;
+  }
+
+  .comment-group-item:last-of-type {
+    margin-bottom: 0;
+  }
+}
+
+.comment-group-item {
+  position: relative;
+
+  .comment-usr-img {
+    left: 0;
+    position: absolute;
+    top: 5px;
+    width: 25px;
+
+    img {
+      height: 25px;
+      width: 25px;
+    }
+  }
+
+  .comment-content {
+    font-size: 14px;
+    margin-left: 30px;
+
+    .small {
+      color: $dark-gray;
+      font-size: 12px;
+    }
+  }
+}
+
+
+.reply {
+  $reply-height: 35px;
+  background-color: $footer-color;
+  height: $reply-height;
+  margin-bottom: -10px;
+  position: relative;
+
+  .reply-user {
+    left: 10px;
+    position: absolute;
+    top: 5px;
+    width: $reply-height;
+
+    img {
+      height: 25px;
+      width: 25px;
+    }
+  }
+
+  .reply-field {
+    height: $reply-height;
+    margin-left: 40px;
+
+    input {
+      border-bottom: 0;
+      border-color: $lighter-gray;
+      border-radius: 0;
+      border-right: 0;
+      border-top: 0;
+      font-size: 12px;
+      height: $reply-height;
+      padding: 2px;
+    }
+
+    input:focus {
+      border-color: $light-gray;
+      box-shadow: none;
+      outline: 0;
+    }
+  }
+}
+
+.vote-status-container {
+  position: relative;
+
+  .current-vote-icon {
+    left: 20px;
+    position: absolute;
+    top: 20px;
+    width: 30px;
+  }
+
+  .current-vote-status {
+    margin-left: 30px;
+    margin-right: 150px;
+  }
+
+  .change-vote-container {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    width: 150px;
+  }
+}

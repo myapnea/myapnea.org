@@ -1,0 +1,38 @@
+.content-container {
+  background-color: $white;
+  box-shadow: $box-shadow;
+  margin-bottom: 20px;
+  padding: 20px;
+
+  .content-footer {
+    border-top: 1px solid $border-top-color;
+    padding-top: 10px;
+  }
+
+  &.less-padding { padding: 10px; }
+
+  &.inherit-background {
+    background: inherit;
+    box-shadow: none;
+  }
+}
+
+.horizontal-inset {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.full-screen-video {
+  margin: auto;
+  width: 800px;
+}
+
+.admin-container {
+  margin-bottom: 20px;
+}
+
+@media (max-width: $screen-md) {
+  .full-screen-video {
+    width: 100%;
+  }
+}

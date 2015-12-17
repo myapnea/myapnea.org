@@ -1,14 +1,11 @@
-- @title = 'Timeline Report'
 .content-main-header
-  %h1
-    = @title
-  %p.lead.text-light8{ style: 'margin-bottom: 0px;'}
-    = link_to 'Admin Dashboard', admin_path
+  .container
+    %h1 Timeline Report
+    %p= link_to 'Admin Dashboard', admin_path
 
-.content-container
-  .content-header
+.container
+  .content-container
     %h3 Timeline Report
-  .content-body
     %table.table.table-striped
       %thead
         %tr

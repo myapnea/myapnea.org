@@ -3,12 +3,18 @@ class Admin::TeamMembersController < ApplicationController
   before_action :check_owner,           except: [:photo]
   before_action :set_admin_team_member, only: [:show, :edit, :update, :destroy, :photo]
 
+  layout 'admin'
+
   def photo
     if @admin_team_member.photo.size > 0
       send_file File.join(CarrierWave::Uploader::Base.root, @admin_team_member.photo.url)
     else
       head :ok
     end
+  end
+
+  def order
+    @admin_team_members = Admin::TeamMember.current.order('position')
   end
 
   # GET /admin/team_members
@@ -53,7 +59,7 @@ class Admin::TeamMembersController < ApplicationController
   def update
     respond_to do |format|
       if @admin_team_member.update(admin_team_member_params)
-        format.html { redirect_to @admin_team_member, notice: 'Team member was successfully updated.' }
+        format.html { redirect_to params[:redirect_back] ? :back : @admin_team_member, notice: 'Team member was successfully updated.' }
         format.json { render :show, status: :ok, location: @admin_team_member }
       else
         format.html { render :edit }
@@ -80,6 +86,6 @@ class Admin::TeamMembersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def admin_team_member_params
-      params.require(:admin_team_member).permit(:name, :designations, :role, :position, :bio, :photo, :group)
+      params.require(:admin_team_member).permit(:name, :designations, :role, :position, :bio, :photo, :group, :interview)
     end
 end

@@ -12,6 +12,7 @@ user_<%= i %>:
   adult_diagnosed: true
   encrypted_password: <%= pw %>
   accepted_terms_conditions_at: <%= Time.zone.now %>
+  forum_name: User<%= i %>
 <% end %>
 
 has_accepted_privacy:
@@ -58,6 +59,7 @@ participant:
   zip_code: 12345
   over_eighteen: true
   adult_diagnosed: true
+  forum_name: participant
   encrypted_password: <%= pw %>
 
 moderator_1:
@@ -69,6 +71,7 @@ moderator_1:
   over_eighteen: true
   adult_diagnosed: true
   encrypted_password: <%= pw %>
+  forum_name: mod1
   accepted_terms_conditions_at: <%= Time.zone.now %>
 
 moderator_2:
@@ -80,6 +83,7 @@ moderator_2:
   over_eighteen: true
   adult_diagnosed: true
   encrypted_password: <%= pw %>
+  forum_name: mod2
   accepted_terms_conditions_at: <%= Time.zone.now %>
 
 owner:
@@ -92,6 +96,7 @@ owner:
   adult_diagnosed: true
   encrypted_password: <%= pw %>
   accepted_terms_conditions_at: <%= Time.zone.now %>
+  forum_name: owner
 
 has_completed_survey:
   first_name: Complete
@@ -103,6 +108,7 @@ has_completed_survey:
   accepted_privacy_policy_at: <%= 6.day.ago.to_s(:db) %>
   accepted_update_at: <%= Date.parse(User::RECENT_UPDATE_DATE).end_of_day %>
   adult_diagnosed: true
+  forum_name: surveyfinisher
   encrypted_password: <%= pw %>
 
 has_incomplete_survey:
@@ -115,6 +121,7 @@ has_incomplete_survey:
   accepted_update_at: <%= Date.parse(User::RECENT_UPDATE_DATE).end_of_day %>
   over_eighteen: true
   adult_diagnosed: true
+  forum_name: surveynotfinisher
   encrypted_password: <%= pw %>
 
 has_launched_survey:
@@ -127,6 +134,7 @@ has_launched_survey:
   accepted_update_at: <%= Date.parse(User::RECENT_UPDATE_DATE).end_of_day %>
   over_eighteen: true
   adult_diagnosed: true
+  forum_name: surveylaunched
   encrypted_password: <%= pw %>
 
 deleted_moderator:
@@ -164,6 +172,7 @@ blank_slate:
   zip_code: 12345
   over_eighteen: true
   encrypted_password: <%= pw %>
+  forum_name: blankslate
 
 ## Adult Diagnosed
 adult_diagnosed:
@@ -174,6 +183,7 @@ adult_diagnosed:
   over_eighteen: true
   adult_diagnosed: true
   encrypted_password: <%= pw %>
+  forum_name: adultdiagnosed
 
 ## Adult At Risk
 adult_at_risk:
@@ -184,6 +194,7 @@ adult_at_risk:
   over_eighteen: true
   adult_at_risk: true
   encrypted_password: <%= pw %>
+  forum_name: adultatrisk
 
 ## Caregiver Adult
 caregiver_adult:
@@ -194,6 +205,7 @@ caregiver_adult:
   over_eighteen: true
   caregiver_adult: true
   encrypted_password: <%= pw %>
+  forum_name: caregiveradult
 
 ## Caregiver Child
 caregiver_child:
@@ -204,6 +216,7 @@ caregiver_child:
   over_eighteen: true
   caregiver_child: true
   encrypted_password: <%= pw %>
+  forum_name: caregiverchild
 
 ## Researcher
 researcher:
@@ -216,6 +229,7 @@ researcher:
   encrypted_password: <%= pw %>
   accepted_privacy_policy_at: <%= 6.day.ago.to_s(:db) %>
   accepted_terms_of_access_at: <%= 6.day.ago.to_s(:db) %>
+  forum_name: researcher
 
 
 
@@ -244,13 +258,15 @@ provider_without_slug:
   # slug:
   encrypted_password: <%= pw %>
   provider: true
+  forum_name: noslugprovider
 
 builder:
   first_name: Survey
   last_name: Builder
   email: builder@example.com
   encrypted_password: <%= pw %>
-  can_build_surveys: true
+  can_build_surveys: tru
+  forum_name: surveybuilder
 
 
 ## For survey encounter assignment tests
@@ -261,6 +277,7 @@ created_today:
   over_eighteen: true
   encrypted_password: <%= pw %>
   created_at: <%= Date.today.to_s(:db) %>
+  forum_name: created_today
 
 created_five_days_ago:
   first_name: Created
@@ -269,6 +286,7 @@ created_five_days_ago:
   over_eighteen: true
   encrypted_password: <%= pw %>
   created_at: <%= 5.day.ago.to_s(:db) %>
+  forum_name: created_five_days_ago
 
 created_fourteen_days_ago:
   first_name: Created
@@ -277,6 +295,7 @@ created_fourteen_days_ago:
   over_eighteen: true
   encrypted_password: <%= pw %>
   created_at: <%= 14.day.ago.to_s(:db) %>
+  forum_name: created_fourteen_days_ago
 
 created_today_with_locked_baseline:
   first_name: Created
@@ -285,6 +304,7 @@ created_today_with_locked_baseline:
   over_eighteen: true
   encrypted_password: <%= pw %>
   created_at: <%= Date.today.to_s(:db) %>
+  forum_name: created_today_with_locked_baseline
 
 created_five_days_ago_with_locked_baseline:
   first_name: Created
@@ -293,6 +313,7 @@ created_five_days_ago_with_locked_baseline:
   over_eighteen: true
   encrypted_password: <%= pw %>
   created_at: <%= 5.day.ago.to_s(:db) %>
+  forum_name: created_five_days_ago_with_locked_baseline
 
 created_fourteen_days_ago_with_locked_baseline:
   first_name: Created
@@ -301,6 +322,7 @@ created_fourteen_days_ago_with_locked_baseline:
   over_eighteen: true
   encrypted_password: <%= pw %>
   created_at: <%= 14.day.ago.to_s(:db) %>
+  forum_name: created_fourteen_days_ago_with_locked_baseline
 
 ## For completed about-me survey
 finished_about_me_1:
@@ -314,6 +336,7 @@ finished_about_me_1:
   accepted_update_at: <%= Date.parse(User::RECENT_UPDATE_DATE).end_of_day %>
   adult_diagnosed: true
   encrypted_password: <%= pw %>
+  forum_name: finished_about_me_1
 
 finished_about_me_2:
   first_name: Finished
@@ -326,6 +349,7 @@ finished_about_me_2:
   accepted_update_at: <%= Date.parse(User::RECENT_UPDATE_DATE).end_of_day %>
   adult_diagnosed: true
   encrypted_password: <%= pw %>
+  forum_name: finished_about_me_2
 
 finished_about_me_3:
   first_name: Finished
@@ -338,6 +362,7 @@ finished_about_me_3:
   accepted_update_at: <%= Date.parse(User::RECENT_UPDATE_DATE).end_of_day %>
   adult_diagnosed: true
   encrypted_password: <%= pw %>
+  forum_name: finished_about_me_3
 
 finished_about_me_4:
   first_name: Finished
@@ -350,6 +375,7 @@ finished_about_me_4:
   accepted_update_at: <%= Date.parse(User::RECENT_UPDATE_DATE).end_of_day %>
   adult_diagnosed: true
   encrypted_password: <%= pw %>
+  forum_name: finished_about_me_4
 
 finished_about_me_5:
   first_name: Finished
@@ -362,6 +388,7 @@ finished_about_me_5:
   accepted_update_at: <%= Date.parse(User::RECENT_UPDATE_DATE).end_of_day %>
   adult_diagnosed: true
   encrypted_password: <%= pw %>
+  forum_name: finished_about_me_5
 
 finished_about_me_6:
   first_name: Finished
@@ -374,6 +401,7 @@ finished_about_me_6:
   accepted_update_at: <%= Date.parse(User::RECENT_UPDATE_DATE).end_of_day %>
   adult_diagnosed: true
   encrypted_password: <%= pw %>
+  forum_name: finished_about_me_6
 
 api_user:
   first_name: API
@@ -386,6 +414,7 @@ api_user:
   over_eighteen: true
   adult_diagnosed: true
   encrypted_password: <%= pw %>
+  forum_name: api_user
 
 heh_1:
   email: heh_1@mail.com
@@ -399,3 +428,4 @@ heh_1:
   incoming_heh_token: 0987654321
   incoming_heh_at: <%= Time.zone.now %>
   outgoing_heh_at: <%= Time.zone.now %>
+

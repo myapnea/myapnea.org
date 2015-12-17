@@ -1,0 +1,9 @@
+- if post.reactions.current.present?
+  .reaction-summary
+    %p{ style: 'margin-bottom: 0; padding-bottom: 10px; '}
+      - if post.reactions.current.likes.present? and post.reactions.current.requests.present?
+        = succeed ', ' do
+          = pluralize(post.reactions.current.likes.count, 'like')
+      - else
+        = pluralize(post.reactions.current.likes.count, 'like') if post.reactions.current.likes.present?
+      = pluralize(post.reactions.current.requests.count, 'request') if post.reactions.current.requests.present?
