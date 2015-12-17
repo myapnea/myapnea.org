@@ -1,4 +1,4 @@
-## 9.2.0
+## 9.2.0 (December 17, 2015)
 
 ### Enhancements
 - **Admin Changes**
