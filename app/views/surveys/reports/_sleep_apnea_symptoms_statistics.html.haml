@@ -6,7 +6,8 @@
   - ri2 = ReportItem.new(answer_option_counts, answer_template, 2)
   - ri3 = ReportItem.new(answer_option_counts, answer_template, 3)
   - ri4 = ReportItem.new(answer_option_counts, answer_template, 4)
-  - all_ri = [ri1, ri2, ri3, ri4]
+  - ri5 = ReportItem.new(answer_option_counts, answer_template, 5)
+  - all_ri = [ri1, ri2, ri3, ri4, ri5]
 
   %br
   .row
@@ -20,5 +21,6 @@
         with this symptom lasting for an average of
         = succeed '.' do
           %span.darker-blue= median.answer_option.text if median
-        / %span.primary-orange= ri4.percent
-        / of MyApnea users report experiencing this symptom at least one year before diagnosis.
+        %span.primary-orange
+          = "#{(ri2.percent_number + ri3.percent_number + ri4.percent_number + ri5.percent_number).round(1)}%"
+        of MyApnea users report experiencing this symptom at least one year before diagnosis.

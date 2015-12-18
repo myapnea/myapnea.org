@@ -1,5 +1,8 @@
 ## 9.2.1
 
+### Enhancements
+- Changed report for sleep apnea symptom stats to match new answer options
+
 ## 9.2.0 (December 17, 2015)
 
 ### Enhancements
