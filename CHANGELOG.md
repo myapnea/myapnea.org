@@ -2,6 +2,10 @@
 
 ### Enhancements
 - **Survey Changes**
+  - New "CPAP Adherence" survey added
+  - "My Risk Profile" survey has been updated
+  - "My Sleep Apnea" survey has been updated
+  - "My Sleep Apnea Treatment" survey has been updated
   - Changed report for sleep apnea symptom stats to match new answer options
 - **Gem Changes**
   - Updated to Ruby 2.3.0
