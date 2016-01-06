@@ -174,14 +174,17 @@ namespace :surveys do
     q = s.questions.create(slug: 'advice', text_en: 'If you were asked to talk to someone just about to start using CPAP, what advice would you give?', user_id: owner.id)
     at = q.answer_templates.create(name: 'advice', text: '', template_name: 'string', user_id: owner.id)
 
+    # Assign new surveys
     User.find_each(batch_size: 100) do |u|
       u.send(:assign_default_surveys)
     end
 
+    # Unlock surveys that have been updated
     surveys = Survey.where(slug: %w(my-risk-profile my-sleep-apnea my-sleep-apnea-treatment))
-
     AnswerSession.where(survey_id: surveys.select(:id)).find_each do |as|
       as.unlock!
     end
+    questions = Question.where(slug: %w(risk-symptoms symptoms-before-diagnosis))
+    Answer.where(question_id: questions.select(:id)).update_all state: 'incomplete'
   end
 end
