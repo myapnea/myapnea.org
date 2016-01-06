@@ -1,7 +1,10 @@
 ## 9.2.1
 
 ### Enhancements
-- Changed report for sleep apnea symptom stats to match new answer options
+- **Survey Changes**
+  - Changed report for sleep apnea symptom stats to match new answer options
+- **Gem Changes**
+  - Updated to Ruby 2.3.0
 
 ## 9.2.0 (December 17, 2015)
 
