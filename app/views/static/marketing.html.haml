@@ -1,0 +1,14 @@
+- @title = 'Marketing Materials'
+.content-main-header
+  .container
+    %h1= @title
+
+.container
+  .content-container
+    %p.lead The following flyers and cards are available for marketing.
+
+    %ul
+      %li= link_to 'MyApnea.Org Flyer', "#{ENV['website_url']}/pdfs/myapnea_flyer_2.pdf"
+      %li= link_to 'MyApnea.Org Flyer (Spanish)', "#{ENV['website_url']}/pdfs/myapnea_flyer_2_es.pdf"
+      %li= link_to 'MyApnea.Org Card', "#{ENV['website_url']}/pdfs/myapnea_card_2.pdf"
+      %li= link_to 'MyApnea.Org Card (Spanish)', "#{ENV['website_url']}/pdfs/myapnea_card_2_es.pdf"

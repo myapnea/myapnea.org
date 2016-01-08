@@ -1,5 +1,9 @@
 ## 9.2.2
 
+### Enhancements
+- **Marketing Materials**
+  - Added a marketing materials page with a list of flyers and cards in English and Spanish
+
 ## 9.2.1 (January 6, 2016)
 
 ### Enhancements

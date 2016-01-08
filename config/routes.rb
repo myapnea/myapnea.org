@@ -97,6 +97,7 @@ Rails.application.routes.draw do
     get :sitemap
     get :sizes
     get :learn
+    get :marketing
   end
 
   # Educational Content
