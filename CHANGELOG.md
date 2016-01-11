@@ -1,4 +1,4 @@
-## 9.2.2
+## 9.2.2 (January 11, 2016)
 
 ### Enhancements
 - **Marketing Materials**
