@@ -1,4 +1,4 @@
-## 9.2.3
+## 9.2.3 (January 13, 2016)
 
 ### Bug Fix
 - Fixed a bug that allowed users to set their usernames to existing usernames by changing the letter casing
