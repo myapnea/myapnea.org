@@ -4,6 +4,17 @@
 - **Co-enrollment Changes**
   - MyApnea.Org members can now coenroll with Health eHeart and vice versa
 
+## 9.2.3 (January 13, 2016)
+
+### Bug Fix
+- Fixed a bug that allowed users to set their usernames to existing usernames by changing the letter casing
+
+## 9.2.2 (January 11, 2016)
+
+### Enhancements
+- **Marketing Materials**
+  - Added a marketing materials page with a list of flyers and cards in English and Spanish
+
 ## 9.2.1 (January 6, 2016)
 
 ### Enhancements

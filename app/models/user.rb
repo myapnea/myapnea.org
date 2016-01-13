@@ -1,5 +1,4 @@
 class User < ActiveRecord::Base
-
   # Uploaders
   mount_uploader :photo, PhotoUploader
 
@@ -36,8 +35,8 @@ class User < ActiveRecord::Base
   # Model Validation
   validates_presence_of :first_name, :last_name
 
-  validates :forum_name, allow_blank: true, uniqueness: true, format: { with: /\A[a-zA-Z0-9]*\Z/i }, unless: :update_by_user?
-  validates :forum_name, allow_blank: false, uniqueness: true, format: { with: /\A[a-zA-Z0-9]+\Z/i }, if: :update_by_user?
+  validates :forum_name, allow_blank: true, uniqueness: { case_sensitive: false }, format: { with: /\A[a-zA-Z0-9]*\Z/i }, unless: :update_by_user?
+  validates :forum_name, allow_blank: false, uniqueness: { case_sensitive: false }, format: { with: /\A[a-zA-Z0-9]+\Z/i }, if: :update_by_user?
 
   with_options unless: :provider? do |user|
     user.validates :over_eighteen, inclusion: { in: [true], message: "You must be over 18 years of age to sign up" }, allow_nil: true
@@ -45,8 +44,8 @@ class User < ActiveRecord::Base
   end
 
   with_options if: :provider? do |user|
-    user.validates :provider_name, allow_blank: true, uniqueness: true
-    user.validates :slug, allow_blank: true, uniqueness: true, format: { with: /\A[a-z][a-z0-9\-]*[a-z0-9]\Z/i }
+    user.validates :provider_name, allow_blank: true, uniqueness: { case_sensitive: false }
+    user.validates :slug, allow_blank: true, uniqueness: { case_sensitive: false }, format: { with: /\A[a-z][a-z0-9\-]*[a-z0-9]\Z/i }
   end
 
   # Model Relationships
@@ -335,25 +334,24 @@ class User < ActiveRecord::Base
 
   def accepts_consent!
     current_time = Time.zone.now
-    self.update accepted_consent_at: current_time, accepted_update_at: current_time
+    update accepted_consent_at: current_time, accepted_update_at: current_time
   end
 
   def accepts_terms_of_access!
     current_time = Time.zone.now
-    self.update accepted_terms_of_access_at: current_time, accepted_update_at: current_time
+    update accepted_terms_of_access_at: current_time, accepted_update_at: current_time
   end
 
   private
 
   # This happens when any user updates changes from dashboard
   def update_by_user?
-    self.user_is_updating == '1'
+    user_is_updating == '1'
   end
 
   def set_forum_name
-    if self.forum_name.blank?
-      self.update forum_name: SocialProfile.generate_forum_name(self.email, Time.zone.now.usec.to_s)
-    end
+    return if forum_name.present?
+    update forum_name: SocialProfile.generate_forum_name(email, Time.zone.now.usec.to_s)
   end
 
   def send_welcome_email
@@ -400,5 +398,4 @@ class User < ActiveRecord::Base
       end
     end
   end
-
 end
