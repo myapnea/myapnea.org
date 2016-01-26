@@ -1,4 +1,4 @@
-## 10.0.0
+## 10.0.0 (January 26, 2016)
 
 ### Enhancements
 - **Co-enrollment Changes**
