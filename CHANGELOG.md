@@ -5,6 +5,7 @@
   - MyApnea.Org members can now coenroll with Health eHeart and vice versa
 - **Research Article Changes**
   - Admins can now associate a research article to any proposed research topic
+  - Admins can now set SEO keywords for research articles
 - **Gem Changes**
   - Updated to rails 4.2.5.1
 

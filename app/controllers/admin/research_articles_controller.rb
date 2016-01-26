@@ -83,13 +83,14 @@ class Admin::ResearchArticlesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_admin_research_article
-      @admin_research_article = Admin::ResearchArticle.find_by_param(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def admin_research_article_params
-      params.require(:admin_research_article).permit(:title, :slug, :description, :content, :position, :photo, :author, :credentials, :references, :research_topic_id)
-    end
+  def set_admin_research_article
+    @admin_research_article = Admin::ResearchArticle.find_by_param(params[:id])
+  end
+
+  def admin_research_article_params
+    params.require(:admin_research_article).permit(
+      :title, :slug, :description, :content, :keywords, :position, :photo,
+      :author, :credentials, :references, :research_topic_id)
+  end
 end
