@@ -7,5 +7,5 @@
       = link_to 'Privacy Policy', privacy_path, class: 'btn btn-default-custom'
       = link_to 'Consent', consent_path, class: 'btn btn-default-custom'
       = link_to 'I acknowledge these changes', accepts_update_path, method: :post, style: 'color: white', class: 'btn btn-primary-custom'
-= render partial: 'layouts/partials/flash_messages'
+= render 'layouts/partials/flash_messages'
 = yield

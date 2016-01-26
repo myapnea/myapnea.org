@@ -51,10 +51,10 @@
 - elsif comment.approved?
   .row.horizontal-inset
     .col-xs-1.reset-layout
-      = render partial: 'forums/user_image', locals: { user: comment.user, size: 50 }
+      = render 'forums/user_image', user: comment.user, size: 50
     .col-xs-11
       .post-container
-        - if current_user == comment.user or current_user.moderator?
+        - if current_user == comment.user || current_user.moderator?
           .post-container-right-after
             = render 'posts/actions/edit', post: comment
         - if comment.topic.user == comment.user
@@ -64,4 +64,4 @@
           = render 'users/forum_name', user: comment.user
         = render 'posts/formatted', post: comment
         .small.text-muted.f300
-          = comment.created_at.strftime("%-d %B %Y, %-l:%M %p")
+          = comment.created_at.strftime('%-d %B %Y, %-l:%M %p')

@@ -8,6 +8,9 @@
 - **Gem Changes**
   - Updated to rails 4.2.5.1
 
+### Refactoring
+- Cleaned up references to page partials
+
 ## 9.2.3 (January 13, 2016)
 
 ### Bug Fix

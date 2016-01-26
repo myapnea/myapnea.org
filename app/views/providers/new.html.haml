@@ -54,6 +54,6 @@
           = succeed '.' do
             = link_to 'user type', describe_yourself_path
 - else
-  = render partial: "providers/signup_form", locals: { resource: @provider }
+  = render 'providers/signup_form', resource: @provider
 
-= render partial: 'layouts/partials/landing_video_modal'
+= render 'layouts/partials/landing_video_modal'

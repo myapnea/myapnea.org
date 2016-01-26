@@ -1,1 +1,1 @@
-$("#preview-<%= params[:post_id] %>").html("<%= escape_javascript(render partial: "posts/formatted", locals: { post: @post }) %>");
+$("#preview-<%= params[:post_id] %>").html("<%=j render 'posts/formatted', post: @post %>");

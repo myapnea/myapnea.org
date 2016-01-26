@@ -21,7 +21,7 @@
           </td>
         </tr>
         <% posts.sort_by(&:id).each do |post| %>
-          <tr><%= render partial: 'digest_post', locals: { post: post } %></tr>
+          <tr><%= render 'digest_post', post: post %></tr>
         <% end %>
         <tr><td colspan="3" style="padding-bottom:10px"></td></tr>
         <tr><td colspan="3" style="padding-bottom:10px"></td></tr>

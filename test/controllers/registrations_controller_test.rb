@@ -1,10 +1,8 @@
 require 'test_helper'
 
 class RegistrationsControllerTest < ActionController::TestCase
-
-
-  test "should sign up new user" do
-    request.env["devise.mapping"] = Devise.mappings[:user]
+  test 'should sign up new user' do
+    request.env['devise.mapping'] = Devise.mappings[:user]
 
     assert_difference('User.count') do
       post :create, user: { first_name: 'First Name', last_name: 'Last Name', over_eighteen: true, email: 'new_user@example.com', password: 'password' }
@@ -19,8 +17,8 @@ class RegistrationsControllerTest < ActionController::TestCase
     assert_redirected_to get_started_path
   end
 
-  test "should not sign up new user without required fields" do
-    request.env["devise.mapping"] = Devise.mappings[:user]
+  test 'should not sign up new user without required fields' do
+    request.env['devise.mapping'] = Devise.mappings[:user]
 
     assert_difference('User.count', 0) do
       post :create, user: { first_name: '', last_name: '', year_of_birth: '', email: '', password: '' }
@@ -38,8 +36,8 @@ class RegistrationsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should not sign up new user without meeting minimum age requirements" do
-    request.env["devise.mapping"] = Devise.mappings[:user]
+  test 'should not sign up new user without meeting minimum age requirements' do
+    request.env['devise.mapping'] = Devise.mappings[:user]
 
     assert_difference('User.count', 0) do
       post :create, user: { first_name: 'First Name', last_name: 'Last Name', over_eighteen: false, email: 'new_user@example.com', password: 'password' }
@@ -53,9 +51,8 @@ class RegistrationsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-
-  test "should sign up user with a specified provider" do
-    request.env["devise.mapping"] = Devise.mappings[:user]
+  test 'should sign up user with a specified provider' do
+    request.env['devise.mapping'] = Devise.mappings[:user]
 
     assert_difference('User.count') do
       post :create, user: { first_name: 'First Name', last_name: 'Last Name', over_eighteen: true, email: 'new_user@example.com', password: 'password', provider_id: users(:provider).id }
@@ -66,8 +63,8 @@ class RegistrationsControllerTest < ActionController::TestCase
     assert_redirected_to get_started_path
   end
 
-  test "should sign up provider" do
-    request.env["devise.mapping"] = Devise.mappings[:user]
+  test 'should sign up provider' do
+    request.env['devise.mapping'] = Devise.mappings[:user]
 
     assert_difference('User.providers.count') do
       post :create, user: { first_name: 'First Name', last_name: 'Last Name', email: 'new_provider@example.com', password: 'password', provider: '1' }
@@ -82,8 +79,8 @@ class RegistrationsControllerTest < ActionController::TestCase
     assert_redirected_to get_started_path
   end
 
-  test "should not sign up provider without required fields" do
-    request.env["devise.mapping"] = Devise.mappings[:user]
+  test 'should not sign up provider without required fields' do
+    request.env['devise.mapping'] = Devise.mappings[:user]
 
     assert_difference('User.count', 0) do
       post :create, user: { first_name: '', last_name: '', email: 'new_provider@example.com', password: 'password', provider: true }
@@ -97,5 +94,4 @@ class RegistrationsControllerTest < ActionController::TestCase
     assert_template partial: 'providers/_signup_form'
     assert_response :success
   end
-
 end

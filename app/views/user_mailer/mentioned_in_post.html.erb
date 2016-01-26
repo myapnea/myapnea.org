@@ -10,7 +10,7 @@
           <b><%= link_to @post.topic.name, "#{ENV['website_url']}/forums/#{@post.topic.to_param}", style: "color: #428bca;" %></b>
         </td>
       </tr>
-      <tr><%= render partial: 'digest_post', locals: { post: @post } %></tr>
+      <tr><%= render 'digest_post', post: @post %></tr>
       <tr><td colspan="3" style="padding-bottom:10px"></td></tr>
       <tr><td colspan="3" style="padding-bottom:10px"></td></tr>
     </tbody>

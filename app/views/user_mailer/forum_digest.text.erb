@@ -9,7 +9,7 @@ Forum Updates
 <%= ((topic = Topic.find_by_id(topic_id)) ? "#{topic.name} #{ENV['website_url']}/forums/#{topic.forum.to_param}/topics/#{topic.to_param}" : 'No Topic') %>
 
   <% posts.sort_by(&:id).each do |post| %>
-  <%= render partial: 'digest_post', locals: { post: post } %>
+  <%= render 'digest_post', post: post %>
   <% end %>
 
 <% end %>
