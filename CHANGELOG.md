@@ -3,6 +3,8 @@
 ### Enhancements
 - **Co-enrollment Changes**
   - MyApnea.Org members can now coenroll with Health eHeart and vice versa
+- **Gem Changes**
+  - Updated to rails 4.2.5.1
 
 ## 9.2.3 (January 13, 2016)
 
