@@ -38,7 +38,7 @@
   .form-group
     = f.label :research_topic_id, nil, class: 'control-label col-md-2'
     .col-md-10
-      = f.select :research_topic_id, ResearchTopic.article_eligible.includes(:topic).pluck(:name, :id), { }, class: 'form-control'
+      = f.select :research_topic_id, ResearchTopic.joins(:topic).pluck(:name, :id), { }, class: 'form-control'
   %hr
   .form-group
     .col-md-6

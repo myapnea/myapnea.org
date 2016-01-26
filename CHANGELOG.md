@@ -3,6 +3,8 @@
 ### Enhancements
 - **Co-enrollment Changes**
   - MyApnea.Org members can now coenroll with Health eHeart and vice versa
+- **Research Article Changes**
+  - Admins can now associate a research article to any proposed research topic
 - **Gem Changes**
   - Updated to rails 4.2.5.1
 
