@@ -1,5 +1,9 @@
 ## 10.0.1
 
+### Enhancements
+- **Co-enrollment Changes**
+  - Updated styling on "Welcome Health eHeart Members" page
+
 ## 10.0.0 (January 26, 2016)
 
 ### Enhancements
