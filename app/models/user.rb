@@ -80,6 +80,12 @@ class User < ActiveRecord::Base
     super and not self.deleted?
   end
 
+  # Override Devise built-in password reset notification email method
+  def send_reset_password_instructions
+    return if deleted?
+    super
+  end
+
   def is_only_researcher?
     self.researcher? and !self.is_nonacademic?
   end

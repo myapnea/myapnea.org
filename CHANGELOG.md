@@ -3,6 +3,8 @@
 ### Enhancements
 - **Survey Changes**
   - Updated pediatric consent language
+- **Password Reset Changes**
+  - Password reset emails are no longer sent to deleted users
 
 ## 10.0.1 (January 26, 2016)
 
