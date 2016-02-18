@@ -3,11 +3,13 @@
 ### Enhancements
 - **Dashboard Changes**
   - Renamed "Research Highlights" to "Highlights"
-- **Survey Changes**
-  - Updated pediatric consent language
 - **Password Reset Changes**
   - Password reset emails are no longer sent to deleted users
   - Provided better message if the email address was not found
+- **Survey Changes**
+  - Updated pediatric consent language
+- **Research Article Changes**
+  - Research articles can now be edited to not include a link to a research topic
 
 ## 10.0.1 (January 26, 2016)
 
