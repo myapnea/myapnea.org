@@ -1,6 +1,8 @@
 ## 10.1.0
 
 ### Enhancements
+- **Dashboard Changes**
+  - Renamed "Research Highlights" to "Highlights"
 - **Survey Changes**
   - Updated pediatric consent language
 - **Password Reset Changes**

@@ -37,7 +37,7 @@
             %h4 Direct the future of sleep apnea research
             %p Click here to get started
       %p.f500.logo-color
-        Research Highlights
+        Highlights
         &middot;
         %span.small= link_to 'View all', accepted_research_topics_path
       - Highlight.displayed.where(research_highlight: true).order(created_at: :desc).first(10).each do |highlight|
