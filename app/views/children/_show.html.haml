@@ -29,8 +29,357 @@
     %strong= @child.first_name
   %p You must read through and accept the following consent before being able to complete available surveys for this child.
 
-  - consent_page_content = page_content('consent')
   .show-scrollbar.consent-container{ style: 'padding-left: 10px; padding-right: 10px;' }
-    = markdown consent_page_content['consent']
-  = link_to 'I Accept', accept_consent_child_path(@child), method: :post, remote: true, class: 'btn btn-xs btn-primary-custom'
-  = link_to 'I Do Not Accept', @child, method: :delete, remote: true, class: 'btn btn-xs btn-default-custom'
+    %h3 MyApnea.Org Research Portal Consent
+
+    %h4 Overview
+
+    %p
+      The MyApnea.Org research page is a part of a medical research study across
+      the U.S. It is paid for by the Patient-Centered Outcomes Research
+      Institute (PCORI). Any page within MyApnea.Org that reads "Research" at
+      the top indicates that information shared on that page can be used for
+      research purposes as we describe in detail below. Research pages are only
+      accessible after you have read this consent form and agree to participate
+      in the research portal. The study is led by groups of doctors, patients
+      and other advocacy groups working together. Dr. Susan Redline from Brigham
+      and Women's Hospital in Boston, MA is in charge of the study. She and her
+      staff are available to answer any questions you may have. Please email
+      = mail_to 'support@myapnea.org'
+      with any questions or call 617-732-5859. Research studies include only
+      people who want to take part. Please take your time to make your decision
+      about participating, and discuss your decision with your family or friends
+      if you wish.
+
+    %p
+      Here is a brief overview of what we promise to you as researchers and what
+      we will ask of you as a research participant:
+      %strong We will ask you to...
+      Tell us about your child's health. Answer our health-related questions as
+      best as you can. Update your child's information regularly (we'll remind
+      you) so we have all your latest data. Stick around. We'd like you to be in
+      the study for at least 2 years so we know how your health changes over
+      time.
+
+    %p
+      %strong We will...
+      Make things easy for you. Surveys can be done in 5-minute blocks on your
+      computer, tablet or smartphone. Respect your time and privacy. We will
+      only contact you when necessary and assure that your data is extremely
+      secure. Provide a community and tools you can use. We will build useful
+      tools to help you manage your child's condition and provide a community
+      where you can be supported. Below are some answers to questions you may
+      have:
+
+    %p
+      %strong 1. Why is this study being done?
+      The purpose of the MyApnea.Org research portal is to engage people with
+      sleep apnea to share health information needed for research that will
+      improve the health and well-being of adults and children with sleep apnea.
+
+    %p
+      %strong 2. How many people will take part in this study?
+      We hope to enroll at least 50,000 people into the MyApnea.Org research
+      portal.
+
+    %p
+      %strong 3. Am I eligible to participate in the study?
+      To participate, you need to have a child aged 2-8 years old with the
+      diagnosis of sleep apnea or have a concern that your child may have sleep
+      apnea.
+
+    %p
+      %strong
+        4. How do I know what will be used for research purposes and what will
+        not be used as part of the study?
+      Only information you provide on pages marked "Research" at the top will be
+      used for scientific purposes. You can only access these pages after you
+      have read this consent and have agreed to participate in the research
+      portal.
+
+    %p
+      %strong 5. What will happen if I take part in this research study?
+      We will ask you to complete surveys about your child and their sleep
+      apnea. If you agree to participate in the MyApnea.Org research portal, you
+      will be asked to complete at least one survey about your child's sleep,
+      symptoms and health. The survey will ask about such things as when your
+      child was diagnosed with sleep apnea, treatments or surgeries they may
+      have had. The basic survey will take less than 10 minutes to complete for
+      most people. There will be more surveys on the site that we would like you
+      to complete. These longer surveys should take less than 20 minutes to
+      complete for most people. You will be asked to update information on the
+      surveys every 6 to 12 months. Information collected about your child will
+      be combined with information from other people who have joined the site.
+      Other people, researchers and health care providers that have joined the
+      network will be able to view graphs and summary information on groups of
+      people with apnea. When combining this information, your name and other
+      personal information
+      %strong will not
+      be used.
+      %strong We will send you reminder emails.
+      When there is a study activity that we want you to complete or consider,
+      we will contact you. We plan to update your child's health status every
+      6-12 months. You will let us know how you want us to contact you, by phone
+      or by email.
+
+    %p
+      %strong 6. How long will I, or my child, be in the study?
+      We would like to keep track of your child's health status for at least 2
+      years, and possibly longer so we know how health changes over time.
+      Keeping in touch with you and checking on your child's health over many
+      years is very important to help us look at the long- term effects of sleep
+      apnea and its treatments on health. We plan to do this by contacting you
+      at least twice a year.
+
+    %p
+      %strong 7. Can I stop being in the study?
+      Yes. You can decide to stop at any time. We won't delete the information
+      about you that we've already collected, but we will stop collecting any
+      new information about you and will stop contacting you. To stop
+      participating in the study, please go to the
+      %strong "My Account Settings,"
+      which you can find on the top navigation bar. On this page, find the
+      section titled
+      %strong Leave Research Study
+      and click the orange button. You can also send an email to the study staff
+      at:
+      = mail_to 'support@myapnea.org'
+
+    %p
+      %strong
+        8. What side effects or risks can I expect from being in the study?
+      Although we will do our best to protect your child's study information,
+      there is still a very small risk of loss of privacy. There is a risk that
+      participating in the study will make you want to access the healthcare
+      system more often, and that costs money. For example, the feedback
+      information that we provide to you (see Question 9 below ) might make you
+      want to talk to your healthcare provider, or you may want to make extra
+      visits to your provider in order to fill out a survey. While there may
+      often be benefits to you from seeing your child's healthcare provider,
+      there are also costs, and the MyApnea.Org research portal will not pay for
+      any part of your child's medical care. You should not see your child's
+      healthcare provider solely for the purpose of collecting data for the
+      MyApnea.Org research portal.
+
+    %p
+      %strong 9. Are there benefits to taking part in the study?
+      You and your child will not obtain any direct health benefits from
+      participating in the study, but you will receive information on healthy
+      sleep and healthy lifestyle behaviors along with sleep apnea news and
+      updates available on our the general MyApnea.org site. You will also
+      receive information on topics such as sleepiness and sleep patterns based
+      on the information you provide. We hope that by participating you will
+      help us contribute to a better understanding of sleep apnea that will lead
+      to improved health for the millions of patients with sleep apnea.
+
+    %p
+      %strong 10. Will I get advice about my child's health from the study?
+      No. We will provide you with information about symptoms of untreated sleep
+      apnea, ways to reduce sleep apnea treatment and sleep apnea treatments but
+      we will not provide you with specific advice, even if the information you
+      provide us is very abnormal. The information we provide to you, including
+      that shared by other patients, does not in any way substitute for
+      professional medical advice, diagnosis, or treatment that your child's
+      doctor or nurse may give you. Always ask your child's doctor if you have
+      any questions about your child's health. Do not ignore the advice of your
+      child's doctor or nurse or delay seeing your doctor or nurse because of
+      something you have read as part of this study. If you think you may have a
+      medical emergency, call your doctor or dial 911 immediately.
+
+    %p
+      %strong
+        11. What other choices do I have if I do not take part in this study?
+      You are free to choose not to participate in the MyApnea.Org research
+      portal. If you decide not to take part, there will be no penalty to you.
+
+    %p
+      %strong
+        12. You may be asked to join other research studies and Patient-Powered
+        Research Networks (PPRNs).
+      You may be invited to participate in other research studies related to
+      sleep apnea or Patient-Powered Research Networks for other related health
+      conditions. Each of these studies and networks will have a separate
+      consent form and will be explained in detail so you may decide if you
+      would like to be a part of it. Participation in these other research
+      studies and PPRNs is optional. That is, you can still be a part of the
+      MyApnea.Org research portal without participating in the other studies or
+      PPRNs. If you do consent to participate in other research studies or PPRNs
+      your information will be linked across research studies to increase the
+      likelihood of meaningful analysis.
+
+    %p
+      %strong 13. How is my information protected?
+      We will do our best to make sure that the personal information we collect
+      about your child is kept private and secure.
+      %strong
+        The MyApnea.Org research portal will never sell, rent, or lease your
+        contact information.
+      If information from this study is published or presented at scientific
+      meetings, your name and other personal information about your or your
+      child will not be used. However, we cannot guarantee total privacy - your
+      personal information may be given out if required by law (e.g., to prevent
+      possible injury to yourself or others). Your information will be sent and
+      stored using very secure systems. The network servers where your data are
+      stored sit behind firewalls that do not allow unauthorized access and are
+      physically located in a secure server room that can only be accessed by
+      critical staff members. For details please read our Privacy Policy and
+      Data Security Measures, that will appear at the end of this consent form.
+
+    %p
+      %strong 14. What are the costs of taking part in this study?
+      You will not be charged for any aspect of participating in the MyApnea.Org
+      research portal.
+
+    %p
+      %strong 15. Will I be paid for taking part in this study?
+      You and your child will not be paid for taking part in the MyApnea.Org
+      research portal.
+
+    %p
+      %strong 16. What are my rights if I take part in this study?
+      Taking part in this study is your choice. You may choose either to take
+      part or not to take part in the study. If you decide to take part in this
+      study, you may leave the study at any time. No matter what decision you
+      make, there will be no penalty to you or your child. We will tell you
+      about new information or changes in the study that may affect your
+      willingness to continue in the study.
+
+    %p
+      %strong 17. Who can answer my questions about the study?
+      You can contact the study staff at
+      = succeed ',' do
+        = mail_to 'support@myapnea.org'
+      or contact the Principal Investigator, S. Redline at sredline@partners.org
+      or 617-732-5859 about any questions, concerns, or complaints you have. If
+      you want to speak with someone not directly involved in this research
+      study, please contact the Partners Human Research Committee office. You
+      can call them at 617- 424-4100. You can talk to them about: (1) your
+      rights as a research subject, (2) your concerns about the research, (3) a
+      complaint about the research. Also, if you feel pressured to take part in
+      this research study, or to continue with it, they want to know and can
+      help. You can access and print copies of this consent form whenever you
+      like via the study website. If you wish to be in this study, please click
+      the button that says
+      %strong "I agree to participate".
+
+    %h3 Privacy Policy and Data Security Measures
+
+    %p
+      We at MyApnea.Org have taken many steps to protect your privacy. Health
+      information is private under federal law. However, by joining MyApnea.Org
+      and agreeing to our informed consent form you are giving permission for
+      the following people and groups to see, use, and share your identifiable
+      health information:
+    %ul
+      %li
+        Approved groups that help create MyApnea.Org such as Partners research
+        staff involved in this study
+      %li
+        People or groups that we hire to do work for us, such as data storage
+        companies, website designers, and lawyers
+      %li
+        The Partners HealthCare ethics board that oversees the project and the
+        Partners HealthCare research quality improvement programs
+      %li
+        People from organizations that provide accreditation and oversight of
+        hospitals and research
+      %li Federal and state agencies that oversee or review research, such as the Patient Centered Outcomes Network.
+      %li
+        %strong IF YOU CONSENT
+        to participate in other patient-powered research networks (PPRN's), your
+        identifiable health information will be shared and linked
+        %strong ONLY
+        with the PPRN(s) in which you have offered your consent.
+        %strong We will use your information for research.
+        We collect information about you, your health, and some of your
+        behaviors. This information will be used in research and will be
+        presented in scientific conferences and published in scientific
+        journals. These presentations and publications will never show any
+        information that identifies you or any other individual in the study. We
+        will share summary information that does not contain any identifying
+        information with other participants in the network, which include
+        members of the National Patient Centered Outcomes Network and research
+        partners in MyApnea.Org. While we think that there are only minimal
+        risks associated with sharing research results, we cannot predict how
+        this information might be used in the future. We take many safety
+        measures to protect your privacy, but we cannot guarantee that your
+        identity will never be known.
+        %strong
+          We will never sell, rent, or lease your contact information. We will
+          never voluntarily share identifying information about you without your
+          permission.
+        You will be able to see some of your study information and summary
+        information provided by other members in MyApnea.Org. When you register
+        for MyApnea.Org you provide us with a username and a password. You can
+        use this to sign into the study and see your Dashboard and some of the
+        health information you've provided to us (e.g., your sleep surveys and
+        health profile). Some of this information will be displayed in summary
+        form and shown in relationship to summary information provided by other
+        members of MyApnea.Org. You should be very careful not to provide your
+        login information to anyone else. If you are worried that someone else
+        may be using your login information, please let us know immediately, or
+        change your password yourself through the My Account Setting page.
+
+    %p
+      %strong
+        We follow the Electronic Security and Adherence to the HIPAA Privacy
+        Rule.
+      MyApnea.Org follows the security guidelines of the U.S. Health Insurance
+      Portability and Accountability Act of 1996 (HIPAA). All study data is
+      sent, stored, and processed in a secure environment. We are required by
+      the Health Insurance Portability and Accountability Act (HIPAA) to protect
+      the privacy of health information obtained for research. This is an
+      abbreviated notice, and does not describe all details of this requirement
+      \- see Partners Privacy Notice
+      = surround '(', ').' do
+        = link_to 'http://www.partners.org/Assets/Documents/Notices/Partners_Privacy_Policy_English.pdf', 'http://www.partners.org/Assets/Documents/Notices/Partners_Privacy_Policy_English.pdf'
+      During this study, identifiable information about you or your health will
+      be collected and shared with the researchers conducting the research. In
+      general, under federal law, identifiable health information is private.
+      However, there are exceptions to this rule. In some cases, others may see
+      your identifiable health information for purposes of research oversight,
+      quality control, public health and safety, or law enforcement. We share
+      your health information only when we must, and we ask anyone who receives
+      it from us to protect your privacy.
+      %strong We are protecting your data.
+      The Partners HealthCare Research IT Facilities Security Center will host
+      the data for MyApnea.Org. All study information will be stored on secure
+      network servers. Data and the web portal will be housed on the Partners
+      HealthCare Research Computing Cloud Infrastructure. The Discovery
+      Information Platform for Research (DIPR) provides a set of virtual
+      services within the Partners HealthCare secure data center and within the
+      Partners HealthCare network. All systems are secured behind the Partners
+      HealthCare firewall and follow Partners HealthCare Information Security
+      policies for authenticated, minimum access. All systems are patched,
+      monitored and scanned routinely for vulnerabilities and intrusions by the
+      systems administrator and PHS Information Security. Data is encrypted,
+      where applicable, in compliance with state and federal government
+      standards, regulations, and in accordance with Partners Security and
+      Privacy policies. The web server and database server are hosted within the
+      Partners Firewall, and make use of standard 256-bit encryption connection
+      ciphers.
+      %strong MyApnea.Org may use cookies to indirectly collect information.
+      MyApnea.Org may use cookies to enhance your experience while using the web
+      application. A "cookie" is a small piece of data that is sent to your
+      browser and is stored on your computer's hard drive. Cookies are used to
+      collect non-identifying information about the user to make web-surfing
+      easier by performing certain functions such as saving your passwords, your
+      personal preferences regarding your use of the particular website and to
+      make sure you do not see the same ad repeatedly. Many consider the use of
+      cookies to be an industry standard. Your browser is probably set to accept
+      cookies. If you prefer, you can disable cookies within your browser
+      settings. In addition to using cookies and related technologies as
+      described above, we also may permit certain third party companies to help
+      us tailor advertising that we think may be of interest to users and to
+      collect and use other data about user activities on our site and/or
+      services (e.g., to allow them to tailor ads on third party services).
+      %strong
+        If you have any questions about this information, please contact us by
+        email at
+        = succeed '.' do
+          = mail_to 'support@myapnea.org'
+        If you wish to be in this study please click the button that says "I
+        agree to participate"
+
+  = link_to 'I agree to participate', accept_consent_child_path(@child), method: :post, remote: true, class: 'btn btn-xs btn-primary-custom'
+  = link_to 'I do not accept', @child, method: :delete, remote: true, class: 'btn btn-xs btn-default-custom'

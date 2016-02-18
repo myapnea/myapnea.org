@@ -1,5 +1,9 @@
 ## 10.1.0
 
+### Enhancements
+- **Survey Changes**
+  - Updated pediatric consent language
+
 ## 10.0.1 (January 26, 2016)
 
 ### Enhancements
