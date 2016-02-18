@@ -7,6 +7,7 @@
   - Updated pediatric consent language
 - **Password Reset Changes**
   - Password reset emails are no longer sent to deleted users
+  - Provided better message if the email address was not found
 
 ## 10.0.1 (January 26, 2016)
 
