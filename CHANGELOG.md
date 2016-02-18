@@ -10,6 +10,8 @@
   - Updated pediatric consent language
 - **Research Article Changes**
   - Research articles can now be edited to not include a link to a research topic
+- **About Page Changes**
+  - Updated to indicate the international scope of the research project
 
 ## 10.0.1 (January 26, 2016)
 
