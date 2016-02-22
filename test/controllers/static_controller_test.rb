@@ -115,6 +115,11 @@ class StaticControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test 'should get complex sleep apnea' do
+    get :complex_sleep_apnea
+    assert_response :success
+  end
+
   test 'should get causes of sleep apnea' do
     get :causes
     assert_response :success

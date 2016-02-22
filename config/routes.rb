@@ -115,6 +115,7 @@ Rails.application.routes.draw do
     get '/what-is-sleep-apnea', to: 'static#what_is_sleep_apnea'
     get '/obstructive-sleep-apnea', to: 'static#obstructive_sleep_apnea'
     get '/central-sleep-apnea', to: 'static#central_sleep_apnea'
+    get '/complex-sleep-apnea', to: 'static#complex_sleep_apnea'
     get '/causes-of-sleep-apnea', to: 'static#causes'
     get '/symptoms-of-sleep-apnea', to: 'static#symptoms'
     get '/risk-factors-for-sleep-apnea', to: 'static#risk_factors'

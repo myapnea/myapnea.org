@@ -91,6 +91,10 @@ class StaticController < ApplicationController
     render 'static/SEO_content/central_sleep_apnea'
   end
 
+  def complex_sleep_apnea
+    render 'static/SEO_content/complex_sleep_apnea'
+  end
+
   def causes
     render 'static/SEO_content/causes'
   end
