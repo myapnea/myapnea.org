@@ -15,6 +15,9 @@
 - **About Page Changes**
   - Updated to indicate the international scope of the research project
 
+### Bug Fixes
+- Fixed a bug that prevented answering questions if a previous question with the same name had been deleted
+
 ## 10.0.1 (January 26, 2016)
 
 ### Enhancements

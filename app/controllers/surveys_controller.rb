@@ -51,7 +51,7 @@ class SurveysController < ApplicationController
   end
 
   def process_answer
-    @question = Question.find_by_param(params[:question_id])
+    @question = Question.current.find_by_param(params[:question_id])
     @answer_session = current_user.answer_sessions.find_by_id(params[:answer_session_id])
     response = params[:response] || {}
 
