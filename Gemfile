@@ -16,7 +16,7 @@ gem 'font-awesome-rails'                          # Font Awesome Icons
 gem 'haml'                                        # HAML Views
 gem 'figaro',               '~> 1.1.1'            # Centralized Configuration
 gem 'geocoder'                                    # IP Location Lookup
-gem 'rubyzip',              '~> 1.1.7'
+gem 'rubyzip',              '~> 1.2.0'
 gem 'colorize',             '~> 0.7.5'
 
 # To Be Removed

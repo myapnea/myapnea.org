@@ -14,6 +14,8 @@
   - Research articles can now be edited to not include a link to a research topic
 - **About Page Changes**
   - Updated to indicate the international scope of the research project
+- **Gem Changes**
+  - Updated rubyzip to 1.2.0
 
 ### Bug Fixes
 - Fixed a bug that prevented answering questions if a previous question with the same name had been deleted
