@@ -7,7 +7,7 @@
     %p
       MyApnea.Org is part of a growing international network of patients, health care providers and researchers. This partnership is built upon the open exchange of information about sleep apnea. Here we provide a series of questions to help the sleep apnea community better understand the symptoms found in patients with sleep apnea or at risk for sleep apnea, their experiences with getting diagnosed, and their health conditions.
 
-- if current_user and current_user.is_only_academic?
+- if current_user && current_user.is_only_academic?
   .content-container
     .container
       %h2.f300.centered
@@ -18,7 +18,7 @@
 
 .container
   .content-container
-    - if current_user and current_user.is_only_academic?
+    - if current_user && current_user.is_only_academic?
       - @surveys.in_groups_of(3, false) do |survey_group|
         .row
           - survey_group.each do |survey|
@@ -27,7 +27,7 @@
               %h5.f300
                 = survey.name
               %p= link_to 'View Data', report_survey_path(survey)
-    - elsif current_user and !current_user.has_user_type?
+    - elsif current_user && !current_user.has_user_type?
       .centered
         = image_tag 'myapnea/user_types/role_confused.png', class: 'img-responsive', style: 'margin: 0 auto; width: 150px;'
         %p
@@ -54,20 +54,18 @@
             .col-sm-4.centered{ style: 'margin-bottom:30px' }
               = render 'surveys/partials/survey_progress', survey: survey
 
-- if current_user and current_user.caregiver_child?
-  - @child = current_user.children.first
-  .content-container
-    .container
+    - if current_user && current_user.caregiver_child?
+      - @child = current_user.children.first
       .row
         .col-sm-4
           #children-index
-            = render "children/index"
+            = render 'children/index'
         .col-sm-8
           #child-surveys
             - if @child
-              = render "children/show"
+              = render 'children/show'
             - else
-              = render "children/new"
+              = render 'children/new'
 
 - unless current_user
   = render 'home/join_the_community', referrer: 'surveys', message: 'Your data has the power to change the future of sleep apnea'
