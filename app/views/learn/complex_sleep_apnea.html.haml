@@ -1,9 +1,6 @@
 .content-main-header
   .container
     %h1 Complex Sleep Apnea
-    %p
-      Next:
-      = link_to 'Causes of Sleep Apnea', causes_of_sleep_apnea_path
 .article-topic-relation-container
   .container
     This is a simplified presentation of a topic more thoroughly
@@ -78,7 +75,9 @@
 
     %p
       The risk of atrial fibrillation may be higher among those diagnosed with Complex Sleep Apnea. A further risk, and common problem, is a poor response to, and difficulty tolerating, CPAP. If, a patient with apparent Obstructive Sleep Apnea gets minimal benefit from CPAP, or even feels worse with treatment, Complex Sleep Apnea should be considered.
-     
+
+    = render 'learn/links', previous_article: { link: central_sleep_apnea_path, name: 'Central Sleep Apnea' }, next_article: { link: causes_of_sleep_apnea_path, name: 'Causes of Sleep Apnea' }, number: 4
+
 .container
   %h4.f300 References
 
@@ -112,3 +111,5 @@
         Gilmartin GS, Daly RW, Thomas RJ. Recognition and management of complex
         sleep-disordered breathing. Curr Opin Pulm Med 2005;11:485-93.
   %br
+
+= render 'learn/learn_callout'

@@ -1,9 +1,6 @@
 .content-main-header
   .container
     %h1 What is Sleep Apnea?
-    %p
-      Next:
-      = link_to 'Obstructive Sleep Apnea', obstructive_sleep_apnea_path
 
 .content-container
   .container
@@ -22,3 +19,8 @@
       and
       = succeed '.' do
         = link_to 'central sleep apnea', central_sleep_apnea_path
+
+
+    = render 'learn/links', previous_article: { link: treatment_options_for_sleep_apnea_path, name: 'Treatment Options for Sleep Apnea' }, next_article: { link: obstructive_sleep_apnea_path, name: 'Obstructive Sleep Apnea' }, number: 1
+
+= render 'learn/learn_callout'

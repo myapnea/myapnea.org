@@ -1,9 +1,6 @@
 .content-main-header
   .container
     %h1 Central Sleep Apnea
-    %p
-      Next:
-      = link_to 'Complex Sleep Apnea', complex_sleep_apnea_path
 
 .content-container
   .container
@@ -22,3 +19,7 @@
     %p
       Central sleep apnea can be very challenging to treat. When possible, treating underlying risk factors - such as
       heart failure - is advised.
+
+    = render 'learn/links', previous_article: { link: obstructive_sleep_apnea_path, name: 'Obstructive Sleep Apnea' }, next_article: { link: complex_sleep_apnea_path, name: 'Complex Sleep Apnea' }, number: 3
+
+= render 'learn/learn_callout'

@@ -152,37 +152,37 @@ class StaticControllerTest < ActionController::TestCase
   end
 
   test 'should get about PAP therapy' do
-    get :about_PAP_therapy
+    get :about_pap_therapy
     assert_response :success
   end
 
   test 'should get PAP setup guide' do
-    get :PAP_setup_guide
+    get :pap_setup_guide
     assert_response :success
   end
 
   test 'should get PAP troubleshooting guide' do
-    get :PAP_troubleshooting_guide
+    get :pap_troubleshooting_guide
     assert_response :success
   end
 
   test 'should get PAP care maintenance' do
-    get :PAP_care_maintenance
+    get :pap_care_maintenance
     assert_response :success
   end
 
   test 'should get PAP masks equipment' do
-    get :PAP_masks_equipment
+    get :pap_masks_equipment
     assert_response :success
   end
 
   test 'should get traveling with PAP' do
-    get :traveling_with_PAP
+    get :traveling_with_pap
     assert_response :success
   end
 
   test 'should get side effects PAP' do
-    get :side_effects_PAP
+    get :side_effects_pap
     assert_response :success
   end
 

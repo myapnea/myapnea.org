@@ -1,9 +1,6 @@
 .content-main-header
   .container
     %h1 Treatment Options for Sleep Apnea
-    %p
-      Next:
-      = link_to 'Learn more', learn_path
 
 .content-container
   .container
@@ -149,3 +146,7 @@
       selected surgery to the type of sleep apnea you have, and the primary cause of your apnea. Whichever treatment
       method you decide to use, it is important that you stick to the treatment schedule. Left untreated or improperly
       treated, sleep apnea can lead to worsening health conditions, including obesity, heart failure, and depression.
+
+    = render 'learn/links', previous_article: { link: diagnosis_of_sleep_apnea_path, name: 'Diagnosis of Sleep Apnea' }, next_article: { link: what_is_sleep_apnea_path, name: 'What is Sleep Apnea?' }, number: 9
+
+= render 'learn/learn_callout'

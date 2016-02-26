@@ -80,73 +80,73 @@ class StaticController < ApplicationController
   ## Educational content
 
   def what_is_sleep_apnea
-    render 'static/SEO_content/what_is_sleep_apnea'
+    render 'learn/what_is_sleep_apnea'
   end
 
   def obstructive_sleep_apnea
-    render 'static/SEO_content/obstructive_sleep_apnea'
+    render 'learn/obstructive_sleep_apnea'
   end
 
   def central_sleep_apnea
-    render 'static/SEO_content/central_sleep_apnea'
+    render 'learn/central_sleep_apnea'
   end
 
   def complex_sleep_apnea
-    render 'static/SEO_content/complex_sleep_apnea'
+    render 'learn/complex_sleep_apnea'
   end
 
   def causes
-    render 'static/SEO_content/causes'
+    render 'learn/causes'
   end
 
   def symptoms
-    render 'static/SEO_content/symptoms'
+    render 'learn/symptoms'
   end
 
   def risk_factors
-    render 'static/SEO_content/risk_factors'
+    render 'learn/risk_factors'
   end
 
   def diagnostic_process
-    render 'static/SEO_content/diagnostic_process'
+    render 'learn/diagnostic_process'
   end
 
   def treatment_options
-    render 'static/SEO_content/treatment_options'
+    render 'learn/treatment_options'
   end
 
   # PAP Devices
 
   def pap
-    render 'static/PAP'
+    render 'static/pap'
   end
 
-  def about_PAP_therapy
-    render 'static/SEO_content/about_PAP_therapy'
+  def about_pap_therapy
+    render 'learn/about_pap_therapy'
   end
 
-  def PAP_setup_guide
-    render 'static/SEO_content/PAP_setup_guide'
+  def pap_setup_guide
+    render 'learn/pap_setup_guide'
   end
 
-  def PAP_troubleshooting_guide
-    render 'static/SEO_content/PAP_troubleshooting_guide'
+  def pap_troubleshooting_guide
+    render 'learn/pap_troubleshooting_guide'
   end
 
-  def PAP_care_maintenance
-    render 'static/SEO_content/PAP_care_maintenance'
+  def pap_care_maintenance
+    render 'learn/pap_care_maintenance'
   end
 
-  def PAP_masks_equipment
-    render 'static/SEO_content/PAP_masks_equipment'
+  def pap_masks_equipment
+    render 'learn/pap_masks_equipment'
   end
 
-  def traveling_with_PAP
-    render 'static/SEO_content/traveling_with_PAP'
+  def traveling_with_pap
+    render 'learn/traveling_with_pap'
   end
 
-  def side_effects_PAP
-    render 'static/SEO_content/side_effects_PAP'
+  def side_effects_pap
+    render 'learn/side_effects_pap'
   end
 
   ## THEME
@@ -159,7 +159,7 @@ class StaticController < ApplicationController
 
   def provider_page
     @provider = User.current.providers.find_by_slug(params[:slug])
-    if @provider and @provider.slug.present?
+    if @provider && @provider.slug.present?
       redirect_to provider_path(@provider.slug)
     else
       redirect_to providers_path
@@ -168,20 +168,19 @@ class StaticController < ApplicationController
 
   private
 
-    def load_pc
-      @pc = page_content(params[:action].to_s)
-    end
+  def load_pc
+    @pc = page_content(params[:action].to_s)
+  end
 
-    def page_content(name)
-      YAML.load_file(Rails.root.join('lib', 'data', 'content', "#{name}.yml"))[name]
-    end
+  def page_content(name)
+    YAML.load_file(Rails.root.join('lib', 'data', 'content', "#{name}.yml"))[name]
+  end
 
-    def about_layout
-    end
+  def about_layout
+  end
 
-    def set_SEO_elements
-      @page_title = ''
-      @page_content = ''
-    end
-
+  def set_SEO_elements
+    @page_title = ''
+    @page_content = ''
+  end
 end

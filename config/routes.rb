@@ -122,13 +122,13 @@ Rails.application.routes.draw do
     get '/diagnosis-of-sleep-apnea', to: 'static#diagnostic_process'
     get '/treatment-options-for-sleep-apnea', to: 'static#treatment_options'
     get '/pap', to: 'static#pap'
-    get '/pap/about-PAP-therapy', to: 'static#about_PAP_therapy'
-    get '/pap/PAP-setup-guide', to: 'static#PAP_setup_guide'
-    get '/pap/PAP-troubleshooting-guide', to: 'static#PAP_troubleshooting_guide'
-    get '/pap/PAP-care-and-maintenance', to: 'static#PAP_care_maintenance'
-    get '/pap/PAP-masks-and-equipment', to: 'static#PAP_masks_equipment'
-    get '/pap/traveling-with-PAP', to: 'static#traveling_with_PAP'
-    get '/pap/side-effects-of-PAP', to: 'static#side_effects_PAP'
+    get '/pap/about-pap-therapy', to: 'static#about_pap_therapy'
+    get '/pap/pap-setup-guide', to: 'static#pap_setup_guide'
+    get '/pap/pap-troubleshooting-guide', to: 'static#pap_troubleshooting_guide'
+    get '/pap/pap-care-and-maintenance', to: 'static#pap_care_maintenance'
+    get '/pap/pap-masks-and-equipment', to: 'static#pap_masks_equipment'
+    get '/pap/traveling-with-pap', to: 'static#traveling_with_pap'
+    get '/pap/side-effects-of-pap', to: 'static#side_effects_pap'
   end
 
   # Registration flow

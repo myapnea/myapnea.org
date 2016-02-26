@@ -1,9 +1,6 @@
 .content-main-header
   .container
     %h1 Diagnosis of Sleep Apnea
-    %p
-      Next:
-      = link_to 'Treatment Options for Sleep Apnea', treatment_options_for_sleep_apnea_path
 
 .content-container
   .container
@@ -55,3 +52,7 @@
       easy to set up, and the results are analyzed only after the device is sent back to the sleep lab. If your health
       care provider suggests a home sleep test, be sure to ask any questions you have, and make sure they explain the
       process and how to properly use the machine.
+
+    = render 'learn/links', previous_article: { link: risk_factors_for_sleep_apnea_path, name: 'Risk Factors for Sleep Apnea' }, next_article: { link: treatment_options_for_sleep_apnea_path, name: 'Treatment Options for Sleep Apnea' }, number: 8
+
+= render 'learn/learn_callout'

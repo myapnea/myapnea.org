@@ -5,6 +5,7 @@
   - Renamed "Research Highlights" to "Highlights"
 - **Learn Page Changes**
   - Added Complex Sleep Apnea to the learn page
+  - Added better navigation between learn pages
 - **Password Reset Changes**
   - Password reset emails are no longer sent to deleted users
   - Provided better message if the email address was not found

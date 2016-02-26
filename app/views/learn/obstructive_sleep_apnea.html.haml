@@ -1,9 +1,6 @@
 .content-main-header
   .container
     %h1 Obstructive Sleep Apnea
-    %p
-      Next:
-      = link_to 'Central Sleep Apnea', central_sleep_apnea_path
 
 .content-container
   .container
@@ -31,3 +28,7 @@
       Most people with sleep apnea are not aware of the fact that they are repeatedly waking up in the middle of the
       night because  they do not wake up fully and fall back asleep without realizing it. This may be one reason why
       more than 80 percent of potential sleep apnea cases go undiagnosed.
+
+    = render 'learn/links', previous_article: { link: what_is_sleep_apnea_path, name: 'What is Sleep Apnea?' }, next_article: { link: central_sleep_apnea_path, name: 'Central Sleep Apnea' }, number: 2
+
+= render 'learn/learn_callout'

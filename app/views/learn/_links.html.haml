@@ -1,0 +1,18 @@
+%hr
+
+%p
+  %h4.centered More Articles
+
+.row
+  .col-xs-12.col-md-5{ style: 'margin-bottom: 10px' }
+    = link_to previous_article[:link], class: 'btn btn-primary btn-block' do
+      &larr;
+      = previous_article[:name]
+  .col-md-2.hidden-xs.hidden-sm.centered
+    .text-muted{ style: 'display:inline-block; padding: 6px 12px;' }
+      = number
+      of 9
+  .col-xs-12.col-md-5
+    = link_to next_article[:link], class: 'btn btn-primary btn-block' do
+      = next_article[:name]
+      &rarr;

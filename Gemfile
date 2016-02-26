@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 
 gem 'rails',                '4.2.5.1'
@@ -11,13 +13,13 @@ gem 'kaminari',             '~> 0.16.3'           # Pagination
 gem 'carrierwave',          '~> 0.10.0'           # File Uploads
 gem 'mini_magick'                                 # Image Resizing
 gem 'redcarpet',            '~> 3.3.2'            # Markdown on forums
-gem 'bootstrap-sass'                              # Bootstrap JS and SCSS
-gem 'font-awesome-rails'                          # Font Awesome Icons
-gem 'haml'                                        # HAML Views
 gem 'figaro',               '~> 1.1.1'            # Centralized Configuration
 gem 'geocoder'                                    # IP Location Lookup
 gem 'rubyzip',              '~> 1.2.0'
 gem 'colorize',             '~> 0.7.5'
+gem 'bootstrap-sass'                              # Bootstrap JS and SCSS
+gem 'font-awesome-rails'                          # Font Awesome Icons
+gem 'haml'                                        # HAML Views
 
 # To Be Removed
 
@@ -39,7 +41,7 @@ gem 'turbolinks'
 group :test do
   # Pretty printed test output
   gem 'minitest'
-  gem 'simplecov',          '~> 0.11.1',           require: false
+  gem 'simplecov',          '~> 0.11.1', require: false
 end
 
 group :development do
