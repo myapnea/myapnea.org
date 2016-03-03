@@ -3,6 +3,7 @@
 ### Enhancements
 - **Gem Changes**
   - Updated to rails 4.2.5.2
+  - Updated to simplecov 0.11.2
 
 ## 10.1.0 (February 29, 2016)
 
