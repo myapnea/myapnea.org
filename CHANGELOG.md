@@ -1,6 +1,8 @@
 ## 10.1.1
 
 ### Enhancements
+- **Email Changes**
+  - Improved the responsiveness and display of emails on smaller devices
 - **Gem Changes**
   - Updated to rails 4.2.5.2
   - Updated to simplecov 0.11.2

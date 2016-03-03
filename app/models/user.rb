@@ -329,7 +329,7 @@ class User < ActiveRecord::Base
       pid = Process.fork
       if pid.nil? then
         # In child
-        UserMailer.welcome_provider(self).deliver_later if Rails.env.production? and self.provider?
+        UserMailer.welcome_provider(self).deliver_later if EMAILS_ENABLED && provider?
         Kernel.exit!
       else
         # In parent
@@ -365,7 +365,7 @@ class User < ActiveRecord::Base
       pid = Process.fork
       if pid.nil? then
         # In child
-        UserMailer.welcome(self).deliver_later if Rails.env.production?
+        UserMailer.welcome(self).deliver_later if EMAILS_ENABLED
         Kernel.exit!
       else
         # In parent

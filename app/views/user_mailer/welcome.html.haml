@@ -1,33 +1,41 @@
-%b
+%p{ style: p_style }
   Dear
-  = "#{@user.first_name},"
-%br
-%br
-Your registration with
-= "#{@user.my_provider.provider_name} for" if @user.my_provider and @user.my_provider.provider_name.present?
-= link_to 'MyApnea.Org', ENV['website_url'], style: "color: #428bca"
-was successful. Thank you for joining our growing network!
-%br
-%br
-The dawn of a new era in sleep apnea research is here. As a network member you can now:
-%br
-%ul
+  = succeed ',' do
+    = @user.first_name
+
+%p{ style: p_style }
+  Your registration with
+  - if @user.my_provider && @user.my_provider.provider_name.present?
+    = @user.my_provider.provider_name
+    for
+  = link_to 'MyApnea.Org', ENV['website_url'], style: link_style
+  was successful. Thank you for joining our growing network!
+
+%p{ style: p_style }
+  The dawn of a new era in sleep apnea research is here. As a network member you
+  can now:
+
+
+%ul{ style: p_style }
   %li
-    Connect with other members on the
-    = link_to 'Forums', "#{ENV['website_url']}/forums", style: "color: #428bca"
+    %span{ style: emphasis_style } Connect
+    with other members on the
+    = link_to 'Forums', "#{ENV['website_url']}/forums", style: link_style
     to share your story and discuss your views on future research projects.
   %li
-    Track your health over time and compare with other network members by completing
+    %span{ style: emphasis_style } Track
+    your health over time and compare with other network members by completing
     = succeed '.' do
-      = link_to 'short surveys', "#{ENV['website_url']}/surveys", style: "color: #428bca"
+      = link_to 'short surveys', "#{ENV['website_url']}/surveys", style: link_style
   %li
-    Direct future sleep apnea research by
-    = link_to 'suggesting and voting on topics', "#{ENV['website_url']}/research-topics", style: "color: #428bca"
+    %span{ style: emphasis_style } Direct
+    future sleep apnea research by
+    = link_to 'suggesting and voting on topics', "#{ENV['website_url']}/research-topics", style: link_style
     that matter to you most.
 
-%br
-Again, welcome and we look forward to finding answers together with you!
-%br
-%br
-The MyApnea.Org Team
+%p{ style: p_style }
+  Again, welcome and we look forward to finding answers together with you!
+
+%p{ style: p_style }
+  The MyApnea.Org Team
 

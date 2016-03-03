@@ -1,6 +1,9 @@
+# frozen_string_literal: true
+
+# Encapsulates a series of questions that a participant can answer.
 class Survey < ActiveRecord::Base
   # Constants
-  STATUS = ['show', 'hide']
+  STATUS = %w(show hide)
 
   # Concerns
   include Localizable
@@ -43,7 +46,7 @@ class Survey < ActiveRecord::Base
   end
 
   def self.find_by_param(input)
-    self.where("surveys.slug = ? or surveys.id = ?", input.to_s, input.to_i).first
+    where('surveys.slug = ? or surveys.id = ?', input.to_s, input.to_i).first
   end
 
   # Simplified Version
@@ -56,15 +59,13 @@ class Survey < ActiveRecord::Base
   # end
 
   def editable_by?(current_user)
-    self.user_id == current_user.id
+    user_id == current_user.id
   end
 
   def atomic_first_or_create_answer_session(user, encounter_slug, child_id: nil)
-    begin
-      self.answer_sessions.where(user_id: user.id, encounter: encounter_slug, child_id: child_id).first_or_create!
-    rescue ActiveRecord::RecordNotUnique, ActiveRecord::RecordInvalid
-      retry
-    end
+    answer_sessions.where(user_id: user.id, encounter: encounter_slug, child_id: child_id).first_or_create!
+  rescue ActiveRecord::RecordNotUnique, ActiveRecord::RecordInvalid
+    retry
   end
 
   def launch_single(user, encounter_slug)
@@ -119,9 +120,9 @@ class Survey < ActiveRecord::Base
       survey.survey_encounters.each do |survey_encounter|
         user_types = survey.survey_user_types.pluck(:user_type)
         # Select User Types
-        user_scope = User.current.where(user_types.collect{|x| "users.#{x.to_sym} = 't'"}.join(' or '))
+        user_scope = User.current.where(user_types.collect { |x| "users.#{x.to_sym} = 't'" }.join(' or '))
         # Select Users created `launch_days_after_sign_up` days before today
-        user_scope = user_scope.where("DATE(users.created_at) <= ?", Date.today - survey_encounter.encounter.launch_days_after_sign_up.days)
+        user_scope = user_scope.where('DATE(users.created_at) <= ?', Time.zone.today - survey_encounter.encounter.launch_days_after_sign_up.days)
         # Select Users who have not yet been assigned the survey
         users = user_scope.where.not(id: AnswerSession.current.where(survey_id: survey.id, encounter: survey_encounter.encounter.slug).select(:user_id))
         answer_sessions_count = AnswerSession.count
@@ -130,12 +131,14 @@ class Survey < ActiveRecord::Base
           assigned_survey_user_ids << user.id if survey.launch_encounter_for_user(user, survey_encounter)
         end
 
-
         answer_sessions_change = AnswerSession.count - answer_sessions_count
         if answer_sessions_change > 0
           survey_changes[survey.slug] ||= { name: survey.name }
           survey_changes[survey.slug][:encounters] ||= []
-          survey_changes[survey.slug][:encounters] << { name: survey_encounter.encounter.name, answer_sessions_change: answer_sessions_change }
+          survey_changes[survey.slug][:encounters] << {
+            name: survey_encounter.encounter.name,
+            answer_sessions_change: answer_sessions_change
+          }
           surveys_launched += answer_sessions_change
         end
       end
@@ -146,24 +149,23 @@ class Survey < ActiveRecord::Base
 
     if surveys_launched > 0
       User.where(owner: true, emails_enabled: true).each do |owner|
-        UserMailer.encounter_digest(owner, surveys_launched, surveys_changes).deliver_later if Rails.env.production?
+        UserMailer.encounter_digest(owner, surveys_launched, survey_changes).deliver_later if EMAILS_ENABLED
       end
     end
     users_emailed.each do |user|
-      UserMailer.new_surveys_available(user).deliver_later if Rails.env.production?
+      UserMailer.new_surveys_available(user).deliver_later if EMAILS_ENABLED
     end
     true
   end
 
   def has_custom_report?
-    File.exists?(Rails.root.join("app", "views", "surveys", "reports", "_#{self.slug.underscore}.html.haml"))
+    File.exist?(Rails.root.join('app', 'views', 'surveys', 'reports', "_#{slug.underscore}.html.haml"))
   end
 
   private
 
-    def create_default_encounters
-      baseline = Encounter.current.find_by_slug 'baseline'
-      self.survey_encounters.create(encounter_id: baseline.id, user_id: self.user_id) if baseline
-    end
-
+  def create_default_encounters
+    baseline = Encounter.current.find_by_slug 'baseline'
+    survey_encounters.create(encounter_id: baseline.id, user_id: user_id) if baseline
+  end
 end

@@ -1,27 +1,29 @@
-%b
+%p{ style: p_style }
   Hello!
-%br
-%br
-You have been invited by
-= @user.first_name
-to join the research community at
-= succeed '!' do
-  = link_to 'MyApnea.Org', @custom_url, style: "color: #428bca"
-%br
-%br
-The dawn of a new era in sleep apnea research is here. We hope you join our community, and gain access to our great features:
-%br
-%ul
-  %li
-    Connect with other members on the forums to share your story and discuss your views on future research projects.
-  %li
-    Track your health over time and compare with other network members by completing short surveys.
-  %li
-    Direct future sleep apnea research by suggesting and voting on topics that matter to you most.
 
-%br
-Welcome and we look forward to finding answers together with you!
-%br
-%br
-The MyApnea.Org Team
+%p{ style: p_style }
+  You have been invited by
+  = @user.first_name
+  to join the research community at
+  = succeed '!' do
+    = link_to 'MyApnea.Org', @custom_url, style: link_style
 
+%p{ style: p_style }
+  The dawn of a new era in sleep apnea research is here. We hope you join our community, and gain access to our great features:
+
+%ul{ style: p_style }
+  %li
+    %span{ style: emphasis_style } Connect
+    with other members on the forums to share your story and discuss your views on future research projects.
+  %li
+    %span{ style: emphasis_style } Track
+    your health over time and compare with other network members by completing short surveys.
+  %li
+    %span{ style: emphasis_style } Direct
+    future sleep apnea research by suggesting and voting on topics that matter to you most.
+
+%p{ style: p_style }
+  Welcome and we look forward to finding answers together with you!
+
+%p{ style: p_style }
+  The MyApnea.Org Team

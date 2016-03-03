@@ -131,7 +131,7 @@ class Admin::Export < ActiveRecord::Base
   end
 
   def notify_user!
-    UserMailer.export_ready(self).deliver_later if Rails.env.production? # ENV['emails_enabled'] == 'true'
+    UserMailer.export_ready(self).deliver_later if EMAILS_ENABLED
   end
 
   def write_data_csv(data_csv)

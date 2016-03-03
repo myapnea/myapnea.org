@@ -1,27 +1,25 @@
-%b
+%p{ style: p_style }
   Dear
   = succeed ',' do
     = @owner.first_name
-%br
-%br
-Today,
-= pluralize number_with_delimiter(@surveys_launched), 'followup survey'
-= (@surveys_launched == 1 ? 'was' : 'were')
-launched to members of MyApnea.Org.
-%br
-%br
+%p{ style: p_style }
+  Today,
+  %span{ style: emphasis_style }= pluralize number_with_delimiter(@surveys_launched), 'followup survey'
+  = (@surveys_launched == 1 ? 'was' : 'were')
+  launched to members of MyApnea.Org.
+
 - @survey_changes.each do |survey_slug, changes|
-  %p
+  %p{ style: p_style }
     %strong= changes[:name]
 
-  - changes[:encounters].each do |encounter_hash|
+  %div{ style: p_style }
+    - changes[:encounters].each do |encounter_hash|
+      %div{ style: 'margin-left: 40px' }
+        %strong= number_with_delimiter encounter_hash[:answer_sessions_change]
+        = encounter_hash[:name]
 
-    %div{ style: 'margin-left: 40px' }
-      %strong= number_with_delimiter(encounter_hash[:answer_sessions_change])
-      = encounter_hash[:name]
-%br
-%br
-Thanks,
-%br
-The MyApnea.Org Team
+%p{ style: p_style }
+  Thanks,
+  %br
+  The MyApnea.Org Team
 

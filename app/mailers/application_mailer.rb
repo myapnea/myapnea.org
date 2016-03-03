@@ -1,12 +1,17 @@
+# frozen_string_literal: true
+
+# Generic mailer class defines layout and from email address
 class ApplicationMailer < ActionMailer::Base
   default from: "#{ENV['pprn_title']} <#{ActionMailer::Base.smtp_settings[:email]}>"
+  add_template_helper(EmailHelper)
   add_template_helper(ForumsHelper)
   layout 'mailer'
 
   protected
 
   def setup_email
-    attachments.inline['myapnea-logo.png'] = File.read('app/assets/images/myapnea/logos/MyApneaLogo_border_whitetext_300x80.png')
+    location = 'app/assets/images/myapnea/logos/MyApneaLogo_border_whitetext_300x80.png'
+    attachments.inline['myapnea-logo.png'] = File.read(location)
   rescue
     nil
   end

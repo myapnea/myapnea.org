@@ -1,66 +1,98 @@
-%b
+%p{ style: p_style }
   Dear
   = "#{@user.first_name},"
 
-%p
+%p{ style: p_style }
   Thank you for registering as a Provider with
   = "#{ENV['website_name']}!"
   We are excited that
   you have joined our dynamic patient-centered community and we look forward to
   collaborating with you.
-%p
+
+%p{ style: p_style }
   There are several ways that you can now let your patients know about
   = "#{ENV['website_name']}."
 
-%strong Via Email
-%ul
-  %li
-    The method that has been most effective is a direct email to your patient
-    panel either through your own account or through your organization's EHR or
-    email system. Here is an example of an invitation email to your patients:
-    %br
-    %br
-    %div{ style: 'color:#777;padding-left:25px'}
-      %i Example Invitation Email to Patients
-    %div{ style: 'border: 4px solid #428bca; padding:20px; margin-right:40px' }
-      %p
-        Your health data has power. If you haven't already, please join me and
-        register for the sleep apnea patient-powered network
-        = ENV['website_name']
-        through my unique portal at:
-      %p
-        = link_to "#{ENV['website_url']}/p/#{@user.slug}", "#{ENV['website_url']}/p/#{@user.slug}", style: "color: #428bca"
-      %p
-        If you have already joined, thank you! Now you can link to my portal by
-        visiting the link above and clicking on the button at the bottom of the page that says:
-      %p
-        "Yes, list
-        = @user.provider_name
-        as my Provider!"
-      %p
-        Together we have the power to help improve the lives of sleep apnea patients. Join now!
+- content_for :extra_blocks do
+  %table{ align: 'center', border: '0', cellpadding: '32', cellspacing: '0', style: 'border-collapse:collapse;background:white;margin-bottom:16px' }
+    %tbody
+      %tr
+        %td{ style: 'border-collapse:collapse', valign: 'top', width: '546' }
+          %div{ style: 'max-width:600px;margin:0 auto' }
+            %p{ style: p_style }
+              %span{ style: emphasis_style } Via Email
 
-%strong Via Web Links
-%ul
-  %li
-    You can also request electronic graphic links/buttons for
-    placement on your website by sending an email to us at
-    = link_to('support@myapnea.org', 'mailto:support@myapnea.org', style: "color: #428bca") + '.'
-    We can tag the button so we can report to you how many people have used the
-    link to come to the site. You can also just provide a link with the
-    statement: "Join the sleep apnea patient-powered movement now" if space is
-    more limited.
+            %p{ style: p_style }
+              The method that has been most effective is a direct email to your patient
+              panel either through your own account or through your organization's EHR or
+              email system. Here is an example of an invitation email to your patients:
 
-%strong Via Promo Cards
-%ul
-  %li
-    You can also request print materials about
-    = ENV['website_name']
-    for use in your clinic or lab. Please submit your request for postcard or
-    flyer sized promotional materials in English and/or Spanish here:
-    %p
-      %center
-        = link_to 'MyApnea.Org Provider Inquiry', 'http://bit.ly/1F5ZJCV', style: "color: #428bca"
+            %div{ style: p_style }
+              %div{ style: 'padding-left:25px;margin-left: 10px; margin-bottom:5px'}
+                %i{ style: muted_style } Example Invitation Email to Patients
+              %div{ style: "border: 4px solid #{background_color}; padding:0 20px; margin:0 10px" }
+                %p
+                  Your health data has power. If you haven't already, please join me and
+                  register for the sleep apnea patient-powered network
+                  = ENV['website_name']
+                  through my unique portal at:
+                %p
+                  = link_to "#{ENV['website_url']}/p/#{@user.slug}", "#{ENV['website_url']}/p/#{@user.slug}", style: link_style
+                %p
+                  If you have already joined, thank you! Now you can link to my portal by
+                  visiting the link above and clicking on the button at the bottom of the page that says:
+                %p
+                  "Yes, list
+                  = @user.provider_name
+                  as my Provider!"
+                %p
+                  Together we have the power to help improve the lives of sleep apnea patients. Join now!
+            %div{ style: image_style }
+              = image_tag attachments.inline['speech_bubbles.png'].url, alt: ENV['website_name'], border: 0, width: 250, height: 250, style: 'outline:none;text-decoration:none;border:none;width:250px;min-height:36px;max-width:100%' if attachments.inline['speech_bubbles.png']
 
-Thank you and welcome to
-= "#{ENV['website_name']}!"
+  %table{ align: 'center', border: '0', cellpadding: '32', cellspacing: '0', style: 'border-collapse:collapse;background:white;margin-bottom:16px' }
+    %tbody
+      %tr
+        %td{ style: 'border-collapse:collapse', valign: 'top', width: '546' }
+          %p{ style: p_style }
+            %span{ style: emphasis_style } Via Web Links
+
+          %p{ style: p_style }
+            You can also request electronic graphic links/buttons for
+            placement on your website by sending an email to us at
+            = succeed '.' do
+              = mail_to 'support@myapnea.org', 'support@myapnea.org', style: link_style
+            We can tag the button so we can report to you how many people have used the
+            link to come to the site. You can also just provide a link with the
+            statement: "Join the sleep apnea patient-powered movement now" if space is
+            more limited.
+
+          %div{ style: image_style }
+            = image_tag attachments.inline['sleep.png'].url, alt: ENV['website_name'], border: 0, width: 250, height: 250, style: 'outline:none;text-decoration:none;border:none;width:250px;min-height:36px;max-width:100%' if attachments.inline['sleep.png']
+
+  %table{ align: 'center', border: '0', cellpadding: '32', cellspacing: '0', style: 'border-collapse:collapse;background:white;margin-bottom:16px' }
+    %tbody
+      %tr
+        %td{ style: 'border-collapse:collapse', valign: 'top', width: '546' }
+          %p{ style: p_style }
+            %span{ style: emphasis_style } Via Promo Cards
+
+          %p{ style: p_style }
+            You can also request print materials about
+            = ENV['website_name']
+            for use in your clinic or lab. Please submit your request for postcard or
+            flyer sized promotional materials in English and/or Spanish here:
+
+          %p{ style: center_style }
+            = link_to 'MyApnea.Org Provider Inquiry', 'http://bit.ly/1F5ZJCV', style: link_style
+
+          %div{ style: image_style }
+            = image_tag attachments.inline['did_you_know.png'].url, alt: ENV['website_name'], border: 0, width: 250, height: 250, style: 'outline:none;text-decoration:none;border:none;width:250px;min-height:36px;max-width:100%' if attachments.inline['did_you_know.png']
+
+  %table{ align: 'center', border: '0', cellpadding: '32', cellspacing: '0', style: 'border-collapse:collapse;background:white;margin-bottom:16px' }
+    %tbody
+      %tr
+        %td{ style: 'border-collapse:collapse', valign: 'top', width: '546' }
+          %p{ style: center_style }
+            Thank you and welcome to
+            = "#{ENV['website_name']}!"
