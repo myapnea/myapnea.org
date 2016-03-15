@@ -1,2 +1,6 @@
-# Increase Geocoder default timeout from 5 seconds up to 30 seconds
-Geocoder.configure(timeout: 30)
+Geocoder.configure(
+  ip_lookup: :geoip2,
+  geoip2: {
+    file: Rails.root.join('lib', 'data', 'geocoder', 'GeoLite2-City.mmdb')
+  }
+)

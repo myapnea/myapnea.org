@@ -1,5 +1,11 @@
 ## 10.2.0
 
+### Enhancements
+- **Map Changes**
+  - Map location is now pulled using a local database lookup
+- **Gem Changes**
+  - Added maxminddb gem
+
 ## 10.1.1 (March 3, 2016)
 
 ### Enhancements

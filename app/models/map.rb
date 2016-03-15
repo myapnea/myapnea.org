@@ -19,7 +19,7 @@ class Map
   end
 
   def self.update_user_location(user)
-    if user.state_code.present? or user.country_code.present?
+    if user.country_code.present?
       Rails.logger.debug "USER ##{user.id} EXISTS: '#{user.state_code}' '#{user.country_code}'"
       return
     end

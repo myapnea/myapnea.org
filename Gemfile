@@ -15,6 +15,7 @@ gem 'mini_magick'                                 # Image Resizing
 gem 'redcarpet',            '~> 3.3.2'            # Markdown on forums
 gem 'figaro',               '~> 1.1.1'            # Centralized Configuration
 gem 'geocoder'                                    # IP Location Lookup
+gem 'maxminddb'
 gem 'rubyzip',              '~> 1.2.0'
 gem 'colorize',             '~> 0.7.5'
 gem 'bootstrap-sass'                              # Bootstrap JS and SCSS
