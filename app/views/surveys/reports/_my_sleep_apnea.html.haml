@@ -20,12 +20,12 @@
 .content-container
   .survey-report-question
     %h3 What symptoms have you experienced?
-  - my_risk_symptoms = TemporaryReport.risk_symptoms(@answer_session, 'symptoms-before-diagnosis').collect{|ao| ao.answer_templates.first.text}
+  - my_risk_symptoms = TemporaryReport.risk_symptoms(@answer_session, 'symptoms-before-diagnosis').collect { |ao| ao.answer_templates.first.text }
   - if my_risk_symptoms.count > 0
     .survey-report-answer
       %p.lead
         Your symptoms include:
-        %span.f500= my_risk_symptoms.join(", ")
+        %span.f500= my_risk_symptoms.join(', ')
   .survey-report-info
     %h3 The most common symptoms for MyApnea members:
     - question = @survey.questions.find_by_slug('symptoms-before-diagnosis')

@@ -74,7 +74,6 @@ class Question < ActiveRecord::Base
   end
 
   def first_radio_or_checkbox_answer_template
-    self.answer_templates.where(template_name: ['radio', 'checkbox']).first
+    answer_templates.unarchived.find_by template_name: %w(radio checkbox)
   end
-
 end

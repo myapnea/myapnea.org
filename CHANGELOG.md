@@ -5,6 +5,11 @@
   - Updated to rails 4.2.6
   - Updated to carrierwave 0.11.0
 
+### Bug Fix
+- Fixed a bug that prevented My Sleep Apnea custom report from generating
+  correct percentage for "Percentage of Members who think they have sleep apnea
+  for over 2 years:".
+
 ## 10.2.0 (March 15, 2016)
 
 ### Enhancements
