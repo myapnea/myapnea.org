@@ -4,6 +4,8 @@
 - **Gem Changes**
   - Updated to rails 4.2.6
   - Updated to carrierwave 0.11.0
+- **Email Changes**
+  - Unlock instructions are no longer sent to deleted accounts
 
 ### Bug Fix
 - Fixed a bug that prevented My Sleep Apnea custom report from generating

@@ -77,11 +77,17 @@ class User < ActiveRecord::Base
 
   # Overriding Devise built-in active_for_authentication? method
   def active_for_authentication?
-    super and not self.deleted?
+    super && !deleted?
   end
 
   # Override Devise built-in password reset notification email method
   def send_reset_password_instructions
+    return if deleted?
+    super
+  end
+
+  # Override Devise built-in unlock instructions notification email method
+  def send_unlock_instructions
     return if deleted?
     super
   end
@@ -154,7 +160,6 @@ class User < ActiveRecord::Base
     end
   end
 
-
   # All comments created in the last day, or over the weekend if it is Monday
   # Ex: On Monday, returns tasks created since Friday morning (Time.zone.now - 3.day)
   # Ex: On Tuesday, returns tasks created since Monday morning (Time.zone.now - 1.day)
@@ -181,33 +186,33 @@ class User < ActiveRecord::Base
   end
 
   def can_post_links?
-    self.moderator? or self.owner?
+    moderator? || owner?
   end
 
   def revoke_consent!
-    self.update_column :accepted_terms_of_access_at, nil
-    self.update_column :accepted_consent_at, nil
-    self.update_column :accepted_privacy_policy_at, nil
+    update_column :accepted_terms_of_access_at, nil
+    update_column :accepted_consent_at, nil
+    update_column :accepted_privacy_policy_at, nil
   end
 
   def signed_consent?
-    self.accepted_consent_at.present?
+    accepted_consent_at.present?
   end
 
   def accepted_privacy_policy?
-    self.accepted_privacy_policy_at.present?
+    accepted_privacy_policy_at.present?
   end
 
   def accepted_consent?
-    self.accepted_consent_at.present?
+    accepted_consent_at.present?
   end
 
   def accepted_terms_conditions?
-    self.accepted_terms_conditions_at.present?
+    accepted_terms_conditions_at.present?
   end
 
   def ready_for_research?
-    if self.provider? or is_only_researcher?
+    if provider? || is_only_researcher?
       accepted_privacy_policy? and accepted_terms_of_access?
       # accepted_privacy_policy? and (accepted_terms_of_access? or signed_consent?) # is this complicating things? Should they just be asked to sign the ToA?
     else
@@ -216,36 +221,36 @@ class User < ActiveRecord::Base
   end
 
   def accepted_terms_of_access?
-    self.accepted_terms_of_access_at.present?
+    accepted_terms_of_access_at.present?
   end
 
   # Should not compare against RECENT_UPDATE_DATE if it is in the future
   def accepted_most_recent_update?
-    (self.accepted_update_at.present? and (self.accepted_update_at > Date.parse(RECENT_UPDATE_DATE).at_noon)) or (Date.parse(RECENT_UPDATE_DATE).at_noon > Time.zone.now and !Rails.env.test?)
+    (accepted_update_at.present? && accepted_update_at > Date.parse(RECENT_UPDATE_DATE).at_noon) ||
+      (Date.parse(RECENT_UPDATE_DATE).at_noon > Time.zone.now && !Rails.env.test?)
   end
 
   # User Types
   def update_user_types(user_types)
     update user_types
     assign_default_surveys
-
   end
 
   # Surveys
   def get_baseline_survey_answer_session(survey)
-    self.answer_sessions.where(encounter: 'baseline', survey_id: survey.id, child_id: nil).first_or_create
+    answer_sessions.where(encounter: 'baseline', survey_id: survey.id, child_id: nil).first_or_create
   end
 
   def completed_answer_sessions
-    self.answer_sessions.where(child_id: nil, locked: true).joins(:survey).merge(Survey.current.viewable)
+    answer_sessions.where(child_id: nil, locked: true).joins(:survey).merge(Survey.current.viewable)
   end
 
   def incomplete_answer_sessions
-    self.answer_sessions.where(child_id: nil, locked: false).joins(:survey).merge(Survey.current.viewable)
+    answer_sessions.where(child_id: nil, locked: false).joins(:survey).merge(Survey.current.viewable)
   end
 
   def completed_assigned_answer_sessions?
-    self.answer_sessions.where(child_id: nil, locked: false).joins(:survey).merge(Survey.current.viewable).count == 0
+    answer_sessions.where(child_id: nil, locked: false).joins(:survey).merge(Survey.current.viewable).count == 0
   end
 
   def next_answer_session(answer_session)
@@ -254,25 +259,25 @@ class User < ActiveRecord::Base
 
   # Child Surveys
   def completed_child_answer_sessions(child_input)
-    self.answer_sessions.where(child_id: child_input, locked: true).joins(:survey).merge(Survey.current.viewable)
+    answer_sessions.where(child_id: child_input, locked: true).joins(:survey).merge(Survey.current.viewable)
   end
 
   def incomplete_child_answer_sessions(child_input)
-    self.answer_sessions.where(child_id: child_input, locked: false).joins(:survey).merge(Survey.current.viewable)
+    answer_sessions.where(child_id: child_input, locked: false).joins(:survey).merge(Survey.current.viewable)
   end
 
   def completed_child_assigned_answer_sessions?(child_input)
-    self.answer_sessions.where(child_id: child_input, locked: false).joins(:survey).merge(Survey.current.viewable).count == 0
+    answer_sessions.where(child_id: child_input, locked: false).joins(:survey).merge(Survey.current.viewable).count == 0
   end
 
   def next_child_answer_session(answer_session)
     if answer_session && answer_session.child_id.present?
-      self.answer_sessions.where(child_id: answer_session.child_id, locked: false).where.not(id: answer_session.id).joins(:survey).merge(Survey.current.viewable).first
+      answer_sessions.where(child_id: answer_session.child_id, locked: false).where.not(id: answer_session.id).joins(:survey).merge(Survey.current.viewable).first
     end
   end
 
   def completed_demographic_survey?
-    self.answer_sessions.where(survey_id: Survey.find_by_slug('about-me').id).where(locked:true).present?
+    answer_sessions.where(survey_id: Survey.find_by_slug('about-me').id).where(locked:true).present?
   end
 
   # Can Build Surveys
@@ -315,8 +320,7 @@ class User < ActiveRecord::Base
   end
 
   def novice_voter?
-    vote_count < ResearchTopic::INTRO_LENGTH and vote_count > 0
-
+    vote_count < ResearchTopic::INTRO_LENGTH && vote_count > 0
   end
 
   def no_votes_user?
