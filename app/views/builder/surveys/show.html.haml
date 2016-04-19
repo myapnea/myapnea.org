@@ -140,3 +140,5 @@
               %code= question.slug
             %td= link_to_if current_user.owner?, question.user.name, question.user if question.user
             %td= link_to 'Edit', edit_builder_survey_question_path(@survey, question), class: 'btn btn-xs btn-default'
+
+    = render 'builder/survey_editors/index', survey: @survey

@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
+# Allows flagged users to build surveys online.
 class Builder::SurveysController < Builder::BuilderController
   before_action :authenticate_user!
   before_action :redirect_non_builders
-
   before_action :set_editable_survey,       only: [:show, :edit, :update, :destroy]
   before_action :redirect_without_survey,   only: [:show, :edit, :update, :destroy]
 
@@ -10,20 +12,15 @@ class Builder::SurveysController < Builder::BuilderController
   end
 
   def new
-    @survey = current_user.editable_surveys.new
+    @survey = Survey.where(user_id: current_user.id).new
   end
 
   def create
-    @survey = current_user.editable_surveys.new(survey_params)
-
-    respond_to do |format|
-      if @survey.save
-        format.html { redirect_to builder_survey_path(id: @survey), notice: 'Survey was successfully created.' }
-        format.json { render :show, status: :created, location: @survey }
-      else
-        format.html { render :new }
-        format.json { render json: @survey.errors, status: :unprocessable_entity }
-      end
+    @survey = Survey.where(user_id: current_user.id).new(survey_params)
+    if @survey.save
+      redirect_to builder_survey_path(id: @survey), notice: 'Survey was successfully created.'
+    else
+      render :new
     end
   end
 
@@ -34,34 +31,28 @@ class Builder::SurveysController < Builder::BuilderController
   end
 
   def update
-    respond_to do |format|
-      if @survey.update(survey_params)
-        format.html { redirect_to builder_survey_path(id: @survey), notice: 'Survey was successfully updated.' }
-        format.json { render :show, status: :ok, location: @survey }
-      else
-        format.html { render :edit }
-        format.json { render json: @survey.errors, status: :unprocessable_entity }
-      end
+    if @survey.update(survey_params)
+      redirect_to builder_survey_path(id: @survey), notice: 'Survey was successfully updated.'
+    else
+      render :edit
     end
   end
 
   def destroy
     @survey.destroy
-    respond_to do |format|
-      format.html { redirect_to builder_surveys_path, notice: 'Survey was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to builder_surveys_path, notice: 'Survey was successfully deleted.'
   end
-
 
   private
 
-    def set_editable_survey
-      super(:id)
-    end
+  def set_editable_survey
+    super(:id)
+  end
 
-    def survey_params
-      params.require(:survey).permit(:name_en, :description_en, :slug, :status, :pediatric, :pediatric_diagnosed, :child_min_age, :child_max_age)
-    end
-
+  def survey_params
+    params.require(:survey).permit(
+      :name_en, :description_en, :slug, :status, :pediatric,
+      :pediatric_diagnosed, :child_min_age, :child_max_age
+    )
+  end
 end

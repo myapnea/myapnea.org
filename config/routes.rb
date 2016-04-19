@@ -1,5 +1,6 @@
-Rails.application.routes.draw do
+# frozen_string_literal: true
 
+Rails.application.routes.draw do
   resources :engagements do
     resources :engagement_responses
   end
@@ -51,8 +52,8 @@ Rails.application.routes.draw do
       end
       resources :survey_user_types
       resources :survey_encounters
+      resources :survey_editors, path: 'editors'
     end
-
     resources :encounters
 
     get '', to: redirect('builder/surveys')

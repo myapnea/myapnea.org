@@ -265,9 +265,16 @@ builder:
   last_name: Builder
   email: builder@example.com
   encrypted_password: <%= pw %>
-  can_build_surveys: tru
+  can_build_surveys: true
   forum_name: surveybuilder
 
+associated_builder:
+  first_name: Associated
+  last_name: Builder
+  email: associated_builder@example.com
+  encrypted_password: <%= pw %>
+  can_build_surveys: true
+  forum_name: associatedbuilder
 
 ## For survey encounter assignment tests
 created_today:
@@ -428,4 +435,3 @@ heh_1:
   incoming_heh_token: 0987654321
   incoming_heh_at: <%= Time.zone.now %>
   outgoing_heh_at: <%= Time.zone.now %>
-

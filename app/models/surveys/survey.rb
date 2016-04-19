@@ -19,11 +19,11 @@ class Survey < ActiveRecord::Base
   localize :short_description
 
   # Model Validation
-  validates_presence_of :name_en, :slug, :status, :user_id
-  validates_uniqueness_of :slug, scope: [ :deleted ]
-  validates_format_of :slug, with: /\A(?!\Anew\Z)[a-z][a-z0-9\-]*\Z/
-  validates_numericality_of :child_min_age, greater_than_or_equal_to: 0, less_than_or_equal_to: 8, if: :pediatric?
-  validates_numericality_of :child_max_age, greater_than_or_equal_to: 0, less_than_or_equal_to: 8, if: :pediatric?
+  validates :name_en, :slug, :status, :user_id, presence: true
+  validates :slug, uniqueness: { scope: :deleted }
+  validates :slug, format: { with: /\A(?!\Anew\Z)[a-z][a-z0-9\-]*\Z/ }
+  validates :child_min_age, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 8 }, if: :pediatric?
+  validates :child_max_age, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 8 }, if: :pediatric?
 
   # Model Relationships
   belongs_to :user
@@ -33,11 +33,18 @@ class Survey < ActiveRecord::Base
   has_many :survey_encounters
   has_many :encounters, -> { where deleted: false }, through: :survey_encounters
   has_many :survey_user_types, -> { where deleted: false }
+  has_many :survey_editors
 
   # Named scopes
   scope :viewable, -> { where(status: 'show').where.not(slug: nil) }
   scope :pediatric, -> { where pediatric: true }
   scope :non_pediatric, -> { where pediatric: false }
+
+  def self.with_editor(user_id)
+    current.where.not(slug: nil)
+           .joins('LEFT OUTER JOIN survey_editors ON survey_editors.survey_id = surveys.id')
+           .where('survey_editors.user_id = ? or surveys.user_id = ?', user_id, user_id)
+  end
 
   # Survey Methods
 
@@ -59,7 +66,7 @@ class Survey < ActiveRecord::Base
   # end
 
   def editable_by?(current_user)
-    user_id == current_user.id
+    current_user.editable_surveys.where(id: id).count == 1
   end
 
   def atomic_first_or_create_answer_session(user, encounter_slug, child_id: nil)

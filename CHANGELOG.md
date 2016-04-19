@@ -1,11 +1,14 @@
 ## 10.3.0
 
 ### Enhancements
+- **Email Changes**
+  - Unlock instructions are no longer sent to deleted accounts
+- **Survey Builder Changes**
+  - Survey builders can now invite other builders to view and build surveys
+    together
 - **Gem Changes**
   - Updated to rails 4.2.6
   - Updated to carrierwave 0.11.0
-- **Email Changes**
-  - Unlock instructions are no longer sent to deleted accounts
 
 ### Bug Fix
 - Fixed a bug that prevented My Sleep Apnea custom report from generating

@@ -1,0 +1,24 @@
+%h3 Editors
+
+%table.table.table-bordered.table-striped
+  %thead
+    %tr
+      %th Editor
+      %th Invite Token
+      %th Invited By
+      %th Actions
+  - survey.survey_editors.each do |survey_editor|
+    %tr
+      %td
+        - if survey_editor.user
+          = survey_editor.user.name
+        - else
+          %span.text-muted= survey_editor.invite_email
+      %td= survey_editor.invite_token
+      %td= survey_editor.creator.name
+      %td
+        = link_to 'Edit', edit_builder_survey_survey_editor_path(survey, survey_editor), class: 'btn btn-xs btn-default'
+        = link_to 'Delete', builder_survey_survey_editor_path(survey, survey_editor), method: :delete, class: 'btn btn-xs btn-danger'
+  %tr
+    %td{ colspan: '4' }
+      = link_to 'Add Another Editor', new_builder_survey_survey_editor_path(survey), class: 'btn btn-xs btn-default'

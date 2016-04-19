@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class User < ActiveRecord::Base
   # Uploaders
   mount_uploader :photo, PhotoUploader
@@ -282,12 +284,12 @@ class User < ActiveRecord::Base
 
   # Can Build Surveys
   def editable_surveys
-    Survey.current.where(user_id: self.id).where.not(slug: nil)
+    Survey.with_editor(id).order(:name_en)
   end
 
   # Research Topics
   def my_research_topics
-    self.research_topics
+    research_topics
   end
 
   def highlighted_research_topic

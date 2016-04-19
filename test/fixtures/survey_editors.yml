@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  survey: built_on_web
+  user: associated_builder
+  # invite_token:
+  # invite_email:
+  creator: builder
+
+two:
+  survey: built_on_web_followup
+  user: associated_builder
+  # invite_token:
+  # invite_email:
+  creator: builder

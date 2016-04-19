@@ -1,0 +1,28 @@
+- if @survey_editor.new_record?
+  - url = builder_survey_survey_editors_path(@survey)
+  - method = :post
+- else
+  - url = builder_survey_survey_editor_path(@survey, @survey_editor)
+  - method = :patch
+= form_for @survey_editor, url: url, method: method, html: { class: 'form-horizontal', multipart: true } do |f|
+  - if @survey_editor.errors.any?
+    .panel.panel-danger
+      .panel-heading
+        %strong
+          = pluralize @survey_editor.errors.count, 'error'
+          prohibited this survey editor from being saved:
+
+      .panel-body
+        %ul
+          - @survey_editor.errors.full_messages.each do |message|
+            %li= message
+
+  .form-group
+    = f.label :user_id, 'Text EN', class: 'col-md-2 control-label'
+    .col-md-10
+      = f.select :user_id, User.current.where(can_build_surveys: true).order(:last_name, :first_name).collect { |u| ["#{u.last_name}, #{u.first_name}", u.id] }, { include_blank: true }, class: 'form-control'
+
+  .form-group
+    .col-md-10.col-md-offset-2
+      = f.submit nil, class: 'btn btn-primary'
+      = link_to 'Cancel', url, class: 'btn btn-default'
