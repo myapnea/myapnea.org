@@ -8,6 +8,7 @@
     together
   - Survey questions, answer templates, and answer options can now be reordered
     using drag and drop in the survey builder
+  - Survey builders can now preview surveys as they are being built
 - **Gem Changes**
   - Updated to rails 4.2.6
   - Updated to carrierwave 0.11.0

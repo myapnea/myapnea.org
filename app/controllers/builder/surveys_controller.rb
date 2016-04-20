@@ -4,7 +4,7 @@
 class Builder::SurveysController < Builder::BuilderController
   before_action :authenticate_user!
   before_action :redirect_non_builders
-  before_action :find_editable_survey_or_redirect, only: [:show, :edit, :update, :destroy]
+  before_action :find_editable_survey_or_redirect, only: [:show, :preview, :edit, :update, :destroy]
 
   def index
     @surveys = current_user.editable_surveys
@@ -24,6 +24,11 @@ class Builder::SurveysController < Builder::BuilderController
   end
 
   def show
+  end
+
+  # GET /builder/surveys/:id/preview
+  def preview
+    @answer_session = current_user.answer_sessions.where(survey_id: @survey).new
   end
 
   def edit
