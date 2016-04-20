@@ -46,6 +46,9 @@ Rails.application.routes.draw do
   namespace :builder do
     resources :surveys do
       resources :questions do
+        collection do
+          post :reorder
+        end
         resources :answer_templates do
           resources :answer_options
         end

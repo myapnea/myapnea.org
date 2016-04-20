@@ -21,6 +21,11 @@ class Builder::BuilderController < ApplicationController
     empty_response_or_root_path(builder_surveys_path) unless @survey
   end
 
+  def find_editable_question_or_redirect(question_id = :question_id)
+    @question = @survey.questions.find_by_param(params[question_id])
+    empty_response_or_root_path(builder_survey_path(@survey)) unless @question
+  end
+
   def set_editable_question(question_id = :question_id)
     @question = @survey.questions.find_by_param(params[question_id])
   end

@@ -109,19 +109,23 @@
     %table.table.table-bordered.table-striped
       %thead
         %tr
+          %th
           %th Text EN
           %th URL Slug
           %th Creator
           %th Actions
-      - @survey.questions.unarchived.each do |question|
-        %tr
-          %td= link_to question.text_en, builder_survey_question_path(@survey, question)
-          %td
-            %code= question.slug
-          %td= link_to_if current_user.owner?, question.user.name, question.user if question.user
-          %td= link_to 'Edit', edit_builder_survey_question_path(@survey, question), class: 'btn btn-xs btn-default'
+      %tbody{ data: { object: 'sortable-questions', survey: @survey.slug } }
+        - @survey.questions.unarchived.each_with_index do |question, index|
+          %tr{ id: "question_#{question.id}_position_#{index}", data: { question_id: question.id } }
+            %td{ style: 'vertical-align: middle;' }
+              %span.glyphicon.glyphicon-move.move-handle
+            %td= link_to question.text_en, builder_survey_question_path(@survey, question)
+            %td
+              %code= question.slug
+            %td= link_to_if current_user.owner?, question.user.name, question.user if question.user
+            %td= link_to 'Edit', edit_builder_survey_question_path(@survey, question), class: 'btn btn-xs btn-default'
       %tr
-        %td{ colspan: '4' }
+        %td{ colspan: '5' }
           = link_to 'Add Another Question', new_builder_survey_question_path(@survey), class: 'btn btn-xs btn-default'
 
     - if @survey.questions.archived.present?

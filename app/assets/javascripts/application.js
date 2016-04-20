@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui/sortable
 //= require turbolinks
 //= require compatibility/array_prototype_index_of.js
 //= require compatibility/array_prototype_map.js
@@ -69,3 +70,4 @@
 //= require admin/engagement_heatmaps
 //= require admin/research_articles
 //= require admin/social_media
+//= require builder/questions
