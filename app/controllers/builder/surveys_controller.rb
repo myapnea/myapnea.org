@@ -4,8 +4,7 @@
 class Builder::SurveysController < Builder::BuilderController
   before_action :authenticate_user!
   before_action :redirect_non_builders
-  before_action :set_editable_survey,       only: [:show, :edit, :update, :destroy]
-  before_action :redirect_without_survey,   only: [:show, :edit, :update, :destroy]
+  before_action :find_editable_survey_or_redirect, only: [:show, :edit, :update, :destroy]
 
   def index
     @surveys = current_user.editable_surveys
@@ -45,7 +44,7 @@ class Builder::SurveysController < Builder::BuilderController
 
   private
 
-  def set_editable_survey
+  def find_editable_survey_or_redirect
     super(:id)
   end
 

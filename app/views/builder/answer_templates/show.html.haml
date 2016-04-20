@@ -62,21 +62,25 @@
           %table.table.table-bordered.table-striped
             %thead
               %tr
+                %th
                 %th Text
                 %th Hotkey
                 %th Value
                 %th Display Class
                 %th Creator
                 %th Actions
-            - @answer_template.answer_options.each do |answer_option|
-              %tr
-                %td= answer_option.text
-                %td= answer_option.hotkey
-                %td= answer_option.value
-                %td
-                  %code= answer_option.display_class
-                %td= link_to_if current_user.owner?, answer_option.user.name, answer_option.user if answer_option.user
-                %td= link_to 'Edit', edit_builder_survey_question_answer_template_answer_option_path(@survey, @question, @answer_template, answer_option), class: 'btn btn-xs btn-default'
+            %tbody{ data: { object: 'sortable-answer-options', survey: @survey.slug, question: @question.slug, answer_template: @answer_template.id } }
+              - @answer_template.answer_options.each_with_index do |answer_option, index|
+                %tr{ id: "question_#{@question.id}_template_#{@answer_template.id}_option_#{answer_option.id}_position_#{index}", data: { answer_option_id: answer_option.id } }
+                  %td{ style: 'vertical-align: middle;' }
+                    %span.glyphicon.glyphicon-move.move-handle
+                  %td= answer_option.text
+                  %td= answer_option.hotkey
+                  %td= answer_option.value
+                  %td
+                    %code= answer_option.display_class
+                  %td= link_to_if current_user.owner?, answer_option.user.name, answer_option.user if answer_option.user
+                  %td= link_to 'Edit', edit_builder_survey_question_answer_template_answer_option_path(@survey, @question, @answer_template, answer_option), class: 'btn btn-xs btn-default'
             %tr
-              %td{ colspan: '6' }
+              %td{ colspan: '7' }
                 = link_to 'Add Another Answer Option', new_builder_survey_question_answer_template_answer_option_path(@survey, @question, @answer_template), class: 'btn btn-xs btn-default'

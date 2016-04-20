@@ -50,7 +50,14 @@ Rails.application.routes.draw do
           post :reorder
         end
         resources :answer_templates do
-          resources :answer_options
+          collection do
+            post :reorder
+          end
+          resources :answer_options do
+            collection do
+              post :reorder
+            end
+          end
         end
       end
       resources :survey_user_types

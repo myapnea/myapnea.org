@@ -139,5 +139,4 @@ class Builder::SurveysControllerTest < ActionController::TestCase
     assert_nil assigns(:survey)
     assert_redirected_to root_path
   end
-
 end

@@ -1,15 +1,12 @@
+# frozen_string_literal: true
+
+# Allows survey builders to add answer templates to survey questions
 class Builder::AnswerTemplatesController < Builder::BuilderController
   before_action :authenticate_user!
   before_action :redirect_non_builders
-
-  before_action :set_editable_survey
-  before_action :redirect_without_survey
-
-  before_action :set_editable_question
-  before_action :redirect_without_question
-
-  before_action :set_editable_answer_template,     only: [:show, :edit, :update, :destroy]
-  before_action :redirect_without_answer_template, only: [:show, :edit, :update, :destroy]
+  before_action :find_editable_survey_or_redirect
+  before_action :find_editable_question_or_redirect
+  before_action :find_editable_answer_template_or_redirect, only: [:show, :edit, :update, :destroy]
 
   def index
     redirect_to builder_survey_question_path(@survey, @question)
@@ -60,14 +57,23 @@ class Builder::AnswerTemplatesController < Builder::BuilderController
     end
   end
 
+  # POST /answer_templates/reorder.js
+  def reorder
+    Rails.logger.debug "\n\n#{params[:answer_template_ids]}"
+    params[:answer_template_ids].each_with_index do |answer_template_id, index|
+      atq = @question.answer_templates_questions.find_by answer_template_id: answer_template_id
+      atq.update position: index if atq
+    end
+    head :ok
+  end
+
   private
 
-    def set_editable_answer_template
-      super(:id)
-    end
+  def find_editable_answer_template_or_redirect
+    super(:id)
+  end
 
-    def answer_template_params
-      params.require(:answer_template).permit(:name, :template_name, :parent_answer_template_id, :parent_answer_option_value, :text, :unit, :archived)
-    end
-
+  def answer_template_params
+    params.require(:answer_template).permit(:name, :template_name, :parent_answer_template_id, :parent_answer_option_value, :text, :unit, :archived)
+  end
 end

@@ -71,3 +71,5 @@
 //= require admin/research_articles
 //= require admin/social_media
 //= require builder/questions
+//= require builder/answer_templates
+//= require builder/answer_options

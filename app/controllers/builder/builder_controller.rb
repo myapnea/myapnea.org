@@ -13,10 +13,6 @@ class Builder::BuilderController < ApplicationController
     redirect_without_survey
   end
 
-  def set_editable_survey(survey_id = :survey_id)
-    @survey = current_user.editable_surveys.find_by_param(params[survey_id])
-  end
-
   def redirect_without_survey
     empty_response_or_root_path(builder_surveys_path) unless @survey
   end
@@ -26,24 +22,22 @@ class Builder::BuilderController < ApplicationController
     empty_response_or_root_path(builder_survey_path(@survey)) unless @question
   end
 
-  def set_editable_question(question_id = :question_id)
-    @question = @survey.questions.find_by_param(params[question_id])
-  end
-
   def redirect_without_question
     empty_response_or_root_path(builder_survey_path(@survey)) unless @question
   end
 
-  def set_editable_answer_template(answer_template_id = :answer_template_id)
+  def find_editable_answer_template_or_redirect(answer_template_id = :answer_template_id)
     @answer_template = @question.answer_templates.find_by_id(params[answer_template_id])
+    redirect_without_answer_template
   end
 
   def redirect_without_answer_template
     empty_response_or_root_path(builder_survey_question_path(@survey, @question)) unless @answer_template
   end
 
-  def set_editable_answer_option(answer_option_id = :answer_option_id)
+  def find_editable_answer_option_or_redirect(answer_option_id = :answer_option_id)
     @answer_option = @answer_template.answer_options.find_by_id(params[answer_option_id])
+    redirect_without_answer_option
   end
 
   def redirect_without_answer_option

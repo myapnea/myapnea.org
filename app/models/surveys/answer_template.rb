@@ -1,25 +1,29 @@
+# frozen_string_literal: true
+
+# A portion of a question used to capture data.
 class AnswerTemplate < ActiveRecord::Base
   # Default Scope
   # Constants
-  DATA_TYPES = ["answer_option_id", "numeric_value", "text_value"]
+  DATA_TYPES = %w(answer_option_id numeric_value text_value)
   TEMPLATE_NAMES = %w(date radio checkbox string height number)
 
   # Attribute related macros
   # Associations
   belongs_to :user
   has_and_belongs_to_many :questions
-  has_many :answer_options_answer_templates, -> { order("answr_options_answer_templates.created_at") }
+  has_many :answer_options_answer_templates, -> { order(:position, :created_at) } # TODO: Remove created_at in future
   has_many :answer_options, through: :answer_options_answer_templates, join_table: 'answr_options_answer_templates'
   belongs_to :display_type
-  belongs_to :parent_answer_template, class_name: "AnswerTemplate", foreign_key: "parent_answer_template_id"
+  belongs_to :parent_answer_template, class_name: 'AnswerTemplate', foreign_key: 'parent_answer_template_id'
 
   # Validations
-  validates_presence_of :name, :data_type, :user_id, :template_name
-  validates_uniqueness_of :name, scope: [ :deleted ]
-  validates_inclusion_of :template_name, in: TEMPLATE_NAMES
-  validates_presence_of :parent_answer_template_id, if: :parent_answer_option_value_present?
-  validates_presence_of :parent_answer_option_value, if: :parent_answer_template_present?
-  validates_inclusion_of :parent_answer_option_value, in: :parent_template_option_values, if: :parent_answer_template_present?
+  validates :name, :data_type, :user_id, :template_name, presence: true
+  validates :name, uniqueness: { scope: :deleted }
+  validates :template_name, inclusion: { in: TEMPLATE_NAMES }
+  validates :parent_answer_template_id, presence: true, if: :parent_answer_option_value_present?
+  validates :parent_answer_option_value, presence: true, if: :parent_answer_template_present?
+  validates :parent_answer_option_value, inclusion: { in: :parent_template_option_values },
+                                         if: :parent_answer_template_present?
 
   # Callback
   before_validation :set_data_type
@@ -43,7 +47,8 @@ class AnswerTemplate < ActiveRecord::Base
   # Will replace "data_type" and be renamed to simply "data_type" when data_type
   # is removed as a database column.
   def stored_data_type
-    case template_name when 'number', 'height'
+    case template_name
+    when 'number', 'height'
       'numeric_value'
     when 'radio', 'checkbox'
       'answer_option_id'

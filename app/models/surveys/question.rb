@@ -6,7 +6,9 @@ class Question < ActiveRecord::Base
   # Attribute related macros
   # Associations
   belongs_to :user
-  has_and_belongs_to_many :answer_templates, -> { current.order("answer_templates.created_at asc") }
+  has_many :answer_templates_questions, -> { order(:position, :created_at) }
+  has_many :answer_templates, through: :answer_templates_questions
+  # has_and_belongs_to_many :answer_templates, -> { current.order("answer_templates.created_at asc") }
   belongs_to :group
   has_many :answers
   belongs_to :question_help_message

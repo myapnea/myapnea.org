@@ -6,7 +6,8 @@
 - **Survey Builder Changes**
   - Survey builders can now invite other builders to view and build surveys
     together
-  - Questions can now be reordered using drag and drop in the survey builder
+  - Survey questions, answer templates, and answer options can now be reordered
+    using drag and drop in the survey builder
 - **Gem Changes**
   - Updated to rails 4.2.6
   - Updated to carrierwave 0.11.0
