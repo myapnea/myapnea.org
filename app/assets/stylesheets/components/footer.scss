@@ -1,17 +1,23 @@
-.footer {
+footer {
   background-color: $logo-similar;
   border-top: 3px solid $primary-orange;
-  clear: both;
-  margin: 0;
-  min-height: 222px;
-  padding-top: 10px;
+  bottom: 0;
+  height: $footer-height;
+  overflow: hidden;
+  padding: 50px;
+  position: absolute;
   width: 100%;
-  z-index: 2;
+
+  h4 {
+    margin-top: 20px;
+    padding-top: 0;
+  }
 
   ul {
     line-height: 1.428571429;
     list-style-type: none;
     margin: 0;
+    padding: 0;
 
     p {
       color: rgba(255, 255, 255, .7);
@@ -29,7 +35,7 @@
 
     a {
       color: rgba(255, 255, 255, .9);
-      font-size: 14px;
+      font-size: 12px;
       font-weight: 300;
     }
 
@@ -54,15 +60,10 @@
   }
 }
 
-@media (max-width: $screen-md) {
-  .footer {
+@media screen and (min-width: $screen-md-min) {
+  footer {
     ul a {
-      font-size: 12px;
-    }
-
-    .share-icons-md {
-      height: 25px;
-      width: 25px;
+      font-size: 14px;
     }
   }
 }

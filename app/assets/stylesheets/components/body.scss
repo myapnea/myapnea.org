@@ -1,0 +1,11 @@
+html {
+  background: $white;
+  background-color: $body-background;
+  min-height: 100%;
+  position: relative;
+}
+
+body {
+  margin-bottom: $footer-height;
+  padding-top: $header-height + 1px; // Includes 1px border bottom of menu
+}

@@ -1,5 +1,5 @@
 // This file controls whether base styles or theme styles are used, based on config
-@import 'default-variables';
+@import 'variables/all';
 @import 'bootstrap-sprockets';
 @import 'bootstrap';
 @import 'font-awesome';
@@ -7,34 +7,15 @@
 
 // Layout
 @import 'colors';
-@import 'components/shadows';
 @import 'layout';
 @import 'responsive';
 @import 'content_header';
 @import 'fonts';
 @import 'content';
 @import 'flash_containers';
-@import 'footer';
 
 // Components
-@import 'components/alignment';
-@import 'components/callouts';
-@import 'components/posts';
-@import 'components/topics';
-@import 'components/floating_indicator';
-@import 'components/home_news_image';
-@import 'components/panels';
-@import 'components/modals';
-@import 'components/validation';
-@import 'components/share_icons';
-@import 'components/turbolinks';
-@import 'components/account';
-@import 'components/highlights';
-@import 'components/links';
-@import 'components/forms';
-@import 'components/tables';
-@import 'components/buttons';
-@import 'components/scrollbar';
+@import 'components/all';
 
 // Landing Pages
 @import 'landing/providers';

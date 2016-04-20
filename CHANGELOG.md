@@ -3,6 +3,9 @@
 ### Enhancements
 - **Email Changes**
   - Unlock instructions are no longer sent to deleted accounts
+- **General Changes**
+  - Improved the styling for the footer to make it stick to the bottom of the
+    page
 - **Survey Builder Changes**
   - Survey builders can now invite other builders to view and build surveys
     together

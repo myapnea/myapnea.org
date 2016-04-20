@@ -1,22 +1,6 @@
 // Document structure
 $default-margin-size: 20px;
 
-html,
-body {
-  height: 100%;
-  width: 100%;
-}
-
-html {
-  background: $white;
-  background-color: $body-background;
-}
-
-body {
-  margin: 0;
-  padding: 81px 0 0;
-}
-
 // Helper classes
 
 .reset-layout {
@@ -240,5 +224,3 @@ nav {
     }
   }
 }
-
-

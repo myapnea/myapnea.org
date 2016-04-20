@@ -1,7 +1,7 @@
+# frozen_string_literal: true
+
+# Displays publicly available tools.
 class ToolsController < ApplicationController
-
-  layout 'tools'
-
   def risk_assessment
   end
 
@@ -43,7 +43,4 @@ class ToolsController < ApplicationController
     end
     return risk_category
   end
-
-
 end
-
