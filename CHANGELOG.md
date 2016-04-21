@@ -1,5 +1,9 @@
 ## 10.4.0
 
+### Bug Fix
+- Fixed a bug computing the percentage "Percentage of Members who think they
+  have sleep apnea for over 2 years:"
+
 ## 10.3.0 (April 21, 2016)
 
 ### Enhancements
@@ -22,7 +26,7 @@
 ### Bug Fix
 - Fixed a bug that prevented My Sleep Apnea custom report from generating
   correct percentage for "Percentage of Members who think they have sleep apnea
-  for over 2 years:".
+  for over 2 years:"
 
 ## 10.2.0 (March 15, 2016)
 
