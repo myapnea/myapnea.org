@@ -12,7 +12,7 @@
           %th Slug
           %th Creator
           %th Status
-          %th{ colspan: "2" }
+          %th{ colspan: 2 } Actions
 
       %tbody
         - if @surveys.count == 0
@@ -29,6 +29,7 @@
               %td= survey.slug
               %td= link_to_if current_user.owner?, survey.user.name, survey.user if survey.user
               %td= survey.status
-              - if survey.editable_by?(current_user)
-                %td= link_to 'Edit', edit_builder_survey_path(survey)
-                %td= link_to 'Destroy', builder_survey_path(survey), method: :delete, data: { confirm: "Are you sure you want to delete Survey #{survey.name}?" }
+              %td.nowrap
+                - if survey.editable_by?(current_user)
+                  = link_to 'Edit', edit_builder_survey_path(survey), class: 'btn btn-xs btn-default'
+                  = link_to 'Delete', builder_survey_path(survey), method: :delete, data: { confirm: "Are you sure you want to delete Survey #{survey.name}?" }, class: 'btn btn-xs btn-danger'

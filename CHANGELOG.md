@@ -1,5 +1,9 @@
 ## 10.4.0
 
+### Enhancements
+- **Survey Builder Changes**
+  - Improved styling on survey builder index
+
 ### Bug Fix
 - Fixed a bug computing the percentage "Percentage of Members who think they
   have sleep apnea for over 2 years:"
