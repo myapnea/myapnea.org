@@ -1,4 +1,4 @@
-## 10.3.0
+## 10.3.0 (April 21, 2016)
 
 ### Enhancements
 - **Email Changes**
