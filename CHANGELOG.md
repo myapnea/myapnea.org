@@ -15,6 +15,7 @@
 - **Gem Changes**
   - Updated to rails 4.2.6
   - Updated to carrierwave 0.11.0
+  - Updated to devise 4.0.0
 
 ### Bug Fix
 - Fixed a bug that prevented My Sleep Apnea custom report from generating
