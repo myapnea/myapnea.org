@@ -3,6 +3,8 @@
 ### Bug Fix
 - Fixed a bug computing the percentage "Percentage of Members who think they
   have sleep apnea for over 2 years:"
+- Fixed a bug that prevented cancel button from working when adding a survey
+  editor
 
 ## 10.3.0 (April 21, 2016)
 

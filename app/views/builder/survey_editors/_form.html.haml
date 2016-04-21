@@ -18,11 +18,11 @@
             %li= message
 
   .form-group
-    = f.label :user_id, 'Text EN', class: 'col-md-2 control-label'
+    = f.label :user_id, 'Editor', class: 'col-md-2 control-label'
     .col-md-10
       = f.select :user_id, User.current.where(can_build_surveys: true).order(:last_name, :first_name).collect { |u| ["#{u.last_name}, #{u.first_name}", u.id] }, { include_blank: true }, class: 'form-control'
 
   .form-group
     .col-md-10.col-md-offset-2
       = f.submit nil, class: 'btn btn-primary'
-      = link_to 'Cancel', url, class: 'btn btn-default'
+      = link_to 'Cancel', builder_survey_path(@survey), class: 'btn btn-default'
