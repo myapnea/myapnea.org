@@ -5,6 +5,7 @@
   have sleep apnea for over 2 years:"
 - Fixed a bug that prevented cancel button from working when adding a survey
   editor
+- Fixed a bug that displayed duplicate surveys to survey builders
 
 ## 10.3.0 (April 21, 2016)
 

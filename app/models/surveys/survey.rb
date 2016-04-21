@@ -42,7 +42,7 @@ class Survey < ActiveRecord::Base
 
   def self.with_editor(user_id)
     current.where.not(slug: nil)
-           .joins('LEFT OUTER JOIN survey_editors ON survey_editors.survey_id = surveys.id')
+           .joins("LEFT OUTER JOIN survey_editors ON survey_editors.survey_id = surveys.id and survey_editors.user_id = #{user_id}")
            .where('survey_editors.user_id = ? or surveys.user_id = ?', user_id, user_id)
   end
 
