@@ -45,15 +45,15 @@
   -# Expects a @survey and @answer_session variable
   -# Dynamically Loaded:
   - @survey.questions.unarchived.each_with_index do |question, index|
-    = render 'surveys/questions/show', question: question, answer_session: @answer_session, question_number: index
+    = render 'surveys/questions/show', question: question, answer_session: @answer_session, position: index
 
     - if false
       - if question.answer_templates.count > 0
         - answer = @answer_session.answers.where(question_id: question.id).first_or_initialize
-        = render "surveys/question_templates/#{question.display_type}", question: question, answer_session: @answer_session, answer: answer, question_number: index
+        = render "surveys/question_templates/#{question.display_type}", question: question, answer_session: @answer_session, answer: answer, position: index
       - else
         - answer = @answer_session.answers.where(question_id: question.id).first_or_initialize
-        = render 'surveys/question_templates/no_answer_templates', question: question, answer_session: @answer_session, answer: answer, question_number: index
+        = render 'surveys/question_templates/no_answer_templates', question: question, answer_session: @answer_session, answer: answer, position: index
 
 
   -# End of Survey

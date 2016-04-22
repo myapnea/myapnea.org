@@ -16,7 +16,7 @@
   - extra_class = "multiple-question-parts"
 
 
-= form_tag process_answer_surveys_path(question_id: question, answer_session_id: answer_session), role: "form", onsubmit: onsubmit, class: "survey-container #{extra_class}", data: { object: "question-container-#{question_number}", progress: progress } do
+= form_tag process_answer_surveys_path(question_id: question, answer_session_id: answer_session), role: "form", onsubmit: onsubmit, class: "survey-container #{extra_class}", data: { object: "question-container-#{position}", progress: progress } do
   .panel
     .question-container
       %h3.f300= question.text
