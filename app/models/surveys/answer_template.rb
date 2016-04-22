@@ -11,7 +11,7 @@ class AnswerTemplate < ActiveRecord::Base
   # Associations
   belongs_to :user
   has_and_belongs_to_many :questions
-  has_many :answer_options_answer_templates, -> { order(:position, :created_at) } # TODO: Remove created_at in future
+  has_many :answer_options_answer_templates, -> { order :position }
   has_many :answer_options, through: :answer_options_answer_templates, join_table: 'answr_options_answer_templates'
   belongs_to :display_type
   belongs_to :parent_answer_template, class_name: 'AnswerTemplate', foreign_key: 'parent_answer_template_id'
@@ -199,5 +199,9 @@ class AnswerTemplate < ActiveRecord::Base
     else
       nil
     end
+  end
+
+  def max_position
+    answer_options_answer_templates.pluck(:position).compact.max || -1
   end
 end

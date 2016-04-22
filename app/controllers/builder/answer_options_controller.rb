@@ -20,7 +20,7 @@ class Builder::AnswerOptionsController < Builder::BuilderController
   def create
     @answer_option = @answer_template.answer_options.where(user_id: current_user.id).new(answer_option_params)
     if @answer_option.save
-      @answer_template.answer_options << @answer_option
+      @answer_template.answer_options_answer_templates.create(answer_option_id: @answer_option.id, position: @answer_template.max_position + 1)
       redirect_to builder_survey_question_answer_template_answer_option_path(@survey, @question, @answer_template, @answer_option), notice: 'Answer Option was successfully created.'
     else
       render :new

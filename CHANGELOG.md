@@ -4,6 +4,10 @@
 - **Survey Builder Changes**
   - Improved styling on survey builder index
 
+### Refactoring
+- Cleaned up how survey questions, answer templates, and answer options are
+  ordered on surveys
+
 ### Bug Fix
 - Fixed a bug computing the percentage "Percentage of Members who think they
   have sleep apnea for over 2 years:"

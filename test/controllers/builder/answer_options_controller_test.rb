@@ -1,5 +1,9 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
+# Test to assure that survey editors can add and modify answer template answer
+# options.
 class Builder::AnswerOptionsControllerTest < ActionController::TestCase
   setup do
     @builder = users(:builder)
@@ -60,6 +64,7 @@ class Builder::AnswerOptionsControllerTest < ActionController::TestCase
     assert_equal 'New Answer Option', assigns(:answer_option).text
     assert_equal '1', assigns(:answer_option).hotkey
     assert_equal 1, assigns(:answer_option).value
+    assert_equal 2, @answer_template.answer_options_answer_templates.find_by(answer_option_id: assigns(:answer_option).id).position
     assert_redirected_to builder_survey_question_answer_template_answer_option_path(assigns(:survey), assigns(:question), assigns(:answer_template), assigns(:answer_option))
   end
 

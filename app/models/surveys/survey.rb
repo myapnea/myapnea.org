@@ -28,7 +28,7 @@ class Survey < ActiveRecord::Base
   # Model Relationships
   belongs_to :user
   has_many :answer_sessions, -> { where deleted: false }
-  has_many :survey_question_orders, -> { order :question_number }
+  has_many :survey_question_orders, -> { order :position }
   has_many :questions, through: :survey_question_orders
   has_many :survey_encounters
   has_many :encounters, -> { where deleted: false }, through: :survey_encounters
@@ -167,6 +167,10 @@ class Survey < ActiveRecord::Base
 
   def has_custom_report?
     File.exist?(Rails.root.join('app', 'views', 'surveys', 'reports', "_#{slug.underscore}.html.haml"))
+  end
+
+  def max_position
+    survey_question_orders.pluck(:position).compact.max || -1
   end
 
   private

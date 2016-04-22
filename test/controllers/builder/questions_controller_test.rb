@@ -2,6 +2,7 @@
 
 require 'test_helper'
 
+# Test to assure that survey editors can add and modify survey questions.
 class Builder::QuestionsControllerTest < ActionController::TestCase
   setup do
     @builder = users(:builder)
@@ -49,6 +50,7 @@ class Builder::QuestionsControllerTest < ActionController::TestCase
     assert_not_nil assigns(:question)
     assert_equal 'My New Question', assigns(:question).text_en
     assert_equal 'my-new-question', assigns(:question).slug
+    assert_equal 1, @survey.survey_question_orders.find_by(question_id: assigns(:question).id).position
     assert_redirected_to builder_survey_question_path(assigns(:survey), assigns(:question))
   end
 

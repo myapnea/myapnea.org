@@ -18,16 +18,11 @@ class Builder::AnswerTemplatesController < Builder::BuilderController
 
   def create
     @answer_template = @question.answer_templates.where(user_id: current_user.id).new(answer_template_params)
-
-    respond_to do |format|
-      if @answer_template.save
-        @question.answer_templates << @answer_template
-        format.html { redirect_to builder_survey_question_answer_template_path(@survey, @question, @answer_template), notice: 'Answer Template was successfully created.' }
-        format.json { render :show, status: :created, location: @answer_template }
-      else
-        format.html { render :new }
-        format.json { render json: @answer_template.errors, status: :unprocessable_entity }
-      end
+    if @answer_template.save
+      @question.answer_templates_questions.create(answer_template_id: @answer_template.id, position: @question.max_position + 1)
+      redirect_to builder_survey_question_answer_template_path(@survey, @question, @answer_template), notice: 'Answer Template was successfully created.'
+    else
+      render :new
     end
   end
 
@@ -38,28 +33,20 @@ class Builder::AnswerTemplatesController < Builder::BuilderController
   end
 
   def update
-    respond_to do |format|
-      if @answer_template.update(answer_template_params)
-        format.html { redirect_to builder_survey_question_answer_template_path(@survey, @question, @answer_template), notice: 'Answer Template was successfully updated.' }
-        format.json { render :show, status: :ok, location: @answer_template }
-      else
-        format.html { render :edit }
-        format.json { render json: @answer_template.errors, status: :unprocessable_entity }
-      end
+    if @answer_template.update(answer_template_params)
+      redirect_to builder_survey_question_answer_template_path(@survey, @question, @answer_template), notice: 'Answer Template was successfully updated.'
+    else
+      render :edit
     end
   end
 
   def destroy
     @answer_template.destroy
-    respond_to do |format|
-      format.html { redirect_to builder_survey_question_path(@survey, @question), notice: 'Answer Template was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to builder_survey_question_path(@survey, @question), notice: 'Answer Template was successfully destroyed.'
   end
 
   # POST /answer_templates/reorder.js
   def reorder
-    Rails.logger.debug "\n\n#{params[:answer_template_ids]}"
     params[:answer_template_ids].each_with_index do |answer_template_id, index|
       atq = @question.answer_templates_questions.find_by answer_template_id: answer_template_id
       atq.update position: index if atq
@@ -74,6 +61,9 @@ class Builder::AnswerTemplatesController < Builder::BuilderController
   end
 
   def answer_template_params
-    params.require(:answer_template).permit(:name, :template_name, :parent_answer_template_id, :parent_answer_option_value, :text, :unit, :archived)
+    params.require(:answer_template).permit(
+      :name, :template_name, :parent_answer_template_id,
+      :parent_answer_option_value, :text, :unit, :archived
+    )
   end
 end

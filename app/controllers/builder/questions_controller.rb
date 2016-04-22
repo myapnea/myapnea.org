@@ -18,7 +18,7 @@ class Builder::QuestionsController < Builder::BuilderController
   def create
     @question = @survey.questions.where(user_id: current_user.id).new(question_params)
     if @question.save
-      @survey.questions << @question
+      @survey.survey_question_orders.create(question_id: @question.id, position: @survey.max_position + 1)
       redirect_to builder_survey_question_path(@survey, @question), notice: 'Question was successfully created.'
     else
       render :new
@@ -48,7 +48,7 @@ class Builder::QuestionsController < Builder::BuilderController
   def reorder
     params[:question_ids].each_with_index do |question_id, index|
       sqo = @survey.survey_question_orders.find_by question_id: question_id
-      sqo.update question_number: index if sqo
+      sqo.update position: index if sqo
     end
     head :ok
   end

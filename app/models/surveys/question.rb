@@ -6,7 +6,7 @@ class Question < ActiveRecord::Base
   # Attribute related macros
   # Associations
   belongs_to :user
-  has_many :answer_templates_questions, -> { order(:position, :created_at) }
+  has_many :answer_templates_questions, -> { order :position }
   has_many :answer_templates, through: :answer_templates_questions
   # has_and_belongs_to_many :answer_templates, -> { current.order("answer_templates.created_at asc") }
   belongs_to :group
@@ -77,5 +77,9 @@ class Question < ActiveRecord::Base
 
   def first_radio_or_checkbox_answer_template
     answer_templates.unarchived.find_by template_name: %w(radio checkbox)
+  end
+
+  def max_position
+    answer_templates_questions.pluck(:position).compact.max || -1
   end
 end

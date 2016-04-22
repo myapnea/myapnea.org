@@ -1,5 +1,9 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
+# Test to assure that survey editors can add and modify question answer
+# templates.
 class Builder::AnswerTemplatesControllerTest < ActionController::TestCase
   setup do
     @builder = users(:builder)
@@ -54,6 +58,7 @@ class Builder::AnswerTemplatesControllerTest < ActionController::TestCase
     assert_equal 'My New Answer Template', assigns(:answer_template).name
     assert_equal 'checkbox', assigns(:answer_template).template_name
     assert_equal 'answer_option_id', assigns(:answer_template).data_type
+    assert_equal 1, @question.answer_templates_questions.find_by(answer_template_id: assigns(:answer_template).id).position
     assert_equal true, assigns(:answer_template).allow_multiple
     assert_redirected_to builder_survey_question_answer_template_path(assigns(:survey), assigns(:question), assigns(:answer_template))
   end

@@ -3,109 +3,109 @@
 new_0:
   survey: new
   question: radio1
-  question_number: 0
+  position: 0
 
 new_1:
   survey: new
   question: checkbox1
-  question_number: 1
+  position: 1
 
 new_2:
   survey: new
   question: date2
-  question_number: 2
+  position: 2
 
 ## "Hidden" Survey Questions
 
 hidden_0:
   survey: hidden
   question: radio2
-  question_number: 0
+  position: 0
 
 hidden_1:
   survey: hidden
   question: number2
-  question_number: 1
+  position: 1
 
 ## "New 2" Survey Questions
 
 new2_0:
   survey: new_2
   question: date1
-  question_number: 0
+  position: 0
 
 new2_1:
   survey: new_2
   question: radio_multiple1
-  question_number: 1
+  position: 1
 
 new2_2:
   survey: new_2
   question: number1
-  question_number: 2
+  position: 2
 
 ## "For Reports" Survey Questions
 
 for_reports_0:
   survey: for_reports
   question: country1
-  question_number: 0
+  position: 0
 
 ## "About Me" Survey Questions
 
 about_me_0:
   survey: about_me
   question: date_of_birth
-  question_number: 0
+  position: 0
 
 about_me_1:
   survey: about_me
   question: sex
-  question_number: 1
+  position: 1
 
 about_me_2:
   survey: about_me
   question: race
-  question_number: 2
+  position: 2
 
 about_me_4:
   survey: about_me
   question: education_level
-  question_number: 4
+  position: 4
 
 ## "Additional Information About Me" Survey Questions
 
 additional_information_about_me_0:
   survey: additional_information_about_me
   question: height
-  question_number: 0
+  position: 0
 
 additional_information_about_me_1:
   survey: additional_information_about_me
   question: weight
-  question_number: 1
+  position: 1
 
 additional_information_about_me_4:
   survey: additional_information_about_me
   question: affording_basics
-  question_number: 4
+  position: 4
 
 ## "My Interest In Research" Survey Questions
 
 my_interest_in_research_0:
   survey: my_interest_in_research
   question: referral_methods
-  question_number: 0
+  position: 0
 
 ## Built On Web
 
 built_on_web_0:
   survey: built_on_web
   question: web_question
-  question_number: 0
+  position: 0
 
 ## Without Answer Templates
 without_answer_templates_0:
   survey: without_answer_templates
   question: no_answer_template
-  question_number: 0
+  position: 0
