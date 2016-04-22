@@ -73,3 +73,4 @@
 //= require builder/questions
 //= require builder/answer_templates
 //= require builder/answer_options
+//= require builder/slug

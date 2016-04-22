@@ -20,7 +20,7 @@
   .form-group
     = f.label :text_en, 'Text EN', class: 'col-md-2 control-label'
     .col-md-10
-      = f.text_field :text_en, class: 'form-control'
+      = f.text_field :text_en, class: 'form-control', data: { object: (@question.new_record? ? 'create-slug' : ''), target: '#question_slug' }
 
   .form-group
     = f.label :slug, 'URL Slug', class: 'col-md-2 control-label'

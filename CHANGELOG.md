@@ -3,6 +3,7 @@
 ### Enhancements
 - **Survey Builder Changes**
   - Improved styling on survey builder index
+  - Question slugs are now generated automatically
 
 ### Refactoring
 - Cleaned up how survey questions, answer templates, and answer options are
