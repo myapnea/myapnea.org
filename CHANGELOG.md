@@ -1,6 +1,9 @@
 ## 10.4.0
 
 ### Enhancements
+- **Admin Changes**
+  - Survey completion totals no longer count users excluded from exports and
+    reports
 - **Survey Builder Changes**
   - Improved survey builder user interface
   - Question slugs are now generated automatically
