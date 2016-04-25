@@ -1,4 +1,4 @@
-## 10.4.0
+## 10.4.0 (April 25, 2016)
 
 ### Enhancements
 - **Admin Changes**
