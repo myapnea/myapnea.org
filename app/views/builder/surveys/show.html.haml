@@ -1,150 +1,146 @@
+- @background_color = '#fff'
 .content-main-header
-  %h1
-    = link_to 'Surveys', builder_surveys_path
-    &middot;
-    = @survey.name
+  .container
+    %h1
+      = link_to 'Surveys', builder_surveys_path
+      &middot;
+      = @survey.name
+      - if @survey.editable_by?(current_user)
+        = link_to 'Edit Survey', edit_builder_survey_path(@survey), class: 'btn btn-xs btn-default'
+        = link_to 'Preview Survey', preview_builder_survey_path(@survey), class: 'btn btn-xs btn-default'
+        = link_to 'Delete Survey', builder_survey_path(@survey), method: :delete, class: 'btn btn-xs btn-danger', data: { confirm: "Are you sure you want to delete Survey #{@survey.name}?" }
 
-  - if @survey.editable_by?(current_user)
-    = link_to 'Edit Survey', edit_builder_survey_path(@survey), class: 'btn btn-xs btn-default'
-    = link_to 'Preview Survey', preview_builder_survey_path(@survey), class: 'btn btn-xs btn-default'
-    = link_to 'Delete Survey', builder_survey_path(@survey), method: :delete, class: 'btn btn-xs btn-danger', data: { confirm: "Are you sure you want to delete Survey #{@survey.name}?" }
+.container
+  %dl.dl-horizontal
+    %dt
+      %strong Name EN
+    %dd= @survey.name_en
 
-.content-container
-  .content-body
+    %dt
+      %strong Creator
+    %dd= @survey.user.name if @survey.user
 
-    %dl.dl-horizontal
+    %dt
+      %strong Slug
+    %dd
+      = @survey.slug
+
+    %dt
+      %strong Status
+    %dd
+      = @survey.status
+
+    %dt
+      %strong Pediatric
+    %dd
+      = simple_check @survey.pediatric?
+
+    - if @survey.pediatric?
+
       %dt
-        %strong Name EN
-      %dd= @survey.name_en
-
-      %dt
-        %strong Creator
-      %dd= @survey.user.name if @survey.user
-
-      %dt
-        %strong Slug
+        %strong Only Diagnosed
       %dd
-        = @survey.slug
+        = simple_check @survey.pediatric_diagnosed?
 
       %dt
-        %strong Status
+        %strong Child Minimum Age
       %dd
-        = @survey.status
+        = @survey.child_min_age
 
       %dt
-        %strong Pediatric
+        %strong Child Maximum Age
       %dd
-        = simple_check @survey.pediatric?
+        = @survey.child_max_age
 
-      - if @survey.pediatric?
-
-        %dt
-          %strong Only Diagnosed
-        %dd
-          = simple_check @survey.pediatric_diagnosed?
-
-        %dt
-          %strong Child Minimum Age
-        %dd
-          = @survey.child_min_age
-
-        %dt
-          %strong Child Maximum Age
-        %dd
-          = @survey.child_max_age
-
-    %hr
-    %h3 User Types
-    %table.table.table-bordered.table-striped
-      %thead
-        %tr
-          %th User Type
-          %th Creator
-          %th Actions
-      - @survey.survey_user_types.each do |survey_user_type|
-        %tr
-          %td= link_to survey_user_type.user_type, builder_survey_survey_user_type_path(@survey, survey_user_type)
-          %td= link_to_if current_user.owner?, survey_user_type.user.name, survey_user_type.user if survey_user_type.user
-          %td= link_to 'Edit', edit_builder_survey_survey_user_type_path(@survey, survey_user_type), class: 'btn btn-xs btn-default'
+  %h3 User Types
+  %table.table.table-bordered.table-striped
+    %thead
       %tr
-        %td{ colspan: '5' }
-          = link_to 'Add Another User Type', new_builder_survey_survey_user_type_path(@survey), class: 'btn btn-xs btn-default'
-
-    %hr
-    %h3 Encounters
-    %table.table.table-bordered.table-striped
-      %thead
-        %tr
-          %th Name
-          %th URL Slug
-          %th Launch When
-          %th Creator
-          %th Actions
-      - @survey.survey_encounters.joins(:encounter).order("encounters.launch_days_after_sign_up").each do |survey_encounter|
-        %tr
-          %td= link_to survey_encounter.encounter.name, builder_survey_survey_encounter_path(@survey, survey_encounter)
-          %td
-            %code= survey_encounter.encounter.slug
-          %td
-            - if survey_encounter.encounter.launch_days_after_sign_up == 0
-              At
-            - else
-              = pluralize survey_encounter.encounter.launch_days_after_sign_up, 'Day'
-              After
-            - if survey_encounter.parent_survey_encounter
-              = link_to survey_encounter.parent_survey_encounter.survey_encounter_name, builder_survey_survey_encounter_path(survey_encounter.parent_survey_encounter.survey, survey_encounter.parent_survey_encounter)
-              Is Completed
-            - else
-              Sign Up
-
-          %td= link_to_if current_user.owner?, survey_encounter.encounter.user.name, survey_encounter.encounter.user if survey_encounter.encounter.user
-          %td= link_to 'Edit', edit_builder_survey_survey_encounter_path(@survey, survey_encounter), class: 'btn btn-xs btn-default'
+        %th User Type
+        %th Creator
+        %th Actions
+    - @survey.survey_user_types.each do |survey_user_type|
       %tr
-        %td{ colspan: '5' }
-          = link_to 'Add Another Encounter', new_builder_survey_survey_encounter_path(@survey), class: 'btn btn-xs btn-default'
+        %td= link_to survey_user_type.user_type, builder_survey_survey_user_type_path(@survey, survey_user_type)
+        %td= link_to_if current_user.owner?, survey_user_type.user.name, survey_user_type.user if survey_user_type.user
+        %td= link_to 'Edit', edit_builder_survey_survey_user_type_path(@survey, survey_user_type), class: 'btn btn-xs btn-default'
+    %tr
+      %td{ colspan: '5' }
+        = link_to 'Add Another User Type', new_builder_survey_survey_user_type_path(@survey), class: 'btn btn-xs btn-default'
 
-    %hr
-    %h3 Questions
+  %h3 Encounters
+  %table.table.table-bordered.table-striped
+    %thead
+      %tr
+        %th Name
+        %th URL Slug
+        %th Launch When
+        %th Creator
+        %th Actions
+    - @survey.survey_encounters.joins(:encounter).order("encounters.launch_days_after_sign_up").each do |survey_encounter|
+      %tr
+        %td= link_to survey_encounter.encounter.name, builder_survey_survey_encounter_path(@survey, survey_encounter)
+        %td
+          %code= survey_encounter.encounter.slug
+        %td
+          - if survey_encounter.encounter.launch_days_after_sign_up == 0
+            At
+          - else
+            = pluralize survey_encounter.encounter.launch_days_after_sign_up, 'Day'
+            After
+          - if survey_encounter.parent_survey_encounter
+            = link_to survey_encounter.parent_survey_encounter.survey_encounter_name, builder_survey_survey_encounter_path(survey_encounter.parent_survey_encounter.survey, survey_encounter.parent_survey_encounter)
+            Is Completed
+          - else
+            Sign Up
 
-    %h4 Displayed
+        %td= link_to_if current_user.owner?, survey_encounter.encounter.user.name, survey_encounter.encounter.user if survey_encounter.encounter.user
+        %td= link_to 'Edit', edit_builder_survey_survey_encounter_path(@survey, survey_encounter), class: 'btn btn-xs btn-default'
+    %tr
+      %td{ colspan: '5' }
+        = link_to 'Add Another Encounter', new_builder_survey_survey_encounter_path(@survey), class: 'btn btn-xs btn-default'
+
+  %h3 Questions
+
+  %h4 Displayed
+  %table.table.table-bordered.table-striped
+    %col{ width: '33px' }
+    %thead
+      %tr
+        %th
+        %th Text EN
+        %th URL Slug
+        %th Creator
+        %th Actions
+    %tbody{ data: { object: 'sortable-questions', survey: @survey.slug } }
+      - @survey.questions.unarchived.each_with_index do |question, index|
+        %tr{ id: "question_#{question.id}_position_#{index}", data: { question_id: question.id } }
+          %td{ style: 'vertical-align: middle;' }
+            %span.glyphicon.glyphicon-move.move-handle
+          %td= link_to question.text_en, builder_survey_question_path(@survey, question)
+          %td
+            %code= question.slug
+          %td= link_to_if current_user.owner?, question.user.name, question.user if question.user
+          %td= link_to 'Edit', edit_builder_survey_question_path(@survey, question), class: 'btn btn-xs btn-default'
+    %tr
+      %td{ colspan: '5' }
+        = link_to 'Add Another Question', new_builder_survey_question_path(@survey), class: 'btn btn-xs btn-default'
+
+  - if @survey.questions.archived.present?
+    %h4 Archived
     %table.table.table-bordered.table-striped
-      %col{ width: '33px' }
       %thead
         %tr
-          %th
           %th Text EN
           %th URL Slug
           %th Creator
           %th Actions
-      %tbody{ data: { object: 'sortable-questions', survey: @survey.slug } }
-        - @survey.questions.unarchived.each_with_index do |question, index|
-          %tr{ id: "question_#{question.id}_position_#{index}", data: { question_id: question.id } }
-            %td{ style: 'vertical-align: middle;' }
-              %span.glyphicon.glyphicon-move.move-handle
-            %td= link_to question.text_en, builder_survey_question_path(@survey, question)
-            %td
-              %code= question.slug
-            %td= link_to_if current_user.owner?, question.user.name, question.user if question.user
-            %td= link_to 'Edit', edit_builder_survey_question_path(@survey, question), class: 'btn btn-xs btn-default'
-      %tr
-        %td{ colspan: '5' }
-          = link_to 'Add Another Question', new_builder_survey_question_path(@survey), class: 'btn btn-xs btn-default'
+      - @survey.questions.archived.each do |question|
+        %tr
+          %td= link_to question.text_en, builder_survey_question_path(@survey, question)
+          %td
+            %code= question.slug
+          %td= link_to_if current_user.owner?, question.user.name, question.user if question.user
+          %td= link_to 'Edit', edit_builder_survey_question_path(@survey, question), class: 'btn btn-xs btn-default'
 
-    - if @survey.questions.archived.present?
-      %h4 Archived
-      %table.table.table-bordered.table-striped
-        %thead
-          %tr
-            %th Text EN
-            %th URL Slug
-            %th Creator
-            %th Actions
-        - @survey.questions.archived.each do |question|
-          %tr
-            %td= link_to question.text_en, builder_survey_question_path(@survey, question)
-            %td
-              %code= question.slug
-            %td= link_to_if current_user.owner?, question.user.name, question.user if question.user
-            %td= link_to 'Edit', edit_builder_survey_question_path(@survey, question), class: 'btn btn-xs btn-default'
-
-    = render 'builder/survey_editors/index', survey: @survey
+  = render 'builder/survey_editors/index', survey: @survey

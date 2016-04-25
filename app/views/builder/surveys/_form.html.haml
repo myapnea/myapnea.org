@@ -20,7 +20,7 @@
   .form-group
     = f.label :name_en, 'Name EN', class: 'col-md-2 control-label'
     .col-md-10
-      = f.text_field :name_en, class: 'form-control'
+      = f.text_field :name_en, class: 'form-control', data: { object: (@survey.new_record? ? 'create-slug' : ''), target: '#survey_slug' }
 
   .form-group
     = f.label :description_en, 'Description EN', class: 'col-md-2 control-label'
