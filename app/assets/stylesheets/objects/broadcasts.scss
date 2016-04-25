@@ -1,0 +1,151 @@
+.broadcast {
+  @include remove-last-child-bottom-margin;
+
+  margin-bottom: 80px;
+
+  img {
+    border: 1px solid $gray-lighter;
+    display: block;
+    height: auto;
+    margin: 10px auto 16px;
+    max-width: 100%;
+    padding: 5px;
+  }
+
+  p {
+    line-height: 25.6px;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    border-bottom: 1px solid $brand-gray;
+    font-weight: 600;
+    margin-bottom: 12px;
+    margin-top: 40px;
+    padding-bottom: 6.5px;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  h3 {
+    font-size: 18px;
+  }
+
+  h4,
+  h5,
+  h6 {
+    font-size: 16px;
+  }
+}
+
+.broadcast-title {
+  border-bottom: 1px solid $brand-gray;
+  font-size: 28px;
+  font-weight: 600;
+  padding-bottom: 9.5px;
+}
+
+@media screen and (min-width: $screen-sm-min) {
+  .broadcast-title {
+    font-size: 34px;
+  }
+}
+
+.broadcast-info {
+  font-weight: 300;
+  margin-bottom: 20px;
+}
+
+.broadcast-outer {
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.broadcast-left-fixed {
+  color: $brand-info;
+  display: none;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 32px;
+}
+
+// .broadcast-alert .broadcast-left-fixed {
+//   color: $brand-warning-text;
+// }
+
+.broadcast-right-fluid {
+  position: relative;
+}
+
+@media screen and (min-width: $screen-sm-min) {
+  .broadcast-left-fixed {
+    display: block;
+  }
+
+  .broadcast-right-fluid {
+    margin-left: 32px;
+  }
+}
+
+.broadcast-box {
+  background-color: $brand-white;
+  border: 1px solid $brand-gray;
+  border-radius: 2px;
+}
+
+// .broadcast-alert .broadcast-box {
+//   background-color: $brand-warning;
+//   border-color: darken($brand-warning, 20%);
+// }
+
+.broadcast-header {
+  padding: 10px 10px 0;
+  position: relative;
+}
+
+.broadcast-body {
+  padding: 10px;
+}
+
+.broadcast-header::before {
+  border-bottom: 7px solid transparent;
+  border-right: 7px solid $brand-gray;
+  border-top: 7px solid transparent;
+  content: '';
+  height: 0;
+  left: -7px;
+  position: absolute;
+  top: 14px;
+  width: 0;
+}
+
+// .broadcast-alert .broadcast-header::before {
+//   border-right-color: darken($brand-warning, 20%);
+// }
+
+.broadcast-header::after {
+  border-bottom: 7px solid transparent;
+  border-right: 7px solid $brand-white;
+  border-top: 7px solid transparent;
+  content: '';
+  height: 0;
+  left: -6px;
+  position: absolute;
+  top: 14px;
+  width: 0;
+}
+
+// .broadcast-alert .broadcast-header::after {
+//   border-right-color: $brand-warning;
+// }

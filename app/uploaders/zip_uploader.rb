@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Allows data exporter to attach zip file to export database record.
 class ZipUploader < CarrierWave::Uploader::Base
   # Choose what kind of storage to use for this uploader:
   storage :file

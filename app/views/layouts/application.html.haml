@@ -18,7 +18,9 @@
     / For SEO
     %title= 'MyApnea' + (@page_title.present? ? (" | #{@page_title}") : '')
     %meta{ name: 'description', content: "#{@page_content.present? ? @page_content : 'Sleep Apnea Research and Community for Patient Outcomes'}" }
+    %meta{ name: 'keywords', content: @keywords.present? ? @keywords : 'sleep apnea, cpap devise, research study, sleep apnea forums, sleep apnea help' }
     = favicon_link_tag
+    = auto_discovery_link_tag(:rss, "#{ENV['website_url']}/blog.atom")
     = csrf_meta_tags
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag "application", "data-turbolinks-track" => true
@@ -26,6 +28,7 @@
   %body{ style: "background-color: #{@background_color || '#E6EDF4'}", screen_capture_injected: "true", data: { email: "#{current_user.email if current_user}", fullname: "#{current_user.name if current_user}" } }
     = render 'layouts/navigation/top_navigation'
     = render 'layouts/partials/flash_messages'
+    = yield :banner
     = yield
     %div{ style: 'clear:both;height:0' }
       &nbsp;

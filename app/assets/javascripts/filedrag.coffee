@@ -7,7 +7,7 @@
   else # If another browser
     return true
 
-@fileDragReady = () ->
+@fileDragOldReady = () ->
   if window.FormData != undefined and isNotInternetExplorer()
     $("#filedrag").show()
 

@@ -1,0 +1,64 @@
+// Defines the style of description fields that can be previewed.
+
+.preview-container {
+  border: 1px solid $input-border;
+  border-radius: 2px;
+}
+
+.preview-header {
+  background-color: $brand-gray-lightest;
+  border-bottom: 1px solid $brand-gray;
+  padding: 10px 10px 5px;
+  position: relative;
+}
+
+.preview-body {
+  min-height: 350px;
+  padding: 10px;
+
+  img {
+    max-width: 100%;
+  }
+}
+
+.preview-control {
+  background-color: $input-bg;
+  background-image: none;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  color: $input-color;
+  display: block;
+  font-size: $font-size-base;
+  height: auto;
+  line-height: $line-height-base;
+  outline: none;
+  padding: 0;
+  resize: none;
+  width: 100%;
+}
+
+.preview-tab,
+.preview-tab:active,
+.preview-tab:focus,
+.preview-tab:hover {
+  border: 1px solid transparent;
+  border-bottom: 0;
+  border-radius: 4px 4px 0 0;
+  color: $text-muted;
+  display: inline-block;
+  margin-bottom: -6px;
+  margin-top: -5px;
+  outline: none;
+  padding-bottom: 6px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  text-decoration: none;
+
+  &.active {
+    background-color: $brand-white;
+    border-color: $brand-gray;
+    color: $text-color;
+  }
+}

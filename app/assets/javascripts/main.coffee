@@ -53,7 +53,7 @@ if typeof Turbolinks isnt 'undefined' and Turbolinks.supported
   postsReady() if postsReady?
   surveyReportsReady() if surveyReportsReady?
   autocompleteGenderReady() if $("#user_gender").length > 0
-  fileDragReady()
+  fileDragOldReady()
   researchTopicsReady()
   dailyEngagementReady() if $(".daily-engagement-report").length > 0
   ABTestingReady() if ($("[data-object~='ABtesting']").length > 0 and false)
@@ -64,6 +64,7 @@ if typeof Turbolinks isnt 'undefined' and Turbolinks.supported
   builderQuestionsReady()
   builderAnswerTemplatesReady()
   builderAnswerOptionsReady()
+  fileDragReady()
 
 $(document).ready(loaders)
 $(document)

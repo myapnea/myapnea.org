@@ -49,6 +49,14 @@
     .col-md-10.col-md-offset-2
       .checkbox
         %label
+          = f.check_box :community_contributor
+          Community Contributor
+        .text-muted Can create and edit blog posts
+
+  .form-group
+    .col-md-10.col-md-offset-2
+      .checkbox
+        %label
           = f.check_box :can_build_surveys
           Can Build Surveys
 

@@ -1,0 +1,43 @@
+- @title = 'Blog Posts'
+
+- content_for :banner do
+  .content-main-header
+    .container
+      %h1
+        Blog Posts
+      %div
+        = succeed ' ' do
+          = link_to new_broadcast_path, class: 'btn btn-xs btn-default' do
+            %span.glyphicon.glyphicon-plus
+            New Blog Post
+        = link_to 'Go To Blog', blog_path, class: 'btn btn-xs btn-default'
+
+- @background_color = '#fff'
+.container
+  %table.table
+    %thead
+      %tr
+        %th Published
+        %th Title
+        %th Short Description
+        %th Publish date
+        %th Pinned
+        %th Archived
+        %th User
+        %th Actions
+
+    %tbody
+      - @broadcasts.each do |broadcast|
+        %tr
+          %td= simple_check broadcast.published
+          %td= link_to broadcast.title, broadcast
+          %td= broadcast.short_description
+          %td= broadcast.publish_date.strftime '%a %d %b %Y'
+          %td= simple_check broadcast.pinned
+          %td= simple_check broadcast.archived
+          %td= broadcast.user.name
+          %td.nowrap
+            = link_to 'Edit', edit_broadcast_path(broadcast), class: 'btn btn-xs btn-default'
+            = link_to 'Destroy', broadcast, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-xs btn-danger'
+
+  .center= paginate @broadcasts, theme: 'bootstrap'

@@ -14,8 +14,13 @@
 @import 'content';
 @import 'flash_containers';
 
-// Components
+// App Mixins
+@import 'mixins/all';
+
+// App specific styles
 @import 'components/all';
+@import 'extensions/all';
+@import 'objects/all';
 
 // Landing Pages
 @import 'landing/providers';

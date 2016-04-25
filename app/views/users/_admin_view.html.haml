@@ -56,6 +56,9 @@
       %dt Moderator
       %dd
         = simple_check @user.moderator?
+      %dt Community Contributor
+      %dd
+        = simple_check @user.community_contributor?
       %dt Can Build Surveys
       %dd
         = simple_check @user.can_build_surveys?

@@ -1,0 +1,7 @@
+.broadcast-info
+  Posted by
+  = link_to broadcast.user.forum_name, blog_path(a: broadcast.user.forum_name)
+  on
+  %i= broadcast.publish_date.strftime '%B %-d, %Y'
+
+.broadcast= simple_markdown broadcast.description, true, false

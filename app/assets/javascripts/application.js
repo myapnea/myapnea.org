@@ -74,3 +74,6 @@
 //= require builder/answer_templates
 //= require builder/answer_options
 //= require builder/slug
+//= require previews
+//= require extensions/filedrag
+//= require objects/images

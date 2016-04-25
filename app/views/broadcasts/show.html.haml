@@ -1,0 +1,56 @@
+- @title = @broadcast.title
+
+- content_for :banner do
+  .content-main-header
+    .container
+      %h1
+        = link_to 'Blog Posts', broadcasts_path
+        &middot;
+        = @broadcast.title
+      %div
+        - if @broadcast.published?
+          %span.label.label-info Published
+          = link_to 'View Blog Post', blog_post_path(year: @broadcast.publish_date.year, month: @broadcast.publish_date.strftime('%m'), slug: @broadcast.slug), class: 'btn btn-xs btn-default'
+        - else
+          %span.label.label-warning DRAFT
+        = link_to edit_broadcast_path(@broadcast), class: 'btn btn-xs btn-default' do
+          %span.glyphicon.glyphicon-edit
+          Edit Blog Post
+
+- @background_color = '#fff'
+.container
+  .row
+    .col-sm-9
+      .broadcast
+        = simple_markdown @broadcast.description, true, false
+
+    .col-sm-3
+      %p
+        %strong Short Description
+        %br
+        = @broadcast.short_description
+
+      %p
+        %strong Keywords
+        %br
+        = @broadcast.keywords
+
+      %p
+        %strong Creator
+        %br
+        = @broadcast.user.name
+
+      %p
+        %strong Publish date
+        %br
+        = @broadcast.publish_date
+
+      %p
+        %strong Pinned
+        %br
+        = simple_check @broadcast.pinned
+
+      %p
+        %strong Archived
+        %br
+        = simple_check @broadcast.archived

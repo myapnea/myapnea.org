@@ -30,6 +30,7 @@
 # CarrierWave
 /carrierwave/**/*
 /test/support/*
+/test/support/images/*
 
 # Other Files
 

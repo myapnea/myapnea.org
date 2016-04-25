@@ -1,0 +1,23 @@
+- @title = 'Blog'
+
+- content_for :banner do
+  .content-main-header
+    .container
+      %h1
+        = ENV['website_name']
+        Blog
+        - if current_user && current_user.community_contributor?
+          = link_to new_broadcast_path, class: 'btn btn-xs btn-default' do
+            %span.glyphicon.glyphicon-plus
+            New Blog Post
+
+- @background_color = '#fff'
+.container
+  .row
+    .col-sm-9
+      - @broadcasts.each do |broadcast|
+        %h2.broadcast-title= link_to broadcast.title, blog_post_path(year: broadcast.publish_date.year, month: broadcast.publish_date.strftime('%m'), slug: broadcast.slug)
+        = render 'blog/show', broadcast: broadcast
+      .center= paginate @broadcasts, theme: 'bootstrap'
+    .col-sm-3
+      %h2.brand= "#{ENV['website_name']} Blog"

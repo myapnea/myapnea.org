@@ -1,0 +1,14 @@
+- @title = @broadcast.title
+- @keywords = @broadcast.keywords
+
+- @background_color = '#fff'
+.container
+  .row
+    .col-md-9
+      %h1.broadcast-title
+        = @title
+        - if current_user && current_user.community_contributor?
+          = link_to 'Edit', edit_broadcast_path(@broadcast), class: 'btn btn-xs btn-default'
+      = render 'blog/show', broadcast: @broadcast
+    .col-md-3
+      %h2.brand= link_to "#{ENV['website_name']} Blog", blog_path

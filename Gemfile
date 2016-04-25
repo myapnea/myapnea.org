@@ -21,6 +21,7 @@ gem 'colorize',             '~> 0.7.5'
 gem 'bootstrap-sass'                              # Bootstrap JS and SCSS
 gem 'font-awesome-rails'                          # Font Awesome Icons
 gem 'haml'                                        # HAML Views
+gem 'hashids',              '~> 1.0.2'
 
 # To Be Removed
 

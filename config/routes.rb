@@ -43,6 +43,20 @@ Rails.application.routes.draw do
     end
   end
 
+  scope module: :blog do
+    get :blog
+    get 'blog/:year/:month/:slug', action: 'show', as: :blog_post
+  end
+
+  resources :broadcasts, path: 'editor/blog'
+
+  resources :images do
+    collection do
+      post :upload, action: :create_multiple
+    end
+  end
+  get '/image/:id' => 'images#download', as: 'download_image'
+
   namespace :builder do
     resources :surveys do
       member do
@@ -88,6 +102,10 @@ Rails.application.routes.draw do
     member do
       post :accept_consent
     end
+  end
+
+  scope module: :external do
+    post :preview
   end
 
   scope module: 'home' do

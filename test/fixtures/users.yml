@@ -435,3 +435,12 @@ heh_1:
   incoming_heh_token: 0987654321
   incoming_heh_at: <%= Time.zone.now %>
   outgoing_heh_at: <%= Time.zone.now %>
+
+community_contributor:
+  first_name: Community
+  last_name: Contributor
+  email: community_contributor@example.com
+  zip_code: 12345
+  over_eighteen: true
+  encrypted_password: ""
+  community_contributor: true

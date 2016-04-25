@@ -1,0 +1,9 @@
+- @title = "Edit Image: #{@image.name}"
+
+- content_for :banner do
+  .content-main-header
+    .container
+      %h1 Edit Image
+
+- @background_color = '#fff'
+.container= render 'form'
