@@ -1,11 +1,11 @@
+- @background_color = '#fff'
 .content-main-header
-  %h1
-    = link_to 'Surveys', builder_surveys_path
-    &middot;
-    = link_to @survey.name, builder_survey_path(@survey)
-    &middot;
-    New Survey User Type
+  .container
+    %h1
+      = link_to 'Surveys', builder_surveys_path
+      &middot;
+      = link_to @survey.name, builder_survey_path(@survey)
+      &middot;
+      New Survey User Type
 
-.content-container
-  .content-body
-    = render 'builder/survey_user_types/form'
+.container= render 'builder/survey_user_types/form'

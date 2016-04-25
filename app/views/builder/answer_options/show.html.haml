@@ -1,36 +1,36 @@
+- @background_color = '#fff'
 .content-main-header
-  %h1
-    = link_to 'Surveys', builder_surveys_path
-    &middot;
-    = link_to @survey.name, builder_survey_path(@survey)
-    &middot;
-    = link_to @question.slug, builder_survey_question_path(@survey, @question)
-    &middot;
-    = link_to @answer_template.name, builder_survey_question_answer_template_path(@survey, @question, @answer_template)
-    &middot;
-    = @answer_option.text
+  .container
+    %h1
+      = link_to 'Surveys', builder_surveys_path
+      &middot;
+      = link_to @survey.name, builder_survey_path(@survey)
+      &middot;
+      = link_to @question.slug, builder_survey_question_path(@survey, @question)
+      &middot;
+      = link_to @answer_template.name, builder_survey_question_answer_template_path(@survey, @question, @answer_template)
+      &middot;
+      = @answer_option.text
 
-  - if @survey.editable_by?(current_user)
-    = link_to 'Edit Answer Option', edit_builder_survey_question_answer_template_answer_option_path(@survey, @question, @answer_template, @answer_option), class: 'btn btn-xs btn-default'
-    = link_to 'Delete Answer Option', builder_survey_question_answer_template_answer_option_path(@survey, @question, @answer_template, @answer_option), method: :delete, class: 'btn btn-xs btn-danger', data: { confirm: "Are you sure you want to delete Answer Option #{@answer_option.text}?" }
+    - if @survey.editable_by?(current_user)
+      = link_to 'Edit Answer Option', edit_builder_survey_question_answer_template_answer_option_path(@survey, @question, @answer_template, @answer_option), class: 'btn btn-xs btn-default'
+      = link_to 'Delete Answer Option', builder_survey_question_answer_template_answer_option_path(@survey, @question, @answer_template, @answer_option), method: :delete, class: 'btn btn-xs btn-danger', data: { confirm: "Are you sure you want to delete Answer Option #{@answer_option.text}?" }
 
-.content-container
-  .content-body
+.container
+  %dl.dl-horizontal
+    %dt
+      %strong Text
+    %dd= @answer_option.text
 
-    %dl.dl-horizontal
-      %dt
-        %strong Text
-      %dd= @answer_option.text
+    %dt
+      %strong Hotkey
+    %dd= @answer_option.hotkey
 
-      %dt
-        %strong Hotkey
-      %dd= @answer_option.hotkey
+    %dt
+      %strong Value
+    %dd= @answer_option.value
 
-      %dt
-        %strong Value
-      %dd= @answer_option.value
-
-      %dt
-        %strong Display Class
-      %dd
-        %code= @answer_option.display_class
+    %dt
+      %strong Display Class
+    %dd
+      %code= @answer_option.display_class

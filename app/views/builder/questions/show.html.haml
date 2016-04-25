@@ -1,82 +1,55 @@
+- @background_color = '#fff'
 .content-main-header
-  %h1
-    = link_to 'Surveys', builder_surveys_path
-    &middot;
-    = link_to @survey.name, builder_survey_path(@survey)
-    &middot;
-    = @question.slug
+  .container
+    %h1
+      = link_to 'Surveys', builder_surveys_path
+      &middot;
+      = link_to @survey.name, builder_survey_path(@survey)
+      &middot;
+      = @question.slug
 
-  - if @survey.editable_by?(current_user)
-    = link_to 'Edit Question', edit_builder_survey_question_path(@survey, @question), class: 'btn btn-xs btn-default'
-    = link_to 'Delete Question', builder_survey_question_path(@survey, @question), method: :delete, class: 'btn btn-xs btn-danger', data: { confirm: "Are you sure you want to delete Question #{@question.slug}?" }
+    - if @survey.editable_by?(current_user)
+      = link_to 'Edit Question', edit_builder_survey_question_path(@survey, @question), class: 'btn btn-xs btn-default'
+      = link_to 'Delete Question', builder_survey_question_path(@survey, @question), method: :delete, class: 'btn btn-xs btn-danger', data: { confirm: "Are you sure you want to delete Question #{@question.slug}?" }
 
-.content-container
-  .content-body
+.container
+  %dl.dl-horizontal
+    %dt
+      %strong Text EN
+    %dd= @question.text_en
 
-    %dl.dl-horizontal
+    %dt
+      %strong Slug
+    %dd
+      = @question.slug
+
+    - if false
       %dt
-        %strong Text EN
-      %dd= @question.text_en
-
-      %dt
-        %strong Slug
+        %strong Display Type
       %dd
-        = @question.slug
+        = @question.display_type
 
-      - if false
-        %dt
-          %strong Display Type
-        %dd
-          = @question.display_type
+    %h3 Answer Templates
 
-      %h3 Answer Templates
-
-      %h4 Displayed
-      %table.table.table-bordered.table-striped
-        %col{ width: '33px' }
-        %thead
-          %tr
-            %th
-            %th Name
-            %th Template
-            %th Data Type
-            %th Allow Multiple
-            %th Parent Template
-            %th Parent Option Value
-            %th Creator
-            %th Actions
-        %tbody{ data: { object: 'sortable-answer-templates', survey: @survey.slug, question: @question.slug } }
-          - @question.answer_templates.unarchived.each_with_index do |answer_template, index|
-            %tr{ id: "question_#{@question.id}_template_#{answer_template.id}_position_#{index}", data: { answer_template_id: answer_template.id } }
-              %td{ style: 'vertical-align: middle;' }
-                %span.glyphicon.glyphicon-move.move-handle
-              %td= link_to answer_template.name, builder_survey_question_answer_template_path(@survey, @question, answer_template)
-              %td= answer_template.template_name
-              %td= answer_template.data_type
-              %td= simple_check answer_template.allow_multiple
-              %td= answer_template.parent_answer_template.name if answer_template.parent_answer_template
-              %td= answer_template.parent_answer_option_value
-              %td= link_to_if current_user.owner?, answer_template.user.name, answer_template.user if answer_template.user
-              %td= link_to 'Edit', edit_builder_survey_question_answer_template_path(@survey, @question, answer_template), class: 'btn btn-xs btn-default'
+    %h4 Displayed
+    %table.table.table-bordered.table-striped
+      %col{ width: '33px' }
+      %thead
         %tr
-          %td{ colspan: '9' }
-            = link_to 'Add Another Answer Template', new_builder_survey_question_answer_template_path(@survey, @question), class: 'btn btn-xs btn-default'
-
-
-      %h4 Archived
-      %table.table.table-bordered.table-striped
-        %thead
-          %tr
-            %th Name
-            %th Template
-            %th Data Type
-            %th Allow Multiple
-            %th Parent Template
-            %th Parent Option Value
-            %th Creator
-            %th Actions
-        - @question.answer_templates.archived.each do |answer_template|
-          %tr
+          %th
+          %th Name
+          %th Template
+          %th Data Type
+          %th Allow Multiple
+          %th Parent Template
+          %th Parent Option Value
+          %th Creator
+          %th Actions
+      %tbody{ data: { object: 'sortable-answer-templates', survey: @survey.slug, question: @question.slug } }
+        - @question.answer_templates.unarchived.each_with_index do |answer_template, index|
+          %tr{ id: "question_#{@question.id}_template_#{answer_template.id}_position_#{index}", data: { answer_template_id: answer_template.id } }
+            %td{ style: 'vertical-align: middle;' }
+              %span.glyphicon.glyphicon-move.move-handle
             %td= link_to answer_template.name, builder_survey_question_answer_template_path(@survey, @question, answer_template)
             %td= answer_template.template_name
             %td= answer_template.data_type
@@ -85,4 +58,31 @@
             %td= answer_template.parent_answer_option_value
             %td= link_to_if current_user.owner?, answer_template.user.name, answer_template.user if answer_template.user
             %td= link_to 'Edit', edit_builder_survey_question_answer_template_path(@survey, @question, answer_template), class: 'btn btn-xs btn-default'
+      %tr
+        %td{ colspan: '9' }
+          = link_to 'Add Another Answer Template', new_builder_survey_question_answer_template_path(@survey, @question), class: 'btn btn-xs btn-default'
+
+
+    %h4 Archived
+    %table.table.table-bordered.table-striped
+      %thead
+        %tr
+          %th Name
+          %th Template
+          %th Data Type
+          %th Allow Multiple
+          %th Parent Template
+          %th Parent Option Value
+          %th Creator
+          %th Actions
+      - @question.answer_templates.archived.each do |answer_template|
+        %tr
+          %td= link_to answer_template.name, builder_survey_question_answer_template_path(@survey, @question, answer_template)
+          %td= answer_template.template_name
+          %td= answer_template.data_type
+          %td= simple_check answer_template.allow_multiple
+          %td= answer_template.parent_answer_template.name if answer_template.parent_answer_template
+          %td= answer_template.parent_answer_option_value
+          %td= link_to_if current_user.owner?, answer_template.user.name, answer_template.user if answer_template.user
+          %td= link_to 'Edit', edit_builder_survey_question_answer_template_path(@survey, @question, answer_template), class: 'btn btn-xs btn-default'
 

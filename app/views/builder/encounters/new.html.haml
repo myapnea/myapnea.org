@@ -1,9 +1,9 @@
+- @background_color = '#fff'
 .content-main-header
-  %h1
-    = link_to 'Encounters', builder_encounters_path
-    &middot;
-    New Encounter
+  .container
+    %h1
+      = link_to 'Encounters', builder_encounters_path
+      &middot;
+      New Encounter
 
-.content-container
-  .content-body
-    = render 'builder/encounters/form'
+.container= render 'builder/encounters/form'
