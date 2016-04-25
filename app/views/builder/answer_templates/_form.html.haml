@@ -21,6 +21,28 @@
     = f.label :name, nil, class: 'col-md-2 control-label'
     .col-md-10
       = f.text_field :name, class: 'form-control'
+      .bs-callout.bs-callout-info
+        %h4 Naming convention
+
+        %ul
+          %li
+            Must be a letter
+            %code a-zA-Z
+            followed by letters
+            = succeed ',' do
+              %code a-zA-Z
+            numbers
+            = succeed ',' do
+              %code 0-9
+            or underscores
+            = succeed '.' do
+              %code _
+          %li
+            Max length
+            = succeed '.' do
+              %strong 32 characters
+        Ex:
+        %code var1_population
 
   .form-group
     = f.label :template_name, 'Template Name', class: 'col-md-2 control-label'

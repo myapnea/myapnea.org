@@ -18,6 +18,7 @@ class AnswerTemplate < ActiveRecord::Base
 
   # Validations
   validates :name, :data_type, :user_id, :template_name, presence: true
+  validates :name, format: { with: /\A[a-z]\w*\Z/i }, length: { maximum: 32 }
   validates :name, uniqueness: { scope: :deleted }
   validates :template_name, inclusion: { in: TEMPLATE_NAMES }
   validates :parent_answer_template_id, presence: true, if: :parent_answer_option_value_present?

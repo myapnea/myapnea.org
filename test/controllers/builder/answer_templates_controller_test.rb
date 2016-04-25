@@ -13,6 +13,15 @@ class Builder::AnswerTemplatesControllerTest < ActionController::TestCase
     @answer_template = answer_templates(:web_answer_template)
   end
 
+  def answer_template_params
+    {
+      name: 'my_new_answer_template',
+      template_name: 'checkbox',
+      parent_answer_option_value: @answer_template.parent_answer_option_value,
+      text: @answer_template.text
+    }
+  end
+
   test 'should get answer templates as builder' do
     login(@builder)
     get :index, survey_id: @survey, question_id: @question
@@ -50,12 +59,12 @@ class Builder::AnswerTemplatesControllerTest < ActionController::TestCase
   test 'should create answer template as builder' do
     login(@builder)
     assert_difference('AnswerTemplate.count') do
-      post :create, survey_id: @survey, question_id: @question, answer_template: { name: 'My New Answer Template', template_name: 'checkbox', parent_answer_option_value: @answer_template.parent_answer_option_value, text: @answer_template.text }
+      post :create, survey_id: @survey, question_id: @question, answer_template: answer_template_params
     end
     assert_not_nil assigns(:survey)
     assert_not_nil assigns(:question)
     assert_not_nil assigns(:answer_template)
-    assert_equal 'My New Answer Template', assigns(:answer_template).name
+    assert_equal 'my_new_answer_template', assigns(:answer_template).name
     assert_equal 'checkbox', assigns(:answer_template).template_name
     assert_equal 'answer_option_id', assigns(:answer_template).data_type
     assert_equal 1, @question.answer_templates_questions.find_by(answer_template_id: assigns(:answer_template).id).position
@@ -66,13 +75,13 @@ class Builder::AnswerTemplatesControllerTest < ActionController::TestCase
   test 'should not create answer template without text' do
     login(@builder)
     assert_difference('AnswerTemplate.count', 0) do
-      post :create, survey_id: @survey, question_id: @question, answer_template: { name: '', template_name: 'checkbox', parent_answer_option_value: @answer_template.parent_answer_option_value, text: @answer_template.text }
+      post :create, survey_id: @survey, question_id: @question, answer_template: answer_template_params.merge(name: '')
     end
     assert_not_nil assigns(:survey)
     assert_not_nil assigns(:question)
     assert_not_nil assigns(:answer_template)
     assert assigns(:answer_template).errors.size > 0
-    assert_equal ["can't be blank"], assigns(:answer_template).errors[:name]
+    assert_equal ["can't be blank", "is invalid"], assigns(:answer_template).errors[:name]
     assert_template 'answer_templates/new'
     assert_response :success
   end
@@ -80,7 +89,7 @@ class Builder::AnswerTemplatesControllerTest < ActionController::TestCase
   test 'should not create answer template as regular user' do
     login(@regular_user)
     assert_difference('AnswerTemplate.count', 0) do
-      post :create, survey_id: @survey, question_id: @question, answer_template: { name: 'My New Answer Template', template_name: 'checkbox', parent_answer_option_value: @answer_template.parent_answer_option_value, text: @answer_template.text }
+      post :create, survey_id: @survey, question_id: @question, answer_template: answer_template_params
     end
     assert_nil assigns(:survey)
     assert_nil assigns(:question)
@@ -126,11 +135,11 @@ class Builder::AnswerTemplatesControllerTest < ActionController::TestCase
 
   test 'should update answer template as builder' do
     login(@builder)
-    patch :update, survey_id: @survey, question_id: @question, id: @answer_template, answer_template: { name: 'Updated Answer Template', template_name: 'date', parent_answer_option_value: @answer_template.parent_answer_option_value, text: @answer_template.text }
+    patch :update, survey_id: @survey, question_id: @question, id: @answer_template, answer_template: answer_template_params.merge(name: 'updated_answer_template', template_name: 'date')
     assert_not_nil assigns(:survey)
     assert_not_nil assigns(:question)
     assert_not_nil assigns(:answer_template)
-    assert_equal 'Updated Answer Template', assigns(:answer_template).name
+    assert_equal 'updated_answer_template', assigns(:answer_template).name
     assert_equal 'date', assigns(:answer_template).template_name
     assert_equal 'text_value', assigns(:answer_template).data_type
     assert_equal false, assigns(:answer_template).allow_multiple
@@ -139,19 +148,19 @@ class Builder::AnswerTemplatesControllerTest < ActionController::TestCase
 
   test 'should not update answer template without name' do
     login(@builder)
-    patch :update, survey_id: @survey, question_id: @question, id: @answer_template, answer_template: { name: '', template_name: 'date', parent_answer_option_value: @answer_template.parent_answer_option_value, text: @answer_template.text }
+    patch :update, survey_id: @survey, question_id: @question, id: @answer_template, answer_template: answer_template_params.merge(name: '', template_name: 'date')
     assert_not_nil assigns(:survey)
     assert_not_nil assigns(:question)
     assert_not_nil assigns(:answer_template)
     assert assigns(:answer_template).errors.size > 0
-    assert_equal ["can't be blank"], assigns(:answer_template).errors[:name]
+    assert_equal ["can't be blank", "is invalid"], assigns(:answer_template).errors[:name]
     assert_template 'answer_templates/edit'
     assert_response :success
   end
 
   test 'should not update answer template as regular user' do
     login(@regular_user)
-    patch :update, survey_id: @survey, question_id: @question, id: @answer_template, answer_template: { name: 'Updated Answer Template', template_name: 'date', parent_answer_option_value: @answer_template.parent_answer_option_value, text: @answer_template.text }
+    patch :update, survey_id: @survey, question_id: @question, id: @answer_template, answer_template: answer_template_params.merge(name: 'updated_answer_template', template_name: 'date')
     assert_nil assigns(:survey)
     assert_nil assigns(:question)
     assert_nil assigns(:answer_template)
