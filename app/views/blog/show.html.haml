@@ -1,6 +1,13 @@
 - @title = @broadcast.title
 - @keywords = @broadcast.keywords
 
+- content_for :banner do
+  .content-main-header
+    .container
+      %h1
+        = ENV['website_name']
+        Blog
+
 - @background_color = '#fff'
 .container
   .row
@@ -8,7 +15,10 @@
       %h1.broadcast-title
         = @title
         - if current_user && current_user.community_contributor?
-          = link_to 'Edit', edit_broadcast_path(@broadcast), class: 'btn btn-xs btn-default'
+          = link_to edit_broadcast_path(@broadcast), class: 'btn btn-xs btn-default' do
+            %span.glyphicon.glyphicon-edit
+            Edit Blog Post
+
       = render 'blog/show', broadcast: @broadcast
-    .col-md-3
-      %h2.brand= link_to "#{ENV['website_name']} Blog", blog_path
+    .col-md-3.col-buffer
+      = render 'blog/menu'

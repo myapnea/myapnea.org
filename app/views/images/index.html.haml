@@ -15,7 +15,7 @@
       %tr
         %th
         %th User
-        %th Image
+        %th Image Link
         %th File Size
         %th Created At
         %th Actions
@@ -26,12 +26,13 @@
           %td
             = image_tag download_image_path(image, size: 'thumb'), class: 'img-responsive'
           %td= image.user.name
-          %td= image.image
+          %td
+            %code= "#{ENV['website_url']}/image/#{image.to_param}"
           %td= number_to_human_size image.file_size
           %td= image.created_at.strftime('%-d %b %Y, %-l:%M %p')
           %td
             = link_to 'Show', image, class: 'btn btn-xs btn-default'
             = link_to 'Edit', edit_image_path(image), class: 'btn btn-xs btn-default'
-            = link_to 'Destroy', image, method: :delete, data: { confirm: 'Are you sure you want to delete this image?' }, class: 'btn btn-xs btn-danger'
+            = link_to 'Delete', image, method: :delete, data: { confirm: 'Are you sure you want to delete this image?' }, class: 'btn btn-xs btn-danger'
 
   .center= paginate @images, theme: 'bootstrap'

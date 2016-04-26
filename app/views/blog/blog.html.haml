@@ -19,5 +19,5 @@
         %h2.broadcast-title= link_to broadcast.title, blog_post_path(year: broadcast.publish_date.year, month: broadcast.publish_date.strftime('%m'), slug: broadcast.slug)
         = render 'blog/show', broadcast: broadcast
       .center= paginate @broadcasts, theme: 'bootstrap'
-    .col-sm-3
-      %h2.brand= "#{ENV['website_name']} Blog"
+    .col-sm-3.col-buffer
+      = render 'blog/menu'

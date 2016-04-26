@@ -8,7 +8,7 @@ class BroadcastsController < ApplicationController
 
   # GET /broadcasts
   def index
-    @broadcasts = Broadcast.current.order(publish_date: :desc)
+    @broadcasts = Broadcast.current.order(publish_date: :desc, id: :desc)
                            .page(params[:page]).per(40)
   end
 
@@ -67,7 +67,7 @@ class BroadcastsController < ApplicationController
     parse_date_if_key_present(:broadcast, :publish_date)
     params.require(:broadcast).permit(
       :title, :slug, :short_description, :description, :pinned, :archived,
-      :publish_date, :published, :keywords
+      :publish_date, :published, :keywords, :category_id
     )
   end
 

@@ -1,11 +1,13 @@
 # frozen_string_literal: true
 
+# Defines the user model, relationships, and permissions. Also provides methods
+# to check forum and research consent.
 class User < ActiveRecord::Base
   # Uploaders
   mount_uploader :photo, PhotoUploader
 
   #  For recent updates to consent/privacy policy/etc
-  RECENT_UPDATE_DATE = "2015-09-11"
+  RECENT_UPDATE_DATE = '2015-09-11'
 
   # Include default devise modules. Others available are:
   # :confirmable, :omniauthable
@@ -16,12 +18,14 @@ class User < ActiveRecord::Base
   after_create :set_forum_name, :send_welcome_email, :check_for_token, :update_location
 
   # Mappings
-  TYPES = [['Adult who has been diagnosed with sleep apnea', 'adult_diagnosed'],
-          ['Adult who is at-risk of sleep apnea', 'adult_at_risk'],
-          ['Caregiver of adult diagnosed with or at-risk of sleep apnea', 'caregiver_adult'],
-          ['Caregiver of child(ren) diagnosed with or at-risk of sleep apnea', 'caregiver_child'],
-          ['Professional care provider', 'provider'],
-          ['Research professional', 'researcher']]
+  TYPES = [
+    ['Adult who has been diagnosed with sleep apnea', 'adult_diagnosed'],
+    ['Adult who is at-risk of sleep apnea', 'adult_at_risk'],
+    ['Caregiver of adult diagnosed with or at-risk of sleep apnea', 'caregiver_adult'],
+    ['Caregiver of child(ren) diagnosed with or at-risk of sleep apnea', 'caregiver_child'],
+    ['Professional care provider', 'provider'],
+    ['Research professional', 'researcher']
+  ]
 
   # Concerns
   include CommonDataModel, Deletable, Groupable, Coenrollment
@@ -35,14 +39,13 @@ class User < ActiveRecord::Base
   scope :include_in_exports_and_reports, -> { where(include_in_exports: true) }
 
   # Model Validation
-  validates_presence_of :first_name, :last_name
+  validates :first_name, :last_name, presence: true
 
   validates :forum_name, allow_blank: true, uniqueness: { case_sensitive: false }, format: { with: /\A[a-zA-Z0-9]*\Z/i }, unless: :update_by_user?
   validates :forum_name, allow_blank: false, uniqueness: { case_sensitive: false }, format: { with: /\A[a-zA-Z0-9]+\Z/i }, if: :update_by_user?
 
   with_options unless: :provider? do |user|
     user.validates :over_eighteen, inclusion: { in: [true], message: "You must be over 18 years of age to sign up" }, allow_nil: true
-    #user.validates :year_of_birth, presence: true, numericality: {only_integer: true, allow_nil: false, less_than_or_equal_to: -> (user){ Date.today.year - 18 }, greater_than_or_equal_to: -> (user){ 1900 }}
   end
 
   with_options if: :provider? do |user|

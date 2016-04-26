@@ -16,6 +16,7 @@ class Broadcast < ActiveRecord::Base
 
   # Model Relationships
   belongs_to :user
+  belongs_to :category, class_name: 'Admin::Category'
 
   # Model Methods
 

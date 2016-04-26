@@ -4,6 +4,7 @@
 - **Blog Added**
   - A new blog has been added to allow community contributors and researchers to
     discuss sleep apnea and other topics related to MyApnea.Org
+  - Blog posts can be filtered by category
 
 ## 10.4.0 (April 25, 2016)
 

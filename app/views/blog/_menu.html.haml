@@ -1,0 +1,14 @@
+%h1= link_to 'Blog', blog_path
+%ul{ style: 'margin-bottom: 20px' }
+  %li{ style: "#{'font-weight:bold' if params[:category].blank?}" }
+    = link_to 'All', blog_path
+  - Admin::Category.current.order(:name).each do |category|
+    %li{ style: "#{'font-weight:bold' if params[:category] == category.slug}" }
+      = link_to category.name, blog_path(category: category)
+
+= form_tag blog_path, method: :get, class: 'form-inline', id: 'search-form' do
+  .input-group
+    = text_field_tag 's', params[:s], class: 'form-control', style: 'width:100%', placeholder: 'Search MyApnea'
+    %span.input-group-btn
+      = link_to '#', data: { object: 'submit', target: '#search-form' }, class: 'btn btn-primary', name: nil do
+        %span.glyphicon.glyphicon-search

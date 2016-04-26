@@ -1,0 +1,33 @@
+- @title = 'Categories'
+
+- content_for :banner do
+  .content-main-header
+    .container
+      %h1
+        Categories
+      %div
+        = succeed ' ' do
+          = link_to new_admin_category_path, class: 'btn btn-xs btn-default' do
+            %span.glyphicon.glyphicon-plus
+            New Category
+
+- @background_color = '#fff'
+.container
+  %table.table
+    %thead
+      %tr
+        %th Name
+        %th Slug
+        %th Actions
+
+    %tbody
+      - @admin_categories.each do |admin_category|
+        %tr
+          %td= link_to admin_category.name, admin_category
+          %td
+            %code= admin_category.slug
+          %td.nowrap
+            = link_to 'Edit', edit_admin_category_path(admin_category), class: 'btn btn-xs btn-default'
+            = link_to 'Destroy', admin_category, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-xs btn-danger'
+
+  .center= paginate @admin_categories, theme: 'bootstrap'

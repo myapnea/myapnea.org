@@ -72,3 +72,7 @@ $(document)
   .on('click', '[data-object~="login-with-focus"]', () ->
     setFocusToField("#user_email")
   )
+  .on('click', '[data-object~="submit"]', () ->
+    $($(this).data('target')).submit()
+    false
+  )

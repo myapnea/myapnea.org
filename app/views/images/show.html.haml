@@ -1,21 +1,30 @@
-= link_to 'Edit', edit_image_path(@image)
-|
-= link_to 'Back', images_path
+- @title = @image.to_param
+- content_for :banner do
+  .content-main-header
+    .container
+      %h1
+        = link_to 'Images', images_path
+        &middot;
+        = @title
+        = link_to edit_image_path(@image), class: 'btn btn-xs btn-default' do
+          %span.glyphicon.glyphicon-edit
+          Edit Image
 
-%br
-%br
+- @background_color = '#fff'
+.container
+  %table.table.table-striped
+    %tr
+      %th User
+      %td= @image.user.name
 
-%p
-  %strong User:
-  = @image.user.name
+    %tr
+      %th Image Link
+      %td
+        %code= "#{ENV['website_url']}/image/#{@image.to_param}"
 
-%p
-  %strong Image:
-  = @image.image
+    %tr
+      %th File Size
+      %td= number_to_human_size @image.file_size
 
-%p
-  %strong File Size:
-  = number_to_human_size @image.file_size
-
-%p
-  = image_tag download_image_path(@image), alt: '', class: 'img-responsive'
+  %p
+    = image_tag download_image_path(@image), alt: '', class: 'img-responsive'

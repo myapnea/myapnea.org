@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :comments, only: [:create, :destroy]
 
   namespace :admin do
+    resources :categories
     resources :exports do
       member do
         get :file

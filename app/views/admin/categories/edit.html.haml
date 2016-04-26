@@ -1,0 +1,14 @@
+- @title = "Edit Broadcast: #{@admin_category.name_was}"
+
+- content_for :banner do
+  .content-main-header
+    .container
+      %h1
+        = link_to 'Categories', admin_categories_path
+        &middot;
+        = link_to @admin_category.name_was, @admin_category
+        &middot;
+        Edit
+
+- @background_color = '#fff'
+.container= render 'form'
