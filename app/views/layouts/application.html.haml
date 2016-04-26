@@ -30,6 +30,7 @@
     = render 'layouts/partials/flash_messages'
     = yield :banner
     = yield
+    = yield :call_to_action
     %div{ style: 'clear:both;height:0' }
       &nbsp;
     = render 'layouts/partials/footer'

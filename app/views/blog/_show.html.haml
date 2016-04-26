@@ -8,3 +8,28 @@
     = link_to broadcast.category.name, blog_path(category: broadcast.category)
 
 .broadcast= simple_markdown broadcast.description, true, false
+
+- content_for :call_to_action do
+  .broadcast-discussion
+    .container
+      %h4
+        all 7 comments
+      %div{ style: 'margin-bottom: 20px' }
+        %div{ style: 'display: inline-block' }
+          sorted by:
+        .dropdown{ style: 'display: inline-block'}
+          = link_to '#', data: { target: '#', toggle: 'dropdown' }, role: 'button', aria: { haspopup: 'true', expanded: 'false' }, id: 'sort-by-dropdown', class: 'text-muted' do
+            - case params[:sort_by] when 'new'
+              new
+            - else
+              best
+            %span.caret
+          %ul.dropdown-menu{ aria: { labelledby: 'status-dropdown' } }
+            %li= link_to 'best', blog_post_path(year: broadcast.publish_date.year, month: broadcast.publish_date.strftime('%m'), slug: broadcast.slug, sort_by: 'best'), style: (params[:sort_by].blank? || params[:sort_by] == 'best') ? 'font-weight:bold;' : ''
+            %li= link_to 'new', blog_post_path(year: broadcast.publish_date.year, month: broadcast.publish_date.strftime('%m'), slug: broadcast.slug, sort_by: 'new'), style: (params[:sort_by] == 'new') ? 'font-weight:bold;' : ''
+
+      .content-container
+        = render 'blog/discussion/comment', depth: 2
+
+      .content-container
+        = render 'blog/discussion/comment', depth: 1

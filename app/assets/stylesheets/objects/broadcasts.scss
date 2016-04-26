@@ -153,3 +153,35 @@
 // .broadcast-alert .broadcast-header::after {
 //   border-right-color: $brand-warning;
 // }
+
+.broadcast-discussion {
+  background-color: $body-background;
+
+  .broadcast-comment {
+    .broadcast-comment {
+      margin-top: 10px;
+      border: 1px solid $brand-gray;
+      border-radius: 4px;
+      padding: 10px;
+    }
+  }
+
+  .broadcast-comment-replies {
+    padding-left: 20px;
+  }
+}
+
+.broadcast-comment-body {
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+
+.broadcast-comment {
+  background-color: #fff;
+  .broadcast-comment {
+    background-color: $brand-gray-lightest;
+    .broadcast-comment {
+      background-color: #fff;
+    }
+  }
+}

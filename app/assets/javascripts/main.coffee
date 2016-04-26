@@ -76,3 +76,6 @@ $(document)
     $($(this).data('target')).submit()
     false
   )
+  .on('click', '[data-object~="suppress-click"]', () ->
+    false
+  )

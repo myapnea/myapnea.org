@@ -76,4 +76,5 @@
 //= require builder/slug
 //= require previews
 //= require extensions/filedrag
+//= require objects/blog
 //= require objects/images
