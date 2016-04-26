@@ -46,8 +46,8 @@
         %li{ class: "#{'active' if @active_top_nav_link == :learn }" }
           = link_to 'Learn', learn_path
         - unless current_user
-          %li.hidden-xs.hidden-sm{ style: 'border-color: transparent' }
-            = link_to 'Login', new_user_session_path, class: 'btn btn-default f300', style: 'border-radius:5px;font-size:18px; margin-left: 5px;'
+          %li.hidden-xs.hidden-sm{ class: "#{'active' if current_page?(new_user_session_path)}" }
+            = link_to 'Login', new_user_session_path
           %li.visible-xs.visible-sm
             = link_to 'Login', new_user_session_path, class: 'btn btn-default', id: 'mobile-login'
             = link_to 'Join', new_user_registration_path, class: 'btn btn-primary', id: 'mobile-join'
