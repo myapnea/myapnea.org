@@ -19,6 +19,22 @@ class BroadcastCommentsController < ApplicationController
     @broadcast_comment = current_user.broadcast_comments.new(broadcast_comment_params)
   end
 
+  def vote
+    @broadcast_comment = @broadcast.broadcast_comments.find_by_id params[:id]
+    redirect_without_broadcast_comment
+    @broadcast_comment_user = @broadcast.broadcast_comment_users.where(
+      user_id: current_user.id, broadcast_comment: @broadcast_comment.id
+    ).first_or_create
+    case params[:vote]
+    when 'up'
+      @broadcast_comment_user.up_vote!
+    when 'down'
+      @broadcast_comment_user.down_vote!
+    else
+      @broadcast_comment_user.remove_vote!
+    end
+  end
+
   # # GET /broadcast_comments/new
   # def new
   #   @broadcast_comment = BroadcastComment.new
@@ -74,7 +90,7 @@ class BroadcastCommentsController < ApplicationController
   end
 
   def redirect_without_broadcast_comment
-    empty_response_or_root_path(@broadcast) unless @broadcast_comment
+    empty_response_or_root_path(blog_post_path(@broadcast.url_hash)) unless @broadcast_comment
   end
 
   def broadcast_comment_params

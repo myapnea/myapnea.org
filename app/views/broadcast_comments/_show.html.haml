@@ -1,20 +1,6 @@
 .broadcast-comment
-  .broadcast-comment-header
-    - unless broadcast_comment.deleted?
-      %span.pull-right
-        = render 'broadcast_comments/vote', broadcast_comment: broadcast_comment
-        = render 'broadcast_comments/options', broadcast_comment: broadcast_comment
-    - if broadcast_comment.below_threshold?
-      = link_to '[+]', '#', data: { object: 'toggle-broadcast-comment' }, style: 'text-decoration:none', class: 'text-muted'
-    - else
-      = link_to '[-]', '#', data: { object: 'toggle-broadcast-comment' }, style: 'text-decoration:none', class: 'text-muted'
-    - if broadcast_comment.deleted?
-      %i.text-muted [deleted]
-    - else
-      = link_to broadcast_comment.user.forum_name, '#', data: { object: 'suppress-click' }
-    %small.text-muted
-      - symbol = '+' if broadcast_comment.rank >= 0
-      = pluralize "#{symbol}#{broadcast_comment.rank}", 'point'
+  .broadcast-comment-header{ data: { parent_comment_id: broadcast_comment.parent_comment_id, broadcast_comment_id: broadcast_comment.id } }
+    = render 'broadcast_comments/header', broadcast_comment: broadcast_comment, just_voted: false
 
   .broadcast-comment-body{ style: "#{'display:none' if broadcast_comment.below_threshold?}" }
     %div{ data: { object: 'broadcast-comment-show', parent_comment_id: broadcast_comment.parent_comment_id, broadcast_comment_id: broadcast_comment.id } }
@@ -30,6 +16,9 @@
         = render 'broadcast_comments/form', broadcast_comment: new_broadcast_comment
 
     - child_comments = @broadcast_comments.select { |comment| comment.broadcast_comment_id == broadcast_comment.id }
-    - child_comments = child_comments.sort_by(&:rank)
+    - if params[:sort_by] == 'new'
+      - child_comments = child_comments.sort_by(&:order_newest)
+    - else
+      - child_comments = child_comments.sort_by(&:order_best)
     - child_comments.each do |child_comment|
       = render 'broadcast_comments/show', broadcast_comment: child_comment

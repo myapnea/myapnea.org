@@ -18,12 +18,24 @@ class BroadcastComment < ActiveRecord::Base
   belongs_to :user
   belongs_to :broadcast
   belongs_to :broadcast_comment
+  has_many :broadcast_comment_users
 
   # Model Methods
 
   def rank
-    # @rank ||= rand(101) - 50
-    12
+    broadcast_comment_users.sum(:vote)
+  end
+
+  def reverse_rank
+    -rank
+  end
+
+  def order_newest
+    -id
+  end
+
+  def order_best
+    [reverse_rank, order_newest]
   end
 
   def below_threshold?
@@ -31,13 +43,13 @@ class BroadcastComment < ActiveRecord::Base
   end
 
   def vote(current_user)
-    return nil
-    if current_user
+    broadcast_comment = broadcast_comment_users.find_by(user: current_user)
+    return nil unless broadcast_comment
+    case broadcast_comment.vote
+    when 1
       true
-    elsif true
+    when -1
       false
-    else
-      nil
     end
   end
 

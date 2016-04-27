@@ -18,6 +18,7 @@ class Broadcast < ActiveRecord::Base
   belongs_to :user
   belongs_to :category, class_name: 'Admin::Category'
   has_many :broadcast_comments
+  has_many :broadcast_comment_users
 
   # Model Methods
 

@@ -55,6 +55,9 @@ Rails.application.routes.draw do
     collection do
       post :preview
     end
+    member do
+      post :vote
+    end
   end
 
   resources :images do

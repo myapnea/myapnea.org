@@ -2,22 +2,22 @@
 
 - if vote == true
   - klass = 'text-success'
-  - change_to = nil
+  - change_to = 'clear'
 - else
   - klass = 'text-muted'
-  - change_to = true
+  - change_to = 'up'
 
-= link_to '#', style: 'text-decoration:none', class: klass, data: { object: 'suppress-click' }, change_to: change_to do
-  %span.glyphicon.glyphicon-thumbs-up
+= link_to vote_broadcast_comment_path(broadcast_comment, broadcast_id: @broadcast, vote: change_to), method: :post, remote: true, style: 'text-decoration:none', class: klass do
+  %span.glyphicon.glyphicon-thumbs-up{ class: "#{'just_voted' if just_voted && vote == true}" }
 
 &nbsp;
 
 - if vote == false
   - klass = 'text-danger'
-  - change_to = nil
+  - change_to = 'clear'
 - else
   - klass = 'text-muted'
-  - change_to = false
+  - change_to = 'down'
 
-= link_to '#', style: 'text-decoration:none', class: klass, data: { object: 'suppress-click' }, change_to: change_to do
-  %span.glyphicon.glyphicon-thumbs-down
+= link_to vote_broadcast_comment_path(broadcast_comment, broadcast_id: @broadcast, vote: change_to), method: :post, remote: true, style: 'text-decoration:none', class: klass do
+  %span.glyphicon.glyphicon-thumbs-down{ class: "#{'just_voted' if just_voted && vote == false}" }

@@ -6,6 +6,8 @@
     discuss sleep apnea and other topics related to MyApnea.Org
   - Blog posts can be filtered by category
   - Blog posts have a discussion section that is sorted by best or new comments
+  - Comments on blog posts can be up- and down-voted
+  - Comments can be ordered by highest ranked or newest
 
 ## 10.4.0 (April 25, 2016)
 
