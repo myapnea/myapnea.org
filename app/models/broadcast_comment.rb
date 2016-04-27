@@ -22,7 +22,8 @@ class BroadcastComment < ActiveRecord::Base
   # Model Methods
 
   def rank
-    @rank ||= rand(101) - 50
+    # @rank ||= rand(101) - 50
+    12
   end
 
   def below_threshold?
