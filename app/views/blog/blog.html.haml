@@ -16,8 +16,14 @@
   .row
     .col-sm-9
       - @broadcasts.each do |broadcast|
-        %h2.broadcast-title= link_to broadcast.title, blog_post_path(year: broadcast.publish_date.year, month: broadcast.publish_date.strftime('%m'), slug: broadcast.slug)
-        = render 'blog/show', broadcast: broadcast
+        %div{ style: 'margin-bottom: 80px;' }
+          %h2.broadcast-title= link_to broadcast.title, blog_post_path(broadcast.url_hash)
+          = render 'blog/show', broadcast: broadcast
+          = link_to blog_post_path(broadcast.url_hash.merge(anchor: 'comments')), class: 'btn btn-xs btn-default' do
+            Comments
+            = surround '(', ')' do
+              = broadcast.broadcast_comments.count
+            %span.glyphicon.glyphicon-arrow-right
       .center= paginate @broadcasts, theme: 'bootstrap'
     .col-sm-3.col-buffer
       = render 'blog/menu'
