@@ -1,0 +1,35 @@
+.broadcast-comment
+  .broadcast-comment-header
+    - unless broadcast_comment.deleted?
+      %span.pull-right
+        = render 'broadcast_comments/vote', broadcast_comment: broadcast_comment
+        = render 'broadcast_comments/options', broadcast_comment: broadcast_comment
+    - if broadcast_comment.below_threshold?
+      = link_to '[+]', '#', data: { object: 'toggle-broadcast-comment' }, style: 'text-decoration:none', class: 'text-muted'
+    - else
+      = link_to '[-]', '#', data: { object: 'toggle-broadcast-comment' }, style: 'text-decoration:none', class: 'text-muted'
+    - if broadcast_comment.deleted?
+      %i.text-muted [deleted]
+    - else
+      = link_to broadcast_comment.user.forum_name, '#', data: { object: 'suppress-click' }
+    %small.text-muted
+      - symbol = '+' if broadcast_comment.rank >= 0
+      = pluralize "#{symbol}#{broadcast_comment.rank}", 'point'
+
+  .broadcast-comment-body{ style: "#{'display:none' if broadcast_comment.below_threshold?}" }
+    %div{ data: { object: 'broadcast-comment-show', parent_comment_id: broadcast_comment.parent_comment_id, broadcast_comment_id: broadcast_comment.id } }
+      = render 'broadcast_comments/formatted', broadcast_comment: broadcast_comment
+
+    - unless broadcast_comment.deleted?
+      - new_broadcast_comment = @broadcast.broadcast_comments.new(broadcast_comment_id: broadcast_comment.id)
+      - parent_comment_id = new_broadcast_comment.parent_comment_id
+      - broadcast_comment_id = (new_broadcast_comment.new_record? ? 'new' : new_broadcast_comment.id)
+      %div{ id: "write_comment_#{parent_comment_id}_#{broadcast_comment_id}" }
+        %small= link_to 'reply', '#', data: { object: 'blog-write-comment', parent_comment_id: parent_comment_id, broadcast_comment_id: broadcast_comment_id }, class: 'text-muted'
+      %div{ id: "comment_container_#{parent_comment_id}_#{broadcast_comment_id}", style: 'display:none' }
+        = render 'broadcast_comments/form', broadcast_comment: new_broadcast_comment
+
+    - child_comments = @broadcast_comments.select { |comment| comment.broadcast_comment_id == broadcast_comment.id }
+    - child_comments = child_comments.sort_by(&:rank)
+    - child_comments.each do |child_comment|
+      = render 'broadcast_comments/show', broadcast_comment: child_comment

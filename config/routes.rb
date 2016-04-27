@@ -51,6 +51,12 @@ Rails.application.routes.draw do
 
   resources :broadcasts, path: 'editor/blog'
 
+  resources :broadcast_comments do
+    collection do
+      post :preview
+    end
+  end
+
   resources :images do
     collection do
       post :upload, action: :create_multiple

@@ -58,6 +58,7 @@ class User < ActiveRecord::Base
   has_many :answer_sessions, -> { where deleted: false }
   has_many :answers
   has_many :broadcasts, -> { current }
+  has_many :broadcast_comments
   has_many :votes, -> { where deleted: false }
   has_one :social_profile, -> { where deleted: false }
   has_many :notifications, -> { where deleted: false }

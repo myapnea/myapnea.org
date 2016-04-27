@@ -1,0 +1,23 @@
+- vote = broadcast_comment.vote(current_user)
+
+- if vote == true
+  - klass = 'text-success'
+  - change_to = nil
+- else
+  - klass = 'text-muted'
+  - change_to = true
+
+= link_to '#', style: 'text-decoration:none', class: klass, data: { object: 'suppress-click' }, change_to: change_to do
+  %span.glyphicon.glyphicon-thumbs-up
+
+&nbsp;
+
+- if vote == false
+  - klass = 'text-danger'
+  - change_to = nil
+- else
+  - klass = 'text-muted'
+  - change_to = false
+
+= link_to '#', style: 'text-decoration:none', class: klass, data: { object: 'suppress-click' }, change_to: change_to do
+  %span.glyphicon.glyphicon-thumbs-down

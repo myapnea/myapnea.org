@@ -160,20 +160,20 @@
   .broadcast-comment {
     .broadcast-comment {
       margin-top: 10px;
-      border: 1px solid $brand-gray;
+      border: 1px solid $brand-gray-lighter;
       border-radius: 4px;
       padding: 10px;
     }
-  }
-
-  .broadcast-comment-replies {
-    padding-left: 20px;
   }
 }
 
 .broadcast-comment-body {
   padding-bottom: 10px;
+  padding-left: 20px;
   padding-top: 10px;
+  img {
+    max-height: 100px;
+  }
 }
 
 .broadcast-comment {
@@ -182,6 +182,24 @@
     background-color: $brand-gray-lightest;
     .broadcast-comment {
       background-color: #fff;
+      .broadcast-comment {
+        background-color: $brand-gray-lightest;
+        .broadcast-comment {
+          background-color: #fff;
+          .broadcast-comment {
+            background-color: $brand-gray-lightest;
+            .broadcast-comment {
+              background-color: #fff;
+              .broadcast-comment {
+                background-color: $brand-gray-lightest;
+                .broadcast-comment {
+                  background-color: #fff;
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 }

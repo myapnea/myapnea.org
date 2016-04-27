@@ -17,10 +17,19 @@ class Broadcast < ActiveRecord::Base
   # Model Relationships
   belongs_to :user
   belongs_to :category, class_name: 'Admin::Category'
+  has_many :broadcast_comments
 
   # Model Methods
 
   def to_param
     slug.to_s
+  end
+
+  def url_hash
+    {
+      year: publish_date.year,
+      month: publish_date.strftime('%m'),
+      slug: slug
+    }
   end
 end
