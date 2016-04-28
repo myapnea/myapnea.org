@@ -1,4 +1,4 @@
-.broadcast-comment
+.broadcast-comment{ class: (defined?(level) && level.even? ? 'broadcast-comment-even' : 'broadcast-comment-odd' ) }
   .broadcast-comment-header{ data: { parent_comment_id: broadcast_comment.parent_comment_id, broadcast_comment_id: broadcast_comment.id } }
     = render 'broadcast_comments/header', broadcast_comment: broadcast_comment, just_voted: false
 
@@ -21,4 +21,4 @@
     - else
       - child_comments = child_comments.sort_by(&:order_best)
     - child_comments.each do |child_comment|
-      = render 'broadcast_comments/show', broadcast_comment: child_comment
+      = render 'broadcast_comments/show', broadcast_comment: child_comment, level: defined?(level) ? level + 1 : 0

@@ -43,4 +43,4 @@
         - top_level_comments = top_level_comments.sort_by(&:order_best)
       - top_level_comments.each do |broadcast_comment|
         .content-container
-          = render 'broadcast_comments/show', broadcast_comment: broadcast_comment
+          = render 'broadcast_comments/show', broadcast_comment: broadcast_comment, level: defined?(level) ? level + 1 : 0

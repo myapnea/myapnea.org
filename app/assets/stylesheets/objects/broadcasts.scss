@@ -108,11 +108,6 @@
   border-radius: 2px;
 }
 
-// .broadcast-alert .broadcast-box {
-//   background-color: $brand-warning;
-//   border-color: darken($brand-warning, 20%);
-// }
-
 .broadcast-header {
   padding: 10px 10px 0;
   position: relative;
@@ -134,10 +129,6 @@
   width: 0;
 }
 
-// .broadcast-alert .broadcast-header::before {
-//   border-right-color: darken($brand-warning, 20%);
-// }
-
 .broadcast-header::after {
   border-bottom: 7px solid transparent;
   border-right: 7px solid $brand-white;
@@ -150,14 +141,18 @@
   width: 0;
 }
 
-// .broadcast-alert .broadcast-header::after {
-//   border-right-color: $brand-warning;
-// }
-
 .broadcast-discussion {
   background-color: $body-background;
 
   .broadcast-comment {
+    &.broadcast-comment-even {
+      background-color: $brand-white;
+    }
+
+    &.broadcast-comment-odd {
+      background-color: $brand-gray-lightest;
+    }
+
     .broadcast-comment {
       margin-top: 10px;
       border: 1px solid $brand-gray-lighter;
@@ -173,33 +168,5 @@
   padding-top: 10px;
   img {
     max-height: 100px;
-  }
-}
-
-.broadcast-comment {
-  background-color: #fff;
-  .broadcast-comment {
-    background-color: $brand-gray-lightest;
-    .broadcast-comment {
-      background-color: #fff;
-      .broadcast-comment {
-        background-color: $brand-gray-lightest;
-        .broadcast-comment {
-          background-color: #fff;
-          .broadcast-comment {
-            background-color: $brand-gray-lightest;
-            .broadcast-comment {
-              background-color: #fff;
-              .broadcast-comment {
-                background-color: $brand-gray-lightest;
-                .broadcast-comment {
-                  background-color: #fff;
-                }
-              }
-            }
-          }
-        }
-      }
-    }
   }
 }
