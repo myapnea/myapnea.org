@@ -1,0 +1,11 @@
+<% case params[:source] when 'blog' %>
+  <% @broadcast = Broadcast.current.published.find_by_slug params[:broadcast_id] %>
+  <% @broadcast_comment = @broadcast.broadcast_comments.find_by_id params[:broadcast_comment_id] %>
+  <% unless @broadcast_comment %>
+    <% @broadcast_comment = @broadcast.broadcast_comments.new(broadcast_comment_id: params[:parent_comment_id] == 'root' ? nil : params[:parent_comment_id]) %>
+  <% end %>
+  $("#comment_container_<%= params[:parent_comment_id] %>_<%= params[:broadcast_comment_id] %>").html("<%=j render 'broadcast_comments/form', broadcast_comment: @broadcast_comment %>")
+<% else %>
+console.log("Logged in successfully.")
+console.log("Find me in apps/views/devise/sessions/create.js.erb");
+<% end %>

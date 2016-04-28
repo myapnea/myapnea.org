@@ -35,6 +35,8 @@
               %li
                 = link_to 'Log out', destroy_user_session_path, method: :delete
       %ul#main-nav.nav.navbar-nav.navbar-right
+        %li{ class: "#{'active' if params[:controller] == 'blog'}" }
+          = link_to 'Blog *', blog_path
         %li{ class: "#{'active' if @active_top_nav_link == :home}" }
           = link_to "#{current_user ? 'Dashboard' : 'Home'}", root_path
         %li{ class: "#{'active' if @active_top_nav_link == :forums }" }

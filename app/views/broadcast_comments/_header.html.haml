@@ -3,14 +3,15 @@
     = render 'broadcast_comments/vote', broadcast_comment: broadcast_comment, just_voted: just_voted
     &nbsp;
     = render 'broadcast_comments/options', broadcast_comment: broadcast_comment
-- if broadcast_comment.below_threshold?
-  = link_to '[+]', '#', data: { object: 'toggle-broadcast-comment' }, style: 'text-decoration:none', class: 'text-muted'
-- else
-  = link_to '[-]', '#', data: { object: 'toggle-broadcast-comment' }, style: 'text-decoration:none', class: 'text-muted'
-- if broadcast_comment.deleted?
-  %i.text-muted [deleted]
-- else
-  = link_to broadcast_comment.user.forum_name, '#', data: { object: 'suppress-click' }
-%small.text-muted
-  - symbol = '+' if broadcast_comment.rank >= 0
-  = "#{symbol}#{broadcast_comment.rank} point#{'s' if broadcast_comment.rank.abs != 1}"
+.nowrap.overflow-hidden
+  - if broadcast_comment.below_threshold?
+    = link_to '[+]', '#', data: { object: 'toggle-broadcast-comment' }, style: 'text-decoration:none', class: 'text-muted'
+  - else
+    = link_to '[-]', '#', data: { object: 'toggle-broadcast-comment' }, style: 'text-decoration:none', class: 'text-muted'
+  - if broadcast_comment.deleted?
+    %i.text-muted [deleted]
+  - else
+    = link_to broadcast_comment.user.forum_name, '#', data: { object: 'suppress-click' }
+  %small.text-muted
+    - symbol = '+' if broadcast_comment.rank >= 0
+    = "#{symbol}#{broadcast_comment.rank} point#{'s' if broadcast_comment.rank.abs != 1}"
