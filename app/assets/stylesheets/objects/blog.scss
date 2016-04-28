@@ -23,6 +23,8 @@
       display: block;
       padding: 7px 15px;
       position: relative;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .active,

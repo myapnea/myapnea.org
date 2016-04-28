@@ -68,6 +68,8 @@
 .broadcast-info {
   font-weight: 300;
   margin-bottom: 20px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .broadcast-outer {
@@ -172,6 +174,12 @@
       }
     }
   }
+}
+
+.broadcast-comment-header {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .broadcast-comment-body {
