@@ -11,7 +11,7 @@
 - @background_color = '#fff'
 .container
   .row
-    .col-md-9
+    .col-sm-9
       %h1.broadcast-title
         = @title
         - if current_user && current_user.community_contributor?
@@ -20,7 +20,7 @@
             Edit Blog Post
 
       = render 'blog/show', broadcast: @broadcast
-    .col-md-3.col-buffer
+    .col-sm-3.col-buffer
       = render 'blog/menu'
 
 %a.anchor-top{ name: 'comments' }

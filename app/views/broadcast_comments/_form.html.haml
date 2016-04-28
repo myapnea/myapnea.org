@@ -39,7 +39,7 @@
           = f.submit 'Comment', class: 'btn btn-primary', data: { disable_with: 'Comment' }
           = link_to 'Cancel', '#', data: { object: 'blog-no-write-comment', parent_comment_id: parent_comment_id, broadcast_comment_id: broadcast_comment_id }
         - else
-          = f.submit 'Update Comment', class: 'btn btn-primary', data: { disable_with: 'Update Comment' }
+          = f.submit 'Update', class: 'btn btn-primary', data: { disable_with: 'Update Comment' }
           = link_to 'Cancel', broadcast_comment_path(broadcast_comment, broadcast_id: @broadcast), remote: true, class: 'btn btn-default'
 
       %div{ data: { object: 'broadcast-comment-tab-content', action: 'preview', parent_comment_id: parent_comment_id, broadcast_comment_id: broadcast_comment_id }, style: 'display:none' }

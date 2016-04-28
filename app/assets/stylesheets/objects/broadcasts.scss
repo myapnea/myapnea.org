@@ -156,17 +156,35 @@
     .broadcast-comment {
       margin-top: 10px;
       border: 1px solid $brand-gray-lighter;
-      border-radius: 4px;
+      border-radius: 4px 0 0 4px;
       padding: 10px;
+      margin-right: -11px;
+    }
+  }
+}
+
+@media screen and (min-width: $screen-sm-min) {
+  .broadcast-discussion {
+    .broadcast-comment {
+      .broadcast-comment {
+        border-radius: 4px;
+        margin-right: 0;
+      }
     }
   }
 }
 
 .broadcast-comment-body {
   padding-bottom: 10px;
-  padding-left: 20px;
+  padding-left: 0;
   padding-top: 10px;
   img {
     max-height: 100px;
+  }
+}
+
+@media screen and (min-width: $screen-sm-min) {
+  .broadcast-comment-body {
+    padding-left: 20px;
   }
 }
