@@ -7,8 +7,8 @@ class BlogController < ApplicationController
   def blog
     broadcast_scope = Broadcast.current.published.order(publish_date: :desc, id: :desc)
     unless params[:a].blank?
-      user_ids = User.current.where(forum_name: params[:a].to_s.split(','))
-      broadcast_scope = broadcast_scope.where(user_id: user_ids.select(:id))
+      @author = User.current.find_by(forum_name: params[:a])
+      broadcast_scope = broadcast_scope.where(user: @author)
     end
     unless params[:category].blank?
       broadcast_scope = broadcast_scope.joins(:category).merge(Admin::Category.current.where(slug: params[:category]))
@@ -22,6 +22,7 @@ class BlogController < ApplicationController
   end
 
   def show
+    @author = @broadcast.user
   end
 
   private

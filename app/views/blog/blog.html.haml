@@ -19,7 +19,7 @@
         %div{ style: 'margin-bottom: 80px;' }
           %h2.broadcast-title= link_to broadcast.title, blog_post_path(broadcast.url_hash)
           = render 'blog/show', broadcast: broadcast
-          = link_to blog_post_path(broadcast.url_hash.merge(anchor: 'comments')), class: 'btn btn-xs btn-default' do
+          = link_to blog_post_path(broadcast.url_hash.merge(anchor: 'comments')), class: 'comments-link' do
             Comments
             = surround '(', ')' do
               = broadcast.broadcast_comments.count

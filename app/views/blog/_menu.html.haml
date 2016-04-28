@@ -3,18 +3,26 @@
 - else
   - params[:category]
 
-= form_tag blog_path, method: :get, class: 'form-inline', id: 'search-form' do
+= form_tag blog_path, method: :get, id: 'search-form', style: 'margin-bottom:20px' do
   .input-group
     = text_field_tag 's', params[:s], class: 'form-control', style: 'width:100%', placeholder: 'Search MyApnea'
     %span.input-group-btn
       = link_to '#', data: { object: 'submit', target: '#search-form' }, class: 'btn btn-primary', name: nil do
         %span.glyphicon.glyphicon-search
 
-%h1= link_to 'Blog', blog_path
-%ul{ style: 'margin-bottom: 20px' }
-  %li{ style: "#{'font-weight:bold' if current_category.blank?}" }
-    = link_to 'All', blog_path
-  - Admin::Category.current.order(:name).each do |category|
-    %li{ style: "#{'font-weight:bold' if current_category == category.slug}" }
-      = link_to category.name, blog_path(category: category)
+%div{ style: (false ? 'border-left: 1px solid #f5f5f5;' : nil) }
+  %ul.blog-menu
+    %li.blog-menu-header Blog
+    %li= link_to 'All Posts', blog_path, class: "#{'active' if current_category.blank? && (!@author && !@broadcast)}"
+    - Admin::Category.current.order(:name).each do |category|
+      %li= link_to category.name, blog_path(category: category), class: (current_category == category.slug ? 'active' : nil)
 
+
+    - if @author
+      %li.blog-menu-header Author
+      %li= link_to @author.forum_name, blog_path(a: @author.forum_name), class: (@broadcast ? nil : 'active')
+
+  - if @author
+    .author-box
+      .author-key Author Blog Posts
+      .author-value= @author.broadcasts.published.count
