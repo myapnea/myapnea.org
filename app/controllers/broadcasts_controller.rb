@@ -8,8 +8,8 @@ class BroadcastsController < ApplicationController
 
   # GET /broadcasts
   def index
-    @broadcasts = Broadcast.current.order(publish_date: :desc, id: :desc)
-                           .page(params[:page]).per(40)
+    @broadcasts = current_user.editable_broadcasts.order(publish_date: :desc, id: :desc)
+                              .page(params[:page]).per(40)
   end
 
   # GET /broadcasts/1
