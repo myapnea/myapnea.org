@@ -1,4 +1,4 @@
-## 11.0.0
+## 11.0.0 (April 29, 2016)
 
 ### Enhancements
 - **Blog Added**
