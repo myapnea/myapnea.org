@@ -2,7 +2,7 @@
 
 # Allows users to discuss a blog post.
 class BroadcastCommentsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:vote]
   before_action :find_broadcast_or_redirect, except: [:preview]
   before_action :find_broadcast_comment_or_redirect, only: [:show, :edit, :update, :destroy]
 
@@ -22,16 +22,18 @@ class BroadcastCommentsController < ApplicationController
   def vote
     @broadcast_comment = @broadcast.broadcast_comments.find_by_id params[:id]
     redirect_without_broadcast_comment
-    @broadcast_comment_user = @broadcast.broadcast_comment_users.where(
-      user_id: current_user.id, broadcast_comment: @broadcast_comment.id
-    ).first_or_create
-    case params[:vote]
-    when 'up'
-      @broadcast_comment_user.up_vote!
-    when 'down'
-      @broadcast_comment_user.down_vote!
-    else
-      @broadcast_comment_user.remove_vote!
+    if current_user
+      @broadcast_comment_user = @broadcast.broadcast_comment_users.where(
+        user_id: current_user.id, broadcast_comment: @broadcast_comment.id
+      ).first_or_create
+      case params[:vote]
+      when 'up'
+        @broadcast_comment_user.up_vote!
+      when 'down'
+        @broadcast_comment_user.down_vote!
+      else
+        @broadcast_comment_user.remove_vote!
+      end
     end
   end
 
