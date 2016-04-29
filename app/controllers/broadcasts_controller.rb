@@ -48,7 +48,7 @@ class BroadcastsController < ApplicationController
   # DELETE /broadcasts/1
   def destroy
     @broadcast.destroy
-    redirect_to broadcasts_path, notice: 'Broadcast was successfully destroyed.'
+    redirect_to broadcasts_path, notice: 'Broadcast was successfully deleted.'
   end
 
   private
