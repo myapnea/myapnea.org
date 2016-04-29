@@ -21,6 +21,7 @@
 //= require jquery.PrintArea
 //= require d3.min
 //= require typeahead
+//= require external/bootstrap-datepicker.js
 //= require external/jquery.textcomplete.js
 //= require components/uservoice_left
 //= require google_analytics

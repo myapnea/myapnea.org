@@ -35,6 +35,9 @@ if typeof Turbolinks isnt 'undefined' and Turbolinks.supported
   val = $(element_id).val()
   $(element_id).focus().val('').val(val)
 
+@loadDatepicker = () ->
+  $('.datepicker').datepicker()
+
 @loaders = () ->
   mainLoader()
   consentReady()
@@ -65,6 +68,7 @@ if typeof Turbolinks isnt 'undefined' and Turbolinks.supported
   builderAnswerTemplatesReady()
   builderAnswerOptionsReady()
   fileDragReady()
+  loadDatepicker()
 
 $(document).ready(loaders)
 $(document)
