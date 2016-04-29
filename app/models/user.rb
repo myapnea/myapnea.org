@@ -360,6 +360,14 @@ class User < ActiveRecord::Base
     update accepted_terms_of_access_at: current_time, accepted_update_at: current_time
   end
 
+  def editable_broadcasts
+    if owner?
+      Broadcast.current
+    else
+      broadcasts
+    end
+  end
+
   def editable_broadcast_comments
     if moderator?
       BroadcastComment.current

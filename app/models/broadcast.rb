@@ -33,4 +33,8 @@ class Broadcast < ActiveRecord::Base
       slug: slug
     }
   end
+
+  def editable_by?(current_user)
+    current_user.editable_broadcasts.where(id: id).count == 1
+  end
 end

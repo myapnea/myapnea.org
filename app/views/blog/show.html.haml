@@ -14,7 +14,7 @@
     .col-sm-9
       %h1.broadcast-title
         = @title
-        - if current_user && current_user.community_contributor?
+        - if current_user && current_user.community_contributor? && @broadcast.editable_by?(current_user)
           = link_to edit_broadcast_path(@broadcast), class: 'btn btn-xs btn-default' do
             %span.glyphicon.glyphicon-edit
             Edit Blog Post
