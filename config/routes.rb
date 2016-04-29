@@ -1,6 +1,14 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  namespace :async do
+    namespace :blog do
+      post :login
+      post :register
+      post :reply
+    end
+  end
+
   resources :engagements do
     resources :engagement_responses
   end

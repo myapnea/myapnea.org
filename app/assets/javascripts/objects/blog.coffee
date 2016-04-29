@@ -1,3 +1,14 @@
+@showReplyBox = (parent_comment_id, broadcast_comment_id) ->
+  $("#write_comment_#{parent_comment_id}_#{broadcast_comment_id}").hide()
+  $("#comment_container_#{parent_comment_id}_#{broadcast_comment_id}").fadeIn('fast')
+
+@hideReplyBox = (parent_comment_id, broadcast_comment_id) ->
+  $('[name=password]').tooltip('destroy')
+  $("#comment_container_#{parent_comment_id}_#{broadcast_comment_id}").html('')
+  $("#comment_container_#{parent_comment_id}_#{broadcast_comment_id}").hide()
+  $("#write_comment_#{parent_comment_id}_#{broadcast_comment_id}").show()
+
+
 $(document)
   .on('click', '[data-object~="toggle-broadcast-comment"]', () ->
     $(this).closest('.broadcast-comment-header').siblings('.broadcast-comment-body').toggle()
@@ -7,21 +18,12 @@ $(document)
       $(this).html('[-]')
     false
   )
-  .on('click', '[data-object~="blog-write-comment"]',  () ->
-    parent_comment_id = $(this).data('parent-comment-id')
-    broadcast_comment_id = $(this).data('broadcast-comment-id')
-    $("#write_comment_#{parent_comment_id}_#{broadcast_comment_id}").hide()
-    $("#comment_container_#{parent_comment_id}_#{broadcast_comment_id}").fadeIn('fast')
-    false
-  )
   .on('click', '[data-object~="blog-no-write-comment"]', () ->
     parent_comment_id = $(this).data('parent-comment-id')
     broadcast_comment_id = $(this).data('broadcast-comment-id')
-    $("#comment_container_#{parent_comment_id}_#{broadcast_comment_id}").hide()
-    $("#write_comment_#{parent_comment_id}_#{broadcast_comment_id}").show()
+    hideReplyBox(parent_comment_id, broadcast_comment_id)
     false
   )
-
   .on('click', '[data-object~="broadcast-comment-tab"]', () ->
     parent_comment_id = $(this).data('parent-comment-id')
     broadcast_comment_id = $(this).data('broadcast-comment-id')

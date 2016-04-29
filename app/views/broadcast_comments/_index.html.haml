@@ -16,7 +16,7 @@
 
         %span#write_comment_root_new
           &middot;
-          = link_to 'reply', '#', data: { object: 'blog-write-comment', parent_comment_id: 'root', broadcast_comment_id: 'new' }
+          = link_to 'reply', async_blog_reply_path(broadcast_id: @broadcast, parent_comment_id: 'root', broadcast_comment_id: 'new'), method: :post, remote: true
 
       %div{ style: 'margin-bottom: 20px' }
         %div{ style: 'display: inline-block' }

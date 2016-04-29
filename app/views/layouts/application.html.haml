@@ -26,7 +26,7 @@
     = javascript_include_tag "application", "data-turbolinks-track" => true
     = javascript_tag "var root_url='#{request.script_name + '/'}';var auth_token='#{form_authenticity_token}';"
   %body{ style: "background-color: #{@background_color || '#E6EDF4'}", screen_capture_injected: "true", data: { email: "#{current_user.email if current_user}", fullname: "#{current_user.name if current_user}" } }
-    = render 'layouts/navigation/top_navigation'
+    #top-navigation= render 'layouts/navigation/top_navigation'
     = render 'layouts/partials/flash_messages'
     = yield :banner
     = yield

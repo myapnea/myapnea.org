@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AccountController < ApplicationController
 
   before_action :authenticate_user!, except: [:consent, :privacy_policy, :terms_and_conditions, :terms_of_access]

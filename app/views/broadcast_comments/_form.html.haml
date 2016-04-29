@@ -46,31 +46,28 @@
         %div{ data: { object: 'broadcast-comment-tab-content', action: 'preview', parent_comment_id: parent_comment_id, broadcast_comment_id: broadcast_comment_id }, style: 'display:none' }
 
 - else
-
   .preview-container{ style: "margin-bottom: 20px;#{'border: 0;box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);' if parent_comment_id == 'root'}" }
-    .preview-header
-      Login to Comment
-    .preview-body{ style: 'min-height: 199px;' }
-      - resource = User.new
-      - resource_name = 'user'
-      = form_for(resource, as: resource_name, url: session_path(resource_name, format: 'js'), html: { role: 'form' }, remote: true) do |f|
+    .preview-header{ style: 'border-bottom: 0px solid #1b244b; background-color: #5999de;color:#fff' }
+      .pull-right
+        = link_to '#', data: { object: 'blog-no-write-comment', parent_comment_id: parent_comment_id, broadcast_comment_id: broadcast_comment_id }, style: 'color:#1b244b;font-weight:bold;text-decoration:none' do
+          &times;
+      Sign in to Comment
+    .preview-body{ style: 'min-height: inherit;border-bottom: 3px solid #ffa400' }
+      = form_tag async_blog_login_path, method: :post, remote: true, class: 'form-inline' do |f|
         = hidden_field_tag :source, 'blog'
         = hidden_field_tag :broadcast_id, @broadcast.to_param
         = hidden_field_tag :parent_comment_id, parent_comment_id
         = hidden_field_tag :broadcast_comment_id, broadcast_comment_id
         .form-group
-          = f.label :email, class: 'sr-only'
-          = f.email_field :email, autofocus: true, class: 'form-control', placeholder: 'Email'
+          = label_tag :email, nil, class: 'sr-only'
+          = email_field_tag :email, params[:email], class: 'form-control', placeholder: 'Email', data: { title: 'Invalid Email', container: 'body' }
         .form-group
-          = f.label :password, class: 'sr-only'
-          = f.password_field :password, class: 'form-control', placeholder: 'Password'
+          = label_tag :password, nil, class: 'sr-only'
+          = password_field_tag :password, '', class: 'form-control', placeholder: 'Password', data: { title: 'Invalid Password', container: 'body' }
         .form-group
-          %small.f500.forgot
+          = submit_tag 'Sign In', class: 'btn btn-primary'
+        .form-group
+          %small
             = link_to 'Forgot Password?', new_user_password_path
-          .pull-right
-            = f.check_box :remember_me
-            = f.label :remember_me
-        .form-group
-          = submit_tag 'Sign In', class: 'btn btn-primary btn-block'
-
-
+            %br
+            = link_to 'Register New Account', new_user_registration_path
