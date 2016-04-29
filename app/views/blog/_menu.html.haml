@@ -3,12 +3,13 @@
 - else
   - params[:category]
 
-= form_tag blog_path, method: :get, id: 'search-form', style: 'margin-bottom:20px' do
-  .input-group
-    = text_field_tag 's', params[:s], class: 'form-control', style: 'width:100%', placeholder: 'Search MyApnea'
-    %span.input-group-btn
-      = link_to '#', data: { object: 'submit', target: '#search-form' }, class: 'btn btn-primary', name: nil do
-        %span.glyphicon.glyphicon-search
+- if false
+  = form_tag blog_path, method: :get, id: 'search-form', style: 'margin-bottom:20px' do
+    .input-group
+      = text_field_tag 's', params[:s], class: 'form-control', style: 'width:100%', placeholder: 'Search MyApnea'
+      %span.input-group-btn
+        = link_to '#', data: { object: 'submit', target: '#search-form' }, class: 'btn btn-primary', name: nil do
+          %span.glyphicon.glyphicon-search
 
 %div{ style: (false ? 'border-left: 1px solid #f5f5f5;' : nil) }
   %ul.blog-menu
