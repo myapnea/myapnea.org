@@ -39,9 +39,10 @@ class BroadcastCommentsControllerTest < ActionController::TestCase
   test 'should create broadcast comment' do
     login(@regular_user)
     assert_difference('BroadcastComment.count') do
-      post :create, broadcast_id: @broadcast_comment.broadcast.to_param, broadcast_comment: broadcast_comment_params
+      post :create, broadcast_id: @broadcast_comment.broadcast.to_param, broadcast_comment: broadcast_comment_params, format: 'js'
     end
-    assert_redirected_to blog_post_path(@broadcast_comment.broadcast.url_hash)
+    assert_template 'create'
+    assert_response :success
   end
 
   test 'should show broadcast comment' do

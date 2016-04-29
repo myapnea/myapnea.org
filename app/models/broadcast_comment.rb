@@ -56,4 +56,9 @@ class BroadcastComment < ActiveRecord::Base
   def parent_comment_id
     broadcast_comment_id || 'root'
   end
+
+  def computed_level
+    return 0 if broadcast_comment_id.nil?
+    broadcast_comment.computed_level + 1
+  end
 end

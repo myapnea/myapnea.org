@@ -1,17 +1,15 @@
 - if broadcast_comment.new_record?
-  - url = broadcast_comments_path(broadcast_id: @broadcast)
+  - url = broadcast_comments_path(broadcast_id: @broadcast, format: 'js')
   - method = :post
-  - remote = false
 - else
   - url = broadcast_comment_path(broadcast_comment, broadcast_id: @broadcast)
   - method = :patch
-  - remote = true
 
 - parent_comment_id = (broadcast_comment.broadcast_comment_id || 'root')
 - broadcast_comment_id = (broadcast_comment.new_record? ? 'new' : broadcast_comment.id)
 
 - if current_user
-  = form_for broadcast_comment, url: url, method: method, remote: remote, html: { class: 'form-horizontal', id: "broadcast-comment-form-#{parent_comment_id}-#{broadcast_comment_id}" } do |f|
+  = form_for broadcast_comment, url: url, method: method, remote: true, html: { class: 'form-horizontal', id: "broadcast-comment-form-#{parent_comment_id}-#{broadcast_comment_id}" } do |f|
     - if broadcast_comment.errors.any?
       .panel.panel-danger
         .panel-heading

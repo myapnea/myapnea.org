@@ -48,10 +48,8 @@ class BroadcastCommentsController < ApplicationController
   def create
     @broadcast_comment = current_user.broadcast_comments.where(broadcast_id: @broadcast.id)
                                      .new(broadcast_comment_params)
-
     if @broadcast_comment.save
-      flash[:notice] = 'Comment was successfully created.'
-      redirect_to blog_post_path(@broadcast.url_hash)
+      render :create
     else
       render :new
     end
