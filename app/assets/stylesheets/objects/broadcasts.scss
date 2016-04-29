@@ -146,6 +146,15 @@
 .broadcast-discussion {
   background-color: $body-background;
 
+  .broadcast-discussion-header {
+    background-color: $brand-gray-lighter;
+    border: 2px solid $primary-blue;
+    border-radius: 4px;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+    margin: 10px 0;
+    padding: 20px;
+  }
+
   .broadcast-comment {
     &.broadcast-comment-even {
       background-color: $brand-white;

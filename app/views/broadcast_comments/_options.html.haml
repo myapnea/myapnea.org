@@ -1,6 +1,0 @@
-.dropdown{ style: 'display: inline-block'}
-  = link_to '#', data: { target: '#', toggle: 'dropdown' }, role: 'button', aria: { haspopup: 'true', expanded: 'false' }, id: "broadcast_comment_#{broadcast_comment.id}_options", class: 'text-muted btn btn-xs btn-default' do
-    %span.caret
-  %ul.dropdown-menu.dropdown-menu-right
-    %li= link_to 'edit', edit_broadcast_comment_path(broadcast_comment, broadcast_id: @broadcast), remote: true
-    %li= link_to 'delete', broadcast_comment_path(broadcast_comment, broadcast_id: @broadcast), method: :delete, remote: true, data: { confirmation: 'Are you sure?' }

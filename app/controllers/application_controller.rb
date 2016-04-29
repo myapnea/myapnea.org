@@ -15,11 +15,12 @@ class ApplicationController < ActionController::Base
   before_action :store_location
 
   def store_location
-    if (params[:controller].in?(%w(forums topics posts)) &&
+    if (params[:controller].in?(%w(forums topics posts blog)) &&
         !request.fullpath.match("#{request.script_name}/login") &&
         !request.fullpath.match("#{request.script_name}/join") &&
         !request.fullpath.match("#{request.script_name}/password") &&
         !request.fullpath.match("#{request.script_name}/sign_out") &&
+        params[:format] != 'atom' &&
         !request.xhr?) || # don't store ajax calls
         request.fullpath.match("#{request.script_name}/join-health-eheart")
       store_location_in_session

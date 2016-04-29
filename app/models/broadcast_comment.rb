@@ -61,4 +61,8 @@ class BroadcastComment < ActiveRecord::Base
     return 0 if broadcast_comment_id.nil?
     broadcast_comment.computed_level + 1
   end
+
+  def editable_by?(current_user)
+    current_user.editable_broadcast_comments.where(id: id).count == 1
+  end
 end

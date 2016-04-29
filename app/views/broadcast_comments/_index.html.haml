@@ -3,7 +3,7 @@
 - content_for :call_to_action do
   .broadcast-discussion
     .container
-      %h4
+      .broadcast-discussion-header
         - if @broadcast_comments.count > 0
           - if @broadcast_comments.count == 1
           - elsif @broadcast_comments.count < @broadcast_comments.total_count
@@ -14,13 +14,8 @@
         - else
           no comments
 
-        %span#write_comment_root_new
-          &middot;
-          = link_to 'reply', async_blog_reply_path(broadcast_id: @broadcast, parent_comment_id: 'root', broadcast_comment_id: 'new'), method: :post, remote: true
-
-      %div{ style: 'margin-bottom: 20px' }
         %div{ style: 'display: inline-block' }
-          sorted by:
+          &middot; sorted by
         .dropdown{ style: 'display: inline-block'}
           = link_to '#', data: { target: '#', toggle: 'dropdown' }, role: 'button', aria: { haspopup: 'true', expanded: 'false' }, id: 'sort-by-dropdown', class: 'text-muted' do
             - case params[:sort_by] when 'new'
@@ -29,8 +24,13 @@
               best
             %span.caret
           %ul.dropdown-menu{ aria: { labelledby: 'status-dropdown' } }
-            %li= link_to 'best', blog_post_path(year: broadcast.publish_date.year, month: broadcast.publish_date.strftime('%m'), slug: broadcast.slug, sort_by: 'best'), style: (params[:sort_by].blank? || params[:sort_by] == 'best') ? 'font-weight:bold;' : ''
-            %li= link_to 'new', blog_post_path(year: broadcast.publish_date.year, month: broadcast.publish_date.strftime('%m'), slug: broadcast.slug, sort_by: 'new'), style: (params[:sort_by] == 'new') ? 'font-weight:bold;' : ''
+            %li= link_to 'best', blog_post_path(year: broadcast.publish_date.year, month: broadcast.publish_date.strftime('%m'), slug: broadcast.slug, sort_by: 'best', anchor: 'comments'), style: (params[:sort_by].blank? || params[:sort_by] == 'best') ? 'font-weight:bold;' : ''
+            %li= link_to 'new', blog_post_path(year: broadcast.publish_date.year, month: broadcast.publish_date.strftime('%m'), slug: broadcast.slug, sort_by: 'new', anchor: 'comments'), style: (params[:sort_by] == 'new') ? 'font-weight:bold;' : ''
+
+        %span#write_comment_root_new
+          &middot;
+          = link_to 'reply', async_blog_reply_path(broadcast_id: @broadcast, parent_comment_id: 'root', broadcast_comment_id: 'new'), method: :post, remote: true
+
 
       #comment_container_root_new{ style: 'display:none' }
         - broadcast_comment = @broadcast.broadcast_comments.new

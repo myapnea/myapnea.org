@@ -83,7 +83,7 @@ class BroadcastCommentsController < ApplicationController
   end
 
   def find_broadcast_comment_or_redirect
-    @broadcast_comment = current_user.broadcast_comments.where(broadcast_id: @broadcast.id).find_by_id params[:id]
+    @broadcast_comment = current_user.editable_broadcast_comments.where(broadcast_id: @broadcast.id).find_by_id params[:id]
     redirect_without_broadcast_comment
   end
 
