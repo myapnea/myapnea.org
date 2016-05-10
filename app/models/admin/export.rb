@@ -2,9 +2,6 @@ class Admin::Export < ActiveRecord::Base
   # Uploaders
   mount_uploader :file, ZipUploader
 
-  # Callbacks
-  after_create :start_export_in_background
-
   # Concerns
   include Forkable
 
@@ -49,14 +46,14 @@ class Admin::Export < ActiveRecord::Base
     answer_templates.collect(&:sas_format_domain).flatten.compact.uniq
   end
 
+  def start_export_in_background!
+    fork_process :start_export
+  end
+
   private
 
   def number_of_steps
     exportable_users.count + 2
-  end
-
-  def start_export_in_background
-    fork_process :start_export
   end
 
   def start_export

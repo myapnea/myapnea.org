@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :timeoutable, :lockable
 
   # Callbacks
-  after_create :set_forum_name, :send_welcome_email, :check_for_token, :update_location
+  after_commit :set_forum_name, :send_welcome_email, :check_for_token, :update_location, on: :create
 
   # Mappings
   TYPES = [
@@ -403,9 +403,7 @@ class User < ActiveRecord::Base
   end
 
   def check_for_token
-    if self.invite_token.present?
-      Invite.find_by_token(self.invite_token).update(successful: true)
-    end
+    Invite.find_by_token(invite_token).update(successful: true) if invite_token.present?
   end
 
   def update_location

@@ -11,7 +11,7 @@ class Survey < ActiveRecord::Base
   include Groupable
 
   # Callbacks
-  after_create :create_default_encounters
+  after_commit :create_default_encounters, on: :create
 
   # Translations
   localize :name

@@ -16,21 +16,10 @@ class ResearchTopic < ActiveRecord::Base
   # Constants
   PROGRESS = [:proposed, :accepted, :ongoing_research, :complete]
   TYPE = [:user_submitted, :seeded]
-  INTRO_LENGTH = ENV["research_topic_experience_threshold"].to_i
-  RESEARCH_TOPIC_DATA_LOCATION = ['lib', 'data', 'research_topics']
+  INTRO_LENGTH = ENV['research_topic_experience_threshold'].to_i
 
   # Validations
-
-  #validate :description_and_text_are_present, on: :create
-  validates_presence_of :user_id, :description, :text
-
-  # def description_and_text_are_present
-  #   errors.add(:description, "needs to be provided.") if @description.blank?
-  #   errors.add(:text, "needs to be provided.") if @text.blank?
-  # end
-
-  # Callbacks
-  after_create :create_associated_topic
+  validates :user_id, :description, :text, presence: true
 
   # Named Scopes
   scope :approved, lambda { current.joins(:topic).where(topics: {status: 'approved'})}
@@ -44,7 +33,6 @@ class ResearchTopic < ActiveRecord::Base
   # Class methods
   def self.find_by_slug(slug)
     topic = Topic.find_by_slug(slug)
-
     topic.research_topic if topic.present?
   end
 
@@ -92,7 +80,6 @@ class ResearchTopic < ActiveRecord::Base
     slug
   end
 
-
   # Voting
   def endorsement
     Vote.current.select("sum(rating)::float/count(rating)::float as endorsement").group("research_topic_id").where(research_topic_id: self[:id]).map(&:endorsement).first
@@ -100,7 +87,6 @@ class ResearchTopic < ActiveRecord::Base
 
   def endorse_by(user, comment = nil)
     cast_vote(user, 1, comment)
-
   end
 
   def oppose_by(user, comment = nil)
@@ -115,13 +101,15 @@ class ResearchTopic < ActiveRecord::Base
     end
   end
 
-
   # Categories
 
   def seeded?
     category == "seeded"
   end
 
+  def create_associated_topic!
+    create_topic(forum_id: Forum.for_research_topics.id, name: @text, description: @description, user_id: user.id)
+  end
 
   private
 
@@ -140,9 +128,4 @@ class ResearchTopic < ActiveRecord::Base
   def self.group_columns
     column_names.map{|cn| "research_topics.#{cn}"}.join(", ")
   end
-
-  def create_associated_topic
-    self.create_topic(forum_id: Forum.for_research_topics.id, name: @text,  description: @description, user_id: user.id)
-  end
-
 end

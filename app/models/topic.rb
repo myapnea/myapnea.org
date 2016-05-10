@@ -11,8 +11,8 @@ class Topic < ActiveRecord::Base
   include Groupable
 
   # Callbacks
-  before_validation :set_slug
-  after_create :create_first_post
+  before_validation :set_slug, on: :create
+  after_commit :create_first_post, on: :create
 
   # Named Scopes
   scope :viewable_by_user, lambda { |arg| where('topics.status = ? or topics.user_id = ?', 'approved', arg) }
@@ -83,14 +83,6 @@ class Topic < ActiveRecord::Base
     self.update views_count: self.views_count + 1
   end
 
-  def set_last_post_at!
-    if last_post = self.posts.where(status: ['approved', 'pending_review']).last
-      self.update last_post_at: last_post.created_at
-    else
-      self.update last_post_at: nil
-    end
-  end
-
   def visible_posts
     self.posts.current.visible_for_user
   end
@@ -106,19 +98,18 @@ class Topic < ActiveRecord::Base
   private
 
   def create_first_post
-    if self.description.present?
-      self.posts.create( description: self.description, user_id: self.user_id )
-      self.get_or_create_subscription( self.user )
+    if description.present?
+      posts.create description: description, user_id: user_id
+      get_or_create_subscription(user)
     end
-
   end
 
   def set_slug
-    if self.new_record?
-      self.slug = self.name.parameterize
-      self.slug = 't' + self.slug unless self.slug.first.to_s.downcase.in?(('a'..'z'))
-      if (Topic.current.where(forum_id: self.forum_id, slug: self.slug).count > 0) or self.slug == 'new'
-        self.slug += "-#{SecureRandom.hex(8)}"
+    if new_record?
+      self.slug = name.parameterize
+      self.slug = 't' + slug unless slug.first.to_s.downcase.in?(('a'..'z'))
+      if slug == 'new' || (Topic.current.where(forum_id: forum_id, slug: slug).count > 0)
+        self.slug = "#{slug}-#{SecureRandom.hex(8)}"
       end
     end
   end
@@ -126,5 +117,4 @@ class Topic < ActiveRecord::Base
   def requires_description?
     self.new_record? and self.migration_flag != '1' and !self.forum.for_research_topics?
   end
-
 end

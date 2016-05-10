@@ -18,6 +18,7 @@ class Api::V1::ResearchTopicsController < ApplicationController
   def create
     @research_topic = current_user.research_topics.new(research_topic_params)
     if @research_topic.save
+      @research_topic.create_associated_topic!
       render action: 'show', status: :created, location: api_v1_research_topic_path(@research_topic)
     else
       render json: @research_topic.errors, status: :unprocessable_entity

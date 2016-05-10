@@ -32,6 +32,7 @@ class PostsController < ApplicationController
       if @post.save
         @post.send_reply_emails!
         @topic.get_or_create_subscription(current_user)
+        @topic.touch(:last_post_at)
         format.html { redirect_to forum_topic_post_path(@forum, @topic, @post), notice: 'Post was successfully created.' }
         format.json { render action: 'show', status: :created, location: @post }
       else

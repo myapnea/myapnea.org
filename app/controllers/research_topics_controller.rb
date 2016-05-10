@@ -53,13 +53,13 @@ class ResearchTopicsController < ApplicationController
     @new_research_topic = current_user.research_topics.new(research_topic_params)
 
     if @new_research_topic.save
+      @new_research_topic.create_associated_topic!
       flash[:notice] = 'Topic was successfully created.'
       redirect_to research_topic_path(@new_research_topic)
     else
       @research_topics = ResearchTopic.approved
       render :index
     end
-
   end
 
   def update

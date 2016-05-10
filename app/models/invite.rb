@@ -1,6 +1,5 @@
 class Invite < ActiveRecord::Base
-
-  after_create    :generate_token
+  after_commit    :generate_token, on: :create
   before_save     :check_existing_user
 
   validates_uniqueness_of :token, allow_nil: true
@@ -21,5 +20,4 @@ class Invite < ActiveRecord::Base
   def check_existing_user
     self.recipient_id = User.find_by_email(self.email).present? ? User.find_by_email(self.email).id : nil
   end
-
 end

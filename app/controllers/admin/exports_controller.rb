@@ -42,13 +42,14 @@ class Admin::ExportsController < ApplicationController
     @admin_export = current_user.exports.new
 
     if @admin_export.save
+      @admin_export.start_export_in_background!
       redirect_to @admin_export, notice: 'Export was successfully created.'
     else
       render :new
     end
   end
 
-  # # PATCH/PUT /admin/exports/1
+  # # PATCH /admin/exports/1
   # def update
   #   if @admin_export.update(admin_export_params)
   #     redirect_to @admin_export, notice: 'Export was successfully updated.'
