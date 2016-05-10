@@ -24,10 +24,18 @@
 
   - if @author
     .author-box
-      .author-key Author Blog Posts
+      .author-key Author Posts
       .author-value= @author.broadcasts.published.count
 
   - if @category
     .author-box
-      .author-key Category Blog Posts
+      .author-key
+        = @category.name
+        Posts
       .author-value= @category.broadcasts.published.count
+
+  - if !@author && !@category
+    .author-box
+      .author-key
+        Blog Posts
+      .author-value= Broadcast.published.count
