@@ -1,3 +1,17 @@
+@activateProviderScroll = () ->
+  if $("#current-provider-list").length > 0
+    isLoading = false
+    pageParam = 1
+    $(window).scroll ->
+      if $(document).height() - $(this).height() - $(this).scrollTop() < 200 && !isLoading
+        isLoading = true
+        pageParam = pageParam + 1
+        params = {}
+        params.page = pageParam
+        $.post(root_url + 'providers/more', params, (->
+          isLoading = false
+        ), 'script')
+
 @providersReady = () ->
   $("#video-play").mouseleave ->
     $(this).children("i").animate
@@ -11,12 +25,4 @@
       , 300
     return
 
-  isLoading = false
-  pageParam = 1
-  $(window).scroll ->
-    if $(document).height() - $(this).height() - $(this).scrollTop() < 200 && !isLoading
-      isLoading = true
-      pageParam = pageParam + 1
-      $.post(root_url + 'providers/more', page: pageParam, (->
-        isLoading = false
-      ), "script")
+  activateProviderScroll()

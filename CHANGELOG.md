@@ -11,6 +11,7 @@
 ### Bug Fixes
 - Fixed a bug that prevented the Submit Survey button from responding for
   certain browsers
+- Provider infinite scroll no longer activates on every page
 
 ## 11.0.0 (April 29, 2016)
 
