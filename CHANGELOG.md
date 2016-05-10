@@ -8,6 +8,10 @@
   - Updated to Ruby 2.3.1
   - Updated to devise 4.1.0
 
+### Bug Fixes
+- Fixed a bug that prevented the Submit Survey button from responding for
+  certain browsers
+
 ## 11.0.0 (April 29, 2016)
 
 ### Enhancements

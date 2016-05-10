@@ -109,14 +109,11 @@
   #################
 
   # Handle 'prefer not to answer checkbox'
-  $('.preferred-not-to-answer').click (e) ->
+  $('.preferred-not-to-answer').click () ->
     return if $("[data-object~='full-survey-container']").attr("id") is "simple-survey"
-    e.stopPropagation()
-    e.preventDefault()
-    #unless $(this).find("input:checkbox").prop 'disabled'
     $(this).find('input:checkbox').prop "checked", !$(this).find('input:checkbox').prop("checked")
     handleChangedValue($(this))
-    return
+    return false
 
   # Respond to click events on conditional events - note that this only works on checkbox inputs
   $("[data-object~='reveal-next-input']").click (e) ->
@@ -294,13 +291,11 @@
   # SURVEY SUBMISSION #
   #####################
 
-  $("[data-object~='survey-submit-btn']").click (e) ->
-    e.stopPropagation()
+  $("[data-object~='survey-submit-btn']").click () ->
     if checkCompletion()
-      $.post($(this).data("path"),
-        {answer_session_id: $(this).data("answer-session-id")}, (data) ->
-            #console.log data
-      )
+      params = {}
+      params.answer_session_id = $(this).data('answer-session-id')
+      $.post($(this).data('path'), params)
       $(this).addClass 'hidden'
       $("[data-object~='survey-submit-congratulations-container']").removeClass 'hidden'
       setActive($(this).parents('.survey-container'))
@@ -309,7 +304,7 @@
       $("[data-object~='survey-indicator'].incomplete").addClass 'error'
       target = 'question-container-' + $("[data-object~='survey-indicator'].incomplete").first().data('target')
       assignQuestionDirect($("[data-object~='"+target+"']"))
-    return
+    return false
 
   @checkCompletion = () ->
     numberSelectors = $("[data-object~='survey-indicator']").length
