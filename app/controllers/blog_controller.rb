@@ -6,8 +6,8 @@ class BlogController < ApplicationController
 
   def blog
     broadcast_scope = Broadcast.current.published.order(publish_date: :desc, id: :desc)
-    unless params[:a].blank?
-      @author = User.current.find_by(forum_name: params[:a])
+    unless params[:author].blank?
+      @author = User.current.where('lower(forum_name) = ?', params[:author].downcase).first
       broadcast_scope = broadcast_scope.where(user: @author)
     end
     unless params[:category].blank?

@@ -4,7 +4,7 @@ atom_feed(root_url: "#{ENV['website_url']}/blog") do |feed|
 
   @broadcasts.each do |broadcast|
     feed.entry(broadcast,
-               url: "#{ENV['website_url']}/blog/#{broadcast.publish_date.year}/#{broadcast.publish_date.strftime('%m')}/#{broadcast.slug}",
+               url: "#{ENV['website_url']}/blog/#{broadcast.to_param}",
                published: broadcast.publish_date) do |entry|
       entry.title(broadcast.title)
       entry.content(simple_markdown(broadcast.description, false), type: 'html')

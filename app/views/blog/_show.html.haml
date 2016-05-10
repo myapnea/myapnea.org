@@ -1,10 +1,3 @@
-.broadcast-info
-  Posted by
-  = link_to broadcast.user.forum_name, blog_path(a: broadcast.user.forum_name)
-  on
-  %i= broadcast.publish_date.strftime '%B %-d, %Y'
-  - if broadcast.category
-    in
-    = link_to broadcast.category.name, blog_path(category: broadcast.category)
+= render 'blog/author_and_category', broadcast: broadcast
 
 .broadcast= simple_markdown broadcast.description, true, false

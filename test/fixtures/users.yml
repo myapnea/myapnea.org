@@ -444,3 +444,4 @@ community_contributor:
   over_eighteen: true
   encrypted_password: ""
   community_contributor: true
+  forum_name: community_contributor

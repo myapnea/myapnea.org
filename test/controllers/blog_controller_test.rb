@@ -15,12 +15,12 @@ class BlogControllerTest < ActionController::TestCase
   end
 
   test 'should show published blog' do
-    get :show, year: broadcasts(:published).publish_date.year, month: broadcasts(:published).publish_date.strftime('%m'), slug: broadcasts(:published).slug
+    get :show, slug: broadcasts(:published).slug
     assert_response :success
   end
 
   test 'should not show draft blog' do
-    get :show, year: broadcasts(:draft).publish_date.year, month: broadcasts(:draft).publish_date.strftime('%m'), slug: broadcasts(:draft).slug
+    get :show, slug: broadcasts(:draft).slug
     assert_redirected_to blog_path
   end
 end

@@ -3,6 +3,7 @@
 ### Enhancements
 - **Blog Changes**
   - Improved how blog posts are displayed on the blog index
+  - Improved URL structure for filtering blog posts by category and by author
 - **Gem Changes**
   - Updated to Ruby 2.3.1
   - Updated to devise 4.1.0
