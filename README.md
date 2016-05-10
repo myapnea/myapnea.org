@@ -1,10 +1,10 @@
-# OpenPPRN - MyApnea.Org
+# MyApnea.Org
 
 [![Build Status](https://travis-ci.org/myapnea/www.myapnea.org.svg?branch=master)](https://travis-ci.org/myapnea/www.myapnea.org)
 [![Dependency Status](https://gemnasium.com/myapnea/www.myapnea.org.svg)](https://gemnasium.com/myapnea/www.myapnea.org)
 [![Code Climate](https://codeclimate.com/github/myapnea/www.myapnea.org/badges/gpa.svg)](https://codeclimate.com/github/myapnea/www.myapnea.org)
 
-A collaboration to build an open-source solution for creating patient-powered research networks.
+The web framework behind www.myapnea.org, built on Ruby on Rails 4.2+.
 
 ## Before Starting Installation
 
