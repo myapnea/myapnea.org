@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Ticket
 
   attr_accessor :user_id, :answer_session_id

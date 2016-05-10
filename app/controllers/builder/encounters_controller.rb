@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Builder::EncountersController < Builder::BuilderController
   before_action :authenticate_user!
   before_action :check_owner

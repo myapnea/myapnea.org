@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ProvidersController < ApplicationController
   before_action :set_provider,              only: [ :show ] # , :edit, :update, :destroy
   before_action :redirect_without_provider, only: [ :show ] # , :edit, :update, :destroy

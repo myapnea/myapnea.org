@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module HighlightsHelper
 
   def safe_url?(url)

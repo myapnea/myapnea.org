@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Api::V1::ResearchTopicsController < ApplicationController
 
   before_action :authenticate_user!,                       only: [:create, :vote]

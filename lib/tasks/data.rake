@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 namespace :data do
 
   task ess: :environment do

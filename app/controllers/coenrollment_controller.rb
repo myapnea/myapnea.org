@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Control flow for users linking MyApnea.Org account to Health eHeart account
 # and vice versa.
 class CoenrollmentController < ApplicationController

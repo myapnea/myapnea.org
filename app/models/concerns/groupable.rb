@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This is included for compatibility to group aggregate functions in Postgresql 8.3
 
 module Groupable

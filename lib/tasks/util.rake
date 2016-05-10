@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 namespace :util do
   desc "Update social profile permission columns"
   task :update_sp_permissions => :environment do

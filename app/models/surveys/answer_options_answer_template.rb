@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AnswerOptionsAnswerTemplate < ActiveRecord::Base
   self.table_name = 'answr_options_answer_templates'
 

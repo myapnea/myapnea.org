@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 namespace :carrierwave do
 
   task migrate_files_and_folders: :environment do

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Api::V1::TopicsController < ApplicationController
   before_action :authenticate_user!,              only: [:create]
   skip_before_action :verify_authenticity_token,  only: [:create]

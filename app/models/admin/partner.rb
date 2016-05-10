@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Admin::Partner < ActiveRecord::Base
   # Default Scope
   # Constants

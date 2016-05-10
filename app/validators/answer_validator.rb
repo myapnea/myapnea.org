@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AnswerValidator
   def initialize(question_slug)
     @function_name = "validate_#{question_slug.underscore}"

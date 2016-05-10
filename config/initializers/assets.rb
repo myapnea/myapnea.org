@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Add to assets path
 Rails.application.config.assets.paths << Rails.root.join('vendor', 'assets', 'fonts')
 Rails.application.config.assets.paths << Rails.root.join('app', 'assets', 'fonts')

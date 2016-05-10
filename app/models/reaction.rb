@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Reaction < ActiveRecord::Base
   # Default Scope
   # Constants

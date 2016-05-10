@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Admin::ClinicalTrial < ActiveRecord::Base
   # Default Scope
   # Constants

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SocialProfile
 
   def self.generate_forum_name(input, additional_seed = nil)

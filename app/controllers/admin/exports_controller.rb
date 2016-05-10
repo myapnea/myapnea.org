@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Admin::ExportsController < ApplicationController
   before_action :authenticate_user!
   before_action :check_owner

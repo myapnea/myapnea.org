@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class QuestionHelpMessage < ActiveRecord::Base
   include Localizable
 

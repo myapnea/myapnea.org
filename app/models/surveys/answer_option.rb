@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AnswerOption < ActiveRecord::Base
   # Concerns
   include Deletable

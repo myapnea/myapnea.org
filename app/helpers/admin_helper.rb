@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module AdminHelper
 
   def users_in_date_range(start_date: nil, end_date: nil)

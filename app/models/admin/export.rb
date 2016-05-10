@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Admin::Export < ActiveRecord::Base
   # Uploaders
   mount_uploader :file, ZipUploader

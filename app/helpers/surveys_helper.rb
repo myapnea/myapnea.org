@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module SurveysHelper
   def have_checked?(answer, answer_template, val)
     if answer.present? and answer.value.present? and answer.value[answer_template.id].present?

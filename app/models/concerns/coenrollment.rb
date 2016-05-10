@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Provides methods to allow users to co-enroll with other participating sites
 module Coenrollment
   extend ActiveSupport::Concern

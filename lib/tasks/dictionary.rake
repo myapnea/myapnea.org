@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 namespace :dictionary do
   desc 'Export data dictionary'
   task export: :environment do

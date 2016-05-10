@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Lottery
 
   # Draw a winner by using Lottery.draw_winner, or u = Lottery.draw_winner, if

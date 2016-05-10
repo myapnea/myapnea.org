@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ReportItem
 
   attr_accessor :answer_option, :count, :total_count, :percent, :percent_number

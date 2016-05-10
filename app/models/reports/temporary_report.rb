@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class TemporaryReport
 
   def self.answer_option_counts(survey, question, answer_template, encounter: nil, range: nil, users: nil)

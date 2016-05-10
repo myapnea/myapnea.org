@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class MembersController < ApplicationController
   before_action :set_member,                only: :show
   before_action :redirect_without_member,   only: :show

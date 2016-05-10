@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AnswerSession < ActiveRecord::Base
   # Concerns
   include Deletable

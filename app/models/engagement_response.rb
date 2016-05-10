@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class EngagementResponse < ActiveRecord::Base
   # Default Scope
   # Constants

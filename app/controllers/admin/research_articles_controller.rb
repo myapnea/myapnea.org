@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Admin::ResearchArticlesController < ApplicationController
   before_action :authenticate_user!,          except: [:photo]
   before_action :check_owner,                 except: [:photo]

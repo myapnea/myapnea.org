@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Admin::TeamMember < ActiveRecord::Base
   # Default Scope
   # Constants

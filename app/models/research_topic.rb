@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Research topic belongs to forum topic
 
 class ResearchTopic < ActiveRecord::Base

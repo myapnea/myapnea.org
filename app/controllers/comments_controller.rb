@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CommentsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_post
@@ -17,11 +19,11 @@ class CommentsController < ApplicationController
   end
 
   def set_post
-    if params[:action] == 'destroy'
-      @post = comment.post
-    else
-      @post = Post.find_by_id(params[:comment][:post_id])
-    end
+    @post = if params[:action] == 'destroy'
+              comment.post
+            else
+              Post.find_by_id(params[:comment][:post_id])
+            end
   end
 
   def comment
