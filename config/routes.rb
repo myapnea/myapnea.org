@@ -241,6 +241,10 @@ Rails.application.routes.draw do
   # get 'research-topics/accepted/women-with-sleep-apnea-increased-risk-for-heart-disease-with-age', to: 'research_topics#sleep_apnea_women_heart_disease', as: 'sleep_apnea_women_heart_disease'
   # get 'research-topics/accepted/atrial-fibrillation-and-its-links-to-sleep-apnea', to: 'research_topics#sleep_apnea_afib', as: 'sleep_apnea_afib'
 
+  scope module: :search do
+    get :search, action: 'index', as: :search
+  end
+
   # Surveys
   resources :surveys do
     collection do

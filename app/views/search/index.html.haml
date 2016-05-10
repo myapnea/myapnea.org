@@ -1,0 +1,25 @@
+- @title = ['Search', @search].compact.join(' | ')
+
+- content_for :banner do
+  .content-main-header
+    .container
+      %h1
+        Search
+        = ENV['website_name']
+
+- @background_color = '#fff'
+- @search_results = @broadcasts
+
+.container
+  .row
+    .col-sm-9
+      - if @search_results.count > 0
+        %ul
+          - @broadcasts.each do |broadcast|
+            %li
+              = link_to broadcast.title, blog_post_path(broadcast.url_hash)
+      - else
+        %p.centered.text-muted
+          No Search Results Found
+    .col-sm-3.col-buffer
+      = render 'search/form'
