@@ -18,7 +18,6 @@
     - Admin::Category.current.order(:name).each do |category|
       %li= link_to category.name, blog_category_path(category: category), class: (current_category == category.slug ? 'active' : nil)
 
-
     - if @author
       %li.blog-menu-header Author
       %li= link_to @author.forum_name, blog_author_path(author: @author.forum_name), class: (@broadcast ? nil : 'active')
@@ -27,3 +26,8 @@
     .author-box
       .author-key Author Blog Posts
       .author-value= @author.broadcasts.published.count
+
+  - if @category
+    .author-box
+      .author-key Category Blog Posts
+      .author-value= @category.broadcasts.published.count

@@ -1,4 +1,4 @@
-- @title = 'Blog'
+- @title = ['Blog', @category ? @category.name : nil, @author ? @author.forum_name : nil].compact.join(' | ')
 
 - content_for :banner do
   .content-main-header
