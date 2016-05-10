@@ -3,6 +3,7 @@
 ### Enhancements
 - **Gem Changes**
   - Updated to Ruby 2.3.1
+  - Updated to devise 4.1.0
 
 ## 11.0.0 (April 29, 2016)
 
