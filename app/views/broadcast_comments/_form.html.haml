@@ -38,7 +38,7 @@
             %small.text-muted
               posting as
               = current_user.forum_name
-              = link_to 'change', account_path
+              = link_to 'change', account_path, tabindex: '-1'
           - if broadcast_comment.new_record?
             = f.submit 'Comment', class: 'btn btn-primary', data: { disable_with: 'Comment' }
             = link_to 'Cancel', '#', data: { object: 'blog-no-write-comment', parent_comment_id: parent_comment_id, broadcast_comment_id: broadcast_comment_id }
