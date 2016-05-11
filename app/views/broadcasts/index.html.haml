@@ -29,7 +29,7 @@
     %tbody
       - @broadcasts.each do |broadcast|
         %tr
-          %td= simple_check broadcast.published
+          %td= simple_check broadcast.published?
           %td= link_to broadcast.title, broadcast
           %td= broadcast.short_description
           %td= broadcast.publish_date.strftime '%a %d %b %Y'

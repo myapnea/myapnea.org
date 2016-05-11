@@ -8,6 +8,8 @@
   - A count of total blog posts, and blog posts by category is now displayed in
     the blog menu
   - Started work on providing a search results page for MyApnea and the blog
+- **Landing Page Changes**
+  - Blog posts are now viewable on the landing page
 - **Gem Changes**
   - Updated to Ruby 2.3.1
   - Updated to devise 4.1.0

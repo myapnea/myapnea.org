@@ -4,7 +4,7 @@
 %br
 .container
   .row
-    .col-md-2.visible-md.visible-lg
+    .col-md-2.hidden-sm.hidden-xs
       .user-profile-container
         = link_to (current_user.forum_name.present? ? member_path(current_user.forum_name) : account_path) do
           = image_tag user_photo_url(current_user), class: "img-responsive"
@@ -27,23 +27,7 @@
               = link_to 'complete your profile.', account_path
         %br
       = render 'home/research_highlight'
-    .col-md-3.col-md-push-7
-      - if current_user.experienced_voter?
-        #research-topic-highlight
-          = render 'home/voting_highlight'
-      - else
-        = link_to intro_research_topics_path do
-          .content-container
-            %h4 Direct the future of sleep apnea research
-            %p Click here to get started
-      %p.f500.logo-color
-        Highlights
-        &middot;
-        %span.small= link_to 'View all', accepted_research_topics_path
-      - Highlight.displayed.where(research_highlight: true).order(created_at: :desc).first(10).each do |highlight|
-        = render highlight
-      %br
-    .col-md-7.col-md-pull-3
+    .col-md-7.col-buffer
       #engagement-highlight
         = render 'home/engagement_highlight'
       %p.f500.logo-color
@@ -55,4 +39,14 @@
         = render 'home/show_from_home'
       #read-more-recent-posts
         = render 'home/show_more_button'
-      %br
+    .col-md-3
+      - if false
+        - if current_user.experienced_voter?
+          #research-topic-highlight
+            = render 'home/voting_highlight'
+        - else
+          = link_to intro_research_topics_path do
+            .content-container
+              %h4 Direct the future of sleep apnea research
+              %p Click here to get started
+      = render 'home/blog'
