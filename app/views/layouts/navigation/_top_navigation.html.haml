@@ -43,8 +43,8 @@
           = link_to 'Surveys', surveys_path
         %li{ class: "#{'active' if @active_top_nav_link == :research }" }
           = link_to 'Research', research_topics_path, data: { no_turbolink: true }
-        %li{ class: "#{'active' if @active_top_nav_link == :learn }" }
-          = link_to 'Learn', learn_path
+        %li{ class: "#{'active' if @category && @category.slug == 'learn'}" }
+          = link_to 'Learn', blog_category_path(category: 'learn')
         - unless current_user
           %li.hidden-xs.hidden-sm{ class: "#{'active' if current_page?(new_user_session_path)}" }
             = link_to 'Login', new_user_session_path

@@ -116,6 +116,8 @@
 }
 
 .broadcast-body {
+  @include scale-images;
+
   padding: 10px;
 }
 

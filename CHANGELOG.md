@@ -1,5 +1,4 @@
 ## 12.0.0
-
 ### Enhancements
 - **Admin Changes**
   - Removed highlights as these have been replaced by the community-driven blog
@@ -10,6 +9,8 @@
   - A count of total blog posts, and blog posts by category is now displayed in
     the blog menu
   - Started work on providing a search results page for MyApnea and the blog
+  - Links to blog posts now also display the first image present from the blog
+    post if one exists
 - **Landing Page Changes**
   - Blog posts are now viewable on the landing page
 - **Gem Changes**

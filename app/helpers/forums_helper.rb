@@ -17,7 +17,6 @@ module ForumsHelper
     result = result.encode('UTF-16', undef: :replace, invalid: :replace, replace: '').encode('UTF-8')
     result = add_table_class(result, table_class) unless table_class.blank?
     result = add_link_forum_names_to_paragraph(result)
-    result = make_images_responsive(result)
     unless allow_links
       result = remove_links(result)
       result = remove_images(result)
@@ -49,9 +48,5 @@ module ForumsHelper
 
   def add_table_class(text, table_class)
     text.to_s.gsub(/<table>/m, "<table class=\"#{table_class}\">").html_safe
-  end
-
-  def make_images_responsive(text)
-    text.to_s.gsub(/<img/, '<img class="img-responsive"').html_safe
   end
 end
