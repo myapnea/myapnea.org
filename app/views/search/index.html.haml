@@ -1,4 +1,4 @@
-- @title = ['Search', @search].compact.join(' | ')
+- @title = ['Search', @search.gsub(' & ', ' ')].compact.join(' | ')
 
 - content_for :banner do
   .content-main-header
