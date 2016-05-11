@@ -71,19 +71,18 @@
     %br
     .row
       .col-sm-4
-        = link_to forums_path, class: 'no-underline' do
+        = link_to blog_path, class: 'no-underline' do
           .community-highlight-links
-            %h1.centered
-              Active Forums
+            %h2.centered
+              Community Blog
             %p.lead.dark7
-              Discuss with others about living with sleep apnea and what is important
-              to you. Share ideas on how to promote the website to others. The more
-              members we have, the more we can learn from each other and contribute to
-              future research.
+              Read articles about sleep apnea written by your fellow community
+              members. Learn about ongoing research, and learn about the
+              different types of sleep apnea.
       .col-sm-4
-        = link_to forums_path, class: 'no-underline' do
+        = link_to surveys_path, class: 'no-underline' do
           .community-highlight-links
-            %h1.centered
+            %h2.centered
               Research Surveys
             %p.lead.dark7
               Answer a series of questions about symptoms, treatment, and related
@@ -93,13 +92,14 @@
       .col-sm-4
         = link_to forums_path, class: 'no-underline' do
           .community-highlight-links
-            %h1.centered
-              Impact Questions
+            %h2.centered
+              Active Forums
             %p.lead.dark7
-              Cast your vote on which research questions matter to you most. Providers
-              and researchers will share what is known about the highest ranked topics
-              and if data is lacking they will endorse the topic as an important
-              direction for future research.
+              Discuss with others about living with sleep apnea and what is important
+              to you. Share ideas on how to promote the website to others. The more
+              members we have, the more we can learn from each other and contribute to
+              future research.
+
 
 %a{:name=>'signup'}
 - unless current_user
