@@ -40,13 +40,4 @@
       #read-more-recent-posts
         = render 'home/show_more_button'
     .col-md-3
-      - if false
-        - if current_user.experienced_voter?
-          #research-topic-highlight
-            = render 'home/voting_highlight'
-        - else
-          = link_to intro_research_topics_path do
-            .content-container
-              %h4 Direct the future of sleep apnea research
-              %p Click here to get started
       = render 'home/blog'

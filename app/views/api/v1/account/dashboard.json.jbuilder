@@ -1,8 +1,9 @@
 json.survey_completion current_user.completed_answer_sessions.count * 100.0 / (current_user.completed_answer_sessions.count + current_user.incomplete_answer_sessions.count)
 json.community_count User.current.count
 json.provider_count User.current.where(provider: true).count
-json.recent_news_title Highlight.last.title
-json.recent_news_link Highlight.last.link
+@broadcast = Broadcast.current.published.where(archived: false).order(publish_date: :desc).first
+json.recent_news_title @broadcast.title
+json.recent_news_link "#{ENV['website_url']}/blog/#{@broadcast.slug}"
 
 # Demographics
 ## Sex

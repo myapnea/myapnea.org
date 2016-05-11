@@ -8,7 +8,7 @@
       .col-sm-8
         %p
           Let us know what research questions matter to you most. Join the community in voting and discussing research topics submitted by members like yourself. We will take the most endorsed questions and translate them into
-          %strong= link_to 'research highlights', accepted_research_topics_path
+          %strong= link_to 'research highlights', blog_category_path(category: 'research')
           and proposals for future studies of sleep apnea.
       .col-sm-4
         = link_to 'Propose a new research topic', new_research_topic_path, class: 'btn btn-primary', style: 'width: 100%'

@@ -30,9 +30,9 @@
       .col-sm-2.col-xs-4
         %ul
           %p.small Learn
-          %li= link_to 'Learn', learn_path
+          %li= link_to 'Learn', blog_category_path(category: 'learn')
           %li= link_to 'Devices', pap_path
-          %li= link_to 'Research Highlights', accepted_research_topics_path
+          %li= link_to 'Research Highlights', blog_category_path(category: 'research')
 
       .col-md-2.col-md-offset-1.col-sm-3.col-sm-offset-0.hidden-xs
         = link_to image_tag('myapnea/welcome/img-small/bwh_footer.png', class: 'partners-img-footer img-responsive'), 'http://www.brighamandwomens.org/'
