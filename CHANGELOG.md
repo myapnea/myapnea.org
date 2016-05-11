@@ -9,7 +9,7 @@
   - Added better HTML page titles for blog index and blog posts
   - A count of total blog posts, and blog posts by category is now displayed in
     the blog menu
-  - Started work on providing a search results page for MyApnea and the blog
+  - The blog is now searchable using full text search
   - Links to blog posts now also display the first image present from the blog
     post if one exists
 - **Landing Page Changes**

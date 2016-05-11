@@ -37,4 +37,13 @@ class Broadcast < ActiveRecord::Base
   def editable_by?(current_user)
     current_user.editable_broadcasts.where(id: id).count == 1
   end
+
+  def self.full_text_search(terms)
+    where("setweight(to_tsvector(broadcasts.description), 'A') @@ to_tsquery(?)", terms).order(full_text_order(terms))
+  end
+
+  def self.full_text_order(terms)
+    array = ['ts_rank(to_tsvector(broadcasts.description), to_tsquery(?)) DESC', terms]
+    ActiveRecord::Base.send(:sanitize_sql_array, array)
+  end
 end

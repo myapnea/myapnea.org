@@ -3,6 +3,7 @@
 # Provides back search results from across MyApnea
 class SearchController < ApplicationController
   def index
-    @broadcasts = Broadcast.current.published.where('description ~* ?', params[:search].to_s).order(:title)
+    @search = params[:search].to_s.downcase.split(/[^\w]/).compact.uniq.join(' & ')
+    @broadcasts = Broadcast.full_text_search(@search)
   end
 end
