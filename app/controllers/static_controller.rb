@@ -3,11 +3,6 @@
 class StaticController < ApplicationController
   before_action :set_active_top_nav_link_to_learn, only: [:learn]
 
-  before_action :load_pc, only: [ :team, :advisory, :learn, :research ]
-  before_action :about_layout, only: :research
-
-  before_action :set_SEO_elements
-
   layout 'static'
 
   ## Static
@@ -25,21 +20,6 @@ class StaticController < ApplicationController
 
   def pep_corner_show
     @pep_member = Admin::TeamMember.find(params[:pep_id])
-  end
-
-  def advisory
-    redirect_to team_path and return
-    @page_content = "The MyApnea advisory council consists of sleep researchers, sleep apnea care providers, experts in CPAP and CPAP masks, and people with sleep apnea."
-    @group1 = []; @group2 = []; @group3 = []
-    @pc["members"].each_with_index do |member, index|
-      if index % 3 == 0
-        @group1.push(member)
-      elsif index % 2 == 0
-        @group3.push(member)
-      else
-        @group2.push(member)
-      end
-    end
   end
 
   def partners
@@ -73,10 +53,6 @@ class StaticController < ApplicationController
   end
 
   def PEP_charter
-  end
-
-  def AC_charter
-    redirect_to team_path and return
   end
 
   ## Educational content
@@ -166,23 +142,5 @@ class StaticController < ApplicationController
     else
       redirect_to providers_path
     end
-  end
-
-  private
-
-  def load_pc
-    @pc = page_content(params[:action].to_s)
-  end
-
-  def page_content(name)
-    YAML.load_file(Rails.root.join('lib', 'data', 'content', "#{name}.yml"))[name]
-  end
-
-  def about_layout
-  end
-
-  def set_SEO_elements
-    @page_title = ''
-    @page_content = ''
   end
 end

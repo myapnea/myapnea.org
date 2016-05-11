@@ -225,16 +225,6 @@ Rails.application.routes.draw do
     end
   end
 
-  # get 'research-topics/accepted/does-treatment-of-sleep-apnea-influence-body-weight', to: 'research_topics#sleep_apnea_body_weight', as: 'sleep_apnea_body_weight'
-  # get 'research-topics/accepted/does-sleep-influence-memory-and-brain-plasticity', to: 'research_topics#sleep_apnea_brain_plasticity', as: 'sleep_apnea_brain_plasticity'
-  # get 'research-topics/accepted/obstructive-sleep-apnea-and-adenotonsillectomy-in-children', to: 'research_topics#sleep_apnea_adenotonsillectomy_children', as: 'sleep_apnea_adenotonsillectomy_children'
-  # get 'research-topics/accepted/link-between-type-2-diabetes-and-sleep-apnea', to: 'research_topics#sleep_apnea_diabetes', as: 'sleep_apnea_diabetes'
-  # get 'research-topics/accepted/can-nighttime-oxygen-replace-cpap-for-treatment-of-sleep-apnea', to: 'research_topics#sleep_apnea_nighttime_oxygen_use', as: 'sleep_apnea_nighttime_oxygen_use'
-  # get 'research-topics/accepted/didgeridoo-a-potentially-novel-intervention-for-sleep-apnea', to: 'research_topics#sleep_apnea_didgeridoo', as: 'sleep_apnea_didgeridoo'
-  # get 'research-topics/accepted/unilateral-hypoglossal-nerve-stimulation-sleep-apnea-treatment', to: 'research_topics#sleep_apnea_hypoglossal_stimulation', as: 'sleep_apnea_hypoglossal_stimulation'
-  # get 'research-topics/accepted/women-with-sleep-apnea-increased-risk-for-heart-disease-with-age', to: 'research_topics#sleep_apnea_women_heart_disease', as: 'sleep_apnea_women_heart_disease'
-  # get 'research-topics/accepted/atrial-fibrillation-and-its-links-to-sleep-apnea', to: 'research_topics#sleep_apnea_afib', as: 'sleep_apnea_afib'
-
   scope module: :search do
     get :search, action: 'index', as: :search
   end
@@ -290,7 +280,6 @@ Rails.application.routes.draw do
   # Governance
   get 'governance-policy', to: 'static#governance_policy', as: :governance_policy
   get 'patient-engagement-panel-charter', to: 'static#PEP_charter', as: :pep_charter
-  get 'advisory-council-charter', to: 'static#AC_charter', as: :ac_charter
 
   # Admin Section
   get 'admin' => 'admin#dashboard'
@@ -330,13 +319,6 @@ Rails.application.routes.draw do
   end
 
   # Forums
-  # TODO remove redirects in 8.0
-  get 'forums/introductions', to: redirect('forums/general')
-  get 'forums/introductions(/*path)', to: redirect('forums/general/%{path}')
-  get 'forums/rank-the-research', to: redirect('forums/research')
-  get 'forums/rank-the-research(/*path)', to: redirect('forums/research/%{path}')
-  # get 'forums/research-topics(/*path)', to: redirect("research-%{path}")
-  # end TODO from 5.1
   resources :forums do
     resources :topics do
       member do
@@ -354,7 +336,6 @@ Rails.application.routes.draw do
   end
 
   get 'forum', to: redirect('forums')
-  get 'research_surveys', to: redirect('surveys')
   get 'update_account', to: redirect('account')
   get 'change_password', to: redirect('account')
   get 'social', to: redirect('community')
