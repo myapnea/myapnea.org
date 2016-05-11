@@ -1,4 +1,5 @@
 ## 12.0.0
+
 ### Enhancements
 - **Admin Changes**
   - Removed highlights as these have been replaced by the community-driven blog
