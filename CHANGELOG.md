@@ -1,4 +1,4 @@
-## 12.0.0
+## 12.0.0 (May 12, 2016)
 
 ### Enhancements
 - **Admin Changes**
