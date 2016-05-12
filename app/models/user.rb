@@ -333,6 +333,7 @@ class User < ActiveRecord::Base
 
   def no_votes_user?
     vote_count == 0
+    false
   end
 
   ## Provider Methods

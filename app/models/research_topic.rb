@@ -18,7 +18,7 @@ class ResearchTopic < ActiveRecord::Base
   # Constants
   PROGRESS = [:proposed, :accepted, :ongoing_research, :complete]
   TYPE = [:user_submitted, :seeded]
-  INTRO_LENGTH = ENV['research_topic_experience_threshold'].to_i
+  INTRO_LENGTH = 0 # ENV['research_topic_experience_threshold'].to_i
 
   # Validations
   validates :user_id, :description, :text, presence: true
