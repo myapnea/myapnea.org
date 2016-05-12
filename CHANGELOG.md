@@ -45,6 +45,7 @@
   - Question slugs are now generated automatically
   - Answer template names must now follow variable naming conventions
 
+
 ### Refactoring
 - Cleaned up how survey questions, answer templates, and answer options are
   ordered on surveys
