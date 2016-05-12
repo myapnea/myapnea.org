@@ -17,6 +17,8 @@
   - Blog posts are now viewable on the landing page
 - **Research Topics**
   - Removed requirement to do a research tutorial before casting votes
+- **Survey Changes**
+  - Detailed survey report now correctly sorts answer options by position
 - **Gem Changes**
   - Updated to Ruby 2.3.1
   - Updated to devise 4.1.0

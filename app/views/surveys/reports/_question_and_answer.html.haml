@@ -27,8 +27,8 @@
           %th Option
           %th.text-right Percentage
         %tbody
-          - all_counts.each do |answer_option_id, count|
-            - answer_option = AnswerOption.find_by_id(answer_option_id)
+          - answer_template.answer_options.each do |answer_option|
+            - count = all_counts[answer_option.id] || 0
             - selected_response = (user_answer_values and user_answer_values.pluck(:answer_option_id).include?(answer_option.id))
             - name = answer_option.text
             - percent = (count * 100 / total_count rescue 0)
