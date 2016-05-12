@@ -3,6 +3,7 @@
 ### Enhancements
 - **Admin Changes**
   - Removed highlights as these have been replaced by the community-driven blog
+  - Added a new page that allows admins to review all blog comments
 - **Blog Changes**
   - Improved how blog posts are displayed on the blog index
   - Improved URL structure for filtering blog posts by category and by author

@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   resources :comments, only: [:create, :destroy]
 
   namespace :admin do
+    resources :broadcast_comments, only: :index, path: 'blog/comments'
     resources :categories
     resources :exports do
       member do
