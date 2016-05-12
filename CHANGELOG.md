@@ -1,5 +1,7 @@
 ## 13.0.0
 
+### Enhancement
+
 ## 12.0.0 (May 12, 2016)
 
 ### Enhancements
