@@ -19,6 +19,6 @@
         %div{ style: 'margin-bottom: 80px;' }
           %h2.broadcast-title= link_to broadcast.title, blog_post_path(broadcast.url_hash)
           = render 'blog/extract', broadcast: broadcast
-      .center= paginate @broadcasts, theme: 'bootstrap'
+      .centered= paginate @broadcasts, theme: 'bootstrap'
     .col-sm-3.col-buffer
       = render 'blog/menu'

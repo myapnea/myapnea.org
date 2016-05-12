@@ -10,7 +10,7 @@ class BlogController < ApplicationController
     broadcast_scope = Broadcast.current.published.order(publish_date: :desc, id: :desc)
     broadcast_scope = broadcast_scope.where(user: @author) if @author
     broadcast_scope = broadcast_scope.where(category: @category) if @category
-    @broadcasts = broadcast_scope.page(params[:page]).per(40)
+    @broadcasts = broadcast_scope.page(params[:page]).per(10)
     respond_to do |format|
       format.html
       format.atom

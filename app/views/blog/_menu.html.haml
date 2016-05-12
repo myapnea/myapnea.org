@@ -28,7 +28,7 @@
         Posts
       .author-value= @category.broadcasts.published.count
 
-  - if !@author && !@category
+  - if !@author && !@category && params[:controller] != 'search'
     .author-box
       .author-key
         Blog Posts
