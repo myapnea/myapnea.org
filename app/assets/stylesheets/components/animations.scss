@@ -1,3 +1,13 @@
+@keyframes wiggle {
+  25% {
+    transform: rotate(7deg);
+  }
+
+  75% {
+    transform: rotate(-7deg);
+  }
+}
+
 @keyframes pulsate {
   0% {
     transform: scale(1.0, 1.0);

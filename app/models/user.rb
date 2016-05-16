@@ -61,10 +61,10 @@ class User < ActiveRecord::Base
   has_many :broadcast_comments
   has_many :votes, -> { where deleted: false }
   has_one :social_profile, -> { where deleted: false }
-  has_many :notifications, -> { where deleted: false }
   has_many :research_topics, -> { where deleted: false }
   has_many :forums, -> { where deleted: false }
   has_many :images
+  has_many :notifications
   has_many :topics, -> { where deleted: false }
   has_many :posts, -> { where deleted: false }
   has_many :reactions
@@ -191,6 +191,10 @@ class User < ActiveRecord::Base
     else
       nil
     end
+  end
+
+  def unread_notifications?
+    notifications.where(read: false).present?
   end
 
   def can_post_links?

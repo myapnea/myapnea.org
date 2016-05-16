@@ -65,4 +65,15 @@ class BroadcastComment < ActiveRecord::Base
   def editable_by?(current_user)
     current_user.editable_broadcast_comments.where(id: id).count == 1
   end
+
+  def create_notifications!(current_user)
+    if broadcast_comment && broadcast_comment.user != current_user
+      notification = broadcast_comment.user.notifications.where(broadcast_id: broadcast_id, broadcast_comment_id: id).first_or_create
+      notification.mark_as_unread!
+    end
+    if broadcast.user != current_user
+      notification = broadcast.user.notifications.where(broadcast_id: broadcast_id, broadcast_comment_id: id).first_or_create
+      notification.mark_as_unread!
+    end
+  end
 end

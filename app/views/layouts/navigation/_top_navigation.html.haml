@@ -20,6 +20,10 @@
 
 
       %ul.nav.navbar-nav.navbar-right
+        - if current_user
+          %li.hidden-sm.hidden-xs
+            = link_to notifications_path, class: "#{'notifications-link' if current_user.unread_notifications?}" do
+              %span.glyphicon.glyphicon-bell
         %li{ class: "#{'active' if @active_top_nav_link == :home}" }
           = link_to "#{current_user ? 'Dashboard' : 'Home'}", root_path
         %li{ class: params[:controller] == 'blog' ? 'active' : nil }

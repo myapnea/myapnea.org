@@ -1,4 +1,5 @@
 %div{ class: (defined?(level) && level == 0 ? 'content-container' : nil) }
+  %a.anchor-top{ name: "comment-#{broadcast_comment.id}" }
   .broadcast-comment{ class: (defined?(level) && level.even? ? 'broadcast-comment-even' : 'broadcast-comment-odd' ) }
     .broadcast-comment-header{ data: { parent_comment_id: broadcast_comment.parent_comment_id, broadcast_comment_id: broadcast_comment.id } }
       = render 'broadcast_comments/header', broadcast_comment: broadcast_comment, just_voted: false

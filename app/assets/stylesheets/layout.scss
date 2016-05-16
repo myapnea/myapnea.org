@@ -89,10 +89,7 @@ nav {
 
       > a {
         color: $white;
-
-        line-height: 14px;
-        padding-top: 18px;
-
+        height: 46px;
         &.active,
         &:focus,
         &:hover {
@@ -109,4 +106,13 @@ nav {
 
 .navbar-form {
   box-shadow: none;
+}
+
+.navbar-nav .notifications-link span {
+  animation: wiggle 250ms linear 4;
+  color: $primary-orange;
+}
+
+.navbar-nav .notifications-link:hover span {
+  color: $primary-blue;
 }

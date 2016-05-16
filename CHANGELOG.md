@@ -3,6 +3,9 @@
 ### Enhancements
 - **Menu Changes**
   - The menu has been slimmed down to take up less space
+- **Notifications Added**
+  - In-app notifications are now generated when someone comments on a blog post
+    or replies to another user's comment
 
 ## 12.0.0 (May 12, 2016)
 

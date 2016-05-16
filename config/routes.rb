@@ -214,6 +214,12 @@ Rails.application.routes.draw do
   get 'members/:forum_name', to: 'members#show', as: :member
   get 'members_search', to: 'members#search', as: :members_search
 
+  resources :notifications do
+    collection do
+      patch :mark_all_as_read
+    end
+  end
+
   # Research Topics
   resources :research_topics, path: 'research-topics' do
     collection do

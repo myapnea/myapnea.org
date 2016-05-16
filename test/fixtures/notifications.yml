@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+broadcast_comment_one:
+  user: community_contributor
+  read: false
+  broadcast: published
+  broadcast_comment: one
+
+broadcast_comment_two:
+  user: user_1
+  read: false
+  broadcast: published
+  broadcast_comment: two
+
+blank:
+  user: user_1
+  read: false
