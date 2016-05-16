@@ -33,194 +33,80 @@ $default-margin-size: 20px;
 
 .nowrap { white-space: nowrap; }
 
-// Navigation
 nav {
-  background-color: rgba(15, 30, 68, .87);
-  padding-bottom: 10px;
-  padding-top: 20px;
-  z-index: 2;
+  background-color: $logo-similar;
+
+  .nav .open > a,
+  .nav .open > a:hover,
+  .nav .open > a:focus {
+    background-color: $logo-similar;
+  }
+
+  .navbar-nav > li {
+    background-color: $logo-similar;
+    &.active,
+    &:focus,
+    &:hover {
+      color: $white;
+    }
+    > a {
+      color: $white;
+      &.active,
+      &:focus,
+      &:hover {
+        background-color: $logo-similar;
+      }
+    }
+  }
 
   .navbar-brand {
-    line-height: 100%;
-    padding: 0;
-    padding-left: 15px;
-    width: 260px;
+    padding: 2px;
 
     img {
-      position: relative;
-      top: -15px;
-      width: 100%;
+      height: 100%;
     }
   }
+}
 
-  #main-nav {
-    color: $white;
-    margin-right: 30px;
-    position: relative;
-    top: 15px;
+.navbar-toggle {
+  .icon-bar {
+    background-color: $white;
+  }
+}
 
-    li {
-      border-bottom: 5px solid transparent;
-      font-size: 18px;
-      margin: 0 1px;
+@media screen and (min-width: $screen-md-min) {
+  nav {
+    .navbar-nav > li {
+      background-color: $logo-similar;
 
-      a {
-        padding: 10px 20px 15px;
-        color: $white;
-        display: block;
-        background-color: inherit;
-      }
-
-      a:hover { background-color: inherit; }
-
-      &.active {
+      &.active,
+      &:focus,
+      &:hover {
         border-bottom: 5px solid $primary-blue;
-      }
-    }
-
-    li:hover {
-      border-bottom: 5px solid $primary-blue;
-    }
-  }
-
-  #user-nav {
-    color: $white;
-    margin-right: 15px;
-    position: relative;
-    top: 15px;
-
-    li {
-      border-bottom: 5px solid transparent;
-      font-size: 18px;
-      margin: 0 1px;
-
-      a {
-        background-color: inherit;
         color: $white;
-        display: block;
-        padding: 10px 20px 15px;
+        margin-bottom: -5px;
       }
 
-      a:hover { background-color: inherit; }
-    }
-
-    .dropdown-menu {
-      border-radius: 0 0 5px 5px;
-
-      li {
-        border-bottom: 0;
-        margin: 2px;
-
-        a {
-          color: $darker-gray;
-        }
-      }
-
-      li:hover {
-        background-color: $lighter-gray;
-      }
-    }
-  }
-
-  #log-in-nav {
-    color: $white;
-    margin-right: 15px;
-    position: relative;
-    top: 15px;
-
-    li {
-      border: 1px solid $primary-blue;
-      border-radius: 10px;
-      font-size: 18px;
-      margin: 0 1px;
-
-      a {
-        background-color: inherit;
-        border-radius: 10px;
+      > a {
         color: $white;
-        padding: 10px 20px 15px;
-      }
 
-      a:hover { background-color: inherit; }
-    }
+        line-height: 14px;
+        padding-top: 18px;
 
-    li.dropdown {
-      border: 1px solid $white;
-      border-color: rgba(255, 255, 255, .4);
-
-      &.open {
-        border-radius: 10px 10px 0 0;
-
-        a.dropdown-toggle {
-          border-radius: 10px 10px 0 0;
-        }
-      }
-    }
-
-    .dropdown-menu {
-      border-radius: 0 0 5px 5px;
-      color: $dark-gray;
-      left: inherit;
-      right: -1px;
-
-      li {
-        margin: 2px;
-      }
-    }
-  }
-}
-
-
-@media (max-width: $screen-lg) {
-  .navbar-brand {
-    max-width: 240px;
-  }
-}
-
-@media (max-width: $screen-md) {
-  nav {
-    .navbar-collapse {
-      &.in,
-      &.collapsing {
-        background-color: #243264;
-      }
-    }
-
-    #main-nav {
-      padding-bottom: 15px;
-
-      li,
-      li.active,
-      li:hover {
-        border-bottom-width: 0;
-
-        a {
-          padding: 10px 15px;
-        }
-      }
-    }
-
-    #user-nav {
-      .dropdown-menu {
-        li {
-          a {
-            color: $white;
-          }
+        &.active,
+        &:focus,
+        &:hover {
+          background-color: $logo-similar;
         }
       }
     }
   }
 }
 
+.navbar-collapse {
+  box-shadow: none;
+}
 
-@media (max-width: $screen-sm) {
-  nav {
-    .navbar-brand {
-      width: 200px;
-
-      img {
-        top: -5px;
-      }
-    }
-  }
+.navbar-form {
+  box-shadow: none;
 }

@@ -1,6 +1,8 @@
 ## 13.0.0
 
-### Enhancement
+### Enhancements
+- **Menu Changes**
+  - The menu has been slimmed down to take up less space
 
 ## 12.0.0 (May 12, 2016)
 
