@@ -51,7 +51,7 @@ class BroadcastCommentsController < ApplicationController
     @broadcast_comment = current_user.broadcast_comments.where(broadcast_id: @broadcast.id)
                                      .new(broadcast_comment_params)
     if @broadcast_comment.save
-      @broadcast_comment.create_notifications!(current_user)
+      @broadcast_comment.create_notifications!
       render :create
     else
       render :new
