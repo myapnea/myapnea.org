@@ -19,6 +19,12 @@ class TopicsController < ApplicationController
 
   # GET /forum
   def index
+    topic_scope = viewable_topics
+    @author = User.current.find_by_forum_name params[:a]
+    topic_scope = topic_scope.user_active(@author.id) if @author
+    topic_scope = topic_scope.pending_review if params[:status] == 'pending_review'
+    topic_scope = topic_scope.order(pinned: :desc, last_post_at: :desc, id: :desc)
+    @topics = topic_scope.page(params[:page]).per(20)
   end
 
   # GET /forum/my-first-topic
@@ -62,12 +68,16 @@ class TopicsController < ApplicationController
 
   private
 
+  def viewable_topics
+    if current_user
+      current_user.viewable_topics.not_research
+    else
+      Topic.current.not_research.where(status: %w(approved pending_review))
+    end
+  end
+
   def set_viewable_topic
-    @topic = if current_user
-               current_user.viewable_topics.find_by_slug params[:id]
-             else
-               Topic.current.viewable_by_user(current_user ? current_user.id : nil).find_by_slug params[:id]
-             end
+    @topic = viewable_topics.find_by_slug params[:id]
   end
 
   def set_editable_topic

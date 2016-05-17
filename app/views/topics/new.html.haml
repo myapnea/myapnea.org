@@ -1,9 +1,9 @@
-.content-main-header
-  .container
-    %h1 New Topic
-    %p
-      = link_to 'Forum', topics_path
-
+- @background_color = '#5999de'
 .content-container
-  .container
-    = render 'form'
+  .content-main-header2
+    %h1
+      = link_to 'Forum', topics_path
+      &middot;
+      New Topic
+
+  = render 'form'

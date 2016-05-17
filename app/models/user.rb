@@ -129,26 +129,26 @@ class User < ActiveRecord::Base
   end
 
   def viewable_topics
-    if self.moderator? or self.owner?
+    if moderator? || owner?
       Topic.current
     else
-      Topic.viewable_by_user(self.id)
+      Topic.viewable_by_user(id)
     end
   end
 
   def editable_topics
-    if self.moderator? or self.owner?
+    if moderator? || owner?
       Topic.current
     else
-      self.topics.where(locked: false)
+      topics.where(locked: false)
     end
   end
 
   def deletable_topics
-    if self.owner?
+    if owner?
       Topic.current
     else
-      self.topics
+      topics
     end
   end
 

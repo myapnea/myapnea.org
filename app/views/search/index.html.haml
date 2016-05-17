@@ -1,42 +1,38 @@
 - @title = ['Search', @search.gsub(' & ', ' ')].compact.join(' | ')
 
-- content_for :banner do
-  .content-main-header
-    .container
-      %h1
-        Search
-        = ENV['website_name']
+.content-main-header2
+  %h1
+    Search
+    = ENV['website_name']
 
-- @background_color = '#fff'
 - @search_results = @broadcasts
 
-.container
-  .row
-    .col-sm-9
-      - if @search_results.count > 0
-        - @broadcasts.each do |broadcast|
-          .search-result
-            .search-result-title
-              = link_to broadcast.title, blog_post_path(broadcast.url_hash)
-            .search-result-author
-              Posted by
-              = broadcast.user.forum_name
-              on
-              %i= broadcast.publish_date.strftime '%B %-d, %Y'
-              - if broadcast.category
-                in
-                = link_to broadcast.category.name, blog_category_path(category: broadcast.category)
-            .search-result-body
-              = render 'search/broadcast', broadcast: broadcast
-        .centered= paginate @broadcasts, theme: 'bootstrap'
-      - else
-        .centered
-          = image_tag 'myapnea/user_types/role_confused.png'
-        %p.lead.centered.text-muted
-          No Search Results Found
-        %p.lead.centered
-          You may modify your search or return to
-          = succeed '.' do
-            = link_to 'our blog', blog_path
-    .col-sm-3.col-buffer
-      = render 'blog/menu'
+.row
+  .col-sm-9
+    - if @search_results.count > 0
+      - @broadcasts.each do |broadcast|
+        .search-result
+          .search-result-title
+            = link_to broadcast.title, blog_post_path(broadcast.url_hash)
+          .search-result-author
+            Posted by
+            = broadcast.user.forum_name
+            on
+            %i= broadcast.publish_date.strftime '%B %-d, %Y'
+            - if broadcast.category
+              in
+              = link_to broadcast.category.name, blog_category_path(category: broadcast.category)
+          .search-result-body
+            = render 'search/broadcast', broadcast: broadcast
+      .centered= paginate @broadcasts, theme: 'bootstrap'
+    - else
+      .centered
+        = image_tag 'myapnea/user_types/role_confused.png'
+      %p.lead.centered.text-muted
+        No Search Results Found
+      %p.lead.centered
+        You may modify your search or return to
+        = succeed '.' do
+          = link_to 'our blog', blog_path
+  .col-sm-3.col-buffer
+    = render 'blog/menu'

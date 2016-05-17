@@ -10,16 +10,17 @@
       - if topic.locked?
         %span.glyphicon.glyphicon-lock.text-muted
       = link_to topic.name, topic
-      - if topic.status == 'pending_review'
-        %span.label.label-success New Topic
-        Pending Review
-      - elsif topic.has_posts_pending_review? && current_user && current_user.moderator?
-        %span.label.label-primary= pluralize(topic.posts.where(status: 'pending_review').count, 'New Post')
-        Pending Review
-      - if topic.status == 'spam'
-        Marked as Spam
-      - if topic.hidden?
-        Topic Hidden
+      - if current_user && current_user.moderator?
+        - if topic.status == 'pending_review'
+          %span.label.label-success New Topic
+          Pending Review
+        - elsif topic.has_posts_pending_review? && current_user && current_user.moderator?
+          %span.label.label-primary= pluralize(topic.posts.where(status: 'pending_review').count, 'New Post')
+          Pending Review
+        - if topic.status == 'spam'
+          Marked as Spam
+        - if topic.hidden?
+          Topic Hidden
   %td.text-muted
     %span.small= number_with_delimiter topic.visible_posts.count
   %td.text-muted.hidden-xs.hidden-sm{ class: "#{topic.pinned? ? "f500" : "f300"}" }
