@@ -82,6 +82,6 @@
       - if current_user and (current_user.owner? or current_user.moderator?)
         = render 'topics/admin_info'
       - if current_user
-        .well.well-sm= render 'topics/subscribe_unsubscribe', topic: @topic
+        #topic-subscription= render 'topics/subscribe_unsubscribe', topic: @topic
       - else
         = render 'home/join_the_community', referrer: 'forums', message: 'Share stories directly with sleep researchers and others with sleep apnea'
