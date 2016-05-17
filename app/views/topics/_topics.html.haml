@@ -1,5 +1,5 @@
 .content-main-header2
-  .pull-right
+  .pull-right{ style: 'margin: 5px 0 0 0' }
     = form_tag search_path, method: :get, id: 'search-form', style: 'margin-bottom:20px', class: 'form-inline' do
       .input-group
         = text_field_tag :search, params[:search], class: 'form-control', style: 'width:100%', placeholder: 'Search MyApnea', autocomplete: 'off'
