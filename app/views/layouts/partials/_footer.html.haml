@@ -13,9 +13,9 @@
           %p MyApnea
           %li= link_to 'About', about_path
           %li= link_to 'Team', team_path
-          -# %li= link_to 'Advisors', advisory_path
           %li= link_to 'Partners', partners_path
           %li= link_to 'Privacy', privacy_path
+          %li= link_to 'Terms', terms_and_conditions_path
           %li= link_to 'FAQs', faqs_path
           - unless current_user
             %li= link_to 'I forgot my password!', new_user_password_path
@@ -24,8 +24,8 @@
           %p.small Features
           %li= link_to 'Community', community_path
           %li= link_to 'Providers', providers_path
-          %li= link_to 'Forums', forums_path, data: { no_turbolink: true }
-          %li= link_to 'Research', research_topics_path, data: { no_turbolink: true }
+          %li= link_to 'Forum', topics_path
+          %li= link_to 'Research', blog_category_path(category: 'research')
           %li= link_to 'Surveys', surveys_path, data: { no_turbolink: true }
       .col-sm-2.col-xs-4
         %ul

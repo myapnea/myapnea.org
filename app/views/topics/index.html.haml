@@ -8,7 +8,7 @@
         .admin-container
           %span.logo-color Moderate:
           = link_to 'Pending Review', topics_path(status: (params[:status] == 'pending_review' ? nil : 'pending_review')), class: "btn btn-default btn-xs #{'active' if params[:status] == 'pending_review'}"
-      = form_tag @forum, method: :get, class: 'form-inline' do
+      = form_tag topics_path, method: :get, class: 'form-inline' do
         .input-group
           = text_field_tag 's', params[:s], class: 'form-control'
           %span.input-group-btn{ style: 'width: 1%;' }

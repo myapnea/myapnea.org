@@ -23,9 +23,9 @@ class Topic < ActiveRecord::Base
 
   # Model Validation
   validates :user_id, presence: true
-  validates :name, presence: { message: 'The title cannot be blank.' }
+  validates :name, presence: { message: 'The title cannot be blank' }
   validates :description, presence: true, if: :requires_description?
-  validates :slug, uniqueness: { scope: :deleted, message: 'This topic title already exists on the forum.' }, allow_blank: true
+  validates :slug, uniqueness: { scope: :deleted, message: 'This topic title already exists on the forum' }, allow_blank: true
   validates :slug, format: { with: /\A(?!\Anew\Z)[a-z][a-z0-9\-]*\Z/, message: 'The format of the slug is invalid.' }
 
   # Model Relationships
