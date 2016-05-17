@@ -1,8 +1,6 @@
 - post = topic.last_visible_post
 
 %tr.topic-row{ class: "#{"topic-#{topic.status.dasherize}" if current_user && current_user.moderator?} #{"topic-posts-pending-review" if current_user && current_user.moderator? && topic.has_posts_pending_review?}"}
-  %td.hidden-xs.hidden-sm
-    = image_tag user_photo_url(topic.user), size: '30x30', class: "img-thumbnail", alt: '', style: "min-height:#{30+5}px;min-width:#{30+5}px;", title: topic.user.forum_name, data: { toggle: 'tooltip', container: 'body', placement: 'top' }
   %td
     .wrapword
       - if topic.pinned?
@@ -21,15 +19,20 @@
           Marked as Spam
         - if topic.hidden?
           Topic Hidden
+    .broadcast-info{ style: 'margin-bottom: 0' }
+      by
+      = image_tag user_photo_url(topic.user), size: '16x16', class: 'img-thumbnail', alt: '', style: "height:#{16+5}px;width:#{16+5}px;", title: topic.user.forum_name, data: { toggle: 'tooltip', container: 'body', placement: 'top' }
+      = topic.user.forum_name
+      = link_to 'Page 1', topic, class: 'btn btn-xs btn-default'
+      - if post && post.page != 1
+        \...
+        = link_to [topic, post], class: 'btn btn-xs btn-default' do
+          = post.page
+
   %td.text-muted
-    %span.small= number_with_delimiter topic.visible_posts.count
+    %span.small= number_with_delimiter topic.visible_posts.count - 1
   %td.text-muted.hidden-xs.hidden-sm{ class: "#{topic.pinned? ? 'f500' : 'f300'}" }
     %span.small= number_with_delimiter topic.views_count
   %td.text-muted
     - if post
-      = link_to [topic, post], class: 'btn btn-xs btn-default' do
-        Page
-        = post.page
-        %span.glyphicon.glyphicon-share-alt
-      %br
       %span.small= time_ago_in_words(post.created_at) + ' ago'
