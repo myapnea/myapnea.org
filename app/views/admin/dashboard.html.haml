@@ -1,93 +1,90 @@
-.content-main-header
-  .container
-    %h1 Admin Dashboard
+.content-main-header2
+  %h1 Admin Dashboard
 
-.container
-  %h3 Member Management
-  .row.centered
-    - if current_user.owner?
-      .col-sm-3
-        = link_to users_path, class: 'no-underline' do
-          .blue-block-link
-            Users
-    .col-sm-3
-      = link_to admin_providers_path, class: 'no-underline' do
-        .blue-block-link
-          Providers
-    - if current_user.owner?
-      .col-sm-3
-        = link_to admin_reports_location_path, class: 'no-underline' do
-          .blue-block-link
-            Location
-      .col-sm-3
-        = link_to admin_broadcast_comments_path, class: 'no-underline' do
-          .blue-block-link
-            Blog Comments
-
-  %h3 Survey Results
-  .row.centered
-    .col-sm-3
-      = link_to admin_cross_tabs_path, class: 'no-underline' do
-        .blue-block-link
-          Cross Tabs
-    - if current_user.owner?
-      .col-sm-3
-        = link_to admin_exports_path, class: 'no-underline' do
-          .blue-block-link
-            Exports
-    .col-sm-3
-      = link_to admin_surveys_path, class: 'no-underline' do
-        .blue-block-link
-          Surveys
-
+%h3 Member Management
+.row.centered
   - if current_user.owner?
-    %h3 Features
-    .row.centered
-      .col-sm-3
-        = link_to admin_clinical_trials_path, class: 'no-underline' do
-          .blue-block-link
-            Clinical Trials
-      .col-sm-3
-        = link_to engagements_path, class: 'no-underline' do
-          .blue-block-link
-            Engagements
-      .col-sm-3
-        = link_to admin_partners_path, class: 'no-underline' do
-          .blue-block-link
-            Partners
-      .col-sm-3
-        = link_to admin_reactions_path, class: 'no-underline' do
-          .blue-block-link
-            Reactions
-      .col-sm-3
-        = link_to admin_research_articles_path, class: 'no-underline' do
-          .blue-block-link
-            Research Articles
-      .col-sm-3
-        = link_to admin_research_topics_path, class: 'no-underline' do
-          .blue-block-link
-            Research Topics
-      .col-sm-3
-        = link_to admin_social_media_path, class: 'no-underline' do
-          .blue-block-link
-            Social Media
-      .col-sm-3
-        = link_to admin_team_members_path, class: 'no-underline' do
-          .blue-block-link
-            Team Members
+    .col-sm-3
+      = link_to users_path, class: 'no-underline' do
+        .blue-block-link
+          Users
+  .col-sm-3
+    = link_to admin_providers_path, class: 'no-underline' do
+      .blue-block-link
+        Providers
+  - if current_user.owner?
+    .col-sm-3
+      = link_to admin_reports_location_path, class: 'no-underline' do
+        .blue-block-link
+          Location
+    .col-sm-3
+      = link_to admin_broadcast_comments_path, class: 'no-underline' do
+        .blue-block-link
+          Blog Comments
 
-    %h3 Aggregate Reports
-    .row.centered
-      .col-sm-3
-        = link_to admin_daily_engagement_path, class: 'no-underline' do
-          .blue-block-link
-            Engagement Report
-      .col-sm-3
-        = link_to admin_progress_report_path, class: 'no-underline' do
-          .blue-block-link
-            Progress Report
-      .col-sm-3
-        = link_to admin_reports_timeline_path, class: 'no-underline' do
-          .blue-block-link
-            Timeline Report
-%br
+%h3 Survey Results
+.row.centered
+  .col-sm-3
+    = link_to admin_cross_tabs_path, class: 'no-underline' do
+      .blue-block-link
+        Cross Tabs
+  - if current_user.owner?
+    .col-sm-3
+      = link_to admin_exports_path, class: 'no-underline' do
+        .blue-block-link
+          Exports
+  .col-sm-3
+    = link_to admin_surveys_path, class: 'no-underline' do
+      .blue-block-link
+        Surveys
+
+- if current_user.owner?
+  %h3 Features
+  .row.centered
+    .col-sm-3
+      = link_to admin_clinical_trials_path, class: 'no-underline' do
+        .blue-block-link
+          Clinical Trials
+    .col-sm-3
+      = link_to engagements_path, class: 'no-underline' do
+        .blue-block-link
+          Engagements
+    .col-sm-3
+      = link_to admin_partners_path, class: 'no-underline' do
+        .blue-block-link
+          Partners
+    .col-sm-3
+      = link_to admin_reactions_path, class: 'no-underline' do
+        .blue-block-link
+          Reactions
+    .col-sm-3
+      = link_to admin_research_articles_path, class: 'no-underline' do
+        .blue-block-link
+          Research Articles
+    .col-sm-3
+      = link_to admin_research_topics_path, class: 'no-underline' do
+        .blue-block-link
+          Research Topics
+    .col-sm-3
+      = link_to admin_social_media_path, class: 'no-underline' do
+        .blue-block-link
+          Social Media
+    .col-sm-3
+      = link_to admin_team_members_path, class: 'no-underline' do
+        .blue-block-link
+          Team Members
+
+  %h3 Aggregate Reports
+  .row.centered
+    .col-sm-3
+      = link_to admin_daily_engagement_path, class: 'no-underline' do
+        .blue-block-link
+          Engagement Report
+    .col-sm-3
+      = link_to admin_progress_report_path, class: 'no-underline' do
+        .blue-block-link
+          Progress Report
+    .col-sm-3
+      = link_to admin_reports_timeline_path, class: 'no-underline' do
+        .blue-block-link
+          Timeline Report

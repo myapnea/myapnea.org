@@ -1,13 +1,10 @@
 # frozen_string_literal: true
 
 class HomeController < ApplicationController
-
   before_action :authenticate_user!, except: [:dashboard, :landing]
   before_action :set_active_top_nav_link_to_home
 
   before_action :set_SEO_elements
-
-  layout 'home'
 
   def dashboard
     if current_user
@@ -25,12 +22,12 @@ class HomeController < ApplicationController
 
       current_user.is_only_academic? ? load_academic_dashboard_resources : load_member_dashboard_resources
     else
-      render 'home/landing'
+      render 'home/landing', layout: 'home'
     end
   end
 
   def landing
-    render 'home/landing'
+    render 'home/landing', layout: 'home'
   end
 
   def posts
@@ -42,6 +39,7 @@ class HomeController < ApplicationController
   end
 
   private
+
   def load_academic_dashboard_resources
     @surveys = Survey.current.viewable.non_pediatric.limit(3)
     @posts = posts

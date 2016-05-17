@@ -1,22 +1,18 @@
 - @title = 'Users'
-.content-main-header
-  .container
-    %h1
-      = @title
-    %p
-      = link_to 'Admin Dashboard', admin_path
 
-.content-container.inherit-background
-  .container
-    = form_tag users_path, method: :get, class: 'form-inline' do
-      = text_field_tag 'search', params[:search], class: 'form-control'
-      = submit_tag 'Search', class: 'btn btn-primary', name: nil
-      = link_to 'Reset', users_path, class: 'btn btn-default'
-      = link_to export_users_path( format: 'csv' ), class: 'btn btn-default' do
-        .fa.fa-file-excel-o
-        Export CSV
-
+.content-main-header2
+  %h1
+    = link_to 'Admin Dashboard', admin_path
+    &middot;
+    = @title
 
 .content-container
-  .container
-    = render 'users/users'
+  = form_tag users_path, method: :get, class: 'form-inline' do
+    = text_field_tag 'search', params[:search], class: 'form-control'
+    = submit_tag 'Search', class: 'btn btn-primary', name: nil
+    = link_to 'Reset', users_path, class: 'btn btn-default'
+    = link_to export_users_path( format: 'csv' ), class: 'btn btn-default' do
+      .fa.fa-file-excel-o
+      Export CSV
+
+= render 'users/users'

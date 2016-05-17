@@ -6,8 +6,6 @@ class AdminController < ApplicationController
 
   before_action :set_SEO_elements
 
-  layout 'admin'
-
   def dashboard
   end
 

@@ -1,25 +1,24 @@
-.content-main-header
-  .container
-    %h1 Our Partners
+-# @background_color = '#5999de'
+- @title = 'Our Partners'
 
-.container
-  .content-container
-    - @partners.where(group: 'main').each do |partner|
-      = render partner
-      - unless partner == @partners.where(group: 'main').last
-        %hr
+.content-main-header2
+  %h1= @title
 
-.container
-  .content-container
-    %h3
-      Promotional Partners
-    %p.lead
-      The following companies and organizations share our mission and goals to improve research and the treatment of sleep apnea and are working with us to promote the MyApnea.Org Network to patients and health care professionals.*  We greatly appreciate their assistance.
-    .row
-      - @partners.where(group: 'promotional').sort.each do |partner|
-        = render 'admin/partners/promotional_partner', partner: partner
-    .content-footer
-      %p.small
-        *Our promotional and other partners DO NOT have access to your contact or health information.  Per our
-        = link_to('privacy policy', privacy_path) + ','
-        MyApnea.Org will never share your contact or identifiable health information with any partners or other organizations without your express consent.  All members of the network DO have access to de-identified aggregate data.
+- @partners.where(group: 'main').each do |partner|
+  = render partner
+  - unless partner == @partners.where(group: 'main').last
+    %hr
+
+.content-main-header2
+  %h1 Promotional Partners
+
+%p.lead
+  The following companies and organizations share our mission and goals to improve research and the treatment of sleep apnea and are working with us to promote the MyApnea.Org Network to patients and health care professionals.*  We greatly appreciate their assistance.
+.row
+  - @partners.where(group: 'promotional').sort.each do |partner|
+    = render 'admin/partners/promotional_partner', partner: partner
+.content-footer
+  %p.small
+    *Our promotional and other partners DO NOT have access to your contact or health information.  Per our
+    = link_to('privacy policy', privacy_path) + ','
+    MyApnea.Org will never share your contact or identifiable health information with any partners or other organizations without your express consent.  All members of the network DO have access to de-identified aggregate data.

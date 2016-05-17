@@ -1,29 +1,29 @@
-.content-main-header
-  .container
-    %h1 Meet the Team
+-# @background_color = '#5999de'
+
+.content-main-header2
+  %h1 Meet the Team
 
 - lowest_position = @team_members.pluck(:position).min()
-.container
-  .content-container
-    .carousel.slide#carousel-team
-      .carousel-inner{role: "listbox"}
-        - @team_members.each do |team_member|
-          .item{ class: "#{'active' if team_member.position == lowest_position }"}
-            = render team_member
-    .content-footer
-      %ul.team-list#steering-committee-list
-        - @team_members.where(group: 'steering').each do |team_member|
-          %li.active{data: {target: "#carousel-team", slide: {to: "#{team_member.position}"}}}
-            = image_tag team_member_photo_url(team_member), alt: '', class: 'team-member-picture img-bw img-color'
-        %p.centered
-          = link_to 'Learn more about the steering committee', governance_policy_path, class: 'no-underline'
-        - @team_members.where(group: 'internal').each do |team_member|
-          %li.active{data: {target: "#carousel-team", slide: {to: "#{team_member.position}"}}}
-            = image_tag team_member_photo_url(team_member), alt: '', class: 'team-member-picture img-bw img-color'
-        %p.centered
-          = link_to 'Learn more about our team', 'https://bostonsleep.org/staff', class: 'no-underline'
-        - @team_members.where(group: 'patient').each do |team_member|
-          %li.active{data: {target: "#carousel-team", slide: {to: "#{team_member.position}"}}}
-            = image_tag team_member_photo_url(team_member), alt: '', class: 'team-member-picture img-bw img-color'
-        %p.centered
-          = link_to 'Learn more about the patient engagement panel', pep_corner_path, class: 'no-underline'
+.content-container
+  .carousel.slide#carousel-team
+    .carousel-inner{role: "listbox"}
+      - @team_members.each do |team_member|
+        .item{ class: "#{'active' if team_member.position == lowest_position }"}
+          = render team_member
+  .content-footer
+    %ul.team-list#steering-committee-list
+      - @team_members.where(group: 'steering').each do |team_member|
+        %li.active{data: {target: "#carousel-team", slide: {to: "#{team_member.position}"}}}
+          = image_tag team_member_photo_url(team_member), alt: '', class: 'team-member-picture img-bw img-color'
+      %p.centered
+        = link_to 'Learn more about the steering committee', governance_policy_path, class: 'no-underline'
+      - @team_members.where(group: 'internal').each do |team_member|
+        %li.active{data: {target: "#carousel-team", slide: {to: "#{team_member.position}"}}}
+          = image_tag team_member_photo_url(team_member), alt: '', class: 'team-member-picture img-bw img-color'
+      %p.centered
+        = link_to 'Learn more about our team', 'https://bostonsleep.org/staff', class: 'no-underline'
+      - @team_members.where(group: 'patient').each do |team_member|
+        %li.active{data: {target: "#carousel-team", slide: {to: "#{team_member.position}"}}}
+          = image_tag team_member_photo_url(team_member), alt: '', class: 'team-member-picture img-bw img-color'
+      %p.centered
+        = link_to 'Learn more about the patient engagement panel', pep_corner_path, class: 'no-underline'

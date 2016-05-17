@@ -3,8 +3,6 @@
 class StaticController < ApplicationController
   before_action :set_active_top_nav_link_to_learn, only: [:learn]
 
-  layout 'static'
-
   ## Static
   def about
     @page_content = "Can't sleep? Sleep apnea is one of the largest causes of chronic sleep deprivation. MyApnea.Org was created by people with sleep apnea, sleep researchers, and sleep doctors to help people with sleep apnea treat their sleep apnea symptoms."

@@ -3,6 +3,8 @@
 ### Enhancements
 - **Forum Changes**
   - The forums have been simplified into a single forum
+- **General Changes**
+  - Simplified user interface and styling across site
 - **Menu Changes**
   - The menu has been slimmed down to take up less space
 - **Notifications Added**

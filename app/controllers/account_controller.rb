@@ -1,11 +1,8 @@
 # frozen_string_literal: true
 
 class AccountController < ApplicationController
-
   before_action :authenticate_user!, except: [:consent, :privacy_policy, :terms_and_conditions, :terms_of_access]
   before_action :set_SEO_elements
-
-  layout 'admin'
 
   ## Onboarding process
 
@@ -19,7 +16,6 @@ class AccountController < ApplicationController
     if !(current_user.provider? or current_user.is_only_researcher?) and current_user.ready_for_research?
       @survey = Survey.current.viewable.find_by_slug("about-me")
       @answer_session = current_user.get_baseline_survey_answer_session(@survey)
-      render layout: 'surveys'
     end
   end
 
@@ -141,42 +137,40 @@ class AccountController < ApplicationController
 
   private
 
-    def user_params
-      params[:user] ||= { blank: '1' }
+  def user_params
+    params[:user] ||= { blank: '1' }
 
-      params[:user][:user_is_updating] = '1'
+    params[:user][:user_is_updating] = '1'
 
-      params.required(:user).permit(
-        # Basic Information
-        :first_name, :last_name, :email, :address_1, :address_2, :city, :zip_code,
-        # Forum and Social Profile
-        :photo, :remove_photo, :forum_name, :age, :gender, :experience, :device,
-        # Linking to a Provider
-        :provider_id,
-        # Receiving Emails
-        :emails_enabled,
-        # For Provider Profiles
-        :welcome_message, :provider_name, :slug,
-        # Enabling Beta
-        :beta_opt_in,
-        # Enforces that forum name can't be blank
-        :user_is_updating
-        )
-    end
-
-    def user_password_params
-      params.required(:user).permit(
-        :password, :password_confirmation, :current_password
+    params.required(:user).permit(
+      # Basic Information
+      :first_name, :last_name, :email, :address_1, :address_2, :city, :zip_code,
+      # Forum and Social Profile
+      :photo, :remove_photo, :forum_name, :age, :gender, :experience, :device,
+      # Linking to a Provider
+      :provider_id,
+      # Receiving Emails
+      :emails_enabled,
+      # For Provider Profiles
+      :welcome_message, :provider_name, :slug,
+      # Enabling Beta
+      :beta_opt_in,
+      # Enforces that forum name can't be blank
+      :user_is_updating
       )
-    end
+  end
 
-    def load_content
-      @pc = YAML.load_file(Rails.root.join('lib', 'data', 'content', "#{action_name}.yml"))[action_name.to_s]
-    end
+  def user_password_params
+    params.required(:user).permit(
+      :password, :password_confirmation, :current_password
+    )
+  end
 
-    def set_SEO_elements
-      @page_title = 'Welcome to Your Personal Sleep Apnea Account'
-      @page_content = 'Set your sleep apnea community profile, participate in sleep discussions, and join the MyApnea sleep study to help advance sleep apnea research.'
-    end
+  def load_content
+    @pc = YAML.load_file(Rails.root.join('lib', 'data', 'content', "#{action_name}.yml"))[action_name.to_s]
+  end
 
+  def set_SEO_elements
+    @page_content = 'Set your sleep apnea community profile, participate in sleep discussions, and join the MyApnea sleep study to help advance sleep apnea research.'
+  end
 end

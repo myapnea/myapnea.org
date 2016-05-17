@@ -1,11 +1,8 @@
 # frozen_string_literal: true
 
 class RegistrationsController < Devise::RegistrationsController
-
   layout 'home'
-
   respond_to :json
-
   skip_before_action :verify_authenticity_token, only: [ :create ]
 
   protected
@@ -22,7 +19,5 @@ class RegistrationsController < Devise::RegistrationsController
     else
       params.require(:user).permit(:first_name, :last_name, :over_eighteen, :email, :password, :beta_opt_in, :invite_token, :provider_id)
     end
-
   end
-
 end

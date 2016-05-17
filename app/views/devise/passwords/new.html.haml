@@ -1,21 +1,22 @@
+- @background_color = '#5999de'
+
 .logo-color-bcg2
-  .container
-    .row
-      .col-sm-6.col-sm-offset-3
-        - 5.times do
-          %br
-        .content-container
+  .row
+    .col-sm-6.col-sm-offset-3
+      - 5.times do
+        %br
+      .content-container
+        %p
+          %strong Forgot your password?
+        = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
           %p
-            %strong Forgot your password?
-          = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
-            %p
-              Enter your email address to receive a password reset email. You may
-              = mail_to ENV['pprn_support_email'], 'contact us', subject: 'Forgot my sign up email on MyApnea.Org'
-              if you don't remember which email you used to register.
-            .form-group= f.email_field :email, autofocus: true, autocomplete: 'off', placeholder: 'Email address', class: 'form-control input-lg'
-            - if resource.errors.key?(:email)
-              .alert.alert-danger
-                Sorry, the email provided was not found.
-            %div= f.submit 'Send me reset password instructions', class: 'btn btn-lg btn-primary btn-block'
-        - 5.times do
-          %br
+            Enter your email address to receive a password reset email. You may
+            = mail_to ENV['pprn_support_email'], 'contact us', subject: 'Forgot my sign up email on MyApnea.Org'
+            if you don't remember which email you used to register.
+          .form-group= f.email_field :email, autofocus: true, autocomplete: 'off', placeholder: 'Email address', class: 'form-control input-lg'
+          - if resource.errors.key?(:email)
+            .alert.alert-danger
+              Sorry, the email provided was not found.
+          %div= f.submit 'Send me reset password instructions', class: 'btn btn-lg btn-primary btn-block'
+      - 5.times do
+        %br

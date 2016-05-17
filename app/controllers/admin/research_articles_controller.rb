@@ -5,8 +5,6 @@ class Admin::ResearchArticlesController < ApplicationController
   before_action :check_owner,                 except: [:photo]
   before_action :set_admin_research_article,  only: [:show, :edit, :update, :destroy, :photo]
 
-  layout 'admin'
-
   def photo
     if @admin_research_article.photo.size > 0
       send_file File.join(CarrierWave::Uploader::Base.root, @admin_research_article.photo.url)

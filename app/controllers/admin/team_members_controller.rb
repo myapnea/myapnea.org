@@ -5,8 +5,6 @@ class Admin::TeamMembersController < ApplicationController
   before_action :check_owner,           except: [:photo]
   before_action :set_admin_team_member, only: [:show, :edit, :update, :destroy, :photo]
 
-  layout 'admin'
-
   def photo
     if @admin_team_member.photo.size > 0
       send_file File.join(CarrierWave::Uploader::Base.root, @admin_team_member.photo.url)

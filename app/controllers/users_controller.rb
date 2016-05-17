@@ -6,8 +6,6 @@ class UsersController < ApplicationController
   before_action :set_user,              only: [:show, :photo, :edit, :update, :destroy]
   before_action :redirect_without_user, only: [:show, :photo, :edit, :update, :destroy]
 
-  layout 'admin'
-
   def photo
     if @user.photo.size > 0
       send_file File.join(CarrierWave::Uploader::Base.root, @user.photo.url)

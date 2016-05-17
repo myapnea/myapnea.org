@@ -5,8 +5,6 @@ class Admin::ClinicalTrialsController < ApplicationController
   before_action :check_owner
   before_action :set_admin_clinical_trial, only: [:show, :edit, :update, :destroy]
 
-  layout 'admin'
-
   def order
     @admin_clinical_trials = Admin::ClinicalTrial.current.order(:position)
   end

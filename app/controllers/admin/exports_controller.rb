@@ -3,11 +3,8 @@
 class Admin::ExportsController < ApplicationController
   before_action :authenticate_user!
   before_action :check_owner
-
   before_action :set_admin_export,              only: [:show, :progress, :file, :destroy]
   before_action :redirect_without_admin_export, only: [:show, :progress, :file, :destroy]
-
-  layout 'admin'
 
   # GET /admin/exports
   def index

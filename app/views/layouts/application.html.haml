@@ -25,7 +25,7 @@
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag "application", "data-turbolinks-track" => true
     = javascript_tag "var root_url='#{request.script_name + '/'}';var auth_token='#{form_authenticity_token}';"
-  %body{ style: "background-color: #{@background_color || '#fff' || '#E6EDF4'}", screen_capture_injected: "true", data: { email: "#{current_user.email if current_user}", fullname: "#{current_user.name if current_user}" } }
+  %body{ style: "background-color: #{@background_color || '#fff' || '#e6edf4'}", screen_capture_injected: "true", data: { email: "#{current_user.email if current_user}", fullname: "#{current_user.name if current_user}" } }
     #top-navigation= render 'layouts/navigation/top_navigation'
     = render 'layouts/partials/flash_messages'
     = yield :banner

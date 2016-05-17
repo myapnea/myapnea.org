@@ -1,31 +1,32 @@
+- @background_color = '#5999de'
+
 .logo-color-bcg2
-  .container
-    .row
-      .col-sm-6.col-sm-offset-3
-        - 5.times do
-          %br
-        .content-container
-          %p.f500.pull-right
-            %span.small
-              Not yet a Member?
-              = link_to 'Join', new_user_registration_path
-          %p.f500 Sign In
-          = form_for(resource, as: resource_name, url: session_path(resource_name), html: { role: "form" }) do |f|
-            .form-group
-              = f.label :email, class: 'sr-only'
-              = f.email_field :email, autofocus: true, class: 'form-control', placeholder: 'Email'
-            .form-group
-              = f.label :password, class: 'sr-only'
-              = f.password_field :password, class: 'form-control', placeholder: 'Password'
-            .form-group
-              - if devise_mapping.recoverable?
-                %small.f500.forgot
-                  = link_to 'Forgot Password?', new_user_password_path
-              - if devise_mapping.rememberable?
-                .pull-right
-                  = f.check_box :remember_me
-                  = f.label :remember_me
-            .form-group
-              = submit_tag 'Sign In', class: 'btn btn-primary btn-block'
-        - 5.times do
-          %br
+  .row
+    .col-sm-6.col-sm-offset-3
+      - 5.times do
+        %br
+      .content-container
+        %p.f500.pull-right
+          %span.small
+            Not yet a Member?
+            = link_to 'Join', new_user_registration_path
+        %p.f500 Sign In
+        = form_for(resource, as: resource_name, url: session_path(resource_name), html: { role: "form" }) do |f|
+          .form-group
+            = f.label :email, class: 'sr-only'
+            = f.email_field :email, autofocus: true, class: 'form-control', placeholder: 'Email'
+          .form-group
+            = f.label :password, class: 'sr-only'
+            = f.password_field :password, class: 'form-control', placeholder: 'Password'
+          .form-group
+            - if devise_mapping.recoverable?
+              %small.f500.forgot
+                = link_to 'Forgot Password?', new_user_password_path
+            - if devise_mapping.rememberable?
+              .pull-right
+                = f.check_box :remember_me
+                = f.label :remember_me
+          .form-group
+            = submit_tag 'Sign In', class: 'btn btn-primary btn-block'
+      - 5.times do
+        %br
