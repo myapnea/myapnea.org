@@ -23,8 +23,13 @@
           Topic Hidden
   %td.text-muted
     %span.small= number_with_delimiter topic.visible_posts.count
-  %td.text-muted.hidden-xs.hidden-sm{ class: "#{topic.pinned? ? "f500" : "f300"}" }
+  %td.text-muted.hidden-xs.hidden-sm{ class: "#{topic.pinned? ? 'f500' : 'f300'}" }
     %span.small= number_with_delimiter topic.views_count
   %td.text-muted
     - if post
+      = link_to [topic, post], class: 'btn btn-xs btn-default' do
+        Page
+        = post.page
+        %span.glyphicon.glyphicon-share-alt
+      %br
       %span.small= time_ago_in_words(post.created_at) + ' ago'

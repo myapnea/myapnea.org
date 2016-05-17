@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
-
   # Add flash types
   add_flash_types :warning
 
@@ -92,5 +91,4 @@ class ApplicationController < ActionController::Base
   def store_location_in_session
     session[:previous_url] = request.fullpath
   end
-
 end
