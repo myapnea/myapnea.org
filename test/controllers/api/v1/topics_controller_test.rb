@@ -78,7 +78,7 @@ class Api::V1::TopicsControllerTest < ActionController::TestCase
 
     assert_not_nil assigns(:topic)
     assert assigns(:topic).errors.size > 0
-    assert_equal ["The title cannot be blank."], json_response['name']
+    assert_equal ["The title cannot be blank"], json_response['name']
     assert_response :unprocessable_entity
   end
 
