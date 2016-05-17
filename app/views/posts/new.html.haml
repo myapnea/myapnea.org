@@ -2,11 +2,9 @@
   .container
     %h1 New Post
     %p
-      = link_to 'Forums', forums_path
+      = link_to 'Forum', topics_path
       &middot;
-      = link_to @forum.name, @forum
-      &middot;
-      = link_to @topic.name, [@forum, @topic]
+      = link_to @topic.name, @topic
 
 .container
   .content-container

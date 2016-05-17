@@ -1,0 +1,24 @@
+- @title = 'Forum'
+- @background_color = '#fff'
+
+.container
+  .row
+    .col-sm-4.col-sm-push-8
+      - if current_user && current_user.moderator?
+        .admin-container
+          %span.logo-color Moderate:
+          = link_to 'Pending Review', topics_path(status: (params[:status] == 'pending_review' ? nil : 'pending_review')), class: "btn btn-default btn-xs #{'active' if params[:status] == 'pending_review'}"
+      = form_tag @forum, method: :get, class: 'form-inline' do
+        .input-group
+          = text_field_tag 's', params[:s], class: 'form-control'
+          %span.input-group-btn{ style: 'width: 1%;' }
+            = submit_tag 'Search', class: 'btn btn-primary', name: nil
+      .clearfix
+
+      - if current_user
+        = link_to 'New Topic', new_topic_path, class: 'btn btn-primary-custom col-xs-12'
+      - else
+        = render 'home/join_the_community', referrer: 'forums', message: 'Share stories directly with sleep researchers and others with sleep apnea'
+
+    .col-sm-8.col-sm-pull-4
+      = render 'topics/topics', topic_limit: nil

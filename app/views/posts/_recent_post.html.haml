@@ -9,8 +9,8 @@
         - else
           = link_to post.user.forum_name, member_path(post.user.forum_name), class: 'no-underline darkerer-blue'
       %p.small
-        = post.is_first_post? ? "started the topic" : "replied to"
-        = link_to post.topic.name, forum_topic_post_path(post.topic.forum, post.topic, post)
+        = post.is_first_post? ? 'started the topic' : 'replied to'
+        = link_to post.topic.name, [post.topic, post]
         &middot;
         %span.post-time= time_ago_in_words(post.created_at) + ' ago'
   .post.wrapword

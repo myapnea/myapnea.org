@@ -258,7 +258,7 @@ Rails.application.routes.draw do
   get 'sleep-apnea-and-bmi' => 'tools#bmi_ahi'
 
   # Discussion
-  match 'forums/terms-and-conditions', to: 'account#terms_and_conditions', via: :get, as: :terms_and_conditions
+  get 'terms-and-conditions', to: 'account#terms_and_conditions', as: :terms_and_conditions
 
   # Social Section
   get 'community', to: 'social#overview', via: :get, as: :community
@@ -325,24 +325,39 @@ Rails.application.routes.draw do
     end
   end
 
-  # Forums
-  resources :forums do
-    resources :topics do
-      member do
-        post :subscription
-      end
-      resources :posts do
-        collection do
-          post :preview
-        end
-      end
-    end
+  # # Forums
+  # resources :forums do
+  #   # resources :topics do
+  #   #   member do
+  #   #     post :subscription
+  #   #   end
+  #   #   resources :posts do
+  #   #     collection do
+  #   #       post :preview
+  #   #     end
+  #   #   end
+  #   # end
+  #   collection do
+  #     get :markup
+  #   end
+  # end
+
+  resources :topics, path: 'forum' do
     collection do
       get :markup
     end
+    member do
+      post :subscription
+    end
+    resources :posts do
+      collection do
+        post :preview
+      end
+    end
   end
 
-  get 'forum', to: redirect('forums')
+  get 'forums', to: redirect('forum')
+
   get 'update_account', to: redirect('account')
   get 'change_password', to: redirect('account')
   get 'social', to: redirect('community')

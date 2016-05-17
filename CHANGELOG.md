@@ -1,6 +1,8 @@
 ## 13.0.0
 
 ### Enhancements
+- **Forum Changes**
+  - The forums have been simplified into a single forum
 - **Menu Changes**
   - The menu has been slimmed down to take up less space
 - **Notifications Added**

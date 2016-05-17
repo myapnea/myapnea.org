@@ -1,36 +1,36 @@
 .admin-container
   %span.logo-color Admins:
-  = link_to 'Edit Topic', edit_forum_topic_path(@forum, @topic), class: 'btn btn-xs btn-primary' if current_user and @topic.editable_by?(current_user)
+  = link_to 'Edit Topic', edit_topic_path(@topic), class: 'btn btn-xs btn-primary' if @topic.editable_by?(current_user)
   - if @topic.deletable_by?(current_user)
-    = link_to 'Delete Topic', [@forum, @topic], method: :delete, class: 'btn btn-xs btn-danger', data: { confirm: "Are you sure you want to delete this topic?" }
+    = link_to 'Delete Topic', @topic, method: :delete, class: 'btn btn-xs btn-danger', data: { confirm: 'Are you sure you want to delete this topic?' }
 .well.well-sm
   %p
     This topic has had
     %strong= number_with_delimiter(@topic.views_count)
     views since
-    = @topic.created_at.strftime("%m/%d/%Y")
+    = @topic.created_at.strftime('%m/%d/%Y')
 
   - if @topic.status == 'pending_review'
     %i.fa.fa-eye-slash
     This topic is currently pending review. You can either
-    = link_to 'approve', forum_topic_path(@forum, @topic, topic: { status: 'approved' }), method: :patch, class: 'btn btn-success btn-xs'
+    = link_to 'approve', topic_path(@topic, topic: { status: 'approved' }), method: :patch, class: 'btn btn-success btn-xs'
     this topic or
-    = link_to 'mark the topic as spam.', forum_topic_path(@forum, @topic, topic: { status: 'spam' }), method: :patch, class: 'btn btn-danger btn-xs'
+    = link_to 'mark the topic as spam.', topic_path(@topic, topic: { status: 'spam' }), method: :patch, class: 'btn btn-danger btn-xs'
   - if @topic.status == 'spam'
     %i.fa.fa-eye-slash
     This topic is marked as spam. If this was a mistake, you can
-    = link_to 'undo', forum_topic_path(@forum, @topic, topic: { status: 'pending_review' }), method: :patch, class: 'btn btn-danger btn-xs'
+    = link_to 'undo', topic_path(@topic, topic: { status: 'pending_review' }), method: :patch, class: 'btn btn-danger btn-xs'
     this and set the topic back to pending review.
   - if @topic.hidden?
     %i.fa.fa-eye-slash
     This topic has been hidden, and is not viewable to regular forum members. You can
-    = link_to 'edit this topic', edit_forum_topic_path(@forum, @topic)
+    = link_to 'edit this topic', edit_topic_path(@topic)
     to make it viewable again.
-  - if @topic.hidden? and @topic.locked?
+  - if @topic.hidden? && @topic.locked?
     %br
     %br
   - if @topic.locked?
     %span.glyphicon.glyphicon-lock
     This topic has been locked, and no longer allows users to edit or add new posts. You can
-    = link_to 'edit this topic', edit_forum_topic_path(@forum, @topic)
+    = link_to 'edit this topic', edit_topic_path(@topic)
     to unlock it.

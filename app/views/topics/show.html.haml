@@ -1,10 +1,7 @@
 .content-main-header
   .container
     %h1.wrapword= @topic.name
-    %p
-      = link_to 'Forums', forums_path
-      &middot;
-      = link_to @forum.name, @forum
+    %p= link_to 'Forums', forums_path
 
 .container
   %br
@@ -20,7 +17,7 @@
               content of these posts. The information provided on this site is not
               intended nor recommended as a substitute for advice from a health care
               professional who has evaluated you.
-      - @posts = @topic.posts.includes(:user, topic: :forum).page(params[:page]).per( Topic::POSTS_PER_PAGE )
+      - @posts = @topic.posts.includes(:user, :topic).page(params[:page]).per(Topic::POSTS_PER_PAGE)
       = render @posts
       -# Display status of the topic to members
       - if @topic.locked?
@@ -40,15 +37,15 @@
         - if current_user
           .inherit-background
             - @post = @topic.posts.new
-            = form_for [@forum, @topic, @post], html: { class: 'form-horizontal' } do |f|
+            = form_for [@topic, @post], html: { class: 'form-horizontal' } do |f|
               - if @post.errors.any?
                 #error_explanation.bs-callout.bs-callout-danger
                   %h4
-                    = pluralize(@post.errors.count, "error")
+                    = pluralize @post.errors.count, 'error'
                     prohibited this comment from being saved
                   %ul
-                  - @post.errors.full_messages.each do |msg|
-                    %li= msg
+                    - @post.errors.full_messages.each do |msg|
+                      %li= msg
 
               - if current_user.moderator?
                 = f.hidden_field :status, value: 'approved'
@@ -60,7 +57,7 @@
                       %a{ href: '#write-new', data: { toggle: 'tab' } }
                         Write
                     %li
-                      %a{ href: '#preview-new', data: { toggle: 'tab', forum_id: "#{@forum.to_param}", topic_id: "#{@topic.to_param}", object: 'preview-post', post_id: 'new' } }
+                      %a{ href: '#preview-new', data: { toggle: 'tab', topic_id: "#{@topic.to_param}", object: 'preview-post', post_id: 'new' } }
                         Preview
                     %li
                       = link_to 'Markup', '#markup-new', data: { toggle: 'tab' }

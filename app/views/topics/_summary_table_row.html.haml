@@ -1,6 +1,6 @@
 - post = topic.last_visible_post
 
-%tr.topic-row{ class: "#{"topic-#{topic.status.dasherize}" if current_user and current_user.moderator?} #{"topic-posts-pending-review" if current_user and current_user.moderator? and topic.has_posts_pending_review?}"}
+%tr.topic-row{ class: "#{"topic-#{topic.status.dasherize}" if current_user && current_user.moderator?} #{"topic-posts-pending-review" if current_user && current_user.moderator? && topic.has_posts_pending_review?}"}
   %td.hidden-xs.hidden-sm
     = image_tag user_photo_url(topic.user), size: '30x30', class: "img-thumbnail", alt: '', style: "min-height:#{30+5}px;min-width:#{30+5}px;", title: topic.user.forum_name, data: { toggle: 'tooltip', container: 'body', placement: 'top' }
   %td
@@ -9,11 +9,11 @@
         %span.glyphicon.glyphicon-star.primary-orange
       - if topic.locked?
         %span.glyphicon.glyphicon-lock.text-muted
-      = link_to topic.name, [topic.forum, topic]
+      = link_to topic.name, topic
       - if topic.status == 'pending_review'
         %span.label.label-success New Topic
         Pending Review
-      - elsif topic.has_posts_pending_review? and current_user and current_user.moderator?
+      - elsif topic.has_posts_pending_review? && current_user && current_user.moderator?
         %span.label.label-primary= pluralize(topic.posts.where(status: 'pending_review').count, 'New Post')
         Pending Review
       - if topic.status == 'spam'

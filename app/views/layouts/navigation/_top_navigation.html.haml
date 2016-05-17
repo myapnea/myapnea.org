@@ -28,8 +28,8 @@
           = link_to "#{current_user ? 'Dashboard' : 'Home'}", root_path
         %li{ class: params[:controller] == 'blog' ? 'active' : nil }
           = link_to 'Blog', blog_path
-        %li{ class: "#{'active' if @active_top_nav_link == :forums }" }
-          = link_to 'Forums', forums_path, data: { no_turbolink: true }
+        %li{ class: params[:controller].in?(%w(topics posts)) ? 'active' : nil }
+          = link_to 'Forum', topics_path
         %li{ class: "#{'active' if @active_top_nav_link == :surveys }" }
           = link_to 'Surveys', surveys_path
 

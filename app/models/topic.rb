@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
 class Topic < ActiveRecord::Base
-
   STATUS = [['Approved', 'approved'], ['Pending Review', 'pending_review'], ['Marked as Spam', 'spam'], ['Hidden', 'hidden']]
-
   POSTS_PER_PAGE = 20
 
   attr_accessor :description, :migration_flag
@@ -24,10 +22,11 @@ class Topic < ActiveRecord::Base
   scope :not_research, -> { where('topics.id NOT IN (select research_topics.topic_id from research_topics where research_topics.topic_id IS NOT NULL)')}
 
   # Model Validation
-  validates_presence_of :name, :user_id, :forum_id, message: "The title cannot be blank."
-  validates_uniqueness_of :slug, scope: [ :deleted, :forum_id ], allow_blank: true, message: "This topic title already exists in this forum."
-  validates_format_of :slug, with: /\A(?!\Anew\Z)[a-z][a-z0-9\-]*\Z/, message: "The format of the slug is invalid."
-  validates_presence_of :description, if: :requires_description?
+  validates :user_id, presence: true
+  validates :name, presence: { message: 'The title cannot be blank.' }
+  validates :description, presence: true, if: :requires_description?
+  validates :slug, uniqueness: { scope: :deleted, message: 'This topic title already exists on the forum.' }, allow_blank: true
+  validates :slug, format: { with: /\A(?!\Anew\Z)[a-z][a-z0-9\-]*\Z/, message: 'The format of the slug is invalid.' }
 
   # Model Relationships
   belongs_to :user
@@ -44,19 +43,19 @@ class Topic < ActiveRecord::Base
   end
 
   def hidden?
-    self.status == 'hidden'
+    status == 'hidden'
   end
 
   def editable_by?(current_user)
-    (not self.locked? and self.user == current_user) or current_user.moderator?
+    (!locked? && user == current_user) || current_user.moderator?
   end
 
   def deletable_by?(current_user)
-    self.user == current_user or current_user.owner?
+    user == current_user || current_user.owner?
   end
 
   def get_or_create_subscription(current_user)
-    current_user.subscriptions.where( topic_id: self.id ).first_or_create
+    current_user.subscriptions.where(topic_id: id).first_or_create
   end
 
   def set_subscription!(notify, current_user)
@@ -117,6 +116,6 @@ class Topic < ActiveRecord::Base
   end
 
   def requires_description?
-    self.new_record? and self.migration_flag != '1' and !self.forum.for_research_topics?
+    new_record? && migration_flag != '1'
   end
 end

@@ -1,13 +1,13 @@
-= form_for [@forum, @topic], html: { class: 'form-horizontal' } do |f|
+= form_for @topic, html: { class: 'form-horizontal' } do |f|
   - if @topic.errors.any?
     #error_explanation.bs-callout.bs-callout-danger
       %h4
-        = pluralize(@topic.errors.count, "error")
+        = pluralize @topic.errors.count, 'error'
         prohibited this topic from being saved
       %ul
         - @topic.errors.messages.each do |key, msg|
-          - if key == :slug or key == :name
-            %li= msg.join(", ")
+          - if [:slug, :name].include?(key)
+            %li= msg.join(', ')
           - else
             %li= "#{key.to_s.titleize} #{msg.join(", ")}"
 
@@ -42,11 +42,6 @@
         = f.select :status, [['---', nil]] + Topic::STATUS, {}, class: 'form-control'
 
     .form-group
-      = f.label :forum_id, nil, class: 'col-md-2 control-label'
-      .col-md-10
-        = f.select :forum_id, Forum.current.pluck(:name, :id), {}, class: 'form-control'
-
-    .form-group
       .col-md-offset-2.col-md-10
         .checkbox
           %label
@@ -63,4 +58,4 @@
   .form-group
     .col-md-offset-2.col-md-10
       = f.submit nil, class: 'btn btn-primary'
-      = link_to 'Cancel', (@topic.new_record? ? @forum : [@forum, @topic]), class: 'btn btn-default'
+      = link_to 'Cancel', (@topic.new_record? ? topics_path : @topic), class: 'btn btn-default'

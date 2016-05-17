@@ -21,12 +21,12 @@
                 %span.caret
               %ul.dropdown-menu.dropdown-menu-right{ 'aria-labelledby' => 'dLabel'}
                 - if post.pending_review? and current_user.moderator?
-                  %li= link_to 'Approve', forum_topic_post_path(post.forum, post.topic, post, post: { status: 'approved' }), method: :patch
-                  %li= link_to 'Mark as Spam', forum_topic_post_path(post.forum, post.topic, post, post: { status: 'spam' }), method: :patch
-                  %li= link_to 'Hide', forum_topic_post_path(post.forum, post.topic, post, post: { status: 'hidden' }), method: :patch
-                %li= link_to 'Link to this post', forum_topic_post_path(post.forum, post.topic, post)
-                %li= link_to 'Edit', edit_forum_topic_post_path(post.forum, post.topic, post)
-                %li= link_to 'Delete', forum_topic_post_path(post.forum, post.topic, post), method: :delete, data: { confirm: "Are you sure?" }
+                  %li= link_to 'Approve', topic_post_path(post.topic, post, post: { status: 'approved' }), method: :patch
+                  %li= link_to 'Mark as Spam', topic_post_path(post.topic, post, post: { status: 'spam' }), method: :patch
+                  %li= link_to 'Hide', topic_post_path(post.topic, post, post: { status: 'hidden' }), method: :patch
+                %li= link_to 'Link to this post', topic_post_path(post.topic, post)
+                %li= link_to 'Edit', edit_topic_post_path(post.topic, post)
+                %li= link_to 'Delete', topic_post_path(post.topic, post), method: :delete, data: { confirm: "Are you sure?" }
         %p.f500
           = link_to post.user.forum_name, member_path(post.user.forum_name), class: 'no-underline darkerer-blue'
         %p.small

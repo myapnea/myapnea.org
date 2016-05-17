@@ -1,4 +1,4 @@
-= form_for [@forum, @topic, @post], html: { class: 'form-horizontal' } do |f|
+= form_for [@topic, @post], html: { class: 'form-horizontal' } do |f|
   - if @post.errors.any?
     #error_explanation.bs-callout.bs-callout-danger
       %h4
@@ -29,4 +29,4 @@
   .form-group
     .col-md-offset-2.col-md-10
       = f.submit nil, class: 'btn btn-primary'
-      = link_to 'Cancel', (@post.new_record? ? [@forum, @topic] : forum_topic_post_path(@forum, @topic, @post)), class: 'btn btn-default'
+      = link_to 'Cancel', (@post.new_record? ? @topic : [@topic, @post]), class: 'btn btn-default'

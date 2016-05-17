@@ -36,7 +36,7 @@
             %td= research_topic.created_at.strftime("%-m/%-d/%Y")
             %td
               .btn-group
-                = link_to "Edit Topic", edit_forum_topic_path(research_topic.topic.forum, research_topic.topic), class: "btn btn-primary btn-xs"
-                = link_to "Edit Post", edit_forum_topic_post_path(research_topic.topic.forum, research_topic.topic, research_topic.topic.posts.first), class: "btn btn-primary btn-xs"
-                = link_to "Moderate", edit_research_topic_path(research_topic), class: "btn btn-success btn-xs"
-                = link_to "Delete", research_topic_path(research_topic), method: :delete, class: "btn btn-danger btn-xs"
+                = link_to 'Edit Topic', edit_topic_path(research_topic.topic), class: 'btn btn-primary btn-xs'
+                = link_to 'Edit Post', edit_topic_post_path(research_topic.topic, research_topic.topic.posts.first), class: 'btn btn-primary btn-xs'
+                = link_to 'Moderate', edit_research_topic_path(research_topic), class: 'btn btn-success btn-xs'
+                = link_to 'Delete', research_topic_path(research_topic), method: :delete, class: 'btn btn-danger btn-xs'
