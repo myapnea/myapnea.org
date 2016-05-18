@@ -16,7 +16,8 @@
     = link_to broadcast_comment.user.forum_name, '#', data: { object: 'suppress-click' }
   %span.text-muted{ style: 'font-size: 60%' }
     - symbol = '+' if broadcast_comment.rank >= 0
-    = "#{symbol}#{broadcast_comment.rank} point#{'s' if broadcast_comment.rank.abs != 1}"
+    = "#{symbol}#{number_with_delimiter(broadcast_comment.rank)} point#{'s' if broadcast_comment.rank.abs != 1}"
+    &middot;
     %span{ data: { toggle: 'tooltip', container: 'body', title: broadcast_comment.updated_at.strftime('%B %d, %Y at %-l:%M %p') } }
       = time_ago_in_words broadcast_comment.updated_at
       ago

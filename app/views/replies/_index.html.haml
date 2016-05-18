@@ -1,0 +1,54 @@
+- reply_scope = @chapter.replies.where(reply_id: nil)
+
+- if params[:sort_by] == 'new'
+  - reply_scope = reply_scope.order(id: :desc)
+- elsif params[:sort_by] == 'best'
+  - reply_scope = reply_scope.order(:id)
+- else
+  - reply_scope = reply_scope.order(:id)
+
+- @replies = reply_scope.page(params[:page]).per(20)
+
+- content_for :call_to_action do
+  .broadcast-discussion{ style: 'background-color: #fff' }
+    .container
+      .broadcast-discussion-header
+        - if @replies.count > 0
+          - if @replies.count == 1
+          - elsif @replies.count < @replies.total_count
+            top
+          - else
+            all
+          = pluralize(@replies.count, 'reply')
+        - else
+          no replies
+
+        %div{ style: 'display: inline-block' }
+          &middot; sorted by
+        .dropdown{ style: 'display: inline-block'}
+          = link_to '#', data: { target: '#', toggle: 'dropdown' }, role: 'button', aria: { haspopup: 'true', expanded: 'false' }, id: 'sort-by-dropdown', class: 'text-muted' do
+            - case params[:sort_by] when 'new'
+              new
+            - when 'best'
+              best
+            - else
+              oldest
+            %span.caret
+          %ul.dropdown-menu{ aria: { labelledby: 'status-dropdown' } }
+            %li= link_to 'oldest', chapter_path(chapter, sort_by: 'old'), style: (params[:sort_by].blank? || params[:sort_by] == 'old') ? 'font-weight:bold;' : ''
+            %li= link_to 'best', chapter_path(chapter, sort_by: 'best'), style: (params[:sort_by] == 'best') ? 'font-weight:bold;' : ''
+            %li= link_to 'new', chapter_path(chapter, sort_by: 'new'), style: (params[:sort_by] == 'new') ? 'font-weight:bold;' : ''
+
+        %span#write_comment_root_new
+          &middot;
+          = link_to 'reply', async_chapter_reply_path(chapter_id: @chapter, parent_comment_id: 'root', reply_id: 'new'), method: :post, remote: true
+
+
+      #comment_container_root_new{ style: 'display:none' }
+        - reply = @chapter.replies.new
+        = render 'replies/form', reply: reply
+
+      - @replies.each do |reply|
+        = render 'replies/show', reply: reply, level: defined?(level) ? level + 1 : 0
+
+  .centered= paginate @replies, theme: 'bootstrap-small'

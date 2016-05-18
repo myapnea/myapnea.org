@@ -12,6 +12,12 @@
     - Admin::Category.current.order(:name).each do |category|
       %li= link_to category.name, blog_category_path(category: category), class: (current_category == category.slug ? 'active' : nil)
 
+    - if current_user && current_user.community_contributor?
+      %li
+        = link_to new_broadcast_path do
+          %span.glyphicon.glyphicon-plus
+          New Blog Post
+
     - if @author
       %li.blog-menu-header Author
       %li= link_to @author.forum_name, blog_author_path(author: @author.forum_name), class: (@broadcast ? nil : 'active')

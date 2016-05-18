@@ -1,0 +1,13 @@
+one:
+  user: user_1
+  description: This topic was great!
+  chapter: one
+  # reply:
+  deleted: false
+
+two:
+  user: user_2
+  description: I totally agree with user_1.
+  chapter: one
+  reply: one
+  deleted: false

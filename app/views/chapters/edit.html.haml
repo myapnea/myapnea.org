@@ -1,0 +1,11 @@
+- @title = "Edit chapter: #{@chapter.title_was}"
+
+.content-main-header2
+  %h1
+    = link_to 'Forum', chapters_path
+    &middot;
+    = link_to @chapter.title_was, @chapter
+    &middot;
+    Edit
+
+= render 'form'

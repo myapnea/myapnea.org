@@ -3,10 +3,6 @@
 .content-main-header2
   %h1
     Blog
-    - if current_user && current_user.community_contributor?
-      = link_to new_broadcast_path, class: 'btn btn-xs btn-default' do
-        %span.glyphicon.glyphicon-plus
-        New Blog Post
 
 .row
   .col-sm-9

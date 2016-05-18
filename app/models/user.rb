@@ -59,6 +59,8 @@ class User < ActiveRecord::Base
   has_many :answers
   has_many :broadcasts, -> { current }
   has_many :broadcast_comments
+  has_many :chapters, -> { current }
+  has_many :replies
   has_many :votes, -> { where deleted: false }
   has_one :social_profile, -> { where deleted: false }
   has_many :research_topics, -> { where deleted: false }
@@ -152,19 +154,35 @@ class User < ActiveRecord::Base
     end
   end
 
+  def editable_chapters
+    if moderator? || owner?
+      Chapter.current
+    else
+      chapters
+    end
+  end
+
+  def editable_replies
+    if moderator?
+      Reply.current
+    else
+      replies
+    end
+  end
+
   def editable_posts
-    if self.moderator? or self.owner?
+    if moderator? || owner?
       Post.current.with_unlocked_topic
     else
-      self.posts.with_unlocked_topic
+      posts.with_unlocked_topic
     end
   end
 
   def deletable_posts
-    if self.owner?
+    if owner?
       Post.current.with_unlocked_topic
     else
-      self.posts.with_unlocked_topic
+      posts.with_unlocked_topic
     end
   end
 

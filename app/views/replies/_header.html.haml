@@ -1,0 +1,23 @@
+- unless reply.deleted?
+  %span.pull-right
+    = render 'replies/vote', reply: reply, just_voted: just_voted
+.nowrap.overflow-hidden
+  - if reply.below_threshold?
+    = link_to '[+]', '#', data: { object: 'toggle-reply' }, style: 'text-decoration:none', class: 'text-muted'
+  - else
+    = link_to '[-]', '#', data: { object: 'toggle-reply' }, style: 'text-decoration:none', class: 'text-muted'
+  - if reply.deleted?
+    %small
+      %i.text-muted [deleted]
+  - else
+    - if @chapter.user == reply.user
+      %small
+        %i.fa.fa-moon-o.primary-orange{ data: { toggle: 'tooltip', title: 'Topic Author', container: 'body' } }
+    = link_to reply.user.forum_name, '#', data: { object: 'suppress-click' }
+  %span.text-muted{ style: 'font-size: 60%' }
+    - symbol = '+' if reply.rank >= 0
+    = "#{symbol}#{number_with_delimiter(reply.rank)} point#{'s' if reply.rank.abs != 1}"
+    &middot;
+    %span{ data: { toggle: 'tooltip', container: 'body', title: reply.updated_at.strftime('%B %d, %Y at %-l:%M %p') } }
+      = time_ago_in_words reply.updated_at
+      ago

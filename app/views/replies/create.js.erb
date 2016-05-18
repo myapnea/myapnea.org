@@ -1,0 +1,3 @@
+hideTopicReplyBox("<%= @reply.parent_comment_id %>", "new");
+<% @replies = BroadcastComment.none %>
+$("#comment_container_<%= @reply.parent_comment_id %>_new").after("<%=j render 'replies/show', reply: @reply, level: @reply.computed_level %>");

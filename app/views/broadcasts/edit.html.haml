@@ -1,14 +1,12 @@
 - @title = "Edit Broadcast: #{@broadcast.title_was}"
 
-- content_for :banner do
-  .content-main-header
-    .container
-      %h1
-        = link_to 'Blog Posts', broadcasts_path
-        &middot;
-        = link_to @broadcast.title_was, @broadcast
-        &middot;
-        Edit
+.content-main-header2
+  %h1
+    = link_to 'Blog Posts', broadcasts_path
+    &middot;
+    = link_to @broadcast.title_was, @broadcast
+    &middot;
+    Edit
 
 - @background_color = '#fff'
-.container= render 'form'
+= render 'form'

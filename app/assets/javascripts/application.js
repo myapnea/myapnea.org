@@ -79,3 +79,4 @@
 //= require extensions/filedrag
 //= require objects/blog
 //= require objects/images
+//= require objects/topics

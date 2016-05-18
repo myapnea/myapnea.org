@@ -7,6 +7,11 @@ Rails.application.routes.draw do
       post :register
       post :reply
     end
+    namespace :chapter do
+      post :login
+      post :register
+      post :reply
+    end
   end
 
   resources :engagements do
@@ -349,6 +354,17 @@ Rails.application.routes.draw do
       collection do
         post :preview
       end
+    end
+  end
+
+  resources :chapters
+
+  resources :replies do
+    collection do
+      post :preview
+    end
+    member do
+      post :vote
     end
   end
 

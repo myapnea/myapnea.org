@@ -1,0 +1,62 @@
+.content-main-header2
+  .pull-right{ style: 'margin: 5px 0 0 0' }
+    = form_tag search_path, method: :get, id: 'search-form', style: 'margin-bottom:20px', class: 'form-inline' do
+      .input-group
+        = text_field_tag :search, params[:search], class: 'form-control', style: 'width:100%', placeholder: 'Search MyApnea', autocomplete: 'off'
+        %span.input-group-btn
+          = link_to '#', data: { object: 'submit', target: '#search-form' }, class: 'btn btn-primary', name: nil do
+            %span.glyphicon.glyphicon-search
+
+  %h1 Forum
+
+= render 'layouts/per_page', per_page: 40, object_count: @chapters.total_count
+= link_to 'Start New Topic', new_chapter_path, class: 'btn btn-primary'
+
+- if @chapters.count > 0 || (params[:s].blank? && params[:status].blank? && params[:a].blank?)
+  - if @author
+    .alert.alert-info
+      Showing topics that include posts by
+      %strong= @author.forum_name
+  - elsif params[:a].present? && @author.blank?
+    .alert.alert-warning
+      There are no posts by
+      = params[:a]
+      in this forum.
+
+%table.table.table-striped.table-hover
+  %col
+  %col{ width: '50px' }
+  %col.hidden-xs.hidden-sm{ width: '50px' }
+  %col{ width: '150px' }
+  %thead
+    %tr
+      %th
+      %th.small
+        Replies
+      %th.small.hidden-xs.hidden-sm
+        Views
+      %th.small
+        Last Post
+  %tbody
+    - @chapters.each do |chapter|
+      %tr
+        %td
+          .wrapword
+            - if chapter.pinned?
+              %span.glyphicon.glyphicon-star.primary-orange
+            = link_to chapter.title, chapter
+          .broadcast-info{ style: 'margin-bottom: 0' }
+            by
+            = image_tag user_photo_url(chapter.user), size: '16x16', class: 'img-thumbnail', alt: '', style: "height:#{16+5}px;width:#{16+5}px;", title: chapter.user.forum_name, data: { toggle: 'tooltip', container: 'body', placement: 'top' }
+            = chapter.user.forum_name
+            = link_to 'Page 1', chapter, class: 'btn btn-xs btn-default'
+
+        %td.text-muted
+          %span.small= number_with_delimiter chapter.replies.count
+        %td.text-muted.hidden-xs.hidden-sm{ class: "#{chapter.pinned? ? 'f500' : 'f300'}" }
+          %span.small= number_with_delimiter chapter.view_count
+        %td.text-muted
+          %span.small= time_ago_in_words(chapter.last_reply_at) + ' ago'
+
+
+.centered= paginate @chapters, theme: 'bootstrap-small'
