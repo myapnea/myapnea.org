@@ -368,7 +368,8 @@ Rails.application.routes.draw do
     end
   end
 
-  get 'forums/:category/*path', to: redirect('forum/%{path}')
+  get 'forums/:category/topics/*path', to: redirect('forum/%{path}')
+  get 'forums/:category', to: redirect('forum')
   get 'forums', to: redirect('forum')
 
   get 'update_account', to: redirect('account')
