@@ -69,6 +69,7 @@ if typeof Turbolinks isnt 'undefined' and Turbolinks.supported
   builderAnswerOptionsReady()
   fileDragReady()
   loadDatepicker()
+  topicsReady()
 
 $(document).ready(loaders)
 $(document)

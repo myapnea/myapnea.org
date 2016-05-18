@@ -3,7 +3,6 @@ class CreateChapters < ActiveRecord::Migration
     create_table :chapters do |t|
       t.string :title
       t.string :slug
-      t.text :description
       t.integer :user_id
       t.boolean :pinned, null: false, default: false
       t.datetime :last_reply_at

@@ -1,0 +1,8 @@
+.highlighted-reply {
+  background-color: $state-warning-bg;
+
+  > .broadcast-comment.broadcast-comment-even,
+  > .broadcast-comment.broadcast-comment-odd {
+    background-color: $state-warning-bg;
+  }
+}

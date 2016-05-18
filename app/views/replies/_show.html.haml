@@ -1,5 +1,5 @@
-%div{ class: (defined?(level) && level == 0 ? 'content-container' : nil) }
-  %a.anchor-top{ name: "comment-#{reply.id}" }
+%a.anchor-top{ name: "comment-#{reply.id}" }
+%div{ id: "comment-#{reply.id}", class: (defined?(level) && level == 0 ? 'content-container' : nil), style: 'position:relative' }
   .broadcast-comment{ class: (defined?(level) && level.even? ? 'broadcast-comment-even' : 'broadcast-comment-odd' ) }
     .broadcast-comment-header{ data: { parent_comment_id: reply.parent_comment_id, reply_id: reply.id } }
       = render 'replies/header', reply: reply, just_voted: false

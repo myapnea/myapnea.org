@@ -6,30 +6,4 @@
     &middot;
     = @title
 
-.content-container
-  .broadcast-comment
-    .broadcast-comment-header
-      .nowrap.overflow-hidden
-        = link_to '[-]', '#', data: { object: 'toggle-reply' }, style: 'text-decoration:none', class: 'text-muted'
-        - if @chapter.deleted?
-          %small
-            %i.text-muted [deleted]
-        - else
-          %small
-            %i.fa.fa-moon-o.primary-orange{ data: { toggle: 'tooltip', title: 'Topic Author', container: 'body' } }
-          = link_to @chapter.user.forum_name, '#', data: { object: 'suppress-click' }
-        %span.text-muted{ style: 'font-size: 60%' }
-          = "+#{number_with_delimiter(@chapter.view_count)} view#{'s' if @chapter.view_count != 1}"
-          &middot;
-          %span{ data: { toggle: 'tooltip', container: 'body', title: @chapter.created_at.strftime('%B %d, %Y at %-l:%M %p') } }
-            = time_ago_in_words @chapter.created_at
-            ago
-
-    .broadcast-comment-body
-      %div
-        = simple_markdown(sanitize(@chapter.description.gsub(/</, "&lt;")).gsub('&gt;', '>'), @chapter.user.can_post_links?, true, 'table table-striped')
-      - if current_user && @chapter.editable_by?(current_user)
-        = link_to 'edit', edit_chapter_path(@chapter)
-
-%a.anchor-top{ name: 'comments' }
 = render 'replies/index', chapter: @chapter

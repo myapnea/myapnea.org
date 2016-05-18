@@ -7,11 +7,10 @@ namespace :forum do
     ActiveRecord::Base.connection.execute('TRUNCATE replies RESTART IDENTITY;')
 
     Topic.not_research.order(:id).each do |topic|
-      first_post = topic.posts.order(:id).first
       chapter = Chapter.create(
+        migration_flag: '1',
         title: topic.name,
         slug: topic.slug,
-        description: first_post.description,
         user_id: topic.user_id,
         pinned: false,
         last_reply_at: topic.posts.last.created_at,
@@ -20,7 +19,7 @@ namespace :forum do
         created_at: topic.created_at,
         updated_at: topic.updated_at
       )
-      topic.posts.order(:id)[1..-1].each do |post|
+      topic.posts.order(:id).each do |post|
         reply = chapter.replies.create(
           user_id: post.user_id,
           description: post.description,

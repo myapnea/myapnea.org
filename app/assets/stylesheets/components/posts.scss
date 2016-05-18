@@ -109,9 +109,9 @@
 
 // Anchors
 .anchor-top {
-  position: relative;
-  top:-102px;
   display: block;
   height: 0;
-  width:0;
+  position: relative;
+  top: -($header-height);
+  width: 0;
 }

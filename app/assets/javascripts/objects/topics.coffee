@@ -8,6 +8,13 @@
   $("#comment_container_#{parent_comment_id}_#{reply_id}").hide()
   $("#write_comment_#{parent_comment_id}_#{reply_id}").show()
 
+@topicsReady = () ->
+  if window.location.hash == '#write-a-reply'
+    $("#write_comment_root_new a").click()
+  else if window.location.hash.substring(1,8) == 'comment'
+    $("#{window.location.hash}").addClass('highlighted-reply')
+
+
 $(document)
   .on('click', '[data-object~="toggle-reply"]', () ->
     $(this).closest('.broadcast-comment-header').siblings('.broadcast-comment-body').toggle()

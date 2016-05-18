@@ -22,6 +22,24 @@ class Reply < ActiveRecord::Base
 
   # Model Methods
 
+  def number
+    chapter.replies.where(reply_id: nil).pluck(:id).index(id) + 1
+  rescue
+    0
+  end
+
+  def page
+    if reply
+      reply.page
+    else
+      ((number - 1) / Chapter::REPLIES_PER_PAGE) + 1
+    end
+  end
+
+  def anchor
+    "comment-#{id}"
+  end
+
   def rank
     reply_users.sum(:vote)
   end

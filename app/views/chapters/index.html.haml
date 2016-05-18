@@ -52,7 +52,7 @@
             = link_to 'Page 1', chapter, class: 'btn btn-xs btn-default'
 
         %td.text-muted
-          %span.small= number_with_delimiter chapter.replies.count
+          %span.small= number_with_delimiter chapter.replies.count - 1
         %td.text-muted.hidden-xs.hidden-sm{ class: "#{chapter.pinned? ? 'f500' : 'f300'}" }
           %span.small= number_with_delimiter chapter.view_count
         %td.text-muted

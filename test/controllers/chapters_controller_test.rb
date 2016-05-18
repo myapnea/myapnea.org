@@ -35,7 +35,7 @@ class ChaptersControllerTest < ActionController::TestCase
     end
     assert_not_nil assigns(:chapter)
     assert_equal 'Topic Title', assigns(:chapter).title
-    assert_equal 'This is the my new forum topic.', assigns(:chapter).description
+    assert_equal 'This is the my new forum topic.', assigns(:chapter).replies.first.description
     assert_equal users(:user_1), assigns(:chapter).user
     assert_redirected_to assigns(:chapter)
   end

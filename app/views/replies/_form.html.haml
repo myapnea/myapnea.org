@@ -54,7 +54,7 @@
       .pull-right
         = link_to '#', data: { object: 'chapter-no-write-comment', parent_comment_id: parent_comment_id, reply_id: reply_id }, style: 'color:#1b244b;font-weight:bold;text-decoration:none' do
           &times;
-      Sign in to Comment
+      Sign in to leave a reply
     .preview-body{ style: 'min-height: inherit;border-bottom: 3px solid #ffa400' }
       = form_tag async_chapter_login_path, method: :post, remote: true, class: 'form-inline' do |f|
         = hidden_field_tag :chapter_id, @chapter.to_param

@@ -5,7 +5,7 @@
 class NotificationsController < ApplicationController
   before_action :authenticate_user!
   before_action :find_notification_or_redirect, only: [:show, :update]
-  before_action :set_broadcast, only: [:mark_all_as_read]
+  before_action :set_broadcast_or_chapter, only: [:mark_all_as_read]
 
   # GET /notifications
   def index
@@ -32,16 +32,19 @@ class NotificationsController < ApplicationController
   def mark_all_as_read
     if @broadcast
       @notifications = current_user.notifications.where(broadcast_id: @broadcast.id)
-      @notifications.update_all read: true
+    elsif @chapter
+      @notifications = current_user.notifications.where(chapter_id: @chapter.id)
     else
       @notifications = Notification.none
     end
+    @notifications.update_all read: true
   end
 
   private
 
-  def set_broadcast
+  def set_broadcast_or_chapter
     @broadcast = Broadcast.current.published.find_by_id params[:broadcast_id]
+    @chapter = Chapter.current.find_by_id params[:chapter_id]
   end
 
   def find_notification_or_redirect
@@ -55,6 +58,7 @@ class NotificationsController < ApplicationController
 
   def notification_redirect_path
     return blog_post_path(@notification.broadcast.url_hash.merge(anchor: "comment-#{@notification.broadcast_comment_id}")) if @notification.broadcast_comment
+    return reply_path(@notification.reply) if @notification.reply
     notifications_path
   end
 end

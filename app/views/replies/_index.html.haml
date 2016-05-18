@@ -1,54 +1,22 @@
-- reply_scope = @chapter.replies.where(reply_id: nil)
+- page = (params[:page].to_i > 1 ? params[:page].to_i : 1)
+- @replies = @chapter.replies.where(reply_id: nil).page(page).per(Chapter::REPLIES_PER_PAGE)
 
-- if params[:sort_by] == 'new'
-  - reply_scope = reply_scope.order(id: :desc)
-- elsif params[:sort_by] == 'best'
-  - reply_scope = reply_scope.order(:id)
-- else
-  - reply_scope = reply_scope.order(:id)
+.broadcast-discussion{ style: 'background-color: #fff; position:relative' }
+  %div{ style: 'margin-bottom: 20px' }
+    - if current_user && @chapter.editable_by?(current_user)
+      = link_to 'Edit Title', edit_chapter_path(@chapter), class: 'btn btn-default'
+    = link_to 'Write a Reply', chapter_path(@chapter, page: @chapter.last_page, anchor: 'write-a-reply'), class: 'btn btn-primary'
 
-- @replies = reply_scope.page(params[:page]).per(20)
+  - @replies.each do |reply|
+    = render 'replies/show', reply: reply, level: defined?(level) ? level + 1 : 0
 
-- content_for :call_to_action do
-  .broadcast-discussion{ style: 'background-color: #fff' }
-    .container
-      .broadcast-discussion-header
-        - if @replies.count > 0
-          - if @replies.count == 1
-          - elsif @replies.count < @replies.total_count
-            top
-          - else
-            all
-          = pluralize(@replies.count, 'reply')
-        - else
-          no replies
+  - if page == @chapter.last_page
+    #comment_container_root_new{ style: 'display:none' }
+      - reply = @chapter.replies.new
+      = render 'replies/form', reply: reply
 
-        %div{ style: 'display: inline-block' }
-          &middot; sorted by
-        .dropdown{ style: 'display: inline-block'}
-          = link_to '#', data: { target: '#', toggle: 'dropdown' }, role: 'button', aria: { haspopup: 'true', expanded: 'false' }, id: 'sort-by-dropdown', class: 'text-muted' do
-            - case params[:sort_by] when 'new'
-              new
-            - when 'best'
-              best
-            - else
-              oldest
-            %span.caret
-          %ul.dropdown-menu{ aria: { labelledby: 'status-dropdown' } }
-            %li= link_to 'oldest', chapter_path(chapter, sort_by: 'old'), style: (params[:sort_by].blank? || params[:sort_by] == 'old') ? 'font-weight:bold;' : ''
-            %li= link_to 'best', chapter_path(chapter, sort_by: 'best'), style: (params[:sort_by] == 'best') ? 'font-weight:bold;' : ''
-            %li= link_to 'new', chapter_path(chapter, sort_by: 'new'), style: (params[:sort_by] == 'new') ? 'font-weight:bold;' : ''
+    %a.anchor{ name: 'write-a-reply' }
+    #write_comment_root_new{ style: 'margin-bottom: 20px' }
+      = link_to 'Write a Reply', async_chapter_reply_path(chapter_id: @chapter, parent_comment_id: 'root', reply_id: 'new'), method: :post, remote: true, class: 'btn btn-primary'
 
-        %span#write_comment_root_new
-          &middot;
-          = link_to 'reply', async_chapter_reply_path(chapter_id: @chapter, parent_comment_id: 'root', reply_id: 'new'), method: :post, remote: true
-
-
-      #comment_container_root_new{ style: 'display:none' }
-        - reply = @chapter.replies.new
-        = render 'replies/form', reply: reply
-
-      - @replies.each do |reply|
-        = render 'replies/show', reply: reply, level: defined?(level) ? level + 1 : 0
-
-  .centered= paginate @replies, theme: 'bootstrap-small'
+.centered= paginate @replies, theme: 'bootstrap-small'

@@ -3,7 +3,6 @@
 one:
   title: One
   slug: one
-  description: MyText
   user: user_1
   pinned: false
   last_reply_at: 2016-05-18 11:19:02
@@ -13,7 +12,6 @@ one:
 two:
   title: Two
   slug: two
-  description: MyText
   user: user_2
   pinned: false
   last_reply_at: 2016-05-18 11:19:02

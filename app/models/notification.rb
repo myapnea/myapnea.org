@@ -9,6 +9,8 @@ class Notification < ActiveRecord::Base
   belongs_to :user
   belongs_to :broadcast
   belongs_to :broadcast_comment
+  belongs_to :chapter
+  belongs_to :reply
 
   # Notification Methods
 

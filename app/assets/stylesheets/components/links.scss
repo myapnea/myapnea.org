@@ -30,16 +30,17 @@ a.darkerer-blue:hover {
 }
 
 a.anchor {
-  position:relative;
-  top:-81px;
-  display:block;
-  visibility: hidden;
+  display: block;
+  height: 0;
+  position: relative;
+  top: -($header-height);
+  width: 0;
 }
 
 a.settings-anchor {
-  position:relative;
-  top:-121px;
-  display:block;
+  position: relative;
+  top: -121px;
+  display: block;
   visibility: hidden;
 }
 
