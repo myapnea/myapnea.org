@@ -26,7 +26,7 @@ class Chapter < ActiveRecord::Base
 
   # Model Methods
   def to_param
-    slug.to_s
+    slug_was.to_s
   end
 
   def editable_by?(current_user)
