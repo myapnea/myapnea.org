@@ -262,10 +262,6 @@ Rails.application.routes.draw do
 
   # Social Section
   get 'community', to: 'social#overview', via: :get, as: :community
-  get 'social/discussion', to: redirect('forums')
-  get 'social/discussion(/*path)', to: redirect('forums/%{path}')
-  get 'social/profile', to: redirect('account')
-  get 'profile', to: redirect('account')
 
   # Account Section
   scope module: 'account' do
@@ -356,11 +352,11 @@ Rails.application.routes.draw do
     end
   end
 
+  get 'forums/:category/*path', to: redirect('forum/%{path}')
   get 'forums', to: redirect('forum')
 
   get 'update_account', to: redirect('account')
   get 'change_password', to: redirect('account')
-  get 'social', to: redirect('community')
 
   namespace :api do
     namespace :v1 do
