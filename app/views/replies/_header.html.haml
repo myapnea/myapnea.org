@@ -13,6 +13,7 @@
     - if @chapter.user == reply.user
       %small
         %i.fa.fa-moon-o.primary-orange{ data: { toggle: 'tooltip', title: 'Topic Author', container: 'body' } }
+    = image_tag user_photo_url(reply.user), alt: '', style: "max-height:#{16+3}px;border-radius:4px", title: reply.user.forum_name, data: { toggle: 'tooltip', container: 'body', placement: 'top' }
     = link_to reply.user.forum_name, '#', data: { object: 'suppress-click' }
   %span.text-muted{ style: 'font-size: 60%' }
     - symbol = '+' if reply.rank >= 0

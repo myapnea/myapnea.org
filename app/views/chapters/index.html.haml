@@ -25,17 +25,19 @@
 
 %table.table.table-striped.table-hover
   %col
-  %col{ width: '50px' }
+  %col
+  %col.hidden-xs{ width: '50px' }
   %col.hidden-xs.hidden-sm{ width: '50px' }
-  %col{ width: '150px' }
+  %col.hidden-xs.hidden-sm{ width: '150px' }
   %thead
     %tr
       %th
-      %th.small
+      %th
+      %th.small.hidden-xs
         Replies
       %th.small.hidden-xs.hidden-sm
         Views
-      %th.small
+      %th.small.hidden-xs.hidden-sm
         Last Post
   %tbody
     - @chapters.each do |chapter|
@@ -47,15 +49,19 @@
             = link_to chapter.title, chapter
           .broadcast-info{ style: 'margin-bottom: 0' }
             by
-            = image_tag user_photo_url(chapter.user), size: '16x16', class: 'img-thumbnail', alt: '', style: "height:#{16+5}px;width:#{16+5}px;", title: chapter.user.forum_name, data: { toggle: 'tooltip', container: 'body', placement: 'top' }
+            = image_tag user_photo_url(chapter.user), alt: '', style: "max-height:#{16+3}px;border-radius:4px", title: chapter.user.forum_name, data: { toggle: 'tooltip', container: 'body', placement: 'top' }
             = chapter.user.forum_name
-            = link_to 'Page 1', chapter, class: 'btn btn-xs btn-default'
-
-        %td.text-muted
+        %td.nowrap.small
+          - if chapter.last_page > 1
+            %i.fa.fa-comments-o
+            = link_to '1', chapter, class: 'btn btn-xs btn-default'
+            \...
+            = link_to chapter.last_page, chapter_path(chapter, page: chapter.last_page), class: 'btn btn-xs btn-default'
+        %td.text-muted.hidden-xs
           %span.small= number_with_delimiter chapter.replies.count - 1
         %td.text-muted.hidden-xs.hidden-sm{ class: "#{chapter.pinned? ? 'f500' : 'f300'}" }
           %span.small= number_with_delimiter chapter.view_count
-        %td.text-muted
+        %td.text-muted.hidden-xs.hidden-sm
           %span.small= time_ago_in_words(chapter.last_reply_at) + ' ago'
 
 
