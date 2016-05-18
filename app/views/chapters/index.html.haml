@@ -31,14 +31,12 @@
   %col.hidden-xs.hidden-sm{ width: '150px' }
   %thead
     %tr
-      %th
+      %th.small= link_to 'Topics', chapters_path
       %th
       %th.small.hidden-xs
         Replies
-      %th.small.hidden-xs.hidden-sm
-        Views
-      %th.small.hidden-xs.hidden-sm
-        Last Post
+      = th_sort_field @order, 'chapters.view_count', 'Views', extra_class: 'small hidden-xs hidden-sm'
+      = th_sort_field @order, 'chapters.last_reply_at', 'Last Post', extra_class: 'small hidden-xs hidden-sm'
   %tbody
     - @chapters.each do |chapter|
       %tr

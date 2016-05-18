@@ -3,9 +3,12 @@
 
 .broadcast-discussion{ style: 'background-color: #fff; position:relative' }
   %div{ style: 'margin-bottom: 20px' }
-    - if current_user && @chapter.editable_by?(current_user)
-      = link_to 'Edit Title', edit_chapter_path(@chapter), class: 'btn btn-default'
-    = link_to 'Write a Reply', chapter_path(@chapter, page: @chapter.last_page, anchor: 'write-a-reply'), class: 'btn btn-primary'
+    .pull-right.hidden-xs.hidden-sm{ style: 'margin-top: -20px' }
+      = paginate @replies, theme: 'bootstrap-small'
+    %span.nowrap
+      - if current_user && @chapter.editable_by?(current_user)
+        = link_to 'Edit Title', edit_chapter_path(@chapter), class: 'btn btn-default'
+      = link_to 'Write a Reply', chapter_path(@chapter, page: @chapter.last_page, anchor: 'write-a-reply'), class: 'btn btn-primary'
 
   - @replies.each do |reply|
     = render 'replies/show', reply: reply, level: defined?(level) ? level + 1 : 0

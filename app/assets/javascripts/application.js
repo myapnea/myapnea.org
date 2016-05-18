@@ -23,7 +23,7 @@
 //= require typeahead
 //= require external/bootstrap-datepicker.js
 //= require external/jquery.textcomplete.js
-//= require components/uservoice_left
+// require components/uservoice_left
 //= require google_analytics
 //= require main
 //= require pages

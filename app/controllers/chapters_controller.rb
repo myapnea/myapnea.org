@@ -8,8 +8,9 @@ class ChaptersController < ApplicationController
 
   # GET /chapters
   def index
+    @order = scrub_order(Chapter, params[:order], 'pinned desc, last_reply_at desc, id desc')
     @chapters = Chapter.current
-                       .order(pinned: :desc, last_reply_at: :desc, id: :desc)
+                       .order(@order)
                        .page(params[:page]).per(40)
   end
 

@@ -58,7 +58,7 @@ module ApplicationHelper
     ENV[link_with_tracking].present? ? ENV[link_with_tracking] : default_links[link_id]
   end
 
-  def th_sort_field(order, sort_field, display_name)
+  def th_sort_field(order, sort_field, display_name, extra_class: '')
     sort_field_order = (order == sort_field) ? "#{sort_field} DESC" : sort_field
     if order == sort_field
       css_class = 'sort-up'
@@ -67,7 +67,7 @@ module ApplicationHelper
       css_class = 'sort-down'
       selected_class = 'sort-selected'
     end
-    content_tag(:th, class: ['nowrap', selected_class]) do
+    content_tag(:th, class: [selected_class, extra_class]) do
       link_to url_for(params.merge(order: sort_field_order)), style: 'text-decoration:none', class: css_class do
         display_name.to_s.html_safe
       end
