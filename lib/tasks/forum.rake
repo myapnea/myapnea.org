@@ -16,7 +16,7 @@ namespace :forum do
         pinned: false,
         last_reply_at: topic.posts.last.created_at,
         view_count: topic.views_count,
-        deleted: topic.deleted,
+        deleted: (['hidden', 'spam'].include?(topic.status) ? true : topic.deleted),
         created_at: topic.created_at,
         updated_at: topic.updated_at
       )
@@ -25,7 +25,7 @@ namespace :forum do
           user_id: post.user_id,
           description: post.description,
           reply_id: nil,
-          deleted: post.deleted,
+          deleted: (['hidden', 'spam'].include?(post.status) ? true : post.deleted),
           created_at: post.created_at,
           updated_at: post.updated_at
         )
