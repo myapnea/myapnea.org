@@ -16,7 +16,7 @@
 
 $(document)
   .on('click', '[data-object~="toggle-reply"]', () ->
-    $(this).closest('.reply-header').siblings('.reply-body,.reply-avatar').toggle()
+    $(this).closest('.reply-header').siblings('.reply-body,.reply-avatar-container').toggle()
     if $(this).html() == '[-]'
       $(this).html('[+]')
     else

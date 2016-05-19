@@ -14,7 +14,7 @@
 
   &nbsp;
 
-  = link_to vote_broadcast_comment_path(broadcast_comment, broadcast_id: @broadcast, vote: change_to), method: :post, remote: true, style: 'text-decoration:none', class: klass, tabindex: '-1' do
+  = link_to vote_broadcast_comment_path(broadcast_comment, broadcast_id: @broadcast, vote: change_to), method: :post, remote: true, style: 'text-decoration:none;outline:none', class: klass, tabindex: '-1' do
     %i.fa{ class: "#{icon} #{'just_voted' if just_voted && vote == true}", style: 'width: 16px' }
 
   &nbsp;
@@ -28,6 +28,6 @@
     - icon = 'fa-thumbs-o-down'
     - change_to = 'down'
 
-  = link_to vote_broadcast_comment_path(broadcast_comment, broadcast_id: @broadcast, vote: change_to), method: :post, remote: true, style: 'text-decoration:none', class: klass, tabindex: '-1' do
+  = link_to vote_broadcast_comment_path(broadcast_comment, broadcast_id: @broadcast, vote: change_to), method: :post, remote: true, style: 'text-decoration:none;outline:none', class: klass, tabindex: '-1' do
     %i.fa{ class: "#{icon} #{'just_voted' if just_voted && vote == false}", style: 'width: 16px' }
 

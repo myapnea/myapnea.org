@@ -2,14 +2,15 @@
 %div{ id: "comment-#{reply.id}-container", class: (defined?(level) && level == 0 ? 'content-container' : nil), style: 'position:relative' }
   .reply-container{ class: (defined?(level) && level.even? ? 'reply-even' : 'reply-odd' ) }
     .reply-inner-container
-      .reply-avatar{ style: "#{'display:none' if reply.below_threshold?}" }
-        - size = 50
-        - if reply.deleted?
-          = image_tag 'default-user.jpg', alt: '', class: 'user-thumbnail-forum-no-border', style: "max-height:#{(size*2)+5}px;max-width:#{size+5}px;", title: reply.user.forum_name, data: { toggle: 'tooltip', container: 'body', placement: 'top' }
-        - else
-          = image_tag user_photo_url(reply.user), alt: '', class: 'user-thumbnail-forum-no-border', style: "max-height:#{(size*2)+5}px;max-width:#{size+5}px;", title: reply.user.forum_name, data: { toggle: 'tooltip', container: 'body', placement: 'top' }
-          .centered.text-muted{ style: 'font-size: 9px;margin-top:5px' }
-            = pluralize(number_with_delimiter(reply.user.replies.count), 'post')
+      .reply-avatar-container{ style: "#{'display:none' if reply.below_threshold?}" }
+        .reply-avatar
+          - size = 50
+          - if reply.deleted?
+            = image_tag 'default-user.jpg', alt: '', class: 'user-thumbnail-forum-no-border', style: "max-height:#{(size*2)+5}px;max-width:#{size+5}px;", title: reply.user.forum_name, data: { toggle: 'tooltip', container: 'body', placement: 'top' }
+          - else
+            = image_tag user_photo_url(reply.user), alt: '', class: 'user-thumbnail-forum-no-border', style: "max-height:#{(size*2)+5}px;max-width:#{size+5}px;", title: reply.user.forum_name, data: { toggle: 'tooltip', container: 'body', placement: 'top' }
+            .centered.text-muted{ style: 'font-size: 9px;margin-top:5px' }
+              = pluralize(number_with_delimiter(reply.user.replies.count), 'post')
       .reply-header{ data: { parent_comment_id: reply.parent_comment_id, reply_id: reply.id } }
         = render 'replies/header', reply: reply, just_voted: false
 
