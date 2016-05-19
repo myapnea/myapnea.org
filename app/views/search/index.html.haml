@@ -5,26 +5,19 @@
     Search
     = ENV['website_name']
 
-- @search_results = @broadcasts
-
 .row
   .col-sm-9
-    - if @search_results.count > 0
-      - @broadcasts.each do |broadcast|
-        .search-result
-          .search-result-title
-            = link_to broadcast.title, blog_post_path(broadcast.url_hash)
-          .search-result-author
-            Posted by
-            = broadcast.user.forum_name
-            on
-            %i= broadcast.publish_date.strftime '%B %-d, %Y'
-            - if broadcast.category
-              in
-              = link_to broadcast.category.name, blog_category_path(category: broadcast.category)
-          .search-result-body
-            = render 'search/broadcast', broadcast: broadcast
-      .centered= paginate @broadcasts, theme: 'bootstrap'
+    - if @search_documents.count > 0
+      - @search_documents.each do |document|
+        - case document.searchable.class.to_s when 'Broadcast'
+          = render 'search/broadcast', broadcast: document.searchable
+        - when 'BroadcastComment'
+          = render 'search/broadcast_comment', broadcast_comment: document.searchable
+        - when 'Chapter'
+          = render 'search/chapter', chapter: document.searchable
+        - when 'Reply'
+          = render 'search/reply', reply: document.searchable
+      .centered= paginate @search_documents, theme: 'bootstrap'
     - else
       .centered
         = image_tag 'myapnea/user_types/role_confused.png'

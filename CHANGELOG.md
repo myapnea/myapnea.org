@@ -5,6 +5,7 @@
   - The forums have been simplified into a single forum
   - Users can jump to the last post on a topic from the forum index
   - Forum post and reply interface has been updated
+  - Search now also includes forum topics and replies
 - **General Changes**
   - Simplified user interface and styling across site
 - **Menu Changes**

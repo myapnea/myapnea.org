@@ -2,18 +2,26 @@
 
 # Allows users to discuss a blog post.
 class BroadcastCommentsController < ApplicationController
-  before_action :authenticate_user!, except: [:vote]
-  before_action :find_broadcast_or_redirect, except: [:preview]
-  before_action :find_broadcast_comment_or_redirect, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:vote, :show]
+  before_action :find_broadcast_or_redirect, except: [:preview, :show]
+  before_action :find_viewable_broadcast_comment_or_redirect, only: [:show]
+  before_action :find_editable_broadcast_comment_or_redirect, only: [:edit, :update, :destroy]
 
   # # GET /broadcast_comments
   # def index
   #   @broadcast_comments = BroadcastComment.all
   # end
 
-  # # GET /broadcast_comments/1
-  # def show
-  # end
+  # GET /broadcast_comments/1
+  # GET /broadcast_comments/1.js
+  def show
+    respond_to do |format|
+      format.html do
+        redirect_to blog_post_path(@broadcast_comment.broadcast.url_hash.merge(anchor: 'comments'))
+      end
+      format.js
+    end
+  end
 
   def preview
     @broadcast_comment = current_user.broadcast_comments.new(broadcast_comment_params)
@@ -85,7 +93,12 @@ class BroadcastCommentsController < ApplicationController
     empty_response_or_root_path(blog_path) unless @broadcast
   end
 
-  def find_broadcast_comment_or_redirect
+  def find_viewable_broadcast_comment_or_redirect
+    @broadcast_comment = BroadcastComment.current.find_by_id params[:id]
+    redirect_without_broadcast_comment
+  end
+
+  def find_editable_broadcast_comment_or_redirect
     @broadcast_comment = current_user.editable_broadcast_comments.where(broadcast_id: @broadcast.id).find_by_id params[:id]
     redirect_without_broadcast_comment
   end

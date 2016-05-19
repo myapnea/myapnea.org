@@ -5,6 +5,9 @@
 class Broadcast < ActiveRecord::Base
   # Concerns
   include Deletable
+  include PgSearch
+  multisearchable against: [:title, :short_description, :keywords, :description],
+                  unless: :deleted?
 
   # Named Scopes
   scope :published, -> { current.where(published: true).where('publish_date <= ?', Time.zone.today) }
@@ -21,6 +24,10 @@ class Broadcast < ActiveRecord::Base
   has_many :broadcast_comment_users
 
   # Model Methods
+  def destroy
+    super
+    update_pg_search_document
+  end
 
   def to_param
     slug.to_s

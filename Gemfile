@@ -22,6 +22,7 @@ gem 'bootstrap-sass'                              # Bootstrap JS and SCSS
 gem 'font-awesome-rails'                          # Font Awesome Icons
 gem 'haml'                                        # HAML Views
 gem 'hashids',              '~> 1.0.2'
+gem 'pg_search',            '~> 1.0.5'
 
 # To Be Removed
 

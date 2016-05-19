@@ -8,6 +8,9 @@ class Reply < ActiveRecord::Base
 
   # Concerns
   include Deletable
+  include PgSearch
+  multisearchable against: [:description],
+                  unless: :deleted?
 
   # Named Scopes
 
@@ -21,6 +24,10 @@ class Reply < ActiveRecord::Base
   has_many :reply_users
 
   # Model Methods
+  def destroy
+    super
+    update_pg_search_document
+  end
 
   def number
     chapter.replies.where(reply_id: nil).pluck(:id).index(id) + 1

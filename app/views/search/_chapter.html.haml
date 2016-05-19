@@ -1,0 +1,13 @@
+.search-result
+  .search-result-title
+    = link_to chapter.title, chapter
+  .search-result-author
+    Posted by
+    = chapter.user.forum_name
+    on
+    %i= chapter.created_at.strftime '%B %-d, %Y'
+    on
+    = link_to 'Forum', chapter
+  .search-result-body
+    - terms = @search.split(' & ')
+    = highlight chapter.title, terms.reject { |t| t.size < 3 }, highlighter: '<strong>\1</strong>'

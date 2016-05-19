@@ -8,6 +8,9 @@ class BroadcastComment < ActiveRecord::Base
 
   # Concerns
   include Deletable
+  include PgSearch
+  multisearchable against: [:description],
+                  unless: :deleted?
 
   # Named Scopes
 
@@ -21,6 +24,10 @@ class BroadcastComment < ActiveRecord::Base
   has_many :broadcast_comment_users
 
   # Model Methods
+  def destroy
+    super
+    update_pg_search_document
+  end
 
   def rank
     broadcast_comment_users.sum(:vote)

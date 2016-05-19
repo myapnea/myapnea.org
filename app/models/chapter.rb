@@ -7,6 +7,9 @@ class Chapter < ActiveRecord::Base
 
   # Concerns
   include Deletable
+  include PgSearch
+  multisearchable against: [:title],
+                  unless: :deleted?
 
   # Callbacks
   after_commit :create_first_reply, on: :create
@@ -25,6 +28,11 @@ class Chapter < ActiveRecord::Base
   has_many :reply_users
 
   # Model Methods
+  def destroy
+    super
+    update_pg_search_document
+  end
+
   def to_param
     slug_was.to_s
   end
