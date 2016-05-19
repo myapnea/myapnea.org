@@ -9,5 +9,14 @@
     on
     = link_to 'Forum', chapter
   .search-result-body
-    - terms = @search.split(' & ')
-    = highlight chapter.title, terms.reject { |t| t.size < 3 }, highlighter: '<strong>\1</strong>'
+    - reply = chapter.replies.current.first
+    - if reply
+      - terms = @search.split(' & ')
+      - description = strip_tags(simple_markdown reply.description, true, false).gsub(/\r/, ' ').gsub(/\n/, ' ')
+      - description_array = description.split(/ /).reject(&:blank?)
+      - @ranges = Broadcast.compute_ranges(description_array, terms)
+      - @ranges.first(3).each_with_index do |(min, max), index|
+        - if index == 0 && min != 0
+          \...
+        = highlight description_array[min..max].join(' '), terms.reject { |t| t.size < 3 }, highlighter: '<strong>\1</strong>'
+        \...
