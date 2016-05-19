@@ -6,11 +6,15 @@ $(document)
     setFocusToField('#navigation-search')
     false
   )
-  .on('blur', '#navigation-search', () ->
+  .on('blur', '#navigation-search-form', (e) ->
     # $('.full-search-bar').animate(right: '-200px', null, () ->
     #   $('.full-search-bar').hide()
     #   $('.tiny-search-icon').show()
     # )
     $('.full-search-bar').hide()
     $('.tiny-search-icon').show()
+  )
+  .on('mousedown', '#navigation-form-search-btn', () ->
+    $('#navigation-search-form').submit() unless $('#navigation-search').val() == ''
+    false
   )

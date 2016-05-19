@@ -21,13 +21,12 @@
 
       %div{ style: 'position: relative' }
         .full-search-bar
-          / %form#navigation-search-form.navbar-form.navbar-right.hidden-xs.hidden-sm
           = form_tag search_path, method: :get, id: 'navigation-search-form', class: 'navbar-form navbar-right hidden-xs hidden-sm', style: 'margin-right: -25px' do
             .form-group
               .input-group
                 = text_field_tag :search, params[:search], class: 'form-control', placeholder: 'Search MyApnea', autocomplete: 'off', id: 'navigation-search'
                 %span.input-group-btn
-                  = link_to '#', data: { object: 'submit', target: '#navigation-search-form' }, class: 'btn btn-primary', name: nil do
+                  = link_to '#', data: { object: 'suppress-click' }, class: 'btn btn-primary', name: nil, id: 'navigation-form-search-btn' do
                     %span.glyphicon.glyphicon-search
 
       .tiny-search-icon
