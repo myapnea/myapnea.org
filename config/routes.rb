@@ -326,24 +326,7 @@ Rails.application.routes.draw do
     end
   end
 
-  # # Forums
-  # resources :forums do
-  #   # resources :topics do
-  #   #   member do
-  #   #     post :subscription
-  #   #   end
-  #   #   resources :posts do
-  #   #     collection do
-  #   #       post :preview
-  #   #     end
-  #   #   end
-  #   # end
-  #   collection do
-  #     get :markup
-  #   end
-  # end
-
-  resources :topics, path: 'forum' do
+  resources :topics do
     collection do
       get :markup
     end
@@ -357,7 +340,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :chapters
+  resources :chapters, path: 'forum'
 
   resources :replies do
     collection do

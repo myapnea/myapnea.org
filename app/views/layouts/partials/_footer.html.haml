@@ -3,7 +3,10 @@
     .row
       .col-sm-3.hidden-xs
         %ul
-          %p &copy; 2016 MyApnea.Org
+          %p
+            &copy;
+            = Time.zone.today.year
+            MyApnea.Org
           %p.address Division of Sleep and Circadian Disorders
           %p.address Brigham and Women's Hospital
           %p.address 221 Longwood Avenue
@@ -24,7 +27,7 @@
           %p.small Features
           %li= link_to 'Community', community_path
           %li= link_to 'Providers', providers_path
-          %li= link_to 'Forum', topics_path
+          %li= link_to 'Forum', chapters_path
           %li= link_to 'Research', blog_category_path(category: 'research')
           %li= link_to 'Surveys', surveys_path, data: { no_turbolink: true }
       .col-sm-2.col-xs-4

@@ -12,8 +12,7 @@
   if window.location.hash == '#write-a-reply'
     $("#write_comment_root_new a").click()
   else if window.location.hash.substring(1,8) == 'comment'
-    $("#{window.location.hash}").addClass('highlighted-reply')
-
+    $("#{window.location.hash}-container").addClass('highlighted-reply')
 
 $(document)
   .on('click', '[data-object~="toggle-reply"]', () ->

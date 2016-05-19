@@ -59,8 +59,6 @@ if typeof Turbolinks isnt 'undefined' and Turbolinks.supported
   fileDragOldReady()
   researchTopicsReady()
   dailyEngagementReady() if $(".daily-engagement-report").length > 0
-  ABTestingReady() if ($("[data-object~='ABtesting']").length > 0 and false)
-  ABSetupReady() if ($("[data-object~='ABtesting']").length > 0 and false)
   exportsReady()
   socialMediaReady() if $('#sleep_tip').length > 0
   engagementHeatmapReady() if $('.engagement-heatmap').length > 0

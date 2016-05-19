@@ -35,6 +35,7 @@ a.anchor {
   position: relative;
   top: -($header-height);
   width: 0;
+  visibility:hidden;
 }
 
 a.settings-anchor {
@@ -46,4 +47,14 @@ a.settings-anchor {
 
 .hover-hand:hover {
   cursor: pointer;
+}
+
+// Anchors
+.anchor-top {
+  display: block;
+  height: 0;
+  position: relative;
+  top: -($header-height) - 10px;
+  width: 0;
+  visibility: hidden;
 }
