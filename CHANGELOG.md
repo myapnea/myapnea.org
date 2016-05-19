@@ -8,6 +8,7 @@
   - Search now also includes forum topics and replies
 - **General Changes**
   - Simplified user interface and styling across site
+  - Site-wide search is now available in the top navigation bar
 - **Menu Changes**
   - The menu has been slimmed down to take up less space
 - **Notifications Added**

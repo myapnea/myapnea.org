@@ -78,3 +78,4 @@
 //= require objects/blog
 //= require objects/images
 //= require objects/topics
+//= require components/search
