@@ -1,5 +1,5 @@
 - unless reply.deleted?
-  %span.pull-right
+  %span.pull-right{ id: "reply-#{reply.id}-vote" }
     = render 'replies/vote', reply: reply, just_voted: just_voted
 .nowrap.overflow-hidden
   - if reply.below_threshold?
@@ -15,10 +15,5 @@
         %i.fa.fa-moon-o.primary-orange{ data: { toggle: 'tooltip', title: 'Topic Author', container: 'body' } }
     = image_tag user_photo_url(reply.user), alt: '', style: "max-height:#{16+3}px;border-radius:4px", title: reply.user.forum_name, data: { toggle: 'tooltip', container: 'body', placement: 'top' }, class: 'hidden-md hidden-lg'
     = link_to reply.user.forum_name, '#', data: { object: 'suppress-click' }
-  %span.text-muted{ style: 'font-size: 60%' }
-    - symbol = '+' if reply.rank >= 0
-    = "#{symbol}#{number_with_delimiter(reply.rank)} point#{'s' if reply.rank.abs != 1}"
-    &middot;
-    %span{ data: { toggle: 'tooltip', container: 'body', title: reply.updated_at.strftime('%B %d, %Y at %-l:%M %p') } }
-      = time_ago_in_words reply.updated_at
-      ago
+  %span.text-muted{ id: "reply-#{reply.id}-points", style: 'font-size: 60%' }
+    = render 'replies/points', reply: reply

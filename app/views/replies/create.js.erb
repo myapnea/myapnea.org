@@ -1,5 +1,4 @@
 hideTopicReplyBox("<%= @reply.parent_comment_id %>", "new");
-<% @replies = BroadcastComment.none %>
 <% if @reply.parent_comment_id == 'root' %>
 $("#comment_container_<%= @reply.parent_comment_id %>_new").before("<%=j render 'replies/show', reply: @reply, level: @reply.computed_level %>");
 <% else %>

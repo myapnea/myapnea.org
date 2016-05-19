@@ -307,9 +307,6 @@ Rails.application.routes.draw do
 
   get 'admin/social-media', to: 'admin#social_media'
 
-  # Development/System
-  get 'pprn' => 'application#toggle_pprn_cookie'
-
   # Voting on Research Topics
   match 'vote', to: 'research_topics#vote', via: :post, as: :vote
   match 'remote-vote', to: 'research_topics#remote_vote', via: :post, as: :remote_vote

@@ -1,1 +1,2 @@
-$(".broadcast-comment-header[data-parent-comment-id=<%= @reply.parent_comment_id %>][data-reply-id=<%= @reply.id %>]").html("<%=j render 'replies/header', reply: @reply, just_voted: true %>");
+$("#reply-<%= @reply.id %>-vote").html("<%=j render 'replies/vote', reply: @reply, just_voted: true %>");
+$("#reply-<%= @reply.id %>-points").html("<%=j render 'replies/points', reply: @reply %>");

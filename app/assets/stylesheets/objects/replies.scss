@@ -1,13 +1,4 @@
-.highlighted-reply {
-  background-color: $state-warning-bg;
-
-  > .broadcast-comment.broadcast-comment-even,
-  > .broadcast-comment.broadcast-comment-odd {
-    background-color: $state-warning-bg;
-  }
-}
-
-.reply-image-container {
+.reply-inner-container {
   margin-left: 0;
   position: relative;
 }
@@ -17,7 +8,7 @@
 }
 
 @media screen and (min-width: $screen-md-min) {
-  .reply-image-container {
+  .reply-inner-container {
     margin-left: 70px;
   }
 
@@ -25,5 +16,70 @@
     display: block;
     position: absolute;
     left: -70px;
+  }
+}
+
+.replies-discussion {
+  .reply-container {
+    &.reply-even {
+      background-color: $brand-white;
+    }
+
+    &.reply-odd {
+      background-color: $brand-gray-lightest;
+    }
+
+    .reply-container {
+      margin-top: 10px;
+      border: 1px solid $brand-gray-lighter;
+      border-radius: 4px 0 0 4px;
+      padding: 10px;
+      margin-right: -11px;
+    }
+  }
+}
+
+@media screen and (min-width: $screen-sm-min) {
+  .replies-discussion {
+    .reply-container {
+      .reply-container {
+        border-radius: 4px;
+        margin-right: 0;
+      }
+    }
+  }
+}
+
+.highlighted-reply {
+  background-color: $state-warning-bg;
+
+  > .reply-container.reply-even,
+  > .reply-container.reply-odd {
+    background-color: $state-warning-bg;
+  }
+}
+
+.reply-body {
+  padding-bottom: 10px;
+  padding-left: 0;
+  padding-top: 10px;
+
+  img {
+    max-height: 100px;
+  }
+
+  blockquote {
+    font-size: $font-size-base;
+    margin: 0 0 11px 0;
+    padding: 0 10px;
+    border: 0;
+    border-left: 2px solid $brand-gray-lighter;
+    color: #999;
+  }
+}
+
+@media screen and (min-width: $screen-sm-min) {
+  .reply-body {
+    padding-left: 20px;
   }
 }
