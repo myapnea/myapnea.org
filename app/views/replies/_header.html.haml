@@ -10,10 +10,10 @@
     %small
       %i.text-muted [deleted]
   - else
-    - if @chapter.user == reply.user
+    - if reply.chapter_author?
       %small
         %i.fa.fa-moon-o.primary-orange{ data: { toggle: 'tooltip', title: 'Topic Author', container: 'body' } }
     = image_tag user_photo_url(reply.user), alt: '', style: "max-height:#{16+3}px;border-radius:4px", title: reply.user.forum_name, data: { toggle: 'tooltip', container: 'body', placement: 'top' }, class: 'hidden-md hidden-lg'
-    = link_to reply.user.forum_name, '#', data: { object: 'suppress-click' }
+    = link_to reply.user.forum_name, member_path(reply.user.forum_name)
   %span.text-muted{ id: "reply-#{reply.id}-points", style: 'font-size: 60%' }
     = render 'replies/points', reply: reply

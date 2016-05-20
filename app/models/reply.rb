@@ -52,6 +52,10 @@ class Reply < ActiveRecord::Base
     "comment-#{id}"
   end
 
+  def chapter_author?
+    chapter.user_id == user_id
+  end
+
   def rank
     reply_users.sum(:vote)
   end

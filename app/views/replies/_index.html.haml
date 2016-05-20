@@ -1,25 +1,25 @@
 - page = (params[:page].to_i > 1 ? params[:page].to_i : 1)
-- @replies = @chapter.replies.where(reply_id: nil).page(page).per(Chapter::REPLIES_PER_PAGE)
+- @replies = @chapter.replies.includes(:chapter).where(reply_id: nil).page(page).per(Chapter::REPLIES_PER_PAGE)
 
-.replies-discussion
-  %div{ style: 'margin-bottom: 20px' }
-    .pull-right.hidden-xs.hidden-sm{ style: 'margin-top: -20px' }
-      = paginate @replies, theme: 'bootstrap-small'
-    %span.nowrap
-      = link_to 'Write a Reply', chapter_path(@chapter, page: @chapter.last_page, anchor: 'write-a-reply'), class: 'btn btn-primary'
-      - if current_user && @chapter.editable_by?(current_user)
-        = link_to 'Edit Title', edit_chapter_path(@chapter), class: 'btn btn-default'
+%div{ style: 'margin-bottom: 20px' }
+  .pull-right.hidden-xs.hidden-sm{ style: 'margin-top: -20px' }
+    = paginate @replies, theme: 'bootstrap-small'
+  %span.nowrap
+    = link_to 'Write a Reply', chapter_path(@chapter, page: @chapter.last_page, anchor: 'write-a-reply'), class: 'btn btn-primary'
+    - if current_user && @chapter.editable_by?(current_user)
+      = link_to 'Edit Title', edit_chapter_path(@chapter), class: 'btn btn-default'
+      = link_to 'Delete Topic', @chapter, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'
 
-  - @replies.each do |reply|
-    = render 'replies/show', reply: reply, level: defined?(level) ? level + 1 : 0
+- @replies.each do |reply|
+  = render 'replies/show', reply: reply, level: defined?(level) ? level + 1 : 0, include_chapter_title: false
 
-  - if page == @chapter.last_page
-    #comment_container_root_new{ style: 'display:none' }
-      - reply = @chapter.replies.new
-      = render 'replies/form', reply: reply
+- if page == @chapter.last_page
+  #comment_container_root_new{ style: 'display:none' }
+    - reply = @chapter.replies.new
+    = render 'replies/form', reply: reply
 
-    %a.anchor{ name: 'write-a-reply' }
-    #write_comment_root_new{ style: 'margin-bottom: 20px' }
-      = link_to 'Write a Reply', async_chapter_reply_path(chapter_id: @chapter, parent_comment_id: 'root', reply_id: 'new'), method: :post, remote: true, class: 'btn btn-primary'
+  %a.anchor{ name: 'write-a-reply' }
+  #write_comment_root_new{ style: 'margin-bottom: 20px' }
+    = link_to 'Write a Reply', async_chapter_reply_path(chapter_id: @chapter, parent_comment_id: 'root', reply_id: 'new'), method: :post, remote: true, class: 'btn btn-primary'
 
 .centered= paginate @replies, theme: 'bootstrap-small'

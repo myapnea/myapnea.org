@@ -1,73 +1,62 @@
-.content-main-header
-  .container
-    %h1
-      = render 'forums/user_image', user: @member, size: 100
-      = @member.forum_name
+- @title = "#{@member.forum_name} - Sleep Apnea Community"
+- @background_color = '#5999de'
+
+.content-main-header2
+  %h1
+    = render 'forums/user_image', user: @member, size: 100
+    = @member.forum_name
 
 -# Admin information
-- if current_user and (current_user.moderator? or current_user.owner?)
+- if current_user && (current_user.moderator? || current_user.owner?)
   .well
-    .container
-      %h4.f300
-        Moderator Contact Information
-      %br
-      .row
-        .col-sm-6
-          %dl.dl-horizontal
+    %h4.f300
+      Moderator Contact Information
+    %br
+    .row
+      .col-sm-6
+        %dl.dl-horizontal
+          %dt
+            %strong Member Name
+          %dd
+            = @member.name
+          %dt
+            %strong Member Email
+          %dd
+            = @member.email
+      .col-sm-6
+        %dl.dl-horizontal
+          - spam_topics_count = Topic.where(status: 'spam', user_id: @member.id).count
+          - if spam_topics_count > 0
             %dt
-              %strong Member Name
+              %strong # of Spam Topics
             %dd
-              = @member.name
+              = spam_topics_count
+          - spam_posts_count = Post.where(status: 'spam', user_id: @member.id).count
+          - if spam_posts_count > 0
             %dt
-              %strong Member Email
+              %strong # of Spam Posts
             %dd
-              = @member.email
-        .col-sm-6
-          %dl.dl-horizontal
-            - spam_topics_count = Topic.where(status: 'spam', user_id: @member.id).count
-            - if spam_topics_count > 0
-              %dt
-                %strong # of Spam Topics
-              %dd
-                = spam_topics_count
-            - spam_posts_count = Post.where(status: 'spam', user_id: @member.id).count
-            - if spam_posts_count > 0
-              %dt
-                %strong # of Spam Posts
-              %dd
-                = spam_posts_count
+              = spam_posts_count
 
 -# About member
 .content-container
-  .container
-    .content-body
-      .row
-        .col-sm-3
-        .col-sm-3
-          %p.dark8
-            %span.f500.dark5 Member since:
-            %br
-            = @member.created_at.strftime("%b %-d, %Y")
-        .col-sm-3
-          %p.dark8
-            %span.f500.dark5 Number of posts:
-            %br
-            = @posts.count
-        .col-sm-3
-          %p.dark8
-            %span.f500.dark5 Number of votes:
-            %br
-            = @member.votes.current.count
+  .content-body
+    .row
+      .col-sm-4
+        %p.dark8
+          %span.f500.dark5 Member since:
+          %div{ style: 'font-size: 32px;' }= @member.created_at.strftime('%b %-d, %Y')
+      .col-sm-4
+        %p.dark8
+          %span.f500.dark5 Number of posts:
+          %div{ style: 'font-size: 32px;' }= @member.replies.joins(:chapter).merge(Chapter.current).count
+      .col-sm-4
+        %p.dark8
+          %span.f500.dark5 Number of votes:
+          %div{ style: 'font-size: 32px;' }= @member.votes.current.count
 
 -# Recent posts
-.container
-  .horizontal-inset
-    - @events.each do |event|
-      - if event.class == Post
-        = render 'posts/recent_post', post: event
-      / - elsif event.class == ResearchTopic and current_user and current_user.experienced_voter?
-      /   .hidden{ id: "voting-form-error-#{event.id}" }
-      /     .emergency-bcg.white{ style: 'padding: 10px; border-radius: 3px; margin-bottom: 10px;' }
-      /       Please either 'Agree' or 'Disagree'.
-      /   .voting-container{ id: "voting-container-#{event.id}", style: 'width: 80%; margin: auto'}
-      /     = render 'research_topics/voting_forms/voting_form_from_show', research_topic: event, remote_bool: true
+- @replies.each do |reply|
+  = render 'replies/show', level: 0, reply: reply, include_chapter_title: true
+
+.centered= paginate @replies, theme: 'bootstrap-small'

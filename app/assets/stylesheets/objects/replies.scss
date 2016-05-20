@@ -19,33 +19,29 @@
   }
 }
 
-.replies-discussion {
+.reply-container {
+  &.reply-even {
+    background-color: $brand-white;
+  }
+
+  &.reply-odd {
+    background-color: $brand-gray-lightest;
+  }
+
   .reply-container {
-    &.reply-even {
-      background-color: $brand-white;
-    }
-
-    &.reply-odd {
-      background-color: $brand-gray-lightest;
-    }
-
-    .reply-container {
-      margin-top: 10px;
-      border: 1px solid $brand-gray-lighter;
-      border-radius: 4px 0 0 4px;
-      padding: 10px;
-      margin-right: -11px;
-    }
+    margin-top: 10px;
+    border: 1px solid $brand-gray-lighter;
+    border-radius: 4px 0 0 4px;
+    padding: 10px;
+    margin-right: -11px;
   }
 }
 
 @media screen and (min-width: $screen-sm-min) {
-  .replies-discussion {
+  .reply-container {
     .reply-container {
-      .reply-container {
-        border-radius: 4px;
-        margin-right: 0;
-      }
+      border-radius: 4px;
+      margin-right: 0;
     }
   }
 }

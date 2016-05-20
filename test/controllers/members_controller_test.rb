@@ -10,7 +10,7 @@ class MembersControllerTest < ActionController::TestCase
 
   test 'should get index and redirect to forums' do
     get :index
-    assert_redirected_to forums_path
+    assert_redirected_to chapters_path
   end
 
   test 'should get show' do
