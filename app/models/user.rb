@@ -60,6 +60,7 @@ class User < ActiveRecord::Base
   has_many :broadcasts, -> { current }
   has_many :broadcast_comments
   has_many :chapters, -> { current }
+  has_many :chapter_users
   has_many :replies, -> { current }
   has_many :votes, -> { where deleted: false }
   has_one :social_profile, -> { where deleted: false }
@@ -100,6 +101,12 @@ class User < ActiveRecord::Base
   def send_unlock_instructions
     return if deleted?
     super
+  end
+
+  def read_chapter!(chapter, current_reply_read_id)
+    chapter_user = chapter_users.where(chapter_id: chapter.id).first_or_create
+    chapter_user.update current_reply_read_id: [chapter_user.current_reply_read_id.to_i, current_reply_read_id].max,
+                        last_reply_read_id: chapter_user.current_reply_read_id
   end
 
   def is_only_researcher?

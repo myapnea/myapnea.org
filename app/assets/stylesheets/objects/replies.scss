@@ -79,3 +79,12 @@
     padding-left: 20px;
   }
 }
+
+.reply-read {
+  background-color: $body-background;
+
+  > .reply-container.reply-even,
+  > .reply-container.reply-odd {
+    background-color: $body-background;
+  }
+}

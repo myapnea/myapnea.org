@@ -25,6 +25,7 @@ class Chapter < ActiveRecord::Base
 
   # Model Relationships
   belongs_to :user
+  has_many :chapter_users
   has_many :replies, -> { order :id }
   has_many :reply_users
 
@@ -37,6 +38,29 @@ class Chapter < ActiveRecord::Base
 
   def to_param
     slug_was.to_s
+  end
+
+  def started_reading?(current_user)
+    chapter_user = chapter_users.find_by user: current_user
+    chapter_user ? true : false
+  end
+
+  def unread_replies(current_user)
+    chapter_user = chapter_users.find_by user: current_user
+    if chapter_user
+      root_replies.current.where('id > ?', chapter_user.current_reply_read_id).count
+    else
+      0
+    end
+  end
+
+  def next_unread_reply(current_user)
+    chapter_user = chapter_users.find_by user: current_user
+    root_replies.current.find_by('id > ?', chapter_user.current_reply_read_id) if chapter_user
+  end
+
+  def root_replies
+    replies.where(reply_id: nil)
   end
 
   def editable_by?(current_user)

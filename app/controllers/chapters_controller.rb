@@ -17,7 +17,10 @@ class ChaptersController < ApplicationController
 
   # GET /chapters/1
   def show
+    @page = (params[:page].to_i > 1 ? params[:page].to_i : 1)
+    @replies = @chapter.replies.includes(:chapter).where(reply_id: nil).page(@page).per(Chapter::REPLIES_PER_PAGE)
     @chapter.increment! :view_count
+    current_user.read_chapter!(@chapter, @replies.last.id) if current_user
   end
 
   # GET /chapters/new

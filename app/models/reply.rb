@@ -34,6 +34,15 @@ class Reply < ActiveRecord::Base
     deleted? || chapter.deleted?
   end
 
+  def read?(current_user)
+    chapter_user = chapter.chapter_users.find_by user: current_user
+    if chapter_user && chapter_user.last_reply_read_id.to_i >= id
+      true
+    else
+      false
+    end
+  end
+
   def number
     chapter.replies.where(reply_id: nil).pluck(:id).index(id) + 1
   rescue

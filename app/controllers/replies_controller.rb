@@ -60,6 +60,7 @@ class RepliesController < ApplicationController
     if @reply.save
       @reply.create_notifications!
       @reply.chapter.touch(:last_reply_at)
+      current_user.read_chapter!(@chapter, @reply.id)
       render :create
     else
       render :new

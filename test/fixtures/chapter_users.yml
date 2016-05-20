@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  chapter: one
+  user: user_1
+
+two:
+  chapter: one
+  user: user_2
