@@ -11,8 +11,10 @@
     survey!
   .content-footer
     %p
-      We would love your feedback
-      %a.u-voice.primary-blue Get in touch with us.
+      We would love your feedback!
+      Send us an email at
+      = succeed '.' do
+        = mail_to 'support@myapnea.org'
 
 - elsif (current_user.is_only_academic?)
   %h2.f300
