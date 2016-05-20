@@ -32,6 +32,7 @@ class Chapter < ActiveRecord::Base
   def destroy
     super
     update_pg_search_document
+    replies.each(&:update_pg_search_document)
   end
 
   def to_param

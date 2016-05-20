@@ -10,7 +10,7 @@ class BroadcastComment < ActiveRecord::Base
   include Deletable
   include PgSearch
   multisearchable against: [:description],
-                  unless: :deleted?
+                  unless: :deleted_or_broadcast_deleted?
 
   # Named Scopes
 
@@ -27,6 +27,10 @@ class BroadcastComment < ActiveRecord::Base
   def destroy
     super
     update_pg_search_document
+  end
+
+  def deleted_or_broadcast_deleted?
+    deleted? || broadcast.deleted?
   end
 
   def rank
