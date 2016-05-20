@@ -1,9 +1,7 @@
 .content-container
-  .container
-    = render 'surveys/report_intro'
+  = render 'surveys/report_intro'
 
-.container
-  = render 'surveys/reports/default'
+= render 'surveys/reports/default'
 
 - if @survey.has_custom_report?
   .content-container
@@ -22,5 +20,4 @@
             = link_to 'here', report_survey_path(@survey, @encounter)
 
 .content-container
-  .container
-    = render 'surveys/report_outro'
+  = render 'surveys/report_outro'

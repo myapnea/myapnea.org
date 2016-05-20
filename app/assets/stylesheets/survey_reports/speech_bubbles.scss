@@ -40,7 +40,7 @@
 // Creates smaller curve
 .rectangle-speech-border-left:after {
   background: transparent;
-  background-color: $body-background;
+  background-color: $white; // $body-background;
   border-bottom-right-radius: 40px 50px;
   border-color: $lightest-orange;
   border-style: solid;
@@ -88,7 +88,7 @@
 // Creates smaller curve
 .rectangle-speech-border-right:after {
   background: transparent;
-  background-color: $body-background;
+  background-color: $white; // $body-background;
   border-bottom-left-radius: 40px 50px;
   border-color: $lightest-blue;
   border-style: solid;
