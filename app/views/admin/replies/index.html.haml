@@ -1,0 +1,41 @@
+- @title = 'Forum Replies'
+
+.content-main-header2
+  %h1
+    = link_to 'Admin Dashboard', admin_path
+    &middot;
+    = @title
+
+%table.table.table-striped
+  %col
+  %col
+  %col
+  %col
+  %col
+  %col{ width: '100px' }
+  %thead
+    %tr
+      %th
+      = th_sort_field @order, 'points', 'Points', extra_class: 'text-right'
+      %th Forum Topic
+      %th Comment
+      %th Author
+      = th_sort_field @order, 'replies.created_at', 'Date'
+
+  %tbody
+    - @replies.each do |reply|
+      %tr
+        %td.centered
+          - if reply.deleted?
+            %span.glyphicon.glyphicon-eye-close{ data: { toggle: 'tooltip', title: 'Deleted', container: 'body', placement: 'left' } }
+        %td.text-right
+          - symbol = '+' if reply.rank >= 0
+          = "#{symbol}#{reply.rank}"
+        %td= link_to reply.chapter.title, reply
+        %td{ class: reply.deleted? ? 'text-muted' : '', style: reply.deleted? ? 'text-decoration:line-through' : '' }
+          .reply-body{ style: 'font-size: 0.9em;padding:0;margin:0' }
+            = simple_markdown(sanitize(reply.description.gsub(/</, '&lt;')).gsub('&gt;', '>'), reply.user.can_post_links?, true, 'table table-striped')
+        %td= link_to reply.user.forum_name, reply.user
+        %td= reply.created_at.strftime('%a, %B %d, %Y at %-l:%M %p')
+
+.centered= paginate @replies, theme: 'bootstrap'

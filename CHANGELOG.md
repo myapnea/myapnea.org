@@ -1,6 +1,9 @@
 ## 13.0.0
 
 ### Enhancements
+- **Admin Changes**
+  - Admins can now review blog comments and forum replies and sort by points and
+    creation time
 - **Forum Changes**
   - The forums have been simplified into a single forum
   - Users can jump to the last post on a topic from the forum index

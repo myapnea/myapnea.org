@@ -13,6 +13,7 @@ class Reply < ActiveRecord::Base
                   unless: :deleted_or_chapter_deleted?
 
   # Named Scopes
+  scope :points, -> { select('replies.*, COALESCE(SUM(reply_users.vote), 0)  points').joins('LEFT JOIN reply_users ON reply_users.reply_id = replies.id').group('replies.id') }
 
   # Model Validation
   validates :description, :user_id, :chapter_id, presence: true

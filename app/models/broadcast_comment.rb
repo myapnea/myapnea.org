@@ -13,6 +13,7 @@ class BroadcastComment < ActiveRecord::Base
                   unless: :deleted_or_broadcast_deleted?
 
   # Named Scopes
+  scope :points, -> { select('broadcast_comments.*, COALESCE(SUM(broadcast_comment_users.vote), 0)  points').joins('LEFT JOIN broadcast_comment_users ON broadcast_comment_users.broadcast_comment_id = broadcast_comments.id').group('broadcast_comments.id') }
 
   # Model Validation
   validates :description, :user_id, :broadcast_id, presence: true

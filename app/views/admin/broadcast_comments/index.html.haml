@@ -10,7 +10,7 @@
   %thead
     %tr
       %th
-      %th.text-right Points
+      = th_sort_field @order, 'points', 'Points', extra_class: 'text-right'
       %th Blog Post
       %th Comment
       %th Author

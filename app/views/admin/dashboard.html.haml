@@ -17,10 +17,18 @@
       = link_to admin_reports_location_path, class: 'no-underline' do
         .blue-block-link
           Location
+
+- if current_user.owner?
+  %h3 Blog and Forum
+  .row
     .col-sm-3
-      = link_to admin_broadcast_comments_path, class: 'no-underline' do
+      = link_to admin_broadcast_comments_path, class: 'no-underline centered' do
         .blue-block-link
           Blog Comments
+    .col-sm-3
+      = link_to admin_replies_path, class: 'no-underline centered' do
+        .blue-block-link
+          Forum Replies
 
 %h3 Survey Results
 .row.centered

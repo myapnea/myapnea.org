@@ -22,6 +22,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :broadcast_comments, only: :index, path: 'blog/comments'
+    resources :replies, only: :index, path: 'forum/replies'
     resources :categories
     resources :exports do
       member do
