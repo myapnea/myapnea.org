@@ -4,17 +4,6 @@
 = render 'layouts/per_page', per_page: 40, object_count: @chapters.total_count
 = link_to 'Start New Topic', new_chapter_path, class: 'btn btn-primary'
 
-- if @chapters.count > 0 || (params[:s].blank? && params[:status].blank? && params[:a].blank?)
-  - if @author
-    .alert.alert-info
-      Showing topics that include posts by
-      %strong= @author.forum_name
-  - elsif params[:a].present? && @author.blank?
-    .alert.alert-warning
-      There are no posts by
-      = params[:a]
-      in this forum.
-
 %table.table.table-striped.table-hover
   %col
   %col
@@ -25,8 +14,7 @@
     %tr
       %th.small= link_to 'Topics', chapters_path
       %th
-      %th.small.hidden-xs
-        Replies
+      = th_sort_field @order, 'reply_count', 'Replies', extra_class: 'small hidden-xs hidden-sm'
       = th_sort_field @order, 'chapters.view_count', 'Views', extra_class: 'small hidden-xs hidden-sm'
       = th_sort_field @order, 'chapters.last_reply_at', 'Last Post', extra_class: 'small hidden-xs hidden-sm'
   %tbody
@@ -47,11 +35,11 @@
             = link_to '1', chapter, class: 'btn btn-xs btn-default'
             \...
             = link_to chapter.last_page, chapter_path(chapter, page: chapter.last_page), class: 'btn btn-xs btn-default'
-        %td.text-muted.hidden-xs
-          %span.small= number_with_delimiter chapter.replies.count - 1
-        %td.text-muted.hidden-xs.hidden-sm{ class: "#{chapter.pinned? ? 'f500' : 'f300'}" }
+        %td.text-muted.hidden-xs.f300
+          %span.small= number_with_delimiter chapter.reply_count - 1
+        %td.text-muted.hidden-xs.hidden-sm.f300
           %span.small= number_with_delimiter chapter.view_count
-        %td.text-muted.hidden-xs.hidden-sm
+        %td.text-muted.hidden-xs.hidden-sm.f300
           %span.small= time_ago_in_words(chapter.last_reply_at) + ' ago'
 
 

@@ -9,9 +9,10 @@ class ChaptersController < ApplicationController
   # GET /chapters
   def index
     @order = scrub_order(Chapter, params[:order], 'pinned desc, last_reply_at desc, id desc')
-    @chapters = Chapter.current
-                       .order(@order)
-                       .page(params[:page]).per(40)
+    if ['reply_count', 'reply_count DESC'].include?(params[:order])
+      @order = params[:order]
+    end
+    @chapters = Chapter.current.reply_count.order(@order).page(params[:page]).per(40)
   end
 
   # GET /chapters/1
@@ -76,6 +77,10 @@ class ChaptersController < ApplicationController
   end
 
   def chapter_params
-    params.require(:chapter).permit(:title, :slug, :description)
+    if current_user.moderator?
+      params.require(:chapter).permit(:title, :slug, :description, :pinned)
+    else
+      params.require(:chapter).permit(:title, :slug, :description)
+    end
   end
 end
