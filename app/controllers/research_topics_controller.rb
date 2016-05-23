@@ -81,12 +81,10 @@ class ResearchTopicsController < ApplicationController
   end
 
   def accepted_article
-    @research_article = Admin::ResearchArticle.find_by_slug(params[:slug])
-    render 'research_topics/accepted/show'
+    redirect_to blog_category_path(category: 'research')
   end
 
   # Voting
-
   def vote
     @research_topic = ResearchTopic.find(params[:research_topic_id])
     if current_user.experienced_voter? or @research_topic.seeded?

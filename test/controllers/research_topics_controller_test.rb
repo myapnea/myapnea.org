@@ -21,7 +21,7 @@ class ResearchTopicsControllerTest < ActionController::TestCase
 
   test 'should get accepted article' do
     get :accepted_article, slug: admin_research_articles(:one)
-    assert_response :success
+    assert_redirected_to blog_category_path(category: 'research')
   end
 
   test 'should get index for experienced user' do
