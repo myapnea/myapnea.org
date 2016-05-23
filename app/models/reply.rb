@@ -43,6 +43,10 @@ class Reply < ActiveRecord::Base
     end
   end
 
+  def display_links?
+    rank >= 0
+  end
+
   def number
     chapter.replies.where(reply_id: nil).pluck(:id).index(id) + 1
   rescue
@@ -66,7 +70,7 @@ class Reply < ActiveRecord::Base
   end
 
   def rank
-    reply_users.sum(:vote)
+    @rank ||= reply_users.sum(:vote)
   end
 
   def reverse_rank

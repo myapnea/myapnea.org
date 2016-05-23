@@ -34,8 +34,12 @@ class BroadcastComment < ActiveRecord::Base
     deleted? || broadcast.deleted?
   end
 
+  def display_links?
+    rank >= 0
+  end
+
   def rank
-    broadcast_comment_users.sum(:vote)
+    @rank ||= broadcast_comment_users.sum(:vote)
   end
 
   def reverse_rank
