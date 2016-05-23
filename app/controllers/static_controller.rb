@@ -53,44 +53,6 @@ class StaticController < ApplicationController
   def PEP_charter
   end
 
-  ## Educational content
-
-  def what_is_sleep_apnea
-    render 'learn/what_is_sleep_apnea'
-  end
-
-  def obstructive_sleep_apnea
-    render 'learn/obstructive_sleep_apnea'
-  end
-
-  def central_sleep_apnea
-    render 'learn/central_sleep_apnea'
-  end
-
-  def complex_sleep_apnea
-    render 'learn/complex_sleep_apnea'
-  end
-
-  def causes
-    render 'learn/causes'
-  end
-
-  def symptoms
-    render 'learn/symptoms'
-  end
-
-  def risk_factors
-    render 'learn/risk_factors'
-  end
-
-  def diagnostic_process
-    render 'learn/diagnostic_process'
-  end
-
-  def treatment_options
-    render 'learn/treatment_options'
-  end
-
   # PAP Devices
 
   def pap
@@ -123,11 +85,6 @@ class StaticController < ApplicationController
 
   def side_effects_pap
     render 'learn/side_effects_pap'
-  end
-
-  ## THEME
-
-  def sizes
   end
 
   ## NON-STATIC

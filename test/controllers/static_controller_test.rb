@@ -88,53 +88,6 @@ class StaticControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  ## Educational content
-
-  test 'should get what is sleep apnea' do
-    get :what_is_sleep_apnea
-    assert_response :success
-  end
-
-  test 'should get obstructive sleep apnea' do
-    get :obstructive_sleep_apnea
-    assert_response :success
-  end
-
-  test 'should get central sleep apnea' do
-    get :central_sleep_apnea
-    assert_response :success
-  end
-
-  test 'should get complex sleep apnea' do
-    get :complex_sleep_apnea
-    assert_response :success
-  end
-
-  test 'should get causes of sleep apnea' do
-    get :causes
-    assert_response :success
-  end
-
-  test 'should get symptoms of sleep apnea' do
-    get :symptoms
-    assert_response :success
-  end
-
-  test 'should get risk factors for sleep apnea' do
-    get :risk_factors
-    assert_response :success
-  end
-
-  test 'should get diagnosis of sleep apnea' do
-    get :diagnostic_process
-    assert_response :success
-  end
-
-  test 'should get treatment options for sleep apnea' do
-    get :treatment_options
-    assert_response :success
-  end
-
   # PAP devices
   test 'should get PAP' do
     get :pap
@@ -173,11 +126,6 @@ class StaticControllerTest < ActionController::TestCase
 
   test 'should get side effects PAP' do
     get :side_effects_pap
-    assert_response :success
-  end
-
-  test 'should get sizes' do
-    get :sizes
     assert_response :success
   end
 

@@ -163,18 +163,22 @@ Rails.application.routes.draw do
     get :marketing
   end
 
+  # Redirects for Learn Pages
+  # TODO: Remove on or after 1 February 2017
+  get 'learn/what-is-sleep-apnea', to: redirect('blog/what-is-sleep-apnea'), as: :what_is_sleep_apnea
+  get 'learn/obstructive-sleep-apnea', to: redirect('blog/obstructive-sleep-apnea'), as: :obstructive_sleep_apnea
+  get 'learn/central-sleep-apnea', to: redirect('blog/central-sleep-apnea'), as: :central_sleep_apnea
+  get 'learn/complex-sleep-apnea', to: redirect('blog/what-is-complex-sleep-apnea'), as: :complex_sleep_apnea
+  get 'learn/causes-of-sleep-apnea', to: redirect('blog/causes-of-sleep-apnea'), as: :causes_of_sleep_apnea
+  get 'learn/symptoms-of-sleep-apnea', to: redirect('blog/symptoms-of-sleep-apnea'), as: :symptoms_of_sleep_apnea
+  get 'learn/risk-factors-for-sleep-apnea', to: redirect('blog/risk-factors-for-sleep-apnea'), as: :risk_factors_for_sleep_apnea
+  get 'learn/diagnosis-of-sleep-apnea', to: redirect('blog/diagnosis-of-sleep-apnea'), as: :diagnosis_of_sleep_apnea
+  get 'learn/treatment-options-for-sleep-apnea', to: redirect('blog/treatment-options-for-sleep-apnea'), as: :treatment_options_for_sleep_apnea
+  # END END
+
   # Educational Content
   scope 'learn' do
     get '/', to: 'static#learn'
-    get '/what-is-sleep-apnea', to: 'static#what_is_sleep_apnea'
-    get '/obstructive-sleep-apnea', to: 'static#obstructive_sleep_apnea'
-    get '/central-sleep-apnea', to: 'static#central_sleep_apnea'
-    get '/complex-sleep-apnea', to: 'static#complex_sleep_apnea'
-    get '/causes-of-sleep-apnea', to: 'static#causes'
-    get '/symptoms-of-sleep-apnea', to: 'static#symptoms'
-    get '/risk-factors-for-sleep-apnea', to: 'static#risk_factors'
-    get '/diagnosis-of-sleep-apnea', to: 'static#diagnostic_process'
-    get '/treatment-options-for-sleep-apnea', to: 'static#treatment_options'
     get '/pap', to: 'static#pap'
     get '/pap/about-pap-therapy', to: 'static#about_pap_therapy'
     get '/pap/pap-setup-guide', to: 'static#pap_setup_guide'
