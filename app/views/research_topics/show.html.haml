@@ -25,7 +25,7 @@
 
     .col-sm-4
       - if current_user
-        - if current_user.owner? or current_user.moderator?
+        - if current_user.owner? || current_user.moderator?
           .admin-container
             Admins:
             %br
@@ -37,8 +37,8 @@
             - elsif @topic.status == 'hidden'
               %span.small Currently hidden.
               = link_to 'Approve Research Topic', topic_path(@topic, topic: { status: 'approved' }), method: :patch, class: 'btn btn-success btn-xs'
-            = link_to "Edit Topic", edit_topic_path(@research_topic.topic), class: 'btn btn-primary btn-xs'
-            = link_to "Edit Post", edit_topic_post_path(@research_topic.topic, @research_topic.topic.posts.first), class: 'btn btn-primary btn-xs'
+            = link_to 'Edit Topic', edit_topic_path(@research_topic.topic), class: 'btn btn-primary btn-xs'
+            = link_to 'Edit Post', edit_topic_post_path(@research_topic.topic, @research_topic.topic.posts.first), class: 'btn btn-primary btn-xs'
       - else
         = render 'home/join_the_community', referrer: 'research', message: 'Make a direct impact on the future of sleep apnea research'
       = render 'research_topics/sidebar'

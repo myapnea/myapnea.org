@@ -7,13 +7,13 @@
 
   // Spam and hidden posts will only be viewed by moderators,
   // and they have the ability to edit them
-- elsif comment.spam? or comment.hidden?
-  - if current_user and current_user.moderator?
+- elsif comment.spam? || comment.hidden?
+  - if current_user && current_user.moderator?
     .comment-container.comment-container-spam
       = render 'research_topics/comments/comment_contents', comment: comment
       .comment-toolbar
         = render 'posts/actions/edit_min', post: comment
-  - elsif current_user and current_user == comment.user
+  - elsif current_user && current_user == comment.user
     .wel.well-sm.danger-bcg.italic
       This post was marked as spam.
 
@@ -23,11 +23,11 @@
 - elsif comment.pending_review?
   .comment-container.comment-container-review
     = render 'research_topics/comments/comment_contents', comment: comment
-    - if current_user and current_user.moderator?
+    - if current_user && current_user.moderator?
       .comment-toolbar
         = render 'posts/actions/pending_review_min', post: comment
         = render 'posts/actions/edit_min', post: comment
-    - elsif current_user and current_user == comment.user
+    - elsif current_user && current_user == comment.user
       .comment-toolbar
         = render 'posts/actions/edit_min', post: comment
 
@@ -35,7 +35,7 @@
 - elsif comment.approved?
   .comment-container
     = render 'research_topics/comments/comment_contents', comment: comment
-    - if current_user and (current_user.moderator? or current_user == comment.user)
+    - if current_user && (current_user.moderator? || current_user == comment.user)
       .comment-toolbar
         = render 'posts/actions/edit_min', post: comment
 

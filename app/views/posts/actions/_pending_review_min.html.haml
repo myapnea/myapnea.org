@@ -1,9 +1,9 @@
 = succeed ' ' do
-  = link_to forum_topic_post_path(post.forum, post.topic, post, post: { status: 'approved' }), method: :patch, data: { toggle: 'tooltip', container: 'body'}, title: 'Approve Post', class: 'no-underline dark8' do
+  = link_to topic_post_path(post.topic, post, post: { status: 'approved' }), method: :patch, data: { toggle: 'tooltip', container: 'body'}, title: 'Approve Post', class: 'no-underline dark8' do
     %i.fa.fa-thumbs-up
 = succeed ' ' do
-  = link_to forum_topic_post_path(post.forum, post.topic, post, post: { status: 'hidden' }), method: :patch, data: { toggle: 'tooltip', container: 'body'}, title: 'Hide Post', class: 'no-underline dark8' do
+  = link_to topic_post_path(post.topic, post, post: { status: 'hidden' }), method: :patch, data: { toggle: 'tooltip', container: 'body'}, title: 'Hide Post', class: 'no-underline dark8' do
     %i.fa.fa-eye-slash
 = succeed ' ' do
-  = link_to forum_topic_post_path(post.forum, post.topic, post, post: { status: 'spam' }), method: :patch, data: { toggle: 'tooltip', container: 'body'}, title: 'Mark as Spam', class: 'no-underline dark8' do
+  = link_to topic_post_path(post.topic, post, post: { status: 'spam' }), method: :patch, data: { toggle: 'tooltip', container: 'body'}, title: 'Mark as Spam', class: 'no-underline dark8' do
     %i.fa.fa-thumbs-down

@@ -1,12 +1,12 @@
 = succeed ' ' do
-  = link_to forum_topic_post_path(post.forum, post.topic, post, post: { status: 'approved' }), method: :patch, class: 'btn btn-xs btn-default' do
+  = link_to topic_post_path(post.topic, post, post: { status: 'approved' }), method: :patch, class: 'btn btn-xs btn-default' do
     %i.fa.fa-thumbs-up
     Approve
 = succeed ' ' do
-  = link_to forum_topic_post_path(post.forum, post.topic, post, post: { status: 'hidden' }), method: :patch, class: 'btn btn-xs btn-default' do
+  = link_to topic_post_path(post.topic, post, post: { status: 'hidden' }), method: :patch, class: 'btn btn-xs btn-default' do
     %i.fa.fa-eye-slash
     Hide Post
 = succeed ' ' do
-  = link_to forum_topic_post_path(post.forum, post.topic, post, post: { status: 'spam' }), method: :patch, class: 'btn btn-xs btn-default' do
+  = link_to topic_post_path(post.topic, post, post: { status: 'spam' }), method: :patch, class: 'btn btn-xs btn-default' do
     %i.fa.fa-thumbs-down
     Mark As Spam
