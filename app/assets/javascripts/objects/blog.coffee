@@ -45,3 +45,6 @@ $(document)
     $.post("#{root_url}broadcast_comments/preview", params, null, 'script')
     false
   )
+  .on('click', '.broadcast-comment-body img, .reply-body img', () ->
+    $(this).toggleClass('large-view')
+  )

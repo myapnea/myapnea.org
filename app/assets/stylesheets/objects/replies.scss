@@ -63,6 +63,12 @@
 
   img {
     max-height: 100px;
+    max-width: 100%;
+    cursor: pointer;
+  }
+
+  img.large-view {
+    max-height: none;
   }
 
   blockquote {
