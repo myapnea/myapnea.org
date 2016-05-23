@@ -66,7 +66,6 @@
 //= require builder/surveys
 //= require admin/exports
 //= require admin/engagement_heatmaps
-//= require admin/research_articles
 //= require admin/social_media
 //= require builder/questions
 //= require builder/answer_templates

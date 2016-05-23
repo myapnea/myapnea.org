@@ -11,14 +11,11 @@ if typeof Turbolinks isnt 'undefined' and Turbolinks.supported
     $(".row-offcanvas").toggleClass "active-left"
     $(".offcanvas-toggle a").toggleClass "active"
     return
-
   $("[data-toggle=\"offcanvas-right\"]").click ->
     $(".row-offcanvas").toggleClass "active-right"
     $(".offcanvas-toggle a").toggleClass "active"
     return
-
   $('[data-toggle="tooltip"]').tooltip()
-
 
 @consentReady = () ->
   $("#consent .scroll").slimscroll(
