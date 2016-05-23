@@ -3,7 +3,6 @@
 require 'test_helper'
 
 class ResearchTopicsControllerTest < ActionController::TestCase
-
   setup do
     @no_votes_user = users(:user_2)
     @novice_user = users(:user_4)
@@ -14,66 +13,15 @@ class ResearchTopicsControllerTest < ActionController::TestCase
   end
 
   # Index
-
-  test "should get index for logged out user" do
+  test 'should get index for logged out user' do
     get :index
     assert_response :success
   end
 
-  test "should get accepted_research_topics_index for logged out user" do
-    get :accepted_research_topics_index
-    assert_response :success
-  end
-
-  test "should get accepted article" do
+  test 'should get accepted article' do
     get :accepted_article, slug: admin_research_articles(:one)
     assert_response :success
   end
-
-  # test "should get sleep_apnea_body_weight" do
-  #   get :sleep_apnea_body_weight
-  #   assert_response :success
-  # end
-
-  # test "should get sleep_apnea_brain_plasticity" do
-  #   get :sleep_apnea_brain_plasticity
-  #   assert_response :success
-  # end
-
-  # test "should get sleep_apnea_adenotonsillectomy_children" do
-  #   get :sleep_apnea_adenotonsillectomy_children
-  #   assert_response :success
-  # end
-
-  # test "should get sleep_apnea_diabetes" do
-  #   get :sleep_apnea_diabetes
-  #   assert_response :success
-  # end
-
-  # test "should get sleep_apnea_nighttime_oxygen_use" do
-  #   get :sleep_apnea_nighttime_oxygen_use
-  #   assert_response :success
-  # end
-
-  # test "should get sleep_apnea_didgeridoo" do
-  #   get :sleep_apnea_didgeridoo
-  #   assert_response :success
-  # end
-
-  # test "should get sleep_apnea_hypoglossal_stimulation" do
-  #   get :sleep_apnea_hypoglossal_stimulation
-  #   assert_response :success
-  # end
-
-  # test "should get sleep_apnea_women_heart_disease" do
-  #   get :sleep_apnea_women_heart_disease
-  #   assert_response :success
-  # end
-
-  # test "should get sleep_apnea_afib" do
-  #   get :sleep_apnea_afib
-  #   assert_response :success
-  # end
 
   test "should get index for experienced user" do
     # Displays normal index
@@ -229,7 +177,6 @@ class ResearchTopicsControllerTest < ActionController::TestCase
 
   end
 
-
   # My Topics
   test "should get my topics for experienced user" do
     # Displays normal index
@@ -255,7 +202,6 @@ class ResearchTopicsControllerTest < ActionController::TestCase
     get :my_research_topics
     assert_redirected_to research_topics_path
   end
-
 
   # Endorsement
   # Test w/ and w/o comment
@@ -292,7 +238,6 @@ class ResearchTopicsControllerTest < ActionController::TestCase
   #     post :vote, research_topic_id: rt.id, "endorse_#{rt.id}" => 1
   #   end
   # end
-
 
   # test "should vote for only the seeded research topics as a novice user" do
   #   login(@novice_user)
@@ -341,7 +286,6 @@ class ResearchTopicsControllerTest < ActionController::TestCase
     end
   end
 
-
   # Opposition
   test "should oppose any approved research topic as experienced user" do
     login(@experienced_user)
@@ -368,6 +312,4 @@ class ResearchTopicsControllerTest < ActionController::TestCase
       post :vote, research_topic_id: research_topics(:rt2).id
     end
   end
-
-
 end

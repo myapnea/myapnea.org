@@ -249,12 +249,10 @@ Rails.application.routes.draw do
       get :intro
       get 'first-topics', as: :first_topics
       get 'my-research-topics', as: :my_research_topics
-      # Accepted research topics
-      get 'accepted', to: 'research_topics#accepted_research_topics_index', as: :accepted
+      # # Accepted research topics
       get 'accepted/:slug', to: 'research_topics#accepted_article', as: :accepted_article
     end
   end
-
 
   scope module: :search do
     get :search, action: 'index', as: :search
