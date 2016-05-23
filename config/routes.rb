@@ -226,6 +226,23 @@ Rails.application.routes.draw do
     end
   end
 
+  # TODO: Remove redirects on or after 30 November 2016
+  get 'research-topics/accepted/complex-sleep-apnea-a-patients-story', to: redirect('blog/complex-sleep-apnea-a-patient-s-story')
+  get 'research-topics/accepted/complex-sleep-apnea', to: redirect('blog/complex-sleep-apnea')
+  get 'research-topics/accepted/sleep-apnea-and-hearing-loss', to: redirect('blog/sleep-apnea-and-hearing-loss')
+  get 'research-topics/accepted/sleep-apnea-chronic-peridontitis-tmd', to: redirect('blog/research-links-sleep-apnea-with-both-chronic-peridontitis-and-painful-tmd-tempomandibular-disorder')
+  get 'research-topics/accepted/new-frontiers-in-the-treatment-of-sleep-apnea-unilateral-hypoglossal-nerve-stimulation', to: redirect('blog/new-frontiers-in-the-treatment-of-sleep-apnea-unilateral-hypoglossal-nerve-stimulation')
+  get 'research-topics/accepted/does-sleep-influence-memory-and-brain-plasticity', to: redirect('blog/does-sleep-influence-memory-and-brain-plasticity')
+  get 'research-topics/accepted/obstructive-sleep-apnea-and-adenotonsillectomy-in-children', to: redirect('blog/obstructive-sleep-apnea-and-adenotonsillectomy-in-children')
+  get 'research-topics/accepted/Atrial-fibrillation-and-its-links-to-sleep-apnea', to: redirect('blog/atrial-fibrillation-and-its-links-to-sleep-apnea')
+  get 'research-topics/accepted/does-treatment-of-sleep-apnea-influence-body-weight', to: redirect('blog/does-treatment-of-sleep-apnea-influence-body-weight')
+  get 'research-topics/accepted/what-is-the-link-between-type-2-diabetes-and-obstructive-sleep-apnea', to: redirect('blog/what-is-the-link-between-type-2-diabetes-and-obstructive-sleep-apnea')
+  get 'research-topics/accepted/didgeridoos-a-potentially-novel-intervention-for-sleep-apnea', to: redirect('blog/didgeridoos-a-potentially-novel-intervention-for-sleep-apnea')
+  get 'research-topics/accepted/can-nighttime-oxygen-use-replace-CPAP-for-treatment-of-sleep-apnea', to: redirect('blog/can-nighttime-oxygen-use-replace-cpap-for-treatment-of-sleep-apnea')
+  get 'research-topics/accepted/new-study-shows-women-with-sleep-apnea-at-increased-risk-for-heart-disease-as-they-age', to: redirect('blog/women-sleep-apnea-and-heart-disease')
+  get 'research-topics/accepted', to: redirect('blog/category/research')
+  # END TODO
+
   # Research Topics
   resources :research_topics, path: 'research-topics' do
     collection do
@@ -237,6 +254,7 @@ Rails.application.routes.draw do
       get 'accepted/:slug', to: 'research_topics#accepted_article', as: :accepted_article
     end
   end
+
 
   scope module: :search do
     get :search, action: 'index', as: :search

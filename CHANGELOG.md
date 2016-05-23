@@ -20,6 +20,8 @@
 - **Notifications Added**
   - In-app notifications are now generated when someone comments on a blog post
     or replies to another user's comment
+- **Research Topic Changes**
+  - Accepted research topics now redirect to the associated blog post
 
 ## 12.0.0 (May 12, 2016)
 
