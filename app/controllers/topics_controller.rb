@@ -19,12 +19,7 @@ class TopicsController < ApplicationController
 
   # GET /forum
   def index
-    topic_scope = viewable_topics
-    @author = User.current.find_by_forum_name params[:a]
-    topic_scope = topic_scope.user_active(@author.id) if @author
-    topic_scope = topic_scope.pending_review if params[:status] == 'pending_review'
-    topic_scope = topic_scope.order(pinned: :desc, last_post_at: :desc, id: :desc)
-    @topics = topic_scope.page(params[:page]).per(20)
+    redirect_to chapters_path
   end
 
   # GET /forum/my-first-topic

@@ -14,7 +14,7 @@ class TopicsControllerTest < ActionController::TestCase
 
   test 'should get forum index' do
     get :index
-    assert_response :success
+    assert_redirected_to chapters_path
   end
 
   test 'should not get new for logged out user' do
