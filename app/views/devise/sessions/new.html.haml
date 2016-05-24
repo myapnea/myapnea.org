@@ -9,21 +9,23 @@
 .row
   .col-sm-6.col-sm-offset-3
     .centered{ style: 'margin-bottom: 40px' }
-      = link_to root_path do
+      = link_to root_path, tabindex: '-1' do
         = image_tag 'myapnea/logos/MyApneaLogo_border_whitetext_square_300x80_bluetext.png', style: 'max-width: 100%'
     %h1.centered.f300{ style: 'font-size: 24px;margin-bottom: 40px' } Sign in to MyApnea
     .content-container
       = form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'form-vertical' }) do |f|
-        .form-group
+        .form-group{ class: flash[:alert].present? ? 'has-error' : '' }
           = f.label :email, class: 'control-label'
           = f.email_field :email, class: 'form-control'
 
-        .form-group
+        .form-group{ class: flash[:alert].present? ? 'has-error' : '' }
           = f.label :password, class: 'control-label'
           = link_to '(Forgot password?)', new_password_path(resource_name), tabindex: '-1'
           = f.password_field :password, class: 'form-control', autocomplete: 'off'
 
         .form-group
+          - if flash[:alert].present?
+            .alert.alert-warning= flash[:alert].html_safe
           = f.submit 'Sign in', class: 'btn btn-primary btn-block'
 
     .content-container.centered{ style: 'background-color: transparent' }
