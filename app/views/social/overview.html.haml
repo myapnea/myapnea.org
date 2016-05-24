@@ -20,17 +20,17 @@
   .content-body
     %p
       Most promising, our community is becoming increasingly active. We currently have
-      %span.f500.darkerer-blue= pluralize(number_with_delimiter(Post.current.visible_for_user.count), 'post')
+      %span.f500.darkerer-blue= pluralize(number_with_delimiter(Reply.current.count), 'post')
       in
-      %span.f500.darkerer-blue= pluralize(number_with_delimiter(Topic.current.where(status: ['approved', 'pending_review']).count), 'topic')
+      %span.f500.darkerer-blue= pluralize(number_with_delimiter(Chapter.current.count), 'topic')
       To date, we've watched an overwhelming amount of support grow among the MyApnea community. The forums alone have become an active discussion board where people with sleep apnea, researchers, and care providers help each other address important questions and concerns. Among these are:
     %ul
       %li
-        = link_to 'Issues that people have adjusting to new CPAP devices', topic_path('contribute-community-tips-for-using-pap-devices'), class: 'no-underline'
+        = link_to 'Issues that people have adjusting to new CPAP devices', chapter_path('contribute-community-tips-for-using-pap-devices'), class: 'no-underline'
       %li
-        = link_to 'Finding proper care for central/mixed sleep apnea', topic_path('central-mixed-apnea'), class: 'no-underline'
+        = link_to 'Finding proper care for central/mixed sleep apnea', chapter_path('central-mixed-apnea'), class: 'no-underline'
       %li
-        = link_to 'Determining future research for the link between sleep apnea and body weight', topic_path('does-treatment-of-sleep-apnea-influence-body-weight'), class: 'no-underline'
+        = link_to 'Determining future research for the link between sleep apnea and body weight', chapter_path('does-treatment-of-sleep-apnea-influence-body-weight'), class: 'no-underline'
 
 .content-container.inherit-background
   .content-body
@@ -41,21 +41,21 @@
             "Note I look at a lot of support sites and finally pulled the trigger on this one....glad I did!"
           %p.user-testimonial-quoter
             \-
-            = link_to 'JDARZ', topic_post_path('waking-up-with-dry-mouth', '609')
+            = link_to 'JDARZ', reply_path(1270)
       .col-sm-4
         .user-testimonial-small
           %p.user-testimonial-quote
             "I got up this morning feeling completely different...thank you guys for helping me ease into this next phase."
           %p.user-testimonial-quoter
             \-
-            = link_to 'Bhek', topic_post_path('contribute-community-tips-for-using-pap-devices', '531')
+            = link_to 'Bhek', reply_path(1019)
       .col-sm-4
         .user-testimonial-small
           %p.user-testimonial-quote
             "I belong to a bunch of SA support groups...this one has the people that honestly want to help."
           %p.user-testimonial-quoter
             \-
-            = link_to 'Pat', topic_post_path('waking-up-with-dry-mouth', '614')
+            = link_to 'Pat', reply_path(1272)
 
 .content-container
   .content-body

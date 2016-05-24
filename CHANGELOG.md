@@ -15,6 +15,7 @@
   - Simplified user interface and styling across site
   - Site-wide search is now available in the top navigation bar
   - Removed integration with UserVoice in favor of our support email address
+  - Improved generation of the sitemap
 - **Menu Changes**
   - The menu has been slimmed down to take up less space
 - **Notifications Added**

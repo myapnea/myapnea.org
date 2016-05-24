@@ -374,6 +374,8 @@ Rails.application.routes.draw do
     end
   end
 
+  get 'sitemap.xml.gz' => 'external#sitemap'
+
   get 'forums/:category/topics/*path', to: redirect('forum/%{path}')
   get 'forums/:category', to: redirect('forum')
   get 'forums', to: redirect('forum')
