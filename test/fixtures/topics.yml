@@ -2,7 +2,6 @@
 # http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  forum: one
   user: owner
   name: My Topic
   locked: false
@@ -13,7 +12,6 @@ one:
   slug: my-topic
 
 two:
-  forum: one
   user: user_1
   name: Another Topic
   locked: false
@@ -24,7 +22,6 @@ two:
   slug: another-topic
 
 introduction:
-  forum: one
   user: user_1
   name: Introduce yourself
   locked: false
@@ -34,7 +31,6 @@ introduction:
   slug: introduce-yourself
 
 locked:
-  forum: one
   user: owner
   name: Locked Topic
   locked: true
@@ -45,7 +41,6 @@ locked:
   slug: locked-topic
 
 spam:
-  forum: one
   user: user_2
   name: Spam Topic
   locked: false
@@ -56,7 +51,6 @@ spam:
   slug: spam-topic
 
 hidden:
-  forum: one
   user: user_1
   name: Hidden Topic
   locked: false
@@ -67,7 +61,6 @@ hidden:
   slug: hidden-topic
 
 rt1:
-  forum: research_topics
   user: user_1
   name: Why do we snore?
   locked: false
@@ -76,7 +69,6 @@ rt1:
   status: approved
 
 rt2:
-  forum: research_topics
   user: user_2
   name: Do we breathe while we sleep?
   locked: false
@@ -85,7 +77,6 @@ rt2:
   status: under_review
 
 rt3:
-  forum: research_topics
   user: user_3
   name: How much sleep do we really need?
   locked: false
@@ -93,9 +84,7 @@ rt3:
   slug: how-much-sleep
   status: approved
 
-
 rt4:
-  forum: research_topics
   user: user_10
   name: What what what?
   locked: false
@@ -105,7 +94,6 @@ rt4:
   status: approved
 
 toms:
-  forum: one
   user: social
   name: Hi I am Tom
   locked: false
@@ -114,7 +102,6 @@ toms:
   status: approved
 
 seeded_rt:
-  forum: research_topics
   user: user_1
   name: What is the reason for persistent sleepiness despite treatment of sleep apnea?
   locked: false
@@ -123,7 +110,6 @@ seeded_rt:
   status: approved
 
 seeded_rt2:
-  forum: research_topics
   user: user_2
   name: What are the barriers to treating patients with mixed/central apnea?
   locked: false

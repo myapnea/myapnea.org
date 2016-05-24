@@ -387,41 +387,4 @@ Rails.application.routes.draw do
 
   get 'update_account', to: redirect('account')
   get 'change_password', to: redirect('account')
-
-  namespace :api do
-    namespace :v1 do
-      resources :topics do
-        resources :posts
-      end
-      resources :research_topics do
-        collection do
-          post :vote
-        end
-      end
-      resources :surveys do
-        collection do
-          get :answer_sessions
-          post :process_answer
-          post :lock_answer_session
-        end
-        member do
-          get :show
-        end
-      end
-      scope module: :account do
-        get 'account/home', action: :home
-        get 'account/dashboard', action: :dashboard
-        get 'account/photo', action: :photo
-        get 'account/forum_name', action: :forum_name
-        get 'account/user_types', action: :user_types
-        post 'account/set_user_types', action: :set_user_types
-        get 'account/ready_for_research', action: :ready_for_research
-        post 'account/accept_consent', action: :accept_consent
-        post 'account/set_dob', action: :set_dob
-        post 'account/set_height_weight', action: :set_height_weight
-        get 'account/check_dob', action: :check_dob
-        get 'account/check_height_weight', action: :check_height_weight
-      end
-    end
-  end
 end
