@@ -15,9 +15,7 @@
           = link_to 'Logout', destroy_user_session_path, method: :delete, class: 'btn btn-primary'
       - else
         %form.navbar-form.navbar-right.hidden-xs.hidden-sm
-          = link_to 'Sign up', new_user_registration_path, class: 'btn btn-primary' unless current_page?(new_user_registration_path)
           = link_to 'Sign in', new_user_session_path, class: 'btn btn-primary'
-
 
       %div{ style: 'position: relative' }
         .full-search-bar
@@ -71,5 +69,4 @@
           = link_to 'Logout', destroy_user_session_path, method: :delete, class: 'btn btn-primary'
       - else
         %form.navbar-form.navbar-right.visible-xs.visible-sm
-          = link_to 'Sign up', new_user_registration_path, class: 'btn btn-primary' unless current_page?(new_user_registration_path)
           = link_to 'Sign in', new_user_session_path, class: 'btn btn-primary'
