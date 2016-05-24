@@ -23,6 +23,7 @@ SitemapGenerator::Sitemap.create do
   add '/learn', changefreq: 'weekly', priority: 0.51
   add '/faqs', changefreq: 'monthly', priority: 0.51
   add '/partners', changefreq: 'monthly', priority: 0.3
+  add '/contact', changefreq: 'monthly', priority: 0.3
 
   Broadcast.published.find_each do |broadcast|
     add "/blog/#{broadcast.to_param}", lastmod: broadcast.updated_at
