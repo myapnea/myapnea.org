@@ -27,5 +27,20 @@
     = javascript_tag "var root_url='#{request.script_name + '/'}';"
   %body{ style: "background-color: #{@background_color || '#fff' || '#e6edf4'};margin-bottom: 0;margin-top:0;padding-top:0" }
     = yield :banner
+    %div{ style: 'height: 20px' }
+      &nbsp;
+    .hidden-xs{ style: 'height: 20px' }
+      &nbsp;
+    .centered{ style: 'margin-bottom: 18px' }
+      = link_to root_path, tabindex: '-1' do
+        = image_tag 'myapnea/logos/MyApneaLogo_border_whitetext_square_300x80_bluetext.png', style: 'max-width: 100%'
     .container= yield
     = yield :call_to_action
+    .centered.small{ style: 'margin-bottom:20px;margin-top:40px' }
+      = link_to 'Terms', terms_and_conditions_path, style: 'color: #777'
+      &nbsp;
+      = link_to 'Privacy', privacy_path, style: 'color: #777'
+      &nbsp;
+      = link_to 'Contact', contact_path, style: 'color: #777'
+      &nbsp;
+      = link_to 'About', about_path, style: 'color: #777'

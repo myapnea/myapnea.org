@@ -1,44 +1,42 @@
-.slide-user-signup
-  .container
-    .row
-      .col-md-10.col-md-offset-1
-        .user-signup-form
-          %h1.darker-blue
-            Wake up to a better future!
-          %h4
-            By joining, you gain access to a unique group of resources and a growing research community. It's fast, simple, and completely free of cost to join and start making a difference!
-          %h4
-            All of your information is completely protected.
-            = succeed '.' do
-              = link_to 'See our privacy policy', privacy_path, target: '_blank'
+- @background_color = '#f9f9f9'
 
-          = form_for(resource, url: registration_path(resource), class: 'form-horizontal', method: :post) do |f|
-            - if resource.errors.any?
-              .bs-callout.bs-callout-danger#error_explanation
-                %h4
-                  = pluralize(resource.errors.count, "error")
-                  prohibited this user from being saved
-                %ul
-                  - resource.errors.messages.each do |key, msg|
-                    - if key == :over_eighteen
-                      %li= msg.join(", ")
-                    - else
-                      %li= "#{key.to_s.titleize} #{msg.join(", ")}"
-            = f.hidden_field :beta_opt_in, value: true
-            = f.hidden_field :provider_id
-            .form-group
-              = f.text_field :first_name, placeholder: 'First name', class: 'form-control'
-            .form-group
-              = f.text_field :last_name, placeholder: 'Last name', class: 'form-control'
-            .form-group
-              = f.email_field :email, placeholder: 'Email address', class: 'form-control'
-            .form-group
-              = f.password_field :password, placeholder: 'Password', class: 'form-control'
-            .checkbox.text-left
-              %label
-                = f.check_box :over_eighteen
-                I am over the age of 18
-            %br
-            .form-group
-              = f.submit 'Sign up!', class: 'btn btn-block btn-primary-custom'
+.row
+  .col-sm-6.col-sm-offset-3
+    %h1.centered.f300{ style: 'font-size: 24px;margin-bottom: 40px' } Wake up to a better future!
+    .content-container
+      = form_for(resource, url: registration_path(resource), class: 'form-vertical', method: :post) do |f|
+        - if resource.errors.any?
+          .bs-callout.bs-callout-danger{ style: 'margin-top: 0' }
+            %ul
+              - resource.errors.messages.each do |key, msg|
+                - if key == :over_eighteen
+                  %li= msg.join(", ")
+                - else
+                  %li= "#{key.to_s.titleize} #{msg.join(", ")}"
+        = f.hidden_field :provider_id
+        .form-group
+          = f.label :first_name, class: 'control-label'
+          = f.text_field :first_name, class: 'form-control'
+        .form-group
+          = f.label :last_name, class: 'control-label'
+          = f.text_field :last_name, class: 'form-control'
+        .form-group
+          = f.label :email, class: 'control-label'
+          = f.email_field :email, class: 'form-control'
+        .form-group
+          = f.label :password, class: 'control-label'
+          = f.password_field :password, class: 'form-control'
+        .checkbox.text-left
+          %label
+            = f.check_box :over_eighteen
+            I am over the age of 18
+        %br
+        .form-group
+          = f.submit 'Sign up!', class: 'btn btn-primary btn-block'
 
+    %p
+      By joining, you gain access to a unique group of resources and a growing research community. It's fast, simple, and completely free of cost to join and start making a difference!
+    %p
+      All of your information is completely protected.
+      = succeed '.' do
+        = link_to 'See our privacy policy', privacy_path, target: '_blank'

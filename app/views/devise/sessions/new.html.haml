@@ -1,16 +1,7 @@
 - @background_color = '#f9f9f9'
 
-%div{ style: 'height: 20px' }
-  &nbsp;
-
-.hidden-xs{ style: 'height: 20px' }
-  &nbsp;
-
 .row
   .col-sm-6.col-sm-offset-3
-    .centered{ style: 'margin-bottom: 40px' }
-      = link_to root_path, tabindex: '-1' do
-        = image_tag 'myapnea/logos/MyApneaLogo_border_whitetext_square_300x80_bluetext.png', style: 'max-width: 100%'
     %h1.centered.f300{ style: 'font-size: 24px;margin-bottom: 40px' } Sign in to MyApnea
     .content-container
       = form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'form-vertical' }) do |f|
@@ -31,12 +22,3 @@
     .content-container.centered{ style: 'background-color: transparent' }
       New to MyApnea?
       = link_to 'Create an account.', new_user_registration_path
-
-    .centered.small{ style: 'margin-bottom:20px;margin-top:40px' }
-      = link_to 'Terms', terms_and_conditions_path, style: 'color: #777'
-      &nbsp;
-      = link_to 'Privacy', privacy_path, style: 'color: #777'
-      &nbsp;
-      = link_to 'Contact', contact_path, style: 'color: #777'
-      &nbsp;
-      = link_to 'About', about_path, style: 'color: #777'

@@ -7,7 +7,7 @@ en:
       send_instructions: "You will receive an email with instructions about how to confirm your account in a few minutes."
       send_paranoid_instructions: "If your email address exists in our database, you will receive an email with instructions about how to confirm your account in a few minutes."
     failure:
-      already_authenticated: "You are already signed in."
+      already_authenticated: "" # "You are already signed in."
       inactive: "Your account is not activated yet."
       invalid: |
         The email or the password you entered seem to be incorrect.
@@ -24,7 +24,7 @@ en:
 
         If you forgot your password, please use the <strong>Forgot Password?</strong> link above.
       timeout: "Your session expired. Please sign in again to continue."
-      unauthenticated: "You need to sign in or sign up before continuing."
+      unauthenticated: "" # "You need to sign in or sign up before continuing."
       unconfirmed: "You have to confirm your account before continuing."
     mailer:
       confirmation_instructions:
