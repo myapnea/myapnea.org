@@ -16,7 +16,7 @@ class RepliesController < ApplicationController
   def show
     respond_to do |format|
       format.html do
-        redirect_to chapter_path(@reply.chapter, page: @reply.page, anchor: @reply.anchor)
+        redirect_to page_chapter_path(@reply.chapter, page: @reply.page, anchor: @reply.anchor)
       end
       format.js
     end

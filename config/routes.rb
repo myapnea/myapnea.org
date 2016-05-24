@@ -358,7 +358,12 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :chapters, path: 'forum'
+  resources :chapters, path: 'forum' do
+    member do
+      get '/edit', action: :edit, as: :edit
+      get '/:page', action: :show, as: :page
+    end
+  end
 
   resources :replies do
     collection do

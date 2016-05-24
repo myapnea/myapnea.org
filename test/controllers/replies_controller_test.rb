@@ -48,7 +48,7 @@ class RepliesControllerTest < ActionController::TestCase
   test 'should show reply and redirect to correct page' do
     login(@regular_user)
     get :show, chapter_id: @reply.chapter.to_param, id: @reply
-    assert_redirected_to chapter_path(@reply.chapter, page: @reply.page, anchor: @reply.anchor)
+    assert_redirected_to page_chapter_path(@reply.chapter, page: @reply.page, anchor: @reply.anchor)
   end
 
   test 'should show reply' do
