@@ -23,6 +23,8 @@
     or replies to another user's comment
 - **Research Topic Changes**
   - Accepted research topics now redirect to the associated blog post
+- **Gem Changes**
+  - Removed better_errors
 
 ## 12.0.0 (May 12, 2016)
 
