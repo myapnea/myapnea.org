@@ -5,16 +5,6 @@ if typeof Turbolinks isnt 'undefined' and Turbolinks.supported
   $(document.links).filter(() ->
     return this.hostname != window.location.hostname
   ).attr('target', '_blank')
-
-  # Offcanvas
-  $("[data-toggle=\"offcanvas-left\"]").click ->
-    $(".row-offcanvas").toggleClass "active-left"
-    $(".offcanvas-toggle a").toggleClass "active"
-    return
-  $("[data-toggle=\"offcanvas-right\"]").click ->
-    $(".row-offcanvas").toggleClass "active-right"
-    $(".offcanvas-toggle a").toggleClass "active"
-    return
   $('[data-toggle="tooltip"]').tooltip()
 
 @consentReady = () ->
@@ -69,9 +59,6 @@ if typeof Turbolinks isnt 'undefined' and Turbolinks.supported
 $(document).ready(loaders)
 $(document)
   .on('page:load', loaders)
-  .on('click', '[data-object~="login-with-focus"]', () ->
-    setFocusToField("#user_email")
-  )
   .on('click', '[data-object~="submit"]', () ->
     $($(this).data('target')).submit()
     false

@@ -97,22 +97,3 @@ weight_updated = false
   (document.getElementById('tiredness_yes').checked || document.getElementById('tiredness_no').checked) &&
   (document.getElementById('snoring_yes').checked || document.getElementById('snoring_no').checked) &&
   (document.getElementById('neck_yes').checked || document.getElementById('neck_no').checked)
-
-
-#### Check answers using the following syntax ####
-  # console.log document.getElementById('gender_male').checked
-  # console.log document.getElementById('gender_female').checked
-  # console.log document.getElementById('age').value
-  # console.log document.getElementById('feet').value
-  # console.log document.getElementById('inches').value
-  # console.log document.getElementById('weight').value
-  # console.log document.getElementById('systolic').value
-  # console.log document.getElementById('diastolic').value
-  # console.log document.getElementById('snoring_yes').checked
-  # console.log document.getElementById('snoring_no').checked
-  # console.log document.getElementById('tiredness_yes').checked
-  # console.log document.getElementById('tiredness_no').checked
-  # console.log document.getElementById('observation_yes').checked
-  # console.log document.getElementById('observation_no').checked
-  # console.log document.getElementById('neck_yes').checked
-  # console.log document.getElementById('neck_no').checked
