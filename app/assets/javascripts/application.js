@@ -72,6 +72,7 @@
 //= require previews
 //= require extensions/filedrag
 //= require objects/blog
+//= require objects/chapters
 //= require objects/images
 //= require objects/topics
 //= require components/search

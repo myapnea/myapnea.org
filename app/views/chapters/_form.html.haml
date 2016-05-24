@@ -1,30 +1,44 @@
-= form_for @chapter, html: { class: 'form-horizontal' } do |f|
-  - if @chapter.errors.any?
-    .panel.panel-danger
-      .panel-heading
-        %strong
-          = pluralize @chapter.errors.count, 'error'
-          prohibited this topic from being saved
-      .panel-body
-        %ul
-          - @chapter.errors.full_messages.each do |message|
-            %li= message
+.content-container
+  = form_for @chapter, html: { class: 'form-vertical' } do |f|
+    - if @chapter.errors.any?
+      .panel.panel-danger
+        .panel-heading
+          %strong
+            = pluralize @chapter.errors.count, 'error'
+            prohibited this topic from being saved
+        .panel-body
+          %ul
+            - @chapter.errors.full_messages.each do |message|
+              %li= message
 
-  .form-group
-    = f.label :title, class: 'col-md-2 control-label'
-    .col-md-10
+    .form-group
+      = f.label :title, class: 'control-label'
       = f.text_field :title, class: 'form-control', data: { object: (@chapter.new_record? ? 'create-slug' : ''), target: '#chapter_slug' }
 
-  .form-group{ style: "#{'display:none' if @chapter.new_record? && !@chapter.errors.key?(:slug)}"}
-    = f.label :slug, class: 'col-md-2 control-label'
-    .col-md-10
+    .form-group{ style: "#{'display:none' if @chapter.new_record? && !@chapter.errors.key?(:slug)}"}
+      = f.label :slug, class: 'control-label'
       = f.text_field :slug, class: 'form-control'
-      %code.text-muted= "#{ENV['website_url']}/forum/#{@chapter.slug}"
+      .alert.alert-info{ style: 'margin-top: 10px' }
+        %p
+          The URL slug must start with a lowercase letter
+          = succeed ',' do
+            %code a-z
+          and only contain lowercase
+          letters
+          = succeed ',' do
+            %code a-z
+          numbers
+          = succeed ',' do
+            %code 0-9
+          or dashes
+          = succeed ',' do
+            %code -
+        %p
+          %code.text-muted= "#{ENV['website_url']}/forum/#{@chapter.slug}"
 
-  - if @chapter.new_record?
-    .form-group
-      = f.label :description, class: 'col-md-2 control-label'
-      .col-md-10
+    - if @chapter.new_record?
+      .form-group
+        = f.label :description, class: 'control-label'
         .preview-container
           .preview-header
             = link_to 'Write', '#', data: { object: 'view-content-markdown' }, class: 'preview-tab active', tabindex: '-1'
@@ -36,15 +50,13 @@
                 Drag images above to insert into post.
             #content_preview.chapter{ style: 'display:none' }
 
-  - if current_user.owner?
-    .form-group
-      .col-md-offset-2.col-md-10
+    - if current_user.owner?
+      .form-group
         .checkbox
           %label
             = f.check_box :pinned
             Pinned
 
-  .form-group
-    .col-md-10.col-md-offset-2
+    .form-group
       = f.submit (@chapter.new_record? ? 'Create Topic' : 'Update Topic'), class: 'btn btn-primary'
       = link_to 'Cancel', (@chapter.new_record? ? chapters_path : @chapter), class: 'btn btn-default'

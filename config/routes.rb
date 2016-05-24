@@ -12,6 +12,10 @@ Rails.application.routes.draw do
       post :register
       post :reply
     end
+    namespace :forum do
+      post :login
+      post :new_topic
+    end
   end
 
   resources :engagements do
