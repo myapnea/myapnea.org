@@ -172,9 +172,6 @@ class AdminController < ApplicationController
     @user_values = user_values
   end
 
-  def reactions
-  end
-
   def daily_engagement
     redirect_to admin_path and return unless current_user.owner?
     @date1 = parse_date(params[:start_date], Date.today)

@@ -48,7 +48,6 @@ if typeof Turbolinks isnt 'undefined' and Turbolinks.supported
   dailyEngagementReady() if $(".daily-engagement-report").length > 0
   exportsReady()
   socialMediaReady() if $('#sleep_tip').length > 0
-  engagementHeatmapReady() if $('.engagement-heatmap').length > 0
   builderQuestionsReady()
   builderAnswerTemplatesReady()
   builderAnswerOptionsReady()

@@ -1,28 +1,29 @@
-.content-main-header
-  .container
-    %h1 Clinical Trials
+.content-main-header2
+  %h1
+    = link_to 'Admin Dashboard', admin_path
+    &middot;
+    Clinical Trials
 
-.container
-  .content-container
-    %table.table.table-striped
-      %thead
+.content-container
+  %table.table.table-striped
+    %thead
+      %tr
+        %th Title
+        %th Overview
+        %th Email
+        %th Displayed
+        %th Industry Sponsored
+        %th{:colspan => "3"}
+    %tbody
+      - @admin_clinical_trials.each do |admin_clinical_trial|
         %tr
-          %th Title
-          %th Overview
-          %th Email
-          %th Displayed
-          %th Industry Sponsored
-          %th{:colspan => "3"}
-      %tbody
-        - @admin_clinical_trials.each do |admin_clinical_trial|
-          %tr
-            %td= link_to admin_clinical_trial.title, admin_clinical_trial
-            %td= admin_clinical_trial.overview
-            %td= admin_clinical_trial.email
-            %td= admin_clinical_trial.displayed
-            %td= admin_clinical_trial.industry_sponsored
-            %td= link_to 'Edit', edit_admin_clinical_trial_path(admin_clinical_trial)
-            %td= link_to 'Destroy', admin_clinical_trial, method: :delete, data: { confirm: 'Are you sure?' }
-    .content-footer
-      = link_to 'New Clinical Trial', new_admin_clinical_trial_path, class: 'btn btn-primary'
-      = link_to 'Edit Order', order_admin_clinical_trials_path, class: 'btn btn-default'
+          %td= link_to admin_clinical_trial.title, admin_clinical_trial
+          %td= admin_clinical_trial.overview
+          %td= admin_clinical_trial.email
+          %td= admin_clinical_trial.displayed
+          %td= admin_clinical_trial.industry_sponsored
+          %td= link_to 'Edit', edit_admin_clinical_trial_path(admin_clinical_trial)
+          %td= link_to 'Destroy', admin_clinical_trial, method: :delete, data: { confirm: 'Are you sure?' }
+  .content-footer
+    = link_to 'New Clinical Trial', new_admin_clinical_trial_path, class: 'btn btn-primary'
+    = link_to 'Edit Order', order_admin_clinical_trials_path, class: 'btn btn-default'

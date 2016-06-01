@@ -1,6 +1,6 @@
 - part_of_registration = false unless defined?(part_of_registration)
 
-.content-container{ style: 'margin-bottom: 0px;'}
+.content-container
   .content-header
     %h3.f300
       Terms of Access for MyApnea.Org
@@ -19,11 +19,10 @@
         Individual de-identified participant-level data can be obtained but will require completion of a Data Use Agreement available on the Research Portal section of MyApnea.Org which will be made available at a later date.
       - if current_user and !current_user.accepted_terms_of_access? and current_user.is_only_academic?
         = markdown 'If you wish to be in this study please click the button that says **"I Agree"**'
-    %br/
-    = link_to "#", id: "print-link", class: 'print-link pull-right btn btn-xs btn-primary' do
-      %i.fa.fa-print
-      Print Terms of Access
-  - if current_user and !part_of_registration and (current_user.provider? or current_user.researcher?)
+  = link_to '#', id: 'print-link', class: 'print-link btn btn-xs btn-primary' do
+    %i.fa.fa-print
+    Print Terms of Access
+  - if current_user && !part_of_registration && (current_user.provider? || current_user.researcher?)
     .content-footer.centered
       - if current_user.ready_for_research?
         = succeed ' ' do

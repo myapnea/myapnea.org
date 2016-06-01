@@ -63,7 +63,6 @@
 //= require filedrag
 //= require builder/surveys
 //= require admin/exports
-//= require admin/engagement_heatmaps
 //= require admin/social_media
 //= require builder/questions
 //= require builder/answer_templates

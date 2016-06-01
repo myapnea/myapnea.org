@@ -1,47 +1,46 @@
-.content-main-header
-  .container
-    %h1 Partners
-    %p= link_to 'Admin Dashboard', admin_path
+.content-main-header2
+  %h1
+    = link_to 'Admin Dashboard', admin_path
+    &middot;
+    Partners
 
-.container
-  .content-container
-    %h2 Main
-    - @admin_partners.where(group: 'main').each do |partner|
-      = render partner
-      .horizontal-inset
-        %span.f700 Displayed:
-        = simple_check partner.displayed?
-        &nbsp;
-        &nbsp;
-        &nbsp;
-        = link_to edit_admin_partner_path(partner), class: 'btn btn-sm btn-default' do
-          %span.glyphicon.glyphicon-pencil
-      - unless partner == @admin_partners.where(group: 'main').last
-        %hr
-    .content-footer
-      = link_to 'New Partner', new_admin_partner_path, class: 'btn btn-primary'
+.content-container
+  %h2 Main
+  - @admin_partners.where(group: 'main').each do |partner|
+    = render partner
+    .horizontal-inset
+      %span.f700 Displayed:
+      = simple_check partner.displayed?
+      &nbsp;
+      &nbsp;
+      &nbsp;
+      = link_to edit_admin_partner_path(partner), class: 'btn btn-sm btn-default' do
+        %span.glyphicon.glyphicon-pencil
+    - unless partner == @admin_partners.where(group: 'main').last
+      %hr
+  .content-footer
+    = link_to 'New Partner', new_admin_partner_path, class: 'btn btn-primary'
 
-.container
-  .content-container
-    %h2 Promotional
-    %table.table.table-striped
-      %thead
+.content-container
+  %h2 Promotional
+  %table.table.table-striped
+    %thead
+      %tr
+        %th
+        %th Name
+        %th Link
+        %th Displayed
+    %tbody
+      - @admin_partners.where(group: 'promotional').each do |partner|
         %tr
-          %th
-          %th Name
-          %th Link
-          %th Displayed
-      %tbody
-        - @admin_partners.where(group: 'promotional').each do |partner|
-          %tr
-            %td= image_tag partner_photo_url(partner), alt: '', class: 'img-responsive'
-            %td= partner.name
-            %td= partner.link
-            %td= simple_check partner.displayed?
-            %td
-              = link_to edit_admin_partner_path(partner), class: 'btn btn-sm btn-default' do
-                %span.glyphicon.glyphicon-pencil
-              = link_to admin_partner_path(partner), method: :delete, class: 'btn btn-sm btn-danger' do
-                %span.glyphicon.glyphicon-trash
-    .content-footer
-      = link_to 'New Partner', new_admin_partner_path, class: 'btn btn-primary'
+          %td= image_tag partner_photo_url(partner), alt: '', class: 'img-responsive'
+          %td= partner.name
+          %td= partner.link
+          %td= simple_check partner.displayed?
+          %td
+            = link_to edit_admin_partner_path(partner), class: 'btn btn-sm btn-default' do
+              %span.glyphicon.glyphicon-pencil
+            = link_to admin_partner_path(partner), method: :delete, class: 'btn btn-sm btn-danger' do
+              %span.glyphicon.glyphicon-trash
+  .content-footer
+    = link_to 'New Partner', new_admin_partner_path, class: 'btn btn-primary'

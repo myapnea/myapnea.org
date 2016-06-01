@@ -142,13 +142,6 @@ class AdminControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test 'should get reaction summary as admin' do
-    login(users(:moderator_1))
-
-    get :reactions
-    assert_response :success
-  end
-
   test 'should get daily engagement report as owner' do
     login(users(:owner))
 
