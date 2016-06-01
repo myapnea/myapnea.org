@@ -1,12 +1,13 @@
-.content-main-header
-  .container
-    %h1 Team Members
+.content-main-header2
+  %h1
+    = link_to 'Admin Dashboard', admin_path
+    &middot;
+    Team Members
 
-.container
-  .content-container
-    - @admin_team_members.each do |team_member|
-      = render team_member
-      %hr
-    .content-footer
-      = link_to 'New Team Member', new_admin_team_member_path, class: 'btn btn-primary'
-      = link_to 'Edit Order', order_admin_team_members_path, class: 'btn btn-default'
+.content-container
+  - @admin_team_members.each do |team_member|
+    = render team_member
+    %hr
+  .content-footer
+    = link_to 'New Team Member', new_admin_team_member_path, class: 'btn btn-primary'
+    = link_to 'Edit Order', order_admin_team_members_path, class: 'btn btn-default'

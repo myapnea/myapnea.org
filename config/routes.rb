@@ -313,7 +313,7 @@ Rails.application.routes.draw do
 
   # Governance
   get 'governance-policy', to: 'static#governance_policy', as: :governance_policy
-  get 'patient-engagement-panel-charter', to: 'static#PEP_charter', as: :pep_charter
+  get 'patient-engagement-panel-charter', to: 'static#pep_charter', as: :pep_charter
 
   # Admin Section
   get 'admin' => 'admin#dashboard'

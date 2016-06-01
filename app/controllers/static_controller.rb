@@ -45,7 +45,7 @@ class StaticController < ApplicationController
   def governance_policy
   end
 
-  def PEP_charter
+  def pep_charter
   end
 
   # PAP Devices

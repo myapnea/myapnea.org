@@ -1,15 +1,13 @@
-.content-main-header
-  .container
-    %h1 PEP Corner
+.content-main-header2
+  %h1 PEP Corner
 
-.container
-  .row
-    .col-sm-10.col-sm-offset-1
-      .pep-corner-profile
-        .pep-header
-        = image_tag team_member_photo_url(@pep_member)
-        .pep-footer
-          %h3.centered= @pep_member.name
-          %p.lead= @pep_member.bio
-          %hr
-          %p= simple_markdown @pep_member.interview
+.row
+  .col-sm-10.col-sm-offset-1
+    .pep-corner-profile
+      .pep-header
+      = image_tag team_member_photo_url(@pep_member)
+      .pep-footer
+        %h3.centered= @pep_member.name
+        %p.lead= @pep_member.bio
+        %hr
+        %p= simple_markdown @pep_member.interview

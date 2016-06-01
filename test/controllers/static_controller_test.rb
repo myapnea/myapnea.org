@@ -43,7 +43,7 @@ class StaticControllerTest < ActionController::TestCase
   end
 
   test 'should get PEP charter' do
-    get :PEP_charter
+    get :pep_charter
     assert_response :success
   end
 
