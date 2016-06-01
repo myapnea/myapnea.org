@@ -78,13 +78,13 @@
             %span{ style: emphasis_style } Via Promo Cards
 
           %p{ style: p_style }
-            You can also request print materials about
+            You can also download print materials about
             = ENV['website_name']
-            for use in your clinic or lab. Please submit your request for postcard or
+            for use in your clinic or lab. You can find postcard or
             flyer sized promotional materials in English and/or Spanish here:
 
           %p{ style: center_style }
-            = link_to 'MyApnea.Org Provider Inquiry', 'http://bit.ly/1F5ZJCV', style: link_style
+            = link_to 'MyApnea.Org Flyers', "#{ENV['website_url']}/marketing", style: link_style
 
           %div{ style: image_style }
             = image_tag attachments.inline['did_you_know.png'].url, alt: ENV['website_name'], border: 0, width: 250, height: 250, style: 'outline:none;text-decoration:none;border:none;width:250px;min-height:36px;max-width:100%' if attachments.inline['did_you_know.png']
