@@ -18,6 +18,6 @@
     - symbol = '+' if broadcast_comment.rank >= 0
     = "#{symbol}#{number_with_delimiter(broadcast_comment.rank)} point#{'s' if broadcast_comment.rank.abs != 1}"
     &middot;
-    %span{ data: { toggle: 'tooltip', container: 'body', title: broadcast_comment.updated_at.strftime('%B %d, %Y at %-l:%M %p') } }
-      = time_ago_in_words broadcast_comment.updated_at
+    %span{ data: { toggle: 'tooltip', container: 'body', title: broadcast_comment.created_at.strftime('%B %d, %Y at %-l:%M %p') } }
+      = time_ago_in_words broadcast_comment.created_at
       ago
