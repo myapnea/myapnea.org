@@ -213,7 +213,7 @@ class ResearchTopicsControllerTest < ActionController::TestCase
   # Test w/ and w/o comment
   test 'should endorse any approved research topic as experienced user' do
     login(@experienced_user)
-    assert_nil @rt2.endorsement
+    assert_equal 0.0, @rt2.endorsement
 
     assert_difference 'Vote.count' do
       post :vote, research_topic_id: @rt2.id, "endorse_#{research_topics(:rt2).id}" => 1
@@ -296,7 +296,7 @@ class ResearchTopicsControllerTest < ActionController::TestCase
   test 'should oppose any approved research topic as experienced user' do
     login(@experienced_user)
 
-    assert_nil @rt2.endorsement
+    assert_equal 0.0, @rt2.endorsement
     assert_not_nil @rt2
 
     get :show, id: @rt2
