@@ -10,20 +10,3 @@
   .content-container
     - answer_session = current_user.answer_sessions.where(child_id: nil).joins(:survey).merge( Survey.current.viewable ).order(:locked, "surveys.name_en", :encounter).first
     = render 'surveys/answer_sessions/progress', answer_session: answer_session
-- elsif current_user.research_topics.current.present?
-  .content-container.less-padding
-    - current_user.research_topics.order(:progress).each do |rt|
-      = link_to rt.topic.name, rt
-      %br
-      %br
-      = "#{(rt.endorsement*100).round}%"
-      = surround "(", ")" do
-        %span.italic= pluralize(rt.votes.current.count, 'vote')
-      .progress-meter
-        %span{ data: { object: 'research-topic-meter', progress: "#{rt.endorsement*100}" } }
-      - unless rt == current_user.research_topics.order(:progress).last
-        %hr
-- else
-  .content-container.less-padding
-    The fastest way to change the future of research is to get directly involved...
-    = link_to 'Add your own research proposal!', new_research_topic_path

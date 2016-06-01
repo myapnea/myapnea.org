@@ -42,10 +42,6 @@
     - if current_user.completed_assigned_answer_sessions?
       %h2.f300
         Congratulations! You have completed all of your surveys!
-      %p
-        Since you're doing such a great job, why don't you
-        = link_to 'submit a research question', research_topics_path, class: 'no-underline'
-        to be discussed by the community?
     - @answer_sessions.in_groups_of(3, false) do |answer_session_group|
       .row
         - answer_session_group.each do |answer_session|

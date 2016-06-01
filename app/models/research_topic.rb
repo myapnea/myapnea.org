@@ -84,7 +84,7 @@ class ResearchTopic < ActiveRecord::Base
 
   # Voting
   def endorsement
-    Vote.current.select("sum(rating)::float/count(rating)::float as endorsement").group("research_topic_id").where(research_topic_id: self[:id]).map(&:endorsement).first
+    Vote.current.select("sum(rating)::float/count(rating)::float as endorsement").group("research_topic_id").where(research_topic_id: self[:id]).map(&:endorsement).first || 0
   end
 
   def endorse_by(user, comment = nil)

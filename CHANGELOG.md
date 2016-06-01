@@ -22,6 +22,7 @@
   - In-app notifications are now generated when someone comments on a blog post
     or replies to another user's comment
 - **Research Topic Changes**
+  - Reduced emphasis across site on submitting research topics
   - Accepted research topics now redirect to the associated blog post
 - **Gem Changes**
   - Removed better_errors
