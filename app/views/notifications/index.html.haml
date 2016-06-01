@@ -44,7 +44,7 @@
                 %th.hidden-xs
                 %th.hidden-xs
                 %th
-                  = link_to mark_all_as_read_notifications_path(chatper_id: chapter.id), method: :patch, remote: true, class: 'text-muted' do
+                  = link_to mark_all_as_read_notifications_path(chapter_id: chapter.id), method: :patch, remote: true, class: 'text-muted' do
                     %span.glyphicon.glyphicon-ok
             %tbody
               - notifications.each do |notification|
