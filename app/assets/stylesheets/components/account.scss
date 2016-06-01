@@ -1,19 +1,26 @@
 #account-link-container {
   margin-top: 20px;
-  position: fixed;
-  padding: 20px;
+  position: static;
+
   a {
     text-decoration: none;
     display: block;
     margin-bottom: 5px;
   }
+
   a:hover {
     text-decoration: none;
   }
 }
 
 #account-section-container {
-  margin-top: 40px;
+  margin-top: 20px;
+}
+
+@media screen and (min-width: $screen-md-min) {
+  #account-link-container {
+    position: fixed;
+  }
 }
 
 // Fix for input form-controls losing border radius when error field is applied
@@ -38,15 +45,4 @@
   color: #66afe9;
   border-color: #66afe9;
   border: 1px dashed #333;
-}
-
-@media (max-width: 998px) {
-  #account-link-container {
-    position: static;
-  }
-
-  #account-section-container {
-    margin-right: 0px;
-    margin-left: 0px;
-  }
 }
