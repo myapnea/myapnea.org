@@ -42,4 +42,33 @@ namespace :forum do
       chapter.replies.order(:created_at).last
     end
   end
+
+  desc 'Export Forum and Research Topics to CSVs'
+  task export: :environment do
+    CSV.open('tmp/forum.csv', 'wb') do |csv|
+      csv << %w(TopicID Type UserForumName Text Replies Views)
+      Chapter.current.each do |chapter|
+        location = [chapter.id]
+        csv << location + ['Topic', chapter.user.forum_name, chapter.title.downcase.tr("\n", ' '), chapter.replies.current.count, chapter.view_count]
+        chapter.replies.current.each do |reply|
+          csv << location + ['Reply', reply.user.forum_name, reply.description.downcase.tr("\n", ' ')]
+        end
+      end
+    end
+    puts 'Created tmp/forum.csv'
+
+    CSV.open('tmp/research_topics.csv', 'wb') do |csv|
+      csv << %w(ResearchTopicID Type UserForumName Text Replies Views)
+      ResearchTopic.current.approved.each do |research_topic|
+        topic = research_topic.topic
+        next unless topic
+        location = [topic.id]
+        csv << location + ['ResearchTopic', topic.user.forum_name, topic.name.downcase.tr("\n", ' '), topic.posts.current.where(status: %w(approved pending_review)).count, topic.views_count]
+        topic.posts.current.where(status: %w(approved pending_review)).each do |post|
+          csv << location + ['ResearchTopic Comment', post.user.forum_name, post.description.downcase.tr("\n", ' ')]
+        end
+      end
+    end
+    puts 'Created tmp/research_topics.csv'
+  end
 end
