@@ -6,7 +6,10 @@
 .content-container
   .content-body
     %p.lead
-      MyApnea.Org is a network created by people with sleep apnea to empower others like us to get the answers we want and need through sharing and promoting research. MyApnea.Org offers sleep apnea patients and caregivers the opportunity to
+      MyApnea.Org is a network created by people with sleep apnea to empower
+      others like us to get the answers we want and need through sharing and
+      promoting research. MyApnea.Org offers sleep apnea patients and caregivers
+      the opportunity to
       = link_to 'learn', blog_category_path(category: 'learn'), class: 'no-underline'
       more about apnea and effective treatments,
       = link_to 'share', chapters_path, class: 'no-underline'
@@ -23,7 +26,10 @@
       %span.f500.darkerer-blue= pluralize(number_with_delimiter(Reply.current.count), 'post')
       in
       %span.f500.darkerer-blue= pluralize(number_with_delimiter(Chapter.current.count), 'topic')
-      To date, we've watched an overwhelming amount of support grow among the MyApnea community. The forums alone have become an active discussion board where people with sleep apnea, researchers, and care providers help each other address important questions and concerns. Among these are:
+      To date, we've watched an overwhelming amount of support grow among the
+      MyApnea community. The forum alone has become an active discussion board
+      where people with sleep apnea, researchers, and care providers help each
+      other address important questions and concerns. Among these are:
     %ul
       %li
         = link_to 'Issues that people have adjusting to new CPAP devices', chapter_path('contribute-community-tips-for-using-pap-devices'), class: 'no-underline'
