@@ -1,3 +1,8 @@
+$comment-unread-even: $brand-white;
+$comment-unread-odd: $brand-gray-lightest;
+$comment-read-even: #e6edf4;
+$comment-read-odd: #e1e7ee; // $comment-unread-odd * $comment-read-even
+
 .reply-inner-container {
   margin-left: 0;
   position: relative;
@@ -21,11 +26,11 @@
 
 .reply-container {
   &.reply-even {
-    background-color: $brand-white;
+    background-color: $comment-unread-even;
   }
 
   &.reply-odd {
-    background-color: $brand-gray-lightest;
+    background-color: $comment-unread-odd;
   }
 
   .reply-container {
@@ -43,6 +48,22 @@
       border-radius: 4px;
       margin-right: 0;
     }
+  }
+}
+
+.reply-read {
+  background-color: $comment-read-even;
+
+  .reply-container.reply-even {
+    background-color: $comment-read-even;
+  }
+
+  .reply-container.reply-odd {
+    background-color: $comment-read-odd;
+  }
+
+  blockquote {
+    border-color: $brand-gray;
   }
 }
 
@@ -84,14 +105,5 @@
 @media screen and (min-width: $screen-sm-min) {
   .reply-body {
     padding-left: 20px;
-  }
-}
-
-.reply-read {
-  background-color: $body-background;
-
-  > .reply-container.reply-even,
-  > .reply-container.reply-odd {
-    background-color: $body-background;
   }
 }

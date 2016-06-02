@@ -121,7 +121,7 @@ class Reply < ActiveRecord::Base
     if reply
       notify_comment_author
     else
-      notify_blog_author
+      notify_chapter_author
     end
   end
 
@@ -131,7 +131,7 @@ class Reply < ActiveRecord::Base
     notification.mark_as_unread!
   end
 
-  def notify_blog_author
+  def notify_chapter_author
     return if chapter.user == user
     notification = chapter.user.notifications.where(chapter_id: chapter_id, reply_id: id).first_or_create
     notification.mark_as_unread!
