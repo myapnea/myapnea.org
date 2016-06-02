@@ -8,7 +8,7 @@ class Admin::BroadcastCommentsController < ApplicationController
   # GET /admin/blog/comments
   def index
     @order = scrub_order(BroadcastComment, params[:order], 'created_at desc')
-    if ['points', 'points DESC'].include?(params[:order])
+    if ['points', 'points desc'].include?(params[:order])
       @order = params[:order]
     end
     @broadcast_comments = BroadcastComment.current.points.joins(:broadcast).order(@order).page(params[:page]).per(40)

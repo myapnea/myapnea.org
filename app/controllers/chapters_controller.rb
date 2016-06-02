@@ -9,7 +9,7 @@ class ChaptersController < ApplicationController
   # GET /chapters
   def index
     @order = scrub_order(Chapter, params[:order], 'pinned desc, last_reply_at desc, id desc')
-    if ['reply_count', 'reply_count DESC'].include?(params[:order])
+    if ['reply_count', 'reply_count desc'].include?(params[:order])
       @order = params[:order]
     end
     @chapters = Chapter.current.reply_count.order(@order).page(params[:page]).per(40)

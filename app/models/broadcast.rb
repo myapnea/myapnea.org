@@ -51,7 +51,7 @@ class Broadcast < ActiveRecord::Base
   end
 
   def self.full_text_order(terms)
-    array = ['ts_rank(to_tsvector(broadcasts.description), to_tsquery(?)) DESC, id desc', terms]
+    array = ['ts_rank(to_tsvector(broadcasts.description), to_tsquery(?)) desc, id desc', terms]
     ActiveRecord::Base.send(:sanitize_sql_array, array)
   end
 

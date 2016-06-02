@@ -17,9 +17,9 @@
     %tr
       %th.small= link_to 'Topics', chapters_path
       %th
-      = th_sort_field @order, 'reply_count', 'Replies', extra_class: 'small hidden-xs hidden-sm'
-      = th_sort_field @order, 'chapters.view_count', 'Views', extra_class: 'small hidden-xs hidden-sm'
-      = th_sort_field @order, 'chapters.last_reply_at', 'Last Post', extra_class: 'small hidden-xs hidden-sm'
+      = th_sort_field_rev @order, 'reply_count', 'Replies', extra_class: 'small hidden-xs hidden-sm'
+      = th_sort_field_rev @order, 'chapters.view_count', 'Views', extra_class: 'small hidden-xs hidden-sm'
+      = th_sort_field_rev @order, 'chapters.last_reply_at', 'Last Post', extra_class: 'small hidden-xs hidden-sm'
   %tbody
     - @chapters.each do |chapter|
       %tr{ class: chapter.started_reading?(current_user) ? 'chapter-read' : '' }
