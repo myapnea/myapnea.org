@@ -9,7 +9,7 @@ gem 'pg',                   '0.18.4'
 
 # Gems used by project
 gem 'devise',               '~> 4.1.0'            # Authentication
-gem 'kaminari',             '~> 0.16.3'           # Pagination
+gem 'kaminari',             '~> 0.17.0'           # Pagination
 gem 'carrierwave',          '~> 0.11.0'           # File Uploads
 gem 'mini_magick'                                 # Image Resizing
 gem 'redcarpet',            '~> 3.3.2'            # Markdown on forums

@@ -26,6 +26,7 @@
   - Reduced emphasis across site on submitting research topics
   - Accepted research topics now redirect to the associated blog post
 - **Gem Changes**
+  - Updated to kaminari 0.17.0
   - Removed better_errors
 
 ## 12.0.0 (May 12, 2016)
