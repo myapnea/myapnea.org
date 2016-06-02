@@ -23,6 +23,7 @@
 //= require typeahead
 //= require external/bootstrap-datepicker.js
 //= require external/jquery.textcomplete.js
+//= require external/jquery-fieldselection.js
 //= require google_analytics
 //= require main
 //= require posts

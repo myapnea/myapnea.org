@@ -25,9 +25,11 @@
 
     .preview-container{ style: "margin-bottom: 20px;#{'border: 0;box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);' if parent_comment_id == 'root'}" }
       .preview-header
+        .pull-right
+          = render 'replies/rich_text_editor_buttons', target: "#reply_description_#{parent_comment_id}_#{reply_id}"
         = link_to 'Write', '#', data: { object: 'reply-tab', action: 'write', parent_comment_id: parent_comment_id }, class: 'preview-tab active', tabindex: '-1'
         = link_to 'Preview', '#', data: { object: 'reply-tab', action: 'preview', parent_comment_id: parent_comment_id, reply_id: reply_id }, class: 'preview-tab', tabindex: '-1'
-      .preview-body{ style: 'min-height: 199px;' }
+      .preview-body{ style: 'min-height: 209px;' }
         %div{ data: { object: 'reply-tab-content', action: 'write', parent_comment_id: parent_comment_id, reply_id: reply_id } }
           = f.text_area :description, rows: [[5, reply.description.to_s.count("\n") + 1].max, 25].min, class: 'preview-control filedrag-container', data: { object: 'expandable-text-area dropfile-image', default_rows: 5, upload_url: upload_images_path(update: "#reply_description_#{parent_comment_id}_#{reply_id}", format: 'js'), fallback_url: new_image_path, log_id: "#log_#{parent_comment_id}_#{reply_id}" }, id: "reply_description_#{parent_comment_id}_#{reply_id}"
           .filedrag{ id: "log_#{parent_comment_id}_#{reply_id}", style: 'margin-bottom: 10px' }

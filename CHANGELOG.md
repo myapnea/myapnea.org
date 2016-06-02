@@ -11,6 +11,7 @@
   - Search now also includes forum topics and replies
   - Topics now track how far a user has read, and will display and link to new
     unread replies to the topic from the forum index
+  - Rich text editing buttons added to forum replies and blog comments
 - **General Changes**
   - Simplified user interface and styling across site
   - Site-wide search is now available in the top navigation bar

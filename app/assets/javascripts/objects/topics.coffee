@@ -50,3 +50,42 @@ $(document)
     $.post("#{root_url}replies/preview", params, null, 'script')
     false
   )
+  .on('click', '[data-object~="bold-selection"]', () ->
+    selection = $($(this).data('target')).getSelection()
+    return false unless selection?
+    return false if selection.length == 0
+    original_text = $($(this).data('target')).val()
+    substitute = "**#{selection.text}**"
+    new_string = original_text.substring(0, selection.start) + substitute + original_text.substring(selection.end)
+    $($(this).data('target')).val(new_string)
+    false
+  )
+  .on('click', '[data-object~="italic-selection"]', () ->
+    selection = $($(this).data('target')).getSelection()
+    return false unless selection?
+    return false if selection.length == 0
+    original_text = $($(this).data('target')).val()
+    substitute = "*#{selection.text}*"
+    new_string = original_text.substring(0, selection.start) + substitute + original_text.substring(selection.end)
+    $($(this).data('target')).val(new_string)
+    false
+  )
+  .on('click', '[data-object~="link-selection"]', () ->
+    selection = $($(this).data('target')).getSelection()
+    return false unless selection?
+    original_text = $($(this).data('target')).val()
+    substitute = "[#{selection.text}](url)"
+    new_string = original_text.substring(0, selection.start) + substitute + original_text.substring(selection.end)
+    $($(this).data('target')).val(new_string)
+    false
+  )
+  .on('click', '[data-object~="quote-selection"]', () ->
+    selection = $($(this).data('target')).getSelection()
+    return false unless selection?
+    original_text = $($(this).data('target')).val()
+    substitute = "> #{selection.text}"
+    new_string = original_text.substring(0, selection.start) + substitute + original_text.substring(selection.end)
+    $($(this).data('target')).val(new_string)
+    console.log selection
+    false
+  )

@@ -25,6 +25,8 @@
 
     .preview-container{ style: "margin-bottom: 20px;#{'border: 0;box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);' if parent_comment_id == 'root'}" }
       .preview-header
+        .pull-right
+          = render 'replies/rich_text_editor_buttons', target: "#broadcast_comment_description_#{parent_comment_id}_#{broadcast_comment_id}"
         = link_to 'Write', '#', data: { object: 'broadcast-comment-tab', action: 'write', parent_comment_id: parent_comment_id }, class: 'preview-tab active', tabindex: '-1'
         = link_to 'Preview', '#', data: { object: 'broadcast-comment-tab', action: 'preview', parent_comment_id: parent_comment_id, broadcast_comment_id: broadcast_comment_id }, class: 'preview-tab', tabindex: '-1'
       .preview-body{ style: 'min-height: 199px;' }
