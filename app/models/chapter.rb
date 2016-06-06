@@ -15,7 +15,8 @@ class Chapter < ActiveRecord::Base
   after_commit :create_first_reply, on: :create
 
   # Named Scopes
-  scope :reply_count, -> { select('chapters.*, COUNT(replies.id) reply_count').joins(:replies).group('chapters.id').distinct }
+  # TODO: chapters.title not needed in PG 9+
+  scope :reply_count, -> { select('chapters.*, COUNT(replies.id) reply_count').joins(:replies).group('chapters.id, chapters.title') }
 
   # Model Validation
   validates :title, :slug, :user_id, presence: true
