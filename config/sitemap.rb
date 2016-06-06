@@ -12,8 +12,8 @@ require 'sitemap_generator'
 SitemapGenerator.verbose = false
 SitemapGenerator::Sitemap.default_host = 'https://myapnea.org'
 SitemapGenerator::Sitemap.sitemaps_host = ENV['website_url']
-SitemapGenerator::Sitemap.public_path = 'carrierwave/'
-SitemapGenerator::Sitemap.sitemaps_path = 'sitemaps/'
+SitemapGenerator::Sitemap.public_path = 'carrierwave/sitemaps/'
+SitemapGenerator::Sitemap.sitemaps_path = ''
 SitemapGenerator::Sitemap.create do
   add '/landing', changefreq: 'daily', priority: 0.7
   add '/blog', changefreq: 'daily', priority: 0.9

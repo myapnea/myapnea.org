@@ -1,5 +1,8 @@
 ## 13.0.1
 
+### Bug Fix
+- Fixed location of sitemap reported to Bing and Google
+
 ## 13.0.0 (June 6, 2016)
 
 ### Enhancements
