@@ -1,4 +1,4 @@
-## 13.0.1
+## 13.0.1 (June 6, 2016)
 
 ### Bug Fixes
 - Fixed location of sitemap reported to Bing and Google
