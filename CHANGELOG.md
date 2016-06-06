@@ -1,7 +1,8 @@
 ## 13.0.1
 
-### Bug Fix
+### Bug Fixes
 - Fixed location of sitemap reported to Bing and Google
+- Fixed an issue loading forum caused by missing group by clause required by PG
 
 ## 13.0.0 (June 6, 2016)
 
