@@ -16,7 +16,7 @@ class Chapter < ActiveRecord::Base
 
   # Named Scopes
   # TODO: Only chapters.id needed in PG 9+
-  scope :reply_count, -> { select('chapters.*, COUNT(replies.id) reply_count').joins(:replies).group('chapters.id, chapters.title, chapters.slug, chapters.user_id, chapters.pinned, chapters.last_reply_at, chapters.view_count, chapters.deleted') }
+  scope :reply_count, -> { select('chapters.*, COUNT(replies.id) reply_count').joins(:replies).group('chapters.id, chapters.title, chapters.slug, chapters.user_id, chapters.pinned, chapters.last_reply_at, chapters.view_count, chapters.deleted, chapters.created_at, chapters.updated_at') }
 
   # Model Validation
   validates :title, :slug, :user_id, presence: true
