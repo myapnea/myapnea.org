@@ -1,4 +1,4 @@
-## 13.0.0
+## 13.0.0 (June 6, 2016)
 
 ### Enhancements
 - **Admin Changes**
