@@ -3,6 +3,7 @@
 ### Bug Fixes
 - Fixed location of sitemap reported to Bing and Google
 - Fixed an issue loading forum caused by missing group by clause required by PG
+- Fixed an issue loading topic replies and blog comments for admins
 
 ## 13.0.0 (June 6, 2016)
 
