@@ -26,7 +26,7 @@ class Chapter < ActiveRecord::Base
   # Model Relationships
   belongs_to :user
   has_many :chapter_users
-  has_many :replies, -> { order :id }
+  has_many :replies, -> { order :created_at }
   has_many :reply_users
 
   # Model Methods
