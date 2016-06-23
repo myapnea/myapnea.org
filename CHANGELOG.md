@@ -1,5 +1,9 @@
 ## 13.0.2
 
+### Enhancements
+- **Forum Changes**
+  - Replies can no longer be nested under the first comment in a topic
+
 ### Bug Fixes
 - The site now properly redirects to the forum index when a deleted reply is
   visited

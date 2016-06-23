@@ -28,7 +28,22 @@
           - parent_comment_id = new_reply.parent_comment_id
           - reply_id = (new_reply.new_record? ? 'new' : new_reply.id)
           %div{ id: "write_comment_#{parent_comment_id}_#{reply_id}" }
-            %small= link_to 'reply', async_chapter_reply_path(chapter_id: reply.chapter, parent_comment_id: parent_comment_id, reply_id: reply_id), method: :post, remote: true, class: 'text-muted'
+            - if reply.parent.is_a? Broadcast
+              - async_write_a_reply_path = async_parent_reply_path(broadcast_id: reply.parent, parent_reply_id: parent_reply_id, reply_id: reply_id)
+              - method = :post
+              - remote = true
+            - elsif reply.parent.is_a? Chapter
+              -# async_write_a_reply_path = async_parent_reply_path(topic_id: reply.parent, parent_reply_id: parent_reply_id, reply_id: reply_id)
+              - async_write_a_reply_path = async_chapter_reply_path(chapter_id: reply.parent, parent_comment_id: parent_comment_id, reply_id: reply_id)
+              - method = :post
+              - remote = true
+              - if reply.parent.replies.first == reply
+                - method = :get
+                - remote = nil
+                -# async_write_a_reply_path = page_topic_path(reply.parent, page: reply.parent.last_page, anchor: 'write-a-reply')
+                - async_write_a_reply_path = page_chapter_path(reply.parent, page: reply.parent.last_page, anchor: 'write-a-reply')
+
+            %small= link_to 'reply', async_write_a_reply_path, method: method, remote: remote, class: 'text-muted'
             %small= link_to 'link', reply, class: 'text-muted'
             - if current_user && reply.editable_by?(current_user)
               %small= link_to 'edit', edit_reply_path(reply, chapter_id: reply.chapter), remote: true, class: 'text-muted'

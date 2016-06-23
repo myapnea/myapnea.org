@@ -2,7 +2,7 @@
   .pull-right.hidden-xs.hidden-sm{ style: 'margin-top: -20px' }
     = paginate @replies, theme: 'bootstrap-small'
   %span.nowrap
-    = link_to 'Write a Reply', chapter_path(@chapter, page: @chapter.last_page, anchor: 'write-a-reply'), class: 'btn btn-primary'
+    = link_to 'Write a Reply', chapter_path(@chapter, page: @chapter.last_page, anchor: 'write-a-reply'), method: :get, class: 'btn btn-primary'
     - if current_user && @chapter.editable_by?(current_user)
       = link_to 'Edit Title', edit_chapter_path(@chapter), class: 'btn btn-default'
       = link_to 'Delete Topic', @chapter, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'

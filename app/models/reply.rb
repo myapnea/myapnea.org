@@ -48,6 +48,10 @@ class Reply < ActiveRecord::Base
     rank >= 0
   end
 
+  def parent
+    chapter # || broadcast
+  end
+
   def number
     chapter.replies.where(reply_id: nil).pluck(:id).index(id) + 1
   rescue
