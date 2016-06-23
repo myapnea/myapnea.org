@@ -5,6 +5,7 @@
   - Replies can no longer be nested under the first comment in a topic
   - The Rich Text Editor "Link" button now provides better details on formatting
     a link with corresponding link text
+  - Added a unique index to chapter slugs
 
 ### Bug Fixes
 - The site now properly redirects to the forum index when a deleted reply is
