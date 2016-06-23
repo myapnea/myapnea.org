@@ -8,7 +8,7 @@ class MembersController < ApplicationController
   end
 
   def show
-    @replies = Reply.current.joins(:chapter).merge(Chapter.current).where(user_id: @member.id).page(params[:page]).per(20)
+    @replies = @member.replies.order(id: :desc).page(params[:page]).per(20)
   end
 
   # GET /search.json?q=QUERY

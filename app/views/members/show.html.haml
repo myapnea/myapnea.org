@@ -18,25 +18,25 @@
           %dt
             %strong Member Name
           %dd
-            = @member.name
+            = link_to_if current_user.owner?, @member.name, @member
           %dt
             %strong Member Email
           %dd
             = @member.email
       .col-sm-6
         %dl.dl-horizontal
-          - spam_topics_count = Topic.where(status: 'spam', user_id: @member.id).count
-          - if spam_topics_count > 0
+          - deleted_topics_count = Chapter.where(deleted: true, user_id: @member.id).count
+          - if deleted_topics_count > 0
             %dt
-              %strong # of Spam Topics
+              %strong # of Deleted Topics
             %dd
-              = spam_topics_count
-          - spam_posts_count = Post.where(status: 'spam', user_id: @member.id).count
-          - if spam_posts_count > 0
+              = deleted_topics_count
+          - deleted_posts_count = Reply.where(deleted: true, user_id: @member.id).joins(:chapter).merge(Chapter.current).count
+          - if deleted_posts_count > 0
             %dt
-              %strong # of Spam Posts
+              %strong # of Deleted Posts
             %dd
-              = spam_posts_count
+              = deleted_posts_count
 
 -# About member
 .content-container
@@ -49,7 +49,7 @@
       .col-sm-4
         %p.dark8
           %span.f500.dark5 Number of posts:
-          %div{ style: 'font-size: 32px;' }= @member.replies.joins(:chapter).merge(Chapter.current).count
+          %div{ style: 'font-size: 32px;' }= @member.replies.count
       .col-sm-4
         %p.dark8
           %span.f500.dark5 Number of votes:

@@ -6,6 +6,9 @@
   - The Rich Text Editor "Link" button now provides better details on formatting
     a link with corresponding link text
   - Added a unique index to chapter slugs
+  - Posts on member profile page are now sorted chronologically
+  - Posts on deleted topics are no longer counted towards a member's total post
+    count
 
 ### Bug Fixes
 - The site now properly redirects to the forum index when a deleted reply is

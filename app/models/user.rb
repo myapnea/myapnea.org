@@ -61,7 +61,7 @@ class User < ActiveRecord::Base
   has_many :broadcast_comments
   has_many :chapters, -> { current }
   has_many :chapter_users
-  has_many :replies, -> { current }
+  has_many :replies, -> { current.joins(:chapter).merge(Chapter.current) }
   has_many :votes, -> { where deleted: false }
   has_one :social_profile, -> { where deleted: false }
   has_many :research_topics, -> { where deleted: false }
