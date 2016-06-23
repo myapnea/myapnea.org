@@ -11,3 +11,10 @@ two:
   chapter: one
   reply: one
   deleted: false
+
+deleted:
+  user: user_1
+  description: This is a deleted reply.
+  chapter: one
+  # reply:
+  deleted: true

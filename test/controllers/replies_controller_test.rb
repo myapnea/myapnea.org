@@ -58,6 +58,11 @@ class RepliesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test 'should redirect to forum for deleted replies' do
+    get :show, id: replies(:deleted)
+    assert_redirected_to chapters_path
+  end
+
   test 'should get edit' do
     login(@regular_user)
     xhr :get, :edit, chapter_id: @reply.chapter.to_param, id: @reply, format: 'js'

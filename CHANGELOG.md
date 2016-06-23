@@ -1,5 +1,9 @@
 ## 13.0.2
 
+### Bug Fixes
+- The site now properly redirects to the forum index when a deleted reply is
+  visited
+
 ## 13.0.1 (June 6, 2016)
 
 ### Bug Fixes
