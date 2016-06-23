@@ -3,6 +3,8 @@
 ### Enhancements
 - **Forum Changes**
   - Replies can no longer be nested under the first comment in a topic
+  - The Rich Text Editor "Link" button now provides better details on formatting
+    a link with corresponding link text
 
 ### Bug Fixes
 - The site now properly redirects to the forum index when a deleted reply is
