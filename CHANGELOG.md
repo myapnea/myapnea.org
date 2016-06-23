@@ -9,6 +9,7 @@
   - Posts on member profile page are now sorted chronologically
   - Posts on deleted topics are no longer counted towards a member's total post
     count
+  - Deleted users posts no longer appear on the dashboard
 
 ### Refactoring
 - Simplified group by clause for replies and topics for newer PG 9.5
