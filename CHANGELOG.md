@@ -10,6 +10,9 @@
   - Posts on deleted topics are no longer counted towards a member's total post
     count
 
+### Refactoring
+- Simplified group by clause for replies and topics for newer PG 9.5
+
 ### Bug Fixes
 - The site now properly redirects to the forum index when a deleted reply is
   visited
