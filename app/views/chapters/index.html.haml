@@ -48,7 +48,7 @@
         %td.text-muted.hidden-xs.f300
           %span.small= number_with_delimiter chapter.reply_count - 1
         %td.text-muted.hidden-xs.hidden-sm.f300
-          %span.small= number_with_delimiter chapter.view_count
+          %span.small= number_to_human chapter.view_count, precision: 2
         %td.text-muted.hidden-xs.hidden-sm.f300
           %span.small= time_ago_in_words(chapter.last_reply_at) + ' ago'
 

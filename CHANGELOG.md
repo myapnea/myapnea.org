@@ -10,6 +10,7 @@
   - Posts on deleted topics are no longer counted towards a member's total post
     count
   - Deleted users posts no longer appear on the dashboard
+  - Forum topic views is now displayed using abbreviations for large numbers
 
 ### Refactoring
 - Simplified group by clause for replies and topics for newer PG 9.5
