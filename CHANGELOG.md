@@ -1,4 +1,4 @@
-## 13.0.3
+## 13.0.3 (July 1, 2016)
 
 ### Bug Fix
 - Restricted version of Turbolinks to 2.5.3
