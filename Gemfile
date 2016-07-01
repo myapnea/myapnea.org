@@ -33,7 +33,7 @@ gem 'uglifier',             '>= 1.3.0'
 gem 'jbuilder',             '~> 2.0'
 gem 'jquery-rails'
 gem 'jquery-ui-rails',      '~> 5.0.5'
-gem 'turbolinks'
+gem 'turbolinks',           '~> 2.5.3'
 
 # Testing
 group :test do
