@@ -1,5 +1,9 @@
 ## 13.1.0
 
+### Enhancements
+- **Forum Changes**
+  - Made changes to reduce the overall number of spam posts
+
 ## 13.0.3 (July 1, 2016)
 
 ### Bug Fix

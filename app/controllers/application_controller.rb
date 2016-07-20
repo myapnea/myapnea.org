@@ -14,6 +14,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_action :store_location
+  before_action :check_ip_banlist
 
   def store_location
     if (params[:controller].in?(%w(forums topics posts blog)) &&
@@ -84,6 +85,21 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource)
     session[:previous_url] || root_path
+  end
+
+  def check_ip_banlist
+    return if BANNED_IPS.empty?
+    redirect_to about_path, notice: 'Thank you for your contribution!' if ip_banned?
+  end
+
+  def ip_banned?
+    !BANNED_IPS.find { |ip| ip_matches?(ip, request.remote_ip) }.nil?
+  end
+
+  def ip_matches?(one, two)
+    aone = one.split('.')
+    atwo = two.split('.')
+    (aone[0] == '*' || aone[0] == atwo[0]) && (aone[1] == '*' || aone[1] == atwo[1]) && (aone[2] == '*' || aone[2] == atwo[2]) && (aone[3] == '*' || aone[3] == atwo[3])
   end
 
   protected
