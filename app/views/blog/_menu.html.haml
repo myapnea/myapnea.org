@@ -13,10 +13,15 @@
       %li= link_to category.name, blog_category_path(category: category), class: (current_category == category.slug ? 'active' : nil)
 
     - if current_user && current_user.community_contributor?
+      %li.blog-menu-header Contributor
       %li
         = link_to new_broadcast_path do
-          %span.glyphicon.glyphicon-plus
+          %span.glyphicon.glyphicon-pencil
           New Blog Post
+      %li
+        = link_to broadcasts_path do
+          %span.glyphicon.glyphicon-eye-open
+          View Drafts
 
     - if @author
       %li.blog-menu-header Author

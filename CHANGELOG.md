@@ -1,6 +1,8 @@
 ## 13.1.0
 
 ### Enhancements
+- **Blog Changes**
+  - Added menu item to allow community contributors to view blog drafts
 - **Forum Changes**
   - Made changes to reduce the overall number of spam posts
 
