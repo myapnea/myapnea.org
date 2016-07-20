@@ -1,4 +1,4 @@
-## 13.1.0
+## 13.1.0 (July 20, 2016)
 
 ### Enhancements
 - **Blog Changes**
