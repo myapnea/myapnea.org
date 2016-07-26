@@ -1,5 +1,8 @@
 ## 13.2.1
 
+### Bug Fix
+- Fixed an issue rendering an incorrect layout on the dashbaord
+
 ## 13.2.0 (July 26, 2016)
 
 ### Enhancements

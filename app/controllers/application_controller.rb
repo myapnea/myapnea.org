@@ -10,6 +10,10 @@ class ApplicationController < ActionController::Base
   before_action :store_location
   before_action :check_ip_banlist
 
+  # Layout
+  # TODO: Before removing this all other "default" layouts need to be removed
+  layout 'layouts/application'
+
   def store_location
     if (params[:controller].in?(%w(forums topics posts blog chapters replies)) &&
         !request.fullpath.match("#{request.script_name}/login") &&
