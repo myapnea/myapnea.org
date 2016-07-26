@@ -50,7 +50,11 @@ class AccountController < ApplicationController
   end
 
   def accepts_update
-    (current_user.provider? or current_user.is_only_researcher?) ? current_user.accepts_terms_of_access! : current_user.accepts_consent!
+    if current_user.provider? || current_user.is_only_researcher?
+      current_user.accepts_terms_of_access!
+    else
+      current_user.accepts_consent!
+    end
     redirect_to (session[:return_to] || root_path)
   end
 
@@ -61,7 +65,7 @@ class AccountController < ApplicationController
 
   def revoke_consent
     current_user.revoke_consent!
-    redirect_to root_path, notice: "You have successfully left the research study portion of MyApnea.Org. If you ever change your mind, just visit your account settings to view the research consent and privacy policy again."
+    redirect_to root_path, notice: 'You have successfully left the research study portion of MyApnea.Org. If you ever change your mind, just visit your account settings to view the research consent and privacy policy again.'
   end
 
   ## Content for consent, privacy, and terms of access
@@ -115,21 +119,21 @@ class AccountController < ApplicationController
       else
         respond_to do |format|
           format.js
-          format.all { redirect_to account_path, notice: "Your account settings have been successfully changed." }
+          format.all { redirect_to account_path, notice: 'Your account settings have been successfully changed.' }
         end
       end
     else
-      render "account"
+      render :account
     end
   end
 
   def change_password
     if current_user.update_with_password(user_password_params)
       # Sign in the user by passing validation in case the user's password changed
-      sign_in current_user, bypass: true
-      redirect_to account_path, notice: "Your password has been changed."
+      bypass_sign_in current_user
+      redirect_to account_path, notice: 'Your password has been changed.'
     else
-      render "account"
+      render :account
     end
   end
 

@@ -9,6 +9,7 @@
   - Users are now redirected back to the forum if signing in after visiting a
     forum page
 - **Gem Changes**
+  - Updated to devise 4.2.0
   - Updated to simplecov 0.12.0
   - Updated to colorize 0.8.1
 

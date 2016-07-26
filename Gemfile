@@ -8,7 +8,7 @@ gem 'rails',                '4.2.6'
 gem 'pg',                   '0.18.4'
 
 # Gems used by project
-gem 'devise',               '~> 4.1.0'            # Authentication
+gem 'devise',               '~> 4.2.0'            # Authentication
 gem 'kaminari',             '~> 0.17.0'           # Pagination
 gem 'carrierwave',          '~> 0.11.0'           # File Uploads
 gem 'mini_magick'                                 # Image Resizing
