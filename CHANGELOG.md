@@ -10,6 +10,7 @@
     forum page
 - **Gem Changes**
   - Updated to simplecov 0.12.0
+  - Updated to colorize 0.8.1
 
 ## 13.1.0 (July 20, 2016)
 

@@ -17,7 +17,7 @@ gem 'figaro',               '~> 1.1.1'            # Centralized Configuration
 gem 'geocoder'                                    # IP Location Lookup
 gem 'maxminddb'
 gem 'rubyzip',              '~> 1.2.0'
-gem 'colorize',             '~> 0.7.5'
+gem 'colorize',             '~> 0.8.1'
 gem 'bootstrap-sass'                              # Bootstrap JS and SCSS
 gem 'font-awesome-rails'                          # Font Awesome Icons
 gem 'haml'                                        # HAML Views
