@@ -31,7 +31,7 @@ class VotesController < ApplicationController
       end
     else
       respond_to do |format|
-        format.js { render nothing: true }
+        format.js { head :ok }
         format.json { head :no_content }
       end
     end
