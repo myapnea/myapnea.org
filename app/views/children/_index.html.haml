@@ -4,10 +4,11 @@
       %li{ class: "#{'active' if @child == child}" }
         = link_to child, remote: true do
           = child.first_name
-          \-
-          %small
-            = pluralize child.age, 'year'
-            old
+          %span.hidden-xs
+            \-
+            %small
+              = pluralize child.age, 'year'
+              old
   %li{ class: "#{'active' if @child && @child.new_record? || current_user.children.count == 0}"}
     = link_to new_child_path, remote: true do
       %i.fa.fa-user-plus
