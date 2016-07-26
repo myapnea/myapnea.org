@@ -8,6 +8,8 @@
 - **Forum Changes**
   - Users are now redirected back to the forum if signing in after visiting a
     forum page
+- **Gem Changes**
+  - Updated to simplecov 0.12.0
 
 ## 13.1.0 (July 20, 2016)
 

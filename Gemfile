@@ -39,7 +39,7 @@ gem 'turbolinks',           '~> 2.5.3'
 group :test do
   # Pretty printed test output
   gem 'minitest'
-  gem 'simplecov',          '~> 0.11.2', require: false
+  gem 'simplecov',          '~> 0.12.0', require: false
   gem 'test_after_commit' # TODO: Remove in Rails 5
 end
 
