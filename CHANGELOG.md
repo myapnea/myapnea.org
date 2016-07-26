@@ -4,6 +4,7 @@
 - **Survey Changes**
   - The survey interface has been slightly adjusted to better match other pages
     across the website
+  - The child survey interface dashboard has been improved
 
 ## 13.1.0 (July 20, 2016)
 

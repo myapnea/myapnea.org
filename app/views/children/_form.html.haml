@@ -12,13 +12,13 @@
   .form-group
     = f.label :first_name, nil, class: 'col-md-2 control-label'
     .col-md-10
-      = f.text_field :first_name, class: 'form-control', autocomplete: 'off'
+      = f.text_field :first_name, class: 'form-control', autocomplete: :off
 
   .form-group
     = f.label :age, nil, class: 'col-md-2 control-label'
     .col-md-10
-      = f.text_field :age, class: 'form-control'
-      .bs-callout.bs-callout-info
+      = f.text_field :age, class: 'form-control', autocomplete: :off
+      .bs-callout.bs-callout-info{ style: 'margin-bottom: 0;' }
         %h4
           Child's Age
         Child's Age must be between 0 and 8 years old.

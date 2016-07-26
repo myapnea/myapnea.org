@@ -1,6 +1,4 @@
-%h3 My Children
-
-%ul.nav.nav-pills.nav-stacked
+%ul.nav.nav-tabs
   - current_user.children.each do |child|
     - unless child.new_record?
       %li{ class: "#{'active' if @child == child}" }
@@ -10,8 +8,7 @@
           %small
             = pluralize child.age, 'year'
             old
-  %li{ class: "#{'active' if @child and @child.new_record?}"}
+  %li{ class: "#{'active' if @child && @child.new_record? || current_user.children.count == 0}"}
     = link_to new_child_path, remote: true do
       %i.fa.fa-user-plus
       Add Child
-

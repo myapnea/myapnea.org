@@ -1,15 +1,18 @@
 - if @child.consented?
-  %h3
-    = succeed "'s" do
-      = @child.first_name
-    Surveys
-    = succeed ' ' do
-      = link_to edit_child_path(@child), remote: true, class: 'btn btn-xs btn-default' do
+  .row
+    .col-xs-0.col-sm-1
+    .col-xs-6.col-sm-4
+      = link_to edit_child_path(@child), remote: true, class: 'btn btn-block btn-default' do
         %i.fa.fa-pencil
-        Edit
-    = link_to child_path(@child), method: :delete, remote: true, class: 'btn btn-xs btn-danger', data: { confirm: "Are you sure you want to remove your child #{@child.first_name} from your records?" } do
-      %i.fa.fa-trash
-      Remove
+        Edit Child's
+        %span.hidden-xs.hidden-sm Information
+        %span.hidden-md.hidden-lg Info
+    .col-xs-0.col-sm-2
+    .col-xs-6.col-sm-4
+      = link_to child_path(@child), method: :delete, remote: true, class: 'btn btn-block btn-danger', data: { confirm: "Are you sure you want to remove your child #{@child.first_name} from your records?" } do
+        %i.fa.fa-trash
+        Remove Child
+  %hr
   - if @child.sorted_answer_sessions.count == 0
     %p
       No surveys have been assigned to
@@ -23,12 +26,6 @@
           .col-sm-4.centered{ style: 'margin-bottom:30px' }
             = render 'surveys/answer_sessions/progress', answer_session: answer_session
 - else
-  %h3
-    Consent Form:
-    Child
-    %strong= @child.first_name
-  %p You must read through and accept the following consent before being able to complete available surveys for this child.
-
   .show-scrollbar.consent-container{ style: 'padding-left: 10px; padding-right: 10px;' }
     %h3 MyApnea.Org Research Portal Consent
 
@@ -380,6 +377,6 @@
           = mail_to 'support@myapnea.org'
         If you wish to be in this study please click the button that says "I
         agree to participate"
-
-  = link_to 'I agree to participate', accept_consent_child_path(@child), method: :post, remote: true, class: 'btn btn-xs btn-primary-custom'
-  = link_to 'I do not accept', @child, method: :delete, remote: true, class: 'btn btn-xs btn-default-custom'
+  %div{ style: 'max-width: 700px; margin: auto;'}
+    = link_to 'I agree to participate', accept_consent_child_path(@child), method: :post, remote: true, class: 'btn btn-xs btn-primary-custom'
+    = link_to 'I do not accept', @child, method: :delete, remote: true, class: 'btn btn-xs btn-default-custom'
