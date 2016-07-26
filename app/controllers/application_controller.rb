@@ -1,12 +1,6 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
-  # Add flash types
-  add_flash_types :warning
-
-  # Layout
-  layout 'layouts/application'
-
   include DateAndTimeParser
 
   # Prevent CSRF attacks by raising an exception.
@@ -17,7 +11,7 @@ class ApplicationController < ActionController::Base
   before_action :check_ip_banlist
 
   def store_location
-    if (params[:controller].in?(%w(forums topics posts blog)) &&
+    if (params[:controller].in?(%w(forums topics posts blog chapters replies)) &&
         !request.fullpath.match("#{request.script_name}/login") &&
         !request.fullpath.match("#{request.script_name}/join") &&
         !request.fullpath.match("#{request.script_name}/password") &&

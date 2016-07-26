@@ -5,6 +5,9 @@
   - The survey interface has been slightly adjusted to better match other pages
     across the website
   - The child survey interface dashboard has been improved
+- **Forum Changes**
+  - Users are now redirected back to the forum if signing in after visiting a
+    forum page
 
 ## 13.1.0 (July 20, 2016)
 
