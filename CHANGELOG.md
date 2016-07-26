@@ -1,4 +1,4 @@
-## 13.2.0
+## 13.2.0 (July 26, 2016)
 
 ### Enhancements
 - **Survey Changes**
