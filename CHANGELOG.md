@@ -1,5 +1,10 @@
 ## 13.2.0
 
+### Enhancements
+- **Survey Changes**
+  - The survey interface has been slightly adjusted to better match other pages
+    across the website
+
 ## 13.1.0 (July 20, 2016)
 
 ### Enhancements

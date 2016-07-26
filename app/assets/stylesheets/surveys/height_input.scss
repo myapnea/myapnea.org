@@ -1,5 +1,5 @@
 // Thanks to help from danield770 http://jsfiddle.net/danield770/YvCHW/4232/
-.full-survey-container:not(#simple-survey) {
+.full-survey-container {
   .height-select {
     -moz-appearance: none;
     -webkit-appearance: none;
@@ -21,7 +21,7 @@
 
 
 @media (max-width:$screen-sm) {
-  .full-survey-container:not(#simple-survey) {
+  .full-survey-container {
     .height-select {
       font-size: 18px;
       margin: 5px;
@@ -37,7 +37,7 @@
 
 // Target Internet Explorer 9 and Internet Explorer 10:
 @media screen and (min-width:0\0) {
-  .full-survey-container:not(#simple-survey) {
+  .full-survey-container {
     .height-select {
       background: none;
       padding: 5px;

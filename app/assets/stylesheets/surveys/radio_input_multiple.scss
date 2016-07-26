@@ -1,4 +1,4 @@
-.full-survey-container:not(#simple-survey) {
+.full-survey-container {
   .survey-container.active .panel .input-container .multiple-question-container.current {
     background-color: transparentize($lightest-blue, .9);
     border-radius: 20px;

@@ -13,12 +13,6 @@
     target = 'question-container-' + $(this).data('target')
     assignQuestionDirect($("[data-object~='"+target+"']"))
 
-  $("[data-object~='simple-survey-toggle']").click (e) ->
-    if  $(".full-survey-container").attr("id") is "simple-survey"
-      $(".full-survey-container").attr("id", "")
-    else
-      $(".full-survey-container").attr("id", "simple-survey")
-
 
   # Scroll to active question
   @nextQuestionScroll = (element2) ->

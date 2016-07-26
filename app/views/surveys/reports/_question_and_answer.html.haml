@@ -2,42 +2,48 @@
   - user_answer_values = @answer_session.answer_values(question, answer_template)
 
 - if answer_template.text.present?
-  .col-sm-5.rectangle-speech-border.rectangle-speech-border-left.rectangle-speech-border-orange
-    %h4.f300= answer_template.text
-- elsif answer_template_index > 0 and answer_template.name.present?
-  .col-sm-5.rectangle-speech-border.rectangle-speech-border-left.rectangle-speech-border-orange
-    %h4.f300= answer_template.name.gsub('_', ' ').capitalize
+  .row
+    .col-sm-5
+      .rectangle-speech-border.rectangle-speech-border-left.rectangle-speech-border-orange
+        %h4.f300= answer_template.text
+- elsif answer_template_index > 0 && answer_template.name.present?
+  .row
+    .col-sm-5
+      .rectangle-speech-border.rectangle-speech-border-left.rectangle-speech-border-orange
+        %h4.f300= answer_template.name.gsub('_', ' ').capitalize
 
 - data = []
 - community_answer_values = question.community_answer_values(@encounter, answer_template)
 - all_counts = community_answer_values.group(:answer_option_id).select(:answer_option_id).order(:answer_option_id).count
 - total_count = community_answer_values.count
 
-.row.reset-layout
-  .col-sm-11.col-sm-offset-1.rectangle-speech-border.rectangle-speech-border-right.rectangle-speech-border-blue
-    - if user_answer_values
-      %h5.f500{ style: 'margin-bottom:30px;' }
-        Your answer:
-        %span.f300
-          = user_answer_values.collect(&:show_value).join(', ')
+.row
+  .col-sm-11.col-sm-offset-1
+    .rectangle-speech-border.rectangle-speech-border-right.rectangle-speech-border-blue
+      - if user_answer_values
+        %h4.f300
+          Your answer:
+          %span.f500
+            = user_answer_values.collect(&:show_value).join(', ')
 
-    .col-sm-4{ style: 'margin:20px auto;' }
-      %table.table.table-bordered{ style: 'padding:10px; width:100%;' }
-        %thead
-          %th Option
-          %th.text-right Percentage
-        %tbody
-          - answer_template.answer_options.each do |answer_option|
-            - count = all_counts[answer_option.id] || 0
-            - selected_response = (user_answer_values and user_answer_values.pluck(:answer_option_id).include?(answer_option.id))
-            - name = answer_option.text
-            - percent = (count * 100 / total_count rescue 0)
-            - color = (selected_response ? '#7FB2EB' : '#FFB839')
-            - data << { name: name, y: count, color: color }
-            %tr{ style: "#{'background-color:rgba(127,178,235,.5)' if selected_response}"}
-              %td= name
-              %td.text-right
-                = succeed '%' do
-                  = percent
-    .col-sm-7{ style: 'margin:20px auto;' }
-      %div{ data: { object: 'draw-chart', name: 'abc', info: { chartHeight: nil, series: [{ name: 'question', data: data }] }.to_json } }
+      .row
+        .col-sm-4{ style: 'margin: 20px 0;' }
+          %table.table
+            %thead
+              %th Option
+              %th.text-right Percentage
+            %tbody
+              - answer_template.answer_options.each do |answer_option|
+                - count = all_counts[answer_option.id] || 0
+                - selected_response = (user_answer_values and user_answer_values.pluck(:answer_option_id).include?(answer_option.id))
+                - name = answer_option.text
+                - percent = (count * 100 / total_count rescue 0)
+                - color = (selected_response ? '#7FB2EB' : '#FFB839')
+                - data << { name: name, y: count, color: color }
+                %tr{ style: "#{'background-color:rgba(127,178,235,.5)' if selected_response}"}
+                  %td= name
+                  %td.text-right
+                    = succeed '%' do
+                      = percent
+        .col-sm-7
+          %div{ data: { object: 'draw-chart', info: { chartHeight: nil, series: [{ name: 'question', data: data }] }.to_json } }

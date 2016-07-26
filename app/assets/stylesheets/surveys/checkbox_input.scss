@@ -1,4 +1,4 @@
-.full-survey-container:not(#simple-survey) {
+.full-survey-container {
   .input-container:not(#foo) input[type=checkbox] {
     display:none;
   }
@@ -95,7 +95,7 @@
 }
 
 @media all and (max-width: $screen-md) {
-  .full-survey-container:not(#simple-survey) {
+  .full-survey-container {
     .check-box-container:not(.preferred-not-to-answer) > input + label {
       width:100%;
       span.hotkey {

@@ -1,4 +1,4 @@
-.full-survey-container:not(#simple-survey) {
+.full-survey-container {
   .input-container:not(#foo) input[type=radio] {
     display: none;
   }
@@ -194,7 +194,7 @@
 }
 
 @media (max-width: $screen-lg) {
-  .full-survey-container:not(#simple-survey) {
+  .full-survey-container {
     .option-of-7 {
       width: 100%;
 
@@ -212,7 +212,7 @@
 }
 
 @media all and (max-width: $screen-md) {
-  .full-survey-container:not(#simple-survey) {
+  .full-survey-container {
     .input-container {
       .label-med {
         margin: 2px auto;

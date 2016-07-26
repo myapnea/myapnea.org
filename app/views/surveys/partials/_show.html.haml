@@ -1,7 +1,6 @@
 -# Set up survey indicators
 %br
 .survey-indicator
-  %span#title Progress
   %ul
     - @survey.questions.unarchived.each_with_index do |question, index|
       - answer = @answer_session.answers.where(question_id: question.id).first_or_initialize
@@ -13,38 +12,24 @@
       - else
         %li.incomplete{ data: { object: 'survey-indicator', target: "#{index}" } }= index + 1
 
+
+.content-main-header2
+  %h1
+    - if @encounter && @encounter.slug != 'baseline'
+      = "#{@survey.name} - #{@encounter.name}"
+    - else
+      = @survey.name
+
+- if @survey.description.present?
+  .jumbotron.primary-blue-bcg
+    %p.f300= @survey.description.html_safe
+%p.f300.text-center{ style: 'margin-bottom: 30px' }
+  %i.fa.fa-info-circle.primary-blue
+  Your answers are automatically saved, but
+  %span.f500 you must provide an answer to each question before a survey is considered complete.
+
+
 .full-survey-container{ data: { object: 'full-survey-container' } }
-  .survey-container.active.survey-intro{ data: { object: 'survey-introduction' } }
-    .panel.centered{ style: "padding: 20px;" }
-      .question-container{ style: 'margin-bottom: 50px;' }
-        %h2.f300
-          Welcome to the
-          %span.darker-blue
-            = @survey.name
-          survey!
-        %p.lead
-          = @survey.description.html_safe if @survey.description.present?
-        %p.f300
-          The
-          %span.lighter-orange orange progress sidebar
-          on the left side of the screen will show you how you are advancing, and easily let you jump to questions that you may have missed. Remember, you are allowed to navigate away at any time and your answers will automatically be saved, but
-          %span.f500 you must provide an answer to each question before a survey is considered complete.
-      .button-container
-        .btn.btn-primary.next-question
-          Begin Survey
-        %p.text-muted.or-press-enter
-          Or press ENTER
-      %br
-      -# Allow users to toggle off custom survey display
-      #simple-survey-toggle-container
-        %p#make-it-simple.small If you're having technical problems while completing a survey (often due to your browser version), we suggest you switch to the simple version.
-        %p#make-it-exciting.small If you'd like to see the new, custom survey display, we suggest you switch to the new version.
-        .btn-small.btn-warning{ style: 'display:inline-block; margin: 0px auto; padding: 2px 5px;', data: { object: 'simple-survey-toggle'} }
-          %p.small.reset-layout Switch
-
-
-  -# Expects a @survey and @answer_session variable
-  -# Dynamically Loaded:
   - @survey.questions.unarchived.each_with_index do |question, index|
     = render 'surveys/questions/show', question: question, answer_session: @answer_session, position: index
 
