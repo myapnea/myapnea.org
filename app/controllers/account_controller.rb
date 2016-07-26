@@ -13,8 +13,10 @@ class AccountController < ApplicationController
   end
 
   def get_started_step_three
-    if !(current_user.provider? or current_user.is_only_researcher?) and current_user.ready_for_research?
-      @survey = Survey.current.viewable.find_by_slug("about-me")
+    if current_user.ready_for_research? && current_user.caregiver_child?
+      redirect_to surveys_path
+    elsif !(current_user.provider? || current_user.is_only_researcher?) && current_user.ready_for_research?
+      @survey = Survey.current.viewable.find_by_slug 'about-me'
       @answer_session = current_user.get_baseline_survey_answer_session(@survey)
     end
   end
