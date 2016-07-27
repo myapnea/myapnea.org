@@ -1,4 +1,4 @@
-class RenamePostsToNotifications < ActiveRecord::Migration
+class RenamePostsToNotifications < ActiveRecord::Migration[4.2]
   def up
     rename_table :posts, :notifications
     remove_index :comments, :post_id

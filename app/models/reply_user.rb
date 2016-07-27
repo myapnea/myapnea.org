@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Represents a user vote on a blog comment.
-class ReplyUser < ActiveRecord::Base
+class ReplyUser < ApplicationRecord
   # Model Validation
   validates :chapter_id, :reply_id, :user_id, :vote, presence: true
 

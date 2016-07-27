@@ -2,7 +2,7 @@
 
 # Defines the user model, relationships, and permissions. Also provides methods
 # to check forum and research consent.
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   # Uploaders
   mount_uploader :photo, PhotoUploader
 
@@ -371,7 +371,7 @@ class User < ActiveRecord::Base
       pid = Process.fork
       if pid.nil? then
         # In child
-        UserMailer.welcome_provider(self).deliver_later if EMAILS_ENABLED && provider?
+        UserMailer.welcome_provider(self).deliver_now if EMAILS_ENABLED && provider?
         Kernel.exit!
       else
         # In parent
@@ -423,7 +423,7 @@ class User < ActiveRecord::Base
       pid = Process.fork
       if pid.nil? then
         # In child
-        UserMailer.welcome(self).deliver_later if EMAILS_ENABLED
+        UserMailer.welcome(self).deliver_now if EMAILS_ENABLED
         Kernel.exit!
       else
         # In parent

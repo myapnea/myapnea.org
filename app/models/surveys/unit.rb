@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Unit < ActiveRecord::Base
+class Unit < ApplicationRecord
   include Localizable
 
   localize :name

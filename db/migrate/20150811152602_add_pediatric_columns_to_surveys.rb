@@ -1,4 +1,4 @@
-class AddPediatricColumnsToSurveys < ActiveRecord::Migration
+class AddPediatricColumnsToSurveys < ActiveRecord::Migration[4.2]
   def change
     add_column :surveys, :pediatric, :boolean, null: false, default: false
     add_column :surveys, :child_min_age, :integer

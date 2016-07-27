@@ -37,9 +37,6 @@
       )
     )
 
-$(document).ready(mapsReady)
-$(document).on('page:load', mapsReady)
-
 $(document).on('click', "#world-view", () ->
   document.map.setZoom(1)
 )

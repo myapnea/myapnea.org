@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Invite < ActiveRecord::Base
+class Invite < ApplicationRecord
   after_commit    :generate_token, on: :create
   before_save     :check_existing_user
 

@@ -1,4 +1,4 @@
-class UpdateSurveyModels < ActiveRecord::Migration
+class UpdateSurveyModels < ActiveRecord::Migration[4.2]
   def change
     add_column :surveys, :slug, :string
     add_column :questions, :display_type, :string

@@ -5,13 +5,12 @@ require 'test_helper.rb'
 class StaticControllerTest < ActionController::TestCase
   # TODO: Non static pages should be moved
   test 'should redirect to a provider show page' do
-    get :provider_page, slug: 'health-hospital'
-
+    get :provider_page, params: { slug: 'health-hospital' }
     assert_redirected_to provider_path(users(:provider).slug)
   end
 
   test 'should redirect to a providers index with invalid slug' do
-    get :provider_page, slug: nil
+    get :provider_page, params: { slug: nil }
 
     assert_redirected_to providers_path
   end
@@ -33,7 +32,7 @@ class StaticControllerTest < ActionController::TestCase
   end
 
   test 'should get PEP corner show' do
-    get :pep_corner_show, pep_id: admin_team_members(:one)
+    get :pep_corner_show, params: { pep_id: admin_team_members(:one) }
     assert_response :success
   end
 

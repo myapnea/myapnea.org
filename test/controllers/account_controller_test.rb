@@ -36,13 +36,13 @@ class AccountControllerTest < ActionController::TestCase
 
   test 'should set user_type page for logged in user and redirect to get started' do
     login(users(:user_1))
-    post :set_user_type, user: { researcher: '1' }, registration_process: '1'
+    post :set_user_type, params: { user: { researcher: '1' }, registration_process: '1' }
     assert_redirected_to get_started_step_two_path
   end
 
   test 'should change user_type page for logged in user and redirect to account' do
     login(users(:user_1))
-    post :set_user_type, user: { researcher: '1' }
+    post :set_user_type, params: { user: { researcher: '1' } }
     assert_redirected_to account_path
   end
 
@@ -67,7 +67,7 @@ class AccountControllerTest < ActionController::TestCase
 
   test 'should suggest forum name for regular user' do
     login(@regular_user)
-    xhr :get, :suggest_random_forum_name, format: 'js'
+    get :suggest_random_forum_name, xhr: true, format: 'js'
     assert_not_nil assigns(:new_forum_name)
     assert_response :success
   end
@@ -183,7 +183,7 @@ class AccountControllerTest < ActionController::TestCase
   test 'should accept privacy during get-started for new user' do
     login(@regular_user)
     assert_nil @regular_user.accepted_privacy_policy_at
-    post :accepts_privacy, get_started: true
+    post :accepts_privacy, params: { get_started: true }
     @regular_user.reload
     assert_not_nil @regular_user.accepted_privacy_policy_at
     assert_redirected_to consent_path
@@ -194,7 +194,7 @@ class AccountControllerTest < ActionController::TestCase
     login(@regular_user)
     assert_nil @regular_user.accepted_privacy_policy_at
     assert_nil @regular_user.accepted_consent_at
-    post :accepts_consent, get_started: true
+    post :accepts_consent, params: { get_started: true }
     @regular_user.reload
     assert_not_nil @regular_user.accepted_consent_at
     assert_redirected_to get_started_step_three_path
@@ -218,7 +218,7 @@ class AccountControllerTest < ActionController::TestCase
   test 'should accept terms of access during registration' do
     login(@regular_user)
     assert_nil @regular_user.accepted_terms_of_access_at
-    post :accepts_terms_of_access, get_started: true
+    post :accepts_terms_of_access, params: { get_started: true }
     @regular_user.reload
     assert_not_nil @regular_user.accepted_terms_of_access_at
   end
@@ -249,7 +249,7 @@ class AccountControllerTest < ActionController::TestCase
 
   test 'should update information from engagement highlights' do
     login(users(:social))
-    patch :update_from_engagements, format: 'js', user: { experience: 'Experience getting diagnosed', device: 'My device' }
+    patch :update_from_engagements, params: { user: { experience: 'Experience getting diagnosed', device: 'My device' } }, format: 'js'
     assert_response :success
     users(:social).reload
     assert_not_nil users(:social).experience
@@ -271,7 +271,7 @@ class AccountControllerTest < ActionController::TestCase
     refute_equal new_age, users(:social).age
     refute_equal new_forum_name, users(:social).forum_name
 
-    patch :update, user: { first_name: new_first, last_name: new_last, email: new_email, gender: new_gender, age: new_age, forum_name: new_forum_name }
+    patch :update, params: { user: { first_name: new_first, last_name: new_last, email: new_email, gender: new_gender, age: new_age, forum_name: new_forum_name } }
 
     users(:social).reload
 
@@ -285,7 +285,7 @@ class AccountControllerTest < ActionController::TestCase
 
   test 'should update account information for provider' do
     login(@provider)
-    patch :update, user: { welcome_message: 'Welcome to my page!', slug: 'doctor-joe-smith', provider_name: 'Dr Joe Smith' }
+    patch :update, params: { user: { welcome_message: 'Welcome to my page!', slug: 'doctor-joe-smith', provider_name: 'Dr Joe Smith' } }
     @provider.reload
 
     assert_equal 'Welcome to my page!', @provider.welcome_message
@@ -297,7 +297,7 @@ class AccountControllerTest < ActionController::TestCase
 
   test 'should not allow user to enter blank forum name' do
     login(users(:social))
-    patch :update, user: { forum_name: '' }
+    patch :update, params: { user: { forum_name: '' } }
 
     users(:social).reload
 
@@ -307,7 +307,7 @@ class AccountControllerTest < ActionController::TestCase
 
   test 'should not allow user to enter forum name as existing name with different casing' do
     login(users(:social))
-    patch :update, user: { forum_name: 'PARTICIPANT' }
+    patch :update, params: { user: { forum_name: 'PARTICIPANT' } }
 
     users(:social).reload
 
@@ -317,7 +317,7 @@ class AccountControllerTest < ActionController::TestCase
 
   test 'should not update account for regular user with invalid user information' do
     login(@regular_user)
-    patch :update, user: { email: '' }
+    patch :update, params: { user: { email: '' } }
 
     assert_template 'account'
     assert_response :success
@@ -326,7 +326,7 @@ class AccountControllerTest < ActionController::TestCase
   test 'should change password for regular user' do
     login(@regular_user)
 
-    patch :change_password, user: { current_password: 'password', password: 'newpassword' }
+    patch :change_password, params: { user: { current_password: 'password', password: 'newpassword' } }
 
     assert_equal 'Your password has been changed.', flash[:notice]
     assert_redirected_to account_path
@@ -334,7 +334,7 @@ class AccountControllerTest < ActionController::TestCase
 
   test 'should not change password for regular user with invalid current password' do
     login(@regular_user)
-    patch :change_password, user: { current_password: 'invalid', password: 'newpassword' }
+    patch :change_password, params: { user: { current_password: 'invalid', password: 'newpassword' } }
     assert_template 'account'
     assert_response :success
   end
@@ -342,7 +342,7 @@ class AccountControllerTest < ActionController::TestCase
   # User type creation and Survey assignment
   test 'should assign correct surveys for adult_diagnosed role' do
     login(users(:blank_slate))
-    patch :set_user_type, user: { adult_diagnosed: true }
+    patch :set_user_type, params: { user: { adult_diagnosed: true } }
 
     assert_includes users(:blank_slate).answer_sessions.collect(&:survey), Survey.find_by_slug('about-me')
     assert_includes users(:blank_slate).answer_sessions.collect(&:survey), Survey.find_by_slug('about-my-family')
@@ -352,7 +352,7 @@ class AccountControllerTest < ActionController::TestCase
 
   test 'should assign correct surveys for adult_at_risk role' do
     login(users(:blank_slate))
-    patch :set_user_type, user: { adult_at_risk: true }
+    patch :set_user_type, params: { user: { adult_at_risk: true } }
 
     assert_includes users(:blank_slate).answer_sessions.collect(&:survey), Survey.find_by_slug('about-me')
     assert_includes users(:blank_slate).answer_sessions.collect(&:survey), Survey.find_by_slug('about-my-family')
@@ -362,7 +362,7 @@ class AccountControllerTest < ActionController::TestCase
 
   test 'should assign correct surveys for caregiver_adult role' do
     login(users(:blank_slate))
-    patch :set_user_type, user: { caregiver_adult: true }
+    patch :set_user_type, params: { user: { caregiver_adult: true } }
 
     assert_includes users(:blank_slate).answer_sessions.collect(&:survey), Survey.find_by_slug('about-me')
     assert_includes users(:blank_slate).answer_sessions.collect(&:survey), Survey.find_by_slug('about-my-family')
@@ -372,7 +372,7 @@ class AccountControllerTest < ActionController::TestCase
 
   test 'should assign correct surveys for caregiver_child role' do
     login(users(:blank_slate))
-    patch :set_user_type, user: { caregiver_child: true }
+    patch :set_user_type, params: { user: { caregiver_child: true } }
 
     assert_includes users(:blank_slate).answer_sessions.collect(&:survey), Survey.find_by_slug('about-me')
     assert_includes users(:blank_slate).answer_sessions.collect(&:survey), Survey.find_by_slug('about-my-family')
@@ -382,21 +382,21 @@ class AccountControllerTest < ActionController::TestCase
 
   test 'should not assign any surveys for researcher' do
     login(users(:blank_slate))
-    patch :set_user_type, user: { researcher: true }
+    patch :set_user_type, params: { user: { researcher: true } }
 
     assert_empty users(:blank_slate).answer_sessions
   end
 
   test 'should not assign any surveys for provider' do
     login(users(:blank_slate))
-    patch :set_user_type, user: { provider: true }
+    patch :set_user_type, params: { user: { provider: true } }
 
     assert_empty users(:blank_slate).answer_sessions
   end
 
   test 'should assign adult_diagnosed surveys for provider+adult_diagnosed' do
     login(users(:blank_slate))
-    patch :set_user_type, user: { adult_diagnosed: true, provider: true }
+    patch :set_user_type, params: { user: { adult_diagnosed: true, provider: true } }
 
     assert_includes users(:blank_slate).answer_sessions.collect(&:survey), Survey.find_by_slug('about-me')
     assert_includes users(:blank_slate).answer_sessions.collect(&:survey), Survey.find_by_slug('about-my-family')

@@ -1,4 +1,4 @@
-class RenameTargetAnswerOptionForAnswerTemplates < ActiveRecord::Migration
+class RenameTargetAnswerOptionForAnswerTemplates < ActiveRecord::Migration[4.2]
   def up
     rename_column :answer_templates, :target_answer_option, :parent_answer_option_value
     timestamp = '20150811192707'

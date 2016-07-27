@@ -1,4 +1,4 @@
-class CreateAdminCategories < ActiveRecord::Migration
+class CreateAdminCategories < ActiveRecord::Migration[4.2]
   def change
     create_table :admin_categories do |t|
       t.string :name

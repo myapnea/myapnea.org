@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Reaction < ActiveRecord::Base
+class Reaction < ApplicationRecord
   # Default Scope
   # Constants
   FORM_LIKE = 'like'

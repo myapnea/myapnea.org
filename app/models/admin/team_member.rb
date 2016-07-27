@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Admin::TeamMember < ActiveRecord::Base
+class Admin::TeamMember < ApplicationRecord
   # Default Scope
   # Constants
   GROUPS = ['steering', 'internal', 'patient']

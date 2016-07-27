@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class AnswerSession < ActiveRecord::Base
+class AnswerSession < ApplicationRecord
   # Concerns
   include Deletable
 

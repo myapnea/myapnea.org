@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Child < ActiveRecord::Base
+class Child < ApplicationRecord
 
   # Callbacks
   after_save :assign_child_surveys

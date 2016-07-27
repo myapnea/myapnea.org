@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Allows broadcasts to be grouped by category.
-class Admin::Category < ActiveRecord::Base
+class Admin::Category < ApplicationRecord
   # Concerns
   include Deletable
 

@@ -1,4 +1,4 @@
-class CreateChildren < ActiveRecord::Migration
+class CreateChildren < ActiveRecord::Migration[4.2]
   def change
     create_table :children do |t|
       t.integer :user_id

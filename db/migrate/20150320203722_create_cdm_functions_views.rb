@@ -1,4 +1,4 @@
-class CreateCdmFunctionsViews < ActiveRecord::Migration
+class CreateCdmFunctionsViews < ActiveRecord::Migration[4.2]
 
   def up
     timestamp = '20150320203722'

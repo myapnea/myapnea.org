@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Admin::Partner < ActiveRecord::Base
+class Admin::Partner < ApplicationRecord
   # Default Scope
   # Constants
   GROUPS = ['main', 'promotional']

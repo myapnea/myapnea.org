@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Topic < ActiveRecord::Base
+class Topic < ApplicationRecord
   STATUS = [['Approved', 'approved'], ['Pending Review', 'pending_review'], ['Marked as Spam', 'spam'], ['Hidden', 'hidden']]
   POSTS_PER_PAGE = 20
 

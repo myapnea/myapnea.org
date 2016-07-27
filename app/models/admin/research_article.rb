@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Admin::ResearchArticle < ActiveRecord::Base
+class Admin::ResearchArticle < ApplicationRecord
   # Default Scope
   # Constants
   # Attribute related macros

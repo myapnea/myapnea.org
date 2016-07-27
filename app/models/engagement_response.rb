@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class EngagementResponse < ActiveRecord::Base
+class EngagementResponse < ApplicationRecord
   # Default Scope
   # Constants
   # Attribute related macros

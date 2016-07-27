@@ -1,4 +1,4 @@
-class RemoveUnusedSurveyColumns < ActiveRecord::Migration
+class RemoveUnusedSurveyColumns < ActiveRecord::Migration[4.2]
   def up
     remove_index :surveys, :first_question_id
     remove_column :surveys, :first_question_id

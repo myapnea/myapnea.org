@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # A portion of a question used to capture data.
-class AnswerTemplate < ActiveRecord::Base
+class AnswerTemplate < ApplicationRecord
   # Default Scope
   # Constants
   DATA_TYPES = %w(answer_option_id numeric_value text_value)

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class SurveyUserType < ActiveRecord::Base
+class SurveyUserType < ApplicationRecord
 
   # Concerns
   include Deletable

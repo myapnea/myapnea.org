@@ -1,5 +1,5 @@
 # This migration comes from forem (originally 20120229165013)
-class MakeForemViewsPolymorphic < ActiveRecord::Migration
+class MakeForemViewsPolymorphic < ActiveRecord::Migration[4.2]
   def up
     rename_column :forem_views, :topic_id, :viewable_id
     add_column :forem_views, :viewable_type, :string

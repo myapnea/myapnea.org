@@ -1,4 +1,4 @@
-class CreateSurveyUserTypes < ActiveRecord::Migration
+class CreateSurveyUserTypes < ActiveRecord::Migration[4.2]
   def change
     create_table :survey_user_types do |t|
       t.integer :survey_id

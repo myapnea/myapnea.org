@@ -24,7 +24,7 @@ class Builder::AnswerTemplatesControllerTest < ActionController::TestCase
 
   test 'should get answer templates as builder' do
     login(@builder)
-    get :index, survey_id: @survey, question_id: @question
+    get :index, params: { survey_id: @survey, question_id: @question }
     assert_not_nil assigns(:survey)
     assert_not_nil assigns(:question)
     assert_redirected_to builder_survey_question_path(assigns(:survey), assigns(:question))
@@ -32,7 +32,7 @@ class Builder::AnswerTemplatesControllerTest < ActionController::TestCase
 
   test 'should not get answer templates as regular user' do
     login(@regular_user)
-    get :index, survey_id: @survey, question_id: @question
+    get :index, params: { survey_id: @survey, question_id: @question }
     assert_nil assigns(:survey)
     assert_nil assigns(:question)
     assert_redirected_to root_path
@@ -40,7 +40,7 @@ class Builder::AnswerTemplatesControllerTest < ActionController::TestCase
 
   test 'should get new answer template as builder' do
     login(@builder)
-    get :new, survey_id: @survey, question_id: @question
+    get :new, params: { survey_id: @survey, question_id: @question }
     assert_not_nil assigns(:survey)
     assert_not_nil assigns(:question)
     assert_not_nil assigns(:answer_template)
@@ -49,7 +49,7 @@ class Builder::AnswerTemplatesControllerTest < ActionController::TestCase
 
   test 'should not get new answer template as regular user' do
     login(@regular_user)
-    get :new, survey_id: @survey, question_id: @question
+    get :new, params: { survey_id: @survey, question_id: @question }
     assert_nil assigns(:survey)
     assert_nil assigns(:question)
     assert_nil assigns(:answer_template)
@@ -59,7 +59,7 @@ class Builder::AnswerTemplatesControllerTest < ActionController::TestCase
   test 'should create answer template as builder' do
     login(@builder)
     assert_difference('AnswerTemplate.count') do
-      post :create, survey_id: @survey, question_id: @question, answer_template: answer_template_params
+      post :create, params: { survey_id: @survey, question_id: @question, answer_template: answer_template_params }
     end
     assert_not_nil assigns(:survey)
     assert_not_nil assigns(:question)
@@ -75,7 +75,7 @@ class Builder::AnswerTemplatesControllerTest < ActionController::TestCase
   test 'should not create answer template without text' do
     login(@builder)
     assert_difference('AnswerTemplate.count', 0) do
-      post :create, survey_id: @survey, question_id: @question, answer_template: answer_template_params.merge(name: '')
+      post :create, params: { survey_id: @survey, question_id: @question, answer_template: answer_template_params.merge(name: '') }
     end
     assert_not_nil assigns(:survey)
     assert_not_nil assigns(:question)
@@ -89,7 +89,7 @@ class Builder::AnswerTemplatesControllerTest < ActionController::TestCase
   test 'should not create answer template as regular user' do
     login(@regular_user)
     assert_difference('AnswerTemplate.count', 0) do
-      post :create, survey_id: @survey, question_id: @question, answer_template: answer_template_params
+      post :create, params: { survey_id: @survey, question_id: @question, answer_template: answer_template_params }
     end
     assert_nil assigns(:survey)
     assert_nil assigns(:question)
@@ -99,7 +99,7 @@ class Builder::AnswerTemplatesControllerTest < ActionController::TestCase
 
   test 'should show answer template as builder' do
     login(@builder)
-    get :show, survey_id: @survey, question_id: @question, id: @answer_template
+    get :show, params: { survey_id: @survey, question_id: @question, id: @answer_template }
     assert_not_nil assigns(:survey)
     assert_not_nil assigns(:question)
     assert_not_nil assigns(:answer_template)
@@ -108,7 +108,7 @@ class Builder::AnswerTemplatesControllerTest < ActionController::TestCase
 
   test 'should not show answer template as regular user' do
     login(@regular_user)
-    get :show, survey_id: @survey, question_id: @question, id: @answer_template
+    get :show, params: { survey_id: @survey, question_id: @question, id: @answer_template }
     assert_nil assigns(:survey)
     assert_nil assigns(:question)
     assert_nil assigns(:answer_template)
@@ -117,7 +117,7 @@ class Builder::AnswerTemplatesControllerTest < ActionController::TestCase
 
   test 'should get edit answer template as builder' do
     login(@builder)
-    get :edit, survey_id: @survey, question_id: @question, id: @answer_template
+    get :edit, params: { survey_id: @survey, question_id: @question, id: @answer_template }
     assert_not_nil assigns(:survey)
     assert_not_nil assigns(:question)
     assert_not_nil assigns(:answer_template)
@@ -126,7 +126,7 @@ class Builder::AnswerTemplatesControllerTest < ActionController::TestCase
 
   test 'should not get edit answer template as regular user' do
     login(@regular_user)
-    get :edit, survey_id: @survey, question_id: @question, id: @answer_template
+    get :edit, params: { survey_id: @survey, question_id: @question, id: @answer_template }
     assert_nil assigns(:survey)
     assert_nil assigns(:question)
     assert_nil assigns(:answer_template)
@@ -135,7 +135,7 @@ class Builder::AnswerTemplatesControllerTest < ActionController::TestCase
 
   test 'should update answer template as builder' do
     login(@builder)
-    patch :update, survey_id: @survey, question_id: @question, id: @answer_template, answer_template: answer_template_params.merge(name: 'updated_answer_template', template_name: 'date')
+    patch :update, params: { survey_id: @survey, question_id: @question, id: @answer_template, answer_template: answer_template_params.merge(name: 'updated_answer_template', template_name: 'date') }
     assert_not_nil assigns(:survey)
     assert_not_nil assigns(:question)
     assert_not_nil assigns(:answer_template)
@@ -148,7 +148,7 @@ class Builder::AnswerTemplatesControllerTest < ActionController::TestCase
 
   test 'should not update answer template without name' do
     login(@builder)
-    patch :update, survey_id: @survey, question_id: @question, id: @answer_template, answer_template: answer_template_params.merge(name: '', template_name: 'date')
+    patch :update, params: { survey_id: @survey, question_id: @question, id: @answer_template, answer_template: answer_template_params.merge(name: '', template_name: 'date') }
     assert_not_nil assigns(:survey)
     assert_not_nil assigns(:question)
     assert_not_nil assigns(:answer_template)
@@ -160,7 +160,7 @@ class Builder::AnswerTemplatesControllerTest < ActionController::TestCase
 
   test 'should not update answer template as regular user' do
     login(@regular_user)
-    patch :update, survey_id: @survey, question_id: @question, id: @answer_template, answer_template: answer_template_params.merge(name: 'updated_answer_template', template_name: 'date')
+    patch :update, params: { survey_id: @survey, question_id: @question, id: @answer_template, answer_template: answer_template_params.merge(name: 'updated_answer_template', template_name: 'date') }
     assert_nil assigns(:survey)
     assert_nil assigns(:question)
     assert_nil assigns(:answer_template)
@@ -170,7 +170,7 @@ class Builder::AnswerTemplatesControllerTest < ActionController::TestCase
   test 'should destroy answer template as builder' do
     login(@builder)
     assert_difference('AnswerTemplate.current.count', -1) do
-      delete :destroy, survey_id: @survey, question_id: @question, id: @answer_template
+      delete :destroy, params: { survey_id: @survey, question_id: @question, id: @answer_template }
     end
     assert_not_nil assigns(:survey)
     assert_not_nil assigns(:question)
@@ -181,7 +181,7 @@ class Builder::AnswerTemplatesControllerTest < ActionController::TestCase
   test 'should not destroy answer template as regular user' do
     login(@regular_user)
     assert_difference('AnswerTemplate.current.count', 0) do
-      delete :destroy, survey_id: @survey, question_id: @question, id: @answer_template
+      delete :destroy, params: { survey_id: @survey, question_id: @question, id: @answer_template }
     end
     assert_nil assigns(:survey)
     assert_nil assigns(:question)
@@ -191,7 +191,7 @@ class Builder::AnswerTemplatesControllerTest < ActionController::TestCase
 
   test 'should save template order' do
     login(@builder)
-    post :reorder, survey_id: @survey, question_id: @question, answer_template_ids: [ActiveRecord::FixtureSet.identify(:web_answer_template)], format: 'js'
+    post :reorder, params: { survey_id: @survey, question_id: @question, answer_template_ids: [ActiveRecord::FixtureSet.identify(:web_answer_template)] }, format: 'js'
     assert_response :success
   end
 end

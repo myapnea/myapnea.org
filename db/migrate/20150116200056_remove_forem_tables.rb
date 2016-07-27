@@ -1,4 +1,4 @@
-class RemoveForemTables < ActiveRecord::Migration
+class RemoveForemTables < ActiveRecord::Migration[4.2]
   def up
     drop_table :forem_categories
     drop_table :forem_forums

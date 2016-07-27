@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Question < ActiveRecord::Base
+class Question < ApplicationRecord
   # Default Scope
   # Constants
   DISPLAY_TYPES = ["custom_date_input", "radio_input", "checkbox_input", "height_input", "number_input", "radio_input_multiple"]

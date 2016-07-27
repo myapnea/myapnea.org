@@ -1,4 +1,4 @@
-class CreateQuestionEdges < ActiveRecord::Migration
+class CreateQuestionEdges < ActiveRecord::Migration[4.2]
   def change
     create_table :question_edges do |t|
       t.integer :question_flow_id

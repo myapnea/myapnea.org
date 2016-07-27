@@ -1,4 +1,4 @@
-class RemoveActsAsTaggableOnTables < ActiveRecord::Migration
+class RemoveActsAsTaggableOnTables < ActiveRecord::Migration[4.2]
   def up
     remove_index :tags, :name
     drop_table :tags

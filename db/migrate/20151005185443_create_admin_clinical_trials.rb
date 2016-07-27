@@ -1,4 +1,4 @@
-class CreateAdminClinicalTrials < ActiveRecord::Migration
+class CreateAdminClinicalTrials < ActiveRecord::Migration[4.2]
   def change
     create_table :admin_clinical_trials do |t|
       t.string :title

@@ -1,4 +1,4 @@
-class CreateAdminTeamMembers < ActiveRecord::Migration
+class CreateAdminTeamMembers < ActiveRecord::Migration[4.2]
   def change
     create_table :admin_team_members do |t|
       t.string :name

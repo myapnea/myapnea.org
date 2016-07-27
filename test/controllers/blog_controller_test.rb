@@ -15,12 +15,12 @@ class BlogControllerTest < ActionController::TestCase
   end
 
   test 'should show published blog' do
-    get :show, slug: broadcasts(:published).slug
+    get :show, params: { slug: broadcasts(:published).slug }
     assert_response :success
   end
 
   test 'should not show draft blog' do
-    get :show, slug: broadcasts(:draft).slug
+    get :show, params: { slug: broadcasts(:draft).slug }
     assert_redirected_to blog_path
   end
 end

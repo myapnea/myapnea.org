@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class QuestionHelpMessage < ActiveRecord::Base
+class QuestionHelpMessage < ApplicationRecord
   include Localizable
 
   has_many :questions

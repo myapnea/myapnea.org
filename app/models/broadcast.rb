@@ -2,7 +2,7 @@
 
 # A broadcast is a blog post. Blog posts can be edited by community managers and
 # set to be published on specific dates.
-class Broadcast < ActiveRecord::Base
+class Broadcast < ApplicationRecord
   # Concerns
   include Deletable
   include PgSearch

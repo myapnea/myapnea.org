@@ -1,4 +1,4 @@
-class CreateSocialProfiles < ActiveRecord::Migration
+class CreateSocialProfiles < ActiveRecord::Migration[4.2]
   def change
     create_table :social_profiles do |t|
       t.string :name
@@ -7,7 +7,7 @@ class CreateSocialProfiles < ActiveRecord::Migration
 
       # Profile Photo
       t.string :photo
-      
+
 
       # Geocoding
       t.float :latitude

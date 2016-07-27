@@ -1,4 +1,4 @@
-class AddIndecesToAnswerSessions < ActiveRecord::Migration
+class AddIndecesToAnswerSessions < ActiveRecord::Migration[4.2]
   def change
     add_index :answers, :answer_session_id
     add_index :answers, :question_id

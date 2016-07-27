@@ -1,4 +1,4 @@
-class RemoveFirstAndLastAnswerIdFromAnswerSessions < ActiveRecord::Migration
+class RemoveFirstAndLastAnswerIdFromAnswerSessions < ActiveRecord::Migration[4.2]
   def up
     remove_index :answer_sessions, :first_answer_id
     remove_column :answer_sessions, :first_answer_id

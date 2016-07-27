@@ -31,7 +31,7 @@ class ChaptersControllerTest < ActionController::TestCase
 
   test 'should create chapter' do
     assert_difference('Chapter.count') do
-      post :create, chapter: chapter_params
+      post :create, params: { chapter: chapter_params }
     end
     assert_not_nil assigns(:chapter)
     assert_equal 'Topic Title', assigns(:chapter).title
@@ -42,36 +42,36 @@ class ChaptersControllerTest < ActionController::TestCase
 
   test 'should not create chapter with blank title' do
     assert_difference('Chapter.count', 0) do
-      post :create, chapter: chapter_params.merge(title: '')
+      post :create, params: { chapter: chapter_params.merge(title: '') }
     end
     assert_template 'new'
     assert_response :success
   end
 
   test 'should show chapter' do
-    get :show, id: @chapter
+    get :show, params: { id: @chapter }
     assert_response :success
   end
 
   test 'should get edit' do
-    get :edit, id: @chapter
+    get :edit, params: { id: @chapter }
     assert_response :success
   end
 
   test 'should update chapter' do
-    patch :update, id: @chapter, chapter: chapter_params
+    patch :update, params: { id: @chapter, chapter: chapter_params }
     assert_redirected_to assigns(:chapter)
   end
 
   test 'should not update chapter with blank title' do
-    patch :update, id: @chapter, chapter: chapter_params.merge(title: '')
+    patch :update, params: { id: @chapter, chapter: chapter_params.merge(title: '') }
     assert_template 'edit'
     assert_response :success
   end
 
   test 'should destroy chapter' do
     assert_difference('Chapter.current.count', -1) do
-      delete :destroy, id: @chapter
+      delete :destroy, params: { id: @chapter }
     end
     assert_redirected_to chapters_path
   end

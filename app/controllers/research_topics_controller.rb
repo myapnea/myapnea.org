@@ -125,7 +125,7 @@ class ResearchTopicsController < ApplicationController
   def change_vote
     research_topic = ResearchTopic.find(params[:research_topic_id])
     current_user.endorsed?(research_topic) ? research_topic.oppose_by(current_user) : research_topic.endorse_by(current_user)
-    redirect_to :back
+    redirect_back(fallback_location: root_path)
   end
 
   private

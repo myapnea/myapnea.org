@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class SurveyEncounter < ActiveRecord::Base
+class SurveyEncounter < ApplicationRecord
 
   # Concerns
 

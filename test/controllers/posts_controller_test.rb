@@ -13,14 +13,14 @@ class PostsControllerTest < ActionController::TestCase
   end
 
   test 'should get index and redirect to topic' do
-    get :index, topic_id: posts(:six).topic, id: posts(:six)
+    get :index, params: { topic_id: posts(:six).topic, id: posts(:six) }
     assert_not_nil assigns(:topic)
     assert_redirected_to assigns(:topic)
   end
 
   test 'should get show and redirect to specific page and location on topic' do
     login(users(:user_2))
-    get :show, topic_id: posts(:six).topic, id: posts(:six)
+    get :show, params: { topic_id: posts(:six).topic, id: posts(:six) }
     assert_not_nil assigns(:topic)
     assert_not_nil assigns(:post)
     assert_redirected_to topic_path(assigns(:topic), page: 1, anchor: 'c2')
@@ -29,7 +29,7 @@ class PostsControllerTest < ActionController::TestCase
   test 'should get post preview' do
     login(users(:user_2))
     assert_difference('Post.count', 0) do
-      xhr :post, :preview, topic_id: @topic, post: { description: 'This is my contribution to the discussion.' }
+      post :preview, params: { topic_id: @topic, post: { description: 'This is my contribution to the discussion.' } }, format: 'js'
     end
     assert_not_nil assigns(:topic)
     assert_not_nil assigns(:post)
@@ -39,7 +39,7 @@ class PostsControllerTest < ActionController::TestCase
 
   test 'should not get post preview as logged out user' do
     assert_difference('Post.count', 0) do
-      xhr :post, :preview, topic_id: @topic, post: { description: 'This is my contribution to the discussion.' }
+      post :preview, params: { topic_id: @topic, post: { description: 'This is my contribution to the discussion.' } }, format: 'js'
     end
     assert_nil assigns(:topic)
     assert_nil assigns(:post)
@@ -49,7 +49,7 @@ class PostsControllerTest < ActionController::TestCase
   test 'should create post and not update existing subscription' do
     login(users(:user_2))
     assert_difference('Post.count') do
-      post :create, topic_id: @topic, post: { description: 'This is my contribution to the discussion.' }
+      post :create, params: { topic_id: @topic, post: { description: 'This is my contribution to the discussion.' } }
     end
     assert_not_nil assigns(:topic)
     assert_not_nil assigns(:post)
@@ -62,7 +62,7 @@ class PostsControllerTest < ActionController::TestCase
   test 'should create pending_review post as regular user' do
     login(users(:user_1))
     assert_difference('Post.count') do
-      post :create, topic_id: @topic, post: { description: 'I am trying to approve my own post.', status: 'approved' }
+      post :create, params: { topic_id: @topic, post: { description: 'I am trying to approve my own post.', status: 'approved' } }
     end
     assert_not_nil assigns(:topic)
     assert_not_nil assigns(:post)
@@ -73,7 +73,7 @@ class PostsControllerTest < ActionController::TestCase
   test 'should create approved post as moderator' do
     login(users(:moderator_1))
     assert_difference('Post.count') do
-      post :create, topic_id: @topic, post: { description: 'I am trying to approve my own post.', status: 'approved' }
+      post :create, params: { topic_id: @topic, post: { description: 'I am trying to approve my own post.', status: 'approved' } }
     end
     assert_not_nil assigns(:topic)
     assert_not_nil assigns(:post)
@@ -84,7 +84,7 @@ class PostsControllerTest < ActionController::TestCase
   test 'should create post and add subscription' do
     login(users(:moderator_1))
     assert_difference('Post.count') do
-      post :create, topic_id: @topic, post: { description: 'With this post I am subscribing to the discussion.' }
+      post :create, params: { topic_id: @topic, post: { description: 'With this post I am subscribing to the discussion.' } }
     end
     assert_not_nil assigns(:topic)
     assert_not_nil assigns(:post)
@@ -97,7 +97,7 @@ class PostsControllerTest < ActionController::TestCase
   test 'should not create post with blank description' do
     login(users(:user_1))
     assert_difference('Post.count', 0) do
-      post :create, topic_id: @topic, post: { description: '' }
+      post :create, params: { topic_id: @topic, post: { description: '' } }
     end
     assert_not_nil assigns(:topic)
     assert_not_nil assigns(:post)
@@ -109,7 +109,7 @@ class PostsControllerTest < ActionController::TestCase
   test 'should create post and mark new last post at' do
     login(users(:moderator_1))
     assert_difference('Post.count') do
-      post :create, topic_id: @topic, post: { description: 'This post', status: 'approved' }
+      post :create, params: { topic_id: @topic, post: { description: 'This post', status: 'approved' } }
     end
     assert_not_nil assigns(:topic)
     assert_not_nil assigns(:post)
@@ -119,7 +119,7 @@ class PostsControllerTest < ActionController::TestCase
 
   test 'should not create post as logged out user' do
     assert_difference('Post.count', 0) do
-      post :create, topic_id: @topic, post: { description: 'I am not logged in.' }
+      post :create, params: { topic_id: @topic, post: { description: 'I am not logged in.' } }
     end
     assert_redirected_to new_user_session_path
   end
@@ -127,7 +127,7 @@ class PostsControllerTest < ActionController::TestCase
   # test 'should not create post as banned user' do
   #   login(users(:banned))
   #   assert_difference('Post.count', 0) do
-  #     post :create, topic_id: @topic, post: { description: 'I am banned from creating posts.' }
+  #     post :create, params: { topic_id: @topic, post: { description: 'I am banned from creating posts.' } }
   #   end
   #   assert_not_nil assigns(:topic)
   #   assert_nil assigns(:post)
@@ -137,7 +137,7 @@ class PostsControllerTest < ActionController::TestCase
   test 'should not create post on locked topic' do
     login(@valid_user)
     assert_difference('Post.count', 0) do
-      post :create, topic_id: topics(:locked), post: { description: 'Adding a post to a locked topic.' }
+      post :create, params: { topic_id: topics(:locked), post: { description: 'Adding a post to a locked topic.' } }
     end
     assert_not_nil assigns(:topic)
     assert_nil assigns(:post)
@@ -146,7 +146,7 @@ class PostsControllerTest < ActionController::TestCase
 
   test 'should get edit' do
     login(@valid_user)
-    xhr :get, :edit, topic_id: @topic, id: @post, format: 'js'
+    get :edit, params: { topic_id: @topic, id: @post }, xhr: true, format: 'js'
     assert_not_nil assigns(:topic)
     assert_not_nil assigns(:post)
     assert_template 'edit'
@@ -155,7 +155,7 @@ class PostsControllerTest < ActionController::TestCase
 
   test 'should not get edit for post on locked topic' do
     login(@valid_user)
-    xhr :get, :edit, topic_id: topics(:locked), id: posts(:three), format: 'js'
+    get :edit, params: { topic_id: topics(:locked), id: posts(:three) }, xhr: true, format: 'js'
     assert_not_nil assigns(:topic)
     assert_nil assigns(:post)
     assert_response :success
@@ -163,7 +163,7 @@ class PostsControllerTest < ActionController::TestCase
 
   test 'should not get edit as another user' do
     login(users(:user_2))
-    xhr :get, :edit, topic_id: @topic, id: @post, format: 'js'
+    get :edit, params: { topic_id: @topic, id: @post }, xhr: true, format: 'js'
     assert_not_nil assigns(:topic)
     assert_nil assigns(:post)
     assert_response :success
@@ -171,7 +171,7 @@ class PostsControllerTest < ActionController::TestCase
 
   # test 'should not get edit as banned user' do
   #   login(users(:banned))
-  #   xhr :get, :edit, topic_id: posts(:banned).topic, id: posts(:banned), format: 'js'
+  #   get :edit, params: { topic_id: posts(:banned).topic, id: posts(:banned) }, xhr: true, format: 'js'
   #   assert_not_nil assigns(:topic)
   #   assert_nil assigns(:post)
   #   assert_response :success
@@ -179,7 +179,7 @@ class PostsControllerTest < ActionController::TestCase
 
   test 'should update post' do
     login(@valid_user)
-    patch :update, topic_id: @topic, id: @post, post: { description: 'Updated Description' }
+    patch :update, params: { topic_id: @topic, id: @post, post: { description: 'Updated Description' } }
     assert_not_nil assigns(:topic)
     assert_not_nil assigns(:post)
     assert_equal 'Updated Description', assigns(:post).description
@@ -189,7 +189,7 @@ class PostsControllerTest < ActionController::TestCase
 
   test 'should update post but not reset subscription' do
     login(users(:user_2))
-    patch :update, topic_id: posts(:six).topic, id: posts(:six), post: { description: 'Updated Description' }
+    patch :update, params: { topic_id: posts(:six).topic, id: posts(:six), post: { description: 'Updated Description' } }
     assert_not_nil assigns(:topic)
     assert_not_nil assigns(:post)
     assert_equal 'Updated Description', assigns(:post).description
@@ -199,7 +199,7 @@ class PostsControllerTest < ActionController::TestCase
 
   test 'should not update post on locked topic' do
     login(@valid_user)
-    patch :update, topic_id: topics(:locked), id: posts(:three), post: { description: 'Updated Description on Locked' }
+    patch :update, params: { topic_id: topics(:locked), id: posts(:three), post: { description: 'Updated Description on Locked' } }
     assert_not_nil assigns(:topic)
     assert_nil assigns(:post)
     assert_redirected_to assigns(:topic)
@@ -207,7 +207,7 @@ class PostsControllerTest < ActionController::TestCase
 
   test 'should not update post with blank description' do
     login(@valid_user)
-    patch :update, topic_id: @topic, id: @post, post: { description: '' }
+    patch :update, params: { topic_id: @topic, id: @post, post: { description: '' } }
     assert_not_nil assigns(:topic)
     assert_not_nil assigns(:post)
     assert assigns(:post).errors.size > 0
@@ -218,7 +218,7 @@ class PostsControllerTest < ActionController::TestCase
 
   # test 'should not update post as banned user' do
   #   login(users(:banned))
-  #   patch :update, topic_id: posts(:banned).topic, id: posts(:banned), post: { description: 'I was banned so I am changing my post' }
+  #   patch :update, params: { topic_id: posts(:banned).topic, id: posts(:banned), post: { description: 'I was banned so I am changing my post' } }
   #   assert_not_nil assigns(:topic)
   #   assert_nil assigns(:post)
   #   assert_redirected_to assigns(:topic)
@@ -226,7 +226,7 @@ class PostsControllerTest < ActionController::TestCase
 
   test 'should not update as another user' do
     login(users(:user_2))
-    patch :update, topic_id: @topic, id: @post, post: { description: 'Updated Description' }
+    patch :update, params: { topic_id: @topic, id: @post, post: { description: 'Updated Description' } }
     assert_not_nil assigns(:topic)
     assert_nil assigns(:post)
     assert_redirected_to assigns(:topic)
@@ -235,7 +235,7 @@ class PostsControllerTest < ActionController::TestCase
   test 'should destroy post as owner' do
     login(@owner)
     assert_difference('Post.current.count', -1) do
-      delete :destroy, topic_id: @topic, id: @post
+      delete :destroy, params: { topic_id: @topic, id: @post }
     end
     assert_not_nil assigns(:topic)
     assert_not_nil assigns(:post)
@@ -247,7 +247,7 @@ class PostsControllerTest < ActionController::TestCase
   test 'should destroy post as post author' do
     login(@valid_user)
     assert_difference('Post.current.count', -1) do
-      delete :destroy, topic_id: @topic, id: posts(:pending_review)
+      delete :destroy, params: { topic_id: @topic, id: posts(:pending_review) }
     end
     assert_not_nil assigns(:topic)
     assert_not_nil assigns(:post)
@@ -259,7 +259,7 @@ class PostsControllerTest < ActionController::TestCase
   test 'should not destroy post as moderator' do
     login(@moderator)
     assert_difference('Post.current.count', 0) do
-      delete :destroy, topic_id: @topic, id: @post
+      delete :destroy, params: { topic_id: @topic, id: @post }
     end
     assert_not_nil assigns(:topic)
     assert_nil assigns(:post)
@@ -269,7 +269,7 @@ class PostsControllerTest < ActionController::TestCase
   test 'should not destroy post as another user' do
     login(users(:user_2))
     assert_difference('Post.current.count', 0) do
-      delete :destroy, topic_id: @topic, id: @post
+      delete :destroy, params: { topic_id: @topic, id: @post }
     end
     assert_not_nil assigns(:topic)
     assert_nil assigns(:post)
@@ -278,7 +278,7 @@ class PostsControllerTest < ActionController::TestCase
 
   test 'should not destroy post as logged out user' do
     assert_difference('Post.current.count', 0) do
-      delete :destroy, topic_id: @topic, id: @post
+      delete :destroy, params: { topic_id: @topic, id: @post }
     end
     assert_nil assigns(:topic)
     assert_nil assigns(:post)

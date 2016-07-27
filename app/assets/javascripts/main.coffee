@@ -1,6 +1,3 @@
-if typeof Turbolinks isnt 'undefined' and Turbolinks.supported
-  Turbolinks.enableProgressBar();
-
 @mainLoader = () ->
   $(document.links).filter(() ->
     return this.hostname != window.location.hostname
@@ -25,7 +22,7 @@ if typeof Turbolinks isnt 'undefined' and Turbolinks.supported
 @loadDatepicker = () ->
   $('.datepicker').datepicker()
 
-@loaders = () ->
+@ready = () ->
   mainLoader()
   consentReady()
   teamReady()
@@ -54,10 +51,11 @@ if typeof Turbolinks isnt 'undefined' and Turbolinks.supported
   fileDragReady()
   loadDatepicker()
   topicsReady()
+  mapsReady()
 
-$(document).ready(loaders)
+$(document).ready(ready)
 $(document)
-  .on('page:load', loaders)
+  .on('turbolinks:load', ready)
   .on('click', '[data-object~="submit"]', () ->
     $($(this).data('target')).submit()
     false

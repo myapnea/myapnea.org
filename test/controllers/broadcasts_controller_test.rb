@@ -36,9 +36,8 @@ class BroadcastsControllerTest < ActionController::TestCase
 
   test 'should create broadcast' do
     assert_difference('Broadcast.count') do
-      post :create, broadcast: broadcast_params
+      post :create, params: { broadcast: broadcast_params }
     end
-
     assert_not_nil assigns(:broadcast)
     assert_equal 'Broadcast Title', assigns(:broadcast).title
     assert_equal 'This is the short description.', assigns(:broadcast).short_description
@@ -47,42 +46,41 @@ class BroadcastsControllerTest < ActionController::TestCase
     assert_equal true, assigns(:broadcast).pinned
     assert_equal true, assigns(:broadcast).published
     assert_equal false, assigns(:broadcast).archived
-
     assert_redirected_to broadcast_path(assigns(:broadcast))
   end
 
   test 'should not create broadcast with blank title' do
     assert_difference('Broadcast.count', 0) do
-      post :create, broadcast: broadcast_params.merge(title: '')
+      post :create, params: { broadcast: broadcast_params.merge(title: '') }
     end
     assert_template 'new'
     assert_response :success
   end
 
   test 'should show broadcast' do
-    get :show, id: @broadcast
+    get :show, params: { id: @broadcast }
     assert_response :success
   end
 
   test 'should get edit' do
-    get :edit, id: @broadcast
+    get :edit, params: { id: @broadcast }
     assert_response :success
   end
 
   test 'should update broadcast' do
-    patch :update, id: @broadcast, broadcast: broadcast_params
+    patch :update, params: { id: @broadcast, broadcast: broadcast_params }
     assert_redirected_to broadcast_path(assigns(:broadcast))
   end
 
   test 'should not update broadcast with blank title' do
-    patch :update, id: @broadcast, broadcast: broadcast_params.merge(title: '')
+    patch :update, params: { id: @broadcast, broadcast: broadcast_params.merge(title: '') }
     assert_template 'edit'
     assert_response :success
   end
 
   test 'should destroy broadcast' do
     assert_difference('Broadcast.current.count', -1) do
-      delete :destroy, id: @broadcast
+      delete :destroy, params: { id: @broadcast }
     end
 
     assert_redirected_to broadcasts_path

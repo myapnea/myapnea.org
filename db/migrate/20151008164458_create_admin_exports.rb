@@ -1,4 +1,4 @@
-class CreateAdminExports < ActiveRecord::Migration
+class CreateAdminExports < ActiveRecord::Migration[4.2]
   def change
     create_table :admin_exports do |t|
       t.string :file

@@ -1,4 +1,4 @@
-class AddMissingIndices < ActiveRecord::Migration
+class AddMissingIndices < ActiveRecord::Migration[4.2]
   def change
     add_index :questions, :slug
     add_index :survey_question_orders, :survey_id

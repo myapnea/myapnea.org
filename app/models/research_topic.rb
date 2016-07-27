@@ -2,7 +2,7 @@
 
 # Research topic belongs to forum topic
 
-class ResearchTopic < ActiveRecord::Base
+class ResearchTopic < ApplicationRecord
   # Concerns
   include Deletable
 

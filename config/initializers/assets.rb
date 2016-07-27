@@ -1,14 +1,13 @@
 # frozen_string_literal: true
 
-# Add to assets path
-Rails.application.config.assets.paths << Rails.root.join('vendor', 'assets', 'fonts')
-Rails.application.config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
+# Be sure to restart your server when you modify this file.
 
-# Had to add these here to get in Precompile Package
-Rails.application.config.assets.precompile += %w( pages.css )
-Rails.application.config.assets.precompile += %w( social/maps.js google_analytics.js )
-Rails.application.config.assets.precompile += %w( .svg .eot .woff .ttf)
-Rails.application.config.assets.precompile += %w( home.js dashboard.js)
+# Version of your assets, change this if you want to expire all your assets.
+Rails.application.config.assets.version = '1.0'
 
-# Kyle's new redesign
-Rails.application.config.assets.precompile += %w( application.css application.js )
+# Add additional assets to the asset load path
+# Rails.application.config.assets.paths << Emoji.images_path
+
+# Precompile additional assets.
+# application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
+# Rails.application.config.assets.precompile += %w( search.js )

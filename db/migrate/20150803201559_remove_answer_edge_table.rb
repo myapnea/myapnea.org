@@ -1,4 +1,4 @@
-class RemoveAnswerEdgeTable < ActiveRecord::Migration
+class RemoveAnswerEdgeTable < ActiveRecord::Migration[4.2]
   def up
     drop_table :answer_edges
   end

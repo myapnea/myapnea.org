@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Encounter < ActiveRecord::Base
+class Encounter < ApplicationRecord
 
   # Concerns
   include Deletable

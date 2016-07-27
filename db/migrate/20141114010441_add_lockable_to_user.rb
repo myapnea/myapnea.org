@@ -1,4 +1,4 @@
-class AddLockableToUser < ActiveRecord::Migration
+class AddLockableToUser < ActiveRecord::Migration[4.2]
   def change
     ## Lockable
     add_column :users, :failed_attempts, :integer, default: 0, null: false # Only if lock strategy is :failed_attempts

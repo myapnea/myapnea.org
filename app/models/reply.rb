@@ -2,7 +2,7 @@
 
 # Allows community members to reply to forum topics. Replies can also be nested
 # under other replies.
-class Reply < ActiveRecord::Base
+class Reply < ApplicationRecord
   # Constants
   THRESHOLD = -10
 

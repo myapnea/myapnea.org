@@ -1,4 +1,4 @@
-class CreateSurveyReportViews < ActiveRecord::Migration
+class CreateSurveyReportViews < ActiveRecord::Migration[4.2]
   def up
     timestamp = '20140107145455'
     execute view_sql(timestamp, :report_answer_options)

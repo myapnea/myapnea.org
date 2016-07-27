@@ -1,4 +1,4 @@
-class CreateAnswerEdges < ActiveRecord::Migration
+class CreateAnswerEdges < ActiveRecord::Migration[4.2]
   def change
     create_table :answer_edges do |t|
       t.integer :parent_answer_id

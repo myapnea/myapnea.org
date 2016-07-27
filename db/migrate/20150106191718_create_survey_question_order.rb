@@ -1,4 +1,4 @@
-class CreateSurveyQuestionOrder < ActiveRecord::Migration
+class CreateSurveyQuestionOrder < ActiveRecord::Migration[4.2]
   def change
     create_table :survey_question_orders do |t|
       t.references :question_flow

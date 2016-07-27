@@ -9,23 +9,24 @@ class EngagementResponsesControllerTest < ActionController::TestCase
     @diagnosed = users(:adult_diagnosed)
   end
 
-  test "should create engagement_response" do
+  test 'should create engagement_response' do
     login(@diagnosed)
     assert_difference('EngagementResponse.count') do
-      post :create, engagement_id: @engagement, engagement_response: { response: 'This is my response',}, format: 'js'
+      post :create, params: {
+        engagement_id: @engagement, engagement_response: { response: 'This is my response' }
+      }, format: 'js'
     end
-
     assert_response :success
   end
 
-  test "should destroy engagement_response" do
+  test 'should destroy engagement_response' do
     assert_no_difference('EngagementResponse.current.count') do
-      delete :destroy, engagement_id: @engagement, id: @engagement_response
+      delete :destroy, params: { engagement_id: @engagement, id: @engagement_response }
     end
 
     login(users(:owner))
     assert_difference('EngagementResponse.current.count', -1) do
-      delete :destroy, engagement_id: @engagement, id: @engagement_response
+      delete :destroy, params: { engagement_id: @engagement, id: @engagement_response }
     end
     assert_redirected_to engagement_path
   end

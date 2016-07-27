@@ -1,4 +1,4 @@
-class ResearchTopicRefactoring < ActiveRecord::Migration
+class ResearchTopicRefactoring < ActiveRecord::Migration[4.2]
   def change
     # Research Topic
     add_column :research_topics, :progress, :string

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Represents a user vote on a blog comment.
-class BroadcastCommentUser < ActiveRecord::Base
+class BroadcastCommentUser < ApplicationRecord
   # Model Validation
   validates :broadcast_id, :broadcast_comment_id, :user_id, :vote, presence: true
 

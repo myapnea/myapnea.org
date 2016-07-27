@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Encapsulates a series of questions that a participant can answer.
-class Survey < ActiveRecord::Base
+class Survey < ApplicationRecord
   # Constants
   STATUS = %w(show hide)
 
@@ -156,11 +156,11 @@ class Survey < ActiveRecord::Base
 
     if surveys_launched > 0
       User.where(owner: true, emails_enabled: true).each do |owner|
-        UserMailer.encounter_digest(owner, surveys_launched, survey_changes).deliver_later if EMAILS_ENABLED
+        UserMailer.encounter_digest(owner, surveys_launched, survey_changes).deliver_now if EMAILS_ENABLED
       end
     end
     users_emailed.each do |user|
-      UserMailer.new_surveys_available(user).deliver_later if EMAILS_ENABLED
+      UserMailer.new_surveys_available(user).deliver_now if EMAILS_ENABLED
     end
     true
   end

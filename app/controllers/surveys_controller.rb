@@ -53,9 +53,11 @@ class SurveysController < ApplicationController
   def process_answer
     @question = Question.current.find_by_param(params[:question_id])
     @answer_session = current_user.answer_sessions.find_by_id(params[:answer_session_id])
-    response = params[:response] || {}
+    # TODO: Remove conversion to unsafe hash for response parameter.
+    response = (params[:response].present? ? params[:response].to_unsafe_hash : {})
+    @answer = @answer_session.process_answer(@question, response) if @question && @answer_session
 
-    if @answer_session and @question and @answer = @answer_session.process_answer(@question, response)
+    if @answer
       render json: { completed: @answer.complete?, invalid: @answer.invalid?, value: @answer.string_value, errors: @answer.errors.full_messages, validation_errors: @answer.validation_errors }
     else
       head :no_content

@@ -1,4 +1,4 @@
-class DropSocialProfileTable < ActiveRecord::Migration
+class DropSocialProfileTable < ActiveRecord::Migration[4.2]
   def up
     drop_table :social_profiles
   end

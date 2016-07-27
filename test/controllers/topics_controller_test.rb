@@ -37,7 +37,7 @@ class TopicsControllerTest < ActionController::TestCase
   test 'should not create topic for logged out user' do
     assert_difference('Post.count', 0) do
       assert_difference('Topic.count', 0) do
-        post :create, topic: { name: 'New Topic Name', description: 'First Post on New Topic' }
+        post :create, params: { topic: { name: 'New Topic Name', description: 'First Post on New Topic' } }
       end
     end
     assert_redirected_to new_user_session_path
@@ -47,7 +47,7 @@ class TopicsControllerTest < ActionController::TestCase
     login(@valid_user)
     assert_difference('Post.count') do
       assert_difference('Topic.count') do
-        post :create, topic: { name: 'New Topic Name', description: 'First Post on New Topic', status: 'hidden' }
+        post :create, params: { topic: { name: 'New Topic Name', description: 'First Post on New Topic', status: 'hidden' } }
       end
     end
     assert_not_nil assigns(:topic)
@@ -65,7 +65,7 @@ class TopicsControllerTest < ActionController::TestCase
     login(@valid_user)
     assert_difference('Post.count') do
       assert_difference('Topic.count') do
-        post :create, topic: { name: '12', description: 'A topic post about the number twelve.' }
+        post :create, params: { topic: { name: '12', description: 'A topic post about the number twelve.' } }
       end
     end
     assert_not_nil assigns(:topic)
@@ -83,7 +83,7 @@ class TopicsControllerTest < ActionController::TestCase
 
     assert_difference('Post.count') do
       assert_difference('Topic.count') do
-        post :create, topic: { name: 'New', description: 'A new topic.' }
+        post :create, params: { topic: { name: 'New', description: 'A new topic.' } }
       end
     end
     assert_not_nil assigns(:topic)
@@ -95,7 +95,7 @@ class TopicsControllerTest < ActionController::TestCase
   test 'should unsubscribe for valid user' do
     login(@valid_user)
     assert_equal true, @topic.subscribed?(@valid_user)
-    post :subscription, id: @topic, notify: '0', format: 'js'
+    post :subscription, params: { id: @topic, notify: '0' }, format: 'js'
     assert_not_nil assigns(:topic)
     assert_equal false, assigns(:topic).subscribed?(@valid_user)
     assert_template 'subscription'
@@ -105,7 +105,7 @@ class TopicsControllerTest < ActionController::TestCase
   test 'should subscribe for another user' do
     login(@another_user)
     assert_equal false, @topic.subscribed?(@another_user)
-    post :subscription, id: @topic, notify: '1', format: 'js'
+    post :subscription, params: { id: @topic, notify: '1' }, format: 'js'
     assert_not_nil assigns(:topic)
     assert_equal true, assigns(:topic).subscribed?(@another_user)
     assert_template 'subscription'
@@ -113,120 +113,120 @@ class TopicsControllerTest < ActionController::TestCase
   end
 
   test 'should show topic and increase views count' do
-    get :show, id: @topic
+    get :show, params: { id: @topic }
     assert_not_nil assigns(:topic)
     assert_equal 2, assigns(:topic).views_count
     assert_response :success
   end
 
   test 'should show topic for logged out user' do
-    get :show, id: @topic
+    get :show, params: { id: @topic }
     assert_not_nil assigns(:topic)
     assert_response :success
   end
 
   test 'should show topic for valid user' do
     login(@valid_user)
-    get :show, id: @topic
+    get :show, params: { id: @topic }
     assert_not_nil assigns(:topic)
     assert_response :success
   end
 
   test 'should show topic for moderator' do
     login(@moderator)
-    get :show, id: @topic
+    get :show, params: { id: @topic }
     assert_not_nil assigns(:topic)
     assert_response :success
   end
 
   test 'should not show topic marked as spam for logged out user' do
-    get :show, id: topics(:spam)
+    get :show, params: { id: topics(:spam) }
     assert_nil assigns(:topic)
     assert_redirected_to topics_path
   end
 
   test 'should not show topic marked as spam for valid user' do
     login(@valid_user)
-    get :show, id: topics(:spam)
+    get :show, params: { id: topics(:spam) }
     assert_nil assigns(:topic)
     assert_redirected_to topics_path
   end
 
   test 'should show topic marked as spam for moderator' do
     login(@moderator)
-    get :show, id: topics(:spam)
+    get :show, params: { id: topics(:spam) }
     assert_not_nil assigns(:topic)
     assert_response :success
   end
 
   test 'should not show hidden topic for logged out user' do
-    get :show, id: topics(:hidden)
+    get :show, params: { id: topics(:hidden) }
     assert_nil assigns(:topic)
     assert_redirected_to topics_path
   end
 
   test 'should not show hidden topic for valid user' do
     login(users(:user_2))
-    get :show, id: topics(:hidden)
+    get :show, params: { id: topics(:hidden) }
     assert_nil assigns(:topic)
     assert_redirected_to topics_path
   end
 
   test 'should show pending review topic for topic creator' do
     login(@valid_user)
-    get :show, id: topics(:two)
+    get :show, params: { id: topics(:two) }
     assert_not_nil assigns(:topic)
     assert_response :success
   end
 
   test 'should show hidden topic for moderator' do
     login(@moderator)
-    get :show, id: topics(:hidden)
+    get :show, params: { id: topics(:hidden) }
     assert_not_nil assigns(:topic)
     assert_response :success
   end
 
   test 'should not get edit for logged out user' do
-    get :edit, id: topics(:one)
+    get :edit, params: { id: topics(:one) }
     assert_redirected_to new_user_session_path
   end
 
   test 'should not get edit for user who did not create topic' do
     login(users(:user_1))
-    get :edit, id: topics(:one)
+    get :edit, params: { id: topics(:one) }
     assert_redirected_to topics_path
   end
 
   test 'should get edit for topic creator' do
     login(users(:user_1))
-    get :edit, id: topics(:two)
+    get :edit, params: { id: topics(:two) }
     assert_not_nil assigns(:topic)
     assert_response :success
   end
 
   test 'should get edit for forum moderator' do
     login(@moderator)
-    get :edit, id: @topic
+    get :edit, params: { id: @topic }
     assert_not_nil assigns(:topic)
     assert_response :success
   end
 
   test 'should not update topic for logged out user' do
-    put :update, id: @topic, topic: { name: 'Updated Topic Name' }
+    put :update, params: { id: @topic, topic: { name: 'Updated Topic Name' } }
     assert_nil assigns(:topic)
     assert_redirected_to new_user_session_path
   end
 
   test 'should not update topic for user who did not create topic' do
     login(@valid_user)
-    put :update, id: topics(:one), topic: { name: 'Updated Topic Name' }
+    put :update, params: { id: topics(:one), topic: { name: 'Updated Topic Name' } }
     assert_nil assigns(:topic)
     assert_redirected_to topics_path
   end
 
   test 'should update topic for topic creator' do
     login(@valid_user)
-    put :update, id: topics(:two), topic: { name: 'Updated Topic Name' }
+    put :update, params: { id: topics(:two), topic: { name: 'Updated Topic Name' } }
     assert_not_nil assigns(:topic)
     assert_equal 'Updated Topic Name', assigns(:topic).name
     assert_redirected_to assigns(:topic)
@@ -234,7 +234,7 @@ class TopicsControllerTest < ActionController::TestCase
 
   test 'should update topic for forum moderator' do
     login(@moderator)
-    put :update, id: @topic, topic: { name: 'Updated Topic Name' }
+    put :update, params: { id: @topic, topic: { name: 'Updated Topic Name' } }
     assert_not_nil assigns(:topic)
     assert_equal 'Updated Topic Name', assigns(:topic).name
     assert_redirected_to assigns(:topic)
@@ -242,7 +242,7 @@ class TopicsControllerTest < ActionController::TestCase
 
   test 'should not destroy topic for logged out user' do
     assert_difference('Topic.current.count', 0) do
-      delete :destroy, id: @topic
+      delete :destroy, params: { id: @topic }
     end
     assert_nil assigns(:topic)
     assert_redirected_to new_user_session_path
@@ -251,7 +251,7 @@ class TopicsControllerTest < ActionController::TestCase
   test 'should not destroy topic for user who did not create topic' do
     login(@valid_user)
     assert_difference('Topic.current.count', 0) do
-      delete :destroy, id: topics(:one)
+      delete :destroy, params: { id: topics(:one) }
     end
     assert_nil assigns(:topic)
     assert_redirected_to topics_path
@@ -260,7 +260,7 @@ class TopicsControllerTest < ActionController::TestCase
   test 'should destroy topic for topic creator' do
     login(@valid_user)
     assert_difference('Topic.current.count', -1) do
-      delete :destroy, id: topics(:two)
+      delete :destroy, params: { id: topics(:two) }
     end
     assert_not_nil assigns(:topic)
     assert_redirected_to topics_path
@@ -269,7 +269,7 @@ class TopicsControllerTest < ActionController::TestCase
   test 'should destroy topic for owner' do
     login(@owner)
     assert_difference('Topic.current.count', -1) do
-      delete :destroy, id: @topic
+      delete :destroy, params: { id: @topic }
     end
     assert_not_nil assigns(:topic)
     assert_redirected_to topics_path
@@ -278,7 +278,7 @@ class TopicsControllerTest < ActionController::TestCase
   test 'should not destroy topic for moderator' do
     login(@moderator)
     assert_difference('Topic.current.count', 0) do
-      delete :destroy, id: topics(:one)
+      delete :destroy, params: { id: topics(:one) }
     end
     assert_nil assigns(:topic)
     assert_redirected_to topics_path

@@ -1,4 +1,4 @@
-class AddPositionToAnswerSessions < ActiveRecord::Migration
+class AddPositionToAnswerSessions < ActiveRecord::Migration[4.2]
   def change
     add_column :surveys, :default_position, :integer, null: false, default: 99999
     add_column :answer_sessions, :position, :integer

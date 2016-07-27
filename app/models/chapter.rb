@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Allows users to start new discussion topics on the forum.
-class Chapter < ActiveRecord::Base
+class Chapter < ApplicationRecord
   REPLIES_PER_PAGE = 20
   attr_accessor :description, :migration_flag
 

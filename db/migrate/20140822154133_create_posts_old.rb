@@ -1,4 +1,4 @@
-class CreatePostsOld < ActiveRecord::Migration
+class CreatePostsOld < ActiveRecord::Migration[4.2]
   def change
     create_table :posts do |t|
       t.with_options(null: false) do |r|

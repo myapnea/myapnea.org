@@ -1,4 +1,4 @@
-class AddExportFlagToDatabaseViews < ActiveRecord::Migration
+class AddExportFlagToDatabaseViews < ActiveRecord::Migration[4.2]
 
   def up
     timestamp = '20150515171427'

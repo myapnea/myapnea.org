@@ -1,4 +1,4 @@
-class RemoveSurveyEncountersView < ActiveRecord::Migration
+class RemoveSurveyEncountersView < ActiveRecord::Migration[4.2]
   def up
     execute "drop view survey_answer_frequencies"
     execute "drop view survey_encounters"

@@ -1,4 +1,4 @@
-class RemoveSurveyIdFromEncounters < ActiveRecord::Migration
+class RemoveSurveyIdFromEncounters < ActiveRecord::Migration[4.2]
   def up
     remove_index :encounters, [:survey_id, :deleted]
     remove_column :encounters, :survey_id

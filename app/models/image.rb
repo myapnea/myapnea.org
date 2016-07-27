@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Encapsulate blog and forum embedded images
-class Image < ActiveRecord::Base
+class Image < ApplicationRecord
   # Uploaders
   mount_uploader :image, ResizableImageUploader
 

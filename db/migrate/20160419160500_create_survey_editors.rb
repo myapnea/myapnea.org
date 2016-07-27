@@ -1,4 +1,4 @@
-class CreateSurveyEditors < ActiveRecord::Migration
+class CreateSurveyEditors < ActiveRecord::Migration[4.2]
   def change
     create_table :survey_editors do |t|
       t.integer :survey_id

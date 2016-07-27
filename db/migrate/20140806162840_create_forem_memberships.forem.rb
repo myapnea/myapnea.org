@@ -1,5 +1,5 @@
 # This migration comes from forem (originally 20120222204450)
-class CreateForemMemberships < ActiveRecord::Migration
+class CreateForemMemberships < ActiveRecord::Migration[4.2]
   def change
     create_table :forem_memberships do |t|
       t.integer :group_id

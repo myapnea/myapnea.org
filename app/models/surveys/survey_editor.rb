@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Allows a user to edit an existing survey
-class SurveyEditor < ActiveRecord::Base
+class SurveyEditor < ApplicationRecord
   # Model Validation
   validates :survey_id, :creator_id, presence: true
   validates :user_id, presence: true

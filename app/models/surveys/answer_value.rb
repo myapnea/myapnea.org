@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class AnswerValue < ActiveRecord::Base
+class AnswerValue < ApplicationRecord
   belongs_to :answer
   belongs_to :answer_option
   belongs_to :answer_template

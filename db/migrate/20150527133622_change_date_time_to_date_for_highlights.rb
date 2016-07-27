@@ -1,4 +1,4 @@
-class ChangeDateTimeToDateForHighlights < ActiveRecord::Migration
+class ChangeDateTimeToDateForHighlights < ActiveRecord::Migration[4.2]
   def up
     change_column :highlights, :display_date, :date
   end

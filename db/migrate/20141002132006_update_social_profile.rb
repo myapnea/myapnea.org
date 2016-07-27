@@ -1,4 +1,4 @@
-class UpdateSocialProfile < ActiveRecord::Migration
+class UpdateSocialProfile < ActiveRecord::Migration[4.2]
   def change
     # More options for visibility and privacy
     # Forem, Research Topics, Map for community, outside.

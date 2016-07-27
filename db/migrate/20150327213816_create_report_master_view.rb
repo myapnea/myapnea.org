@@ -1,4 +1,4 @@
-class CreateReportMasterView < ActiveRecord::Migration
+class CreateReportMasterView < ActiveRecord::Migration[4.2]
   def up
     timestamp = '20150327213816'
 

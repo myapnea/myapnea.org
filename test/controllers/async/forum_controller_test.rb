@@ -18,13 +18,17 @@ class Async::ForumControllerTest < ActionController::TestCase
   end
 
   test 'should sign in as user' do
-    post :login, email: 'user_1@mail.com', password: 'password', format: 'js'
+    post :login, params: {
+      email: 'user_1@mail.com', password: 'password'
+    }, format: 'js'
     assert_template 'create'
     assert_response :success
   end
 
   test 'should not sign in as user with incorrect password' do
-    post :login, email: 'user_1@mail.com', password: 'wrong', format: 'js'
+    post :login, params: {
+      email: 'user_1@mail.com', password: 'wrong'
+    }, format: 'js'
     assert_template 'new'
     assert_response :success
   end

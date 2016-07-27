@@ -33,13 +33,13 @@ class CoenrollmentControllerTest < ActionController::TestCase
 
   test 'should get welcome health eheart users as user with token as parameter' do
     login(@user)
-    get :welcome_health_eheart_members, incoming_heh_token: '14151515'
+    get :welcome_health_eheart_members, params: { incoming_heh_token: '14151515' }
     assert_equal '14151515', session[:incoming_heh_token]
     assert_redirected_to link_health_eheart_member_path
   end
 
   test 'should get welcome health eheart users as public viewer with token as parameter' do
-    get :welcome_health_eheart_members, incoming_heh_token: '14151515'
+    get :welcome_health_eheart_members, params: { incoming_heh_token: '14151515' }
     assert_equal '14151515', session[:incoming_heh_token]
     assert_redirected_to welcome_health_eheart_members_path
   end

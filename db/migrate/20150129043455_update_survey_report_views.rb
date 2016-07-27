@@ -1,4 +1,4 @@
-class UpdateSurveyReportViews < ActiveRecord::Migration
+class UpdateSurveyReportViews < ActiveRecord::Migration[4.2]
   def up
     timestamp = '20150129043455'
     execute "drop view survey_answer_frequencies"

@@ -1,4 +1,4 @@
-class RenameReportMasterToReports < ActiveRecord::Migration
+class RenameReportMasterToReports < ActiveRecord::Migration[4.2]
   def up
     timestamp = '20150402171617'
 

@@ -1,4 +1,4 @@
-class AddAttributesToUser < ActiveRecord::Migration
+class AddAttributesToUser < ActiveRecord::Migration[4.2]
   def change
     add_column :users, :year_of_birth, :integer
     add_column :users, :zip_code, :string

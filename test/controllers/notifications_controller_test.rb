@@ -13,14 +13,14 @@ class NotificationsControllerTest < ActionController::TestCase
 
   test 'should get all read index' do
     login(users(:user_1))
-    get :index, all: '1'
+    get :index, params: { all: '1' }
     assert_response :success
     assert_not_nil assigns(:notifications)
   end
 
   test 'should show blog comment notification' do
     login(users(:user_1))
-    get :show, id: notifications(:broadcast_comment_two)
+    get :show, params: { id: notifications(:broadcast_comment_two) }
     assert_not_nil assigns(:notification)
     assert_equal true, assigns(:notification).read
     assert_redirected_to blog_post_path(assigns(:notification).broadcast.url_hash.merge(anchor: "comment-#{broadcast_comments(:two).id}"))
@@ -28,7 +28,7 @@ class NotificationsControllerTest < ActionController::TestCase
 
   test 'should show blank notification and redirect' do
     login(users(:user_1))
-    get :show, id: notifications(:blank)
+    get :show, params: { id: notifications(:blank) }
     assert_not_nil assigns(:notification)
     assert_equal true, assigns(:notification).read
     assert_redirected_to notifications_path
@@ -36,14 +36,14 @@ class NotificationsControllerTest < ActionController::TestCase
 
   test 'should not show notification without valid id' do
     login(users(:user_1))
-    get :show, id: -1
+    get :show, params: { id: -1 }
     assert_nil assigns(:notification)
     assert_redirected_to notifications_path
   end
 
   test 'should update notification' do
     login(users(:user_1))
-    patch :update, id: notifications(:broadcast_comment_two), notification: { read: true }, format: 'js'
+    patch :update, params: { id: notifications(:broadcast_comment_two), notification: { read: true } }, format: 'js'
     assert_not_nil assigns(:notification)
     assert_equal true, assigns(:notification).read
     assert_template 'show'
@@ -52,7 +52,7 @@ class NotificationsControllerTest < ActionController::TestCase
 
   test 'should mark all as read' do
     login(users(:user_1))
-    patch :mark_all_as_read, broadcast_id: broadcasts(:published).id, format: 'js'
+    patch :mark_all_as_read, params: { broadcast_id: broadcasts(:published).id }, format: 'js'
     assert_equal 0, users(:user_1).notifications.where(broadcast_id: broadcasts(:published), read: false).count
     assert_template 'mark_all_as_read'
     assert_response :success

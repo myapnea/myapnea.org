@@ -2,7 +2,7 @@
 
 # Allows community members to discuss blog posts. Comments can also be nested
 # under other comments.
-class BroadcastComment < ActiveRecord::Base
+class BroadcastComment < ApplicationRecord
   # Constants
   THRESHOLD = -10
 

@@ -10,6 +10,15 @@ class Admin::ExportsControllerTest < ActionController::TestCase
     @completed = admin_exports(:completed)
   end
 
+  def admin_export_params
+    {
+      current_step: @admin_export.current_step,
+      file: @admin_export.file,
+      total_steps: @admin_export.total_steps,
+      user_id: @admin_export.user_id
+    }
+  end
+
   test 'should get index as owner' do
     login(@owner)
     get :index
@@ -26,7 +35,7 @@ class Admin::ExportsControllerTest < ActionController::TestCase
   test 'should create admin export as owner' do
     login(@owner)
     assert_difference('Admin::Export.count') do
-      post :create, admin_export: { current_step: @admin_export.current_step, file: @admin_export.file, total_steps: @admin_export.total_steps, user_id: @admin_export.user_id }
+      post :create, params: { admin_export: admin_export_params }
     end
 
     assert_redirected_to admin_export_path(assigns(:admin_export))
@@ -35,7 +44,7 @@ class Admin::ExportsControllerTest < ActionController::TestCase
   test 'should not create admin export as regular user' do
     login(@regular_user)
     assert_difference('Admin::Export.count', 0) do
-      post :create, admin_export: { current_step: @admin_export.current_step, file: @admin_export.file, total_steps: @admin_export.total_steps, user_id: @admin_export.user_id }
+      post :create, params: { admin_export: admin_export_params }
     end
 
     assert_redirected_to root_path
@@ -43,33 +52,33 @@ class Admin::ExportsControllerTest < ActionController::TestCase
 
   test 'should show admin export as owner' do
     login(@owner)
-    get :show, id: @admin_export
+    get :show, params: { id: @admin_export }
     assert_response :success
   end
 
   test 'should not show admin export as regular user' do
     login(@regular_user)
-    get :show, id: @admin_export
+    get :show, params: { id: @admin_export }
     assert_redirected_to root_path
   end
 
   test 'should get progress as owner' do
     login(@owner)
-    post :progress, id: @admin_export, format: 'js'
+    post :progress, params: { id: @admin_export }, format: 'js'
     assert_template 'progress'
     assert_response :success
   end
 
   test 'should not get progress as regular user' do
     login(@regular_user)
-    post :progress, id: @admin_export, format: 'js'
+    post :progress, params: { id: @admin_export }, format: 'js'
     assert_redirected_to root_path
   end
 
   test 'should download export file as owner' do
     login(@owner)
     assert_not_equal 0, @completed.file.size
-    get :file, id: @completed
+    get :file, params: { id: @completed }
     assert_not_nil assigns(:admin_export)
     assert_not_nil response
     assert_kind_of String, response.body
@@ -78,7 +87,7 @@ class Admin::ExportsControllerTest < ActionController::TestCase
 
   test 'should not download export file as regular user' do
     login(@regular_user)
-    get :file, id: @completed
+    get :file, params: { id: @completed }
     assert_nil assigns(:admin_export)
     assert_redirected_to root_path
   end
@@ -86,18 +95,16 @@ class Admin::ExportsControllerTest < ActionController::TestCase
   test 'should destroy admin export as owner' do
     login(@owner)
     assert_difference('Admin::Export.count', -1) do
-      delete :destroy, id: @admin_export
+      delete :destroy, params: { id: @admin_export }
     end
-
     assert_redirected_to admin_exports_path
   end
 
   test 'should destroy admin export using ajax' do
     login(@owner)
     assert_difference('Admin::Export.count', -1) do
-      delete :destroy, id: @admin_export, format: 'js'
+      delete :destroy, params: { id: @admin_export }, format: 'js'
     end
-
     assert_template 'destroy'
     assert_response :success
   end
@@ -105,9 +112,8 @@ class Admin::ExportsControllerTest < ActionController::TestCase
   test 'should not destroy admin export as regular user' do
     login(@regular_user)
     assert_difference('Admin::Export.count', 0) do
-      delete :destroy, id: @admin_export
+      delete :destroy, params: { id: @admin_export }
     end
-
     assert_redirected_to root_path
   end
 end

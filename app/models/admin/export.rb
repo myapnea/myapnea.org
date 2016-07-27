@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Admin::Export < ActiveRecord::Base
+class Admin::Export < ApplicationRecord
   # Uploaders
   mount_uploader :file, ZipUploader
 
@@ -130,7 +130,7 @@ class Admin::Export < ActiveRecord::Base
   end
 
   def notify_user!
-    UserMailer.export_ready(self).deliver_later if EMAILS_ENABLED
+    UserMailer.export_ready(self).deliver_now if EMAILS_ENABLED
   end
 
   def write_data_csv(data_csv)

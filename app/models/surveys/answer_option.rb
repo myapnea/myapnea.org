@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class AnswerOption < ActiveRecord::Base
+class AnswerOption < ApplicationRecord
   # Concerns
   include Deletable
   include Localizable

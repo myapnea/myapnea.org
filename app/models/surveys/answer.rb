@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Answer < ActiveRecord::Base
+class Answer < ApplicationRecord
   # Constants
   STATE = %(incomplete complete migrated locked)
 

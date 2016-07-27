@@ -18,10 +18,10 @@ class InvitesController < ApplicationController
         redirect_to members_invites_path, notice: 'Thank you!'
       else
         if @invite.for_provider?
-          InviteMailer.new_provider_invite(@invite, current_user).deliver_later if EMAILS_ENABLED
+          InviteMailer.new_provider_invite(@invite, current_user).deliver_now if EMAILS_ENABLED
           redirect_to providers_invites_path, notice: 'Thank you!'
         else
-          InviteMailer.new_member_invite(@invite, current_user).deliver_later if EMAILS_ENABLED
+          InviteMailer.new_member_invite(@invite, current_user).deliver_now if EMAILS_ENABLED
           redirect_to members_invites_path, notice: 'Thank you!'
         end
       end

@@ -1,4 +1,4 @@
-class CreateQuestionFlows < ActiveRecord::Migration
+class CreateQuestionFlows < ActiveRecord::Migration[4.2]
   def change
     create_table :question_flows do |t|
       t.string :name_en

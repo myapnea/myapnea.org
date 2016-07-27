@@ -1,4 +1,4 @@
-class CreateChapterUsers < ActiveRecord::Migration
+class CreateChapterUsers < ActiveRecord::Migration[4.2]
   def change
     create_table :chapter_users do |t|
       t.integer :chapter_id

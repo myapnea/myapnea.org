@@ -16,7 +16,7 @@ class Builder::AnswerOptionsControllerTest < ActionController::TestCase
 
   test 'should get answer options as builder' do
     login(@builder)
-    get :index, survey_id: @survey, question_id: @question, answer_template_id: @answer_template
+    get :index, params: { survey_id: @survey, question_id: @question, answer_template_id: @answer_template }
     assert_not_nil assigns(:survey)
     assert_not_nil assigns(:question)
     assert_not_nil assigns(:answer_template)
@@ -25,7 +25,7 @@ class Builder::AnswerOptionsControllerTest < ActionController::TestCase
 
   test 'should not get answer options as regular user' do
     login(@regular_user)
-    get :index, survey_id: @survey, question_id: @question, answer_template_id: @answer_template
+    get :index, params: { survey_id: @survey, question_id: @question, answer_template_id: @answer_template }
     assert_nil assigns(:survey)
     assert_nil assigns(:question)
     assert_nil assigns(:answer_template)
@@ -34,7 +34,7 @@ class Builder::AnswerOptionsControllerTest < ActionController::TestCase
 
   test 'should get new answer option as builder' do
     login(@builder)
-    get :new, survey_id: @survey, question_id: @question, answer_template_id: @answer_template
+    get :new, params: { survey_id: @survey, question_id: @question, answer_template_id: @answer_template }
     assert_not_nil assigns(:survey)
     assert_not_nil assigns(:question)
     assert_not_nil assigns(:answer_template)
@@ -44,7 +44,7 @@ class Builder::AnswerOptionsControllerTest < ActionController::TestCase
 
   test 'should not get new answer option as regular user' do
     login(@regular_user)
-    get :new, survey_id: @survey, question_id: @question, answer_template_id: @answer_template
+    get :new, params: { survey_id: @survey, question_id: @question, answer_template_id: @answer_template }
     assert_nil assigns(:survey)
     assert_nil assigns(:question)
     assert_nil assigns(:answer_template)
@@ -55,7 +55,7 @@ class Builder::AnswerOptionsControllerTest < ActionController::TestCase
   test 'should create answer option as builder' do
     login(@builder)
     assert_difference('AnswerOption.count') do
-      post :create, survey_id: @survey, question_id: @question, answer_template_id: @answer_template, answer_option: { text: 'New Answer Option', hotkey: '1', value: '1' }
+      post :create, params: { survey_id: @survey, question_id: @question, answer_template_id: @answer_template, answer_option: { text: 'New Answer Option', hotkey: '1', value: '1' } }
     end
     assert_not_nil assigns(:survey)
     assert_not_nil assigns(:question)
@@ -71,7 +71,7 @@ class Builder::AnswerOptionsControllerTest < ActionController::TestCase
   test 'should not create answer option without text' do
     login(@builder)
     assert_difference('AnswerOption.count', 0) do
-      post :create, survey_id: @survey, question_id: @question, answer_template_id: @answer_template, answer_option: { text: '', hotkey: '1', value: '1' }
+      post :create, params: { survey_id: @survey, question_id: @question, answer_template_id: @answer_template, answer_option: { text: '', hotkey: '1', value: '1' } }
     end
     assert_not_nil assigns(:survey)
     assert_not_nil assigns(:question)
@@ -86,7 +86,7 @@ class Builder::AnswerOptionsControllerTest < ActionController::TestCase
   test 'should not create answer option as regular user' do
     login(@regular_user)
     assert_difference('AnswerOption.count', 0) do
-      post :create, survey_id: @survey, question_id: @question, answer_template_id: @answer_template, answer_option: { text: 'New Answer Option', hotkey: '1', value: '1' }
+      post :create, params: { survey_id: @survey, question_id: @question, answer_template_id: @answer_template, answer_option: { text: 'New Answer Option', hotkey: '1', value: '1' } }
     end
     assert_nil assigns(:survey)
     assert_nil assigns(:question)
@@ -97,7 +97,7 @@ class Builder::AnswerOptionsControllerTest < ActionController::TestCase
 
   test 'should show answer option as builder' do
     login(@builder)
-    get :show, survey_id: @survey, question_id: @question, answer_template_id: @answer_template, id: @answer_option
+    get :show, params: { survey_id: @survey, question_id: @question, answer_template_id: @answer_template, id: @answer_option }
     assert_not_nil assigns(:survey)
     assert_not_nil assigns(:question)
     assert_not_nil assigns(:answer_template)
@@ -107,7 +107,7 @@ class Builder::AnswerOptionsControllerTest < ActionController::TestCase
 
   test 'should not show answer option as regular user' do
     login(@regular_user)
-    get :show, survey_id: @survey, question_id: @question, answer_template_id: @answer_template, id: @answer_option
+    get :show, params: { survey_id: @survey, question_id: @question, answer_template_id: @answer_template, id: @answer_option }
     assert_nil assigns(:survey)
     assert_nil assigns(:question)
     assert_nil assigns(:answer_template)
@@ -117,7 +117,7 @@ class Builder::AnswerOptionsControllerTest < ActionController::TestCase
 
   test 'should get edit answer option as builder' do
     login(@builder)
-    get :edit, survey_id: @survey, question_id: @question, answer_template_id: @answer_template, id: @answer_option
+    get :edit, params: { survey_id: @survey, question_id: @question, answer_template_id: @answer_template, id: @answer_option }
     assert_not_nil assigns(:survey)
     assert_not_nil assigns(:question)
     assert_not_nil assigns(:answer_template)
@@ -127,7 +127,7 @@ class Builder::AnswerOptionsControllerTest < ActionController::TestCase
 
   test 'should not get edit answer option as regular user' do
     login(@regular_user)
-    get :edit, survey_id: @survey, question_id: @question, answer_template_id: @answer_template, id: @answer_option
+    get :edit, params: { survey_id: @survey, question_id: @question, answer_template_id: @answer_template, id: @answer_option }
     assert_nil assigns(:survey)
     assert_nil assigns(:question)
     assert_nil assigns(:answer_template)
@@ -137,7 +137,7 @@ class Builder::AnswerOptionsControllerTest < ActionController::TestCase
 
   test 'should update answer option as builder' do
     login(@builder)
-    patch :update, survey_id: @survey, question_id: @question, answer_template_id: @answer_template, id: @answer_option, answer_option: { text: 'Updated Answer Option', hotkey: '2', value: '2' }
+    patch :update, params: { survey_id: @survey, question_id: @question, answer_template_id: @answer_template, id: @answer_option, answer_option: { text: 'Updated Answer Option', hotkey: '2', value: '2' } }
     assert_not_nil assigns(:survey)
     assert_not_nil assigns(:question)
     assert_not_nil assigns(:answer_template)
@@ -150,7 +150,7 @@ class Builder::AnswerOptionsControllerTest < ActionController::TestCase
 
   test 'should not update answer option without name' do
     login(@builder)
-    patch :update, survey_id: @survey, question_id: @question, answer_template_id: @answer_template, id: @answer_option, answer_option: { text: '', hotkey: '2', value: '2' }
+    patch :update, params: { survey_id: @survey, question_id: @question, answer_template_id: @answer_template, id: @answer_option, answer_option: { text: '', hotkey: '2', value: '2' } }
     assert_not_nil assigns(:survey)
     assert_not_nil assigns(:question)
     assert_not_nil assigns(:answer_template)
@@ -163,7 +163,7 @@ class Builder::AnswerOptionsControllerTest < ActionController::TestCase
 
   test 'should not update answer option as regular user' do
     login(@regular_user)
-    patch :update, survey_id: @survey, question_id: @question, answer_template_id: @answer_template, id: @answer_option, answer_option: { text: 'Updated Answer Option', hotkey: '2', value: '2' }
+    patch :update, params: { survey_id: @survey, question_id: @question, answer_template_id: @answer_template, id: @answer_option, answer_option: { text: 'Updated Answer Option', hotkey: '2', value: '2' } }
     assert_nil assigns(:survey)
     assert_nil assigns(:question)
     assert_nil assigns(:answer_template)
@@ -174,7 +174,7 @@ class Builder::AnswerOptionsControllerTest < ActionController::TestCase
   test 'should destroy answer option as builder' do
     login(@builder)
     assert_difference('AnswerOption.current.count', -1) do
-      delete :destroy, survey_id: @survey, question_id: @question, answer_template_id: @answer_template, id: @answer_option
+      delete :destroy, params: { survey_id: @survey, question_id: @question, answer_template_id: @answer_template, id: @answer_option }
     end
     assert_not_nil assigns(:survey)
     assert_not_nil assigns(:question)
@@ -186,7 +186,7 @@ class Builder::AnswerOptionsControllerTest < ActionController::TestCase
   test 'should not destroy answer option as regular user' do
     login(@regular_user)
     assert_difference('AnswerOption.current.count', 0) do
-      delete :destroy, survey_id: @survey, question_id: @question, answer_template_id: @answer_template, id: @answer_option
+      delete :destroy, params: { survey_id: @survey, question_id: @question, answer_template_id: @answer_template, id: @answer_option }
     end
     assert_nil assigns(:survey)
     assert_nil assigns(:question)
@@ -197,7 +197,7 @@ class Builder::AnswerOptionsControllerTest < ActionController::TestCase
 
   test 'should save option order' do
     login(@builder)
-    post :reorder, survey_id: @survey, question_id: @question, answer_template_id: @answer_template, answer_option_ids: [ActiveRecord::FixtureSet.identify(:web_answer_template_02), ActiveRecord::FixtureSet.identify(:web_answer_template_01)], format: 'js'
+    post :reorder, params: { survey_id: @survey, question_id: @question, answer_template_id: @answer_template, answer_option_ids: [ActiveRecord::FixtureSet.identify(:web_answer_template_02), ActiveRecord::FixtureSet.identify(:web_answer_template_01)] }, format: 'js'
     assert_response :success
   end
 end

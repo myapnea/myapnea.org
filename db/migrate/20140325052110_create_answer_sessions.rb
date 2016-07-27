@@ -1,4 +1,4 @@
-class CreateAnswerSessions < ActiveRecord::Migration
+class CreateAnswerSessions < ActiveRecord::Migration[4.2]
   def change
     create_table :answer_sessions do |t|
       t.references :user

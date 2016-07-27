@@ -22,21 +22,21 @@ class Builder::SurveyEditorsControllerTest < ActionController::TestCase
 
   # test 'should get index' do
   #   login(@builder)
-  #   get :index, survey_id: @survey
+  #   get :index, params: { survey_id: @survey }
   #   assert_response :success
   #   assert_not_nil assigns(:survey_editors)
   # end
 
   test 'should get new' do
     login(@builder)
-    get :new, survey_id: @survey
+    get :new, params: { survey_id: @survey }
     assert_response :success
   end
 
   test 'should create survey editor' do
     login(@builder)
     assert_difference('SurveyEditor.count') do
-      post :create, survey_id: @survey, survey_editor: survey_editor_params
+      post :create, params: { survey_id: @survey, survey_editor: survey_editor_params }
     end
     assert_redirected_to builder_survey_path(@survey)
   end
@@ -44,7 +44,7 @@ class Builder::SurveyEditorsControllerTest < ActionController::TestCase
   test 'should not create survey editor without selected editor' do
     login(@builder)
     assert_difference('SurveyEditor.count', 0) do
-      post :create, survey_id: @survey, survey_editor: survey_editor_params.merge(user_id: '')
+      post :create, params: { survey_id: @survey, survey_editor: survey_editor_params.merge(user_id: '') }
     end
     assert_template 'new'
     assert_response :success
@@ -52,25 +52,25 @@ class Builder::SurveyEditorsControllerTest < ActionController::TestCase
 
   # test 'should show survey_editor' do
   #   login(@builder)
-  #   get :show, survey_id: @survey, id: @survey_editor
+  #   get :show, params: { survey_id: @survey, id: @survey_editor }
   #   assert_response :success
   # end
 
   test 'should get edit' do
     login(@builder)
-    get :edit, survey_id: @survey, id: @survey_editor
+    get :edit, params: { survey_id: @survey, id: @survey_editor }
     assert_response :success
   end
 
   test 'should update survey editor' do
     login(@builder)
-    patch :update, survey_id: @survey, id: @survey_editor, survey_editor: survey_editor_params
+    patch :update, params: { survey_id: @survey, id: @survey_editor, survey_editor: survey_editor_params }
     assert_redirected_to builder_survey_path(@survey)
   end
 
   test 'should not update survey editor without selected editor' do
     login(@builder)
-    patch :update, survey_id: @survey, id: @survey_editor, survey_editor: survey_editor_params.merge(user_id: '')
+    patch :update, params: { survey_id: @survey, id: @survey_editor, survey_editor: survey_editor_params.merge(user_id: '') }
     assert_template 'edit'
     assert_response :success
   end
@@ -78,7 +78,7 @@ class Builder::SurveyEditorsControllerTest < ActionController::TestCase
   test 'should destroy survey editor' do
     login(@builder)
     assert_difference('SurveyEditor.count', -1) do
-      delete :destroy, survey_id: @survey, id: @survey_editor
+      delete :destroy, params: { survey_id: @survey, id: @survey_editor }
     end
     assert_redirected_to builder_survey_path(@survey)
   end

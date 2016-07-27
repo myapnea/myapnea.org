@@ -25,7 +25,7 @@ class AdminControllerTest < ActionController::TestCase
 
   test 'should get daily engagement data as owner' do
     login(@owner)
-    xhr :get, :daily_engagement_data
+    get :daily_engagement_data, xhr: true, format: 'json'
     assert_not_nil assigns(:posts)
     assert_not_nil assigns(:surveys)
     assert_not_nil assigns(:users)
@@ -82,7 +82,7 @@ class AdminControllerTest < ActionController::TestCase
 
   test 'should unlock survey for user as owner' do
     login(users(:owner))
-    post :unlock_survey, user_id: users(:adult_diagnosed), answer_session_id: answer_sessions(:locked)
+    post :unlock_survey, params: { user_id: users(:adult_diagnosed), answer_session_id: answer_sessions(:locked) }
 
     answer_sessions(:locked).reload
 
@@ -93,7 +93,7 @@ class AdminControllerTest < ActionController::TestCase
 
   test 'should not unlock survey for without user as owner' do
     login(users(:owner))
-    post :unlock_survey, user_id: -1, answer_session_id: answer_sessions(:locked)
+    post :unlock_survey, params: { user_id: -1, answer_session_id: answer_sessions(:locked) }
 
     answer_sessions(:locked).reload
 
@@ -104,7 +104,7 @@ class AdminControllerTest < ActionController::TestCase
 
   test 'should unlock survey for user as moderator' do
     login(users(:moderator_1))
-    post :unlock_survey, user_id: users(:adult_diagnosed), answer_session_id: answer_sessions(:locked)
+    post :unlock_survey, params: { user_id: users(:adult_diagnosed), answer_session_id: answer_sessions(:locked) }
 
     answer_sessions(:locked).reload
 
@@ -115,7 +115,7 @@ class AdminControllerTest < ActionController::TestCase
 
   test 'should not unlock survey for user as regular user' do
     login(users(:user_1))
-    post :unlock_survey, user_id: users(:adult_diagnosed), answer_session_id: answer_sessions(:locked)
+    post :unlock_survey, params: { user_id: users(:adult_diagnosed), answer_session_id: answer_sessions(:locked) }
 
     answer_sessions(:locked).reload
 

@@ -1,4 +1,4 @@
-class RemoveRoleTables < ActiveRecord::Migration
+class RemoveRoleTables < ActiveRecord::Migration[4.2]
   def up
     drop_table :roles_users
     drop_table :roles

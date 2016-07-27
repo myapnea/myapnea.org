@@ -1,4 +1,4 @@
-class UpdateSurveyReportFrequenciesWithEncounters < ActiveRecord::Migration
+class UpdateSurveyReportFrequenciesWithEncounters < ActiveRecord::Migration[4.2]
   def up
     timestamp = '20150327171203'
 

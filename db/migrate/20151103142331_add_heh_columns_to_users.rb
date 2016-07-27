@@ -1,4 +1,4 @@
-class AddHehColumnsToUsers < ActiveRecord::Migration
+class AddHehColumnsToUsers < ActiveRecord::Migration[4.2]
   def change
     add_column :users, :outgoing_heh_at, :datetime
     add_column :users, :outgoing_heh_token, :string

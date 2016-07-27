@@ -43,7 +43,7 @@
 .content-container
   %h3 With any questionnaire data
   %p.lead.centered
-    - with_questionnaire_count = AnswerValue.joins(answer: :answer_session).where(answers: { state: 'locked' }).uniq.select("answer_sessions.user_id").count
+    - with_questionnaire_count = AnswerValue.joins(answer: :answer_session).where(answers: { state: 'locked' }).distinct.select("answer_sessions.user_id").count
     = number_with_delimiter with_questionnaire_count
 
 .content-container
@@ -109,7 +109,7 @@
   - research_topic_count = ResearchTopic.where.not(topic_id: nil).count
   - vote_scope = Vote.current
   - vote_count = vote_scope.count
-  - voters_count = vote_scope.uniq.select(:user_id).count
+  - voters_count = vote_scope.distinct.select(:user_id).count
 
   %table.table.table-bordered.table-condensed{ style: 'table-layout:fixed' }
     %thead
@@ -127,7 +127,7 @@
   %h3 Number of posts topics and unique individuals posting
   - post_scope = Post.current.visible_for_user.not_research
   - post_count = post_scope.count
-  - posting_user_count = post_scope.uniq.select(:user_id).count
+  - posting_user_count = post_scope.distinct.select(:user_id).count
   - topic_count = Topic.current.where(status: ['pending_review', 'approved']).not_research.count
   %table.table.table-bordered.table-condensed{ style: 'table-layout:fixed' }
     %thead
@@ -144,5 +144,5 @@
 .content-container
   %h3 Number of withdrawn consent
   %p.lead.centered
-    - withdrawn_consent_count = AnswerValue.joins(answer: :answer_session).where(answers: { state: 'locked' }).where(answer_sessions: { user_id: user_scope.where(accepted_consent_at: nil).select(:id) }).uniq.select("answer_sessions.user_id").count
+    - withdrawn_consent_count = AnswerValue.joins(answer: :answer_session).where(answers: { state: 'locked' }).where(answer_sessions: { user_id: user_scope.where(accepted_consent_at: nil).select(:id) }).distinct.select("answer_sessions.user_id").count
     = number_with_delimiter withdrawn_consent_count

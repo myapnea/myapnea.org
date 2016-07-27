@@ -1,4 +1,4 @@
-class RenameQuestionFlowToSurvey < ActiveRecord::Migration
+class RenameQuestionFlowToSurvey < ActiveRecord::Migration[4.2]
   def change
     rename_table :question_flows, :surveys
 

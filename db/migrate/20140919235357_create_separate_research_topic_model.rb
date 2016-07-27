@@ -1,4 +1,4 @@
-class CreateSeparateResearchTopicModel < ActiveRecord::Migration
+class CreateSeparateResearchTopicModel < ActiveRecord::Migration[4.2]
   def change
     create_table :research_topics do |t|
       t.string :text

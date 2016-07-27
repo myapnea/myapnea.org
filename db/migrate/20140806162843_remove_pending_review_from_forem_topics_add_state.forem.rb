@@ -1,5 +1,5 @@
 # This migration comes from forem (originally 20120227202639)
-class RemovePendingReviewFromForemTopicsAddState < ActiveRecord::Migration
+class RemovePendingReviewFromForemTopicsAddState < ActiveRecord::Migration[4.2]
   def up
     remove_column :forem_topics, :pending_review
     add_column :forem_topics, :state, :string, :default => 'pending_review'

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Admin::ClinicalTrial < ActiveRecord::Base
+class Admin::ClinicalTrial < ApplicationRecord
   # Default Scope
   # Constants
   # Attribute related macros

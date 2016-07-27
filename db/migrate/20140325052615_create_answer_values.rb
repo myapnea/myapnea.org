@@ -1,4 +1,4 @@
-class CreateAnswerValues < ActiveRecord::Migration
+class CreateAnswerValues < ActiveRecord::Migration[4.2]
   def change
     create_table :answer_values do |t|
       t.references :answer

@@ -33,7 +33,7 @@ class Admin::CategoriesControllerTest < ActionController::TestCase
   test 'should create category' do
     login(@admin)
     assert_difference('Admin::Category.count') do
-      post :create, admin_category: category_params
+      post :create, params: { admin_category: category_params }
     end
     assert_redirected_to admin_category_path(assigns(:admin_category))
   end
@@ -41,7 +41,7 @@ class Admin::CategoriesControllerTest < ActionController::TestCase
   test 'should not create category with blank name' do
     login(@admin)
     assert_difference('Admin::Category.count', 0) do
-      post :create, admin_category: category_params.merge(name: '')
+      post :create, params: { admin_category: category_params.merge(name: '') }
     end
     assert_template 'new'
     assert_response :success
@@ -49,25 +49,29 @@ class Admin::CategoriesControllerTest < ActionController::TestCase
 
   test 'should show category' do
     login(@admin)
-    get :show, id: @admin_category
+    get :show, params: { id: @admin_category }
     assert_response :success
   end
 
   test 'should get edit' do
     login(@admin)
-    get :edit, id: @admin_category
+    get :edit, params: { id: @admin_category }
     assert_response :success
   end
 
   test 'should update category' do
     login(@admin)
-    patch :update, id: @admin_category, admin_category: category_params
+    patch :update, params: {
+      id: @admin_category, admin_category: category_params
+    }
     assert_redirected_to admin_category_path(assigns(:admin_category))
   end
 
   test 'should not update category with blank name' do
     login(@admin)
-    patch :update, id: @admin_category, admin_category: category_params.merge(name: '')
+    patch :update, params: {
+      id: @admin_category, admin_category: category_params.merge(name: '')
+    }
     assert_template 'edit'
     assert_response :success
   end
@@ -75,9 +79,8 @@ class Admin::CategoriesControllerTest < ActionController::TestCase
   test 'should destroy category' do
     login(@admin)
     assert_difference('Admin::Category.current.count', -1) do
-      delete :destroy, id: @admin_category
+      delete :destroy, params: { id: @admin_category }
     end
-
     assert_redirected_to admin_categories_path
   end
 end

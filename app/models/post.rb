@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Post < ActiveRecord::Base
+class Post < ApplicationRecord
 
   STATUS = [['Approved', 'approved'], ['Pending Review', 'pending_review'], ['Marked as Spam', 'spam'], ['Hidden', 'hidden']]
 
@@ -85,7 +85,7 @@ class Post < ActiveRecord::Base
       if pid.nil? then
         # In child
         self.topic.subscribers.where(moderator: true).where.not(id: self.user_id).each do |u|
-          UserMailer.post_replied(self, u).deliver_later if EMAILS_ENABLED
+          UserMailer.post_replied(self, u).deliver_now if EMAILS_ENABLED
         end
         Kernel.exit!
       else
@@ -100,7 +100,7 @@ class Post < ActiveRecord::Base
   # def email_mentioned_users
   #   users = User.current.where(email_me_when_mentioned: true).reject{|u| u.username.blank?}.uniq.sort
   #   users.each do |user|
-  #     UserMailer.mentioned_in_comment(self, user).deliver_later if EMAILS_ENABLED and self.description.match(/@#{user.username}\b/i)
+  #     UserMailer.mentioned_in_comment(self, user).deliver_now if EMAILS_ENABLED and self.description.match(/@#{user.username}\b/i)
   #   end
   # end
 

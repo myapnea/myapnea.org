@@ -27,9 +27,14 @@ end
 
 # Set up ActionDispatch tests
 class ActionDispatch::IntegrationTest
+  def login(user)
+    sign_in_as(user, '1234567890')
+  end
+
   def sign_in_as(user, password)
     user.update password: password, password_confirmation: password
-    post_via_redirect '/login', user: { email: user.email, password: password }
+    post '/login', params: { user: { email: user.email, password: password } }
+    follow_redirect!
     user
   end
 end

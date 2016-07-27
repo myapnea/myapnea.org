@@ -1,4 +1,4 @@
-class CreateEngagementResponses < ActiveRecord::Migration
+class CreateEngagementResponses < ActiveRecord::Migration[4.2]
   def change
     create_table :engagement_responses do |t|
       t.integer :engagement_id

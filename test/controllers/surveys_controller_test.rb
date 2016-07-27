@@ -26,20 +26,20 @@ class SurveysControllerTest < ActionController::TestCase
   end
 
   test 'should not get survey for logged out user' do
-    get :show, id: surveys(:new)
+    get :show, params: { id: surveys(:new) }
     assert_redirected_to new_user_session_path
   end
 
   ## Assigned Surveys
   test 'should show survey for regular user' do
     login(users(:has_launched_survey))
-    get :show, id: answer_sessions(:launched).survey
+    get :show, params: { id: answer_sessions(:launched).survey }
     assert_response :success
   end
 
   test 'should show survey that has no questions' do
     login(users(:participant))
-    get :show, id: answer_sessions(:without_questions_participant_baseline).survey, encounter: answer_sessions(:without_questions_participant_baseline).encounter
+    get :show, params: { id: answer_sessions(:without_questions_participant_baseline).survey, encounter: answer_sessions(:without_questions_participant_baseline).encounter }
     assert_not_nil assigns(:survey)
     assert_not_nil assigns(:answer_session)
     assert_equal 0, assigns(:survey).questions.count
@@ -48,7 +48,7 @@ class SurveysControllerTest < ActionController::TestCase
 
   test 'should show survey that has questions without answer templates' do
     login(users(:participant))
-    get :show, id: answer_sessions(:without_answer_templates_participant_baseline).survey, encounter: answer_sessions(:without_answer_templates_participant_baseline).encounter
+    get :show, params: { id: answer_sessions(:without_answer_templates_participant_baseline).survey, encounter: answer_sessions(:without_answer_templates_participant_baseline).encounter }
     assert_not_nil assigns(:survey)
     assert_not_nil assigns(:answer_session)
     assert_equal 0, assigns(:survey).questions.first.answer_templates.count
@@ -57,7 +57,7 @@ class SurveysControllerTest < ActionController::TestCase
 
   test 'should show baseline survey for regular user without encounter specified' do
     login(users(:has_incomplete_survey))
-    get :show, id: surveys(:new_2)
+    get :show, params: { id: surveys(:new_2) }
     assert_not_nil assigns(:survey)
     assert_not_nil assigns(:answer_session)
     assert_equal answer_sessions(:incomplete2_baseline), assigns(:answer_session)
@@ -66,7 +66,7 @@ class SurveysControllerTest < ActionController::TestCase
 
   test 'should show baseline survey for regular user with encounter specified' do
     login(users(:has_incomplete_survey))
-    get :show, id: surveys(:new_2), encounter: 'baseline'
+    get :show, params: { id: surveys(:new_2), encounter: 'baseline' }
     assert_not_nil assigns(:survey)
     assert_not_nil assigns(:answer_session)
     assert_equal answer_sessions(:incomplete2_baseline), assigns(:answer_session)
@@ -75,7 +75,7 @@ class SurveysControllerTest < ActionController::TestCase
 
   test 'should show followup survey for regular user' do
     login(users(:has_incomplete_survey))
-    get :show, id: surveys(:new_2), encounter: 'followup'
+    get :show, params: { id: surveys(:new_2), encounter: 'followup' }
     assert_not_nil assigns(:survey)
     assert_not_nil assigns(:answer_session)
     assert_equal answer_sessions(:incomplete2_followup), assigns(:answer_session)
@@ -84,7 +84,7 @@ class SurveysControllerTest < ActionController::TestCase
 
   test 'should not show survey and get accept update first for user who has not accepted recent update' do
     login(users(:social))
-    get :show, id: surveys(:new), encounter: 'followup'
+    get :show, params: { id: surveys(:new), encounter: 'followup' }
     assert_not_nil assigns(:survey)
     assert_not_nil assigns(:answer_session)
     assert_redirected_to accept_update_first_survey_path(assigns(:survey), assigns(:answer_session).encounter)
@@ -92,7 +92,7 @@ class SurveysControllerTest < ActionController::TestCase
 
   test 'should not show child survey and get accept update first for user who has not accepted recent update' do
     login(users(:social))
-    get :show, id: surveys(:new), encounter: 'followup', child_id: children(:three)
+    get :show, params: { id: surveys(:new), encounter: 'followup', child_id: children(:three) }
     assert_not_nil assigns(:survey)
     assert_not_nil assigns(:answer_session)
     assert_not_nil assigns(:answer_session).child
@@ -101,7 +101,7 @@ class SurveysControllerTest < ActionController::TestCase
 
   test 'should get accept update' do
     login(users(:social))
-    get :accept_update_first, id: surveys(:new), encounter: 'followup'
+    get :accept_update_first, params: { id: surveys(:new), encounter: 'followup' }
     assert_not_nil assigns(:survey)
     assert_not_nil assigns(:answer_session)
     assert_response :success
@@ -110,7 +110,7 @@ class SurveysControllerTest < ActionController::TestCase
   test 'should get accept update and redirect to survey if recently accepted' do
     login(users(:social))
     users(:social).update accepted_update_at: Date.parse(User::RECENT_UPDATE_DATE).end_of_day
-    get :accept_update_first, id: surveys(:new), encounter: 'followup'
+    get :accept_update_first, params: { id: surveys(:new), encounter: 'followup' }
     assert_not_nil assigns(:survey)
     assert_not_nil assigns(:answer_session)
     assert_redirected_to show_survey_path(assigns(:survey), assigns(:answer_session).encounter)
@@ -118,7 +118,7 @@ class SurveysControllerTest < ActionController::TestCase
 
   test 'should get accept update for child survey' do
     login(users(:social))
-    get :accept_update_first, id: surveys(:new), encounter: 'followup', child_id: children(:three)
+    get :accept_update_first, params: { id: surveys(:new), encounter: 'followup', child_id: children(:three) }
     assert_not_nil assigns(:survey)
     assert_not_nil assigns(:answer_session)
     assert_not_nil assigns(:answer_session).child
@@ -128,7 +128,7 @@ class SurveysControllerTest < ActionController::TestCase
   test 'should get accept update and redirect to survey if recently accepted for child survey' do
     login(users(:social))
     users(:social).update accepted_update_at: Date.parse(User::RECENT_UPDATE_DATE).end_of_day
-    get :accept_update_first, id: surveys(:new), encounter: 'followup', child_id: children(:three)
+    get :accept_update_first, params: { id: surveys(:new), encounter: 'followup', child_id: children(:three) }
     assert_not_nil assigns(:survey)
     assert_not_nil assigns(:answer_session)
     assert_not_nil assigns(:answer_session).child
@@ -138,7 +138,7 @@ class SurveysControllerTest < ActionController::TestCase
   test 'User can answer question on an assigned survey' do
     login(users(:has_incomplete_survey))
     refute answer_sessions(:incomplete).completed?
-    xhr :post, :process_answer, question_id: questions(:checkbox1), answer_session_id: answer_sessions(:incomplete), response: { answer_templates(:race_list).to_param => [answer_options(:wookie).id.to_s, answer_options(:other_race).id.to_s], answer_templates(:fixture_specified_race).to_param => 'Polish'}, format: 'json'
+    post :process_answer, params: { question_id: questions(:checkbox1), answer_session_id: answer_sessions(:incomplete), response: { answer_templates(:race_list).to_param => [answer_options(:wookie).id.to_s, answer_options(:other_race).id.to_s], answer_templates(:fixture_specified_race).to_param => 'Polish'} }, format: 'json'
     assert_not_nil assigns(:answer)
     assert assigns(:answer).persisted?
     assert assigns(:answer).complete?
@@ -155,7 +155,7 @@ class SurveysControllerTest < ActionController::TestCase
 
   test 'should process answer for date question' do
     login(users(:has_incomplete_survey))
-    xhr :post, :process_answer, question_id: questions(:date1), answer_session_id: answer_sessions(:incomplete2_followup), response: { answer_templates(:custom_date_template).to_param => { month: '3', day: '12', year: '1920' } }, format: 'json'
+    post :process_answer, params: { question_id: questions(:date1), answer_session_id: answer_sessions(:incomplete2_followup), response: { answer_templates(:custom_date_template).to_param => { month: '3', day: '12', year: '1920' } } }, format: 'json'
     assert_not_nil assigns(:answer)
     assert assigns(:answer).persisted?
     assert assigns(:answer).complete?
@@ -170,7 +170,7 @@ class SurveysControllerTest < ActionController::TestCase
   test 'User can remove all answers from a checkbox question' do
     login(users(:has_incomplete_survey))
     refute answer_sessions(:incomplete).completed?
-    xhr :post, :process_answer, question_id: questions(:checkbox1), answer_session_id: answer_sessions(:incomplete), format: 'json'
+    post :process_answer, params: { question_id: questions(:checkbox1), answer_session_id: answer_sessions(:incomplete) }, format: 'json'
     assert_response :success
     assert_not_nil assigns(:answer)
     assert assigns(:answer).persisted?
@@ -182,7 +182,7 @@ class SurveysControllerTest < ActionController::TestCase
   test 'User can prefer not to answer a question on an assigned survey' do
     login(users(:has_incomplete_survey))
     refute answer_sessions(:incomplete).completed?
-    xhr :post, :process_answer, question_id: questions(:checkbox1), answer_session_id: answer_sessions(:incomplete), response: { preferred_not_to_answer: '1' }, format: 'json'
+    post :process_answer, params: { question_id: questions(:checkbox1), answer_session_id: answer_sessions(:incomplete), response: { preferred_not_to_answer: '1' } }, format: 'json'
     assert_not_nil assigns(:answer)
     assert assigns(:answer).persisted?
     assert assigns(:answer).complete?
@@ -193,7 +193,7 @@ class SurveysControllerTest < ActionController::TestCase
 
   test 'should not process answer without valid question' do
     login(users(:has_incomplete_survey))
-    xhr :post, :process_answer, question_id: nil, answer_session_id: answer_sessions(:incomplete), response: { }, format: 'json'
+    post :process_answer, params: { question_id: nil, answer_session_id: answer_sessions(:incomplete), response: { } }, format: 'json'
 
     assert_not_nil assigns(:answer_session)
     assert_nil assigns(:question)
@@ -204,7 +204,7 @@ class SurveysControllerTest < ActionController::TestCase
     login(users(:has_completed_survey))
     # TODO: Add fixtures to actually complete the users survey
     # assert answer_sessions(:complete_about_me).completed?
-    get :report, id: answer_sessions(:complete_about_me).survey
+    get :report, params: { id: answer_sessions(:complete_about_me).survey }
     assert_not_nil assigns(:answer_session)
     assert_response :success
   end
@@ -212,14 +212,14 @@ class SurveysControllerTest < ActionController::TestCase
   test 'should get details report for user with a locked survey' do
     login(users(:has_completed_survey))
     assert answer_sessions(:complete).completed?
-    get :report_detail, id: answer_sessions(:complete).survey
+    get :report_detail, params: { id: answer_sessions(:complete).survey }
     assert_not_nil assigns(:answer_session)
     assert_response :success
   end
 
   test 'should get standard survey report for web built surveys for user with completed survey' do
     login(users(:has_completed_survey))
-    get :report, id: answer_sessions(:complete).survey
+    get :report, params: { id: answer_sessions(:complete).survey }
     assert_not_nil assigns(:survey)
     assert_not_nil assigns(:answer_session)
     assert_redirected_to report_detail_survey_path(answer_sessions(:complete).survey, answer_sessions(:complete).encounter)
@@ -227,7 +227,7 @@ class SurveysControllerTest < ActionController::TestCase
 
   test 'should get standard survey report for web built surveys for researcher' do
     login(users(:researcher))
-    get :report, id: surveys(:new)
+    get :report, params: { id: surveys(:new) }
     assert_not_nil assigns(:survey)
     assert_nil assigns(:answer_session)
     assert_redirected_to report_detail_survey_path(assigns(:survey), 'baseline')
@@ -235,7 +235,7 @@ class SurveysControllerTest < ActionController::TestCase
 
   test 'should get standard survey report for web built surveys for caregivers of children' do
     login(users(:social))
-    get :report, id: answer_sessions(:completed_survey_child_for_child).survey, child_id: children(:three), encounter: answer_sessions(:completed_survey_child_for_child).encounter
+    get :report, params: { id: answer_sessions(:completed_survey_child_for_child).survey, child_id: children(:three), encounter: answer_sessions(:completed_survey_child_for_child).encounter }
     assert_not_nil assigns(:survey)
     assert_not_nil assigns(:answer_session)
     assert_redirected_to child_survey_report_detail_path(assigns(:answer_session).child.id, assigns(:answer_session).survey, assigns(:answer_session).encounter)
@@ -245,7 +245,7 @@ class SurveysControllerTest < ActionController::TestCase
 
   test 'should not show survey to user who has not been assigned the survey' do
     login(users(:social))
-    get :show, id: surveys(:new)
+    get :show, params: { id: surveys(:new) }
     assert_redirected_to surveys_path
   end
 
@@ -253,28 +253,28 @@ class SurveysControllerTest < ActionController::TestCase
 
   test 'should not get report for user with an unstarted survey' do
     login(users(:has_launched_survey))
-    get :report, id: answer_sessions(:launched).survey
+    get :report, params: { id: answer_sessions(:launched).survey }
     assert_not_nil assigns(:answer_session)
     assert_redirected_to show_survey_path(assigns(:answer_session).survey, assigns(:answer_session).encounter)
   end
 
   test 'should not get report for user with an incomplete survey' do
     login(users(:has_incomplete_survey))
-    get :report, id: answer_sessions(:incomplete).survey
+    get :report, params: { id: answer_sessions(:incomplete).survey }
     assert_not_nil assigns(:answer_session)
     assert_redirected_to show_survey_path(assigns(:answer_session).survey, assigns(:answer_session).encounter)
   end
 
   test 'should not get report for user who is not assigned and is not a researcher' do
     login(users(:participant))
-    get :report, id: surveys(:new)
+    get :report, params: { id: surveys(:new) }
     assert_nil assigns(:answer_session)
     assert_redirected_to surveys_path
   end
 
   test 'should not get report for user with an incomplete child survey' do
     login(users(:social))
-    get :report, id: answer_sessions(:must_accept_update_first_for_child).survey, encounter: answer_sessions(:must_accept_update_first_for_child).encounter, child_id: answer_sessions(:must_accept_update_first_for_child).child_id
+    get :report, params: { id: answer_sessions(:must_accept_update_first_for_child).survey, encounter: answer_sessions(:must_accept_update_first_for_child).encounter, child_id: answer_sessions(:must_accept_update_first_for_child).child_id }
     assert_not_nil assigns(:answer_session)
     assert_not_nil assigns(:answer_session).child
     assert_redirected_to child_survey_path(assigns(:answer_session).child.id, assigns(:answer_session).survey, assigns(:answer_session).encounter)
@@ -284,7 +284,7 @@ class SurveysControllerTest < ActionController::TestCase
   test 'should get completed survey for user' do
     login(users(:has_completed_survey))
     assert answer_sessions(:complete).completed?
-    get :show, id: surveys(:new)
+    get :show, params: { id: surveys(:new) }
     assert_not_nil assigns(:survey)
     assert_not_nil assigns(:answer_session)
     assert_response :success
@@ -294,7 +294,7 @@ class SurveysControllerTest < ActionController::TestCase
   test 'User can submit survey, locking all completed answers' do
     login(users(:has_completed_survey))
     assert answer_sessions(:complete).completed?
-    xhr :post, :submit, answer_session_id: answer_sessions(:complete).id, format: 'json'
+    post :submit, params: { answer_session_id: answer_sessions(:complete).id }, format: 'json'
     answer_sessions(:complete).answers.each do |answer|
       assert answer.locked?
       old_val = answer.value
@@ -305,7 +305,7 @@ class SurveysControllerTest < ActionController::TestCase
 
   test 'should not submit and lock survey with invalid answer session' do
     login(users(:has_completed_survey))
-    xhr :post, :submit, answer_session_id: -1, format: 'json'
+    post :submit, params: { answer_session_id: -1 }, format: 'json'
     assert_nil assigns(:answer_session)
     assert_response :no_content
   end
@@ -316,7 +316,7 @@ class SurveysControllerTest < ActionController::TestCase
     login(u)
     assert u.is_only_academic?
     assert u.ready_for_research?
-    get :report_detail, id: surveys(:new)
+    get :report_detail, params: { id: surveys(:new) }
     assert_template :report_detail
     assert_response :success
   end
@@ -326,7 +326,7 @@ class SurveysControllerTest < ActionController::TestCase
     login(u)
     assert u.is_only_academic?
     assert u.ready_for_research?
-    get :report, id: surveys(:about_me)
+    get :report, params: { id: surveys(:about_me) }
     assert_response :success
   end
 
@@ -335,7 +335,7 @@ class SurveysControllerTest < ActionController::TestCase
     login(u)
     assert u.is_only_academic?
     assert u.ready_for_research?
-    get :report, id: surveys(:about_me)
+    get :report, params: { id: surveys(:about_me) }
     assert_response :success
   end
 
@@ -344,7 +344,7 @@ class SurveysControllerTest < ActionController::TestCase
     login(u)
     assert u.is_only_academic?
     assert u.ready_for_research?
-    get :report_detail, id: surveys(:about_me)
+    get :report_detail, params: { id: surveys(:about_me) }
     assert_response :success
   end
 end

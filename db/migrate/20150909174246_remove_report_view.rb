@@ -1,4 +1,4 @@
-class RemoveReportView < ActiveRecord::Migration
+class RemoveReportView < ActiveRecord::Migration[4.2]
   def up
     execute "drop view reports"
   end

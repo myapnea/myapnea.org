@@ -13,21 +13,21 @@ class Builder::QuestionsControllerTest < ActionController::TestCase
 
   test 'should get questions as builder' do
     login(@builder)
-    get :index, survey_id: @survey
+    get :index, params: { survey_id: @survey }
     assert_not_nil assigns(:survey)
     assert_redirected_to builder_survey_path(assigns(:survey))
   end
 
   test 'should not get questions as regular user' do
     login(@regular_user)
-    get :index, survey_id: @survey
+    get :index, params: { survey_id: @survey }
     assert_nil assigns(:survey)
     assert_redirected_to root_path
   end
 
   test 'should get new question as builder' do
     login(@builder)
-    get :new, survey_id: @survey
+    get :new, params: { survey_id: @survey }
     assert_not_nil assigns(:survey)
     assert_not_nil assigns(:question)
     assert_response :success
@@ -35,7 +35,7 @@ class Builder::QuestionsControllerTest < ActionController::TestCase
 
   test 'should not get new question as regular user' do
     login(@regular_user)
-    get :new, survey_id: @survey
+    get :new, params: { survey_id: @survey }
     assert_nil assigns(:survey)
     assert_nil assigns(:question)
     assert_redirected_to root_path
@@ -44,7 +44,7 @@ class Builder::QuestionsControllerTest < ActionController::TestCase
   test 'should create question as builder' do
     login(@builder)
     assert_difference('Question.count') do
-      post :create, survey_id: @survey, question: { text_en: 'My New Question', slug: 'my-new-question' }
+      post :create, params: { survey_id: @survey, question: { text_en: 'My New Question', slug: 'my-new-question' } }
     end
     assert_not_nil assigns(:survey)
     assert_not_nil assigns(:question)
@@ -57,7 +57,7 @@ class Builder::QuestionsControllerTest < ActionController::TestCase
   test 'should not create question without text' do
     login(@builder)
     assert_difference('Question.count', 0) do
-      post :create, survey_id: @survey, question: { text_en: '', slug: 'my-new-question' }
+      post :create, params: { survey_id: @survey, question: { text_en: '', slug: 'my-new-question' } }
     end
     assert_not_nil assigns(:survey)
     assert_not_nil assigns(:question)
@@ -70,7 +70,7 @@ class Builder::QuestionsControllerTest < ActionController::TestCase
   test 'should not create question as regular user' do
     login(@regular_user)
     assert_difference('Question.count', 0) do
-      post :create, survey_id: @survey, question: { text_en: 'My New Question', slug: 'my-new-question' }
+      post :create, params: { survey_id: @survey, question: { text_en: 'My New Question', slug: 'my-new-question' } }
     end
     assert_nil assigns(:survey)
     assert_nil assigns(:question)
@@ -79,7 +79,7 @@ class Builder::QuestionsControllerTest < ActionController::TestCase
 
   test 'should show question as builder' do
     login(@builder)
-    get :show, survey_id: @survey, id: @question
+    get :show, params: { survey_id: @survey, id: @question }
     assert_not_nil assigns(:survey)
     assert_not_nil assigns(:question)
     assert_response :success
@@ -87,7 +87,7 @@ class Builder::QuestionsControllerTest < ActionController::TestCase
 
   test 'should not show question as regular user' do
     login(@regular_user)
-    get :show, survey_id: @survey, id: @question
+    get :show, params: { survey_id: @survey, id: @question }
     assert_nil assigns(:survey)
     assert_nil assigns(:question)
     assert_redirected_to root_path
@@ -95,7 +95,7 @@ class Builder::QuestionsControllerTest < ActionController::TestCase
 
   test 'should get edit question as builder' do
     login(@builder)
-    get :edit, survey_id: @survey, id: @question
+    get :edit, params: { survey_id: @survey, id: @question }
     assert_not_nil assigns(:survey)
     assert_not_nil assigns(:question)
     assert_response :success
@@ -103,7 +103,7 @@ class Builder::QuestionsControllerTest < ActionController::TestCase
 
   test 'should not get edit question as regular user' do
     login(@regular_user)
-    get :edit, survey_id: @survey, id: @question
+    get :edit, params: { survey_id: @survey, id: @question }
     assert_nil assigns(:survey)
     assert_nil assigns(:question)
     assert_redirected_to root_path
@@ -111,7 +111,7 @@ class Builder::QuestionsControllerTest < ActionController::TestCase
 
   test 'should update question as builder' do
     login(@builder)
-    patch :update, survey_id: @survey, id: @question, question: { text_en: 'Updated Question', slug: 'updated-question' }
+    patch :update, params: { survey_id: @survey, id: @question, question: { text_en: 'Updated Question', slug: 'updated-question' } }
     assert_not_nil assigns(:survey)
     assert_not_nil assigns(:question)
     assert_equal 'Updated Question', assigns(:question).text_en
@@ -121,7 +121,7 @@ class Builder::QuestionsControllerTest < ActionController::TestCase
 
   test 'should not update question without name' do
     login(@builder)
-    patch :update, survey_id: @survey, id: @question, question: { text_en: '', slug: 'updated-question' }
+    patch :update, params: { survey_id: @survey, id: @question, question: { text_en: '', slug: 'updated-question' } }
     assert_not_nil assigns(:survey)
     assert_not_nil assigns(:question)
     assert assigns(:question).errors.size > 0
@@ -132,7 +132,7 @@ class Builder::QuestionsControllerTest < ActionController::TestCase
 
   test 'should not update question as regular user' do
     login(@regular_user)
-    patch :update, survey_id: @survey, id: @question, question: { text_en: 'Updated Question', slug: 'updated-question' }
+    patch :update, params: { survey_id: @survey, id: @question, question: { text_en: 'Updated Question', slug: 'updated-question' } }
     assert_nil assigns(:survey)
     assert_nil assigns(:question)
     assert_redirected_to root_path
@@ -141,7 +141,7 @@ class Builder::QuestionsControllerTest < ActionController::TestCase
   test 'should destroy question as builder' do
     login(@builder)
     assert_difference('Question.current.count', -1) do
-      delete :destroy, survey_id: @survey, id: @question
+      delete :destroy, params: { survey_id: @survey, id: @question }
     end
     assert_not_nil assigns(:survey)
     assert_not_nil assigns(:question)
@@ -151,7 +151,7 @@ class Builder::QuestionsControllerTest < ActionController::TestCase
   test 'should not destroy question as regular user' do
     login(@regular_user)
     assert_difference('Question.current.count', 0) do
-      delete :destroy, survey_id: @survey, id: @question
+      delete :destroy, params: { survey_id: @survey, id: @question }
     end
     assert_nil assigns(:survey)
     assert_nil assigns(:question)
@@ -160,7 +160,7 @@ class Builder::QuestionsControllerTest < ActionController::TestCase
 
   test 'should save question order' do
     login(@builder)
-    post :reorder, survey_id: @survey, question_ids: [ActiveRecord::FixtureSet.identify(:web_question)], format: 'js'
+    post :reorder, params: { survey_id: @survey, question_ids: [ActiveRecord::FixtureSet.identify(:web_question)] }, format: 'js'
     assert_response :success
   end
 end

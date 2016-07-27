@@ -1,4 +1,4 @@
-class RemoveQuestionEdgeTable < ActiveRecord::Migration
+class RemoveQuestionEdgeTable < ActiveRecord::Migration[4.2]
   def up
     remove_index :question_edges, :parent_question_id
     remove_index :question_edges, :child_question_id

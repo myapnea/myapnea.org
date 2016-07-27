@@ -1,5 +1,14 @@
 ## 14.0.0
 
+### Enhancements
+- **Gem Changes**
+  - Updated to rails 5.0.0
+  - Updated to coffee-rails 4.2
+  - Updated to jbuilder 2.5
+  - Updated to jquery-rails 4.1.1
+  - Updated to turbolinks 5
+  - Added rails-controller-testing
+
 ## 13.2.1 (July 26, 2016)
 
 ### Bug Fix

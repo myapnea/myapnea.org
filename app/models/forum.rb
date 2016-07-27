@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Forum < ActiveRecord::Base
+class Forum < ApplicationRecord
 
   # Concerns
   include Deletable

@@ -1,4 +1,4 @@
-class AddLinksEnabledToPosts < ActiveRecord::Migration
+class AddLinksEnabledToPosts < ActiveRecord::Migration[4.2]
   def change
     add_column :posts, :links_enabled, :boolean, null: false, default: false
   end

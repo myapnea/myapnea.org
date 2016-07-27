@@ -1,4 +1,4 @@
-class DropGroupsTable < ActiveRecord::Migration
+class DropGroupsTable < ActiveRecord::Migration[4.2]
   def up
     remove_column :questions, :group_id
     drop_table :groups

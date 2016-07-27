@@ -1,4 +1,4 @@
-class DropCommentsTable < ActiveRecord::Migration
+class DropCommentsTable < ActiveRecord::Migration[4.2]
   def up
     remove_index :comments, :notification_id
     drop_table :comments

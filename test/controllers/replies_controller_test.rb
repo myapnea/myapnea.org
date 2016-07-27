@@ -31,7 +31,7 @@ class RepliesControllerTest < ActionController::TestCase
 
   test 'should preview reply' do
     login(@regular_user)
-    post :preview, parent_comment_id: 'root', reply_id: 'new', reply: reply_params, format: 'js'
+    post :preview, params: { parent_comment_id: 'root', reply_id: 'new', reply: reply_params }, format: 'js'
     assert_template 'preview'
     assert_response :success
   end
@@ -39,7 +39,7 @@ class RepliesControllerTest < ActionController::TestCase
   test 'should create reply' do
     login(@regular_user)
     assert_difference('Reply.count') do
-      post :create, chapter_id: @reply.chapter.to_param, reply: reply_params, format: 'js'
+      post :create, params: { chapter_id: @reply.chapter.to_param, reply: reply_params }, format: 'js'
     end
     assert_template 'create'
     assert_response :success
@@ -47,32 +47,32 @@ class RepliesControllerTest < ActionController::TestCase
 
   test 'should show reply and redirect to correct page' do
     login(@regular_user)
-    get :show, chapter_id: @reply.chapter.to_param, id: @reply
+    get :show, params: { chapter_id: @reply.chapter.to_param, id: @reply }
     assert_redirected_to page_chapter_path(@reply.chapter, page: @reply.page, anchor: @reply.anchor)
   end
 
   test 'should show reply' do
     login(@regular_user)
-    xhr :get, :show, chapter_id: @reply.chapter.to_param, id: @reply, format: 'js'
+    get :show, params: { chapter_id: @reply.chapter.to_param, id: @reply }, xhr: true, format: 'js'
     assert_template 'show'
     assert_response :success
   end
 
   test 'should redirect to forum for deleted replies' do
-    get :show, id: replies(:deleted)
+    get :show, params: { id: replies(:deleted) }
     assert_redirected_to chapters_path
   end
 
   test 'should get edit' do
     login(@regular_user)
-    xhr :get, :edit, chapter_id: @reply.chapter.to_param, id: @reply, format: 'js'
+    get :edit, params: { chapter_id: @reply.chapter.to_param, id: @reply }, xhr: true, format: 'js'
     assert_template 'edit'
     assert_response :success
   end
 
   test 'should update reply' do
     login(@regular_user)
-    patch :update, chapter_id: @reply.chapter.to_param, id: @reply, reply: reply_params, format: 'js'
+    patch :update, params: { chapter_id: @reply.chapter.to_param, id: @reply, reply: reply_params }, format: 'js'
     assert_template 'show'
     assert_response :success
   end
@@ -80,7 +80,7 @@ class RepliesControllerTest < ActionController::TestCase
   test 'should destroy reply' do
     login(@regular_user)
     assert_difference('Reply.current.count', -1) do
-      delete :destroy, chapter_id: @reply.chapter.to_param, id: @reply, format: 'js'
+      delete :destroy, params: { chapter_id: @reply.chapter.to_param, id: @reply }, format: 'js'
     end
     assert_template 'show'
     assert_response :success

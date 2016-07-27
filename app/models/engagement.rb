@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Engagement < ActiveRecord::Base
+class Engagement < ApplicationRecord
   # Default Scope
   # Constants
   # Attribute related macros

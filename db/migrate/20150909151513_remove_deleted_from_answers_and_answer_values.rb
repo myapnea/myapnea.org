@@ -1,4 +1,4 @@
-class RemoveDeletedFromAnswersAndAnswerValues < ActiveRecord::Migration
+class RemoveDeletedFromAnswersAndAnswerValues < ActiveRecord::Migration[4.2]
   def up
     timestamp = '20150909151513'
     execute "drop view cdm_demographic"
