@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  root 'home#dashboard'
+
   namespace :async do
     namespace :blog do
       post :login
@@ -151,7 +153,6 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # Static Pages
-  root 'home#dashboard'
   scope module: 'static' do
     get :about
     get :team
