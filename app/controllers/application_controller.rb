@@ -22,7 +22,8 @@ class ApplicationController < ActionController::Base
         !request.fullpath.match("#{request.script_name}/sign_out") &&
         params[:format] != 'atom' &&
         !request.xhr?) || # don't store ajax calls
-        request.fullpath.match("#{request.script_name}/join-health-eheart")
+        request.fullpath.match("#{request.script_name}/join-health-eheart") ||
+        request.fullpath.match("#{request.script_name}/welcome-health-eheart-members")
       store_location_in_session
     end
   end

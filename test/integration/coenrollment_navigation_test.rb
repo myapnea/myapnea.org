@@ -14,7 +14,6 @@ class CoenrollmentNavigationTest < ActionDispatch::IntegrationTest
   test 'should friendly forward to join heh bridge consent after sign in' do
     get '/join-health-eheart'
     assert_redirected_to new_user_session_path
-
     sign_in_as @valid, 'password'
     assert_equal '/join-health-eheart', path
   end
@@ -23,13 +22,11 @@ class CoenrollmentNavigationTest < ActionDispatch::IntegrationTest
     get '/welcome-health-eheart-members/heh12345'
     assert_equal 'heh12345', session[:incoming_heh_token]
     assert_redirected_to welcome_health_eheart_members_path
-
-    post_via_redirect '/', user: { first_name: 'New User', last_name: 'New User', email: 'new@user.com', password: 'password', over_eighteen: '1' }
+    post '/', params: { user: { first_name: 'New User', last_name: 'New User', email: 'new@user.com', password: 'password', over_eighteen: '1' } }
+    follow_redirect!
     assert_equal '/get-started', path
-
     get '/dashboard'
     assert_redirected_to link_health_eheart_member_path
-
     get '/link_health_eheart_member'
     assert_equal 'heh12345', User.find_by_email('new@user.com').incoming_heh_token
     assert_redirected_to congratulations_health_eheart_members_path
@@ -39,8 +36,12 @@ class CoenrollmentNavigationTest < ActionDispatch::IntegrationTest
     get '/welcome-health-eheart-members/heh23456'
     assert_equal 'heh23456', session[:incoming_heh_token]
     assert_redirected_to welcome_health_eheart_members_path
-
-    sign_in_as @valid, 'password'
+    post '/login', params: { user: { email: 'user_1@mail.com', password: 'password' } }
+    follow_redirect!
+    assert_equal '/welcome-health-eheart-members/heh23456', path
+    follow_redirect!
+    assert_equal '/link_health_eheart_member', path
+    follow_redirect!
     @valid.reload
     assert_equal 'heh23456', @valid.incoming_heh_token
     assert_equal '/congratulations-health-eheart-members', path
