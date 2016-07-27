@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-# encoding: utf-8
 
 # Allows users to upload a profile picture.
 class PhotoUploader < CarrierWave::Uploader::Base
