@@ -44,8 +44,8 @@
       .content-main-header2
         %h1 My Surveys
     - if current_user.completed_assigned_answer_sessions?
-      .jumbotron.primary-blue-bcg
-        %p.f300.text-center
+      .jumbotron.jumbotron-action
+        %p.f300
           Congratulations! You have completed all of your surveys!
     - @answer_sessions.in_groups_of(3, false) do |answer_session_group|
       .row

@@ -1,143 +1,144 @@
-- if current_user and current_user.provider? and current_user.id == @provider.id
-  .provider-view-notice
+- content_for :header do
+  - if current_user and current_user.provider? and current_user.id == @provider.id
+    .provider-view-notice
+      .container
+        %h4
+          This is what your provider profile currently looks like to the public.
+        %ul
+          %li
+            If you would like to make changes, go to your
+            = link_to 'account settings', account_path
+          %li
+            If you would like to share your page, please use this url:
+            %span.wrapword
+              = link_to (ENV['website_url'] + '/p/' + current_user.slug), provider_path(current_user.slug)
+
+  .slide-provider-welcome
     .container
-      %h4
-        This is what your provider profile currently looks like to the public.
-      %ul
-        %li
-          If you would like to make changes, go to your
-          = link_to 'account settings', account_path
-        %li
-          If you would like to share your page, please use this url:
-          %span.wrapword
-            = link_to (ENV['website_url'] + '/p/' + current_user.slug), provider_path(current_user.slug)
-
-.slide-provider-welcome
-  .container
-    %h1.f700
-      Let's work together to find a cure for sleep apnea!
-    %h3
-      Join my network of care providers, researchers, and people with sleep apnea to work together and help improve treament outcomes.
-    %br
-    %br
-    .row
-      .col-lg-2.col-md-3.col-xs-4
-        - if @provider.photo.present?
-          = image_tag user_photo_url(@provider), alt: '', class: 'team-member-picture-md', style: 'float: right;'
-      .col-lg-10.col-md-9.col-xs-8
-        %p.lead
-          = @provider.welcome_message
-        %p
-          = '- ' + @provider.provider_name
-
-.slide-provider-explanation
-  .container
-    .row
-      .col-sm-7
-        %h1.darker-blue
-          Our Mission
-        %h3.dark8
-          The mission of MyApnea.Org is to improve the diagnosis and treatment of sleep apnea through the
-          %span.lighter-blue active engagement
-          of patients, families, researchers, and healthcare providers in a community that facilitates patient-centered research.
-      .col-sm-4.col-sm-offset-1
-        = image_tag 'myapnea/welcome/img-small/heart258_orange.png', class: 'img-responsive'
-
-    - 3.times do
+      %h1.f700
+        Let's work together to find a cure for sleep apnea!
+      %h3
+        Join my network of care providers, researchers, and people with sleep apnea to work together and help improve treament outcomes.
       %br
-
-    .row
-      .col-sm-7
-        %h1.darker-blue
-          Our Goal
-        %h3.dark8
-          By offering this network to your patients, and engaging with them actively
-          outside of the office, they begin to feel a uniquely incredible quality of
-          care. This community easily shows people with sleep apnea the amount of
-          support they have from an international group of researchers, care
-          providers, and fellow patients.
-      .col-sm-4.col-sm-offset-1
-        = image_tag 'myapnea/welcome/img-small/first35_orange.png', class: 'img-responsive'
-
-    - 3.times do
       %br
+      .row
+        .col-lg-2.col-md-3.col-xs-4
+          - if @provider.photo.present?
+            = image_tag user_photo_url(@provider), alt: '', class: 'team-member-picture-md', style: 'float: right;'
+        .col-lg-10.col-md-9.col-xs-8
+          %p.lead
+            = @provider.welcome_message
+          %p
+            = '- ' + @provider.provider_name
 
-    .row
-      .col-xs-12
-        %h1.darker-blue.centered
-          Our Community
-        %h3.dark8.centered
-          MyApnea.Org is a community built by people with sleep apnea, family members, providers, and researchers to share and learn from one another.
-    %br
-    .row
-      .col-sm-4
-        = link_to blog_path, class: 'no-underline' do
-          .community-highlight-links
-            %h2.centered
-              Community Blog
-            %p.lead.dark7
-              Read articles about sleep apnea written by your fellow community
-              members. Learn about ongoing research, and learn about the
-              different types of sleep apnea.
-      .col-sm-4
-        = link_to surveys_path, class: 'no-underline' do
-          .community-highlight-links
-            %h2.centered
-              Research Surveys
-            %p.lead.dark7
-              Answer a series of questions about symptoms, treatment, and related
-              health conditions. Your answers will help the sleep apnea community
-              better understand the disorder and where future research efforts should
-              be directed.
-      .col-sm-4
-        = link_to forums_path, class: 'no-underline' do
-          .community-highlight-links
-            %h2.centered
-              Active Forums
-            %p.lead.dark7
-              Discuss with others about living with sleep apnea and what is important
-              to you. Share ideas on how to promote the website to others. The more
-              members we have, the more we can learn from each other and contribute to
-              future research.
+  .slide-provider-explanation
+    .container
+      .row
+        .col-sm-7
+          %h1.darker-blue
+            Our Mission
+          %h3.dark8
+            The mission of MyApnea.Org is to improve the diagnosis and treatment of sleep apnea through the
+            %span.lighter-blue active engagement
+            of patients, families, researchers, and healthcare providers in a community that facilitates patient-centered research.
+        .col-sm-4.col-sm-offset-1
+          = image_tag 'myapnea/welcome/img-small/heart258_orange.png', class: 'img-responsive'
+
+      - 3.times do
+        %br
+
+      .row
+        .col-sm-7
+          %h1.darker-blue
+            Our Goal
+          %h3.dark8
+            By offering this network to your patients, and engaging with them actively
+            outside of the office, they begin to feel a uniquely incredible quality of
+            care. This community easily shows people with sleep apnea the amount of
+            support they have from an international group of researchers, care
+            providers, and fellow patients.
+        .col-sm-4.col-sm-offset-1
+          = image_tag 'myapnea/welcome/img-small/first35_orange.png', class: 'img-responsive'
+
+      - 3.times do
+        %br
+
+      .row
+        .col-xs-12
+          %h1.darker-blue.centered
+            Our Community
+          %h3.dark8.centered
+            MyApnea.Org is a community built by people with sleep apnea, family members, providers, and researchers to share and learn from one another.
+      %br
+      .row
+        .col-sm-4
+          = link_to blog_path, class: 'no-underline' do
+            .community-highlight-links
+              %h2.centered
+                Community Blog
+              %p.lead.dark7
+                Read articles about sleep apnea written by your fellow community
+                members. Learn about ongoing research, and learn about the
+                different types of sleep apnea.
+        .col-sm-4
+          = link_to surveys_path, class: 'no-underline' do
+            .community-highlight-links
+              %h2.centered
+                Research Surveys
+              %p.lead.dark7
+                Answer a series of questions about symptoms, treatment, and related
+                health conditions. Your answers will help the sleep apnea community
+                better understand the disorder and where future research efforts should
+                be directed.
+        .col-sm-4
+          = link_to forums_path, class: 'no-underline' do
+            .community-highlight-links
+              %h2.centered
+                Active Forums
+              %p.lead.dark7
+                Discuss with others about living with sleep apnea and what is important
+                to you. Share ideas on how to promote the website to others. The more
+                members we have, the more we can learn from each other and contribute to
+                future research.
 
 
-%a{:name=>'signup'}
-- unless current_user
-  = render 'users/signup_form', resource: User.new( provider_id: @provider.id )
-- else
-  .container
-    %br
-    .content-container
-      - if current_user.provider? and current_user.id == @provider.id
-        %p.lead
-          This is where potential members will be able to register and list
-          you as their care provider. You can share this page with your
-          patients and community members by using the link below. If you have
-          any questions about this process or would like any help, please feel
-          free to
-          %a{ href: "mailto:#{ENV['support_email']}" } contact us.
-        %p.lead.centered.f700
-          Your personal url:
+  %a{:name=>'signup'}
+  - unless current_user
+    = render 'users/signup_form', resource: User.new( provider_id: @provider.id )
+  - else
+    .container
+      %br
+      .content-container
+        - if current_user.provider? and current_user.id == @provider.id
+          %p.lead
+            This is where potential members will be able to register and list
+            you as their care provider. You can share this page with your
+            patients and community members by using the link below. If you have
+            any questions about this process or would like any help, please feel
+            free to
+            %a{ href: "mailto:#{ENV['support_email']}" } contact us.
+          %p.lead.centered.f700
+            Your personal url:
+            %br
+            %span.wrapword= link_to ENV['website_url'] + '/p/' + current_user.slug, ENV['website_url'] + '/p/'+ current_user.slug
+        - elsif current_user.provider_id == @provider.id
+          %p.lead.centered
+            It looks like
+            = @provider.provider_name
+            is your provider.
           %br
-          %span.wrapword= link_to ENV['website_url'] + '/p/' + current_user.slug, ENV['website_url'] + '/p/'+ current_user.slug
-      - elsif current_user.provider_id == @provider.id
-        %p.lead.centered
-          It looks like
-          = @provider.provider_name
-          is your provider.
-        %br
-        %p.lead.centered.f700
-          If you want to get in touch with them, feel free to
-          = link_to('send them an email', "mailto:#{@provider.email}")+"."
-      - else
-        %p.lead.centered
-          Hi there,
-          = current_user.first_name + '!'
-          It looks like
-          = @provider.provider_name
-          is not your provider.
-        %br
-        %p.lead.centered.f700
-          Do you want to list them as your primary care provider?
-        .centered
-          = link_to "Yes, list #{@provider.provider_name} as my provider!", update_account_path(:user => { provider_id: @provider.id }), method: :patch, class: 'btn btn-primary-custom'
+          %p.lead.centered.f700
+            If you want to get in touch with them, feel free to
+            = link_to('send them an email', "mailto:#{@provider.email}")+"."
+        - else
+          %p.lead.centered
+            Hi there,
+            = current_user.first_name + '!'
+            It looks like
+            = @provider.provider_name
+            is not your provider.
+          %br
+          %p.lead.centered.f700
+            Do you want to list them as your primary care provider?
+          .centered
+            = link_to "Yes, list #{@provider.provider_name} as my provider!", update_account_path(:user => { provider_id: @provider.id }), method: :patch, class: 'btn btn-primary-custom'

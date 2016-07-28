@@ -5,8 +5,6 @@ class ProvidersController < ApplicationController
   before_action :redirect_without_provider, only: [:show] # , :edit, :update, :destroy
   before_action :set_SEO_elements
 
-  # layout 'providers'
-
   def index
     provider_scope = User.providers_with_profiles
     provider_scope = provider_scope.where("users.provider_name ~* ?", params[:s].to_s.split(/\s/).collect{|l| l.to_s.gsub(/[^\w\d%]/, '')}.collect{|l| "(\\m#{l})"}.join("|")) if params[:s].present?
@@ -18,7 +16,6 @@ class ProvidersController < ApplicationController
   end
 
   def show
-    render layout: 'providers'
   end
 
   def more

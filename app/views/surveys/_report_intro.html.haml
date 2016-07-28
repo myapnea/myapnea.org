@@ -8,14 +8,14 @@
       = survey_name
 
 - if @answer_session
-  .jumbotron.primary-blue-bcg
-    %p.text-center
+  .jumbotron.jumbotron-action
+    %p
       Thank you for completing the survey!
 - elsif current_user.is_only_academic?
-  .jumbotron.primary-blue-bcg
-    %p.text-center
+  .jumbotron.jumbotron-action
+    %p
       Welcome to the data viewer for the survey!
-    %p.text-center
+    %p
       Please only use this data in accordance with our
       = succeed '.' do
         = link_to 'Terms of Access', terms_of_access_path, class: 'white', style: 'text-decoration: underline'

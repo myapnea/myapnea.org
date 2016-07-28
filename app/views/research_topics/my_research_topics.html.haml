@@ -1,8 +1,8 @@
 .content-main-header2
   %h1 My Research Topics
 
-.jumbotron.primary-blue-bcg
-  %p.text-center
+.jumbotron.jumbtron-action
+  %p
     - if @research_topics.present?
       = "You've submitted #{pluralize(@research_topics.count, 'research topic')}"
     - else

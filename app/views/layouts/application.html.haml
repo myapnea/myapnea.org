@@ -33,6 +33,7 @@
     #top-navigation= render 'layouts/navigation/top_navigation'
     = render 'layouts/partials/flash_messages'
     = yield :banner
+    = yield :header
     .container= yield
     = yield :footer
     = render 'layouts/partials/footer'

@@ -1,22 +1,22 @@
 .content-main-header2
   %h1 Welcome to MyApnea.Org!
-  - if current_user.provider? || current_user.is_only_researcher?
-    %p.text-muted
-      MyApnea.Org is part of a growing international network of patients, health
-      care providers and researchers. This partnership is built upon the open
-      exchange of information about sleep apnea.
-      %span.f500
-        The following terms of access are required for researchers and care
-        providers to accept in order to access aggregate data for academic
-        purposes.
-  - else
-    %p.text-muted
-      Your valuable input can help shape the future direction of sleep apnea
-      research, but first we need your permission to participate in the research
-      community. Please read the
-      = link_to 'privacy policy', privacy_path
-      and informed consent below so that you may begin the research surveys and
-      engage with all aspects of the community!
+- if current_user.provider? || current_user.is_only_researcher?
+  %p.text-muted
+    MyApnea.Org is part of a growing international network of patients, health
+    care providers and researchers. This partnership is built upon the open
+    exchange of information about sleep apnea.
+    %span.f500
+      The following terms of access are required for researchers and care
+      providers to accept in order to access aggregate data for academic
+      purposes.
+- else
+  %p.text-muted
+    Your valuable input can help shape the future direction of sleep apnea
+    research, but first we need your permission to participate in the research
+    community. Please read the
+    = link_to 'privacy policy', privacy_path
+    and informed consent below so that you may begin the research surveys and
+    engage with all aspects of the community!
 
 .consent-container.show-scrollbar
   - if current_user.provider? || current_user.is_only_researcher?

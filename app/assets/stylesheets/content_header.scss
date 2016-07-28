@@ -15,6 +15,8 @@
 }
 
 .jumbotron-action {
+  @include remove-last-child-bottom-margin;
+
   background-color: $primary-blue;
   color: $white;
   text-align: center;

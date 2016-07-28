@@ -72,10 +72,12 @@ class AccountController < ApplicationController
 
   def privacy_policy
     load_content
+    render layout: 'simple'
   end
 
   def consent
     load_content
+    render layout: 'simple'
   end
 
   def terms_of_access

@@ -8,7 +8,6 @@
 // Layout
 @import 'colors';
 @import 'layout';
-@import 'content_header';
 @import 'fonts';
 @import 'content';
 @import 'flash_containers';
@@ -88,3 +87,7 @@
 
 // Survey Building
 @import 'builder';
+
+
+// Other
+@import 'content_header';
