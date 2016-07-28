@@ -6,7 +6,7 @@
     .content-body
       %p.lead
         You may choose to leave the research study at any time. We will no longer collect any information from you and we will stop all communication. However, as stated in the informed consent, the information that you have already provided to
-        = ENV['pprn_title']
+        = ENV['website_name']
         will remain within the study results.
       - if (current_user.is_only_academic?) and (current_user.accepted_consent_at.blank?)
         = link_to 'Review Terms of Access', terms_of_access_path, class: 'btn btn-primary-custom', style: 'width: 49%; margin:.5%; float:left;'

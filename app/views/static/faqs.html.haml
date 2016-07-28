@@ -118,5 +118,5 @@
 .content-container
   %h3.f300.centered
     Have another question?
-    = link_to 'Contact Us', 'mailto:support@myapnea.org'
+    = link_to 'Contact Us', "mailto:#{ENV['support_email']}"
 

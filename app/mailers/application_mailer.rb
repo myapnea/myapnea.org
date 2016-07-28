@@ -2,7 +2,7 @@
 
 # Generic mailer class defines layout and from email address
 class ApplicationMailer < ActionMailer::Base
-  default from: "#{ENV['pprn_title']} <#{ActionMailer::Base.smtp_settings[:email]}>"
+  default from: "#{ENV['website_name']} <#{ActionMailer::Base.smtp_settings[:email]}>"
   add_template_helper(EmailHelper)
   add_template_helper(ForumsHelper)
   layout 'mailer'

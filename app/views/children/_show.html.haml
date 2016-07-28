@@ -42,7 +42,7 @@
       and other advocacy groups working together. Dr. Susan Redline from Brigham
       and Women's Hospital in Boston, MA is in charge of the study. She and her
       staff are available to answer any questions you may have. Please email
-      = mail_to 'support@myapnea.org'
+      = mail_to ENV['support_email']
       with any questions or call 617-732-5859. Research studies include only
       people who want to take part. Please take your time to make your decision
       about participating, and discuss your decision with your family or friends
@@ -140,7 +140,7 @@
       %strong Leave Research Study
       and click the orange button. You can also send an email to the study staff
       at:
-      = mail_to 'support@myapnea.org'
+      = mail_to ENV['support_email']
 
     %p
       %strong
@@ -245,7 +245,7 @@
       %strong 17. Who can answer my questions about the study?
       You can contact the study staff at
       = succeed ',' do
-        = mail_to 'support@myapnea.org'
+        = mail_to ENV['support_email']
       or contact the Principal Investigator, S. Redline at sredline@partners.org
       or 617-732-5859 about any questions, concerns, or complaints you have. If
       you want to speak with someone not directly involved in this research
@@ -374,7 +374,7 @@
         If you have any questions about this information, please contact us by
         email at
         = succeed '.' do
-          = mail_to 'support@myapnea.org'
+          = mail_to ENV['support_email']
         If you wish to be in this study please click the button that says "I
         agree to participate"
   %div{ style: 'max-width: 700px; margin: auto;'}

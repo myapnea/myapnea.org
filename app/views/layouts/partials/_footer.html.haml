@@ -42,4 +42,4 @@
         %br
         = link_to image_tag('myapnea/icons/facebook_icon.png', class: 'share-icons-md'), 'http://www.facebook.com/MyApnea'
         = link_to image_tag('myapnea/icons/twitter_icon.png', class: 'share-icons-md'), 'http://www.twitter.com/myapneaorg'
-        = link_to image_tag('myapnea/icons/email_icon.png', class: 'share-icons-md'), "mailto:support@myapnea.org"
+        = link_to image_tag('myapnea/icons/email_icon.png', class: 'share-icons-md'), "mailto:#{ENV['support_email']}"

@@ -11,4 +11,4 @@
     .content-footer{ style: 'margin-top: 20px' }
       %p
         If you have any questions, please email us at
-        = link_to 'support@myapnea.org', "mailto:#{ENV['pprn_support_email']}"
+        = link_to ENV['support_email'], "mailto:#{ENV['support_email']}"

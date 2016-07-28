@@ -144,7 +144,7 @@
           - if current_user.emails_enabled?
             %p.lead
               You are currently set to receive emails from
-              = ENV['pprn_title']
+              = ENV['website_name']
               %br
               If you prefer, you can
               = link_to 'unsubscribe', update_account_path(user: { emails_enabled: '0' }), method: :patch, class: 'btn btn-warning btn-xs'
@@ -152,7 +152,7 @@
           - else
             %p.lead
               You are currently unsubscribed from emails from
-              = ENV['pprn_title']
+              = ENV['website_name']
               %br
               If you prefer, you can
               = link_to 'enable', update_account_path(user: { emails_enabled: '1' }), method: :patch, class: 'btn btn-primary-custom btn-xs'

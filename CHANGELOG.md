@@ -11,6 +11,7 @@
 
 ### Refactoring
 - Cleaned up existing migration files
+- Simplified configuration options
 
 ## 13.2.1 (July 26, 2016)
 

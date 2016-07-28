@@ -4,7 +4,7 @@
   .panel-body
     - if current_user.beta_opt_in?
       You currently have the <strong>Beta Settings Enabled</strong>. You may opt out of the beta. If you ran into issues that forced you to cancel, consider
-      = link_to 'contacting us', "mailto:#{ENV['pprn_support_email']}"
+      = link_to 'contacting us', "mailto:#{ENV['support_email']}"
       so that we can address any issues before launching the new site changes to a larger audience!
       %div{ style: 'text-align:center;margin-top:10px' }
         = link_to 'Disable Beta', update_account_path(user: { beta_opt_in: '0' }), method: :patch, class: 'btn btn-primary'

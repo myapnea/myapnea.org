@@ -11,7 +11,7 @@
       = link_to 'sleep apnea', 'http://clinicaltrials.gov/ct2/results?term=sleep+apnea&Search=Search'
     On this page are several studies members have brought to our attention which
     may be of interest. Please contact us at
-    = link_to 'support@myapnea.org', 'mailto:support@myapnea.org'
+    = link_to ENV['support_email'], "mailto:#{ENV['support_email']}"
     if you are aware of other studies you feel MyApnea.Org members would be
     interested in learning about. We list these studies to increase awareness of
     current research, without any intention to endorse any specific research

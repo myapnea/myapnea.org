@@ -4,7 +4,7 @@
 
 <% 1.upto(10) do |i| %>
 user_<%= i %>:
-  email: user_<%= i %>@mail.com
+  email: user_<%= i %>@example.com
   first_name: User
   last_name: <%= i %>wski
   zip_code: 12345
@@ -16,7 +16,7 @@ user_<%= i %>:
 <% end %>
 
 has_accepted_privacy:
-  email: prviacy@mail.com
+  email: privacy@example.com
   first_name: Tommy
   last_name: Privacy
   zip_code: 12345
@@ -26,7 +26,7 @@ has_accepted_privacy:
   accepted_privacy_policy_at: <%= 6.day.ago.to_s(:db) %>
 
 has_accepted_consent:
-  email: consent@mail.com
+  email: consent@example.com
   first_name: Tommy
   last_name: Consent
   zip_code: 12345
@@ -89,7 +89,7 @@ moderator_2:
 owner:
   first_name: Own
   last_name: Er
-  email: owner@mail.com
+  email: owner@example.com
   owner: true
   zip_code: 12345
   over_eighteen: true
@@ -101,7 +101,7 @@ owner:
 has_completed_survey:
   first_name: Complete
   last_name: Survey
-  email: cs@mail.com
+  email: cs@example.com
   zip_code: 12345
   over_eighteen: true
   accepted_consent_at: <%= 5.day.ago.to_s(:db) %>
@@ -114,7 +114,7 @@ has_completed_survey:
 has_incomplete_survey:
   first_name: Incomplete
   last_name: Survey
-  email: is@mail.com
+  email: is@example.com
   zip_code: 12345
   accepted_consent_at: <%= 5.day.ago.to_s(:db) %>
   accepted_privacy_policy_at: <%= 6.day.ago.to_s(:db) %>
@@ -127,7 +127,7 @@ has_incomplete_survey:
 has_launched_survey:
   first_name: Unstarted
   last_name: Survey
-  email: us@mail.com
+  email: us@example.com
   zip_code: 12345
   accepted_consent_at: <%= 5.day.ago.to_s(:db) %>
   accepted_privacy_policy_at: <%= 6.day.ago.to_s(:db) %>
@@ -140,7 +140,7 @@ has_launched_survey:
 deleted_moderator:
   first_name: Deleted
   last_name: Mod
-  email: nosupport@myapnea.org
+  email: deleted_moderator@example.com
   moderator: true
   zip_code: 12345
   over_eighteen: true
@@ -424,7 +424,7 @@ api_user:
   forum_name: api_user
 
 heh_1:
-  email: heh_1@mail.com
+  email: heh_1@example.com
   first_name: HeH
   last_name: Member
   zip_code: 12345

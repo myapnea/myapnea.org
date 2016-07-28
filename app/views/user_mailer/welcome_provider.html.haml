@@ -61,7 +61,7 @@
             You can also request electronic graphic links/buttons for
             placement on your website by sending an email to us at
             = succeed '.' do
-              = mail_to 'support@myapnea.org', 'support@myapnea.org', style: link_style
+              = mail_to ENV['support_email'], ENV['support_email'], style: link_style
             We can tag the button so we can report to you how many people have used the
             link to come to the site. You can also just provide a link with the
             statement: "Join the sleep apnea patient-powered movement now" if space is
