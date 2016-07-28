@@ -141,7 +141,7 @@ class ResearchTopicsController < ApplicationController
   end
 
   def set_SEO_elements
-    @page_title = @research_topic.present? ? @research_topic.topic.name : 'Help Create Future Research Topics Related to Sleep Apnea'
+    @title = @research_topic.present? ? @research_topic.topic.name : 'Help Create Future Research Topics Related to Sleep Apnea'
     @page_content = 'Vote on sleep apnea research and encourage sleep research to focus on patient outcomes! The next big sleep study could come from your interest in sleep apnea symptoms and treaments.'
   end
 end

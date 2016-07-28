@@ -11,7 +11,7 @@
 
 .content-container
   %h3 Number of members by category
-  %table.table.table-bordered.table-condensed{ style: 'table-layout:fixed' }
+  %table.table.table-bordered.table-condensed.table-fixed
     %thead
       %tr
         - User::TYPES.each do |name, type|
@@ -52,7 +52,7 @@
   - answer_template = question.first_radio_or_checkbox_answer_template if question
   - answer_option_counts = TemporaryReport.answer_option_counts(@survey, question, answer_template, encounter: @encounter, range: 1..2)
 
-  %table.table.table-bordered.table-condensed{ style: 'table-layout:fixed' }
+  %table.table.table-bordered.table-condensed.table-fixed
     %thead
       %tr
         %th Male
@@ -70,7 +70,7 @@
   - answer_template = question.first_radio_or_checkbox_answer_template if question
   - answer_option_counts = TemporaryReport.answer_option_counts(@survey, question, answer_template, encounter: @encounter, range: [3,5])
 
-  %table.table.table-bordered.table-condensed{ style: 'table-layout:fixed' }
+  %table.table.table-bordered.table-condensed.table-fixed
     %thead
       %tr
         %th White
@@ -88,7 +88,7 @@
   - question = @survey.questions.find_by_slug 'date-of-birth'
   - date_array = question.community_answer_text_values(@encounter).pluck(:text_value).collect{|d| (Date.strptime(d, "%m/%d/%Y") rescue nil)}.compact
 
-  %table.table.table-bordered.table-condensed{ style: 'table-layout:fixed' }
+  %table.table.table-bordered.table-condensed.table-fixed
     %thead
       %tr
         %th 18-34
@@ -111,7 +111,7 @@
   - vote_count = vote_scope.count
   - voters_count = vote_scope.distinct.select(:user_id).count
 
-  %table.table.table-bordered.table-condensed{ style: 'table-layout:fixed' }
+  %table.table.table-bordered.table-condensed.table-fixed
     %thead
       %tr
         %th Research Topics
@@ -129,7 +129,7 @@
   - post_count = post_scope.count
   - posting_user_count = post_scope.distinct.select(:user_id).count
   - topic_count = Topic.current.where(status: ['pending_review', 'approved']).not_research.count
-  %table.table.table-bordered.table-condensed{ style: 'table-layout:fixed' }
+  %table.table.table-bordered.table-condensed.table-fixed
     %thead
       %tr
         %th Posts

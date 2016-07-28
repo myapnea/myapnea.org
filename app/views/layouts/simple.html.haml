@@ -16,7 +16,7 @@
     / For Google Analytics
     %meta{ name: 'google-site-verification', content: 'RHApDe4I99r46ZVk4UVIbuJhXi2oIvUhKO0G7zlVHjo' }
     / For SEO
-    %title= [@title, @page_title, 'MyApnea'].compact.join(' | ').html_safe
+    %title= [@title, 'MyApnea'].compact.join(' | ').html_safe
     %meta{ name: 'description', content: "#{@page_content.present? ? @page_content : 'Sleep Apnea Research and Community for Patient Outcomes'}" }
     %meta{ name: 'keywords', content: @keywords.present? ? @keywords : 'sleep apnea, cpap devise, research study, sleep apnea forums, sleep apnea help' }
     = favicon_link_tag
@@ -25,8 +25,8 @@
     = stylesheet_link_tag 'application', media: 'all', data: { turbolinks_track: true }
     = javascript_include_tag 'application', data: { turbolinks_track: true }
     = javascript_tag "var root_url='#{request.script_name + '/'}';"
-  %body{ style: "background-color: #{@background_color || '#fff' || '#e6edf4'};margin-bottom: 0;margin-top:0;padding-top:0" }
-    = yield :banner
+  %body{ class: yield(:body_class), style: 'margin-bottom 0; margin-top: 0; padding-top: 0' }
+    = yield :header
     %div{ style: 'height: 20px' }
       &nbsp;
     .hidden-xs{ style: 'height: 20px' }

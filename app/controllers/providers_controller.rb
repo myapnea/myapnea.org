@@ -35,7 +35,7 @@ class ProvidersController < ApplicationController
   end
 
   def set_SEO_elements
-    @page_title = @provider.present? ? ('Sleep Provider - ' + @provider.provider_name) : 'Sleep Apnea Care Providers Registered with MyApnea'
+    @title = @provider.present? ? ('Sleep Provider - ' + @provider.provider_name) : 'Sleep Apnea Care Providers Registered with MyApnea'
     @page_content = 'Sleep apnea care providers can play a large role in improving quality of life for their patients with sleep apnea symptoms and diagnosed sleep apnea.'
   end
 end

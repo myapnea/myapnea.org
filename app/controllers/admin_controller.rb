@@ -202,42 +202,41 @@ class AdminController < ApplicationController
 
   private
 
-    def set_SEO_elements
-      @page_title = 'Admin Panel'
-      @page_content = 'Administrative panel only for owners and moderators of MyApnea.'
-    end
+  def set_SEO_elements
+    @title = 'Admin Panel'
+    @page_content = 'Administrative panel only for owners and moderators of MyApnea.'
+  end
 
-    def daily_data(date1, date2)
-      @users_by_date = User.where("created_at >= ? AND created_at <= ?", date1.beginning_of_day, date2.end_of_day)
+  def daily_data(date1, date2)
+    @users_by_date = User.where("created_at >= ? AND created_at <= ?", date1.beginning_of_day, date2.end_of_day)
 
-      @survey = Survey.current.find_by_slug 'about-me'
-      @encounter = Encounter.current.find_by_slug 'baseline'
+    @survey = Survey.current.find_by_slug 'about-me'
+    @encounter = Encounter.current.find_by_slug 'baseline'
 
-      question = @survey.questions.find_by_slug 'date-of-birth'
-      dobs = question.community_answer_text_values(@encounter).joins(answer: :answer_session).where(answer_sessions: { user_id: @users_by_date.select(:id) }).where.not(text_value: ['', nil]).pluck(:text_value)
+    question = @survey.questions.find_by_slug 'date-of-birth'
+    dobs = question.community_answer_text_values(@encounter).joins(answer: :answer_session).where(answer_sessions: { user_id: @users_by_date.select(:id) }).where.not(text_value: ['', nil]).pluck(:text_value)
 
-      @ages = Hash.new
-      @ages[0] = {text: "18-34", count: 0}
-      @ages[1] = {text: "35-49", count: 0}
-      @ages[2] = {text: "50-64", count: 0}
-      @ages[3] = {text: "65-75", count: 0}
-      @ages[4] = {text: "76+", count: 0}
-      dobs.each do |dob|
-        case ((Date.today - Date.strptime(dob,"%m/%d/%Y")).days / 1.year rescue nil)
-        when 18..35
-          @ages[0][:count]+= 1
-        when 35..50
-          @ages[1][:count]+= 1
-        when 50..65
-          @ages[2][:count]+= 1
-        when 65..75
-          @ages[3][:count]+= 1
-        when 75..200
-          @ages[4][:count]+= 1
-        else
-          nil
-        end
+    @ages = Hash.new
+    @ages[0] = {text: "18-34", count: 0}
+    @ages[1] = {text: "35-49", count: 0}
+    @ages[2] = {text: "50-64", count: 0}
+    @ages[3] = {text: "65-75", count: 0}
+    @ages[4] = {text: "76+", count: 0}
+    dobs.each do |dob|
+      case ((Date.today - Date.strptime(dob,"%m/%d/%Y")).days / 1.year rescue nil)
+      when 18..35
+        @ages[0][:count]+= 1
+      when 35..50
+        @ages[1][:count]+= 1
+      when 50..65
+        @ages[2][:count]+= 1
+      when 65..75
+        @ages[3][:count]+= 1
+      when 75..200
+        @ages[4][:count]+= 1
+      else
+        nil
       end
     end
-
+  end
 end

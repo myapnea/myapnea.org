@@ -7,3 +7,11 @@ body {
   margin-bottom: $footer-height;
   padding-top: $header-height + 1px; // Includes 1px border bottom of menu
 }
+
+.brand-background {
+  background-color: $primary-blue;
+}
+
+.gray-background {
+  background-color: #f9f9f9;
+}
