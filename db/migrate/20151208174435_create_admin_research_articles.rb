@@ -11,10 +11,8 @@ class CreateAdminResearchArticles < ActiveRecord::Migration[4.2]
       t.string :author
       t.string :credentials
       t.text :references
-
       t.timestamps null: false
     end
-
     add_index :admin_research_articles, :position
   end
 end

@@ -1,13 +1,7 @@
 class RemovePendingReviewFromForemTopicsAddState < ActiveRecord::Migration[4.2]
-  def up
-    remove_column :forem_topics, :pending_review
-    add_column :forem_topics, :state, :string, :default => 'pending_review'
+  def change
+    remove_column :forem_topics, :pending_review, :boolean, default: true
+    add_column :forem_topics, :state, :string, default: 'pending_review'
     add_index :forem_topics, :state
-  end
-
-  def down
-    remove_index :forem_topics, :state
-    remove_column :forem_topics, :state
-    add_column :forem_topics, :pending_review, :boolean, :default => true
   end
 end

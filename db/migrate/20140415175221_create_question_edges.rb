@@ -7,7 +7,6 @@ class CreateQuestionEdges < ActiveRecord::Migration[4.2]
       t.string :condition
       t.boolean :direct
       t.integer :count
-
       t.timestamps
     end
   end

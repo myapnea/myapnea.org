@@ -11,7 +11,6 @@ class CreateQuestionFlows < ActiveRecord::Migration[4.2]
       t.text :tsorted_edges
       t.decimal :longest_time
       t.integer :longest_path
-
       t.timestamps
     end
   end

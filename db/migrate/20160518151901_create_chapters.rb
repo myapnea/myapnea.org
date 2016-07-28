@@ -8,10 +8,8 @@ class CreateChapters < ActiveRecord::Migration[4.2]
       t.datetime :last_reply_at
       t.integer :view_count, null: false, default: 0
       t.boolean :deleted, null: false, default: false
-
       t.timestamps null: false
     end
-
     add_index :chapters, :slug
     add_index :chapters, :user_id
     add_index :chapters, :pinned

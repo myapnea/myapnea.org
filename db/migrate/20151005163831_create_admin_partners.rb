@@ -9,7 +9,6 @@ class CreateAdminPartners < ActiveRecord::Migration[4.2]
       t.integer :position
       t.boolean :deleted, default: false, null: false
       t.boolean :displayed, default: true, null: false
-
       t.timestamps null: false
     end
   end

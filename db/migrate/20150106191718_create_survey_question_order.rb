@@ -7,9 +7,7 @@ class CreateSurveyQuestionOrder < ActiveRecord::Migration[4.2]
       t.float :remaining_time
       t.integer :remaining_distance
     end
-
     add_index :survey_question_orders, [:question_flow_id, :question_id], name: :index_sqo_on_qf_and_q
-
     rename_column :question_flows, :tsorted_edges, :tsorted_nodes
   end
 end

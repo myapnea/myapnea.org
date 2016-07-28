@@ -14,7 +14,6 @@ class RemoveQuestionEdgeTable < ActiveRecord::Migration[4.2]
       t.string :condition
       t.boolean :direct
       t.integer :count
-
       t.timestamps
     end
     add_index :question_edges, :parent_question_id

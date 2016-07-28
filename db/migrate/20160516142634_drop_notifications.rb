@@ -14,7 +14,6 @@ class DropNotifications < ActiveRecord::Migration[4.2]
       t.string   :author
       t.text     :introduction
       t.boolean  :deleted, default: false, null: false
-
       t.timestamps null: false
     end
   end

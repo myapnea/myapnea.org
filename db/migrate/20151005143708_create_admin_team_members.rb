@@ -9,7 +9,6 @@ class CreateAdminTeamMembers < ActiveRecord::Migration[4.2]
       t.text :bio
       t.string :photo
       t.boolean :deleted, default: false, null: false
-
       t.timestamps null: false
     end
   end

@@ -10,7 +10,6 @@ class CreateAdminClinicalTrials < ActiveRecord::Migration[4.2]
       t.string :link
       t.boolean :deleted, null: false, default: false
       t.boolean :displayed, null: false, default: true
-
       t.timestamps null: false
     end
   end

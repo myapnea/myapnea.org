@@ -5,7 +5,6 @@ class CreateAnswerSessions < ActiveRecord::Migration[4.2]
       t.references :question_flow
       t.integer :first_answer_id
       t.integer :last_answer_id
-
       t.timestamps
     end
   end

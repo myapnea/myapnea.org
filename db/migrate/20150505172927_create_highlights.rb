@@ -5,7 +5,6 @@ class CreateHighlights < ActiveRecord::Migration[4.2]
       t.text :description
       t.string :photo
       t.datetime :display_date
-
       t.timestamps null: false
     end
   end

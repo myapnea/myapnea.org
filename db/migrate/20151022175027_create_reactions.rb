@@ -5,10 +5,8 @@ class CreateReactions < ActiveRecord::Migration[4.2]
       t.integer :user_id
       t.string :form
       t.boolean :deleted, default: false, null: false
-
       t.timestamps null: false
     end
-
     add_index :reactions, :post_id
     add_index :reactions, :user_id
   end

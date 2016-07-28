@@ -11,10 +11,8 @@ class CreateEngagements < ActiveRecord::Migration[4.2]
       t.boolean :deleted, null: false, default: false
       t.string :text
       t.string :response_placeholder
-
       t.timestamps null: false
     end
-
     add_index :engagements, :user_id
   end
 end

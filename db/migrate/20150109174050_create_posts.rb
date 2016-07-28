@@ -9,10 +9,8 @@ class CreatePosts < ActiveRecord::Migration[4.2]
       t.datetime :last_moderated_at
       t.boolean :hidden, null: false, default: false
       t.boolean :deleted, null: false, default: false
-
       t.timestamps null: false
     end
-
     add_index :posts, :topic_id
     add_index :posts, :user_id
     add_index :posts, :last_moderated_by_id

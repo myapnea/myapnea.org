@@ -4,10 +4,8 @@ class CreateAdminCategories < ActiveRecord::Migration[4.2]
       t.string :name
       t.string :slug
       t.boolean :deleted, null: false, default: false
-
       t.timestamps null: false
     end
-
     add_index :admin_categories, :slug, unique: true
     add_index :admin_categories, :deleted
     add_column :broadcasts, :category_id, :integer

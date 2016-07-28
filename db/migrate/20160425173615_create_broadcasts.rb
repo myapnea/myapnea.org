@@ -12,10 +12,8 @@ class CreateBroadcasts < ActiveRecord::Migration[4.2]
       t.boolean :archived, null: false, default: false
       t.boolean :published, null: false, default: false
       t.boolean :deleted, null: false, default: false
-
       t.timestamps null: false
     end
-
     add_index :broadcasts, :slug, unique: true
     add_index :broadcasts, :user_id
     add_index :broadcasts, :publish_date

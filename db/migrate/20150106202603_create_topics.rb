@@ -11,10 +11,8 @@ class CreateTopics < ActiveRecord::Migration[4.2]
       t.string :state, default: 'pending_review'
       t.integer :views_count, null: false, default: 0
       t.string :slug
-
       t.timestamps null: false
     end
-
     add_index :topics, :forum_id
     add_index :topics, :user_id
     add_index :topics, :slug, unique: true

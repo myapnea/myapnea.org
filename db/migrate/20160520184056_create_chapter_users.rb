@@ -5,7 +5,6 @@ class CreateChapterUsers < ActiveRecord::Migration[4.2]
       t.integer :user_id
       t.integer :current_reply_read_id
       t.integer :last_reply_read_id
-
       t.timestamps null: false
     end
     add_index :chapter_users, [:chapter_id, :user_id], unique: true

@@ -4,11 +4,8 @@ class CreateSocialProfiles < ActiveRecord::Migration[4.2]
       t.string :name
       t.integer :age
       t.string :sex
-
       # Profile Photo
       t.string :photo
-
-
       # Geocoding
       t.float :latitude
       t.float :longitude
@@ -16,13 +13,10 @@ class CreateSocialProfiles < ActiveRecord::Migration[4.2]
       t.string :location
       t.boolean :show_location, default: false, null: false
       t.boolean :show_karma, default: false, null: false
-
       # User Foreign Key
       t.integer :user_id
-
       # Forem
       t.timestamp :accepted_forum_rules_at
-
       t.timestamps
     end
   end

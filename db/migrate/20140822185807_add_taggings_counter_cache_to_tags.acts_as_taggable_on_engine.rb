@@ -1,9 +1,5 @@
 class AddTaggingsCounterCacheToTags < ActiveRecord::Migration[4.2]
-  def self.up
+  def change
     add_column :tags, :taggings_count, :integer, default: 0
-  end
-
-  def self.down
-    remove_column :tags, :taggings_count
   end
 end

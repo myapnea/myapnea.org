@@ -12,7 +12,6 @@ class CreateAnswerTemplates < ActiveRecord::Migration[4.2]
     create_table :answer_templates_questions do |t|
       t.references :question
       t.references :answer_template
-
       t.timestamps
     end
   end

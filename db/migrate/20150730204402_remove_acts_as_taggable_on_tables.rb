@@ -17,7 +17,6 @@ class RemoveActsAsTaggableOnTables < ActiveRecord::Migration[4.2]
       t.string   :context,       limit: 128
       t.datetime :created_at
     end
-
     add_index :taggings, [:tag_id, :taggable_id, :taggable_type, :context, :tagger_id, :tagger_type], unique: true, name: 'taggings_idx'
     add_index :taggings, [:taggable_id, :taggable_type, :context]
 
@@ -25,7 +24,6 @@ class RemoveActsAsTaggableOnTables < ActiveRecord::Migration[4.2]
       t.string  :name
       t.integer :taggings_count, default: 0
     end
-
     add_index :tags, :name, unique: true
   end
 end

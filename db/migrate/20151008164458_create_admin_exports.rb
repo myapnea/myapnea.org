@@ -8,10 +8,8 @@ class CreateAdminExports < ActiveRecord::Migration[4.2]
       t.string :status, null: false, default: 'started'
       t.datetime :file_created_at
       t.text :details
-
       t.timestamps null: false
     end
-
     add_index :admin_exports, :user_id
   end
 end

@@ -5,7 +5,6 @@ class CreateAnswerOptions < ActiveRecord::Migration[4.2]
       t.string :text_value_en
       t.string :text_value_es
       t.datetime :time_value
-
       t.timestamps
     end
   end

@@ -6,7 +6,6 @@ class CreateQuestions < ActiveRecord::Migration[4.2]
       t.references :question_help_message
       t.integer :group_id
       t.decimal :time_estimate
-
       t.timestamps
     end
   end

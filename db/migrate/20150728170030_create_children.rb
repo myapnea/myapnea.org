@@ -6,10 +6,8 @@ class CreateChildren < ActiveRecord::Migration[4.2]
       t.integer :age
       t.datetime :accepted_consent_at
       t.boolean :deleted
-
       t.timestamps null: false
     end
-
     add_index :children, :user_id
     add_index :children, :deleted
     add_index :children, [:user_id, :deleted]

@@ -4,7 +4,6 @@ class CreateAnswers < ActiveRecord::Migration[4.2]
       t.references :question
       t.references :answer_session
       t.references :user
-
       t.timestamps
     end
   end
