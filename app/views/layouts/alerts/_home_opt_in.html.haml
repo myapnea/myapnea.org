@@ -1,6 +1,0 @@
-.alert.alert-info.fade.in{ style: 'margin-top:5px; margin-bottom:10px' }
-  %button{ type: 'button', class: 'close', data: { dismiss: 'alert', object: 'set-cookie', cookie_key: 'acknowledged_beta_open', cookie_value: '1'  }, aria: { label: 'Close'} }
-    %span{ aria: { hidden: 'true'} } &times;
-  %strong We've released a new version of this site!
-  You can join the new version now and help us improve!
-  = link_to 'Enable Beta', update_account_path(user: { beta_opt_in: '1' }), method: :patch, class: 'btn btn-primary'

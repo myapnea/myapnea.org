@@ -32,7 +32,6 @@
   mapsReady() if mapsReady?
   shareIconsReady() if shareIconsReady?
   drawSurveyProgressReady() if drawSurveyProgressReady?
-  videoControlsReady() if videoControlsReady?
   surveyAnimationReady() if surveyAnimationReady?
   registrationUXReady() if registrationUXReady?
   validationReady() if validationReady?

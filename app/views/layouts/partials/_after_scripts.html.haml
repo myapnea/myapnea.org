@@ -1,7 +1,0 @@
--# Take any Javascript included via content_for block, and inject it here
-- if content_for :js
-  :javascript
-    function main() {
-      #{yield :js}
-    }
-    $(document).ready(main);
