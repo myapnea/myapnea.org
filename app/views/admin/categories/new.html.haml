@@ -1,12 +1,11 @@
 - @title = 'New Category'
 
-- content_for :banner do
-  .content-main-header
-    .container
-      %h1
-        = link_to 'Categories', admin_categories_path
-        &middot;
-        New
+.content-main-header2
+  %h1
+    = link_to 'Admin Dashboard', admin_path
+    &middot;
+    = link_to 'Categories', admin_categories_path
+    &middot;
+    New
 
-- @background_color = '#fff'
-.container= render 'form'
+= render 'form'

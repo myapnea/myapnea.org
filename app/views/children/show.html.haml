@@ -1,23 +1,20 @@
-.content-main-header
-  .container
-    %h1.f300
-      = link_to 'Children', children_path
-      &middot;
-      = @child.first_name
-    %p
-      = link_to 'Edit Child', edit_child_path(@child), class: 'btn btn-xs btn-default'
-      = link_to 'Remove Child', @child, method: :delete, data: { confirm: 'Are you sure you want to remove records of this child?' }, class: 'btn btn-xs btn-danger'
+.content-main-header2
+  %h1
+    = link_to 'My Children', children_path
+    &middot;
+    = @child.first_name
+  %p
+    = link_to 'Edit Child', edit_child_path(@child), class: 'btn btn-xs btn-default'
+    = link_to 'Remove Child', @child, method: :delete, data: { confirm: 'Are you sure you want to remove records of this child?' }, class: 'btn btn-xs btn-danger'
 
-.container
-  .content-container
-    %dl.dl-horizontal
-      %dt First name
-      %dd= @child.first_name
+%dl.dl-horizontal
+  %dt First name
+  %dd= @child.first_name
 
-      %dt
-        %strong Age
-      %dd= @child.age
+  %dt
+    %strong Age
+  %dd= @child.age
 
-      %dt
-        %strong Accepted consent at
-      %dd= @child.accepted_consent_at
+  %dt
+    %strong Accepted consent at
+  %dd= @child.accepted_consent_at

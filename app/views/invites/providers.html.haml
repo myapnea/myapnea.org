@@ -1,22 +1,20 @@
-.content-main-header
-  .container
-    %h1 Invite your personal care provider!
+.content-main-header2
+  %h1 Invite your personal care provider!
 
-.container.with-padding-y
-  .content-container
-    %p
-      It takes a large community to make an impact. Invite your personal care provider, and help us make a difference!
-    = form_for @invite, html: { class: 'form-horizontal' } do |f|
-      = f.hidden_field :for_provider, value: true
-      .form-group
-        = f.label :email, class: 'control-label col-md-2'
-        .col-md-8
-          = f.email_field :email, class: 'form-control'
-      .form-group
-        .col-md-8.col-md-offset-2
-          = f.submit 'Send Invitation', class: 'btn btn-primary'
-    %br
-    .content-footer
-      %p.small
-        Is your provider already a member of MyApnea.Org?
-        = link_to 'Check here!', providers_path, target: '_blank'
+.jumbotron.primary-blue-bcg
+  %p
+    It takes a large community to make an impact. Invite your personal care provider, and help us make a difference!
+
+= form_for @invite, html: { class: 'form-horizontal' } do |f|
+  = f.hidden_field :for_provider, value: true
+  .form-group
+    = f.label :email, class: 'control-label col-md-2'
+    .col-md-8
+      = f.email_field :email, class: 'form-control'
+  .form-group
+    .col-md-8.col-md-offset-2
+      = f.submit 'Send Invitation', class: 'btn btn-primary'
+%br
+%p.text-center
+  Is your provider already a member of MyApnea.Org?
+  = link_to 'Check here!', providers_path

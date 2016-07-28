@@ -1,20 +1,16 @@
-.content-main-header
-  .container
-    %h1
-      = link_to admin_exports_path do
-        Data Exports
-      &middot;
-      Export
-      = @admin_export.name
+- @title = 'Data Export'
 
-.container
-  .content-container
-    %h3.f300 Export Status
+.content-main-header2
+  %h1
+    = link_to admin_exports_path do
+      Data Exports
+    &middot;
+    Export
+    = @admin_export.name
 
-    #progress{ data: { object: "#{'ajax-timer' if @admin_export.status == 'started'}", path: progress_admin_export_path(@admin_export) } }
-      = render 'admin/exports/progress'
+#progress{ data: { object: "#{'ajax-timer' if @admin_export.status == 'started'}", path: progress_admin_export_path(@admin_export) } }
+  = render 'admin/exports/progress'
 
-    %p
-      %strong Creator
-      = @admin_export.user.name
-
+%p
+  %strong Creator
+  = @admin_export.user.name

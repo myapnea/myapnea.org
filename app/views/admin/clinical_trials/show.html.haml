@@ -1,3 +1,14 @@
-.container
-  .content-container
-    = render @admin_clinical_trial
+- @title = "Edit Clinical Trial: #{@admin_clinical_trial.title}"
+
+.content-main-header2
+  %h1
+    = link_to 'Admin Dashboard', admin_path
+    &middot;
+    = link_to 'Clinical Trials', admin_clinical_trials_path
+    &middot;
+    = @admin_clinical_trial.title
+    = link_to edit_admin_clinical_trial_path(@admin_clinical_trial), class: 'btn btn-xs btn-default' do
+      %span.glyphicon.glyphicon-edit
+      Edit Clinical Trial
+
+= render @admin_clinical_trial

@@ -1,44 +1,42 @@
-.content-main-header
-  .container
-    %h1 Research Proposal
-    %p= link_to 'Back to Research Topics', research_topics_path, class: 'no-underline'
-%br
-.container
-  .row
-    .col-sm-8
-      - if @research_topic.research_article.present?
-        .content-container
-          %strong
-            A research article was written in response to this questions, because it was one of the top rated topics according to our users.
-            = succeed '!' do
-              = link_to 'Read the article', accepted_article_research_topics_path(@research_topic.research_article), target: '_blank'
-      = render 'research_topics/displays/standard', research_topic: @research_topic
-      - if current_user
-        - if current_user.cast_vote_for?(@research_topic)
-          = render 'research_topics/interactions/already_voted', research_topic: @research_topic
-        - if @research_topic.votes.count > 0
-          .content-container
-            = render 'research_topics/interactions/endorsement', research_topic: @research_topic
-            %hr
-            - @topic.posts.offset(1).each do |post|
-              = render 'research_topics/comments/comment', comment: post
+.content-main-header2
+  %h1 Research Proposal
+  %p= link_to 'Back to Research Topics', research_topics_path, class: 'no-underline'
 
-    .col-sm-4
-      - if current_user
-        - if current_user.owner? || current_user.moderator?
-          .admin-container
-            Admins:
-            %br
-            - if @topic.status == 'approved'
-              = link_to 'Update Progress', edit_research_topic_path(@research_topic), class: 'btn btn-xs btn-primary' if current_user.owner?
-            - elsif @topic.status == 'pending_review'
-              = link_to 'Approve Research Topic', topic_path(@topic, topic: { status: 'approved' }), method: :patch, class: 'btn btn-success btn-xs'
-              = link_to 'Reject Research Topic', topic_path(@topic, topic: { status: 'hidden' }), method: :patch, class: 'btn btn-danger btn-xs'
-            - elsif @topic.status == 'hidden'
-              %span.small Currently hidden.
-              = link_to 'Approve Research Topic', topic_path(@topic, topic: { status: 'approved' }), method: :patch, class: 'btn btn-success btn-xs'
-            = link_to 'Edit Topic', edit_topic_path(@research_topic.topic), class: 'btn btn-primary btn-xs'
-            = link_to 'Edit Post', edit_topic_post_path(@research_topic.topic, @research_topic.topic.posts.first), class: 'btn btn-primary btn-xs'
-      - else
-        = render 'home/join_the_community', referrer: 'research', message: 'Make a direct impact on the future of sleep apnea research'
-      = render 'research_topics/sidebar'
+.row
+  .col-sm-8
+    - if @research_topic.research_article.present?
+      .content-container
+        %strong
+          A research article was written in response to this questions, because it was one of the top rated topics according to our users.
+          = succeed '!' do
+            = link_to 'Read the article', accepted_article_research_topics_path(@research_topic.research_article), target: '_blank'
+    = render 'research_topics/displays/standard', research_topic: @research_topic
+    - if current_user
+      - if current_user.cast_vote_for?(@research_topic)
+        = render 'research_topics/interactions/already_voted', research_topic: @research_topic
+      - if @research_topic.votes.count > 0
+        .content-container
+          = render 'research_topics/interactions/endorsement', research_topic: @research_topic
+          %hr
+          - @topic.posts.offset(1).each do |post|
+            = render 'research_topics/comments/comment', comment: post
+
+  .col-sm-4
+    - if current_user
+      - if current_user.owner? || current_user.moderator?
+        .admin-container
+          Admins:
+          %br
+          - if @topic.status == 'approved'
+            = link_to 'Update Progress', edit_research_topic_path(@research_topic), class: 'btn btn-xs btn-primary' if current_user.owner?
+          - elsif @topic.status == 'pending_review'
+            = link_to 'Approve Research Topic', topic_path(@topic, topic: { status: 'approved' }), method: :patch, class: 'btn btn-success btn-xs'
+            = link_to 'Reject Research Topic', topic_path(@topic, topic: { status: 'hidden' }), method: :patch, class: 'btn btn-danger btn-xs'
+          - elsif @topic.status == 'hidden'
+            %span.small Currently hidden.
+            = link_to 'Approve Research Topic', topic_path(@topic, topic: { status: 'approved' }), method: :patch, class: 'btn btn-success btn-xs'
+          = link_to 'Edit Topic', edit_topic_path(@research_topic.topic), class: 'btn btn-primary btn-xs'
+          = link_to 'Edit Post', edit_topic_post_path(@research_topic.topic, @research_topic.topic.posts.first), class: 'btn btn-primary btn-xs'
+    - else
+      = render 'home/join_the_community', referrer: 'research', message: 'Make a direct impact on the future of sleep apnea research'
+    = render 'research_topics/sidebar'

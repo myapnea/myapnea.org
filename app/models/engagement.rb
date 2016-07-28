@@ -1,21 +1,18 @@
 # frozen_string_literal: true
 
 class Engagement < ApplicationRecord
-  # Default Scope
-  # Constants
-  # Attribute related macros
   # Associations
   belongs_to :user
   has_many :engagement_responses
 
-  # Validations
-  # Callback
-  # Other macros
   # Concerns
   include Deletable
 
-  # Named scopes
   # Methods
+  def name
+    "##{id}"
+  end
+
   def user_types
     User::TYPES.collect do |label, user_type|
       user_type if self[user_type]

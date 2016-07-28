@@ -1,8 +1,13 @@
-.content-main-header
-  .container
-    %h1 Editing Team Member
-    %p= link_to 'Back', admin_team_members_path
+- @title = "Edit Team Member: #{@admin_team_member.name_was}"
 
-.container
-  .content-container
-    = render 'form'
+.content-main-header2
+  %h1
+    = link_to 'Admin Dashboard', admin_path
+    &middot;
+    = link_to 'Team Members', admin_team_members_path
+    &middot;
+    = link_to @admin_team_member.name_was, @admin_team_member
+    &middot;
+    Edit
+
+= render 'form'

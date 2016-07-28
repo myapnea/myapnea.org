@@ -1,15 +1,13 @@
-- @background_color = '#fff'
-.content-main-header
-  .container
-    %h1
-      = link_to 'Surveys', builder_surveys_path
-      &middot;
-      = link_to @survey.name, builder_survey_path(@survey)
-      &middot;
-      = link_to @question.slug, builder_survey_question_path(@survey, @question)
-      &middot;
-      = link_to @answer_template.name, builder_survey_question_answer_template_path(@survey, @question, @answer_template)
-      &middot;
-      New Answer Option
+.content-main-header2
+  %h1
+    = link_to 'Surveys', builder_surveys_path
+    &middot;
+    = link_to @survey.name, builder_survey_path(@survey)
+    &middot;
+    = link_to @question.slug, builder_survey_question_path(@survey, @question)
+    &middot;
+    = link_to @answer_template.name, builder_survey_question_answer_template_path(@survey, @question, @answer_template)
+    &middot;
+    New Answer Option
 
-.container= render 'builder/answer_options/form'
+= render 'builder/answer_options/form'

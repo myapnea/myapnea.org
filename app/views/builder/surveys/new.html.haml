@@ -1,9 +1,7 @@
-- @background_color = '#fff'
-.content-main-header
-  .container
-    %h1
-      = link_to 'Surveys', builder_surveys_path
-      &middot;
-      New Survey
+.content-main-header2
+  %h1
+    = link_to 'Surveys', builder_surveys_path
+    &middot;
+    New Survey
 
-.container= render 'form'
+= render 'form'

@@ -1,9 +1,6 @@
-.content-main-header
-  .container
-    %h1 Edit Research Topic
+.content-main-header2
+  %h1 Edit Research Topic
 
-.container
-  .content-container
-    %p.lead= @research_topic.topic.name
-    = render "research_topics/progress_form", research_topic: @research_topic
+%p.lead= @research_topic.topic.name
+= render "research_topics/progress_form", research_topic: @research_topic
 

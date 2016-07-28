@@ -4,11 +4,8 @@ class ResearchTopicsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
   before_action :set_research_topic, only: [:show, :edit, :update, :destroy]
   before_action :redirect_beginner, only: [:newest, :most_discussed, :index, :show, :new, :create, :my_research_topics]
-  before_action :no_layout, only: [:research_topics]
   before_action :set_active_top_nav_link_to_research
   before_action :set_SEO_elements
-
-  layout 'research_topics'
 
   def intro
     redirect_to research_topics_path and return if !current_user
@@ -34,7 +31,7 @@ class ResearchTopicsController < ApplicationController
     @research_topics = ResearchTopic.approved
     @new_research_topic = ResearchTopic.new
     respond_to do |format|
-      format.html { render layout: 'layouts/research_topics'}
+      format.html
       format.json
     end
   end

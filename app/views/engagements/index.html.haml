@@ -3,8 +3,7 @@
     = link_to 'Admin Dashboard', admin_path
     &middot;
     Engagements
-  %p
-    = link_to 'New Engagement', new_engagement_path
+    = link_to 'New Engagement', new_engagement_path, class: 'btn btn-xs btn-primary'
 
 - @engagements.each do |engagement|
   = render engagement

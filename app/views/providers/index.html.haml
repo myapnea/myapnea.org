@@ -1,27 +1,25 @@
-.content-main-header
-  .container
-    %h1 Providers on MyApnea.Org
+.content-main-header2
+  %h1 Providers on MyApnea.Org
 
-.container
-  .pull-right
-    = form_tag providers_path, method: :get, class: 'form-inline', style: 'margin: 20px 20px;' do
-      .input-group
-        = text_field_tag 's', params[:s], class: 'form-control'
-        %span.input-group-btn
-          = submit_tag 'Search', class: 'btn btn-primary', name: nil
+.pull-right
+  = form_tag providers_path, method: :get, class: 'form-inline', style: 'margin: 20px 20px;' do
+    .input-group
+      = text_field_tag 's', params[:s], class: 'form-control'
+      %span.input-group-btn
+        = submit_tag 'Search', class: 'btn btn-primary', name: nil
 
-  .clearfix
+.clearfix
 
-  - if @providers.count == 0 and params[:s].present?
-    %p.lead.centered
-      Sorry, we could not find any providers matching your search:
-      %code= params[:s]
-  - else
-    #current-provider-list
-      = render 'providers/show_group'
+- if @providers.count == 0 and params[:s].present?
+  %p.lead.centered
+    Sorry, we could not find any providers matching your search:
+    %code= params[:s]
+- else
+  #current-provider-list
+    = render 'providers/show_group'
 
 
-  - unless current_user
-    .content-container
-      .centered
-        = link_to 'Become a Provider', new_provider_path, class: 'btn btn-lg btn-primary'
+- unless current_user
+  .content-container
+    .centered
+      = link_to 'Become a Provider', new_provider_path, class: 'btn btn-lg btn-primary'

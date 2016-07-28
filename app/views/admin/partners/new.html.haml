@@ -1,8 +1,9 @@
-.content-main-header
-  .container
-    %h1 New Partner
-    %p= link_to 'Back', admin_partners_path
+.content-main-header2
+  %h1
+    = link_to 'Admin Dashboard', admin_path
+    &middot;
+    = link_to 'Partners', admin_partners_path
+    &middot;
+    New
 
-.container
-  .content-container
-    = render 'form'
+= render 'form'

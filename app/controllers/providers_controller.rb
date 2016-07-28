@@ -1,12 +1,11 @@
 # frozen_string_literal: true
 
 class ProvidersController < ApplicationController
-  before_action :set_provider,              only: [ :show ] # , :edit, :update, :destroy
-  before_action :redirect_without_provider, only: [ :show ] # , :edit, :update, :destroy
-
+  before_action :set_provider,              only: [:show] # , :edit, :update, :destroy
+  before_action :redirect_without_provider, only: [:show] # , :edit, :update, :destroy
   before_action :set_SEO_elements
 
-  layout 'providers'
+  # layout 'providers'
 
   def index
     provider_scope = User.providers_with_profiles
@@ -19,6 +18,7 @@ class ProvidersController < ApplicationController
   end
 
   def show
+    render layout: 'providers'
   end
 
   def more
@@ -29,17 +29,16 @@ class ProvidersController < ApplicationController
 
   protected
 
-    def set_provider
-      @provider = User.current.providers.find_by_slug(params[:id])
-    end
+  def set_provider
+    @provider = User.current.providers.find_by_slug(params[:id])
+  end
 
-    def redirect_without_provider
-      empty_response_or_root_path(providers_path) unless @provider
-    end
+  def redirect_without_provider
+    empty_response_or_root_path(providers_path) unless @provider
+  end
 
-    def set_SEO_elements
-      @page_title = @provider.present? ? ('Sleep Provider - ' + @provider.provider_name) : 'Sleep Apnea Care Providers Registered with MyApnea'
-      @page_content = 'Sleep apnea care providers can play a large role in improving quality of life for their patients with sleep apnea symptoms and diagnosed sleep apnea.'
-    end
-
+  def set_SEO_elements
+    @page_title = @provider.present? ? ('Sleep Provider - ' + @provider.provider_name) : 'Sleep Apnea Care Providers Registered with MyApnea'
+    @page_content = 'Sleep apnea care providers can play a large role in improving quality of life for their patients with sleep apnea symptoms and diagnosed sleep apnea.'
+  end
 end

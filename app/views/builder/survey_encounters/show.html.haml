@@ -1,39 +1,36 @@
-- @background_color = '#fff'
-.content-main-header
-  .container
-    %h1
-      = link_to 'Surveys', builder_surveys_path
-      &middot;
-      = link_to @survey.name, builder_survey_path(@survey)
-      &middot;
-      = @survey_encounter.encounter.name
+.content-main-header2
+  %h1
+    = link_to 'Surveys', builder_surveys_path
+    &middot;
+    = link_to @survey.name, builder_survey_path(@survey)
+    &middot;
+    = @survey_encounter.encounter.name
 
-    - if @survey.editable_by?(current_user)
-      = link_to 'Edit Survey Encounter', edit_builder_survey_survey_encounter_path(@survey, @survey_encounter), class: 'btn btn-xs btn-default'
-      = link_to 'Delete Survey Encounter', builder_survey_survey_encounter_path(@survey, @survey_encounter), method: :delete, class: 'btn btn-xs btn-danger', data: { confirm: "Are you sure you want to delete Survey Encounter #{@survey_encounter.encounter.name}?" }
+  - if @survey.editable_by?(current_user)
+    = link_to 'Edit Survey Encounter', edit_builder_survey_survey_encounter_path(@survey, @survey_encounter), class: 'btn btn-xs btn-default'
+    = link_to 'Delete Survey Encounter', builder_survey_survey_encounter_path(@survey, @survey_encounter), method: :delete, class: 'btn btn-xs btn-danger', data: { confirm: "Are you sure you want to delete Survey Encounter #{@survey_encounter.encounter.name}?" }
 
-.container
-  %dl.dl-horizontal
-    %dt
-      %strong Name
-    %dd= @survey_encounter.encounter.name
+%dl.dl-horizontal
+  %dt
+    %strong Name
+  %dd= @survey_encounter.encounter.name
 
-    %dt
-      %strong Encounter Slug
-    %dd
-      = @survey_encounter.encounter.slug
+  %dt
+    %strong Encounter Slug
+  %dd
+    = @survey_encounter.encounter.slug
 
-    %dt
-      %strong Encounter Launched When
-    %dd
-      Launched
-      - if @survey_encounter.encounter.launch_days_after_sign_up == 0
-        immediately
-      - else
-        = pluralize @survey_encounter.encounter.launch_days_after_sign_up, 'day'
-      after
-      - if @survey_encounter.parent_survey_encounter
-        = link_to @survey_encounter.parent_survey_encounter.survey_encounter_name, builder_survey_survey_encounter_path(@survey_encounter.parent_survey_encounter.survey, @survey_encounter.parent_survey_encounter)
-        is completed.
-      - else
-        sign up.
+  %dt
+    %strong Encounter Launched When
+  %dd
+    Launched
+    - if @survey_encounter.encounter.launch_days_after_sign_up == 0
+      immediately
+    - else
+      = pluralize @survey_encounter.encounter.launch_days_after_sign_up, 'day'
+    after
+    - if @survey_encounter.parent_survey_encounter
+      = link_to @survey_encounter.parent_survey_encounter.survey_encounter_name, builder_survey_survey_encounter_path(@survey_encounter.parent_survey_encounter.survey, @survey_encounter.parent_survey_encounter)
+      is completed.
+    - else
+      sign up.

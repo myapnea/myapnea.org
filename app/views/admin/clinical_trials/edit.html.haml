@@ -1,9 +1,13 @@
-.content-main-header
-  .container
-    %h1 Editing Clinical Trial
-    %p= link_to 'Show', @admin_clinical_trial
-    %p= link_to 'Back', admin_clinical_trials_path
+- @title = "Edit Clinical Trial: #{@admin_clinical_trial.title_was}"
 
-.container
-  .content-container
-    = render 'form'
+.content-main-header2
+  %h1
+    = link_to 'Admin Dashboard', admin_path
+    &middot;
+    = link_to 'Clinical Trials', admin_clinical_trials_path
+    &middot;
+    = link_to @admin_clinical_trial.title_was, @admin_clinical_trial
+    &middot;
+    Edit
+
+= render 'form'

@@ -1,6 +1,8 @@
 ## 14.0.0
 
 ### Enhancements
+- **General Changes**
+  - Updated styling across several pages to be more consistent
 - **Gem Changes**
   - Updated to rails 5.0.0
   - Updated to coffee-rails 4.2

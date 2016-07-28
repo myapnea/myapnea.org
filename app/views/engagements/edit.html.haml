@@ -1,10 +1,12 @@
-.content-main-header
-  .container
-    %h1 Editing Engagement
-    %p
-      = link_to 'Show', @engagement
-      %span.white |
-      = link_to 'Back', engagements_path
+- @title = "Edit Engagement: #{@engagement.name}"
+.content-main-header2
+  %h1
+    = link_to 'Admin Dashboard', admin_path
+    &middot;
+    = link_to 'Engagements', engagements_path
+    &middot;
+    = link_to @engagement.name, @engagement
+    &middot;
+    Edit
 
-.container
-  = render 'form'
+= render 'form'

@@ -1,11 +1,9 @@
-- @background_color = '#fff'
-.content-main-header
-  .container
-    %h1
-      = link_to 'Surveys', builder_surveys_path
-      &middot;
-      = link_to @survey.name, builder_survey_path(@survey)
-      &middot;
-      Invite Editor
+.content-main-header2
+  %h1
+    = link_to 'Surveys', builder_surveys_path
+    &middot;
+    = link_to @survey.name, builder_survey_path(@survey)
+    &middot;
+    Invite Editor
 
-.container= render 'builder/survey_editors/form'
+= render 'builder/survey_editors/form'

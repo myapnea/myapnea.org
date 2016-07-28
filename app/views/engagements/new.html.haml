@@ -1,8 +1,10 @@
-.content-main-header
-  .container
-    %h1 New Engagement
-    %p= link_to 'Back', engagements_path
+- @title = 'New Engagement'
+.content-main-header2
+  %h1
+    = link_to 'Admin Dashboard', admin_path
+    &middot;
+    = link_to 'Engagements', engagements_path
+    &middot;
+    New
 
-.container
-  .content-container
-    = render 'form'
+= render 'form'

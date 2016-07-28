@@ -1,63 +1,58 @@
-.content-main-header
-  .container
-    %h1 My Research Topics
+.content-main-header2
+  %h1 My Research Topics
 
-.container
-  .content-container
-    %h3.f300
-      - if @research_topics.present?
-        = "You've submitted #{pluralize(@research_topics.count, 'research topic')}"
-      - else
-        You haven't submitted any research topics yet!
+.jumbotron.primary-blue-bcg
+  %p.text-center
+    - if @research_topics.present?
+      = "You've submitted #{pluralize(@research_topics.count, 'research topic')}"
+    - else
+      You haven't submitted any research topics yet!
 
-  - if @research_topics.count == 0
-    .content-container
-      .lighter-blue-bcg
-        %h3.light9 Propose your own research topic:
-        .list-group-item
-          = form_for @new_research_topic, html: { data: { object: "inline-validation"} } do |f|
-            - if @new_research_topic.errors.any?
-              .bs-callout.bs-callout-danger#error_explanation
-                %h4
-                  = pluralize(@new_research_topic.errors.count, "error")
-                  prohibited this user from being saved
-                %ul
-                  - @new_research_topic.errors.messages.each do |key, msg|
-                    - if key == :over_eighteen
-                      %li= msg.join(", ")
-                    - else
-                      %li= "#{key.to_s.titleize} #{msg.join(", ")}"
-
-            .form-group
-              = f.label :text, class: 'sr-only'
-              = f.text_area :text, placeholder: "Enter your research question here", autocomplete: :off, style: 'resize: none', class: 'form-control input-lg', data: { object: 'inline-validation-item', name: 'research-topic-name' }
-              .col-sm-6.hidden{ style: 'margin-top: 15px; margin-bottom: 30px;', data: { object: 'research-topic-name--error' } }
-                %p.small.centered.inline-validation-error
-                  Please enter a valid question or research topic!
-            .form-group
-              = f.label :author, class: 'sr-only'
-              = f.text_area :description, placeholder: "Describe why you think this question is important", style: 'resize: none', class: 'form-control input-lg'
-            = f.submit("Submit", class: "btn btn-success pull-right")
-            .clearfix
-  - else
-    - @research_topics.each do |rt|
-      .content-container
-        %h4= link_to(rt.text, research_topic_path(rt))
-        %hr
-        %h5
-          Status:
-          %span.f300
-            - if rt.topic.status == "hidden"
-              Rejected
+- if @research_topics.count == 0
+  %h3 Propose your own research topic:
+  = form_for @new_research_topic, html: { data: { object: "inline-validation"} } do |f|
+    - if @new_research_topic.errors.any?
+      .bs-callout.bs-callout-danger#error_explanation
+        %h4
+          = pluralize(@new_research_topic.errors.count, "error")
+          prohibited this user from being saved
+        %ul
+          - @new_research_topic.errors.messages.each do |key, msg|
+            - if key == :over_eighteen
+              %li= msg.join(", ")
             - else
-              = rt.topic.status.titlecase
+              %li= "#{key.to_s.titleize} #{msg.join(", ")}"
+
+    .form-group
+      = f.label :text, class: 'sr-only'
+      = f.text_area :text, placeholder: "Enter your research question here", autocomplete: :off, style: 'resize: none', class: 'form-control input-lg', data: { object: 'inline-validation-item', name: 'research-topic-name' }
+      .col-sm-6.hidden{ style: 'margin-top: 15px; margin-bottom: 30px;', data: { object: 'research-topic-name--error' } }
+        %p.small.centered.inline-validation-error
+          Please enter a valid question or research topic!
+    .form-group
+      = f.label :author, class: 'sr-only'
+      = f.text_area :description, placeholder: "Describe why you think this question is important", style: 'resize: none', class: 'form-control input-lg'
+    .form-group
+      = f.submit("Submit", class: "btn btn-success pull-right")
+- else
+  - @research_topics.each do |rt|
+    .content-container
+      %h4= link_to(rt.text, research_topic_path(rt))
+      %hr
+      %h5
+        Status:
+        %span.f300
+          - if rt.topic.status == "hidden"
+            Rejected
+          - else
+            = rt.topic.status.titlecase
+      %h5
+        Number of votes:
+        %span.f300= rt.votes.current.count
+      - if rt.votes.count > 0
         %h5
-          Number of votes:
-          %span.f300= rt.votes.current.count
-        - if rt.votes.count > 0
-          %h5
-            Endorsement:
-            %br.hidden-lg.hidden-md
-            %span.f300= "#{(rt.endorsement*100).round}%"
-          .progress-meter
-            %span{ data: { object: 'research-topic-meter', progress: "#{rt.endorsement*100}" } }
+          Endorsement:
+          %br.hidden-lg.hidden-md
+          %span.f300= "#{(rt.endorsement*100).round}%"
+        .progress-meter
+          %span{ data: { object: 'research-topic-meter', progress: "#{rt.endorsement*100}" } }

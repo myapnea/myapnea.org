@@ -1,35 +1,31 @@
-.content-main-header
-  .container
-    %h1 Research
+.content-main-header2
+  %h1 Research
 
-.content-container
-  .container
-    .row
-      .col-sm-8
+.row
+  .col-sm-8
+    %p
+      Let us know what research questions matter to you most. Join the community in voting and discussing research topics submitted by members like yourself. We will take the most endorsed questions and translate them into
+      %strong= link_to 'research highlights', blog_category_path(category: 'research')
+      and proposals for future studies of sleep apnea.
+  .col-sm-4
+    = link_to 'Propose a new research topic', new_research_topic_path, class: 'btn btn-primary', style: 'width: 100%'
+    - if current_user && current_user.my_research_topics.present?
+      = link_to "Check the status of your research topics", my_research_topics_research_topics_path, class: 'btn btn-default', style: 'width: 100%'
+
+.row
+  .col-sm-8
+    #research-topic-list-group
+      = render 'research_topics/displays/list_group', research_topics: @research_topics
+
+  .col-sm-4
+    %br
+    - if current_user && current_user.moderator? && ResearchTopic.pending_review.present?
+      .well
+        %h4
+          For admins:
         %p
-          Let us know what research questions matter to you most. Join the community in voting and discussing research topics submitted by members like yourself. We will take the most endorsed questions and translate them into
-          %strong= link_to 'research highlights', blog_category_path(category: 'research')
-          and proposals for future studies of sleep apnea.
-      .col-sm-4
-        = link_to 'Propose a new research topic', new_research_topic_path, class: 'btn btn-primary', style: 'width: 100%'
-        - if current_user && current_user.my_research_topics.present?
-          = link_to "Check the status of your research topics", my_research_topics_research_topics_path, class: 'btn btn-default', style: 'width: 100%'
-
-.container
-  .row
-    .col-sm-8
-      #research-topic-list-group
-        = render 'research_topics/displays/list_group', research_topics: @research_topics
-
-    .col-sm-4
-      %br
-      - if current_user && current_user.moderator? && ResearchTopic.pending_review.present?
-        .well
-          %h4
-            For admins:
-          %p
-            The following topics are pending review:
-          %ul
-            - ResearchTopic.pending_review.each do |research_topic|
-              %li= link_to research_topic.text, research_topic_path(research_topic)
-      = render 'research_topics/sidebar'
+          The following topics are pending review:
+        %ul
+          - ResearchTopic.pending_review.each do |research_topic|
+            %li= link_to research_topic.text, research_topic_path(research_topic)
+    = render 'research_topics/sidebar'

@@ -1,8 +1,11 @@
-.content-main-header
-  .container
-    %h1 New Clinical Trial
-    %p= link_to 'Back', admin_clinical_trials_path
+- @title = 'New Clinical Trial'
 
-.container
-  .content-container
-    = render 'form'
+.content-main-header2
+  %h1
+    = link_to 'Admin Dashboard', admin_path
+    &middot;
+    = link_to 'Clinical Trials', admin_clinical_trials_path
+    &middot;
+    New
+
+= render 'form'

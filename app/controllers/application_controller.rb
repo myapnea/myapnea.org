@@ -48,10 +48,6 @@ class ApplicationController < ActionController::Base
     @active_top_nav_link = :learn
   end
 
-  def no_layout
-    render layout: false
-  end
-
   def authenticate_research
     session[:return_to] = request.fullpath
     if current_user.ready_for_research?

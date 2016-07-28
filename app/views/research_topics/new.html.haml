@@ -1,14 +1,11 @@
-.content-main-header
-  .container
-    %h1 Propose Research Question
+.content-main-header2
+  %h1 Propose Research Question
 
-.container
-  .content-container
-    %p.lead
-      All submitted questions are reviewed by the MyApnea.Org team before being added to the Research Topics page. We will contact you if we have questions about your submitted research topic. Thanks for your contribution!
-    %hr
-    = render 'research_topics/form', research_topic: @research_topic
-    .content-footer{ style: 'margin-top: 20px' }
-      %p
-        If you have any questions, please email us at
-        = link_to ENV['support_email'], "mailto:#{ENV['support_email']}"
+%p.lead
+  All submitted questions are reviewed by the MyApnea.Org team before being added to the Research Topics page. We will contact you if we have questions about your submitted research topic. Thanks for your contribution!
+%hr
+= render 'research_topics/form', research_topic: @research_topic
+.content-footer{ style: 'margin-top: 20px' }
+  %p
+    If you have any questions, please email us at
+    = link_to ENV['support_email'], "mailto:#{ENV['support_email']}"

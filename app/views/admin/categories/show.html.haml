@@ -1,25 +1,22 @@
 - @title = @admin_category.name
 
-- content_for :banner do
-  .content-main-header
-    .container
-      %h1
-        = link_to 'Categories', admin_categories_path
-        &middot;
-        = @admin_category.name
-      %div
-        = link_to edit_admin_category_path(@admin_category), class: 'btn btn-xs btn-default' do
-          %span.glyphicon.glyphicon-edit
-          Edit Category
-
-- @background_color = '#fff'
-.container
-  %p
-    %strong Name
-    %br
+.content-main-header2
+  %h1
+    = link_to 'Admin Dashboard', admin_path
+    &middot;
+    = link_to 'Categories', admin_categories_path
+    &middot;
     = @admin_category.name
+    = link_to edit_admin_category_path(@admin_category), class: 'btn btn-xs btn-default' do
+      %span.glyphicon.glyphicon-edit
+      Edit Category
 
-  %p
-    %strong Slug
-    %br
-    %code= @admin_category.slug
+%p
+  %strong Name
+  %br
+  = @admin_category.name
+
+%p
+  %strong Slug
+  %br
+  %code= @admin_category.slug
