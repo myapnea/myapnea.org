@@ -7,7 +7,7 @@ class Answer < ApplicationRecord
   # Concerns
   include DateAndTimeParser
 
-  # Named Scopes
+  # Scopes
   scope :incomplete,  -> { where state: 'incomplete' }
   scope :invalid,     -> { where state: 'invalid' }
   scope :migrated,    -> { where state: 'migrated' }

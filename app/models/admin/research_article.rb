@@ -21,7 +21,7 @@ class Admin::ResearchArticle < ApplicationRecord
   # Concerns
   include Deletable
 
-  # Named scopes
+  # Scopes
   # Methods
   def to_param
     slug

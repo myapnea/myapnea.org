@@ -9,7 +9,7 @@ class Broadcast < ApplicationRecord
   multisearchable against: [:title, :short_description, :keywords, :description],
                   unless: :deleted?
 
-  # Named Scopes
+  # Scopes
   scope :published, -> { current.where(published: true).where('publish_date <= ?', Time.zone.today) }
 
   # Model Validation

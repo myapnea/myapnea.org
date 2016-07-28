@@ -14,7 +14,7 @@ class Chapter < ApplicationRecord
   # Callbacks
   after_commit :create_first_reply, on: :create
 
-  # Named Scopes
+  # Scopes
   scope :reply_count, -> { select('chapters.*, COUNT(replies.id) reply_count').joins(:replies).group('chapters.id') }
 
   # Model Validation

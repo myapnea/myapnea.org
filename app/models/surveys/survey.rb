@@ -35,7 +35,7 @@ class Survey < ApplicationRecord
   has_many :survey_user_types, -> { where deleted: false }
   has_many :survey_editors
 
-  # Named scopes
+  # Scopes
   scope :viewable, -> { where(status: 'show').where.not(slug: nil) }
   scope :pediatric, -> { where pediatric: true }
   scope :non_pediatric, -> { where pediatric: false }

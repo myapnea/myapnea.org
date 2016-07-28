@@ -15,7 +15,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable, :timeoutable, :lockable
 
   # Callbacks
-  after_commit :set_forum_name, :send_welcome_email, :check_for_token, :update_location, on: :create
+  after_commit :set_forum_name, :send_welcome_email_in_background!, :check_for_token, :update_location, on: :create
 
   # Mappings
   TYPES = [
@@ -28,11 +28,11 @@ class User < ApplicationRecord
   ]
 
   # Concerns
-  include CommonDataModel, Deletable, Groupable, Coenrollment
+  include CommonDataModel, Deletable, Groupable, Coenrollment, Forkable
 
   attr_accessor :user_is_updating
 
-  # Named Scopes
+  # Scopes
   scope :search, lambda { |arg| where( 'LOWER(first_name) LIKE ? or LOWER(last_name) LIKE ? or LOWER(email) LIKE ?', arg.to_s.downcase.gsub(/^| |$/, '%'), arg.to_s.downcase.gsub(/^| |$/, '%'), arg.to_s.downcase.gsub(/^| |$/, '%') ) }
   scope :providers, -> { current.where(provider: true) }
   scope :providers_with_profiles, -> { providers.where.not(slug: [nil,''], provider_name: [nil,'']) }
@@ -365,21 +365,6 @@ class User < ApplicationRecord
     false
   end
 
-  ## Provider Methods
-  def send_provider_informational_email!
-    unless Rails.env.test?
-      pid = Process.fork
-      if pid.nil? then
-        # In child
-        UserMailer.welcome_provider(self).deliver_now if EMAILS_ENABLED && provider?
-        Kernel.exit!
-      else
-        # In parent
-        Process.detach(pid)
-      end
-    end
-  end
-
   def accepts_consent!
     current_time = Time.zone.now
     update accepted_consent_at: current_time, accepted_update_at: current_time
@@ -406,7 +391,20 @@ class User < ApplicationRecord
     end
   end
 
+  def send_provider_informational_email_in_background!
+    fork_process :send_provider_informational_email!
+  end
+
+  def send_welcome_email_in_background!
+    fork_process :send_welcome_email!
+  end
+
   private
+
+  def send_provider_informational_email!
+    return unless EMAILS_ENABLED
+    UserMailer.welcome_provider(self).deliver_now if provider?
+  end
 
   # This happens when any user updates changes from dashboard
   def update_by_user?
@@ -418,18 +416,8 @@ class User < ApplicationRecord
     update forum_name: SocialProfile.generate_forum_name(email, Time.zone.now.usec.to_s)
   end
 
-  def send_welcome_email
-    unless Rails.env.test?
-      pid = Process.fork
-      if pid.nil? then
-        # In child
-        UserMailer.welcome(self).deliver_now if EMAILS_ENABLED
-        Kernel.exit!
-      else
-        # In parent
-        Process.detach(pid)
-      end
-    end
+  def send_welcome_email!
+    UserMailer.welcome(self).deliver_now if EMAILS_ENABLED
   end
 
   def check_for_token

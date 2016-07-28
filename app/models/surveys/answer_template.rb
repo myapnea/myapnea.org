@@ -34,7 +34,7 @@ class AnswerTemplate < ApplicationRecord
   # Concerns
   include Deletable
 
-  # Named scopes
+  # Scopes
   scope :archived, -> { where archived: true }
   scope :unarchived, -> { where archived: false }
 

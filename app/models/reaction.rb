@@ -20,7 +20,7 @@ class Reaction < ApplicationRecord
   # Concerns
   include Deletable
 
-  # Named scopes
+  # Scopes
   scope :likes, -> { where(form: "#{FORM_LIKE}") }
   scope :requests, -> { where(form: "#{FORM_REQUEST}") }
 

@@ -14,7 +14,7 @@ class Topic < ApplicationRecord
   before_validation :set_slug, on: :create
   after_commit :create_first_post, on: :create
 
-  # Named Scopes
+  # Scopes
   scope :viewable_by_user, lambda { |arg| where('topics.status = ? or topics.user_id = ?', 'approved', arg) }
   scope :search, lambda { |arg| where('topics.name ~* ? or topics.id in (select posts.topic_id from posts where posts.deleted = ? and posts.description ~* ?)', arg.to_s.split(/\s/).collect{|l| l.to_s.gsub(/[^\w\d%]/, '')}.collect{|l| "(\\m#{l})"}.join("|"), false, arg.to_s.split(/\s/).collect{|l| l.to_s.gsub(/[^\w\d%]/, '')}.collect{|l| "(\\m#{l})"}.join("|") ) }
   scope :user_active, lambda { |arg| where('topics.id IN (select posts.topic_id from posts where posts.user_id IN (?) and posts.status = ? and posts.deleted = ?)', arg, 'approved', false ) }

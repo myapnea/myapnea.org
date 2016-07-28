@@ -15,6 +15,6 @@ class Admin::ClinicalTrial < ApplicationRecord
   # Concerns
   include Deletable
 
-  # Named scopes
+  # Scopes
   # Methods
 end

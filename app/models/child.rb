@@ -8,7 +8,7 @@ class Child < ApplicationRecord
   # Concerns
   include Deletable
 
-  # Named Scopes
+  # Scopes
 
   # Model Validation
   validates_presence_of :first_name, :age, :user_id

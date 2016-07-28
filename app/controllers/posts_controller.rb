@@ -21,7 +21,7 @@ class PostsController < ApplicationController
     @post = current_user.posts.where(topic_id: @topic.id).new(post_params)
 
     if @post.save
-      @post.send_reply_emails!
+      @post.send_reply_emails_in_background!
       @topic.get_or_create_subscription(current_user)
       @topic.touch(:last_post_at)
       redirect_to topic_post_path(@topic, @post), notice: 'Post was successfully created.'

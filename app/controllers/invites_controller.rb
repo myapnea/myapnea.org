@@ -16,14 +16,12 @@ class InvitesController < ApplicationController
     if @invite.save
       if @invite.recipient_id.present?
         redirect_to members_invites_path, notice: 'Thank you!'
+      elsif @invite.for_provider?
+        @invite.send_provider_invite_in_background!
+        redirect_to providers_invites_path, notice: 'Thank you!'
       else
-        if @invite.for_provider?
-          InviteMailer.new_provider_invite(@invite, current_user).deliver_now if EMAILS_ENABLED
-          redirect_to providers_invites_path, notice: 'Thank you!'
-        else
-          InviteMailer.new_member_invite(@invite, current_user).deliver_now if EMAILS_ENABLED
-          redirect_to members_invites_path, notice: 'Thank you!'
-        end
+        @invite.send_new_member_invite_in_background!
+        redirect_to members_invites_path, notice: 'Thank you!'
       end
     end
   end

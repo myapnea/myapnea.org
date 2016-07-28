@@ -14,6 +14,7 @@
 ### Refactoring
 - Cleaned up existing migration files
 - Simplified configuration options
+- All emails are now sent in a background process
 
 ## 13.2.1 (July 26, 2016)
 

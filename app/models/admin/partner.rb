@@ -17,6 +17,6 @@ class Admin::Partner < ApplicationRecord
   # Concerns
   include Deletable
 
-  # Named scopes
+  # Scopes
   # Methods
 end

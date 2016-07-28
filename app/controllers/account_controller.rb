@@ -116,7 +116,7 @@ class AccountController < ApplicationController
   def update
     if current_user.update(user_params)
       if [:welcome_message, :slug, :provider_name].all? {|k| user_params.key? k}
-        current_user.send_provider_informational_email! if current_user.provider?
+        current_user.send_provider_informational_email_in_background! if current_user.provider?
         redirect_to provider_path(current_user.slug)
       else
         respond_to do |format|

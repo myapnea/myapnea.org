@@ -31,7 +31,7 @@ class Question < ApplicationRecord
   include Votable
   include Deletable
 
-  # Named scopes
+  # Scopes
   scope :archived, -> { where archived: true }
   scope :unarchived, -> { where archived: false }
   # scope :unarchived, -> { current.joins(:answer_templates).where('answer_templates.archived' => false).group("questions.id").having('count(answer_templates) > 0') }

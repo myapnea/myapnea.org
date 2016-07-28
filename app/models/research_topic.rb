@@ -23,7 +23,7 @@ class ResearchTopic < ApplicationRecord
   # Validations
   validates :user_id, :description, :text, presence: true
 
-  # Named Scopes
+  # Scopes
   scope :approved, lambda { current.joins(:topic).where(topics: {status: 'approved'})}
   scope :pending_review, lambda { current.joins(:topic).where(topics: {status: 'pending_review'})}
   scope :most_voted, lambda { current.select("research_topics.*, count(votes.id) as vote_count").joins("left outer join votes on votes.research_topic_id = research_topics.id and votes.deleted = 'f'").group(group_columns).order("vote_count desc") }

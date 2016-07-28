@@ -1,14 +1,13 @@
 # frozen_string_literal: true
 
 class Post < ApplicationRecord
-
+  # Constants
   STATUS = [['Approved', 'approved'], ['Pending Review', 'pending_review'], ['Marked as Spam', 'spam'], ['Hidden', 'hidden']]
 
   # Concerns
-  include Deletable
-  include Groupable
+  include Deletable, Groupable, Forkable
 
-  # Named Scopes
+  # Scopes
   scope :with_unlocked_topic, -> { where("posts.topic_id in (select topics.id from topics where topics.locked = ?)", false).references(:topics) }
   scope :visible_for_user, -> { where(status: ['approved', 'pending_review']).joins(:topic).where("topics.status IN (?) and topics.deleted = ?", ['approved', 'pending_review'], false) }
   scope :not_research, -> { where('posts.topic_id NOT IN (select research_topics.topic_id from research_topics where research_topics.topic_id IS NOT NULL)')}
@@ -79,23 +78,18 @@ class Post < ApplicationRecord
   # 1) The topic subscriber has email notifications enabled
   # AND
   # 2) The topic subscriber is not the post creator
-  def send_reply_emails!
-    unless Rails.env.test? or Rails.env.development?
-      pid = Process.fork
-      if pid.nil? then
-        # In child
-        self.topic.subscribers.where(moderator: true).where.not(id: self.user_id).each do |u|
-          UserMailer.post_replied(self, u).deliver_now if EMAILS_ENABLED
-        end
-        Kernel.exit!
-      else
-        # In parent
-        Process.detach(pid)
-      end
-    end
+  def send_reply_emails_in_background!
+    fork_process :send_reply_emails!
   end
 
   private
+
+  def send_reply_emails!
+    return unless EMAILS_ENABLED
+    topic.subscribers.where(moderator: true).where.not(id: user_id).find_each do |subscriber|
+      UserMailer.post_replied(self, subscriber).deliver_now
+    end
+  end
 
   # def email_mentioned_users
   #   users = User.current.where(email_me_when_mentioned: true).reject{|u| u.username.blank?}.uniq.sort
@@ -103,5 +97,4 @@ class Post < ApplicationRecord
   #     UserMailer.mentioned_in_comment(self, user).deliver_now if EMAILS_ENABLED and self.description.match(/@#{user.username}\b/i)
   #   end
   # end
-
 end
