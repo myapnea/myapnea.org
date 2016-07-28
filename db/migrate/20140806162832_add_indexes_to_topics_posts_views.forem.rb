@@ -1,4 +1,3 @@
-# This migration comes from forem (originally 20111026143136)
 class AddIndexesToTopicsPostsViews < ActiveRecord::Migration[4.2]
   def change
     add_index :forem_topics, :forum_id

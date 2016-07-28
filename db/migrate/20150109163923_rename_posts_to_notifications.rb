@@ -6,7 +6,6 @@ class RenamePostsToNotifications < ActiveRecord::Migration[4.2]
     add_index :comments, :notification_id
     rename_column :votes, :post_id, :notification_id
     add_column :notifications, :deleted, :boolean, null: false, default: false
-
   end
 
   def down

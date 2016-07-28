@@ -9,6 +9,9 @@
   - Updated to turbolinks 5
   - Added rails-controller-testing
 
+### Refactoring
+- Cleaned up existing migration files
+
 ## 13.2.1 (July 26, 2016)
 
 ### Bug Fix

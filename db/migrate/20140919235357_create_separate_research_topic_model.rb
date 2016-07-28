@@ -7,13 +7,9 @@ class CreateSeparateResearchTopicModel < ActiveRecord::Migration[4.2]
       t.references :user
       t.timestamps
     end
-
     add_column :votes, :research_topic_id, :integer
     add_column :votes, :comment_id, :integer
     add_column :votes, :post_id, :integer
     add_column :comments, :research_topic_id, :integer
-
   end
-
-
 end

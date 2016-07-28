@@ -1,6 +1,5 @@
 class AddProviderRole < ActiveRecord::Migration[4.2]
   def change
-
     add_column :users, :type, :string
     add_column :users, :slug, :string
     add_column :users, :provider_name, :string
@@ -8,9 +7,5 @@ class AddProviderRole < ActiveRecord::Migration[4.2]
     add_column :users, :address_1, :string
     add_column :users, :address_2, :string
     add_column :users, :city, :string
-
-
-
-
   end
 end

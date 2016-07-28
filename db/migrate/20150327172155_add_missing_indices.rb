@@ -8,7 +8,6 @@ class AddMissingIndices < ActiveRecord::Migration[4.2]
     add_index :question_edges, :parent_question_id
     add_index :question_edges, :child_question_id
     add_index :question_edges, :direct
-
     add_index :answer_sessions, :deleted
     add_index :answers, :deleted
   end

@@ -1,4 +1,3 @@
-# This migration comes from forem (originally 20120228202859)
 class AddNotifiedToForemPosts < ActiveRecord::Migration[4.2]
   def change
     add_column :forem_posts, :notified, :boolean, :default => false

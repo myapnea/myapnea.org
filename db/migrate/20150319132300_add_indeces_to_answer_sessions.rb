@@ -14,7 +14,5 @@ class AddIndecesToAnswerSessions < ActiveRecord::Migration[4.2]
     add_index :answer_sessions, :survey_id
     add_index :answer_sessions, :last_answer_id
     add_index :answer_sessions, :first_answer_id
-
-
   end
 end
