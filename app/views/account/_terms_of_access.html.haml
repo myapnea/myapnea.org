@@ -18,7 +18,7 @@
       %p
         Individual de-identified participant-level data can be obtained but will require completion of a Data Use Agreement available on the Research Portal section of MyApnea.Org which will be made available at a later date.
       - if current_user and !current_user.accepted_terms_of_access? and current_user.is_only_academic?
-        = markdown 'If you wish to be in this study please click the button that says **"I Agree"**'
+        = simple_markdown 'If you wish to be in this study please click the button that says **"I Agree"**'
   = link_to '#', id: 'print-link', class: 'print-link btn btn-xs btn-primary' do
     %i.fa.fa-print
     Print Terms of Access

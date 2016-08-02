@@ -7,9 +7,9 @@
   .content-main-header2
     %h1= privacy_page_content['title']
   - privacy_page_content = page_content('privacy_policy')
-  = markdown privacy_page_content['privacy_policy']
+  = simple_markdown privacy_page_content['privacy_policy']
   - if current_user and current_user.accepted_privacy_policy_at.blank?
-    = markdown 'If you wish to be in this study please click the button that says **"I have read the privacy policy"**'
+    = simple_markdown 'If you wish to be in this study please click the button that says **"I have read the privacy policy"**'
 %br/
 = link_to "#", id: "print-link", class: 'print-link pull-right btn btn-xs btn-primary' do
   %i.fa.fa-print
