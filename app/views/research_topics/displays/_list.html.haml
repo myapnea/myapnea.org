@@ -4,19 +4,6 @@
     %p.f400
       = link_to rt.text, rt
     .pull-left
-      .rt-detail
-        - if current_user and !current_user.cast_vote_for?(rt)
-          %i.fa.fa-thumbs-up{ data: { object: 'rt-upvote', rt: rt.id, target: "#rt-vote-#{rt.id}"} }
-          &nbsp;
-          %i.fa.fa-thumbs-down{ data: { object: 'rt-downvote', rt: rt.id, target: "#rt-vote-#{rt.id}"} }
-          &middot;
-        - elsif current_user and current_user.endorsed?(rt)
-          %i.fa.fa-thumbs-up.great{ data: { object: 'rt-already-voted', rt: rt.id, toggle: 'collapse', target: "#rt-vote-#{rt.id}"} }
-          &middot;
-        - elsif current_user
-          %i.fa.fa-thumbs-down.danger{ data: { object: 'rt-already-voted', rt: rt.id, toggle: 'collapse', target: "#rt-vote-#{rt.id}"} }
-          &middot;
-        = time_ago_in_words(rt.created_at) + ' ago'
 
     .pull-right
       .rt-voters
@@ -26,11 +13,3 @@
         - if rt.topic.posts.count > 3
           .commenter-thumbnail-more= "+#{rt.topic.posts.count - 3}"
     .clearfix
-    - if current_user
-      .inline-vote-container.collapse{ id: "rt-vote-#{rt.id}"}
-        %hr
-        - if !current_user.cast_vote_for?(rt)
-          = render 'research_topics/voting_forms/inline', rt: rt
-        - else
-          = render 'research_topics/interactions/endorsement', research_topic: rt
-

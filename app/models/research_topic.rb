@@ -12,7 +12,6 @@ class ResearchTopic < ApplicationRecord
   # Associations
   belongs_to :user
   belongs_to :topic
-  has_many :votes, -> { where(deleted: false) }
 
   # Constants
   PROGRESS = [:proposed, :accepted, :ongoing_research, :complete]
@@ -25,8 +24,6 @@ class ResearchTopic < ApplicationRecord
   # Scopes
   scope :approved, lambda { current.joins(:topic).where(topics: {status: 'approved'})}
   scope :pending_review, lambda { current.joins(:topic).where(topics: {status: 'pending_review'})}
-  scope :most_voted, lambda { current.select("research_topics.*, count(votes.id) as vote_count").joins("left outer join votes on votes.research_topic_id = research_topics.id and votes.deleted = 'f'").group(group_columns).order("vote_count desc") }
-  scope :least_voted, lambda { current.select("research_topics.*, count(votes.id) as vote_count").joins("left outer join votes on votes.research_topic_id = research_topics.id and votes.deleted = 'f'").group(group_columns).order("vote_count asc") }
   scope :most_discussed, lambda { current.select("research_topics.*, count(posts.id) as post_count").joins(topic: :posts).group(group_columns).order("post_count desc") }
   scope :newest, lambda { current.order("research_topics.created_at desc") }
   scope :article_eligible, -> { current.where(progress: [:accepted, :ongoing_research, :complete]) }
@@ -38,18 +35,11 @@ class ResearchTopic < ApplicationRecord
   end
 
   def self.popular(vote_threshold = nil)
-    query = current.select("research_topics.*, (sum(votes.rating)::float/count(votes.rating)::float) as endorsement").joins(:votes).group(group_columns).order("endorsement desc")
-    query = query.having("count(votes.rating) > ?", vote_threshold) if vote_threshold.present?
-    query
+    current
   end
 
   def self.highlighted(user)
-    # Similar to least voted, but making sure that user has not voted already
     approved
-      .select("research_topics.*, count(votes.id) as vote_count")
-      .joins("left outer join votes on votes.research_topic_id = research_topics.id and votes.deleted = 'f'")
-      .group(group_columns).having("sum(case when votes.user_id = ? then 1 else 0 end) = 0", user.id)
-      .order("vote_count asc")
   end
 
   def self.seeded(user)
@@ -81,27 +71,6 @@ class ResearchTopic < ApplicationRecord
     slug
   end
 
-  # Voting
-  def endorsement
-    Vote.current.select("sum(rating)::float/count(rating)::float as endorsement").group("research_topic_id").where(research_topic_id: self[:id]).map(&:endorsement).first || 0
-  end
-
-  def endorse_by(user, comment = nil)
-    cast_vote(user, 1, comment)
-  end
-
-  def oppose_by(user, comment = nil)
-    cast_vote(user, 0, comment)
-  end
-
-  def voted_by_user?(user = nil)
-    if user == nil
-      return false
-    else
-      return self.votes.current.where(user_id: user.id).present?
-    end
-  end
-
   # Categories
 
   def seeded?
@@ -113,18 +82,6 @@ class ResearchTopic < ApplicationRecord
   end
 
   private
-
-  def cast_vote(user, rating, comment)
-    if user.cast_vote_for?(self)
-      votes.find_by_user_id(user.id).update(rating: rating)
-    else
-      votes.create(user_id: user.id, rating: rating)
-    end
-
-    if comment.present?
-      topic.posts.create(description: comment, user_id: user.id)
-    end
-  end
 
   def self.group_columns
     column_names.map{|cn| "research_topics.#{cn}"}.join(", ")

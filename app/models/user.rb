@@ -335,36 +335,6 @@ class User < ApplicationRecord
     ResearchTopic.seeded(self).first
   end
 
-  # Voting
-  def cast_vote_for?(research_topic)
-    votes.current.where(research_topic_id: research_topic.id).count > 0
-  end
-
-  def endorsed?(research_topic)
-    votes.current.where(research_topic_id: research_topic.id, rating: 1).count > 0
-  end
-
-  def opposed?(research_topic)
-    votes.current.where(research_topic_id: research_topic.id, rating: 0).count > 0
-  end
-
-  def vote_count
-    votes.current.where(rating: [0, 1]).count
-  end
-
-  def experienced_voter?
-    vote_count >= ResearchTopic::INTRO_LENGTH
-  end
-
-  def novice_voter?
-    vote_count < ResearchTopic::INTRO_LENGTH && vote_count > 0
-  end
-
-  def no_votes_user?
-    vote_count == 0
-    false
-  end
-
   def accepts_consent!
     current_time = Time.zone.now
     update accepted_consent_at: current_time, accepted_update_at: current_time

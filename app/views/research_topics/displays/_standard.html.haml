@@ -10,10 +10,3 @@
     %hr
     - if research_topic.description.present?
       %h5.f300= "#{research_topic.description}"
-  - if current_user and !current_user.cast_vote_for?(research_topic)
-    .research-topic-footer
-      - if defined?(remote_bool)
-        = render 'research_topics/voting_forms/remote', research_topic: research_topic
-      - else
-        = render 'research_topics/voting_forms/standard', research_topic: research_topic
-      %br

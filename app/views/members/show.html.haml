@@ -53,9 +53,10 @@
           %span.f500.dark5 Number of posts:
           %div{ style: 'font-size: 32px;' }= @member.replies.count
       .col-sm-4
-        %p.dark8
-          %span.f500.dark5 Number of votes:
-          %div{ style: 'font-size: 32px;' }= @member.votes.current.count
+        - if false
+          %p.dark8
+            %span.f500.dark5 Number of votes:
+            %div{ style: 'font-size: 32px;' }= ReplyUser.where(user: @member).joins(:reply).merge(Reply.current).count
 
 -# Recent posts
 - @replies.each do |reply|

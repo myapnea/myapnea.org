@@ -8,14 +8,10 @@
 %p
   Number of research topics:
   %span.f500= @research_topics.count
-%p
-  Number of votes:
-  %span.f500= Vote.current.count
+
 %table.table.table-responsive.table-striped
   %thead
     %tr
-      %th Endorsement
-      %th Votes
       %th Text
       %th User
       %th Submitted
@@ -23,13 +19,6 @@
   %tbody
     - @research_topics.each do |research_topic|
       %tr
-
-        %td
-          - if research_topic.endorsement.present?
-            = "#{(research_topic.endorsement * 100).round}%"
-          - else
-            0%
-        %td= research_topic.votes.count
         %td= link_to research_topic.text, research_topic_path(research_topic)
         %td= link_to research_topic.user.forum_name, research_topic.user if research_topic.user
         %td= research_topic.created_at.strftime("%-m/%-d/%Y")

@@ -14,13 +14,6 @@
   - current_user.research_topics.order(:progress).each do |rt|
     .content-container.less-padding
       = link_to rt.topic.name, rt
-      %br
-      %br
-      = "#{(rt.endorsement*100).round}%"
-      = surround "(", ")" do
-        %span.italic= pluralize rt.votes.current.count, 'vote'
-      .progress-meter
-        %span{ data: { object: 'research-topic-meter', progress: "#{rt.endorsement*100}" } }
 - else
   .content-container.less-padding
     The fastest way to change the future of research is to get directly involved...

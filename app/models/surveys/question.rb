@@ -28,7 +28,6 @@ class Question < ApplicationRecord
   # Other macros
   # Concerns
   include Localizable
-  include Votable
   include Deletable
 
   # Scopes

@@ -5,15 +5,6 @@
 .row
   .col-sm-8
     = render 'research_topics/displays/standard', research_topic: @research_topic
-    - if current_user
-      - if current_user.cast_vote_for?(@research_topic)
-        = render 'research_topics/interactions/already_voted', research_topic: @research_topic
-      - if @research_topic.votes.count > 0
-        .content-container
-          = render 'research_topics/interactions/endorsement', research_topic: @research_topic
-          %hr
-          - @topic.posts.offset(1).each do |post|
-            = render 'research_topics/comments/comment', comment: post
 
   .col-sm-4
     - if current_user

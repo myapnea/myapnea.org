@@ -105,25 +105,6 @@
         %td= number_with_delimiter date_array.select{|d| d < (Date.today - 75.years)}.count
 
 .content-container
-  %h3 Number voting on rank research and number of items
-  - research_topic_count = ResearchTopic.where.not(topic_id: nil).count
-  - vote_scope = Vote.current
-  - vote_count = vote_scope.count
-  - voters_count = vote_scope.distinct.select(:user_id).count
-
-  %table.table.table-bordered.table-condensed.table-fixed
-    %thead
-      %tr
-        %th Research Topics
-        %th Votes
-        %th Unique Voters
-    %tbody
-      %tr
-        %td= number_with_delimiter research_topic_count
-        %td= number_with_delimiter vote_count
-        %td= number_with_delimiter voters_count
-
-.content-container
   %h3 Number of posts topics and unique individuals posting
   - post_scope = Post.current.visible_for_user.not_research
   - post_count = post_scope.count
