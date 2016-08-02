@@ -3,25 +3,23 @@ launched:
   survey: new
   encounter: baseline
   position: 1
+
 incomplete:
   user: has_incomplete_survey
   survey: new
   encounter: baseline
+
 complete:
   user: has_completed_survey
   survey: new
   encounter: baseline
   locked: true
+
 complete_about_me:
   user: has_completed_survey
   survey: about_me
   encounter: baseline
   locked: true
-complete_not_locked:
-  user: api_user
-  survey: new
-  encounter: baseline
-  locked: false
 
 incomplete2_baseline:
   user: has_incomplete_survey
@@ -32,15 +30,6 @@ incomplete2_followup:
   user: has_incomplete_survey
   survey: new_2
   encounter: followup
-
-incomplete_api:
-  user: api_user
-
-#
-#launched2:
-#  user: social
-#  survey: new_2
-#  encounter: baseline
 
 must_accept_update_first:
   user: social
@@ -188,10 +177,3 @@ finished_my_interest_in_research_3:
   encounter: baseline
   locked: true
   locked_at: <%= Date.today.to_s(:db) %>
-
-##
-
-api_user:
-  user: api_user
-  survey: new
-  encounter: baseline

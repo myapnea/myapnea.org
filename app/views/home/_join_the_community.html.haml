@@ -1,16 +1,16 @@
-- tracked_link = "join_from_" + referrer
 - message = nil unless defined?(message)
 .join-the-community-callout
-  .centered
-    - if message.present?
-      %h3.white= message
-    - else
-      %h3.white
-        - if false
-          %span.primary-orange= number_with_delimiter User.current.count
-          people are already making a difference
-        - else
-          Join
-          %span.primary-orange thousands
-          of people already making a difference on MyApnea.Org.
-    = link_to 'Join Today', get_tracked_link(tracked_link.to_sym), class: 'btn btn-join', id: 'btn-join'
+  .container
+    .text-center
+      - if message.present?
+        %h3.white= message
+      - else
+        %h3.white
+          - if false
+            %span.primary-orange= number_with_delimiter User.current.count
+            people are already making a difference
+          - else
+            Join
+            %span.primary-orange thousands
+            of people already making a difference on MyApnea.Org.
+      = link_to 'Join Today', new_user_registration_path, class: 'btn btn-join', id: 'btn-join'

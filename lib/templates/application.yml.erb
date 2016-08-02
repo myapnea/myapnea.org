@@ -11,24 +11,10 @@ smtp_user_name:               "<%= print "Enter SMTP User Name [username]: "; s 
 smtp_password:                "<%= print "Enter SMTP Password [password]: "; s = gets.chomp.gsub('"', '\"').gsub("\\", "\\\\"); s == '' ? 'password' : s %>"
 
 google_analytics_id:          "<%= print "Google Analytics ID: "; gets.chomp %>"
-google_analytics_report_id:   "<%= print "Google Analytics Report ID: "; gets.chomp %>"
-
-# Coenrollment Tokens
 heh_referral_key:             "<%= print "Health eHeart Referral Key: "; ga = gets.chomp; ga %>"
-
-# Prevent API and other requests in testing environment
-test:
-  google_analytics_id:          ~
-  google_analytics_report_id:   ~
 
 devise_pepper:                "<%= SecureRandom.hex(64) %>"
 website_secret:               "<%= SecureRandom.hex(64) %>"
 
-tracking_check_risk:               ""
-tracking_surveys:                  ""
-tracking_facebook:                 ""
-tracking_join_from_landing:        ""
-tracking_join_from_sidebar:        ""
-tracking_join_from_surveys:        ""
-tracking_join_from_research:       ""
-tracking_join_from_learn:          ""
+test:
+  google_analytics_id:          ~

@@ -190,15 +190,3 @@ referral_methods_answer_value_3:
   answer: referral_methods_answer_3
   answer_template: myapnea_referral_source
   answer_option: myapnea-referral-source-6
-
-## API USER
-
-api_user_answer_value_1:
-  answer: api_user_answer_new_1
-  answer_template: custom_sex_template
-  answer_option: male
-
-api_user_answer_value_2:
-  answer: api_user_answer_new_2
-  answer_template: color_list
-  answer_option: orange

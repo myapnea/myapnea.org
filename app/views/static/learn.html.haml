@@ -179,4 +179,5 @@
     %br
 
 - unless current_user
-  = render 'home/join_the_community', referrer: 'learn', message: 'Learn more and share your own story'
+  - content_for :footer do
+    = render 'home/join_the_community', referrer: 'learn', message: 'Learn more and share your own story'

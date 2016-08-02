@@ -410,19 +410,6 @@ finished_about_me_6:
   encrypted_password: <%= pw %>
   forum_name: finished_about_me_6
 
-api_user:
-  first_name: API
-  last_name: User
-  email: api_user@example.com
-  zip_code: 12345
-  accepted_consent_at: <%= 5.day.ago.to_s(:db) %>
-  accepted_privacy_policy_at: <%= 6.day.ago.to_s(:db) %>
-  accepted_update_at: <%= Date.parse(User::RECENT_UPDATE_DATE).end_of_day %>
-  over_eighteen: true
-  adult_diagnosed: true
-  encrypted_password: <%= pw %>
-  forum_name: api_user
-
 heh_1:
   email: heh_1@example.com
   first_name: HeH
