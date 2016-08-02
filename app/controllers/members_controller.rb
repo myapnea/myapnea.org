@@ -28,6 +28,6 @@ class MembersController < ApplicationController
   end
 
   def member_scope
-    User.current.where('users.id IN (SELECT posts.user_id FROM posts WHERE posts.status IN (?) and posts.deleted = ?)', ['pending_review', 'approved'], false).where.not(forum_name: [nil, '']).order("LOWER(forum_name)")
+    User.current.where('users.id IN (SELECT replies.user_id FROM replies WHERE replies.deleted = ?)', false).where.not(forum_name: [nil, '']).order("LOWER(forum_name)")
   end
 end

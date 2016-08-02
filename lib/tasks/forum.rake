@@ -7,7 +7,7 @@ namespace :forum do
     ActiveRecord::Base.connection.execute('TRUNCATE chapters RESTART IDENTITY;')
     ActiveRecord::Base.connection.execute('TRUNCATE replies RESTART IDENTITY;')
 
-    Topic.not_research.order(:id).each do |topic|
+    Topic.order(:id).each do |topic|
       chapter = Chapter.create(
         migration_flag: '1',
         title: topic.name,
@@ -57,20 +57,5 @@ namespace :forum do
       end
     end
     puts 'Created tmp/forum.csv'
-
-    # TODO: Remove Research topics table
-    CSV.open('tmp/research_topics.csv', 'wb') do |csv|
-      csv << %w(ResearchTopicID Type UserForumName Text Replies Views)
-      ResearchTopic.current.approved.each do |research_topic|
-        topic = research_topic.topic
-        next unless topic
-        location = [topic.id]
-        csv << location + ['ResearchTopic', topic.user.forum_name, topic.name.downcase.tr("\n", ' '), topic.posts.current.where(status: %w(approved pending_review)).count, topic.views_count]
-        topic.posts.current.where(status: %w(approved pending_review)).each do |post|
-          csv << location + ['ResearchTopic Comment', post.user.forum_name, post.description.downcase.tr("\n", ' ')]
-        end
-      end
-    end
-    puts 'Created tmp/research_topics.csv'
   end
 end

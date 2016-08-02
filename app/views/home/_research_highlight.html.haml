@@ -10,11 +10,7 @@
   .content-container
     - answer_session = current_user.answer_sessions.where(child_id: nil).joins(:survey).merge(Survey.current.viewable).order(:locked, 'surveys.name_en', :encounter).first
     = render 'surveys/answer_sessions/progress', answer_session: answer_session
-- elsif current_user.research_topics.current.present?
-  - current_user.research_topics.order(:progress).each do |rt|
-    .content-container.less-padding
-      = link_to rt.topic.name, rt
 - else
   .content-container.less-padding
     The fastest way to change the future of research is to get directly involved...
-    = link_to 'Add your own research proposal!', new_research_topic_path
+    = link_to 'Add your own research proposal!', new_chapter_path

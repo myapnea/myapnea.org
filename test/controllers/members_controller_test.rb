@@ -24,9 +24,9 @@ class MembersControllerTest < ActionController::TestCase
   end
 
   test 'should get search' do
-    get :search, params: { q: 'Tom' }, format: 'json'
+    get :search, params: { q: 'User' }, format: 'json'
     members_json = JSON.parse(response.body)
-    assert_includes members_json, 'TomHaverford'
+    assert_includes members_json, 'User1'
     assert_response :success
   end
 end

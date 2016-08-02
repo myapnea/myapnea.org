@@ -62,9 +62,7 @@ class User < ApplicationRecord
   has_many :chapters, -> { current }
   has_many :chapter_users
   has_many :replies, -> { current.joins(:chapter).merge(Chapter.current) }
-  has_many :votes, -> { where deleted: false }
   has_one :social_profile, -> { where deleted: false }
-  has_many :research_topics, -> { where deleted: false }
   has_many :forums, -> { where deleted: false }
   has_many :images
   has_many :notifications
@@ -320,19 +318,6 @@ class User < ApplicationRecord
   # Can Build Surveys
   def editable_surveys
     Survey.with_editor(id).order(:name_en)
-  end
-
-  # Research Topics
-  def my_research_topics
-    research_topics
-  end
-
-  def highlighted_research_topic
-    ResearchTopic.highlighted(self).first
-  end
-
-  def seeded_research_topic
-    ResearchTopic.seeded(self).first
   end
 
   def accepts_consent!

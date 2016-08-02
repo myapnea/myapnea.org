@@ -20,14 +20,9 @@ heh_referral_key:             "<%= print "Health eHeart Referral Key: "; ga = ge
 test:
   google_analytics_id:          ~
   google_analytics_report_id:   ~
-  research_topic_forum_slug:    "research-topics"
-  research_topic_experience_threshold: "2"
 
 devise_pepper:                "<%= SecureRandom.hex(64) %>"
 website_secret:               "<%= SecureRandom.hex(64) %>"
-
-research_topic_forum_slug:    "<%= print "Enter research topic forum slug [research-topics]: "; s = gets.chomp; s == '' ? 'research-topics' : s %>"
-research_topic_experience_threshold: "<%= print "Enter research topic experience threshold [10]: "; s = gets.chomp; s == '' ? '10' : s %>"
 
 tracking_check_risk:               ""
 tracking_surveys:                  ""

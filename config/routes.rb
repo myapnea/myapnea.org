@@ -244,15 +244,6 @@ Rails.application.routes.draw do
   get 'research-topics/accepted', to: redirect('blog/category/research')
   # END TODO
 
-  # Research Topics
-  resources :research_topics, path: 'research-topics' do
-    collection do
-      get :intro
-      get 'first-topics', as: :first_topics
-      get 'my-research-topics', as: :my_research_topics
-    end
-  end
-
   scope module: :search do
     get :search, action: 'index', as: :search
   end
@@ -309,7 +300,6 @@ Rails.application.routes.draw do
   get 'admin' => 'admin#dashboard'
   get 'admin/surveys' => 'admin#surveys', as: 'admin_surveys'
   post 'admin/unlock_survey' => 'admin#unlock_survey', as: 'admin_unlock_survey'
-  get 'admin/research-topics' => 'admin#research_topics', as: 'admin_research_topics'
   get 'admin/cross-tabs' => 'admin#cross_tabs', as: 'admin_cross_tabs'
   get 'admin/reports/timeline' => 'admin#timeline', as: 'admin_reports_timeline'
   get 'admin/reports/location' => 'admin#location', as: 'admin_reports_location'

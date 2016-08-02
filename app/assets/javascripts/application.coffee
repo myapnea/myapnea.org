@@ -42,7 +42,6 @@
 #= require reports/my_health_conditions
 #= require reports/my_quality_of_life
 #= require reports/my_sleep_apnea
-#= require research_topics
 #= require landing
 #= require external/highcharts-4.0.4.src.js
 #= require external/highmaps-1.0.4-modules-map.src.js

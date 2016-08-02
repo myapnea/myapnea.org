@@ -1,1 +1,0 @@
-json.extract! @research_topic, :id, :rating

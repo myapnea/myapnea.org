@@ -16,13 +16,6 @@ class AdminControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test 'should get research topics as owner' do
-    login(@owner)
-    get :research_topics
-    assert_not_nil assigns(:research_topics)
-    assert_response :success
-  end
-
   test 'should get daily engagement data as owner' do
     login(@owner)
     get :daily_engagement_data, xhr: true, format: 'json'

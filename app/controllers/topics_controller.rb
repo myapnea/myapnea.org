@@ -65,9 +65,9 @@ class TopicsController < ApplicationController
 
   def viewable_topics
     if current_user
-      current_user.viewable_topics.not_research
+      current_user.viewable_topics
     else
-      Topic.current.not_research.where(status: %w(approved pending_review))
+      Topic.current.where(status: %w(approved pending_review))
     end
   end
 

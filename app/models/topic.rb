@@ -19,7 +19,6 @@ class Topic < ApplicationRecord
   scope :search, lambda { |arg| where('topics.name ~* ? or topics.id in (select posts.topic_id from posts where posts.deleted = ? and posts.description ~* ?)', arg.to_s.split(/\s/).collect{|l| l.to_s.gsub(/[^\w\d%]/, '')}.collect{|l| "(\\m#{l})"}.join("|"), false, arg.to_s.split(/\s/).collect{|l| l.to_s.gsub(/[^\w\d%]/, '')}.collect{|l| "(\\m#{l})"}.join("|") ) }
   scope :user_active, lambda { |arg| where('topics.id IN (select posts.topic_id from posts where posts.user_id IN (?) and posts.status = ? and posts.deleted = ?)', arg, 'approved', false ) }
   scope :pending_review, -> { where('topics.status = ? or topics.id IN (select posts.topic_id from posts where posts.deleted = ? and posts.status = ?)', 'pending_review', false, 'pending_review') }
-  scope :not_research, -> { where('topics.id NOT IN (select research_topics.topic_id from research_topics where research_topics.topic_id IS NOT NULL)')}
 
   # Model Validation
   validates :user_id, presence: true
@@ -31,7 +30,6 @@ class Topic < ApplicationRecord
   # Model Relationships
   belongs_to :user
   belongs_to :forum
-  has_one :research_topic # For research topic functionality
   has_many :posts, -> { order(:created_at) }
   has_many :subscriptions
   has_many :subscribers, -> { current.where(emails_enabled: true).where(subscriptions: { subscribed: true }) }, through: :subscriptions, source: :user

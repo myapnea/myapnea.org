@@ -12,10 +12,6 @@ class AdminController < ApplicationController
   def social_media
   end
 
-  def research_topics
-    @research_topics = ResearchTopic.where.not(topic_id: nil).order("created_at desc")
-  end
-
   def surveys
   end
 
