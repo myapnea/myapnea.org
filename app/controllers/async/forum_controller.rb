@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-# Provides methods to login and register while creating a blog post comment.
+# Provides methods to login and register while starting a new forum topic.
 class Async::ForumController < Async::BaseController
-  before_action :set_chapter, only: [:login, :new_topic]
+  before_action :set_chapter
 
   def login
     super
@@ -11,11 +11,6 @@ class Async::ForumController < Async::BaseController
     else
       render :new
     end
-  end
-
-  def register
-    super
-    render text: 'register'
   end
 
   def new_topic

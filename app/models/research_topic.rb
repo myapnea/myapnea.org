@@ -13,7 +13,6 @@ class ResearchTopic < ApplicationRecord
   belongs_to :user
   belongs_to :topic
   has_many :votes, -> { where(deleted: false) }
-  has_one :research_article, class_name: Admin::ResearchArticle
 
   # Constants
   PROGRESS = [:proposed, :accepted, :ongoing_research, :complete]

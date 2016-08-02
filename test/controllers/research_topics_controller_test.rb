@@ -18,11 +18,6 @@ class ResearchTopicsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test 'should get accepted article' do
-    get :accepted_article, params: { slug: admin_research_articles(:one) }
-    assert_redirected_to blog_category_path(category: 'research')
-  end
-
   test 'should get index for experienced user' do
     # Displays normal index
     login(@experienced_user)

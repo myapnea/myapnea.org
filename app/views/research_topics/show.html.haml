@@ -4,12 +4,6 @@
 
 .row
   .col-sm-8
-    - if @research_topic.research_article.present?
-      .content-container
-        %strong
-          A research article was written in response to this questions, because it was one of the top rated topics according to our users.
-          = succeed '!' do
-            = link_to 'Read the article', accepted_article_research_topics_path(@research_topic.research_article), target: '_blank'
     = render 'research_topics/displays/standard', research_topic: @research_topic
     - if current_user
       - if current_user.cast_vote_for?(@research_topic)

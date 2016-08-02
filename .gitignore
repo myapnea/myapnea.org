@@ -20,6 +20,7 @@
 # These files are generated when the user initially runs ruby initial_setup.rb from the <rails_root> directory.
 
 /config/application.yml
+/config/banemail.yml
 /config/banlist.yml
 /config/database.yml
 

@@ -54,15 +54,6 @@ Rails.application.routes.draw do
         get :order
       end
     end
-    resources :research_articles do
-      member do
-        get :photo
-        post :preview
-      end
-      collection do
-        get :order
-      end
-    end
   end
 
   scope module: :blog do
@@ -259,8 +250,6 @@ Rails.application.routes.draw do
       get :intro
       get 'first-topics', as: :first_topics
       get 'my-research-topics', as: :my_research_topics
-      # Accepted research topics
-      get 'accepted/:slug', to: 'research_topics#accepted_article', as: :accepted_article
     end
   end
 

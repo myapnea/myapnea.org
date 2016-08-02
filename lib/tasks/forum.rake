@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 namespace :forum do
+  # TODO: Remove migrate task.
   desc 'Migrate forum to new structure'
   task migrate: :environment do
     ActiveRecord::Base.connection.execute('TRUNCATE chapters RESTART IDENTITY;')
@@ -57,6 +58,7 @@ namespace :forum do
     end
     puts 'Created tmp/forum.csv'
 
+    # TODO: Remove Research topics table
     CSV.open('tmp/research_topics.csv', 'wb') do |csv|
       csv << %w(ResearchTopicID Type UserForumName Text Replies Views)
       ResearchTopic.current.approved.each do |research_topic|

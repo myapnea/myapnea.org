@@ -3,11 +3,13 @@ rt1:
   user: user_1
   created_at: <%= Time.zone.now - 1.day %>
   topic: rt1
+
 rt2:
   progress: proposed
   user: user_2
   created_at: <%= Time.zone.now - 3.hour %>
   topic: rt2
+
 rt3:
   progress: proposed
   user: user_3

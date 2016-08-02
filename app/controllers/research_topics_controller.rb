@@ -77,10 +77,6 @@ class ResearchTopicsController < ApplicationController
     end
   end
 
-  def accepted_article
-    redirect_to blog_category_path(category: 'research')
-  end
-
   # Voting
   def vote
     @research_topic = ResearchTopic.find(params[:research_topic_id])
