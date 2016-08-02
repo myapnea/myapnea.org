@@ -28,7 +28,7 @@ class User < ApplicationRecord
   ]
 
   # Concerns
-  include CommonDataModel, Deletable, Groupable, Coenrollment, Forkable
+  include Deletable, Groupable, Coenrollment, Forkable
 
   attr_accessor :user_is_updating
 
