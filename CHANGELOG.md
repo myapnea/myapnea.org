@@ -17,6 +17,7 @@
 - Rank the Research functionality has been removed
   - Accepted research articles are available on the blog, and suggested research
     topics can now be discussed on the forum
+- Removed old forum backend files
 - Cleaned up existing migration files
 - Simplified configuration options
 - All emails are now sent in a background process

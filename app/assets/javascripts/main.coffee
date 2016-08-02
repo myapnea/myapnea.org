@@ -36,7 +36,6 @@
   registrationUXReady() if registrationUXReady?
   validationReady() if validationReady?
   toolsReady() if toolsReady?
-  postsReady() if postsReady?
   surveyReportsReady() if surveyReportsReady?
   autocompleteGenderReady() if $("#user_gender").length > 0
   fileDragOldReady()

@@ -1,68 +1,4 @@
-.forum-post-content-container {
-  position: relative;
-  .poster {
-    left: 0;
-    position: absolute;
-    top: 0;
-    width: 70px;
-  }
-  .post {
-    background-color: white;
-    box-shadow: $box-shadow;
-    margin-bottom: 20px;
-    margin-left: 70px;
-    padding: 10px;
-    .post-details {
-      p {
-        color: #8A8A8A;
-        margin-bottom: 0px;
-      }
-    }
-    .post-content {
-      margin-top: 10px;
-      margin-left: 0px;
-      .wrapword {
-        p {
-          padding: 0px;
-        }
-      }
-      blockquote {
-        color: $text-muted;
-        font-weight: 300;
-        border-left-width: 2px;
-      }
-      .table {
-        th[align=left] {
-          text-align: left;
-        }
-        th[align=right] {
-          text-align: right;
-        }
-        th[align=center] {
-          text-align: center;
-        }
-      }
-      img {
-        max-width: 100%;
-      }
-    }
-  }
-  .post-actions-btn {
-    background-color: inherit;
-    color: #8A8A8A;
-    border: none;
-  }
-  .pending-review-warning {
-    background-color: $primary-orange;
-    padding: 5px;
-    border-radius:3px;
-    color: white;
-    font-weight: 500;
-  }
-  .post.post-muted {
-    background-color: #eaeaea;
-  }
-}
+// TODO: Move into more appropriate SCSS file
 
 // User thumbnails
 .user-thumbnail-forum-no-border {
@@ -95,13 +31,5 @@
 @media (max-width: $screen-sm) {
   .user-thumbnail-forum {
     border-width:3px;
-  }
-  .post-container {
-    padding:10px;
-    .wrapword {
-      p {
-        padding: 0px;
-      }
-    }
   }
 }

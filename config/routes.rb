@@ -23,8 +23,6 @@ Rails.application.routes.draw do
   resources :engagements do
     resources :engagement_responses
   end
-  resources :reactions, only: [:create, :destroy]
-  resources :comments, only: [:create, :destroy]
 
   namespace :admin do
     resources :broadcast_comments, only: :index, path: 'blog/comments'
@@ -137,7 +135,6 @@ Rails.application.routes.draw do
   scope module: 'home' do
     get :dashboard
     get :landing
-    post :posts
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -323,20 +320,6 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :topics do
-    collection do
-      get :markup
-    end
-    member do
-      post :subscription
-    end
-    resources :posts do
-      collection do
-        post :preview
-      end
-    end
-  end
-
   resources :chapters, path: 'forum' do
     member do
       get '/edit', action: :edit, as: :edit
@@ -355,9 +338,11 @@ Rails.application.routes.draw do
 
   get 'sitemap.xml.gz' => 'external#sitemap'
 
+  # TODO: Remove redirects on or after 1 January 2017
   get 'forums/:category/topics/*path', to: redirect('forum/%{path}')
   get 'forums/:category', to: redirect('forum')
   get 'forums', to: redirect('forum')
+  # END TODO
 
   get 'update_account', to: redirect('account')
   get 'change_password', to: redirect('account')

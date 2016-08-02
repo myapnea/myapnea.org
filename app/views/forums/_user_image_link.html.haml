@@ -1,6 +1,0 @@
-- size = 25 unless defined?(size)
-- if user.forum_name
-  = link_to member_path(user.forum_name) do
-    = image_tag user_photo_url(user), alt: '', class: "user-thumbnail-forum-no-border", style: "max-height:#{(size*2)+5}px;max-width:#{size+5}px;", title: user.forum_name, data: { toggle: 'tooltip', container: 'body', placement: 'top' }
-- else
-  = image_tag user_photo_url(user), alt: '', class: "user-thumbnail-forum-no-border", style: "max-height:#{(size*2)+5}px;max-width:#{size+5}px;", title: user.forum_name, data: { toggle: 'tooltip', container: 'body', placement: 'top' }

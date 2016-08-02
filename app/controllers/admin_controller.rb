@@ -179,7 +179,7 @@ class AdminController < ApplicationController
   def daily_engagement_data
     dates = (Date.parse("02-10-2014").to_date..Date.today).map{ |date| [date.strftime("%a, %d %b %Y").to_date, []] }
     @posts = dates
-    Post.current.select(:id, :created_at).group_by{ |post| post.created_at.to_date }.each do |post|
+    Reply.current.select(:id, :created_at).group_by{ |post| post.created_at.to_date }.each do |post|
       @posts[dates.index([post[0], []])] = post
     end
 

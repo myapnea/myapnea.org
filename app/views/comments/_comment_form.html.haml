@@ -1,8 +1,0 @@
-= form_for current_user.comments.where(post_id: post.id).new, method: :post, remote: true, html: { class: 'reply'} do |f|
-  = f.hidden_field :post_id, value: post.id
-  .reply-user
-    = render 'forums/user_image_link', user: current_user, size: 30
-  .reply-field
-    = f.text_field :content, placeholder: 'Add a comment...', class: 'form-control'
-  .reply-submit
-    = f.submit 'Comment', class: 'hidden'

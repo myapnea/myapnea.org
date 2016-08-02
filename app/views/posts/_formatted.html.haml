@@ -1,1 +1,0 @@
-= simple_markdown(sanitize(post.description.gsub(/</, "&lt;")).gsub('&gt;', '>'), (post.user.can_post_links? or (post.links_enabled? and post.status == 'approved')), true, 'table table-striped')

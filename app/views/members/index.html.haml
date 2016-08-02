@@ -19,6 +19,6 @@
         = render 'forums/user_image_no_border', user: member, size: 18
         = link_to member.forum_name, member_path(member.forum_name)
       %td
-        = member.posts.where(status: ['pending_review', 'approved']).count
+        = member.replies.count
 
 .centered= paginate @members, theme: 'bootstrap'

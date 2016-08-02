@@ -30,9 +30,7 @@
   .col-md-7.col-buffer
     %p.f500.logo-color
       Recent Forum Activity
-    #recent-posts
-      = render 'home/show_from_home'
-    #read-more-recent-posts
-      = render 'home/show_more_button'
+    = render 'home/show_from_home'
+    = render 'home/show_more_button'
   .col-md-3
     = render 'home/blog', limit: 5

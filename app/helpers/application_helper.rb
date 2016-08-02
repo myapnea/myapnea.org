@@ -43,11 +43,9 @@ module ApplicationHelper
     default_links = {
       check_risk: sleep_apnea_risk_assessment_path,
       surveys: surveys_path,
-      forums: forums_path,
       facebook: "https://www.facebook.com/sharer/sharer.php?u=www.myapnea.org",
       join_from_landing: new_user_registration_path,
       join_from_sidebar: new_user_registration_path,
-      join_from_forums: new_user_registration_path,
       join_from_surveys: new_user_registration_path,
       join_from_research: new_user_registration_path,
       join_from_learn: new_user_registration_path

@@ -63,14 +63,8 @@ class User < ApplicationRecord
   has_many :chapter_users
   has_many :replies, -> { current.joins(:chapter).merge(Chapter.current) }
   has_one :social_profile, -> { where deleted: false }
-  has_many :forums, -> { where deleted: false }
   has_many :images
   has_many :notifications
-  has_many :topics, -> { where deleted: false }
-  has_many :posts, -> { where deleted: false }
-  has_many :reactions
-  has_many :comments, -> { where deleted: false }
-  has_many :subscriptions
   has_many :users, class_name: 'User', foreign_key: 'provider_id'
   has_many :invites
   has_many :children, -> { where(deleted: false).order('age desc', :first_name) }
@@ -108,19 +102,19 @@ class User < ApplicationRecord
   end
 
   def is_only_researcher?
-    self.researcher? and !self.is_nonacademic?
+    researcher? && !is_nonacademic?
   end
 
   def is_only_academic?
-    (self.researcher? or self.provider?) and !self.is_nonacademic?
+    (researcher? || provider?) && !is_nonacademic?
   end
 
   def is_nonacademic?
-    self.adult_diagnosed? or self.adult_at_risk? or self.caregiver_child? or self.caregiver_adult?
+    adult_diagnosed? || adult_at_risk? || caregiver_child? || caregiver_adult?
   end
 
   def has_user_type?
-    self.adult_diagnosed? or self.adult_at_risk? or self.caregiver_child? or self.caregiver_adult? or self.provider? or self.researcher?
+    adult_diagnosed? || adult_at_risk? || caregiver_child? || caregiver_adult? || provider? || researcher?
   end
 
   def user_type_names
@@ -130,33 +124,9 @@ class User < ApplicationRecord
   end
 
   def user_types
-    User::TYPES.collect do |label, user_type|
+    User::TYPES.collect do |_label, user_type|
       user_type if self[user_type]
     end.compact
-  end
-
-  def viewable_topics
-    if moderator? || owner?
-      Topic.current
-    else
-      Topic.viewable_by_user(id)
-    end
-  end
-
-  def editable_topics
-    if moderator? || owner?
-      Topic.current
-    else
-      topics.where(locked: false)
-    end
-  end
-
-  def deletable_topics
-    if owner?
-      Topic.current
-    else
-      topics
-    end
   end
 
   def editable_chapters
@@ -173,31 +143,6 @@ class User < ApplicationRecord
     else
       replies
     end
-  end
-
-  def editable_posts
-    if moderator? || owner?
-      Post.current.with_unlocked_topic
-    else
-      posts.with_unlocked_topic
-    end
-  end
-
-  def deletable_posts
-    if owner?
-      Post.current.with_unlocked_topic
-    else
-      posts.with_unlocked_topic
-    end
-  end
-
-  # All comments created in the last day, or over the weekend if it is Monday
-  # Ex: On Monday, returns tasks created since Friday morning (Time.zone.now - 3.day)
-  # Ex: On Tuesday, returns tasks created since Monday morning (Time.zone.now - 1.day)
-  def digest_posts
-    # Comment.digest_visible.where( topic_id: self.subscribed_topics.pluck(:id) ).where("created_at > ?", (Time.zone.now.monday? ? Time.zone.now.midnight - 3.day : Time.zone.now.midnight - 1.day))
-    # Post.digest_visible.where( topic_id: self.subscribed_topics.pluck(:id) ).where("created_at > ?", (Time.zone.now.monday? ? Time.zone.now.midnight - 3.day : Time.zone.now.midnight - 1.day))
-    Post.current.where(status: 'approved').where("created_at > ?", (Time.zone.now.monday? ? Time.zone.now.midnight - 3.day : Time.zone.now.midnight - 1.day))
   end
 
   def name
@@ -220,6 +165,7 @@ class User < ApplicationRecord
     notifications.where(read: false).present?
   end
 
+  # TODO: Remove method?
   def can_post_links?
     moderator? || owner?
   end

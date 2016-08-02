@@ -29,7 +29,6 @@
 #= require external/jquery-fieldselection.js
 #= require google_analytics
 #= require main
-#= require posts
 #= require admin
 #= require admin/daily_engagement
 #= require tools

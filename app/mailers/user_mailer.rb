@@ -2,22 +2,6 @@
 
 # Sends out application emails to users
 class UserMailer < ApplicationMailer
-  def forum_digest(user)
-    setup_email
-    @user = user
-    @email_to = user.email
-    mail(to: @email_to,
-         subject: "Forum Digest for #{Time.zone.today.strftime('%a %d %b %Y')}")
-  end
-
-  def post_replied(post, user)
-    setup_email
-    @post = post
-    @user = user
-    @email_to = user.email
-    mail(to: @email_to, subject: "New Forum Reply: #{@post.topic.name}")
-  end
-
   def welcome(user)
     setup_email
     @user = user
@@ -35,15 +19,6 @@ class UserMailer < ApplicationMailer
     attachments.inline['speech_bubbles.png'] = File.read('app/assets/images/myapnea/icons/speech_bubbles.png') rescue nil
     mail(to: @email_to,
          subject: 'MyApnea.Org Provider Registration Information')
-  end
-
-  def mentioned_in_post(post, user)
-    setup_email
-    @user = user
-    @post = post
-    @email_to = user.email
-    mail(to: @email_to,
-         subject: "#{post.user.forum_name} Mentioned You on the MyApnea Forums")
   end
 
   def followup_survey(answer_session)
