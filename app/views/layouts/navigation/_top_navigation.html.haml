@@ -63,6 +63,9 @@
                   %li= link_to 'Build a Survey', builder_path
             %li.visible-xs
               = link_to 'Settings', account_path
+            - if current_user.owner? || current_user.moderator?
+              %li.visible-xs
+                = link_to 'Admin Dashboard', admin_path
 
       - if current_user
         %form.navbar-form.navbar-right.visible-xs.visible-sm

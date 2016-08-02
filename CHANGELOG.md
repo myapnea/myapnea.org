@@ -3,6 +3,8 @@
 ### Enhancements
 - **General Changes**
   - Updated styling across several pages to be more consistent
+- **Admin Changes**
+  - Added a link to Admin Dashboard in mobile dropdown menu
 - **Gem Changes**
   - Updated to rails 5.0.0
   - Updated to coffee-rails 4.2
@@ -1368,7 +1370,7 @@
   - Synchronized vision with OpenPPRN.
   - Cleaned up overall style.
   - Added community and personal contributions
-  - Revamped forumns
+  - Revamped forums
   - Improved mobile navigation design
   - Added new landing page based of introduction page
 
