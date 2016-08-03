@@ -432,3 +432,39 @@ community_contributor:
   encrypted_password: ""
   community_contributor: true
   forum_name: community_contributor
+
+shadow_banned:
+  first_name: Dark
+  last_name: Shadow
+  email: shadow_banned@example.com
+  zip_code: 12345
+  over_eighteen: true
+  adult_diagnosed: true
+  encrypted_password: <%= pw %>
+  accepted_terms_conditions_at: <%= Time.zone.now %>
+  forum_name: dark_shadow
+  shadow_banned: true
+
+new_spammer:
+  first_name: Innocent
+  last_name: Ant
+  email: new_spammer@example.com
+  zip_code: 12345
+  over_eighteen: true
+  adult_diagnosed: true
+  encrypted_password: <%= pw %>
+  accepted_terms_conditions_at: <%= Time.zone.now %>
+  forum_name: innocent_ant
+  # shadow_banned:
+
+verified_user:
+  first_name: Prolific
+  last_name: Poster
+  email: verified_user@example.com
+  zip_code: 12345
+  over_eighteen: true
+  adult_diagnosed: true
+  encrypted_password: <%= pw %>
+  accepted_terms_conditions_at: <%= Time.zone.now %>
+  forum_name: prolific_user
+  shadow_banned: false

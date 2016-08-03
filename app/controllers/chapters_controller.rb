@@ -5,6 +5,7 @@ class ChaptersController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :find_viewable_chapter_or_redirect, only: [:show]
   before_action :find_editable_chapter_or_redirect, only: [:edit, :update, :destroy]
+  # before_action :redirect_shadow_banned_users, only: [:create]
 
   # GET /chapters
   def index
@@ -12,7 +13,9 @@ class ChaptersController < ApplicationController
     if ['reply_count', 'reply_count desc'].include?(params[:order])
       @order = params[:order]
     end
-    @chapters = Chapter.current.reply_count.order(@order).page(params[:page]).per(40)
+    chapter_scope = Chapter.current.reply_count.order(@order)
+    chapter_scope = chapter_scope.shadow_banned(current_user ? current_user.id : nil) unless current_user && current_user.owner?
+    @chapters = chapter_scope.page(params[:page]).per(40)
   end
 
   # GET /chapters/1
@@ -35,9 +38,9 @@ class ChaptersController < ApplicationController
   # POST /chapters
   def create
     @chapter = current_user.chapters.new(chapter_params)
-
     if @chapter.save
       @chapter.touch(:last_reply_at)
+      @chapter.compute_shadow_ban!
       redirect_to @chapter, notice: 'Topic was successfully created.'
     else
       render :new
@@ -47,6 +50,7 @@ class ChaptersController < ApplicationController
   # PATCH /chapters/1
   def update
     if @chapter.update(chapter_params)
+      @chapter.compute_shadow_ban!
       redirect_to @chapter, notice: 'Topic was successfully updated.'
     else
       render :edit
@@ -78,6 +82,10 @@ class ChaptersController < ApplicationController
   def redirect_without_chapter
     empty_response_or_root_path(chapters_path) unless @chapter
   end
+
+  # def redirect_shadow_banned_users
+  #   redirect_to chapters_path, notice: 'Topic was successfully created.' if current_user.shadow_banned?
+  # end
 
   def chapter_params
     if current_user.moderator?

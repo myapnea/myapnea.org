@@ -11,29 +11,26 @@
     %tr
       %th Name
       %th Email
-      %th.nowrap Recent Activity
-      %th Owner
-      %th Moderator
-      %th Excluded from Exports
-      %th.nowrap Surveys Completed
-      %th
+      = th_sort_field @order, 'users.current_sign_in_at', 'Recent Activity', extra_class: 'hidden-xs'
+      = th_sort_field @order, 'users.shadow_banned', 'Shadow Banned', extra_class: 'text-center'
+      %th.nowrap.hidden-xs Surveys Completed
+      %th Actions
   - @users.each do |user|
     %tr{ class: "#{'todays-users' if user.created_at.today?} #{'this-weeks-users' if user.created_at > Time.zone.now.beginning_of_week(start_day = :sunday)}"}
       %td.nowrap
         = render 'forums/user_image_no_border', user: user, size: 18
-        = link_to user.name, user_path(user)
-      %td= user.email
+        %span.hidden-xs= link_to user.name, user
       %td
+        %span.hidden-xs= user.email
+        %span.hidden-sm.hidden-md.hidden-lg= link_to user.email, user
+      %td.nowrap.hidden-xs
         - if user.current_sign_in_at
-          = time_ago_in_words(user.current_sign_in_at)
+          = time_ago_in_words user.current_sign_in_at
           ago
       %td.text-center
-        = simple_check user.owner?
-      %td.text-center
-        = simple_check user.moderator?
-      %td.text-center
-        = simple_check !user.include_in_exports?
-      %td
+        - if user.shadow_banned?
+          %span.glyphicon.glyphicon-eye-close.text-muted
+      %td.hidden-xs
         = user.completed_answer_sessions.count
       %td.nowrap
         = link_to 'Edit', edit_user_path(user), class: 'btn btn-default btn-xs'

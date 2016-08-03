@@ -16,7 +16,8 @@ class UsersController < ApplicationController
 
   def index
     @all_users = User.current.search(params[:search]).order(current_sign_in_at: :desc)
-    @users = @all_users.page(params[:page]).per( 40 )
+    @order = scrub_order(User, params[:order], 'current_sign_in_at desc')
+    @users = @all_users.reorder(@order).page(params[:page]).per(40)
   end
 
   def export
@@ -56,20 +57,20 @@ class UsersController < ApplicationController
 
   private
 
-    def set_user
-      @user = User.current.find_by_id(params[:id])
-    end
+  def set_user
+    @user = User.current.find_by_id(params[:id])
+  end
 
-    def redirect_without_user
-      empty_response_or_root_path(users_path) unless @user
-    end
+  def redirect_without_user
+    empty_response_or_root_path(users_path) unless @user
+  end
 
-    def user_params
-      params.require(:user).permit(
-        :first_name, :last_name, :email, :forum_name, :emails_enabled,
-        :age, :gender, :include_in_exports,
-        :owner, :moderator, :community_contributor, :can_build_surveys
-      )
-    end
-
+  def user_params
+    params.require(:user).permit(
+      :first_name, :last_name, :email, :forum_name, :emails_enabled,
+      :age, :gender, :include_in_exports,
+      :owner, :moderator, :community_contributor, :can_build_surveys,
+      :shadow_banned
+    )
+  end
 end

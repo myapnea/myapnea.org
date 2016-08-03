@@ -1,5 +1,11 @@
 .content-main-header2
-  %h1= "Edit User: #{@user.name}"
-  %p= link_to 'Users', users_path
+  %h1
+    = link_to 'Admin Dashboard', admin_path
+    &middot;
+    = link_to 'Users', users_path
+    &middot;
+    = link_to "#{@user.first_name_was} #{@user.last_name_was}", @user
+    &middot;
+    Edit
 
 = render 'form'

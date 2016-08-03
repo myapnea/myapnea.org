@@ -16,6 +16,7 @@ class Chapter < ApplicationRecord
 
   # Scopes
   scope :reply_count, -> { select('chapters.*, COUNT(replies.id) reply_count').joins(:replies).group('chapters.id') }
+  scope :shadow_banned, -> (arg) { joins(:user).merge(User.where(shadow_banned: [nil, false]).or(User.where(id: arg))) }
 
   # Model Validation
   validates :title, :slug, :user_id, presence: true
@@ -69,6 +70,23 @@ class Chapter < ApplicationRecord
 
   def last_page
     ((replies.where(reply_id: nil).count - 1) / REPLIES_PER_PAGE) + 1
+  end
+
+  def compute_shadow_ban!
+    user.update shadow_banned: true if user.shadow_banned.nil? && url_count > 1
+  end
+
+  def url_count
+    count_urls(title) + first_reply_url_count
+  end
+
+  def first_reply_url_count
+    return 0 if replies.first.nil?
+    count_urls(replies.first.description)
+  end
+
+  def count_urls(text)
+    URI.extract(text, /http(s)?|mailto|ftp/).count
   end
 
   private

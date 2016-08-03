@@ -5,6 +5,7 @@
   - Updated styling across several pages to be more consistent
 - **Admin Changes**
   - Added a link to Admin Dashboard in mobile dropdown menu
+  - Improved forum post management
 - **Gem Changes**
   - Updated to rails 5.0.0
   - Updated to coffee-rails 4.2

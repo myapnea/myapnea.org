@@ -26,6 +26,8 @@
       %tr{ class: chapter.started_reading?(current_user) ? 'chapter-read' : '' }
         %td
           .wrapword
+            - if current_user && current_user.owner? && chapter.user.shadow_banned?
+              %span.glyphicon.glyphicon-eye-close.text-muted
             - if chapter.pinned?
               %span.glyphicon.glyphicon-star.primary-orange
             = link_to chapter.title, chapter
