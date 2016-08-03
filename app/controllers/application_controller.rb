@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
+  layout :set_layout
 
   before_action :store_location
   before_action :check_ip_banlist
@@ -94,6 +95,10 @@ class ApplicationController < ActionController::Base
   end
 
   protected
+
+  def set_layout
+    devise_controller? ? 'simple' : nil
+  end
 
   def store_location_in_session
     session[:previous_url] = request.fullpath
