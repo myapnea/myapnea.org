@@ -40,16 +40,6 @@ class AnswerSession < ApplicationRecord
     end
   end
 
-  def process_answer_from_api(question, response)
-    answer = atomic_first_or_create_answer(question)
-    if answer.locked?
-      nil
-    else
-      answer.update_response_value_from_api!(response)
-      answer
-    end
-  end
-
   def atomic_first_or_create_answer(question)
     answers.where(question_id: question.id).first_or_create!
   rescue ActiveRecord::RecordNotUnique, ActiveRecord::RecordInvalid
