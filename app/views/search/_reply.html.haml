@@ -1,6 +1,6 @@
 .search-result
   .search-result-title
-    = link_to reply.chapter.title, reply
+    = link_to reply.chapter.title, reply, data: { turbolinks: false }
   .search-result-author
     Reply by
     = reply.user.forum_name

@@ -5,7 +5,7 @@
       %div{ style: 'margin-bottom: 10px' }
         %small.f300
           Reply to
-          = link_to reply.chapter.title, reply
+          = link_to reply.chapter.title, reply, data: { turbolinks: false }
     .reply-inner-container
       .reply-avatar-container{ style: "#{'display:none' if reply.below_threshold?}" }
         .reply-avatar
@@ -44,7 +44,7 @@
                 - async_write_a_reply_path = page_chapter_path(reply.parent, page: reply.parent.last_page, anchor: 'write-a-reply')
 
             %small= link_to 'reply', async_write_a_reply_path, method: method, remote: remote, class: 'text-muted'
-            %small= link_to 'link', reply, class: 'text-muted'
+            %small= link_to 'link', reply, class: 'text-muted', data: { turbolinks: false }
             - if current_user && reply.editable_by?(current_user)
               %small= link_to 'edit', edit_reply_path(reply, chapter_id: reply.chapter), remote: true, class: 'text-muted'
               %small= link_to 'delete', reply_path(reply, chapter_id: reply.chapter), method: :delete, remote: true, data: { confirm: 'Are you sure you want to delete this comment?' }, class: 'text-muted'
