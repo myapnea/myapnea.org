@@ -45,7 +45,7 @@
           - next_unread_reply = chapter.next_unread_reply(current_user)
           - if next_unread_reply
             %br
-            = link_to next_unread_reply do
+            = link_to next_unread_reply, data: { turbolinks: false } do
               = surround '(', ')' do
                 %b.primary-orange= pluralize unread_replies, 'unread reply'
         %td.text-muted.hidden-xs.f300
