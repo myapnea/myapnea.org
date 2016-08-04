@@ -142,15 +142,6 @@
     event.stopPropagation()
     return
 
-  $("[data-object~='checkbox-label']").click (event) ->
-    return if $("[data-object~='full-survey-container']").attr("id") is "simple-survey"
-    event.preventDefault()
-    checkbox = $(this).siblings('input:checkbox')
-    $(checkbox).prop "checked", !$(checkbox).prop("checked")
-    event.stopPropagation()
-    return
-
-
   # Respond to user clicking different questions
   $('.survey-container').click (event) ->
     return if $("[data-object~='full-survey-container']").attr("id") is "simple-survey"
