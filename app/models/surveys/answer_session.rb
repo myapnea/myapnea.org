@@ -19,7 +19,7 @@ class AnswerSession < ApplicationRecord
 
   # Model Methods
   def completed?
-    answers.where(question_id: survey.questions.unarchived.pluck(:id)).complete.count == survey.questions.unarchived.count
+    answers.where(question_id: survey.questions.unarchived.select(:id)).complete.count == survey.questions.unarchived.count
   end
 
   def unlocked?

@@ -141,7 +141,7 @@ class SurveysControllerTest < ActionController::TestCase
     post :process_answer, params: { question_id: questions(:checkbox1), answer_session_id: answer_sessions(:incomplete), response: { answer_templates(:race_list).to_param => [answer_options(:wookie).id.to_s, answer_options(:other_race).id.to_s], answer_templates(:fixture_specified_race).to_param => 'Polish'} }, format: 'json'
     assert_not_nil assigns(:answer)
     assert assigns(:answer).persisted?
-    assert assigns(:answer).complete?
+    assert assigns(:answer).completed?
     refute assigns(:answer).validation_errors.present?
     refute assigns(:answer).locked?
     assert_equal answer_options(:wookie).id, assigns(:answer).answer_values.first.answer_option_id
@@ -158,7 +158,7 @@ class SurveysControllerTest < ActionController::TestCase
     post :process_answer, params: { question_id: questions(:date1), answer_session_id: answer_sessions(:incomplete2_followup), response: { answer_templates(:custom_date_template).to_param => { month: '3', day: '12', year: '1920' } } }, format: 'json'
     assert_not_nil assigns(:answer)
     assert assigns(:answer).persisted?
-    assert assigns(:answer).complete?
+    assert assigns(:answer).completed?
     refute assigns(:answer).validation_errors.present?
     refute assigns(:answer).locked?
     assert_equal 1, assigns(:answer).answer_values.count
@@ -174,7 +174,7 @@ class SurveysControllerTest < ActionController::TestCase
     assert_response :success
     assert_not_nil assigns(:answer)
     assert assigns(:answer).persisted?
-    refute assigns(:answer).complete?
+    refute assigns(:answer).completed?
     refute assigns(:answer).locked?
     assert_equal 1, assigns(:answer_session).answers.complete.count, "#{assigns(:answer_session).survey.questions.count} #{assigns(:answer_session).answers.to_a}"
   end
@@ -185,7 +185,7 @@ class SurveysControllerTest < ActionController::TestCase
     post :process_answer, params: { question_id: questions(:checkbox1), answer_session_id: answer_sessions(:incomplete), response: { preferred_not_to_answer: '1' } }, format: 'json'
     assert_not_nil assigns(:answer)
     assert assigns(:answer).persisted?
-    assert assigns(:answer).complete?
+    assert assigns(:answer).completed?
     assert assigns(:answer).preferred_not_to_answer?
     assert_equal 2, assigns(:answer_session).answers.complete.count, "#{assigns(:answer_session).survey.questions.count} #{assigns(:answer_session).answers.to_a}"
     assert_response :success

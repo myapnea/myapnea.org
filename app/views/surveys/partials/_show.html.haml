@@ -7,7 +7,7 @@
       - if answer.locked?
         %li.locked{ data: { object: 'survey-indicator', target: "#{index}" } }
           %span.glyphicon.glyphicon-lock{ 'aria-hidden'=>'true' }
-      - elsif answer.complete?
+      - elsif answer.completed?
         %li.complete{ data: { object: 'survey-indicator', target: "#{index}" } } &#10003;
       - else
         %li.incomplete{ data: { object: 'survey-indicator', target: "#{index}" } }= index + 1

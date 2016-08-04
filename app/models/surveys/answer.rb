@@ -11,12 +11,12 @@ class Answer < ApplicationRecord
   scope :incomplete,  -> { where state: 'incomplete' }
   scope :invalid,     -> { where state: 'invalid' }
   scope :migrated,    -> { where state: 'migrated' }
-  scope :complete,    -> { where state: ['complete', 'locked'] }
+  scope :complete,    -> { where state: %w(complete locked) }
   scope :locked,      -> { where state: 'locked' }
 
   # Model Validation
-  validates_presence_of :answer_session_id, :question_id
-  validates_uniqueness_of :question_id, scope: [:answer_session_id]
+  validates :answer_session_id, :question_id, presence: true
+  validates :question_id, uniqueness: { scope: :answer_session_id }
 
   # Model Relationships
   has_many :answer_values, dependent: :destroy
@@ -130,25 +130,21 @@ class Answer < ApplicationRecord
     if answer_values.length == 1
       answer_values.first.show_value
     else
-      answer_values.map(&:show_value).join(", ")
+      answer_values.map(&:show_value).join(', ')
     end
   end
   ## End Value Methods
 
-  def complete?
-    self[:state] == 'complete' or self[:state] == 'locked'
-  end
-
-  def incomplete?
-    self[:state] == 'incomplete'
+  def completed?
+    %w(complete locked).include?(state)
   end
 
   def locked?
-    self[:state] == 'locked'
+    state == 'locked'
   end
 
   def invalid?
-    self[:state] == 'invalid'
+    state == 'invalid'
   end
 
   def validation_errors

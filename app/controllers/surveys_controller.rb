@@ -58,7 +58,7 @@ class SurveysController < ApplicationController
     @answer = @answer_session.process_answer(@question, response) if @question && @answer_session
 
     if @answer
-      render json: { completed: @answer.complete?, invalid: @answer.invalid?, value: @answer.string_value, errors: @answer.errors.full_messages, validation_errors: @answer.validation_errors }
+      render json: { completed: @answer.completed?, invalid: @answer.invalid?, value: @answer.string_value, errors: @answer.errors.full_messages, validation_errors: @answer.validation_errors }
     else
       head :no_content
     end

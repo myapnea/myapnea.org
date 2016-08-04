@@ -153,14 +153,6 @@ class User < ApplicationRecord
     "#{first_name} #{last_name} <#{email}>"
   end
 
-  def api_photo_url
-    if photo.size > 0
-      "#{ENV['website_url']}/users/#{id}/photo"
-    else
-      nil
-    end
-  end
-
   def unread_notifications?
     notifications.where(read: false).present?
   end
