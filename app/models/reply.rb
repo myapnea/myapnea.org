@@ -94,7 +94,7 @@ class Reply < ApplicationRecord
   end
 
   def below_threshold?
-    deleted? || rank < THRESHOLD
+    deleted? || rank < THRESHOLD || user.shadow_banned?
   end
 
   def vote(current_user)

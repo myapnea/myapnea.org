@@ -21,7 +21,6 @@ class HomeController < ApplicationController
   end
 
   def landing
-    render 'home/landing'
   end
 
   private

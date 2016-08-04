@@ -1,7 +1,7 @@
-%button.btn.btn-default{data: { object: 'show-todays-users' } }
+%button.btn.btn-default{ data: { object: 'show-todays-users' } }
   New users today:
   %span.f500= @all_users.where("created_at > ?", Time.zone.now.beginning_of_day).count
-%button.btn.btn-default{data: { object: 'show-this-weeks-users' } }
+%button.btn.btn-default{ data: { object: 'show-this-weeks-users' } }
   New users this week:
   %span.f500= @all_users.where("created_at > ?", Time.zone.now.beginning_of_week(start_day = :sunday)).count
 = render 'layouts/per_page', per_page: 40, object_count: @users.total_count
