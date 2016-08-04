@@ -8,7 +8,7 @@
         %br
 - elsif current_user.incomplete_answer_sessions.present?
   .content-container
-    - answer_session = current_user.answer_sessions.where(child_id: nil).joins(:survey).merge(Survey.current.viewable).order(:locked, 'surveys.name_en', :encounter).first
+    - answer_session = current_user.answer_sessions.no_child.joins(:survey).merge(Survey.current.viewable).order(:locked, 'surveys.name_en', :encounter).first
     = render 'surveys/answer_sessions/progress', answer_session: answer_session
 - else
   .content-container.less-padding

@@ -14,13 +14,16 @@ class AnswerSession < ApplicationRecord
   validates :survey_id, :encounter, presence: true
   validates :survey_id, uniqueness: { scope: [:encounter, :user_id, :child_id, :deleted] }
 
+  # Scopes
+  scope :no_child, -> { where child_id: 0 }
+
   # Model Methods
   def completed?
     answers.where(question_id: survey.questions.unarchived.pluck(:id)).complete.count == survey.questions.unarchived.count
   end
 
   def unlocked?
-    !self.locked?
+    !locked?
   end
 
   def available_for_user_types?(user_types)
@@ -48,11 +51,9 @@ class AnswerSession < ApplicationRecord
   end
 
   def atomic_first_or_create_answer(question)
-    begin
-      answers.where(question_id: question.id).first_or_create!
-    rescue ActiveRecord::RecordNotUnique, ActiveRecord::RecordInvalid
-      retry
-    end
+    answers.where(question_id: question.id).first_or_create!
+  rescue ActiveRecord::RecordNotUnique, ActiveRecord::RecordInvalid
+    retry
   end
 
   def lock!

@@ -25,6 +25,10 @@
 - Removed old lottery code
 - Updated configuration of google analytics file
 
+### Bug Fix
+- Fixed a bug that allowed users to be assigned the same survey multiple times
+  after switching roles
+
 ## 13.2.1 (July 26, 2016)
 
 ### Bug Fix

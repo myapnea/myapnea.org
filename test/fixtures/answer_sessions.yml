@@ -145,35 +145,35 @@ finished_about_me_6:
 
 finished_additional_information_about_me_1:
   user: finished_about_me_1
-  survey: about_me
+  survey: additional_information_about_me
   encounter: baseline
   locked: true
   locked_at: <%= Date.today.to_s(:db) %>
 
 finished_additional_information_about_me_2:
   user: finished_about_me_2
-  survey: about_me
+  survey: additional_information_about_me
   encounter: baseline
   locked: true
   locked_at: <%= Date.today.to_s(:db) %>
 
 finished_my_interest_in_research_1:
   user: finished_about_me_1
-  survey: about_me
+  survey: my_interest_in_research
   encounter: baseline
   locked: true
   locked_at: <%= Date.today.to_s(:db) %>
 
 finished_my_interest_in_research_2:
   user: finished_about_me_2
-  survey: about_me
+  survey: my_interest_in_research
   encounter: baseline
   locked: true
   locked_at: <%= Date.today.to_s(:db) %>
 
 finished_my_interest_in_research_3:
   user: finished_about_me_3
-  survey: about_me
+  survey: my_interest_in_research
   encounter: baseline
   locked: true
   locked_at: <%= Date.today.to_s(:db) %>

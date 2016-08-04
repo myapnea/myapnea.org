@@ -219,19 +219,19 @@ class User < ApplicationRecord
 
   # Surveys
   def get_baseline_survey_answer_session(survey)
-    answer_sessions.where(encounter: 'baseline', survey_id: survey.id, child_id: nil).first_or_create
+    answer_sessions.no_child.where(encounter: 'baseline', survey_id: survey.id).first_or_create
   end
 
   def completed_answer_sessions
-    answer_sessions.where(child_id: nil, locked: true).joins(:survey).merge(Survey.current.viewable)
+    answer_sessions.no_child.where(locked: true).joins(:survey).merge(Survey.current.viewable)
   end
 
   def incomplete_answer_sessions
-    answer_sessions.where(child_id: nil, locked: false).joins(:survey).merge(Survey.current.viewable)
+    answer_sessions.no_child.where(locked: false).joins(:survey).merge(Survey.current.viewable)
   end
 
   def completed_assigned_answer_sessions?
-    answer_sessions.where(child_id: nil, locked: false).joins(:survey).merge(Survey.current.viewable).count == 0
+    answer_sessions.no_child.where(locked: false).joins(:survey).merge(Survey.current.viewable).count == 0
   end
 
   def next_answer_session(answer_session)
@@ -252,7 +252,7 @@ class User < ApplicationRecord
   end
 
   def next_child_answer_session(answer_session)
-    if answer_session && answer_session.child_id.present?
+    if answer_session && answer_session.child.present?
       answer_sessions.where(child_id: answer_session.child_id, locked: false).where.not(id: answer_session.id).joins(:survey).merge(Survey.current.viewable).first
     end
   end
@@ -343,9 +343,9 @@ class User < ApplicationRecord
   end
 
   def remove_out_of_range_answer_sessions!
-    self.answer_sessions.where(child_id: nil).each do |answer_session|
-      if answer_session.answers.count == 0 and not answer_session.available_for_user_types?(self.user_types)
-        answer_session.destroy
+    answer_sessions.no_child.each do |answer_session|
+      if answer_session.answers.count == 0 && !answer_session.available_for_user_types?(user_types)
+        answer_session.delete
       end
     end
   end

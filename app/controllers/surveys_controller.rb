@@ -16,7 +16,7 @@ class SurveysController < ApplicationController
   def index
     @surveys = Survey.current.viewable
     if current_user
-      @answer_sessions = current_user.answer_sessions.where(child_id: nil).joins(:survey).merge( Survey.current.viewable ).order(:locked, "surveys.name_en", :encounter)
+      @answer_sessions = current_user.answer_sessions.no_child.joins(:survey).merge( Survey.current.viewable ).order(:locked, "surveys.name_en", :encounter)
     end
   end
 
@@ -25,13 +25,13 @@ class SurveysController < ApplicationController
 
   def report
     unless @survey.has_custom_report?
-      redirect_url = if @answer_session and @answer_session.child
-        child_survey_report_detail_path(@answer_session.child.id, @answer_session.survey, @answer_session.encounter)
-      elsif @answer_session
-        report_detail_survey_path(@answer_session.survey, @answer_session.encounter)
-      else
-        report_detail_survey_path(@survey, @encounter)
-      end
+      redirect_url = if @answer_session && @answer_session.child.present?
+                       child_survey_report_detail_path(@answer_session.child.id, @answer_session.survey, @answer_session.encounter)
+                     elsif @answer_session
+                       report_detail_survey_path(@answer_session.survey, @answer_session.encounter)
+                     else
+                       report_detail_survey_path(@survey, @encounter)
+                     end
       redirect_to redirect_url
     end
   end
@@ -40,11 +40,11 @@ class SurveysController < ApplicationController
   end
 
   def accept_update_first
-    url = if @answer_session.child
-      child_survey_path(@answer_session.child.id, @answer_session.survey, @answer_session.encounter)
-    else
-      show_survey_path(@answer_session.survey, @answer_session.encounter)
-    end
+    url = if @answer_session.child.present?
+            child_survey_path(@answer_session.child.id, @answer_session.survey, @answer_session.encounter)
+          else
+            show_survey_path(@answer_session.survey, @answer_session.encounter)
+          end
 
     redirect_to url if current_user.accepted_most_recent_update?
     session[:return_to] = url
@@ -84,7 +84,7 @@ class SurveysController < ApplicationController
   end
 
   def set_answer_session
-    @answer_session = current_user.answer_sessions.where(survey_id: @survey.id, encounter: (params[:encounter] || 'baseline'), child_id: params[:child_id]).first if @survey
+    @answer_session = current_user.answer_sessions.where(survey_id: @survey.id, encounter: (params[:encounter] || 'baseline'), child_id: params[:child_id].to_i).first if @survey
   end
 
   def redirect_without_answer_session
@@ -93,18 +93,18 @@ class SurveysController < ApplicationController
 
   def redirect_without_accepted_recent_update
     unless current_user.accepted_most_recent_update?
-      redirect_to accept_update_first_survey_path(@answer_session.survey, @answer_session.encounter, @answer_session.child_id)
+      redirect_to accept_update_first_survey_path(@answer_session.survey, @answer_session.encounter, @answer_session.child_id == 0 ? nil : @answer_session.child_id)
     end
   end
 
   def check_report_access
-    if @answer_session and @answer_session.unlocked?
-      if @answer_session.child
+    if @answer_session && @answer_session.unlocked?
+      if @answer_session.child.present?
         redirect_to child_survey_path(@answer_session.child.id, @answer_session.survey, @answer_session.encounter)
       else
         redirect_to show_survey_path(@answer_session.survey, @answer_session.encounter)
       end
-    elsif !@answer_session and !current_user.is_only_academic?
+    elsif !@answer_session && !current_user.is_only_academic?
       redirect_to surveys_path
     end
   end

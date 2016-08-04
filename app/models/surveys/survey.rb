@@ -69,25 +69,25 @@ class Survey < ApplicationRecord
     current_user.editable_surveys.where(id: id).count == 1
   end
 
-  def atomic_first_or_create_answer_session(user, encounter_slug, child_id: nil)
-    answer_sessions.where(user_id: user.id, encounter: encounter_slug, child_id: child_id).first_or_create!
+  def atomic_first_or_create_answer_session(user, encounter_slug, child_id: 0)
+    answer_sessions.where(user_id: user.id, encounter: encounter_slug, child_id: child_id).first_or_create
   rescue ActiveRecord::RecordNotUnique, ActiveRecord::RecordInvalid
     retry
   end
 
   def launch_single(user, encounter_slug)
-    self.atomic_first_or_create_answer_session(user, encounter_slug)
+    atomic_first_or_create_answer_session(user, encounter_slug)
   end
 
   def launch_single_for_children(user, encounter_slug)
     user.children.each do |child|
-      self.atomic_first_or_create_answer_session(user, encounter_slug, child_id: child.id)
+      atomic_first_or_create_answer_session(user, encounter_slug, child_id: child.id)
     end
   end
 
   def launch_encounter_for_user(user, survey_encounter)
-    if self.enough_time_has_past?(user, survey_encounter) and self.no_dependency_or_parent_encounter_locked?(user, survey_encounter)
-      self.launch_single(user, survey_encounter.encounter.slug)
+    if enough_time_has_past?(user, survey_encounter) && no_dependency_or_parent_encounter_locked?(user, survey_encounter)
+      launch_single(user, survey_encounter.encounter.slug)
       true
     else
       false
@@ -95,7 +95,8 @@ class Survey < ApplicationRecord
   end
 
   def enough_time_has_past?(user, survey_encounter)
-    if oldest_locked_time = self.dependent_locked_answer_sessions(user, survey_encounter).pluck(:locked_at).min
+    oldest_locked_time = dependent_locked_answer_sessions(user, survey_encounter).pluck(:locked_at).min
+    if oldest_locked_time
       oldest_locked_time.to_date <= (Date.today - survey_encounter.encounter.launch_days_after_sign_up.days)
     else
       user.created_at.to_date <= (Date.today - survey_encounter.encounter.launch_days_after_sign_up.days)
@@ -104,7 +105,7 @@ class Survey < ApplicationRecord
 
   def no_dependency_or_parent_encounter_locked?(user, survey_encounter)
     if survey_encounter.parent_survey_encounter
-      user.answer_sessions.where(survey_id: survey_encounter.parent_survey_encounter.survey.id, encounter: survey_encounter.parent_survey_encounter.encounter.slug, locked: true, child_id: nil).count > 0
+      user.answer_sessions.no_child.where(survey_id: survey_encounter.parent_survey_encounter.survey.id, encounter: survey_encounter.parent_survey_encounter.encounter.slug, locked: true).count > 0
     else
       true
     end
@@ -112,7 +113,7 @@ class Survey < ApplicationRecord
 
   def dependent_locked_answer_sessions(user, survey_encounter)
     if survey_encounter.parent_survey_encounter
-      user.answer_sessions.where(survey_id: survey_encounter.parent_survey_encounter.survey.id, encounter: survey_encounter.parent_survey_encounter.encounter.slug, locked: true, child_id: nil).where.not(locked_at: nil)
+      user.answer_sessions.no_child.where(survey_id: survey_encounter.parent_survey_encounter.survey.id, encounter: survey_encounter.parent_survey_encounter.encounter.slug, locked: true).where.not(locked_at: nil)
     else
       user.answer_sessions.none
     end
