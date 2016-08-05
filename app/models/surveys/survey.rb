@@ -8,7 +8,6 @@ class Survey < ApplicationRecord
   # Concerns
   include Localizable
   include Deletable
-  include Groupable
 
   # Callbacks
   after_commit :create_default_encounters, on: :create

@@ -25,6 +25,7 @@
 - Removed old lottery code
 - Updated configuration of google analytics file
 - Removed unused enagements functionality
+- Removed Groupable concern as it is no longer need with PG 9.5
 
 ### Bug Fix
 - Fixed a bug that allowed users to be assigned the same survey multiple times
