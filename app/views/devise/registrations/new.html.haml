@@ -1,7 +1,4 @@
 - content_for :body_class do
   gray-background
 
-- if params[:user] && params[:user][:provider]
-  = render 'providers/signup_form'
-- else
-  = render 'users/signup_form'
+= render 'users/signup_form'

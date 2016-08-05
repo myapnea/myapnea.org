@@ -3,17 +3,10 @@
 require 'test_helper'
 
 class ProvidersControllerTest < ActionController::TestCase
-
   setup do
     @owner = users(:owner)
     @regular_user = users(:user_1)
     @provider = users(:provider)
-  end
-
-  test 'should get new for logged out user' do
-    get :new
-    assert_not_nil assigns(:provider)
-    assert_response :success
   end
 
   test 'should get index for logged out user' do

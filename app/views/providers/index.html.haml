@@ -10,16 +10,10 @@
 
 .clearfix
 
-- if @providers.count == 0 and params[:s].present?
+- if @providers.count == 0 && params[:s].present?
   %p.lead.centered
     Sorry, we could not find any providers matching your search:
     %code= params[:s]
 - else
   #current-provider-list
     = render 'providers/show_group'
-
-
-- unless current_user
-  .content-container
-    .centered
-      = link_to 'Become a Provider', new_provider_path, class: 'btn btn-lg btn-primary'

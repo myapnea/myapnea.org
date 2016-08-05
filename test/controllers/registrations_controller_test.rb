@@ -69,34 +69,4 @@ class RegistrationsControllerTest < ActionController::TestCase
     assert_equal users(:provider), assigns(:user).my_provider
     assert_redirected_to get_started_path
   end
-
-  test 'should sign up provider' do
-    request.env['devise.mapping'] = Devise.mappings[:user]
-    assert_difference('User.providers.count') do
-      post :create, params: {
-        user: user_params.merge(email: 'new_provider@example.com', provider: '1')
-      }
-    end
-    assert_not_nil assigns(:user)
-    assert_equal 'First Name', assigns(:user).first_name
-    assert_equal 'Last Name', assigns(:user).last_name
-    assert_equal 'new_provider@example.com', assigns(:user).email
-    assert_equal true, assigns(:user).provider?
-    assert_redirected_to get_started_path
-  end
-
-  test 'should not sign up provider without required fields' do
-    request.env['devise.mapping'] = Devise.mappings[:user]
-    assert_difference('User.count', 0) do
-      post :create, params: {
-        user: user_params.merge(first_name: '', last_name: '', email: 'new_provider@example.com', provider: true)
-      }
-    end
-    assert_not_nil assigns(:user)
-    assert assigns(:user).errors.size > 0
-    assert_equal ["can't be blank"], assigns(:user).errors[:first_name]
-    assert_equal ["can't be blank"], assigns(:user).errors[:last_name]
-    assert_template partial: 'providers/_signup_form'
-    assert_response :success
-  end
 end

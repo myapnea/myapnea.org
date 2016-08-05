@@ -8,15 +8,9 @@
             Improving the lives of
             %br.hidden-xs
             people with sleep apnea
-          - if params[:v]=="b"
-            %h3.light9
-              Awareness, community, research -
-              %br
-              together, we're building it all.
-          - else
-            #landing-video-play.video-play-button{ onClick: "_gaq.push(['_trackEvent', 'Video', 'Play', 'Landing page video during A/B testing']);", data: { object: 'start-yt-video', toggle:"modal", target:'#landingVideoModal', target_iframe: '#landingframe', src: '//www.youtube.com/embed/3I8YbWRgkjw?rel=0&modestbranding=1&autoplay=1&autohide=1&showinfo=0&wmode=opaque' } }
-              %i.fa.fa-play-circle
-              %p Learn more
+          #landing-video-play.video-play-button{ data: { object: 'start-yt-video', toggle: 'modal', target: '#landingVideoModal', target_iframe: '#landingframe', src: '//www.youtube.com/embed/3I8YbWRgkjw?rel=0&modestbranding=1&autoplay=1&autohide=1&showinfo=0&wmode=opaque' } }
+            %i.fa.fa-play-circle
+            %p Learn more
 
         .simple-signup-form.col-md-4
           %p.f500
@@ -129,8 +123,4 @@
       .embed-responsive.embed-responsive-16by9
         %iframe.embed-responsive-item{ src: '//www.youtube.com/embed/3I8YbWRgkjw?rel=0&modestbranding=1&autohide=1&showinfo=0&wmode=opaque', allowFullScreen: 'true',  webkitallowfullscreen: 'true', mozallowfullscreen: 'true' }
 
-  - if ENV['website_url'] == 'https://myapnea.org'
-    %img{ src: "https://secure.fastclick.net/w/tre?ad_id=34691;evt=27663;cat1=36894;cat2=38051;rand=#{SecureRandom.hex(8)}", width: "1", height: "1", border: "0" }
-
-  - unless params[:v]=="b"
-    = render 'layouts/partials/landing_video_modal'
+  = render 'layouts/partials/landing_video_modal'
