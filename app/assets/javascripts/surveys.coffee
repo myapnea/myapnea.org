@@ -104,7 +104,6 @@
 
   # Handle 'prefer not to answer checkbox'
   $('.preferred-not-to-answer').click () ->
-    return if $("[data-object~='full-survey-container']").attr("id") is "simple-survey"
     $(this).find('input:checkbox').prop "checked", !$(this).find('input:checkbox').prop("checked")
     handleChangedValue($(this))
     return false
@@ -115,9 +114,6 @@
 
   # Respond to radio clicks
   $('.survey-container input:radio').click (event) ->
-    if $("[data-object~='full-survey-container']").attr("id") is "simple-survey"
-      handleChangedValue($(this))
-      return
     unless $(this).data('secondary')
       $(this).prop "checked", true
       if $(this).data('object') == 'reveal-next-input'
@@ -134,7 +130,6 @@
     return
 
   $('.survey-container input:text').click (event) ->
-    return if $("[data-object~='full-survey-container']").attr("id") is "simple-survey"
     if $(this).data('secondary')
       setActive($(this).closest('.survey-container'))
     else
@@ -144,7 +139,6 @@
 
   # Respond to user clicking different questions
   $('.survey-container').click (event) ->
-    return if $("[data-object~='full-survey-container']").attr("id") is "simple-survey"
     event.stopPropagation()
     # For click events on 'Next Question' button, just assign next question
     target = event.target or event.srcElement
@@ -160,14 +154,6 @@
   #####################
 
   $("body").keydown (e) ->
-    if $("[data-object~='full-survey-container']").attr("id") is "simple-survey"
-      if $(".survey-custom-date").is(":focus")
-        e = e || window.event
-        keyCode = if window.event then e.which else e.keyCode
-        if keyCode is 13
-          $(".survey-custom-date").blur()
-          return
-      return
     e = e || window.event
     keyCode = if window.event then e.which else e.keyCode
     if $('.survey-container').length
@@ -201,7 +187,6 @@
           e.preventDefault()
 
   $("body").keyup (e) ->
-    return if $("[data-object~='full-survey-container']").attr("id") is "simple-survey"
     e = e || window.event
     keyCode = if window.event then e.which else e.keyCode
     if $('.survey-container.active').length
