@@ -66,7 +66,6 @@ class Builder::AnswerTemplatesControllerTest < ActionController::TestCase
     assert_not_nil assigns(:answer_template)
     assert_equal 'my_new_answer_template', assigns(:answer_template).name
     assert_equal 'checkbox', assigns(:answer_template).template_name
-    assert_equal 'answer_option_id', assigns(:answer_template).data_type
     assert_equal 1, @question.answer_templates_questions.find_by(answer_template_id: assigns(:answer_template).id).position
     assert_equal true, assigns(:answer_template).allow_multiple
     assert_redirected_to builder_survey_question_answer_template_path(assigns(:survey), assigns(:question), assigns(:answer_template))
@@ -141,7 +140,6 @@ class Builder::AnswerTemplatesControllerTest < ActionController::TestCase
     assert_not_nil assigns(:answer_template)
     assert_equal 'updated_answer_template', assigns(:answer_template).name
     assert_equal 'date', assigns(:answer_template).template_name
-    assert_equal 'text_value', assigns(:answer_template).data_type
     assert_equal false, assigns(:answer_template).allow_multiple
     assert_redirected_to builder_survey_question_answer_template_path(assigns(:survey), assigns(:question), assigns(:answer_template))
   end

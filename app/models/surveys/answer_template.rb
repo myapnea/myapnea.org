@@ -2,14 +2,12 @@
 
 # A portion of a question used to capture data.
 class AnswerTemplate < ApplicationRecord
-  # Default Scope
   # Constants
-  DATA_TYPES = %w(answer_option_id numeric_value text_value)
   TEMPLATE_NAMES = %w(date radio checkbox string height number)
 
-  # Attribute related macros
-  # Associations
+  # Model Relationships
   belongs_to :user
+  # TODO: Replace HABTM relationship.
   has_and_belongs_to_many :questions
   has_many :answer_options_answer_templates, -> { order :position }
   has_many :answer_options, through: :answer_options_answer_templates, join_table: 'answr_options_answer_templates'
@@ -17,7 +15,7 @@ class AnswerTemplate < ApplicationRecord
   belongs_to :parent_answer_template, class_name: 'AnswerTemplate', foreign_key: 'parent_answer_template_id'
 
   # Validations
-  validates :name, :data_type, :user_id, :template_name, presence: true
+  validates :name, :user_id, :template_name, presence: true
   validates :name, format: { with: /\A[a-z]\w*\Z/i }, length: { maximum: 32 }
   validates :name, uniqueness: { scope: :deleted }
   validates :template_name, inclusion: { in: TEMPLATE_NAMES }
@@ -27,10 +25,8 @@ class AnswerTemplate < ApplicationRecord
                                          if: :parent_answer_template_present?
 
   # Callback
-  before_validation :set_data_type
   before_validation :set_allow_multiple
 
-  # Other macros
   # Concerns
   include Deletable
 
@@ -43,28 +39,20 @@ class AnswerTemplate < ApplicationRecord
     "#{name} #{answer_options.pluck(:text, :value).collect { |text, value| "#{value}: #{text}" }.join(', ')}"
   end
 
-  # Temporary Function (Rewrite/remove in 8.1)
-
-  # Will replace "data_type" and be renamed to simply "data_type" when data_type
-  # is removed as a database column.
-  def stored_data_type
+  def data_type
     case template_name
     when 'number', 'height'
       'numeric_value'
     when 'radio', 'checkbox'
       'answer_option_id'
-    else # 'date', 'string'
+    else
       'text_value'
     end
   end
 
-  def set_data_type
-    self.data_type = self.stored_data_type
-    true # Before Validations need to return true in order to save record
-  end
-
+  # TODO: Remove allow_multiple from database and make this "allow_multiple?"
   def set_allow_multiple
-    self.allow_multiple = (self.template_name == 'checkbox')
+    self.allow_multiple = (template_name == 'checkbox')
     true # Before Validations need to return true in order to save record
   end
   # End Rewrite In 8.1
@@ -74,7 +62,7 @@ class AnswerTemplate < ApplicationRecord
   end
 
   def child_templates(question, value)
-    question.answer_templates.where(parent_answer_template_id: self.id, parent_answer_option_value: value)
+    question.answer_templates.where(parent_answer_template_id: id, parent_answer_option_value: value)
   end
 
   def parent_answer_option_value_present?

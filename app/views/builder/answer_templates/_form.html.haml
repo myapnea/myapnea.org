@@ -49,19 +49,6 @@
     .col-md-10
       = f.select :template_name, AnswerTemplate::TEMPLATE_NAMES, { include_blank: true }, class: 'form-control'
 
-  - if false
-    .form-group
-      = f.label :data_type, 'Data Type', class: 'col-md-2 control-label'
-      .col-md-10
-        = f.select :data_type, AnswerTemplate::DATA_TYPES, { include_blank: true }, class: 'form-control'
-
-    .form-group
-      .col-md-10.col-md-offset-2
-        .checkbox
-          %label
-            = f.check_box :allow_multiple
-            Allow Multiple
-
   .form-group
     = f.label :parent_answer_template_id, 'Parent Template', class: 'col-md-2 control-label'
     .col-md-10

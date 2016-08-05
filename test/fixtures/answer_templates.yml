@@ -2,7 +2,6 @@ custom_sex_template:
   user: owner
   name: custom_sex_template
   template_name: radio
-  data_type: answer_option_id
 # answer_options
 # - male
 # - female
@@ -13,13 +12,11 @@ color_list:
   user: owner
   name: fixture_color_list
   template_name: radio
-  data_type: answer_option_id
 
 race_list:
   user: owner
   name: fixture_race
   template_name: checkbox
-  data_type: answer_option_id
   allow_multiple: true
 # Wookie
 # Bith
@@ -30,7 +27,6 @@ fixture_specified_race:
   user: owner
   name: fixture_specified_race
   template_name: string
-  data_type: text_value
   parent_answer_template: race_list
   parent_answer_option_value: 3
 
@@ -38,13 +34,11 @@ custom_date_template:
   user: owner
   name: custom_date_template
   template_name: date
-  data_type: text_value
 
 doze_sitting:
   user: owner
   name: doze_sitting
   template_name: radio
-  data_type: answer_option_id
   text: Sitting
 # High chance
 # Low chance
@@ -53,7 +47,6 @@ doze_tv:
   user: owner
   name: doze_tv
   template_name: radio
-  data_type: answer_option_id
   text: TV
 # High chance
 # Low chance
@@ -62,7 +55,6 @@ doze_public:
   user: owner
   name: doze_public
   template_name: radio
-  data_type: answer_option_id
   text: Public Sitting
 # High chance
 # Low chance
@@ -71,25 +63,21 @@ number_of_hours:
   user: owner
   name: fixture_number_of_hours
   template_name: number
-  data_type: numeric_value
 
 date2:
   user: owner
   name: fixture_text
   template_name: date
-  data_type: text_value
 
 countries:
   user: owner
   name: countries
   template_name: radio
-  data_type: answer_option_id
 
 spec_countries:
   user: owner
   name: spec_countries
   template_name: string
-  data_type: text_value
   parent_answer_template: countries
   parent_answer_option_value: 3
 
@@ -98,26 +86,22 @@ birth_date_template:
   user: owner
   name: fixture_birth_date
   template_name: date
-  data_type: text_value
 
 sex_template:
   user: owner
   name: fixture_sex
   template_name: radio
-  data_type: answer_option_id
 
 race:
   user: owner
   name: race
   template_name: checkbox
-  data_type: answer_option_id
   allow_multiple: true
 
 specified_race:
   user: owner
   name: specified_race
   template_name: string
-  data_type: text_value
   parent_answer_template: race
   parent_answer_option_value: 6
 
@@ -125,33 +109,28 @@ education_level:
   user: owner
   name: education_level
   template_name: radio
-  data_type: answer_option_id
 
 ## Additional Information About Me
 height:
   user: owner
   name: height
   template_name: height
-  data_type: numeric_value
 
 weight:
   user: owner
   name: weight
   template_name: number
-  data_type: numeric_value
 
 afford_difficulty_scale:
   user: owner
   name: afford_difficulty_scale
   template_name: radio
-  data_type: answer_option_id
 
 ## My Interest In Research
 myapnea_referral_source:
   user: owner
   name: myapnea_referral_source
   template_name: checkbox
-  data_type: answer_option_id
   allow_multiple: true
 
 ## Built on Web
@@ -159,4 +138,3 @@ web_answer_template:
   user: builder
   name: web_answer_template
   template_name: radio
-  data_type: answer_option_id
