@@ -90,8 +90,8 @@ class Answer < ApplicationRecord
 
       template_completions << template_completion
 
-      if template.allow_multiple and val_for_template.is_a?(Array)
-        val_for_template.each {|v| answer_values.build(target_field => v, 'answer_template_id' => template.id) }
+      if template.allow_multiple? && val_for_template.is_a?(Array)
+        val_for_template.each { |v| answer_values.build(target_field => v, 'answer_template_id' => template.id) }
       else
         answer_values.build(target_field => val_for_template, 'answer_template_id' => template.id)
       end

@@ -23,11 +23,6 @@
     = @answer_template.template_name
 
   %dt
-    %strong Allow Multiple
-  %dd
-    = simple_check @answer_template.allow_multiple
-
-  %dt
     %strong Parent Template
   %dd
     = @answer_template.parent_answer_template.name if @answer_template.parent_answer_template

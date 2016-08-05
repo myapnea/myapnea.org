@@ -30,6 +30,7 @@
 - Cleaned up unused survey JavaScript
 - Removed deprecated display_type column from questions
 - Removed deprecated data_type column from answer_templates
+- Removed deprecated allow_multiple column from answer_templates
 
 ### Bug Fix
 - Fixed a bug that allowed users to be assigned the same survey multiple times

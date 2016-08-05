@@ -67,7 +67,6 @@ class Builder::AnswerTemplatesControllerTest < ActionController::TestCase
     assert_equal 'my_new_answer_template', assigns(:answer_template).name
     assert_equal 'checkbox', assigns(:answer_template).template_name
     assert_equal 1, @question.answer_templates_questions.find_by(answer_template_id: assigns(:answer_template).id).position
-    assert_equal true, assigns(:answer_template).allow_multiple
     assert_redirected_to builder_survey_question_answer_template_path(assigns(:survey), assigns(:question), assigns(:answer_template))
   end
 
@@ -80,7 +79,7 @@ class Builder::AnswerTemplatesControllerTest < ActionController::TestCase
     assert_not_nil assigns(:question)
     assert_not_nil assigns(:answer_template)
     assert assigns(:answer_template).errors.size > 0
-    assert_equal ["can't be blank", "is invalid"], assigns(:answer_template).errors[:name]
+    assert_equal ["can't be blank", 'is invalid'], assigns(:answer_template).errors[:name]
     assert_template 'answer_templates/new'
     assert_response :success
   end
@@ -140,7 +139,6 @@ class Builder::AnswerTemplatesControllerTest < ActionController::TestCase
     assert_not_nil assigns(:answer_template)
     assert_equal 'updated_answer_template', assigns(:answer_template).name
     assert_equal 'date', assigns(:answer_template).template_name
-    assert_equal false, assigns(:answer_template).allow_multiple
     assert_redirected_to builder_survey_question_answer_template_path(assigns(:survey), assigns(:question), assigns(:answer_template))
   end
 

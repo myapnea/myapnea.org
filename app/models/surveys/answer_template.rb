@@ -24,9 +24,6 @@ class AnswerTemplate < ApplicationRecord
   validates :parent_answer_option_value, inclusion: { in: :parent_template_option_values },
                                          if: :parent_answer_template_present?
 
-  # Callback
-  before_validation :set_allow_multiple
-
   # Concerns
   include Deletable
 
@@ -50,12 +47,9 @@ class AnswerTemplate < ApplicationRecord
     end
   end
 
-  # TODO: Remove allow_multiple from database and make this "allow_multiple?"
-  def set_allow_multiple
-    self.allow_multiple = (template_name == 'checkbox')
-    true # Before Validations need to return true in order to save record
+  def allow_multiple?
+    template_name == 'checkbox'
   end
-  # End Rewrite In 8.1
 
   def allows_answer_options?
     template_name == 'radio' || template_name == 'checkbox'

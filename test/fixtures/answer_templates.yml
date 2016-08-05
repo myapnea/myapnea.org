@@ -17,11 +17,6 @@ race_list:
   user: owner
   name: fixture_race
   template_name: checkbox
-  allow_multiple: true
-# Wookie
-# Bith
-# Some other race
-# Prefer not to answer
 
 fixture_specified_race:
   user: owner
@@ -96,7 +91,6 @@ race:
   user: owner
   name: race
   template_name: checkbox
-  allow_multiple: true
 
 specified_race:
   user: owner
@@ -131,7 +125,6 @@ myapnea_referral_source:
   user: owner
   name: myapnea_referral_source
   template_name: checkbox
-  allow_multiple: true
 
 ## Built on Web
 web_answer_template:
