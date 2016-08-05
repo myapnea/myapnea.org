@@ -1,9 +1,6 @@
 # frozen_string_literal: true
 
 class Question < ApplicationRecord
-  # Constants
-  DISPLAY_TYPES = %w(custom_date_input radio_input checkbox_input height_input number_input radio_input_multiple)
-
   # Attribute related macros
   # Associations
   belongs_to :user

@@ -28,6 +28,7 @@
 - Removed Groupable concern as it is no longer need with PG 9.5
 - Removed unused user contact information
 - Cleaned up unused survey JavaScript
+- Removed deprecated display_type column from questions
 
 ### Bug Fix
 - Fixed a bug that allowed users to be assigned the same survey multiple times

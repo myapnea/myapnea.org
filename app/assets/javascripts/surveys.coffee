@@ -160,31 +160,6 @@
       # Prevent default up and down and enter on keydown
       if keyCode is 38 or keyCode is 40 or keyCode is 13
         e.preventDefault()
-      # Specifically targeting custom date input
-      if $(".survey-custom-date").is(":focus")
-        # Allow regular command and left/right keys
-        if e.metaKey or keyCode is 37 or keyCode is 39
-          return
-        # Ensure proper blurring of date input
-        else if keyCode is 13
-          $(".survey-custom-date").blur()
-          return
-        # Autocomplete date when tab or / is pressed
-        else if keyCode is 9 or keyCode is 191
-          e.preventDefault()
-          autocompleteDate()
-          return
-        # Allow deleting, with dynamic string completion
-        else if keyCode is 46 or keyCode is 8
-          writeDate(e.keyCode)
-          return
-        else if (/^[0-9]{1,10}$/.test(keyCode-48) or /^[0-9]{1,10}$/.test(keyCode-96))
-          # allow number to be written
-          # e.preventDefault()
-          writeDate(e.keyCode)
-        else if (/^[a-zA-Z]*$/.test(+String.fromCharCode(keyCode)))
-          # prevent letter from returning
-          e.preventDefault()
 
   $("body").keyup (e) ->
     e = e || window.event
@@ -246,12 +221,8 @@
   # Attach change event handler to everything but radio button inputs. Radio button inputs are changed by JS, so each time
   # the :checked property is changed, handleChangedValue has to be called.
   $(".survey-container input").not(":radio").change (event) ->
-    if $(this).hasClass "survey-custom-date"
-      target = event.target or event.srcElement
-      handleChangedValue($(target))
-    else
-      target = event.target or event.srcElement
-      handleChangedValue($(target))
+    target = event.target or event.srcElement
+    handleChangedValue($(target))
 
   $(".survey-container select").change (event) ->
     target = event.target or event.srcElement
@@ -286,28 +257,3 @@
       return true
     else
       return false
-
-
-  # Custom date input - New version
-  @writeDate = (keyCode) ->
-    date_index = $(".survey-custom-date").val().length || 0
-    if keyCode is 8
-      return
-    else if date_index == 2 or date_index == 5 #or date_index == 1 or date_index == 4
-      $(".survey-custom-date").val($(".survey-custom-date").val()+'/')
-    else
-      return
-
-  @autocompleteDate = () ->
-    date_index = $(".survey-custom-date").val().length || 0
-    dateVal = $(".survey-custom-date").val()
-    if date_index == 1
-      $(".survey-custom-date").val('0'+dateVal+'/')
-    else if date_index == 2
-      $(".survey-custom-date").val(dateVal+'/')
-    else if date_index == 4
-      $(".survey-custom-date").val(dateVal[0..2]+'0'+dateVal[3]+'/')
-    else if date_index == 5
-      $(".survey-custom-date").val(dateVal+'/')
-    else
-      return
