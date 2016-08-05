@@ -30,7 +30,6 @@
 #= require google_analytics
 #= require main
 #= require admin
-#= require admin/daily_engagement
 #= require tools
 #= require social/autocomplete_gender
 #= require reports/survey_reports

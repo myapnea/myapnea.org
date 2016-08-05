@@ -16,15 +16,6 @@ class AdminControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test 'should get daily engagement data as owner' do
-    login(@owner)
-    get :daily_engagement_data, xhr: true, format: 'json'
-    assert_not_nil assigns(:posts)
-    assert_not_nil assigns(:surveys)
-    assert_not_nil assigns(:users)
-    assert_response :success
-  end
-
   test 'should get progress report as owner' do
     login(@owner)
     get :progress_report
@@ -76,9 +67,7 @@ class AdminControllerTest < ActionController::TestCase
   test 'should unlock survey for user as owner' do
     login(users(:owner))
     post :unlock_survey, params: { user_id: users(:adult_diagnosed), answer_session_id: answer_sessions(:locked) }
-
     answer_sessions(:locked).reload
-
     assert_not_nil assigns(:user)
     assert_equal false, answer_sessions(:locked).locked?
     assert_redirected_to assigns(:user)
@@ -87,9 +76,7 @@ class AdminControllerTest < ActionController::TestCase
   test 'should not unlock survey for without user as owner' do
     login(users(:owner))
     post :unlock_survey, params: { user_id: -1, answer_session_id: answer_sessions(:locked) }
-
     answer_sessions(:locked).reload
-
     assert_nil assigns(:user)
     assert_equal true, answer_sessions(:locked).locked?
     assert_redirected_to users_path
@@ -98,9 +85,7 @@ class AdminControllerTest < ActionController::TestCase
   test 'should unlock survey for user as moderator' do
     login(users(:moderator_1))
     post :unlock_survey, params: { user_id: users(:adult_diagnosed), answer_session_id: answer_sessions(:locked) }
-
     answer_sessions(:locked).reload
-
     assert_not_nil assigns(:user)
     assert_equal false, answer_sessions(:locked).locked?
     assert_redirected_to assigns(:user)
@@ -109,9 +94,7 @@ class AdminControllerTest < ActionController::TestCase
   test 'should not unlock survey for user as regular user' do
     login(users(:user_1))
     post :unlock_survey, params: { user_id: users(:adult_diagnosed), answer_session_id: answer_sessions(:locked) }
-
     answer_sessions(:locked).reload
-
     assert_nil assigns(:user)
     assert_equal true, answer_sessions(:locked).locked?
     assert_redirected_to root_path
@@ -135,24 +118,9 @@ class AdminControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test 'should get daily engagement report as owner' do
-    login(users(:owner))
-
-    get :daily_engagement
-    assert_response :success
-  end
-
-  test 'should NOT get daily engagement report as moderator' do
-    login(users(:moderator_1))
-
-    get :daily_engagement
-    assert_redirected_to :admin
-  end
-
   test 'should only get social media for admin' do
     get :social_media
     assert_response :redirect
-
     login(users(:owner))
     get :social_media
     assert_response :success

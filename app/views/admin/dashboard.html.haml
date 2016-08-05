@@ -14,7 +14,7 @@
     = link_to admin_providers_path, class: 'no-underline' do
       .blue-block-link
         Providers
-  - if current_user.owner?
+  - if current_user.owner? && false
     .col-sm-3
       = link_to admin_reports_location_path, class: 'no-underline' do
         .blue-block-link
@@ -47,6 +47,15 @@
     = link_to admin_surveys_path, class: 'no-underline' do
       .blue-block-link
         Surveys
+.row.centered
+  .col-sm-3
+    = link_to admin_progress_report_path, class: 'no-underline' do
+      .blue-block-link
+        Progress Report
+  .col-sm-3
+    = link_to admin_reports_timeline_path, class: 'no-underline' do
+      .blue-block-link
+        Timeline Report
 
 - if current_user.owner?
   %h3 Features
@@ -56,34 +65,15 @@
         .blue-block-link
           Clinical Trials
     .col-sm-3
-      = link_to engagements_path, class: 'no-underline' do
-        .blue-block-link
-          Engagements
-    .col-sm-3
       = link_to admin_partners_path, class: 'no-underline' do
         .blue-block-link
           Partners
+    .col-sm-3
+      = link_to admin_team_members_path, class: 'no-underline' do
+        .blue-block-link
+          Team Members
   .row.centered
     .col-sm-3
       = link_to admin_social_media_path, class: 'no-underline' do
         .blue-block-link
           Social Media
-    .col-sm-3
-      = link_to admin_team_members_path, class: 'no-underline' do
-        .blue-block-link
-          Team Members
-
-  %h3 Aggregate Reports
-  .row.centered
-    .col-sm-3
-      = link_to admin_daily_engagement_path, class: 'no-underline' do
-        .blue-block-link
-          Engagement Report
-    .col-sm-3
-      = link_to admin_progress_report_path, class: 'no-underline' do
-        .blue-block-link
-          Progress Report
-    .col-sm-3
-      = link_to admin_reports_timeline_path, class: 'no-underline' do
-        .blue-block-link
-          Timeline Report

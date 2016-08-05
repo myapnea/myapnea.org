@@ -20,10 +20,6 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :engagements do
-    resources :engagement_responses
-  end
-
   namespace :admin do
     resources :broadcast_comments, only: :index, path: 'blog/comments'
     resources :replies, only: :index, path: 'forum/replies'
@@ -273,9 +269,8 @@ Rails.application.routes.draw do
   get 'community', to: 'social#overview', via: :get, as: :community
 
   # Account Section
-  scope module: 'account' do
+  scope module: :account do
     post :suggest_random_forum_name
-    patch :update_from_engagements
   end
 
   get 'account' => 'account#account'
@@ -302,9 +297,6 @@ Rails.application.routes.draw do
   get 'admin/reports/location' => 'admin#location', as: 'admin_reports_location'
   get 'admin/reports/progress' => 'admin#progress_report', as: 'admin_progress_report'
   get 'admin/providers' => 'admin#providers'
-  get 'admin/daily-engagement' => 'admin#daily_engagement', as: 'admin_daily_engagement'
-
-  get 'admin/daily_engagement_data' => 'admin#daily_engagement_data', format: :json
   post 'daily-demographic-breakdown', to: 'admin#daily_demographic_breakdown', as: :daily_demographic_breakdown
 
   get 'admin/social-media', to: 'admin#social_media'

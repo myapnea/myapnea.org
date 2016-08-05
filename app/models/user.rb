@@ -70,8 +70,6 @@ class User < ApplicationRecord
   has_many :children, -> { where(deleted: false).order('age desc', :first_name) }
   has_many :encounters, -> { where deleted: false }
   has_many :exports, -> { order id: :desc }, class_name: 'Admin::Export'
-  has_many :engagements
-  has_many :engagement_responses
 
   ## Builder
 

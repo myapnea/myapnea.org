@@ -39,7 +39,6 @@
   surveyReportsReady() if surveyReportsReady?
   autocompleteGenderReady() if $("#user_gender").length > 0
   fileDragOldReady()
-  dailyEngagementReady() if $(".daily-engagement-report").length > 0
   exportsReady()
   socialMediaReady() if $('#sleep_tip').length > 0
   builderQuestionsReady()

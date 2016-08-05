@@ -102,14 +102,6 @@ class AccountController < ApplicationController
   def dashboard
   end
 
-  def update_from_engagements
-    current_user.update(user_params)
-    respond_to do |format|
-      format.html { redirect_to :dashboard }
-      format.js { }
-    end
-  end
-
   def account
   end
 
