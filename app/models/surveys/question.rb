@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Question < ApplicationRecord
-  # Attribute related macros
   # Associations
   belongs_to :user
   has_many :answer_templates_questions, -> { order :position }
@@ -9,7 +8,6 @@ class Question < ApplicationRecord
   belongs_to :group
   has_many :answers
   belongs_to :question_help_message
-  has_many :survey_answer_frequencies
   has_many :votes
 
   # Validations

@@ -13,7 +13,6 @@ class AnswerOption < ApplicationRecord
   has_many :answer_options_answer_templates
   has_many :answer_templates, through: :answer_options_answer_templates, join_table: :answr_options_answer_templates
   has_many :answer_values
-  has_many :survey_answer_frequencies
 
   localize :text_value
 
