@@ -6,8 +6,7 @@ class AnswerOption < ApplicationRecord
   include Localizable
 
   # Model Validation
-  validates_presence_of :text, :hotkey, :value, :user_id
-  # validates_uniqueness_of :text, scope: [ :deleted ]
+  validates :text, :hotkey, :value, :user_id, presence: true
 
   # Model Relationships
   belongs_to :user
@@ -37,7 +36,6 @@ class AnswerOption < ApplicationRecord
   end
 
   def display_class_or_default
-    self.display_class.present? ? self.display_class : 'label-default label-sm'
+    display_class.present? ? display_class : 'label-default label-sm'
   end
-
 end
