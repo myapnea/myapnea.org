@@ -2,20 +2,16 @@
 .content-main-header2
   %h1 Sitemap
 
-.content-container
-  .row
-    .col-xs-6
-      %ul
-        %li= link_to 'Learn', learn_path
-        %li= link_to 'Community', community_path
-        %li= link_to 'Forum', chapters_path
-        %li= link_to 'Research', blog_category_path(category: 'research')
-        %li= link_to 'Surveys', surveys_path
-        %li= link_to 'Providers', providers_path
-        %li= link_to 'Team', team_path
-        %li= link_to 'Partners', partners_path
-        %li= link_to 'Privacy Policy', privacy_path
-        %li= link_to 'Terms of Access', terms_and_conditions_path
-        %li= link_to 'FAQs', faqs_path
-    .col-xs-4
-      = link_to image_tag("myapnea/welcome/img-small/bwh-logo_3x1.png", class: "partners-img-footer img-responsive", id: "partner-BWH"), 'http://www.brighamandwomens.org/'
+%ul
+  %li= link_to 'Learn', learn_path
+  %li= link_to 'Community', community_path
+  %li= link_to 'Forum', chapters_path
+  %li= link_to 'Research', blog_category_path(category: 'research')
+  %li= link_to 'Surveys', surveys_path
+  %li= link_to 'Providers', providers_path
+  %li= link_to 'Team', team_path
+  %li= link_to 'Partners', partners_path
+  %li= link_to 'Privacy Policy', privacy_path
+  %li= link_to 'Terms of Access', terms_and_conditions_path
+  %li= link_to 'FAQs', faqs_path
+
