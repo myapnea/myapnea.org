@@ -3,6 +3,7 @@
 ### Enhancements
 - **General Changes**
   - Updated styling across several pages to be more consistent
+  - Simplified styling on consent and terms and condition pages
 - **Admin Changes**
   - Added a link to Admin Dashboard in mobile dropdown menu
   - Improved forum post management

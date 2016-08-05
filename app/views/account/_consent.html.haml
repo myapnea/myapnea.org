@@ -12,14 +12,15 @@
     %br
   #print-area
     .content-main-header2
-      %h1= consent_page_content['title']
+      %h1
+        = consent_page_content['title']
+        = link_to "#", id: "print-link", class: 'print-link pull-right btn btn-xs btn-primary' do
+          %i.fa.fa-print
+          Print Consent
     = simple_markdown consent_page_content['consent']
     - if current_user.present? and !current_user.accepted_consent_at.present?
       = simple_markdown "If you wish to be in this study, please click the button that says **“I agree and accept”**"
   %br/
-  = link_to "#", id: "print-link", class: 'print-link pull-right btn btn-xs btn-primary' do
-    %i.fa.fa-print
-    Print Consent
   - if current_user and !part_of_registration
     .content-footer.centered
       - if current_user.ready_for_research?

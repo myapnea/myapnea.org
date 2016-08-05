@@ -6,7 +6,7 @@ class StaticController < ApplicationController
 
   ## Static
   def about
-    @page_content = "Can't sleep? Sleep apnea is one of the largest causes of chronic sleep deprivation. MyApnea.Org was created by people with sleep apnea, sleep researchers, and sleep doctors to help people with sleep apnea treat their sleep apnea symptoms."
+    render layout: 'simple'
   end
 
   def team
@@ -30,7 +30,7 @@ class StaticController < ApplicationController
   end
 
   def faqs
-    @page_content = "What is MyApnea? What is the difference between OSA and CSA? Where can you take sleep tests? If you are experiencing sleep deprivation or sleep apnea symptoms, MyApnea will explain the basics."
+    render layout: 'simple'
   end
 
   def clinical_trials

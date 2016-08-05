@@ -1,19 +1,23 @@
 - @title = 'Privacy Policy'
 
+- content_for :body_class do
+  gray-background
+
 - privacy_page_content = page_content('privacy_policy')
 - part_of_registration = false unless defined?(part_of_registration)
 
 #print-area
   .content-main-header2
-    %h1= privacy_page_content['title']
+    %h1
+      = privacy_page_content['title']
+      = link_to "#", id: "print-link", class: 'print-link pull-right btn btn-xs btn-primary' do
+        %i.fa.fa-print
+        Print Privacy Policy
   - privacy_page_content = page_content('privacy_policy')
   = simple_markdown privacy_page_content['privacy_policy']
   - if current_user and current_user.accepted_privacy_policy_at.blank?
     = simple_markdown 'If you wish to be in this study please click the button that says **"I have read the privacy policy"**'
 %br/
-= link_to "#", id: "print-link", class: 'print-link pull-right btn btn-xs btn-primary' do
-  %i.fa.fa-print
-  Print Privacy Policy
 
 - if current_user
   - if current_user.ready_for_research?

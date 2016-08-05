@@ -2,6 +2,10 @@
 
 # Displays publicly available pages
 class ExternalController < ApplicationController
+  def contact
+    render layout: 'simple'
+  end
+
   def preview
   end
 

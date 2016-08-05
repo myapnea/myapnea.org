@@ -84,6 +84,7 @@ class AccountController < ApplicationController
   end
 
   def terms_and_conditions
+    render layout: 'simple'
   end
 
   def user_type
