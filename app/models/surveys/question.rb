@@ -1,16 +1,14 @@
 # frozen_string_literal: true
 
 class Question < ApplicationRecord
-  # Default Scope
   # Constants
-  DISPLAY_TYPES = ["custom_date_input", "radio_input", "checkbox_input", "height_input", "number_input", "radio_input_multiple"]
+  DISPLAY_TYPES = %w(custom_date_input radio_input checkbox_input height_input number_input radio_input_multiple)
 
   # Attribute related macros
   # Associations
   belongs_to :user
   has_many :answer_templates_questions, -> { order :position }
   has_many :answer_templates, through: :answer_templates_questions
-  # has_and_belongs_to_many :answer_templates, -> { current.order("answer_templates.created_at asc") }
   belongs_to :group
   has_many :answers
   belongs_to :question_help_message
@@ -18,14 +16,10 @@ class Question < ApplicationRecord
   has_many :votes
 
   # Validations
-  validates :text_en, presence: true
-  validates :slug, presence: true, uniqueness: { scope: [:deleted] }, format: /\A(?!\Anew\Z)[a-z][a-z0-9\-]*\Z/
-  validates :user_id, presence: true
-  # validates_uniqueness_of :slug, scope: [ :deleted ]
-  # validates_format_of :slug, with: /\A(?!\Anew\Z)[a-z][a-z0-9\-]*\Z/
+  validates :text_en, :user_id, :slug, presence: true
+  validates :slug, uniqueness: { scope: :deleted }
+  validates :slug, format: /\A(?!\Anew\Z)[a-z][a-z0-9\-]*\Z/
 
-  # Callback
-  # Other macros
   # Concerns
   include Localizable
   include Deletable
@@ -47,7 +41,8 @@ class Question < ApplicationRecord
     if input.class == Question
       input
     else
-      self.where("questions.slug = ? or questions.id = ?", input.to_s, input.to_i).first
+      # TODO change to new "OR#relation" syntax
+      where('questions.slug = ? or questions.id = ?', input.to_s, input.to_i).first
     end
   end
 

@@ -7,7 +7,6 @@ user_<%= i %>:
   email: user_<%= i %>@example.com
   first_name: User
   last_name: <%= i %>wski
-  zip_code: 12345
   over_eighteen: true
   adult_diagnosed: true
   encrypted_password: <%= pw %>
@@ -19,7 +18,6 @@ has_accepted_privacy:
   email: privacy@example.com
   first_name: Tommy
   last_name: Privacy
-  zip_code: 12345
   over_eighteen: true
   adult_diagnosed: true
   encrypted_password: <%= pw %>
@@ -29,7 +27,6 @@ has_accepted_consent:
   email: consent@example.com
   first_name: Tommy
   last_name: Consent
-  zip_code: 12345
   over_eighteen: true
   adult_diagnosed: true
   encrypted_password: <%= pw %>
@@ -42,7 +39,6 @@ social:
   accepted_consent_at: <%= 5.day.ago.to_s(:db) %>
   accepted_privacy_policy_at: <%= 6.day.ago.to_s(:db) %>
   # accepted_update_at:
-  zip_code: 12345
   over_eighteen: true
   adult_diagnosed: true
   encrypted_password: <%= pw %>
@@ -56,7 +52,6 @@ participant:
   accepted_consent_at: <%= 5.day.ago.to_s(:db) %>
   accepted_privacy_policy_at: <%= 6.day.ago.to_s(:db) %>
   accepted_update_at: <%= Date.parse(User::RECENT_UPDATE_DATE).end_of_day %>
-  zip_code: 12345
   over_eighteen: true
   adult_diagnosed: true
   forum_name: participant
@@ -67,7 +62,6 @@ moderator_1:
   last_name: Erator1
   email: mod1@mods.com
   moderator: true
-  zip_code: 12345
   over_eighteen: true
   adult_diagnosed: true
   encrypted_password: <%= pw %>
@@ -79,7 +73,6 @@ moderator_2:
   last_name: Erator2
   email: mod2@mods.com
   moderator: true
-  zip_code: 12345
   over_eighteen: true
   adult_diagnosed: true
   encrypted_password: <%= pw %>
@@ -91,7 +84,6 @@ owner:
   last_name: Er
   email: owner@example.com
   owner: true
-  zip_code: 12345
   over_eighteen: true
   adult_diagnosed: true
   encrypted_password: <%= pw %>
@@ -102,7 +94,6 @@ has_completed_survey:
   first_name: Complete
   last_name: Survey
   email: cs@example.com
-  zip_code: 12345
   over_eighteen: true
   accepted_consent_at: <%= 5.day.ago.to_s(:db) %>
   accepted_privacy_policy_at: <%= 6.day.ago.to_s(:db) %>
@@ -115,7 +106,6 @@ has_incomplete_survey:
   first_name: Incomplete
   last_name: Survey
   email: is@example.com
-  zip_code: 12345
   accepted_consent_at: <%= 5.day.ago.to_s(:db) %>
   accepted_privacy_policy_at: <%= 6.day.ago.to_s(:db) %>
   accepted_update_at: <%= Date.parse(User::RECENT_UPDATE_DATE).end_of_day %>
@@ -128,7 +118,6 @@ has_launched_survey:
   first_name: Unstarted
   last_name: Survey
   email: us@example.com
-  zip_code: 12345
   accepted_consent_at: <%= 5.day.ago.to_s(:db) %>
   accepted_privacy_policy_at: <%= 6.day.ago.to_s(:db) %>
   accepted_update_at: <%= Date.parse(User::RECENT_UPDATE_DATE).end_of_day %>
@@ -142,7 +131,6 @@ deleted_moderator:
   last_name: Mod
   email: deleted_moderator@example.com
   moderator: true
-  zip_code: 12345
   over_eighteen: true
   encrypted_password: <%= pw %>
   adult_diagnosed: true
@@ -154,13 +142,10 @@ deleted_user:
   email: zombieboy@gmail.com
   accepted_consent_at: <%= 10.day.ago.to_s(:db) %>
   accepted_privacy_policy_at: <%= 10.day.ago.to_s(:db) %>
-  zip_code: 66666
   over_eighteen: true
   encrypted_password: <%= pw %>
   adult_diagnosed: true
   deleted: true
-
-
 
 # User Types
 
@@ -169,7 +154,6 @@ blank_slate:
   first_name: Blank
   last_name: Slate
   email: blankslate@gmail.com
-  zip_code: 12345
   over_eighteen: true
   encrypted_password: <%= pw %>
   forum_name: blankslate
@@ -179,7 +163,6 @@ adult_diagnosed:
   first_name: Adult
   last_name: Diagnosed
   email: adultdiagnosed@gmail.com
-  zip_code: 12345
   over_eighteen: true
   adult_diagnosed: true
   encrypted_password: <%= pw %>
@@ -190,7 +173,6 @@ adult_at_risk:
   first_name: Adult
   last_name: AtRisk
   email: adultatrisk@gmail.com
-  zip_code: 12345
   over_eighteen: true
   adult_at_risk: true
   encrypted_password: <%= pw %>
@@ -201,7 +183,6 @@ caregiver_adult:
   first_name: Caregiver
   last_name: Adult
   email: caregiveradult@gmail.com
-  zip_code: 12345
   over_eighteen: true
   caregiver_adult: true
   encrypted_password: <%= pw %>
@@ -212,7 +193,6 @@ caregiver_child:
   first_name: Caregiver
   last_name: Child
   email: caregiverchild@gmail.com
-  zip_code: 12345
   over_eighteen: true
   caregiver_child: true
   encrypted_password: <%= pw %>
@@ -223,7 +203,6 @@ researcher:
   first_name: Re
   last_name: Searcher
   email: researcher@gmail.com
-  zip_code: 12345
   over_eighteen: true
   researcher: true
   encrypted_password: <%= pw %>
@@ -240,11 +219,8 @@ provider:
   email: healthy@me.com
   provider_name: Healthy
   slug: health-hospital
-  address_1: 11 Healthy Way
-  city: Boston
   state_code: MA
   provider: true
-  zip_code: 12345
   encrypted_password: <%= pw %>
   accepted_privacy_policy_at: <%= 6.day.ago.to_s(:db) %>
   accepted_terms_of_access_at: <%= 6.day.ago.to_s(:db) %>
@@ -336,7 +312,6 @@ finished_about_me_1:
   first_name: Finished
   last_name: About Me 1
   email: finished_about_me_1@example.com
-  zip_code: 12345
   over_eighteen: true
   accepted_consent_at: <%= 5.day.ago.to_s(:db) %>
   accepted_privacy_policy_at: <%= 6.day.ago.to_s(:db) %>
@@ -349,7 +324,6 @@ finished_about_me_2:
   first_name: Finished
   last_name: About Me 2
   email: finished_about_me_2@example.com
-  zip_code: 12345
   over_eighteen: true
   accepted_consent_at: <%= 5.day.ago.to_s(:db) %>
   accepted_privacy_policy_at: <%= 6.day.ago.to_s(:db) %>
@@ -362,7 +336,6 @@ finished_about_me_3:
   first_name: Finished
   last_name: About Me 3
   email: finished_about_me_3@example.com
-  zip_code: 12345
   over_eighteen: true
   accepted_consent_at: <%= 5.day.ago.to_s(:db) %>
   accepted_privacy_policy_at: <%= 6.day.ago.to_s(:db) %>
@@ -375,7 +348,6 @@ finished_about_me_4:
   first_name: Finished
   last_name: About Me 4
   email: finished_about_me_4@example.com
-  zip_code: 12345
   over_eighteen: true
   accepted_consent_at: <%= 5.day.ago.to_s(:db) %>
   accepted_privacy_policy_at: <%= 6.day.ago.to_s(:db) %>
@@ -388,7 +360,6 @@ finished_about_me_5:
   first_name: Finished
   last_name: About Me 5
   email: finished_about_me_5@example.com
-  zip_code: 12345
   over_eighteen: true
   accepted_consent_at: <%= 5.day.ago.to_s(:db) %>
   accepted_privacy_policy_at: <%= 6.day.ago.to_s(:db) %>
@@ -401,7 +372,6 @@ finished_about_me_6:
   first_name: Finished
   last_name: About Me 6
   email: finished_about_me_6@example.com
-  zip_code: 12345
   over_eighteen: true
   accepted_consent_at: <%= 5.day.ago.to_s(:db) %>
   accepted_privacy_policy_at: <%= 6.day.ago.to_s(:db) %>
@@ -414,7 +384,6 @@ heh_1:
   email: heh_1@example.com
   first_name: HeH
   last_name: Member
-  zip_code: 12345
   over_eighteen: true
   adult_diagnosed: true
   encrypted_password: <%= pw %>
@@ -427,7 +396,6 @@ community_contributor:
   first_name: Community
   last_name: Contributor
   email: community_contributor@example.com
-  zip_code: 12345
   over_eighteen: true
   encrypted_password: ""
   community_contributor: true
@@ -437,7 +405,6 @@ shadow_banned:
   first_name: Dark
   last_name: Shadow
   email: shadow_banned@example.com
-  zip_code: 12345
   over_eighteen: true
   adult_diagnosed: true
   encrypted_password: <%= pw %>
@@ -449,7 +416,6 @@ new_spammer:
   first_name: Innocent
   last_name: Ant
   email: new_spammer@example.com
-  zip_code: 12345
   over_eighteen: true
   adult_diagnosed: true
   encrypted_password: <%= pw %>
@@ -461,7 +427,6 @@ verified_user:
   first_name: Prolific
   last_name: Poster
   email: verified_user@example.com
-  zip_code: 12345
   over_eighteen: true
   adult_diagnosed: true
   encrypted_password: <%= pw %>
