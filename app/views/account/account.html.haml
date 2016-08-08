@@ -146,3 +146,13 @@
 - if current_user.ready_for_research?
   %a.settings-anchor#leave-study
   = render 'account/join_leave_research_study'
+
+.content-container
+  .content-header
+    %h3.f300.centered
+      Delete My Account
+  .content-body
+    %p.lead
+      Once you delete your account, there is no going back. Any forum posts you
+      have made will also be deleted.
+    = link_to 'Delete My Account', delete_account_path, method: :delete, class: 'btn btn-danger btn-block', data: { confirm: 'Are you sure you want to PERMANENTLY delete your account?' }

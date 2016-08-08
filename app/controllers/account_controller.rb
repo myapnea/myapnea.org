@@ -136,6 +136,13 @@ class AccountController < ApplicationController
     @new_forum_name = SocialProfile.generate_forum_name(Time.zone.now.nsec.to_s)
   end
 
+  # DELETE /account
+  def destroy
+    current_user.destroy
+    sign_out current_user
+    redirect_to landing_path, notice: 'Your account has been deleted.'
+  end
+
   private
 
   def user_params

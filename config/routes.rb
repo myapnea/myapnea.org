@@ -270,6 +270,7 @@ Rails.application.routes.draw do
   # Account Section
   scope module: :account do
     post :suggest_random_forum_name
+    delete 'account/delete', action: 'destroy', as: :delete_account
   end
 
   get 'account' => 'account#account'

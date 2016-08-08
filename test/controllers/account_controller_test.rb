@@ -49,7 +49,6 @@ class AccountControllerTest < ActionController::TestCase
   test 'should get account for regular user' do
     login(@regular_user)
     get :account
-
     assert_response :success
   end
 
@@ -119,47 +118,32 @@ class AccountControllerTest < ActionController::TestCase
 
   test 'should mark consent and then privacy policy as read for user' do
     login(@regular_user)
-
     refute @regular_user.ready_for_research?
-
     get :consent
-
     assert_response :success
     assert_template 'consent'
-
     post :accepts_consent
     refute @regular_user.reload.ready_for_research?
-
     get :privacy_policy
-
     assert_response :success
     assert_template 'privacy_policy'
-
     post :accepts_privacy
     assert @regular_user.reload.ready_for_research?
-
     assert_redirected_to surveys_path
   end
 
   test 'should mark privacy and then consent as read for user' do
     login(@regular_user)
-
     get :privacy_policy
-
     assert_response :success
     assert_template 'privacy_policy'
-
     post :accepts_privacy
     refute @regular_user.reload.ready_for_research?
-
     get :consent
-
     assert_response :success
     assert_template 'consent'
-
     post :accepts_consent
     assert @regular_user.reload.ready_for_research?
-
     assert_redirected_to surveys_path
   end
 
@@ -255,18 +239,14 @@ class AccountControllerTest < ActionController::TestCase
     new_gender = 'Male'
     new_age = 30
     new_forum_name = 'NewForumName'
-
     refute_equal new_last, users(:social).last_name
     refute_equal new_first, users(:social).first_name
     refute_equal new_email, users(:social).email
     refute_equal new_gender, users(:social).gender
     refute_equal new_age, users(:social).age
     refute_equal new_forum_name, users(:social).forum_name
-
     patch :update, params: { user: { first_name: new_first, last_name: new_last, email: new_email, gender: new_gender, age: new_age, forum_name: new_forum_name } }
-
     users(:social).reload
-
     assert_equal new_last, users(:social).last_name
     assert_equal new_first, users(:social).first_name
     assert_equal new_email, users(:social).email
@@ -279,20 +259,16 @@ class AccountControllerTest < ActionController::TestCase
     login(@provider)
     patch :update, params: { user: { welcome_message: 'Welcome to my page!', slug: 'doctor-joe-smith', provider_name: 'Dr Joe Smith' } }
     @provider.reload
-
     assert_equal 'Welcome to my page!', @provider.welcome_message
     assert_equal 'doctor-joe-smith', @provider.slug
     assert_equal 'Dr Joe Smith', @provider.provider_name
-
     assert_redirected_to provider_path(@provider.slug)
   end
 
   test 'should not allow user to enter blank forum name' do
     login(users(:social))
     patch :update, params: { user: { forum_name: '' } }
-
     users(:social).reload
-
     assert_equal 'TomHaverford', users(:social).forum_name
     assert_response :success
   end
@@ -300,9 +276,7 @@ class AccountControllerTest < ActionController::TestCase
   test 'should not allow user to enter forum name as existing name with different casing' do
     login(users(:social))
     patch :update, params: { user: { forum_name: 'PARTICIPANT' } }
-
     users(:social).reload
-
     assert_equal 'TomHaverford', users(:social).forum_name
     assert_response :success
   end
@@ -310,16 +284,13 @@ class AccountControllerTest < ActionController::TestCase
   test 'should not update account for regular user with invalid user information' do
     login(@regular_user)
     patch :update, params: { user: { email: '' } }
-
     assert_template 'account'
     assert_response :success
   end
 
   test 'should change password for regular user' do
     login(@regular_user)
-
     patch :change_password, params: { user: { current_password: 'password', password: 'newpassword' } }
-
     assert_equal 'Your password has been changed.', flash[:notice]
     assert_redirected_to account_path
   end
@@ -335,7 +306,6 @@ class AccountControllerTest < ActionController::TestCase
   test 'should assign correct surveys for adult_diagnosed role' do
     login(users(:blank_slate))
     patch :set_user_type, params: { user: { adult_diagnosed: true } }
-
     assert_includes users(:blank_slate).answer_sessions.collect(&:survey), Survey.find_by_slug('about-me')
     assert_includes users(:blank_slate).answer_sessions.collect(&:survey), Survey.find_by_slug('about-my-family')
     assert_includes users(:blank_slate).answer_sessions.collect(&:survey), Survey.find_by_slug('my-sleep-quality')
@@ -345,7 +315,6 @@ class AccountControllerTest < ActionController::TestCase
   test 'should assign correct surveys for adult_at_risk role' do
     login(users(:blank_slate))
     patch :set_user_type, params: { user: { adult_at_risk: true } }
-
     assert_includes users(:blank_slate).answer_sessions.collect(&:survey), Survey.find_by_slug('about-me')
     assert_includes users(:blank_slate).answer_sessions.collect(&:survey), Survey.find_by_slug('about-my-family')
     assert_includes users(:blank_slate).answer_sessions.collect(&:survey), Survey.find_by_slug('my-sleep-quality')
@@ -355,7 +324,6 @@ class AccountControllerTest < ActionController::TestCase
   test 'should assign correct surveys for caregiver_adult role' do
     login(users(:blank_slate))
     patch :set_user_type, params: { user: { caregiver_adult: true } }
-
     assert_includes users(:blank_slate).answer_sessions.collect(&:survey), Survey.find_by_slug('about-me')
     assert_includes users(:blank_slate).answer_sessions.collect(&:survey), Survey.find_by_slug('about-my-family')
     refute_includes users(:blank_slate).answer_sessions.collect(&:survey), Survey.find_by_slug('my-sleep-quality')
@@ -365,7 +333,6 @@ class AccountControllerTest < ActionController::TestCase
   test 'should assign correct surveys for caregiver_child role' do
     login(users(:blank_slate))
     patch :set_user_type, params: { user: { caregiver_child: true } }
-
     assert_includes users(:blank_slate).answer_sessions.collect(&:survey), Survey.find_by_slug('about-me')
     assert_includes users(:blank_slate).answer_sessions.collect(&:survey), Survey.find_by_slug('about-my-family')
     refute_includes users(:blank_slate).answer_sessions.collect(&:survey), Survey.find_by_slug('my-sleep-quality')
@@ -375,14 +342,12 @@ class AccountControllerTest < ActionController::TestCase
   test 'should not assign any surveys for researcher' do
     login(users(:blank_slate))
     patch :set_user_type, params: { user: { researcher: true } }
-
     assert_empty users(:blank_slate).answer_sessions
   end
 
   test 'should not assign any surveys for provider' do
     login(users(:blank_slate))
     patch :set_user_type, params: { user: { provider: true } }
-
     assert_empty users(:blank_slate).answer_sessions
   end
 
@@ -394,5 +359,20 @@ class AccountControllerTest < ActionController::TestCase
     assert_includes users(:blank_slate).answer_sessions.collect(&:survey), Survey.find_by_slug('about-my-family')
     assert_includes users(:blank_slate).answer_sessions.collect(&:survey), Survey.find_by_slug('my-sleep-quality')
     assert_includes users(:blank_slate).answer_sessions.collect(&:survey), Survey.find_by_slug('my-sleep-apnea')
+  end
+
+  test 'should be delete account as regular user' do
+    login(@regular_user)
+    assert_difference('User.current.count', -1) do
+      delete :destroy
+    end
+    assert_redirected_to landing_path
+  end
+
+  test 'should not delete account as public user' do
+    assert_difference('User.current.count', 0) do
+      delete :destroy
+    end
+    assert_redirected_to new_user_session_path
   end
 end

@@ -4,6 +4,7 @@
 - **General Changes**
   - Updated styling across several pages to be more consistent
   - Simplified styling on consent and terms and condition pages
+  - Users can now permanently delete their account from the settings page
 - **Admin Changes**
   - Added a link to Admin Dashboard in mobile dropdown menu
   - Improved forum post management
