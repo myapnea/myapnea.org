@@ -212,7 +212,6 @@ Rails.application.routes.draw do
 
   get 'members', to: 'members#index', as: :members
   get 'members/:forum_name', to: 'members#show', as: :member
-  get 'members_search', to: 'members#search', as: :members_search
 
   resources :notifications do
     collection do

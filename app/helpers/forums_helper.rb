@@ -22,7 +22,6 @@ module ForumsHelper
     result = markdown.render(result)
     result = result.encode('UTF-16', undef: :replace, invalid: :replace, replace: '').encode('UTF-8')
     result = add_table_class(result, table_class) unless table_class.blank?
-    result = add_link_forum_names_to_paragraph(result)
     unless allow_links
       result = remove_links(result)
       result = remove_images(result)
@@ -46,10 +45,6 @@ module ForumsHelper
 
   def remove_tables(text)
     text.to_s.gsub(%r{<table(.*?)>(.*?)</table>}m, '')
-  end
-
-  def add_link_forum_names_to_paragraph(text)
-    text.to_s.gsub(/<p>/m, '<p data-object="link-forum-names">').html_safe
   end
 
   def add_table_class(text, table_class)

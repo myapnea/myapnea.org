@@ -33,6 +33,8 @@
 - Removed deprecated data_type column from answer_templates
 - Removed deprecated allow_multiple column from answer_templates
 - Started work on simplifying registration process
+- Removed forum name autocomplete as users are now emailed if they are
+  subscribed to a topic instead of sending emails for mentions
 
 ### Bug Fix
 - Fixed a bug that allowed users to be assigned the same survey multiple times
