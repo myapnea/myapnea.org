@@ -77,7 +77,7 @@ class Chapter < ApplicationRecord
   end
 
   def url_count
-    count_urls(title) + first_reply_url_count
+    (count_urls(title) * 2) + first_reply_url_count
   end
 
   def first_reply_url_count
