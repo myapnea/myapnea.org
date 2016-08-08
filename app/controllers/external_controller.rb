@@ -17,4 +17,8 @@ class ExternalController < ApplicationController
       head :ok
     end
   end
+
+  def voting
+    render layout: 'simple'
+  end
 end

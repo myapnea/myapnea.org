@@ -10,6 +10,9 @@
   - Improved forum post management
 - **Blog Changes**
   - Rich text editor buttons have been added to the blog editor
+- **Forum Changes**
+  - Upvote and downvote buttons have changed and also provide a link to learn
+    how to vote
 - **Gem Changes**
   - Updated to rails 5.0.0
   - Updated to coffee-rails 4.2

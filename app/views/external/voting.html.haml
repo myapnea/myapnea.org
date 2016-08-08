@@ -1,0 +1,49 @@
+- @title = 'Forum Voting'
+
+- content_for :body_class do
+  gray-background
+
+.content-main-header2
+  %h2= @title
+
+%p.lead
+  The MyApnea forum empowers you to promote and highlight valuable content on
+  the forum. You can help make the forum a welcoming place for everyone by
+  adhering to the following guidelines.
+
+.row
+  .col-sm-6
+    .content-main-header2
+      %h1
+        When to Upvote
+        %i.fa.fa-arrow-up.text-success
+
+    %p
+      You may choose to upvote replies that are:
+
+    %ul
+      %li On Topic
+      %li Constructive
+      %li Informative
+
+  .col-sm-6
+    .content-main-header2
+      %h1
+        When to Downvote
+        %i.fa.fa-arrow-down.text-danger
+
+    %p
+      You may also downvote replies that are:
+
+    %ul
+      %li Hurtful
+      %li Off Topic
+      %li Spam
+      %li Contain Misinformation
+      %li Product Advertisement
+      %li
+        Not inline with the
+        = link_to 'Forum Terms and Conditions', terms_and_conditions_path
+      %li
+        %strong DO NOT
+        downvote simply because you disagree

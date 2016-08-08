@@ -8,4 +8,9 @@ class ExternalControllerTest < ActionController::TestCase
     get :contact
     assert_response :success
   end
+
+  test 'should get voting' do
+    get :voting
+    assert_response :success
+  end
 end

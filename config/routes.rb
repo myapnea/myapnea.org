@@ -126,6 +126,7 @@ Rails.application.routes.draw do
   scope module: :external do
     post :preview
     get :contact
+    get :voting
   end
 
   scope module: 'home' do
