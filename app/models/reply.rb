@@ -93,6 +93,10 @@ class Reply < ApplicationRecord
     [reverse_rank, order_newest]
   end
 
+  def display_for_user?(current_user)
+    current_user == user || !below_threshold?
+  end
+
   def below_threshold?
     deleted? || rank < THRESHOLD || user.shadow_banned?
   end

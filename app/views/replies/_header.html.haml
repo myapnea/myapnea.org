@@ -2,10 +2,10 @@
   %span.pull-right{ id: "reply-#{reply.id}-vote" }
     = render 'replies/vote', reply: reply, just_voted: just_voted
 .nowrap.overflow-hidden
-  - if reply.below_threshold?
-    = link_to '[+]', '#', data: { object: 'toggle-reply' }, style: 'text-decoration:none', class: 'text-muted'
-  - else
+  - if reply.display_for_user?(current_user)
     = link_to '[-]', '#', data: { object: 'toggle-reply' }, style: 'text-decoration:none', class: 'text-muted'
+  - else
+    = link_to '[+]', '#', data: { object: 'toggle-reply' }, style: 'text-decoration:none', class: 'text-muted'
   - if reply.deleted?
     %small
       %i.text-muted [deleted]
