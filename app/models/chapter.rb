@@ -6,7 +6,7 @@ class Chapter < ApplicationRecord
   attr_accessor :description, :migration_flag
 
   # Concerns
-  include Deletable
+  include Deletable, UrlCountable
   include PgSearch
   multisearchable against: [:title],
                   unless: :deleted?
@@ -82,11 +82,7 @@ class Chapter < ApplicationRecord
 
   def first_reply_url_count
     return 0 if replies.first.nil?
-    count_urls(replies.first.description)
-  end
-
-  def count_urls(text)
-    URI.extract(text, /http(s)?|mailto|ftp/).count
+    replies.first.url_count
   end
 
   private

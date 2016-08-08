@@ -41,6 +41,20 @@ class RepliesControllerTest < ActionController::TestCase
     assert_difference('Reply.count') do
       post :create, params: { chapter_id: @reply.chapter.to_param, reply: reply_params }, format: 'js'
     end
+    assert_nil assigns(:reply).user.shadow_banned
+    assert_template 'create'
+    assert_response :success
+  end
+
+  test 'should shadow ban new spammer after creating reply' do
+    login(@regular_user)
+    assert_difference('Reply.count') do
+      post :create, params: {
+        chapter_id: @reply.chapter.to_param,
+        reply: reply_params.merge(description: "http://www.example.com\nhttp://www.example.com")
+      }, format: 'js'
+    end
+    assert_equal true, assigns(:reply).user.shadow_banned
     assert_template 'create'
     assert_response :success
   end
@@ -73,6 +87,18 @@ class RepliesControllerTest < ActionController::TestCase
   test 'should update reply' do
     login(@regular_user)
     patch :update, params: { chapter_id: @reply.chapter.to_param, id: @reply, reply: reply_params }, format: 'js'
+    assert_nil assigns(:reply).user.shadow_banned
+    assert_template 'show'
+    assert_response :success
+  end
+
+  test 'should update reply and shadow ban spammer' do
+    login(@regular_user)
+    patch :update, params: {
+      chapter_id: @reply.chapter.to_param, id: @reply,
+      reply: reply_params.merge(description: "http://www.example.com\nhttp://www.example.com")
+    }, format: 'js'
+    assert_equal true, assigns(:reply).user.shadow_banned
     assert_template 'show'
     assert_response :success
   end

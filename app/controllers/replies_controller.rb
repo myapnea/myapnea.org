@@ -60,6 +60,7 @@ class RepliesController < ApplicationController
     if @reply.save
       @reply.create_notifications!
       @reply.chapter.touch(:last_reply_at)
+      @reply.compute_shadow_ban!
       current_user.read_chapter!(@chapter, @reply.id)
       render :create
     else
@@ -70,6 +71,7 @@ class RepliesController < ApplicationController
   # PATCH /replies/1
   def update
     if @reply.update(reply_params)
+      @reply.compute_shadow_ban!
       render :show
     else
       render :edit

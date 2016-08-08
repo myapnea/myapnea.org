@@ -7,7 +7,7 @@ class Reply < ApplicationRecord
   THRESHOLD = -10
 
   # Concerns
-  include Deletable
+  include Deletable, UrlCountable
   include PgSearch
   multisearchable against: [:description],
                   unless: :deleted_or_chapter_deleted?
@@ -143,5 +143,20 @@ class Reply < ApplicationRecord
     return if chapter.user == user
     notification = chapter.user.notifications.where(chapter_id: chapter_id, reply_id: id).first_or_create
     notification.mark_as_unread!
+  end
+
+  def compute_shadow_ban!
+    user.update shadow_banned: true if user.shadow_banned.nil? && url_count > 1
+  end
+
+  def url_count
+    count_urls(description) + email_count
+  end
+
+  def email_count
+    BANNED_EMAILS.each do |banned_email|
+      return banned_email['score'] unless (/#{banned_email['email']}$/ =~ user.email).nil?
+    end
+    0
   end
 end
