@@ -23,25 +23,30 @@
   - Added rails-controller-testing
 
 ### Refactoring
-- Rank the Research functionality has been removed
-  - Accepted research articles are available on the blog, and suggested research
-    topics can now be discussed on the forum
-- Removed old forum backend files
-- Cleaned up existing migration files
-- Simplified configuration options
-- All emails are now sent in a background process
-- Removed old lottery code
-- Updated configuration of google analytics file
-- Removed unused enagements functionality
-- Removed Groupable concern as it is no longer need with PG 9.5
-- Removed unused user contact information
-- Cleaned up unused survey JavaScript
-- Removed deprecated display_type column from questions
-- Removed deprecated data_type column from answer_templates
-- Removed deprecated allow_multiple column from answer_templates
-- Started work on simplifying registration process
-- Removed forum name autocomplete as users are now emailed if they are
-  subscribed to a topic instead of sending emails for mentions
+- **General Cleanup**
+  - Rank the Research functionality has been removed
+    - Accepted research articles are available on the blog, and suggested research
+      topics can now be discussed on the forum
+  - Removed unused enagements functionality
+  - Removed old lottery code
+  - All emails are now sent in a background process
+- **Configuration Cleanup**
+  - Simplified configuration options
+  - Updated configuration of google analytics file
+  - Cleaned up existing migration files
+- **Forum Cleanup**
+  - Removed old forum backend files
+  - Removed forum name autocomplete as users are now emailed if they are
+    subscribed to a topic instead of sending emails for mentions
+- **Registration Cleanup**
+  - Started work on simplifying registration process
+  - Removed unused user contact information
+- **Survey Cleanup**
+  - Removed deprecated `display_type` column from questions
+  - Removed deprecated `data_type column` from answer_templates
+  - Removed deprecated `allow_multiple column` from answer_templates
+  - Removed Groupable concern as it is no longer need with PG 9.5
+  - Cleaned up unused survey JavaScript
 
 ### Bug Fix
 - Fixed a bug that allowed users to be assigned the same survey multiple times
