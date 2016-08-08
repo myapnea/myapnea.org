@@ -59,8 +59,8 @@ class RepliesController < ApplicationController
                          .new(reply_params)
     if @reply.save
       @reply.create_notifications!
-      @reply.chapter.touch(:last_reply_at)
       @reply.compute_shadow_ban!
+      @reply.chapter.touch(:last_reply_at) unless @reply.user.shadow_banned?
       current_user.read_chapter!(@chapter, @reply.id)
       render :create
     else

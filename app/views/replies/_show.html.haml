@@ -53,6 +53,7 @@
           %div{ id: "comment_container_#{parent_comment_id}_#{reply_id}", style: 'display:none' }
 
         - reply_scope = reply.chapter.replies.where(reply_id: reply.id)
+        - reply_scope = reply_scope.shadow_banned(current_user ? current_user.id : nil) unless current_user && current_user.owner?
 
         - if params[:sort_by] == 'new'
           - reply_scope = reply_scope.order(id: :desc)

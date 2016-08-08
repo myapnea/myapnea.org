@@ -10,6 +10,8 @@
     %small
       %i.text-muted [deleted]
   - else
+    - if current_user && current_user.owner? && reply.user.shadow_banned?
+      %span.glyphicon.glyphicon-eye-close.text-muted
     - if reply.chapter_author?
       %small
         %i.fa.fa-moon-o.primary-orange{ data: { toggle: 'tooltip', title: 'Topic Author', container: 'body' } }
