@@ -8,6 +8,13 @@ class ChildrenControllerTest < ActionController::TestCase
     @child = children(:one)
   end
 
+  def child_params
+    {
+      first_name: 'Timmy',
+      age: 2
+    }
+  end
+
   test 'should get index' do
     get :index
     assert_response :success
@@ -35,7 +42,7 @@ class ChildrenControllerTest < ActionController::TestCase
 
   test 'should create child' do
     assert_difference('Child.count') do
-      post :create, params: { child: { first_name: @child.first_name, age: @child.age } }
+      post :create, params: { child: child_params }
     end
 
     assert_redirected_to child_path(assigns(:child))
@@ -43,7 +50,7 @@ class ChildrenControllerTest < ActionController::TestCase
 
   test 'should not create child with blank first name' do
     assert_difference('Child.count', 0) do
-      post :create, params: { child: { first_name: '', age: @child.age } }
+      post :create, params: { child: child_params.merge(first_name: '') }
     end
     assert_not_nil assigns(:child)
     assert assigns(:child).errors.size > 0
@@ -54,7 +61,7 @@ class ChildrenControllerTest < ActionController::TestCase
 
   test 'should create child as js' do
     assert_difference('Child.count') do
-      post :create, params: { child: { first_name: @child.first_name, age: @child.age } }, format: 'js'
+      post :create, params: { child: child_params }, format: 'js'
     end
     assert_template 'show'
     assert_response :success
@@ -84,7 +91,7 @@ class ChildrenControllerTest < ActionController::TestCase
   end
 
   test 'should update child' do
-    patch :update, params: { id: @child, child: { first_name: @child.first_name, age: @child.age } }
+    patch :update, params: { id: @child, child: child_params }
     assert_redirected_to child_path(assigns(:child))
   end
 
@@ -98,13 +105,13 @@ class ChildrenControllerTest < ActionController::TestCase
   end
 
   test 'should update child as js' do
-    patch :update, params: { id: @child, child: { first_name: @child.first_name, age: @child.age } }, format: 'js'
+    patch :update, params: { id: @child, child: child_params }, format: 'js'
     assert_template 'show'
     assert_response :success
   end
 
   test 'should accept consent child as js' do
-    patch :accept_consent, params: { id: @child, child: { first_name: @child.first_name, age: @child.age } }, format: 'js'
+    patch :accept_consent, params: { id: @child, child: child_params }, format: 'js'
     assert_not_nil assigns(:child)
     assert_not_nil assigns(:child).accepted_consent_at
     assert_template 'show'
