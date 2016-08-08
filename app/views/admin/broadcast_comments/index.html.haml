@@ -28,7 +28,7 @@
         %td= link_to broadcast_comment.broadcast.title, blog_post_path(broadcast_comment.broadcast.url_hash.merge(anchor: 'comments'))
         %td{ class: broadcast_comment.deleted? ? 'text-muted' : '', style: broadcast_comment.deleted? ? 'text-decoration:line-through' : '' }
           .broadcast-comment-body{ style: 'font-size: 0.9em;padding:0;margin:0' }
-            = simple_markdown(sanitize(broadcast_comment.description.gsub(/</, "&lt;")).gsub('&gt;', '>'), broadcast_comment.user.can_post_links?, true, 'table table-striped')
+            = simple_markdown(sanitize(broadcast_comment.description.gsub(/</, "&lt;")).gsub('&gt;', '>'), broadcast_comment.display_links?, true, 'table table-striped')
         %td= link_to broadcast_comment.user.forum_name, broadcast_comment.user
         %td= broadcast_comment.created_at.strftime('%a, %B %d, %Y at %-l:%M %p')
 

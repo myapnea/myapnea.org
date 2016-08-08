@@ -155,11 +155,6 @@ class User < ApplicationRecord
     notifications.where(read: false).present?
   end
 
-  # TODO: Remove method?
-  def can_post_links?
-    moderator? || owner?
-  end
-
   def revoke_consent!
     update_column :accepted_terms_of_access_at, nil
     update_column :accepted_consent_at, nil
