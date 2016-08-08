@@ -8,6 +8,8 @@
 - **Admin Changes**
   - Added a link to Admin Dashboard in mobile dropdown menu
   - Improved forum post management
+- **Blog Changes**
+  - Rich text editor buttons have been added to the blog editor
 - **Gem Changes**
   - Updated to rails 5.0.0
   - Updated to coffee-rails 4.2
