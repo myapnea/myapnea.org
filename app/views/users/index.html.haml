@@ -6,13 +6,11 @@
     &middot;
     = @title
 
-.content-container
-  = form_tag users_path, method: :get, class: 'form-inline' do
-    = text_field_tag 'search', params[:search], class: 'form-control'
-    = submit_tag 'Search', class: 'btn btn-primary', name: nil
-    = link_to 'Reset', users_path, class: 'btn btn-default'
-    = link_to export_users_path( format: 'csv' ), class: 'btn btn-default' do
-      .fa.fa-file-excel-o
-      Export CSV
+= form_tag users_path, method: :get, class: 'form-inline', style: 'margin-bottom: 20px' do
+  = text_field_tag 'search', params[:search], class: 'form-control'
+  = submit_tag 'Search', class: 'btn btn-primary', name: nil
+  = link_to 'Reset', users_path, class: 'btn btn-default'
+  = link_to export_users_path(format: 'csv'), class: 'btn btn-default' do
+    Export CSV
 
 = render 'users/users'

@@ -8,6 +8,7 @@
 - **Admin Changes**
   - Added a link to Admin Dashboard in mobile dropdown menu
   - Improved forum post management
+  - Removed extraneous icon from CSV export button
 - **Blog Changes**
   - Rich text editor buttons have been added to the blog editor
 - **Forum Changes**
