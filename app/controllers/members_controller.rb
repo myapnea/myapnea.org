@@ -8,7 +8,7 @@ class MembersController < ApplicationController
   end
 
   def show
-    @replies = @member.replies.order(id: :desc).page(params[:page]).per(20)
+    @replies = @member.replies.order(created_at: :desc).page(params[:page]).per(20)
   end
 
   private

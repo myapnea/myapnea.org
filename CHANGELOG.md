@@ -40,6 +40,7 @@
 - Fixed a bug that allowed users to be assigned the same survey multiple times
   after switching roles
 - Child age range restriction now matches age listed in consent
+- Fixed a bug sorting replies on a member's profile page
 
 ## 13.2.1 (July 26, 2016)
 
