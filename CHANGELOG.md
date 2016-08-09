@@ -1,4 +1,4 @@
-## 14.0.0
+## 14.0.0 (August 9, 2016)
 
 ### Enhancements
 - **General Changes**
