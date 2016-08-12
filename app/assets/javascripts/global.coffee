@@ -13,8 +13,18 @@
   val = $(element_id).val()
   $(element_id).focus().val('').val(val)
 
-@ready = ->
+@extensionsReady = ->
+  datepickerReady()
+  fileDragReady()
   tooltipsReady()
+
+@objectsReady = ->
+  topicsReady()
+
+@ready = ->
+  extensionsReady()
+  objectsReady()
+  # TODO: Organize Other Ready functions
   consentReady()
   teamReady()
   providersReady() if providersReady?
@@ -35,9 +45,6 @@
   builderQuestionsReady()
   builderAnswerTemplatesReady()
   builderAnswerOptionsReady()
-  fileDragReady()
-  datepickerReady()
-  topicsReady()
   mapsReady()
 
 $(document).ready(ready)
