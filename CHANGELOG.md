@@ -1,5 +1,9 @@
 ## 14.0.1
 
+### Enhancements
+- **Gem Changes**
+  - Updated to rails 5.0.0.1
+
 ### Bug Fix
 - Mobile devices no longer need to click twice to vote
 
