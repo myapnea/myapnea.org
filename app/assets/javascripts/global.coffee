@@ -1,9 +1,3 @@
-@mainLoader = () ->
-  $(document.links).filter(() ->
-    return this.hostname != window.location.hostname
-  ).attr('target', '_blank')
-  $('[data-toggle="tooltip"]').tooltip()
-
 @consentReady = () ->
   $("#consent .scroll").slimscroll(
     height: '385px'
@@ -19,11 +13,8 @@
   val = $(element_id).val()
   $(element_id).focus().val('').val(val)
 
-@loadDatepicker = () ->
-  $('.datepicker').datepicker()
-
-@ready = () ->
-  mainLoader()
+@ready = ->
+  tooltipsReady()
   consentReady()
   teamReady()
   providersReady() if providersReady?
@@ -45,17 +36,17 @@
   builderAnswerTemplatesReady()
   builderAnswerOptionsReady()
   fileDragReady()
-  loadDatepicker()
+  datepickerReady()
   topicsReady()
   mapsReady()
 
 $(document).ready(ready)
 $(document)
   .on('turbolinks:load', ready)
-  .on('click', '[data-object~="submit"]', () ->
+  .on('click', '[data-object~="submit"]', ->
     $($(this).data('target')).submit()
     false
   )
-  .on('click', '[data-object~="suppress-click"]', () ->
+  .on('click', '[data-object~="suppress-click"]', ->
     false
   )

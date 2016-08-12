@@ -15,63 +15,37 @@
 #
 #= require jquery
 #= require jquery_ujs
+#= require bootstrap-sprockets
 #= require turbolinks
 #= require jquery-ui/sortable
+
+# Compatibility
 #= require compatibility/array_prototype_index_of.js
 #= require compatibility/array_prototype_map.js
-#= require bootstrap-sprockets
+
+# External
+# `vendor/assets/javascripts`
 #= require jquery.slimscroll
 #= require jquery.PrintArea
 #= require d3.min
 #= require typeahead
+#
 #= require external/bootstrap-datepicker.js
 #= require external/jquery-fieldselection.js
-#= require google_analytics
-#= require main
-#= require admin
-#= require tools
-#= require social/autocomplete_gender
-#= require reports/survey_reports
-#= require reports/display_types/horizontal_bar_graph
-#= require reports/display_types/vertical_bar_graph
-#= require reports/display_types/pie_chart
-#= require reports/additional_information_about_me
-#= require reports/my_health_conditions
-#= require reports/my_quality_of_life
-#= require reports/my_sleep_apnea
-#= require landing
 #= require external/highcharts-4.0.4.src.js
 #= require external/highmaps-1.0.4-modules-map.src.js
 #= require external/highmaps-1.0.4-modules-data.js
 #= require external/us-all.js
 #= require external/world.js
-#= require components/team
-#= require components/providers
-#= require components/maps
-#= require components/share_icons
-#= require components/circle
-#= require components/questions
-#= require cookies
-#= require video_controls
-#= require surveys
-#= require validation
 #= require external/jquery.color.min.js
 #= require external/jquery.placeholder.js
 #= require external/jquery.animate-shadow-min.js
 #= require external/froogaloop2.min.js
-#= require tools/bmi_ahi
-#= require filedrag
-#= require builder/surveys
-#= require admin/exports
-#= require admin/social_media
-#= require builder/questions
-#= require builder/answer_templates
-#= require builder/answer_options
-#= require builder/slug
-#= require previews
+
+# Extensions
+#= require extensions/datepicker
 #= require extensions/filedrag
-#= require objects/blog
-#= require objects/chapters
-#= require objects/images
-#= require objects/topics
-#= require components/search
+#= require extensions/tooltips
+
+# Other
+#= require_tree .
