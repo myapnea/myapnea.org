@@ -6,6 +6,7 @@
 
 ### Bug Fix
 - Mobile devices no longer need to click twice to vote
+- Rails model errors are now again correctly styled using Bootstrap CSS classes
 
 ## 14.0.0 (August 9, 2016)
 
