@@ -1,4 +1,4 @@
-@consentReady = () ->
+@consentReady = ->
   $("#consent .scroll").slimscroll(
     height: '385px'
     alwaysVisible: true
@@ -16,6 +16,7 @@
 @extensionsReady = ->
   datepickerReady()
   fileDragReady()
+  notouchReady()
   tooltipsReady()
 
 @objectsReady = ->

@@ -1,5 +1,8 @@
 ## 14.0.1
 
+### Bug Fix
+- Mobile devices no longer need to click twice to vote
+
 ## 14.0.0 (August 9, 2016)
 
 ### Enhancements

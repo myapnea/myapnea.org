@@ -2,6 +2,8 @@
   display: none;
 }
 
-.vote-info:hover .vote-expanded-info {
-  display: inline-block;
+.no-touch {
+  .vote-info:hover .vote-expanded-info {
+    display: inline-block;
+  }
 }
