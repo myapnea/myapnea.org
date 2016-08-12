@@ -1,4 +1,4 @@
-## 14.0.1
+## 14.0.1 (August 12, 2016)
 
 ### Enhancements
 - **Gem Changes**
