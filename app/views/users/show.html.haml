@@ -17,96 +17,104 @@
       %span.glyphicon.glyphicon-eye-close
       This user has been shadow banned.
 
-%dl.dl-horizontal
-  %dt Joined
-  %dd
-    = @user.created_at.strftime("%m/%d/%Y") if @user.created_at.present?
+%table.table.table-hover.table-striped
+  %col{ width: '30%' }
+  %tr
+    %td Forum Name
+    %td= link_to @user.forum_name, member_path(@user.forum_name)
 
-  %dt Forum Name
-  %dd= @user.forum_name
+  %tr
+    %td Email
+    %td= @user.email
 
-  %dt Gender
-  %dd= @user.gender
+  %tr
+    %td Gender
+    %td= @user.gender
 
-  %dt Age
-  %dd= @user.age
+  %tr
+    %td Age
+    %td= @user.age
 
-  %dt Emails Enabled
-  %dd
-    = simple_check @user.emails_enabled
+  %tr
+    %td Emails Enabled
+    %td= simple_check @user.emails_enabled
 
-  %dt Number of Sessions
-  %dd
-    = @user.sign_in_count if @user.sign_in_count.present?
+  %tr
+    %td Number of Sessions
+    %td= @user.sign_in_count if @user.sign_in_count.present?
 
-  %dt Most Recent Session
-  %dd
-    = @user.current_sign_in_at.strftime("%m/%d/%Y") if @user.current_sign_in_at.present?
+  %tr
+    %td Most Recent Session
+    %td= @user.current_sign_in_at.strftime('%m/%d/%Y') if @user.current_sign_in_at.present?
 
-  %dt Privacy Policy
-  %dd
-    = @user.accepted_privacy_policy_at.strftime("%m/%d/%Y") if @user.accepted_privacy_policy_at.present?
+  %tr
+    %td Joined
+    %td
+      = @user.created_at.strftime('%m/%d/%Y') if @user.created_at.present?
 
-  %dt Consent
-  %dd
-    = @user.accepted_consent_at.strftime("%m/%d/%Y") if @user.accepted_consent_at.present?
+  %tr
+    %td Privacy Policy
+    %td= @user.accepted_privacy_policy_at.strftime('%m/%d/%Y') if @user.accepted_privacy_policy_at.present?
 
-  %dt Terms of Access
-  %dd
-    = @user.accepted_terms_of_access_at.strftime("%m/%d/%Y") if @user.accepted_terms_of_access_at.present?
-    = simple_check @user.moderator?
-  %dt Completed Surveys
-  %dd
-    = @user.completed_answer_sessions.count
-  %dt Include in Data
-  %dd
-    = simple_check @user.include_in_exports
-  %dt Owner
-  %dd
-    = simple_check @user.owner?
-  %dt Moderator
-  %dd
-    = simple_check @user.moderator?
-  %dt Community Contributor
-  %dd
-    = simple_check @user.community_contributor?
-  %dt Can Build Surveys
-  %dd
-    = simple_check @user.can_build_surveys?
+  %tr
+    %td Consent
+    %td= @user.accepted_consent_at.strftime('%m/%d/%Y') if @user.accepted_consent_at.present?
 
-.container
-  .content-container
-    %h1
-      = @user.name
-    %p
-      View this member's full social profile:
-      %span.f500= link_to @user.forum_name, member_path(@user.forum_name), class: 'no-underline darkerer-blue'
+  %tr
+    %td Terms of Access
+    %td= @user.accepted_terms_of_access_at.strftime('%m/%d/%Y') if @user.accepted_terms_of_access_at.present?
 
-  - if current_user.owner?
-    .content-container
-      %table.table.table-bordered.table-striped
-        %thead
-          %tr
-            %th Assigned Survey
-            %th Encounter
-            %th Completion
-            %th Locked
-            %th Actions
-        %tbody
-          - @user.answer_sessions.includes(:survey).order("surveys.name_en", :encounter).each do |answer_session|
-            %tr
-              %td= answer_session.survey.name
-              %td= answer_session.encounter
-              %td= answer_session.percent_completed
-              %td= simple_check answer_session.locked?
-              %td
-                - if answer_session.locked?
-                  = link_to 'Unlock Survey', admin_unlock_survey_path(user_id: @user.id, answer_session_id: answer_session.id), method: :post, class: 'btn btn-primary btn-xs'
+  %tr
+    %td Completed Surveys
+    %td= @user.completed_answer_sessions.count
 
-      .content-footer
-        %h4 For admins:
-        = render 'users/admin_view', user: @user
+  %tr
+    %td Include in Data
+    %td= simple_check @user.include_in_exports
 
-        - if current_user.owner?
-          = link_to 'Edit User', edit_user_path(@user), class: 'btn btn-primary btn-xs'
-          = link_to 'Delete User', @user, method: :delete, class: 'btn btn-xs btn-danger', data: { confirm: "Are you sure you want to delete User #{@user.name}?" } unless current_user == @user
+  %tr
+    %td Owner
+    %td= simple_check @user.owner?
+
+  %tr
+    %td Moderator
+    %td= simple_check @user.moderator?
+
+  %tr
+    %td Community Contributor
+    %td= simple_check @user.community_contributor?
+
+  %tr
+    %td Can Build Surveys
+    %td= simple_check @user.can_build_surveys?
+
+  %tr
+    %td Roles
+    %td
+      %ul.list-unstyled
+        - @user.user_type_names.each do |ut|
+          %li= ut
+
+- if @user.answer_sessions.count > 0
+  %table.table.table-bordered.table-striped
+    %thead
+      %tr
+        %th Assigned Survey
+        %th Encounter
+        %th Completion
+        %th Locked
+        %th Actions
+    %tbody
+      - @user.answer_sessions.includes(:survey).order('surveys.name_en', :encounter).each do |answer_session|
+        %tr
+          %td= answer_session.survey.name
+          %td= answer_session.encounter
+          %td= answer_session.percent_completed
+          %td= simple_check answer_session.locked?
+          %td
+            - if answer_session.locked?
+              = link_to 'Unlock Survey', admin_unlock_survey_path(user_id: @user.id, answer_session_id: answer_session.id), method: :post, class: 'btn btn-primary btn-xs'
+- else
+  .jumbotron
+    %p.lead.text-center{ style: 'margin-bottom: 0' }
+      No Assigned Surveys
