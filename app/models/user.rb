@@ -144,6 +144,10 @@ class User < ApplicationRecord
     end
   end
 
+  def myapnea_id
+    'MA%06d' % id
+  end
+
   def name
     "#{first_name} #{last_name}"
   end

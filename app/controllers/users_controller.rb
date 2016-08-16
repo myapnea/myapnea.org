@@ -24,7 +24,7 @@ class UsersController < ApplicationController
   def export
     @csv_string = CSV.generate do |csv|
       csv << [
-        'ID', 'Email', 'First Name', 'Last Name', 'Number of Surveys Completed',
+        'MyApnea ID', 'Email', 'First Name', 'Last Name', 'Number of Surveys Completed',
         'Last Login', 'Login Count', 'Forum Posts', 'First Forum Post',
         'Last Forum Post'
       ]
@@ -32,7 +32,7 @@ class UsersController < ApplicationController
         first_reply = user.replies.order(:created_at).first
         last_reply = user.replies.order(:created_at).last
         row = [
-          user.id,
+          user.myapnea_id,
           user.email,
           user.first_name,
           user.last_name,

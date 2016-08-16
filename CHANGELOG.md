@@ -1,5 +1,9 @@
 ## 14.2.2
 
+### Enhancements
+- **Admin Changes**
+  - Linking exports is now more consistent
+
 ## 14.2.1 (August 16, 2016)
 
 ### Enhancements
