@@ -1,4 +1,4 @@
-## 14.2.0
+## 14.2.0 (August 16, 2016)
 
 - **Admin Changes**
   - Added another column to user export
