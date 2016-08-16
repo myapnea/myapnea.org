@@ -1,5 +1,8 @@
 ## 14.2.0
 
+- **Admin Changes**
+  - Added another column to user export
+
 ## 14.1.0 (August 16, 2016)
 
 ### Enhancements
