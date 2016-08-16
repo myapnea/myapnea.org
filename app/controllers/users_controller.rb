@@ -22,19 +22,28 @@ class UsersController < ApplicationController
 
   def export
     @csv_string = CSV.generate do |csv|
-      csv << ['Email', 'First Name', 'Last Name', 'Number of Surveys Completed']
-
-      User.current.each do |user|
+      csv << [
+        'Email', 'First Name', 'Last Name', 'Number of Surveys Completed',
+        'Last Login', 'Login Count', 'Forum Posts', 'First Forum Post',
+        'Last Forum Post'
+      ]
+      User.current.find_each do |user|
+        first_reply = user.replies.order(:created_at).first
+        last_reply = user.replies.order(:created_at).last
         row = [
           user.email,
           user.first_name,
           user.last_name,
-          user.completed_answer_sessions.count
+          user.completed_answer_sessions.count,
+          (user.current_sign_in_at ? user.current_sign_in_at.to_date : nil),
+          user.sign_in_count,
+          user.replies.count,
+          (first_reply ? first_reply.created_at.to_date : nil),
+          (last_reply ? last_reply.created_at.to_date : nil)
         ]
         csv << row
       end
     end
-
     send_data @csv_string, type: 'text/csv; charset=iso-8859-1; header=present',
                            disposition: "attachment; filename=\"#{ENV['website_name'].gsub(/[^\w\.]/, '_')} Users List - #{Time.zone.now.strftime("%Y.%m.%d %Ih%M %p")}.csv\""
   end

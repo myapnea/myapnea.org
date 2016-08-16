@@ -1,5 +1,9 @@
 ## 14.1.0
 
+### Enhancements
+- **Admin Changes**
+  - Improved information provided in user exports
+
 ## 14.0.1 (August 12, 2016)
 
 ### Enhancements
