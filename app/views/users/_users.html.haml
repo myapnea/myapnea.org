@@ -13,7 +13,9 @@
       %th Email
       = th_sort_field @order, 'users.current_sign_in_at', 'Recent Activity', extra_class: 'hidden-xs'
       = th_sort_field @order, 'users.shadow_banned', 'Shadow Banned', extra_class: 'text-center'
-      %th.nowrap.hidden-xs Surveys Completed
+      %th.hidden-xs Surveys Completed
+      = th_sort_field @order, 'users.sign_in_count', 'Sign in Count', extra_class: 'hidden-xs'
+      = th_sort_field @order, 'replies', 'Posts', extra_class: 'hidden-xs'
       %th Actions
   - @users.each do |user|
     %tr{ class: "#{'todays-users' if user.created_at.today?} #{'this-weeks-users' if user.created_at > Time.zone.now.beginning_of_week(start_day = :sunday)}"}
@@ -32,6 +34,10 @@
           %span.glyphicon.glyphicon-eye-close.text-muted
       %td.hidden-xs
         = user.completed_answer_sessions.count
+      %td.hidden-xs
+        = user.sign_in_count
+      %td.hidden-xs
+        = user.replies.count
       %td.nowrap
         = link_to 'Edit', edit_user_path(user), class: 'btn btn-default btn-xs'
         - unless current_user == user

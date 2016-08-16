@@ -37,6 +37,7 @@ class User < ApplicationRecord
   scope :providers, -> { current.where(provider: true) }
   scope :providers_with_profiles, -> { providers.where.not(slug: [nil,''], provider_name: [nil,'']) }
   scope :include_in_exports_and_reports, -> { where(include_in_exports: true) }
+  scope :replies, -> { select('users.*, COALESCE(COUNT(replies.id), 0) replies').joins('LEFT JOIN replies ON replies.user_id = users.id').where('replies.deleted = ?', false).group('users.id') }
 
   # Model Validation
   validates :first_name, :last_name, presence: true

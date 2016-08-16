@@ -2,6 +2,7 @@
 
 - **Admin Changes**
   - Added another column to user export
+  - Added sortable columns to users index
 
 ## 14.1.0 (August 16, 2016)
 
