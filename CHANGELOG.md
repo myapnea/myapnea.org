@@ -1,4 +1,4 @@
-## 14.2.2
+## 14.2.2 (August 16, 2016)
 
 ### Enhancements
 - **Admin Changes**
