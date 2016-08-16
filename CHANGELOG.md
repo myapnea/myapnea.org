@@ -1,7 +1,12 @@
 ## 14.2.1
 
+### Enhancements
+- **Admin Changes**
+  - Change default sort direction to descending for user reply and sign in count
+
 ## 14.2.0 (August 16, 2016)
 
+### Enhancements
 - **Admin Changes**
   - Added another column to user export
   - Added sortable columns to users index
