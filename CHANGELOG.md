@@ -1,5 +1,6 @@
 ## 14.2.0 (August 16, 2016)
 
+### Enhancements
 - **Admin Changes**
   - Added another column to user export
   - Added sortable columns to users index
