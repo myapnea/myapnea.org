@@ -1,4 +1,4 @@
-## 14.2.3
+## 14.2.3 (August 17, 2016)
 
 ### Bug Fix
 - The admin user index now displays the correct total number of users
