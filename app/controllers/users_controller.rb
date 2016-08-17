@@ -17,8 +17,8 @@ class UsersController < ApplicationController
   def index
     @all_users = User.current.search(params[:search]).order(current_sign_in_at: :desc)
     @order = scrub_order(User, params[:order], 'current_sign_in_at desc')
-    @order = params[:order] if ['replies', 'replies desc'].include?(params[:order])
-    @users = @all_users.replies.reorder(@order).page(params[:page]).per(40)
+    @order = params[:order] if ['reply_count', 'reply_count desc'].include?(params[:order])
+    @users = @all_users.reply_count.reorder(@order).page(params[:page]).per(40)
   end
 
   def export
