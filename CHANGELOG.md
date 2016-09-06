@@ -1,4 +1,4 @@
-## 14.2.4
+## 14.2.4 (September 6, 2016)
 
 ### Bug Fix
 - Fixed an issue clicking "I acknowledge these changes" after privacy policy and
