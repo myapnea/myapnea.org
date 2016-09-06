@@ -1,5 +1,9 @@
 ## 14.2.4
 
+### Bug Fix
+- Fixed an issue clicking "I acknowledge these changes" after privacy policy and
+  consent updates that would make the button appear unresponsive
+
 ## 14.2.3 (August 17, 2016)
 
 ### Bug Fix

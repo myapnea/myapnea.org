@@ -24,6 +24,23 @@
   color: #555;
 }
 
+.btn-default-custom-2 {
+  background-color: $btn-default-bg;
+  border: 1px solid $btn-default-border;
+  color: $link-color;
+
+  &:hover,
+  &:focus,
+  &:active,
+  &.active,
+  &.disabled,
+  &[disabled] {
+    background-color: darken($btn-default-bg, 10%);
+    border-color: darken($btn-default-border, 12%);
+    color: $link-hover-color;
+  }
+}
+
 .btn-warning-custom {
   padding: 10px;
   border-radius: 3px;

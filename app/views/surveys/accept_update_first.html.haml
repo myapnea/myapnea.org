@@ -1,16 +1,16 @@
 .panel
   .panel-body.centered
     %h1.f700.oswald{ style: 'color: red; color: crimson; ' }
-      = "! ! !"
+      \! ! !
     %h3
-      Before continuing, you must accept the recent modification to our consent and privacy policy
+      Before continuing, you must accept the recent modification to our consent
+      and privacy policy
     %p.lead
-      Our privacy policy and consent have been slightly modified. If you wish to review them, please do so by clicking one of the links below.
+      Our privacy policy and consent have been slightly modified. If you wish to
+      review them, please do so by clicking one of the links below.
+
     %br
-    .row
-      %button.btn.btn-default
-        = link_to 'Privacy Policy', privacy_path
-      %button.btn.btn-default
-        = link_to 'Consent', consent_path
-      %button.btn.btn-primary
-        = link_to 'I acknowledge these changes', accepts_update_path, method: :post, style: 'color: white'
+
+    = link_to 'Privacy Policy', privacy_path, class: 'btn btn-default-custom-2'
+    = link_to 'Consent', consent_path, class: 'btn btn-default-custom-2'
+    = link_to 'I acknowledge these changes', accepts_update_path, method: :post, class: 'btn btn-primary'
