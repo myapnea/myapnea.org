@@ -1,5 +1,9 @@
 ## 14.2.5
 
+### Bug Fix
+- Fixed a bug that prevented "Skip this question" from being selected when
+  filling out About Me survey during the sign up process
+
 ## 14.2.4 (September 6, 2016)
 
 ### Bug Fix

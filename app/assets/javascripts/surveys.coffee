@@ -1,259 +1,156 @@
-@surveyAnimationReady = () ->
-
-  # Initiate flow when survey is present
-  $(document).ready ->
-    if $("[data-object~='survey-introduction']").length > 0
-      multiple_radios = $("[data-object~='radio-input-multiple']")
-      multiple_radios.each (index) ->
-        $(multiple_radios[index]).children($("[data-object~='radio-input-multiple-container']")).first().addClass "current"
+# Scroll to active question
+@nextQuestionScroll = (element2) ->
+  # Check for multiple questions, and position the first question in the center
+  if element2.find('.current').length > 0
+    currentHeight = element2.find('.current').offset().top
+    elementOffsetHeight = element2.find('.current').outerHeight() / 2
+  else
+    currentHeight = element2.offset().top
+    elementOffsetHeight = element2.outerHeight() / 2
+  offsetHeight = $(window).outerHeight() / 2
+  # Check for large questions on small screens
+  if elementOffsetHeight > offsetHeight
+    newHeight = currentHeight - 91
+  else
+    newHeight = currentHeight - offsetHeight + elementOffsetHeight
+  $("body,html").animate
+    scrollTop: newHeight, 400, 'swing'
+  , ->
+    changeFocus(element2)
     return
 
-  # Navigation for survey indicators
-  $("[data-object~='survey-indicator']").click (e) ->
-    target = 'question-container-' + $(this).data('target')
-    assignQuestionDirect($("[data-object~='"+target+"']"))
+@changeFocus = (question) ->
+  $("input").blur()
+  $(question).find("input:not([type=hidden])").first().focus()
 
+@setActive = (element) ->
+  return false
+  $(".survey-container.active").removeClass "active"
+  $(element).addClass "active"
 
-  # Scroll to active question
-  @nextQuestionScroll = (element2) ->
-    # Check for multiple questions, and position the first question in the center
-    if element2.find('.current').length > 0
-      currentHeight = element2.find('.current').offset().top
-      elementOffsetHeight = element2.find('.current').outerHeight() / 2
-    else
-      currentHeight = element2.offset().top
-      elementOffsetHeight = element2.outerHeight() / 2
-    offsetHeight = $(window).outerHeight() / 2
-    # Check for large questions on small screens
-    if elementOffsetHeight > offsetHeight
-      newHeight = currentHeight - 91
-    else
-      newHeight = currentHeight - offsetHeight + elementOffsetHeight
-    $("body,html").animate
-      scrollTop: newHeight, 400, "swing"
-    , ->
-      changeFocus(element2)
-      return
+@assignQuestionDirect = (element) ->
+  setActive(element)
+  nextQuestionScroll($(".survey-container.active"))
 
-  @changeFocus = (question) ->
-    $("input").blur()
-    $(question).find("input:not([type=hidden])").first().focus()
-
-  @setActive = (element) ->
-    $(".survey-container.active").removeClass "active"
-    $(element).addClass "active"
-
-  @assignQuestionDirect = (element) ->
-    setActive(element)
+# Progress to next or previous question
+@assignQuestion = (next, prev) ->
+  return false
+  activeQuestion = $(".survey-container.active")
+  if (next and activeQuestion.next().length) or (prev and activeQuestion.prev().length)
+    activeQuestion.removeClass "active"
+    if next
+      activeQuestion.next().addClass "active"
+    else if prev
+      activeQuestion.prev().addClass "active"
     nextQuestionScroll($(".survey-container.active"))
 
-  # Progress to next or previous question
-  @assignQuestion = (next, prev) ->
-    activeQuestion = $(".survey-container.active")
-    if (next and activeQuestion.next().length) or (prev and activeQuestion.prev().length)
-      activeQuestion.removeClass "active"
-      if next
-        activeQuestion.next().addClass "active"
-      else if prev
-        activeQuestion.prev().addClass "active"
-      nextQuestionScroll($(".survey-container.active"))
+#####################
+# SURVEY SUBMISSION #
+#####################
 
-  # Progress to next part in multiple-part question
-  @assignMultipleQuestion = (next, prev) ->
-    activeQuestion = $(".survey-container.active .multiple-question-container.current")
-    if (next and activeQuestion.nextAll().length) or (prev and activeQuestion.prevAll().length)
-      activeQuestion.removeClass "current"
-      if next
-        activeQuestion.nextAll(".multiple-question-container").first().addClass "current"
-      else if prev
-        activeQuestion.prevAll(".multiple-question-container").first().addClass "current"
-      newActiveQuestion = $(".survey-container.active .multiple-question-container.current")
-      nextQuestionScroll(newActiveQuestion)
-    else if (next and !activeQuestion.nextAll().length)
-      assignQuestion(true, false)
-    else if (prev and !activeQuestion.prevAll().length)
-      assignQuestion(false, true)
-
-  # Submit a survey answer
-  @submitAnswer = (inputElement) ->
-    questionForm = inputElement.closest("form")
-    $.post(questionForm.attr("action"), questionForm.serialize(), (data) ->
-      indicator = $(questionForm).data('object').split('-').slice(-1)[0]
-      indicatorSelector = $("[data-object~='survey-indicator'][data-target~='"+indicator+"']")
-      if data['completed']
-        indicatorSelector.removeClass 'incomplete'
-        indicatorSelector.addClass 'complete'
-        indicatorSelector.html "&#10003;"
-      else
-        indicatorSelector.removeClass 'complete'
-        indicatorSelector.addClass 'incomplete'
-        indicatorSelector.html Number(indicator) + 1
-    , 'json')
-
-  @handleChangedValue = (inputElement) ->
-    submitAnswer(inputElement)
-
-  @revealNextInput = (targetInput) ->
-    $("[data-receiver~="+targetInput+"]").find("input").first().focus()
-
-
-
-  #################
-  # SURVEY CLICKS #
-  #################
-
-  # Handle 'prefer not to answer checkbox'
-  $('.preferred-not-to-answer').click () ->
-    $(this).find('input:checkbox').prop "checked", !$(this).find('input:checkbox').prop("checked")
-    handleChangedValue($(this))
+@checkCompletion = ->
+  numberSelectors = $("[data-object~='survey-indicator']").length
+  numberCompletedSelectors = $("[data-object~='survey-indicator'].complete").length + $("[data-object~='survey-indicator'].locked").length
+  if $("[data-object~='date--error-message']").length > 0 and $("[data-object~='date--error-message']").html() != "" and !$("[data-object~='date--error']").hasClass("hidden")
+    return false
+  if numberSelectors == numberCompletedSelectors
+    return true
+  else
     return false
 
-  # Respond to click events on conditional events - note that this only works on checkbox inputs
-  $("[data-object~='reveal-next-input']").click (e) ->
-    if this.checked then revealNextInput($(this).data('target'))
+# Progress to next part in multiple-part question
+@assignMultipleQuestion = (next, prev) ->
+  activeQuestion = $(".survey-container.active .multiple-question-container.current")
+  if (next and activeQuestion.nextAll().length) or (prev and activeQuestion.prevAll().length)
+    activeQuestion.removeClass "current"
+    if next
+      activeQuestion.nextAll(".multiple-question-container").first().addClass "current"
+    else if prev
+      activeQuestion.prevAll(".multiple-question-container").first().addClass "current"
+    newActiveQuestion = $(".survey-container.active .multiple-question-container.current")
+    nextQuestionScroll(newActiveQuestion)
+  else if (next and !activeQuestion.nextAll().length)
+    assignQuestion(true, false)
+  else if (prev and !activeQuestion.prevAll().length)
+    assignQuestion(false, true)
 
-  # Respond to radio clicks
-  $('.survey-container input:radio').click (event) ->
-    unless $(this).data('secondary')
-      $(this).prop "checked", true
-      if $(this).data('object') == 'reveal-next-input'
-        revealNextInput($(this).data('target'))
-      else if $(this).closest('.multiple-question-container').length
-        if $(this).closest(".multiple-question-container").hasClass "current"
-          assignMultipleQuestion(true,false)
-      else if $(this).closest('.survey-container').hasClass "active"
-        assignQuestion(true,false)
-      else
-        assignQuestionDirect($(this).closest('.survey-container'))
-    handleChangedValue($(this))
-    event.stopPropagation()
-    return
-
-  $('.survey-container input:text').click (event) ->
-    if $(this).data('secondary')
-      setActive($(this).closest('.survey-container'))
+# Submit a survey answer
+@submitAnswer = (inputElement) ->
+  questionForm = inputElement.closest("form")
+  $.post(questionForm.attr("action"), questionForm.serialize(), (data) ->
+    indicator = $(questionForm).data('position')
+    indicatorSelector = $("[data-object~='survey-indicator'][data-target~='#{indicator}']")
+    if data['completed']
+      indicatorSelector.removeClass 'incomplete'
+      indicatorSelector.addClass 'complete'
+      indicatorSelector.html "&#10003;"
     else
-      assignQuestionDirect($(this).closest('.survey-container'))
-    event.stopPropagation()
-    return
+      indicatorSelector.removeClass 'complete'
+      indicatorSelector.addClass 'incomplete'
+      indicatorSelector.html Number(indicator) + 1
+  , 'json')
 
-  # Respond to user clicking different questions
-  $('.survey-container').click (event) ->
-    event.stopPropagation()
-    # For click events on 'Next Question' button, just assign next question
-    target = event.target or event.srcElement
-    if $(target).hasClass "next-question"
-      assignQuestion(true, false)
-    else if $(target).is("input") or $(target).closest("label").siblings("input").length > 0
-      return
-    else if !$(this).hasClass "active"
-      assignQuestionDirect($(this))
+@handleChangedValue = (inputElement) ->
+  submitAnswer(inputElement)
 
-  #####################
-  # SURVEY KEYSTROKES #
-  #####################
+@revealNextInput = (targetInput) ->
+  $("[data-receiver~="+targetInput+"]").find("input").first().focus()
 
-  $("body").keydown (e) ->
-    e = e || window.event
-    keyCode = if window.event then e.which else e.keyCode
-    if $('.survey-container').length
-      # Prevent default up and down and enter on keydown
-      if keyCode is 38 or keyCode is 40 or keyCode is 13
-        e.preventDefault()
+@surveyAnimationReady = ->
+  # Initiate flow when survey is present
+  if $("[data-object~='survey-introduction']").length > 0
+    multiple_radios = $("[data-object~='radio-input-multiple']")
+    multiple_radios.each (index) ->
+      $(multiple_radios[index]).children($("[data-object~='radio-input-multiple-container']")).first().addClass('current')
 
-  $("body").keyup (e) ->
-    e = e || window.event
-    keyCode = if window.event then e.which else e.keyCode
-    if $('.survey-container.active').length
-      # Handle navigating using the up/down arrow keys
-      if keyCode is 38
-        e.preventDefault()
-        if $(".survey-container.active").hasClass "multiple-question-parts" then assignMultipleQuestion(false, true) else assignQuestion(false, true)
-      else if keyCode is 40
-        e.preventDefault()
-        if $(".survey-container.active").hasClass "multiple-question-parts" then assignMultipleQuestion(true, false) else assignQuestion(true, false)
-      # Progress to next question for enter
-      else if keyCode is 13
-        assignQuestion(true, false)
-        return
-      # Handle hidden inputs first to prevent extra entering
-      else if $("input:focus").is(":text")
-        return
-      # # Handle 'prefer not to answer checkbox'
-      # else if $('.survey-container.active').find('.preferred-not-to-answer').length
-      #   return
-      # Handle radio_input_multiple
-      else if $(".survey-container.active").hasClass "multiple-question-parts"
-        inputs = $(".survey-container.active .multiple-question-container.current").find("input:radio")
-        keyCode = if window.event then e.which else e.keyCode
-        inputs.each (index) ->
-          hotkeyVal = $(inputs[index]).data("hotkey").toString().charCodeAt(0)
-          if (keyCode is hotkeyVal) or (keyCode-48 is hotkeyVal)
-            $(inputs[index]).prop "checked", true
-            handleChangedValue($(inputs[index]))
-            assignMultipleQuestion(true, false)
-      # Respond to actual inputs
-      else
-        # Progress to next question if applicable
-        if $(".survey-container.active").data('progress')
-          inputs = $(".survey-container.active").find("input:radio")
-          keyCode = if window.event then e.which else e.keyCode
-          inputs.each (index) ->
-            hotkeyVal = $(this).data("hotkey").toString().charCodeAt(0)
-            if (keyCode is hotkeyVal) or (keyCode-48 is hotkeyVal)
-              $(inputs[index]).prop "checked", true
-              handleChangedValue($(inputs[index]))
-              if $(inputs[index]).data('object') == "reveal-next-input" then revealNextInput($(inputs[index]).data('target')) else assignQuestion(true, false)
-        # Otherwise, check answer
-        else
-          inputs = $(".survey-container.active").find("input:checkbox:not(.preferred-not-to-answer-input)")
-          keyCode = if window.event then e.which else e.keyCode
-          if $(inputs).data('hotkey')
-            inputs.each (index) ->
-              hotkeyVal = $(inputs[index]).data("hotkey").toString().charCodeAt(0)
-              if (keyCode is hotkeyVal) or (keyCode-48 is hotkeyVal)
-                if !($(inputs[index]).prop "checked") and ($(inputs[index]).data('object') == "reveal-next-input")
-                  revealNextInput($(inputs[index]).data('target'))
-                $(inputs[index]).prop "checked", !$(inputs[index]).prop("checked")
-                handleChangedValue($(inputs[index]))
-
-
-  # Attach change event handler to everything but radio button inputs. Radio button inputs are changed by JS, so each time
-  # the :checked property is changed, handleChangedValue has to be called.
-  $(".survey-container input").not(":radio").change (event) ->
-    target = event.target or event.srcElement
-    handleChangedValue($(target))
-
-  $(".survey-container select").change (event) ->
-    target = event.target or event.srcElement
-    handleChangedValue($(target))
-
-  #####################
-  # SURVEY SUBMISSION #
-  #####################
-
-  $("[data-object~='survey-submit-btn']").click () ->
+$(document)
+  # Handle 'prefer not to answer checkbox'
+  .on('click', '.preferred-not-to-answer', ->
+    checkbox = $(this).find('input:checkbox')
+    checkbox.prop('checked', !checkbox.prop('checked'))
+    handleChangedValue($(this))
+    false
+  )
+  # Respond to radio clicks
+  .on('click', '.survey-container input:radio', ->
+    $(this).prop('checked', true) unless $(this).data('secondary')
+    handleChangedValue($(this))
+  )
+  # Navigation for survey indicators
+  .on('click', "[data-object~='survey-indicator']", (e) ->
+    target = "question-container-#{$(this).data('target')}"
+    nextQuestionScroll($("[data-object~='#{target}']"))
+    false
+  )
+  # Submit survey
+  .on('click', "[data-object~='survey-submit-btn']", ->
     if checkCompletion()
       params = {}
       params.answer_session_id = $(this).data('answer-session-id')
       $.post($(this).data('path'), params)
-      $(this).addClass 'hidden'
-      $("[data-object~='survey-submit-congratulations-container']").removeClass 'hidden'
+      $(this).addClass('hidden')
+      $("[data-object~='survey-submit-congratulations-container']").removeClass('hidden')
       setActive($(this).parents('.survey-container'))
       nextQuestionScroll($(this).parents('.survey-container'))
     else
-      $("[data-object~='survey-indicator'].incomplete").addClass 'error'
-      target = 'question-container-' + $("[data-object~='survey-indicator'].incomplete").first().data('target')
-      assignQuestionDirect($("[data-object~='"+target+"']"))
-    return false
+      $("[data-object~='survey-indicator'].incomplete").addClass('error')
+      target = "question-container-#{$("[data-object~='survey-indicator'].incomplete").first().data('target')}"
+      nextQuestionScroll($("[data-object~='#{target}']"))
+    false
+  )
+  # Respond to click events on conditional events - note that this only works on checkbox inputs
+  .on('click', "[data-object~='reveal-next-input']", ->
+    if this.checked then revealNextInput($(this).data('target'))
+  )
 
-  @checkCompletion = () ->
-    numberSelectors = $("[data-object~='survey-indicator']").length
-    numberCompletedSelectors = $("[data-object~='survey-indicator'].complete").length + $("[data-object~='survey-indicator'].locked").length
-    if $("[data-object~='date--error-message']").length > 0 and $("[data-object~='date--error-message']").html() != "" and !$("[data-object~='date--error']").hasClass("hidden")
-      #console.log "date error exists"
-      return false
-    if numberSelectors == numberCompletedSelectors
-      return true
-    else
-      return false
+# Attach change event handler to everything but radio button inputs. Radio button inputs are changed by JS, so each time
+# the :checked property is changed, handleChangedValue has to be called.
+$(".survey-container input").not(":radio").change((event) ->
+  target = event.target or event.srcElement
+  handleChangedValue($(target))
+)
+
+$(".survey-container select").change((event) ->
+  target = event.target or event.srcElement
+  handleChangedValue($(target))
+)
