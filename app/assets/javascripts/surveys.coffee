@@ -143,14 +143,14 @@ $(document)
     if this.checked then revealNextInput($(this).data('target'))
   )
 
-# Attach change event handler to everything but radio button inputs. Radio button inputs are changed by JS, so each time
-# the :checked property is changed, handleChangedValue has to be called.
-$(".survey-container input").not(":radio").change((event) ->
-  target = event.target or event.srcElement
-  handleChangedValue($(target))
-)
-
-$(".survey-container select").change((event) ->
-  target = event.target or event.srcElement
-  handleChangedValue($(target))
-)
+  # Attach change event handler to everything but radio button inputs. Radio button inputs are changed by JS, so each time
+  # the :checked property is changed, handleChangedValue has to be called.
+  .on('change', ".survey-container input:not(:radio)", (event) ->
+    console.log '.survey-container input : change'
+    target = event.target or event.srcElement
+    handleChangedValue($(target))
+  )
+  .on('change', ".survey-container select", (event) ->
+    target = event.target or event.srcElement
+    handleChangedValue($(target))
+  )
