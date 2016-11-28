@@ -1,6 +1,6 @@
 -# Set up survey indicators
 %br
-.survey-indicator
+.survey-indicator.hidden-xs
   %ul
     - @survey.questions.unarchived.each_with_index do |question, index|
       - answer = @answer_session.answers.where(question_id: question.id).first_or_initialize
