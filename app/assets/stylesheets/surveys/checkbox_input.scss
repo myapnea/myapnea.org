@@ -58,8 +58,10 @@
     font-size: 18px;
     vertical-align: middle;
     position:relative;
+
     input[type='checkbox'] + label {
       position: relative;
+      cursor: pointer;
 
       span.hotkey {
         position:absolute;
