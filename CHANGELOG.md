@@ -1,5 +1,9 @@
 ## 14.2.5
 
+### Enhancements
+- **Gem Changes**
+  - Dropped support for Ruby 2.2
+
 ### Bug Fix
 - Fixed a bug that prevented "Skip this question" from being selected when
   filling out About Me survey during the sign up process
