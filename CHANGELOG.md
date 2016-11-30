@@ -5,6 +5,7 @@
   - Dropped support for Ruby 2.2
   - Updated to Ruby 2.3.3
   - Updated to pg 0.19.0
+  - Updated to jquery-rails 4.2.1
 
 ### Bug Fix
 - Fixed a bug that prevented "Skip this question" from being selected when
