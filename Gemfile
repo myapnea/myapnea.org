@@ -23,7 +23,7 @@ gem 'font-awesome-rails'                          # Font Awesome Icons
 gem 'haml'                                        # HAML Views
 gem 'hashids',              '~> 1.0.2'
 gem 'pg_search',            '~> 1.0.5'
-gem 'sitemap_generator',    '~> 5.1.0'            # Search Engine Optimization (SEO)
+gem 'sitemap_generator',    '~> 5.2.0'            # Search Engine Optimization (SEO)
 gem 'jquery-ui-rails',      '~> 5.0.5'
 
 # Rails Defaults

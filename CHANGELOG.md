@@ -6,6 +6,7 @@
   - Updated to Ruby 2.3.3
   - Updated to pg 0.19.0
   - Updated to jquery-rails 4.2.1
+  - Updated to sitemap_generator 5.2.0
 
 ### Bug Fix
 - Fixed a bug that prevented "Skip this question" from being selected when
