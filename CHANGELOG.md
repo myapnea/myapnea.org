@@ -1,4 +1,4 @@
-## 14.2.5
+## 14.2.5 (November 30, 2016)
 
 ### Enhancements
 - **Gem Changes**
