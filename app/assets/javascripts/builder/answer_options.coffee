@@ -1,8 +1,8 @@
-@answerOptionsSortables = () ->
+@answerOptionsSortables = ->
   $('[data-object~="sortable-answer-options"]').sortable(
     handle: '.move-handle'
     axis: 'y'
-    stop: () ->
+    stop: ->
       sortable_order = $(this).sortable('toArray', attribute: 'data-answer-option-id')
       params = {}
       params.answer_option_ids = sortable_order
@@ -10,5 +10,5 @@
       true
   )
 
-@builderAnswerOptionsReady = () ->
+@builderAnswerOptionsReady = ->
   answerOptionsSortables()

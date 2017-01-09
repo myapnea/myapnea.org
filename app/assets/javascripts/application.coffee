@@ -17,7 +17,7 @@
 #= require jquery_ujs
 #= require bootstrap-sprockets
 #= require turbolinks
-#= require jquery-ui/sortable
+#= require jquery-ui/widgets/sortable
 
 # Compatibility
 #= require compatibility/array_prototype_index_of.js
