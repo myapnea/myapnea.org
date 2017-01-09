@@ -78,7 +78,11 @@ class StaticControllerTest < ActionController::TestCase
     assert_equal WwwMyapneaOrg::VERSION::MAJOR, version['version']['major']
     assert_equal WwwMyapneaOrg::VERSION::MINOR, version['version']['minor']
     assert_equal WwwMyapneaOrg::VERSION::TINY, version['version']['tiny']
-    assert_equal WwwMyapneaOrg::VERSION::BUILD, version['version']['build']
+    if WwwMyapneaOrg::VERSION::BUILD.nil?
+      assert_nil version['version']['build']
+    else
+      assert_equal WwwMyapneaOrg::VERSION::BUILD, version['version']['build']
+    end
     assert_response :success
   end
 
