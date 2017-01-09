@@ -2,6 +2,7 @@
 
 ### Enhancements
 - **Gem Changes**
+  - Updated to Ruby 2.4.0
   - Updated to rails 5.0.1
 
 ## 14.2.5 (November 30, 2016)
