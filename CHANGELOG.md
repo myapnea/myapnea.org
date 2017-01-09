@@ -7,6 +7,7 @@
   - Updated to carrierwave 1.0.0
   - Updated to jquery-rails 4.2.2
   - Updated to redcarpet 3.4.0
+  - Updated to pg_search 2.0.1
 
 ## 14.2.5 (November 30, 2016)
 
