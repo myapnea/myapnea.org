@@ -1,4 +1,4 @@
-## 15.0.0
+## 15.0.0 (January 9, 2017)
 
 ### Enhancements
 - **Gem Changes**
