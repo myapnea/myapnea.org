@@ -8,23 +8,23 @@ gem 'rails',                '5.0.1'
 gem 'pg',                   '0.19.0'
 
 # Gems used by project
-gem 'devise',               '~> 4.2.0'            # Authentication
-gem 'kaminari',             '~> 0.17.0'           # Pagination
-gem 'carrierwave',          '~> 0.11.0'           # File Uploads
-gem 'mini_magick'                                 # Image Resizing
-gem 'redcarpet',            '~> 3.3.2'            # Markdown on forums
-gem 'figaro',               '~> 1.1.1'            # Centralized Configuration
-gem 'geocoder'                                    # IP Location Lookup
-gem 'maxminddb'
-gem 'rubyzip',              '~> 1.2.0'
+gem 'bootstrap-sass',       '~> 3.3.7'
+gem 'carrierwave',          '~> 0.11.0'
 gem 'colorize',             '~> 0.8.1'
-gem 'bootstrap-sass'                              # Bootstrap JS and SCSS
-gem 'font-awesome-rails'                          # Font Awesome Icons
-gem 'haml'                                        # HAML Views
+gem 'devise',               '~> 4.2.0'
+gem 'figaro',               '~> 1.1.1'
+gem 'font-awesome-rails'
+gem 'geocoder'
+gem 'haml',                 '~> 4.0.7'
 gem 'hashids',              '~> 1.0.2'
-gem 'pg_search',            '~> 1.0.5'
-gem 'sitemap_generator',    '~> 5.2.0'            # Search Engine Optimization (SEO)
 gem 'jquery-ui-rails',      '~> 5.0.5'
+gem 'kaminari',             '~> 0.17.0'
+gem 'maxminddb'
+gem 'mini_magick'
+gem 'pg_search',            '~> 1.0.5'
+gem 'redcarpet',            '~> 3.3.2'
+gem 'rubyzip',              '~> 1.2.0'
+gem 'sitemap_generator',    '~> 5.2.0'
 
 # Rails Defaults
 gem 'coffee-rails',         '~> 4.2'
@@ -37,10 +37,9 @@ gem 'turbolinks',           '~> 5'
 
 # Testing
 group :test do
-  # Pretty printed test output
   gem 'minitest'
-  gem 'simplecov',          '~> 0.12.0', require: false
   gem 'rails-controller-testing'
+  gem 'simplecov',          '~> 0.12.0', require: false
 end
 
 group :development do
