@@ -65,3 +65,7 @@ Refreshing Sitemap
 SHELL=/bin/bash
 0 1 * * * source /etc/profile.d/rvm.sh && cd /var/www/www.myapnea.org && /usr/local/rvm/gems/ruby-2.4.0/bin/bundle exec rake sitemap:refresh RAILS_ENV=production
 ```
+
+## License
+
+MyApnea is released under the [MIT License](http://www.opensource.org/licenses/MIT).
