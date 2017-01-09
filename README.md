@@ -8,7 +8,8 @@ The web framework behind www.myapnea.org, built on Ruby on Rails 5.0+.
 
 ## Before Starting Installation
 
-Make sure you have reviewed and installed any [prerequisites](https://github.com/myapnea/www.myapnea.org/blob/master/PREREQUISITES.md).
+Make sure you have reviewed and installed any
+[prerequisites](https://github.com/myapnea/www.myapnea.org/blob/master/PREREQUISITES.md).
 
 ## Installation
 
@@ -16,7 +17,8 @@ Make sure you have reviewed and installed any [prerequisites](https://github.com
 gem install bundler
 ```
 
-This README assumes the following installation directory: `/var/www/www.myapnea.org`
+This README assumes the following installation directory:
+`/var/www/www.myapnea.org`
 
 ```
 cd /var/www
@@ -28,7 +30,8 @@ cd www.myapnea.org
 bundle install
 ```
 
-Install default configuration files for database connection, email server connection, server url, and application name.
+Install default configuration files for database connection, email server
+connection, server url, and application name.
 
 ```
 ruby lib/initial_setup.rb
@@ -38,7 +41,9 @@ bundle exec rake db:migrate RAILS_ENV=production
 bundle exec rake assets:precompile RAILS_ENV=production
 ```
 
-Edit the `/config/application.yml` file it generates, and enter any keys you've gotten from the third party developers. For any service you aren't using, you can leave the lines out.
+Edit the `/config/application.yml` file it generates, and enter any keys you've
+gotten from the third party developers. For any service you aren't using, you
+can leave the lines out.
 
 Run Rails Server (or use Apache or nginx)
 
