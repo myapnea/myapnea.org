@@ -22,7 +22,7 @@ gem 'kaminari',             '~> 0.17.0'
 gem 'maxminddb'
 gem 'mini_magick'
 gem 'pg_search',            '~> 1.0.5'
-gem 'redcarpet',            '~> 3.3.2'
+gem 'redcarpet',            '~> 3.4.0'
 gem 'rubyzip',              '~> 1.2.0'
 gem 'sitemap_generator',    '~> 5.2.0'
 

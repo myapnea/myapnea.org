@@ -6,6 +6,7 @@
   - Updated to rails 5.0.1
   - Updated to carrierwave 1.0.0
   - Updated to jquery-rails 4.2.2
+  - Updated to redcarpet 3.4.0
 
 ## 14.2.5 (November 30, 2016)
 
