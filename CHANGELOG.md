@@ -6,6 +6,13 @@
   - Contact Us link is now visible in footer on mobile devices
 - **Blog Changes**
   - Improved language when creating and publishing blog posts
+- **Forum Changes**
+  - Badges for engaged forum users have been added:
+    - Sleep Commentator: Over 100 posts
+    - Sleep Enthusiast: Over 500 posts
+    - Sleep Fanatic: Over 1,000 posts
+    - Sleep Patron: Over 2,000 posts
+    - Sleep Champion: Over 5,000 posts
 - **Profile Changes**
   - Improved photo caching to correctly update photo on settings page when using
     drag-and-drop

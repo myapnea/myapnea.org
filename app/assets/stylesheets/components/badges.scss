@@ -1,0 +1,11 @@
+.forum-badge {
+  background-color: $brand-gray-lighter;
+  border-radius: 2px;
+  font-size: 8px;
+  padding: 2px 4px;
+
+  &.forum-badge-color {
+    background-color: $brand-primary;
+    color: $brand-white;
+  }
+}
