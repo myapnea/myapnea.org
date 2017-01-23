@@ -14,6 +14,7 @@
 
 ### Bug Fix
 - Fixed maps not displaying on community page
+- Fixed a bug that incorrectly loaded some pages at a lower scroll position
 
 ## 15.0.0 (January 9, 2017)
 

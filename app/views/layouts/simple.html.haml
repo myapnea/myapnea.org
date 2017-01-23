@@ -22,8 +22,8 @@
     = favicon_link_tag
     = auto_discovery_link_tag(:rss, "#{ENV['website_url']}/blog.atom")
     = csrf_meta_tags
-    = stylesheet_link_tag 'application', media: 'all', data: { turbolinks_track: true }
-    = javascript_include_tag 'application', data: { turbolinks_track: true }
+    = stylesheet_link_tag 'application', media: 'all', data: { turbolinks_track: 'reload' }
+    = javascript_include_tag 'application', data: { turbolinks_track: 'reload' }
     = javascript_tag "var root_url='#{request.script_name + '/'}';"
   %body{ class: yield(:body_class), style: 'margin-bottom 0; margin-top: 0; padding-top: 0' }
     = yield :header
