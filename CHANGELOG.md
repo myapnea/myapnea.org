@@ -4,6 +4,7 @@
 - **General Changes**
   - Added an invisible reCAPTCHA to sign up page
 - **Gem Changes**
+  - Added autoprefixer-rails
   - Updated to kaminari 1.0.1
 
 ## 15.0.0 (January 9, 2017)
