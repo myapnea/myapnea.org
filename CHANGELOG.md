@@ -3,6 +3,7 @@
 ### Enhancements
 - **General Changes**
   - Added an invisible reCAPTCHA to sign up page
+  - Contact Us link is now visible in footer on mobile devices
 - **Blog Changes**
   - Improved language when creating and publishing blog posts
 - **Profile Changes**
