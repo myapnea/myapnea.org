@@ -1,10 +1,7 @@
 @drawWorldMap = (element) ->
   json = $(element).data('info')
-
   mapData = Highcharts.geojson(Highcharts.maps["custom/world"])
-
   data = $(element).data('membership')
-
   $(element).highcharts('Map',
     chart:
       backgroundColor: null
@@ -44,12 +41,8 @@
 
 @drawMap = (element) ->
   json = $(element).data('info')
-
-
   mapData = Highcharts.geojson(Highcharts.maps["countries/us/us-all"])
-
   data = $(element).data('membership')
-
   $(element).highcharts('Map',
     chart:
       backgroundColor: null
@@ -82,7 +75,7 @@
 
 
 
-@mapsReady = () ->
+@mapsReady = ->
   $('[data-object~="draw-map"]').each( (index, element) ->
     drawMap( element )
   )

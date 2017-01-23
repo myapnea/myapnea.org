@@ -10,6 +10,9 @@
   - Added autoprefixer-rails
   - Updated to kaminari 1.0.1
 
+### Bug Fix
+- Fixed maps not displaying on community page
+
 ## 15.0.0 (January 9, 2017)
 
 ### Enhancements

@@ -31,7 +31,7 @@
   providersReady() if providersReady?
   questionsReady() if questionsReady?
   landingReady() if landingReady?
-  mapsReady() if mapsReady?
+  mapsReady()
   shareIconsReady() if shareIconsReady?
   drawSurveyProgressReady() if drawSurveyProgressReady?
   surveyAnimationReady() if surveyAnimationReady?
