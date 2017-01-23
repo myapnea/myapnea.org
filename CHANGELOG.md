@@ -3,6 +3,8 @@
 ### Enhancements
 - **General Changes**
   - Added an invisible reCAPTCHA to sign up page
+- **Blog Changes**
+  - Improved language when creating and publishing blog posts
 - **Profile Changes**
   - Improved photo caching to correctly update photo on settings page when using
     drag-and-drop

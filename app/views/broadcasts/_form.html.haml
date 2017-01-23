@@ -4,7 +4,7 @@
       .panel-heading
         %strong
           = pluralize @broadcast.errors.count, 'error'
-          prohibited this broadcast from being saved
+          prohibited this blog post from being saved
       .panel-body
         %ul
           - @broadcast.errors.full_messages.each do |message|
@@ -80,5 +80,5 @@
 
   .form-group
     .col-md-10.col-md-offset-2
-      = f.submit nil, class: 'btn btn-primary'
+      = f.submit @broadcast.new_record? ? 'Create Blog Post' : 'Update Blog Post', class: 'btn btn-primary'
       = link_to 'Cancel', (@broadcast.new_record? ? broadcasts_path : @broadcast), class: 'btn btn-default'
