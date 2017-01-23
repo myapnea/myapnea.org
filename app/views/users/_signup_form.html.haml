@@ -24,6 +24,9 @@
             - error_message = resource.errors[:over_eighteen].join(', ')
             = f.label :over_eighteen, error_message, class: 'control-label'
         %br
+        - if resource.errors && resource.errors[:recaptcha].present?
+          .form-group.centered
+            %small.text-danger= resource.errors[:recaptcha].join(' ')
         .form-group
           - if RECAPTCHA_ENABLED
             %button.g-recaptcha.btn.btn-primary.btn-block{ data: { sitekey: ENV['recaptcha_site_key'], callback: 'recaptchaFormSubmit' } } Sign up!
