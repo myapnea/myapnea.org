@@ -13,6 +13,12 @@
 
 $(document)
   .on('dragenter', '[data-object~="dropfile"]', (e) ->
+    $(this).addClass('hover')
+    e.stopPropagation()
+    e.preventDefault()
+  )
+  .on('dragleave', '[data-object~="dropfile"]', (e) ->
+    $(this).removeClass('hover')
     e.stopPropagation()
     e.preventDefault()
   )
@@ -21,6 +27,7 @@ $(document)
     e.preventDefault()
   )
   .on('drop', '[data-object~="dropfile"]', (e) ->
+    $(this).removeClass('hover')
     e.stopPropagation()
     e.preventDefault()
 
@@ -35,9 +42,9 @@ $(document)
       data: data         # The form with the file inputs.
       processData: false # Using FormData, no need to process data.
       contentType: false
-    ).done( () ->
+    ).done( ->
       # console.log("Success: Files sent!")
-    ).fail( () ->
+    ).fail( ->
       # console.log("An error occurred, the files couldn't be sent!")
     )
   )

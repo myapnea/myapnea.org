@@ -3,6 +3,9 @@
 ### Enhancements
 - **General Changes**
   - Added an invisible reCAPTCHA to sign up page
+- **Profile Changes**
+  - Improved photo caching to correctly update photo on settings page when using
+    drag-and-drop
 - **Gem Changes**
   - Added autoprefixer-rails
   - Updated to kaminari 1.0.1

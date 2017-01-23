@@ -20,9 +20,9 @@
               Change Photo
             %br
             .centered
-              =f.file_field :photo
+              = f.file_field :photo
             %br
-            #filedrag{ data: { object: 'dropfile' } }
+            #filedrag.filedrag-container{ data: { object: 'dropfile' } }
               or drop photo here
       %br
 

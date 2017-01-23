@@ -39,9 +39,9 @@ $(document)
       data: data         # The form with the file inputs.
       processData: false # Using FormData, no need to process data.
       contentType: false
-    ).done( () ->
+    ).done( ->
       $($this.data('log-id')).html('Success: Images uploaded!')
-    ).fail( () ->
+    ).fail( ->
       url = $this.data('fallback-url')
       $($this.data('log-id')).html("An error occurred, the images could not be uploaded! Please try again or <a href=\"#{$this.data('fallback-url')}\">upload the images</a> manually.")
     )
