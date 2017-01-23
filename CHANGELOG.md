@@ -1,4 +1,4 @@
-## 15.0.1
+## 15.0.1 (January 23, 2017)
 
 ### Enhancements
 - **General Changes**
