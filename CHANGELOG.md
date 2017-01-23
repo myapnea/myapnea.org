@@ -1,5 +1,9 @@
 ## 15.0.1
 
+### Enhancements
+- **Gem Changes**
+  - Updated to kaminari 1.0.1
+
 ## 15.0.0 (January 9, 2017)
 
 ### Enhancements
