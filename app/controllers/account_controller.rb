@@ -154,7 +154,7 @@ class AccountController < ApplicationController
       # Basic Information
       :first_name, :last_name, :email,
       # Forum and Social Profile
-      :photo, :remove_photo, :forum_name, :age, :gender, :experience, :device,
+      :photo, :remove_photo, :forum_name, :experience, :device,
       # Linking to a Provider
       :provider_id,
       # Receiving Emails

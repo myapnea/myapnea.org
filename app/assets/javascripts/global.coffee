@@ -39,7 +39,6 @@
   validationReady() if validationReady?
   toolsReady() if toolsReady?
   surveyReportsReady() if surveyReportsReady?
-  autocompleteGenderReady() if $("#user_gender").length > 0
   fileDragOldReady()
   exportsReady()
   socialMediaReady() if $('#sleep_tip').length > 0

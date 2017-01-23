@@ -44,19 +44,4 @@
               for a suggestion.
 
       .form-group
-        %label.control-label.col-sm-3
-          Age
-        .col-sm-6
-          = f.number_field :age, class: 'form-control', min: 1
-
-      .form-group
-        %label.control-label.col-sm-3
-          Gender
-        .col-sm-6
-          = f.text_field :gender, autocomplete: "off", data: { object: 'typeahead', local: ["Male", "Female", "Genderqueer", "Androgynous", "Intersex", "Transgender", "Transsexual", "Cross-dresser", "Male-to-female (MTF)", "Female-to-male (FTM)"].to_json }, class: 'form-control'
-
-    .content-footer.centered
-      %p.lead
-        This is how you will appear to other members of MyApnea.Org
-      .row
         = f.submit "Save Changes", class: 'btn btn-primary-custom col-xs-4 col-xs-offset-4 centered'
