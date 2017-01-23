@@ -61,9 +61,14 @@ class UsersController < ApplicationController
     end
   end
 
+  # DELETE /users/1
+  # DELETE /users/1.js
   def destroy
     @user.destroy
-    redirect_to users_path
+    respond_to do |format|
+      format.html { redirect_to users_path, notice: 'User was successfully deleted.' }
+      format.js
+    end
   end
 
   private

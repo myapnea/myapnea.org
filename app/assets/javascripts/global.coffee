@@ -1,3 +1,6 @@
+@fadeAndRemove = (element) ->
+  $(element).fadeOut(500, -> $(element).remove())
+
 @consentReady = ->
   $("#consent .scroll").slimscroll(
     height: '385px'

@@ -1,5 +1,9 @@
 ## 15.0.2
 
+### Enhancements
+- **Admin Changes**
+  - Improved user management for admins on user index
+
 ## 15.0.1 (January 23, 2017)
 
 ### Enhancements

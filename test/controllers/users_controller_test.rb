@@ -160,6 +160,15 @@ class UsersControllerTest < ActionController::TestCase
     assert_redirected_to users_path
   end
 
+  test 'should destroy user for owner with ajax' do
+    login(users(:owner))
+    assert_difference('User.current.count', -1) do
+      delete :destroy, params: { id: @user }, format: 'js'
+    end
+    assert_template 'destroy'
+    assert_response :success
+  end
+
   test 'should not destroy user for regular user' do
     login(users(:user_1))
     assert_difference('User.current.count', 0) do
