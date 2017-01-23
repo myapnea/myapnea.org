@@ -236,22 +236,16 @@ class AccountControllerTest < ActionController::TestCase
     new_last = 'Boylston'
     new_first = 'Jimmy'
     new_email = 'new_email@new.com'
-    new_gender = 'Male'
-    new_age = 30
     new_forum_name = 'NewForumName'
     refute_equal new_last, users(:social).last_name
     refute_equal new_first, users(:social).first_name
     refute_equal new_email, users(:social).email
-    refute_equal new_gender, users(:social).gender
-    refute_equal new_age, users(:social).age
     refute_equal new_forum_name, users(:social).forum_name
-    patch :update, params: { user: { first_name: new_first, last_name: new_last, email: new_email, gender: new_gender, age: new_age, forum_name: new_forum_name } }
+    patch :update, params: { user: { first_name: new_first, last_name: new_last, email: new_email, forum_name: new_forum_name } }
     users(:social).reload
     assert_equal new_last, users(:social).last_name
     assert_equal new_first, users(:social).first_name
     assert_equal new_email, users(:social).email
-    assert_equal new_gender, users(:social).gender
-    assert_equal new_age, users(:social).age
     assert_equal new_forum_name, users(:social).forum_name
   end
 
