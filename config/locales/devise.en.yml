@@ -10,7 +10,7 @@ en:
       already_authenticated: "" # "You are already signed in."
       inactive: "Your account is not activated yet."
       invalid: |
-        The email or the password you entered seem to be incorrect.
+        The email or password you entered seem to be incorrect.
 
         Please double-check the email address to make sure it's the one used to create your MyApnea.Org account.
 
@@ -18,7 +18,7 @@ en:
       locked: "Your account is locked."
       last_attempt: "You have one more attempt before your account will be locked."
       not_found_in_database: |
-        The email or the password you entered seem to be incorrect.
+        The email or password you entered seem to be incorrect.
 
         Please double-check the email address to make sure it's the one used to create your MyApnea.Org account.
 

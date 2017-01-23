@@ -2,39 +2,38 @@
   .col-sm-6.col-sm-offset-3
     %h1.centered.f300{ style: 'font-size: 24px;margin-bottom: 40px' } Wake up to a better future!
     .content-container
-      = form_for(resource, url: registration_path(resource), class: 'form-vertical', method: :post) do |f|
-        - if resource.errors.any?
-          .bs-callout.bs-callout-danger{ style: 'margin-top: 0' }
-            %ul
-              - resource.errors.messages.each do |key, msg|
-                - if key == :over_eighteen
-                  %li= msg.join(", ")
-                - else
-                  %li= "#{key.to_s.titleize} #{msg.join(", ")}"
+      = form_for(resource, url: registration_path(resource), method: :post, html: { class: 'form-vertical', id: 'recaptcha-form' }) do |f|
         = f.hidden_field :provider_id
         .form-group
-          = f.label :first_name, class: 'control-label'
+          = render 'layouts/label_or_errors', f: f, object: resource, key: :first_name
           = f.text_field :first_name, class: 'form-control'
         .form-group
-          = f.label :last_name, class: 'control-label'
+          = render 'layouts/label_or_errors', f: f, object: resource, key: :last_name
           = f.text_field :last_name, class: 'form-control'
         .form-group
-          = f.label :email, class: 'control-label'
+          = render 'layouts/label_or_errors', f: f, object: resource, key: :email
           = f.email_field :email, class: 'form-control'
         .form-group
-          = f.label :password, class: 'control-label'
+          = render 'layouts/label_or_errors', f: f, object: resource, key: :password
           = f.password_field :password, class: 'form-control'
         .checkbox.text-left
           %label
             = f.check_box :over_eighteen
             I am over the age of 18
+          - if resource.errors[:over_eighteen].present?
+            - error_message = resource.errors[:over_eighteen].join(', ')
+            = f.label :over_eighteen, error_message, class: 'control-label'
         %br
         .form-group
-          = f.submit 'Sign up!', class: 'btn btn-primary btn-block'
+          - if RECAPTCHA_ENABLED
+            %button.g-recaptcha.btn.btn-primary.btn-block{ data: { sitekey: ENV['recaptcha_site_key'], callback: 'recaptchaFormSubmit' } } Sign up!
+            <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+          - else
+            = f.submit 'Sign up!', class: 'btn btn-primary btn-block'
 
     %p
       By joining, you gain access to a unique group of resources and a growing research community. It's fast, simple, and completely free of cost to join and start making a difference!
     %p
       All of your information is completely protected.
       = succeed '.' do
-        = link_to 'See our privacy policy', privacy_path, target: '_blank'
+        = link_to 'See our privacy policy', privacy_path

@@ -16,7 +16,7 @@
           %p.f500
             It's within your power to have an impact on the future of sleep apnea - connect with other people, doctors, and researchers and let your voice be heard!
           - resource = User.new
-          = form_for(resource, url: registration_path(resource), method: :post) do |f|
+          = form_for(resource, url: registration_path(resource), method: :post, html: { id: 'recaptcha-form' }) do |f|
             - if params[:invite_token].present?
               = f.hidden_field :invite_token, value: params[:invite_token]
             .input-group
@@ -35,7 +35,12 @@
                 = f.check_box :over_eighteen
                 = f.label :over_eighteen, 'I am over the age of 18'
             .input-group.centered
-              = f.submit 'Join Today', class: "btn-join"
+              - if RECAPTCHA_ENABLED
+                %button.g-recaptcha.btn-join{ data: { sitekey: ENV['recaptcha_site_key'], callback: 'recaptchaFormSubmit' } } Join Today
+                <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+              - else
+                = f.submit 'Join Today', class: 'btn-join'
+
           %br
           .centered
             Are you always tired?

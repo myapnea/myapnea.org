@@ -1,6 +1,8 @@
 ## 15.0.1
 
 ### Enhancements
+- **General Changes**
+  - Added an invisible reCAPTCHA to sign up page
 - **Gem Changes**
   - Updated to kaminari 1.0.1
 
