@@ -1,6 +1,8 @@
 ## 16.0.0
 
 ### Enhancements
+- **General Changes**
+   - Login cookies are now cross subdomain and work between www and non-www URLs
 - **Gem Changes**
   - Updated to rails 5.0.2
   - Updated to pg 0.20.0
