@@ -1,5 +1,5 @@
 %h4.f300= answer_template.text
-- answer_template.answer_options.distinct.each do |answer_option|
+- answer_template.answer_options.each do |answer_option|
   - child_templates = answer_template.child_templates(question, answer_option.new_value)
   .check-box-container
     = check_box_tag "#{question.id}[#{answer_template.id}][]", answer_option.id, have_checked?(answer, answer_template, answer_option.id), id: "question_#{question.id}_#{answer_template.id}_#{answer_option.new_value}", name: "response[#{answer_template.id}][]", data: { hotkey: "#{answer_option.hotkey unless answer.locked?}", object: "#{'reveal-next-input' if child_templates.count > 0 }", target: "#{"question_#{question.id}_answer_#{answer_option.id}_secondary" if child_templates.count > 0}" }, disabled: answer.locked?
