@@ -1,5 +1,11 @@
 ## rails 5.1 branch
 
+### Enhancements
+- **Gem Changes**
+  - Updated to rails 5.1.0.rc1
+  - Updated to haml 5.0.0.beta.2
+  - Updated to carrierwave ref `1101628`
+
 ## 16.0.0
 
 ### Enhancements
