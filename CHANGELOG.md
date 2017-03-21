@@ -10,6 +10,9 @@
   - Updated to simplecov 0.14.1
   - Updated to sitemap_generator 5.3.1
 
+### Refactoring
+- Removed typeahead library
+
 ## 15.0.2 (January 23, 2017)
 
 ### Enhancements
