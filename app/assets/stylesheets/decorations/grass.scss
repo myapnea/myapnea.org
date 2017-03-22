@@ -1,0 +1,26 @@
+.footer-container {
+  position: relative;
+  background-color: $p900-light-green;
+}
+
+.footer-container::before {
+  background-image: asset-url('themes/spring/grass-color.png');
+  background-repeat: repeat-x;
+  content: ' ';
+  position: absolute;
+  top: -45px;
+  left: 0;
+  right: 0;
+  height: 45px;
+  background-size: 60px;
+}
+
+.footer {
+  color: $brand-white;
+  height: 100px;
+  padding: 40px 0;
+
+  a {
+    color: $p200-blue;
+  }
+}

@@ -28,7 +28,6 @@
 #= require jquery.slimscroll
 #= require jquery.PrintArea
 #= require d3.min
-#= require typeahead
 #
 #= require external/bootstrap-datepicker.js
 #= require external/jquery-fieldselection.js

@@ -6,6 +6,10 @@ class ExternalController < ApplicationController
     render layout: 'simple'
   end
 
+  def landing
+    render layout: 'blank'
+  end
+
   def preview
   end
 

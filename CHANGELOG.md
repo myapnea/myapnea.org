@@ -11,12 +11,16 @@
 ### Enhancements
 - **General Changes**
    - Login cookies are now cross subdomain and work between www and non-www URLs
+   - Started work on a new landing page
 - **Gem Changes**
   - Updated to rails 5.0.2
   - Updated to pg 0.20.0
   - Updated to devise 4.2.1
   - Updated to simplecov 0.14.1
   - Updated to sitemap_generator 5.3.1
+
+### Refactoring
+- Removed typeahead library
 
 ## 15.0.2 (January 23, 2017)
 
