@@ -127,6 +127,7 @@ Rails.application.routes.draw do
     post :preview
     get :contact
     get :voting
+    get :landing, path: 'sunny/landing'
   end
 
   scope module: 'home' do

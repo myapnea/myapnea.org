@@ -1,0 +1,9 @@
+@keyframes spin-cw {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(359deg); }
+}
+
+@keyframes spin-ccw {
+  from { transform: rotate(359deg); }
+  to { transform: rotate(0deg); }
+}

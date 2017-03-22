@@ -1,3 +1,48 @@
+// Links
+
+.link-white {
+  color: $brand-white;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: $brand-white;
+  }
+}
+
+.link-blend {
+  color: $text-color;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: $link-hover-color;
+  }
+}
+
+.link-blend-muted {
+  color: $brand-gray; // #ccc, perhaps should be #bbb;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: $link-hover-color;
+  }
+}
+
+.link-unstyled {
+  color: $text-color;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: $text-color;
+    text-decoration: none;
+  }
+}
+
+// TODO: Cleanup/refactor following
+
 a.no-underline,
 a.no-underline:hover {
   text-decoration: none;
@@ -47,14 +92,4 @@ a.settings-anchor {
 
 .hover-hand:hover {
   cursor: pointer;
-}
-
-// Anchors
-.anchor-top {
-  display: block;
-  height: 0;
-  position: relative;
-  top: -($header-height) - 10px;
-  width: 0;
-  visibility: hidden;
 }

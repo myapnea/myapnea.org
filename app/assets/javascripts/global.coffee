@@ -49,6 +49,7 @@
   builderAnswerTemplatesReady()
   builderAnswerOptionsReady()
   mapsReady()
+  landingReadyNew()
 
 $(document).ready(ready)
 $(document)
