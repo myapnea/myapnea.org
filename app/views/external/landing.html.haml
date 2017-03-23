@@ -38,7 +38,7 @@
           Forum
 
         .landing-box-container
-          - @chapters = Chapter.current.shadow_banned.reply_count.order(last_reply_at: :desc, id: :desc)
+          - @chapters = Chapter.current.shadow_banned(current_user).reply_count.order(last_reply_at: :desc, id: :desc)
           - @chapters.limit(9).each do |chapter| # limit(99)
             - reply = chapter.replies.current.first
             - if reply
