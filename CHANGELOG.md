@@ -5,6 +5,7 @@
    - Login cookies are now cross subdomain and work between www and non-www URLs
    - Started work on a new landing page
 - **Gem Changes**
+  - Updated to Ruby 2.4.1
   - Updated to rails 5.0.2
   - Updated to pg 0.20.0
   - Updated to devise 4.2.1
