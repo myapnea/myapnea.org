@@ -3,7 +3,7 @@
   - if false
     %div{ style: 'background-color: black;position: relative;' }
       .embed-responsive.embed-responsive-16by9{ style: 'position: relative;' }
-        %video#video-player{ style: 'position: absolute !important; max-height: 100vh;', muted: 'true', autoplay: 'true', poster: asset_path('myapnea/logos/MyApneaLogo_border_whitetext_square.png') }
+        %video#video-player{ style: 'position: absolute !important; max-height: 100vh;', muted: 'true', autoplay: 'true', poster: asset_path('myapnea/logos/MyApneaLogo_border_bluetext.png') }
           -# controls: 'true'
           %source{ src: "//player.vimeo.com/external/208487154.hd.mp4" }
           Your browser does not support the video tag.
@@ -98,8 +98,8 @@
   #third-place
   .first-box
     .container
-      .first-box-slide
-        = image_tag 'myapnea/logos/MyApneaLogo_border_whitetext_square.png', class: 'img-responsive'
+      .first-box-slide.center-both
+        = image_tag 'myapnea/logos/MyApneaLogo_border_bluetext.png', class: 'img-responsive'
       .first-box-down-arrow
         = link_to "#fourth-place", data: { object: 'scroll-anchor' }, class: 'orange' do
           %i.fa.fa-chevron-circle-down
@@ -107,8 +107,8 @@
   #fourth-place
   .first-box.myapnea-orange-bg
     .container
-      .first-box-slide
-        = image_tag 'myapnea/logos/MyApneaLogo_border_whitetext_square.png', class: 'img-responsive'
+      .first-box-slide.center-both
+        = image_tag 'myapnea/logos/MyApneaLogo_border_bluetext.png', class: 'img-responsive'
       .first-box-down-arrow
         = link_to "#fifth-place", data: { object: 'scroll-anchor' } do
           %i.fa.fa-chevron-circle-down
@@ -157,7 +157,7 @@
                 = succeed ',' do
                   = link_to suggestion, search_path(search: suggestion), class: 'link-white'
       .first-box-down-arrow
-        = link_to "#bottom-place", data: { object: 'scroll-anchor' }, class: 'orange' do
+        = link_to "#bottom-place", data: { object: 'scroll-anchor' } do
           %i.fa.fa-chevron-circle-down
 
   #bottom-place
@@ -169,8 +169,8 @@
             %i.fa.fa-circle.fa-stack-1x
             %i.fa.fa-sun-o.fa-stack-1x
     .container
-      .last-box-slide.center-vertically
-        = image_tag 'myapnea/logos/MyApneaLogo_border_whitetext_square.png', class: 'img-responsive'
+      .last-box-slide.center-both
+        = image_tag 'myapnea/logos/MyApneaLogo_border_bluetext.png', class: 'img-responsive'
       .first-box-down-arrow
         = link_to "#top-place", data: { object: 'scroll-anchor' }, class: 'orange' do
           %i.fa.fa-chevron-circle-up
@@ -179,14 +179,15 @@
   .footer-container
     .container
       .footer
-        .row
+        .hidden-sm.hidden-md.hidden-lg.text-center
+          &copy;
+          = Date.today.year
+          = ENV['website_name']
+        .row.hidden-xs
           .col-xs-6.nowrap
             &copy;
             = Date.today.year
-            %span.visible-xs-inline.visible-sm-inline
-              = ENV['website_name']
-            %span.hidden-xs.hidden-sm
-              = ENV['website_name']
+            = ENV['website_name']
             |
             = link_to 'About', about_path
           .col-xs-6.nowrap.text-right.hidden-xs

@@ -11,6 +11,12 @@
   justify-content: center;
 }
 
+.center-both {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 #video-slide {
   display: none;
 }
