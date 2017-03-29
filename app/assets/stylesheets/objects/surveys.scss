@@ -175,54 +175,54 @@
 
 .survey-question-skip {
   margin-top: 20px;
-  margin-bottom: 120px;
+  margin-bottom: 20px;
   text-align: center;
 }
 
-@media screen and (min-width: $screen-sm-min) {
+.survey-box-with-footer {
   .survey-question-skip {
-    margin-bottom: 100px;
-  }
-}
-
-@media screen and (min-width: $screen-md-min) {
-  .survey-question-skip {
-    margin-bottom: 80px;
+    margin-bottom: 40px;
   }
 }
 
 .myapnea-orange-bg {
   .survey-question-skip {
-    color: $brand-gray-lightest;
+    a {
+      color: $brand-gray-lightest;
 
-    &:hover,
-    &:focus,
-    &:active {
-      color: $brand-white;
+      &:hover,
+      &:focus,
+      &:active {
+        color: $brand-white;
+      }
     }
   }
 }
 
 .myapnea-blue-bg {
   .survey-question-skip {
-    color: $brand-gray-lighter;
+    a {
+      color: $brand-gray-lighter;
 
-    &:hover,
-    &:focus,
-    &:active {
-      color: $brand-gray-lightest;
+      &:hover,
+      &:focus,
+      &:active {
+        color: $brand-gray-lightest;
+      }
     }
   }
 }
 
 .myapnea-sky-bg {
   .survey-question-skip {
-    color: $brand-gray-lightest;
+    a {
+      color: $brand-gray-lightest;
 
-    &:hover,
-    &:focus,
-    &:active {
-      color: $brand-white;
+      &:hover,
+      &:focus,
+      &:active {
+        color: $brand-white;
+      }
     }
   }
 }
