@@ -5,6 +5,12 @@
   // font-size: 1rem;
 }
 
+.survey-box,
+.survey-box-with-footer {
+  position: relative;
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
 .center-vertically {
   display: flex;
   flex-direction: column;
@@ -40,7 +46,9 @@
 }
 
 .first-box-slide,
-.last-box-slide {
+.last-box-slide,
+.survey-box-slide,
+.survey-box-slide-with-footer {
   padding: 0;
   position: relative;
 }
@@ -51,9 +59,15 @@
   min-height: calc(100vh - 150px);
 }
 
-.last-box-slide {
+.last-box-slide,
+.survey-box-slide-with-footer {
   min-height: 960px;
   min-height: calc(100vh - 100px);
+}
+
+.survey-box-slide {
+  min-height: 960px;
+  min-height: 100vh;
 }
 
 @media screen and (min-width: $screen-sm-min) {

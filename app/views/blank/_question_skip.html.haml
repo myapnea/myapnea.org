@@ -1,2 +1,3 @@
-= link_to question_path(id: @question_id + 1), class: 'survey-question-skip', data: { confirm: 'Are you sure you want to skip this question?' } do
-  Skip this question
+.survey-question-skip
+  = link_to question_path(id: @question_id + 1), data: { confirm: 'Are you sure you want to skip this question?' } do
+    Skip this question

@@ -1,5 +1,5 @@
 - content_for :header do
-  .first-box.myapnea-blue-bg
+  .survey-box.myapnea-blue-bg
     .sun-container
       .landing-upper-right
         #sun
@@ -7,7 +7,7 @@
             %i.fa.fa-circle.fa-stack-1x
             %i.fa.fa-sun-o.fa-stack-1x
     .container
-      .first-box-slide.center-vertically.dashboard-container-full-page
+      .survey-box-slide.center-vertically.dashboard-container-full-page
         .dashboard-container
           .survey-question
             .survey-question-text
@@ -19,6 +19,3 @@
               = select_tag 'year', options_for_select((1900..Time.zone.today.year).to_a.reverse, selected: Time.zone.today.year), include_blank: 'Year', class: 'form-control input-lg'
           = render 'blank/next_question'
         = render 'blank/question_skip'
-      .first-box-down-arrow
-        = link_to question_path(id: @question_id + 1) do
-          %i.fa.fa-chevron-circle-right

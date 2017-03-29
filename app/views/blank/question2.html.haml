@@ -1,5 +1,5 @@
 - content_for :header do
-  .first-box.myapnea-orange-bg
+  .survey-box.myapnea-orange-bg
     .sun-container
       .landing-upper-right
         #sun
@@ -7,7 +7,7 @@
             %i.fa.fa-circle.fa-stack-1x
             %i.fa.fa-sun-o.fa-stack-1x
     .container
-      .first-box-slide.center-vertically.dashboard-container-full-page
+      .survey-box-slide.center-vertically.dashboard-container-full-page
         .dashboard-container
           .survey-question
             .survey-question-text
@@ -22,6 +22,3 @@
                 = choice
           = render 'blank/next_question'
         = render 'blank/question_skip'
-      .first-box-down-arrow
-        = link_to question_path(id: @question_id + 1) do
-          %i.fa.fa-chevron-circle-right
