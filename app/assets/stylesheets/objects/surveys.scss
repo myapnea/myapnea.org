@@ -1,0 +1,191 @@
+.survey-question {
+  margin-bottom: 10px;
+
+  .survey-question-lead {
+    font-size: 20px;
+    color: $p500-blue;
+  }
+
+  .survey-question-text {
+    font-size: 24px;
+    line-height: 1.25em;
+  }
+
+  .survey-question-desc {
+    color: $text-muted;
+    padding: 10px 10px;
+
+    border-top: 1px solid $brand-gray;
+    margin-top: 10px;
+  }
+}
+
+.myapnea-orange-bg {
+  .survey-question {
+    .survey-question-lead {
+      color: $p500-orange;
+    }
+  }
+}
+
+.survey-choices {
+
+}
+
+.survey-choice {
+  background-color: $p200-blue;
+  border-radius: 4px;
+  box-shadow: 0 1px 5px $box-shadow-color;
+  color: $brand-white;
+  display: block;
+  margin-bottom: 10px;
+  padding: 10px;
+
+  .fa-dynamic::before {
+    content: "\f111";
+  }
+
+  .fa-check,
+  .fa-check-circle,
+  .fa-check-circle-o {
+    color: transparent;
+  }
+
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: $p300-blue;
+    box-shadow: none;
+    color: $brand-white;
+    text-decoration: none;
+
+    .fa-dynamic::before {
+      content: "\f058";
+    }
+
+    .fa-dynamic,
+    .fa-check,
+    .fa-check-circle,
+    .fa-check-circle-o {
+      color: $p600-green;
+    }
+  }
+}
+
+.myapnea-orange-bg {
+  .survey-choice {
+    background-color: $p200-orange;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: $p300-orange;
+    }
+  }
+}
+
+.survey-choice-description {
+  font-size: 14px;
+}
+
+@media screen and (min-width: $screen-sm-min) {
+  .survey-question {
+    .survey-question-lead {
+      font-size: 28px;
+    }
+
+    .survey-question-text {
+      font-size: 32px;
+      line-height: $line-height-base;
+    }
+
+    .survey-question-desc {
+      font-size: 14px;
+    }
+  }
+
+  .survey-choices {
+
+  }
+
+  .survey-choice {
+
+  }
+
+  .survey-choice-description {
+    font-size: 14px;
+  }
+}
+
+.survey-question-next {
+  background-color: $p500-green;
+  border-radius: 4px;
+  box-shadow: 0 1px 5px $box-shadow-color;
+  color: $brand-white;
+  display: block;
+  padding: 10px;
+  text-align: center;
+
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: $p600-green;
+    box-shadow: none;
+    color: $brand-white;
+    text-decoration: none;
+  }
+}
+
+.survey-question-skip {
+  margin-top: 20px;
+  margin-bottom: 120px;
+  text-align: center;
+}
+
+@media screen and (min-width: $screen-sm-min) {
+  .survey-question-skip {
+    margin-bottom: 100px;
+  }
+}
+
+@media screen and (min-width: $screen-md-min) {
+  .survey-question-skip {
+    margin-bottom: 80px;
+  }
+}
+
+.myapnea-orange-bg {
+  .survey-question-skip {
+    color: $brand-gray-lightest;
+
+    &:hover,
+    &:focus,
+    &:active {
+      color: $brand-white;
+    }
+  }
+}
+
+.myapnea-blue-bg {
+  .survey-question-skip {
+    color: $brand-gray-lighter;
+
+    &:hover,
+    &:focus,
+    &:active {
+      color: $brand-gray-lightest;
+    }
+  }
+}
+
+.myapnea-sky-bg {
+  .survey-question-skip {
+    color: $brand-gray-lightest;
+
+    &:hover,
+    &:focus,
+    &:active {
+      color: $brand-white;
+    }
+  }
+}

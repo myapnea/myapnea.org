@@ -130,6 +130,10 @@ Rails.application.routes.draw do
     get :landing, path: 'sunny/landing'
   end
 
+  scope module: :blank do
+    get :question, path: 'question(/:id)'
+  end
+
   scope module: 'home' do
     get :dashboard
     get :landing

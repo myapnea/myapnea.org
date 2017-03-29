@@ -70,6 +70,10 @@
   }
 }
 
+.myapnea-blue-bg {
+  background-color: $p500-blue;
+}
+
 .myapnea-orange-bg {
   background-color: $p400-orange;
 }
@@ -122,6 +126,22 @@
   }
 }
 
+.myapnea-blue-bg {
+  .first-box-down-arrow {
+    a:hover {
+      color: $p500-orange;
+    }
+  }
+}
+
+.myapnea-orange-bg {
+  .first-box-down-arrow {
+    a:hover {
+      color: $p500-blue;
+    }
+  }
+}
+
 $box-shadow-color: rgba(0, 0, 0, .15);
 $dashboard-bg: $brand-white !default;
 $standard-shadow-color: rgba(0, 0, 0, .3);
@@ -161,6 +181,14 @@ $standard-shadow-hover-color: rgba(0, 0, 0, .2);
 @media screen and (min-width: $screen-sm-min) {
   .dashboard-container {
     padding: 30px;
+  }
+}
+
+.dashboard-container-full-page {
+  padding-top: 20px;
+
+  .dashboard-container {
+    margin: 0;
   }
 }
 
