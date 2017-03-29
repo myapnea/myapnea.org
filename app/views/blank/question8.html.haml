@@ -19,16 +19,7 @@
               list of countries that are most likely going to be filling out
               surveys on this site based on our past experience.
           .survey-choices
-            - choices = [
-            -   'American Indian or Alaskan Native (a person having origins in any of the original peoples of North or South America (including Central America), and who maintains tribal affiliation or community attachment)',
-            -   'Asian (a person having origins in any of the original peoples of the Far East, Southest Asia, or the Indian subcontinent, including, for example, Cambodia, China, India, Japan, Korea, Malaysia, Pakistan, the Philippine islands, Thailand, or Vietnam)',
-            -   'Black or African American (a person having origins in any of the black racial groups of Africa)',
-            -   'Native Hawaiian or Other Pacific Islander (a person having origins in any of the original peoples of Hawaii, Guam, Samoa, or other Pacific Islands)',
-            -   'White (a person having origins in any of the original peoples of Europe, the Middle East, or North Africa)',
-            -   'Some other race or origin (please specify)',
-            -   'Unsure',
-            -   'Prefer not to answer'
-            - ]
+            - choices = ['American Indian or Alaskan Native (a person having origins in any of the original peoples of North or South America (including Central America), and who maintains tribal affiliation or community attachment)', 'Asian (a person having origins in any of the original peoples of the Far East, Southest Asia, or the Indian subcontinent, including, for example, Cambodia, China, India, Japan, Korea, Malaysia, Pakistan, the Philippine islands, Thailand, or Vietnam)', 'Black or African American (a person having origins in any of the black racial groups of Africa)', 'Native Hawaiian or Other Pacific Islander (a person having origins in any of the original peoples of Hawaii, Guam, Samoa, or other Pacific Islands)', 'White (a person having origins in any of the original peoples of Europe, the Middle East, or North Africa)', 'Some other race or origin (please specify)', 'Unsure', 'Prefer not to answer']
             - choices.each do |choice|
               = link_to '#', class: 'survey-choice box-shadow', data: { object: 'suppress-click' } do
                 .fa-stack.fa-stack-inline
