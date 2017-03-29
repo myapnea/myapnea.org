@@ -3,7 +3,6 @@
 
   .survey-question-lead {
     font-size: 20px;
-    color: $p500-blue;
   }
 
   .survey-question-text {
@@ -15,8 +14,20 @@
     color: $text-muted;
     padding: 10px 10px;
 
-    border-top: 1px solid $brand-gray;
+    border-top: 1px solid transparent;
     margin-top: 10px;
+  }
+}
+
+.myapnea-blue-bg,
+.myapnea-sky-bg,
+.myapnea-transparent-bg {
+  .survey-question-lead {
+    color: $p500-blue;
+  }
+
+  .survey-question-desc {
+    border-color: $p100-blue;
   }
 }
 
@@ -24,6 +35,10 @@
   .survey-question {
     .survey-question-lead {
       color: $p500-orange;
+    }
+
+    .survey-question-desc {
+      border-color: $p100-orange;
     }
   }
 }
