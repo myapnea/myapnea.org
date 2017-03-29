@@ -1,0 +1,29 @@
+- content_for :header do
+  .first-box.myapnea-transparent-bg
+    .sun-container
+      .landing-upper-right
+        #sun
+          %span.fa-stack
+            %i.fa.fa-circle.fa-stack-1x
+            %i.fa.fa-sun-o.fa-stack-1x
+    .container
+      .first-box-slide.center-vertically.dashboard-container-full-page
+        .dashboard-container
+          .survey-question
+            .survey-question-text
+              What is your racial background?
+            .survey-question-desc
+              (Check all that apply)
+          .survey-choices
+            - choices = ['American Indian or Alaskan Native (a person having origins in any of the original peoples of North or South America (including Central America), and who maintains tribal affiliation or community attachment)', 'Asian (a person having origins in any of the original peoples of the Far East, Southest Asia, or the Indian subcontinent, including, for example, Cambodia, China, India, Japan, Korea, Malaysia, Pakistan, the Philippine islands, Thailand, or Vietnam)', 'Black or African American (a person having origins in any of the black racial groups of Africa)', 'Native Hawaiian or Other Pacific Islander (a person having origins in any of the original peoples of Hawaii, Guam, Samoa, or other Pacific Islands)', 'White (a person having origins in any of the original peoples of Europe, the Middle East, or North Africa)', 'Some other race or origin (please specify)', 'Unsure', 'Prefer not to answer']
+            - choices.each do |choice|
+              = link_to '#', class: 'survey-choice box-shadow', data: { object: 'suppress-click' } do
+                .fa-stack.fa-stack-inline
+                  %i.fa.fa-circle.fa-stack-1x
+                  %i.fa.fa-check-circle.fa-stack-1x
+                = choice
+          = render 'blank/next_question'
+        = render 'blank/question_skip'
+      .first-box-down-arrow
+        = link_to question_path(id: @question_id + 1) do
+          %i.fa.fa-chevron-circle-right
