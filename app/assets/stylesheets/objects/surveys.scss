@@ -33,13 +33,16 @@
 }
 
 .survey-choice {
-  background-color: $p200-blue;
   border-radius: 4px;
   box-shadow: 0 1px 5px $box-shadow-color;
-  color: $brand-white;
+  color: $text-color;
   display: block;
   margin-bottom: 10px;
   padding: 10px;
+
+  .fa {
+    color: $brand-white;
+  }
 
   .fa-dynamic::before {
     content: "\f111";
@@ -58,6 +61,7 @@
     box-shadow: none;
     color: $brand-white;
     text-decoration: none;
+    font-weight: bold;
 
     .fa-dynamic::before {
       content: "\f058";
@@ -72,6 +76,20 @@
   }
 }
 
+.myapnea-blue-bg,
+.myapnea-sky-bg,
+.myapnea-transparent-bg {
+  .survey-choice {
+    background-color: $p200-blue;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: $p700-blue;
+    }
+  }
+}
+
 .myapnea-orange-bg {
   .survey-choice {
     background-color: $p200-orange;
@@ -79,7 +97,7 @@
     &:hover,
     &:focus,
     &:active {
-      background-color: $p300-orange;
+      background-color: $p700-orange;
     }
   }
 }
