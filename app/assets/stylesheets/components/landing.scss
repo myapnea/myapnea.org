@@ -11,6 +11,20 @@
   font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
+.survey-box-animate {
+  opacity: 1;
+  transition: transform .5s ease-out, opacity .5s ease-out;
+  // transition-delay: .25s;
+
+  &.start {
+    // opacity: 0;
+    // transform: scale(.9);
+    // transform: scale(.9) translateX(100vw);
+    // transform: translateX(100vw);
+    transform: translateY(100vh);
+  }
+}
+
 .center-vertically {
   display: flex;
   flex-direction: column;
@@ -48,7 +62,9 @@
 .first-box-slide,
 .last-box-slide,
 .survey-box-slide,
-.survey-box-slide-with-footer {
+.survey-box-slide-with-menu,
+.survey-box-slide-with-footer,
+.survey-box-slide-with-menu-and-footer {
   padding: 0;
   position: relative;
 }
@@ -68,6 +84,16 @@
 .survey-box-slide {
   min-height: 960px;
   min-height: 100vh;
+}
+
+.survey-box-slide-with-menu {
+  min-height: 960px;
+  min-height: calc(100vh - #{$header-height});
+}
+
+.survey-box-slide-with-menu-and-footer {
+  min-height: 960px;
+  min-height: calc(100vh - #{$header-height} - 100px); // ? #{$footer-height}
 }
 
 @media screen and (min-width: $screen-sm-min) {
@@ -97,8 +123,17 @@
 }
 
 .myapnea-sky-bg {
-  background-color: $p900-light-green;
+  background-color: $a700-light-blue;
   background-image: linear-gradient(180deg, $a100-light-blue, $a200-light-blue 60%, $a400-light-blue 80%, $a700-light-blue 90%, $a700-light-blue);
+}
+
+.myapnea-sunset-bg {
+  background-color: $a700-deep-orange;
+  background-image: linear-gradient(180deg, $a100-deep-orange, $a200-deep-orange 60%, $a400-deep-orange 80%, $a700-deep-orange 90%, $a700-deep-orange);
+}
+
+.myapnea-green-bg {
+  background-color: $p500-green;
 }
 
 .myapnea-transparent-bg {
@@ -148,7 +183,8 @@
   }
 }
 
-.myapnea-orange-bg {
+.myapnea-orange-bg,
+.myapnea-sunset-bg {
   .first-box-down-arrow {
     a:hover {
       color: $p500-blue;

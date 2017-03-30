@@ -1,0 +1,78 @@
+$moon-color: $p200-yellow;
+$moon-inner-color: $p300-amber;
+
+$moon-base-size: 128px;
+$moon-base-padding: 12px;
+
+$moon-size: $moon-base-size * 2; // 256px;
+$moon-padding: $moon-base-padding * 2; // 24px;
+$moon-container: $moon-size + $moon-padding;
+
+$moon-size-sm: $moon-base-size * 4; // 512px;
+$moon-padding-sm: $moon-base-padding * 4; // 48px;
+$moon-container-sm: $moon-size-sm + $moon-padding-sm;
+
+.moon-container {
+  height: $moon-container;
+  overflow: hidden;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: $moon-container / 2;
+  background-color: black;
+}
+
+@media screen and (min-width: $screen-sm-min) {
+  .moon-container {
+    height: $moon-container-sm;
+    // top: -($moon-container-sm / 2);
+    width: $moon-container-sm / 2;
+  }
+}
+
+.landing-upper-right {
+  color: $moon-color;
+  position: relative;
+
+  #moon {
+    animation: spin-cw 120s linear infinite;
+    font-size: $moon-size;
+    position: absolute;
+    right: -$moon-size;
+    top: -$moon-size + ($moon-container / 2);
+
+    i {
+      // animation: sun-pulse 1s ease-in-out infinite alternate;
+
+      &.fa-moon-o {
+        font-size: $moon-size;
+        color: $moon-color;
+      }
+
+      &.fa-circle {
+        font-size: $moon-size * 100 / 128; // 100px;
+        color: $moon-inner-color;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: $screen-sm-min) {
+  .landing-upper-right {
+    #moon {
+      font-size: $moon-size-sm;
+      right: -$moon-size-sm;
+      top: -$moon-size-sm + ($moon-container-sm / 2);
+
+      i {
+        &.fa-moon-o {
+          font-size: $moon-size-sm;
+        }
+
+        &.fa-circle {
+          font-size: $moon-size-sm * 100 / 128; // 400px;
+        }
+      }
+    }
+  }
+}

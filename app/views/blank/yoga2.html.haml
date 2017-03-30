@@ -1,0 +1,49 @@
+.menu-bar.menu-bar-fixed
+  -# { style: 'background-color: #43a047;' }
+  -# $p600-green;
+  .container
+    Mindfulness &middot; Yoga Usefulness Scale
+
+.survey-box-with-footer.myapnea-sky-bg
+  -# .myapnea-green-bg
+  = render 'blank/sun'
+  = render 'blank/progress_bar', start: 0, percent: 20
+  .container
+    .survey-box-slide-with-menu-and-footer.center-vertically.dashboard-container-full-page.survey-box-animate.start
+      / .survey-study-name Yoga Usefulness Scale
+      .dashboard-container
+        .survey-question
+          .survey-question-text
+            The teacher's instructions helped me understand the poses and confidently try them in class.
+        .survey-choices
+          - choices = ['Strongly disagree', 'Somewhat disagree', 'Neutral / no opinion', 'Somewhat agree', 'Strongly agree']
+          - choices.each do |choice|
+            = link_to '#', class: 'survey-choice box-shadow', data: { object: 'suppress-click' } do
+              .fa-stack.fa-stack-inline
+                %i.fa.fa-circle.fa-stack-1x
+                %i.fa.fa-check-circle.fa-stack-1x
+              = choice
+        = link_to yoga_path(id: @question_id + 1), class: 'survey-question-next' do
+          Next
+      .survey-question-skip
+        = link_to yoga_path(id: @question_id + 1), data: { confirm: 'Are you sure you want to skip this question?' } do
+          Skip this question
+
+- content_for :footer do
+  .footer-container
+    .container
+      .footer
+        .hidden-sm.hidden-md.hidden-lg.text-center
+          &copy;
+          = Date.today.year
+          = ENV['website_name']
+        .row.hidden-xs
+          .col-xs-6.nowrap
+            &copy;
+            = Date.today.year
+            = ENV['website_name']
+            |
+            = link_to 'About', about_path
+          .col-xs-6.nowrap.text-right.hidden-xs
+            .pull-right
+              Mindfulness

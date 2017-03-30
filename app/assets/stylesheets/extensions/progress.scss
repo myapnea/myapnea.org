@@ -1,0 +1,27 @@
+.progress-simple {
+  border-radius: 0;
+  height: 5px;
+  margin-bottom: 0;
+}
+
+.myapnea-sky-bg,
+.myapnea-blue-bg,
+.myapnea-sunset-bg {
+  .progress-simple {
+    background-color: $p100-orange;
+
+    .progress-bar {
+      background-color: $p500-orange;
+    }
+  }
+}
+
+.myapnea-orange-bg {
+  .progress-simple {
+    background-color: $p100-blue;
+
+    .progress-bar {
+      background-color: $p500-blue;
+    }
+  }
+}
