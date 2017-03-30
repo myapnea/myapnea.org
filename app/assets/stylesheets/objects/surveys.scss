@@ -31,7 +31,20 @@
   }
 }
 
-.myapnea-orange-bg {
+.myapnea-green-bg {
+  .survey-question {
+    .survey-question-lead {
+      color: $p500-green;
+    }
+
+    .survey-question-desc {
+      border-color: $p100-green;
+    }
+  }
+}
+
+.myapnea-orange-bg,
+.myapnea-sunset-bg {
   .survey-question {
     .survey-question-lead {
       color: $p500-orange;
@@ -109,7 +122,20 @@
   }
 }
 
-.myapnea-orange-bg {
+.myapnea-green-bg {
+  .survey-choice {
+    background-color: $p200-green;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: $p700-green;
+    }
+  }
+}
+
+.myapnea-orange-bg,
+.myapnea-sunset-bg {
   .survey-choice {
     background-color: $p200-orange;
 
@@ -185,7 +211,8 @@
   }
 }
 
-.myapnea-orange-bg {
+.myapnea-orange-bg,
+.myapnea-sunset-bg {
   .survey-question-skip {
     a {
       color: $brand-gray-lightest;
@@ -199,7 +226,8 @@
   }
 }
 
-.myapnea-blue-bg {
+.myapnea-blue-bg,
+.myapnea-green-bg {
   .survey-question-skip {
     a {
       color: $brand-gray-lighter;
@@ -225,4 +253,28 @@
       }
     }
   }
+}
+
+.survey-study-name {
+  font-size: 20px;
+  color: $brand-white;
+  text-align: right;
+  padding-bottom: 5px;
+  padding-right: 5px;
+}
+
+@media screen and (min-width: $screen-sm-min) {
+  .survey-study-name {
+    font-size: 28px;
+    padding-right: 10px;
+  }
+}
+
+.progress-bar-container {
+  height: 5px;
+  overflow: hidden;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
 }

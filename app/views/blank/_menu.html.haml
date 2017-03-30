@@ -1,0 +1,29 @@
+- if false
+  %nav.navbar.navbar-default.navbar-fixed-top
+    .container
+      .navbar-header
+        %button.navbar-toggle{ type: 'button', data: { toggle: 'collapse', target: '.navbar-full-menu' } }
+          %span.sr-only Toggle navigation
+          %span.icon-bar
+          %span.icon-bar
+          %span.icon-bar
+        = link_to ENV['website_name'], current_user ? dashboard_path : root_path, class: 'navbar-brand brand'
+      .collapse.navbar-collapse.navbar-full-menu
+        %ul.nav.navbar-nav
+          %li{ class: params[:controller] == 'blog' ? 'active' : nil }
+            = link_to 'Blog', blog_path
+
+        - if current_user
+          %form.navbar-form.navbar-right.hidden-sm
+            = link_to 'Logout', destroy_user_session_path, class: 'btn btn-primary-dark'
+        - else
+          %form.navbar-form.navbar-right
+            = link_to 'Login', new_user_session_path, class: 'btn btn-primary-dark'
+
+- else
+  .menu-bar.menu-bar-fixed
+    .container
+      .pull-right
+        Login
+      %div
+        MyApnea.Org

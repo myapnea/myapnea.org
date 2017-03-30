@@ -1,0 +1,14 @@
+.menu-bar {
+  background-color: $p600-blue;
+  color: $brand-white;
+  height: $header-height;
+  line-height: $header-height;
+}
+
+.menu-bar-fixed {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: $zindex-navbar-fixed;
+}

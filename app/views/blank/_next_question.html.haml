@@ -1,2 +1,2 @@
-= link_to question_path(id: @question_id + 1), class: 'survey-question-next' do
+= link_to question_path(id: @question_id + 1), class: 'survey-question-next', data: { turbolinks: false } do
   Next

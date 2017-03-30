@@ -131,6 +131,8 @@ Rails.application.routes.draw do
   end
 
   scope module: :blank do
+    get :menu, path: 'question/menu'
+    get :yoga, path: 'mindfulness/yoga-usefulness-scale(/:id)'
     get :question, path: 'question(/:id)'
   end
 

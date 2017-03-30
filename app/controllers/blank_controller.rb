@@ -2,12 +2,22 @@
 
 # Displays pages without layouts.
 class BlankController < ApplicationController
-  before_action :find_question_or_redirect, only: [:question]
+  before_action :find_question_or_redirect, only: [:question, :yoga]
 
   def question
     render "blank/question#{@question_id}"
   rescue
     redirect_to question_path(id: 1)
+  end
+
+  def menu
+    render layout: 'blank2'
+  end
+
+  def yoga
+    render "blank/yoga#{@question_id}", layout: 'blank2'
+  rescue
+    redirect_to yoga_path(id: 1)
   end
 
   private

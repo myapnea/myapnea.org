@@ -1,10 +1,7 @@
-@questionsReady = () ->
+@questionsReady = ->
   $('[data-object~="draw-chart"]').each( (index, element) ->
-    # alert $(element).data('name')
-    drawChart( element )
+    drawChart(element)
   )
-
-
 
 @drawChart = (element) ->
   json = $(element).data('info')
