@@ -13,9 +13,9 @@
             .survey-question-text
               What is your date of birth?
           .survey-choices{ style: 'margin-bottom: 20px;padding: 20px;' }
-            .form-inline.text-center
-              = select_tag 'month', options_for_select(Date::MONTHNAMES[1..12].each_with_index.collect { |name, index| [name, index + 1] }, selected: Time.zone.today.month), include_blank: 'Month', class: 'form-control input-lg'
-              = select_tag 'day', options_for_select((1..31).collect { |i| [i, i] }, selected: Time.zone.today.day), include_blank: 'Day', class: 'form-control input-lg'
-              = select_tag 'year', options_for_select((1900..Time.zone.today.year).to_a.reverse, selected: Time.zone.today.year), include_blank: 'Year', class: 'form-control input-lg'
+            .text-center
+              = select_tag 'month', options_for_select(Date::MONTHNAMES[1..12].each_with_index.collect { |name, index| [name, index + 1] }, selected: Time.zone.today.month), include_blank: 'Month', class: 'input-lg form-control', style: 'display: inline-block; width: auto; vertical-align: middle;'
+              = select_tag 'day', options_for_select((1..31).collect { |i| [i, i] }, selected: Time.zone.today.day), include_blank: 'Day', class: 'input-lg form-control', style: 'display: inline-block; width: auto; vertical-align: middle;'
+              = select_tag 'year', options_for_select((1900..Time.zone.today.year).to_a.reverse, selected: Time.zone.today.year), include_blank: 'Year', class: 'input-lg form-control', style: 'display: inline-block; width: auto; vertical-align: middle;'
           = render 'blank/next_question'
         = render 'blank/question_skip'
