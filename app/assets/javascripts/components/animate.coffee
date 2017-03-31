@@ -1,5 +1,5 @@
-@animateSurveyBox = ->
-  $('.survey-box-animate.start').removeClass('start')
+# @animateSurveyBox = ->
+#   $('.survey-box-animate.start').removeClass('start')
 
 @animateProgressBar = ->
   $('[data-object~="progress-bar-animate"]').each((index, element) ->

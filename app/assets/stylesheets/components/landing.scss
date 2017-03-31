@@ -11,19 +11,19 @@
   font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
-.survey-box-animate {
-  opacity: 1;
-  transition: transform .5s ease-out, opacity .5s ease-out;
-  // transition-delay: .25s;
+// .survey-box-animate {
+//   opacity: 1;
+//   transition: transform .5s ease-out, opacity .5s ease-out;
+//   // transition-delay: .25s;
 
-  &.start {
-    // opacity: 0;
-    // transform: scale(.9);
-    // transform: scale(.9) translateX(100vw);
-    // transform: translateX(100vw);
-    transform: translateY(100vh);
-  }
-}
+//   &.start {
+//     // opacity: 0;
+//     // transform: scale(.9);
+//     // transform: scale(.9) translateX(100vw);
+//     // transform: translateX(100vw);
+//     transform: translateY(100vh);
+//   }
+// }
 
 .center-vertically {
   display: flex;
