@@ -76,9 +76,8 @@
     content: "\f111";
   }
 
-  .fa-check,
   .fa-check-circle,
-  .fa-check-circle-o {
+  .fa-check-square {
     color: transparent;
   }
 
@@ -94,15 +93,15 @@
       content: "\f058";
     }
 
-    .fa-circle {
+    .fa-circle,
+    .fa-square {
       font-size: 13px;
       margin-top: 2px;
     }
 
     .fa-dynamic,
-    .fa-check,
     .fa-check-circle,
-    .fa-check-circle-o {
+    .fa-check-square {
       color: $p600-green;
     }
   }
