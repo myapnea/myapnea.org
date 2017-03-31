@@ -76,7 +76,7 @@ $sunset-container-sm: $sunset-size-sm + $sunset-padding-sm;
   }
 }
 
-
+// TODO: Move to footer.scss?
 .footer-container {
   &.footer-sunset {
     background-color: $a700-deep-orange;
@@ -87,7 +87,21 @@ $sunset-container-sm: $sunset-size-sm + $sunset-padding-sm;
 
     .footer {
       a {
-        color: $p200-brown;
+        color: $p300-orange;
+      }
+    }
+  }
+
+  &.footer-night {
+    background-color: $p500-indigo;
+
+    &::before {
+      background-image: none;
+    }
+
+    .footer {
+      a {
+        color: $p100-indigo;
       }
     }
   }

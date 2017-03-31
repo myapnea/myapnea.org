@@ -25,3 +25,14 @@
     }
   }
 }
+
+.myapnea-orange-bg,
+.myapnea-night-bg {
+  .progress-simple {
+    background-color: $p100-indigo;
+
+    .progress-bar {
+      background-color: $p500-indigo;
+    }
+  }
+}

@@ -1,7 +1,4 @@
-.menu-bar.menu-bar-fixed{ style: 'background-color: #f4511e;' }
-  -# $p600-deep-orange
-  -# { style: 'background-color: #43a047;' }
-  -# $p600-green;
+.menu-bar.menu-bar-fixed.menu-bar-sunset
   .container
     Mindfulness &middot; Yoga Usefulness Scale
 
@@ -23,7 +20,7 @@
               .fa-stack.fa-stack-inline
                 %i.fa.fa-circle.fa-stack-1x
                 %i.fa.fa-check-circle.fa-stack-1x
-              = choice
+              .survey-choice-text= choice
         = link_to yoga_path(id: @question_id + 1), class: 'survey-question-next' do
           Next
       .survey-question-skip
