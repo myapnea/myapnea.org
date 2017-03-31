@@ -1,30 +1,52 @@
-- content_for :header do
-  .survey-box.myapnea-blue-bg
-    .sun-container
-      .landing-upper-right
-        #sun
-          %span.fa-stack
-            %i.fa.fa-circle.fa-stack-1x
-            %i.fa.fa-sun-o.fa-stack-1x
+.menu-bar.menu-bar-fixed
+  .container
+    About Me &middot; MyApnea Core
+
+.survey-box-with-footer.myapnea-sky-bg
+  .sun-container
+    .landing-upper-right
+      #sun
+        %span.fa-stack
+          %i.fa.fa-circle.fa-stack-1x
+          %i.fa.fa-sun-o.fa-stack-1x
+  .container
+    .survey-box-slide-with-menu-and-footer.center-vertically.dashboard-container-full-page
+      .dashboard-container
+        .survey-question
+          .survey-question-lead
+            Thinking about the last month...
+          .survey-question-text
+            What do you think about this template question?
+          .survey-question-desc
+            The degree of described in this question are selected from a short
+            list of countries that are most likely going to be filling out
+            surveys on this site based on our past experience.
+        .survey-choices
+          - choices = ['8th grade or less', 'Some high school, but did not graduate', 'High school graduate or GED', 'Some college or 2-year degree', '4-year college graduate', 'More than 4-year college degree', 'Prefer not to answer']
+          - choices.each do |choice|
+            = link_to '#', class: 'survey-choice box-shadow', data: { object: 'suppress-click' } do
+              .fa-stack.fa-stack-inline
+                %i.fa.fa-circle.fa-stack-1x
+                %i.fa.fa-check-circle.fa-stack-1x
+              .survey-choice-text= choice
+        = render 'blank/next_question'
+      = render 'blank/question_skip'
+
+- content_for :footer do
+  .footer-container
     .container
-      .survey-box-slide.center-vertically.dashboard-container-full-page
-        .dashboard-container
-          .survey-question
-            .survey-question-lead
-              Thinking about the last month...
-            .survey-question-text
-              What do you think about this template question?
-            .survey-question-desc
-              The degree of described in this question are selected from a short
-              list of countries that are most likely going to be filling out
-              surveys on this site based on our past experience.
-          .survey-choices
-            - choices = ['8th grade or less', 'Some high school, but did not graduate', 'High school graduate or GED', 'Some college or 2-year degree', '4-year college graduate', 'More than 4-year college degree', 'Prefer not to answer']
-            - choices.each do |choice|
-              = link_to '#', class: 'survey-choice box-shadow', data: { object: 'suppress-click' } do
-                .fa-stack.fa-stack-inline
-                  %i.fa.fa-circle.fa-stack-1x
-                  %i.fa.fa-check-circle.fa-stack-1x
-                .survey-choice-text= choice
-          = render 'blank/next_question'
-        = render 'blank/question_skip'
+      .footer
+        .hidden-sm.hidden-md.hidden-lg.text-center
+          &copy;
+          = Date.today.year
+          = ENV['website_name']
+        .row.hidden-xs
+          .col-xs-6.nowrap
+            &copy;
+            = Date.today.year
+            = ENV['website_name']
+            |
+            = link_to 'About', about_path
+          .col-xs-6.nowrap.text-right.hidden-xs
+            .pull-right
+              = link_to image_tag('myapnea/welcome/img-small/bwh_footer.png', style: 'margin-top: -20px;'), 'http://www.brighamandwomens.org/'

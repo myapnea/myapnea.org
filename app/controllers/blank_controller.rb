@@ -10,38 +10,10 @@ class BlankController < ApplicationController
     redirect_to question_path(id: 1)
   end
 
-  def menu
-    render layout: 'blank2'
-  end
-
   def yoga
-    render "blank/yoga#{@question_id}", layout: 'blank2'
+    render "blank/yoga#{@question_id}"
   rescue
     redirect_to yoga_path(id: 1)
-  end
-
-  def sky
-    render layout: 'blank2'
-  end
-
-  def sunset
-    render layout: 'blank2'
-  end
-
-  def night
-    render layout: 'blank2'
-  end
-
-  def blue
-    render layout: 'blank2'
-  end
-
-  def orange
-    render layout: 'blank2'
-  end
-
-  def green
-    render layout: 'blank2'
   end
 
   private
