@@ -1,33 +1,32 @@
-.menu-bar.menu-bar-fixed.menu-bar-green
+.menu-bar.menu-bar-fixed.menu-bar-night
   .container
-    Mindfulness &middot; Yoga Usefulness Scale
+    Night
 
-.survey-box-with-footer.myapnea-green-bg
-  = render 'blank/sun'
-  = render 'blank/progress_bar', start: 20, percent: 40
+.survey-box-with-footer.myapnea-night-bg
+  = render 'blank/moon'
+  = render 'blank/progress_bar', start: 100 / 6 * 4, percent: 100 / 6 * 5
   .container
-    .survey-box-slide-with-menu-and-footer.center-vertically.dashboard-container-full-page.survey-box-animate.start
-      / .survey-study-name Yoga Usefulness Scale
+    .survey-box-slide-with-menu-and-footer.center-vertically.dashboard-container-full-page
       .dashboard-container
         .survey-question
           .survey-question-text
-            The handbook instructions helped me try the poses at home.
+            Are you of Hispanic, Latino, or Spanish origin or ancestry?
         .survey-choices
-          - choices = ['Strongly disagree', 'Somewhat disagree', 'Neutral / no opinion', 'Somewhat agree', 'Strongly agree']
+          - choices = ['No', 'Yes - Mexican, Mexican American, or Chicano', 'Yes - Puerto Rican', 'Yes - Cuban', 'Yes - Other or Mixed Hispanic, Latino, or Spanish origin', 'Unsure', 'Prefer not to answer']
           - choices.each do |choice|
             = link_to '#', class: 'survey-choice box-shadow', data: { object: 'suppress-click' } do
               .fa-stack.fa-stack-inline
                 %i.fa.fa-circle.fa-stack-1x
                 %i.fa.fa-check-circle.fa-stack-1x
               .survey-choice-text= choice
-        = link_to yoga_path(id: @question_id + 1), class: 'survey-question-next' do
+        = link_to blue_path, class: 'survey-question-next', data: { turbolinks: false } do
           Next
       .survey-question-skip
-        = link_to yoga_path(id: @question_id + 1), data: { confirm: 'Are you sure you want to skip this question?' } do
+        = link_to blue_path, data: { confirm: 'Are you sure you want to skip this question?' } do
           Skip this question
 
 - content_for :footer do
-  .footer-container
+  .footer-container.footer-night
     .container
       .footer
         .hidden-sm.hidden-md.hidden-lg.text-center
@@ -43,4 +42,4 @@
             = link_to 'About', about_path
           .col-xs-6.nowrap.text-right.hidden-xs
             .pull-right
-              Mindfulness
+              = link_to image_tag('myapnea/welcome/img-small/bwh_footer.png', style: 'margin-top: -20px;'), 'http://www.brighamandwomens.org/'

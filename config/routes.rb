@@ -134,6 +134,12 @@ Rails.application.routes.draw do
     get :menu, path: 'question/menu'
     get :yoga, path: 'mindfulness/yoga-usefulness-scale(/:id)'
     get :question, path: 'question(/:id)'
+    get :sky
+    get :sunset
+    get :night
+    get :blue
+    get :orange
+    get :green
   end
 
   scope module: 'home' do

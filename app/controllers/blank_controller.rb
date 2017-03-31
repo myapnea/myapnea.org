@@ -20,6 +20,30 @@ class BlankController < ApplicationController
     redirect_to yoga_path(id: 1)
   end
 
+  def sky
+    render layout: 'blank2'
+  end
+
+  def sunset
+    render layout: 'blank2'
+  end
+
+  def night
+    render layout: 'blank2'
+  end
+
+  def blue
+    render layout: 'blank2'
+  end
+
+  def orange
+    render layout: 'blank2'
+  end
+
+  def green
+    render layout: 'blank2'
+  end
+
   private
 
   def find_question_or_redirect

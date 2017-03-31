@@ -21,7 +21,8 @@
 
 .myapnea-blue-bg,
 .myapnea-sky-bg,
-.myapnea-transparent-bg {
+.myapnea-transparent-bg,
+.myapnea-night-bg {
   .survey-question-lead {
     color: $p500-blue;
   }
@@ -109,7 +110,8 @@
 
 .myapnea-blue-bg,
 .myapnea-sky-bg,
-.myapnea-transparent-bg {
+.myapnea-transparent-bg,
+.myapnea-night-bg {
   .survey-choice {
     background-color: $p200-blue;
 
@@ -144,6 +146,10 @@
       background-color: $p700-orange;
     }
   }
+}
+
+.survey-choice-text {
+  margin-left: 32px;
 }
 
 .survey-choice-description {
@@ -226,7 +232,8 @@
 }
 
 .myapnea-blue-bg,
-.myapnea-green-bg {
+.myapnea-green-bg,
+.myapnea-night-bg {
   .survey-question-skip {
     a {
       color: $brand-gray-lighter;
