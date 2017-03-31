@@ -7,11 +7,11 @@ class ExternalController < ApplicationController
   end
 
   def landing
-    render layout: 'blank'
+    render layout: 'blank2'
   end
 
-  def preview
-  end
+  # def preview
+  # end
 
   def sitemap
     sitemap_xml = File.join(CarrierWave::Uploader::Base.root, 'sitemaps', 'sitemap.xml.gz')

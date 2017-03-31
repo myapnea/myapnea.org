@@ -41,7 +41,6 @@ $(document)
   .on('click', "[data-object~='play-landing-video']", ->
     $('#video-slide').show()
     window.player.playVideo()
-    console.log YT.PlayerState
     false
   )
   .on('click', '#video-slide', ->
@@ -53,5 +52,17 @@ $(document)
   )
   .on('click', '[data-object~="pause-landing-video"]', ->
     window.player.pauseVideo()
+    false
+  )
+  .on('click', "[data-object~='play-landing-video2']", ->
+    $('#hide-me-video').hide()
+    $('#show-me-video').show()
+    window.player.playVideo()
+    false
+  )
+  .on('click', "[data-object~='pause-landing-video2']", ->
+    window.player.pauseVideo()
+    $('#show-me-video').hide()
+    $('#hide-me-video').show()
     false
   )

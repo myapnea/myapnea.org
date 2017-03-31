@@ -3,12 +3,8 @@
     About Me &middot; MyApnea Core
 
 .survey-box-with-footer.myapnea-sky-bg
-  .sun-container
-    .landing-upper-right
-      #sun
-        %span.fa-stack
-          %i.fa.fa-circle.fa-stack-1x
-          %i.fa.fa-sun-o.fa-stack-1x
+  = render 'blank/sun'
+  = render 'blank/progress_bar', start: 80, percent: 100
   .container
     .survey-box-slide-with-menu-and-footer.center-vertically.dashboard-container-full-page
       .dashboard-container
