@@ -140,6 +140,7 @@ Rails.application.routes.draw do
     get :blue
     get :orange
     get :green
+    get :landing2
   end
 
   scope module: 'home' do

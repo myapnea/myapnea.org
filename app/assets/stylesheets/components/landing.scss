@@ -203,11 +203,31 @@ $standard-shadow-color: rgba(0, 0, 0, .3);
 $standard-shadow-hover-color: rgba(0, 0, 0, .2);
 
 .myapnea-heading {
-  font-size: 60px;
+  font-size: 40px;
   color: $brand-white;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
   text-shadow: 0 2px 3px $standard-shadow-color;
   text-align: center;
+}
+
+.myapnea-lead-sentence {
+  color: $brand-white;
+  font-size: 40px;
+  font-weight: 200;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+@media screen and (min-width: $screen-sm-min) {
+  .myapnea-heading {
+    font-size: 60px;
+    margin-bottom: 20px;
+  }
+
+  .myapnea-lead-sentence {
+    font-size: 56px;
+    margin-bottom: 40px;
+  }
 }
 
 .dashboard-container {

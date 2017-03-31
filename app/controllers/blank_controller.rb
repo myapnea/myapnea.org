@@ -16,6 +16,10 @@ class BlankController < ApplicationController
     redirect_to yoga_path(id: 1)
   end
 
+  def landing2
+    render layout: 'blank2'
+  end
+
   private
 
   def find_question_or_redirect
