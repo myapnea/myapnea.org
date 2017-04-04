@@ -11,6 +11,7 @@
   - Updated to devise 4.2.1
   - Updated to simplecov 0.14.1
   - Updated to sitemap_generator 5.3.1
+  - Updated to jquery-rails 4.3.1
 
 ### Refactoring
 - Removed typeahead library
