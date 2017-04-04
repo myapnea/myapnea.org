@@ -12,18 +12,18 @@ class BroadcastsController < ApplicationController
                               .page(params[:page]).per(40)
   end
 
-  # GET /broadcasts/1
-  def show
-  end
+  # # GET /broadcasts/1
+  # def show
+  # end
 
   # GET /broadcasts/new
   def new
     @broadcast = current_user.broadcasts.new(publish_date: Time.zone.today)
   end
 
-  # GET /broadcasts/1/edit
-  def edit
-  end
+  # # GET /broadcasts/1/edit
+  # def edit
+  # end
 
   # POST /broadcasts
   def create

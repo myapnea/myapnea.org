@@ -94,8 +94,10 @@ class User < ApplicationRecord
     super
   end
 
-  def read_chapter!(chapter, current_reply_read_id)
-    chapter_user = chapter_users.where(chapter_id: chapter.id).first_or_create
+  def read_parent!(parent, current_reply_read_id)
+    # TODO: Allow blog posts to be read as well...
+    return unless parent.is_a?(Chapter)
+    chapter_user = chapter_users.where(chapter_id: parent.id).first_or_create
     chapter_user.update current_reply_read_id: [chapter_user.current_reply_read_id.to_i, current_reply_read_id].max,
                         last_reply_read_id: chapter_user.current_reply_read_id
   end

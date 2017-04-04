@@ -8,7 +8,6 @@ class Notification < ApplicationRecord
   # Model Relationships
   belongs_to :user
   belongs_to :broadcast
-  belongs_to :broadcast_comment
   belongs_to :chapter
   belongs_to :reply
 

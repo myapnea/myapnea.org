@@ -12,7 +12,7 @@
   - else
     - if current_user && current_user.owner? && reply.user.shadow_banned?
       %span.glyphicon.glyphicon-eye-close.text-muted
-    - if reply.chapter_author?
+    - if reply.parent_author?
       %small
         %i.fa.fa-moon-o.primary-orange{ data: { toggle: 'tooltip', title: 'Topic Author', container: 'body' } }
     = image_tag user_photo_url(reply.user), alt: '', style: "max-height:#{16+3}px;border-radius:4px", title: reply.user.forum_name, data: { toggle: 'tooltip', container: 'body', placement: 'top' }, class: 'hidden-md hidden-lg'

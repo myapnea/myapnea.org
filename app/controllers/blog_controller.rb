@@ -19,6 +19,14 @@ class BlogController < ApplicationController
 
   def show
     @author = @broadcast.user
+    @page = (params[:page].to_i > 1 ? params[:page].to_i : 1)
+
+    @order = scrub_order(Reply, params[:order], 'points desc')
+    if ['points', 'points desc'].include?(params[:order])
+      @order = params[:order]
+    end
+    @replies = @broadcast.replies.points.includes(:broadcast).where(reply_id: nil).reorder(@order).page(params[:page]).per(Reply::REPLIES_PER_PAGE)
+    @broadcast.increment! :view_count
   end
 
   private

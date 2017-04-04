@@ -43,12 +43,12 @@ class NotificationsController < ApplicationController
   private
 
   def set_broadcast_or_chapter
-    @broadcast = Broadcast.current.published.find_by_id params[:broadcast_id]
-    @chapter = Chapter.current.find_by_id params[:chapter_id]
+    @broadcast = Broadcast.current.published.find_by(id: params[:broadcast_id])
+    @chapter = Chapter.current.find_by(id: params[:chapter_id])
   end
 
   def find_notification_or_redirect
-    @notification = current_user.notifications.find_by_id params[:id]
+    @notification = current_user.notifications.find_by(id: params[:id])
     redirect_to notifications_path unless @notification
   end
 
@@ -57,7 +57,6 @@ class NotificationsController < ApplicationController
   end
 
   def notification_redirect_path
-    return blog_post_path(@notification.broadcast.url_hash.merge(anchor: "comment-#{@notification.broadcast_comment_id}")) if @notification.broadcast_comment
     return reply_path(@notification.reply) if @notification.reply
     notifications_path
   end

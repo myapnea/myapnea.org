@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# TODO: Deprecated in v17.0.0
+
 # Represents a user vote on a blog comment.
 class BroadcastCommentUser < ApplicationRecord
   # Model Validation

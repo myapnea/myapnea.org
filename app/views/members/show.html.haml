@@ -60,6 +60,6 @@
 
 -# Recent posts
 - @replies.each do |reply|
-  = render 'replies/show', level: 0, reply: reply, include_chapter_title: true
+  = render 'replies/show', level: 0, reply: reply, include_parent_title: true
 
 .centered= paginate @replies, theme: 'bootstrap-small'

@@ -2,6 +2,7 @@
 
 require 'test_helper'
 
+# Tests to assure data can be exported by admins.
 class Admin::ExportsControllerTest < ActionController::TestCase
   setup do
     @owner = users(:owner)

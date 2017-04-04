@@ -31,7 +31,7 @@ class RepliesControllerTest < ActionController::TestCase
 
   test 'should preview reply' do
     login(@regular_user)
-    post :preview, params: { parent_comment_id: 'root', reply_id: 'new', reply: reply_params }, format: 'js'
+    post :preview, params: { parent_reply_id: 'root', reply_id: 'new', reply: reply_params }, format: 'js'
     assert_template 'preview'
     assert_response :success
   end
@@ -72,9 +72,9 @@ class RepliesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test 'should redirect to forum for deleted replies' do
+  test 'should redirect to root path for deleted replies' do
     get :show, params: { id: replies(:deleted) }
-    assert_redirected_to chapters_path
+    assert_redirected_to root_path
   end
 
   test 'should get edit' do

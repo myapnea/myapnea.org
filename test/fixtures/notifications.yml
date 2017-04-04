@@ -1,16 +1,16 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-broadcast_comment_one:
+broadcast_reply_one:
   user: community_contributor
   read: false
   broadcast: published
-  broadcast_comment: one
+  reply: blog_one
 
-broadcast_comment_two:
+broadcast_reply_two:
   user: user_1
   read: false
   broadcast: published
-  broadcast_comment: two
+  reply: blog_two
 
 blank:
   user: user_1

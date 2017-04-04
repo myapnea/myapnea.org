@@ -1,16 +1,16 @@
-@showTopicReplyBox = (parent_comment_id, reply_id) ->
-  $("#write_comment_#{parent_comment_id}_#{reply_id}").hide()
-  $("#comment_container_#{parent_comment_id}_#{reply_id}").fadeIn('fast')
+@showReplyBox = (parent_reply_id, reply_id) ->
+  $("#write_reply_#{parent_reply_id}_#{reply_id}").hide()
+  $("#comment_container_#{parent_reply_id}_#{reply_id}").fadeIn('fast')
 
-@hideTopicReplyBox = (parent_comment_id, reply_id) ->
+@hideReplyBox = (parent_reply_id, reply_id) ->
   $('[name=password]').tooltip('destroy')
-  $("#comment_container_#{parent_comment_id}_#{reply_id}").html('')
-  $("#comment_container_#{parent_comment_id}_#{reply_id}").hide()
-  $("#write_comment_#{parent_comment_id}_#{reply_id}").show()
+  $("#comment_container_#{parent_reply_id}_#{reply_id}").html('')
+  $("#comment_container_#{parent_reply_id}_#{reply_id}").hide()
+  $("#write_reply_#{parent_reply_id}_#{reply_id}").show()
 
-@topicsReady = ->
+@repliesReady = ->
   if window.location.hash == '#write-a-reply'
-    $("#write_comment_root_new a").click()
+    $("#write_reply_root_new a").click()
   else if window.location.hash.substring(1,8) == 'comment'
     $("#{window.location.hash}-container").addClass('highlighted-reply')
 
@@ -23,29 +23,29 @@ $(document)
       $(this).html('[-]')
     false
   )
-  .on('click', '[data-object~="chapter-no-write-comment"]', ->
-    parent_comment_id = $(this).data('parent-comment-id')
+  .on('click', '[data-object~="parent-no-write-reply"]', ->
+    parent_reply_id = $(this).data('parent-reply-id')
     reply_id = $(this).data('reply-id')
-    hideTopicReplyBox(parent_comment_id, reply_id)
+    hideReplyBox(parent_reply_id, reply_id)
     false
   )
   .on('click', '[data-object~="reply-tab"]', ->
-    parent_comment_id = $(this).data('parent-comment-id')
+    parent_reply_id = $(this).data('parent-reply-id')
     reply_id = $(this).data('reply-id')
     action = $(this).data('action')
-    $("[data-object~='reply-tab'][data-parent-comment-id=#{parent_comment_id}]").removeClass('active')
+    $("[data-object~='reply-tab'][data-parent-reply-id=#{parent_reply_id}]").removeClass('active')
     $(this).addClass('active')
-    $("[data-object~='reply-tab-content'][data-parent-comment-id=#{parent_comment_id}]").hide()
-    $("[data-object~='reply-tab-content'][data-parent-comment-id=#{parent_comment_id}][data-action=#{action}]").show()
+    $("[data-object~='reply-tab-content'][data-parent-reply-id=#{parent_reply_id}]").hide()
+    $("[data-object~='reply-tab-content'][data-parent-reply-id=#{parent_reply_id}][data-action=#{action}]").show()
     false
   )
   .on('click', '[data-object~="reply-tab"][data-action~="preview"]', ->
-    parent_comment_id = $(this).data('parent-comment-id')
+    parent_reply_id = $(this).data('parent-reply-id')
     reply_id = $(this).data('reply-id')
-    input = "#reply_description_#{parent_comment_id}_#{reply_id}"
+    input = "#reply_description_#{parent_reply_id}_#{reply_id}"
     params = {}
     params.reply = { description: $(input).val() }
-    params.parent_comment_id = parent_comment_id
+    params.parent_reply_id = parent_reply_id
     params.reply_id = reply_id
     $.post("#{root_url}replies/preview", params, null, 'script')
     false
@@ -89,6 +89,8 @@ $(document)
     substitute = "> #{selection.text}"
     new_string = original_text.substring(0, selection.start) + substitute + original_text.substring(selection.end)
     $($(this).data('target')).val(new_string)
-    console.log selection
     false
+  )
+  .on('click', '.reply-body img', ->
+    $(this).toggleClass('large-view')
   )

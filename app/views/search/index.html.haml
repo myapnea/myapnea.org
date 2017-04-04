@@ -11,8 +11,6 @@
       - @search_documents.each do |document|
         - case document.searchable.class.to_s when 'Broadcast'
           = render 'search/broadcast', broadcast: document.searchable
-        - when 'BroadcastComment'
-          = render 'search/broadcast_comment', broadcast_comment: document.searchable
         - when 'Chapter'
           = render 'search/chapter', chapter: document.searchable
         - when 'Reply'

@@ -2,35 +2,36 @@
 
 # Allows users to start new discussion topics on the forum.
 class Chapter < ApplicationRecord
-  REPLIES_PER_PAGE = 20
   attr_accessor :description, :migration_flag
 
   # Concerns
-  include Deletable, UrlCountable
+  include Deletable
   include PgSearch
+  include Replyable
+  include UrlCountable
   multisearchable against: [:title],
                   unless: :deleted?
 
   # Callbacks
-  after_commit :create_first_reply, on: :create
+  after_create_commit :create_first_reply
 
   # Scopes
   scope :reply_count, -> { select('chapters.*, COUNT(replies.id) reply_count').joins(:replies).group('chapters.id') }
   scope :shadow_banned, -> (arg) { joins(:user).merge(User.where(shadow_banned: [nil, false]).or(User.where(id: arg))) }
 
-  # Model Validation
+  # Validations
   validates :title, :slug, :user_id, presence: true
   validates :description, presence: true, if: :requires_description?
   validates :slug, uniqueness: { scope: :deleted }
   validates :slug, format: { with: /\A(?!\Anew\Z)[a-z][a-z0-9\-]*\Z/ }
 
-  # Model Relationships
+  # Relationships
   belongs_to :user
   has_many :chapter_users
-  has_many :replies, -> { order :created_at }
-  has_many :reply_users
+  # has_many :replies, -> { order :created_at }
+  # has_many :reply_users
 
-  # Model Methods
+  # Methods
   def destroy
     super
     update_pg_search_document
@@ -69,7 +70,7 @@ class Chapter < ApplicationRecord
   end
 
   def last_page
-    ((replies.where(reply_id: nil).count - 1) / REPLIES_PER_PAGE) + 1
+    ((replies.where(reply_id: nil).count - 1) / Reply::REPLIES_PER_PAGE) + 1
   end
 
   def compute_shadow_ban!

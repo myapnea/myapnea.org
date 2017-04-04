@@ -2,15 +2,17 @@
 
 # Represents a user vote on a blog comment.
 class ReplyUser < ApplicationRecord
-  # Model Validation
-  validates :chapter_id, :reply_id, :user_id, :vote, presence: true
+  # Validations
+  validates :reply_id, :user_id, :vote, presence: true
+  # validates :chapter_id, :broadcast_id, presence: true
 
-  # Model Relationships
+  # Relationships
   belongs_to :user
+  belongs_to :broadcast
   belongs_to :chapter
   belongs_to :reply
 
-  # Model Methods
+  # Methods
   def up_vote!
     update vote: 1
   end

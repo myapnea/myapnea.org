@@ -13,8 +13,8 @@ class Async::ForumController < Async::BaseController
     end
   end
 
-  def new_topic
-  end
+  # def new_topic
+  # end
 
   private
 

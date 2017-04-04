@@ -6,32 +6,33 @@ class Broadcast < ApplicationRecord
   # Concerns
   include Deletable
   include PgSearch
+  include Replyable
   multisearchable against: [:title, :short_description, :keywords, :description],
                   unless: :deleted?
 
   # Scopes
   scope :published, -> { current.where(published: true).where('publish_date <= ?', Time.zone.today) }
 
-  # Model Validation
+  # Validations
   validates :title, :slug, :description, :user_id, :publish_date, presence: true
   validates :slug, uniqueness: { scope: :deleted }
   validates :slug, format: { with: /\A(?!\Anew\Z)[a-z][a-z0-9\-]*\Z/ }
 
-  # Model Relationships
+  # Relationships
   belongs_to :user
   belongs_to :category, class_name: 'Admin::Category'
   has_many :broadcast_comments
   has_many :broadcast_comment_users
 
-  # Model Methods
+  # Methods
   def destroy
     super
     update_pg_search_document
-    broadcast_comments.each(&:update_pg_search_document)
+    replies.each(&:update_pg_search_document)
   end
 
   def to_param
-    slug.to_s
+    slug_was.to_s
   end
 
   def url_hash
@@ -46,15 +47,16 @@ class Broadcast < ApplicationRecord
     current_user.editable_broadcasts.where(id: id).count == 1
   end
 
-  def self.full_text_search(terms)
-    where("setweight(to_tsvector(broadcasts.description), 'A') @@ to_tsquery(?)", terms).order(full_text_order(terms))
+  def last_page
+    # ((replies.where(reply_id: nil).count - 1) / Reply::REPLIES_PER_PAGE) + 1
+    1
   end
 
-  def self.full_text_order(terms)
-    array = ['ts_rank(to_tsvector(broadcasts.description), to_tsquery(?)) desc, id desc', terms]
-    ActiveRecord::Base.send(:sanitize_sql_array, array)
+  def subscribers
+    User.none
   end
 
+  # TODO: Refactor or remove into search module.
   def self.compute_ranges(description_array, terms)
     cleaned_array = description_array.collect { |t| t.gsub(/[^\w]/, '').to_s.downcase }
     indices = cleaned_array.each_index.select { |i| cleaned_array[i].in?(terms) }

@@ -10,7 +10,7 @@
     = link_to 'All', notifications_path(all: '1'), class: "btn btn-block #{current_page?(notifications_path) && params[:all] == '1' ? 'btn-primary' : 'btn-default'}"
   .col-md-9
     - if @notifications.count > 0
-      - @notifications.where.not(broadcast_id: nil).order(created_at: :desc).includes(:broadcast, :broadcast_comment).group_by(&:broadcast).each do |broadcast, notifications|
+      - @notifications.where.not(broadcast_id: nil).order(created_at: :desc).includes(:broadcast, :reply).group_by(&:broadcast).each do |broadcast, notifications|
         %table.table.table-fixed
           %col{ width: '32px' }
           %col{ }

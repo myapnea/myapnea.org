@@ -18,11 +18,14 @@ Rails.application.routes.draw do
       post :login
       post :new_topic
     end
+    namespace :parent do
+      post :login
+      post :reply
+    end
   end
 
   namespace :admin do
-    resources :broadcast_comments, only: :index, path: 'blog/comments'
-    resources :replies, only: :index, path: 'forum/replies'
+    resources :replies, only: :index
     resources :categories
     resources :exports do
       member do
