@@ -203,11 +203,19 @@ $standard-shadow-color: rgba(0, 0, 0, .3);
 $standard-shadow-hover-color: rgba(0, 0, 0, .2);
 
 .myapnea-heading {
-  font-size: 40px;
   color: $brand-white;
+  font-size: 40px;
   margin-bottom: 5px;
-  text-shadow: 0 2px 3px $standard-shadow-color;
   text-align: center;
+  text-shadow: 0 2px 3px $standard-shadow-color;
+}
+
+.myapnea-section-heading {
+  color: $brand-white;
+  font-size: 22px;
+  // font-weight: bold;
+  margin-bottom: 11px;
+  text-shadow: 0 2px 3px $standard-shadow-color;
 }
 
 .myapnea-lead-sentence {
@@ -222,6 +230,10 @@ $standard-shadow-hover-color: rgba(0, 0, 0, .2);
   .myapnea-heading {
     font-size: 60px;
     margin-bottom: 20px;
+  }
+
+  .myapnea-section-heading {
+    font-size: 28px;
   }
 
   .myapnea-lead-sentence {
@@ -264,6 +276,16 @@ $standard-shadow-hover-color: rgba(0, 0, 0, .2);
 
   .dashboard-container {
     margin: 0;
+  }
+}
+
+.dashboard-container-full-page-remove-last-margin {
+  padding: 20px 0 60px;
+
+  > div {
+    &:last-child {
+      margin: 0;
+    }
   }
 }
 

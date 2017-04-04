@@ -8,3 +8,9 @@
     transform: translateY(0);
   }
 }
+
+.animate-slide {
+  animation-duration: 2s;
+  animation-fill-mode: both;
+  animation-name: fadeInDown;
+}

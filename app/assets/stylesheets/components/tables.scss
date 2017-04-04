@@ -1,3 +1,16 @@
 .table-fixed {
   table-layout: fixed;
 }
+
+.table {
+  &.table-borderless {
+    td,
+    th {
+      border-width: 0;
+    }
+
+    > tbody + tbody {
+      border-width: 0;
+    }
+  }
+}
