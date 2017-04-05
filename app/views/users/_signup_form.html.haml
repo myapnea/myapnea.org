@@ -1,6 +1,6 @@
 .row
   .col-sm-6.col-sm-offset-3
-    %h1.centered.f300{ style: 'font-size: 24px;margin-bottom: 40px' } Wake up to a better future!
+    %h1.center.f300{ style: 'font-size: 24px;margin-bottom: 40px' } Wake up to a better future!
     .content-container
       = form_for(resource, url: registration_path(resource), method: :post, html: { class: 'form-vertical', id: 'recaptcha-form' }) do |f|
         = f.hidden_field :provider_id
@@ -25,7 +25,7 @@
             = f.label :over_eighteen, error_message, class: 'control-label'
         %br
         - if resource.errors && resource.errors[:recaptcha].present?
-          .form-group.centered
+          .form-group.center
             %small.text-danger= resource.errors[:recaptcha].join(' ')
         .form-group
           - if RECAPTCHA_ENABLED

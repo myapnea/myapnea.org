@@ -3,6 +3,7 @@
 // // Variables
 // // --------------------------------------------------
 
+$red:                   #d50000 !default;
 
 // //== Colors
 // //
@@ -19,12 +20,13 @@ $brand-primary:         $p500-blue !default; //darken(#428bca, 6.5%) !default; /
 // $brand-success:         #5cb85c !default;
 // $brand-info:            #5bc0de !default;
 $brand-warning:         #ffa400 !default; //#f0ad4e !default;
-// $brand-danger:          #d9534f !default;
+$brand-danger:          $red !default;
 $brand-gray:            #ccc;
 $brand-gray-lighter:    #ededed;
 $brand-gray-lightest:   #f9f9f9;
 $brand-black:           $p900-blue !default;
 $brand-muted:           $p300-blue !default;
+$blockquote-gray:       #999;
 $brand-white:           #fff !default;
 $brand-shadow-start:    rgba(0, 0, 0, .075);
 $brand-accent:          $p200-orange !default; // Perhaps change to $a200-orange.
@@ -513,9 +515,9 @@ $navbar-default-toggle-border-color:       $p800-blue !default;
 // $state-warning-bg:               #fcf8e3 !default;
 // $state-warning-border:           darken(adjust-hue($state-warning-bg, -10), 5%) !default;
 
-// $state-danger-text:              #a94442 !default;
-// $state-danger-bg:                #f2dede !default;
-// $state-danger-border:            darken(adjust-hue($state-danger-bg, -10), 5%) !default;
+$state-danger-text:              $brand-danger !default;
+$state-danger-bg:                $brand-danger !default;
+$state-danger-border:            darken(adjust-hue($state-danger-bg, -10), 5%) !default;
 
 
 // //== Tooltips
@@ -642,7 +644,7 @@ $navbar-default-toggle-border-color:       $p800-blue !default;
 // $alert-warning-border:        $state-warning-border !default;
 
 // $alert-danger-bg:             $state-danger-bg !default;
-// $alert-danger-text:           $state-danger-text !default;
+$alert-danger-text:           $brand-white !default;
 // $alert-danger-border:         $state-danger-border !default;
 
 
@@ -737,7 +739,7 @@ $navbar-default-toggle-border-color:       $p800-blue !default;
 // $panel-warning-border:        $state-warning-border !default;
 // $panel-warning-heading-bg:    $state-warning-bg !default;
 
-// $panel-danger-text:           $state-danger-text !default;
+$panel-danger-text:           $brand-white !default; // $state-danger-text !default;
 // $panel-danger-border:         $state-danger-border !default;
 // $panel-danger-heading-bg:     $state-danger-bg !default;
 

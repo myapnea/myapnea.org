@@ -1,7 +1,7 @@
 = form_for current_user, html: { role: "form", class: 'form-horizontal' }, url: update_account_path, method: :patch do |f|
   .content-container
     .content-header
-      %h3.f300.centered
+      %h3.f300.center
         My Social Profile
     .content-body
       .form-group
@@ -13,7 +13,7 @@
             %h4.f300
               Change Photo
             %br
-            .centered
+            .center
               = f.file_field :photo
             %br
             #filedrag.filedrag-container{ data: { object: 'dropfile' } }

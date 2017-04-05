@@ -1,23 +1,14 @@
 .content-container
   = form_for @topic, html: { class: 'form-vertical' } do |f|
-    - if @topic.errors.any?
-      .panel.panel-danger
-        .panel-heading
-          %strong
-            = pluralize @topic.errors.count, 'error'
-            prohibited this topic from being saved
-        .panel-body
-          %ul
-            - @topic.errors.full_messages.each do |message|
-              %li= message
-
     .form-group
       = f.label :title, class: 'control-label'
       = f.text_field :title, class: 'form-control', data: { object: (@topic.new_record? ? 'create-slug' : ''), target: '#topic_slug' }
+      = render 'layouts/errors', object: @topic, key: :title
 
     .form-group{ style: "#{'display:none' if @topic.new_record? && !@topic.errors.key?(:slug)}"}
       = f.label :slug, class: 'control-label'
       = f.text_field :slug, class: 'form-control'
+      = render 'layouts/errors', object: @topic, key: :slug
       .alert.alert-info{ style: 'margin-top: 10px' }
         %p
           The URL slug must start with a lowercase letter
@@ -51,6 +42,7 @@
               #log_new.filedrag
                 Drag images above to insert into post.
             #content_preview.topic{ style: 'display:none' }
+        = render 'layouts/errors', object: @topic, key: :description
 
     - if current_user.owner?
       .form-group

@@ -84,12 +84,12 @@
     %h4.f300 This series is known as the Epworth Sleepiness Scale (ESS), and provides a measure of how sleepy you feel.
   - ess = TemporaryReport.compute_ess(@answer_session)
   - if ess
-    .survey-report-answer.centered
+    .survey-report-answer.center
       %p.lead Your score:
       %h1.report-statistic
         = ess
   .survey-report-info
-    .centered
+    .center
       %p.lead Average MyApnea member score:
       %h1.report-statistic
         = TemporaryReport.avg_ess(@survey, @encounter)

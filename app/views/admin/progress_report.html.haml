@@ -31,7 +31,7 @@
 
 .content-container
   %h3 Signed consents
-  %p.lead.centered
+  %p.lead.center
     - signed_consent_count = user_scope.where.not(accepted_consent_at: nil).count
     - not_signed_consent_count = user_scope.where(accepted_consent_at: nil).count
     = number_with_delimiter signed_consent_count
@@ -42,7 +42,7 @@
 
 .content-container
   %h3 With any questionnaire data
-  %p.lead.centered
+  %p.lead.center
     - with_questionnaire_count = AnswerValue.joins(answer: :answer_session).where(answers: { state: 'locked' }).distinct.select("answer_sessions.user_id").count
     = number_with_delimiter with_questionnaire_count
 
@@ -124,6 +124,6 @@
 
 .content-container
   %h3 Number of withdrawn consent
-  %p.lead.centered
+  %p.lead.center
     - withdrawn_consent_count = AnswerValue.joins(answer: :answer_session).where(answers: { state: 'locked' }).where(answer_sessions: { user_id: user_scope.where(accepted_consent_at: nil).select(:id) }).distinct.select("answer_sessions.user_id").count
     = number_with_delimiter withdrawn_consent_count

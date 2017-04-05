@@ -1,3 +1,13 @@
+.broadcast-by {
+  background-color: $p100-orange;
+  padding: 5px;
+  border-radius: 4px;
+
+  .broadcast-info {
+    margin: 0;
+  }
+}
+
 .broadcast {
   @include remove-last-child-bottom-margin;
 
@@ -8,12 +18,10 @@
   }
 
   img {
-    border: 1px solid $gray-lighter;
     display: block;
     height: auto;
     margin: 10px auto 16px;
     max-width: 100%;
-    padding: 5px;
   }
 
   p {
@@ -147,6 +155,7 @@
 
 .broadcast-discussion {
   background-color: $body-background;
+  padding-bottom: 40px;
 
   .broadcast-discussion-header {
     background-color: $brand-gray-lighter;

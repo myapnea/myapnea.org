@@ -22,7 +22,7 @@
       = simple_markdown "If you wish to be in this study, please click the button that says **“I agree and accept”**"
   %br/
   - if current_user and !part_of_registration
-    .content-footer.centered
+    .content-footer.center
       - if current_user.ready_for_research?
         = succeed ' ' do
           = link_to :back, class: 'btn btn-lg btn-default-custom' do

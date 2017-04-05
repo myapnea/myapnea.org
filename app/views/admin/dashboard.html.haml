@@ -4,7 +4,7 @@
   %h1= @title
 
 %h3 Member Management
-.row.centered
+.row.center
   - if current_user.owner?
     .col-sm-3
       = link_to users_path, class: 'no-underline' do
@@ -29,7 +29,7 @@
           Blog and Forum Replies
 
 %h3 Survey Results
-.row.centered
+.row.center
   .col-sm-3
     = link_to admin_cross_tabs_path, class: 'no-underline' do
       .blue-block-link
@@ -43,7 +43,7 @@
     = link_to admin_surveys_path, class: 'no-underline' do
       .blue-block-link
         Surveys
-.row.centered
+.row.center
   .col-sm-3
     = link_to admin_progress_report_path, class: 'no-underline' do
       .blue-block-link
@@ -55,7 +55,7 @@
 
 - if current_user.owner?
   %h3 Features
-  .row.centered
+  .row.center
     .col-sm-3
       = link_to admin_clinical_trials_path, class: 'no-underline' do
         .blue-block-link
@@ -68,7 +68,7 @@
       = link_to admin_team_members_path, class: 'no-underline' do
         .blue-block-link
           Team Members
-  .row.centered
+  .row.center
     .col-sm-3
       = link_to admin_social_media_path, class: 'no-underline' do
         .blue-block-link

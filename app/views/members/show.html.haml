@@ -62,4 +62,4 @@
 - @replies.each do |reply|
   = render 'replies/show', level: 0, reply: reply, include_parent_title: true
 
-.centered= paginate @replies, theme: 'bootstrap-small'
+.center= paginate @replies, theme: 'bootstrap-small'

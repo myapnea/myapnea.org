@@ -8,7 +8,7 @@
         .pep-header
         = image_tag team_member_photo_url(pep)
         .pep-footer
-          %h3.centered= pep.name
+          %h3.center= pep.name
           %hr
           %p= simple_markdown(pep.interview.truncate(500))
           %p= link_to "Meet #{pep.name}", pep_corner_show_path(pep), class: 'btn btn-sm btn-default btn-block'

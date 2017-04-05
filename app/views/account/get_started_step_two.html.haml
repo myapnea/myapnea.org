@@ -23,7 +23,7 @@
     = render 'account/terms_of_access', part_of_registration: true
   - else
     = render 'account/consent', part_of_registration: true
-.centered
+.center
   - cancel_path = get_started_step_three_path
   - if current_user.provider? || current_user.is_only_researcher?
     = link_to 'I agree and accept', accepts_terms_of_access_path(get_started: true), method: :post, class: 'btn btn-primary-custom btn-lg'

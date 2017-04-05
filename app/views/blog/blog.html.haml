@@ -1,15 +1,21 @@
 - @title = ['Blog', @category ? @category.name : nil, @author ? @author.forum_name : nil].compact.join(' | ')
 
-.content-main-header2
-  %h1
-    Blog
+- content_for :body_class do
+  myapnea-sky-bg
+
+- content_for :header do
+  .header-container
+    .container
+      %h1.page-heading
+        = @title
 
 .row
   .col-sm-9
     - @broadcasts.each do |broadcast|
-      %div{ style: 'margin-bottom: 80px;' }
-        %h2.broadcast-title= link_to broadcast.title, blog_post_path(broadcast.url_hash)
+      .dashboard-container
+        %h2.broadcast-title{ style: 'margin-top: 0;border-bottom: 0;' }= link_to broadcast.title, blog_post_path(broadcast.url_hash)
         = render 'blog/extract', broadcast: broadcast
-    .centered= paginate @broadcasts, theme: 'bootstrap'
-  .col-sm-3.col-buffer
-    = render 'blog/menu'
+    .center= paginate @broadcasts, theme: 'bootstrap'
+  .col-sm-3.col-sticky
+    .dashboard-container
+      = render 'blog/menu'

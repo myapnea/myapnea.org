@@ -1,22 +1,25 @@
 - @title = @broadcast.title
 - @keywords = @broadcast.keywords
 
-.content-main-header2
-  %h1
-    Blog
+- content_for :body_class do
+  myapnea-sky-bg
+
+- content_for :header do
+  .header-container
+    .container
+      %h1.page-heading
+        - if current_user && current_user.community_contributor? && @broadcast.editable_by?(current_user)
+          .pull-right
+            = link_to pencil_or('Edit Blog Post'), edit_broadcast_path(@broadcast), class: 'btn btn-accent btn-shadow'
+        = @title
 
 .row
   .col-sm-9
-    %h1.broadcast-title
-      = @title
-      - if current_user && current_user.community_contributor? && @broadcast.editable_by?(current_user)
-        = link_to edit_broadcast_path(@broadcast), class: 'btn btn-xs btn-default' do
-          %span.glyphicon.glyphicon-edit
-          Edit Blog Post
-
-    = render 'blog/show', broadcast: @broadcast
-  .col-sm-3.col-buffer
-    = render 'blog/menu'
+    .dashboard-container
+      = render 'blog/show', broadcast: @broadcast
+  .col-sm-3.col-sticky
+    .dashboard-container
+      = render 'blog/menu'
 
 - content_for :footer do
   .broadcast-discussion
