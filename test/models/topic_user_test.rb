@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
-class ChapterUserTest < ActiveSupport::TestCase
+class TopicUserTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

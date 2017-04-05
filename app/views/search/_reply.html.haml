@@ -6,7 +6,7 @@
     = reply.user.forum_name
     on
     %i= reply.created_at.strftime '%B %-d, %Y'
-    - if reply.chapter
+    - if reply.topic
       on
       = link_to 'Forum', reply, data: { turbolinks: false }
     - elsif reply.broadcast

@@ -28,11 +28,11 @@ SitemapGenerator::Sitemap.create do
   Broadcast.published.find_each do |broadcast|
     add "/blog/#{broadcast.to_param}", lastmod: broadcast.updated_at
   end
-  Chapter.current.find_each do |chapter|
-    add "/forum/#{chapter.to_param}", lastmod: chapter.updated_at
-    if chapter.last_page > 1
-      (2..chapter.last_page).each do |page|
-        add "/forum/#{chapter.to_param}/#{page}", lastmod: chapter.updated_at
+  Topic.current.find_each do |topic|
+    add "/forum/#{topic.to_param}", lastmod: topic.updated_at
+    if topic.last_page > 1
+      (2..topic.last_page).each do |page|
+        add "/forum/#{topic.to_param}/#{page}", lastmod: topic.updated_at
       end
     end
   end

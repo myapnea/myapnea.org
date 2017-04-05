@@ -1,0 +1,11 @@
+- @title = "Edit Topic: #{@topic.title_was}"
+
+.content-main-header2
+  %h1
+    = link_to 'Forum', topics_path
+    &middot;
+    = link_to @topic.title_was, @topic
+    &middot;
+    Edit
+
+= render 'form'

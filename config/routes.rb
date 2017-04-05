@@ -9,11 +9,6 @@ Rails.application.routes.draw do
       post :register
       post :reply
     end
-    namespace :chapter do
-      post :login
-      post :register
-      post :reply
-    end
     namespace :forum do
       post :login
       post :new_topic
@@ -334,7 +329,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :chapters, path: 'forum' do
+  resources :topics, path: 'forum' do
     member do
       get '/edit', action: :edit, as: :edit
       get '/:page', action: :show, as: :page

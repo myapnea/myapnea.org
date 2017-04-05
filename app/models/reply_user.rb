@@ -4,12 +4,12 @@
 class ReplyUser < ApplicationRecord
   # Validations
   validates :reply_id, :user_id, :vote, presence: true
-  # validates :chapter_id, :broadcast_id, presence: true
+  # validates :topic_id, :broadcast_id, presence: true
 
   # Relationships
   belongs_to :user
   belongs_to :broadcast
-  belongs_to :chapter
+  belongs_to :topic
   belongs_to :reply
 
   # Methods

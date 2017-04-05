@@ -5,7 +5,7 @@
 class NotificationsController < ApplicationController
   before_action :authenticate_user!
   before_action :find_notification_or_redirect, only: [:show, :update]
-  before_action :set_broadcast_or_chapter, only: [:mark_all_as_read]
+  before_action :set_broadcast_or_topic, only: [:mark_all_as_read]
 
   layout 'application-padded'
 
@@ -34,8 +34,8 @@ class NotificationsController < ApplicationController
   def mark_all_as_read
     if @broadcast
       notification_ids = current_user.notifications.where(broadcast_id: @broadcast.id).pluck(:id)
-    elsif @chapter
-      notification_ids = current_user.notifications.where(chapter_id: @chapter.id).pluck(:id)
+    elsif @topic
+      notification_ids = current_user.notifications.where(topic_id: @topic.id).pluck(:id)
     else
       notification_ids = []
     end
@@ -45,9 +45,9 @@ class NotificationsController < ApplicationController
 
   private
 
-  def set_broadcast_or_chapter
+  def set_broadcast_or_topic
     @broadcast = Broadcast.current.published.find_by(id: params[:broadcast_id])
-    @chapter = Chapter.current.find_by(id: params[:chapter_id])
+    @topic = Topic.current.find_by(id: params[:topic_id])
   end
 
   def find_notification_or_redirect

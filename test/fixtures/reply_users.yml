@@ -1,11 +1,11 @@
 one:
-  chapter: one
+  topic: one
   reply: one
   user: user_3
   vote: 1
 
 two:
-  chapter: one
+  topic: one
   reply: one
   user: user_4
   vote: 1

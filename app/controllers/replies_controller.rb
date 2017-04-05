@@ -18,8 +18,8 @@ class RepliesController < ApplicationController
       format.html do
         if @reply.parent.is_a?(Broadcast)
           redirect_to blog_post_path(@reply.parent.url_hash.merge(page: @reply.page, anchor: @reply.anchor))
-        elsif @reply.parent.is_a?(Chapter)
-          redirect_to page_chapter_path(@reply.parent, page: @reply.page, anchor: @reply.anchor)
+        elsif @reply.parent.is_a?(Topic)
+          redirect_to page_topic_path(@reply.parent, page: @reply.page, anchor: @reply.anchor)
         else
           redirect_to root_path
         end
@@ -89,9 +89,9 @@ class RepliesController < ApplicationController
   private
 
   def find_parent_or_redirect
-    @chapter = Chapter.current.find_by(slug: params[:chapter_id])
+    @topic = Topic.current.find_by(slug: params[:topic_id])
     @broadcast = Broadcast.current.published.find_by(slug: params[:broadcast_id])
-    @parent = @chapter || @broadcast
+    @parent = @topic || @broadcast
     empty_response_or_root_path unless @parent
   end
 

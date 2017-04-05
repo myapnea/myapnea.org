@@ -20,9 +20,9 @@ class Async::ParentController < Async::BaseController
   private
 
   def find_parent_or_redirect
-    @chapter = Chapter.current.find_by(slug: params[:chapter_id])
+    @topic = Topic.current.find_by(slug: params[:topic_id])
     @broadcast = Broadcast.current.published.find_by(slug: params[:broadcast_id])
-    @parent = @chapter || @broadcast
+    @parent = @topic || @broadcast
     empty_response_or_root_path unless @parent
   end
 

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Allows users to start new discussion topics on the forum.
-class Chapter < ApplicationRecord
+class Topic < ApplicationRecord
   attr_accessor :description, :migration_flag
 
   # Concerns
@@ -16,7 +16,7 @@ class Chapter < ApplicationRecord
   after_create_commit :create_first_reply
 
   # Scopes
-  scope :reply_count, -> { select('chapters.*, COUNT(replies.id) reply_count').joins(:replies).group('chapters.id') }
+  scope :reply_count, -> { select('topics.*, COUNT(replies.id) reply_count').joins(:replies).group('topics.id') }
   scope :shadow_banned, -> (arg) { joins(:user).merge(User.where(shadow_banned: [nil, false]).or(User.where(id: arg))) }
 
   # Validations
@@ -27,7 +27,7 @@ class Chapter < ApplicationRecord
 
   # Relationships
   belongs_to :user
-  has_many :chapter_users
+  has_many :topic_users
   # has_many :replies, -> { order :created_at }
   # has_many :reply_users
 
@@ -43,22 +43,22 @@ class Chapter < ApplicationRecord
   end
 
   def started_reading?(current_user)
-    chapter_user = chapter_users.find_by user: current_user
-    chapter_user ? true : false
+    topic_user = topic_users.find_by user: current_user
+    topic_user ? true : false
   end
 
   def unread_replies(current_user)
-    chapter_user = chapter_users.find_by user: current_user
-    if chapter_user
-      root_replies.current.where('id > ?', chapter_user.current_reply_read_id).count
+    topic_user = topic_users.find_by user: current_user
+    if topic_user
+      root_replies.current.where('id > ?', topic_user.current_reply_read_id).count
     else
       0
     end
   end
 
   def next_unread_reply(current_user)
-    chapter_user = chapter_users.find_by user: current_user
-    root_replies.current.find_by('id > ?', chapter_user.current_reply_read_id) if chapter_user
+    topic_user = topic_users.find_by user: current_user
+    root_replies.current.find_by('id > ?', topic_user.current_reply_read_id) if topic_user
   end
 
   def root_replies

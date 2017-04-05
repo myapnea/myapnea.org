@@ -2,7 +2,7 @@
 
 # Provides methods to login and register while starting a new forum topic.
 class Async::ForumController < Async::BaseController
-  before_action :set_chapter
+  before_action :set_topic
 
   def login
     super
@@ -18,7 +18,7 @@ class Async::ForumController < Async::BaseController
 
   private
 
-  def set_chapter
-    @chapter = Chapter.new
+  def set_topic
+    @topic = Topic.new
   end
 end

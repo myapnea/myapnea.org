@@ -20,12 +20,12 @@ class Reply < ApplicationRecord
 
   # Validations
   validates :description, :user_id, presence: true
-  # validates :chapter_id, :broadcast_id, presence: true
+  # validates :topic_id, :broadcast_id, presence: true
 
   # Relationships
   belongs_to :user
   belongs_to :broadcast
-  belongs_to :chapter
+  belongs_to :topic
   belongs_to :reply
   has_many :reply_users
 
@@ -36,14 +36,14 @@ class Reply < ApplicationRecord
   end
 
   def deleted_or_parent_deleted?
-    deleted? || (chapter && chapter.deleted?) || (broadcast && broadcast.deleted?)
+    deleted? || (topic && topic.deleted?) || (broadcast && broadcast.deleted?)
   end
 
   # TODO: Make this work for blog posts
   def read?(current_user)
-    return false unless chapter
-    chapter_user = chapter.chapter_users.find_by user: current_user
-    !chapter_user.nil? && chapter_user.last_reply_read_id.to_i >= id
+    return false unless topic
+    topic_user = topic.topic_users.find_by user: current_user
+    !topic_user.nil? && topic_user.last_reply_read_id.to_i >= id
   end
 
   def display_links?
@@ -51,7 +51,7 @@ class Reply < ApplicationRecord
   end
 
   def parent
-    chapter || broadcast
+    topic || broadcast
   end
 
   def number
@@ -139,7 +139,7 @@ class Reply < ApplicationRecord
   def notify_comment_author
     return if reply.user == user
     notification = reply.user.notifications.where(
-      chapter_id: chapter_id, broadcast_id: broadcast_id, reply_id: id
+      topic_id: topic_id, broadcast_id: broadcast_id, reply_id: id
     ).first_or_create
     notification.mark_as_unread!
   end
@@ -147,7 +147,7 @@ class Reply < ApplicationRecord
   def notify_parent_author
     return if parent.user == user
     notification = parent.user.notifications.where(
-      chapter_id: chapter_id, broadcast_id: broadcast_id, reply_id: id
+      topic_id: topic_id, broadcast_id: broadcast_id, reply_id: id
     ).first_or_create
     notification.mark_as_unread!
   end

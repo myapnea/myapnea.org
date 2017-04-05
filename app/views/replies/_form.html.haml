@@ -1,8 +1,8 @@
 - if reply.new_record?
-  - url = replies_path(broadcast_id: @broadcast, chapter_id: @chapter, format: 'js')
+  - url = replies_path(broadcast_id: @broadcast, topic_id: @topic, format: 'js')
   - method = :post
 - else
-  - url = reply_path(reply, broadcast_id: @broadcast, chapter_id: @chapter)
+  - url = reply_path(reply, broadcast_id: @broadcast, topic_id: @topic)
   - method = :patch
 
 - parent_reply_id = (reply.reply_id || 'root')
@@ -60,7 +60,7 @@
     .preview-body{ style: 'min-height: inherit;border-bottom: 3px solid #ffa400' }
       = form_tag async_parent_login_path, method: :post, remote: true, class: 'form-inline' do |f|
         = hidden_field_tag :broadcast_id, @broadcast.to_param
-        = hidden_field_tag :chapter_id, @chapter.to_param
+        = hidden_field_tag :topic_id, @topic.to_param
         = hidden_field_tag :parent_reply_id, parent_reply_id
         = hidden_field_tag :reply_id, reply_id
         .form-group

@@ -1,15 +1,15 @@
 .search-result
   .search-result-title
-    = link_to chapter.title, chapter
+    = link_to topic.title, topic
   .search-result-author
     Posted by
-    = chapter.user.forum_name
+    = topic.user.forum_name
     on
-    %i= chapter.created_at.strftime '%B %-d, %Y'
+    %i= topic.created_at.strftime '%B %-d, %Y'
     on
-    = link_to 'Forum', chapter
+    = link_to 'Forum', topic
   .search-result-body
-    - reply = chapter.replies.current.first
+    - reply = topic.replies.current.first
     - if reply
       - terms = @search.split(' & ')
       - description = strip_tags(simple_markdown reply.description, true, false).gsub(/\r/, ' ').gsub(/\n/, ' ')

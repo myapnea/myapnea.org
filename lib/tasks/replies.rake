@@ -3,7 +3,7 @@
 # TODO: Remove in v17.0.0
 
 namespace :replies do
-  desc 'Merge broadcast comments and chapter replies'
+  desc 'Merge broadcast comments and topic replies'
   task merge: :environment do
     reply_map = { 'broadcast_comment_id_' => nil }
     puts "Reply.count: #{Reply.count}"
@@ -18,7 +18,7 @@ namespace :replies do
         deleted: broadcast_comment.deleted,
         created_at: broadcast_comment.created_at,
         updated_at: broadcast_comment.updated_at,
-        chapter_id: nil
+        topic_id: nil
       )
       reply_map["broadcast_comment_id_#{broadcast_comment.id}"] = reply.id
       broadcast_comment.broadcast_comment_users.each do |broadcast_comment_user|
@@ -28,7 +28,7 @@ namespace :replies do
           vote: broadcast_comment_user.vote,
           created_at: broadcast_comment_user.created_at,
           updated_at: broadcast_comment_user.updated_at,
-          chapter_id: nil
+          topic_id: nil
         )
       end
     end

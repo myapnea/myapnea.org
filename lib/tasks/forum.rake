@@ -5,10 +5,10 @@ namespace :forum do
   task export: :environment do
     CSV.open('tmp/forum.csv', 'wb') do |csv|
       csv << %w(TopicID Type UserForumName Text Replies Views)
-      Chapter.current.each do |chapter|
-        location = [chapter.id]
-        csv << location + ['Topic', chapter.user.forum_name, chapter.title.downcase.tr("\n", ' '), chapter.replies.current.count, chapter.view_count]
-        chapter.replies.current.each do |reply|
+      Topic.current.each do |topic|
+        location = [topic.id]
+        csv << location + ['Topic', topic.user.forum_name, topic.title.downcase.tr("\n", ' '), topic.replies.current.count, topic.view_count]
+        topic.replies.current.each do |reply|
           csv << location + ['Reply', reply.user.forum_name, reply.description.downcase.tr("\n", ' ')]
         end
       end

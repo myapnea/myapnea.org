@@ -17,6 +17,7 @@
 ### Refactoring
 - Removed typeahead library
 - Combined blog post replies and forum topic replies into one model
+- Renamed internal forum chapters to topics
 
 ## 15.0.2 (January 23, 2017)
 

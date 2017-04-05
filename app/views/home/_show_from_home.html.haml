@@ -1,2 +1,2 @@
-- Reply.current.where(reply_id: nil).joins(:chapter).merge(Chapter.current).joins(:user).merge(User.current.where(shadow_banned: [nil, false])).order(created_at: :desc).limit(10).each do |reply|
+- Reply.current.where(reply_id: nil).joins(:topic).merge(Topic.current).joins(:user).merge(User.current.where(shadow_banned: [nil, false])).order(created_at: :desc).limit(10).each do |reply|
   = render 'replies/show', level: 0, reply: reply, include_parent_title: true
