@@ -3,7 +3,7 @@
     - Survey.joins(:answer_sessions).group(:id).order('count(answer_sessions)').last(3).each do |survey|
       = link_to report_survey_path(survey) do
         = image_tag 'myapnea/icons/data_display'+rand(1..3).to_s+'.png', class: 'img-responsive', style: 'margin: 0 auto; width: 80%; max-width:250px; border-radius: 10px;'
-        %p.f300.centered
+        %p.f300.center
           = survey.name
         %br
 - elsif current_user.incomplete_answer_sessions.present?

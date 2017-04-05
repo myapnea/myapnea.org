@@ -1,7 +1,7 @@
 #risk-assessment-container
   .row.logo-color-bcg{ style: 'padding-bottom:10px;' }
     .col-sm-8
-      %h1.centered.white
+      %h1.center.white
         Sleep Apnea Risk Assessment
     #risk-assessment-logo.col-sm-2.col-sm-offset-1
       = link_to root_path do
@@ -126,7 +126,7 @@
               = radio_button_tag 'neck', 'no'
               %label{ for: 'neck' }
                 %p No
-        #stopbang-submit.centered
+        #stopbang-submit.center
           %button.btn.btn-success.disabled{ data: { object: 'submit-risk-assessment'} }
             %h3 Check My Risk
   .row.primary-orange-bcg

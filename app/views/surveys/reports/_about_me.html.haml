@@ -34,13 +34,13 @@
     - answer_template = question.first_radio_or_checkbox_answer_template if question
     - answer_option_counts = TemporaryReport.answer_option_counts(@survey, question, answer_template, encounter: @encounter, range: 1..2)
     .row.reset-layout
-      .col-xs-6.centered
+      .col-xs-6.center
         %h1.report-statistic Yes
         %p.lead
           Yes:
           - report_item = ReportItem.new(answer_option_counts, answer_template, 2)
           %span.f500.darkerer-blue= report_item.percent
-      .col-xs-6.centered
+      .col-xs-6.center
         %h1.report-statistic No
         %p.lead
           No:

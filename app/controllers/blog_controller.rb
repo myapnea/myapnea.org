@@ -6,6 +6,8 @@ class BlogController < ApplicationController
   before_action :set_author, only: [:blog]
   before_action :set_category, only: [:blog]
 
+  layout 'application-padded'
+
   def blog
     broadcast_scope = Broadcast.current.published.order(publish_date: :desc, id: :desc)
     broadcast_scope = broadcast_scope.where(user: @author) if @author
@@ -20,19 +22,20 @@ class BlogController < ApplicationController
   def show
     @author = @broadcast.user
     @page = (params[:page].to_i > 1 ? params[:page].to_i : 1)
-
     @order = scrub_order(Reply, params[:order], 'points desc')
     if ['points', 'points desc'].include?(params[:order])
       @order = params[:order]
     end
-    @replies = @broadcast.replies.points.includes(:broadcast).where(reply_id: nil).reorder(@order).page(params[:page]).per(Reply::REPLIES_PER_PAGE)
+    @replies = @broadcast.replies.points.includes(:broadcast)
+                         .where(reply_id: nil).reorder(@order)
+                         .page(params[:page]).per(Reply::REPLIES_PER_PAGE)
     @broadcast.increment! :view_count
   end
 
   private
 
   def find_broadcast_or_redirect
-    @broadcast = Broadcast.current.published.find_by_slug params[:slug]
+    @broadcast = Broadcast.current.published.find_by(slug: params[:slug])
     redirect_to blog_path unless @broadcast
   end
 

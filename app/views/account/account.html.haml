@@ -35,7 +35,7 @@
       %a.settings-anchor#change-information
       .content-container
         .content-header
-          %h3.f300.centered
+          %h3.f300.center
             Basic Information
         .content-body
           = form_for current_user, url: update_account_path, html: { class: 'form-horizontal' } do |f|
@@ -57,9 +57,9 @@
       %a.settings-anchor#change-member-type
       .content-container
         .content-header
-          %h3.f300.centered
+          %h3.f300.center
             Your Role
-        .content-body.centered
+        .content-body.center
           - if current_user.has_user_type?
             .horizontal-inset
               - current_user.user_type_names.each do |type|
@@ -73,7 +73,7 @@
       %a.settings-anchor#change-password
       .content-container
         .content-header
-          %h3.f300.centered
+          %h3.f300.center
             Change Your Password
         .content-body
           = form_for current_user, url: change_password_path, html: { class: 'form-horizontal' } do |f|
@@ -98,7 +98,7 @@
 
 
       %a.settings-anchor#select-provider
-      .content-container.centered
+      .content-container.center
         .content-header
           %h3.f300
             Your Provider
@@ -119,7 +119,7 @@
               = link_to 'invite them!', providers_invites_path
 
       %a.settings-anchor#notification-preferences
-      .content-container.centered
+      .content-container.center
         .content-header
           %h3.f300
             Notification Preferences
@@ -149,7 +149,7 @@
 
 .content-container
   .content-header
-    %h3.f300.centered
+    %h3.f300.center
       Delete My Account
   .content-body
     %p.lead

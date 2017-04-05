@@ -7,6 +7,8 @@ class TopicsController < ApplicationController
   before_action :find_editable_topic_or_redirect, only: [:edit, :update, :destroy]
   # before_action :redirect_shadow_banned_users, only: [:create]
 
+  layout 'application-padded'
+
   # GET /topics
   def index
     @order = scrub_order(Topic, params[:order], 'pinned desc, last_reply_at desc, id desc')

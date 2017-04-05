@@ -65,16 +65,16 @@
 
       .row
         .col-xs-12
-          %h1.darker-blue.centered
+          %h1.darker-blue.center
             Our Community
-          %h3.dark8.centered
+          %h3.dark8.center
             MyApnea.Org is a community built by people with sleep apnea, family members, providers, and researchers to share and learn from one another.
       %br
       .row
         .col-sm-4
           = link_to blog_path, class: 'no-underline' do
             .community-highlight-links
-              %h2.centered
+              %h2.center
                 Community Blog
               %p.lead.dark7
                 Read articles about sleep apnea written by your fellow community
@@ -83,7 +83,7 @@
         .col-sm-4
           = link_to surveys_path, class: 'no-underline' do
             .community-highlight-links
-              %h2.centered
+              %h2.center
                 Research Surveys
               %p.lead.dark7
                 Answer a series of questions about symptoms, treatment, and related
@@ -93,7 +93,7 @@
         .col-sm-4
           = link_to forums_path, class: 'no-underline' do
             .community-highlight-links
-              %h2.centered
+              %h2.center
                 Active Forums
               %p.lead.dark7
                 Discuss with others about living with sleep apnea and what is important
@@ -117,28 +117,28 @@
             any questions about this process or would like any help, please feel
             free to
             %a{ href: "mailto:#{ENV['support_email']}" } contact us.
-          %p.lead.centered.f700
+          %p.lead.center.f700
             Your personal url:
             %br
             %span.wrapword= link_to ENV['website_url'] + '/p/' + current_user.slug, ENV['website_url'] + '/p/'+ current_user.slug
         - elsif current_user.provider_id == @provider.id
-          %p.lead.centered
+          %p.lead.center
             It looks like
             = @provider.provider_name
             is your provider.
           %br
-          %p.lead.centered.f700
+          %p.lead.center.f700
             If you want to get in touch with them, feel free to
             = link_to('send them an email', "mailto:#{@provider.email}")+"."
         - else
-          %p.lead.centered
+          %p.lead.center
             Hi there,
             = current_user.first_name + '!'
             It looks like
             = @provider.provider_name
             is not your provider.
           %br
-          %p.lead.centered.f700
+          %p.lead.center.f700
             Do you want to list them as your primary care provider?
-          .centered
+          .center
             = link_to "Yes, list #{@provider.provider_name} as my provider!", update_account_path(:user => { provider_id: @provider.id }), method: :patch, class: 'btn btn-primary-custom'

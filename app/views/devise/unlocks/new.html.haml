@@ -3,7 +3,7 @@
 
 .row
   .col-sm-6.col-sm-offset-3
-    %h1.centered.f300{ style: 'font-size: 24px;margin-bottom: 40px' } Resend unlock instructions
+    %h1.center.f300{ style: 'font-size: 24px;margin-bottom: 40px' } Resend unlock instructions
     .content-container
       = form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post, class: 'form-vertical' }) do |f|
         - if resource.errors.any?

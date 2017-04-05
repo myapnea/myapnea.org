@@ -7,7 +7,7 @@
       .pep-header
       = image_tag team_member_photo_url(@pep_member)
       .pep-footer
-        %h3.centered= @pep_member.name
+        %h3.center= @pep_member.name
         %p.lead= @pep_member.bio
         %hr
         %p= simple_markdown @pep_member.interview

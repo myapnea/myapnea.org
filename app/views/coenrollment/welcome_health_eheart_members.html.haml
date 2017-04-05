@@ -5,7 +5,7 @@
 .slide-signup-form
   .container
     .row
-      .col-md-7.centered
+      .col-md-7.center
         %h1.white
           Improving the lives of
           %br.hidden-xs
@@ -38,10 +38,10 @@
             .col-sm-12
               = f.check_box :over_eighteen
               = f.label :over_eighteen, 'I am over the age of 18'
-          .input-group.centered
+          .input-group.center
             = f.submit 'Join Today', class: "btn-join"
         %br
-        .centered
+        .center
           Already have an account?
           = link_to 'Sign in now', new_user_session_path, class: 'no-underline darkerer-blue'
 

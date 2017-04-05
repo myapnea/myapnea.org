@@ -15,13 +15,13 @@
           = render 'search/topic', topic: document.searchable
         - when 'Reply'
           = render 'search/reply', reply: document.searchable
-      .centered= paginate @search_documents, theme: 'bootstrap'
+      .center= paginate @search_documents, theme: 'bootstrap'
     - else
-      .centered
+      .center
         = image_tag 'myapnea/user_types/role_confused.png'
-      %p.lead.centered.text-muted
+      %p.lead.center.text-muted
         No Search Results Found
-      %p.lead.centered
+      %p.lead.center
         You may modify your search or return to
         = succeed '.' do
           = link_to 'our blog', blog_path

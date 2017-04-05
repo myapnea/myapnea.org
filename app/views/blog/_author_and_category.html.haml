@@ -1,5 +1,10 @@
 .broadcast-info
-  Posted by
+  .pull-right
+    &nbsp;
+    = link_to blog_post_path(broadcast.url_hash.merge(anchor: 'comments')), class: 'no-underline', data: { turbolinks: false } do
+      %i.fa.fa-comments
+      = broadcast.replies.count
+  By
   = link_to broadcast.user.forum_name, blog_author_path(author: broadcast.user.forum_name)
   on
   %i= broadcast.publish_date.strftime '%B %-d, %Y'

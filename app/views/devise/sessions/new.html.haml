@@ -3,7 +3,7 @@
 
 .row
   .col-sm-6.col-sm-offset-3
-    %h1.centered.f300{ style: 'font-size: 24px;margin-bottom: 40px' } Sign in to MyApnea
+    %h1.center.f300{ style: 'font-size: 24px;margin-bottom: 40px' } Sign in to MyApnea
     .content-container
       = form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'form-vertical' }) do |f|
         .form-group{ class: flash[:alert].present? ? 'has-error' : '' }
@@ -20,6 +20,6 @@
             .alert.alert-warning= flash[:alert].html_safe
           = f.submit 'Sign in', class: 'btn btn-primary btn-block'
 
-    .content-container.centered{ style: 'background-color: transparent' }
+    .content-container.center{ style: 'background-color: transparent' }
       New to MyApnea?
       = link_to 'Create an account.', new_user_registration_path

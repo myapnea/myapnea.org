@@ -5,7 +5,7 @@
 
 .row
   .col-sm-6.col-sm-offset-3
-    %h1.centered.f300{ style: 'font-size: 24px;margin-bottom: 40px' }= @title
+    %h1.center.f300{ style: 'font-size: 24px;margin-bottom: 40px' }= @title
     .content-container
 
       = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put, class: 'form-vertical' }) do |f|

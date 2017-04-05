@@ -4,7 +4,7 @@
   .logo-color-bcg{ style: 'padding-bottom:10px;' }
     .row
       .col-sm-8
-        %h1.centered.white
+        %h1.center.white
           Sleep Apnea Risk Assessment
       #risk-assessment-logo.col-sm-2.col-sm-offset-1
         = link_to root_path do
@@ -24,7 +24,7 @@
       #high-risk-connector.row.reset-layout.risk-connector{ class: "#{'risk-level-active' if @risk_category==3}" }
       #middle-risk-connector.row.reset-layout.risk-connector{ class: "#{'risk-level-active' if @risk_category==2}" }
       #low-risk-connector.row.reset-layout.risk-connector{ class: "#{'risk-level-active' if @risk_category==1}" }
-    .col-sm-5.centered{ id: "#{'risk-assessment-results-' + @risk_category.to_s }" }
+    .col-sm-5.center{ id: "#{'risk-assessment-results-' + @risk_category.to_s }" }
       %h2.f300
         Your risk score is:
         %br

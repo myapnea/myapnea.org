@@ -36,12 +36,24 @@
   h1 {
     font-size: 30px;
   }
+
+  .dropdown,
+  .pull-right {
+    line-height: 33px; // h1 font size * 1.1
+    position: relative;
+    z-index: 1;
+  }
 }
 
 @media screen and (min-width: $screen-sm-min) {
   .header-container {
     h1 {
-      font-size: 38px
+      font-size: 38px;
+    }
+
+    .dropdown,
+    .pull-right {
+      line-height: 41.8px; // h1 font size * 1.1
     }
   }
 }
@@ -49,7 +61,12 @@
 @media screen and (min-width: $screen-md-min) {
   .header-container {
     h1 {
-      font-size: 41px
+      font-size: 41px;
+    }
+
+    .dropdown,
+    .pull-right {
+      line-height: 45.1px; // h1 font size * 1.1
     }
   }
 }
@@ -70,7 +87,7 @@
       display: none;
     }
     .navbar-show-scrolled {
-      color: $brand-white;
+      // color: $brand-white;
       display: block;
       overflow: hidden;
       text-overflow: ellipsis;

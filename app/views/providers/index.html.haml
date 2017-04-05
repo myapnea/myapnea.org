@@ -11,7 +11,7 @@
 .clearfix
 
 - if @providers.count == 0 && params[:s].present?
-  %p.lead.centered
+  %p.lead.center
     Sorry, we could not find any providers matching your search:
     %code= params[:s]
 - else

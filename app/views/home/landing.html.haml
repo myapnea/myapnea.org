@@ -3,7 +3,7 @@
   .slide-signup-form
     .container
       .row
-        .col-md-7.centered
+        .col-md-7.center
           %h1.white
             Improving the lives of
             %br.hidden-xs
@@ -34,7 +34,7 @@
               .col-sm-12
                 = f.check_box :over_eighteen
                 = f.label :over_eighteen, 'I am over the age of 18'
-            .input-group.centered
+            .input-group.center
               - if RECAPTCHA_ENABLED
                 %button.g-recaptcha.btn-join{ data: { sitekey: ENV['recaptcha_site_key'], callback: 'recaptchaFormSubmit' } } Join Today
                 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
@@ -42,7 +42,7 @@
                 = f.submit 'Join Today', class: 'btn-join'
 
           %br
-          .centered
+          .center
             Are you always tired?
             = link_to 'Check your risk now', sleep_apnea_risk_assessment_path, class: 'no-underline darkerer-blue'
 
@@ -88,7 +88,7 @@
 
   .slide-highlights
     .container
-      %h1.white.centered
+      %h1.white.center
         With a few minutes, you can:
       %br
       .row
@@ -110,7 +110,7 @@
         .col-sm-9.testimonial
           %p.lead
             "It seems as if research is generally driven by funding organizations, which oftentimes is not reflective of the needs of patients. By having large amounts of data provided by and for us, we can now drive the research agenda. This is a way to democratize research—to generate understanding on the part of the researchers and patients together."
-          %h4.centered
+          %h4.center
             \- Kathy Page
             %span.f300 (member with sleep apnea)
 

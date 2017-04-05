@@ -23,7 +23,7 @@
     %i.fa.fa-print
     Print Terms of Access
   - if current_user && !part_of_registration && (current_user.provider? || current_user.researcher?)
-    .content-footer.centered
+    .content-footer.center
       - if current_user.ready_for_research?
         = succeed ' ' do
           = link_to :back, class: 'btn btn-lg btn-default-custom' do
