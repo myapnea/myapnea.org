@@ -23,8 +23,9 @@ $brand-warning:         #ffa400 !default; //#f0ad4e !default;
 $brand-gray:            #ccc;
 $brand-gray-lighter:    #ededed;
 $brand-gray-lightest:   #f9f9f9;
-$brand-black:           $p900-blue;
-$brand-white:           #fff;
+$brand-black:           $p900-blue !default;
+$brand-muted:           $p300-blue !default;
+$brand-white:           #fff !default;
 $brand-shadow-start:    rgba(0, 0, 0, .075);
 $brand-accent:          $p200-orange !default; // Perhaps change to $a200-orange.
 // //== Scaffolding
@@ -48,7 +49,7 @@ $brand-accent:          $p200-orange !default; // Perhaps change to $a200-orange
 // //
 // //## Font, line-height, and color for body text, headings, and more.
 
-$font-family-sans-serif:  'Open Sans', sans-serif; // $font-family-sans-serif:  "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+$font-family-sans-serif: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 // $font-family-serif:       Georgia, "Times New Roman", Times, serif !default;
 // //** Default monospace fonts for `<code>`, `<kbd>`, and `<pre>`.
 // $font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace !default;
@@ -304,8 +305,8 @@ $font-size-base:          16px !default; //14px !default;
 
 // // Medium screen / desktop
 // //** Deprecated `$screen-md` as of v3.0.1
-$screen-md:                  992px !default;
-$screen-md-min:              $screen-md !default;
+// $screen-md:                  992px !default;
+// $screen-md-min:              $screen-md !default;
 // //** Deprecated `$screen-desktop` as of v3.0.1
 // $screen-desktop:             $screen-md-min !default;
 
@@ -318,7 +319,7 @@ $screen-md-min:              $screen-md !default;
 
 // // So media queries don't overlap when required, provide a maximum
 // $screen-xs-max:              ($screen-sm-min - 1) !default;
-$screen-sm-max:              ($screen-md-min - 1) !default;
+// $screen-sm-max:              ($screen-md-min - 1) !default;
 // $screen-md-max:              ($screen-lg-min - 1) !default;
 
 
@@ -332,7 +333,7 @@ $screen-sm-max:              ($screen-md-min - 1) !default;
 // $grid-gutter-width:         30px !default;
 // // Navbar collapse
 // //** Point at which the navbar becomes uncollapsed.
-$grid-float-breakpoint:     $screen-md-min !default; // $grid-float-breakpoint:     $screen-sm-min !default;
+// $grid-float-breakpoint:     $screen-sm-min !default;
 // //** Point at which the navbar begins collapsing.
 // $grid-float-breakpoint-max: ($grid-float-breakpoint - 1) !default;
 

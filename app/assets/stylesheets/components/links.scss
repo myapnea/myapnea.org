@@ -41,6 +41,17 @@
   }
 }
 
+.link-muted {
+  color: $text-muted;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: $text-muted;
+    text-decoration: none;
+  }
+}
+
 // TODO: Cleanup/refactor following
 
 a.no-underline,

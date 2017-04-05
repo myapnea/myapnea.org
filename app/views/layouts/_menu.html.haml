@@ -13,7 +13,7 @@
           = @menu_title || @title
     .collapse.navbar-collapse.navbar-full-menu
       %ul.nav.navbar-nav.navbar-hide-scrolled
-        %li{ class: "#{'active' if current_page?(root_url) || true}" }
+        %li{ class: "#{'active' if current_page?(root_url)}" }
           = link_to landing3_path do
             Dashboard
         %li{ class: "#{'active' if current_page?(chapters_path)}" }
@@ -31,8 +31,8 @@
           = link_to 'Logout', destroy_user_session_path, class: 'btn btn-primary-dark'
 
         %ul.nav.navbar-nav.navbar-right
-          %li.hidden-xs
-            = link_to notifications_path, class: 'notifications-link' do
+          %li.hidden-xs{ class: current_page?(notifications_path) ? 'active' : nil }
+            = link_to notifications_path, class: "#{'notifications-link' if current_user.unread_notifications?}" do
               %span.glyphicon.glyphicon-bell
           %li.dropdown.hidden-xs
             = link_to '#', class: 'dropdown-toggle', data: { object: 'dropdown', toggle: 'dropdown' } do
