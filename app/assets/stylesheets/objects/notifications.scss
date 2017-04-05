@@ -1,0 +1,18 @@
+@keyframes pulse-notifications {
+  from {
+    color: $state-warning-bg;
+  }
+
+  to {
+    color: $p100-blue;
+  }
+}
+
+.navbar-default .navbar-nav .notifications-link span {
+  animation: pulse-notifications 2s ease-in infinite alternate;
+  color: $state-warning-bg;
+}
+
+.navbar-default .navbar-nav .notifications-link:hover span {
+  color: darken($state-warning-bg, 15%);
+}

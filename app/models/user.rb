@@ -37,7 +37,7 @@ class User < ApplicationRecord
   scope :providers, -> { current.where(provider: true) }
   scope :providers_with_profiles, -> { providers.where.not(slug: [nil,''], provider_name: [nil,'']) }
   scope :include_in_exports_and_reports, -> { where(include_in_exports: true) }
-  scope :reply_count, -> { select('users.*, COALESCE(COUNT(replies.id), 0) reply_count').joins('LEFT OUTER JOIN replies ON replies.user_id = users.id and replies.deleted IS FALSE and replies.chapter_id IN (SELECT chapters.id FROM chapters WHERE chapters.deleted IS FALSE)').group('users.id') }
+  scope :reply_count, -> { select('users.*, COALESCE(COUNT(replies.id), 0) reply_count').joins('LEFT OUTER JOIN replies ON replies.user_id = users.id and replies.deleted IS FALSE and replies.topic_id IN (SELECT topics.id FROM topics WHERE topics.deleted IS FALSE)').group('users.id') }
 
   # Model Validation
   validates :first_name, :last_name, presence: true
@@ -60,9 +60,9 @@ class User < ApplicationRecord
   has_many :answers
   has_many :broadcasts, -> { current }
   has_many :broadcast_comments
-  has_many :chapters, -> { current }
-  has_many :chapter_users
-  has_many :replies, -> { current.joins(:chapter).merge(Chapter.current) }
+  has_many :topics, -> { current }
+  has_many :topic_users
+  has_many :replies, -> { current.joins(:topic).merge(Topic.current) }
   has_one :social_profile, -> { where deleted: false }
   has_many :images
   has_many :notifications
@@ -94,10 +94,12 @@ class User < ApplicationRecord
     super
   end
 
-  def read_chapter!(chapter, current_reply_read_id)
-    chapter_user = chapter_users.where(chapter_id: chapter.id).first_or_create
-    chapter_user.update current_reply_read_id: [chapter_user.current_reply_read_id.to_i, current_reply_read_id].max,
-                        last_reply_read_id: chapter_user.current_reply_read_id
+  def read_parent!(parent, current_reply_read_id)
+    # TODO: Allow blog posts to be read as well...
+    return unless parent.is_a?(Topic)
+    topic_user = topic_users.where(topic_id: parent.id).first_or_create
+    topic_user.update current_reply_read_id: [topic_user.current_reply_read_id.to_i, current_reply_read_id].max,
+                        last_reply_read_id: topic_user.current_reply_read_id
   end
 
   def is_only_researcher?
@@ -128,11 +130,11 @@ class User < ApplicationRecord
     end.compact
   end
 
-  def editable_chapters
+  def editable_topics
     if moderator? || owner?
-      Chapter.current
+      Topic.current
     else
-      chapters
+      topics
     end
   end
 

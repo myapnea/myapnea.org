@@ -23,7 +23,7 @@
   tooltipsReady()
 
 @objectsReady = ->
-  topicsReady()
+  repliesReady()
 
 # These functions get called on initial page visit and on turbolink page changes
 @turbolinksReady = ->

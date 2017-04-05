@@ -18,20 +18,20 @@ class RepliesControllerTest < ActionController::TestCase
 
   # test 'should get index' do
   #   login(@regular_user)
-  #   get :index, chapter_id: @reply.chapter.to_param
+  #   get :index, topic_id: @reply.topic.to_param
   #   assert_response :success
   #   assert_not_nil assigns(:replies)
   # end
 
   # test 'should get new' do
   #   login(@regular_user)
-  #   get :new, chapter_id: @reply.chapter.to_param
+  #   get :new, topic_id: @reply.topic.to_param
   #   assert_response :success
   # end
 
   test 'should preview reply' do
     login(@regular_user)
-    post :preview, params: { parent_comment_id: 'root', reply_id: 'new', reply: reply_params }, format: 'js'
+    post :preview, params: { parent_reply_id: 'root', reply_id: 'new', reply: reply_params }, format: 'js'
     assert_template 'preview'
     assert_response :success
   end
@@ -39,7 +39,7 @@ class RepliesControllerTest < ActionController::TestCase
   test 'should create reply' do
     login(@regular_user)
     assert_difference('Reply.count') do
-      post :create, params: { chapter_id: @reply.chapter.to_param, reply: reply_params }, format: 'js'
+      post :create, params: { topic_id: @reply.topic.to_param, reply: reply_params }, format: 'js'
     end
     assert_nil assigns(:reply).user.shadow_banned
     assert_template 'create'
@@ -50,7 +50,7 @@ class RepliesControllerTest < ActionController::TestCase
     login(@regular_user)
     assert_difference('Reply.count') do
       post :create, params: {
-        chapter_id: @reply.chapter.to_param,
+        topic_id: @reply.topic.to_param,
         reply: reply_params.merge(description: "http://www.example.com\nhttp://www.example.com")
       }, format: 'js'
     end
@@ -61,32 +61,32 @@ class RepliesControllerTest < ActionController::TestCase
 
   test 'should show reply and redirect to correct page' do
     login(@regular_user)
-    get :show, params: { chapter_id: @reply.chapter.to_param, id: @reply }
-    assert_redirected_to page_chapter_path(@reply.chapter, page: @reply.page, anchor: @reply.anchor)
+    get :show, params: { topic_id: @reply.topic.to_param, id: @reply }
+    assert_redirected_to page_topic_path(@reply.topic, page: @reply.page, anchor: @reply.anchor)
   end
 
   test 'should show reply' do
     login(@regular_user)
-    get :show, params: { chapter_id: @reply.chapter.to_param, id: @reply }, xhr: true, format: 'js'
+    get :show, params: { topic_id: @reply.topic.to_param, id: @reply }, xhr: true, format: 'js'
     assert_template 'show'
     assert_response :success
   end
 
-  test 'should redirect to forum for deleted replies' do
+  test 'should redirect to root path for deleted replies' do
     get :show, params: { id: replies(:deleted) }
-    assert_redirected_to chapters_path
+    assert_redirected_to root_path
   end
 
   test 'should get edit' do
     login(@regular_user)
-    get :edit, params: { chapter_id: @reply.chapter.to_param, id: @reply }, xhr: true, format: 'js'
+    get :edit, params: { topic_id: @reply.topic.to_param, id: @reply }, xhr: true, format: 'js'
     assert_template 'edit'
     assert_response :success
   end
 
   test 'should update reply' do
     login(@regular_user)
-    patch :update, params: { chapter_id: @reply.chapter.to_param, id: @reply, reply: reply_params }, format: 'js'
+    patch :update, params: { topic_id: @reply.topic.to_param, id: @reply, reply: reply_params }, format: 'js'
     assert_nil assigns(:reply).user.shadow_banned
     assert_template 'show'
     assert_response :success
@@ -95,7 +95,7 @@ class RepliesControllerTest < ActionController::TestCase
   test 'should update reply and shadow ban spammer' do
     login(@regular_user)
     patch :update, params: {
-      chapter_id: @reply.chapter.to_param, id: @reply,
+      topic_id: @reply.topic.to_param, id: @reply,
       reply: reply_params.merge(description: "http://www.example.com\nhttp://www.example.com")
     }, format: 'js'
     assert_equal true, assigns(:reply).user.shadow_banned
@@ -106,7 +106,7 @@ class RepliesControllerTest < ActionController::TestCase
   test 'should destroy reply' do
     login(@regular_user)
     assert_difference('Reply.current.count', -1) do
-      delete :destroy, params: { chapter_id: @reply.chapter.to_param, id: @reply }, format: 'js'
+      delete :destroy, params: { topic_id: @reply.topic.to_param, id: @reply }, format: 'js'
     end
     assert_template 'show'
     assert_response :success

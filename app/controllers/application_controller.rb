@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   before_action :check_ip_banlist
 
   def store_location
-    if (params[:controller].in?(%w(forums topics posts blog chapters replies)) &&
+    if (params[:controller].in?(%w(topics blog replies)) &&
         !request.fullpath.match("#{request.script_name}/login") &&
         !request.fullpath.match("#{request.script_name}/join") &&
         !request.fullpath.match("#{request.script_name}/password") &&
@@ -25,20 +25,8 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def set_active_top_nav_link_to_home
-    @active_top_nav_link = :home
-  end
-
-  def set_active_top_nav_link_to_forums
-    @active_top_nav_link = :forums
-  end
-
   def set_active_top_nav_link_to_surveys
     @active_top_nav_link = :surveys
-  end
-
-  def set_active_top_nav_link_to_research
-    @active_top_nav_link = :research
   end
 
   def set_active_top_nav_link_to_learn

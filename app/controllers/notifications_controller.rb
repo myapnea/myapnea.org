@@ -5,7 +5,9 @@
 class NotificationsController < ApplicationController
   before_action :authenticate_user!
   before_action :find_notification_or_redirect, only: [:show, :update]
-  before_action :set_broadcast_or_chapter, only: [:mark_all_as_read]
+  before_action :set_broadcast_or_topic, only: [:mark_all_as_read]
+
+  layout 'application-padded'
 
   # GET /notifications
   def index
@@ -31,24 +33,25 @@ class NotificationsController < ApplicationController
   # PATCH /notifications/mark_all_as_read
   def mark_all_as_read
     if @broadcast
-      @notifications = current_user.notifications.where(broadcast_id: @broadcast.id)
-    elsif @chapter
-      @notifications = current_user.notifications.where(chapter_id: @chapter.id)
+      notification_ids = current_user.notifications.where(broadcast_id: @broadcast.id).pluck(:id)
+    elsif @topic
+      notification_ids = current_user.notifications.where(topic_id: @topic.id).pluck(:id)
     else
-      @notifications = Notification.none
+      notification_ids = []
     end
-    @notifications.update_all read: true
+    current_user.notifications.where(id: notification_ids).update_all(read: true)
+    @notifications = current_user.notifications.where(id: notification_ids)
   end
 
   private
 
-  def set_broadcast_or_chapter
-    @broadcast = Broadcast.current.published.find_by_id params[:broadcast_id]
-    @chapter = Chapter.current.find_by_id params[:chapter_id]
+  def set_broadcast_or_topic
+    @broadcast = Broadcast.current.published.find_by(id: params[:broadcast_id])
+    @topic = Topic.current.find_by(id: params[:topic_id])
   end
 
   def find_notification_or_redirect
-    @notification = current_user.notifications.find_by_id params[:id]
+    @notification = current_user.notifications.find_by(id: params[:id])
     redirect_to notifications_path unless @notification
   end
 
@@ -57,7 +60,6 @@ class NotificationsController < ApplicationController
   end
 
   def notification_redirect_path
-    return blog_post_path(@notification.broadcast.url_hash.merge(anchor: "comment-#{@notification.broadcast_comment_id}")) if @notification.broadcast_comment
     return reply_path(@notification.reply) if @notification.reply
     notifications_path
   end

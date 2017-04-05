@@ -4,7 +4,7 @@ class MembersController < ApplicationController
   before_action :find_member_or_redirect, only: [:show]
 
   def index
-    redirect_to chapters_path
+    redirect_to topics_path
   end
 
   def show

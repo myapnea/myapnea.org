@@ -1,47 +1,49 @@
 # frozen_string_literal: true
 
-# Allows community members to reply to forum topics. Replies can also be nested
-# under other replies.
+# Allows community members to reply to forum topics and blog posts. Replies can
+# also be nested under other replies.
 class Reply < ApplicationRecord
   # Constants
   THRESHOLD = -10
+  REPLIES_PER_PAGE = 20
 
   # Concerns
-  include Deletable, UrlCountable
+  include Deletable
   include PgSearch
+  include UrlCountable
   multisearchable against: [:description],
-                  unless: :deleted_or_chapter_deleted?
+                  unless: :deleted_or_parent_deleted?
 
   # Scopes
   scope :points, -> { select('replies.*, COALESCE(SUM(reply_users.vote), 0)  points').joins('LEFT JOIN reply_users ON reply_users.reply_id = replies.id').group('replies.id') }
   scope :shadow_banned, -> (arg) { joins(:user).merge(User.where(shadow_banned: [nil, false]).or(User.where(id: arg))) }
 
-  # Model Validation
-  validates :description, :user_id, :chapter_id, presence: true
+  # Validations
+  validates :description, :user_id, presence: true
+  # validates :topic_id, :broadcast_id, presence: true
 
-  # Model Relationships
+  # Relationships
   belongs_to :user
-  belongs_to :chapter
+  belongs_to :broadcast
+  belongs_to :topic
   belongs_to :reply
   has_many :reply_users
 
-  # Model Methods
+  # Methods
   def destroy
     super
     update_pg_search_document
   end
 
-  def deleted_or_chapter_deleted?
-    deleted? || chapter.deleted?
+  def deleted_or_parent_deleted?
+    deleted? || (topic && topic.deleted?) || (broadcast && broadcast.deleted?)
   end
 
+  # TODO: Make this work for blog posts
   def read?(current_user)
-    chapter_user = chapter.chapter_users.find_by user: current_user
-    if chapter_user && chapter_user.last_reply_read_id.to_i >= id
-      true
-    else
-      false
-    end
+    return false unless topic
+    topic_user = topic.topic_users.find_by user: current_user
+    !topic_user.nil? && topic_user.last_reply_read_id.to_i >= id
   end
 
   def display_links?
@@ -49,11 +51,11 @@ class Reply < ApplicationRecord
   end
 
   def parent
-    chapter # || broadcast
+    topic || broadcast
   end
 
   def number
-    chapter.replies.where(reply_id: nil).pluck(:id).index(id) + 1
+    parent.replies.where(reply_id: nil).pluck(:id).index(id) + 1
   rescue
     0
   end
@@ -62,7 +64,7 @@ class Reply < ApplicationRecord
     if reply
       reply.page
     else
-      ((number - 1) / Chapter::REPLIES_PER_PAGE) + 1
+      ((number - 1) / REPLIES_PER_PAGE) + 1
     end
   end
 
@@ -70,8 +72,8 @@ class Reply < ApplicationRecord
     "comment-#{id}"
   end
 
-  def chapter_author?
-    chapter.user_id == user_id
+  def parent_author?
+    parent.user_id == user_id
   end
 
   def rank
@@ -83,11 +85,11 @@ class Reply < ApplicationRecord
   end
 
   def order_newest
-    -id
+    -created_at.to_i
   end
 
   def order_oldest
-    id
+    created_at.to_i
   end
 
   def order_best
@@ -113,7 +115,7 @@ class Reply < ApplicationRecord
     end
   end
 
-  def parent_comment_id
+  def parent_reply_id
     reply_id || 'root'
   end
 
@@ -130,19 +132,23 @@ class Reply < ApplicationRecord
     if reply
       notify_comment_author
     else
-      notify_chapter_author
+      notify_parent_author
     end
   end
 
   def notify_comment_author
     return if reply.user == user
-    notification = reply.user.notifications.where(chapter_id: chapter_id, reply_id: id).first_or_create
+    notification = reply.user.notifications.where(
+      topic_id: topic_id, broadcast_id: broadcast_id, reply_id: id
+    ).first_or_create
     notification.mark_as_unread!
   end
 
-  def notify_chapter_author
-    return if chapter.user == user
-    notification = chapter.user.notifications.where(chapter_id: chapter_id, reply_id: id).first_or_create
+  def notify_parent_author
+    return if parent.user == user
+    notification = parent.user.notifications.where(
+      topic_id: topic_id, broadcast_id: broadcast_id, reply_id: id
+    ).first_or_create
     notification.mark_as_unread!
   end
 

@@ -1,20 +1,69 @@
 one:
+  id: 1
+  # broadcast:
+  topic: one
+  description: I thought I'd make my first topic to get some dialogue started.
   user: user_1
-  description: This topic was great!
-  chapter: one
-  # reply:
-  deleted: false
+
+nested:
+  id: 7
+  user: user_2
+  description: I totally agree with valid.
+  # broadcast:
+  topic: one
+  reply: one
 
 two:
+  id: 2
+  # broadcast:
+  topic: two
+  description: I would like to get some feedback on how to select a variable for my paper.
   user: user_2
-  description: I totally agree with user_1.
-  chapter: one
-  reply: one
-  deleted: false
+
+# three:
+#   id: 3
+#   # broadcast:
+#   topic: locked
+#   description: I made the first comment on this topic.
+#   user: user_1
+
+# four:
+#   id: 4
+#   # broadcast:
+#   topic: locked
+#   description: This is the last comment on the locked topic.
+#   user: owner
+
+banned:
+  id: 5
+  # broadcast:
+  topic: one
+  description: This comment got me banned.
+  user: shadow_banned
+
+six:
+  id: 6
+  # broadcast:
+  topic: one
+  description: Removed the comment above.
+  user: user_1
+
+blog_one:
+  broadcast: published
+  # topic:
+  description: Reply to the blog post.
+  user: user_1
+
+blog_two:
+  broadcast: published
+  # topic:
+  description: Another reply.
+  user: user_1
 
 deleted:
+  id: 10
   user: user_1
   description: This is a deleted reply.
-  chapter: one
+  topic: one
   # reply:
   deleted: true

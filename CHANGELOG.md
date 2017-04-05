@@ -12,6 +12,7 @@
 - **General Changes**
    - Login cookies are now cross subdomain and work between www and non-www URLs
    - Started work on a new landing page
+   - Redesigned pages to match more vibrant landing page
 - **Gem Changes**
   - Updated to Ruby 2.4.1
   - Updated to rails 5.0.2
@@ -19,9 +20,12 @@
   - Updated to devise 4.2.1
   - Updated to simplecov 0.14.1
   - Updated to sitemap_generator 5.3.1
+  - Updated to jquery-rails 4.3.1
 
 ### Refactoring
 - Removed typeahead library
+- Combined blog post replies and forum topic replies into one model
+- Renamed internal forum chapters to topics
 
 ## 15.0.2 (January 23, 2017)
 

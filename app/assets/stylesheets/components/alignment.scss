@@ -2,12 +2,17 @@
   text-align: right;
 }
 
+.center,
 .text-center {
   text-align: center;
 }
 
 .text-left {
   text-align: left;
+}
+
+.nowrap {
+  white-space: nowrap;
 }
 
 .inline-block {
@@ -17,4 +22,8 @@
 .overflow-hidden {
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.breakword {
+  word-break: break-word;
 }

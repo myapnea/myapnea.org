@@ -10,7 +10,7 @@
       the opportunity to
       = link_to 'learn', blog_category_path(category: 'learn'), class: 'no-underline'
       more about apnea and effective treatments,
-      = link_to 'share', chapters_path, class: 'no-underline'
+      = link_to 'share', topics_path, class: 'no-underline'
       experiences with other members of the community, and contribute to
       = link_to 'research', surveys_path, class: 'no-underline'
       to improve diagnosis, management, and treatments for sleep apnea.
@@ -23,18 +23,18 @@
       Most promising, our community is becoming increasingly active. We currently have
       %span.f500.darkerer-blue= pluralize(number_with_delimiter(Reply.current.count), 'post')
       in
-      %span.f500.darkerer-blue= pluralize(number_with_delimiter(Chapter.current.count), 'topic')
+      %span.f500.darkerer-blue= pluralize(number_with_delimiter(Topic.current.count), 'topic')
       To date, we've watched an overwhelming amount of support grow among the
       MyApnea community. The forum alone has become an active discussion board
       where people with sleep apnea, researchers, and care providers help each
       other address important questions and concerns. Among these are:
     %ul
       %li
-        = link_to 'Issues that people have adjusting to new CPAP devices', chapter_path('contribute-community-tips-for-using-pap-devices'), class: 'no-underline'
+        = link_to 'Issues that people have adjusting to new CPAP devices', topic_path('contribute-community-tips-for-using-pap-devices'), class: 'no-underline'
       %li
-        = link_to 'Finding proper care for central/mixed sleep apnea', chapter_path('central-mixed-apnea'), class: 'no-underline'
+        = link_to 'Finding proper care for central/mixed sleep apnea', topic_path('central-mixed-apnea'), class: 'no-underline'
       %li
-        = link_to 'Determining future research for the link between sleep apnea and body weight', chapter_path('does-treatment-of-sleep-apnea-influence-body-weight'), class: 'no-underline'
+        = link_to 'Determining future research for the link between sleep apnea and body weight', topic_path('does-treatment-of-sleep-apnea-influence-body-weight'), class: 'no-underline'
 
 .content-container.inherit-background
   .content-body

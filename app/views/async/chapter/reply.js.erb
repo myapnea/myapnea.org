@@ -1,3 +1,0 @@
-$("#comment_container_<%= params[:parent_comment_id] %>_<%= params[:reply_id] %>").html("<%=j render 'replies/form', reply: @reply %>");
-fileDragReady();
-showTopicReplyBox("<%= params[:parent_comment_id] %>", "<%= params[:reply_id] %>");

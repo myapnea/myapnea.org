@@ -9,20 +9,18 @@ Rails.application.routes.draw do
       post :register
       post :reply
     end
-    namespace :chapter do
-      post :login
-      post :register
-      post :reply
-    end
     namespace :forum do
       post :login
       post :new_topic
     end
+    namespace :parent do
+      post :login
+      post :reply
+    end
   end
 
   namespace :admin do
-    resources :broadcast_comments, only: :index, path: 'blog/comments'
-    resources :replies, only: :index, path: 'forum/replies'
+    resources :replies, only: :index
     resources :categories
     resources :exports do
       member do
@@ -141,6 +139,7 @@ Rails.application.routes.draw do
     get :orange
     get :green
     get :landing2
+    get :landing3
   end
 
   scope module: 'home' do
@@ -330,7 +329,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :chapters, path: 'forum' do
+  resources :topics, path: 'forum' do
     member do
       get '/edit', action: :edit, as: :edit
       get '/:page', action: :show, as: :page

@@ -1,7 +1,7 @@
 .first-box.myapnea-sky-bg
   = render 'blank/sun'
   .container
-    .last-box-slide.center-vertically.animate-slide{ style: 'animation-name: fadeInDown; animation-duration: 2s;animation-fill-mode: both;'}
+    .last-box-slide.center-vertically.animate-slide
       #show-me-video{ style: 'display: none;' }
         .embed-responsive.embed-responsive-16by9{ style: 'position: relative;pointer-events: none;' }
           #player
@@ -18,11 +18,11 @@
 
         .landing-box-container{ style: 'margin-top: 120px;' }
           .landing-box.dashboard-container.attach-a-cloud
-            .landing-box-header= link_to 'Forum', chapters_path, class: 'link-blend'
+            .landing-box-header= link_to 'Forum', topics_path, class: 'link-blend'
             .landing-box-body
               %p Share your story on our forum.
               %p
-                = link_to chapters_path do
+                = link_to topics_path do
                   Visit forum
                   &raquo;
             .landing-box-footer
@@ -31,7 +31,7 @@
                   &nbsp;
                   %i.fa.fa-comments{ style: 'color: #2196F3;' }
                   2
-                = link_to '2 new topics', chapters_path
+                = link_to '2 new topics', topics_path
           .landing-box.dashboard-container.attach-a-cloud
             .landing-box-header= link_to 'Surveys', surveys_path, class: 'link-blend'
             .landing-box-body

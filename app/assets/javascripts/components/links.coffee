@@ -8,5 +8,5 @@ $(document)
       event.preventDefault()
       # Store hash
       hash = @hash
-      $('html, body').animate { scrollTop: $(hash).offset().top }, 700
+      $('html, body').animate { scrollTop: $(hash).offset().top }, 400
   )

@@ -38,13 +38,13 @@
           Forum
 
         .landing-box-container
-          - @chapters = Chapter.current.shadow_banned(current_user).reply_count.order(last_reply_at: :desc, id: :desc)
-          - @chapters.limit(9).each do |chapter| # limit(99)
-            - reply = chapter.replies.current.first
+          - @topics = Topic.current.shadow_banned(current_user).reply_count.order(last_reply_at: :desc, id: :desc)
+          - @topics.limit(9).each do |topic| # limit(99)
+            - reply = topic.replies.current.first
             - if reply
               .landing-box.dashboard-container
                 .landing-box-header
-                  = link_to chapter.title, chapter, class: 'link-blend'
+                  = link_to topic.title, topic, class: 'link-blend'
                 .landing-box-body
                   = strip_tags(simple_markdown_new(reply.description)).gsub(/\r/, ' ').gsub(/\n/, ' ').truncate(250, separator: '.', omission: '...').html_safe
                   = link_to reply, class: 'nowrap', data: { turbolinks: false } do
@@ -55,11 +55,11 @@
                     .pull-right
                       &nbsp;
                       %i.fa.fa-comments{ style: 'color: #2196F3;' }
-                      = chapter.replies.count
+                      = topic.replies.count
                     By
                     .landing-box-footer-author-name= link_to reply.user.forum_name, member_path(reply.user.forum_name)
 
-        .text-center= link_to 'ASK A QUESTION', new_chapter_path, class: 'link-white'
+        .text-center= link_to 'ASK A QUESTION', new_topic_path, class: 'link-white'
       .first-box-down-arrow
         = link_to "#survey-place", data: { object: 'scroll-anchor' }, class: 'orange' do
           %i.fa.fa-chevron-circle-down

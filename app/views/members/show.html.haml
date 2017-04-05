@@ -27,13 +27,13 @@
             = @member.email
       .col-sm-6
         %dl.dl-horizontal
-          - deleted_topics_count = Chapter.where(deleted: true, user_id: @member.id).count
+          - deleted_topics_count = Topic.where(deleted: true, user_id: @member.id).count
           - if deleted_topics_count > 0
             %dt
               %strong # of Deleted Topics
             %dd
               = deleted_topics_count
-          - deleted_posts_count = Reply.where(deleted: true, user_id: @member.id).joins(:chapter).merge(Chapter.current).count
+          - deleted_posts_count = Reply.where(deleted: true, user_id: @member.id).joins(:topic).merge(Topic.current).count
           - if deleted_posts_count > 0
             %dt
               %strong # of Deleted Posts
@@ -60,6 +60,6 @@
 
 -# Recent posts
 - @replies.each do |reply|
-  = render 'replies/show', level: 0, reply: reply, include_chapter_title: true
+  = render 'replies/show', level: 0, reply: reply, include_parent_title: true
 
 .centered= paginate @replies, theme: 'bootstrap-small'

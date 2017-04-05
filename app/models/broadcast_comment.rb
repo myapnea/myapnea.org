@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# TODO: Deprecated in v17.0.0
+
 # Allows community members to discuss blog posts. Comments can also be nested
 # under other comments.
 class BroadcastComment < ApplicationRecord
@@ -8,9 +10,6 @@ class BroadcastComment < ApplicationRecord
 
   # Concerns
   include Deletable
-  include PgSearch
-  multisearchable against: [:description],
-                  unless: :deleted_or_broadcast_deleted?
 
   # Scopes
   scope :points, -> { select('broadcast_comments.*, COALESCE(SUM(broadcast_comment_users.vote), 0)  points').joins('LEFT JOIN broadcast_comment_users ON broadcast_comment_users.broadcast_comment_id = broadcast_comments.id').group('broadcast_comments.id') }
@@ -67,10 +66,6 @@ class BroadcastComment < ApplicationRecord
     when -1
       false
     end
-  end
-
-  def parent_comment_id
-    broadcast_comment_id || 'root'
   end
 
   def computed_level

@@ -1,3 +1,32 @@
+.footer-container {
+  // background-color: $brand-black;
+  bottom: 0;
+  color: $brand-white;
+  font-weight: 300;
+  height: $footer-height;
+  position: absolute;
+  width: 100%;
+
+  a {
+    color: $breadcrumb-link-color;
+    transition: color .4s ease-out;
+  }
+
+  a:hover {
+    color: $brand-white;
+  }
+}
+
+.footer {
+  height: $footer-height;
+  padding: 40px 0;
+}
+
+
+// TODO: Remove older footer code
+
+$footer-height: 265px;
+
 footer {
   background-color: $logo-similar;
   border-top: 3px solid $primary-orange;
