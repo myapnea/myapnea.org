@@ -25,7 +25,7 @@
           - new_reply = reply.parent.replies.new(reply_id: reply.id)
           - parent_reply_id = new_reply.parent_reply_id
           - reply_id = (new_reply.new_record? ? 'new' : new_reply.id)
-          %div{ id: "write_comment_#{parent_reply_id}_#{reply_id}" }
+          %div{ id: "write_reply_#{parent_reply_id}_#{reply_id}" }
             - if reply.parent.is_a?(Broadcast)
               - async_write_a_reply_path = async_parent_reply_path(broadcast_id: reply.parent, parent_reply_id: parent_reply_id, reply_id: reply_id)
               - method = :post
@@ -37,7 +37,6 @@
               - if reply.parent.replies.first == reply
                 - method = :get
                 - remote = nil
-                -# async_write_a_reply_path = page_topic_path(reply.parent, page: reply.parent.last_page, anchor: 'write-a-reply')
                 - async_write_a_reply_path = page_chapter_path(reply.parent, page: reply.parent.last_page, anchor: 'write-a-reply')
 
             %small= link_to 'reply', async_write_a_reply_path, method: method, remote: remote, class: 'text-muted'
@@ -54,5 +53,5 @@
           - reply_scope = reply_scope.order(:created_at)
         - else
           - reply_scope = reply_scope.order(:created_at)
-        - reply_scope.each do |child_comment|
-          = render 'replies/show', reply: child_comment, level: level + 1, include_parent_title: false
+        - reply_scope.each do |child_reply|
+          = render 'replies/show', reply: child_reply, level: level + 1, include_parent_title: false

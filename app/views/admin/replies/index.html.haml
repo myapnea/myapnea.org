@@ -1,46 +1,58 @@
 - @title = 'Blog and Forum Replies'
 
+- if false
+  .menu-bar.menu-bar-fixed
+    .container
+      .pull-right
+        = current_user.first_name
+      = link_to root_path, class: 'no-underline' do
+        = image_tag 'myapnea/icons/myapnea-logo-transparent.png', size: '16x16', style: 'margin-top: -4px;'
+      Admin Dashboard
 
-.content-main-header2
-  %h1
-    = link_to 'Admin Dashboard', admin_path
-    &middot;
-    = @title
+- content_for :body_class do
+  myapnea-sky-bg
 
-%table.table.table-striped.table-borderless.table-hover
-  %col.hidden-xs.hidden-sm{ width: '40px' }
-  %col.hidden-xs.hidden-sm{ width: '67px' }
-  %col.hidden-xs.hidden-sm{ width: '200px' }
-  %col
-  %col.hidden-xs.hidden-sm{ width: '120px' }
-  %col.hidden-xs.hidden-sm{ width: '150px' }
-  %thead
-    %tr
-      %th.hidden-xs.hidden-sm
-      = th_sort_field @order, 'points', 'Points', extra_class: 'text-right hidden-xs hidden-sm'
-      %th.hidden-xs.hidden-sm Location
-      %th Reply
-      %th.hidden-xs.hidden-sm Author
-      = th_sort_field @order, 'replies.created_at', 'Date', extra_class: 'hidden-xs hidden-sm'
+- content_for :header do
+  .header-container
+    .container
+      %h1.page-heading
+        = @title
+        %small.nowrap
+          = link_to admin_path, style: 'color: #bbdefb;' do
+            -# Color is $p100-blue;
+            Admin Dashboard
 
-  %tbody
-    - @replies.each do |reply|
+.dashboard-container
+  %table.table.table-striped.table-borderless.table-hover
+    %col.hidden-xs.hidden-sm{ width: '40px' }
+    %col.hidden-xs.hidden-sm{ width: '67px' }
+    %col
+    %col.hidden-xs.hidden-sm{ width: '120px' }
+    %col.hidden-xs.hidden-sm{ width: '150px' }
+    %thead
       %tr
-        %td.hidden-xs.hidden-sm.center
-          - if reply.deleted?
-            %span.glyphicon.glyphicon-eye-close{ rel: 'tooltip', data: { title: 'Deleted', container: 'body', placement: 'left' } }
-        %td.hidden-xs.hidden-sm.text-right
-          - symbol = '+' if reply.rank >= 0
-          = "#{symbol}#{reply.rank}"
-        %td.hidden-xs.hidden-sm
-          = link_to reply.parent.title, reply, data: { turbolinks: false }
-        %td{ class: reply.deleted? ? 'text-muted' : '', style: reply.deleted? ? 'text-decoration:line-through' : '' }
-          .hidden-md.hidden-lg
+        %th.hidden-xs.hidden-sm
+        = th_sort_field @order, 'points', 'Points', extra_class: 'center hidden-xs hidden-sm'
+        %th Reply
+        %th.hidden-xs.hidden-sm Author
+        = th_sort_field @order, 'replies.created_at', 'Date', extra_class: 'hidden-xs hidden-sm'
+
+    %tbody
+      - @replies.each do |reply|
+        %tr
+          %td.hidden-xs.hidden-sm.center
+            - if reply.deleted?
+              %span.glyphicon.glyphicon-eye-close{ rel: 'tooltip', data: { title: 'Deleted', container: 'body', placement: 'left' } }
+          %td.hidden-xs.hidden-sm.text-right.center
+            - symbol = '+' if reply.rank >= 0
+            = "#{symbol}#{reply.rank}"
+          %td.breakword{ class: reply.deleted? ? 'text-muted' : nil, style: reply.deleted? ? 'text-decoration:line-through' : nil }
             = link_to reply.parent.title, reply, data: { turbolinks: false }
-          .reply-body{ style: 'font-size: 0.9em;padding:0;margin:0' }
-            = simple_markdown_new(sanitize(reply.description.gsub(/</, '&lt;')).gsub('&gt;', '>'), table_class: 'table table-striped', allow_links: reply.display_links?)
-        %td.hidden-xs.hidden-sm= link_to reply.user.forum_name, reply.user
-        %td.hidden-xs.hidden-sm= reply.created_at.strftime('%a, %B %d, %Y at %-l:%M %p')
+            .reply-body{ style: 'font-size: 0.9em;padding:0;margin:0' }
+              = simple_markdown_new(sanitize(reply.description.gsub(/</, '&lt;')).gsub('&gt;', '>'), table_class: 'table table-striped', allow_links: reply.display_links?)
+          %td.hidden-xs.hidden-sm= link_to reply.user.forum_name, reply.user
+          %td.hidden-xs.hidden-sm
+            %abbr{ rel: 'tooltip', data: { title: reply.created_at.strftime('%-l:%M %p'), container: 'body', placement: 'left' } }
+              = reply.created_at.strftime('%b %-d, %Y')
 
-
-.centered= paginate @replies, theme: 'bootstrap'
+.center= paginate @replies, theme: 'bootstrap'

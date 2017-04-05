@@ -7,6 +7,8 @@ class NotificationsController < ApplicationController
   before_action :find_notification_or_redirect, only: [:show, :update]
   before_action :set_broadcast_or_chapter, only: [:mark_all_as_read]
 
+  layout 'application-padded'
+
   # GET /notifications
   def index
     @notifications = if params[:all] == '1'

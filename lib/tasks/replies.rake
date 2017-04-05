@@ -35,4 +35,9 @@ namespace :replies do
     puts "Reply.count: #{Reply.count}"
     puts "Reply.where.not(broadcast_id: nil).count: #{Reply.where.not(broadcast_id: nil).count}"
   end
+
+  desc 'Remove notifications related to Broadcast Comments'
+  task clear_broadcast_comment_notifications: :environment do
+    Notification.where.not(broadcast_comment_id: nil).delete_all
+  end
 end

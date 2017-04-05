@@ -8,8 +8,22 @@ body {
   padding-top: $header-height + 1px; // Includes 1px border bottom of menu
 }
 
+.body-content {
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+
+::selection {
+  background-color: $brand-accent;
+  color: $gray-dark;
+}
+
+:focus {
+  outline-color: $brand-accent !important;
+}
+
 .brand-background {
-  background-color: $primary-blue;
+  background-color: $primary-blue; // TODO: Replace with $p50-blue;
 }
 
 .gray-background {

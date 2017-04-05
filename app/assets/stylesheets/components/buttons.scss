@@ -1,3 +1,39 @@
+.btn {
+  transition: all .25s ease-out;
+}
+
+.btn-shadow {
+  box-shadow: 0 5px 15px $standard-shadow-color;
+
+  &:hover,
+  &:focus,
+  &:active,
+  &.active,
+  &.disabled,
+  &[disabled] {
+    box-shadow: 0 5px 8px $standard-shadow-hover-color;
+  }
+}
+
+.btn-primary-dark {
+  background-color: $navbar-default-bg;
+  border: 1px solid darken($navbar-default-bg, 6.5%);
+  color: $brand-white;
+
+  &:hover,
+  &:focus,
+  &:active,
+  &.active,
+  &.disabled,
+  &[disabled] {
+    background-color: darken($navbar-default-bg, 6.5%);
+    border: 1px solid darken($navbar-default-bg, 6.5%);
+    color: $brand-white;
+  }
+}
+
+// TODO: Remove Older styles
+
 .btn-primary-custom {
   padding: 10px;
   border-radius: 3px;

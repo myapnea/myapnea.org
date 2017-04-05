@@ -1,0 +1,91 @@
+.page-heading {
+  font-weight: normal !important;
+  position: relative;
+  text-shadow: 0 2px 3px $standard-shadow-color;
+  word-break: break-word;
+
+  .btn,
+  .dropdown-menu {
+    text-shadow: none;
+  }
+
+  > a {
+    color: $breadcrumb-link-color;
+  }
+
+  > a:hover {
+    color: darken($breadcrumb-link-color, 10%);
+  }
+}
+
+.header-container {
+  background-color: $p500-blue;
+  color: $brand-white;
+  padding: 20px 0;
+  border-bottom: 2px solid $p200-orange; // TODO: Perhaps remove the border.
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 0;
+  }
+
+  h1 {
+    font-size: 30px;
+  }
+}
+
+@media screen and (min-width: $screen-sm-min) {
+  .header-container {
+    h1 {
+      font-size: 38px
+    }
+  }
+}
+
+@media screen and (min-width: $screen-md-min) {
+  .header-container {
+    h1 {
+      font-size: 41px
+    }
+  }
+}
+
+.header-container-hide {
+  h1 {
+    visibility: hidden;
+  }
+}
+
+#top-menu {
+  .navbar-show-scrolled {
+    display: none;
+  }
+
+  &.navbar-scrolled {
+    .navbar-hide-scrolled {
+      display: none;
+    }
+    .navbar-show-scrolled {
+      color: $brand-white;
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      max-width: 80%;
+    }
+  }
+}
+
+@media screen and (min-width: $screen-sm-min) {
+  #top-menu {
+    &.navbar-scrolled {
+      .navbar-show-scrolled {
+        max-width: initial;
+      }
+    }
+  }
+}

@@ -15,7 +15,7 @@
 // $gray-light:             lighten($gray-base, 46.7%) !default; // #777
 // $gray-lighter:           lighten($gray-base, 93.5%) !default; // #eee
 
-$brand-primary:         #5999de !default; //darken(#428bca, 6.5%) !default; // #337ab7
+$brand-primary:         $p500-blue !default; //darken(#428bca, 6.5%) !default; // #337ab7
 // $brand-success:         #5cb85c !default;
 // $brand-info:            #5bc0de !default;
 $brand-warning:         #ffa400 !default; //#f0ad4e !default;
@@ -23,9 +23,10 @@ $brand-warning:         #ffa400 !default; //#f0ad4e !default;
 $brand-gray:            #ccc;
 $brand-gray-lighter:    #ededed;
 $brand-gray-lightest:   #f9f9f9;
+$brand-black:           $p900-blue;
 $brand-white:           #fff;
 $brand-shadow-start:    rgba(0, 0, 0, .075);
-
+$brand-accent:          $p200-orange !default; // Perhaps change to $a200-orange.
 // //== Scaffolding
 // //
 // //## Settings for some of the most global styles.
@@ -111,9 +112,9 @@ $font-size-base:          16px !default; //14px !default;
 // $line-height-large:         1.3333333 !default; // extra decimals for Win 8.1 Chrome
 // $line-height-small:         1.5 !default;
 
-$border-radius-base:        2px; //4px !default;
-$border-radius-large:       3px; //6px !default;
-$border-radius-small:       1px; //3px !default;
+// $border-radius-base:        4px !default;
+// $border-radius-large:       6px !default;
+// $border-radius-small:       3px !default;
 
 // //** Global color for active items (e.g., navs or dropdowns).
 // $component-active-color:    #fff !default;
@@ -368,28 +369,28 @@ $grid-float-breakpoint:     $screen-md-min !default; // $grid-float-breakpoint: 
 // $navbar-padding-vertical:          (($navbar-height - $line-height-computed) / 2) !default;
 // $navbar-collapse-max-height:       340px !default;
 
-// $navbar-default-color:             #777 !default;
-// $navbar-default-bg:                #f8f8f8 !default;
+$navbar-default-color:             $brand-white !default;
+$navbar-default-bg:                $p600-blue !default;
 // $navbar-default-border:            darken($navbar-default-bg, 6.5%) !default;
 
-// // Navbar links
-// $navbar-default-link-color:                #777 !default;
-// $navbar-default-link-hover-color:          #333 !default;
-// $navbar-default-link-hover-bg:             transparent !default;
-// $navbar-default-link-active-color:         #555 !default;
+// Navbar links
+$navbar-default-link-color:                $brand-white !default;
+$navbar-default-link-hover-color:          $brand-white !default;
+$navbar-default-link-hover-bg:             darken($navbar-default-bg, 6.5%);
+$navbar-default-link-active-color:         $brand-white !default;
 // $navbar-default-link-active-bg:            darken($navbar-default-bg, 6.5%) !default;
 // $navbar-default-link-disabled-color:       #ccc !default;
 // $navbar-default-link-disabled-bg:          transparent !default;
 
-// // Navbar brand label
-// $navbar-default-brand-color:               $navbar-default-link-color !default;
-// $navbar-default-brand-hover-color:         darken($navbar-default-brand-color, 10%) !default;
+// Navbar brand label
+$navbar-default-brand-color:               $navbar-default-link-color !default;
+$navbar-default-brand-hover-color:         $navbar-default-link-hover-color !default;
 // $navbar-default-brand-hover-bg:            transparent !default;
 
 // // Navbar toggle
-// $navbar-default-toggle-hover-bg:           #ddd !default;
-// $navbar-default-toggle-icon-bar-bg:        #888 !default;
-// $navbar-default-toggle-border-color:       #ddd !default;
+$navbar-default-toggle-hover-bg:           $p700-blue !default;
+$navbar-default-toggle-icon-bar-bg:        $p300-blue !default;
+$navbar-default-toggle-border-color:       $p800-blue !default;
 
 
 // // Inverted navbar

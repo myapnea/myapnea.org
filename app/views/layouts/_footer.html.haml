@@ -1,0 +1,19 @@
+.footer-container
+  .container
+    .footer
+      .hidden-sm.hidden-md.hidden-lg.text-center
+        &copy;
+        = Date.today.year
+        = ENV['website_name']
+      .row.hidden-xs
+        .col-xs-6.nowrap
+          &copy;
+          = Date.today.year
+          = ENV['website_name']
+          |
+          = link_to 'About', about_path
+        .col-xs-6.nowrap.text-right.hidden-xs
+          .pull-right{ style: 'margin-top: -20px;' }
+            = link_to 'Contact Us', contact_path
+            |
+            = link_to image_tag('myapnea/welcome/img-small/bwh_footer.png'), 'http://www.brighamandwomens.org/'
