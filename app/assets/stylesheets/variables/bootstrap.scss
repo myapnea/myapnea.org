@@ -29,7 +29,7 @@ $brand-muted:           $p300-blue !default;
 $blockquote-gray:       #999;
 $brand-white:           #fff !default;
 $brand-shadow-start:    rgba(0, 0, 0, .075);
-$brand-accent:          $p200-orange !default; // Perhaps change to $a200-orange.
+$brand-accent:          $p200-orange !default;
 // //== Scaffolding
 // //
 // //## Settings for some of the most global styles.
@@ -208,7 +208,7 @@ $font-size-base:          16px !default; //14px !default;
 // $input-border-radius-small:      $border-radius-small !default;
 
 // //** Border color for inputs on focus
-// $input-border-focus:             #66afe9 !default;
+$input-border-focus:             $brand-accent !default;
 
 // //** Placeholder text color
 // $input-color-placeholder:        #999 !default;

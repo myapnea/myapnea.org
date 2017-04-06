@@ -6,6 +6,7 @@ html {
 body {
   margin-bottom: $footer-height;
   padding-top: $header-height + 1px; // Includes 1px border bottom of menu
+  // TODO: Remove extra pixel here. Shouldn't need extra pixel since we're using box-sizing: border-box;
 }
 
 .body-content {
