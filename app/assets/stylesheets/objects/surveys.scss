@@ -212,7 +212,7 @@
 
 .survey-box-with-footer {
   .survey-question-skip {
-    margin-bottom: 140px;
+    margin-bottom: 50px; // TODO: Recheck this value on blank.html.haml and question1
   }
 }
 

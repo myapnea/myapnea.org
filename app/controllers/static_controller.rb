@@ -5,7 +5,8 @@ class StaticController < ApplicationController
 
   ## Static
   def about
-    render layout: 'simple'
+    # render layout: 'simple'
+    render layout: 'blank2'
   end
 
   def team
