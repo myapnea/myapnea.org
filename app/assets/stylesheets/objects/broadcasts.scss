@@ -18,7 +18,9 @@
   white-space: nowrap;
 
   .broadcast-info {
-    margin: 0;
+    font-weight: 300;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
 
@@ -91,13 +93,6 @@
   .broadcast-title {
     font-size: 34px;
   }
-}
-
-.broadcast-info {
-  font-weight: 300;
-  margin-bottom: 20px;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .broadcast-outer {

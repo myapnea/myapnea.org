@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class SurveysController < ApplicationController
-  before_action :set_active_top_nav_link_to_surveys
   before_action :authenticate_user!,                      except: [:index]
   before_action :authenticate_research,                   except: [:index]
   before_action :set_survey,                              only: [:show, :report, :report_detail, :accept_update_first]

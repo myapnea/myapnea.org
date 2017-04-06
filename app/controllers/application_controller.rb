@@ -25,14 +25,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def set_active_top_nav_link_to_surveys
-    @active_top_nav_link = :surveys
-  end
-
-  def set_active_top_nav_link_to_learn
-    @active_top_nav_link = :learn
-  end
-
+  # TODO: Remove method and simplify survey study model.
   def authenticate_research
     session[:return_to] = request.fullpath
     if current_user.ready_for_research?
@@ -56,11 +49,13 @@ class ApplicationController < ActionController::Base
   end
 
   def check_owner_or_moderator
-    redirect_to root_path, alert: "You do not have sufficient privileges to access that page." unless current_user and (current_user.owner? or current_user.moderator?)
+    return if current_user && (current_user.owner? || current_user.moderator?)
+    redirect_to root_path, alert: 'You do not have sufficient privileges to access that page.'
   end
 
   def check_owner
-    redirect_to root_path, alert: "You do not have sufficient privileges to access that page." unless current_user and current_user.owner?
+    return if current_user && current_user.owner?
+    redirect_to root_path, alert: 'You do not have sufficient privileges to access that page.'
   end
 
   def after_sign_in_path_for(resource)
