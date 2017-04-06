@@ -12,7 +12,7 @@
 .row
   .col-sm-9
     - @broadcasts.each do |broadcast|
-      .dashboard-container
+      .dashboard-container.broadcast-container
         %h2.broadcast-title{ style: 'margin-top: 0;border-bottom: 0;' }= link_to broadcast.title, blog_post_path(broadcast.url_hash)
         = render 'blog/extract', broadcast: broadcast
     .center= paginate @broadcasts, theme: 'bootstrap'

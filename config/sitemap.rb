@@ -40,5 +40,4 @@ SitemapGenerator::Sitemap.create do
   Survey.viewable.find_each do |survey|
     add "/surveys/#{survey.to_param}", lastmod: survey.updated_at
   end
-  add '/providers', changefreq: 'monthly', priority: 0.6
 end

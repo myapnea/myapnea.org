@@ -14,7 +14,7 @@ class SessionsControllerTest < ActionController::TestCase
   end
 
   test 'a deleted user should not be able to sign in' do
-    user = users(:deleted_user)
+    user = users(:deleted)
     post :create, params: { user: { email: user.email, password: 'password' } }
     assert_redirected_to new_user_session_path
   end

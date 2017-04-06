@@ -1,5 +1,4 @@
 .page-heading {
-  font-weight: normal !important;
   position: relative;
   text-shadow: 0 2px 3px $standard-shadow-color;
   word-break: break-word;
@@ -20,9 +19,9 @@
 
 .header-container {
   background-color: $p500-blue;
+  border-bottom: 2px solid $p200-orange; // TODO: Perhaps remove the border.
   color: $brand-white;
   padding: 20px 0;
-  border-bottom: 2px solid $p200-orange; // TODO: Perhaps remove the border.
 
   h1,
   h2,
