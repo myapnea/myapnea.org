@@ -1,4 +1,4 @@
-= form_for current_user, html: { role: "form", class: 'form-horizontal' }, url: update_account_path, method: :patch do |f|
+= form_for current_user, html: { role: 'form', class: 'form-horizontal' }, url: update_account_path, method: :patch do |f|
   .content-container
     .content-header
       %h3.f300.center
@@ -26,7 +26,7 @@
           .input-group
             = f.text_field :forum_name, class: 'form-control'
             %span.input-group-btn
-              = link_to suggest_random_forum_name_path, method: :post, remote: true, data: { toggle: 'tooltip', container: 'body' }, title: 'Generate Random Nickname', class: 'btn btn-default' do
+              = link_to suggest_random_forum_name_path, method: :post, remote: true, rel: 'tooltip', data: { title: 'Generate Random Nickname', container: 'body', placement: 'left' }, class: 'btn btn-default' do
                 %span.glyphicon.glyphicon-random
           - if errors = current_user.errors[:forum_name] and errors.present?
             .bs-callout.bs-callout-danger
@@ -44,4 +44,4 @@
               for a suggestion.
 
       .form-group
-        = f.submit "Save Changes", class: 'btn btn-primary-custom col-xs-4 col-xs-offset-4 centered'
+        = f.submit 'Save Changes', class: 'btn btn-primary-custom col-xs-4 col-xs-offset-4 center'
