@@ -1,0 +1,12 @@
+.footer-container.footer-night {
+  background-color: $p500-indigo;
+
+  a {
+    color: $p100-indigo;
+    transition: color .4s ease-out;
+  }
+
+  a:hover {
+    color: $p50-indigo;
+  }
+}

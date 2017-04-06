@@ -12,7 +12,7 @@
     #navbar-myapnea.collapse.navbar-collapse
       - if current_user
         %form.navbar-form.navbar-right.hidden-xs.hidden-sm
-          = link_to 'Logout', destroy_user_session_path, method: :delete, class: 'btn btn-primary'
+          = link_to 'Logout', destroy_user_session_path, class: 'btn btn-primary'
       - else
         %form.navbar-form.navbar-right.hidden-xs.hidden-sm
           = link_to 'Sign in', new_user_session_path, class: 'btn btn-primary'
@@ -37,13 +37,13 @@
             %li.hidden-sm.hidden-xs
               = link_to notifications_path, class: "#{'notifications-link' if current_user.unread_notifications?}" do
                 %span.glyphicon.glyphicon-bell
-          %li{ class: "#{'active' if @active_top_nav_link == :home}" }
+          %li
             = link_to "#{current_user ? 'Dashboard' : 'Home'}", root_path
           %li{ class: params[:controller] == 'blog' ? 'active' : nil }
             = link_to 'Blog', blog_path
           %li{ class: params[:controller].in?(%w(topics posts)) ? 'active' : nil }
             = link_to 'Forum', topics_path
-          %li{ class: "#{'active' if @active_top_nav_link == :surveys }" }
+          %li
             = link_to 'Surveys', surveys_path
 
           - if current_user
@@ -69,7 +69,7 @@
 
       - if current_user
         %form.navbar-form.navbar-right.visible-xs.visible-sm
-          = link_to 'Logout', destroy_user_session_path, method: :delete, class: 'btn btn-primary'
+          = link_to 'Logout', destroy_user_session_path, class: 'btn btn-primary'
       - else
         %form.navbar-form.navbar-right.visible-xs.visible-sm
           = link_to 'Sign in', new_user_session_path, class: 'btn btn-primary'

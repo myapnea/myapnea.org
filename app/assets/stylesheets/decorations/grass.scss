@@ -1,26 +1,24 @@
-.footer-container {
-  position: relative;
+.footer-container.footer-grass {
   background-color: $p900-light-green;
-}
 
-.footer-container::before {
-  background-image: asset-url('themes/spring/grass-color.png');
-  background-repeat: repeat-x;
-  content: ' ';
-  position: absolute;
-  top: -45px;
-  left: 0;
-  right: 0;
-  height: 45px;
-  background-size: 60px;
-}
-
-.footer {
-  color: $brand-white;
-  height: 100px;
-  padding: 40px 0;
+  &::before {
+    background-image: asset-url('themes/spring/grass-color.png');
+    background-repeat: repeat-x;
+    content: ' ';
+    position: absolute;
+    top: -45px;
+    left: 0;
+    right: 0;
+    height: 45px;
+    background-size: 60px;
+  }
 
   a {
-    color: $p200-blue;
+    color: $p300-green;
+    transition: color .4s ease-out;
+  }
+
+  a:hover {
+    color: $p200-green;
   }
 }

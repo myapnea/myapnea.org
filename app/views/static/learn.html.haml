@@ -94,44 +94,62 @@
 %a.anchor#general-info
 %br
 .row
-  .col-sm-4
-    = link_to what_is_sleep_apnea_path, class: 'learn-box' do
-      = image_tag 'learn/sections/what_is_sleep_apnea.png'
-      %div What is Sleep Apnea?
-  .col-sm-4
-    = link_to obstructive_sleep_apnea_path, class: 'learn-box' do
-      = image_tag 'learn/sections/osa.png'
-      %div Obstructive Sleep Apnea
-  .col-sm-4
-    = link_to central_sleep_apnea_path, class: 'learn-box' do
-      = image_tag 'learn/sections/csa.png'
-      %div Central Sleep Apnea
+  - broadcast = Broadcast.find_by(slug: 'what-is-sleep-apnea')
+  - if broadcast
+    .col-sm-4
+      = link_to blog_post_path(broadcast.url_hash), class: 'learn-box' do
+        = image_tag 'learn/sections/what_is_sleep_apnea.png'
+        %div What is Sleep Apnea?
+  - broadcast = Broadcast.find_by(slug: 'obstructive-sleep-apnea')
+  - if broadcast
+    .col-sm-4
+      = link_to blog_post_path(broadcast.url_hash), class: 'learn-box' do
+        = image_tag 'learn/sections/osa.png'
+        %div Obstructive Sleep Apnea
+  - broadcast = Broadcast.find_by(slug: 'central-sleep-apnea')
+  - if broadcast
+    .col-sm-4
+      = link_to blog_post_path(broadcast.url_hash), class: 'learn-box' do
+        = image_tag 'learn/sections/csa.png'
+        %div Central Sleep Apnea
 .row
   .col-sm-4
-    = link_to complex_sleep_apnea_path, class: 'learn-box' do
-      = image_tag 'learn/sections/complex_sleep_apnea.png'
-      %div Complex Sleep Apnea
+    - broadcast = Broadcast.find_by(slug: 'what-is-complex-sleep-apnea')
+    - if broadcast
+      = link_to blog_post_path(broadcast.url_hash), class: 'learn-box' do
+        = image_tag 'learn/sections/complex_sleep_apnea.png'
+        %div Complex Sleep Apnea
   .col-sm-4
-    = link_to causes_of_sleep_apnea_path, class: 'learn-box' do
-      = image_tag 'learn/sections/causes.png'
-      %div Causes
+    - broadcast = Broadcast.find_by(slug: 'causes-of-sleep-apnea')
+    - if broadcast
+      = link_to blog_post_path(broadcast.url_hash), class: 'learn-box' do
+        = image_tag 'learn/sections/causes.png'
+        %div Causes
   .col-sm-4
-    = link_to symptoms_of_sleep_apnea_path, class: 'learn-box' do
-      = image_tag 'learn/sections/symptoms.png'
-      %div Symptoms
+    - broadcast = Broadcast.find_by(slug: 'symptoms-of-sleep-apnea')
+    - if broadcast
+      = link_to blog_post_path(broadcast.url_hash), class: 'learn-box' do
+        = image_tag 'learn/sections/symptoms.png'
+        %div Symptoms
 .row
   .col-sm-4
-    = link_to risk_factors_for_sleep_apnea_path, class: 'learn-box' do
-      = image_tag 'learn/sections/risk_factors.png'
-      %div Risk Factors
+    - broadcast = Broadcast.find_by(slug: 'risk-factors-for-sleep-apnea')
+    - if broadcast
+      = link_to blog_post_path(broadcast.url_hash), class: 'learn-box' do
+        = image_tag 'learn/sections/risk_factors.png'
+        %div Risk Factors
   .col-sm-4
-    = link_to diagnosis_of_sleep_apnea_path, class: 'learn-box' do
-      = image_tag 'learn/sections/diagnosis.png'
-      %div Diagnosis
+    - broadcast = Broadcast.find_by(slug: 'diagnosis-of-sleep-apnea')
+    - if broadcast
+      = link_to blog_post_path(broadcast.url_hash), class: 'learn-box' do
+        = image_tag 'learn/sections/diagnosis.png'
+        %div Diagnosis
   .col-sm-4
-    = link_to treatment_options_for_sleep_apnea_path, class: 'learn-box' do
-      = image_tag 'learn/sections/treatments.png'
-      %div Treatments
+    - broadcast = Broadcast.find_by(slug: 'treatment-options-for-sleep-apnea')
+    - if broadcast
+      = link_to blog_post_path(broadcast.url_hash), class: 'learn-box' do
+        = image_tag 'learn/sections/treatments.png'
+        %div Treatments
 .row
   .col-sm-4
   .col-sm-4

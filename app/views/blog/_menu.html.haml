@@ -5,42 +5,41 @@
 
 =# render 'search/form'
 
-%div{ style: (false ? 'border-left: 1px solid #f5f5f5;' : nil) }
-  %ul.blog-menu
-    %li.blog-menu-header Blog
-    %li= link_to 'All Posts', blog_path, class: "#{'active' if current_category.blank? && (!@author && !@broadcast)}"
-    - Admin::Category.current.order(:name).each do |category|
-      %li= link_to category.name, blog_category_path(category: category), class: (current_category == category.slug ? 'active' : nil)
+%ul.blog-menu
+  %li.blog-menu-header Blog
+  %li= link_to 'All Posts', blog_path, class: "#{'active' if current_category.blank? && (!@author && !@broadcast)}"
+  - Admin::Category.current.order(:name).each do |category|
+    %li= link_to category.name, blog_category_path(category: category), class: (current_category == category.slug ? 'active' : nil)
 
-    - if current_user && current_user.community_contributor?
-      %li.blog-menu-header Contributor
-      %li
-        = link_to new_broadcast_path do
-          %span.glyphicon.glyphicon-pencil
-          New Blog Post
-      %li
-        = link_to broadcasts_path do
-          %span.glyphicon.glyphicon-eye-open
-          View Drafts
-
-    - if @author
-      %li.blog-menu-header Author
-      %li= link_to @author.forum_name, blog_author_path(author: @author.forum_name), class: (@broadcast ? nil : 'active')
+  - if current_user && current_user.community_contributor?
+    %li.blog-menu-header Contributor
+    %li
+      = link_to new_broadcast_path do
+        %span.glyphicon.glyphicon-pencil
+        New Blog Post
+    %li
+      = link_to broadcasts_path do
+        %span.glyphicon.glyphicon-eye-open
+        View Drafts
 
   - if @author
-    .author-box
-      .author-key Author Posts
-      .author-value= @author.broadcasts.published.count
+    %li.blog-menu-header Author
+    %li= link_to @author.forum_name, blog_author_path(author: @author.forum_name), class: (@broadcast ? nil : 'active')
 
-  - if @category
-    .author-box
-      .author-key
-        = @category.name
-        Posts
-      .author-value= @category.broadcasts.published.count
+- if @author
+  .author-box
+    .author-key Author Posts
+    .author-value= @author.broadcasts.published.count
 
-  - if !@author && !@category && params[:controller] != 'search'
-    .author-box
-      .author-key
-        Blog Posts
-      .author-value= Broadcast.current.published.count
+- if @category
+  .author-box
+    .author-key
+      = @category.name
+      Posts
+    .author-value= @category.broadcasts.published.count
+
+- if !@author && !@category && params[:controller] != 'search'
+  .author-box
+    .author-key
+      Blog Posts
+    .author-value= Broadcast.current.published.count

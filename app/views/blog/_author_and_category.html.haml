@@ -7,7 +7,8 @@
   By
   = link_to broadcast.user.forum_name, blog_author_path(author: broadcast.user.forum_name)
   on
-  %i= broadcast.publish_date.strftime '%B %-d, %Y'
+  %i.hidden-xs= broadcast.publish_date.strftime '%B %-d, %Y'
+  %i.hidden-sm.hidden-md.hidden-lg= broadcast.publish_date.strftime '%b %-d, %Y'
   - if broadcast.category
     in
     = link_to broadcast.category.name, blog_category_path(category: broadcast.category)

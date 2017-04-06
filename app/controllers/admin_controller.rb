@@ -6,25 +6,23 @@ class AdminController < ApplicationController
 
   before_action :set_SEO_elements
 
-  def dashboard
-  end
+  # def dashboard
+  # end
 
-  def social_media
-  end
+  # def social_media
+  # end
 
-  def surveys
-  end
+  # def surveys
+  # end
 
   def unlock_survey
-    @user = User.current.find_by_id(params[:user_id])
-    if @user and answer_session = @user.answer_sessions.find_by_id(params[:answer_session_id])
+    @user = User.current.find_by(id: params[:user_id])
+    answer_session = @user.answer_sessions.find_by(id: params[:answer_session_id]) if @user
+    if answer_session
+      flash[:notice] = 'Survey unlocked successfully.'
       answer_session.unlock!
     end
-    if @user
-      redirect_to @user, notice: 'Survey unlocked successfully.'
-    else
-      redirect_to users_path
-    end
+    redirect_to @user || users_path
   end
 
   def providers
@@ -32,14 +30,14 @@ class AdminController < ApplicationController
   end
 
   def timeline
-    @first_month = Date.parse("2014-10-01")
+    @first_month = Date.parse('2014-10-01')
   end
 
-  def location
-  end
+  # def location
+  # end
 
-  def ages
-  end
+  # def ages
+  # end
 
   def cross_tabs
     user_values = {}

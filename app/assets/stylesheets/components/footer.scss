@@ -1,92 +1,22 @@
 .footer-container {
-  // background-color: $brand-black;
+  background-color: $brand-black;
   bottom: 0;
   color: $brand-white;
-  font-weight: 300;
   height: $footer-height;
   position: absolute;
   width: 100%;
 
+  .footer {
+    height: $footer-height;
+    padding: 40px 0;
+  }
+
   a {
-    color: $breadcrumb-link-color;
+    color: $p300-blue;
     transition: color .4s ease-out;
   }
 
   a:hover {
-    color: $brand-white;
-  }
-}
-
-.footer {
-  height: $footer-height;
-  padding: 40px 0;
-}
-
-
-// TODO: Remove older footer code
-
-$footer-height: 265px;
-
-footer {
-  background-color: $logo-similar;
-  border-top: 3px solid $primary-orange;
-  bottom: 0;
-  height: $footer-height;
-  overflow: hidden;
-  padding: 50px;
-  position: absolute;
-  width: 100%;
-
-  h4 {
-    margin-top: 20px;
-    padding-top: 0;
-  }
-
-  p {
-    color: rgba(255, 255, 255, .7);
-    font-size: 12px;
-    font-weight: 400;
-    margin-bottom: 10px;
-    padding: 0;
-  }
-
-  ul {
-    line-height: 1.428571429;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-
-    a {
-      color: rgba(255, 255, 255, .9);
-      font-size: 12px;
-      font-weight: 300;
-    }
-
-    a:hover {
-      color: $white;
-      text-decoration: none;
-    }
-  }
-
-  .partners-img-footer {
-    display: block;
-    margin: 3px auto;
-    max-height: 50px;
-    max-width: 150px;
-    width: 100%;
-  }
-
-  .share-icons-md {
-    height: 30px;
-    margin: 5px;
-    width: 30px;
-  }
-}
-
-@media screen and (min-width: $screen-md-min) {
-  footer {
-    ul a {
-      font-size: 14px;
-    }
+    color: $p200-blue;
   }
 }

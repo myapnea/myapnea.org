@@ -24,21 +24,4 @@
         = render 'blank/next_question'
       = render 'blank/question_skip'
 
-- content_for :footer do
-  .footer-container
-    .container
-      .footer
-        .hidden-sm.hidden-md.hidden-lg.text-center
-          &copy;
-          = Date.today.year
-          = ENV['website_name']
-        .row.hidden-xs
-          .col-xs-6.nowrap
-            &copy;
-            = Date.today.year
-            = ENV['website_name']
-            |
-            = link_to 'About', about_path
-          .col-xs-6.nowrap.text-right.hidden-xs
-            .pull-right
-              = link_to image_tag('myapnea/welcome/img-small/bwh_footer.png', style: 'margin-top: -20px;'), 'http://www.brighamandwomens.org/'
+= render 'layouts/footer', theme: 'footer-grass'

@@ -126,17 +126,7 @@ has_launched_survey:
   forum_name: surveylaunched
   encrypted_password: <%= pw %>
 
-deleted_moderator:
-  first_name: Deleted
-  last_name: Mod
-  email: deleted_moderator@example.com
-  moderator: true
-  over_eighteen: true
-  encrypted_password: <%= pw %>
-  adult_diagnosed: true
-  deleted: true
-
-deleted_user:
+deleted:
   first_name: Zombie
   last_name: Boy
   email: zombieboy@gmail.com

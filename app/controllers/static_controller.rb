@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 class StaticController < ApplicationController
-  before_action :set_active_top_nav_link_to_learn, only: [:learn]
   skip_before_action :check_ip_banlist, only: [:about]
 
   ## Static
   def about
-    render layout: 'simple'
+    # render layout: 'simple'
+    render layout: 'blank2'
   end
 
   def team

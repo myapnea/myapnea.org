@@ -30,7 +30,8 @@
     = stylesheet_link_tag 'application', media: 'all', data: { turbolinks_track: 'reload' }
     = javascript_include_tag 'application', data: { turbolinks_track: 'reload' }
     = javascript_tag "var root_url='#{request.script_name + '/'}';"
-  %body{ class: yield(:body_class), style: 'margin: 0; padding-bottom: 0;padding-top: 50px;' }
+  -# blank should be used with full page layouts that use header and footer
+  %body#top{ class: yield(:body_class) }
     =# render 'layouts/partials/flash_messages'
     = yield :header
     = yield

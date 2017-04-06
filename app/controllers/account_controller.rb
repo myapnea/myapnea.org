@@ -60,7 +60,7 @@ class AccountController < ApplicationController
 
   def accepts_terms_and_conditions
     current_user.update(accepted_terms_conditions_at: Time.zone.now)
-    redirect_to session[:return_to] || forums_path
+    redirect_to session[:return_to] || topics_path
   end
 
   def revoke_consent
