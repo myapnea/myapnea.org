@@ -1,8 +1,11 @@
 # frozen_string_literal: true
 
+# Allows admins to view admin dashboard and reports.
 class AdminController < ApplicationController
   before_action :authenticate_user!
   before_action :check_admin_or_moderator
+
+  layout 'application-padded'
 
   # def dashboard
   # end

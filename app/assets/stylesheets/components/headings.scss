@@ -42,6 +42,22 @@
     position: relative;
     z-index: 1;
   }
+
+  .header-link {
+    display: inline-block;
+    font-size: 65%;
+    font-weight: normal;
+    line-height: 1;
+    white-space: nowrap;
+
+    a {
+      color: $p100-blue;
+
+      &:hover {
+        color: $p50-blue;
+      }
+    }
+  }
 }
 
 @media screen and (min-width: $screen-sm-min) {

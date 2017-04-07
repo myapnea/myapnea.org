@@ -9,7 +9,7 @@
       = link_to root_path, class: 'no-underline' do
         = image_tag 'myapnea/icons/myapnea-logo-transparent.png', size: '16x16', style: 'margin-top: -4px;'
       Dashboard
-    .text-center
+    .center
       MyApnea.Org
 
 .survey-box-with-footer.myapnea-sky-bg
@@ -89,7 +89,7 @@
             = text_field_tag 'search', params[:search], class: 'form-control', placeholder: "Search #{ENV['website_name']}"
             .input-group-btn
               = submit_tag 'Search', class: 'btn btn-primary', name: nil
-        .text-center
+        .center
           - suggestions = ['distilled water', 'seal cpap mask', 'high cpap pressure', 'didgeridoo']
           - suggestions.each_with_index do |suggestion, index|
             - if index == suggestions.size - 1

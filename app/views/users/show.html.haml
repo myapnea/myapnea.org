@@ -13,7 +13,7 @@
 
 - if @user.shadow_banned?
   .jumbotron
-    %p.lead.text-center{ style: 'margin-bottom: 0' }
+    %p.lead.center{ style: 'margin-bottom: 0' }
       %span.glyphicon.glyphicon-eye-close
       This user has been shadow banned.
 
@@ -116,5 +116,5 @@
               = link_to 'Unlock Survey', admin_unlock_survey_path(user_id: @user.id, answer_session_id: answer_session.id), method: :post, class: 'btn btn-primary btn-xs'
 - else
   .jumbotron
-    %p.lead.text-center{ style: 'margin-bottom: 0' }
+    %p.lead.center{ style: 'margin-bottom: 0' }
       No Assigned Surveys

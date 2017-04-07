@@ -59,7 +59,7 @@
                     By
                     .landing-box-footer-author-name= link_to reply.user.forum_name, member_path(reply.user.forum_name)
 
-        .text-center= link_to 'ASK A QUESTION', new_topic_path, class: 'link-white'
+        .center= link_to 'ASK A QUESTION', new_topic_path, class: 'link-white'
       .first-box-down-arrow
         = link_to "#survey-place", data: { object: 'scroll-anchor' }, class: 'orange' do
           %i.fa.fa-chevron-circle-down
@@ -88,8 +88,8 @@
             %p Sleep apnea occurs among people of all ethnicities. Our culture can play an important role in determining where we live, what we eat and how we live our lives. Understanding associations between sleep apnea and one’s ethnicity or culture may help shed light on the genetic and environmental risk factors that influence sleep apnea.
             %span{ style: 'font-style: italic; color: #bbb;' } Yes: 2.1%
             %span{ style: 'font-style: italic; color: #bbb;' } No: 97.9%
-        .text-center= link_to 'START A SURVEY', question_path, class: 'link-white'
-        .text-center= link_to 'SURVEY With Progress', yoga_path(id: 1), class: 'link-white'
+        .center= link_to 'START A SURVEY', question_path, class: 'link-white'
+        .center= link_to 'SURVEY With Progress', yoga_path(id: 1), class: 'link-white'
 
 
       .first-box-down-arrow
@@ -149,7 +149,7 @@
               = text_field_tag 'search', params[:search], class: 'form-control', placeholder: "Search #{ENV['website_name']}"
               .input-group-btn
                 = submit_tag 'Search', class: 'btn btn-primary', name: nil
-          .text-muted.text-center{ style: 'color: #ededed;' }
+          .text-muted.center{ style: 'color: #ededed;' }
             - suggestions = ['distilled water', 'seal cpap mask', 'high cpap pressure', 'didgeridoo']
             - suggestions.each_with_index do |suggestion, index|
               - if index == suggestions.size - 1
@@ -175,7 +175,7 @@
   .footer-container
     .container
       .footer
-        .hidden-sm.hidden-md.hidden-lg.text-center
+        .hidden-sm.hidden-md.hidden-lg.center
           &copy;
           = Date.today.year
           = ENV['website_name']

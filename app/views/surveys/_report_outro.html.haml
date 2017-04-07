@@ -2,10 +2,10 @@
   .primary-blue-bcg
     .container
       .jumbotron
-        %h2.f300.text-center
+        %h2.f300.center
           Congratulations on finishing this survey - you're doing great!
         %br
-        .text-center
+        .center
           - if @answer_session && @answer_session.child
             = link_to next_child_answer_session_path(@answer_session), class: 'btn btn-default btn-lg' do
               Click here to continue
