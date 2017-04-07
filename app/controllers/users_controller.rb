@@ -1,19 +1,14 @@
 # frozen_string_literal: true
 
+# Allows admins to manage user accounts.
 class UsersController < ApplicationController
-  before_action :authenticate_user!,    except: [:photo]
-  before_action :check_owner,           except: [:photo]
-  before_action :set_user,              only: [:show, :photo, :edit, :update, :destroy]
-  before_action :redirect_without_user, only: [:show, :photo, :edit, :update, :destroy]
+  before_action :authenticate_user!
+  before_action :check_admin
+  before_action :find_user_or_redirect, only: [:show, :edit, :update, :destroy]
 
-  def photo
-    if @user.photo.size > 0
-      send_file File.join(CarrierWave::Uploader::Base.root, @user.photo.url)
-    else
-      head :ok
-    end
-  end
+  layout 'application-padded'
 
+  # GET /users
   def index
     @all_users = User.current.search(params[:search]).order(current_sign_in_at: :desc)
     @order = scrub_order(User, params[:order], 'current_sign_in_at desc')
@@ -21,6 +16,7 @@ class UsersController < ApplicationController
     @users = @all_users.reply_count.reorder(@order).page(params[:page]).per(40)
   end
 
+  # GET /users/export
   def export
     @csv_string = CSV.generate do |csv|
       csv << [
@@ -46,13 +42,16 @@ class UsersController < ApplicationController
         csv << row
       end
     end
+    filename = "myapnea-users-#{Time.zone.now.strftime('%Y-%m-%d-%Ih%M-%p')}.csv"
     send_data @csv_string, type: 'text/csv; charset=iso-8859-1; header=present',
-                           disposition: "attachment; filename=\"#{ENV['website_name'].gsub(/[^\w\.]/, '_')} Users List - #{Time.zone.now.strftime("%Y.%m.%d %Ih%M %p")}.csv\""
+                           disposition: "attachment; filename=\"#{filename}\""
   end
 
-  def edit
-  end
+  # GET /users/1/edit
+  # def edit
+  # end
 
+  # PATCH /users/1
   def update
     if @user.update(user_params)
       redirect_to @user, notice: 'User was successfully updated.'
@@ -73,8 +72,9 @@ class UsersController < ApplicationController
 
   private
 
-  def set_user
-    @user = User.current.find_by_id(params[:id])
+  def find_user_or_redirect
+    @user = User.current.find_by(id: params[:id])
+    redirect_without_user
   end
 
   def redirect_without_user
@@ -84,7 +84,7 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(
       :first_name, :last_name, :email, :forum_name, :emails_enabled,
-      :include_in_exports, :owner, :moderator, :community_contributor,
+      :include_in_exports, :admin, :moderator, :community_contributor,
       :can_build_surveys, :shadow_banned
     )
   end

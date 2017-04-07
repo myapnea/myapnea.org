@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Base Survey Builder class.
+# Base survey builder class.
 class Builder::BuilderController < ApplicationController
   private
 
@@ -27,7 +27,7 @@ class Builder::BuilderController < ApplicationController
   end
 
   def find_editable_answer_template_or_redirect(answer_template_id = :answer_template_id)
-    @answer_template = @question.answer_templates.find_by_id(params[answer_template_id])
+    @answer_template = @question.answer_templates.find_by(id: params[answer_template_id])
     redirect_without_answer_template
   end
 
@@ -36,7 +36,7 @@ class Builder::BuilderController < ApplicationController
   end
 
   def find_editable_answer_option_or_redirect(answer_option_id = :answer_option_id)
-    @answer_option = @answer_template.answer_options.find_by_id(params[answer_option_id])
+    @answer_option = @answer_template.answer_options.find_by(id: params[answer_option_id])
     redirect_without_answer_option
   end
 

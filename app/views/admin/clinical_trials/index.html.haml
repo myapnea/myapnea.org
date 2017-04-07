@@ -22,8 +22,8 @@
         %td= link_to admin_clinical_trial.title, admin_clinical_trial
         %td= admin_clinical_trial.overview
         %td= admin_clinical_trial.email
-        %td.text-center= simple_check admin_clinical_trial.displayed
-        %td.text-center= simple_check admin_clinical_trial.industry_sponsored
+        %td.center= simple_check admin_clinical_trial.displayed
+        %td.center= simple_check admin_clinical_trial.industry_sponsored
         %td.nowrap
           = link_to 'Edit', edit_admin_clinical_trial_path(admin_clinical_trial), class: 'btn btn-xs btn-default'
           = link_to 'Destroy', admin_clinical_trial, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-xs btn-danger'

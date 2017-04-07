@@ -9,7 +9,7 @@
     = @member.forum_name
 
 -# Admin information
-- if current_user && (current_user.moderator? || current_user.owner?)
+- if current_user && (current_user.moderator? || current_user.admin?)
   .well
     %h4.f300
       Moderator Contact Information
@@ -20,7 +20,7 @@
           %dt
             %strong Member Name
           %dd
-            = link_to_if current_user.owner?, @member.name, @member
+            = link_to_if current_user.admin?, @member.name, @member
           %dt
             %strong Member Email
           %dd

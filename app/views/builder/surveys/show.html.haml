@@ -59,7 +59,7 @@
   - @survey.survey_user_types.each do |survey_user_type|
     %tr
       %td= link_to survey_user_type.user_type, builder_survey_survey_user_type_path(@survey, survey_user_type)
-      %td= link_to_if current_user.owner?, survey_user_type.user.name, survey_user_type.user if survey_user_type.user
+      %td= link_to_if current_user.admin?, survey_user_type.user.name, survey_user_type.user if survey_user_type.user
       %td= link_to 'Edit', edit_builder_survey_survey_user_type_path(@survey, survey_user_type), class: 'btn btn-xs btn-default'
   %tr
     %td{ colspan: '5' }
@@ -91,7 +91,7 @@
         - else
           Sign Up
 
-      %td= link_to_if current_user.owner?, survey_encounter.encounter.user.name, survey_encounter.encounter.user if survey_encounter.encounter.user
+      %td= link_to_if current_user.admin?, survey_encounter.encounter.user.name, survey_encounter.encounter.user if survey_encounter.encounter.user
       %td= link_to 'Edit', edit_builder_survey_survey_encounter_path(@survey, survey_encounter), class: 'btn btn-xs btn-default'
   %tr
     %td{ colspan: '5' }
@@ -117,7 +117,7 @@
         %td= link_to question.text_en, builder_survey_question_path(@survey, question)
         %td
           %code= question.slug
-        %td= link_to_if current_user.owner?, question.user.name, question.user if question.user
+        %td= link_to_if current_user.admin?, question.user.name, question.user if question.user
         %td= link_to 'Edit', edit_builder_survey_question_path(@survey, question), class: 'btn btn-xs btn-default'
   %tr
     %td{ colspan: '5' }
@@ -137,7 +137,7 @@
         %td= link_to question.text_en, builder_survey_question_path(@survey, question)
         %td
           %code= question.slug
-        %td= link_to_if current_user.owner?, question.user.name, question.user if question.user
+        %td= link_to_if current_user.admin?, question.user.name, question.user if question.user
         %td= link_to 'Edit', edit_builder_survey_question_path(@survey, question), class: 'btn btn-xs btn-default'
 
 = render 'builder/survey_editors/index', survey: @survey

@@ -15,7 +15,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable, :timeoutable, :lockable
 
   # Callbacks
-  after_commit :set_forum_name, :send_welcome_email_in_background!, :check_for_token, :update_location, on: :create
+  after_commit :set_forum_name, :send_welcome_email_in_background!, :update_location, on: :create
 
   # Mappings
   TYPES = [
@@ -23,19 +23,16 @@ class User < ApplicationRecord
     ['Adult who is at-risk of sleep apnea', 'adult_at_risk'],
     ['Caregiver of adult diagnosed with or at-risk of sleep apnea', 'caregiver_adult'],
     ['Caregiver of child(ren) diagnosed with or at-risk of sleep apnea', 'caregiver_child'],
-    ['Professional care provider', 'provider'],
     ['Research professional', 'researcher']
   ]
 
   # Concerns
-  include Deletable, Coenrollment, Forkable
+  include Deletable, Coenrollment, Forkable, RandomNameGenerator
 
   attr_accessor :user_is_updating
 
   # Scopes
   scope :search, lambda { |arg| where( 'LOWER(first_name) LIKE ? or LOWER(last_name) LIKE ? or LOWER(email) LIKE ?', arg.to_s.downcase.gsub(/^| |$/, '%'), arg.to_s.downcase.gsub(/^| |$/, '%'), arg.to_s.downcase.gsub(/^| |$/, '%') ) }
-  scope :providers, -> { current.where(provider: true) }
-  scope :providers_with_profiles, -> { providers.where.not(slug: [nil,''], provider_name: [nil,'']) }
   scope :include_in_exports_and_reports, -> { where(include_in_exports: true) }
   scope :reply_count, -> { select('users.*, COALESCE(COUNT(replies.id), 0) reply_count').joins('LEFT OUTER JOIN replies ON replies.user_id = users.id and replies.deleted IS FALSE and replies.topic_id IN (SELECT topics.id FROM topics WHERE topics.deleted IS FALSE)').group('users.id') }
 
@@ -45,17 +42,9 @@ class User < ApplicationRecord
   validates :forum_name, allow_blank: true, uniqueness: { case_sensitive: false }, format: { with: /\A[a-zA-Z0-9]*\Z/i }, unless: :update_by_user?
   validates :forum_name, allow_blank: false, uniqueness: { case_sensitive: false }, format: { with: /\A[a-zA-Z0-9]+\Z/i }, if: :update_by_user?
 
-  with_options unless: :provider? do |user|
-    user.validates :over_eighteen, inclusion: { in: [true], message: "You must be over 18 years of age to sign up" }, allow_nil: true
-  end
-
-  with_options if: :provider? do |user|
-    user.validates :provider_name, allow_blank: true, uniqueness: { case_sensitive: false }
-    user.validates :slug, allow_blank: true, uniqueness: { case_sensitive: false }, format: { with: /\A[a-z][a-z0-9\-]*[a-z0-9]\Z/i }
-  end
+  validates :over_eighteen, inclusion: { in: [true], message: 'You must be over 18 years of age to sign up' }, allow_nil: true
 
   # Model Relationships
-  belongs_to :my_provider, class_name: 'User', foreign_key: 'provider_id'
   has_many :answer_sessions, -> { where deleted: false }
   has_many :answers
   has_many :broadcasts, -> { current }
@@ -63,11 +52,8 @@ class User < ApplicationRecord
   has_many :topics, -> { current }
   has_many :topic_users
   has_many :replies, -> { current.joins(:topic).merge(Topic.current) }
-  has_one :social_profile, -> { where deleted: false }
   has_many :images
   has_many :notifications
-  has_many :users, class_name: 'User', foreign_key: 'provider_id'
-  has_many :invites
   has_many :children, -> { where(deleted: false).order('age desc', :first_name) }
   has_many :encounters, -> { where deleted: false }
   has_many :exports, -> { order id: :desc }, class_name: 'Admin::Export'
@@ -106,16 +92,12 @@ class User < ApplicationRecord
     researcher? && !is_nonacademic?
   end
 
-  def is_only_academic?
-    (researcher? || provider?) && !is_nonacademic?
-  end
-
   def is_nonacademic?
     adult_diagnosed? || adult_at_risk? || caregiver_child? || caregiver_adult?
   end
 
   def has_user_type?
-    adult_diagnosed? || adult_at_risk? || caregiver_child? || caregiver_adult? || provider? || researcher?
+    adult_diagnosed? || adult_at_risk? || caregiver_child? || caregiver_adult? || researcher?
   end
 
   def user_type_names
@@ -131,7 +113,7 @@ class User < ApplicationRecord
   end
 
   def editable_topics
-    if moderator? || owner?
+    if moderator? || admin?
       Topic.current
     else
       topics
@@ -185,11 +167,10 @@ class User < ApplicationRecord
   end
 
   def ready_for_research?
-    if provider? || is_only_researcher?
-      accepted_privacy_policy? and accepted_terms_of_access?
-      # accepted_privacy_policy? and (accepted_terms_of_access? or signed_consent?) # is this complicating things? Should they just be asked to sign the ToA?
+    if is_only_researcher?
+      accepted_privacy_policy? && accepted_terms_of_access?
     else
-      accepted_privacy_policy? and signed_consent?
+      accepted_privacy_policy? && signed_consent?
     end
   end
 
@@ -250,7 +231,7 @@ class User < ApplicationRecord
   end
 
   def completed_demographic_survey?
-    answer_sessions.where(survey_id: Survey.find_by_slug('about-me').id).where(locked:true).present?
+    answer_sessions.where(survey_id: Survey.find_by(slug: 'about-me').id).where(locked:true).present?
   end
 
   # Can Build Surveys
@@ -269,7 +250,7 @@ class User < ApplicationRecord
   end
 
   def editable_broadcasts
-    if owner?
+    if admin?
       Broadcast.current
     else
       broadcasts
@@ -284,20 +265,11 @@ class User < ApplicationRecord
     end
   end
 
-  def send_provider_informational_email_in_background!
-    fork_process :send_provider_informational_email!
-  end
-
   def send_welcome_email_in_background!
     fork_process :send_welcome_email!
   end
 
   private
-
-  def send_provider_informational_email!
-    return unless EMAILS_ENABLED
-    UserMailer.welcome_provider(self).deliver_now if provider?
-  end
 
   # This happens when any user updates changes from dashboard
   def update_by_user?
@@ -306,15 +278,11 @@ class User < ApplicationRecord
 
   def set_forum_name
     return if forum_name.present?
-    update forum_name: SocialProfile.generate_forum_name(email, Time.zone.now.usec.to_s)
+    update forum_name: User.generate_forum_name(email, Time.zone.now.usec.to_s)
   end
 
   def send_welcome_email!
     UserMailer.welcome(self).deliver_now if EMAILS_ENABLED
-  end
-
-  def check_for_token
-    Invite.find_by_token(invite_token).update(successful: true) if invite_token.present?
   end
 
   def update_location

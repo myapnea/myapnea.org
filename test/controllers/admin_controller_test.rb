@@ -2,28 +2,22 @@
 
 require 'test_helper.rb'
 
+# Tests to assure admin can view reports.
 class AdminControllerTest < ActionController::TestCase
   setup do
-    @owner = users(:owner)
+    @admin = users(:admin)
     @moderator = users(:moderator_1)
     @regular_user = users(:user_1)
   end
 
-  test 'should get providers as owner' do
-    login(@owner)
-    get :providers
-    assert_not_nil assigns(:providers)
-    assert_response :success
-  end
-
-  test 'should get progress report as owner' do
-    login(@owner)
+  test 'should get progress report as admin' do
+    login(@admin)
     get :progress_report
     assert_response :success
   end
 
-  test 'should get dashboard as owner' do
-    login(@owner)
+  test 'should get dashboard as admin' do
+    login(@admin)
     get :dashboard
     assert_response :success
   end
@@ -46,8 +40,8 @@ class AdminControllerTest < ActionController::TestCase
     assert_redirected_to new_user_session_path
   end
 
-  test 'should get admin surveys as owner' do
-    login(users(:owner))
+  test 'should get admin surveys as admin' do
+    login(users(:admin))
     get :surveys
     assert_response :success
   end
@@ -64,8 +58,8 @@ class AdminControllerTest < ActionController::TestCase
     assert_redirected_to root_path
   end
 
-  test 'should unlock survey for user as owner' do
-    login(users(:owner))
+  test 'should unlock survey for user as admin' do
+    login(users(:admin))
     post :unlock_survey, params: { user_id: users(:adult_diagnosed), answer_session_id: answer_sessions(:locked) }
     answer_sessions(:locked).reload
     assert_not_nil assigns(:user)
@@ -73,8 +67,8 @@ class AdminControllerTest < ActionController::TestCase
     assert_redirected_to assigns(:user)
   end
 
-  test 'should not unlock survey for without user as owner' do
-    login(users(:owner))
+  test 'should not unlock survey for without user as admin' do
+    login(users(:admin))
     post :unlock_survey, params: { user_id: -1, answer_session_id: answer_sessions(:locked) }
     answer_sessions(:locked).reload
     assert_nil assigns(:user)
@@ -106,23 +100,9 @@ class AdminControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test 'should get location report as admin' do
-    login(users(:moderator_1))
-    get :location
-    assert_response :success
-  end
-
-  test 'should get cross tabs as owner' do
-    login(users(:owner))
+  test 'should get cross tabs as admin' do
+    login(users(:admin))
     get :cross_tabs
-    assert_response :success
-  end
-
-  test 'should only get social media for admin' do
-    get :social_media
-    assert_response :redirect
-    login(users(:owner))
-    get :social_media
     assert_response :success
   end
 end

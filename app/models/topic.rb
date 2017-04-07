@@ -66,7 +66,7 @@ class Topic < ApplicationRecord
   end
 
   def editable_by?(current_user)
-    user == current_user || current_user.moderator? || current_user.owner?
+    user == current_user || current_user.moderator? || current_user.admin?
   end
 
   def last_page

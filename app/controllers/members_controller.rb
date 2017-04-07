@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
+# Displays public profiles for forum members.
 class MembersController < ApplicationController
-  before_action :find_member_or_redirect, only: [:show]
+  before_action :find_member, only: :photo
+  before_action :find_member_or_redirect, only: :show
 
   def index
     redirect_to topics_path
@@ -11,10 +13,22 @@ class MembersController < ApplicationController
     @replies = @member.replies.order(created_at: :desc).page(params[:page]).per(20)
   end
 
+  def photo
+    if @member && @member.photo.size.positive?
+      send_file File.join(CarrierWave::Uploader::Base.root, @member.photo.url)
+    else
+      head :ok
+    end
+  end
+
   private
 
-  def find_member_or_redirect
+  def find_member
     @member = User.current.where('LOWER(users.forum_name) = ?', params[:forum_name].to_s.downcase).first
+  end
+
+  def find_member_or_redirect
+    find_member
     redirect_without_member
   end
 

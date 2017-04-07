@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Allows survey builders to add answer options to answer templates
+# Allows survey builders to add answer options to answer templates.
 class Builder::AnswerOptionsController < Builder::BuilderController
   before_action :authenticate_user!
   before_action :redirect_non_builders

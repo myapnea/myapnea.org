@@ -28,7 +28,7 @@
         Go Back
     = link_to "Leave Research Study", revoke_consent_path, method: :post, class: 'btn btn-warning-custom btn-lg'
   - elsif current_user.accepted_privacy_policy?
-    - if current_user.is_only_academic?
+    - if current_user.is_only_researcher?
       = link_to "Continue to review terms of access", terms_of_access_path, class: 'btn btn-primary-custom btn-lg'
     - else
       - continue_path = part_of_registration ? get_started_step_two_path : consent_path

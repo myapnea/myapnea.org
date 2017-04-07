@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Allows survey builders to add encounters to surveys
+# Allows survey builders to add encounters to surveys.
 class Builder::SurveyEncountersController <  Builder::BuilderController
   before_action :authenticate_user!
   before_action :redirect_non_builders
@@ -46,7 +46,7 @@ class Builder::SurveyEncountersController <  Builder::BuilderController
   private
 
   def find_editable_survey_encounter_or_redirect
-    @survey_encounter = @survey.survey_encounters.find_by_id(params[:id])
+    @survey_encounter = @survey.survey_encounters.find_by(id: params[:id])
     redirect_without_survey_encounter
   end
 

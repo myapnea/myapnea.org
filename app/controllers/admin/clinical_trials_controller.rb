@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
+# Allows admins to modify clinical trials page.
 class Admin::ClinicalTrialsController < ApplicationController
   before_action :authenticate_user!
-  before_action :check_owner
+  before_action :check_admin
   before_action :set_admin_clinical_trial, only: [:show, :edit, :update, :destroy]
 
   def order
@@ -15,19 +16,19 @@ class Admin::ClinicalTrialsController < ApplicationController
     @admin_clinical_trials = Admin::ClinicalTrial.current.order(:position)
   end
 
-  # GET /admin/clinical_trials/1
-  # GET /admin/clinical_trials/1.json
-  def show
-  end
+  # # GET /admin/clinical_trials/1
+  # # GET /admin/clinical_trials/1.json
+  # def show
+  # end
 
   # GET /admin/clinical_trials/new
   def new
     @admin_clinical_trial = Admin::ClinicalTrial.new
   end
 
-  # GET /admin/clinical_trials/1/edit
-  def edit
-  end
+  # # GET /admin/clinical_trials/1/edit
+  # def edit
+  # end
 
   # POST /admin/clinical_trials
   # POST /admin/clinical_trials.json
@@ -45,8 +46,8 @@ class Admin::ClinicalTrialsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /admin/clinical_trials/1
-  # PATCH/PUT /admin/clinical_trials/1.json
+  # PATCH /admin/clinical_trials/1
+  # PATCH /admin/clinical_trials/1.json
   def update
     respond_to do |format|
       if @admin_clinical_trial.update(admin_clinical_trial_params)
@@ -70,13 +71,15 @@ class Admin::ClinicalTrialsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_admin_clinical_trial
-      @admin_clinical_trial = Admin::ClinicalTrial.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def admin_clinical_trial_params
-      params.require(:admin_clinical_trial).permit(:title, :overview, :description, :eligibility, :phone, :email, :link, :displayed, :industry_sponsored, :position)
-    end
+  def set_admin_clinical_trial
+    @admin_clinical_trial = Admin::ClinicalTrial.find(params[:id])
+  end
+
+  def admin_clinical_trial_params
+    params.require(:admin_clinical_trial).permit(
+      :title, :overview, :description, :eligibility, :phone, :email, :link,
+      :displayed, :industry_sponsored, :position
+    )
+  end
 end

@@ -1,4 +1,4 @@
-@exportsReady = () ->
+@exportsReady = ->
   if $('[data-object~="ajax-timer"]').length > 0
     interval = setInterval( () ->
       $('[data-object~="ajax-timer"]').each( () ->
@@ -7,7 +7,7 @@
     , 5000)
 
 $(document)
-  .on('click', '[data-object~="toggle-delete-buttons"]', () ->
+  .on('click', '[data-object~="toggle-delete-buttons"]', ->
     $($(this).data('target-show')).show()
     $($(this).data('target-hide')).hide()
     false

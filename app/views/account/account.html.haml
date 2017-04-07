@@ -8,16 +8,10 @@
           Changing my picture
         = link_to '#change-information' do
           Changing my basic info (name, email, etc)
-        = link_to '#change-member-type' do
-          Changing my role (patient, caregiver, etc)
         = link_to '#change-password' do
           Changing my password
-        = link_to '#select-provider' do
-          Linking with my care provider
         = link_to '#notification-preferences' do
           Receiving email notifications
-        = link_to '#coenrollment-status' do
-          Co-enrolling with Health eHeart
         - if current_user.ready_for_research?
           = link_to '#leave-study' do
             I want to leave the research study
@@ -27,10 +21,7 @@
         = render 'account/join_leave_research_study'
 
       %a.settings-anchor#change-picture
-      - if current_user.provider?
-        = render 'providers/providers_profile'
-      - else
-        = render 'social/social_profile'
+      = render 'users/social_profile'
 
       %a.settings-anchor#change-information
       .content-container
@@ -53,22 +44,6 @@
                 = f.email_field :email, class: 'form-control', placeholder: User.human_attribute_name(:email), autocomplete: :off
             .form-group
               = f.submit 'Save Changes', class: 'btn btn-primary-custom col-xs-4 col-xs-offset-4'
-
-      %a.settings-anchor#change-member-type
-      .content-container
-        .content-header
-          %h3.f300.center
-            Your Role
-        .content-body.center
-          - if current_user.has_user_type?
-            .horizontal-inset
-              - current_user.user_type_names.each do |type|
-                %h5.f300= type
-            %br
-            %p.lead
-              If this is incorrect, please
-              = link_to 'change your user type.', describe_yourself_path, class: 'no-underline'
-
 
       %a.settings-anchor#change-password
       .content-container
@@ -96,28 +71,6 @@
             .row
               = f.submit 'Change Password', class: 'btn btn-primary-custom col-xs-4 col-xs-offset-4'
 
-
-      %a.settings-anchor#select-provider
-      .content-container.center
-        .content-header
-          %h3.f300
-            Your Provider
-        .content-body
-          - if current_user.my_provider.present?
-            %p.lead
-              You have listed
-              %strong= current_user.my_provider.provider_name
-              as your preferred provider.
-              If you wish, you may
-              = link_to 'unlist', update_account_path(user: { provider_id: nil }), method: :patch, class: 'btn btn-warning btn-xs'
-              yourself from this provider's network.
-          - else
-            %p.lead
-              You have not listed a provider. You can search through the registered providers
-              = link_to 'here', providers_path
-              and see if your provider has registered. If they haven't you should
-              = link_to 'invite them!', providers_invites_path
-
       %a.settings-anchor#notification-preferences
       .content-container.center
         .content-header
@@ -140,8 +93,6 @@
               If you prefer, you can
               = link_to 'enable', update_account_path(user: { emails_enabled: '1' }), method: :patch, class: 'btn btn-primary-custom btn-xs'
               emails.
-
-= render 'account/coenrollment'
 
 - if current_user.ready_for_research?
   %a.settings-anchor#leave-study

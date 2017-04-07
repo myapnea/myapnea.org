@@ -1,7 +1,7 @@
 .content-main-header2
   %h1 Research Surveys
 
-- if current_user && current_user.is_only_academic?
+- if current_user && current_user.is_only_researcher?
   .jumbotron.jumbotron-action
     %p
       You may view aggregate data for these surveys.
@@ -21,7 +21,7 @@
       = render 'children/new'
 
 - unless current_user && current_user.caregiver_child? && current_user.children.count == 0
-  - if current_user && current_user.is_only_academic?
+  - if current_user && current_user.is_only_researcher?
     - @surveys.in_groups_of(3, false) do |survey_group|
       .row
         - survey_group.each do |survey|
@@ -71,7 +71,7 @@
         found in patients with sleep apnea or at risk for sleep apnea, their
         experiences with getting diagnosed, and their health conditions.
       - unless current_user
-        .text-center
+        .center
           = link_to new_user_registration_path, class: 'btn btn-lg btn-warning-custom' do
             Join Today
             %i.fa.fa-arrow-right

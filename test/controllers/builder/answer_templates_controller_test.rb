@@ -78,7 +78,6 @@ class Builder::AnswerTemplatesControllerTest < ActionController::TestCase
     assert_not_nil assigns(:survey)
     assert_not_nil assigns(:question)
     assert_not_nil assigns(:answer_template)
-    assert assigns(:answer_template).errors.size > 0
     assert_equal ["can't be blank", 'is invalid'], assigns(:answer_template).errors[:name]
     assert_template 'answer_templates/new'
     assert_response :success
@@ -148,7 +147,6 @@ class Builder::AnswerTemplatesControllerTest < ActionController::TestCase
     assert_not_nil assigns(:survey)
     assert_not_nil assigns(:question)
     assert_not_nil assigns(:answer_template)
-    assert assigns(:answer_template).errors.size > 0
     assert_equal ["can't be blank", "is invalid"], assigns(:answer_template).errors[:name]
     assert_template 'answer_templates/edit'
     assert_response :success

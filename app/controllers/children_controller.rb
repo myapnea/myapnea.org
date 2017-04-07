@@ -12,19 +12,19 @@ class ChildrenController < ApplicationController
     @children = current_user.children
   end
 
-  # GET /children/1
-  # GET /children/1.json
-  def show
-  end
+  # # GET /children/1
+  # # GET /children/1.json
+  # def show
+  # end
 
   # GET /children/new
   def new
     @child = current_user.children.new
   end
 
-  # GET /children/1/edit
-  def edit
-  end
+  # # GET /children/1/edit
+  # def edit
+  # end
 
   # POST /children
   # POST /children.json
@@ -81,15 +81,16 @@ class ChildrenController < ApplicationController
   end
 
   private
-    def set_child
-      @child = current_user.children.find_by_id(params[:id])
-    end
 
-    def redirect_without_child
-      empty_response_or_root_path(children_path) unless @child
-    end
+  def set_child
+    @child = current_user.children.find_by(id: params[:id])
+  end
 
-    def child_params
-      params.require(:child).permit(:first_name, :age, :diagnosed)
-    end
+  def redirect_without_child
+    empty_response_or_root_path(children_path) unless @child
+  end
+
+  def child_params
+    params.require(:child).permit(:first_name, :age, :diagnosed)
+  end
 end

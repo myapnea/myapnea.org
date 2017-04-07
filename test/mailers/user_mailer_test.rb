@@ -13,14 +13,6 @@ class UserMailerTest < ActionMailer::TestCase
     assert_match(/Your registration with MyApnea\.Org was successful\./, mail.body.encoded)
   end
 
-  test 'welcome provider email' do
-    provider = users(:provider)
-    mail = UserMailer.welcome_provider(provider)
-    assert_equal [provider.email], mail.to
-    assert_equal 'MyApnea.Org Provider Registration Information', mail.subject
-    assert_match(/Thank you for registering as a Provider/, mail.body.encoded)
-  end
-
   test 'followup survey email' do
     answer_session = answer_sessions(:incomplete2_followup)
     mail = UserMailer.followup_survey(answer_session)
@@ -38,9 +30,9 @@ class UserMailerTest < ActionMailer::TestCase
   end
 
   test 'encounter digest email' do
-    owner = users(:owner)
-    mail = UserMailer.encounter_digest(owner, 48, {})
-    assert_equal [users(:owner).email], mail.to
+    admin = users(:admin)
+    mail = UserMailer.encounter_digest(admin, 48, {})
+    assert_equal [users(:admin).email], mail.to
     assert_equal "48 Followup Surveys Launched on #{Time.zone.today.strftime('%a %d %b %Y')}", mail.subject
     assert_match(/Today, 48 surveys were launched to members of MyApnea\.Org\./, mail.body.encoded)
   end

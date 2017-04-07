@@ -1,90 +1,90 @@
 radio1:
-  user: owner
+  user: admin
   text_en: What is your sex?
   slug: sex-selection
 
 radio2:
-  user: owner
+  user: admin
   text_en: What would your favorite color be?
   slug: favorite-color
 
 checkbox1:
-  user: owner
+  user: admin
   text_en: What is your race?
   slug: race-selection
 
 date1:
-  user: owner
+  user: admin
   text_en: What is your date of birth?
   slug: dob
 
 radio_multiple1:
-  user: owner
+  user: admin
   text_en: How likely are you to doze off?
   slug: ess
 
 number1:
-  user: owner
+  user: admin
   text_en: How many hours do you sleep?
   slug: sleep-hours
 
 number2:
-  user: owner
+  user: admin
   text_en: How long does it take you to get out of bed?
   slug: crying
 
 date2:
-  user: owner
+  user: admin
   text_en: What is this date?
   slug: date2
 
 country1:
-  user: owner
+  user: admin
   text_en: Where were you born?
   slug: country
 
 ## About Me Survey
 date_of_birth:
-  user: owner
+  user: admin
   text_en: What is your date of birth?
   slug: date-of-birth
 
 sex:
-  user: owner
+  user: admin
   text_en: What is your sex?
   slug: sex
 
 race:
-  user: owner
+  user: admin
   text_en: What is your racial background?
   slug: race
 
 education_level:
-  user: owner
+  user: admin
   text_en: What is the highest degree or level of school you have completed?
   slug: education-level
 
 ## Additional Information About Me Survey
 
 height:
-  user: owner
+  user: admin
   text_en: "What is your height?"
   slug: height
 
 weight:
-  user: owner
+  user: admin
   text_en: "What is your weight?"
   slug: weight
 
 affording_basics:
-  user: owner
+  user: admin
   text_en: "How hard is it for you (and your family) to pay for basics like food, rent or mortgage, heating, etc.?"
   slug: affording-basics
 
 ## My Interest In Research Survey
 
 referral_methods:
-  user: owner
+  user: admin
   text_en:  How did you hear about MyApnea.Org?
   slug: referral-methods
 

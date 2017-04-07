@@ -2,7 +2,7 @@
   = render 'surveys/reports/question_and_user_answer', survey: @survey, question_slug: 'age-of-diagnosis'
   .survey-report-info
     %p.lead Average age of diagnosis:
-    - question = @survey.questions.find_by_slug('age-of-diagnosis')
+    - question = @survey.questions.find_by(slug: 'age-of-diagnosis')
     - answer_template = question.first_radio_or_checkbox_answer_template if question
     - median = TemporaryReport.get_median_report_item(@survey, question, answer_template, encounter: @encounter, range: 1..7)
     %h1.report-statistic= median.answer_option.text if median
@@ -11,7 +11,7 @@
   = render 'surveys/reports/question_and_user_answer', survey: @survey, question_slug: 'apnea-before-diagnosis'
   .survey-report-info
     %p.lead Percentage of MyApnea members who think they had sleep apnea for over 2 years:
-    - question = @survey.questions.find_by_slug('apnea-before-diagnosis')
+    - question = @survey.questions.find_by(slug: 'apnea-before-diagnosis')
     - answer_template = question.first_radio_or_checkbox_answer_template if question
     - answer_option_counts = TemporaryReport.answer_option_counts(@survey, question, answer_template, encounter: @encounter, range: 1..5)
     - percent_over = 0
@@ -31,13 +31,13 @@
         %span.f500= my_risk_symptoms.join(', ')
   .survey-report-info
     %h3 The most common symptoms for MyApnea members:
-    - question = @survey.questions.find_by_slug('symptoms-before-diagnosis')
+    - question = @survey.questions.find_by(slug: 'symptoms-before-diagnosis')
     = render 'surveys/reports/sleep_apnea_symptoms_statistics', question: question
 
 .content-container
   = render 'surveys/reports/question_and_user_answer', survey: @survey, question_slug: 'diagnostic-study'
   .survey-report-info
-    - question = @survey.questions.find_by_slug('diagnostic-study')
+    - question = @survey.questions.find_by(slug: 'diagnostic-study')
     - answer_template = question.first_radio_or_checkbox_answer_template if question
     - answer_option_counts = TemporaryReport.answer_option_counts(@survey, question, answer_template, encounter: @encounter, range: 1..2)
     - ri1 = ReportItem.new(answer_option_counts, answer_template, 1)

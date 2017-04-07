@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Allows admins to generate exports.
 class Admin::Export < ApplicationRecord
   # Uploaders
   mount_uploader :file, ZipUploader
@@ -135,7 +136,7 @@ class Admin::Export < ApplicationRecord
 
   def write_data_csv(data_csv)
     CSV.open(data_csv, 'wb') do |csv|
-      row = %w(myapnea_id joined consented encounter state_code country_code provider_id provider_name)
+      row = %w(myapnea_id joined consented encounter state_code country_code)
       question_slugs = []
       surveys_answer_templates = []
 
@@ -161,9 +162,9 @@ class Admin::Export < ApplicationRecord
       exportable_users.each do |user|
         encounters = ['baseline']
         encounters.each do |encounter|
-          row = [user.myapnea_id, (user.created_at.strftime('%Y-%m-%d')), (user.accepted_consent? ? '1' : '0'), encounter, user.state_code, user.country_code, (user.my_provider ? user.provider_id : nil), (user.my_provider ? user.my_provider.name : nil)]
+          row = [user.myapnea_id, (user.created_at.strftime('%Y-%m-%d')), (user.accepted_consent? ? '1' : '0'), encounter, user.state_code, user.country_code]
           surveys_answer_templates.each do |survey_id, question_id, answer_template_id, answer_option_id|
-            answer_session = user.answer_sessions.find_by_survey_id survey_id
+            answer_session = user.answer_sessions.find_by(survey_id: survey_id)
             if answer_session
               answer_value_scope = AnswerValue.joins(:answer).where(answers: { answer_session_id: answer_session.id, question_id: question_id }).where(answer_template_id: answer_template_id)
               answer_value_scope = answer_value_scope.where(answer_option_id: answer_option_id) unless answer_option_id.nil?

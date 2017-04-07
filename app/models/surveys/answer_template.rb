@@ -64,7 +64,7 @@ class AnswerTemplate < ApplicationRecord
   end
 
   def parent_answer_option_id
-    parent_answer_template.answer_options.find_by_value(parent_answer_option_value).id
+    parent_answer_template.answer_options.find_by(value: parent_answer_option_value).id
   end
 
   def parent_answer_template_present?

@@ -4,8 +4,8 @@ $(window).on('scroll', ->
     winTop = $(window).scrollTop()
     if pos < winTop
       $(this).addClass 'header-container-hide'
-      $('#top-menu').addClass('navbar-scrolled')
+      $('.top-menu').addClass('navbar-scrolled')
     else
       $(this).removeClass 'header-container-hide'
-      $('#top-menu').removeClass('navbar-scrolled')
+      $('.top-menu').removeClass('navbar-scrolled')
 )

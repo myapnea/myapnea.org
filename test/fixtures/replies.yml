@@ -32,7 +32,7 @@ two:
 #   # broadcast:
 #   topic: locked
 #   description: This is the last comment on the locked topic.
-#   user: owner
+#   user: admin
 
 banned:
   id: 5

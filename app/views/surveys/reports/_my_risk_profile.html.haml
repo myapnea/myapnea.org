@@ -10,5 +10,5 @@
         %span.f500= my_risk_symptoms.join(', ')
   .survey-report-info
     %h3 The following symptoms were commonly experienced by members of MyApnea.Org before their diagnosis:
-    - question = @survey.questions.find_by_slug('risk-symptoms')
+    - question = @survey.questions.find_by(slug: 'risk-symptoms')
     = render 'surveys/reports/sleep_apnea_symptoms_statistics', question: question

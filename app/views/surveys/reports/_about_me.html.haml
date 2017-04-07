@@ -1,7 +1,7 @@
 .content-container
   = render 'surveys/reports/question_and_user_answer', survey: @survey, question_slug: 'sex'
   .survey-report-info
-    - question = @survey.questions.find_by_slug('sex')
+    - question = @survey.questions.find_by(slug: 'sex')
     - answer_template = question.first_radio_or_checkbox_answer_template if question
     - answer_option_counts = TemporaryReport.answer_option_counts(@survey, question, answer_template, encounter: @encounter, range: 1..2)
     .row.reset-layout
@@ -30,7 +30,7 @@
 .content-container
   = render 'surveys/reports/question_and_user_answer', survey: @survey, question_slug: 'ethnicity'
   .survey-report-info
-    - question = @survey.questions.find_by_slug('ethnicity')
+    - question = @survey.questions.find_by(slug: 'ethnicity')
     - answer_template = question.first_radio_or_checkbox_answer_template if question
     - answer_option_counts = TemporaryReport.answer_option_counts(@survey, question, answer_template, encounter: @encounter, range: 1..2)
     .row.reset-layout
@@ -52,7 +52,7 @@
 .content-container
   = render 'surveys/reports/question_and_user_answer', survey: @survey, question_slug: 'education-level'
   .survey-report-info
-    - question = @survey.questions.find_by_slug('education-level')
+    - question = @survey.questions.find_by(slug: 'education-level')
     - answer_template = question.first_radio_or_checkbox_answer_template if question
     - answer_option_counts = TemporaryReport.answer_option_counts(@survey, question, answer_template, encounter: @encounter, range: 1..6)
     .row.reset-layout{ style: 'margin: 40px 0'}

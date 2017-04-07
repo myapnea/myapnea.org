@@ -2,20 +2,8 @@
 
 require 'test_helper.rb'
 
+# Tests to assure static pages are displayed to public users.
 class StaticControllerTest < ActionController::TestCase
-  # TODO: Non static pages should be moved
-  test 'should redirect to a provider show page' do
-    get :provider_page, params: { slug: 'health-hospital' }
-    assert_redirected_to provider_path(users(:provider).slug)
-  end
-
-  test 'should redirect to a providers index with invalid slug' do
-    get :provider_page, params: { slug: nil }
-
-    assert_redirected_to providers_path
-  end
-
-  # STATIC
   test 'should get about' do
     get :about
     assert_response :success

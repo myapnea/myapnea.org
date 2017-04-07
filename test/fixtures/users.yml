@@ -79,16 +79,16 @@ moderator_2:
   forum_name: mod2
   accepted_terms_conditions_at: <%= Time.zone.now %>
 
-owner:
+admin:
   first_name: Own
   last_name: Er
-  email: owner@example.com
-  owner: true
+  email: admin@example.com
+  admin: true
   over_eighteen: true
   adult_diagnosed: true
   encrypted_password: <%= pw %>
   accepted_terms_conditions_at: <%= Time.zone.now %>
-  forum_name: owner
+  forum_name: admin
 
 has_completed_survey:
   first_name: Complete
@@ -199,32 +199,6 @@ researcher:
   accepted_privacy_policy_at: <%= 6.day.ago.to_s(:db) %>
   accepted_terms_of_access_at: <%= 6.day.ago.to_s(:db) %>
   forum_name: researcher
-
-
-
-## Provider
-provider:
-  first_name: Some
-  last_name: Hospital
-  email: healthy@me.com
-  provider_name: Healthy
-  slug: health-hospital
-  state_code: MA
-  provider: true
-  encrypted_password: <%= pw %>
-  accepted_privacy_policy_at: <%= 6.day.ago.to_s(:db) %>
-  accepted_terms_of_access_at: <%= 6.day.ago.to_s(:db) %>
-  forum_name: ProviderForumName012345
-
-# This provider hasn't filled anything in yet
-provider_without_slug:
-  first_name: iAm
-  last_name: aNewProvider
-  email: iam@anewprovider.com
-  # slug:
-  encrypted_password: <%= pw %>
-  provider: true
-  forum_name: noslugprovider
 
 builder:
   first_name: Survey

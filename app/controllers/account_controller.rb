@@ -1,22 +1,22 @@
 # frozen_string_literal: true
 
+# Allows members to update their account settings.
 class AccountController < ApplicationController
   before_action :authenticate_user!, except: [:consent, :privacy_policy, :terms_and_conditions, :terms_of_access]
-  before_action :set_SEO_elements
 
   ## Onboarding process
 
-  def get_started
-  end
+  # def get_started
+  # end
 
-  def get_started_step_two
-  end
+  # def get_started_step_two
+  # end
 
   def get_started_step_three
     if current_user.ready_for_research? && current_user.caregiver_child?
       redirect_to surveys_path
-    elsif !(current_user.provider? || current_user.is_only_researcher?) && current_user.ready_for_research?
-      @survey = Survey.current.viewable.find_by_slug 'about-me'
+    elsif !(current_user.is_only_researcher?) && current_user.ready_for_research?
+      @survey = Survey.current.viewable.find_by(slug: 'about-me')
       @answer_session = current_user.get_baseline_survey_answer_session(@survey)
     end
   end
@@ -25,7 +25,7 @@ class AccountController < ApplicationController
 
   def accepts_privacy
     current_user.update accepted_privacy_policy_at: Time.zone.now
-    not_ready_path = current_user.is_only_academic? ? terms_of_access_path : consent_path
+    not_ready_path = current_user.is_only_researcher? ? terms_of_access_path : consent_path
     redirect_to current_user.ready_for_research? ? surveys_path : not_ready_path
   end
 
@@ -50,7 +50,7 @@ class AccountController < ApplicationController
   end
 
   def accepts_update
-    if current_user.provider? || current_user.is_only_researcher?
+    if current_user.is_only_researcher?
       current_user.accepts_terms_of_access!
     else
       current_user.accepts_consent!
@@ -80,18 +80,18 @@ class AccountController < ApplicationController
     render layout: 'simple'
   end
 
-  def terms_of_access
-  end
+  # def terms_of_access
+  # end
 
   def terms_and_conditions
     render layout: 'simple'
   end
 
-  def user_type
-  end
+  # def user_type
+  # end
 
   def set_user_type
-    user_types = params.required(:user).permit(:provider, :researcher, :adult_diagnosed, :adult_at_risk, :caregiver_adult, :caregiver_child)
+    user_types = params.required(:user).permit(:researcher, :adult_diagnosed, :adult_at_risk, :caregiver_adult, :caregiver_child)
     current_user.update_user_types user_types
     if params[:registration_process] == '1'
       redirect_to get_started_step_two_path
@@ -100,22 +100,17 @@ class AccountController < ApplicationController
     end
   end
 
-  def dashboard
-  end
+  # def dashboard
+  # end
 
-  def account
-  end
+  # def account
+  # end
 
   def update
     if current_user.update(user_params)
-      if [:welcome_message, :slug, :provider_name].all? {|k| user_params.key? k}
-        current_user.send_provider_informational_email_in_background! if current_user.provider?
-        redirect_to provider_path(current_user.slug)
-      else
-        respond_to do |format|
-          format.js
-          format.all { redirect_to account_path, notice: 'Your account settings have been successfully changed.' }
-        end
+      respond_to do |format|
+        format.js
+        format.all { redirect_to account_path, notice: 'Your account settings have been successfully changed.' }
       end
     else
       render :account
@@ -133,7 +128,7 @@ class AccountController < ApplicationController
   end
 
   def suggest_random_forum_name
-    @new_forum_name = SocialProfile.generate_forum_name(Time.zone.now.nsec.to_s)
+    @new_forum_name = User.generate_forum_name(Time.zone.now.nsec.to_s)
   end
 
   # DELETE /account
@@ -147,20 +142,14 @@ class AccountController < ApplicationController
 
   def user_params
     params[:user] ||= { blank: '1' }
-
     params[:user][:user_is_updating] = '1'
-
     params.required(:user).permit(
       # Basic Information
       :first_name, :last_name, :email,
       # Forum and Social Profile
       :photo, :remove_photo, :forum_name, :experience, :device,
-      # Linking to a Provider
-      :provider_id,
       # Receiving Emails
       :emails_enabled,
-      # For Provider Profiles
-      :welcome_message, :provider_name, :slug,
       # Enabling Beta
       :beta_opt_in,
       # Enforces that forum name can't be blank
@@ -176,9 +165,5 @@ class AccountController < ApplicationController
 
   def load_content
     @pc = YAML.load_file(Rails.root.join('lib', 'data', 'content', "#{action_name}.yml"))[action_name.to_s]
-  end
-
-  def set_SEO_elements
-    @page_content = 'Set your sleep apnea community profile, participate in sleep discussions, and join the MyApnea sleep study to help advance sleep apnea research.'
   end
 end

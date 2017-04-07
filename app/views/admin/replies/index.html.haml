@@ -8,10 +8,7 @@
     .container
       %h1.page-heading
         = @title
-        %small.nowrap
-          = link_to admin_path, style: 'color: #bbdefb;' do
-            -# TODO: Color is $p100-blue;
-            Admin Dashboard
+        .header-link= link_to 'Admin Dashboard', admin_path
 
 .dashboard-container
   %table.table.table-striped.table-borderless.table-hover

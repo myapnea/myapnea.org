@@ -1,21 +1,25 @@
 - @title = 'Timeline Report'
 
-.content-main-header2
-  %h1
-    = link_to 'Admin Dashboard', admin_path
-    &middot;
-    = @title
+- content_for :body_class do
+  myapnea-sky-bg
 
-.content-container
-  %h3 Timeline Report
+- content_for :header do
+  .header-container
+    .container
+      %h1.page-heading
+        = @title
+        .header-link= link_to 'Admin Dashboard', admin_path
+
+.dashboard-container
+  %strong Timeline Report
   %table.table.table-striped
     %thead
       %tr
         %th Month
         %th.text-right New Users
         %th.text-right Adult Diagnosed
-        %th.text-center{ colspan: '2' } Consent *
-        %th.text-center{ colspan: '2' } Completing Surveys *
+        %th.center{ colspan: '2' } Consent *
+        %th.center{ colspan: '2' } Completing Surveys *
         %th.text-right Avg # Complete *
     %tbody
       - last_quarter_new_user_count = 0
@@ -122,123 +126,109 @@
   %p.muted
     * Calculation based on number of adult diagnosed patients
 
-.content-container
-  .content-header
-    %h3 Member Statistics
-  .content-body
-    %table.table.table-striped
-      %thead
-        %tr
-          %th Month
-          %th.text-right New Users
-          %th.text-right Adult Diagnosed
-          %th.text-right Adult At-Risk
-          %th.text-right Caregiver Adult
-          %th.text-right Caregiven Child(ren)
-          %th.text-right Provider
-          %th.text-right Researcher
-      %tbody
-        - last_quarter_new_user_count = 0
-        - last_quarter_adult_diagnosed_count = 0
-        - last_quarter_adult_at_risk_count = 0
-        - last_quarter_caregiver_adult_count = 0
-        - last_quarter_caregiver_child_count = 0
-        - last_quarter_providers_count = 0
-        - last_quarter_researchers_count = 0
-        - current_month = @first_month
-        - todays_month = Date.today.beginning_of_month
-        - while current_month <= todays_month
-          - users = users_in_date_range(start_date: current_month.beginning_of_month, end_date: current_month.end_of_month)
-          - adult_diagnosed_users = users.where(adult_diagnosed: true)
-          - adult_at_risk_users = users.where(adult_at_risk: true)
-          - caregiver_adult_users = users.where(caregiver_adult: true)
-          - caregiver_child_users = users.where(caregiver_child: true)
-          - providers = users.where(provider: true)
-          - researchers = users.where(researcher: true)
-          %tr
-            %td= current_month.strftime("%b %Y")
-            %td.text-right= number_with_delimiter users.count
-            %td.text-right= number_with_delimiter adult_diagnosed_users.count
-            %td.text-right= number_with_delimiter adult_at_risk_users.count
-            %td.text-right= number_with_delimiter caregiver_adult_users.count
-            %td.text-right= number_with_delimiter caregiver_child_users.count
-            %td.text-right= number_with_delimiter providers.count
-            %td.text-right= number_with_delimiter researchers.count
-
-          - if (current_month.month % 3) == 0 or current_month == todays_month
-            - quarter_first_month = current_month.beginning_of_quarter
-            - users = users_in_date_range(start_date: quarter_first_month.beginning_of_month, end_date: current_month.end_of_month)
-            - adult_diagnosed_users = users.where(adult_diagnosed: true)
-            - adult_at_risk_users = users.where(adult_at_risk: true)
-            - caregiver_adult_users = users.where(caregiver_adult: true)
-            - caregiver_child_users = users.where(caregiver_child: true)
-            - providers = users.where(provider: true)
-            - researchers = users.where(researcher: true)
-            %tr
-              %th
-                = quarter_first_month.strftime("%b %Y")
-                to
-                = current_month.strftime("%b %Y")
-              %th.text-right
-                = show_count_difference(users.count, last_quarter_new_user_count)
-                - last_quarter_new_user_count = users.count
-              %th.text-right
-                = show_count_difference(adult_diagnosed_users.count, last_quarter_adult_diagnosed_count)
-                - last_quarter_adult_diagnosed_count = adult_diagnosed_users.count
-              %th.text-right
-                = show_count_difference(adult_at_risk_users.count, last_quarter_adult_at_risk_count)
-                - last_quarter_adult_at_risk_count = adult_at_risk_users.count
-              %th.text-right
-                = show_count_difference(caregiver_adult_users.count, last_quarter_caregiver_adult_count)
-                - last_quarter_caregiver_adult_count = caregiver_adult_users.count
-              %th.text-right
-                = show_count_difference(caregiver_child_users.count, last_quarter_caregiver_child_count)
-                - last_quarter_caregiver_child_count = caregiver_child_users.count
-              %th.text-right
-                = show_count_difference(providers.count, last_quarter_providers_count)
-                - last_quarter_providers_count = providers.count
-              %th.text-right
-                = show_count_difference(researchers.count, last_quarter_researchers_count)
-                - last_quarter_researchers_count = researchers.count
-
-          - current_month = current_month + 1.month
-
-      %tbody
-        - current_year = @first_month.beginning_of_year
-        - todays_year = Date.today.beginning_of_year
-        - while current_year <= todays_year
-          - users = users_in_date_range(start_date: current_year.beginning_of_year, end_date: current_year.end_of_year)
-          - adult_diagnosed_users = users.where(adult_diagnosed: true)
-          - adult_at_risk_users = users.where(adult_at_risk: true)
-          - caregiver_adult_users = users.where(caregiver_adult: true)
-          - caregiver_child_users = users.where(caregiver_child: true)
-          - providers = users.where(provider: true)
-          - researchers = users.where(researcher: true)
-          %tr{ style: 'color: white;background-color: #333;border-left: 2px solid #333;border-right: 2px solid #333;border-top: 2px solid #333' }
-            %th= current_year.strftime("%Y")
-            %th.text-right= number_with_delimiter users.count
-            %th.text-right= number_with_delimiter adult_diagnosed_users.count
-            %th.text-right= number_with_delimiter adult_at_risk_users.count
-            %th.text-right= number_with_delimiter caregiver_adult_users.count
-            %th.text-right= number_with_delimiter caregiver_child_users.count
-            %th.text-right= number_with_delimiter providers.count
-            %th.text-right= number_with_delimiter researchers.count
-          - current_year = current_year + 1.year
-
-      %tfoot{ style: 'border-bottom: 2px solid #333;border-left: 2px solid #333;border-right: 2px solid #333' }
-        - users = User.current
+.dashboard-container
+  %strong Member Statistics
+  %table.table.table-striped
+    %thead
+      %tr
+        %th Month
+        %th.text-right New Users
+        %th.text-right Adult Diagnosed
+        %th.text-right Adult At-Risk
+        %th.text-right Caregiver Adult
+        %th.text-right Caregiven Child(ren)
+        %th.text-right Researcher
+    %tbody
+      - last_quarter_new_user_count = 0
+      - last_quarter_adult_diagnosed_count = 0
+      - last_quarter_adult_at_risk_count = 0
+      - last_quarter_caregiver_adult_count = 0
+      - last_quarter_caregiver_child_count = 0
+      - last_quarter_researchers_count = 0
+      - current_month = @first_month
+      - todays_month = Date.today.beginning_of_month
+      - while current_month <= todays_month
+        - users = users_in_date_range(start_date: current_month.beginning_of_month, end_date: current_month.end_of_month)
         - adult_diagnosed_users = users.where(adult_diagnosed: true)
         - adult_at_risk_users = users.where(adult_at_risk: true)
         - caregiver_adult_users = users.where(caregiver_adult: true)
         - caregiver_child_users = users.where(caregiver_child: true)
-        - providers = users.where(provider: true)
         - researchers = users.where(researcher: true)
         %tr
-          %th Total
+          %td= current_month.strftime("%b %Y")
+          %td.text-right= number_with_delimiter users.count
+          %td.text-right= number_with_delimiter adult_diagnosed_users.count
+          %td.text-right= number_with_delimiter adult_at_risk_users.count
+          %td.text-right= number_with_delimiter caregiver_adult_users.count
+          %td.text-right= number_with_delimiter caregiver_child_users.count
+          %td.text-right= number_with_delimiter researchers.count
+
+        - if (current_month.month % 3) == 0 or current_month == todays_month
+          - quarter_first_month = current_month.beginning_of_quarter
+          - users = users_in_date_range(start_date: quarter_first_month.beginning_of_month, end_date: current_month.end_of_month)
+          - adult_diagnosed_users = users.where(adult_diagnosed: true)
+          - adult_at_risk_users = users.where(adult_at_risk: true)
+          - caregiver_adult_users = users.where(caregiver_adult: true)
+          - caregiver_child_users = users.where(caregiver_child: true)
+          - researchers = users.where(researcher: true)
+          %tr
+            %th
+              = quarter_first_month.strftime("%b %Y")
+              to
+              = current_month.strftime("%b %Y")
+            %th.text-right
+              = show_count_difference(users.count, last_quarter_new_user_count)
+              - last_quarter_new_user_count = users.count
+            %th.text-right
+              = show_count_difference(adult_diagnosed_users.count, last_quarter_adult_diagnosed_count)
+              - last_quarter_adult_diagnosed_count = adult_diagnosed_users.count
+            %th.text-right
+              = show_count_difference(adult_at_risk_users.count, last_quarter_adult_at_risk_count)
+              - last_quarter_adult_at_risk_count = adult_at_risk_users.count
+            %th.text-right
+              = show_count_difference(caregiver_adult_users.count, last_quarter_caregiver_adult_count)
+              - last_quarter_caregiver_adult_count = caregiver_adult_users.count
+            %th.text-right
+              = show_count_difference(caregiver_child_users.count, last_quarter_caregiver_child_count)
+              - last_quarter_caregiver_child_count = caregiver_child_users.count
+            %th.text-right
+              = show_count_difference(researchers.count, last_quarter_researchers_count)
+              - last_quarter_researchers_count = researchers.count
+
+        - current_month = current_month + 1.month
+
+    %tbody
+      - current_year = @first_month.beginning_of_year
+      - todays_year = Date.today.beginning_of_year
+      - while current_year <= todays_year
+        - users = users_in_date_range(start_date: current_year.beginning_of_year, end_date: current_year.end_of_year)
+        - adult_diagnosed_users = users.where(adult_diagnosed: true)
+        - adult_at_risk_users = users.where(adult_at_risk: true)
+        - caregiver_adult_users = users.where(caregiver_adult: true)
+        - caregiver_child_users = users.where(caregiver_child: true)
+        - researchers = users.where(researcher: true)
+        %tr{ style: 'color: white;background-color: #333;border-left: 2px solid #333;border-right: 2px solid #333;border-top: 2px solid #333' }
+          %th= current_year.strftime("%Y")
           %th.text-right= number_with_delimiter users.count
           %th.text-right= number_with_delimiter adult_diagnosed_users.count
           %th.text-right= number_with_delimiter adult_at_risk_users.count
           %th.text-right= number_with_delimiter caregiver_adult_users.count
           %th.text-right= number_with_delimiter caregiver_child_users.count
-          %th.text-right= number_with_delimiter providers.count
           %th.text-right= number_with_delimiter researchers.count
+        - current_year = current_year + 1.year
+
+    %tfoot{ style: 'border-bottom: 2px solid #333;border-left: 2px solid #333;border-right: 2px solid #333' }
+      - users = User.current
+      - adult_diagnosed_users = users.where(adult_diagnosed: true)
+      - adult_at_risk_users = users.where(adult_at_risk: true)
+      - caregiver_adult_users = users.where(caregiver_adult: true)
+      - caregiver_child_users = users.where(caregiver_child: true)
+      - researchers = users.where(researcher: true)
+      %tr
+        %th Total
+        %th.text-right= number_with_delimiter users.count
+        %th.text-right= number_with_delimiter adult_diagnosed_users.count
+        %th.text-right= number_with_delimiter adult_at_risk_users.count
+        %th.text-right= number_with_delimiter caregiver_adult_users.count
+        %th.text-right= number_with_delimiter caregiver_child_users.count
+        %th.text-right= number_with_delimiter researchers.count

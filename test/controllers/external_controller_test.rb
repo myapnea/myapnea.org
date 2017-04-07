@@ -2,10 +2,15 @@
 
 require 'test_helper'
 
-# Test for publicly available pages
+# Test for publicly available pages.
 class ExternalControllerTest < ActionController::TestCase
   test 'should get contact' do
     get :contact
+    assert_response :success
+  end
+
+  test 'should get community' do
+    get :community
     assert_response :success
   end
 

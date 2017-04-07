@@ -32,7 +32,6 @@
   # TODO: Organize Other Ready functions
   consentReady()
   teamReady()
-  providersReady() if providersReady?
   questionsReady() if questionsReady?
   landingReady() if landingReady?
   mapsReady()

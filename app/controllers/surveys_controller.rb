@@ -10,7 +10,7 @@ class SurveysController < ApplicationController
   before_action :redirect_without_accepted_recent_update, only: [:show]
   before_action :check_report_access,                     only: [:report, :report_detail]
 
-  before_action :set_SEO_elements
+  before_action :set_seo_elements
 
   def index
     @surveys = Survey.current.viewable
@@ -51,7 +51,7 @@ class SurveysController < ApplicationController
 
   def process_answer
     @question = Question.current.find_by_param(params[:question_id])
-    @answer_session = current_user.answer_sessions.find_by_id(params[:answer_session_id])
+    @answer_session = current_user.answer_sessions.find_by(id: params[:answer_session_id])
     # TODO: Remove conversion to unsafe hash for response parameter.
     response = (params[:response].present? ? params[:response].to_unsafe_hash : {})
     @answer = @answer_session.process_answer(@question, response) if @question && @answer_session
@@ -64,7 +64,7 @@ class SurveysController < ApplicationController
   end
 
   def submit
-    if @answer_session = current_user.answer_sessions.find_by_id(params[:answer_session_id])
+    if @answer_session = current_user.answer_sessions.find_by(id: params[:answer_session_id])
       @answer_session.lock! if @answer_session.completed?
       render json: { locked: @answer_session.locked? }
     else
@@ -103,12 +103,12 @@ class SurveysController < ApplicationController
       else
         redirect_to show_survey_path(@answer_session.survey, @answer_session.encounter)
       end
-    elsif !@answer_session && !current_user.is_only_academic?
+    elsif !@answer_session && !current_user.is_only_researcher?
       redirect_to surveys_path
     end
   end
 
-  def set_SEO_elements
+  def set_seo_elements
     @title = @survey.present? ? ('Surveys - ' + @survey.name) : ('Participate in Research Surveys About Sleep Apnea')
     @page_content = 'Get paid to take research surveys about sleep apnea! Surveys ask for information about sleep quality, sleep apnea treatments, family involvement, and more.'
   end

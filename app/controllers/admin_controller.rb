@@ -1,15 +1,13 @@
 # frozen_string_literal: true
 
+# Allows admins to view admin dashboard and reports.
 class AdminController < ApplicationController
   before_action :authenticate_user!
-  before_action :check_owner_or_moderator
+  before_action :check_admin_or_moderator
 
-  before_action :set_SEO_elements
+  layout 'application-padded'
 
   # def dashboard
-  # end
-
-  # def social_media
   # end
 
   # def surveys
@@ -25,16 +23,9 @@ class AdminController < ApplicationController
     redirect_to @user || users_path
   end
 
-  def providers
-    @providers = User.current.where(provider: true)
-  end
-
   def timeline
     @first_month = Date.parse('2014-10-01')
   end
-
-  # def location
-  # end
 
   # def ages
   # end
@@ -43,8 +34,8 @@ class AdminController < ApplicationController
     user_values = {}
 
     # Age
-    survey = Survey.find_by_slug 'about-me'
-    question = survey.questions.find_by_slug 'date-of-birth'
+    survey = Survey.find_by(slug: 'about-me')
+    question = survey.questions.find_by(slug: 'date-of-birth')
     values_and_ids = AnswerValue.where( answer_id: question.answers.select(:id) ).where.not( text_value: [nil, '']).includes(answer: :answer_session).pluck(:text_value, "answer_sessions.user_id")
     date_values_and_ids = values_and_ids.collect{|v, user_id| [Date.parse(v), user_id] rescue nil}.compact.select{|d, user_id| d.year.in?(1900..Date.today.year)}
 
@@ -64,7 +55,7 @@ class AdminController < ApplicationController
     end
 
     # Sex
-    question = survey.questions.find_by_slug 'sex'
+    question = survey.questions.find_by(slug: 'sex')
     values_and_ids = AnswerValue.where( answer_id: question.answers.select(:id) ).where.not( answer_option_id: nil ).includes(:answer_option, answer: :answer_session).pluck("answer_options.text", "answer_sessions.user_id")
 
     values_and_ids.each do |v,user_id|
@@ -82,7 +73,7 @@ class AdminController < ApplicationController
     end
 
     # Race
-    question = survey.questions.find_by_slug 'race'
+    question = survey.questions.find_by(slug: 'race')
     values_and_ids = AnswerValue.where( answer_id: question.answers.select(:id) ).where.not( answer_option_id: nil ).includes(:answer_option, answer: :answer_session).pluck("answer_options.text", "answer_sessions.user_id")
 
     values_and_ids.each do |v,user_id|
@@ -104,7 +95,7 @@ class AdminController < ApplicationController
     end
 
     # Education level
-    question = survey.questions.find_by_slug 'education-level'
+    question = survey.questions.find_by(slug: 'education-level')
     values_and_ids = AnswerValue.where( answer_id: question.answers.select(:id) ).where.not( answer_option_id: nil ).includes(:answer_option, answer: :answer_session).pluck("answer_options.text", "answer_sessions.user_id")
 
     values_and_ids.each do |v,user_id|
@@ -126,8 +117,8 @@ class AdminController < ApplicationController
     end
 
     # Wealth
-    survey = Survey.find_by_slug 'additional-information-about-me'
-    question = survey.questions.find_by_slug 'affording-basics'
+    survey = Survey.find_by(slug: 'additional-information-about-me')
+    question = survey.questions.find_by(slug: 'affording-basics')
     values_and_ids = AnswerValue.where( answer_id: question.answers.select(:id) ).where.not( answer_option_id: nil ).includes(:answer_option, answer: :answer_session).pluck("answer_options.text", "answer_sessions.user_id")
 
     values_and_ids.each do |v,user_id|
@@ -143,8 +134,8 @@ class AdminController < ApplicationController
     end
 
     # Referral
-    survey = Survey.find_by_slug 'my-interest-in-research'
-    question = survey.questions.find_by_slug 'referral-methods'
+    survey = Survey.find_by(slug: 'my-interest-in-research')
+    question = survey.questions.find_by(slug: 'referral-methods')
     values_and_ids = AnswerValue.where( answer_id: question.answers.select(:id) ).where.not( answer_option_id: nil ).includes(:answer_option, answer: :answer_session).pluck("answer_options.text", "answer_sessions.user_id")
 
     values_and_ids.each do |v,user_id|
@@ -168,20 +159,12 @@ class AdminController < ApplicationController
 
   private
 
-  def set_SEO_elements
-    @title = 'Admin Panel'
-    @page_content = 'Administrative panel only for owners and moderators of MyApnea.'
-  end
-
   def daily_data(date1, date2)
-    @users_by_date = User.where("created_at >= ? AND created_at <= ?", date1.beginning_of_day, date2.end_of_day)
-
-    @survey = Survey.current.find_by_slug 'about-me'
-    @encounter = Encounter.current.find_by_slug 'baseline'
-
-    question = @survey.questions.find_by_slug 'date-of-birth'
+    @users_by_date = User.where('created_at >= ? AND created_at <= ?', date1.beginning_of_day, date2.end_of_day)
+    @survey = Survey.current.find_by(slug: 'about-me')
+    @encounter = Encounter.current.find_by(slug: 'baseline')
+    question = @survey.questions.find_by(slug: 'date-of-birth')
     dobs = question.community_answer_text_values(@encounter).joins(answer: :answer_session).where(answer_sessions: { user_id: @users_by_date.select(:id) }).where.not(text_value: ['', nil]).pluck(:text_value)
-
     @ages = Hash.new
     @ages[0] = {text: "18-34", count: 0}
     @ages[1] = {text: "35-49", count: 0}

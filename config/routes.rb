@@ -103,15 +103,6 @@ Rails.application.routes.draw do
     get '', to: redirect('builder/surveys')
   end
 
-  scope module: :coenrollment do
-    get :join_health_eheart, path: 'join-health-eheart'
-    get :goto_health_eheart, path: 'goto-health-eheart'
-    get 'welcome-health-eheart-members(/:incoming_heh_token)', action: 'welcome_health_eheart_members', as: :welcome_health_eheart_members
-    get :link_health_eheart_member
-    get :congratulations_health_eheart_members, path: 'congratulations-health-eheart-members'
-    patch :remove_health_eheart
-  end
-
   get 'children/:child_id/surveys/:id/:encounter/report' => 'surveys#report', as: :child_survey_report
   get 'children/:child_id/surveys/:id/:encounter/report-detail' => 'surveys#report_detail', as: :child_survey_report_detail
   get 'children/:child_id/surveys/:id/:encounter' => 'surveys#show', as: :child_survey
@@ -125,6 +116,7 @@ Rails.application.routes.draw do
     post :preview
     get :contact
     get :voting
+    get :community
     get :landing, path: 'sunny/landing'
   end
 
@@ -194,25 +186,11 @@ Rails.application.routes.draw do
   post 'accepts_update' => 'account#accepts_update'
   post 'accepts_terms_and_conditions' => 'account#accepts_terms_and_conditions'
 
-  # Invites
-  resources :invites do
-    collection do
-      get :members
-      get :providers
-    end
-  end
-
-  # Provider Pages
-  get 'p(/:slug)', to: 'static#provider_page'
-  resources :providers do
-    collection do
-      post :more
-    end
-  end
-  get 'bwh', to: redirect('providers/bwh')
-
   get 'members', to: 'members#index', as: :members
   get 'members/:forum_name', to: 'members#show', as: :member
+  scope module: :members do
+    get '/photo/:forum_name', action: 'photo', as: :photo_member
+  end
 
   resources :notifications do
     collection do
@@ -248,9 +226,6 @@ Rails.application.routes.draw do
   # Discussion
   get 'terms-and-conditions', to: 'account#terms_and_conditions', as: :terms_and_conditions
 
-  # Social Section
-  get 'community', to: 'social#overview', via: :get, as: :community
-
   # Account Section
   scope module: :account do
     post :suggest_random_forum_name
@@ -278,12 +253,8 @@ Rails.application.routes.draw do
   post 'admin/unlock_survey' => 'admin#unlock_survey', as: 'admin_unlock_survey'
   get 'admin/cross-tabs' => 'admin#cross_tabs', as: 'admin_cross_tabs'
   get 'admin/reports/timeline' => 'admin#timeline', as: 'admin_reports_timeline'
-  get 'admin/reports/location' => 'admin#location', as: 'admin_reports_location'
   get 'admin/reports/progress' => 'admin#progress_report', as: 'admin_progress_report'
-  get 'admin/providers' => 'admin#providers'
   post 'daily-demographic-breakdown', to: 'admin#daily_demographic_breakdown', as: :daily_demographic_breakdown
-
-  get 'admin/social-media', to: 'admin#social_media'
 
   devise_for :users,
              controllers: { registrations: 'registrations', sessions: 'sessions' },
@@ -293,9 +264,6 @@ Rails.application.routes.draw do
   resources :users do
     collection do
       get :export
-    end
-    member do
-      get :photo
     end
   end
 
@@ -314,6 +282,10 @@ Rails.application.routes.draw do
       post :vote
     end
   end
+
+  # TODO: Remove redirect after November 1, 2017
+  get '/providers(/:slug)', to: redirect('landing')
+  # END TODO
 
   get 'sitemap.xml.gz' => 'external#sitemap'
 

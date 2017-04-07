@@ -1,5 +1,5 @@
 custom_sex_template:
-  user: owner
+  user: admin
   name: custom_sex_template
   template_name: radio
 # answer_options
@@ -9,29 +9,29 @@ custom_sex_template:
 # - prefer not to answer
 
 color_list:
-  user: owner
+  user: admin
   name: fixture_color_list
   template_name: radio
 
 race_list:
-  user: owner
+  user: admin
   name: fixture_race
   template_name: checkbox
 
 fixture_specified_race:
-  user: owner
+  user: admin
   name: fixture_specified_race
   template_name: string
   parent_answer_template: race_list
   parent_answer_option_value: 3
 
 custom_date_template:
-  user: owner
+  user: admin
   name: custom_date_template
   template_name: date
 
 doze_sitting:
-  user: owner
+  user: admin
   name: doze_sitting
   template_name: radio
   text: Sitting
@@ -39,7 +39,7 @@ doze_sitting:
 # Low chance
 
 doze_tv:
-  user: owner
+  user: admin
   name: doze_tv
   template_name: radio
   text: TV
@@ -47,7 +47,7 @@ doze_tv:
 # Low chance
 
 doze_public:
-  user: owner
+  user: admin
   name: doze_public
   template_name: radio
   text: Public Sitting
@@ -55,22 +55,22 @@ doze_public:
 # Low chance
 
 number_of_hours:
-  user: owner
+  user: admin
   name: fixture_number_of_hours
   template_name: number
 
 date2:
-  user: owner
+  user: admin
   name: fixture_text
   template_name: date
 
 countries:
-  user: owner
+  user: admin
   name: countries
   template_name: radio
 
 spec_countries:
-  user: owner
+  user: admin
   name: spec_countries
   template_name: string
   parent_answer_template: countries
@@ -78,51 +78,51 @@ spec_countries:
 
 ## About Me
 birth_date_template:
-  user: owner
+  user: admin
   name: fixture_birth_date
   template_name: date
 
 sex_template:
-  user: owner
+  user: admin
   name: fixture_sex
   template_name: radio
 
 race:
-  user: owner
+  user: admin
   name: race
   template_name: checkbox
 
 specified_race:
-  user: owner
+  user: admin
   name: specified_race
   template_name: string
   parent_answer_template: race
   parent_answer_option_value: 6
 
 education_level:
-  user: owner
+  user: admin
   name: education_level
   template_name: radio
 
 ## Additional Information About Me
 height:
-  user: owner
+  user: admin
   name: height
   template_name: height
 
 weight:
-  user: owner
+  user: admin
   name: weight
   template_name: number
 
 afford_difficulty_scale:
-  user: owner
+  user: admin
   name: afford_difficulty_scale
   template_name: radio
 
 ## My Interest In Research
 myapnea_referral_source:
-  user: owner
+  user: admin
   name: myapnea_referral_source
   template_name: checkbox
 

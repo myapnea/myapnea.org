@@ -5,7 +5,6 @@ class TopicsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :find_viewable_topic_or_redirect, only: [:show]
   before_action :find_editable_topic_or_redirect, only: [:edit, :update, :destroy]
-  # before_action :redirect_shadow_banned_users, only: [:create]
 
   layout 'application-padded'
 
@@ -16,7 +15,7 @@ class TopicsController < ApplicationController
       @order = params[:order]
     end
     topic_scope = Topic.current.reply_count.order(@order)
-    topic_scope = topic_scope.shadow_banned(current_user ? current_user.id : nil) unless current_user && current_user.owner?
+    topic_scope = topic_scope.shadow_banned(current_user ? current_user.id : nil) unless current_user && current_user.admin?
     @topics = topic_scope.page(params[:page]).per(40)
   end
 
@@ -25,7 +24,7 @@ class TopicsController < ApplicationController
     @page = (params[:page].to_i > 1 ? params[:page].to_i : 1)
     reply_scope = @topic.replies.includes(:topic).where(reply_id: nil).page(@page).per(Reply::REPLIES_PER_PAGE)
     last_reply_id = reply_scope.last.id
-    reply_scope = reply_scope.shadow_banned(current_user ? current_user.id : nil) unless current_user && current_user.owner?
+    reply_scope = reply_scope.shadow_banned(current_user ? current_user.id : nil) unless current_user && current_user.admin?
     @replies = reply_scope
     @topic.increment! :view_count
     current_user.read_parent!(@topic, last_reply_id) if current_user
@@ -36,9 +35,9 @@ class TopicsController < ApplicationController
     @topic = current_user.topics.new
   end
 
-  # GET /topics/1/edit
-  def edit
-  end
+  # # GET /topics/1/edit
+  # def edit
+  # end
 
   # POST /topics
   def create
@@ -75,22 +74,18 @@ class TopicsController < ApplicationController
   end
 
   def find_viewable_topic_or_redirect
-    @topic = viewable_topics.find_by_slug params[:id]
+    @topic = viewable_topics.find_by(slug: params[:id])
     redirect_without_topic
   end
 
   def find_editable_topic_or_redirect
-    @topic = current_user.editable_topics.find_by_slug params[:id]
+    @topic = current_user.editable_topics.find_by(slug: params[:id])
     redirect_without_topic
   end
 
   def redirect_without_topic
     empty_response_or_root_path(topics_path) unless @topic
   end
-
-  # def redirect_shadow_banned_users
-  #   redirect_to topics_path, notice: 'Topic was successfully created.' if current_user.shadow_banned?
-  # end
 
   def topic_params
     if current_user.moderator?

@@ -3,7 +3,6 @@
     %h1.center.f300{ style: 'font-size: 24px;margin-bottom: 40px' } Wake up to a better future!
     .content-container
       = form_for(resource, url: registration_path(resource), method: :post, html: { class: 'form-vertical', id: 'recaptcha-form' }) do |f|
-        = f.hidden_field :provider_id
         .form-group
           = render 'layouts/label_or_errors', f: f, object: resource, key: :first_name
           = f.text_field :first_name, class: 'form-control'

@@ -314,7 +314,7 @@ class SurveysControllerTest < ActionController::TestCase
   test 'Researcher can view survey report without completed answer session' do
     u = users(:researcher)
     login(u)
-    assert u.is_only_academic?
+    assert u.is_only_researcher?
     assert u.ready_for_research?
     get :report_detail, params: { id: surveys(:new) }
     assert_template :report_detail
@@ -324,27 +324,9 @@ class SurveysControllerTest < ActionController::TestCase
   test 'should get report for researcher without a completed answer session' do
     u = users(:researcher)
     login(u)
-    assert u.is_only_academic?
+    assert u.is_only_researcher?
     assert u.ready_for_research?
     get :report, params: { id: surveys(:about_me) }
-    assert_response :success
-  end
-
-  test 'should get report for provider without a completed answer session' do
-    u = users(:provider)
-    login(u)
-    assert u.is_only_academic?
-    assert u.ready_for_research?
-    get :report, params: { id: surveys(:about_me) }
-    assert_response :success
-  end
-
-  test 'should get detailed report for provider without a completed answer session' do
-    u = users(:provider)
-    login(u)
-    assert u.is_only_academic?
-    assert u.ready_for_research?
-    get :report_detail, params: { id: surveys(:about_me) }
     assert_response :success
   end
 end

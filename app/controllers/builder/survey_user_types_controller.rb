@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Allows survey builders to specify user types for survey
+# Allows survey builders to specify user types for survey.
 class Builder::SurveyUserTypesController < Builder::BuilderController
   before_action :authenticate_user!
   before_action :redirect_non_builders
@@ -46,7 +46,7 @@ class Builder::SurveyUserTypesController < Builder::BuilderController
   private
 
   def find_editable_survey_user_type_or_redirect
-    @survey_user_type = @survey.survey_user_types.find_by_id(params[:id])
+    @survey_user_type = @survey.survey_user_types.find_by(id: params[:id])
     redirect_without_survey_user_type
   end
 

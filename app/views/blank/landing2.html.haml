@@ -5,7 +5,7 @@
       #show-me-video{ style: 'display: none;' }
         .embed-responsive.embed-responsive-16by9{ style: 'position: relative;pointer-events: none;' }
           #player
-        .text-center
+        .center
           = link_to '#', data: { object: 'pause-landing-video2' }, class: 'no-underline myapnea-lead-sentence' do
             Pause Video
             %i.fa.fa-pause-circle
@@ -60,7 +60,7 @@
         - video = '3I8YbWRgkjw'
         - video_loop = '0'
         - autoplay = '0'
-        .text-center
+        .center
           = link_to '#', data: { object: 'play-landing-video2', src: "//www.youtube.com/embed/#{video}?playlist=#{video}&autoplay=#{autoplay}&loop=#{video_loop}&controls=0&rel=0&modestbranding=1&showinfo=0", target_iframe: 'iframe' }, class: 'no-underline myapnea-lead-sentence' do
             Play Video
             %i.fa.fa-play-circle
@@ -69,7 +69,7 @@
   .footer-container
     .container
       .footer
-        .hidden-sm.hidden-md.hidden-lg.text-center
+        .hidden-sm.hidden-md.hidden-lg.center
           &copy;
           = Date.today.year
           = ENV['website_name']

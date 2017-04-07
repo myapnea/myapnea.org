@@ -1,7 +1,7 @@
 %p{ style: p_style }
   Dear
   = succeed ',' do
-    = @owner.first_name
+    = @admin.first_name
 %p{ style: p_style }
   Today,
   %span{ style: emphasis_style }= pluralize number_with_delimiter(@surveys_launched), 'followup survey'
@@ -22,4 +22,3 @@
   Thanks,
   %br
   The MyApnea.Org Team
-

@@ -7,11 +7,6 @@ class UserMailerPreview < ActionMailer::Preview
     UserMailer.welcome(user)
   end
 
-  def welcome_provider
-    user = User.where(provider: true).where.not(slug: [nil, '']).first
-    UserMailer.welcome_provider(user)
-  end
-
   def followup_survey
     answer_session = AnswerSession.last
     UserMailer.followup_survey(answer_session)
@@ -23,8 +18,8 @@ class UserMailerPreview < ActionMailer::Preview
   end
 
   def encounter_digest
-    owner = User.first
-    UserMailer.encounter_digest(owner, 84, { "about-me" => { name: "About Me", encounters: [ { name: "Follow Up", answer_sessions_change: 50 } ] }, "more-about-me" => { name: "More About Me", encounters: [ { name: "Seasonal Follow Up", answer_sessions_change: 12 }, { name: "Second Month", answer_sessions_change: 22 } ] } })
+    admin = User.first
+    UserMailer.encounter_digest(admin, 84, { "about-me" => { name: "About Me", encounters: [ { name: "Follow Up", answer_sessions_change: 50 } ] }, "more-about-me" => { name: "More About Me", encounters: [ { name: "Seasonal Follow Up", answer_sessions_change: 12 }, { name: "Second Month", answer_sessions_change: 22 } ] } })
   end
 
   def export_ready

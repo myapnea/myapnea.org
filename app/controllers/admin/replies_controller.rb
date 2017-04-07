@@ -3,7 +3,7 @@
 # Allows admins to view all forum topic and blog post replies in one location.
 class Admin::RepliesController < ApplicationController
   before_action :authenticate_user!
-  before_action :check_owner
+  before_action :check_admin
 
   layout 'application-padded'
 

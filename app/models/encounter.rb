@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
+# Groups together surveys.
 class Encounter < ApplicationRecord
-
   # Concerns
   include Deletable
 
@@ -23,11 +23,10 @@ class Encounter < ApplicationRecord
   end
 
   def self.find_by_param(input)
-    find_by_slug(input)
+    find_by(slug: input)
   end
 
   def editable_by?(u)
-    u.owner?
+    u.admin?
   end
-
 end

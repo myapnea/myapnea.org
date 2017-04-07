@@ -8,7 +8,7 @@
         You may choose to leave the research study at any time. We will no longer collect any information from you and we will stop all communication. However, as stated in the informed consent, the information that you have already provided to
         = ENV['website_name']
         will remain within the study results.
-      - if (current_user.is_only_academic?) and (current_user.accepted_consent_at.blank?)
+      - if (current_user.is_only_researcher?) and (current_user.accepted_consent_at.blank?)
         = link_to 'Review Terms of Access', terms_of_access_path, class: 'btn btn-primary-custom', style: 'width: 49%; margin:.5%; float:left;'
       - else
         = link_to 'Review Consent', consent_path, class: 'btn btn-primary-custom', style: 'width: 49%; margin:.5%; float:left;'
@@ -24,14 +24,14 @@
     .content-body
       %p.lead
         You need to read and accept the
-        - if (current_user.is_only_academic?) and (current_user.accepted_terms_of_access_at.blank?)
+        - if (current_user.is_only_researcher?) and (current_user.accepted_terms_of_access_at.blank?)
           = link_to 'Terms of Access', terms_of_access_path
         - else
           = link_to 'Consent', consent_path
         and
         = link_to 'Privacy Policy', privacy_path
         in order to join the research study and fill out surveys.
-      - if (current_user.is_only_academic?) and (current_user.accepted_terms_of_access_at.blank?)
+      - if (current_user.is_only_researcher?) and (current_user.accepted_terms_of_access_at.blank?)
         = link_to 'Review Terms of Access', terms_of_access_path, class: 'btn btn-primary-custom', style: 'width: 49%; margin:.5%; float:left;'
       - else
         = link_to 'Read the Consent', consent_path, class: 'btn btn-primary-custom', style: 'width: 49%; margin:.5%; float:left;'

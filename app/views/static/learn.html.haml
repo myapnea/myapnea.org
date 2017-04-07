@@ -198,4 +198,7 @@
 
 - unless current_user
   - content_for :footer do
-    = render 'home/join_the_community', referrer: 'learn', message: 'Learn more and share your own story'
+    .container.center
+      %h3 Learn more and share your own story
+      = link_to 'Join Today', new_user_registration_path, class: 'btn btn-join', id: 'btn-join'
+

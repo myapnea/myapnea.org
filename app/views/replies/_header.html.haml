@@ -10,7 +10,7 @@
     %small
       %i.text-muted [deleted]
   - else
-    - if current_user && current_user.owner? && reply.user.shadow_banned?
+    - if current_user && current_user.admin? && reply.user.shadow_banned?
       %span.glyphicon.glyphicon-eye-close.text-muted
     - if reply.parent_author?
       %small

@@ -32,7 +32,7 @@
     = javascript_tag "var root_url='#{request.script_name + '/'}';"
   -# application-padded should become the default layout for content.
   %body#top{ class: yield(:body_class) }
-    #top-menu= render 'layouts/menu'
+    #top-menu.top-menu= render 'layouts/menu'
     = render 'layouts/partials/flash_messages'
     = yield :header
     .container.body-content

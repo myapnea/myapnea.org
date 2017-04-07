@@ -5,16 +5,12 @@
 
 %p{ style: p_style }
   Your registration with
-  - if @user.my_provider && @user.my_provider.provider_name.present?
-    = @user.my_provider.provider_name
-    for
   = link_to 'MyApnea.Org', ENV['website_url'], style: link_style
   was successful. Thank you for joining our growing network!
 
 %p{ style: p_style }
   The dawn of a new era in sleep apnea research is here. As a network member you
   can now:
-
 
 %ul{ style: p_style }
   %li

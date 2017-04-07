@@ -11,7 +11,7 @@
   %br
   %p.lead
     = team_member.bio
-  - if current_user && current_user.owner?
+  - if current_user && current_user.admin?
     .admin-bar
       = succeed ' ' do
         = link_to edit_admin_team_member_path(team_member) do
