@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Allows admins to create new types of encounters.
 class Builder::EncountersController < Builder::BuilderController
   before_action :authenticate_user!
   before_action :check_admin

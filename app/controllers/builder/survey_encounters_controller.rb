@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Allows survey builders to add encounters to surveys
+# Allows survey builders to add encounters to surveys.
 class Builder::SurveyEncountersController <  Builder::BuilderController
   before_action :authenticate_user!
   before_action :redirect_non_builders

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Allows survey builders to add answer templates to survey questions
+# Allows survey builders to add answer templates to survey questions.
 class Builder::AnswerTemplatesController < Builder::BuilderController
   before_action :authenticate_user!
   before_action :redirect_non_builders

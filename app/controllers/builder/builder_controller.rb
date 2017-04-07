@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Base Survey Builder class.
+# Base survey builder class.
 class Builder::BuilderController < ApplicationController
   private
 

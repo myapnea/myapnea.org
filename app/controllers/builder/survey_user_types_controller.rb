@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Allows survey builders to specify user types for survey
+# Allows survey builders to specify user types for survey.
 class Builder::SurveyUserTypesController < Builder::BuilderController
   before_action :authenticate_user!
   before_action :redirect_non_builders

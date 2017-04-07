@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Allows admins to modify partners page.
 class Admin::PartnersController < ApplicationController
   before_action :authenticate_user!,  except: [:photo]
   before_action :check_admin,         except: [:photo]

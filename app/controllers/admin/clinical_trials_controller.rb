@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Allows admins to modify clinical trials page.
 class Admin::ClinicalTrialsController < ApplicationController
   before_action :authenticate_user!
   before_action :check_admin
