@@ -31,7 +31,7 @@ class ApplicationController < ActionController::Base
     if current_user.ready_for_research?
       return
     else
-      if current_user.provider? or current_user.is_only_academic?
+      if current_user.is_only_researcher?
         redirect_to terms_of_access_path
       else
         redirect_to consent_path

@@ -12,8 +12,6 @@
           Changing my role (patient, caregiver, etc)
         = link_to '#change-password' do
           Changing my password
-        = link_to '#select-provider' do
-          Linking with my care provider
         = link_to '#notification-preferences' do
           Receiving email notifications
         = link_to '#coenrollment-status' do
@@ -27,10 +25,7 @@
         = render 'account/join_leave_research_study'
 
       %a.settings-anchor#change-picture
-      - if current_user.provider?
-        = render 'providers/providers_profile'
-      - else
-        = render 'social/social_profile'
+      = render 'social/social_profile'
 
       %a.settings-anchor#change-information
       .content-container
@@ -95,27 +90,6 @@
                     Please enter a new password that is at least 8 characters long.
             .row
               = f.submit 'Change Password', class: 'btn btn-primary-custom col-xs-4 col-xs-offset-4'
-
-
-      %a.settings-anchor#select-provider
-      .content-container.center
-        .content-header
-          %h3.f300
-            Your Provider
-        .content-body
-          - if current_user.my_provider.present?
-            %p.lead
-              You have listed
-              %strong= current_user.my_provider.provider_name
-              as your preferred provider.
-              If you wish, you may
-              = link_to 'unlist', update_account_path(user: { provider_id: nil }), method: :patch, class: 'btn btn-warning btn-xs'
-              yourself from this provider's network.
-          - else
-            %p.lead
-              You have not listed a provider. You can search through the registered providers
-              = link_to 'here', providers_path
-              and see if your provider has registered.
 
       %a.settings-anchor#notification-preferences
       .content-container.center

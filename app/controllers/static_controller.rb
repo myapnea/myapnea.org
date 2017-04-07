@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
+# Displays static pages for public users.
 class StaticController < ApplicationController
   skip_before_action :check_ip_banlist, only: [:about]
 
-  ## Static
   def about
     # render layout: 'simple'
     render layout: 'blank2'
@@ -26,7 +26,10 @@ class StaticController < ApplicationController
   end
 
   def learn
-    @page_content = "If you can't sleep, are experiencing sleep apnea symptoms, have been diagnosed with obstructive sleep apnea or central sleep apnea, MyApnea wants to help you understand sleep apnea and sleep apnea causes."
+    @page_content = "If you can't sleep, are experiencing sleep apnea symptoms"\
+                    ', have been diagnosed with obstructive sleep apnea or cen'\
+                    'tral sleep apnea, MyApnea wants to help you understand sl'\
+                    'eep apnea and sleep apnea causes.'
   end
 
   def faqs
@@ -37,17 +40,17 @@ class StaticController < ApplicationController
     @clinical_trials = Admin::ClinicalTrial.current.order(:position)
   end
 
-  def version
-  end
+  # def version
+  # end
 
-  def sitemap
-  end
+  # def sitemap
+  # end
 
-  def governance_policy
-  end
+  # def governance_policy
+  # end
 
-  def pep_charter
-  end
+  # def pep_charter
+  # end
 
   # PAP Devices
 
@@ -81,17 +84,5 @@ class StaticController < ApplicationController
 
   def side_effects_pap
     render 'learn/side_effects_pap'
-  end
-
-  ## NON-STATIC
-  ## TODO: Move out of here
-
-  def provider_page
-    @provider = User.current.providers.find_by_slug(params[:slug])
-    if @provider && @provider.slug.present?
-      redirect_to provider_path(@provider.slug)
-    else
-      redirect_to providers_path
-    end
   end
 end

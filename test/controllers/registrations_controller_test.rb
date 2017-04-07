@@ -2,6 +2,7 @@
 
 require 'test_helper'
 
+# Tests to assure that users can register on the site.
 class RegistrationsControllerTest < ActionController::TestCase
   def user_params
     {
@@ -36,7 +37,6 @@ class RegistrationsControllerTest < ActionController::TestCase
       }
     end
     assert_not_nil assigns(:user)
-    assert assigns(:user).errors.size > 0
     assert_equal ["can't be blank"], assigns(:user).errors[:first_name]
     assert_equal ["can't be blank"], assigns(:user).errors[:last_name]
     assert_equal ["can't be blank"], assigns(:user).errors[:email]
@@ -53,20 +53,7 @@ class RegistrationsControllerTest < ActionController::TestCase
       }
     end
     assert_not_nil assigns(:user)
-    assert assigns(:user).errors.size > 0
     assert_template 'devise/registrations/new'
     assert_response :success
-  end
-
-  test 'should sign up user with a specified provider' do
-    request.env['devise.mapping'] = Devise.mappings[:user]
-    assert_difference('User.count') do
-      post :create, params: {
-        user: user_params.merge(provider_id: users(:provider).id)
-      }
-    end
-    assert_not_nil assigns(:user)
-    assert_equal users(:provider), assigns(:user).my_provider
-    assert_redirected_to get_started_path
   end
 end

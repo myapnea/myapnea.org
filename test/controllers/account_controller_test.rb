@@ -6,19 +6,11 @@ class AccountControllerTest < ActionController::TestCase
   setup do
     @regular_user = users(:user_1)
     @participant = users(:participant)
-    @provider = users(:provider)
-    @provider_without_slug = users(:provider_without_slug)
   end
 
   test 'should get registration user_type page for logged in user' do
     login(users(:user_1))
     get :get_started
-    assert_response :success
-  end
-
-  test 'should get registration provider profile page for logged in provider' do
-    login(users(:provider))
-    get :get_started_step_three
     assert_response :success
   end
 
@@ -48,18 +40,6 @@ class AccountControllerTest < ActionController::TestCase
 
   test 'should get account for regular user' do
     login(@regular_user)
-    get :account
-    assert_response :success
-  end
-
-  test 'should get account for provider' do
-    login(@provider)
-    get :account
-    assert_response :success
-  end
-
-  test 'should get account for provider without a slug' do
-    login(@provider_without_slug)
     get :account
     assert_response :success
   end
@@ -215,22 +195,6 @@ class AccountControllerTest < ActionController::TestCase
     assert_not_nil @participant.accepted_consent_at
   end
 
-  test 'should accept update as academic user' do
-    login(@provider)
-    assert_not_nil @provider.accepted_terms_of_access_at
-    post :accepts_update
-    @provider.reload
-    assert_not_nil @provider.accepted_terms_of_access_at
-  end
-
-  test 'should accept terms and conditions' do
-    login(@provider)
-    assert_nil @provider.accepted_terms_conditions_at
-    post :accepts_terms_and_conditions
-    @provider.reload
-    assert_not_nil @provider.accepted_terms_conditions_at
-  end
-
   test 'should update account information for user' do
     login(users(:social))
     new_last = 'Boylston'
@@ -247,16 +211,6 @@ class AccountControllerTest < ActionController::TestCase
     assert_equal new_first, users(:social).first_name
     assert_equal new_email, users(:social).email
     assert_equal new_forum_name, users(:social).forum_name
-  end
-
-  test 'should update account information for provider' do
-    login(@provider)
-    patch :update, params: { user: { welcome_message: 'Welcome to my page!', slug: 'doctor-joe-smith', provider_name: 'Dr Joe Smith' } }
-    @provider.reload
-    assert_equal 'Welcome to my page!', @provider.welcome_message
-    assert_equal 'doctor-joe-smith', @provider.slug
-    assert_equal 'Dr Joe Smith', @provider.provider_name
-    assert_redirected_to provider_path(@provider.slug)
   end
 
   test 'should not allow user to enter blank forum name' do
@@ -337,22 +291,6 @@ class AccountControllerTest < ActionController::TestCase
     login(users(:blank_slate))
     patch :set_user_type, params: { user: { researcher: true } }
     assert_empty users(:blank_slate).answer_sessions
-  end
-
-  test 'should not assign any surveys for provider' do
-    login(users(:blank_slate))
-    patch :set_user_type, params: { user: { provider: true } }
-    assert_empty users(:blank_slate).answer_sessions
-  end
-
-  test 'should assign adult_diagnosed surveys for provider+adult_diagnosed' do
-    login(users(:blank_slate))
-    patch :set_user_type, params: { user: { adult_diagnosed: true, provider: true } }
-
-    assert_includes users(:blank_slate).answer_sessions.collect(&:survey), Survey.find_by_slug('about-me')
-    assert_includes users(:blank_slate).answer_sessions.collect(&:survey), Survey.find_by_slug('about-my-family')
-    assert_includes users(:blank_slate).answer_sessions.collect(&:survey), Survey.find_by_slug('my-sleep-quality')
-    assert_includes users(:blank_slate).answer_sessions.collect(&:survey), Survey.find_by_slug('my-sleep-apnea')
   end
 
   test 'should be delete account as regular user' do

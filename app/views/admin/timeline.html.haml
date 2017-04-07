@@ -135,7 +135,6 @@
           %th.text-right Adult At-Risk
           %th.text-right Caregiver Adult
           %th.text-right Caregiven Child(ren)
-          %th.text-right Provider
           %th.text-right Researcher
       %tbody
         - last_quarter_new_user_count = 0
@@ -143,7 +142,6 @@
         - last_quarter_adult_at_risk_count = 0
         - last_quarter_caregiver_adult_count = 0
         - last_quarter_caregiver_child_count = 0
-        - last_quarter_providers_count = 0
         - last_quarter_researchers_count = 0
         - current_month = @first_month
         - todays_month = Date.today.beginning_of_month
@@ -153,7 +151,6 @@
           - adult_at_risk_users = users.where(adult_at_risk: true)
           - caregiver_adult_users = users.where(caregiver_adult: true)
           - caregiver_child_users = users.where(caregiver_child: true)
-          - providers = users.where(provider: true)
           - researchers = users.where(researcher: true)
           %tr
             %td= current_month.strftime("%b %Y")
@@ -162,7 +159,6 @@
             %td.text-right= number_with_delimiter adult_at_risk_users.count
             %td.text-right= number_with_delimiter caregiver_adult_users.count
             %td.text-right= number_with_delimiter caregiver_child_users.count
-            %td.text-right= number_with_delimiter providers.count
             %td.text-right= number_with_delimiter researchers.count
 
           - if (current_month.month % 3) == 0 or current_month == todays_month
@@ -172,7 +168,6 @@
             - adult_at_risk_users = users.where(adult_at_risk: true)
             - caregiver_adult_users = users.where(caregiver_adult: true)
             - caregiver_child_users = users.where(caregiver_child: true)
-            - providers = users.where(provider: true)
             - researchers = users.where(researcher: true)
             %tr
               %th
@@ -195,9 +190,6 @@
                 = show_count_difference(caregiver_child_users.count, last_quarter_caregiver_child_count)
                 - last_quarter_caregiver_child_count = caregiver_child_users.count
               %th.text-right
-                = show_count_difference(providers.count, last_quarter_providers_count)
-                - last_quarter_providers_count = providers.count
-              %th.text-right
                 = show_count_difference(researchers.count, last_quarter_researchers_count)
                 - last_quarter_researchers_count = researchers.count
 
@@ -212,7 +204,6 @@
           - adult_at_risk_users = users.where(adult_at_risk: true)
           - caregiver_adult_users = users.where(caregiver_adult: true)
           - caregiver_child_users = users.where(caregiver_child: true)
-          - providers = users.where(provider: true)
           - researchers = users.where(researcher: true)
           %tr{ style: 'color: white;background-color: #333;border-left: 2px solid #333;border-right: 2px solid #333;border-top: 2px solid #333' }
             %th= current_year.strftime("%Y")
@@ -221,7 +212,6 @@
             %th.text-right= number_with_delimiter adult_at_risk_users.count
             %th.text-right= number_with_delimiter caregiver_adult_users.count
             %th.text-right= number_with_delimiter caregiver_child_users.count
-            %th.text-right= number_with_delimiter providers.count
             %th.text-right= number_with_delimiter researchers.count
           - current_year = current_year + 1.year
 
@@ -231,7 +221,6 @@
         - adult_at_risk_users = users.where(adult_at_risk: true)
         - caregiver_adult_users = users.where(caregiver_adult: true)
         - caregiver_child_users = users.where(caregiver_child: true)
-        - providers = users.where(provider: true)
         - researchers = users.where(researcher: true)
         %tr
           %th Total
@@ -240,5 +229,4 @@
           %th.text-right= number_with_delimiter adult_at_risk_users.count
           %th.text-right= number_with_delimiter caregiver_adult_users.count
           %th.text-right= number_with_delimiter caregiver_child_users.count
-          %th.text-right= number_with_delimiter providers.count
           %th.text-right= number_with_delimiter researchers.count

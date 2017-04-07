@@ -9,18 +9,6 @@ class UserMailer < ApplicationMailer
     mail(to: @email_to, subject: 'Welcome to MyApnea.Org!')
   end
 
-  def welcome_provider(user)
-    setup_email
-    @user = user
-    @email_to = user.email
-
-    attachments.inline['sleep.png'] = File.read('app/assets/images/myapnea/icons/risk2.png') rescue nil
-    attachments.inline['did_you_know.png'] = File.read('app/assets/images/myapnea/icons/did_you_know.png') rescue nil
-    attachments.inline['speech_bubbles.png'] = File.read('app/assets/images/myapnea/icons/speech_bubbles.png') rescue nil
-    mail(to: @email_to,
-         subject: 'MyApnea.Org Provider Registration Information')
-  end
-
   def followup_survey(answer_session)
     setup_email
     @answer_session = answer_session

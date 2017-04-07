@@ -4,7 +4,7 @@ class AdminController < ApplicationController
   before_action :authenticate_user!
   before_action :check_owner_or_moderator
 
-  before_action :set_SEO_elements
+  before_action :set_seo_elements
 
   # def dashboard
   # end
@@ -25,16 +25,9 @@ class AdminController < ApplicationController
     redirect_to @user || users_path
   end
 
-  def providers
-    @providers = User.current.where(provider: true)
-  end
-
   def timeline
     @first_month = Date.parse('2014-10-01')
   end
-
-  # def location
-  # end
 
   # def ages
   # end
@@ -168,7 +161,7 @@ class AdminController < ApplicationController
 
   private
 
-  def set_SEO_elements
+  def set_seo_elements
     @title = 'Admin Panel'
     @page_content = 'Administrative panel only for owners and moderators of MyApnea.'
   end

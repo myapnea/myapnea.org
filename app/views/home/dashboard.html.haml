@@ -7,25 +7,10 @@
   .col-md-2.hidden-sm.hidden-xs
     .user-profile-container
       = link_to (current_user.forum_name.present? ? member_path(current_user.forum_name) : account_path) do
-        = image_tag user_photo_url(current_user), class: "img-responsive"
+        = image_tag user_photo_url(current_user), class: 'img-responsive'
         = link_to account_path, data: { toggle: 'tooltip', container: 'body' }, title: 'Change Photo', class: 'user-profile-photo-link' do
           .glyphicon.glyphicon-camera
     %br
-    - if current_user.provider?
-      .content-container.less-padding
-        %p
-          You currently have
-          %strong= pluralize User.current.where(provider_id: current_user.id).count, 'member'
-          connected to you.
-        - if User.providers_with_profiles.include?(current_user)
-          %p
-            Please invite your patients and sleep apnea community to sign up using
-            = link_to 'your custom link.', provider_path(current_user.slug)
-        - else
-          %p
-            Please
-            = link_to 'complete your profile.', account_path
-      %br
     = render 'home/research_highlight'
   .col-md-7.col-buffer
     %p.f500.logo-color

@@ -1,7 +1,4 @@
 - if @survey
   = render 'surveys/partials/show'
 - else
-  - if current_user.provider?
-    = render 'providers/providers_profile', part_of_registration: true
-  - else
-    = render 'social/social_profile'
+  = render 'social/social_profile'

@@ -194,15 +194,6 @@ Rails.application.routes.draw do
   post 'accepts_update' => 'account#accepts_update'
   post 'accepts_terms_and_conditions' => 'account#accepts_terms_and_conditions'
 
-  # Provider Pages
-  get 'p(/:slug)', to: 'static#provider_page'
-  resources :providers do
-    collection do
-      post :more
-    end
-  end
-  get 'bwh', to: redirect('providers/bwh')
-
   get 'members', to: 'members#index', as: :members
   get 'members/:forum_name', to: 'members#show', as: :member
 
@@ -270,11 +261,8 @@ Rails.application.routes.draw do
   post 'admin/unlock_survey' => 'admin#unlock_survey', as: 'admin_unlock_survey'
   get 'admin/cross-tabs' => 'admin#cross_tabs', as: 'admin_cross_tabs'
   get 'admin/reports/timeline' => 'admin#timeline', as: 'admin_reports_timeline'
-  get 'admin/reports/location' => 'admin#location', as: 'admin_reports_location'
   get 'admin/reports/progress' => 'admin#progress_report', as: 'admin_progress_report'
-  get 'admin/providers' => 'admin#providers'
   post 'daily-demographic-breakdown', to: 'admin#daily_demographic_breakdown', as: :daily_demographic_breakdown
-
   get 'admin/social-media', to: 'admin#social_media'
 
   devise_for :users,
@@ -306,6 +294,10 @@ Rails.application.routes.draw do
       post :vote
     end
   end
+
+  # TODO: Remove redirect after November 1, 2017
+  get '/providers(/:slug)', to: redirect('landing')
+  # END TODO
 
   get 'sitemap.xml.gz' => 'external#sitemap'
 

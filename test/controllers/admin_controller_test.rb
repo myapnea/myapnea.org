@@ -2,18 +2,12 @@
 
 require 'test_helper.rb'
 
+# Tests to assure admin can view reports.
 class AdminControllerTest < ActionController::TestCase
   setup do
     @owner = users(:owner)
     @moderator = users(:moderator_1)
     @regular_user = users(:user_1)
-  end
-
-  test 'should get providers as owner' do
-    login(@owner)
-    get :providers
-    assert_not_nil assigns(:providers)
-    assert_response :success
   end
 
   test 'should get progress report as owner' do
@@ -103,12 +97,6 @@ class AdminControllerTest < ActionController::TestCase
   test 'should get admin timeline report as admin' do
     login(users(:moderator_1))
     get :timeline
-    assert_response :success
-  end
-
-  test 'should get location report as admin' do
-    login(users(:moderator_1))
-    get :location
     assert_response :success
   end
 

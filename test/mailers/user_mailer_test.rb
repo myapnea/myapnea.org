@@ -13,14 +13,6 @@ class UserMailerTest < ActionMailer::TestCase
     assert_match(/Your registration with MyApnea\.Org was successful\./, mail.body.encoded)
   end
 
-  test 'welcome provider email' do
-    provider = users(:provider)
-    mail = UserMailer.welcome_provider(provider)
-    assert_equal [provider.email], mail.to
-    assert_equal 'MyApnea.Org Provider Registration Information', mail.subject
-    assert_match(/Thank you for registering as a Provider/, mail.body.encoded)
-  end
-
   test 'followup survey email' do
     answer_session = answer_sessions(:incomplete2_followup)
     mail = UserMailer.followup_survey(answer_session)

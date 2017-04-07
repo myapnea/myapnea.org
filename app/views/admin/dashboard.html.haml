@@ -10,15 +10,6 @@
       = link_to users_path, class: 'no-underline' do
         .blue-block-link
           Users
-  .col-sm-3
-    = link_to admin_providers_path, class: 'no-underline' do
-      .blue-block-link
-        Providers
-  - if current_user.owner? && false
-    .col-sm-3
-      = link_to admin_reports_location_path, class: 'no-underline' do
-        .blue-block-link
-          Location
 
 - if current_user.owner?
   %h3 Discussion

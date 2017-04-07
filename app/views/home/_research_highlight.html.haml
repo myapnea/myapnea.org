@@ -1,4 +1,4 @@
-- if current_user.is_only_academic?
+- if current_user.is_only_researcher?
   .content-container
     - Survey.joins(:answer_sessions).group(:id).order('count(answer_sessions)').last(3).each do |survey|
       = link_to report_survey_path(survey) do

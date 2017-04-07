@@ -63,7 +63,7 @@ class AnswerValidator
       end
     else
       valid = false
-      messages << 'No answer provider for date of birth question'
+      messages << 'No answer provided for date of birth question'
     end
 
     { valid: valid, messages: messages }

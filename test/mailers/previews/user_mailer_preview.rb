@@ -7,11 +7,6 @@ class UserMailerPreview < ActionMailer::Preview
     UserMailer.welcome(user)
   end
 
-  def welcome_provider
-    user = User.where(provider: true).where.not(slug: [nil, '']).first
-    UserMailer.welcome_provider(user)
-  end
-
   def followup_survey
     answer_session = AnswerSession.last
     UserMailer.followup_survey(answer_session)

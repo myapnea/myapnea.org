@@ -12,8 +12,6 @@
       %th
         Caregiven Child(ren)
       %th
-        Provider
-      %th
         Researcher
   %tbody
     %tr
@@ -27,7 +25,5 @@
         = users.where(caregiver_adult: true).count
       %td
         = users.where(caregiver_child: true).count
-      %td
-        = users.where(provider: true).count
       %td
         = users.where(researcher: true).count

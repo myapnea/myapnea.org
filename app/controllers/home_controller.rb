@@ -14,7 +14,7 @@ class HomeController < ApplicationController
       @surveys = Survey.current.viewable.non_pediatric.limit(3)
       @answer_sessions = current_user.answer_sessions.joins(:survey).no_child.where.not(surveys: { slug: nil }).order(:locked, "surveys.name_en", :encounter).limit(3)
 
-      current_user.is_only_academic? ? load_academic_dashboard_resources : load_member_dashboard_resources
+      current_user.is_only_researcher? ? load_academic_dashboard_resources : load_member_dashboard_resources
     else
       render 'home/landing'
     end
