@@ -261,7 +261,6 @@ Rails.application.routes.draw do
   get 'admin/reports/timeline' => 'admin#timeline', as: 'admin_reports_timeline'
   get 'admin/reports/progress' => 'admin#progress_report', as: 'admin_progress_report'
   post 'daily-demographic-breakdown', to: 'admin#daily_demographic_breakdown', as: :daily_demographic_breakdown
-  get 'admin/social-media', to: 'admin#social_media'
 
   devise_for :users,
              controllers: { registrations: 'registrations', sessions: 'sessions' },

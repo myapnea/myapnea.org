@@ -10,9 +10,6 @@ class AdminController < ApplicationController
   # def dashboard
   # end
 
-  # def social_media
-  # end
-
   # def surveys
   # end
 

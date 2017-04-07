@@ -105,12 +105,4 @@ class AdminControllerTest < ActionController::TestCase
     get :cross_tabs
     assert_response :success
   end
-
-  test 'should only get social media for admin' do
-    get :social_media
-    assert_response :redirect
-    login(users(:admin))
-    get :social_media
-    assert_response :success
-  end
 end
