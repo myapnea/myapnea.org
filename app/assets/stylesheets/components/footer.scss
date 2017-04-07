@@ -12,11 +12,11 @@
   }
 
   a {
-    color: $p300-blue;
+    color: $p300-blue; // Perhaps change back to $p300-orange;
     transition: color .4s ease-out;
   }
 
   a:hover {
-    color: $p200-blue;
+    color: $p200-blue; // Perhaps change back to $p200-orange;
   }
 }

@@ -15,7 +15,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable, :timeoutable, :lockable
 
   # Callbacks
-  after_commit :set_forum_name, :send_welcome_email_in_background!, :check_for_token, :update_location, on: :create
+  after_commit :set_forum_name, :send_welcome_email_in_background!, :update_location, on: :create
 
   # Mappings
   TYPES = [
@@ -67,7 +67,6 @@ class User < ApplicationRecord
   has_many :images
   has_many :notifications
   has_many :users, class_name: 'User', foreign_key: 'provider_id'
-  has_many :invites
   has_many :children, -> { where(deleted: false).order('age desc', :first_name) }
   has_many :encounters, -> { where deleted: false }
   has_many :exports, -> { order id: :desc }, class_name: 'Admin::Export'
@@ -311,10 +310,6 @@ class User < ApplicationRecord
 
   def send_welcome_email!
     UserMailer.welcome(self).deliver_now if EMAILS_ENABLED
-  end
-
-  def check_for_token
-    Invite.find_by_token(invite_token).update(successful: true) if invite_token.present?
   end
 
   def update_location

@@ -2,9 +2,13 @@
 
 ### Enhancements
 - **General Changes**
-   - Login cookies are now cross subdomain and work between www and non-www URLs
-   - Started work on a new landing page
-   - Redesigned pages to match more vibrant landing page
+  - The focus of MyApnea is being changed to improve the participant-experience
+    first and foremost
+  - The forum, surveys, and blog are the primary components of MyApnea, pages
+    that don't directly support these components have been removed
+  - Login cookies are now cross subdomain and work between www and non-www URLs
+  - Started work on a new landing page
+  - Redesigned pages to match more vibrant landing page
 - **Gem Changes**
   - Updated to Ruby 2.4.1
   - Updated to rails 5.0.2

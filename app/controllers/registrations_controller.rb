@@ -13,7 +13,10 @@ class RegistrationsController < Devise::RegistrationsController
   private
 
   def sign_up_params
-    params.require(:user).permit(:first_name, :last_name, :over_eighteen, :email, :password, :beta_opt_in, :invite_token, :provider_id)
+    params.require(:user).permit(
+      :first_name, :last_name, :over_eighteen, :email, :password, :beta_opt_in,
+      :provider_id
+    )
   end
 
   def check_captcha
