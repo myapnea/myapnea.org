@@ -51,7 +51,7 @@ class SurveysController < ApplicationController
 
   def process_answer
     @question = Question.current.find_by_param(params[:question_id])
-    @answer_session = current_user.answer_sessions.find_by_id(params[:answer_session_id])
+    @answer_session = current_user.answer_sessions.find_by(id: params[:answer_session_id])
     # TODO: Remove conversion to unsafe hash for response parameter.
     response = (params[:response].present? ? params[:response].to_unsafe_hash : {})
     @answer = @answer_session.process_answer(@question, response) if @question && @answer_session
@@ -64,7 +64,7 @@ class SurveysController < ApplicationController
   end
 
   def submit
-    if @answer_session = current_user.answer_sessions.find_by_id(params[:answer_session_id])
+    if @answer_session = current_user.answer_sessions.find_by(id: params[:answer_session_id])
       @answer_session.lock! if @answer_session.completed?
       render json: { locked: @answer_session.locked? }
     else

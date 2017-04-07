@@ -4,7 +4,7 @@
     .row
       .col-xs-4.text-right
         %h1.report-statistic
-          - question = @survey.questions.find_by_slug('sleep-hours-weekdays')
+          - question = @survey.questions.find_by(slug: 'sleep-hours-weekdays')
           - answer_template = question.first_radio_or_checkbox_answer_template if question
           - answer_option_counts = TemporaryReport.answer_option_counts(@survey, question, answer_template, encounter: @encounter, range: 1..6)
           - percent_below = 0
@@ -40,7 +40,7 @@
   = render 'surveys/reports/question_and_user_answer', survey: @survey, question_slug: 'ideal-wakeup'
   .survey-report-info
     - if @answer_session
-      - question = @survey.questions.find_by_slug('ideal-wakeup')
+      - question = @survey.questions.find_by(slug: 'ideal-wakeup')
       - answer_template = question.first_radio_or_checkbox_answer_template if question
       - answer_values = @answer_session.answer_values(question, answer_template) if answer_template
       - value = answer_values.first.answer_option.value if answer_values
@@ -73,7 +73,7 @@
       Researchers study the body's internal clock, or circadian rhythm, to learn more about the differences between morning larks and night owls.
     %p.lead
       The average MyApnea member would prefer to wake up between
-      - question = @survey.questions.find_by_slug('ideal-wakeup')
+      - question = @survey.questions.find_by(slug: 'ideal-wakeup')
       - answer_template = question.first_radio_or_checkbox_answer_template if question
       - median = TemporaryReport.get_median_report_item(@survey, question, answer_template, encounter: @encounter, range: 1..5)
       %span.f500= median.answer_option.text if median

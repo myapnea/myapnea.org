@@ -34,8 +34,8 @@ class AdminController < ApplicationController
     user_values = {}
 
     # Age
-    survey = Survey.find_by_slug 'about-me'
-    question = survey.questions.find_by_slug 'date-of-birth'
+    survey = Survey.find_by(slug: 'about-me')
+    question = survey.questions.find_by(slug: 'date-of-birth')
     values_and_ids = AnswerValue.where( answer_id: question.answers.select(:id) ).where.not( text_value: [nil, '']).includes(answer: :answer_session).pluck(:text_value, "answer_sessions.user_id")
     date_values_and_ids = values_and_ids.collect{|v, user_id| [Date.parse(v), user_id] rescue nil}.compact.select{|d, user_id| d.year.in?(1900..Date.today.year)}
 
@@ -55,7 +55,7 @@ class AdminController < ApplicationController
     end
 
     # Sex
-    question = survey.questions.find_by_slug 'sex'
+    question = survey.questions.find_by(slug: 'sex')
     values_and_ids = AnswerValue.where( answer_id: question.answers.select(:id) ).where.not( answer_option_id: nil ).includes(:answer_option, answer: :answer_session).pluck("answer_options.text", "answer_sessions.user_id")
 
     values_and_ids.each do |v,user_id|
@@ -73,7 +73,7 @@ class AdminController < ApplicationController
     end
 
     # Race
-    question = survey.questions.find_by_slug 'race'
+    question = survey.questions.find_by(slug: 'race')
     values_and_ids = AnswerValue.where( answer_id: question.answers.select(:id) ).where.not( answer_option_id: nil ).includes(:answer_option, answer: :answer_session).pluck("answer_options.text", "answer_sessions.user_id")
 
     values_and_ids.each do |v,user_id|
@@ -95,7 +95,7 @@ class AdminController < ApplicationController
     end
 
     # Education level
-    question = survey.questions.find_by_slug 'education-level'
+    question = survey.questions.find_by(slug: 'education-level')
     values_and_ids = AnswerValue.where( answer_id: question.answers.select(:id) ).where.not( answer_option_id: nil ).includes(:answer_option, answer: :answer_session).pluck("answer_options.text", "answer_sessions.user_id")
 
     values_and_ids.each do |v,user_id|
@@ -117,8 +117,8 @@ class AdminController < ApplicationController
     end
 
     # Wealth
-    survey = Survey.find_by_slug 'additional-information-about-me'
-    question = survey.questions.find_by_slug 'affording-basics'
+    survey = Survey.find_by(slug: 'additional-information-about-me')
+    question = survey.questions.find_by(slug: 'affording-basics')
     values_and_ids = AnswerValue.where( answer_id: question.answers.select(:id) ).where.not( answer_option_id: nil ).includes(:answer_option, answer: :answer_session).pluck("answer_options.text", "answer_sessions.user_id")
 
     values_and_ids.each do |v,user_id|
@@ -134,8 +134,8 @@ class AdminController < ApplicationController
     end
 
     # Referral
-    survey = Survey.find_by_slug 'my-interest-in-research'
-    question = survey.questions.find_by_slug 'referral-methods'
+    survey = Survey.find_by(slug: 'my-interest-in-research')
+    question = survey.questions.find_by(slug: 'referral-methods')
     values_and_ids = AnswerValue.where( answer_id: question.answers.select(:id) ).where.not( answer_option_id: nil ).includes(:answer_option, answer: :answer_session).pluck("answer_options.text", "answer_sessions.user_id")
 
     values_and_ids.each do |v,user_id|

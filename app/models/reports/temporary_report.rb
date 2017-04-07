@@ -27,7 +27,7 @@ class TemporaryReport
   # My Health Conditions
   def self.health_conditions(survey, encounter)
     result = { nodes: [], links: [] }
-    if encounter and question = survey.questions.find_by_slug('health-conditions-list')
+    if encounter and question = survey.questions.find_by(slug: 'health-conditions-list')
       question.answer_templates.each do |answer_template|
         answer_option_counts = self.answer_option_counts(survey, question, answer_template, encounter: encounter, range: 1..2)
         ri = ReportItem.new(answer_option_counts, answer_template, 1)
@@ -59,7 +59,7 @@ class TemporaryReport
   # My Quality of Life
   def self.quality_of_life_scale(survey, encounter, question_slug)
     range = 1..5
-    question = survey.questions.find_by_slug(question_slug)
+    question = survey.questions.find_by(slug: question_slug)
     answer_template = question.first_radio_or_checkbox_answer_template if question
     answer_option_counts = TemporaryReport.answer_option_counts(survey, question, answer_template, encounter: encounter, range: range)
     range.collect do |answer_option_value|
@@ -80,8 +80,8 @@ class TemporaryReport
 
   # My Sleep Apnea
   def self.satistification_percent_by_study(survey, study_value, encounter: nil)
-    satisfaction = survey.questions.find_by_slug('sleep-study-satisfaction')
-    study = survey.questions.find_by_slug('diagnostic-study')
+    satisfaction = survey.questions.find_by(slug: 'sleep-study-satisfaction')
+    study = survey.questions.find_by(slug: 'diagnostic-study')
 
     base_answer_sessions = AnswerSession.current.where(locked: true, encounter: (encounter ? encounter.slug : nil), survey_id: survey.id)
     base_answer_sessions = base_answer_sessions.joins(:user).merge(User.where(include_in_exports: true))
@@ -123,7 +123,7 @@ class TemporaryReport
       14 => 'satisfaction_with_bariatric_surgery'
     }
 
-    answer_template = question.answer_templates.find_by_name(current_to_satisfaction_map[answer_option_value])
+    answer_template = question.answer_templates.find_by(name: current_to_satisfaction_map[answer_option_value])
     answer_option_counts = TemporaryReport.answer_option_counts(survey, question, answer_template, encounter: encounter, range: 1..6)
     percent_use_at_some_point = 0
     (1..4).each do |aov|
@@ -140,13 +140,13 @@ class TemporaryReport
 
   # My Sleep Pattern
   def self.percent_different_sleep_weekends_weekdays(survey, encounter)
-    weekdays = survey.questions.find_by_slug('sleep-hours-weekdays')
+    weekdays = survey.questions.find_by(slug: 'sleep-hours-weekdays')
     weekdays_answer_template = weekdays.first_radio_or_checkbox_answer_template
     weekdays_answer_values = weekdays.community_answer_values(encounter, weekdays_answer_template)
     weekdays_answer_values = weekdays_answer_values.joins(:answer_option).where(answer_options: { value: 1..6 })
     weekdays_answer_values = weekdays_answer_values.includes(:answer).collect{|av| [av.answer.answer_session_id, av.answer_option.value]}
 
-    weekends = survey.questions.find_by_slug('sleep-hours-weekends')
+    weekends = survey.questions.find_by(slug: 'sleep-hours-weekends')
     weekends_answer_template = weekends.first_radio_or_checkbox_answer_template
     weekends_answer_values = weekends.community_answer_values(encounter, weekends_answer_template)
     weekends_answer_values = weekends_answer_values.joins(:answer_option).where(answer_options: { value: 1..6 })
@@ -178,7 +178,7 @@ class TemporaryReport
   end
 
   def self.avg_ess(survey, encounter)
-    question = survey.questions.find_by_slug('epworth-sleepiness-scale')
+    question = survey.questions.find_by(slug: 'epworth-sleepiness-scale')
 
     answer_value_scope = AnswerValue.joins(:answer).where(answers: { question_id: question.id, state: 'locked' }).where.not(answer_option_id: nil)
     if encounter
@@ -196,7 +196,7 @@ class TemporaryReport
 
   # General single value returned
   def self.get_value(question_slug, answer_session)
-    if answer_session and question = answer_session.survey.questions.find_by_slug(question_slug)
+    if answer_session and question = answer_session.survey.questions.find_by(slug: question_slug)
       answer_template = question.answer_templates.first
       answer_value = answer_session.answer_values(question, answer_template).first
       answer_value.value if answer_value
@@ -206,7 +206,7 @@ class TemporaryReport
   end
 
   def self.get_values(question_slug, answer_session)
-    if answer_session and question = answer_session.survey.questions.find_by_slug(question_slug)
+    if answer_session and question = answer_session.survey.questions.find_by(slug: question_slug)
       AnswerValue.joins(:answer).where(answers: { answer_session_id: answer_session.id, question_id: question.id }).where(answer_template_id: question.answer_templates.select(:id)).collect(&:value)
     else
       []

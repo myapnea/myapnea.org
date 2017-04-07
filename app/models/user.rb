@@ -231,7 +231,7 @@ class User < ApplicationRecord
   end
 
   def completed_demographic_survey?
-    answer_sessions.where(survey_id: Survey.find_by_slug('about-me').id).where(locked:true).present?
+    answer_sessions.where(survey_id: Survey.find_by(slug: 'about-me').id).where(locked:true).present?
   end
 
   # Can Build Surveys

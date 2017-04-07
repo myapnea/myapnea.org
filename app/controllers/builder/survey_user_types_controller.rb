@@ -46,7 +46,7 @@ class Builder::SurveyUserTypesController < Builder::BuilderController
   private
 
   def find_editable_survey_user_type_or_redirect
-    @survey_user_type = @survey.survey_user_types.find_by_id(params[:id])
+    @survey_user_type = @survey.survey_user_types.find_by(id: params[:id])
     redirect_without_survey_user_type
   end
 

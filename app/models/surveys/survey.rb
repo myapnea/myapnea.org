@@ -61,7 +61,7 @@ class Survey < ApplicationRecord
   # end
 
   # def self.find_by_param(input)
-  #   find_by_slug(input)
+  #   find_by(slug: input)
   # end
 
   def editable_by?(current_user)
@@ -176,7 +176,7 @@ class Survey < ApplicationRecord
   private
 
   def create_default_encounters
-    baseline = Encounter.current.find_by_slug 'baseline'
+    baseline = Encounter.current.find_by(slug: 'baseline')
     survey_encounters.create(encounter_id: baseline.id, user_id: user_id) if baseline
   end
 end

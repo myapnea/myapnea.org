@@ -164,7 +164,7 @@ class Admin::Export < ApplicationRecord
         encounters.each do |encounter|
           row = [user.myapnea_id, (user.created_at.strftime('%Y-%m-%d')), (user.accepted_consent? ? '1' : '0'), encounter, user.state_code, user.country_code]
           surveys_answer_templates.each do |survey_id, question_id, answer_template_id, answer_option_id|
-            answer_session = user.answer_sessions.find_by_survey_id survey_id
+            answer_session = user.answer_sessions.find_by(survey_id: survey_id)
             if answer_session
               answer_value_scope = AnswerValue.joins(:answer).where(answers: { answer_session_id: answer_session.id, question_id: question_id }).where(answer_template_id: answer_template_id)
               answer_value_scope = answer_value_scope.where(answer_option_id: answer_option_id) unless answer_option_id.nil?

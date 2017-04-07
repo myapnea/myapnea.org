@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class ReportItem
-
   attr_accessor :answer_option, :count, :total_count, :percent, :percent_number
 
   def initialize(answer_options_hash, answer_template, value)
@@ -37,6 +36,6 @@ class ReportItem
   end
 
   def set_answer_option(answer_template, value)
-    @answer_option = answer_template.answer_options.find_by_value(value) if answer_template
+    @answer_option = answer_template.answer_options.find_by(value: value) if answer_template
   end
 end

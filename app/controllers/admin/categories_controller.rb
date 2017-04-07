@@ -53,7 +53,7 @@ class Admin::CategoriesController < ApplicationController
   private
 
   def find_admin_category_or_redirect
-    @admin_category = Admin::Category.current.find_by_param params[:id]
+    @admin_category = Admin::Category.current.find_by_param(params[:id])
     redirect_without_admin_category
   end
 

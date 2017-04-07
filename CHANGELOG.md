@@ -652,7 +652,7 @@
 ### Enhancements
 - **Survey Changes**
   - Longitudinal surveys can be launched and assigned to users, ex:
-    - `s = Survey.find_by_slug 'about-me'`
+    - `s = Survey.find_by(slug: 'about-me')`
     - `s.launch_single(user, '6month')`
   - Followup surveys are launched automatically based on encounter conditions
     - Email are sent to alert users of new available surveys
