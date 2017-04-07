@@ -24,11 +24,6 @@
 
 // Landing Pages
 @import 'landing/landing';
-@import 'users/join';
-
-// Registration
-@import 'users/get_started';
-@import 'users/user_types';
 
 // Static
 @import 'static/team';
@@ -53,9 +48,6 @@
 @import 'survey_reports/reports';
 @import 'survey_reports/my_health_conditions';
 
-// User Interface
-@import 'users/dashboard';
-
 // Tools
 @import 'tools/risk_assessment';
 @import 'tools/risk_assessment_results';
@@ -68,7 +60,6 @@
 
 // Survey Building
 @import 'builder';
-
 
 // Other
 @import 'content_header';

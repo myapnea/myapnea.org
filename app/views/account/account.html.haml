@@ -8,8 +8,6 @@
           Changing my picture
         = link_to '#change-information' do
           Changing my basic info (name, email, etc)
-        = link_to '#change-member-type' do
-          Changing my role (patient, caregiver, etc)
         = link_to '#change-password' do
           Changing my password
         = link_to '#notification-preferences' do
@@ -46,22 +44,6 @@
                 = f.email_field :email, class: 'form-control', placeholder: User.human_attribute_name(:email), autocomplete: :off
             .form-group
               = f.submit 'Save Changes', class: 'btn btn-primary-custom col-xs-4 col-xs-offset-4'
-
-      %a.settings-anchor#change-member-type
-      .content-container
-        .content-header
-          %h3.f300.center
-            Your Role
-        .content-body.center
-          - if current_user.has_user_type?
-            .horizontal-inset
-              - current_user.user_type_names.each do |type|
-                %h5.f300= type
-            %br
-            %p.lead
-              If this is incorrect, please
-              = link_to 'change your user type.', describe_yourself_path, class: 'no-underline'
-
 
       %a.settings-anchor#change-password
       .content-container
