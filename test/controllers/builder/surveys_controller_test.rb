@@ -55,7 +55,6 @@ class Builder::SurveysControllerTest < ActionController::TestCase
       post :create, params: { survey: { name_en: '', slug: 'my-new-survey', status: 'show' } }
     end
     assert_not_nil assigns(:survey)
-    assert assigns(:survey).errors.size > 0
     assert_equal ["can't be blank"], assigns(:survey).errors[:name_en]
     assert_template 'new'
     assert_response :success
@@ -118,7 +117,6 @@ class Builder::SurveysControllerTest < ActionController::TestCase
     login(@builder)
     patch :update, params: { id: @survey, survey: { name_en: '', slug: 'updated-survey', status: 'hide' } }
     assert_not_nil assigns(:survey)
-    assert assigns(:survey).errors.size > 0
     assert_equal ["can't be blank"], assigns(:survey).errors[:name_en]
     assert_template 'edit'
     assert_response :success

@@ -53,7 +53,6 @@ class ChildrenControllerTest < ActionController::TestCase
       post :create, params: { child: child_params.merge(first_name: '') }
     end
     assert_not_nil assigns(:child)
-    assert assigns(:child).errors.size > 0
     assert_equal ["can't be blank"], assigns(:child).errors[:first_name]
     assert_template 'new'
     assert_response :success
@@ -98,7 +97,6 @@ class ChildrenControllerTest < ActionController::TestCase
   test 'should not update child with blank first name' do
     patch :update, params: { id: @child, child: { first_name: '', age: @child.age } }
     assert_not_nil assigns(:child)
-    assert assigns(:child).errors.size > 0
     assert_equal ["can't be blank"], assigns(:child).errors[:first_name]
     assert_template 'edit'
     assert_response :success

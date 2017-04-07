@@ -58,7 +58,6 @@ class Builder::SurveyUserTypesControllerTest < ActionController::TestCase
     end
     assert_not_nil assigns(:survey)
     assert_not_nil assigns(:survey_user_type)
-    assert assigns(:survey_user_type).errors.size > 0
     assert_equal ["can't be blank", 'is not included in the list'], assigns(:survey_user_type).errors[:user_type]
     assert_template 'survey_user_types/new'
     assert_response :success
@@ -120,7 +119,6 @@ class Builder::SurveyUserTypesControllerTest < ActionController::TestCase
     patch :update, params: { survey_id: @survey, id: @survey_user_type, survey_user_type: { user_type: '' } }
     assert_not_nil assigns(:survey)
     assert_not_nil assigns(:survey_user_type)
-    assert assigns(:survey_user_type).errors.size > 0
     assert_equal ["can't be blank", 'is not included in the list'], assigns(:survey_user_type).errors[:user_type]
     assert_template 'survey_user_types/edit'
     assert_response :success

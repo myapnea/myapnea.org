@@ -61,7 +61,6 @@ class Builder::QuestionsControllerTest < ActionController::TestCase
     end
     assert_not_nil assigns(:survey)
     assert_not_nil assigns(:question)
-    assert assigns(:question).errors.size > 0
     assert_equal ["can't be blank"], assigns(:question).errors[:text_en]
     assert_template 'questions/new'
     assert_response :success
@@ -124,7 +123,6 @@ class Builder::QuestionsControllerTest < ActionController::TestCase
     patch :update, params: { survey_id: @survey, id: @question, question: { text_en: '', slug: 'updated-question' } }
     assert_not_nil assigns(:survey)
     assert_not_nil assigns(:question)
-    assert assigns(:question).errors.size > 0
     assert_equal ["can't be blank"], assigns(:question).errors[:text_en]
     assert_template 'questions/edit'
     assert_response :success

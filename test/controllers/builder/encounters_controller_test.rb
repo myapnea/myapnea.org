@@ -54,7 +54,6 @@ class Builder::EncountersControllerTest < ActionController::TestCase
       post :create, params: { encounter: { name: '', slug: 'my-new-encounter', launch_days_after_sign_up: 10 } }
     end
     assert_not_nil assigns(:encounter)
-    assert assigns(:encounter).errors.size > 0
     assert_equal ["can't be blank"], assigns(:encounter).errors[:name]
     assert_template 'encounters/new'
     assert_response :success
@@ -111,7 +110,6 @@ class Builder::EncountersControllerTest < ActionController::TestCase
     login(@admin)
     patch :update, params: { id: @encounter, encounter: { name: '', slug: 'updated-encounter', launch_days_after_sign_up: 90 } }
     assert_not_nil assigns(:encounter)
-    assert assigns(:encounter).errors.size > 0
     assert_equal ["can't be blank"], assigns(:encounter).errors[:name]
     assert_template 'encounters/edit'
     assert_response :success

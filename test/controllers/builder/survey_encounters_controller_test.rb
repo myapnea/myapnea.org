@@ -58,7 +58,6 @@ class Builder::SurveyEncountersControllerTest < ActionController::TestCase
     end
     assert_not_nil assigns(:survey)
     assert_not_nil assigns(:survey_encounter)
-    assert assigns(:survey_encounter).errors.size > 0
     assert_equal ["can't be blank"], assigns(:survey_encounter).errors[:encounter_id]
     assert_template 'survey_encounters/new'
     assert_response :success
@@ -120,7 +119,6 @@ class Builder::SurveyEncountersControllerTest < ActionController::TestCase
     patch :update, params: { survey_id: @survey, id: @survey_encounter, survey_encounter: { encounter_id: nil } }
     assert_not_nil assigns(:survey)
     assert_not_nil assigns(:survey_encounter)
-    assert assigns(:survey_encounter).errors.size > 0
     assert_equal ["can't be blank"], assigns(:survey_encounter).errors[:encounter_id]
     assert_template 'survey_encounters/edit'
     assert_response :success

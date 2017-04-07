@@ -77,7 +77,6 @@ class Builder::AnswerOptionsControllerTest < ActionController::TestCase
     assert_not_nil assigns(:question)
     assert_not_nil assigns(:answer_template)
     assert_not_nil assigns(:answer_option)
-    assert assigns(:answer_option).errors.size > 0
     assert_equal ["can't be blank"], assigns(:answer_option).errors[:text]
     assert_template 'answer_options/new'
     assert_response :success
@@ -155,7 +154,6 @@ class Builder::AnswerOptionsControllerTest < ActionController::TestCase
     assert_not_nil assigns(:question)
     assert_not_nil assigns(:answer_template)
     assert_not_nil assigns(:answer_option)
-    assert assigns(:answer_option).errors.size > 0
     assert_equal ["can't be blank"], assigns(:answer_option).errors[:text]
     assert_template 'answer_options/edit'
     assert_response :success
