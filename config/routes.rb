@@ -188,6 +188,9 @@ Rails.application.routes.draw do
 
   get 'members', to: 'members#index', as: :members
   get 'members/:forum_name', to: 'members#show', as: :member
+  scope module: :members do
+    get '/photo/:forum_name', action: 'photo', as: :photo_member
+  end
 
   resources :notifications do
     collection do
@@ -261,9 +264,6 @@ Rails.application.routes.draw do
   resources :users do
     collection do
       get :export
-    end
-    member do
-      get :photo
     end
   end
 

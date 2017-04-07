@@ -3,7 +3,7 @@
 module UsersHelper
   def user_photo_url(user)
     if user.photo.present?
-      photo_user_path(user, t: user.updated_at.usec)
+      photo_member_path(user.forum_name, t: user.updated_at.usec)
     else
       'default-user.jpg'
     end

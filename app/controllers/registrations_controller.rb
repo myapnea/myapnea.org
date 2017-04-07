@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Adds a recaptcha on registration.
 class RegistrationsController < Devise::RegistrationsController
   skip_before_action :verify_authenticity_token, only: [:create]
   prepend_before_action :check_captcha, only: [:create]
