@@ -155,8 +155,8 @@ class Survey < ApplicationRecord
     users_emailed = users_assigned_new_surveys.where(emails_enabled: true)
 
     if surveys_launched > 0
-      User.where(owner: true, emails_enabled: true).each do |owner|
-        UserMailer.encounter_digest(owner, surveys_launched, survey_changes).deliver_now if EMAILS_ENABLED
+      User.where(admin: true, emails_enabled: true).each do |admin|
+        UserMailer.encounter_digest(admin, surveys_launched, survey_changes).deliver_now if EMAILS_ENABLED
       end
     end
     users_emailed.each do |user|

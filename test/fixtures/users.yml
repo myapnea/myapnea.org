@@ -79,16 +79,16 @@ moderator_2:
   forum_name: mod2
   accepted_terms_conditions_at: <%= Time.zone.now %>
 
-owner:
+admin:
   first_name: Own
   last_name: Er
-  email: owner@example.com
-  owner: true
+  email: admin@example.com
+  admin: true
   over_eighteen: true
   adult_diagnosed: true
   encrypted_password: <%= pw %>
   accepted_terms_conditions_at: <%= Time.zone.now %>
-  forum_name: owner
+  forum_name: admin
 
 has_completed_survey:
   first_name: Complete

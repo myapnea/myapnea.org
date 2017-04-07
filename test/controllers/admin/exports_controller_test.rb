@@ -5,7 +5,7 @@ require 'test_helper'
 # Tests to assure data can be exported by admins.
 class Admin::ExportsControllerTest < ActionController::TestCase
   setup do
-    @owner = users(:owner)
+    @admin = users(:admin)
     @regular_user = users(:user_1)
     @admin_export = admin_exports(:started)
     @completed = admin_exports(:completed)
@@ -20,8 +20,8 @@ class Admin::ExportsControllerTest < ActionController::TestCase
     }
   end
 
-  test 'should get index as owner' do
-    login(@owner)
+  test 'should get index as admin' do
+    login(@admin)
     get :index
     assert_not_nil assigns(:admin_exports)
     assert_response :success
@@ -33,8 +33,8 @@ class Admin::ExportsControllerTest < ActionController::TestCase
     assert_redirected_to root_path
   end
 
-  test 'should create admin export as owner' do
-    login(@owner)
+  test 'should create admin export as admin' do
+    login(@admin)
     assert_difference('Admin::Export.count') do
       post :create, params: { admin_export: admin_export_params }
     end
@@ -51,8 +51,8 @@ class Admin::ExportsControllerTest < ActionController::TestCase
     assert_redirected_to root_path
   end
 
-  test 'should show admin export as owner' do
-    login(@owner)
+  test 'should show admin export as admin' do
+    login(@admin)
     get :show, params: { id: @admin_export }
     assert_response :success
   end
@@ -63,8 +63,8 @@ class Admin::ExportsControllerTest < ActionController::TestCase
     assert_redirected_to root_path
   end
 
-  test 'should get progress as owner' do
-    login(@owner)
+  test 'should get progress as admin' do
+    login(@admin)
     post :progress, params: { id: @admin_export }, format: 'js'
     assert_template 'progress'
     assert_response :success
@@ -76,8 +76,8 @@ class Admin::ExportsControllerTest < ActionController::TestCase
     assert_redirected_to root_path
   end
 
-  test 'should download export file as owner' do
-    login(@owner)
+  test 'should download export file as admin' do
+    login(@admin)
     assert_not_equal 0, @completed.file.size
     get :file, params: { id: @completed }
     assert_not_nil assigns(:admin_export)
@@ -93,8 +93,8 @@ class Admin::ExportsControllerTest < ActionController::TestCase
     assert_redirected_to root_path
   end
 
-  test 'should destroy admin export as owner' do
-    login(@owner)
+  test 'should destroy admin export as admin' do
+    login(@admin)
     assert_difference('Admin::Export.count', -1) do
       delete :destroy, params: { id: @admin_export }
     end
@@ -102,7 +102,7 @@ class Admin::ExportsControllerTest < ActionController::TestCase
   end
 
   test 'should destroy admin export using ajax' do
-    login(@owner)
+    login(@admin)
     assert_difference('Admin::Export.count', -1) do
       delete :destroy, params: { id: @admin_export }, format: 'js'
     end

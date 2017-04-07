@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
+# Allows members to update their account settings.
 class AccountController < ApplicationController
   before_action :authenticate_user!, except: [:consent, :privacy_policy, :terms_and_conditions, :terms_of_access]
-  before_action :set_seo_elements
 
   ## Onboarding process
 
@@ -128,7 +128,7 @@ class AccountController < ApplicationController
   end
 
   def suggest_random_forum_name
-    @new_forum_name = SocialProfile.generate_forum_name(Time.zone.now.nsec.to_s)
+    @new_forum_name = User.generate_forum_name(Time.zone.now.nsec.to_s)
   end
 
   # DELETE /account
@@ -165,11 +165,5 @@ class AccountController < ApplicationController
 
   def load_content
     @pc = YAML.load_file(Rails.root.join('lib', 'data', 'content', "#{action_name}.yml"))[action_name.to_s]
-  end
-
-  def set_seo_elements
-    @page_content = 'Set your sleep apnea community profile, participate in sl'\
-                    'eep discussions, and join the MyApnea sleep study to help'\
-                    ' advance sleep apnea research.'
   end
 end

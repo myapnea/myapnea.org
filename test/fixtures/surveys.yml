@@ -1,59 +1,59 @@
 new:
-  user: owner
+  user: admin
   name_en: New Survey
   slug: new-survey
   status: show
 
 hidden:
-  user: owner
+  user: admin
   name_en: Hidden Survey
   slug: hidden-survey
   status: hide
 
 new_2:
-  user: owner
+  user: admin
   name_en: Another Survey
   slug: another-survey
   status: show
 
 for_reports:
-  user: owner
+  user: admin
   name_en: Report Test
   slug: for-reports
   status: hide
 
 about_me:
-  user: owner
+  user: admin
   name_en: About Me
   slug: about-me
   status: show
 
 additional_information_about_me:
-  user: owner
+  user: admin
   name_en: Additional Information About Me
   slug: additional-information-about-me
   status: show
 
 my_interest_in_research:
-  user: owner
+  user: admin
   name_en: My Interest in Research
   slug: my-interest-in-research
   status: show
 
 about_my_family:
-  user: owner
+  user: admin
   name_en: About My Family
   slug: about-my-family
   status: show
 
 my_sleep_quality:
-  user: owner
+  user: admin
   name_en: My Sleep Quality
   slug: my-sleep-quality
   status: show
 
 my_sleep_apnea:
-  user: owner
+  user: admin
   name_en: My Sleep Apnea
   slug: my-sleep-apnea
   status: show

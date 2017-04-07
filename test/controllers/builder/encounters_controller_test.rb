@@ -4,13 +4,13 @@ require 'test_helper'
 
 class Builder::EncountersControllerTest < ActionController::TestCase
   setup do
-    @owner = users(:owner)
+    @admin = users(:admin)
     @regular_user = users(:user_1)
     @encounter = encounters(:baseline)
   end
 
-  test 'should get encounters as owner' do
-    login(@owner)
+  test 'should get encounters as admin' do
+    login(@admin)
     get :index
     assert_not_nil assigns(:encounters)
   end
@@ -22,8 +22,8 @@ class Builder::EncountersControllerTest < ActionController::TestCase
     assert_redirected_to root_path
   end
 
-  test 'should get new encounter as owner' do
-    login(@owner)
+  test 'should get new encounter as admin' do
+    login(@admin)
     get :new
     assert_not_nil assigns(:encounter)
     assert_response :success
@@ -37,7 +37,7 @@ class Builder::EncountersControllerTest < ActionController::TestCase
   end
 
   test 'should create encounter as builder' do
-    login(@owner)
+    login(@admin)
     assert_difference('Encounter.count') do
       post :create, params: { encounter: { name: 'My New Encounter', slug: 'my-new-encounter', launch_days_after_sign_up: 10 } }
     end
@@ -49,7 +49,7 @@ class Builder::EncountersControllerTest < ActionController::TestCase
   end
 
   test 'should not create encounter without text' do
-    login(@owner)
+    login(@admin)
     assert_difference('Encounter.count', 0) do
       post :create, params: { encounter: { name: '', slug: 'my-new-encounter', launch_days_after_sign_up: 10 } }
     end
@@ -69,8 +69,8 @@ class Builder::EncountersControllerTest < ActionController::TestCase
     assert_redirected_to root_path
   end
 
-  test 'should show encounter as owner' do
-    login(@owner)
+  test 'should show encounter as admin' do
+    login(@admin)
     get :show, params: { id: @encounter }
     assert_not_nil assigns(:encounter)
     assert_response :success
@@ -83,8 +83,8 @@ class Builder::EncountersControllerTest < ActionController::TestCase
     assert_redirected_to root_path
   end
 
-  test 'should get edit encounter as owner' do
-    login(@owner)
+  test 'should get edit encounter as admin' do
+    login(@admin)
     get :edit, params: { id: @encounter }
     assert_not_nil assigns(:encounter)
     assert_response :success
@@ -97,8 +97,8 @@ class Builder::EncountersControllerTest < ActionController::TestCase
     assert_redirected_to root_path
   end
 
-  test 'should update encounter as owner' do
-    login(@owner)
+  test 'should update encounter as admin' do
+    login(@admin)
     patch :update, params: { id: @encounter, encounter: { name: 'Updated Encounter', slug: 'updated-encounter', launch_days_after_sign_up: 90 } }
     assert_not_nil assigns(:encounter)
     assert_equal 'Updated Encounter', assigns(:encounter).name
@@ -108,7 +108,7 @@ class Builder::EncountersControllerTest < ActionController::TestCase
   end
 
   test 'should not update encounter without name' do
-    login(@owner)
+    login(@admin)
     patch :update, params: { id: @encounter, encounter: { name: '', slug: 'updated-encounter', launch_days_after_sign_up: 90 } }
     assert_not_nil assigns(:encounter)
     assert assigns(:encounter).errors.size > 0
@@ -124,8 +124,8 @@ class Builder::EncountersControllerTest < ActionController::TestCase
     assert_redirected_to root_path
   end
 
-  test 'should destroy encounter as owner' do
-    login(@owner)
+  test 'should destroy encounter as admin' do
+    login(@admin)
     assert_difference('Encounter.current.count', -1) do
       delete :destroy, params: { id: @encounter }
     end

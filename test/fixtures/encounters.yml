@@ -4,22 +4,22 @@ baseline:
   name: Baseline
   slug: baseline
   launch_days_after_sign_up: 0
-  user: owner
+  user: admin
 
 10day:
   name: 10 Day Followup
   slug: 10day
   launch_days_after_sign_up: 10
-  user: owner
+  user: admin
 
 6month:
   name: 6 Month Followup
   slug: 6month
   launch_days_after_sign_up: 183
-  user: owner
+  user: admin
 
 12month:
   name: 12 Month Followup
   slug: 12month
   launch_days_after_sign_up: 365
-  user: owner
+  user: admin

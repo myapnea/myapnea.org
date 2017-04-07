@@ -4,7 +4,7 @@ require 'test_helper'
 
 class Admin::TeamMembersControllerTest < ActionController::TestCase
   setup do
-    @admin = users(:owner)
+    @admin = users(:admin)
     @admin_team_member = admin_team_members(:one)
   end
 

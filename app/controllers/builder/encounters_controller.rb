@@ -2,8 +2,7 @@
 
 class Builder::EncountersController < Builder::BuilderController
   before_action :authenticate_user!
-  before_action :check_owner
-
+  before_action :check_admin
   before_action :set_editable_encounter,     only: [:show, :edit, :update, :destroy]
   before_action :redirect_without_encounter, only: [:show, :edit, :update, :destroy]
 

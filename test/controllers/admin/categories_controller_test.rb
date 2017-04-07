@@ -2,12 +2,11 @@
 
 require 'test_helper'
 
-# Tests to assure that admins (owners) can create and update broadcast
-# categories.
+# Tests to assure that admins can create and update broadcast categories.
 class Admin::CategoriesControllerTest < ActionController::TestCase
   setup do
     @admin_category = admin_categories(:one)
-    @admin = users(:owner)
+    @admin = users(:admin)
   end
 
   def category_params

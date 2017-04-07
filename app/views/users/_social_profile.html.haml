@@ -26,7 +26,7 @@
           .input-group
             = f.text_field :forum_name, class: 'form-control'
             %span.input-group-btn
-              = link_to suggest_random_forum_name_path, method: :post, remote: true, rel: 'tooltip', data: { title: 'Generate Random Nickname', container: 'body', placement: 'left' }, class: 'btn btn-default' do
+              = link_to suggest_random_forum_name_path, method: :post, remote: true, rel: 'tooltip', data: { title: 'Generate Random Nickname', container: 'body', placement: 'top' }, class: 'btn btn-default' do
                 %span.glyphicon.glyphicon-random
           - if errors = current_user.errors[:forum_name] and errors.present?
             .bs-callout.bs-callout-danger

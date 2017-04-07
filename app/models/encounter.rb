@@ -27,7 +27,7 @@ class Encounter < ApplicationRecord
   end
 
   def editable_by?(u)
-    u.owner?
+    u.admin?
   end
 
 end

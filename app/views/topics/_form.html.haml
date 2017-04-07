@@ -44,7 +44,7 @@
             #content_preview.topic{ style: 'display:none' }
         = render 'layouts/errors', object: @topic, key: :description
 
-    - if current_user.owner?
+    - if current_user.admin?
       .form-group
         .checkbox
           %label

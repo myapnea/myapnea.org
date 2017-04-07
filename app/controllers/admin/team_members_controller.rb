@@ -2,7 +2,7 @@
 
 class Admin::TeamMembersController < ApplicationController
   before_action :authenticate_user!,    except: [:photo]
-  before_action :check_owner,           except: [:photo]
+  before_action :check_admin,           except: [:photo]
   before_action :set_admin_team_member, only: [:show, :edit, :update, :destroy, :photo]
 
   def photo

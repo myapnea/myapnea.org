@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
+# Allows admins to manage user accounts.
 class UsersController < ApplicationController
   before_action :authenticate_user!,    except: [:photo]
-  before_action :check_owner,           except: [:photo]
+  before_action :check_admin,           except: [:photo]
   before_action :set_user,              only: [:show, :photo, :edit, :update, :destroy]
   before_action :redirect_without_user, only: [:show, :photo, :edit, :update, :destroy]
 
@@ -50,8 +51,8 @@ class UsersController < ApplicationController
                            disposition: "attachment; filename=\"#{ENV['website_name'].gsub(/[^\w\.]/, '_')} Users List - #{Time.zone.now.strftime("%Y.%m.%d %Ih%M %p")}.csv\""
   end
 
-  def edit
-  end
+  # def edit
+  # end
 
   def update
     if @user.update(user_params)
@@ -74,7 +75,7 @@ class UsersController < ApplicationController
   private
 
   def set_user
-    @user = User.current.find_by_id(params[:id])
+    @user = User.current.find_by(id: params[:id])
   end
 
   def redirect_without_user
@@ -84,7 +85,7 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(
       :first_name, :last_name, :email, :forum_name, :emails_enabled,
-      :include_in_exports, :owner, :moderator, :community_contributor,
+      :include_in_exports, :admin, :moderator, :community_contributor,
       :can_build_surveys, :shadow_banned
     )
   end

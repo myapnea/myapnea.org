@@ -43,7 +43,7 @@
           %td= answer_template.template_name
           %td= answer_template.parent_answer_template.name if answer_template.parent_answer_template
           %td= answer_template.parent_answer_option_value
-          %td= link_to_if current_user.owner?, answer_template.user.name, answer_template.user if answer_template.user
+          %td= link_to_if current_user.admin?, answer_template.user.name, answer_template.user if answer_template.user
           %td= link_to 'Edit', edit_builder_survey_question_answer_template_path(@survey, @question, answer_template), class: 'btn btn-xs btn-default'
     %tr
       %td{ colspan: 7 }
@@ -69,5 +69,5 @@
         %td= answer_template.template_name
         %td= answer_template.parent_answer_template.name if answer_template.parent_answer_template
         %td= answer_template.parent_answer_option_value
-        %td= link_to_if current_user.owner?, answer_template.user.name, answer_template.user if answer_template.user
+        %td= link_to_if current_user.admin?, answer_template.user.name, answer_template.user if answer_template.user
         %td= link_to 'Edit', edit_builder_survey_question_answer_template_path(@survey, @question, answer_template), class: 'btn btn-xs btn-default'

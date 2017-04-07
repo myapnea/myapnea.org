@@ -690,7 +690,7 @@
 - **Admin Changes**
   - Administrators can now unlock surveys for users from the user show page
   - Updated the Version Stats report to be monthly, and renamed to it to the Timeline Report
-  - Owners receive survey followup digest emails when new surveys are assigned to users
+  - Admins receive survey followup digest emails when new surveys are assigned to users
   - All admin pages now use fullscreen layout
 - **Gem Changes**
   - Updated to Ruby 2.2.3
@@ -816,7 +816,7 @@
   - Fixed daily/weekly count from user index
   - Added display tooltips for daily engagement points
   - Added demographic breakdown by time period
-    - Daily engagement report now only available to owners
+    - Daily engagement report now only available to admins
   - User sign in count and last session are visible from admin view
 - **Gem Changes**
   - Updated to redcarpet 3.3.2
@@ -942,7 +942,7 @@
 - **Forum Moderation Changes**
   - Forum moderators can no longer delete topics and posts
   - Spam and hidden posts now are displayed in a more consistent way for moderators
-  - Site owners can now delete topics and posts
+  - Site admins can now delete topics and posts
   - Moderators can now see the total number of spam topics and posts on the member's profile
 - **Dashboard Changes**
   - Posts on home page now link directly to post instead of just to the topic
@@ -972,7 +972,7 @@
 - Fixed a bug where topic update notifications were sent even after a user had unsubscribed from a topic
 
 ### Refactoring
-- Simplified internal role structure for setting owners and moderators
+- Simplified internal role structure for setting admins and moderators
 
 ## 7.0.2 (June 2, 2015)
 
@@ -1007,7 +1007,7 @@
     - Shows a list of approved research topics from the community
     - Each accepted question has a write up on its own separate page with unique styling, as needed
 - **Dashboard**
-  - Added ability for owners to dynamically update dashboard highlights
+  - Added ability for admins to dynamically update dashboard highlights
   - Added a stream of recent posts to the dashboard (continously loads all posts)
 - **Profile Changes**
   - Members can drag and drop a new photo on the settings page

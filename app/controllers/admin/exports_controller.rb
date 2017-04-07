@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
+# Allows admins to create exports.
 class Admin::ExportsController < ApplicationController
   before_action :authenticate_user!
-  before_action :check_owner
+  before_action :check_admin
   before_action :set_admin_export,              only: [:show, :progress, :file, :destroy]
   before_action :redirect_without_admin_export, only: [:show, :progress, :file, :destroy]
 
@@ -11,13 +12,13 @@ class Admin::ExportsController < ApplicationController
     @admin_exports = current_user.exports
   end
 
-  # GET /admin/exports/1
-  def show
-  end
+  # # GET /admin/exports/1
+  # def show
+  # end
 
-  # GET /admin/exports/1.js
-  def progress
-  end
+  # # GET /admin/exports/1.js
+  # def progress
+  # end
 
   def file
     if @admin_export.file.size > 0
@@ -39,7 +40,6 @@ class Admin::ExportsController < ApplicationController
   # POST /admin/exports
   def create
     @admin_export = current_user.exports.new
-
     if @admin_export.save
       @admin_export.start_export_in_background!
       redirect_to @admin_export, notice: 'Export was successfully created.'
@@ -69,7 +69,7 @@ class Admin::ExportsController < ApplicationController
   private
 
   def set_admin_export
-    @admin_export = Admin::Export.find_by_id params[:id]
+    @admin_export = Admin::Export.find_by(id: params[:id])
   end
 
   def redirect_without_admin_export

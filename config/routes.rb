@@ -125,6 +125,7 @@ Rails.application.routes.draw do
     post :preview
     get :contact
     get :voting
+    get :community
     get :landing, path: 'sunny/landing'
   end
 
@@ -230,9 +231,6 @@ Rails.application.routes.draw do
 
   # Discussion
   get 'terms-and-conditions', to: 'account#terms_and_conditions', as: :terms_and_conditions
-
-  # Social Section
-  get 'community', to: 'social#overview', via: :get, as: :community
 
   # Account Section
   scope module: :account do

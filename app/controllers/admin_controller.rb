@@ -2,9 +2,7 @@
 
 class AdminController < ApplicationController
   before_action :authenticate_user!
-  before_action :check_owner_or_moderator
-
-  before_action :set_seo_elements
+  before_action :check_admin_or_moderator
 
   # def dashboard
   # end
@@ -161,20 +159,12 @@ class AdminController < ApplicationController
 
   private
 
-  def set_seo_elements
-    @title = 'Admin Panel'
-    @page_content = 'Administrative panel only for owners and moderators of MyApnea.'
-  end
-
   def daily_data(date1, date2)
-    @users_by_date = User.where("created_at >= ? AND created_at <= ?", date1.beginning_of_day, date2.end_of_day)
-
-    @survey = Survey.current.find_by_slug 'about-me'
-    @encounter = Encounter.current.find_by_slug 'baseline'
-
-    question = @survey.questions.find_by_slug 'date-of-birth'
+    @users_by_date = User.where('created_at >= ? AND created_at <= ?', date1.beginning_of_day, date2.end_of_day)
+    @survey = Survey.current.find_by(slug: 'about-me')
+    @encounter = Encounter.current.find_by(slug: 'baseline')
+    question = @survey.questions.find_by(slug: 'date-of-birth')
     dobs = question.community_answer_text_values(@encounter).joins(answer: :answer_session).where(answer_sessions: { user_id: @users_by_date.select(:id) }).where.not(text_value: ['', nil]).pluck(:text_value)
-
     @ages = Hash.new
     @ages[0] = {text: "18-34", count: 0}
     @ages[1] = {text: "35-49", count: 0}

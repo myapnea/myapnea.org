@@ -13,6 +13,10 @@ class ExternalController < ApplicationController
   # def preview
   # end
 
+  # GET /community
+  # def community
+  # end
+
   def sitemap
     sitemap_xml = File.join(CarrierWave::Uploader::Base.root, 'sitemaps', 'sitemap.xml.gz')
     if File.exist?(sitemap_xml)

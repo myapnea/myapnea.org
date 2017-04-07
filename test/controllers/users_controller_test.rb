@@ -2,6 +2,7 @@
 
 require 'test_helper'
 
+# Tests to assure admins can manage users.
 class UsersControllerTest < ActionController::TestCase
   setup do
     @user = users(:user_2)
@@ -12,8 +13,8 @@ class UsersControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test 'should export users as owner' do
-    login(users(:owner))
+  test 'should export users as admin' do
+    login(users(:admin))
     get :export, format: 'csv'
     assert_not_nil assigns(:csv_string)
     assert_response :success
@@ -38,8 +39,8 @@ class UsersControllerTest < ActionController::TestCase
     assert_response :unauthorized
   end
 
-  test 'should get index for owner' do
-    login(users(:owner))
+  test 'should get index for admin' do
+    login(users(:admin))
     get :index
     assert_not_nil assigns(:users)
     assert_response :success
@@ -59,8 +60,8 @@ class UsersControllerTest < ActionController::TestCase
     assert_redirected_to new_user_session_path
   end
 
-  test 'should show user for owner' do
-    login(users(:owner))
+  test 'should show user for admin' do
+    login(users(:admin))
     get :show, params: { id: @user }
     assert_not_nil assigns(:user)
     assert_response :success
@@ -80,8 +81,8 @@ class UsersControllerTest < ActionController::TestCase
     assert_redirected_to new_user_session_path
   end
 
-  test 'should get edit for owner' do
-    login(users(:owner))
+  test 'should get edit for admin' do
+    login(users(:admin))
     get :edit, params: { id: @user }
     assert_response :success
   end
@@ -100,8 +101,8 @@ class UsersControllerTest < ActionController::TestCase
     assert_redirected_to new_user_session_path
   end
 
-  test 'should update user for owner' do
-    login(users(:owner))
+  test 'should update user for admin' do
+    login(users(:admin))
     put :update, params: { id: @user, user: { first_name: 'FirstName', last_name: 'LastName', email: 'valid_updated_email@example.com', emails_enabled: '1' } }
 
     assert_not_nil assigns(:user)
@@ -110,8 +111,8 @@ class UsersControllerTest < ActionController::TestCase
     assert_redirected_to user_path(assigns(:user))
   end
 
-  test 'should update user and enable survey building for user as owner' do
-    login(users(:owner))
+  test 'should update user and enable survey building for user as admin' do
+    login(users(:admin))
     put :update, params: { id: @user, user: { can_build_surveys: '1' } }
     assert_not_nil assigns(:user)
     assert_equal true, assigns(:user).can_build_surveys?
@@ -139,29 +140,29 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test 'should not update user with blank name' do
-    login(users(:owner))
+    login(users(:admin))
     put :update, params: { id: @user, user: { first_name: '', last_name: '' } }
     assert_not_nil assigns(:user)
     assert_template 'edit'
   end
 
   test 'should not update user with invalid id' do
-    login(users(:owner))
+    login(users(:admin))
     put :update, params: { id: -1, user: { first_name: 'FirstName', last_name: 'LastName', email: 'valid_updated_email@example.com', emails_enabled: '1' } }
     assert_nil assigns(:user)
     assert_redirected_to users_path
   end
 
-  test 'should destroy user for owner' do
-    login(users(:owner))
+  test 'should destroy user for admin' do
+    login(users(:admin))
     assert_difference('User.current.count', -1) do
       delete :destroy, params: { id: @user }
     end
     assert_redirected_to users_path
   end
 
-  test 'should destroy user for owner with ajax' do
-    login(users(:owner))
+  test 'should destroy user for admin with ajax' do
+    login(users(:admin))
     assert_difference('User.current.count', -1) do
       delete :destroy, params: { id: @user }, format: 'js'
     end
@@ -178,7 +179,7 @@ class UsersControllerTest < ActionController::TestCase
     assert_redirected_to root_path
   end
 
-  test 'should not destroy user for owner' do
+  test 'should not destroy user for admin' do
     assert_difference('User.current.count', 0) do
       delete :destroy, params: { id: @user }
     end

@@ -5,13 +5,13 @@
 
 %h3 Member Management
 .row.center
-  - if current_user.owner?
+  - if current_user.admin?
     .col-sm-3
       = link_to users_path, class: 'no-underline' do
         .blue-block-link
           Users
 
-- if current_user.owner?
+- if current_user.admin?
   %h3 Discussion
   .row.center
     .col-sm-3
@@ -25,7 +25,7 @@
     = link_to admin_cross_tabs_path, class: 'no-underline' do
       .blue-block-link
         Cross Tabs
-  - if current_user.owner?
+  - if current_user.admin?
     .col-sm-3
       = link_to admin_exports_path, class: 'no-underline' do
         .blue-block-link
@@ -44,7 +44,7 @@
       .blue-block-link
         Timeline Report
 
-- if current_user.owner?
+- if current_user.admin?
   %h3 Features
   .row.center
     .col-sm-3

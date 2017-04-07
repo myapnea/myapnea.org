@@ -30,9 +30,9 @@ class UserMailerTest < ActionMailer::TestCase
   end
 
   test 'encounter digest email' do
-    owner = users(:owner)
-    mail = UserMailer.encounter_digest(owner, 48, {})
-    assert_equal [users(:owner).email], mail.to
+    admin = users(:admin)
+    mail = UserMailer.encounter_digest(admin, 48, {})
+    assert_equal [users(:admin).email], mail.to
     assert_equal "48 Followup Surveys Launched on #{Time.zone.today.strftime('%a %d %b %Y')}", mail.subject
     assert_match(/Today, 48 surveys were launched to members of MyApnea\.Org\./, mail.body.encoded)
   end

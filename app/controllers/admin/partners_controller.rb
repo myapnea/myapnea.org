@@ -2,7 +2,7 @@
 
 class Admin::PartnersController < ApplicationController
   before_action :authenticate_user!,  except: [:photo]
-  before_action :check_owner,         except: [:photo]
+  before_action :check_admin,         except: [:photo]
   before_action :set_admin_partner,   only: [:show, :edit, :update, :destroy, :photo]
 
   def photo

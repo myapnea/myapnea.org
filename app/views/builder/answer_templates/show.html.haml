@@ -67,7 +67,7 @@
               %td= answer_option.value
               %td
                 %code= answer_option.display_class
-              %td= link_to_if current_user.owner?, answer_option.user.name, answer_option.user if answer_option.user
+              %td= link_to_if current_user.admin?, answer_option.user.name, answer_option.user if answer_option.user
               %td= link_to 'Edit', edit_builder_survey_question_answer_template_answer_option_path(@survey, @question, @answer_template, answer_option), class: 'btn btn-xs btn-default'
         %tr
           %td{ colspan: '7' }

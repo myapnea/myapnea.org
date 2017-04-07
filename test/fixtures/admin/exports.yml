@@ -2,14 +2,14 @@
 
 started:
   file: MyString
-  user: owner
+  user: admin
   total_steps: 0
   current_step: 1
   status: started
 
 completed:
   file: rails.png
-  user: owner
+  user: admin
   total_steps: 1
   current_step: 1
   created_at: <%= 5.hours.ago.to_s(:db) %>

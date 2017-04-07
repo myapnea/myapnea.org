@@ -27,7 +27,7 @@ class User < ApplicationRecord
   ]
 
   # Concerns
-  include Deletable, Coenrollment, Forkable
+  include Deletable, Coenrollment, Forkable, RandomNameGenerator
 
   attr_accessor :user_is_updating
 
@@ -52,7 +52,6 @@ class User < ApplicationRecord
   has_many :topics, -> { current }
   has_many :topic_users
   has_many :replies, -> { current.joins(:topic).merge(Topic.current) }
-  has_one :social_profile, -> { where deleted: false }
   has_many :images
   has_many :notifications
   has_many :children, -> { where(deleted: false).order('age desc', :first_name) }
@@ -114,7 +113,7 @@ class User < ApplicationRecord
   end
 
   def editable_topics
-    if moderator? || owner?
+    if moderator? || admin?
       Topic.current
     else
       topics
@@ -251,7 +250,7 @@ class User < ApplicationRecord
   end
 
   def editable_broadcasts
-    if owner?
+    if admin?
       Broadcast.current
     else
       broadcasts
@@ -279,7 +278,7 @@ class User < ApplicationRecord
 
   def set_forum_name
     return if forum_name.present?
-    update forum_name: SocialProfile.generate_forum_name(email, Time.zone.now.usec.to_s)
+    update forum_name: User.generate_forum_name(email, Time.zone.now.usec.to_s)
   end
 
   def send_welcome_email!

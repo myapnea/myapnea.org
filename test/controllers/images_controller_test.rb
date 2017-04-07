@@ -9,7 +9,7 @@ class ImagesControllerTest < ActionController::TestCase
   end
 
   test 'should get index as admin' do
-    login(users(:owner))
+    login(users(:admin))
     get :index
     assert_response :success
     assert_not_nil assigns(:images)
@@ -27,7 +27,7 @@ class ImagesControllerTest < ActionController::TestCase
   end
 
   test 'should get new as admin' do
-    login(users(:owner))
+    login(users(:admin))
     get :new
     assert_response :success
   end
@@ -44,7 +44,7 @@ class ImagesControllerTest < ActionController::TestCase
   end
 
   test 'should create image as admin' do
-    login(users(:owner))
+    login(users(:admin))
     assert_difference('Image.count') do
       post :create, params: { image: { image: fixture_file_upload('../../test/support/images/rails.png') } }
     end
@@ -67,7 +67,7 @@ class ImagesControllerTest < ActionController::TestCase
   end
 
   test 'should upload multiple images as admin' do
-    login(users(:owner))
+    login(users(:admin))
     assert_difference('Image.count', 2) do
       post :create_multiple, params: {
         images: [fixture_file_upload('../../test/support/images/rails.png'), fixture_file_upload('../../test/support/images/rails.png')]
@@ -98,7 +98,7 @@ class ImagesControllerTest < ActionController::TestCase
   end
 
   test 'should show image as admin' do
-    login(users(:owner))
+    login(users(:admin))
     get :show, params: { id: @image }
     assert_response :success
   end
@@ -115,7 +115,7 @@ class ImagesControllerTest < ActionController::TestCase
   end
 
   test 'should download image as admin' do
-    login(users(:owner))
+    login(users(:admin))
     get :download, params: { id: @image }
     assert_not_nil assigns(:image)
     assert_kind_of String, response.body
@@ -141,7 +141,7 @@ class ImagesControllerTest < ActionController::TestCase
   end
 
   test 'should get edit as admin' do
-    login(users(:owner))
+    login(users(:admin))
     get :edit, params: { id: @image }
     assert_response :success
   end
@@ -158,7 +158,7 @@ class ImagesControllerTest < ActionController::TestCase
   end
 
   test 'should update image as admin' do
-    login(users(:owner))
+    login(users(:admin))
     patch :update, params: { id: images(:three), image: { image: fixture_file_upload('../../test/support/images/rails.png') } }
     assert_redirected_to image_path(assigns(:image))
   end
@@ -175,7 +175,7 @@ class ImagesControllerTest < ActionController::TestCase
   end
 
   test 'should destroy image as admin' do
-    login(users(:owner))
+    login(users(:admin))
     assert_difference('Image.count', -1) do
       delete :destroy, params: { id: images(:three) }
     end

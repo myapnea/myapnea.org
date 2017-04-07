@@ -3,8 +3,7 @@
 # Allows admins to create and modify broadcast categories.
 class Admin::CategoriesController < ApplicationController
   before_action :authenticate_user!
-  before_action :check_owner
-
+  before_action :check_admin
   before_action :find_admin_category_or_redirect, only: [:show, :edit, :update, :destroy]
 
   # GET /admin/categories
@@ -12,18 +11,18 @@ class Admin::CategoriesController < ApplicationController
     @admin_categories = Admin::Category.current.order(:name).page(params[:page]).per(40)
   end
 
-  # GET /admin/categories/1
-  def show
-  end
+  # # GET /admin/categories/1
+  # def show
+  # end
 
   # GET /admin/categories/new
   def new
     @admin_category = Admin::Category.new
   end
 
-  # GET /admin/categories/1/edit
-  def edit
-  end
+  # # GET /admin/categories/1/edit
+  # def edit
+  # end
 
   # POST /admin/categories
   def create

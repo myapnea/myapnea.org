@@ -16,7 +16,7 @@ class TopicsController < ApplicationController
       @order = params[:order]
     end
     topic_scope = Topic.current.reply_count.order(@order)
-    topic_scope = topic_scope.shadow_banned(current_user ? current_user.id : nil) unless current_user && current_user.owner?
+    topic_scope = topic_scope.shadow_banned(current_user ? current_user.id : nil) unless current_user && current_user.admin?
     @topics = topic_scope.page(params[:page]).per(40)
   end
 
@@ -25,7 +25,7 @@ class TopicsController < ApplicationController
     @page = (params[:page].to_i > 1 ? params[:page].to_i : 1)
     reply_scope = @topic.replies.includes(:topic).where(reply_id: nil).page(@page).per(Reply::REPLIES_PER_PAGE)
     last_reply_id = reply_scope.last.id
-    reply_scope = reply_scope.shadow_banned(current_user ? current_user.id : nil) unless current_user && current_user.owner?
+    reply_scope = reply_scope.shadow_banned(current_user ? current_user.id : nil) unless current_user && current_user.admin?
     @replies = reply_scope
     @topic.increment! :view_count
     current_user.read_parent!(@topic, last_reply_id) if current_user

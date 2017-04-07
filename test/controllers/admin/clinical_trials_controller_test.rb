@@ -4,7 +4,7 @@ require 'test_helper'
 
 class Admin::ClinicalTrialsControllerTest < ActionController::TestCase
   setup do
-    @admin = users(:owner)
+    @admin = users(:admin)
     @admin_clinical_trial = admin_clinical_trials(:one)
   end
 
