@@ -23,6 +23,7 @@ body {
 ::selection {
   background-color: $brand-accent;
   color: $gray-dark;
+  text-shadow: none;
 }
 
 :focus {
