@@ -16,7 +16,7 @@ class HomeController < ApplicationController
 
       current_user.is_only_researcher? ? load_academic_dashboard_resources : load_member_dashboard_resources
     else
-      render 'home/landing'
+      render 'external/landing'
     end
   end
 
