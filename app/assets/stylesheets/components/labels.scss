@@ -1,0 +1,9 @@
+$box-shadow-color: rgba(0, 0, 0, .15);
+
+.transparent-stamp {
+  background-color: $a700-light-blue;
+  background-color: $box-shadow-color;
+  border-radius: 4px;
+  color: $brand-white;
+  padding: 15px;
+}
