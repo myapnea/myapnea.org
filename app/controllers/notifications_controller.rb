@@ -32,13 +32,14 @@ class NotificationsController < ApplicationController
 
   # PATCH /notifications/mark_all_as_read
   def mark_all_as_read
-    if @broadcast
-      notification_ids = current_user.notifications.where(broadcast_id: @broadcast.id).pluck(:id)
-    elsif @topic
-      notification_ids = current_user.notifications.where(topic_id: @topic.id).pluck(:id)
-    else
-      notification_ids = []
-    end
+    notification_ids = \
+      if @broadcast
+        current_user.notifications.where(broadcast_id: @broadcast.id, read: false).pluck(:id)
+      elsif @topic
+        current_user.notifications.where(topic_id: @topic.id, read: false).pluck(:id)
+      else
+        []
+      end
     current_user.notifications.where(id: notification_ids).update_all(read: true)
     @notifications = current_user.notifications.where(id: notification_ids)
   end
