@@ -23,11 +23,17 @@
             - error_message = resource.errors[:over_eighteen].join(', ')
             = f.label :over_eighteen, error_message, class: 'control-label'
         %br
+        - invisible_recaptcha = false
+        - if RECAPTCHA_ENABLED && !invisible_recaptcha
+          .form-group
+            %label.control-label Human Verification
+            .g-recaptcha{ data: { sitekey: ENV['recaptcha_site_key'] } }
+            <script src="https://www.google.com/recaptcha/api.js" async defer></script>
         - if resource.errors && resource.errors[:recaptcha].present?
           .form-group.center
             %small.text-danger= resource.errors[:recaptcha].join(' ')
         .form-group
-          - if RECAPTCHA_ENABLED
+          - if RECAPTCHA_ENABLED && invisible_recaptcha
             %button.g-recaptcha.btn.btn-primary.btn-block{ data: { sitekey: ENV['recaptcha_site_key'], callback: 'recaptchaFormSubmit' } } Sign up!
             <script src="https://www.google.com/recaptcha/api.js" async defer></script>
           - else

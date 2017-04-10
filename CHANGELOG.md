@@ -9,6 +9,7 @@
   - Login cookies are now cross subdomain and work between www and non-www URLs
   - Started work on a new landing page
   - Redesigned pages to match more vibrant landing page
+  - Changed human verification from "Invisible" to "I'm not a robot" ReCAPTCHA
 - **Gem Changes**
   - Updated to Ruby 2.4.1
   - Updated to rails 5.0.2

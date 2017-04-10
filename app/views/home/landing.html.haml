@@ -32,8 +32,14 @@
               .col-sm-12
                 = f.check_box :over_eighteen
                 = f.label :over_eighteen, 'I am over the age of 18'
+            - invisible_recaptcha = false
+            - if RECAPTCHA_ENABLED && !invisible_recaptcha
+              .form-group
+                %label.control-label Human Verification
+                .g-recaptcha{ data: { sitekey: ENV['recaptcha_site_key'] } }
+                <script src="https://www.google.com/recaptcha/api.js" async defer></script>
             .input-group.center
-              - if RECAPTCHA_ENABLED
+              - if RECAPTCHA_ENABLED && invisible_recaptcha
                 %button.g-recaptcha.btn-join{ data: { sitekey: ENV['recaptcha_site_key'], callback: 'recaptchaFormSubmit' } } Join Today
                 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
               - else
