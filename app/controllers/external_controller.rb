@@ -2,6 +2,8 @@
 
 # Displays publicly available pages
 class ExternalController < ApplicationController
+  layout 'application-padded'
+
   def contact
     render layout: 'simple'
   end

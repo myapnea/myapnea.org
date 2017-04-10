@@ -114,10 +114,11 @@ Rails.application.routes.draw do
 
   scope module: :external do
     post :preview
+    get :landing
+    get :community
     get :contact
     get :voting
-    get :community
-    get :landing
+    get :version
   end
 
   scope module: :blank do
@@ -152,7 +153,6 @@ Rails.application.routes.draw do
     get :partners
     get :faqs
     get 'clinical-trials', action: :clinical_trials
-    get :version
     get :sitemap
     get :sizes
     get :learn
