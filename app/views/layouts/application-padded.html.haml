@@ -30,12 +30,11 @@
     = stylesheet_link_tag 'application', media: 'all', data: { turbolinks_track: 'reload' }
     = javascript_include_tag 'application', data: { turbolinks_track: 'reload' }
     = javascript_tag "var root_url='#{request.script_name + '/'}';"
-  -# application-padded should become the default layout for content.
-  %body#top{ class: yield(:body_class) }
+  -# Should become the default layout for content.
+  %body#top.full-page{ class: yield(:body_class) }
     #top-menu.top-menu= render 'layouts/menu'
     = render 'layouts/partials/flash_messages'
     = yield :header
-    .container.body-content
-      = yield
+    .container.body-content= yield
     = yield :footer
     = render 'layouts/footer', theme: 'footer-grass'

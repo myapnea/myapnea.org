@@ -8,14 +8,14 @@
           %source{ src: "//player.vimeo.com/external/208487154.hd.mp4" }
           Your browser does not support the video tag.
   - elsif false
-    .first-box.video-box
+    .page-box.video-box
       .frozen-container
         .embed-responsive.embed-responsive-16by9{ style: 'position: relative;pointer-events: none;height: 100%;' }
           - video = '3I8YbWRgkjw'
           - video_loop = '1'
           - autoplay = '1'
           %iframe{ src: "//www.youtube.com/embed/#{video}?playlist=#{video}&autoplay=#{autoplay}&loop=#{video_loop}&controls=0&rel=0&modestbranding=1&showinfo=0", webkitallowfullscreen: true, mozallowfullscreen: true, allowfullscreen: true }
-      .first-box-down-arrow.hidden-xs
+      .page-box-down-arrow.hidden-xs
         = link_to "#forum-place", data: { object: 'scroll-anchor' } do
           %i.fa.fa-chevron-circle-down
   - elsif false
@@ -31,9 +31,9 @@
         #player
 
   #forum-place
-  .first-box
-    .container
-      .first-box-slide
+  .page-box.myapnea-blue-bg
+    .full-page-slide
+      .container
         .myapnea-heading
           Forum
 
@@ -60,14 +60,14 @@
                     .landing-box-footer-author-name= link_to reply.user.forum_name, member_path(reply.user.forum_name)
 
         .center= link_to 'ASK A QUESTION', new_topic_path, class: 'link-white'
-      .first-box-down-arrow
+      .page-box-down-arrow
         = link_to "#survey-place", data: { object: 'scroll-anchor' }, class: 'orange' do
           %i.fa.fa-chevron-circle-down
 
   #survey-place
-  .first-box.myapnea-orange-bg
-    .container
-      .first-box-slide
+  .page-box.myapnea-orange-bg
+    .full-page-slide
+      .container
         .myapnea-heading
           Surveys
 
@@ -92,32 +92,32 @@
         .center= link_to 'SURVEY With Progress', yoga_path(id: 1), class: 'link-white'
 
 
-      .first-box-down-arrow
+      .page-box-down-arrow
         = link_to "#third-place", data: { object: 'scroll-anchor' } do
           %i.fa.fa-chevron-circle-down
 
   #third-place
-  .first-box
-    .container
-      .first-box-slide.center-both
+  .page-box.myapnea-blue-bg
+    .full-page-slide.center-both
+      .container
         = image_tag 'myapnea/logos/MyApneaLogo_border_bluetext.png', class: 'img-responsive'
-      .first-box-down-arrow
+      .page-box-down-arrow
         = link_to "#fourth-place", data: { object: 'scroll-anchor' }, class: 'orange' do
           %i.fa.fa-chevron-circle-down
 
   #fourth-place
-  .first-box.myapnea-orange-bg
-    .container
-      .first-box-slide.center-both
+  .page-box.myapnea-orange-bg
+    .full-page-slide.center-both
+      .container
         = image_tag 'myapnea/logos/MyApneaLogo_border_bluetext.png', class: 'img-responsive'
-      .first-box-down-arrow
+      .page-box-down-arrow
         = link_to "#fifth-place", data: { object: 'scroll-anchor' } do
           %i.fa.fa-chevron-circle-down
 
   #fifth-place
-  .first-box.myapnea-white-bg
-    .container
-      .first-box-slide.center-vertically
+  .page-box.myapnea-white-bg
+    .full-page-slide.center-vertically
+      .container
         .myapnea-heading
           - video = '3I8YbWRgkjw'
           - video_loop = '0'
@@ -125,22 +125,22 @@
           = link_to '#video-place', data: { object: 'play-landing-video scroll-anchor', src: "//www.youtube.com/embed/#{video}?playlist=#{video}&autoplay=#{autoplay}&loop=#{video_loop}&controls=0&rel=0&modestbranding=1&showinfo=0", target_iframe: 'iframe' }, class: 'no-underline' do
             Play Video
             %i.fa.fa-play-circle
-      .first-box-down-arrow
+      .page-box-down-arrow
         = link_to "#video-place", data: { object: 'scroll-anchor' }, class: 'orange' do
           %i.fa.fa-chevron-circle-down
 
   #video-place
-  #video-slide.first-box.myapnea-transparent-bg
-    .container
-      .first-box-slide
-      .first-box-down-arrow
+  #video-slide.page-box.myapnea-transparent-bg
+    .full-page-slide
+      .container
+      .page-box-down-arrow
         = link_to "#sixth-place", data: { object: 'scroll-anchor pause-landing-video' }, class: 'orange' do
           %i.fa.fa-chevron-circle-down
 
   #sixth-place
-  .first-box.myapnea-orange-bg
-    .container
-      .first-box-slide.center-vertically
+  .page-box.myapnea-orange-bg
+    .full-page-slide.center-vertically
+      .container
         .myapnea-heading
           %i.fa.fa-search
         = form_tag search_path, method: :get do
@@ -157,17 +157,17 @@
               - else
                 = succeed ',' do
                   = link_to suggestion, search_path(search: suggestion), class: 'link-white'
-      .first-box-down-arrow
+      .page-box-down-arrow
         = link_to "#bottom-place", data: { object: 'scroll-anchor' } do
           %i.fa.fa-chevron-circle-down
 
   #bottom-place
-  .first-box.myapnea-sky-bg
+  .page-box.myapnea-sky-bg
     = render 'blank/sun'
-    .container
-      .last-box-slide.center-both
+    .full-page-slide.last-slide.center-both
+      .container
         = image_tag 'myapnea/logos/MyApneaLogo_border_bluetext.png', class: 'img-responsive'
-      .first-box-down-arrow
+      .page-box-down-arrow
         = link_to "#top-place", data: { object: 'scroll-anchor' }, class: 'orange' do
           %i.fa.fa-chevron-circle-up
 

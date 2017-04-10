@@ -11,13 +11,7 @@ class HomeControllerTest < ActionController::TestCase
 
   test 'should get landing for logged out user' do
     get :dashboard
-    assert_template 'home/landing'
-    assert_response :success
-  end
-
-  test 'should get landing for logged in user' do
-    login(users(:social))
-    get :landing
+    assert_template 'external/landing'
     assert_response :success
   end
 end

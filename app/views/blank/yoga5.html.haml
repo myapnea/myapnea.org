@@ -1,15 +1,12 @@
-.menu-bar.menu-bar-fixed{ style: 'background-color: #fb8c00;' }
-  -# $p600-orange
-  -# { style: 'background-color: #43a047;' }
-  -# $p600-green;
+.menu-bar.menu-bar-fixed.menu-bar-green
   .container
     Mindfulness &middot; Yoga Usefulness Scale
 
-.survey-box-with-footer.myapnea-orange-bg
+.page-box.myapnea-green-bg
   = render 'blank/sun'
   = render 'blank/progress_bar', start: 60, percent: 80
-  .container
-    .survey-box-slide-with-menu-and-footer.center-vertically.dashboard-container-full-page.survey-box-animate.start
+  .full-page-slide.last-slide.center-vertically.dashboard-container-full-page
+    .container
       / .survey-study-name Yoga Usefulness Scale
       .dashboard-container
         .survey-question

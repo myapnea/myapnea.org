@@ -117,7 +117,7 @@ Rails.application.routes.draw do
     get :contact
     get :voting
     get :community
-    get :landing, path: 'sunny/landing'
+    get :landing
   end
 
   scope module: :blank do
@@ -132,11 +132,11 @@ Rails.application.routes.draw do
     get :green
     get :landing2
     get :landing3
+    get :landing4
   end
 
   scope module: 'home' do
     get :dashboard
-    get :landing
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

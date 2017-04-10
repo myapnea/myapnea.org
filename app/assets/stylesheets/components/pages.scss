@@ -1,0 +1,32 @@
+.page-box {
+  position: relative;
+}
+
+.full-page-slide {
+  position: relative;
+  min-height: 960px;
+}
+
+.full-page {
+  .full-page-slide {
+    min-height: calc(100vh - #{$header-height});
+  }
+
+  .full-page-slide {
+    &.last-slide {
+      min-height: calc(100vh - #{$header-height} - #{$footer-height});
+    }
+  }
+}
+
+.full-page-no-header {
+  .full-page-slide {
+    min-height: 100vh;
+  }
+
+  .full-page-slide {
+    &.last-slide {
+      min-height: calc(100vh - #{$footer-height});
+    }
+  }
+}

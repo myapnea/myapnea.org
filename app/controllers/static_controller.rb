@@ -6,7 +6,7 @@ class StaticController < ApplicationController
 
   def about
     # render layout: 'simple'
-    render layout: 'blank2'
+    render layout: 'full_page_no_header'
   end
 
   def team

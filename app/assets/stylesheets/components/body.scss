@@ -4,8 +4,15 @@ html {
 }
 
 body {
-  margin-bottom: $footer-height;
-  padding-top: $header-height;
+  &.full-page {
+    margin-bottom: $footer-height;
+    padding-top: $header-height;
+  }
+
+  &.full-page-no-header {
+    margin-bottom: $footer-height;
+    padding-top: 0;
+  }
 }
 
 .body-content {

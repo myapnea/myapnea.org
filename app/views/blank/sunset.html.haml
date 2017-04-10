@@ -4,11 +4,11 @@
 
 =# render 'layouts/survey_menu', theme: 'menu-sunset'
 
-.survey-box-with-footer.myapnea-sunset-bg
+.page-box.myapnea-sunset-bg
   = render 'blank/sunset'
   = render 'blank/progress_bar', start: 100 / 6 * 3, percent: 100 / 6 * 4
-  .container
-    .survey-box-slide-with-menu-and-footer.center-vertically.dashboard-container-full-page
+  .full-page-slide.last-slide.center-vertically.dashboard-container-full-page
+    .container
       .dashboard-container
         .survey-question
           .survey-question-lead
