@@ -1,7 +1,7 @@
-.first-box.myapnea-sky-bg
+.page-box.myapnea-sky-bg
   = render 'blank/sun'
-  .container
-    .last-box-slide.center-vertically.animate-slide
+  .full-page-slide.last-slide.center-vertically.animate-slide
+    .container
       #show-me-video{ style: 'display: none;' }
         .embed-responsive.embed-responsive-16by9{ style: 'position: relative;pointer-events: none;' }
           #player
@@ -65,21 +65,4 @@
             Play Video
             %i.fa.fa-play-circle
 
-- content_for :footer do
-  .footer-container
-    .container
-      .footer
-        .hidden-sm.hidden-md.hidden-lg.center
-          &copy;
-          = Date.today.year
-          = ENV['website_name']
-        .row.hidden-xs
-          .col-xs-6.nowrap
-            &copy;
-            = Date.today.year
-            = ENV['website_name']
-            |
-            = link_to 'About', about_path
-          .col-xs-6.nowrap.text-right.hidden-xs
-            .pull-right
-              = link_to image_tag('myapnea/welcome/img-small/bwh_footer.png', style: 'margin-top: -20px;'), 'http://www.brighamandwomens.org/'
+= render 'layouts/footer'

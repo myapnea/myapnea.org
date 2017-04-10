@@ -1,1 +1,19 @@
-landing4.html.haml
+- if @menu
+  #top-menu.top-menu= render 'layouts/menu'
+
+.page-box.myapnea-green-bg
+  .full-page-slide
+    .container
+      %h1 landing4.html.haml
+
+.page-box.myapnea-sky-bg
+  .full-page-slide
+    .container
+      %h1 landing4.html.haml
+
+.page-box.myapnea-blue-bg
+  .full-page-slide.last-slide
+    .container
+      %h1 landing4.html.haml
+
+= render 'layouts/footer', theme: 'footer-grass'
