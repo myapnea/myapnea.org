@@ -4,6 +4,8 @@
 class BlankController < ApplicationController
   before_action :find_question_or_redirect, only: [:question, :yoga]
 
+  layout 'full_page'
+
   def question
     render "blank/question#{@question_id}"
   rescue
@@ -17,7 +19,15 @@ class BlankController < ApplicationController
   end
 
   def landing2
-    render layout: 'blank2'
+    render layout: 'full_page_no_header'
+  end
+
+  def landing3
+    render layout: 'full_page_no_header'
+  end
+
+  def landing4
+    render layout: 'full_page_no_header'
   end
 
   private
