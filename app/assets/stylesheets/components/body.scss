@@ -20,8 +20,10 @@ body {
   padding-top: 20px;
 }
 
+$p200-orange-rgba: rgba(255, 204, 128, .99);
+
 ::selection {
-  background-color: $brand-accent;
+  background-color: $p200-orange-rgba;
   color: $gray-dark;
   text-shadow: none;
 }
