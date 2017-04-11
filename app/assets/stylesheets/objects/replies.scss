@@ -1,7 +1,12 @@
-$comment-unread-even: $brand-white;
-$comment-unread-odd: $brand-gray-lightest;
-$comment-read-even: #e6edf4;
-$comment-read-odd: #e1e7ee; // $comment-unread-odd * $comment-read-even
+.table-borderless {
+  .topic-line-read {
+    border-left: 4px solid transparent !important;
+  }
+
+  .topic-line-unread {
+    border-left: 4px solid $p100-orange !important;
+  }
+}
 
 .topic-read {
   color: $p200-blue;
@@ -28,30 +33,9 @@ $comment-read-odd: #e1e7ee; // $comment-unread-odd * $comment-read-even
   }
 }
 
-.reply-inner-container {
-  margin-left: 0;
-  position: relative;
-}
-
-.reply-avatar {
-  display: none;
-}
-
-@media screen and (min-width: $screen-md-min) {
-  .reply-inner-container {
-    margin-left: 70px;
-  }
-
-  .reply-avatar {
-    display: block;
-    left: -70px;
-    position: absolute;
-  }
-}
-
 .reply-outer-container {
   background-color: $brand-white;
-  box-shadow: $box-shadow;
+  box-shadow: 0 1px 5px $box-shadow-color;
   margin-bottom: 20px;
   padding: 20px;
 }
@@ -66,8 +50,6 @@ $comment-read-odd: #e1e7ee; // $comment-unread-odd * $comment-read-even
   }
 
   .reply-container {
-    border: 1px solid $brand-gray-lighter;
-    border-radius: 4px 0 0 4px;
     margin-right: -11px;
     margin-top: 10px;
     padding: 10px;
@@ -83,20 +65,12 @@ $comment-read-odd: #e1e7ee; // $comment-unread-odd * $comment-read-even
   }
 }
 
+.reply-unread {
+  border-left: 4px solid $p100-orange;
+}
+
 .reply-read {
-  background-color: $comment-read-even;
-
-  .reply-container.reply-even {
-    background-color: $comment-read-even;
-  }
-
-  .reply-container.reply-odd {
-    background-color: $comment-read-odd;
-  }
-
-  blockquote {
-    border-color: $brand-gray;
-  }
+  border-left: 4px solid $p50-blue;
 }
 
 .highlighted-reply {
@@ -138,5 +112,30 @@ $comment-read-odd: #e1e7ee; // $comment-unread-odd * $comment-read-even
 @media screen and (min-width: $screen-sm-min) {
   .reply-body {
     padding-left: 20px;
+  }
+}
+
+.reply-inner-container {
+  margin-left: 0;
+  position: relative;
+}
+
+.reply-avatar {
+  display: none;
+
+  img {
+    cursor: default;
+  }
+}
+
+@media screen and (min-width: $screen-md-min) {
+  .reply-avatar {
+    display: block;
+    left: -70px;
+    position: absolute;
+  }
+
+  .reply-inner-container {
+    margin-left: 70px;
   }
 }

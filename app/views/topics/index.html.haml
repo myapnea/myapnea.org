@@ -11,6 +11,9 @@
           %span#forum-top-container= link_to 'Start New Topic', async_forum_new_topic_path, method: :post, remote: true, class: 'btn btn-accent btn-shadow'
           = render 'layouts/per_page', per_page: 40, object_count: @topics.total_count
         = @title
+        = render 'search/toggle'
+
+= render 'search/simple', url: search_path
 
 #new-topic-container{ style: 'display:none;' }
 
@@ -29,7 +32,7 @@
     %tbody
       - @topics.each do |topic|
         %tr
-          %td.breakword
+          %td.breakword{ class: current_user && !topic.started_reading?(current_user) ? 'topic-line-unread' : 'topic-line-read' }
             .pull-right
               - if topic.last_page > 1
                 %i.fa.fa-comments-o
@@ -43,7 +46,7 @@
             - if topic.pinned?
               %span.glyphicon.glyphicon-star.primary-orange
             = link_to topic.title, topic, class: topic.started_reading?(current_user) ? 'topic-read' : 'topic-unread'
-            .text-muted{ style: 'margin-left: 20px;clear: both;' }
+            .text-muted.hidden-xs{ style: 'margin-left: 20px;clear: both;' }
               .pull-right
                 - if next_unread_reply
                   = link_to next_unread_reply, data: { turbolinks: false } do

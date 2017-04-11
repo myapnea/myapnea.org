@@ -1,29 +1,45 @@
 - @title = ['Search', @search.gsub(' & ', ' ')].compact.join(' | ')
 
-.content-main-header2
-  %h1
-    Search
-    = ENV['website_name']
+- content_for :body_class do
+  myapnea-sky-bg
+
+- content_for :header do
+  .header-container
+    .container
+      %h1.page-heading
+        .pull-right
+          = render 'layouts/per_page', per_page: 10, object_count: @search_documents.total_count
+        Search
+        - if params[:search].present?
+          %small
+            %code{ data: { object: 'show-search-bar' }, style: 'cursor: pointer;' }= params[:search]
+        - else
+          MyApnea
 
 .row
   .col-sm-9
-    - if @search_documents.count > 0
-      - @search_documents.each do |document|
-        - case document.searchable.class.to_s when 'Broadcast'
-          = render 'search/broadcast', broadcast: document.searchable
-        - when 'Topic'
-          = render 'search/topic', topic: document.searchable
-        - when 'Reply'
-          = render 'search/reply', reply: document.searchable
+    - if @search_documents.present?
+      .dashboard-container
+        - @search_documents.each do |document|
+          - case document.searchable.class.to_s when 'Broadcast'
+            = render 'search/broadcast', broadcast: document.searchable
+          - when 'Topic'
+            = render 'search/topic', topic: document.searchable
+          - when 'Reply'
+            = render 'search/reply', reply: document.searchable
       .center= paginate @search_documents, theme: 'bootstrap'
     - else
-      .center
-        = image_tag 'myapnea/user_types/role_confused.png'
-      %p.lead.center.text-muted
-        No Search Results Found
-      %p.lead.center
-        You may modify your search or return to
-        = succeed '.' do
-          = link_to 'our blog', blog_path
-  .col-sm-3.col-buffer
-    = render 'blog/menu'
+      .dashboard-container
+        %p.lead.center
+          No search results found.
+          You may
+          = link_to 'modify your search', '#', data: { object: 'show-search-bar' }
+          or return to
+          = succeed '.' do
+            = link_to 'our blog', blog_path
+        .center
+          = image_tag 'myapnea/user_types/role_confused.png'
+
+  .col-sm-3.col-sticky
+    .dashboard-container
+      = render 'blog/menu'

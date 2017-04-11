@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Allows users to reply to forum topics.
+# Allows users to reply to forum topics and blog posts.
 class RepliesController < ApplicationController
   before_action :authenticate_user!, except: [:vote, :show]
   before_action :find_parent_or_redirect, only: [:create]

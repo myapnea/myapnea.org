@@ -2,6 +2,9 @@
 
 # Provides back search results from across MyApnea.
 class SearchController < ApplicationController
+  layout 'application-padded'
+
+  # GET /search
   def index
     @search = params[:search].to_s.downcase.split(/[^\w]/).reject(&:blank?).uniq.join(' & ')
     @search_documents = PgSearch.multisearch(params[:search]).page(params[:page]).per(10)

@@ -18,6 +18,9 @@
   - Started work on a new landing page
   - Redesigned pages to match more vibrant landing page
   - Changed human verification from "Invisible" to "I'm not a robot" ReCAPTCHA
+  - Added search to the mobile dropdown menu
+- **Forum Changes**
+  - Adjusted how the forum index displays on mobile devices
 - **Gem Changes**
   - Updated to Ruby 2.4.1
   - Updated to rails 5.0.2

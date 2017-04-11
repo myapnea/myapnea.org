@@ -8,6 +8,9 @@
     .container
       %h1.page-heading
         = @title
+        = render 'search/toggle'
+
+= render 'search/simple', url: search_path
 
 .row
   .col-sm-9
