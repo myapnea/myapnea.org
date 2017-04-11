@@ -1,3 +1,4 @@
 $("#comment_container_<%= params[:parent_reply_id] %>_<%= params[:reply_id] %>").html("<%=j render 'replies/form', reply: @reply %>");
 fileDragReady();
 showReplyBox("<%= params[:parent_reply_id] %>", "<%= params[:reply_id] %>");
+setFocusToField("#reply_description_<%= params[:parent_reply_id] %>_new");
