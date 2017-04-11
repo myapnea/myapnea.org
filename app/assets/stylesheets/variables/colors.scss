@@ -1,2 +1,7 @@
-$link-color: $brand-primary !default; // $a700 !default; TODO: Reference using $aXXX or $pXXX color
+$link-color: $p500-blue !default;
 $breadcrumb-link-color: $link-color !default;
+$standard-shadow-color: rgba(0, 0, 0, .3);
+$box-shadow-color: rgba(0, 0, 0, .15);
+$dashboard-bg: $brand-white !default;
+$standard-shadow-color: rgba(0, 0, 0, .3);
+$standard-shadow-hover-color: rgba(0, 0, 0, .2);

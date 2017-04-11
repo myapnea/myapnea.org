@@ -20,7 +20,7 @@
     .question-container
       %h3.f300= question.text
       - if heading.present?
-        %h5.f300.reset-layout= heading
+        %h5.f300= heading
 
     .input-container
       - question.answer_templates.unarchived.where(parent_answer_option_value: [nil, '']).each do |answer_template|

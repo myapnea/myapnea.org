@@ -1,18 +1,27 @@
 .page-box {
-  position: relative;
-}
-
-.full-page-slide {
+  padding: 20px 0;
   position: relative;
   min-height: 960px;
 }
 
+@media screen and (min-width: $screen-md-min) {
+  .page-box {
+    padding: 30px 0;
+  }
+}
+
+@media screen and (min-width: $screen-lg-min) {
+  .page-box {
+    padding: 40px 0;
+  }
+}
+
 .full-page {
-  .full-page-slide {
+  .page-box {
     min-height: calc(100vh - #{$header-height});
   }
 
-  .full-page-slide {
+  .page-box {
     &.last-slide {
       min-height: calc(100vh - #{$header-height} - #{$footer-height});
     }
@@ -20,11 +29,11 @@
 }
 
 .full-page-no-header {
-  .full-page-slide {
+  .page-box {
     min-height: 100vh;
   }
 
-  .full-page-slide {
+  .page-box {
     &.last-slide {
       min-height: calc(100vh - #{$footer-height});
     }

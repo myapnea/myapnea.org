@@ -2,23 +2,22 @@
   .container
     Mindfulness &middot; Yoga Usefulness Scale
 
-.page-box.myapnea-green-bg
+.page-box.last-slide.center-vertically.myapnea-green-bg
   = render 'blank/sun'
   = render 'blank/progress_bar', start: 60, percent: 80
-  .full-page-slide.last-slide.center-vertically.dashboard-container-full-page
-    .container
-      / .survey-study-name Yoga Usefulness Scale
-      .dashboard-container
-        .survey-question
-          .survey-question-text
-            Which poses did you find most helpful?
-        .survey-choices{ style: 'margin-bottom: 20px;' }
-          = text_area_tag 'yoga', '', rows: 8, class: 'form-control'
-        = link_to yoga_path(id: @question_id + 1), class: 'survey-question-next' do
-          Next
-      .survey-question-skip
-        = link_to yoga_path(id: @question_id + 1), data: { confirm: 'Are you sure you want to skip this question?' } do
-          Skip this question
+  .container
+    / .survey-study-name Yoga Usefulness Scale
+    .dashboard-container
+      .survey-question
+        .survey-question-text
+          Which poses did you find most helpful?
+      .survey-choices{ style: 'margin-bottom: 20px;' }
+        = text_area_tag 'yoga', '', rows: 8, class: 'form-control'
+      = link_to yoga_path(id: @question_id + 1), class: 'survey-question-next' do
+        Next
+    .survey-question-skip
+      = link_to yoga_path(id: @question_id + 1), data: { confirm: 'Are you sure you want to skip this question?' } do
+        Skip this question
 
 - content_for :footer do
   .footer-container

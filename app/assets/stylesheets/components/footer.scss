@@ -19,4 +19,8 @@
   a:hover {
     color: $p200-blue; // Perhaps change back to $p200-orange;
   }
+
+  img {
+    @include ignore-selection;
+  }
 }

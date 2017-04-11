@@ -52,7 +52,7 @@
           = number_field_tag 'desired-weight', nil, class: 'number-input', style: 'position:relative; top:4px;'
           %br.visible-xs
           %button#calculate-min-weight.btn.btn-default.disabled{ data: { object: 'calculate-minimum-weight' } }
-            %p.small.reset-layout Calculate short-term weight goal
+            %p.small Calculate short-term weight goal
     .list-group-item
       #calculate-weight-change-results.center
         %button.btn.btn-primary.disabled{ data: { object: 'submit-weight-change'} }
@@ -69,28 +69,28 @@
           %br
           %span#bmi-change-result-custom-text.darkerer-blue
           #severity-graph.center
-            #severe.row.reset-layout
+            #severe.row
               .col-xs-3
                 %h4.darkerer-blue Severe
               .col-xs-3
               .col-xs-3
               .col-xs-3
                 .circle
-            #moderate.row.reset-layout
+            #moderate.row
               .col-xs-3
                 %h4.darkerer-blue Moderate
               .col-xs-3
               .col-xs-3
                 .circle
               .col-xs-3
-            #mild.row.reset-layout
+            #mild.row
               .col-xs-3
                 %h4.darkerer-blue Mild
               .col-xs-3
                 .circle
               .col-xs-3
               .col-xs-3
-            .row.reset-layout
+            .row
               .col-xs-3
               .col-xs-3
                 %h4.darkerer-blue Normal weight

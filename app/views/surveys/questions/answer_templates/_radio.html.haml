@@ -1,4 +1,4 @@
-%h4.spaced= answer_template.text
+%h4= answer_template.text
 %div{ class: "radio-question-inputs #{'multiple-question-container' if question.answer_templates.unarchived.where(template_name: 'radio', parent_answer_template_id: nil).count > 1 } "}
   - answer_template.answer_options.each do |answer_option|
     - child_templates = answer_template.child_templates(question, answer_option.new_value)
