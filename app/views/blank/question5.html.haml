@@ -2,24 +2,23 @@
   .container
     About Me &middot; MyApnea Core
 
-.page-box.myapnea-sky-bg
+.page-box.last-slide.center-vertically.myapnea-sky-bg
   = render 'blank/sun'
   = render 'blank/progress_bar', start: 60, percent: 80
-  .full-page-slide.last-slide.center-vertically.dashboard-container-full-page
-    .container
-      .dashboard-container
-        .survey-question
-          .survey-question-text
-            What is the highest degree or level of school you have completed?
-        .survey-choices
-          - choices = ['8th grade or less', 'Some high school, but did not graduate', 'High school graduate or GED', 'Some college or 2-year degree', '4-year college graduate', 'More than 4-year college degree', 'Prefer not to answer']
-          - choices.each do |choice|
-            = link_to '#', class: 'survey-choice box-shadow', data: { object: 'suppress-click' } do
-              .fa-stack.fa-stack-inline
-                %i.fa.fa-circle.fa-stack-1x
-                %i.fa.fa-check-circle.fa-stack-1x
-              .survey-choice-text= choice
-        = render 'blank/next_question'
-      = render 'blank/question_skip'
+  .container
+    .dashboard-container
+      .survey-question
+        .survey-question-text
+          What is the highest degree or level of school you have completed?
+      .survey-choices
+        - choices = ['8th grade or less', 'Some high school, but did not graduate', 'High school graduate or GED', 'Some college or 2-year degree', '4-year college graduate', 'More than 4-year college degree', 'Prefer not to answer']
+        - choices.each do |choice|
+          = link_to '#', class: 'survey-choice box-shadow', data: { object: 'suppress-click' } do
+            .fa-stack.fa-stack-inline
+              %i.fa.fa-circle.fa-stack-1x
+              %i.fa.fa-check-circle.fa-stack-1x
+            .survey-choice-text= choice
+      = render 'blank/next_question'
+    = render 'blank/question_skip'
 
 = render 'layouts/footer', theme: 'footer-grass'

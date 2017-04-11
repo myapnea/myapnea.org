@@ -2,29 +2,28 @@
   .container
     Blue
 
-.page-box.myapnea-blue-bg
+.page-box.last-slide.center-vertically.myapnea-blue-bg
   = render 'blank/sun'
   = render 'blank/progress_bar', start: 0, percent: 0
-  .full-page-slide.last-slide.center-vertically.dashboard-container-full-page
-    .container
-      .dashboard-container
-        .survey-question
-          .survey-question-lead
-            In this survey...
-          .survey-question-text
-            Are you of Hispanic, Latino, or Spanish origin or ancestry?
-        .survey-choices
-          - choices = ['No', 'Yes - Mexican, Mexican American, or Chicano', 'Yes - Puerto Rican', 'Yes - Cuban', 'Yes - Other or Mixed Hispanic, Latino, or Spanish origin', 'Unsure', 'Prefer not to answer']
-          - choices.each do |choice|
-            = link_to '#', class: 'survey-choice box-shadow', data: { object: 'suppress-click' } do
-              .fa-stack.fa-stack-inline
-                %i.fa.fa-circle.fa-stack-1x
-                %i.fa.fa-check-circle.fa-stack-1x
-              .survey-choice-text= choice
-        = link_to orange_path, class: 'survey-question-next', data: { turbolinks: false } do
-          Next
-      .survey-question-skip
-        = link_to orange_path, data: { confirm: 'Are you sure you want to skip this question?' } do
-          Skip this question
+  .container
+    .dashboard-container
+      .survey-question
+        .survey-question-lead
+          In this survey...
+        .survey-question-text
+          Are you of Hispanic, Latino, or Spanish origin or ancestry?
+      .survey-choices
+        - choices = ['No', 'Yes - Mexican, Mexican American, or Chicano', 'Yes - Puerto Rican', 'Yes - Cuban', 'Yes - Other or Mixed Hispanic, Latino, or Spanish origin', 'Unsure', 'Prefer not to answer']
+        - choices.each do |choice|
+          = link_to '#', class: 'survey-choice box-shadow', data: { object: 'suppress-click' } do
+            .fa-stack.fa-stack-inline
+              %i.fa.fa-circle.fa-stack-1x
+              %i.fa.fa-check-circle.fa-stack-1x
+            .survey-choice-text= choice
+      = link_to orange_path, class: 'survey-question-next', data: { turbolinks: false } do
+        Next
+    .survey-question-skip
+      = link_to orange_path, data: { confirm: 'Are you sure you want to skip this question?' } do
+        Skip this question
 
 = render 'layouts/footer', theme: 'footer-grass'

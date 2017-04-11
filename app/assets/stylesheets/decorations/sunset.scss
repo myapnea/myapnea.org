@@ -34,7 +34,7 @@ $sunset-container-sm: $sunset-size-sm + $sunset-padding-sm;
   position: relative;
 
   #sunset {
-    animation: spin-cw 120s linear infinite;
+    // animation: spin-cw 120s linear infinite;
     font-size: $sunset-size;
     position: absolute;
     right: -$sunset-size;

@@ -1,68 +1,67 @@
-.page-box.myapnea-sky-bg
+.page-box.last-slide.center-vertically.myapnea-sky-bg
   = render 'blank/sun'
-  .full-page-slide.last-slide.center-vertically.animate-slide
-    .container
-      #show-me-video{ style: 'display: none;' }
-        .embed-responsive.embed-responsive-16by9{ style: 'position: relative;pointer-events: none;' }
-          #player
-        .center
-          = link_to '#', data: { object: 'pause-landing-video2' }, class: 'no-underline myapnea-lead-sentence' do
-            Pause Video
-            %i.fa.fa-pause-circle
-      #hide-me-video
-        .myapnea-heading
-          MyApnea.Org
+  .container.animate-slide
+    #show-me-video{ style: 'display: none;' }
+      .embed-responsive.embed-responsive-16by9{ style: 'position: relative;pointer-events: none;' }
+        #player
+      .center
+        = link_to '#', data: { object: 'pause-landing-video2' }, class: 'no-underline myapnea-lead-sentence' do
+          Pause Video
+          %i.fa.fa-pause-circle
+    #hide-me-video
+      .myapnea-heading
+        MyApnea.Org
 
-        .myapnea-lead-sentence
-          your sleep apnea community
+      .myapnea-lead-sentence
+        your sleep apnea community
 
-        .landing-box-container{ style: 'margin-top: 120px;' }
-          .landing-box.dashboard-container.attach-a-cloud
-            .landing-box-header= link_to 'Forum', topics_path, class: 'link-blend'
-            .landing-box-body
-              %p Share your story on our forum.
-              %p
-                = link_to topics_path do
-                  Visit forum
-                  &raquo;
-            .landing-box-footer
-              .landing-box-footer-content
-                .pull-right
-                  &nbsp;
-                  %i.fa.fa-comments{ style: 'color: #2196F3;' }
-                  2
-                = link_to '2 new topics', topics_path
-          .landing-box.dashboard-container.attach-a-cloud
-            .landing-box-header= link_to 'Surveys', surveys_path, class: 'link-blend'
-            .landing-box-body
-              %p Complete surveys to further research.
-              %p
-                = link_to surveys_path do
-                  Participate
-                  &raquo;
-            .landing-box-footer
-              .landing-box-footer-content
-                NEW!
-                = link_to 'Mindfulness: Yoga Usefulness Scale', yoga_path(id: 1)
-          .landing-box.dashboard-container.attach-a-cloud
-            .landing-box-header= link_to 'Blog', blog_path(category: 'learn'), class: 'link-blend'
-            .landing-box-body
-              %p Learn about sleep apnea on our blog.
-              %p
-                = link_to blog_path(category: 'learn') do
-                  Go learn
-                  &raquo;
-            .landing-box-footer
-              .landing-box-footer-content
-                NEW!
-                = link_to 'Apnea Burden: Getting the most from your mask', blog_path(category: 'learn')
+      .landing-box-container{ style: 'margin-top: 120px;' }
+        .landing-box.dashboard-container
+          .landing-box-header= link_to 'Forum', topics_path, class: 'link-blend'
+          .landing-box-body
+            %p Share your story on our forum.
+            %p
+              = link_to topics_path do
+                Visit forum
+                &raquo;
+          .landing-box-footer
+            .landing-box-footer-content
+              .pull-right
+                &nbsp;
+                %i.fa.fa-comments{ style: 'color: #2196F3;' }
+                2
+              = link_to '2 new topics', topics_path
+        .landing-box.dashboard-container
+          .landing-box-header= link_to 'Surveys', surveys_path, class: 'link-blend'
+          .landing-box-body
+            %p Complete surveys to further research.
+            %p
+              = link_to surveys_path do
+                Participate
+                &raquo;
+          .landing-box-footer
+            .landing-box-footer-content
+              NEW!
+              = link_to 'Mindfulness: Yoga Usefulness Scale', yoga_path(id: 1)
+        .landing-box.dashboard-container
+          .landing-box-header= link_to 'Blog', blog_path(category: 'learn'), class: 'link-blend'
+          .landing-box-body
+            %p Learn about sleep apnea on our blog.
+            %p
+              = link_to blog_path(category: 'learn') do
+                Go learn
+                &raquo;
+          .landing-box-footer
+            .landing-box-footer-content
+              NEW!
+              = link_to 'Apnea Burden: Getting the most from your mask', blog_path(category: 'learn')
 
-        - video = '3I8YbWRgkjw'
-        - video_loop = '0'
-        - autoplay = '0'
-        .center
-          = link_to '#', data: { object: 'play-landing-video2', src: "//www.youtube.com/embed/#{video}?playlist=#{video}&autoplay=#{autoplay}&loop=#{video_loop}&controls=0&rel=0&modestbranding=1&showinfo=0", target_iframe: 'iframe' }, class: 'no-underline myapnea-lead-sentence' do
-            Play Video
-            %i.fa.fa-play-circle
+      - video = '3I8YbWRgkjw'
+      - video_loop = '0'
+      - autoplay = '0'
+      .center
+        = link_to '#', data: { object: 'play-landing-video2', src: "//www.youtube.com/embed/#{video}?playlist=#{video}&autoplay=#{autoplay}&loop=#{video_loop}&controls=0&rel=0&modestbranding=1&showinfo=0", target_iframe: 'iframe' }, class: 'no-underline myapnea-lead-sentence' do
+          Play Video
+          %i.fa.fa-play-circle
 
 = render 'layouts/footer'

@@ -26,3 +26,15 @@
 .breakword {
   word-break: break-word;
 }
+
+.center-vertically {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.center-both {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

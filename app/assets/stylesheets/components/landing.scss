@@ -1,15 +1,3 @@
-.center-vertically {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.center-both {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 #video-slide {
   display: none;
 }
@@ -30,45 +18,6 @@
   position: fixed;
   right: 0;
   top: 0;
-}
-
-.myapnea-blue-bg {
-  background-color: $p500-blue;
-}
-
-.myapnea-orange-bg {
-  background-color: $p400-orange;
-}
-
-.myapnea-white-bg {
-  background-color: $brand-white;
-}
-
-.myapnea-green-bg {
-  background-color: $p500-green;
-}
-
-.myapnea-transparent-bg {
-  background-color: transparent;
-}
-
-.myapnea-sky-bg {
-  background-color: $a700-light-blue;
-  background-image: linear-gradient(180deg, $a100-light-blue, $a200-light-blue 60%, $a400-light-blue 80%, $a700-light-blue 90%, $a700-light-blue);
-}
-
-.myapnea-sunset-bg {
-  background-color: $a700-deep-orange;
-  background-image: linear-gradient(180deg, $a100-deep-orange, $a200-deep-orange 60%, $a400-deep-orange 80%, $a700-deep-orange 90%, $a700-deep-orange);
-}
-
-.myapnea-night-bg {
-  background-color: $p900-indigo;
-  background-image: linear-gradient(180deg, $p900-indigo, $p800-indigo 60%, $p700-indigo 80%, $p600-indigo 90%, $p500-indigo);
-}
-
-.html5-video-player {
-  background-color: red !important;
 }
 
 .page-box-down-arrow {
@@ -102,32 +51,11 @@
   }
 }
 
-.myapnea-blue-bg {
-  .page-box-down-arrow {
-    a:hover {
-      color: $p500-orange;
-    }
-  }
-}
-
-.myapnea-orange-bg,
-.myapnea-sunset-bg {
-  .page-box-down-arrow {
-    a:hover {
-      color: $p500-blue;
-    }
-  }
-}
-
-$box-shadow-color: rgba(0, 0, 0, .15);
-$dashboard-bg: $brand-white !default;
-$standard-shadow-color: rgba(0, 0, 0, .3);
-$standard-shadow-hover-color: rgba(0, 0, 0, .2);
-
 .myapnea-heading {
   color: $brand-white;
   font-size: 40px;
   margin-bottom: 5px;
+  position: relative;
   text-align: center;
   text-shadow: 0 2px 3px $standard-shadow-color;
 }
@@ -174,6 +102,7 @@ $standard-shadow-hover-color: rgba(0, 0, 0, .2);
   color: $text-color;
   margin-bottom: 40px;
   padding: 10px;
+  position: relative;
 
   > div,
   > table {
@@ -200,24 +129,6 @@ $standard-shadow-hover-color: rgba(0, 0, 0, .2);
 @media screen and (min-width: $screen-sm-min) {
   .dashboard-container {
     padding: 30px;
-  }
-}
-
-.dashboard-container-full-page {
-  padding-top: 20px;
-
-  .dashboard-container {
-    margin: 0;
-  }
-}
-
-.dashboard-container-full-page-remove-last-margin {
-  padding: 20px 0 60px;
-
-  > div {
-    &:last-child {
-      margin: 0;
-    }
   }
 }
 
