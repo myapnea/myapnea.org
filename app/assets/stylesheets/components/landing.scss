@@ -92,46 +92,6 @@
   }
 }
 
-.dashboard-container {
-  @include remove-last-child-bottom-margin;
-  @include scale-images;
-
-  background-color: $dashboard-bg;
-  border-radius: 3px;
-  box-shadow: 0 1px 5px $box-shadow-color;
-  color: $text-color;
-  margin-bottom: 40px;
-  padding: 10px;
-  position: relative;
-
-  > div,
-  > table {
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
-
-  + .center > .pagination {
-    margin-top: 0;
-  }
-
-  &.dashboard-disclaimer {
-    background-color: $p100-orange;
-    font-size: 12px;
-  }
-
-  &.dashboard-no-padding {
-    padding-left: 0;
-    padding-right: 0;
-  }
-}
-
-@media screen and (min-width: $screen-sm-min) {
-  .dashboard-container {
-    padding: 30px;
-  }
-}
-
 .landing-box-container {
   display: flex;
   flex-wrap: wrap;

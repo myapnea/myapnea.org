@@ -12,9 +12,32 @@
           %i.fa.fa-level-up.fa-flip-horizontal{ aria: { hidden: 'true' } }
           = (@menu_title || @title).truncate(50).html_safe
     .collapse.navbar-collapse.navbar-full-menu
-      %ul.nav.navbar-nav.navbar-hide-scrolled
-        %li{ class: "#{'active' if current_page?(root_url)}" }
-          = link_to landing3_path do
+      %ul.nav.navbar-nav.navbar-hide-scrolled.hidden-xs
+        %li{ class: "#{'active' if current_page?(root_url) || current_page?(landing_path)}" }
+          = link_to landing_path do
+            Dashboard
+        %li{ class: "#{'active' if %w(topics).include?(params[:controller])}" }
+          = link_to topics_path do
+            Forum
+        %li{ class: "#{'active' if current_page?(surveys_path)}" }
+          = link_to surveys_path do
+            Surveys
+        %li{ class: "#{'active' if %w(blog).include?(params[:controller])}" }
+          = link_to blog_path do
+            Blog
+
+      .hidden-sm.hidden-md.hidden-lg
+        = form_tag search_path, method: :get, id: 'navigation-search-form-mobile', class: 'navbar-form' do
+          .form-group2
+            .input-group
+              = text_field_tag :search, params[:search], class: 'form-control', placeholder: 'Search MyApnea', autocomplete: 'off', id: 'navigation-search-mobile'
+              %span.input-group-btn
+                = link_to '#', data: { object: 'suppress-click' }, class: 'btn btn-primary-dark', name: nil, id: 'navigation-form-search-btn-mobile' do
+                  %span.glyphicon.glyphicon-search
+
+      %ul.nav.navbar-nav.hidden-sm.hidden-md.hidden-lg
+        %li{ class: "#{'active' if current_page?(root_url) || current_page?(landing_path)}" }
+          = link_to landing_path do
             Dashboard
         %li{ class: "#{'active' if %w(topics).include?(params[:controller])}" }
           = link_to topics_path do
