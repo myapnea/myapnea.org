@@ -10,20 +10,20 @@
         = link_to root_path do
           = image_tag 'myapnea/logos/MyApneaLogo_border_whitetext_300x80.png', class: 'img-responsive'
   .row{ style: 'margin: 40px 20px;'}
-    .col-sm-3.col-sm-offset-1.hidden-xs.no-padding
-      #high-risk-bar.row.reset-layout.risk-indicator-bar{ class: "#{'risk-level-active' if @risk_category==3}" }
+    .col-sm-3.col-sm-offset-1.hidden-xs
+      #high-risk-bar.row.risk-indicator-bar{ class: "#{'risk-level-active' if @risk_category==3}" }
         %p.lead{ class: "#{'f500' if @risk_category==3}" }
           High
-      #middle-risk-bar.row.reset-layout.risk-indicator-bar{ class: "#{'risk-level-active' if @risk_category==2}" }
+      #middle-risk-bar.row.risk-indicator-bar{ class: "#{'risk-level-active' if @risk_category==2}" }
         %p.lead{ class: "#{'f500' if @risk_category==2}" }
           Moderate
-      #low-risk-bar.row.reset-layout.risk-indicator-bar{ class: "#{'risk-level-active' if @risk_category==1}" }
+      #low-risk-bar.row.risk-indicator-bar{ class: "#{'risk-level-active' if @risk_category==1}" }
         %p.lead{ class: "#{'f500' if @risk_category==1}" }
           Low
-    .col-sm-2.hidden-xs.no-padding
-      #high-risk-connector.row.reset-layout.risk-connector{ class: "#{'risk-level-active' if @risk_category==3}" }
-      #middle-risk-connector.row.reset-layout.risk-connector{ class: "#{'risk-level-active' if @risk_category==2}" }
-      #low-risk-connector.row.reset-layout.risk-connector{ class: "#{'risk-level-active' if @risk_category==1}" }
+    .col-sm-2.hidden-xs
+      #high-risk-connector.row.risk-connector{ class: "#{'risk-level-active' if @risk_category==3}" }
+      #middle-risk-connector.row.risk-connector{ class: "#{'risk-level-active' if @risk_category==2}" }
+      #low-risk-connector.row.risk-connector{ class: "#{'risk-level-active' if @risk_category==1}" }
     .col-sm-5.center{ id: "#{'risk-assessment-results-' + @risk_category.to_s }" }
       %h2.f300
         Your risk score is:
