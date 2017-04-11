@@ -20,7 +20,7 @@ class NotificationsController < ApplicationController
 
   # GET /notifications/1
   def show
-    @notification.update read: true
+    # @notification.update(read: true)
     redirect_to notification_redirect_path
   end
 
