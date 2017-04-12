@@ -1,15 +1,21 @@
 .page-box.page-box-no-padding.last-slide.myapnea-sky-bg.vertical-flex-container
   = render 'blank/sun'
-  .vertical-flex.center-both
-    %div.center
-      = image_tag 'myapnea/logos/MyApneaLogo_border_bluetext.png', style: 'height: auto; width: 300px; max-width: 100%;'
-      .link-white
+  .show-me-video.center-both
+    .embed-responsive.embed-responsive-16by9{ style: 'position: relative;pointer-events: none;' }
+      #player
+  .vertical-flex.center-vertically
+    .center
+      = image_tag 'myapnea/logos/MyApneaLogo_border_bluetext.png', style: 'height: auto; width: 300px; max-width: 100%;', class: 'hide-me-video'
+      .link-white.hide-me-video
         - video = '3I8YbWRgkjw'
         - video_loop = '0'
         - autoplay = '0'
         = link_to '#', data: { object: 'play-landing-video2', src: "//www.youtube.com/embed/#{video}?playlist=#{video}&autoplay=#{autoplay}&loop=#{video_loop}&controls=0&rel=0&modestbranding=1&showinfo=0", target_iframe: 'iframe' }, class: 'no-underline myapnea-lead-sentence' do
           %i.fa.fa-play-circle
-  .vertical-flex.horizontal-flex-container{ style: 'margin-bottom: 0;' }
+      .link-white.show-me-video
+        = link_to '#', data: { object: 'pause-landing-video2' }, class: 'no-underline myapnea-lead-sentence' do
+          %i.fa.fa-pause-circle
+  .vertical-flex.horizontal-flex-container.hide-me-video{ style: 'margin-bottom: 0;' }
     .horizontal-flex.dashboard-container.overflow-hidden{ style: 'margin: 20px;' }
       .center{ style: 'font-size: 20px;margin-bottom: 10px;' }= link_to 'Forum', topics_path, class: 'link-blend'
       %div.overflow-hidden{ style: 'padding: 0 20px;' }
@@ -46,7 +52,7 @@
         %div.text-right
           = link_to blog_path do
             Read blog &rarr;
-  .vertical-flex.center-both{ style: 'padding-bottom: 40px;' }
+  .vertical-flex.center-both.hide-me-video{ style: 'padding-bottom: 40px;' }
     = link_to 'Join us.', new_user_registration_path, class: 'btn btn-lg btn-accent'
 
 = render 'layouts/footer', theme: 'footer-grass'
