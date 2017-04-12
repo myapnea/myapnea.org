@@ -5,7 +5,7 @@ class Admin::RepliesController < ApplicationController
   before_action :authenticate_user!
   before_action :check_admin
 
-  layout 'application-padded'
+  layout 'application_padded'
 
   # GET /admin/replies
   def index

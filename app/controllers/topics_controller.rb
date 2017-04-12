@@ -6,7 +6,7 @@ class TopicsController < ApplicationController
   before_action :find_viewable_topic_or_redirect, only: [:show]
   before_action :find_editable_topic_or_redirect, only: [:edit, :update, :destroy]
 
-  layout 'application-padded'
+  layout 'application_padded'
 
   # GET /topics
   def index

@@ -2,7 +2,7 @@
 
 # Provides back search results from across MyApnea.
 class SearchController < ApplicationController
-  layout 'application-padded'
+  layout 'application_padded'
 
   # GET /search
   def index
