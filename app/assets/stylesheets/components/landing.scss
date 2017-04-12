@@ -158,3 +158,29 @@
   font-style: italic;
   display: inline;
 }
+
+
+
+.vertical-flex-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.vertical-flex {
+  flex: 1;
+}
+
+
+.horizontal-flex-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.horizontal-flex {
+  flex: 1 1 350px;
+  cursor: pointer;
+  margin: 5px;
+  position: relative;
+}
