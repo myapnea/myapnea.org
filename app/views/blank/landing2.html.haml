@@ -1,14 +1,14 @@
 .page-box.last-slide.center-vertically.myapnea-sky-bg
   = render 'blank/sun'
   .container.animate-slide
-    #show-me-video{ style: 'display: none;' }
+    .show-me-video
       .embed-responsive.embed-responsive-16by9{ style: 'position: relative;pointer-events: none;' }
         #player
       .center
         = link_to '#', data: { object: 'pause-landing-video2' }, class: 'no-underline myapnea-lead-sentence' do
           Pause Video
           %i.fa.fa-pause-circle
-    #hide-me-video
+    .hide-me-video
       .myapnea-heading
         MyApnea.Org
 
