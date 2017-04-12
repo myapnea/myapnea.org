@@ -42,7 +42,7 @@
                     = unread_replies
                     new
                     %fa.fa.fa-comments-o
-              - if topic.last_page > 1
+              - elsif topic.last_page > 1
                 %span.hidden-xs
                   = link_to '1', topic, class: 'btn btn-xs btn-default'
                   \...
