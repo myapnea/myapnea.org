@@ -134,6 +134,7 @@ Rails.application.routes.draw do
     get :landing2
     get :landing3
     get :landing4
+    get :landing5
   end
 
   scope module: 'home' do

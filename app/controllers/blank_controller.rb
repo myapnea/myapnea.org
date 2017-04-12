@@ -26,6 +26,10 @@ class BlankController < ApplicationController
     render layout: 'full_page'
   end
 
+  def landing5
+    render layout: 'full_page_no_header'
+  end
+
   def landing4
     @menu = true
     if @menu

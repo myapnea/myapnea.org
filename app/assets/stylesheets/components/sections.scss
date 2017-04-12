@@ -1,0 +1,37 @@
+.section-container + .section-container {
+  margin-top: 20px;
+}
+
+@media screen and (min-width: $screen-md-min) {
+  .section-container + .section-container {
+    margin-top: 60px;
+  }
+}
+
+@media screen and (min-width: $screen-lg-min) {
+  .section-container + .section-container {
+    margin-top: 80px;
+  }
+}
+
+.section-title {
+  color: $brand-gray;
+  font-size: 20px;
+
+  + .section-body {
+    margin-top: 10px;
+  }
+}
+
+@media screen and (min-width: $screen-sm-min) {
+  .section-title {
+    font-size: 24px;
+  }
+}
+
+
+@media screen and (min-width: $screen-md-min) {
+  .section-title {
+    font-size: 28px;
+  }
+}

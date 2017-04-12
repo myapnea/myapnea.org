@@ -33,12 +33,13 @@
         %p.lead.center
           No search results found.
           You may
-          = link_to 'modify your search', '#', data: { object: 'show-search-bar' }
+          %span.hidden-xs
+            = link_to 'modify your search', '#', data: { object: 'show-search-bar' }
+          %span.hidden-sm.hidden-md.hidden-lg
+            modify your search
           or return to
           = succeed '.' do
             = link_to 'our blog', blog_path
-        .center
-          = image_tag 'myapnea/user_types/role_confused.png'
 
   .col-sm-3.col-sticky
     .dashboard-container

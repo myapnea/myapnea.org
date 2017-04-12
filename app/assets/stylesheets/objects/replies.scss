@@ -1,38 +1,3 @@
-.table-borderless {
-  .topic-line-read {
-    border-left: 4px solid transparent !important;
-  }
-
-  .topic-line-unread {
-    border-left: 4px solid $p100-orange !important;
-  }
-}
-
-.topic-read {
-  color: $p200-blue;
-  font-style: italic;
-
-  &:hover,
-  &:focus,
-  &.focus,
-  &:active,
-  &.active {
-    color: darken($p200-blue, 15%);
-  }
-}
-
-.topic-unread {
-  color: $p500-blue;
-
-  &:hover,
-  &:focus,
-  &.focus,
-  &:active,
-  &.active {
-    color: darken($p500-blue, 15%);
-  }
-}
-
 .reply-outer-container {
   background-color: $brand-white;
   box-shadow: 0 1px 5px $box-shadow-color;

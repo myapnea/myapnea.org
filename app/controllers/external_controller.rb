@@ -1,22 +1,22 @@
 # frozen_string_literal: true
 
-# Displays publicly available pages
+# Displays publicly available pages.
 class ExternalController < ApplicationController
-  layout 'application-padded'
+  layout 'application_padded'
 
-  def contact
-    render layout: 'simple'
-  end
+  # GET /community
+  # def community
+  # end
+
+  # # GET /contact
+  # def contact
+  # end
 
   def landing
     render layout: 'full_page_no_header'
   end
 
   # def preview
-  # end
-
-  # GET /community
-  # def community
   # end
 
   def sitemap
