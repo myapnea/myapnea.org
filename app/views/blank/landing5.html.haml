@@ -1,20 +1,23 @@
-.page-box.page-box-no-padding.last-slide.myapnea-sky-bg.vertical-flex-container
+.show-me-video{ style: 'position: relative;' }
   = render 'blank/sun'
-  .show-me-video.center-both
+  .center.link-white{ style: 'position: fixed; left: 0; right: 0; bottom: 10px;z-index: 1;' }
+    = link_to '#', data: { object: 'pause-landing-video2' }, class: 'no-underline myapnea-lead-sentence' do
+      %i.fa.fa-pause-circle
+  .page-box.page-box-no-padding.last-slide.center-vertically.myapnea-sky-bg
     .embed-responsive.embed-responsive-16by9{ style: 'position: relative;pointer-events: none;' }
       #player
+
+.page-box.page-box-no-padding.last-slide.myapnea-sky-bg.vertical-flex-container.hide-me-video
+  = render 'blank/sun'
   .vertical-flex.center-vertically
     .center
       = image_tag 'myapnea/logos/MyApneaLogo_border_bluetext.png', style: 'height: auto; width: 300px; max-width: 100%;', class: 'hide-me-video'
-      .link-white.hide-me-video
+      .link-white
         - video = '3I8YbWRgkjw'
         - video_loop = '0'
         - autoplay = '0'
         = link_to '#', data: { object: 'play-landing-video2', src: "//www.youtube.com/embed/#{video}?playlist=#{video}&autoplay=#{autoplay}&loop=#{video_loop}&controls=0&rel=0&modestbranding=1&showinfo=0", target_iframe: 'iframe' }, class: 'no-underline myapnea-lead-sentence' do
           %i.fa.fa-play-circle
-      .link-white.show-me-video
-        = link_to '#', data: { object: 'pause-landing-video2' }, class: 'no-underline myapnea-lead-sentence' do
-          %i.fa.fa-pause-circle
   .vertical-flex.horizontal-flex-container.hide-me-video{ style: 'margin-bottom: 0;' }
     .horizontal-flex.dashboard-container.overflow-hidden{ style: 'margin: 20px;' }
       .center{ style: 'font-size: 20px;margin-bottom: 10px;' }= link_to 'Forum', topics_path, class: 'link-blend'
