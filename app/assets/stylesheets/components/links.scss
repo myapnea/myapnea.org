@@ -1,12 +1,13 @@
 // Links
 
-.link-white {
-  color: $brand-white;
+.link-accent {
+  color: $p500-orange;
 
   &:hover,
   &:focus,
   &:active {
-    color: $brand-white;
+    color:  darken($p500-orange, 15%);
+    text-decoration: none;
   }
 }
 
@@ -21,12 +22,23 @@
 }
 
 .link-blend-muted {
-  color: $brand-gray; // #ccc, perhaps should be #bbb;
+  color: $brand-gray;
 
   &:hover,
   &:focus,
   &:active {
     color: $link-hover-color;
+  }
+}
+
+.link-muted {
+  color: $text-muted;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: $text-muted;
+    text-decoration: none;
   }
 }
 
@@ -41,14 +53,13 @@
   }
 }
 
-.link-muted {
-  color: $text-muted;
+.link-white {
+  color: $brand-white;
 
   &:hover,
   &:focus,
   &:active {
-    color: $text-muted;
-    text-decoration: none;
+    color: $brand-white;
   }
 }
 

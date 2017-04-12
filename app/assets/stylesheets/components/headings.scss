@@ -15,6 +15,10 @@
   > a:hover {
     color: darken($breadcrumb-link-color, 10%);
   }
+
+  code {
+    text-shadow: none;
+  }
 }
 
 .header-container {
