@@ -21,7 +21,6 @@
 
 /config/application.yml
 /config/banemail.yml
-/config/banlist.yml
 /config/database.yml
 
 /public/cache/*

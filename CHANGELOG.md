@@ -19,6 +19,7 @@
   - Redesigned pages to match more vibrant landing page
   - Changed human verification from "Invisible" to "I'm not a robot" ReCAPTCHA
   - Added search to the mobile dropdown menu
+  - Improved page navigation after signing in and signing out
 - **Forum Changes**
   - Adjusted how the forum index displays on mobile devices
 - **Gem Changes**

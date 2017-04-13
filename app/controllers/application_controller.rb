@@ -1,42 +1,96 @@
 # frozen_string_literal: true
 
+# Main controller for MyApnea. Tracks the user's last visited page for better
+# page redirection after sign in and sign out.
 class ApplicationController < ActionController::Base
-  include DateAndTimeParser
-
-  # Prevent CSRF attacks by raising an exception.
-  # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-  layout :set_layout
+  skip_before_action :verify_authenticity_token, if: :devise_login?
+  before_action :configure_permitted_parameters, if: :devise_controller?
 
   before_action :store_location
-  before_action :check_ip_banlist
+  include DateAndTimeParser
 
   def store_location
-    if (params[:controller].in?(%w(topics blog replies)) &&
-        !request.fullpath.match("#{request.script_name}/login") &&
-        !request.fullpath.match("#{request.script_name}/join") &&
-        !request.fullpath.match("#{request.script_name}/password") &&
-        !request.fullpath.match("#{request.script_name}/sign_out") &&
-        params[:format] != 'atom' &&
-        !request.xhr?) || # don't store ajax calls
-        request.fullpath.match("#{request.script_name}/join-health-eheart") ||
-        request.fullpath.match("#{request.script_name}/welcome-health-eheart-members")
-      store_location_in_session
-    end
+    return unless !request.post? && !request.xhr? && params[:format] != 'atom'
+    store_internal_location_in_session if internal_action?(params[:controller], params[:action])
+    store_external_location_in_session if external_action?(params[:controller], params[:action])
   end
 
-  # TODO: Remove method and simplify survey study model.
-  def authenticate_research
-    session[:return_to] = request.fullpath
-    if current_user.ready_for_research?
-      return
-    else
-      if current_user.is_only_researcher?
-        redirect_to terms_of_access_path
-      else
-        redirect_to consent_path
-      end
-    end
+  def after_sign_in_path_for(resource)
+    session[:previous_internal_url] || session[:previous_external_url] || dashboard_path
+  end
+
+  def after_sign_out_path_for(resource_or_scope)
+    session[:previous_external_url] || root_path
+  end
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(
+      :sign_up,
+      keys: [
+        :first_name, :last_name, :email, :password, # :password_confirmation,
+        :emails_enabled, :over_eighteen
+      ]
+    )
+  end
+
+  protected
+
+  def internal_controllers
+    {
+      account: [],
+      admin: [],
+      broadcasts: [],
+      children: [],
+      images: [:index, :show, :new, :edit],
+      internal: [],
+      notifications: [],
+      surveys: [:show, :report, :report_detail],
+      topics: [:new, :edit],
+      users: []
+    }
+  end
+
+  def internal_action?(controller, action)
+    internal_controllers[controller.to_sym] && (
+      internal_controllers[controller.to_sym].empty? ||
+      internal_controllers[controller.to_sym].include?(action.to_sym)
+    )
+  end
+
+  def external_controllers
+    {
+      blank: [],
+      blog: [],
+      external: [],
+      members: [:index, :show],
+      replies: [:show],
+      search: [],
+      static: [],
+      surveys: [:index],
+      tools: [],
+      topics: [:index, :show]
+    }
+  end
+
+  def external_action?(controller, action)
+    external_controllers[controller.to_sym] && (
+      external_controllers[controller.to_sym].empty? ||
+      external_controllers[controller.to_sym].include?(action.to_sym)
+    )
+  end
+
+  def store_internal_location_in_session
+    session[:previous_internal_url] = request.fullpath
+  end
+
+  def store_external_location_in_session
+    session[:previous_external_url] = request.fullpath
+    session[:previous_internal_url] = nil
+  end
+
+  def devise_login?
+    params[:controller] == 'sessions' && params[:action] == 'create'
   end
 
   def empty_response_or_root_path(path = root_path)
@@ -56,35 +110,6 @@ class ApplicationController < ActionController::Base
   def check_admin
     return if current_user && current_user.admin?
     redirect_to root_path, alert: 'You do not have sufficient privileges to access that page.'
-  end
-
-  def after_sign_in_path_for(resource)
-    session[:previous_url] || root_path
-  end
-
-  def check_ip_banlist
-    return if BANNED_IPS.empty?
-    redirect_to about_path, notice: 'Thank you for your contribution!' if ip_banned?
-  end
-
-  def ip_banned?
-    !BANNED_IPS.find { |ip| ip_matches?(ip, request.remote_ip) }.nil?
-  end
-
-  def ip_matches?(one, two)
-    aone = one.split('.')
-    atwo = two.split('.')
-    (aone[0] == '*' || aone[0] == atwo[0]) && (aone[1] == '*' || aone[1] == atwo[1]) && (aone[2] == '*' || aone[2] == atwo[2]) && (aone[3] == '*' || aone[3] == atwo[3])
-  end
-
-  protected
-
-  def set_layout
-    devise_controller? ? 'simple' : nil
-  end
-
-  def store_location_in_session
-    session[:previous_url] = request.fullpath
   end
 
   def scrub_order(model, params_order, default_order)

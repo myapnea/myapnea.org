@@ -51,7 +51,7 @@
             - if current_user && current_user.admin? && topic.user.shadow_banned?
               %span.glyphicon.glyphicon-eye-close.text-muted
             - if topic.pinned?
-              %span.glyphicon.glyphicon-star.primary-orange
+              %span.glyphicon.glyphicon-pushpin.text-muted
             - if next_unread_reply
               = link_to topic.title, next_unread_reply, data: { turbolinks: false }, class: (topic.started_reading?(current_user) && unread_replies.zero?) ? 'topic-read' : 'topic-unread'
             - else

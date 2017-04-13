@@ -1,6 +1,33 @@
-// Like .form-inline, but also inline on small screen sizes (sm/xs)
-.form-inline-always .form-control {
-  display: inline-block;
-  width: auto;
-  vertical-align: middle;
+.sign-up-form {
+  background-color: $panel-bg;
+  border: 1px solid $p200-orange;
+  margin: 0 auto 20px;
+  max-width: 400px;
+  padding: 20px;
+}
+
+.sign-up-form-title {
+  background-color: $p500-blue;
+  border-bottom: 1px solid $p200-orange;
+  color: $brand-white;
+  font-size: 18px;
+  margin: -20px -20px 20px;
+  padding: 10px 20px;
+  text-shadow: 0 2px 3px $standard-shadow-color;
+}
+
+@media screen and (min-width: $screen-sm-min) {
+  .sign-up-form {
+    border-radius: 5px;
+    overflow: hidden;
+  }
+
+  .sign-up-form-title {
+    border-radius: 0;
+    font-size: 24px;
+  }
+}
+
+.submit-btn-container {
+  margin: 20px 0 0;
 }

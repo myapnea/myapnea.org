@@ -1,0 +1,18 @@
+- @title = 'Privacy Policy'
+
+- content_for :body_class do
+  gray-background
+
+- content_for :header do
+  .header-container
+    .container
+      %h1.page-heading
+        .pull-right
+          = link_to print_or('Print'), '#', data: { object: 'print' }, class: 'btn btn-accent btn-shadow'
+        = @title
+
+- privacy_page_content = page_content('privacy_policy')
+
+#print-area.dashboard-container
+  %h2= privacy_page_content['title']
+  = simple_markdown privacy_page_content['privacy_policy']

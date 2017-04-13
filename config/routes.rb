@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  root 'home#dashboard'
+  root 'external#landing'
 
   namespace :async do
     namespace :blog do
@@ -114,9 +114,13 @@ Rails.application.routes.draw do
 
   scope module: :external do
     post :preview
-    get :landing
     get :community
+    get :consent
     get :contact
+    get :landing
+    get :privacy, path: 'privacy-policy'
+    get :terms_and_conditions, path: 'terms-and-conditions'
+    get :terms_of_access, path: 'terms-of-access'
     get :voting
     get :version
   end
@@ -137,8 +141,9 @@ Rails.application.routes.draw do
     get :landing5
   end
 
-  scope module: 'home' do
+  scope module: :internal do
     get :dashboard
+    get :settings
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -173,14 +178,6 @@ Rails.application.routes.draw do
     get '/pap/side-effects-of-pap', to: 'static#side_effects_pap'
   end
 
-  # Registration flow
-  get 'get-started' => 'account#get_started'
-  get 'get-started/step-two' => 'account#get_started_step_two'
-  get 'get-started/step-three' => 'account#get_started_step_three'
-
-  get 'describe-yourself' => 'account#user_type'
-  patch 'set_user_type' => 'account#set_user_type'
-  patch 'set_user_type_and_redirect_to_account' => 'account#set_user_type_and_redirect_to_account'
   post 'accepts_privacy' => 'account#accepts_privacy'
   post 'accepts_consent' => 'account#accepts_consent'
   post 'accepts_terms_of_access' => 'account#accepts_terms_of_access'
@@ -224,9 +221,6 @@ Rails.application.routes.draw do
   # Tools
   get 'sleep-apnea-and-bmi' => 'tools#bmi_ahi'
 
-  # Discussion
-  get 'terms-and-conditions', to: 'account#terms_and_conditions', as: :terms_and_conditions
-
   # Account Section
   scope module: :account do
     post :suggest_random_forum_name
@@ -235,14 +229,10 @@ Rails.application.routes.draw do
 
   get 'account' => 'account#account'
   get 'account_export' => 'account#account_export'
-  match 'consent', to: 'account#consent', as: :consent, via: [:get, :post]
   post 'revoke_consent' => 'account#revoke_consent'
 
-  match 'privacy-policy', to: 'account#privacy_policy', as: :privacy, via: [:get, :post]
   match 'update_account', to: 'account#update', as: 'update_account', via: :patch
   match 'change_password', to: 'account#change_password', as: 'change_password', via: :patch
-
-  match 'terms-of-access', to: 'account#terms_of_access', as: :terms_of_access, via: [:get, :post]
 
   # Governance
   get 'governance-policy', to: 'static#governance_policy', as: :governance_policy

@@ -21,11 +21,14 @@
 }
 
 .preview-container-login {
+  border: 0;
+  box-shadow: 0 1px 5px $box-shadow-color;
+  margin-bottom: 20px;
+
   .preview-header {
     border-bottom: 2px solid $p200-orange;
     background-color: $p500-blue;
     color: $brand-white;
-    text-shadow: 0 2px 3px $standard-shadow-color;
   }
 }
 

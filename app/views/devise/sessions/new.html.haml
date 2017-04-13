@@ -1,25 +1,35 @@
+- @title = 'Sign in'
+
 - content_for :body_class do
   gray-background
 
-.row
-  .col-sm-6.col-sm-offset-3
-    %h1.center.f300{ style: 'font-size: 24px;margin-bottom: 40px' } Sign in to MyApnea
-    .content-container
-      = form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'form-vertical' }) do |f|
-        .form-group{ class: flash[:alert].present? ? 'has-error' : '' }
-          = f.label :email, class: 'control-label'
-          = f.email_field :email, class: 'form-control'
+%p.lead.center Welcome back!
 
-        .form-group{ class: flash[:alert].present? ? 'has-error' : '' }
-          = f.label :password, class: 'control-label'
-          = link_to '(Forgot password?)', new_password_path(resource_name), tabindex: '-1'
-          = f.password_field :password, class: 'form-control', autocomplete: 'off'
+.sign-up-form
+  .sign-up-form-title
+    Sign in
 
-        .form-group
-          - if flash[:alert].present?
-            .alert.alert-warning= flash[:alert].html_safe
-          = f.submit 'Sign in', class: 'btn btn-primary btn-block'
+  = form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'form-vertical' }) do |f|
+    .form-group{ class: flash[:alert].present? ? 'has-error' : '' }
+      = f.label :email, class: 'control-label'
+      = f.text_field :email, class: 'form-control'
 
-    .content-container.center{ style: 'background-color: transparent' }
-      New to MyApnea?
-      = link_to 'Create an account.', new_user_registration_path
+    .form-group{ class: flash[:alert].present? ? 'has-error' : '' }
+      = f.label :password, class: 'control-label'
+      = link_to '(Forgot password?)', new_password_path(resource_name), tabindex: '-1'
+      = f.password_field :password, class: 'form-control', autocomplete: 'off'
+      - if flash[:alert].present?
+        %small.text-danger= flash[:alert].html_safe
+
+    .form-group.submit-btn-container
+      = f.submit 'Sign in', class: 'btn btn-primary btn-block btn-shadow'
+
+    - flash[:alert] = nil
+
+.sign-up-form.center
+  New to MyApnea?
+  = link_to 'Create an account.', new_user_registration_path
+
+- if devise_mapping.confirmable?
+  .center{ style: 'margin-bottom: 20px;' }
+    = link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name)

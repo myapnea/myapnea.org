@@ -26,7 +26,7 @@ class RegistrationsControllerTest < ActionController::TestCase
     assert_equal 'Last Name', assigns(:user).last_name
     assert_equal true, assigns(:user).over_eighteen?
     assert_equal 'new_user@example.com', assigns(:user).email
-    assert_redirected_to get_started_path
+    assert_redirected_to dashboard_path
   end
 
   test 'should not sign up new user without required fields' do

@@ -37,4 +37,4 @@
     = yield :header
     .container.body-content= yield
     = yield :footer
-    = render 'layouts/footer', theme: 'footer-grass'
+    = render 'layouts/footer', theme: @theme ? "footer-#{@theme}" : nil

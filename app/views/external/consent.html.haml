@@ -1,0 +1,19 @@
+- @title = 'Consent'
+- consent_page_content = page_content('consent')
+
+- content_for :body_class do
+  gray-background
+
+- content_for :header do
+  .header-container
+    .container
+      %h1.page-heading
+        .pull-right
+          = link_to print_or('Print Consent'), '#', data: { object: 'print' }, class: 'btn btn-accent btn-shadow'
+        = @title
+
+#print-area.dashboard-container
+  %h2= consent_page_content['title']
+  = simple_markdown consent_page_content['consent']
+  - if current_user && !current_user.accepted_consent_at.present?
+    = simple_markdown 'If you wish to be in this study, please click the button that says **"I agree and accept"**'

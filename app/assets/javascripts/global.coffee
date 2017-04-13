@@ -8,10 +8,6 @@
     railVisible: true
   )
 
-  $("a#print-link").click ->
-    $("div#print-area").printArea()
-    false
-
 @setFocusToField = (element_id) ->
   val = $(element_id).val()
   $(element_id).focus().val('').val(val)
@@ -68,5 +64,9 @@ $(document)
     false
   )
   .on('click', '[data-object~="suppress-click"]', ->
+    false
+  )
+  .on('click', '[data-object~="print"]', ->
+    $('#print-area').printArea()
     false
   )
