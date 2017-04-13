@@ -9,13 +9,13 @@ class BlankController < ApplicationController
   def question
     render "blank/question#{@question_id}"
   rescue
-    redirect_to question_path(id: 1)
+    redirect_to research_path
   end
 
   def yoga
     render "blank/yoga#{@question_id}"
   rescue
-    redirect_to yoga_path(id: 1)
+    redirect_to research_path
   end
 
   def landing2

@@ -32,7 +32,7 @@
     = javascript_tag "var root_url='#{request.script_name + '/'}';"
   -# Should become the default layout for content.
   %body#top.full-page{ class: yield(:body_class) }
-    #top-menu.top-menu= render 'layouts/menu'
+    #top-menu.top-menu= render 'layouts/menu', theme: @theme ? "menu-#{@theme}" : nil
     = render 'layouts/partials/flash_messages'
     = yield :header
     .container.body-content= yield

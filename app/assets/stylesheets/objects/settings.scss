@@ -1,0 +1,17 @@
+.dashboard-title,
+.settings-title {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.dashboard-body,
+.settings-body {
+  margin-bottom: 20px;
+}
+
+@media screen and (min-width: $screen-sm-min) {
+  .dashboard-title,
+  .settings-title {
+    font-size: 28px;
+  }
+}
