@@ -9,7 +9,7 @@ class NavigationTest < ActionDispatch::IntegrationTest
   fixtures :users
 
   def setup
-    @valid = users(:user_1)
+    @regular_user = users(:user_1)
     @deleted = users(:deleted)
   end
 
@@ -18,23 +18,56 @@ class NavigationTest < ActionDispatch::IntegrationTest
     assert_equal '/', path
   end
 
-  test 'should get forums' do
-    get '/forum'
-    assert_equal '/forum', path
+  test 'should get sign up page' do
+    get new_user_registration_path
+    assert_equal new_user_registration_path, path
+    assert_response :success
+  end
+
+  test 'should register new account' do
+    post user_registration_path, params: {
+      user: {
+        first_name: 'register', last_name: 'account',
+        email: 'register@account.com', password: 'registerpassword098765',
+        emails_enabled: '1', over_eighteen: '1'
+      }
+    }
+    assert_equal I18n.t('devise.registrations.signed_up'), flash[:notice]
+    assert_redirected_to dashboard_path
   end
 
   test 'should login regular user' do
-    get '/dashboard'
-    assert_equal '/dashboard', path
-    sign_in_as @valid, 'password'
-    assert_equal '/', path
+    get dashboard_path
+    get new_user_session_path
+    sign_in_as(@regular_user, 'password')
+    assert_equal dashboard_path, path
   end
 
   test 'should not login deleted user' do
-    get '/get-started'
-    assert_redirected_to new_user_session_path
-    sign_in_as @deleted, 'password'
+    get new_user_session_path
+    sign_in_as(@deleted, 'password')
     assert_equal new_user_session_path, path
-    assert_equal I18n.t('devise.failure.inactive'), flash[:alert]
+  end
+
+  test 'should friendly forward after login' do
+    get topics_path
+    get new_user_session_path
+    sign_in_as(@regular_user, 'password')
+    assert_equal topics_path, path
+  end
+
+  test 'should friendly forward after logout' do
+    get topics_path
+    sign_in_as(@regular_user, 'password')
+    get topics_path
+    get destroy_user_session_path
+    assert_redirected_to topics_path
+  end
+
+  test 'blog rss should not be stored in friendly forwarding after login' do
+    get blog_path(format: 'atom')
+    get new_user_session_path
+    sign_in_as(@regular_user, 'password')
+    assert_equal dashboard_path, path
   end
 end

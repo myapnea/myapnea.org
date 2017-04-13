@@ -2,8 +2,7 @@
 
 # Displays static pages for public users.
 class StaticController < ApplicationController
-  skip_before_action :check_ip_banlist, only: [:about]
-
+  # GET /about
   def about
     # render layout: 'simple'
     render layout: 'full_page_no_header'

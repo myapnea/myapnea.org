@@ -8,18 +8,18 @@ class ExternalControllerTest < ActionController::TestCase
     @regular_user = users(:user_1)
   end
 
-  test 'should get contact' do
-    get :contact
-    assert_response :success
-  end
-
   test 'should get community' do
     get :community
     assert_response :success
   end
 
-  test 'should get voting' do
-    get :voting
+  test 'should get contact' do
+    get :contact
+    assert_response :success
+  end
+
+  test 'should get consent' do
+    get :consent
     assert_response :success
   end
 
@@ -31,6 +31,32 @@ class ExternalControllerTest < ActionController::TestCase
   test 'should get landing for regular user' do
     login(@regular_user)
     get :landing
+    assert_response :success
+  end
+
+  test 'should get privacy policy' do
+    get :privacy
+    assert_response :success
+  end
+
+  test 'should get terms and conditions' do
+    get :terms_and_conditions
+    assert_response :success
+  end
+
+  test 'should get terms and conditions for regular user' do
+    login(@regular_user)
+    get :terms_and_conditions
+    assert_response :success
+  end
+
+  test 'should get terms of access' do
+    get :terms_of_access
+    assert_response :success
+  end
+
+  test 'should get voting' do
+    get :voting
     assert_response :success
   end
 

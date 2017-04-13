@@ -2,6 +2,7 @@
 
 require 'test_helper'
 
+# Test to assure users can sign in.
 class SessionsControllerTest < ActionController::TestCase
   setup do
     request.env['devise.mapping'] = Devise.mappings[:user]
@@ -10,7 +11,7 @@ class SessionsControllerTest < ActionController::TestCase
   test 'a user should be able to sign in' do
     user = users(:social)
     post :create, params: { user: { email: user.email, password: 'password' } }
-    assert_redirected_to root_path
+    assert_redirected_to dashboard_path
   end
 
   test 'a deleted user should not be able to sign in' do

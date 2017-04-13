@@ -2,7 +2,6 @@
 
 class SurveysController < ApplicationController
   before_action :authenticate_user!,                      except: [:index]
-  before_action :authenticate_research,                   except: [:index]
   before_action :set_survey,                              only: [:show, :report, :report_detail, :accept_update_first]
   before_action :set_encounter,                           only: [:show, :report, :report_detail, :accept_update_first]
   before_action :set_answer_session,                      only: [:show, :report, :report_detail, :accept_update_first]

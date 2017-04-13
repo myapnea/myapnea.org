@@ -4,8 +4,12 @@
 class ExternalController < ApplicationController
   layout 'application_padded'
 
-  # GET /community
+  # # GET /community
   # def community
+  # end
+
+  # # GET /consent
+  # def consent
   # end
 
   # # GET /contact
@@ -16,7 +20,12 @@ class ExternalController < ApplicationController
     render layout: 'full_page_no_header'
   end
 
+  # # POST /preview
   # def preview
+  # end
+
+  # # GET /privacy_policy
+  # def privacy_policy
   # end
 
   def sitemap
@@ -27,6 +36,14 @@ class ExternalController < ApplicationController
       head :ok
     end
   end
+
+  # # GET /terms-and-conditions
+  # def terms_and_conditions
+  # end
+
+  # # GET /terms-of-access
+  # def terms_of_access
+  # end
 
   def voting
     render layout: 'simple'

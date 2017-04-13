@@ -2,40 +2,11 @@
 
 require 'test_helper.rb'
 
+# Tests to assure account settings can be updated.
 class AccountControllerTest < ActionController::TestCase
   setup do
     @regular_user = users(:user_1)
     @participant = users(:participant)
-  end
-
-  test 'should get registration user_type page for logged in user' do
-    login(users(:user_1))
-    get :get_started
-    assert_response :success
-  end
-
-  test 'should get registration consent for logged in user' do
-    login(users(:user_1))
-    get :get_started_step_two
-    assert_response :success
-  end
-
-  test 'should get user_type page for logged in user' do
-    login(users(:user_1))
-    get :user_type
-    assert_response :success
-  end
-
-  test 'should set user_type page for logged in user and redirect to get started' do
-    login(users(:user_1))
-    post :set_user_type, params: { user: { researcher: '1' }, registration_process: '1' }
-    assert_redirected_to get_started_step_two_path
-  end
-
-  test 'should change user_type page for logged in user and redirect to account' do
-    login(users(:user_1))
-    post :set_user_type, params: { user: { researcher: '1' } }
-    assert_redirected_to account_path
   end
 
   test 'should get account for regular user' do
@@ -48,16 +19,6 @@ class AccountControllerTest < ActionController::TestCase
     login(@regular_user)
     get :suggest_random_forum_name, xhr: true, format: 'js'
     assert_not_nil assigns(:new_forum_name)
-    assert_response :success
-  end
-
-  test 'should get privacy policy' do
-    get :privacy_policy
-    assert_response :success
-  end
-
-  test 'should get consent' do
-    get :consent
     assert_response :success
   end
 
@@ -78,55 +39,6 @@ class AccountControllerTest < ActionController::TestCase
     assert_redirected_to new_user_session_path
   end
 
-  test 'should get terms and conditions for logged out user' do
-    get :terms_and_conditions
-    assert_response :success
-  end
-
-  test 'should get terms and conditions for regular user' do
-    login(@regular_user)
-    get :terms_and_conditions
-    assert_response :success
-  end
-
-  test 'should get terms of access for logged out user' do
-    get :terms_of_access
-    assert_response :success
-  end
-
-  # TODO add test for terms of access accept/refute, add test for registration path
-
-  test 'should mark consent and then privacy policy as read for user' do
-    login(@regular_user)
-    refute @regular_user.ready_for_research?
-    get :consent
-    assert_response :success
-    assert_template 'consent'
-    post :accepts_consent
-    refute @regular_user.reload.ready_for_research?
-    get :privacy_policy
-    assert_response :success
-    assert_template 'privacy_policy'
-    post :accepts_privacy
-    assert @regular_user.reload.ready_for_research?
-    assert_redirected_to surveys_path
-  end
-
-  test 'should mark privacy and then consent as read for user' do
-    login(@regular_user)
-    get :privacy_policy
-    assert_response :success
-    assert_template 'privacy_policy'
-    post :accepts_privacy
-    refute @regular_user.reload.ready_for_research?
-    get :consent
-    assert_response :success
-    assert_template 'consent'
-    post :accepts_consent
-    assert @regular_user.reload.ready_for_research?
-    assert_redirected_to surveys_path
-  end
-
   test 'should mark privacy policy as read and go to consent for user if consent is not read' do
     login(@regular_user)
     post :accepts_privacy
@@ -143,46 +55,10 @@ class AccountControllerTest < ActionController::TestCase
     assert_redirected_to privacy_path
   end
 
-  # Deprecated in use, can be removed
-  test 'should accept privacy during get-started for new user' do
-    login(@regular_user)
-    assert_nil @regular_user.accepted_privacy_policy_at
-    post :accepts_privacy, params: { get_started: true }
-    @regular_user.reload
-    assert_not_nil @regular_user.accepted_privacy_policy_at
-    assert_redirected_to consent_path
-  end
-  # end deprecated
-
-  test 'should accept consent during get started for new user and redirect to step three' do
-    login(@regular_user)
-    assert_nil @regular_user.accepted_privacy_policy_at
-    assert_nil @regular_user.accepted_consent_at
-    post :accepts_consent, params: { get_started: true }
-    @regular_user.reload
-    assert_not_nil @regular_user.accepted_consent_at
-    assert_redirected_to get_started_step_three_path
-  end
-
-  test 'should retrieve about me survey for nonacademic user' do
-    login(@participant)
-    get :get_started_step_three
-    assert_not_nil assigns(:survey)
-    assert_not_nil assigns(:answer_session)
-  end
-
   test 'should accept terms of access' do
     login(@regular_user)
     assert_nil @regular_user.accepted_terms_of_access_at
     post :accepts_terms_of_access
-    @regular_user.reload
-    assert_not_nil @regular_user.accepted_terms_of_access_at
-  end
-
-  test 'should accept terms of access during registration' do
-    login(@regular_user)
-    assert_nil @regular_user.accepted_terms_of_access_at
-    post :accepts_terms_of_access, params: { get_started: true }
     @regular_user.reload
     assert_not_nil @regular_user.accepted_terms_of_access_at
   end
@@ -248,49 +124,6 @@ class AccountControllerTest < ActionController::TestCase
     patch :change_password, params: { user: { current_password: 'invalid', password: 'newpassword' } }
     assert_template 'account'
     assert_response :success
-  end
-
-  # User type creation and Survey assignment
-  test 'should assign correct surveys for adult_diagnosed role' do
-    login(users(:blank_slate))
-    patch :set_user_type, params: { user: { adult_diagnosed: true } }
-    assert_includes users(:blank_slate).answer_sessions.collect(&:survey), Survey.find_by(slug: 'about-me')
-    assert_includes users(:blank_slate).answer_sessions.collect(&:survey), Survey.find_by(slug: 'about-my-family')
-    assert_includes users(:blank_slate).answer_sessions.collect(&:survey), Survey.find_by(slug: 'my-sleep-quality')
-    assert_includes users(:blank_slate).answer_sessions.collect(&:survey), Survey.find_by(slug: 'my-sleep-apnea')
-  end
-
-  test 'should assign correct surveys for adult_at_risk role' do
-    login(users(:blank_slate))
-    patch :set_user_type, params: { user: { adult_at_risk: true } }
-    assert_includes users(:blank_slate).answer_sessions.collect(&:survey), Survey.find_by(slug: 'about-me')
-    assert_includes users(:blank_slate).answer_sessions.collect(&:survey), Survey.find_by(slug: 'about-my-family')
-    assert_includes users(:blank_slate).answer_sessions.collect(&:survey), Survey.find_by(slug: 'my-sleep-quality')
-    refute_includes users(:blank_slate).answer_sessions.collect(&:survey), Survey.find_by(slug: 'my-sleep-apnea')
-  end
-
-  test 'should assign correct surveys for caregiver_adult role' do
-    login(users(:blank_slate))
-    patch :set_user_type, params: { user: { caregiver_adult: true } }
-    assert_includes users(:blank_slate).answer_sessions.collect(&:survey), Survey.find_by(slug: 'about-me')
-    assert_includes users(:blank_slate).answer_sessions.collect(&:survey), Survey.find_by(slug: 'about-my-family')
-    refute_includes users(:blank_slate).answer_sessions.collect(&:survey), Survey.find_by(slug: 'my-sleep-quality')
-    refute_includes users(:blank_slate).answer_sessions.collect(&:survey), Survey.find_by(slug: 'my-sleep-apnea')
-  end
-
-  test 'should assign correct surveys for caregiver_child role' do
-    login(users(:blank_slate))
-    patch :set_user_type, params: { user: { caregiver_child: true } }
-    assert_includes users(:blank_slate).answer_sessions.collect(&:survey), Survey.find_by(slug: 'about-me')
-    assert_includes users(:blank_slate).answer_sessions.collect(&:survey), Survey.find_by(slug: 'about-my-family')
-    refute_includes users(:blank_slate).answer_sessions.collect(&:survey), Survey.find_by(slug: 'my-sleep-quality')
-    refute_includes users(:blank_slate).answer_sessions.collect(&:survey), Survey.find_by(slug: 'my-sleep-apnea')
-  end
-
-  test 'should not assign any surveys for researcher' do
-    login(users(:blank_slate))
-    patch :set_user_type, params: { user: { researcher: true } }
-    assert_empty users(:blank_slate).answer_sessions
   end
 
   test 'should be delete account as regular user' do
