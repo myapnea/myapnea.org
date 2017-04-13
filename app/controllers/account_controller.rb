@@ -150,8 +150,6 @@ class AccountController < ApplicationController
       :photo, :remove_photo, :forum_name, :experience, :device,
       # Receiving Emails
       :emails_enabled,
-      # Enabling Beta
-      :beta_opt_in,
       # Enforces that forum name can't be blank
       :user_is_updating
       )
