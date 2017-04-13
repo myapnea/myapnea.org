@@ -1,0 +1,35 @@
+- @title = 'Settings'
+- @menu_title = 'Your profile'
+- @theme = 'sunset'
+
+- content_for :body_class do
+  myapnea-sunset-bg
+
+- content_for :header do
+  .header-container
+    .container
+      %h1.page-heading
+        = @title
+
+.row
+  .col-sm-3.col-sticky
+    = render 'internal/settings_menu'
+  .col-sm-9
+    .dashboard-container
+      .pull-right
+        .settings-title Profile picture
+        .settings-body
+          %strong Here it is
+          .text-muted Upload new picture
+
+      .settings-title Profile
+
+      .settings-body
+        %strong Name
+        %strong Bio
+
+      .settings-title Change forum name
+      .settings-body
+        %strong Forum name
+        .text-muted= current_user.forum_name
+

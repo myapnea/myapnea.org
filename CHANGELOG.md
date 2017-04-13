@@ -12,6 +12,7 @@
   - Changed human verification from "Invisible" to "I'm not a robot" ReCAPTCHA
   - Added search to the mobile dropdown menu
   - Improved page navigation after signing in and signing out
+  - Redesigned dashboard and settings pages
 - **Forum Changes**
   - Adjusted how the forum index displays on mobile devices
 - **Gem Changes**

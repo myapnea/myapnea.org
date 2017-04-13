@@ -143,7 +143,12 @@ Rails.application.routes.draw do
 
   scope module: :internal do
     get :dashboard
+    get :research, path: 'dashboard/research'
     get :settings
+    get :settings_account, path: 'settings/account'
+    get :settings_consents, path: 'settings/consents'
+    get :settings_emails, path: 'settings/emails'
+    get :settings_profile, path: 'settings/profile'
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

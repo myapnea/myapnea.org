@@ -12,16 +12,14 @@
 .row
   .col-sm-9.col-sm-push-3
     .dashboard-container
-      .dashboard-title You can do things here!
+      .dashboard-title New Research Modules/Studies/Learn Things
       .dashboard-body
-        %p
-          We have
-          = succeed '.' do
-            = link_to 'news', blog_path
+        %p= link_to 'Learn!', '#', data: { object: 'suppress-click' }, style: 'color: red;'
 
-        %p And other stuff. Just for you, hurray!
+        %p= link_to 'MyApnea Core', question_path(id: 1)
 
-        %p My Recent Topics I participated in
+        %p= link_to 'Yoga', yoga_path(id: 1)
 
+        %p= link_to 'Themes', blue_path
   .col-sm-3.col-sm-pull-9.col-sticky
     = render 'internal/menu'

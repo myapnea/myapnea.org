@@ -10,7 +10,24 @@ class InternalController < ApplicationController
   # def dashboard
   # end
 
-  # # GET /settings
-  # def settings
+  # # GET /research
+  # def research
+  # end
+
+  # GET /settings
+  def settings
+    redirect_to settings_profile_path
+  end
+
+  # # GET /settings/account
+  # def settings_account
+  # end
+
+  # # GET /settings/consents
+  # def settings_consents
+  # end
+
+  # # GET /settings/profile
+  # def settings_profile
   # end
 end
