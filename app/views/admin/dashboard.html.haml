@@ -1,7 +1,8 @@
 - @title = 'Admin Dashboard'
+- @theme = 'sunset'
 
 - content_for :body_class do
-  myapnea-sky-bg
+  myapnea-sunset-bg
 
 - content_for :header do
   .header-container
@@ -9,59 +10,21 @@
       %h1.page-heading
         = @title
 
-%h3 Member Management
-.row.center
-  - if current_user.admin?
-    .col-sm-3
-      = link_to users_path, class: 'no-underline' do
-        .blue-block-link
-          Users
+= render 'blank/sunset'
 
-- if current_user.admin?
-  %h3 Discussion
-  .row.center
-    .col-sm-3
-      = link_to admin_replies_path, class: 'no-underline' do
-        .blue-block-link
-          Blog and Forum Replies
+.row
+  .col-sm-9.col-sm-push-3
+    .dashboard-container
+      .dashboard-title You can do things here!
+      .dashboard-body
+        %p
+          We have
+          = succeed '.' do
+            = link_to 'news', blog_path
 
-%h3 Survey Results
-.row.center
-  .col-sm-3
-    = link_to admin_cross_tabs_path, class: 'no-underline' do
-      .blue-block-link
-        Cross Tabs
-  - if current_user.admin?
-    .col-sm-3
-      = link_to admin_exports_path, class: 'no-underline' do
-        .blue-block-link
-          Exports
-  .col-sm-3
-    = link_to admin_surveys_path, class: 'no-underline' do
-      .blue-block-link
-        Surveys
-.row.center
-  .col-sm-3
-    = link_to admin_progress_report_path, class: 'no-underline' do
-      .blue-block-link
-        Progress Report
-  .col-sm-3
-    = link_to admin_reports_timeline_path, class: 'no-underline' do
-      .blue-block-link
-        Timeline Report
+        %p And other stuff. Just for you, hurray!
 
-- if current_user.admin?
-  %h3 Features
-  .row.center
-    .col-sm-3
-      = link_to admin_clinical_trials_path, class: 'no-underline' do
-        .blue-block-link
-          Clinical Trials
-    .col-sm-3
-      = link_to admin_partners_path, class: 'no-underline' do
-        .blue-block-link
-          Partners
-    .col-sm-3
-      = link_to admin_team_members_path, class: 'no-underline' do
-        .blue-block-link
-          Team Members
+        %p My Recent Topics I participated in
+
+  .col-sm-3.col-sm-pull-9.col-sticky
+    = render 'admin/menu'
