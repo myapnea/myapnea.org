@@ -37,8 +37,8 @@
                   %span.glyphicon.glyphicon-search
 
       %ul.nav.navbar-nav.hidden-sm.hidden-md.hidden-lg
-        %li{ class: "#{'active' if current_page?(root_url) || current_page?(landing_path)}" }
-          = link_to landing_path do
+        %li{ class: "#{'active' if current_page?(root_url) || current_page?(dashboard_path)}" }
+          = link_to dashboard_path do
             Dashboard
         %li{ class: "#{'active' if %w(topics).include?(params[:controller])}" }
           = link_to topics_path do
