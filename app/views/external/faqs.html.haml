@@ -14,10 +14,11 @@
   .col-md-3.col-md-push-9.col-sticky
     .dashboard-container.dashboard-no-padding
       %ul.blog-menu
-        %li= link_to 'General questions', '#general', data: { object: 'scroll-anchor' }
-        %li= link_to 'Registration process', '#registration', data: { object: 'scroll-anchor' }
-        %li= link_to 'Participating in the research portal', '#participation', data: { object: 'scroll-anchor' }
-        %li= link_to 'Privacy and security', '#privacy', data: { object: 'scroll-anchor' }
+        %li.blog-menu-header Questions
+        %li= link_to 'General', '#general', data: { object: 'scroll-anchor' }
+        %li= link_to 'Registration', '#registration', data: { object: 'scroll-anchor' }
+        %li= link_to 'Participating in Research', '#participation', data: { object: 'scroll-anchor' }
+        %li= link_to 'Privacy and Security', '#privacy', data: { object: 'scroll-anchor' }
   .col-md-9.col-md-pull-3
     .dashboard-container
       %a.anchor#general
