@@ -1,15 +1,17 @@
 - @title = 'Settings'
 - @menu_title = 'Rearch consents'
-- @theme = 'sunset'
+- @theme = 'night'
 
 - content_for :body_class do
-  myapnea-sunset-bg
+  myapnea-night-bg
 
 - content_for :header do
   .header-container
     .container
       %h1.page-heading
         = @title
+
+= render 'blank/moon'
 
 .row
   .col-sm-3.col-sticky

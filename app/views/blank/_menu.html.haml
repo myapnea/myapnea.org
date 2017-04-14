@@ -15,10 +15,10 @@
 
         - if current_user
           %form.navbar-form.navbar-right.hidden-sm
-            = link_to 'Logout', destroy_user_session_path, class: 'btn btn-primary-dark'
+            = link_to 'Logout', destroy_user_session_path, class: 'btn btn-menu'
         - else
           %form.navbar-form.navbar-right
-            = link_to 'Login', new_user_session_path, class: 'btn btn-primary-dark'
+            = link_to 'Login', new_user_session_path, class: 'btn btn-menu'
 
 - else
   .menu-bar.menu-bar-fixed

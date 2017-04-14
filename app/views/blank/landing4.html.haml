@@ -1,5 +1,5 @@
 - if @menu
-  #top-menu.top-menu= render 'layouts/menu'
+  #top-menu.top-menu= render 'layouts/menu', theme: @theme ? "menu-#{@theme}" : nil
 
 .page-box.myapnea-green-bg
   = render 'blank/progress_bar', start: 100 / 6 * 1, percent: 100 / 6 * 2
