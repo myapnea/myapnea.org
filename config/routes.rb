@@ -117,6 +117,7 @@ Rails.application.routes.draw do
     get :community
     get :consent
     get :contact
+    get :faqs
     get :landing
     get :privacy, path: 'privacy-policy'
     get :terms_and_conditions, path: 'terms-and-conditions'
@@ -162,7 +163,6 @@ Rails.application.routes.draw do
     get 'pep-corner/:pep_id', action: :pep_corner_show, as: :pep_corner_show
     get :advisory
     get :partners
-    get :faqs
     get 'clinical-trials', action: :clinical_trials
     get :sitemap
     get :sizes

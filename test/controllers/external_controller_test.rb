@@ -23,6 +23,11 @@ class ExternalControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test 'should get faqs' do
+    get :faqs
+    assert_response :success
+  end
+
   test 'should get landing' do
     get :landing
     assert_response :success

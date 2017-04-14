@@ -4,10 +4,10 @@
 class StaticController < ApplicationController
   # GET /about
   def about
-    # render layout: 'simple'
     render layout: 'full_page_no_header'
   end
 
+  # GET /team
   def team
     @team_members = Admin::TeamMember.current.order('position')
   end
@@ -29,10 +29,6 @@ class StaticController < ApplicationController
                     ', have been diagnosed with obstructive sleep apnea or cen'\
                     'tral sleep apnea, MyApnea wants to help you understand sl'\
                     'eep apnea and sleep apnea causes.'
-  end
-
-  def faqs
-    render layout: 'simple'
   end
 
   def clinical_trials

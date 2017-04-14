@@ -16,6 +16,10 @@ class ExternalController < ApplicationController
   # def contact
   # end
 
+  # # GET /faqs
+  # def faqs
+  # end
+
   def landing
     render layout: 'full_page_no_header'
   end
@@ -45,7 +49,7 @@ class ExternalController < ApplicationController
   # def terms_of_access
   # end
 
-  def voting
-    render layout: 'simple'
-  end
+  # # GET /voting
+  # def voting
+  # end
 end
