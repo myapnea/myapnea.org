@@ -101,8 +101,4 @@ class AccountController < ApplicationController
       :password, :password_confirmation, :current_password
     )
   end
-
-  def load_content
-    @pc = YAML.load_file(Rails.root.join('lib', 'data', 'content', "#{action_name}.yml"))[action_name.to_s]
-  end
 end

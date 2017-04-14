@@ -1,15 +1,17 @@
 - @title = 'Settings'
 - @menu_title = 'Account settings'
-- @theme = 'sunset'
+- @theme = 'night'
 
 - content_for :body_class do
-  myapnea-sunset-bg
+  myapnea-night-bg
 
 - content_for :header do
   .header-container
     .container
       %h1.page-heading
         = @title
+
+= render 'blank/moon'
 
 .row
   .col-sm-3.col-sticky
@@ -34,7 +36,7 @@
           Once you delete your account, there is no going back. Any forum posts
           you have made will also be deleted.
 
-        = link_to 'Delete My Account', delete_account_path, method: :delete, class: 'btn btn-danger btn-shadow', data: { confirm: 'Are you sure you want to PERMANENTLY delete your account?' }
+        = link_to 'Delete My Account', delete_account_path, method: :delete, class: 'btn btn-danger btn-shadow', data: { confirm: 'Delete your account PERMANENTLY?' }
 
 
 

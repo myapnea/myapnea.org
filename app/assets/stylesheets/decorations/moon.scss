@@ -1,7 +1,7 @@
-$moon-color: $p100-indigo;
+$moon-color: $p400-indigo;
 
 $moon-base-size: 128px;
-$moon-base-padding: 12px;
+$moon-base-padding: 20px;
 
 $moon-size: $moon-base-size * 2; // 256px;
 $moon-padding: $moon-base-padding * 2; // 24px;
@@ -20,51 +20,67 @@ $moon-container-sm: $moon-size-sm + $moon-padding-sm;
   width: $moon-container / 2;
 }
 
+.moon-object {
+  // animation: spin-cw 120s linear infinite;
+  font-size: $moon-size;
+  position: absolute;
+  left: -$moon-size;
+  top: -$moon-size + ($moon-container / 2);
+
+  i {
+    // animation: sun-pulse 1s ease-in-out infinite alternate;
+    // animation: wiggle 10s ease-in-out infinite alternate;
+
+    &.fa-circle,
+    &.fa-moon-o {
+      font-size: $moon-size;
+      color: $moon-color;
+    }
+  }
+}
+
 @media screen and (min-width: $screen-sm-min) {
   .moon-container {
     height: $moon-container-sm;
     bottom: 0;
     width: $moon-container-sm / 2;
   }
-}
 
-.landing-upper-right {
-  color: $moon-color;
-  position: relative;
-
-  #moon {
-    // animation: spin-cw 120s linear infinite;
-    font-size: $moon-size;
-    position: absolute;
-    left: -$moon-size;
-    top: -$moon-size + ($moon-container / 2);
+  .moon-object {
+    font-size: $moon-size-sm;
+    left: -$moon-size-sm;
+    top: -$moon-size-sm + ($moon-container-sm / 2);
 
     i {
-      // animation: sun-pulse 1s ease-in-out infinite alternate;
-      // animation: wiggle 10s ease-in-out infinite alternate;
-
       &.fa-circle,
       &.fa-moon-o {
-        font-size: $moon-size;
-        color: $moon-color;
+        font-size: $moon-size-sm;
       }
     }
   }
 }
 
-@media screen and (min-width: $screen-sm-min) {
-  .landing-upper-right {
-    #moon {
-      font-size: $moon-size-sm;
-      left: -$moon-size-sm;
-      top: -$moon-size-sm + ($moon-container-sm / 2);
+$white-shadow: rgba(255, 255, 255, 0.15);
 
-      i {
-        &.fa-circle,
-        &.fa-moon-o {
-          font-size: $moon-size-sm;
-        }
-      }
-    }
+.moon-object-2 {
+  background: asset-url('themes/night/moon512.jpg');
+  background-size: 256px;
+  border-radius: 256px;
+  height: 256px;
+  width: 256px;
+  left: -128px;
+  top: 26px;
+  position: absolute;
+  box-shadow: 7px -10px 30px $white-shadow;
+}
+
+@media screen and (min-width: $screen-sm-min) {
+  .moon-object-2 {
+    background-size: 384px;
+    border-radius: 384px;
+    height: 384px;
+    width: 384px;
+    left: -192px;
+    top: 256px;
   }
 }

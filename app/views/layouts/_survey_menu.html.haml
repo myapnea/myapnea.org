@@ -19,7 +19,7 @@
 
       - if current_user
         %form.navbar-form.navbar-right.hidden-sm
-          = link_to 'Logout', destroy_user_session_path, class: 'btn btn-primary-dark'
+          = link_to 'Logout', destroy_user_session_path, class: 'btn btn-menu'
 
         .search-bar-container
           .full-search-bar
@@ -28,12 +28,12 @@
                 .input-group
                   = text_field_tag :search, params[:search], class: 'form-control', placeholder: 'Search MyApnea', autocomplete: 'off', id: 'navigation-search'
                   %span.input-group-btn
-                    = link_to '#', data: { object: 'suppress-click' }, class: 'btn btn-primary-dark', name: nil, id: 'navigation-form-search-btn' do
+                    = link_to '#', data: { object: 'suppress-click' }, class: 'btn btn-menu', name: nil, id: 'navigation-form-search-btn' do
                       %span.glyphicon.glyphicon-search
 
         .tiny-search-icon
           %form.navbar-form.navbar-right.hidden-xs.hidden-sm{ style: 'margin-right: -25px' }
-            = link_to '#', data: { object: 'show-search-bar' }, class: 'btn btn-primary-dark', name: nil do
+            = link_to '#', data: { object: 'show-search-bar' }, class: 'btn btn-menu', name: nil do
               %span.glyphicon.glyphicon-search
 
           %ul.nav.navbar-nav.navbar-right
@@ -61,4 +61,4 @@
                     Logout
       - else
         %form.navbar-form.navbar-right
-          = link_to 'Sign in', new_user_session_path, class: 'btn btn-primary-dark'
+          = link_to 'Sign in', new_user_session_path, class: 'btn btn-menu'
