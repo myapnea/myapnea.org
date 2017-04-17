@@ -136,14 +136,19 @@ Rails.application.routes.draw do
     get :blue
     get :orange
     get :green
+    get :landing1
     get :landing2
     get :landing3
     get :landing4
     get :landing5
+    get :landing6
   end
 
   scope module: :internal do
     get :dashboard
+    get :dashboard1
+    get :dashboard2
+    get :dashboard3
     get :research, path: 'dashboard/research'
     get :settings
     get :settings_account, path: 'settings/account'

@@ -1,0 +1,15 @@
+= render 'layouts/menu'
+
+.page-box.last-slide.myapnea-sky-bg
+  .container
+    .drawer-and-shelf-container
+      .drawer
+        = render 'internal/menu2'
+      .shelf
+        .dashboard-container
+          = link_to '#', data: { object: 'toggle-drawer' }, class: 'drawer-open-button' do
+            %fa.fa.fa-bars
+            Menu
+          %strong dashboard1.html.haml
+
+= render 'layouts/footer'

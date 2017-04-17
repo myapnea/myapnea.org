@@ -14,8 +14,13 @@
         = current_user.created_at.strftime('%b %Y')
 .dashboard-container
   %ul.blog-menu
+    %li.hidden-sm.hidden-md.hidden-lg
+      = link_to '#', data: { object: 'toggle-drawer' } do
+        %fa.fa.fa-bars
+        Close Menu
     %li.blog-menu-header Dashboard
-    %li= link_to 'Dashboard', dashboard_path, class: current_page?(dashboard_path) ? 'active' : nil
+    %li
+      = link_to 'Dashboard', dashboard_path, class: current_page?(dashboard_path) ? 'active' : nil
     %li= link_to 'Dashboard1', dashboard1_path, class: current_page?(dashboard1_path) ? 'active' : nil
     %li= link_to 'Dashboard2', dashboard2_path, class: current_page?(dashboard2_path) ? 'active' : nil
     %li= link_to 'Dashboard3', dashboard3_path, class: current_page?(dashboard3_path) ? 'active' : nil

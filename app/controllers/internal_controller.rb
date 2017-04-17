@@ -6,9 +6,24 @@ class InternalController < ApplicationController
 
   layout 'application_padded'
 
-  # # GET /dashboard
-  # def dashboard
+  # GET /dashboard
+  def dashboard
+    redirect_to dashboard3_path
+  end
+
+  # # GET /dashboard1
+  # def dashboard1
   # end
+
+  # GET /dashboard2
+  def dashboard2
+    render layout: 'full_page'
+  end
+
+  # GET /dashboard3
+  def dashboard3
+    render layout: 'full_page'
+  end
 
   # # GET /research
   # def research
