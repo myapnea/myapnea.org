@@ -11,7 +11,8 @@ module RandomNameGenerator
       adjective = adjectives[(seed[0..3].to_i % adjectives.size)]
       color = colors[(seed[4..7].to_i % colors.size)]
       animal = animals[(seed[8..11].to_i % animals.size)]
-      "#{adjective}#{color}#{animal}#{seed[12..15]}"
+      # "#{adjective}#{color}#{animal}#{seed[12..15]}"
+      "#{color}#{animal}"
     end
 
     def self.adjectives

@@ -279,6 +279,10 @@ class User < ApplicationRecord
   def set_forum_name
     return if forum_name.present?
     update forum_name: User.generate_forum_name(email, Time.zone.now.usec.to_s)
+  rescue ActiveRecord::RecordNotUnique, ActiveRecord::RecordInvalid
+    attempt ||= 0
+    attempt += 1
+    retry if attempt <= 10
   end
 
   def send_welcome_email!
