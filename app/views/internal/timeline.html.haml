@@ -1,0 +1,43 @@
+- @title = 'Personal Timeline'
+
+- content_for :body_class do
+  myapnea-sky-bg
+
+- content_for :header do
+  .header-container
+    .container
+      %h1.page-heading
+        .pull-right
+          %fa.fa.fa-search
+        = @title
+
+.drawer-and-shelf-container
+  .drawer
+    = render 'internal/menu'
+  .shelf
+    .dashboard-container
+      .profile-muted-description.center{ style: 'margin-bottom: 20px;' }
+        Only you can see your timeline,
+        = link_to 'see your public profile here.', member_path(current_user.forum_name)
+      .dashboard-title.center= Time.zone.today.strftime('%a %b %d, %Y')
+      .dashboard-body
+        %ul
+          %li I did something.
+          %li You followed someone.
+          %li
+            You joined the
+            %strong Yoga
+            study!
+      %hr
+      .dashboard-title.center Last Week
+      .dashboard-body
+        %ul
+          %li You changed your forum name :-(
+      %hr
+      .dashboard-title.center= (Time.zone.today - 1.month).strftime('%b %Y')
+      .dashboard-body
+        %ul
+          %li You joined!
+          %li
+            We gave you an forum name!
+            = link_to 'Change my forum name', settings_profile_path

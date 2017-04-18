@@ -13,10 +13,10 @@
 
 = render 'blank/moon'
 
-.row
-  .col-sm-3.col-sticky
+.drawer-and-shelf-container
+  .drawer
     = render 'internal/settings_menu'
-  .col-sm-9
+  .shelf
     .dashboard-container
       .settings-title Change password
 
@@ -37,6 +37,3 @@
           you have made will also be deleted.
 
         = link_to 'Delete My Account', delete_account_path, method: :delete, class: 'btn btn-danger btn-shadow', data: { confirm: 'Delete your account PERMANENTLY?' }
-
-
-

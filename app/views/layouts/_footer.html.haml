@@ -2,10 +2,12 @@
 .footer-container{ class: theme }
   .container
     .footer
-      .hidden-sm.hidden-md.hidden-lg.center
+      .hidden-sm.hidden-md.hidden-lg.center.nowrap
         &copy;
         = Date.today.year
-        = ENV['website_name']
+        = link_to 'MyApnea', about_path
+        &middot;
+        = link_to 'Contact Us', contact_path
       .row.hidden-xs
         .col-xs-6.nowrap
           &copy;

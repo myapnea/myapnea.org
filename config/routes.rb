@@ -117,6 +117,7 @@ Rails.application.routes.draw do
     get :community
     get :consent
     get :contact
+    get :faqs
     get :landing
     get :privacy, path: 'privacy-policy'
     get :terms_and_conditions, path: 'terms-and-conditions'
@@ -135,14 +136,23 @@ Rails.application.routes.draw do
     get :blue
     get :orange
     get :green
+    get :landing1
     get :landing2
     get :landing3
     get :landing4
     get :landing5
+    get :landing6
   end
 
   scope module: :internal do
     get :dashboard
+    get :dashboard1
+    get :dashboard2
+    get :dashboard3
+    get :dashboard4
+    get :dashboard5
+    get :timeline
+    get :yoga_consent, path: 'yoga/consent'
     get :research, path: 'dashboard/research'
     get :settings
     get :settings_account, path: 'settings/account'
@@ -162,7 +172,6 @@ Rails.application.routes.draw do
     get 'pep-corner/:pep_id', action: :pep_corner_show, as: :pep_corner_show
     get :advisory
     get :partners
-    get :faqs
     get 'clinical-trials', action: :clinical_trials
     get :sitemap
     get :sizes

@@ -53,8 +53,9 @@
             Blog
         - if current_user
           %li{ class: "#{'active' if current_page?(settings_path)}" }
-            = link_to settings_path do
-              Settings
+            = link_to 'Settings', settings_path
+          - if current_user.admin?
+            %li{ class: "#{'active' if current_page?(admin_path)}" }= link_to 'Admin Dashboard', admin_path
 
       - if current_user
         %form.navbar-form.navbar-right
@@ -92,6 +93,12 @@
                   = link_to settings_path do
                     %i.fa.fa-cogs
                     Settings
+                - if current_user.admin?
+                  %li.divider
+                  %li
+                    = link_to admin_path do
+                      %i.fa.fa-user-md
+                      Admin Dashboard
                 %li.divider
                 %li
                   = link_to about_path do

@@ -6,8 +6,37 @@ class InternalController < ApplicationController
 
   layout 'application_padded'
 
-  # # GET /dashboard
-  # def dashboard
+  # GET /dashboard
+  def dashboard
+    redirect_to dashboard3_path
+  end
+
+  # # GET /dashboard1
+  # def dashboard1
+  # end
+
+  # # GET /dashboard2
+  # def dashboard2
+  # end
+
+  # # GET /dashboard3
+  # def dashboard3
+  # end
+
+  # # GET /dashboard4
+  # def dashboard4
+  # end
+
+  # # GET /dashboard5
+  # def dashboard5
+  # end
+
+  # # GET /yoga/consent
+  # def yoga_consent
+  # end
+
+  # # GET /timeline
+  # def timeline
   # end
 
   # # GET /research

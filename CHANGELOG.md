@@ -23,6 +23,7 @@
   - Redesigned dashboard and settings pages
 - **Forum Changes**
   - Adjusted how the forum index displays on mobile devices
+  - Generated forum names are now simpler and shorter
 - **Gem Changes**
   - Updated to Ruby 2.4.1
   - Updated to rails 5.0.2

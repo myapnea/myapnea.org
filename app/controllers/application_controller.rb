@@ -62,7 +62,10 @@ class ApplicationController < ActionController::Base
     {
       blank: [],
       blog: [],
-      external: [],
+      external: [
+        :community, :consent, :contact, :faqs, :privacy_policy,
+        :terms_and_conditions, :terms_of_access, :voting
+      ],
       members: [:index, :show],
       replies: [:show],
       search: [],

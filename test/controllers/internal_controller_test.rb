@@ -9,8 +9,45 @@ class InternalControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should get dashboard' do
+    skip
     sign_in_as(@regular_user, 'password')
     get dashboard_path
+    assert_response :success
+  end
+
+  test 'should get dashboard1' do
+    sign_in_as(@regular_user, 'password')
+    get dashboard1_path
+    assert_response :success
+  end
+
+  test 'should get dashboard2' do
+    sign_in_as(@regular_user, 'password')
+    get dashboard2_path
+    assert_response :success
+  end
+
+  test 'should get dashboard3' do
+    sign_in_as(@regular_user, 'password')
+    get dashboard3_path
+    assert_response :success
+  end
+
+  test 'should get dashboard4' do
+    sign_in_as(@regular_user, 'password')
+    get dashboard4_path
+    assert_response :success
+  end
+
+  test 'should get dashboard5' do
+    sign_in_as(@regular_user, 'password')
+    get dashboard5_path
+    assert_response :success
+  end
+
+  test 'should get timeline' do
+    sign_in_as(@regular_user, 'password')
+    get timeline_path
     assert_response :success
   end
 

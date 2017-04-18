@@ -13,10 +13,10 @@
 
 = render 'blank/moon'
 
-.row
-  .col-sm-3.col-sticky
+.drawer-and-shelf-container
+  .drawer
     = render 'internal/settings_menu'
-  .col-sm-9
+  .shelf
     .dashboard-container
       .settings-title Emails
 
@@ -32,3 +32,10 @@
         You selected:
 
         %strong= current_user.emails_enabled? ? 'Yes' : 'No'
+
+        = form_for current_user, url: update_account_path, html: { class: 'form-vertical' } do |f|
+          .form-group
+            = f.label :email, class: 'control-label'
+            = f.email_field :email, class: 'form-control', placeholder: User.human_attribute_name(:email), autocomplete: :off
+          .form-group
+            = f.submit 'Save Changes'

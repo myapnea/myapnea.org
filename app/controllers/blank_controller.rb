@@ -18,17 +18,16 @@ class BlankController < ApplicationController
     redirect_to research_path
   end
 
+  def landing1
+    render layout: 'full_page_no_header'
+  end
+
   def landing2
     render layout: 'full_page_no_header'
   end
 
-  def landing3
-    render layout: 'full_page'
-  end
-
-  def landing5
-    render layout: 'full_page_no_header'
-  end
+  # def landing3
+  # end
 
   def landing4
     @menu = true
@@ -38,6 +37,13 @@ class BlankController < ApplicationController
       render layout: 'full_page_no_header'
     end
   end
+
+  def landing5
+    render layout: 'full_page_no_header'
+  end
+
+  # def landing6
+  # end
 
   private
 

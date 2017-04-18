@@ -15,9 +15,9 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test 'should generate valid forum names' do
-    assert_operator 10, :<=, User.generate_forum_name(nil).size
-    assert_operator 10, :<=, User.generate_forum_name('').size
-    assert_operator 10, :<=, User.generate_forum_name('test@example.com').size
+    assert_operator 6, :<=, User.generate_forum_name(nil).size
+    assert_operator 6, :<=, User.generate_forum_name('').size
+    assert_operator 6, :<=, User.generate_forum_name('test@example.com').size
     u = User.create(user_params(email: 'email@example.com'))
     assert_equal [], u.errors[:forum_name]
     u = User.create(user_params(email: 'email2@example.com'))

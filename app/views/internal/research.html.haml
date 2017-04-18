@@ -9,8 +9,10 @@
       %h1.page-heading
         = @title
 
-.row
-  .col-sm-9.col-sm-push-3
+.drawer-and-shelf-container
+  .drawer
+    = render 'internal/menu'
+  .shelf
     .dashboard-container
       .dashboard-title New Research Modules/Studies/Learn Things
       .dashboard-body
@@ -21,5 +23,3 @@
         %p= link_to 'Yoga', yoga_path(id: 1)
 
         %p= link_to 'Themes', blue_path
-  .col-sm-3.col-sm-pull-9.col-sticky
-    = render 'internal/menu'
