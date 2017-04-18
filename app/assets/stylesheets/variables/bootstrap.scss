@@ -21,6 +21,7 @@ $brand-primary:         $p500-blue !default;
 // $brand-info:            #5bc0de !default;
 $brand-warning:         #ffa400 !default; //#f0ad4e !default;
 $brand-danger:          $red !default;
+$brand-gray-darker:     #bbb;
 $brand-gray:            #ccc;
 $brand-gray-lighter:    #ededed;
 $brand-gray-lightest:   #f9f9f9;
@@ -370,7 +371,7 @@ $input-border-focus:             $brand-accent !default;
 // $navbar-border-radius:             $border-radius-base !default;
 // $navbar-padding-horizontal:        floor(($grid-gutter-width / 2)) !default;
 // $navbar-padding-vertical:          (($navbar-height - $line-height-computed) / 2) !default;
-// $navbar-collapse-max-height:       340px !default;
+$navbar-collapse-max-height:       400px !default; // 340px !default;
 
 $navbar-default-color:             $brand-white !default;
 $navbar-default-bg:                $p600-blue !default;
@@ -845,7 +846,7 @@ $code-color:                  $p500-orange !default;
 // $pre-bg:                      #f5f5f5 !default;
 // $pre-color:                   $gray-dark !default;
 // $pre-border-color:            #ccc !default;
-// $pre-scrollable-max-height:   340px !default;
+$pre-scrollable-max-height:   400px !default; // 340px !default;
 
 
 // //== Type

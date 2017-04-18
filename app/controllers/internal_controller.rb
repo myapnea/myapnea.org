@@ -15,15 +15,13 @@ class InternalController < ApplicationController
   # def dashboard1
   # end
 
-  # GET /dashboard2
-  def dashboard2
-    render layout: 'full_page'
-  end
+  # # GET /dashboard2
+  # def dashboard2
+  # end
 
-  # GET /dashboard3
-  def dashboard3
-    render layout: 'full_page'
-  end
+  # # GET /dashboard3
+  # def dashboard3
+  # end
 
   # # GET /research
   # def research

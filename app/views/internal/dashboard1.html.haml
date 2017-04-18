@@ -9,8 +9,10 @@
       %h1.page-heading
         = @title
 
-.row
-  .col-sm-9.col-sm-push-3
+.drawer-and-shelf-container
+  .drawer
+    = render 'internal/menu2'
+  .shelf
     .dashboard-container
       .dashboard-title You can do things here!
       .dashboard-body
@@ -22,6 +24,3 @@
         %p And other stuff. Just for you, hurray!
 
         %p My Recent Topics I participated in
-
-  .col-sm-3.col-sm-pull-9.col-sticky
-    = render 'internal/menu'

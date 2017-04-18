@@ -1,15 +1,22 @@
-= render 'layouts/menu'
+- @title = 'Dashboard 3'
 
-.page-box.last-slide.myapnea-sky-bg
-  .container
-    .drawer-and-shelf-container
-      .drawer
-        = render 'internal/menu2'
-      .shelf
-        .dashboard-container
-          = link_to '#', data: { object: 'toggle-drawer' }, class: 'drawer-open-button' do
-            %fa.fa.fa-bars
-            Menu
-          %strong dashboard1.html.haml
+- content_for :body_class do
+  myapnea-sky-bg
 
-= render 'layouts/footer'
+- content_for :header do
+  .header-container
+    .container
+      %h1.page-heading
+        .pull-right
+          %fa.fa.fa-search
+        = @title
+
+.drawer-and-shelf-container
+  .drawer
+    = render 'internal/menu2'
+  .shelf
+    .dashboard-container
+      = link_to '#', data: { object: 'toggle-drawer' }, class: 'drawer-open-button' do
+        %fa.fa.fa-bars
+        Menu
+      %strong dashboard3.html.haml
