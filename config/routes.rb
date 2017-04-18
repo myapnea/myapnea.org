@@ -149,6 +149,10 @@ Rails.application.routes.draw do
     get :dashboard1
     get :dashboard2
     get :dashboard3
+    get :dashboard4
+    get :dashboard5
+    get :timeline
+    get :yoga_consent, path: 'yoga/consent'
     get :research, path: 'dashboard/research'
     get :settings
     get :settings_account, path: 'settings/account'

@@ -33,6 +33,24 @@ class InternalControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test 'should get dashboard4' do
+    sign_in_as(@regular_user, 'password')
+    get dashboard4_path
+    assert_response :success
+  end
+
+  test 'should get dashboard5' do
+    sign_in_as(@regular_user, 'password')
+    get dashboard5_path
+    assert_response :success
+  end
+
+  test 'should get timeline' do
+    sign_in_as(@regular_user, 'password')
+    get timeline_path
+    assert_response :success
+  end
+
   test 'should get research' do
     sign_in_as(@regular_user, 'password')
     get research_path

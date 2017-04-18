@@ -1,24 +1,31 @@
-.dashboard-container.hidden-xs
-  .center{ style: 'margin-bottom: 10px;' }
-    -# { rel: 'tooltip', data: { title: 'Change your picture', container: 'body', placement: 'bottom' } }
+%div.hidden-xs.profile
+  .profile-image-container{ rel: 'tooltip', data: { title: 'Change your picture', container: 'body', placement: 'bottom' } }
     = link_to settings_path do
-      = image_tag user_photo_url(current_user), style: 'max-width: 100%; height: auto;'
-  %div
+      = image_tag user_photo_url(current_user), style: 'width: 220px;'
+
+  %div.overflow-hidden{ style: 'margin-left: 20px;margin-right: 20px;margin-bottom: 0;' }
     %p
       %strong= current_user.name
       %br
       %small= current_user.forum_name
     %p
-      %small.text-muted
+      %small.profile-muted-description
         Joined
         = current_user.created_at.strftime('%b %Y')
-.dashboard-container
-  %ul.blog-menu
-    %li.blog-menu-header Dashboard
-    %li= link_to 'Dashboard', dashboard_path, class: current_page?(dashboard_path) ? 'active' : nil
+.profile-menu-container
+  .hidden-sm.hidden-md.hidden-lg.profile-menu-close
+    = link_to '#', data: { object: 'toggle-drawer' } do
+      %fa.fa.fa-times
+  %ul.blog-menu.profile-menu
+    / %li.blog-menu-header Dashboard
+    %li
+      = link_to 'Dashboard', dashboard_path, class: current_page?(dashboard_path) ? 'active' : nil
     %li= link_to 'Dashboard1', dashboard1_path, class: current_page?(dashboard1_path) ? 'active' : nil
     %li= link_to 'Dashboard2', dashboard2_path, class: current_page?(dashboard2_path) ? 'active' : nil
     %li= link_to 'Dashboard3', dashboard3_path, class: current_page?(dashboard3_path) ? 'active' : nil
+    %li= link_to 'Dashboard4', dashboard4_path, class: current_page?(dashboard4_path) ? 'active' : nil
+    %li= link_to 'Dashboard5', dashboard5_path, class: current_page?(dashboard5_path) ? 'active' : nil
+    %li= link_to 'Timeline', timeline_path, class: current_page?(timeline_path) ? 'active' : nil
     %li
       = link_to research_path, class: current_page?(research_path) ? 'active' : nil do
         Research
@@ -29,5 +36,3 @@
       = link_to 'Learn Modules', '#', data: { object: 'suppress-click' }, style: 'color: red;'
     %li
       = link_to 'My Saved Forum Things', '#', data: { object: 'suppress-click' }, style: 'color: red;'
-.dashboard-container.hidden-xs
-  SEARCH HERE

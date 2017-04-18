@@ -23,6 +23,22 @@ class InternalController < ApplicationController
   # def dashboard3
   # end
 
+  # # GET /dashboard4
+  # def dashboard4
+  # end
+
+  # # GET /dashboard5
+  # def dashboard5
+  # end
+
+  # # GET /yoga/consent
+  # def yoga_consent
+  # end
+
+  # # GET /timeline
+  # def timeline
+  # end
+
   # # GET /research
   # def research
   # end
