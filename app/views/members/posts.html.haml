@@ -1,0 +1,55 @@
+- @title = @member.forum_name
+
+- content_for :body_class do
+  myapnea-sky-bg
+
+- content_for :header do
+  .header-container
+    .container
+      %h1.page-heading
+        = @title
+
+.drawer-and-shelf-container
+  .drawer
+    = render 'members/menu', member: @member
+  .shelf
+    .hidden-sm.hidden-md.hidden-lg{ style: 'display: flex;flex-wrap: wrap;justify-content: center;' }
+      %div{ style: 'flex: 1 0 240px;max-width: 240px;' }= render 'members/profile_image', member: @member
+
+    - if @topics.present? || @recent_topics.present?
+      .profile-topics-container
+        - if @topics.present?
+          .profile-topics-overview
+            .dashboard-container
+              .dashboard-title
+                Top Topics
+              .dashboard-body.breakword
+                %ul.list-unstyled
+                  - @topics.each do |topic|
+                    %li
+                      %small.text-muted
+                        = topic.reply_count
+                        %fa.fa.fa-comments-o
+                      = link_to topic.title, topic, class: 'link-blend'
+        - if @recent_topics.present?
+          .profile-topics-overview
+            .dashboard-container
+              .dashboard-title
+                Recent Topics
+              .dashboard-body.breakword
+                %ul.list-unstyled
+                  - @recent_topics.each do |topic|
+                    %li
+                      %small.text-muted
+                        = topic.reply_count
+                        %fa.fa.fa-comments-o
+                      = link_to topic.title, topic, class: 'link-blend'
+
+
+    .dashboard-container
+      .dashboard-title Recent Posts
+      .dashboard-body
+        - @replies.each do |reply|
+          = render 'internal/reply', reply: reply
+
+    .center= paginate @replies, theme: 'bootstrap'

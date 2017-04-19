@@ -16,23 +16,9 @@
     = render 'internal/menu'
   .shelf
     .dashboard-container
-      = link_to '#', data: { object: 'toggle-drawer' }, class: 'drawer-open-button' do
-        %fa.fa.fa-bars
-        Menu
+      -# TODO: Filtering by shadow banned users for topics/blogs
       -# .joins(:topic).merge(Topic.current.shadow_banned(current_user))
       - @replies = Reply.current.shadow_banned(current_user).order(created_at: :desc)
       - @replies.joins(:user).limit(90).group_by(&:user).each do |user, replies|
         - reply = replies.first
-        %div{ style: 'display: flex;margin-bottom: 34px;flex-direction: row;flex-wrap: wrap;' }
-          %div{ style: 'flex: 0 0 75px;text-align: center;overflow: hidden;text-overflow: ellipsis;' }
-            = image_tag user_photo_url(reply.user), alt: '', style: "max-height: 75px;border-radius: 4px;", title: reply.user.forum_name, data: { toggle: 'tooltip', container: 'body', placement: 'top' }
-            %small= link_to reply.user.forum_name, member_path(reply.user.forum_name), class: 'link-muted'
-          %div{ style: 'flex: 1; padding: 0 10px;' }
-
-            %p
-              %strong= reply.parent.title
-            %p
-              = link_to reply, data: { turbolinks: false }, class: 'link-blend' do
-                = strip_tags(simple_markdown_new(reply.description)).gsub(/\r/, ' ').gsub(/\n/, ' ').truncate(250, separator: '.', omission: '...').html_safe
-                &raquo;
-
+        = render 'internal/reply', reply: reply

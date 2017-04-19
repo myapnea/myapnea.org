@@ -1,0 +1,18 @@
+.profile-reply
+  .profile-reply-image-container
+    = link_to member_posts_path(reply.user.forum_name), class: 'link-muted' do
+      = image_tag user_photo_url(reply.user), alt: '', title: reply.user.forum_name, data: { toggle: 'tooltip', container: 'body', placement: 'top' }
+      %small= reply.user.forum_name
+  .profile-reply-description-container
+    %p
+      %strong= reply.parent.title
+    %p
+      = link_to reply, data: { turbolinks: false }, class: 'link-blend' do
+        - clean_text = strip_tags(simple_markdown_new(reply.description)).gsub(/\r/, ' ').gsub(/\n/, ' ')
+        - if clean_text.present?
+          = clean_text.truncate(250, separator: '.', omission: '...').html_safe
+          &raquo;
+        - else
+          = simple_markdown_new(reply.description + ' &raquo;')
+
+

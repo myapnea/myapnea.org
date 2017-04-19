@@ -13,12 +13,10 @@ $drawer-width: 240px;
     .shelf {
       flex: 0 1 0px;
       overflow: hidden;
+      height: 0;
+      transform: translateX($drawer-width);
     }
   }
-}
-
-.drawer-open-button {
-  display: block;
 }
 
 .drawer {
@@ -36,6 +34,13 @@ $drawer-width: 240px;
 
 .shelf {
   flex: 1 1 auto;
+  height: auto;
+
+  transform: translateX(0);
+  transform-style: preserve-3d;
+  transition-duration: .2s;
+  transition-property: transform;
+  transition-timing-function: ease-in-out;
 }
 
 @media screen and (min-width: $screen-sm-min) {
@@ -49,12 +54,10 @@ $drawer-width: 240px;
       .shelf {
         flex: 1 1 auto;
         overflow: visible;
+        height: auto;
+        transform: translateX(0);
       }
     }
-  }
-
-  .drawer-open-button {
-    display: none;
   }
 
   .drawer {

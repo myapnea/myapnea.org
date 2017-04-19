@@ -3,14 +3,28 @@
 # Displays public profiles for forum members.
 class MembersController < ApplicationController
   before_action :find_member, only: :photo
-  before_action :find_member_or_redirect, only: :show
+  before_action :find_member_or_redirect, only: [:show, :badges, :posts]
 
   def index
     redirect_to topics_path
   end
 
+  # GET /members/:forum_name
   def show
     @replies = @member.replies.order(created_at: :desc).page(params[:page]).per(20)
+  end
+
+  # GET /members/:forum_name/badges
+  def badges
+    render layout: 'application_padded'
+  end
+
+  # GET /members/:forum_name/posts
+  def posts
+    @replies = @member.replies.order(created_at: :desc).page(params[:page]).per(10)
+    @topics = @member.topics.reply_count.order('reply_count desc').limit(3)
+    @recent_topics = @member.topics.reply_count.where.not(id: @topics.to_a.collect(&:id)).limit(3)
+    render layout: 'application_padded'
   end
 
   def photo
