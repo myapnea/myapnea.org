@@ -63,6 +63,11 @@
   flex: 1;
   padding: 0 10px;
   word-break: break-word;
+
+  img {
+    max-height: 42px;
+    max-width: 100%;
+  }
 }
 
 .profile-topics-container {
