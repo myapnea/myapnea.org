@@ -1,17 +1,19 @@
-%div.hidden-xs.profile
-  .profile-image-container{ rel: 'tooltip', data: { title: 'Change your picture', container: 'body', placement: 'bottom' } }
-    = link_to settings_path do
-      = image_tag user_photo_url(current_user), style: 'width: 220px;'
+- if false
+  %div.hidden-xs.profile
+    .profile-image-container{ rel: 'tooltip', data: { title: 'Change your picture', container: 'body', placement: 'bottom' } }
+      = link_to settings_path do
+        = image_tag user_photo_url(current_user), style: 'width: 220px;'
 
-  %div.overflow-hidden{ style: 'margin-left: 20px;margin-right: 20px;margin-bottom: 0;' }
-    %p
-      %strong= current_user.name
-      %br
-      %small= current_user.forum_name
-    %p
-      %small.profile-muted-description
-        Joined
-        = current_user.created_at.strftime('%b %Y')
+    %div.overflow-hidden{ style: 'margin-left: 20px;margin-right: 20px;margin-bottom: 0;' }
+      %p
+        %strong= current_user.name
+        %br
+        %small= current_user.forum_name
+      %p
+        %small.profile-muted-description
+          Joined
+          = current_user.created_at.strftime('%b %Y')
+
 .profile-menu-container
   .hidden-sm.hidden-md.hidden-lg.profile-menu-close
     = link_to '#', data: { object: 'toggle-drawer' } do

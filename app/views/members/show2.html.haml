@@ -1,0 +1,28 @@
+- @title = @member.forum_name
+
+- content_for :body_class do
+  myapnea-sky-bg
+
+- content_for :header do
+  .header-container
+    .container
+      %h1.page-heading
+        = @title
+
+.drawer-and-shelf-container
+  .drawer
+    = render 'members/menu', member: @member
+  .shelf
+    .dashboard-container
+      Follow
+      &middot;
+      Mute
+      &middot;
+      Search "Members" Posts
+
+    .dashboard-container
+      .dashboard-title Recent Posts
+      .dashboard-body
+        - @replies = @member.replies.order(created_at: :desc).limit(10)
+        - @replies.each do |reply|
+          = render 'internal/reply', reply: reply

@@ -3,7 +3,7 @@
 # Displays public profiles for forum members.
 class MembersController < ApplicationController
   before_action :find_member, only: :photo
-  before_action :find_member_or_redirect, only: :show
+  before_action :find_member_or_redirect, only: [:show, :show2]
 
   def index
     redirect_to topics_path
@@ -11,6 +11,10 @@ class MembersController < ApplicationController
 
   def show
     @replies = @member.replies.order(created_at: :desc).page(params[:page]).per(20)
+  end
+
+  def show2
+    render layout: 'application_padded'
   end
 
   def photo

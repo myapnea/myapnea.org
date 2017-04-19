@@ -10,6 +10,10 @@
   height: 220px;
   margin-bottom: 10px;
   overflow: hidden;
+
+  img {
+    @include ignore-selection;
+  }
 }
 
 .profile-muted-description {
