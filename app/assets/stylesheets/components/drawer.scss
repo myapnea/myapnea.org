@@ -13,12 +13,9 @@ $drawer-width: 240px;
     .shelf {
       flex: 0 1 0px;
       overflow: hidden;
+      height: 0;
     }
   }
-}
-
-.drawer-open-button {
-  display: block;
 }
 
 .drawer {
@@ -36,6 +33,7 @@ $drawer-width: 240px;
 
 .shelf {
   flex: 1 1 auto;
+  height: auto;
 }
 
 @media screen and (min-width: $screen-sm-min) {
@@ -49,12 +47,9 @@ $drawer-width: 240px;
       .shelf {
         flex: 1 1 auto;
         overflow: visible;
+        height: auto;
       }
     }
-  }
-
-  .drawer-open-button {
-    display: none;
   }
 
   .drawer {

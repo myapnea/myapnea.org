@@ -1,3 +1,4 @@
+- @drawer = true
 - if false
   %div.hidden-xs.profile
     .profile-image-container{ rel: 'tooltip', data: { title: 'Change your picture', container: 'body', placement: 'bottom' } }
@@ -15,9 +16,6 @@
           = current_user.created_at.strftime('%b %Y')
 
 .profile-menu-container
-  .hidden-sm.hidden-md.hidden-lg.profile-menu-close
-    = link_to '#', data: { object: 'toggle-drawer' } do
-      %fa.fa.fa-times
   %ul.blog-menu.profile-menu
     / %li.blog-menu-header Dashboard
     %li

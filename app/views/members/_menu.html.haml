@@ -1,9 +1,7 @@
+- @drawer = true
 .hidden-xs= render 'members/profile_image', member: member
 
 .profile-menu-container
-  .hidden-sm.hidden-md.hidden-lg.profile-menu-close
-    = link_to '#', data: { object: 'toggle-drawer' } do
-      %fa.fa.fa-times
   %ul.blog-menu.profile-menu
     %li.blog-menu-header Member
     %li= link_to 'Posts', member_posts_path(member.forum_name), class: current_page?(member_posts_path(member.forum_name)) ? 'active' : nil

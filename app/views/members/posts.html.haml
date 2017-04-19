@@ -47,10 +47,6 @@
 
 
     .dashboard-container
-      = link_to '#', data: { object: 'toggle-drawer' }, class: 'drawer-open-button' do
-        %fa.fa.fa-bars
-        Menu
-
       .dashboard-title Recent Posts
       .dashboard-body
         - @replies.each do |reply|
