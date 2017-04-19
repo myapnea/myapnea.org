@@ -1,6 +1,6 @@
 %div{ style: 'display: flex;margin-bottom: 34px;flex-direction: row;flex-wrap: wrap;' }
   %div{ style: 'flex: 0 0 75px;text-align: center;overflow: hidden;text-overflow: ellipsis;' }
-    = link_to member2_path(reply.user.forum_name), class: 'link-muted' do
+    = link_to member_posts_path(reply.user.forum_name), class: 'link-muted' do
       = image_tag user_photo_url(reply.user), alt: '', style: "max-height: 75px;border-radius: 4px;", title: reply.user.forum_name, data: { toggle: 'tooltip', container: 'body', placement: 'top' }
       %small= reply.user.forum_name
   %div{ style: 'flex: 1; padding: 0 10px;' }

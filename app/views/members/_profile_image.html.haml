@@ -1,0 +1,27 @@
+.profile
+  - if current_user == member
+    .profile-image-container{ rel: 'tooltip', data: { title: 'Change your picture', container: 'body', placement: 'bottom' } }
+      = link_to settings_path do
+        = image_tag user_photo_url(member), style: 'width: 220px;'
+  - else
+    .profile-image-container
+      = image_tag user_photo_url(member), style: 'width: 220px;'
+
+  %div.overflow-hidden{ style: 'margin-left: 20px;margin-right: 20px;margin-bottom: 0;' }
+    %p
+      - if current_user == member
+        %strong= current_user.name
+        %br
+        %small= member.forum_name
+      - else
+        %strong= member.forum_name
+        %br
+        %small
+          = link_to 'Follow', '#', data: { object: 'suppress-click' }, style: 'color: red;'
+          &middot;
+          = link_to 'Ignore', '#', data: { object: 'suppress-click' }, style: 'color: red;'
+
+    %p
+      %small.profile-muted-description
+        Joined
+        = member.created_at.strftime('%b %Y')

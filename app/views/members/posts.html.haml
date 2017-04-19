@@ -13,16 +13,17 @@
   .drawer
     = render 'members/menu', member: @member
   .shelf
-    .dashboard-container
-      Follow
-      &middot;
-      Mute
-      &middot;
-      Search "Members" Posts
+    .hidden-sm.hidden-md.hidden-lg{ style: 'display: flex;flex-wrap: wrap;justify-content: center;' }
+      %div{ style: 'flex: 1 0 240px;max-width: 240px;' }= render 'members/profile_image', member: @member
 
     .dashboard-container
+      = link_to '#', data: { object: 'toggle-drawer' }, class: 'drawer-open-button' do
+        %fa.fa.fa-bars
+        Menu
+
       .dashboard-title Recent Posts
       .dashboard-body
-        - @replies = @member.replies.order(created_at: :desc).limit(10)
         - @replies.each do |reply|
           = render 'internal/reply', reply: reply
+
+    .center= paginate @replies, theme: 'bootstrap'

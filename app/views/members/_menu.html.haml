@@ -1,25 +1,20 @@
-%div.hidden-xs.profile
-  - if current_user == member
-    .profile-image-container{ rel: 'tooltip', data: { title: 'Change your picture', container: 'body', placement: 'bottom' } }
-      = link_to settings_path do
-        = image_tag user_photo_url(member), style: 'width: 220px;'
-  - else
-    .profile-image-container
-      = image_tag user_photo_url(member), style: 'width: 220px;'
+.hidden-xs= render 'members/profile_image', member: member
 
-  %div.overflow-hidden{ style: 'margin-left: 20px;margin-right: 20px;margin-bottom: 0;' }
-    %p
-      - if current_user == member
-        %strong= current_user.name
-        %br
-      %small= member.forum_name
-    %p
-      %small.profile-muted-description
-        Joined
-        = member.created_at.strftime('%b %Y')
+.profile-menu-container
+  .hidden-sm.hidden-md.hidden-lg.profile-menu-close
+    = link_to '#', data: { object: 'toggle-drawer' } do
+      %fa.fa.fa-times
+  %ul.blog-menu.profile-menu
+    %li.blog-menu-header Member
+    %li= link_to 'Posts', member_posts_path(member.forum_name), class: current_page?(member_posts_path(member.forum_name)) ? 'active' : nil
+    %li= link_to 'Badges', member_badges_path(member.forum_name), class: current_page?(member_badges_path(member.forum_name)) ? 'active' : nil
 
 .profile
   %div.overflow-hidden{ style: 'margin-left: 20px;margin-right: 20px;margin-bottom: 0;padding-top: 11px;' }
+    %p
+      %strong Bio
+      %br
+      %small I run, eat, swim, and dance.
     %p
       %strong Posts
       %br
@@ -43,36 +38,7 @@
           %fa.fa.fa-smile-o
           %fa.fa.fa-smile-o{ style: 'color: #ccc;' }
           %fa.fa.fa-smile-o{ style: 'color: #ccc;' }
-
-.profile-menu-container
-  .hidden-sm.hidden-md.hidden-lg.profile-menu-close
-    = link_to '#', data: { object: 'toggle-drawer' } do
-      %fa.fa.fa-times
-  %ul.blog-menu.profile-menu
-    %li.blog-menu-header Menu
-    %li
-      = link_to '#', data: { object: 'suppress-click' }, style: 'color: green;' do
-        %fa.fa.fa-check
-        Following
-    %li
-      = link_to '#', data: { object: 'suppress-click' }, style: 'color: blue;' do
-        %fa.fa.fa-plus
-        Follow
-    %li= link_to 'Posts', '#', data: { object: 'suppress-click' }, style: 'color: red;'
-    %li= link_to 'Ignore', '#', data: { object: 'suppress-click' }, style: 'color: red;'
-    %li= link_to 'Badges', '#', data: { object: 'suppress-click' }, style: 'color: red;'
-
-.profile
-  %div.overflow-hidden{ style: 'margin-left: 20px;margin-right: 20px;margin-bottom: 0;padding-top: 11px;' }
     %p
-      %strong Achievements
-    %p
-      %small{ style: 'color: #ccc;' } 1&cross;
-      %span.label.label-default Sleep Commentator
-    %p
-      %small{ style: 'color: #ccc;' } 1&cross;
-      %span.label.label-default{ rel: 'tooltip', data: { title: 'Cast an upvote or downvote on the forum', container: 'body', placement: 'right' } } Voter
-    %p
-      %small{ style: 'color: #ccc;' } 1&cross;
-      %span.label.label-default{ rel: 'tooltip', data: { title: 'Created a poll', container: 'body', placement: 'right' } } Pollster
-
+      %strong Badges
+      %br
+      %small 3

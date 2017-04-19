@@ -200,7 +200,8 @@ Rails.application.routes.draw do
 
   get 'members', to: 'members#index', as: :members
   get 'members/:forum_name', to: 'members#show', as: :member
-  get 'members/:forum_name/show2', to: 'members#show2', as: :member2
+  get 'members/:forum_name/posts', to: 'members#posts', as: :member_posts
+  get 'members/:forum_name/badges', to: 'members#badges', as: :member_badges
   scope module: :members do
     get '/photo/:forum_name', action: 'photo', as: :photo_member
   end

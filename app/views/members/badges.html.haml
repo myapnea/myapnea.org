@@ -1,0 +1,26 @@
+- @title = "#{@member.forum_name}'s Badges"
+
+- content_for :body_class do
+  myapnea-sky-bg
+
+- content_for :header do
+  .header-container
+    .container
+      %h1.page-heading
+        = @title
+
+.drawer-and-shelf-container
+  .drawer
+    = render 'members/menu', member: @member
+  .shelf
+    .dashboard-container
+      %p
+        %small{ style: 'color: #ccc;' } 1&cross;
+        %span.label.label-default Sleep Commentator
+      %p
+        %small{ style: 'color: #ccc;' } 1&cross;
+        %span.label.label-default{ rel: 'tooltip', data: { title: 'Cast an upvote or downvote on the forum', container: 'body', placement: 'right' } } Voter
+      %p
+        %small{ style: 'color: #ccc;' } 1&cross;
+        %span.label.label-default{ rel: 'tooltip', data: { title: 'Created a poll', container: 'body', placement: 'right' } } Pollster
+
