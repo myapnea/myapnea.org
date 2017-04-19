@@ -8,6 +8,8 @@
     %li.blog-menu-header Member
     %li= link_to 'Posts', member_posts_path(member.forum_name), class: current_page?(member_posts_path(member.forum_name)) ? 'active' : nil
     %li= link_to 'Badges', member_badges_path(member.forum_name), class: current_page?(member_badges_path(member.forum_name)) ? 'active' : nil
+    - if member.broadcasts.published.count > 0
+      %li= link_to 'Blogs', blog_author_path(author: member.forum_name)
 
 .profile
   %div.overflow-hidden{ style: 'margin-left: 20px;margin-right: 20px;margin-bottom: 0;padding-top: 11px;' }

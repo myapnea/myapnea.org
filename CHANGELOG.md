@@ -13,6 +13,7 @@
   - Added search to the mobile dropdown menu
   - Improved page navigation after signing in and signing out
   - Redesigned dashboard and settings pages
+  - Added "Top" and "Recent" topics to member profile
 - **Forum Changes**
   - Adjusted how the forum index displays on mobile devices
   - Generated forum names are now simpler and shorter
