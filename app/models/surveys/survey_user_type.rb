@@ -8,7 +8,7 @@ class SurveyUserType < ApplicationRecord
   # Model Validation
   validates_presence_of :survey_id, :user_id, :user_type
   validates_uniqueness_of :user_type, scope: [ :survey_id, :deleted ]
-  validates_inclusion_of :user_type, in: User::TYPES.collect(&:last)
+  # validates_inclusion_of :user_type, in: User::TYPES.collect(&:last)
 
   # Model Relationships
   belongs_to :user
