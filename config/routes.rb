@@ -41,11 +41,6 @@ Rails.application.routes.draw do
         get :photo
       end
     end
-    resources :clinical_trials do
-      collection do
-        get :order
-      end
-    end
   end
 
   scope module: :blog do
@@ -170,7 +165,6 @@ Rails.application.routes.draw do
     get :team
     get :advisory
     get :partners
-    get 'clinical-trials', action: :clinical_trials
     get :sitemap
     get :sizes
     get :learn

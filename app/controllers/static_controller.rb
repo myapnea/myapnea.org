@@ -24,10 +24,6 @@ class StaticController < ApplicationController
                     'eep apnea and sleep apnea causes.'
   end
 
-  def clinical_trials
-    @clinical_trials = Admin::ClinicalTrial.current.order(:position)
-  end
-
   # def version
   # end
 

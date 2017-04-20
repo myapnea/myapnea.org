@@ -1,8 +1,7 @@
 - @title = 'Admin Dashboard'
-- @theme = 'sunset'
 
 - content_for :body_class do
-  myapnea-sunset-bg
+  myapnea-sky-bg
 
 - content_for :header do
   .header-container
@@ -10,10 +9,10 @@
       %h1.page-heading
         = @title
 
-= render 'blank/sunset'
-
-.row
-  .col-sm-9.col-sm-push-3
+.drawer-and-shelf-container
+  .drawer
+    = render 'admin/menu'
+  .shelf
     .dashboard-container
       .dashboard-title You can do things here!
       .dashboard-body
@@ -25,6 +24,3 @@
         %p And other stuff. Just for you, hurray!
 
         %p My Recent Topics I participated in
-
-  .col-sm-3.col-sm-pull-9.col-sticky
-    = render 'admin/menu'

@@ -1,43 +1,58 @@
-- @title = 'Data Exports'
+- @title = 'Exports'
 
-.content-main-header2
-  %h1
-    = link_to 'Admin Dashboard', admin_path
-    &middot;
-    = @title
 
-= link_to 'Start New Export', admin_exports_path, class: 'btn btn-primary-custom', method: :post
-%table.table.table-striped
-  %thead
-    %tr
-      %th Name
-      %th File
-      %th Progress
-      %th Actions
-  %tbody
-    - @admin_exports.each do |admin_export|
-      %tr{ id: "admin-export-#{admin_export.id}" }
-        %td= link_to admin_export.name, admin_export
-        %td
-          - if admin_export.file.size > 0
-            = link_to admin_export.file.to_s.split('/').last, file_admin_export_path(admin_export), target: '_blank', class: 'btn btn-default btn-xs'
-            = number_to_human_size admin_export.file.size
-        %td
-          - percent = admin_export.percent
-          - status = 'danger'
-          - status = 'warning' if percent >= 33
-          - status = 'success' if percent == 100
-          - status = 'danger' if admin_export.status == 'failed'
-          - if percent == 0 || admin_export.status == 'failed'
-            %span.label{ class: "label-#{status}" }= admin_export.status
-          - else
-            .progress.progress-striped{ style: 'margin: 0px' }
-              .progress-bar{ class: "progress-bar-#{status}", style: "width: #{percent}%;min-width: 2em" }
-                = succeed '%' do
-                  = percent
-        %td
-          %div{ id: "admin-export-#{admin_export.id}-request-delete" }
-            = link_to 'Delete', '#', class: 'btn btn-xs btn-danger', data: { object: 'toggle-delete-buttons', target_show: "#admin-export-#{admin_export.id}-confirm-delete", target_hide: "#admin-export-#{admin_export.id}-request-delete" }
-          %div{ id: "admin-export-#{admin_export.id}-confirm-delete", style: 'display:none' }
-            = link_to 'Confirm Delete', admin_export, method: :delete, remote: true, class: 'btn btn-xs btn-danger'
-            = link_to 'Cancel', '#', class: 'btn btn-xs btn-default', data: { object: 'toggle-delete-buttons', target_show: "#admin-export-#{admin_export.id}-request-delete", target_hide: "#admin-export-#{admin_export.id}-confirm-delete" }
+- content_for :body_class do
+  myapnea-sky-bg
+
+- content_for :header do
+  .header-container
+    .container
+      %h1.page-heading
+        .pull-right
+          = link_to download_or('Export CSV'), admin_exports_path, method: :post, class: 'btn btn-accent btn-shadow'
+          = render 'layouts/per_page', per_page: 40, object_count: @admin_exports.total_count
+        = @title
+
+.drawer-and-shelf-container
+  .drawer
+    = render 'admin/menu'
+  .shelf
+    .dashboard-container
+      %table.table.table-striped.table-borderless.table-hover
+        %col
+        %col
+        %col
+        %col{ width: '1px' }
+        %thead
+          %tr
+            %th Name
+            %th File
+            %th Progress
+            %th.center Actions
+        %tbody
+          - @admin_exports.each do |admin_export|
+            %tr{ id: "admin-export-#{admin_export.id}" }
+              %td= link_to admin_export.name, admin_export
+              %td
+                - if admin_export.file.size > 0
+                  = link_to admin_export.file.to_s.split('/').last, file_admin_export_path(admin_export), target: '_blank', class: 'btn btn-default btn-xs'
+                  = number_to_human_size admin_export.file.size
+              %td
+                - percent = admin_export.percent
+                - status = 'danger'
+                - status = 'warning' if percent >= 33
+                - status = 'success' if percent == 100
+                - status = 'danger' if admin_export.status == 'failed'
+                - if percent == 0 || admin_export.status == 'failed'
+                  %span.label{ class: "label-#{status}" }= admin_export.status
+                - else
+                  .progress.progress-striped{ style: 'margin: 0px' }
+                    .progress-bar{ class: "progress-bar-#{status}", style: "width: #{percent}%;min-width: 2em" }
+                      = succeed '%' do
+                        = percent
+              %td.center
+                %div{ id: "admin-export-#{admin_export.id}-request-delete" }
+                  = link_to 'Delete', '#', class: 'btn btn-xs btn-danger', data: { object: 'toggle-delete-buttons', target_show: "#admin-export-#{admin_export.id}-confirm-delete", target_hide: "#admin-export-#{admin_export.id}-request-delete" }
+                %div{ id: "admin-export-#{admin_export.id}-confirm-delete", style: 'display:none' }
+                  = link_to 'Confirm Delete', admin_export, method: :delete, remote: true, class: 'btn btn-xs btn-danger'
+                  = link_to 'Cancel', '#', class: 'btn btn-xs btn-default', data: { object: 'toggle-delete-buttons', target_show: "#admin-export-#{admin_export.id}-request-delete", target_hide: "#admin-export-#{admin_export.id}-confirm-delete" }
