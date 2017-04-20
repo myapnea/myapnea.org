@@ -4,8 +4,7 @@
 class Admin::ExportsController < ApplicationController
   before_action :authenticate_user!
   before_action :check_admin
-  before_action :set_admin_export,              only: [:show, :progress, :file, :destroy]
-  before_action :redirect_without_admin_export, only: [:show, :progress, :file, :destroy]
+  before_action :find_admin_export_or_redirect, only: [:show, :progress, :file, :destroy]
 
   layout 'application_padded'
 
@@ -70,8 +69,9 @@ class Admin::ExportsController < ApplicationController
 
   private
 
-  def set_admin_export
+  def find_admin_export_or_redirect
     @admin_export = Admin::Export.find_by(id: params[:id])
+    redirect_without_admin_export
   end
 
   def redirect_without_admin_export

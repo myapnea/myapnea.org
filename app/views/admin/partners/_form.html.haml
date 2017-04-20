@@ -1,12 +1,4 @@
 = form_for @admin_partner, html: { class: 'form-horizontal' } do |f|
-  - if @admin_partner.errors.any?
-    #error_explanation
-      %h2
-        = pluralize(@admin_partner.errors.count, "error")
-        prohibited this admin_partner from being saved:
-      %ul
-        - @admin_partner.errors.full_messages.each do |message|
-          %li= message
   .form-group
     = f.label :photo, nil, class: 'control-label col-md-2'
     .col-md-10
@@ -15,6 +7,7 @@
     = f.label :name, nil, class: 'control-label col-md-2'
     .col-md-10
       = f.text_field :name, class: 'form-control'
+      = render 'layouts/errors', object: @admin_partner, key: :name
   .form-group
     = f.label :description, nil, class: 'control-label col-md-2'
     .col-md-10
@@ -27,6 +20,7 @@
     = f.label :position, nil, class: 'control-label col-md-2'
     .col-md-10
       = f.number_field :position, class: 'form-control'
+      = render 'layouts/errors', object: @admin_partner, key: :position
   .form-group
     = f.label :group, nil, class: 'control-label col-md-2'
     .col-md-10

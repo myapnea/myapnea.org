@@ -10,7 +10,7 @@
       %h1.page-heading
         .pull-right
           = link_to download_or('Export CSV'), admin_exports_path, method: :post, class: 'btn btn-accent btn-shadow'
-          = render 'layouts/per_page', per_page: 40, object_count: @admin_exports.total_count
+          = render 'layouts/per_page', per_page: 10, object_count: @admin_exports.total_count
         = @title
 
 .drawer-and-shelf-container

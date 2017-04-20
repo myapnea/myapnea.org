@@ -4,7 +4,9 @@
 class Admin::PartnersController < ApplicationController
   before_action :authenticate_user!,  except: [:photo]
   before_action :check_admin,         except: [:photo]
-  before_action :set_admin_partner,   only: [:show, :edit, :update, :destroy, :photo]
+  before_action :find_admin_partner_or_redirect,   only: [:show, :edit, :update, :destroy, :photo]
+
+  layout 'application_padded'
 
   def photo
     if @admin_partner.photo.size > 0
@@ -15,13 +17,11 @@ class Admin::PartnersController < ApplicationController
   end
 
   # GET /admin/partners
-  # GET /admin/partners.json
   def index
-    @admin_partners = Admin::Partner.current.order('position')
+    @admin_partners = Admin::Partner.current.order(:group, :position).page(params[:page]).per(10)
   end
 
   # GET /admin/partners/1
-  # GET /admin/partners/1.json
   def show
     redirect_to admin_partners_path
   end
@@ -31,58 +31,49 @@ class Admin::PartnersController < ApplicationController
     @admin_partner = Admin::Partner.new
   end
 
-  # GET /admin/partners/1/edit
-  def edit
-  end
+  # # GET /admin/partners/1/edit
+  # def edit
+  # end
 
   # POST /admin/partners
-  # POST /admin/partners.json
   def create
     @admin_partner = Admin::Partner.new(admin_partner_params)
-
-    respond_to do |format|
-      if @admin_partner.save
-        format.html { redirect_to @admin_partner, notice: 'Partner was successfully created.' }
-        format.json { render :show, status: :created, location: @admin_partner }
-      else
-        format.html { render :new }
-        format.json { render json: @admin_partner.errors, status: :unprocessable_entity }
-      end
+    if @admin_partner.save
+      redirect_to @admin_partner, notice: 'Partner was successfully created.'
+    else
+      render :new
     end
   end
 
-  # PATCH/PUT /admin/partners/1
-  # PATCH/PUT /admin/partners/1.json
+  # PATCH /admin/partners/1
   def update
-    respond_to do |format|
-      if @admin_partner.update(admin_partner_params)
-        format.html { redirect_to @admin_partner, notice: 'Partner was successfully updated.' }
-        format.json { render :show, status: :ok, location: @admin_partner }
-      else
-        format.html { render :edit }
-        format.json { render json: @admin_partner.errors, status: :unprocessable_entity }
-      end
+    if @admin_partner.update(admin_partner_params)
+      redirect_to @admin_partner, notice: 'Partner was successfully updated.'
+    else
+      render :edit
     end
   end
 
   # DELETE /admin/partners/1
-  # DELETE /admin/partners/1.json
   def destroy
     @admin_partner.destroy
-    respond_to do |format|
-      format.html { redirect_to admin_partners_url, notice: 'Partner was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to admin_partners_path, notice: 'Partner was successfully destroyed.'
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_admin_partner
-      @admin_partner = Admin::Partner.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def admin_partner_params
-      params.require(:admin_partner).permit(:name, :description, :photo, :link, :position, :displayed, :group)
-    end
+  def find_admin_partner_or_redirect
+    @admin_partner = Admin::Partner.find_by(id: params[:id])
+    redirect_without_admin_partner
+  end
+
+  def redirect_without_admin_partner
+    empty_response_or_root_path(admin_partners_path) unless @admin_partner
+  end
+
+  def admin_partner_params
+    params.require(:admin_partner).permit(
+      :name, :description, :photo, :link, :position, :displayed, :group
+    )
+  end
 end
