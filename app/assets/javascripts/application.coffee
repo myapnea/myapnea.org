@@ -24,22 +24,11 @@
 #= require compatibility/array_prototype_map.js
 
 # External
-# `vendor/assets/javascripts`
-#= require jquery.slimscroll
-#= require jquery.PrintArea
-#= require d3.min
-#
 #= require external/bootstrap-datepicker.js
-#= require external/jquery-fieldselection.js
-#= require external/highcharts-4.0.4.src.js
-#= require external/highmaps-1.0.4-modules-map.src.js
-#= require external/highmaps-1.0.4-modules-data.js
-#= require external/us-all.js
-#= require external/world.js
-#= require external/jquery.color.min.js
-#= require external/jquery.placeholder.js
-#= require external/jquery.animate-shadow-min.js
 #= require external/froogaloop2.min.js
+#= require external/google_analytics
+#= require external/jquery-fieldselection.js
+#= require external/jquery.PrintArea.js
 
 # Extensions
 #= require extensions/datepicker

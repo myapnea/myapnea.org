@@ -7,9 +7,6 @@
 
 // Layout
 @import 'colors';
-@import 'fonts';
-@import 'content';
-@import 'flash_containers';
 
 // App Mixins
 @import 'mixins/all';
@@ -21,40 +18,12 @@
 @import 'extensions/all';
 @import 'objects/all';
 
+
+// TODO: Remove (refactor) following items.
+
 // Static
 @import 'static/team';
-@import 'static/social';
-@import 'static/learn';
-
-// Surveys
-@import 'surveys/surveys';
-@import 'surveys/checkbox_input';
-@import 'surveys/hidden_input';
-@import 'surveys/radio_input';
-@import 'surveys/radio_input_multiple';
-@import 'surveys/range_input';
-@import 'surveys/text_input';
-@import 'surveys/height_input';
-@import 'surveys/number_input';
-
-// Survey Reports
-@import 'survey_reports/radial_progress';
-@import 'survey_reports/speech_bubbles';
-@import 'survey_reports/clock';
-@import 'survey_reports/reports';
-@import 'survey_reports/my_health_conditions';
-
-// Tools
-@import 'tools/risk_assessment';
-@import 'tools/risk_assessment_results';
-@import 'tools/bmi_ahi';
 
 // Admin
-@import 'admin/team_members';
 @import 'admin/partners';
-
-// Survey Building
-@import 'builder';
-
-// Other
-@import 'content_header';
+@import 'admin/team_members';

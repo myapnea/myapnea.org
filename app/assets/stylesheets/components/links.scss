@@ -70,32 +70,8 @@ a.no-underline:hover {
   text-decoration: none;
 }
 
-a.inline-link { display: inline; }
 
-a.white:hover {color: rgb(255,255,255); color: rgba(255,255,255,.8); }
-
-.blue-block-link {
-  border: 2px solid $darkest-blue;
-  background-color: white;
-  border-radius: 5px;
-  color: $black;
-  font-size: 18px;
-  font-weight: 300;
-  margin-bottom: 10px;
-  padding-bottom: 5px;
-  padding-top: 5px;
-  text-decoration: none;
-}
-
-.blue-block-link:hover {
-  background-color: $darkest-blue;
-  color: $white;
-}
-
-a.darkerer-blue:hover {
-  color: #233063 !important;
-}
-
+// TODO: Remove anchor
 a.anchor {
   display: block;
   height: 0;
@@ -103,15 +79,4 @@ a.anchor {
   top: -($header-height);
   width: 0;
   visibility:hidden;
-}
-
-a.settings-anchor {
-  position: relative;
-  top: -121px;
-  display: block;
-  visibility: hidden;
-}
-
-.hover-hand:hover {
-  cursor: pointer;
 }
