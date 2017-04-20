@@ -5,12 +5,7 @@
     %li= link_to 'Users', users_path
     %li.blog-menu-header Discussion
     %li= link_to 'Blog and Forum Replies', admin_replies_path
-    %li.blog-menu-header Survey Results
-    %li= link_to 'Cross Tabs', admin_cross_tabs_path
-    %li= link_to 'Exports', admin_exports_path, class: params[:controller] == 'admin/exports' ? 'active' : nil
-    %li= link_to 'Surveys', admin_surveys_path
-    %li= link_to 'Progress Report', admin_progress_report_path
-    %li= link_to 'Timeline Report', admin_reports_timeline_path
     %li.blog-menu-header Features
+    %li= link_to 'Exports', admin_exports_path, class: params[:controller] == 'admin/exports' ? 'active' : nil
     %li= link_to 'Partners', admin_partners_path, class: params[:controller] == 'admin/partners' ? 'active' : nil
     %li= link_to 'Team Members', admin_team_members_path, class: params[:controller] == 'admin/team_members' ? 'active' : nil

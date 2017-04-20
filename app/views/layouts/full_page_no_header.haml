@@ -32,7 +32,7 @@
     = javascript_tag "var root_url='#{request.script_name + '/'}';"
   -# Should be used with full page layouts that use footer but NO header.
   %body#top.full-page-no-header{ class: yield(:body_class) }
-    =# render 'layouts/partials/flash_messages'
+    =# render 'layouts/flash_messages'
     = yield :header
     = yield
     = yield :footer

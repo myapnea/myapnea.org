@@ -1,6 +1,0 @@
-.input-group.center-block
-  .check-box-container.preferred-not-to-answer
-    = check_box_tag "#{question.to_param}[preferred_not_to_answer]", '1', answer.preferred_not_to_answer?, disabled: answer.locked?, name: 'response[preferred_not_to_answer]', class: 'preferred-not-to-answer-input'
-    %label{ for: "#{question.to_param}[preferred_not_to_answer]", style: "#{'cursor: default' if answer.locked?}", class: "#{'hidden' if answer.locked? && !answer.preferred_not_to_answer?}" }
-      %span.hotkey{ style: "#{'cursor: default' if answer.locked?}" } &#10003;
-      %p Skip this question
