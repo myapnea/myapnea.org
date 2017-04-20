@@ -11,7 +11,7 @@ class MembersController < ApplicationController
 
   # GET /members/:forum_name
   def show
-    @replies = @member.replies.order(created_at: :desc).page(params[:page]).per(20)
+    redirect_to member_posts_path(params[:forum_name])
   end
 
   # GET /members/:forum_name/badges

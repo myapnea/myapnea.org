@@ -1,22 +1,17 @@
 # frozen_string_literal: true
 
+# Defines partners for MyApnea website.
 class Admin::Partner < ApplicationRecord
-  # Default Scope
   # Constants
-  GROUPS = ['main', 'promotional']
-  # Attribute related macros
-  # Associations
+  GROUPS = %w(main promotional)
+
   # Validations
   validates :name, presence: true
   validates :position, presence: true
 
   # Callback
-  # Other macros
   mount_uploader :photo, PhotoUploader
 
   # Concerns
   include Deletable
-
-  # Scopes
-  # Methods
 end

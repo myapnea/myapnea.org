@@ -41,11 +41,6 @@ Rails.application.routes.draw do
         get :photo
       end
     end
-    resources :clinical_trials do
-      collection do
-        get :order
-      end
-    end
   end
 
   scope module: :blog do
@@ -168,11 +163,8 @@ Rails.application.routes.draw do
   scope module: 'static' do
     get :about
     get :team
-    get 'pep-corner', action: :pep_corner
-    get 'pep-corner/:pep_id', action: :pep_corner_show, as: :pep_corner_show
     get :advisory
     get :partners
-    get 'clinical-trials', action: :clinical_trials
     get :sitemap
     get :sizes
     get :learn

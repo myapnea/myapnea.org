@@ -9,15 +9,8 @@ class StaticController < ApplicationController
 
   # GET /team
   def team
-    @team_members = Admin::TeamMember.current.order('position')
-  end
-
-  def pep_corner
-    @pep_members = Admin::TeamMember.current.where(group: 'patient').where.not(interview: nil).order('position')
-  end
-
-  def pep_corner_show
-    @pep_member = Admin::TeamMember.find(params[:pep_id])
+    @team_members = Admin::TeamMember.current.order(:position)
+    render layout: 'application_padded'
   end
 
   def partners
@@ -29,10 +22,6 @@ class StaticController < ApplicationController
                     ', have been diagnosed with obstructive sleep apnea or cen'\
                     'tral sleep apnea, MyApnea wants to help you understand sl'\
                     'eep apnea and sleep apnea causes.'
-  end
-
-  def clinical_trials
-    @clinical_trials = Admin::ClinicalTrial.current.order(:position)
   end
 
   # def version

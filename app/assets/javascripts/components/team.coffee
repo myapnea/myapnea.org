@@ -13,10 +13,6 @@
     swingToTop()
     return
 
-  $(".advisory-small").click ->
-    $(this).find(".collapse").collapse "toggle"
-    console.log "collapsed"
-
   swingToTop = ->
     if ($(document).scrollTop() > top)
       $(body).stop().animate { scrollTop: top }, 500, 'swing'

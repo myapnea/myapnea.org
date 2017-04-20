@@ -82,7 +82,7 @@ class UsersControllerTest < ActionController::TestCase
     assert_redirected_to root_path
   end
 
-  test 'should not show user for loggout out user' do
+  test 'should not show user for public user' do
     get :show, params: { id: @user }
     assert_nil assigns(:user)
     assert_redirected_to new_user_session_path
