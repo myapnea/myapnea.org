@@ -55,8 +55,8 @@ class Admin::TeamMembersController < ApplicationController
     end
   end
 
-  # PATCH/PUT /admin/team_members/1
-  # PATCH/PUT /admin/team_members/1.json
+  # PATCH /admin/team_members/1
+  # PATCH /admin/team_members/1.json
   def update
     respond_to do |format|
       if @admin_team_member.update(admin_team_member_params)
@@ -80,13 +80,14 @@ class Admin::TeamMembersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_admin_team_member
-      @admin_team_member = Admin::TeamMember.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def admin_team_member_params
-      params.require(:admin_team_member).permit(:name, :designations, :role, :position, :bio, :photo, :group, :interview)
-    end
+  def set_admin_team_member
+    @admin_team_member = Admin::TeamMember.find(params[:id])
+  end
+
+  def admin_team_member_params
+    params.require(:admin_team_member).permit(
+      :name, :designations, :role, :position, :bio, :photo, :group
+    )
+  end
 end

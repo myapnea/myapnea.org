@@ -9,15 +9,8 @@ class StaticController < ApplicationController
 
   # GET /team
   def team
-    @team_members = Admin::TeamMember.current.order('position')
-  end
-
-  def pep_corner
-    @pep_members = Admin::TeamMember.current.where(group: 'patient').where.not(interview: nil).order('position')
-  end
-
-  def pep_corner_show
-    @pep_member = Admin::TeamMember.find(params[:pep_id])
+    @team_members = Admin::TeamMember.current.order(:position)
+    render layout: 'application_padded'
   end
 
   def partners

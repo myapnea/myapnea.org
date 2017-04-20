@@ -168,8 +168,6 @@ Rails.application.routes.draw do
   scope module: 'static' do
     get :about
     get :team
-    get 'pep-corner', action: :pep_corner
-    get 'pep-corner/:pep_id', action: :pep_corner_show, as: :pep_corner_show
     get :advisory
     get :partners
     get 'clinical-trials', action: :clinical_trials

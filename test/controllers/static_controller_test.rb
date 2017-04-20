@@ -14,16 +14,6 @@ class StaticControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test 'should get PEP corner' do
-    get :pep_corner
-    assert_response :success
-  end
-
-  test 'should get PEP corner show' do
-    get :pep_corner_show, params: { pep_id: admin_team_members(:one) }
-    assert_response :success
-  end
-
   test 'should get governance charter' do
     get :governance_policy
     assert_response :success
