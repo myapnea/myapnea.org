@@ -1,13 +1,6 @@
 @fadeAndRemove = (element) ->
   $(element).fadeOut(500, -> $(element).remove())
 
-@consentReady = ->
-  $("#consent .scroll").slimscroll(
-    height: '385px'
-    alwaysVisible: true
-    railVisible: true
-  )
-
 @setFocusToField = (element_id) ->
   val = $(element_id).val()
   $(element_id).focus().val('').val(val)
@@ -18,34 +11,20 @@
   notouchReady()
   tooltipsReady()
 
+@componentsReady = ->
+  animateProgressBar()
+  exportsReady()
+  landingReady()
+  teamReady()
+
 @objectsReady = ->
   repliesReady()
 
 # These functions get called on initial page visit and on turbolink page changes
 @turbolinksReady = ->
+  componentsReady()
   extensionsReady()
   objectsReady()
-  # TODO: Organize Other Ready functions
-  consentReady()
-  teamReady()
-  questionsReady() if questionsReady?
-  landingReady() if landingReady?
-  mapsReady()
-  shareIconsReady() if shareIconsReady?
-  drawSurveyProgressReady() if drawSurveyProgressReady?
-  surveyAnimationReady() if surveyAnimationReady?
-  registrationUXReady() if registrationUXReady?
-  toolsReady() if toolsReady?
-  surveyReportsReady() if surveyReportsReady?
-  fileDragOldReady()
-  exportsReady()
-  socialMediaReady() if $('#sleep_tip').length > 0
-  builderQuestionsReady()
-  builderAnswerTemplatesReady()
-  builderAnswerOptionsReady()
-  mapsReady()
-  landingReadyNew()
-  animateProgressBar()
 
 # These functions only get called on the initial page visit (no turbolinks).
 # Browsers that don't support turbolinks will initialize all functions in

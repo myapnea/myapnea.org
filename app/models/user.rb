@@ -15,16 +15,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable, :timeoutable, :lockable
 
   # Callbacks
-  after_commit :set_forum_name, :send_welcome_email_in_background!, :update_location, on: :create
-
-  # Mappings
-  TYPES = [
-    ['Adult who has been diagnosed with sleep apnea', 'adult_diagnosed'],
-    ['Adult who is at-risk of sleep apnea', 'adult_at_risk'],
-    ['Caregiver of adult diagnosed with or at-risk of sleep apnea', 'caregiver_adult'],
-    ['Caregiver of child(ren) diagnosed with or at-risk of sleep apnea', 'caregiver_child'],
-    ['Research professional', 'researcher']
-  ]
+  after_commit :set_forum_name, :send_welcome_email_in_background!, on: :create
 
   # Concerns
   include Deletable, Coenrollment, Forkable, RandomNameGenerator
@@ -45,8 +36,6 @@ class User < ApplicationRecord
   validates :over_eighteen, inclusion: { in: [true], message: 'You must be over 18 years of age to sign up' }, allow_nil: true
 
   # Model Relationships
-  has_many :answer_sessions, -> { where deleted: false }
-  has_many :answers
   has_many :broadcasts, -> { current }
   has_many :broadcast_comments
   has_many :topics, -> { current }
@@ -54,14 +43,7 @@ class User < ApplicationRecord
   has_many :replies, -> { current.joins(:topic).merge(Topic.current) }
   has_many :images
   has_many :notifications
-  has_many :children, -> { where(deleted: false).order('age desc', :first_name) }
-  has_many :encounters, -> { where deleted: false }
   has_many :exports, -> { order id: :desc }, class_name: 'Admin::Export'
-
-  ## Builder
-
-  has_many :questions, -> { where deleted: false }
-  has_many :answer_templates, -> { where deleted: false }
 
   # Overriding Devise built-in active_for_authentication? method
   def active_for_authentication?
@@ -86,30 +68,6 @@ class User < ApplicationRecord
     topic_user = topic_users.where(topic_id: parent.id).first_or_create
     topic_user.update current_reply_read_id: [topic_user.current_reply_read_id.to_i, current_reply_read_id].max,
                         last_reply_read_id: topic_user.current_reply_read_id
-  end
-
-  def is_only_researcher?
-    researcher? && !is_nonacademic?
-  end
-
-  def is_nonacademic?
-    adult_diagnosed? || adult_at_risk? || caregiver_child? || caregiver_adult?
-  end
-
-  def has_user_type?
-    adult_diagnosed? || adult_at_risk? || caregiver_child? || caregiver_adult? || researcher?
-  end
-
-  def user_type_names
-    User::TYPES.collect do |label, user_type|
-      label if self[user_type]
-    end.compact
-  end
-
-  def user_types
-    User::TYPES.collect do |_label, user_type|
-      user_type if self[user_type]
-    end.compact
   end
 
   def editable_topics
@@ -184,56 +142,6 @@ class User < ApplicationRecord
       (Date.parse(RECENT_UPDATE_DATE).at_noon > Time.zone.now && !Rails.env.test?)
   end
 
-  # User Types
-  def update_user_types(user_types)
-    update user_types
-    assign_default_surveys
-  end
-
-  # Surveys
-  def get_baseline_survey_answer_session(survey)
-    answer_sessions.no_child.where(encounter: 'baseline', survey_id: survey.id).first_or_create
-  end
-
-  def completed_answer_sessions
-    answer_sessions.no_child.where(locked: true).joins(:survey).merge(Survey.current.viewable)
-  end
-
-  def incomplete_answer_sessions
-    answer_sessions.no_child.where(locked: false).joins(:survey).merge(Survey.current.viewable)
-  end
-
-  def completed_assigned_answer_sessions?
-    answer_sessions.no_child.where(locked: false).joins(:survey).merge(Survey.current.viewable).count == 0
-  end
-
-  def next_answer_session(answer_session)
-    incomplete_answer_sessions.where.not(id: answer_session.id).first if answer_session
-  end
-
-  # Child Surveys
-  def completed_child_answer_sessions(child_input)
-    answer_sessions.where(child_id: child_input, locked: true).joins(:survey).merge(Survey.current.viewable)
-  end
-
-  def incomplete_child_answer_sessions(child_input)
-    answer_sessions.where(child_id: child_input, locked: false).joins(:survey).merge(Survey.current.viewable)
-  end
-
-  def completed_child_assigned_answer_sessions?(child_input)
-    answer_sessions.where(child_id: child_input, locked: false).joins(:survey).merge(Survey.current.viewable).count == 0
-  end
-
-  def next_child_answer_session(answer_session)
-    if answer_session && answer_session.child.present?
-      answer_sessions.where(child_id: answer_session.child_id, locked: false).where.not(id: answer_session.id).joins(:survey).merge(Survey.current.viewable).first
-    end
-  end
-
-  def completed_demographic_survey?
-    answer_sessions.where(survey_id: Survey.find_by(slug: 'about-me').id).where(locked:true).present?
-  end
-
   # Can Build Surveys
   def editable_surveys
     Survey.with_editor(id).order(:name_en)
@@ -287,30 +195,5 @@ class User < ApplicationRecord
 
   def send_welcome_email!
     UserMailer.welcome(self).deliver_now if EMAILS_ENABLED
-  end
-
-  def update_location
-    Map.update_user_location(self)
-  end
-
-  def assign_default_surveys
-    remove_out_of_range_answer_sessions!
-    User::TYPES.each do |label, user_type|
-      if self[user_type]
-        Survey.current.viewable.non_pediatric.joins(:survey_user_types).merge(SurveyUserType.current.where(user_type: user_type)).each do |survey|
-          survey.encounters.where(launch_days_after_sign_up: 0).each do |encounter|
-            survey.launch_single(self, encounter.slug)
-          end
-        end
-      end
-    end
-  end
-
-  def remove_out_of_range_answer_sessions!
-    answer_sessions.no_child.each do |answer_session|
-      if answer_session.answers.count == 0 && !answer_session.available_for_user_types?(user_types)
-        answer_session.delete
-      end
-    end
   end
 end

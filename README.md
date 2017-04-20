@@ -55,16 +55,9 @@ Open a browser and go to: [http://localhost:3000](http://localhost:3000)
 
 All done!
 
-## Setting up Followup Longitudinal Surveys
+## Refreshing Sitemap
 
-Edit Cron Jobs `sudo crontab -e` to run the task `lib/tasks/surveys.rake`
-
-```
-SHELL=/bin/bash
-0 1 * * * source /etc/profile.d/rvm.sh && cd /var/www/www.myapnea.org && /usr/local/rvm/gems/ruby-2.4.1/bin/bundle exec rake surveys:launch_followup_encounters RAILS_ENV=production
-```
-
-Refreshing Sitemap
+Edit Cron Jobs `sudo crontab -e` to run the task `lib/tasks/sitemap.rake`
 
 ```
 SHELL=/bin/bash

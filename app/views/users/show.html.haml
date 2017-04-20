@@ -57,10 +57,6 @@
     %td= @user.accepted_terms_of_access_at.strftime('%m/%d/%Y') if @user.accepted_terms_of_access_at.present?
 
   %tr
-    %td Completed Surveys
-    %td= @user.completed_answer_sessions.count
-
-  %tr
     %td Include in Data
     %td= simple_check @user.include_in_exports
 
@@ -79,34 +75,3 @@
   %tr
     %td Can Build Surveys
     %td= simple_check @user.can_build_surveys?
-
-  %tr
-    %td Roles
-    %td
-      %ul.list-unstyled
-        - @user.user_type_names.each do |ut|
-          %li= ut
-
-- if @user.answer_sessions.count > 0
-  %table.table.table-bordered.table-striped
-    %thead
-      %tr
-        %th Assigned Survey
-        %th Encounter
-        %th Completion
-        %th Locked
-        %th Actions
-    %tbody
-      - @user.answer_sessions.includes(:survey).order('surveys.name_en', :encounter).each do |answer_session|
-        %tr
-          %td= answer_session.survey.name
-          %td= answer_session.encounter
-          %td= answer_session.percent_completed
-          %td= simple_check answer_session.locked?
-          %td
-            - if answer_session.locked?
-              = link_to 'Unlock Survey', admin_unlock_survey_path(user_id: @user.id, answer_session_id: answer_session.id), method: :post, class: 'btn btn-primary btn-xs'
-- else
-  .jumbotron
-    %p.lead.center{ style: 'margin-bottom: 0' }
-      No Assigned Surveys

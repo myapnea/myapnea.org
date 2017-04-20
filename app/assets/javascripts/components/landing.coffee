@@ -29,7 +29,7 @@
   window.player.stopVideo()
   return
 
-@landingReadyNew = ->
+@landingReady = ->
   tag = document.createElement('script')
   tag.src = 'https://www.youtube.com/iframe_api'
   firstScriptTag = document.getElementsByTagName('script')[0]

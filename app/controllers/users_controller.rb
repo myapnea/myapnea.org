@@ -32,7 +32,7 @@ class UsersController < ApplicationController
           user.email,
           user.first_name,
           user.last_name,
-          user.completed_answer_sessions.count,
+          -1,
           (user.current_sign_in_at ? user.current_sign_in_at.to_date : nil),
           user.sign_in_count,
           user.replies.count,
