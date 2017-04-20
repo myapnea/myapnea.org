@@ -35,7 +35,6 @@
   drawSurveyProgressReady() if drawSurveyProgressReady?
   surveyAnimationReady() if surveyAnimationReady?
   registrationUXReady() if registrationUXReady?
-  validationReady() if validationReady?
   toolsReady() if toolsReady?
   surveyReportsReady() if surveyReportsReady?
   fileDragOldReady()
