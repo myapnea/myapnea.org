@@ -21,11 +21,7 @@
       .pull-right
         .settings-title Profile picture
         .settings-body
-          #profile-image-container
-            = render 'account/profile_photo'
           .text-muted Upload new picture
-          #filedrag.filedrag-container{ data: { object: 'dropfile' } }
-            or drop photo here
 
       .settings-title Profile
 
@@ -37,43 +33,5 @@
       .settings-body
         %strong Forum name
         .text-muted= current_user.forum_name
-
-        = form_for current_user, html: { role: 'form', class: 'form-horizontal' }, url: update_account_path, method: :patch do |f|
-          .form-group
-            %label.control-label
-              Forum Name
-            .input-group
-              = f.text_field :forum_name, class: 'form-control'
-              %span.input-group-btn
-                = link_to suggest_random_forum_name_path, method: :post, remote: true, rel: 'tooltip', data: { title: 'Generate Random Nickname', container: 'body', placement: 'top' }, class: 'btn btn-default' do
-                  %span.glyphicon.glyphicon-random
-            - if errors = current_user.errors[:forum_name] and errors.present?
-              .bs-callout.bs-callout-danger
-                - if 'is invalid'.in?(errors)
-                  Please enter a valid forum name that consists of letters
-                  %code a-z
-                  and
-                  numbers
-                  %code 0-9
-                  only.
-                - if 'has already been taken'.in?(errors)
-                  This forum name has already been taken. Please choose another forum name.
-                You may click the
-                %span.glyphicon.glyphicon-random
-                for a suggestion.
-
-          .form-group
-            = f.submit 'Save Changes'
-
-
-        = form_for current_user, url: update_account_path, html: { class: 'form-vertical' } do |f|
-          .form-group
-            = f.label :first_name, class: 'control-label'
-            = f.text_field :first_name, class: 'form-control', placeholder: User.human_attribute_name(:first_name), autocomplete: :off
-          .form-group
-            = f.label :last_name, class: 'control-label'
-            = f.text_field :last_name, class: 'form-control', placeholder: User.human_attribute_name(:last_name), autocomplete: :off
-          .form-group
-            = f.submit 'Save Changes'
 
       .clearfix

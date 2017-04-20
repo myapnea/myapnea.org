@@ -1,7 +1,0 @@
-.social-image-container
-  - # Allow removal of social profile
-  - if current_user.photo.size > 0
-    .social-image-container-left-after
-      = link_to update_account_path(user: { remove_photo: true }), method: :patch, remote: true, data: { confirm: 'Are you sure you want to remove your photo?', toggle: 'tooltip', container: 'body' }, title: 'Remove Photo', class: 'btn btn-sm btn-danger' do
-        .glyphicon.glyphicon-trash
-  = image_tag user_photo_url(current_user), alt: '', class: 'img-responsive img-thumbnail'

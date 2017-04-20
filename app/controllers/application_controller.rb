@@ -10,6 +10,8 @@ class ApplicationController < ActionController::Base
   before_action :store_location
   include DateAndTimeParser
 
+  layout 'application_padded' # TODO: Remove
+
   def store_location
     return unless !request.post? && !request.xhr? && params[:format] != 'atom'
     store_internal_location_in_session if internal_action?(params[:controller], params[:action])

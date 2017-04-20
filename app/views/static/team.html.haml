@@ -22,8 +22,6 @@
       - @team_members.where(group: 'steering').each do |team_member|
         %li.active{data: {target: "#carousel-team", slide: {to: "#{team_member.position}"}}}
           = image_tag team_member_photo_url(team_member), alt: '', class: 'team-member-picture img-bw img-color'
-      %p.center
-        = link_to 'Learn more about the steering committee', governance_policy_path, class: 'no-underline'
       .brand-title.text-left Our Team
       - @team_members.where(group: 'internal').each do |team_member|
         %li.active{data: {target: "#carousel-team", slide: {to: "#{team_member.position}"}}}
