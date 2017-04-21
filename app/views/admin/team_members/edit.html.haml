@@ -1,13 +1,18 @@
 - @title = "Edit Team Member: #{@admin_team_member.name_was}"
 
-.content-main-header2
-  %h1
-    = link_to 'Admin Dashboard', admin_path
-    &middot;
-    = link_to 'Team Members', admin_team_members_path
-    &middot;
-    = link_to @admin_team_member.name_was, @admin_team_member
-    &middot;
-    Edit
+- content_for :body_class do
+  myapnea-sky-bg
 
-= render 'form'
+- content_for :header do
+  .header-container
+    .container
+      %h1.page-heading
+        = link_to @admin_team_member.name_was, @admin_team_member
+        Edit
+
+.drawer-and-shelf-container
+  .drawer
+    = render 'admin/menu'
+  .shelf
+    .dashboard-container
+      = render 'form', admin_team_member: @admin_team_member

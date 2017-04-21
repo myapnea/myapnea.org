@@ -10,11 +10,19 @@
   %div.overflow-hidden{ style: 'margin-left: 20px;margin-right: 20px;margin-bottom: 0;' }
     %p
       - if current_user == member
-        %strong= current_user.name
+        %strong
+          - if current_user.admin?
+            = link_to current_user.name, current_user
+          - else
+            = current_user.name
         %br
         %small= member.forum_name
       - else
-        %strong= member.forum_name
+        %strong
+          - if current_user && current_user.admin?
+            = link_to member.forum_name, member
+          - else
+            = member.forum_name
         %br
         %small
           = link_to 'Hiding Posts', '#', data: { object: 'suppress-click change-text-on-hover', text_hover: 'Show Posts', text_default: 'Hiding Posts' }, style: 'color: red;'
