@@ -1,11 +1,17 @@
 - @title = 'New Category'
 
-.content-main-header2
-  %h1
-    = link_to 'Admin Dashboard', admin_path
-    &middot;
-    = link_to 'Categories', admin_categories_path
-    &middot;
-    New
+- content_for :body_class do
+  myapnea-sky-bg
 
-= render 'form'
+- content_for :header do
+  .header-container
+    .container
+      %h1.page-heading
+        = @title
+
+.drawer-and-shelf-container
+  .drawer
+    = render 'admin/menu'
+  .shelf
+    .dashboard-container
+      = render 'form', admin_category: @admin_category

@@ -12,6 +12,7 @@ module Sluggable
 
     validates :slug, format: { with: /\A[a-z][a-z0-9\-]*\Z/ },
                      exclusion: { in: %w(new edit create update destroy) },
+                     uniqueness: true,
                      allow_nil: true
   end
 
