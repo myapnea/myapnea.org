@@ -1,0 +1,31 @@
+.projects-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+.project-box {
+  flex: 1 0 200px;
+  margin: 0 5px 10px;
+  padding-bottom: 42px;
+  position: relative;
+
+  .project-box-footer {
+    background-color: $p200-orange;
+    bottom: 0;
+    left: 0;
+    padding: 10px;
+    position: absolute;
+    right: 0;
+  }
+}
+
+@media screen and (min-width: $screen-sm-min) {
+  .project-box {
+    .project-box-footer {
+      padding-left: 30px;
+      padding-right: 30px;
+    }
+  }
+}

@@ -53,6 +53,17 @@
       .dashboard-container{ style: ';flex: 1;margin: 0 5px;' }
         Study One
 
+    .projects-container
+      - Project.published.each do |project|
+        .dashboard-container.project-box
+          = project.name
+          %p
+            %small.profile-muted-description
+              = project.short_description
+          .project-box-footer
+            = link_to yoga_consent_path do
+              Join Study &raquo;
+
     .dashboard-container{ style: 'padding: 5px 10px;margin-bottom: 5px;' }
       .center
         %strong= link_to 'Review my ignored studies', research_path, style: 'red'

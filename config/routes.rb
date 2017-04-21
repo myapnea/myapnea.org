@@ -110,6 +110,12 @@ Rails.application.routes.draw do
     get :settings_profile, path: 'settings/profile'
   end
 
+  resources :projects do
+    member do
+      get :consent
+    end
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

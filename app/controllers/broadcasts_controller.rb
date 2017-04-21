@@ -75,9 +75,4 @@ class BroadcastsController < ApplicationController
     return if current_user.community_contributor?
     redirect_to root_path, alert: 'Only community editors may manage blog posts.'
   end
-
-  def parse_date_if_key_present(object, key)
-    return unless params[object].key?(key)
-    params[object][key] = parse_date(params[object][key]) if params[object].key?(key)
-  end
 end

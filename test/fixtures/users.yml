@@ -1,6 +1,23 @@
 <% pw = User.new(password: 'password').encrypted_password %>
 
-# $2a$10$8uaSUgIGTmueQtYP0yFTv.rs98cbkWhNS75Pdk3vvPXnQPIBmkszW
+valid:
+  first_name: Valid
+  last_name: McApnea
+  email: valid@example.com
+  encrypted_password: <%= pw %>
+  emails_enabled: true
+  forum_name: AwesomeCat
+
+admin:
+  first_name: Own
+  last_name: Er
+  email: admin@example.com
+  admin: true
+  over_eighteen: true
+  adult_diagnosed: true
+  encrypted_password: <%= pw %>
+  accepted_terms_conditions_at: <%= Time.zone.now %>
+  forum_name: MajorAdmin
 
 <% 1.upto(10) do |i| %>
 user_<%= i %>:
@@ -78,17 +95,6 @@ moderator_2:
   encrypted_password: <%= pw %>
   forum_name: mod2
   accepted_terms_conditions_at: <%= Time.zone.now %>
-
-admin:
-  first_name: Own
-  last_name: Er
-  email: admin@example.com
-  admin: true
-  over_eighteen: true
-  adult_diagnosed: true
-  encrypted_password: <%= pw %>
-  accepted_terms_conditions_at: <%= Time.zone.now %>
-  forum_name: admin
 
 has_completed_survey:
   first_name: Complete
