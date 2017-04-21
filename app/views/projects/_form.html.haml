@@ -20,7 +20,6 @@
     = f.label :consent, nil, class: 'col-md-2 control-label'
     .col-md-10
       = f.text_area :consent, rows: [[15, @project.consent.to_s.count("\n") + 1].max, 25].min, data: { object: 'expandable-text-area', default_rows: 15 }, class: 'form-control'
-      =# f.text_area :consent, rows: 7, class: 'form-control'
 
   .form-group
     = f.label :launch_date, class: 'col-md-2 control-label'
