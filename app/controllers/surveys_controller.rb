@@ -9,8 +9,6 @@ class SurveysController < ApplicationController
   before_action :redirect_without_accepted_recent_update, only: [:show]
   before_action :check_report_access,                     only: [:report, :report_detail]
 
-  before_action :set_seo_elements
-
   def index
     @surveys = Survey.current.viewable
     if current_user
@@ -105,10 +103,5 @@ class SurveysController < ApplicationController
     elsif !@answer_session && !current_user.is_only_researcher?
       redirect_to surveys_path
     end
-  end
-
-  def set_seo_elements
-    @title = @survey.present? ? ('Surveys - ' + @survey.name) : ('Participate in Research Surveys About Sleep Apnea')
-    @page_content = 'Get paid to take research surveys about sleep apnea! Surveys ask for information about sleep quality, sleep apnea treatments, family involvement, and more.'
   end
 end
