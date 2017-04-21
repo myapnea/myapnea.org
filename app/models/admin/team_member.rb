@@ -5,9 +5,12 @@ class Admin::TeamMember < ApplicationRecord
   # Constants
   GROUPS = %w(steering internal patient)
 
-  # Other macros
+  # Uploaders
   mount_uploader :photo, PhotoUploader
 
   # Concerns
   include Deletable
+
+  # Validations
+  validates :name, presence: true
 end

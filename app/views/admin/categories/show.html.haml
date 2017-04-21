@@ -1,22 +1,28 @@
 - @title = @admin_category.name
 
-.content-main-header2
-  %h1
-    = link_to 'Admin Dashboard', admin_path
-    &middot;
-    = link_to 'Categories', admin_categories_path
-    &middot;
-    = @admin_category.name
-    = link_to edit_admin_category_path(@admin_category), class: 'btn btn-xs btn-default' do
-      %span.glyphicon.glyphicon-edit
-      Edit Category
+- content_for :body_class do
+  myapnea-sky-bg
 
-%p
-  %strong Name
-  %br
-  = @admin_category.name
+- content_for :header do
+  .header-container
+    .container
+      %h1.page-heading
+        .pull-right
+          = render 'layouts/edit_delete_dropdown_header', edit_url: edit_admin_category_path(@admin_category), delete_url: @admin_category, delete_confirmation: "Delete #{@admin_category.name}?"
+        = @title
 
-%p
-  %strong Slug
-  %br
-  %code= @admin_category.slug
+.drawer-and-shelf-container
+  .drawer
+    = render 'admin/menu'
+  .shelf
+    .dashboard-container
+      %table.table.table-striped.table-borderless.table-hover
+        %col{ width: '30%' }
+        %tr
+          %th Name
+          %td= @admin_category.name
+
+        %tr
+          %th Slug
+          %td
+            %code= @admin_category.slug

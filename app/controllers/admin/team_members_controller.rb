@@ -21,7 +21,7 @@ class Admin::TeamMembersController < ApplicationController
   # GET /admin/team_members
   # GET /admin/team_members.json
   def index
-    @admin_team_members = Admin::TeamMember.current.order('position')
+    @admin_team_members = Admin::TeamMember.current.order('position').page(params[:page]).per(40)
   end
 
   # GET /admin/team_members/1

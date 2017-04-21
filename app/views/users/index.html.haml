@@ -11,69 +11,71 @@
           = link_to download_or('Export CSV'), export_users_path(format: 'csv'), class: 'btn btn-accent btn-shadow'
           = render 'layouts/per_page', per_page: 40, object_count: @users.total_count
         = @title
-        .header-link= link_to 'Admin Dashboard', admin_path
         = render 'search/toggle'
 
 = render 'search/simple', url: users_path
 
-.dashboard-container
-  %button.btn.btn-default{ data: { object: 'show-todays-users' } }
-    New users today:
-    %span.f500= @all_users.where('created_at > ?', Time.zone.now.beginning_of_day).count
-  %button.btn.btn-default{ data: { object: 'show-this-weeks-users' } }
-    New users this week:
-    %span.f500= @all_users.where('created_at > ?', Time.zone.now.beginning_of_week(start_day = :sunday)).count
+.drawer-and-shelf-container
+  .drawer
+    = render 'admin/menu'
+  .shelf
+    .dashboard-container
+      %button.btn.btn-default{ data: { object: 'show-todays-users' } }
+        New users today:
+        %span.f500= @all_users.where('created_at > ?', Time.zone.now.beginning_of_day).count
+      %button.btn.btn-default{ data: { object: 'show-this-weeks-users' } }
+        New users this week:
+        %span.f500= @all_users.where('created_at > ?', Time.zone.now.beginning_of_week(start_day = :sunday)).count
 
-  %table.table.table-striped.table-borderless.table-hover
-    %thead
-      %tr
-        %th Name
-        %th Email
-        = th_sort_field @order, 'users.current_sign_in_at', 'Recent Activity', extra_class: 'hidden-xs'
-        = th_sort_field @order, 'users.shadow_banned', 'Shadow Banned', extra_class: 'center'
-        %th.hidden-xs.center Surveys Completed
-        = th_sort_field_rev @order, 'users.sign_in_count', 'Sign in Count', extra_class: 'hidden-xs center'
-        = th_sort_field_rev @order, 'reply_count', 'Posts', extra_class: 'hidden-xs center'
-        %th.center Actions
-    - @users.each do |user|
-      %tr{ id: "user-#{user.id}-container", class: "#{'todays-users' if user.created_at.today?} #{'this-weeks-users' if user.created_at > Time.zone.now.beginning_of_week(start_day = :sunday)}"}
-        %td.nowrap
-          = render 'forums/user_image_no_border', user: user, size: 18
-          %span.hidden-xs.hidden-sm= link_to user.name, user
-        %td
-          %span.hidden-xs.breakword= user.email
-          %span.hidden-sm.hidden-md.hidden-lg= link_to user.email, user, style: 'word-break: break-word;'
-        %td.nowrap.hidden-xs
-          - if user.current_sign_in_at
-            = time_ago_in_words user.current_sign_in_at
-            ago
-        %td.center
-          - if user.shadow_banned?
-            %span.glyphicon.glyphicon-eye-close.text-muted
-        %td.hidden-xs.center
-          \-1
-        %td.hidden-xs.center
-          = user.sign_in_count
-        %td.hidden-xs.center
-          = user.replies.count
-        %td
-          .dropdown
-            = link_to '#', class: 'btn btn-default btn-xs dropdown-toggle', data: { toggle: 'dropdown' } do
-              %span.hidden-sm.hidden-md.hidden-lg.glyphicon.glyphicon-cog
-              %span.hidden-xs Actions
-              %strong.caret
+      %table.table.table-striped.table-borderless.table-hover
+        %thead
+          %tr
+            %th Name
+            %th Email
+            = th_sort_field @order, 'users.current_sign_in_at', 'Activity', extra_class: 'hidden-xs'
+            = th_sort_field @order, 'users.shadow_banned', 'Shadow Banned', extra_class: 'center'
+            %th.hidden-xs.center Surveys Completed
+            = th_sort_field_rev @order, 'users.sign_in_count', 'Sign in Count', extra_class: 'hidden-xs center'
+            = th_sort_field_rev @order, 'reply_count', 'Posts', extra_class: 'hidden-xs center'
+            %th.center Actions
+        - @users.each do |user|
+          %tr{ id: "user-#{user.id}-container", class: "#{'todays-users' if user.created_at.today?} #{'this-weeks-users' if user.created_at > Time.zone.now.beginning_of_week(start_day = :sunday)}"}
+            %td.nowrap
+              = render 'forums/user_image_no_border', user: user, size: 18
+              %span.hidden-xs.hidden-sm= link_to user.name, user
+            %td
+              %span.hidden-xs.breakword= user.email
+              %span.hidden-sm.hidden-md.hidden-lg= link_to user.email, user, style: 'word-break: break-word;'
+            %td.nowrap.hidden-xs
+              - if user.current_sign_in_at
+                = time_ago_in_words(user.current_sign_in_at).gsub('about ', '').gsub('less than ', '').gsub('minutes', 'mins').gsub('hours', 'hrs') + ' ago'
+            %td.center
+              - if user.shadow_banned?
+                %span.glyphicon.glyphicon-eye-close.text-muted
+            %td.hidden-xs.center
+              \-1
+            %td.hidden-xs.center
+              = user.sign_in_count
+            %td.hidden-xs.center
+              = user.replies.count
+            %td
+              .dropdown
+                = link_to '#', class: 'btn btn-default btn-xs dropdown-toggle', data: { toggle: 'dropdown' } do
+                  %span.hidden-sm.hidden-md.hidden-lg.glyphicon.glyphicon-cog
+                  %span.hidden-xs Actions
+                  %strong.caret
 
-            %ul.dropdown-menu.dropdown-menu-right
-              %li
-                = link_to edit_user_path(user) do
-                  %span.glyphicon.glyphicon-edit
-                  Edit
-              - unless user == current_user
-                %li.divider{ role: 'separator' }
-                %li
-                  = link_to user, method: :delete, remote: true, data: { confirm: "Delete #{user.name}?" } do
-                    .text-danger
-                      %span.glyphicon.glyphicon-trash
-                      Delete
+                %ul.dropdown-menu.dropdown-menu-right
+                  %li
+                    = link_to edit_user_path(user) do
+                      %span.glyphicon.glyphicon-edit
+                      Edit
+                  - unless user == current_user
+                    %li.divider{ role: 'separator' }
+                    %li
+                      = link_to user, method: :delete, remote: true, data: { confirm: "Delete #{user.name}?" } do
+                        .text-danger
+                          %span.glyphicon.glyphicon-trash
+                          Delete
 
-.center= paginate @users, theme: 'bootstrap'
+    .center= paginate @users, theme: 'bootstrap'

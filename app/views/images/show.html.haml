@@ -1,27 +1,35 @@
 - @title = @image.to_param
-.content-main-header2
-  %h1
-    = link_to 'Images', images_path
-    &middot;
-    = @title
-    = link_to edit_image_path(@image), class: 'btn btn-xs btn-default' do
-      %span.glyphicon.glyphicon-edit
-      Edit Image
 
+- content_for :body_class do
+  myapnea-sky-bg
 
-%table.table.table-striped
-  %tr
-    %th User
-    %td= @image.user.name
+- content_for :header do
+  .header-container
+    .container
+      %h1.page-heading
+        .pull-right
+          = render 'layouts/edit_delete_dropdown_header', edit_url: edit_image_path(@image), delete_url: @image, delete_confirmation: 'Delete image?'
+        = @title
 
-  %tr
-    %th Image Link
-    %td
-      %code= "#{ENV['website_url']}/image/#{@image.to_param}"
+.drawer-and-shelf-container
+  .drawer
+    = render 'admin/menu'
+  .shelf
+    .dashboard-container
+      %table.table.table-striped.table-borderless.table-hover
+        %col{ width: '30%' }
+        %tr
+          %th User
+          %td
+            = link_to @image.user.forum_name, member_posts_path(@image.user.forum_name)
 
-  %tr
-    %th File Size
-    %td= number_to_human_size @image.file_size
+        %tr
+          %th Image Link
+          %td
+            %code.breakword= "#{ENV['website_url']}/image/#{@image.to_param}"
 
-%p
-  = image_tag download_image_path(@image), alt: '', class: 'img-responsive'
+        %tr
+          %th File Size
+          %td= number_to_human_size @image.file_size
+
+      .center= image_tag download_image_path(@image), alt: '', style: 'max-width: 100%; margin: 0 auto;'
