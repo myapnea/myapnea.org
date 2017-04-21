@@ -97,11 +97,9 @@ Rails.application.routes.draw do
 
   scope module: :internal do
     get :dashboard
-    get :dashboard1
-    get :dashboard2
-    get :dashboard3
-    get :dashboard4
-    get :dashboard5
+    get :activity, path: 'dashboard/activity'
+    get :research, path: 'dashboard/research'
+    get :reports, path: 'dashboard/reports'
     get :timeline
     get :yoga_consent, path: 'yoga/consent'
     get :research, path: 'dashboard/research'

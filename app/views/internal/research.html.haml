@@ -1,4 +1,4 @@
-- @title = 'Dashboard'
+- @title = 'Research'
 
 - content_for :body_class do
   myapnea-sky-bg
@@ -7,19 +7,66 @@
   .header-container
     .container
       %h1.page-heading
+        .pull-right
+          %fa.fa.fa-search
         = @title
 
 .drawer-and-shelf-container
   .drawer
     = render 'internal/menu'
   .shelf
-    .dashboard-container
-      .dashboard-title New Research Modules/Studies/Learn Things
-      .dashboard-body
-        %p= link_to 'Learn!', '#', data: { object: 'suppress-click' }, style: 'color: red;'
+    .dashboard-container{ style: 'padding: 5px 10px;margin-bottom: 5px;' }
+      %strong{ style: 'color: green;' } Active Studies
+    %div{ style: 'display: flex;flex-direction: row; flex-wrap: wrap;margin-bottom: 40px;' }
+      .dashboard-container{ style: 'background-color: green; color: white;flex: 1;margin: 0 5px;' }
+        MyApnea Core
+        5 of 10 questions
+      .dashboard-container{ style: 'flex: 1;margin: 0 5px;' }
+        = render 'blank/progress_bar', start: 100 / 6 * 1, percent: 100 / 6 * 2
+        %strong Continue:
+        = link_to question_path(id: 2) do
+          What is your sex?
+          &raquo;
 
-        %p= link_to 'MyApnea Core', question_path(id: 1)
+    .dashboard-container{ style: 'padding: 5px 10px;margin-bottom: 5px;' }
+      Studies you may be interested in
+    %div{ style: 'display: flex;flex-direction: row; flex-wrap: wrap;margin-bottom: 40px;' }
+      .dashboard-container{ style: 'background-color: green; color: white;flex: 1;margin: 0 5px;' }
+        %fa.fa.fa-check
+        MyApnea Core
+        %p
+          %small{ style: 'color: #c8e6c9;' }
+            Come together to learn about sleep apnea symptoms and treatment,
+            and become part of a international research network to improve
+            lives.
+      .dashboard-container{ style: 'flex: 1;margin: 0 5px;' }
+        Yoga
+        %p
+          %small.profile-muted-description
+            Yoga is a group of physical, mental, and spiritual practices or
+            disciplines which originated in ancient India.
+        %p
+          = link_to yoga_consent_path do
+            Join Study &raquo;
+      .dashboard-container{ style: 'flex: 1;margin: 0 5px;' }
+        Study One
+      .dashboard-container{ style: ';flex: 1;margin: 0 5px;' }
+        Study One
 
-        %p= link_to 'Yoga', yoga_path(id: 1)
+    .dashboard-container{ style: 'padding: 5px 10px;margin-bottom: 5px;' }
+      .center
+        %strong= link_to 'Review my ignored studies', research_path, style: 'red'
 
-        %p= link_to 'Themes', blue_path
+    .dashboard-container{ style: 'padding: 5px 10px;margin-bottom: 5px;' }
+      Ignored Studies
+    %div{ style: 'display: flex;flex-direction: row; flex-wrap: wrap;margin-bottom: 40px;' }
+      .dashboard-container{ style: 'background-color: gray; color: white;flex: 1;margin: 0 5px;' }
+        Study One IGNORED!
+      .dashboard-container{ style: 'background-color: gray; color: white;flex: 1;margin: 0 5px;' }
+        Study One
+      .dashboard-container{ style: 'background-color: gray; color: white;flex: 1;margin: 0 5px;' }
+        Study One
+      .dashboard-container{ style: 'background-color: gray; color: white;flex: 1;margin: 0 5px;' }
+        Study One
+
+

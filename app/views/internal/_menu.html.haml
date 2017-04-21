@@ -17,22 +17,15 @@
 
 .profile-menu-container
   %ul.blog-menu.profile-menu
-    / %li.blog-menu-header Dashboard
-    %li
-      = link_to 'Dashboard', dashboard_path, class: current_page?(dashboard_path) ? 'active' : nil
-    %li= link_to 'Dashboard1', dashboard1_path, class: current_page?(dashboard1_path) ? 'active' : nil
-    %li= link_to 'Dashboard2', dashboard2_path, class: current_page?(dashboard2_path) ? 'active' : nil
-    %li= link_to 'Dashboard3', dashboard3_path, class: current_page?(dashboard3_path) ? 'active' : nil
-    %li= link_to 'Dashboard4', dashboard4_path, class: current_page?(dashboard4_path) ? 'active' : nil
-    %li= link_to 'Dashboard5', dashboard5_path, class: current_page?(dashboard5_path) ? 'active' : nil
+    %li.blog-menu-header Dashboard
+    - if false
+      %li= link_to 'Dashboard', dashboard_path, class: current_page?(dashboard_path) ? 'active' : nil
+    %li= link_to 'Activity', activity_path, class: current_page?(activity_path) ? 'active' : nil
+    %li= link_to 'Research', research_path, class: current_page?(research_path) ? 'active' : nil
+    %li= link_to 'Reports', reports_path, class: current_page?(reports_path) ? 'active' : nil
     %li= link_to 'Timeline', timeline_path, class: current_page?(timeline_path) ? 'active' : nil
-    %li
-      = link_to research_path, class: current_page?(research_path) ? 'active' : nil do
-        Research
-        %span.badge 1 new
-    %li
-      = link_to 'Reports', '#', data: { object: 'suppress-click' }, style: 'color: red;'
-    %li
-      = link_to 'Learn Modules', '#', data: { object: 'suppress-click' }, style: 'color: red;'
-    %li
-      = link_to 'My Saved Forum Things', '#', data: { object: 'suppress-click' }, style: 'color: red;'
+
+.profile-menu-container
+  %ul.blog-menu.profile-menu
+    %li.blog-menu-header Public
+    %li= link_to 'My Profile', member_posts_path(current_user.forum_name), class: current_page?(member_posts_path(current_user.forum_name)) ? 'active' : nil

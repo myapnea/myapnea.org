@@ -9,39 +9,26 @@ class InternalControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should get dashboard' do
-    skip
     sign_in_as(@regular_user, 'password')
     get dashboard_path
+    assert_redirected_to activity_path
+  end
+
+  test 'should get dashboard activity' do
+    sign_in_as(@regular_user, 'password')
+    get activity_path
     assert_response :success
   end
 
-  test 'should get dashboard1' do
+  test 'should get dashboard research' do
     sign_in_as(@regular_user, 'password')
-    get dashboard1_path
+    get research_path
     assert_response :success
   end
 
-  test 'should get dashboard2' do
+  test 'should get dashboard reports' do
     sign_in_as(@regular_user, 'password')
-    get dashboard2_path
-    assert_response :success
-  end
-
-  test 'should get dashboard3' do
-    sign_in_as(@regular_user, 'password')
-    get dashboard3_path
-    assert_response :success
-  end
-
-  test 'should get dashboard4' do
-    sign_in_as(@regular_user, 'password')
-    get dashboard4_path
-    assert_response :success
-  end
-
-  test 'should get dashboard5' do
-    sign_in_as(@regular_user, 'password')
-    get dashboard5_path
+    get reports_path
     assert_response :success
   end
 

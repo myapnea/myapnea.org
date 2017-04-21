@@ -1,4 +1,4 @@
-- @title = 'Dashboard 2'
+- @title = 'Reports'
 
 - content_for :body_class do
   myapnea-sky-bg
@@ -7,6 +7,8 @@
   .header-container
     .container
       %h1.page-heading
+        .pull-right
+          %fa.fa.fa-search
         = @title
 
 .drawer-and-shelf-container
@@ -14,4 +16,10 @@
     = render 'internal/menu'
   .shelf
     .dashboard-container
-      %strong Dashboard 2
+      %table.table
+        %tr
+          %td Male
+          %td 45%
+        %tr
+          %td Female
+          %td 55%
