@@ -10,8 +10,6 @@ class ApplicationController < ActionController::Base
   before_action :store_location
   include DateAndTimeParser
 
-  layout 'application_padded' # TODO: Remove
-
   def store_location
     return unless !request.post? && !request.xhr? && params[:format] != 'atom'
     store_internal_location_in_session if internal_action?(params[:controller], params[:action])
@@ -115,6 +113,11 @@ class ApplicationController < ActionController::Base
   def check_admin
     return if current_user && current_user.admin?
     redirect_to root_path, alert: 'You do not have sufficient privileges to access that page.'
+  end
+
+  def parse_date_if_key_present(object, key)
+    return unless params[object].key?(key)
+    params[object][key] = parse_date(params[object][key]) if params[object].key?(key)
   end
 
   def scrub_order(model, params_order, default_order)

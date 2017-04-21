@@ -97,11 +97,9 @@ Rails.application.routes.draw do
 
   scope module: :internal do
     get :dashboard
-    get :dashboard1
-    get :dashboard2
-    get :dashboard3
-    get :dashboard4
-    get :dashboard5
+    get :activity, path: 'dashboard/activity'
+    get :research, path: 'dashboard/research'
+    get :reports, path: 'dashboard/reports'
     get :timeline
     get :yoga_consent, path: 'yoga/consent'
     get :research, path: 'dashboard/research'
@@ -110,6 +108,12 @@ Rails.application.routes.draw do
     get :settings_consents, path: 'settings/consents'
     get :settings_emails, path: 'settings/emails'
     get :settings_profile, path: 'settings/profile'
+  end
+
+  resources :projects do
+    member do
+      get :consent
+    end
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -4,31 +4,21 @@
 class InternalController < ApplicationController
   before_action :authenticate_user!
 
-  layout 'application_padded'
-
   # GET /dashboard
   def dashboard
-    redirect_to dashboard3_path
+    redirect_to activity_path
   end
 
-  # # GET /dashboard1
-  # def dashboard1
+  # # GET /dashboard/activity
+  # def activity
   # end
 
-  # # GET /dashboard2
-  # def dashboard2
+  # # GET /dashboard/research
+  # def research
   # end
 
-  # # GET /dashboard3
-  # def dashboard3
-  # end
-
-  # # GET /dashboard4
-  # def dashboard4
-  # end
-
-  # # GET /dashboard5
-  # def dashboard5
+  # # GET /dashboard/reports
+  # def reports
   # end
 
   # # GET /yoga/consent

@@ -1,0 +1,21 @@
+one:
+  name: MyApnea Core
+  slug: core
+  short_description: >
+    Come together to learn about sleep apnea symptoms and treatment, and become
+    part of a international research network to improve lives.
+  user: admin
+  consent: MyText
+  theme: MyString
+  launch_date: 2017-04-21
+
+two:
+  name: Yoga
+  slug: yoga
+  short_description: >
+    Yoga is a group of physical, mental, and spiritual practices or disciplines
+    which originated in ancient India.
+  user: admin
+  consent: MyText
+  theme: MyString
+  launch_date: 2017-05-01

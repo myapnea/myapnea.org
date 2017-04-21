@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# TODO: Deprecated in v17.0.0
+
 # Allows members to fill out surveys for by child.
 class Child < ApplicationRecord
   # Callbacks

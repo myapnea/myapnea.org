@@ -17,9 +17,10 @@
         %strong= member.forum_name
         %br
         %small
-          = link_to 'Follow', '#', data: { object: 'suppress-click' }, style: 'color: red;'
-          &middot;
-          = link_to 'Ignore', '#', data: { object: 'suppress-click' }, style: 'color: red;'
+          = link_to 'Hiding Posts', '#', data: { object: 'suppress-click change-text-on-hover', text_hover: 'Show Posts', text_default: 'Hiding Posts' }, style: 'color: red;'
+        %br
+        %small
+          = link_to 'Showing Posts', '#', data: { object: 'suppress-click change-text-on-hover', text_hover: 'Hide Posts', text_default: 'Showing Posts' }, style: 'color: red;'
 
     %p
       %small.profile-muted-description

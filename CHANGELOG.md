@@ -25,6 +25,9 @@
 - **Forum Changes**
   - Adjusted how the forum index displays on mobile devices
   - Generated forum names are now simpler and shorter
+- **Projects Added**
+  - Sets of surveys are now grouped by project, the initial set of surveys on
+    MyApnea are going into the MyApnea Core project
 - **Gem Changes**
   - Updated to Ruby 2.4.1
   - Updated to rails 5.0.2

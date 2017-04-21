@@ -6,8 +6,6 @@ class BlogController < ApplicationController
   before_action :set_author, only: [:blog]
   before_action :set_category, only: [:blog]
 
-  layout 'application_padded'
-
   def blog
     broadcast_scope = Broadcast.current.published.order(publish_date: :desc, id: :desc)
     broadcast_scope = broadcast_scope.where(user: @author) if @author

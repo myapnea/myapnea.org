@@ -1,7 +1,9 @@
+- @drawer = true
 .profile-menu-container
   %ul.blog-menu.profile-menu
     %li.blog-menu-header Admin
     %li= link_to 'Dashboard', admin_path, class: current_page?(admin_path) ? 'active' : nil
+    %li= link_to 'Projects', projects_path, class: params[:controller] == 'projects' ? 'active' : nil
     %li= link_to 'Users', users_path
     %li.blog-menu-header Discussion
     %li= link_to 'Blog and Forum Replies', admin_replies_path

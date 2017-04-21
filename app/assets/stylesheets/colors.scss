@@ -29,7 +29,7 @@ $danger: #e54835;
 $warning: #f4b46d;
 $moderate: #fedf9c;
 $good: #d9f0a3;
-$great: #78c679;
+$great: $p300-green; /// WAS #78c679; TODO: REMOVE
 $excellent: #16c63c;
 // Content separation
 $border-color: #c5c5c5;

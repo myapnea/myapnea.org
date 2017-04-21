@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Provides methods to count the number of URL in text
+# Provides methods to count the number of URL in text.
 module UrlCountable
   extend ActiveSupport::Concern
 

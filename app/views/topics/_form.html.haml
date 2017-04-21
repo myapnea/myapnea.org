@@ -1,4 +1,4 @@
-.content-container
+.dashboard-container
   = form_for @topic, html: { class: 'form-vertical' } do |f|
     .form-group
       = f.label :title, class: 'control-label'
@@ -53,4 +53,4 @@
 
     .form-group
       = f.submit (@topic.new_record? ? 'Create Topic' : 'Update Topic'), class: 'btn btn-primary'
-      = link_to 'Cancel', (@topic.new_record? ? topics_path : @topic), class: 'btn btn-default'
+      = link_to 'Cancel', (@topic.new_record? ? topics_path : @topic), class: 'btn btn-link'

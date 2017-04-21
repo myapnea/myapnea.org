@@ -1,0 +1,37 @@
+= form_for @project, html: { class: 'form-horizontal' } do |f|
+  .form-group
+    = f.label :name, nil, class: 'control-label col-md-2'
+    .col-md-10
+      = f.text_field :name, class: 'form-control', data: { object: (@project.new_record? ? 'create-slug' : ''), target: '#project_slug' }, autocomplete: 'off'
+      = render 'layouts/errors', object: @project, key: :name
+
+  .form-group
+    = f.label :slug, nil, class: 'control-label col-md-2'
+    .col-md-10
+      = f.text_field :slug, class: 'form-control', autocomplete: 'off'
+      = render 'layouts/errors', object: @project, key: :slug
+
+  .form-group
+    = f.label :short_description, nil, class: 'col-md-2 control-label'
+    .col-md-10
+      = f.text_field :short_description, class: 'form-control', autocomplete: 'off'
+
+  .form-group
+    = f.label :consent, nil, class: 'col-md-2 control-label'
+    .col-md-10
+      = f.text_area :consent, rows: [[15, @project.consent.to_s.count("\n") + 1].max, 25].min, data: { object: 'expandable-text-area', default_rows: 15 }, class: 'form-control'
+
+  .form-group
+    = f.label :launch_date, class: 'col-md-2 control-label'
+    .col-md-10
+      = f.text_field :launch_date, class: 'datepicker form-control', value: @project.launch_date ? @project.launch_date.strftime('%m/%d/%Y') : '', autocomplete: 'off'
+
+  .form-group
+    = f.label :theme, class: 'col-md-2 control-label'
+    .col-md-10
+      = f.select :theme, Project::THEMES, { include_blank: true }, class: 'form-control'
+
+  .form-group
+    .col-md-10.col-md-offset-2
+      = f.submit nil, class: 'btn btn-primary'
+      = link_to 'Cancel', project.new_record? ? projects_path : project, class: 'btn btn-link'

@@ -6,8 +6,6 @@ class TopicsController < ApplicationController
   before_action :find_viewable_topic_or_redirect, only: [:show]
   before_action :find_editable_topic_or_redirect, only: [:edit, :update, :destroy]
 
-  layout 'application_padded'
-
   # GET /topics
   def index
     @order = scrub_order(Topic, params[:order], 'pinned desc, last_reply_at desc, id desc')

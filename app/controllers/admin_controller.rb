@@ -5,8 +5,6 @@ class AdminController < ApplicationController
   before_action :authenticate_user!
   before_action :check_admin_or_moderator
 
-  layout 'application_padded'
-
   # def dashboard
   # end
 

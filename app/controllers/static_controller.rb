@@ -10,7 +10,6 @@ class StaticController < ApplicationController
   # GET /team
   def team
     @team_members = Admin::TeamMember.current.order(:position)
-    render layout: 'application_padded'
   end
 
   # GET /partners

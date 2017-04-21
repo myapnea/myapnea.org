@@ -2,8 +2,6 @@
 
 # Provides back search results from across MyApnea.
 class SearchController < ApplicationController
-  layout 'application_padded'
-
   # GET /search
   def index
     @search = params[:search].to_s.downcase.split(/[^\w]/).reject(&:blank?).uniq.join(' & ')

@@ -1,19 +1,13 @@
 # frozen_string_literal: true
 
+# Defines team members for team page.
 class Admin::TeamMember < ApplicationRecord
-  # Default Scope
   # Constants
-  GROUPS = ['steering', 'internal', 'patient']
-  # Attribute related macros
-  # Associations
-  # Validations
-  # Callback
+  GROUPS = %w(steering internal patient)
+
   # Other macros
   mount_uploader :photo, PhotoUploader
 
   # Concerns
   include Deletable
-
-  # Scopes
-  # Methods
 end
