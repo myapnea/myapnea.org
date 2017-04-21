@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# TODO: Deprecated in v17.0.0
+
 # Groups together surveys.
 class Encounter < ApplicationRecord
   # Concerns

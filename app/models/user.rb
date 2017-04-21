@@ -27,7 +27,7 @@ class User < ApplicationRecord
   scope :include_in_exports_and_reports, -> { where(include_in_exports: true) }
   scope :reply_count, -> { select('users.*, COALESCE(COUNT(replies.id), 0) reply_count').joins('LEFT OUTER JOIN replies ON replies.user_id = users.id and replies.deleted IS FALSE and replies.topic_id IN (SELECT topics.id FROM topics WHERE topics.deleted IS FALSE)').group('users.id') }
 
-  # Model Validation
+  # Validations
   validates :first_name, :last_name, presence: true
 
   validates :forum_name, allow_blank: true, uniqueness: { case_sensitive: false }, format: { with: /\A[a-zA-Z0-9]*\Z/i }, unless: :update_by_user?
@@ -35,7 +35,7 @@ class User < ApplicationRecord
 
   validates :over_eighteen, inclusion: { in: [true], message: 'You must be over 18 years of age to sign up' }, allow_nil: true
 
-  # Model Relationships
+  # Relationships
   has_many :broadcasts, -> { current }
   has_many :broadcast_comments
   has_many :topics, -> { current }
@@ -44,6 +44,8 @@ class User < ApplicationRecord
   has_many :images
   has_many :notifications
   has_many :exports, -> { order id: :desc }, class_name: 'Admin::Export'
+
+  # Methods
 
   # Overriding Devise built-in active_for_authentication? method
   def active_for_authentication?
@@ -165,6 +167,7 @@ class User < ApplicationRecord
     end
   end
 
+  # TODO: Remove in v17.0.0
   def editable_broadcast_comments
     if moderator?
       BroadcastComment.current
@@ -172,6 +175,7 @@ class User < ApplicationRecord
       broadcast_comments
     end
   end
+  # END TODO
 
   def send_welcome_email_in_background!
     fork_process :send_welcome_email!
