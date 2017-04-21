@@ -4,8 +4,6 @@
 class InternalController < ApplicationController
   before_action :authenticate_user!
 
-  layout 'application_padded'
-
   # GET /dashboard
   def dashboard
     redirect_to activity_path

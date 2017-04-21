@@ -4,8 +4,6 @@
 class RegistrationsController < Devise::RegistrationsController
   prepend_before_action :check_captcha, only: [:create]
 
-  layout 'application_padded'
-
   private
 
   def check_captcha

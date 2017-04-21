@@ -2,8 +2,6 @@
 
 # Displays publicly available pages.
 class ExternalController < ApplicationController
-  layout 'application_padded'
-
   # # GET /community
   # def community
   # end

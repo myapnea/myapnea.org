@@ -14,17 +14,15 @@ class MembersController < ApplicationController
     redirect_to member_posts_path(params[:forum_name])
   end
 
-  # GET /members/:forum_name/badges
-  def badges
-    render layout: 'application_padded'
-  end
+  # # GET /members/:forum_name/badges
+  # def badges
+  # end
 
   # GET /members/:forum_name/posts
   def posts
     @replies = @member.replies.order(created_at: :desc).page(params[:page]).per(10)
     @topics = @member.topics.reply_count.order('reply_count desc').limit(3)
     @recent_topics = @member.topics.reply_count.where.not(id: @topics.to_a.collect(&:id)).limit(3)
-    render layout: 'application_padded'
   end
 
   def photo

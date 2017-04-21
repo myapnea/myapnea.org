@@ -5,8 +5,6 @@ class Admin::RepliesController < ApplicationController
   before_action :authenticate_user!
   before_action :check_admin
 
-  layout 'application_padded'
-
   # GET /admin/replies
   def index
     @order = scrub_order(Reply, params[:order], 'created_at desc')

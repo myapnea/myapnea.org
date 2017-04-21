@@ -6,8 +6,6 @@ class Admin::ExportsController < ApplicationController
   before_action :check_admin
   before_action :find_admin_export_or_redirect, only: [:show, :progress, :file, :destroy]
 
-  layout 'application_padded'
-
   # GET /admin/exports
   def index
     @admin_exports = current_user.exports.page(params[:page]).per(10)
