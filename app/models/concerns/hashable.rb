@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Allows ids to be obscured.
 module Hashable
   extend ActiveSupport::Concern
 

@@ -18,7 +18,7 @@ class User < ApplicationRecord
   after_commit :set_forum_name, :send_welcome_email_in_background!, on: :create
 
   # Concerns
-  include Deletable, Coenrollment, Forkable, RandomNameGenerator
+  include Deletable, Forkable, RandomNameGenerator
 
   attr_accessor :user_is_updating
 
