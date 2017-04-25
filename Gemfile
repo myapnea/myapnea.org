@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-gem 'rails',                '5.0.2'
+gem 'rails',                '5.1.0.rc2'
 
 # Database Adapter
 gem 'pg',                   '0.20.0'
@@ -10,11 +10,12 @@ gem 'pg',                   '0.20.0'
 # Gems used by project
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass',       '~> 3.3.7'
-gem 'carrierwave',          '~> 1.0.0'
+# gem 'carrierwave',          '~> 1.0.0'
+gem 'carrierwave', git: 'https://github.com/carrierwaveuploader/carrierwave.git', ref: '1101628'
 gem 'devise',               '~> 4.2.1'
 gem 'figaro',               '~> 1.1.1'
 gem 'font-awesome-rails',   '~> 4.7.0'
-gem 'haml',                 '~> 4.0.7'
+gem 'haml',                 '~> 5.0.0.beta.2'
 gem 'hashids',              '~> 1.0.3'
 gem 'jquery-ui-rails',      '~> 6.0.1'
 gem 'kaminari',             '~> 1.0.1'
