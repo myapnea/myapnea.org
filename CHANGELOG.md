@@ -22,9 +22,9 @@
     MyApnea are going into the MyApnea Core project
 - **Gem Changes**
   - Updated to Ruby 2.4.1
-  - Updated to rails 5.1.0.rc2
-  - Updated to haml 5.0.0.beta.2
-  - Updated to carrierwave ref `1101628`
+  - Updated to rails 5.1.0
+  - Updated to haml 5.0.0
+  - Updated to carrierwave 1.1.0
   - Updated to pg 0.20.0
   - Updated to devise 4.2.1
   - Updated to simplecov 0.14.1
