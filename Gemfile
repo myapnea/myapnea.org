@@ -10,7 +10,7 @@ gem 'pg',                   '0.20.0'
 # Gems used by project
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass',       '~> 3.3.7'
-gem 'carrierwave',          '~> 1.0.0'
+gem 'carrierwave',          '~> 1.1.0'
 gem 'colorize',             '~> 0.8.1'
 gem 'devise',               '~> 4.2.0'
 gem 'figaro',               '~> 1.1.1'
