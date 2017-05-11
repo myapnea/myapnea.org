@@ -5,6 +5,7 @@
   - Updated to rails 5.0.2
   - Updated to pg 0.20.0
   - Updated to haml 5.0.1
+  - Updated to simplecov 0.14.1
 
 ## 15.0.2 (January 23, 2017)
 
