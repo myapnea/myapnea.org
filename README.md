@@ -36,9 +36,9 @@ connection, server url, and application name.
 ```
 ruby lib/initial_setup.rb
 
-bundle exec rake db:migrate RAILS_ENV=production
+rails db:migrate RAILS_ENV=production
 
-bundle exec rake assets:precompile RAILS_ENV=production
+rails assets:precompile RAILS_ENV=production
 ```
 
 Edit the `/config/application.yml` file it generates, and enter any keys you've
@@ -61,14 +61,14 @@ Edit Cron Jobs `sudo crontab -e` to run the task `lib/tasks/surveys.rake`
 
 ```
 SHELL=/bin/bash
-0 1 * * * source /etc/profile.d/rvm.sh && cd /var/www/www.myapnea.org && /usr/local/rvm/gems/ruby-2.4.0/bin/bundle exec rake surveys:launch_followup_encounters RAILS_ENV=production
+0 1 * * * source /etc/profile.d/rvm.sh && cd /var/www/www.myapnea.org && /usr/local/rvm/gems/ruby-2.4.1/bin/bundle exec rake surveys:launch_followup_encounters RAILS_ENV=production
 ```
 
 Refreshing Sitemap
 
 ```
 SHELL=/bin/bash
-0 1 * * * source /etc/profile.d/rvm.sh && cd /var/www/www.myapnea.org && /usr/local/rvm/gems/ruby-2.4.0/bin/bundle exec rake sitemap:refresh RAILS_ENV=production
+0 1 * * * source /etc/profile.d/rvm.sh && cd /var/www/www.myapnea.org && /usr/local/rvm/gems/ruby-2.4.1/bin/bundle exec rake sitemap:refresh RAILS_ENV=production
 ```
 
 ## License
