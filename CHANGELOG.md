@@ -1,10 +1,3 @@
-## rails 5.1 branch
-
-### Enhancements
-- **Gem Changes**
-  - Updated to rails 5.1.1
-  - Updated to devise 4.3.0
-
 ## 16.0.0
 
 ### Enhancements
