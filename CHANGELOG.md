@@ -2,9 +2,8 @@
 
 ### Enhancements
 - **Gem Changes**
-  - Updated to rails 5.1.0.rc2
-  - Updated to haml 5.0.0.beta.2
-  - Updated to carrierwave ref `1101628`
+  - Updated to rails 5.1.1
+  - Updated to devise 4.3.0
 
 ## 16.0.0
 
@@ -14,10 +13,8 @@
     first and foremost
   - The forum, surveys, and blog are the primary components of MyApnea, pages
     that don't directly support these components have been removed
-  - Login cookies are now cross subdomain and work between www and non-www URLs
   - Started work on a new landing page
   - Redesigned pages to match more vibrant landing page
-  - Changed human verification from "Invisible" to "I'm not a robot" ReCAPTCHA
   - Added search to the mobile dropdown menu
   - Improved page navigation after signing in and signing out
   - Redesigned dashboard and settings pages
@@ -29,18 +26,29 @@
   - Sets of surveys are now grouped by project, the initial set of surveys on
     MyApnea are going into the MyApnea Core project
 - **Gem Changes**
-  - Updated to Ruby 2.4.1
-  - Updated to rails 5.0.2
-  - Updated to pg 0.20.0
-  - Updated to devise 4.2.1
-  - Updated to simplecov 0.14.1
-  - Updated to sitemap_generator 5.3.1
+  - Updated to rails 5.1.1
+  - Updated to devise 4.3.0
   - Updated to jquery-rails 4.3.1
 
 ### Refactoring
 - Removed typeahead library
 - Combined blog post replies and forum topic replies into one model
 - Renamed internal forum chapters to topics
+
+## 15.0.3 (May 11, 2017)
+
+### Enhancements
+- **General Changes**
+  - Login cookies are now cross subdomain and work between www and non-www URLs
+  - Changed human verification from "Invisible" to "I'm not a robot" ReCAPTCHA
+- **Gem Changes**
+  - Updated to Ruby 2.4.1
+  - Updated to rails 5.0.2
+  - Updated to pg 0.20.0
+  - Updated to carrierwave 1.1.0
+  - Updated to haml 5.0.1
+  - Updated to simplecov 0.14.1
+  - Updated to sitemap_generator 5.3.1
 
 ## 15.0.2 (January 23, 2017)
 

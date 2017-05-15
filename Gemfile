@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-gem 'rails',                '5.1.0.rc2'
+gem 'rails',                '5.1.1'
 
 # Database Adapter
 gem 'pg',                   '0.20.0'
@@ -10,12 +10,11 @@ gem 'pg',                   '0.20.0'
 # Gems used by project
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass',       '~> 3.3.7'
-# gem 'carrierwave',          '~> 1.0.0'
-gem 'carrierwave', git: 'https://github.com/carrierwaveuploader/carrierwave.git', ref: '1101628'
-gem 'devise',               '~> 4.2.1'
+gem 'carrierwave',          '~> 1.1.0'
+gem 'devise',               '~> 4.3.0'
 gem 'figaro',               '~> 1.1.1'
 gem 'font-awesome-rails',   '~> 4.7.0'
-gem 'haml',                 '~> 5.0.0.beta.2'
+gem 'haml',                 '~> 5.0.1'
 gem 'hashids',              '~> 1.0.3'
 gem 'jquery-ui-rails',      '~> 6.0.1'
 gem 'kaminari',             '~> 1.0.1'
@@ -37,7 +36,7 @@ gem 'turbolinks',           '~> 5'
 # Testing
 group :test do
   gem 'artifice'
-  gem 'minitest'
+  gem 'minitest', '5.10.1' # Remove version requirement when minitest is rereleased or rails is updated.
   gem 'rails-controller-testing'
   gem 'simplecov',          '~> 0.14.1', require: false
 end
