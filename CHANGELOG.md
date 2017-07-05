@@ -20,6 +20,7 @@
     MyApnea are going into the MyApnea Core project
 - **Gem Changes**
   - Updated to rails 5.1.1
+  - Updated to pg 0.21.0
   - Updated to devise 4.3.0
   - Updated to jquery-rails 4.3.1
 
