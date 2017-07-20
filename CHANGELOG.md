@@ -62,7 +62,7 @@
   - Badges for engaged forum users have been added:
     - Sleep Commentator: Over 100 posts
     - Sleep Enthusiast: Over 500 posts
-    - Sleep Fanatic: Over 1,000 posts
+    - Sleep Innovater: Over 1,000 posts
     - Sleep Patron: Over 2,000 posts
     - Sleep Champion: Over 5,000 posts
 - **Profile Changes**
