@@ -10,6 +10,8 @@ class Chapter < ApplicationRecord
   include PgSearch
   multisearchable against: [:title],
                   unless: :deleted?
+  include Strippable
+  strip :title
 
   # Callbacks
   after_commit :create_first_reply, on: :create
