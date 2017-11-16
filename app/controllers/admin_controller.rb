@@ -12,6 +12,28 @@ class AdminController < ApplicationController
   def social_media
   end
 
+  # GET /admin/spam-inbox
+  def spam_inbox
+    @spammers = spammers
+  end
+
+  # POST /admin/unshadowban/:id
+  def unshadowban
+    member = spammers.find_by(id: params[:id])
+    if member
+      member.update(shadow_banned: false)
+      flash[:notice] = "Member un-shadowbanned successfully."
+    end
+    redirect_to admin_spam_inbox_path
+  end
+
+  # POST /admin/empty-spam
+  def empty_spam
+    Chapter.current.where(user: spammers).destroy_all
+    spammers.destroy_all
+    redirect_to admin_spam_inbox_path, notice: "All spammers have been deleted."
+  end
+
   def surveys
   end
 
@@ -169,6 +191,10 @@ class AdminController < ApplicationController
   end
 
   private
+
+  def spammers
+    User.current.where(shadow_banned: true)
+  end
 
   def set_SEO_elements
     @title = 'Admin Panel'

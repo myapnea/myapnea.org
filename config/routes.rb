@@ -23,6 +23,9 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :broadcast_comments, only: :index, path: 'blog/comments'
     resources :replies, only: :index, path: 'forum/replies'
+    get :spam_inbox, path: "spam-inbox"
+    post :unshadowban, path: "unshadowban/:id"
+    post :empty_spam, path: "empty-spam"
     resources :categories
     resources :exports do
       member do

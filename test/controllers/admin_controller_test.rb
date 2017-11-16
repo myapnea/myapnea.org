@@ -125,4 +125,27 @@ class AdminControllerTest < ActionController::TestCase
     get :social_media
     assert_response :success
   end
+
+  test "should get spam inbox as owner" do
+    login(users(:owner))
+    get :spam_inbox
+    assert_response :success
+  end
+
+  test "should empty spam as owner" do
+    login(users(:owner))
+    post :empty_spam
+    assert_equal 0, User.current.where(shadow_banned: true).count
+    assert_equal 0, Chapter.current.where(user: User.current.where(shadow_banned: true)).count
+    assert_redirected_to admin_spam_inbox_path
+  end
+
+  test "should unshadowban user as owner" do
+    login(users(:owner))
+    assert_difference("User.where(shadow_banned: false).count") do
+      post :unshadowban, params: { id: users(:shadow_banned).id }
+    end
+    assert_equal "Member un-shadowbanned successfully.", flash[:notice]
+    assert_redirected_to admin_spam_inbox_path
+  end
 end

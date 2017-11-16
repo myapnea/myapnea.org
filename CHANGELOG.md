@@ -1,6 +1,8 @@
 ## 15.0.4
 
 ### Enhancements
+- **Admin Changes**
+  - Admins can now empty spam from the spam inbox
 - **Forum Changes**
   - Improved spam detection heuristics
 - **Gem Changes**
