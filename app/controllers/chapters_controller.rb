@@ -25,7 +25,7 @@ class ChaptersController < ApplicationController
     last_reply_id = reply_scope.last.id
     reply_scope = reply_scope.shadow_banned(current_user ? current_user.id : nil) unless current_user && current_user.owner?
     @replies = reply_scope
-    @chapter.increment! :view_count
+    @chapter.increment!(:view_count) if !current_user || (current_user && !current_user.shadow_banned?)
     current_user.read_chapter!(@chapter, last_reply_id) if current_user
   end
 

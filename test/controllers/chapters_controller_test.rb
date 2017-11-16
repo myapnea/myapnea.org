@@ -81,6 +81,23 @@ class ChaptersControllerTest < ActionController::TestCase
   test 'should show chapter' do
     login(@regular_user)
     get :show, params: { id: @chapter }
+    @chapter.reload
+    assert_equal 1, @chapter.view_count
+    assert_response :success
+  end
+
+  test "should increase chapter view count as public viewer" do
+    get :show, params: { id: @chapter }
+    @chapter.reload
+    assert_equal 1, @chapter.view_count
+    assert_response :success
+  end
+
+  test "should not increase chapter view count as spammer" do
+    login(users(:shadow_banned))
+    get :show, params: { id: @chapter }
+    @chapter.reload
+    assert_equal 0, @chapter.view_count
     assert_response :success
   end
 

@@ -5,6 +5,7 @@
   - Admins can now empty spam from the spam inbox
 - **Forum Changes**
   - Improved spam detection heuristics
+  - Spammers no longer affect topic view counts
 - **Gem Changes**
   - Updated to pg 0.21.0
 
