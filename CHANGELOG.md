@@ -27,6 +27,7 @@
   - Updated to devise 4.3.0
   - Updated to haml 5.0.4
   - Updated to jquery-rails 4.3.1
+  - Updated to kaminari 1.1.1
 
 ### Tests
 - Added tests to assure user passwords can be reset
