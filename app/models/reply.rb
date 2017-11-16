@@ -13,6 +13,8 @@ class Reply < ApplicationRecord
   include UrlCountable
   multisearchable against: [:description],
                   unless: :deleted_or_parent_deleted?
+  include Strippable
+  strip :description
 
   # Scopes
   scope :points, -> { select('replies.*, COALESCE(SUM(reply_users.vote), 0)  points').joins('LEFT JOIN reply_users ON reply_users.reply_id = replies.id').group('replies.id') }

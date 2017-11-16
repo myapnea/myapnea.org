@@ -1,0 +1,36 @@
+- @title = "Spam Inbox"
+
+.content-main-header2
+
+  %h1
+    .pull-right= link_to "Empty Spam", admin_empty_spam_path, method: :post, data: { confirm: "DELETE all spammers?" }, class: "btn btn-xs btn-primary"
+    = @title
+
+- if @spammers.present?
+  %table.table
+    %thead
+      %tr
+        %td Spammer
+        %td Last Reply
+        %td Actions
+    - @spammers.each do |spammer|
+      %tr
+        %td
+          = link_to spammer.name, spammer
+          .small
+            = spammer.email
+          .small
+            = spammer.forum_name
+        %td.small
+          - reply = Reply.where(user: spammer).last
+          - if reply
+            = link_to "view topic", reply
+            = reply.description if reply
+        %td
+          = link_to "Not a spammer", admin_unshadowban_path(spammer), method: :post, class: "btn btn-xs btn-default"
+
+- else
+  .jumbotron
+    %p.lead.text-center
+      %i.fa.fa-hand-peace-o.fa-2x.fa-spin
+      Hurray, no spammers!

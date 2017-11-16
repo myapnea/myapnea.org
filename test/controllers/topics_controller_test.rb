@@ -81,6 +81,23 @@ class TopicsControllerTest < ActionController::TestCase
   test 'should show topic' do
     login(@regular_user)
     get :show, params: { id: @topic }
+    @topic.reload
+    assert_equal 1, @topic.view_count
+    assert_response :success
+  end
+
+  test "should increase topic view count as public viewer" do
+    get :show, params: { id: @topic }
+    @topic.reload
+    assert_equal 1, @topic.view_count
+    assert_response :success
+  end
+
+  test "should not increase topic view count as spammer" do
+    login(users(:shadow_banned))
+    get :show, params: { id: @topic }
+    @topic.reload
+    assert_equal 0, @topic.view_count
     assert_response :success
   end
 

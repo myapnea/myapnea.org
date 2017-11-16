@@ -230,7 +230,7 @@ created_today:
   over_eighteen: true
   encrypted_password: <%= pw %>
   created_at: <%= Date.today.to_s(:db) %>
-  forum_name: created_today
+  forum_name: createdtoday
 
 created_five_days_ago:
   first_name: Created
@@ -239,7 +239,7 @@ created_five_days_ago:
   over_eighteen: true
   encrypted_password: <%= pw %>
   created_at: <%= 5.day.ago.to_s(:db) %>
-  forum_name: created_five_days_ago
+  forum_name: createdfivedaysago
 
 created_fourteen_days_ago:
   first_name: Created
@@ -248,7 +248,7 @@ created_fourteen_days_ago:
   over_eighteen: true
   encrypted_password: <%= pw %>
   created_at: <%= 14.day.ago.to_s(:db) %>
-  forum_name: created_fourteen_days_ago
+  forum_name: createdfourteendaysago
 
 created_today_with_locked_baseline:
   first_name: Created
@@ -257,7 +257,7 @@ created_today_with_locked_baseline:
   over_eighteen: true
   encrypted_password: <%= pw %>
   created_at: <%= Date.today.to_s(:db) %>
-  forum_name: created_today_with_locked_baseline
+  forum_name: createdtodaywithlockedbaseline
 
 created_five_days_ago_with_locked_baseline:
   first_name: Created
@@ -266,7 +266,7 @@ created_five_days_ago_with_locked_baseline:
   over_eighteen: true
   encrypted_password: <%= pw %>
   created_at: <%= 5.day.ago.to_s(:db) %>
-  forum_name: created_five_days_ago_with_locked_baseline
+  forum_name: createdfivedaysagowithlockedbaseline
 
 created_fourteen_days_ago_with_locked_baseline:
   first_name: Created
@@ -275,7 +275,7 @@ created_fourteen_days_ago_with_locked_baseline:
   over_eighteen: true
   encrypted_password: <%= pw %>
   created_at: <%= 14.day.ago.to_s(:db) %>
-  forum_name: created_fourteen_days_ago_with_locked_baseline
+  forum_name: createdfourteendaysagowithlockedbaseline
 
 ## For completed about-me survey
 finished_about_me_1:
@@ -288,7 +288,7 @@ finished_about_me_1:
   accepted_update_at: <%= Date.parse(User::RECENT_UPDATE_DATE).end_of_day %>
   adult_diagnosed: true
   encrypted_password: <%= pw %>
-  forum_name: finished_about_me_1
+  forum_name: finishedaboutme1
 
 finished_about_me_2:
   first_name: Finished
@@ -300,7 +300,7 @@ finished_about_me_2:
   accepted_update_at: <%= Date.parse(User::RECENT_UPDATE_DATE).end_of_day %>
   adult_diagnosed: true
   encrypted_password: <%= pw %>
-  forum_name: finished_about_me_2
+  forum_name: finishedaboutme2
 
 finished_about_me_3:
   first_name: Finished
@@ -312,7 +312,7 @@ finished_about_me_3:
   accepted_update_at: <%= Date.parse(User::RECENT_UPDATE_DATE).end_of_day %>
   adult_diagnosed: true
   encrypted_password: <%= pw %>
-  forum_name: finished_about_me_3
+  forum_name: finishedaboutme3
 
 finished_about_me_4:
   first_name: Finished
@@ -324,7 +324,7 @@ finished_about_me_4:
   accepted_update_at: <%= Date.parse(User::RECENT_UPDATE_DATE).end_of_day %>
   adult_diagnosed: true
   encrypted_password: <%= pw %>
-  forum_name: finished_about_me_4
+  forum_name: finishedaboutme4
 
 finished_about_me_5:
   first_name: Finished
@@ -336,7 +336,7 @@ finished_about_me_5:
   accepted_update_at: <%= Date.parse(User::RECENT_UPDATE_DATE).end_of_day %>
   adult_diagnosed: true
   encrypted_password: <%= pw %>
-  forum_name: finished_about_me_5
+  forum_name: finishedaboutme5
 
 finished_about_me_6:
   first_name: Finished
@@ -348,7 +348,7 @@ finished_about_me_6:
   accepted_update_at: <%= Date.parse(User::RECENT_UPDATE_DATE).end_of_day %>
   adult_diagnosed: true
   encrypted_password: <%= pw %>
-  forum_name: finished_about_me_6
+  forum_name: finishedaboutme6
 
 heh_1:
   email: heh_1@example.com
@@ -369,7 +369,7 @@ community_contributor:
   over_eighteen: true
   encrypted_password: ""
   community_contributor: true
-  forum_name: community_contributor
+  forum_name: communitycontributor
 
 shadow_banned:
   first_name: Dark
@@ -379,7 +379,7 @@ shadow_banned:
   adult_diagnosed: true
   encrypted_password: <%= pw %>
   accepted_terms_conditions_at: <%= Time.zone.now %>
-  forum_name: dark_shadow
+  forum_name: darkshadow
   shadow_banned: true
 
 new_spammer:
@@ -390,7 +390,7 @@ new_spammer:
   adult_diagnosed: true
   encrypted_password: <%= pw %>
   accepted_terms_conditions_at: <%= Time.zone.now %>
-  forum_name: innocent_ant
+  forum_name: innocentant
   # shadow_banned:
 
 verified_user:
@@ -401,5 +401,5 @@ verified_user:
   adult_diagnosed: true
   encrypted_password: <%= pw %>
   accepted_terms_conditions_at: <%= Time.zone.now %>
-  forum_name: prolific_user
+  forum_name: prolificuser
   shadow_banned: false

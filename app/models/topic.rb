@@ -11,6 +11,8 @@ class Topic < ApplicationRecord
   include UrlCountable
   multisearchable against: [:title],
                   unless: :deleted?
+  include Strippable
+  strip :title
 
   # Callbacks
   after_create_commit :create_first_reply

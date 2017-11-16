@@ -6,6 +6,7 @@
     %li= link_to 'Projects', projects_path, class: params[:controller] == 'projects' ? 'active' : nil
     %li= link_to 'Users', users_path, class: params[:controller] == 'users' ? 'active' : nil
     %li.blog-menu-header Discussion
+    %li= link_to "Spam Inbox", admin_spam_inbox_path
     %li= link_to 'Member Posts', admin_replies_path
     %li= link_to 'Blog Categories', admin_categories_path, class: params[:controller] == 'admin/categories' ? 'active' : nil
     %li= link_to 'User Images', images_path, class: params[:controller] == 'images' ? 'active' : nil

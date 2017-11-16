@@ -24,7 +24,7 @@ class TopicsController < ApplicationController
     last_reply_id = reply_scope.last.id
     reply_scope = reply_scope.shadow_banned(current_user ? current_user.id : nil) unless current_user && current_user.admin?
     @replies = reply_scope
-    @topic.increment! :view_count
+    @topic.increment!(:view_count) if !current_user || (current_user && !current_user.shadow_banned?)
     current_user.read_parent!(@topic, last_reply_id) if current_user
   end
 

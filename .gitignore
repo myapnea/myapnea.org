@@ -22,6 +22,7 @@
 /config/application.yml
 /config/banemail.yml
 /config/database.yml
+/config/urlregex.yml
 
 /public/cache/*
 /public/stylesheets/cache/*

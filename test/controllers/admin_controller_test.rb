@@ -33,4 +33,27 @@ class AdminControllerTest < ActionController::TestCase
     get :dashboard
     assert_redirected_to new_user_session_path
   end
+
+  test "should get spam inbox as admin" do
+    login(@admin)
+    get :spam_inbox
+    assert_response :success
+  end
+
+  test "should empty spam as admin" do
+    login(@admin)
+    post :empty_spam
+    assert_equal 0, User.current.where(shadow_banned: true).count
+    assert_equal 0, Topic.current.where(user: User.current.where(shadow_banned: true)).count
+    assert_redirected_to admin_spam_inbox_path
+  end
+
+  test "should unshadowban user as admin" do
+    login(@admin)
+    assert_difference("User.where(shadow_banned: false).count") do
+      post :unshadowban, params: { id: users(:shadow_banned).id }
+    end
+    assert_equal "Member un-shadowbanned successfully.", flash[:notice]
+    assert_redirected_to admin_spam_inbox_path
+  end
 end

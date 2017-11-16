@@ -20,7 +20,6 @@
     MyApnea are going into the MyApnea Core project
 - **Gem Changes**
   - Updated to rails 5.1.2
-  - Updated to pg 0.21.0
   - Updated to devise 4.3.0
   - Updated to jquery-rails 4.3.1
 
@@ -28,6 +27,17 @@
 - Removed typeahead library
 - Combined blog post replies and forum topic replies into one model
 - Renamed internal forum chapters to topics
+
+## 15.0.4 (November 16, 2017)
+
+### Enhancements
+- **Admin Changes**
+  - Admins can now empty spam from the spam inbox
+- **Forum Changes**
+  - Improved spam detection heuristics
+  - Spammers no longer affect topic view counts
+- **Gem Changes**
+  - Updated to pg 0.21.0
 
 ## 15.0.3 (May 11, 2017)
 
