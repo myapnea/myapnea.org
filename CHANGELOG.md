@@ -23,6 +23,7 @@
   - Added bootsnap
   - Updated to ruby 2.4.2
   - Updated to rails 5.1.4
+  - Updated to carrierwave 1.2.1
   - Updated to devise 4.3.0
   - Updated to haml 5.0.4
   - Updated to jquery-rails 4.3.1
