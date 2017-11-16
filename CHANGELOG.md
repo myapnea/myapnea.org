@@ -3,6 +3,8 @@
 ### Enhancements
 - **Forum Changes**
   - Improved spam detection heuristics
+- **Gem Changes**
+  - Updated to pg 0.21.0
 
 ## 15.0.3 (May 11, 2017)
 
