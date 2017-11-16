@@ -23,6 +23,9 @@
   - Updated to devise 4.3.0
   - Updated to jquery-rails 4.3.1
 
+### Tests
+- Added tests to assure user passwords can be reset
+
 ### Refactoring
 - Removed typeahead library
 - Combined blog post replies and forum topic replies into one model
