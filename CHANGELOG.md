@@ -19,6 +19,7 @@
   - Sets of surveys are now grouped by project, the initial set of surveys on
     MyApnea are going into the MyApnea Core project
 - **Gem Changes**
+  - Updated `Gemfile` to `gems.rb`
   - Updated to ruby 2.4.2
   - Updated to rails 5.1.2
   - Updated to devise 4.3.0
