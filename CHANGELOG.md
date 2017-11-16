@@ -20,6 +20,7 @@
     MyApnea are going into the MyApnea Core project
 - **Gem Changes**
   - Updated `Gemfile` to `gems.rb`
+  - Added bootsnap
   - Updated to ruby 2.4.2
   - Updated to rails 5.1.4
   - Updated to devise 4.3.0
