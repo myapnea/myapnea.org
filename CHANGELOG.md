@@ -29,6 +29,7 @@
   - Updated to jquery-rails 4.3.1
   - Updated to kaminari 1.1.1
   - Updated to pg_search 2.1.1
+  - Updated to sitemap_generator 6.0.0
 
 ### Tests
 - Added tests to assure user passwords can be reset

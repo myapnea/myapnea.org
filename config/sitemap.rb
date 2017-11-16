@@ -6,24 +6,24 @@
 # rails sitemap:refresh RAILS_ENV=production
 # https://www.google.com/webmasters/tools/
 
-require 'rubygems'
-require 'sitemap_generator'
+require "rubygems"
+require "sitemap_generator"
 
 SitemapGenerator.verbose = false
-SitemapGenerator::Sitemap.default_host = 'https://myapnea.org'
-SitemapGenerator::Sitemap.sitemaps_host = ENV['website_url']
-SitemapGenerator::Sitemap.public_path = 'carrierwave/sitemaps/'
-SitemapGenerator::Sitemap.sitemaps_path = ''
+SitemapGenerator::Sitemap.default_host = "https://myapnea.org"
+SitemapGenerator::Sitemap.sitemaps_host = ENV["website_url"]
+SitemapGenerator::Sitemap.public_path = "carrierwave/sitemaps/"
+SitemapGenerator::Sitemap.sitemaps_path = ""
 SitemapGenerator::Sitemap.create do
-  add '/landing', changefreq: 'daily', priority: 0.7
-  add '/blog', changefreq: 'daily', priority: 0.9
-  add '/forum', changefreq: 'daily', priority: 0.8
-  add '/about', changefreq: 'weekly', priority: 0.7
-  add '/team', changefreq: 'monthly', priority: 0.51
-  add '/learn', changefreq: 'weekly', priority: 0.51
-  add '/faqs', changefreq: 'monthly', priority: 0.51
-  add '/partners', changefreq: 'monthly', priority: 0.3
-  add '/contact', changefreq: 'monthly', priority: 0.3
+  add "/landing", changefreq: "daily", priority: 0.7
+  add "/blog", changefreq: "daily", priority: 0.9
+  add "/forum", changefreq: "daily", priority: 0.8
+  add "/about", changefreq: "weekly", priority: 0.7
+  add "/team", changefreq: "monthly", priority: 0.51
+  add "/learn", changefreq: "weekly", priority: 0.51
+  add "/faqs", changefreq: "monthly", priority: 0.51
+  add "/partners", changefreq: "monthly", priority: 0.3
+  add "/contact", changefreq: "monthly", priority: 0.3
 
   Broadcast.published.find_each do |broadcast|
     add "/blog/#{broadcast.to_param}", lastmod: broadcast.updated_at
@@ -36,7 +36,7 @@ SitemapGenerator::Sitemap.create do
       end
     end
   end
-  add '/surveys', changefreq: 'weekly', priority: 0.8
+  add "/surveys", changefreq: "weekly", priority: 0.8
   Survey.viewable.find_each do |survey|
     add "/surveys/#{survey.to_param}", lastmod: survey.updated_at
   end
