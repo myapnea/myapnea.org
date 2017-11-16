@@ -30,6 +30,7 @@
   - Updated to kaminari 1.1.1
   - Updated to pg_search 2.1.1
   - Updated to sitemap_generator 6.0.0
+  - Updated to simplecov 0.15.1
 
 ### Tests
 - Added tests to assure user passwords can be reset
