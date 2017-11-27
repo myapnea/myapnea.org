@@ -1,4 +1,4 @@
-## 15.0.5
+## 15.0.5 (November 27, 2017)
 
 ### Enhancements
 - **Forum Changes**
