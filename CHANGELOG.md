@@ -40,6 +40,12 @@
 - Combined blog post replies and forum topic replies into one model
 - Renamed internal forum chapters to topics
 
+## 15.0.5 (November 27, 2017)
+
+### Enhancements
+- **Forum Changes**
+  - Improvements to spam detection
+
 ## 15.0.4 (November 16, 2017)
 
 ### Enhancements

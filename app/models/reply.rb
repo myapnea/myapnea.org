@@ -160,7 +160,11 @@ class Reply < ApplicationRecord
   end
 
   def url_count
-    count_urls(description) + email_count
+    if user.sign_in_count == 1
+      count_urls(description) * 2 + email_count
+    else
+      count_urls(description) + email_count
+    end
   end
 
   def email_count
