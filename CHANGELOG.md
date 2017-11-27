@@ -1,5 +1,9 @@
 ## 15.0.5
 
+### Enhancements
+- **Forum Changes**
+  - Improvements to spam detection
+
 ## 15.0.4 (November 16, 2017)
 
 ### Enhancements

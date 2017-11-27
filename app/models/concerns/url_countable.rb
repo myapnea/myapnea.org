@@ -24,4 +24,3 @@ module UrlCountable
     count
   end
 end
-
