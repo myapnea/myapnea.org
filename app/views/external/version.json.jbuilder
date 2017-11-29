@@ -1,7 +1,7 @@
 json.version do
-  json.string WwwMyapneaOrg::VERSION::STRING
-  json.major WwwMyapneaOrg::VERSION::MAJOR
-  json.minor WwwMyapneaOrg::VERSION::MINOR
-  json.tiny WwwMyapneaOrg::VERSION::TINY
-  json.build WwwMyapneaOrg::VERSION::BUILD
+  json.string Myapnea::VERSION::STRING
+  json.major Myapnea::VERSION::MAJOR
+  json.minor Myapnea::VERSION::MINOR
+  json.tiny Myapnea::VERSION::TINY
+  json.build Myapnea::VERSION::BUILD
 end

@@ -1,0 +1,52 @@
+.noscroll {
+  overflow: hidden;
+}
+
+.shade {
+  opacity: 0.8;
+  position: absolute;
+  left: 0%;
+  top: 0%;
+  z-index: $zindex-modal-backdrop;
+  width: 100%;
+  height: 100%;
+  background-color: $black;
+  display: none;
+}
+
+.full-video-frame {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+  padding-top: $spacer;
+  padding-bottom: $spacer;
+  z-index: $zindex-modal;
+  max-height: 100vh;
+  max-width: 100vw;
+  background-color: $black;
+}
+
+.full-video-frame-close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: $zindex-popover;
+  font-size: 2rem;
+  cursor: pointer;
+  line-height: 1rem;
+  padding: 1rem;
+  color: $brand-white;
+
+  transition: transform 250ms ease-out;
+
+  @media (hover) {
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
+}

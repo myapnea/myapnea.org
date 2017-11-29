@@ -24,4 +24,4 @@
     .page-box-padding
       .container= yield
     = yield :footer
-    = render "layouts/footer", theme: @theme ? "footer-#{@theme}" : nil
+    = render "layouts/footer", footer: @footer ? "footer-#{@footer}" : nil

@@ -1,18 +1,18 @@
-- @title = 'Unlock account'
+- @title = "Unlock account"
 
 - content_for :body_class do
-  gray-background
+  myapnea-light-bg
 
-%p.lead.center Resend unlock instructions
+%p.lead.text-center Resend unlock instructions
 
 .sign-up-form
   .sign-up-form-title
     Unlock account
 
-  = form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post, class: 'form-vertical' }) do |f|
+  = form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post, class: "form-vertical" }) do |f|
     .form-group
-      = render 'layouts/label_or_errors', f: f, object: resource, key: :email
-      = f.email_field :email, class: 'form-control'
+      = render "layouts/label_or_errors", f: f, object: resource, key: :email
+      = f.email_field :email, class: "form-control"
 
     - if resource.errors.any?
       .text-danger
@@ -21,4 +21,4 @@
           a new unlock token and URL.
 
     .form-group.submit-btn-container
-      = f.submit 'Resend unlock instructions', class: 'btn btn-primary btn-block btn-shadow'
+      = f.submit "Resend unlock instructions", class: "btn btn-primary btn-block btn-shadow"

@@ -19,7 +19,7 @@ class ExternalController < ApplicationController
   # end
 
   def landing
-    redirect_to landing6_path
+    render layout: "layouts/full_page_custom_header"
   end
 
   # # POST /preview
@@ -50,4 +50,10 @@ class ExternalController < ApplicationController
   # # GET /voting
   # def voting
   # end
+
+  # GET /version
+  # GET /version.json
+  def version
+    render layout: "layouts/full_page"
+  end
 end

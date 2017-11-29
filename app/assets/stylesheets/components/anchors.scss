@@ -8,3 +8,12 @@
   width: 0;
   visibility: hidden;
 }
+
+.anchor-menu {
+  display: block;
+  height: 0;
+  position: relative;
+  top: -($header-height) + 1px;
+  width: 0;
+  visibility: hidden;
+}

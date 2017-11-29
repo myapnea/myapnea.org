@@ -1,16 +1,11 @@
-- @title = 'Version'
+- @title = "Version"
+- @themes = [{ background: "myapnea-night-bg", icon: "moon", header: "night", footer: "night" }, { background: "myapnea-sky-bg", icon: "sun", header: "grass", footer: "grass" }, { background: "myapnea-sunset-bg", icon: "sunset", header: "sunset", footer: "sunset" }]
+- number = rand(@themes.size)
+- @theme = @themes[number][:header]
+- @footer = @themes[number][:footer]
 
-- content_for :body_class do
-  myapnea-sky-bg
-
-- content_for :header do
-  .header-container
-    .container
-      %h1.page-heading
-        = @title
-
-.text-center{ style: 'margin-top:40px' }
-  %p.lead
-    %span.transparent-stamp
-      Version
-      %strong= WwwMyapneaOrg::VERSION::STRING
+.page-box.last-box.d-flex.align-items-center{ class: @themes[number][:background] }
+  = render "blank/#{@themes[number][:icon]}" if @themes[number][:icon].present?
+  .container
+    .text-center
+      .page-heading.text-white{ style: "font-size: 2rem;" }= "v#{Myapnea::VERSION::STRING}"

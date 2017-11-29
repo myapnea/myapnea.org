@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module WwwMyapneaOrg
+module Myapnea
   module VERSION #:nodoc:
     MAJOR = 16
     MINOR = 0

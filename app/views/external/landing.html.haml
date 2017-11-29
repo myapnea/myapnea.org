@@ -1,0 +1,60 @@
+- @footer = "dark-blue"
+
+- content_for :body_class do
+  myapnea-light-bg
+
+.background-fixed-image
+  .d-flex.background-fixed-image-fixed-height.color-overlay.align-items-center
+    .container.text-center
+      .mb-3= image_tag "myapnea/logos/MyApneaLogo_border_bluetext.png", style: "height: auto; width: 300px; max-width: 100%;"
+      %h1.d-none.landing-title.mb-3
+        MyApnea.Org
+      .landing-text
+        Improving the lives of people with sleep apnea.
+
+#top-menu.top-menu= render "layouts/menu"
+
+= render "videos/full_frame_video"
+
+.page-box-padding.d-flex.justify-content-center.align-items-center{ style: "min-height: 50vh;" }
+  =# render "blank/sun"
+  .container
+    .background-questions-image.rounded
+      .embed-responsive.embed-responsive-16by9.p-3.box-shadow.rounded.d-flex.justify-content-center.align-items-center
+        - video = "3I8YbWRgkjw"
+        - video_loop = "0"
+        - autoplay = "1"
+        = link_to "#", data: { object: "launch-full-page-video", video_src: "//www.youtube.com/embed/#{video}?playlist=#{video}&autoplay=#{autoplay}&loop=#{video_loop}&controls=0&rel=0&modestbranding=1&showinfo=0" }, class: "link-blend myapnea-lead-sentence" do
+          %i.fa.fa-play-circle.fa-2x
+
+#join.anchor-menu
+.page-box.last-box.d-flex.align-items-center.myapnea-dark-blue-bg.text-white{ style: "position: relative;" }
+  = link_to "#join", data: { object: "scroll-anchor" }, class: "scroll-down-arrow-visible scroll-down-arrow-top link-unstyled" do
+    %i.fa.fa-chevron-down.text-white
+
+  .container
+
+    - if current_user
+      .landing-sentence.text-center.mb-5
+        Thank you for
+        %span.text-accent making a difference
+        on MyApnea.Org.
+
+    - else
+      .landing-sentence.text-center.mb-5
+        Join
+        %span.text-accent thousands
+        of people already making a difference on MyApnea.Org.
+
+      .text-center
+        = link_to new_user_registration_path, class: "btn btn-lg btn-accent btn-shadow" do
+          Join Today
+          %i.fa.fa-caret-right
+
+
+- if false
+  .page-box.last-box.myapnea-sky-bg
+    = render "blank/sun"
+    .container
+      .myapnea-heading
+        Get started!

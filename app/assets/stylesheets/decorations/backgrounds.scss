@@ -1,6 +1,31 @@
+.color-overlay {
+  background-color: $p700-blue; // rgba($p700-blue, .5);
+}
+
 .color-overlay2 {
   background-color: $p600-blue; // rgba($p600-blue, .9);
   box-shadow: 0 5px 10px 0 $box-shadow-color;
+}
+
+.background-fixed-image {
+  // background-image: asset-url("");
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  z-index: $zindex-fixed;
+}
+
+.background-fixed-image-fixed-height {
+  height: 200px;
+}
+
+.background-questions-image {
+  background-image: asset-url("backgrounds/questions.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .myapnea-blue-bg {
@@ -11,6 +36,10 @@
     border-color: $p200-orange;
     color: $brand-white;
   }
+}
+
+.myapnea-dark-blue-bg {
+  background-color: $p900-blue;
 }
 
 .myapnea-orange-bg {
