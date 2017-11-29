@@ -21,7 +21,7 @@
   }
 }
 
-@media screen and (min-width: $screen-sm-min) {
+@include media-breakpoint-up(sm) {
   .reply-container {
     .reply-container {
       border-radius: 4px;
@@ -38,12 +38,25 @@
   border-left: 4px solid $p50-blue;
 }
 
-.highlighted-reply {
-  background-color: $state-warning-bg;
+// // TODO: Restyle highlighted reply
+// .highlighted-reply {
+//   background-color: $state-warning-bg;
 
-  > .reply-container.reply-even,
-  > .reply-container.reply-odd {
-    background-color: $state-warning-bg;
+//   > .reply-container.reply-even,
+//   > .reply-container.reply-odd {
+//     background-color: $state-warning-bg;
+//   }
+// }
+
+.topic-preview,
+.reply-body {
+  blockquote {
+    border: 0;
+    border-left: 2px solid $p200-grey;
+    color: $p500-grey;
+    font-size: $font-size-base;
+    margin: 0 0 11px;
+    padding: 0 10px;
   }
 }
 
@@ -52,8 +65,12 @@
   padding-left: 0;
   padding-top: 10px;
   word-wrap: break-word;
+}
 
+.reply-body-formatted {
   img {
+    @include ignore-selection;
+
     cursor: zoom-in;
     max-height: 100px;
     max-width: 100%;
@@ -63,18 +80,9 @@
       max-height: none;
     }
   }
-
-  blockquote {
-    border: 0;
-    border-left: 2px solid $brand-gray-lighter;
-    color: $blockquote-gray;
-    font-size: $font-size-base;
-    margin: 0 0 11px;
-    padding: 0 10px;
-  }
 }
 
-@media screen and (min-width: $screen-sm-min) {
+@include media-breakpoint-up(sm) {
   .reply-body {
     padding-left: 20px;
   }
@@ -89,11 +97,11 @@
   display: none;
 
   img {
-    cursor: default;
+    @include ignore-selection;
   }
 }
 
-@media screen and (min-width: $screen-md-min) {
+@include media-breakpoint-up(md) {
   .reply-avatar {
     display: block;
     left: -70px;

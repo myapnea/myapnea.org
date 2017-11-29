@@ -24,7 +24,7 @@
   }
 }
 
-@media screen and (min-width: $screen-sm-min) {
+@include media-breakpoint-up(sm) {
   .broadcast-by {
     padding: 10px 30px;
   }
@@ -40,10 +40,14 @@
   }
 
   img {
+    @include ignore-selection;
+
+    border: 1px solid $p200-grey;
     display: block;
     height: auto;
     margin: 10px auto 16px;
     max-width: 100%;
+    padding: 5px;
   }
 
   p {
@@ -56,7 +60,7 @@
   h4,
   h5,
   h6 {
-    border-bottom: 1px solid $brand-gray;
+    border-bottom: 1px solid $p400-grey;
     font-weight: 600;
     margin-bottom: 12px;
     margin-top: 40px;
@@ -80,16 +84,25 @@
   h6 {
     font-size: 16px;
   }
+
+  blockquote {
+    border: 0;
+    border-left: 2px solid $p200-grey;
+    color: $p500-grey;
+    font-size: $font-size-base;
+    margin: 0 0 11px;
+    padding: 0 10px;
+  }
 }
 
 .broadcast-title {
-  border-bottom: 1px solid $brand-gray;
+  border-bottom: 1px solid $p400-grey;
   font-size: 28px;
   font-weight: 600;
   padding-bottom: 9.5px;
 }
 
-@media screen and (min-width: $screen-sm-min) {
+@include media-breakpoint-up(sm) {
   .broadcast-title {
     font-size: 34px;
   }
@@ -101,7 +114,7 @@
 }
 
 .broadcast-left-fixed {
-  color: $brand-info;
+  color: $link-color;
   display: none;
   left: 0;
   position: absolute;
@@ -109,15 +122,11 @@
   width: 32px;
 }
 
-// .broadcast-alert .broadcast-left-fixed {
-//   color: $brand-warning-text;
-// }
-
 .broadcast-right-fluid {
   position: relative;
 }
 
-@media screen and (min-width: $screen-sm-min) {
+@include media-breakpoint-up(sm) {
   .broadcast-left-fixed {
     display: block;
   }
@@ -129,7 +138,7 @@
 
 .broadcast-box {
   background-color: $brand-white;
-  border: 1px solid $brand-gray;
+  border: 1px solid $p300-grey;
   border-radius: 2px;
 }
 
@@ -146,7 +155,7 @@
 
 .broadcast-header::before {
   border-bottom: 7px solid transparent;
-  border-right: 7px solid $brand-gray;
+  border-right: 7px solid $p300-grey;
   border-top: 7px solid transparent;
   content: '';
   height: 0;
@@ -177,66 +186,5 @@
     box-shadow: 0 1px 5px $box-shadow-color;
     margin: 10px 0;
     padding: 20px;
-  }
-
-  .broadcast-comment {
-    &.broadcast-comment-even {
-      background-color: $brand-white;
-    }
-
-    &.broadcast-comment-odd {
-      background-color: $brand-gray-lightest;
-    }
-
-    .broadcast-comment {
-      border: 1px solid $brand-gray-lighter;
-      border-radius: 4px 0 0 4px;
-      margin-right: -11px;
-      margin-top: 10px;
-      padding: 10px;
-    }
-  }
-}
-
-@media screen and (min-width: $screen-sm-min) {
-  .broadcast-discussion {
-    .broadcast-comment {
-      .broadcast-comment {
-        border-radius: 4px;
-        margin-right: 0;
-      }
-    }
-  }
-}
-
-.broadcast-comment-body {
-  padding-bottom: 10px;
-  padding-left: 0;
-  padding-top: 10px;
-  word-wrap: break-word;
-
-  img {
-    max-height: 100px;
-    max-width: 100%;
-    cursor: pointer;
-  }
-
-  img.large-view {
-    max-height: none;
-  }
-
-  blockquote {
-    font-size: $font-size-base;
-    margin: 0 0 11px 0;
-    padding: 0 10px;
-    border: 0;
-    border-left: 2px solid $brand-gray-lighter;
-    color: #999;
-  }
-}
-
-@media screen and (min-width: $screen-sm-min) {
-  .broadcast-comment-body {
-    padding-left: 20px;
   }
 }

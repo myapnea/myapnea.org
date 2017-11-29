@@ -15,14 +15,15 @@
 }
 
 
-@media (max-width: $screen-md) {
-  .user-thumbnail-forum {
-    border-width:4px;
-  }
-}
+// TODO: Fix thumbnails for screen size
+// @media (max-width: $screen-md) {
+//   .user-thumbnail-forum {
+//     border-width:4px;
+//   }
+// }
 
-@media (max-width: $screen-sm) {
-  .user-thumbnail-forum {
-    border-width:3px;
-  }
-}
+// @media (max-width: $screen-sm) {
+//   .user-thumbnail-forum {
+//     border-width:3px;
+//   }
+// }

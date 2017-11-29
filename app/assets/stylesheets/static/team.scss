@@ -23,19 +23,19 @@
 }
 
 .team-member-picture {
-  border: 2px solid $primary-orange;
+  border: 2px solid $p400-orange;
   border-radius: 50%;
   margin-right: 20px;
   width: 100%;
 }
 
 .team-member-picture-large {
-  border: 2px solid $primary-orange;
+  border: 2px solid $p400-orange;
   border-radius: 50%;
 }
 
 .team-member-picture-md {
-  border: 2px solid $primary-orange;
+  border: 2px solid $p400-orange;
   height: auto;
   width: 70%;
 }
@@ -58,8 +58,10 @@
   -webkit-transition: all .4s ease; // Fade to color for Chrome and Safari */
 }
 
-@media (max-width: $screen-md) {
-  .team-list {
-    padding-left: 0;
-  }
-}
+
+// TODO: Fix max-width screen css
+// @media (max-width: $screen-md) {
+//   .team-list {
+//     padding-left: 0;
+//   }
+// }

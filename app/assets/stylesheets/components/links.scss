@@ -12,22 +12,24 @@
 }
 
 .link-blend {
-  color: $text-color;
+  color: $body-color;
 
   &:hover,
   &:focus,
   &:active {
-    color: $link-hover-color;
+    // color: $body-color;
+    // text-decoration: none;
   }
 }
 
 .link-blend-muted {
-  color: $brand-gray;
+  color: $text-muted;
 
   &:hover,
   &:focus,
   &:active {
-    color: $link-hover-color;
+    // color: $text-muted;
+    // text-decoration: none;
   }
 }
 
@@ -43,12 +45,12 @@
 }
 
 .link-unstyled {
-  color: $text-color;
+  color: $body-color;
 
   &:hover,
   &:focus,
   &:active {
-    color: $text-color;
+    color: $body-color;
     text-decoration: none;
   }
 }

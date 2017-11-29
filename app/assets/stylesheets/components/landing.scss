@@ -80,7 +80,7 @@
   margin-bottom: 20px;
 }
 
-@media screen and (min-width: $screen-sm-min) {
+@include media-breakpoint-up(sm) {
   .myapnea-heading {
     font-size: 60px;
     margin-bottom: 20px;
@@ -132,7 +132,7 @@
   }
 }
 
-@media screen and (min-width: $screen-sm-min) {
+@include media-breakpoint-up(sm) {
   .landing-box {
     .landing-box-footer {
       padding-left: 30px;

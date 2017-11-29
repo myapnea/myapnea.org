@@ -6,25 +6,25 @@
       - else
         Login
     .pull-left
-      = link_to root_path, class: 'no-underline' do
-        = image_tag 'myapnea/icons/myapnea-logo-transparent.png', size: '16x16', style: 'margin-top: -4px;'
+      = link_to root_path, class: "no-underline" do
+        = image_tag "myapnea/icons/myapnea-logo-transparent.png", size: "16x16", style: "margin-top: -4px;"
       Dashboard
     .center
       MyApnea.Org
 
-.page-box.last-slide.myapnea-sky-bg
-  = render 'blank/sun'
+.page-box.last-box.myapnea-sky-bg
+  = render "blank/sun"
   .container
     .dashboard-container-full-page-remove-last-margin
       .row
         .col-sm-6
           .myapnea-section-heading Forum
           .dashboard-container
-            %div{ style: 'margin-bottom: 10px;' }
+            %div{ style: "margin-bottom: 10px;" }
               .pull-right
                 = link_to topics_path do
                   Visit Forum &raquo;
-              = link_to 'Start a Topic', new_topic_path
+              = link_to "Start a Topic", new_topic_path
             - @topics = Topic.current.shadow_banned(current_user).reply_count.order(last_reply_at: :desc, id: :desc)
             %table.table.table-striped.table-borderless.table-hover
               %tbody
@@ -34,27 +34,27 @@
                     %tr
                       - if index < 3
                         %td{ colspan: 2 }
-                          .landing-box{ style: 'margin: 0;' }
+                          .landing-box{ style: "margin: 0;" }
                             .landing-box-header
-                              = link_to topic.title, topic, class: 'link-blend'
+                              = link_to topic.title, topic, class: "link-blend"
                             .landing-box-body
-                              = strip_tags(simple_markdown_new(reply.description)).gsub(/\r/, ' ').gsub(/\n/, ' ').truncate(250, separator: '.', omission: '...').html_safe
-                              = link_to reply, class: 'nowrap', data: { turbolinks: false } do
+                              = strip_tags(simple_markdown_new(reply.description)).gsub(/\r/, " ").gsub(/\n/, " ").truncate(250, separator: ".", omission: "...").html_safe
+                              = link_to reply, class: "nowrap", data: { turbolinks: false } do
                                 Read more
                                 %i.fa.fa-arrow-right
                             .landing-box-footer
                               .landing-box-footer-content
                                 .pull-right
                                   &nbsp;
-                                  %i.fa.fa-comments{ style: 'color: #2196F3;' }
+                                  %i.fa.fa-comments{ style: "color: #2196F3;" }
                                   = topic.replies.count
                                 By
                                 .landing-box-footer-author-name= link_to reply.user.forum_name, member_path(reply.user.forum_name)
                       - else
                         %td
-                          = link_to topic.title, topic, class: 'link-blend'
+                          = link_to topic.title, topic, class: "link-blend"
                         %td.nowrap
-                          %i.fa.fa-comments{ style: 'color: #2196F3;' }
+                          %i.fa.fa-comments{ style: "color: #2196F3;" }
                           = topic.replies.count
 
         .col-sm-6
@@ -74,28 +74,29 @@
       - broadcasts = Broadcast.current.published.where(archived: false).order(pinned: :desc, publish_date: :desc)
       - broadcasts.limit(3).each do |broadcast|
         .dashboard-container.broadcast-container
-          %div{ style: 'font-size: 18px;font-weight: bold;margin-bottom: 11px;' }= broadcast.title
+          %div{ style: "font-size: 18px;font-weight: bold;margin-bottom: 11px;" }= broadcast.title
           .broadcast
             %p
-              = strip_tags(simple_markdown_new(broadcast.description)).gsub(/\r/, ' ').gsub(/\n/, ' ').truncate(500, separator: '.', omission: '.').html_safe
-              = link_to 'Keep reading', blog_post_path(broadcast.url_hash), class: 'nowrap'
-              %i.fa.fa-arrow-right.primary-blue
-          .broadcast-by= render 'blog/author_and_category', broadcast: broadcast
+              = strip_tags(simple_markdown_new(broadcast.description)).gsub(/\r/, " ").gsub(/\n/, " ").truncate(500, separator: ".", omission: ".").html_safe
+              = link_to blog_post_path(broadcast.url_hash), class: "nowrap" do
+                Keep reading
+                %i.fa.fa-caret-right
+          .broadcast-by= render "blog/author_and_category", broadcast: broadcast
 
       .myapnea-section-heading Search
       = form_tag search_path, method: :get do
         .form-group
           .input-group
-            = text_field_tag 'search', params[:search], class: 'form-control', placeholder: "Search #{ENV['website_name']}"
+            = text_field_tag "search", params[:search], class: "form-control", placeholder: "Search #{ENV["website_name"]}"
             .input-group-btn
-              = submit_tag 'Search', class: 'btn btn-primary', name: nil
-        .center{ style: 'margin-bottom: 20px;' }
-          - suggestions = ['distilled water', 'seal cpap mask', 'high cpap pressure', 'didgeridoo']
+              = submit_tag "Search", class: "btn btn-primary", name: nil
+        .center{ style: "margin-bottom: 20px;" }
+          - suggestions = ["distilled water", "seal cpap mask", "high cpap pressure", "didgeridoo"]
           - suggestions.each_with_index do |suggestion, index|
             - if index == suggestions.size - 1
-              = link_to suggestion, search_path(search: suggestion), class: 'link-white'
+              = link_to suggestion, search_path(search: suggestion), class: "link-white"
             - else
-              = succeed ',' do
-                = link_to suggestion, search_path(search: suggestion), class: 'link-white'
+              = succeed "," do
+                = link_to suggestion, search_path(search: suggestion), class: "link-white"
 
-= render 'layouts/footer', theme: 'footer-grass'
+= render "layouts/footer", theme: "footer-grass"

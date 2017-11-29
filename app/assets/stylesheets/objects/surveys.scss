@@ -64,7 +64,7 @@
 .survey-choice {
   border-radius: 4px;
   box-shadow: 0 1px 5px $box-shadow-color;
-  color: $text-color;
+  color: $body-color;
   display: block;
   margin-bottom: 10px;
   padding: 10px;
@@ -156,7 +156,7 @@
   font-size: 14px;
 }
 
-@media screen and (min-width: $screen-sm-min) {
+@include media-breakpoint-up(sm) {
   .survey-question {
     .survey-question-lead {
       font-size: 28px;
@@ -214,7 +214,7 @@
 .myapnea-sunset-bg {
   .survey-question-skip {
     a {
-      color: $brand-gray-lightest;
+      color: $p50-grey;
 
       &:hover,
       &:focus,
@@ -230,12 +230,12 @@
 .myapnea-night-bg {
   .survey-question-skip {
     a {
-      color: $brand-gray-lighter;
+      color: $p100-grey;
 
       &:hover,
       &:focus,
       &:active {
-        color: $brand-gray-lightest;
+        color: $p50-grey;
       }
     }
   }
@@ -244,7 +244,7 @@
 .myapnea-sky-bg {
   .survey-question-skip {
     a {
-      color: $brand-gray-lightest;
+      color: $p50-grey;
 
       &:hover,
       &:focus,
@@ -263,7 +263,7 @@
   padding-right: 5px;
 }
 
-@media screen and (min-width: $screen-sm-min) {
+@include media-breakpoint-up(sm) {
   .survey-study-name {
     font-size: 28px;
     padding-right: 10px;

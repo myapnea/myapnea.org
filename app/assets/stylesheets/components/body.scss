@@ -6,36 +6,23 @@ html {
 body {
   &.full-page {
     margin-bottom: $footer-height;
-    padding-top: $header-height;
   }
 
   &.full-page-no-header {
     margin-bottom: $footer-height;
-    padding-top: 0;
+  }
+
+  &.full-page-no-header-no-footer {
+    margin-bottom: 0;
   }
 }
 
-.body-content {
-  padding-bottom: 20px;
-  padding-top: 20px;
-}
-
-$p200-orange-rgba: rgba(255, 204, 128, .99);
-
 ::selection {
-  background-color: $p200-orange-rgba;
-  color: $gray-dark;
+  background-color: rgba($p200-orange, .99);
+  color: $body-color;
   text-shadow: none;
 }
 
 :focus {
-  outline-color: $brand-accent !important;
-}
-
-.brand-background {
-  background-color: $primary-blue; // TODO: Replace with $p50-blue;
-}
-
-.gray-background {
-  background-color: #f9f9f9;
+  outline-color: $p200-orange !important;
 }

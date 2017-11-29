@@ -1,5 +1,5 @@
 .sign-up-form {
-  background-color: $panel-bg;
+  background-color: $p50-grey;
   border: 1px solid $p200-orange;
   margin: 0 auto 20px;
   max-width: 400px;
@@ -16,7 +16,7 @@
   text-shadow: 0 2px 3px $standard-shadow-color;
 }
 
-@media screen and (min-width: $screen-sm-min) {
+@include media-breakpoint-up(sm) {
   .sign-up-form {
     border-radius: 5px;
     overflow: hidden;

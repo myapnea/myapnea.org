@@ -1,4 +1,4 @@
-@keyframes pulse-notifications {
+@keyframes pulse-notification {
   from {
     color: $p200-orange;
   }
@@ -8,19 +8,11 @@
   }
 }
 
-.navbar-default .navbar-nav .notifications-link span {
-  color: $brand-muted;
-}
-
-.navbar-default .navbar-nav .notifications-link:hover span {
-  color: darken($brand-muted, 15%);
-}
-
-.navbar-default .navbar-nav .notifications-link-active span {
-  animation: pulse-notifications 2s ease-in infinite alternate;
+.notifications-link-active i {
+  animation: pulse-notification 2s ease-in infinite alternate;
   color: $p200-orange;
 }
 
-.navbar-default .navbar-nav .notifications-link-active:hover span {
+.notifications-link-active:hover i {
   color: darken($p200-orange, 15%);
 }

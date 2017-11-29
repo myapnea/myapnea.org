@@ -3,7 +3,7 @@
 }
 
 .btn-shadow {
-  box-shadow: 0 5px 15px $standard-shadow-color;
+  box-shadow: 0 0 15px $standard-shadow-color;
 
   &:hover,
   &:focus,
@@ -11,7 +11,7 @@
   &.active,
   &.disabled,
   &[disabled] {
-    box-shadow: 0 5px 8px $standard-shadow-hover-color;
+    box-shadow: 0 0 8px $standard-shadow-hover-color;
   }
 }
 
@@ -32,19 +32,20 @@
   }
 }
 
-.btn-menu {
-  background-color: $navbar-default-bg;
-  border: 1px solid darken($navbar-default-bg, 6.5%);
-  color: $brand-white;
+// TODO: Fix btn menu
+// .btn-menu {
+//   background-color: $navbar-default-bg;
+//   border: 1px solid darken($navbar-default-bg, 6.5%);
+//   color: $brand-white;
 
-  &:hover,
-  &:focus,
-  &:active,
-  &.active,
-  &.disabled,
-  &[disabled] {
-    background-color: darken($navbar-default-bg, 6.5%);
-    border: 1px solid darken($navbar-default-bg, 6.5%);
-    color: $brand-white;
-  }
-}
+//   &:hover,
+//   &:focus,
+//   &:active,
+//   &.active,
+//   &.disabled,
+//   &[disabled] {
+//     background-color: darken($navbar-default-bg, 6.5%);
+//     border: 1px solid darken($navbar-default-bg, 6.5%);
+//     color: $brand-white;
+//   }
+// }

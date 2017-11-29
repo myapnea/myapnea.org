@@ -2,20 +2,20 @@
   margin-top: 20px;
 }
 
-@media screen and (min-width: $screen-md-min) {
+@include media-breakpoint-up(md) {
   .section-container + .section-container {
     margin-top: 60px;
   }
 }
 
-@media screen and (min-width: $screen-lg-min) {
+@include media-breakpoint-up(lg) {
   .section-container + .section-container {
     margin-top: 80px;
   }
 }
 
 .section-title {
-  color: $brand-gray;
+  color: $p400-grey;
   font-size: 20px;
 
   + .section-body {
@@ -23,14 +23,14 @@
   }
 }
 
-@media screen and (min-width: $screen-sm-min) {
+@include media-breakpoint-up(sm) {
   .section-title {
     font-size: 24px;
   }
 }
 
 
-@media screen and (min-width: $screen-md-min) {
+@include media-breakpoint-up(md) {
   .section-title {
     font-size: 28px;
   }

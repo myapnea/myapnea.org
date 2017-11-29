@@ -48,7 +48,7 @@
   }
 }
 
-@media screen and (min-width: $screen-sm-min) {
+@include media-breakpoint-up(sm) {
   .header-container {
     h1 {
       font-size: 38px;
@@ -61,7 +61,7 @@
   }
 }
 
-@media screen and (min-width: $screen-md-min) {
+@include media-breakpoint-up(md) {
   .header-container {
     h1 {
       font-size: 41px;
@@ -116,7 +116,7 @@
   }
 }
 
-@media screen and (min-width: $screen-sm-min) {
+@include media-breakpoint-up(sm) {
   .top-menu {
     &.navbar-scrolled {
       .navbar-show-scrolled {
@@ -142,7 +142,7 @@
   margin-bottom: 20px;
 }
 
-@media screen and (min-width: $screen-sm-min) {
+@include media-breakpoint-up(sm) {
   .brand-title {
     font-size: 28px;
   }

@@ -39,7 +39,7 @@ $moon-container-sm: $moon-size-sm + $moon-padding-sm;
   }
 }
 
-@media screen and (min-width: $screen-sm-min) {
+@include media-breakpoint-up(sm) {
   .moon-container {
     height: $moon-container-sm;
     bottom: 0;
@@ -60,8 +60,6 @@ $moon-container-sm: $moon-size-sm + $moon-padding-sm;
   }
 }
 
-$white-shadow: rgba(255, 255, 255, 0.15);
-
 .moon-object-2 {
   background: asset-url('themes/night/moon512.jpg');
   background-size: 256px;
@@ -71,10 +69,10 @@ $white-shadow: rgba(255, 255, 255, 0.15);
   left: -128px;
   top: 26px;
   position: absolute;
-  box-shadow: 7px -10px 30px $white-shadow;
+  box-shadow: 7px -10px 30px rgba($brand-white, .15);
 }
 
-@media screen and (min-width: $screen-sm-min) {
+@include media-breakpoint-up(sm) {
   .moon-object-2 {
     background-size: 384px;
     border-radius: 384px;

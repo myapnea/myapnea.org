@@ -19,7 +19,7 @@
       .reply-header{ data: { parent_reply_id: reply.parent_reply_id, reply_id: reply.id } }
         = render 'replies/header', reply: reply, just_voted: false
       .reply-body{ style: "#{'display:none' unless reply.display_for_user?(current_user)}" }
-        %div{ data: { object: 'reply-show', parent_reply_id: reply.parent_reply_id, reply_id: reply.id } }
+        .reply-body-formatted{ data: { object: 'reply-show', parent_reply_id: reply.parent_reply_id, reply_id: reply.id } }
           = render 'replies/formatted', reply: reply
         - unless reply.deleted?
           - new_reply = reply.parent.replies.new(reply_id: reply.id)

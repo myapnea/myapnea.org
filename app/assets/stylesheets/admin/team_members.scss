@@ -6,14 +6,14 @@
   }
 
   .team-member-img {
-    border: 2px solid $primary-orange;
+    border: 2px solid $p400-orange;
     border-radius: 50%;
     height: 180px;
     width: 180px;
   }
 
   .designations {
-    color: $dark-gray;
+    color: $p600-grey;
     font-size: .65em;
     font-weight: 300;
   }
@@ -31,10 +31,11 @@
   }
 }
 
-@media (max-width: $screen-md) {
-  .team-member-container {
-    .team-member-image-wrapper {
-      text-align: center;
-    }
-  }
-}
+// TODO: Fix max-width screen css
+// @media (max-width: $screen-md) {
+//   .team-member-container {
+//     .team-member-image-wrapper {
+//       text-align: center;
+//     }
+//   }
+// }

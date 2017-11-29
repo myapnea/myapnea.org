@@ -1,68 +1,13 @@
-// COLOR PALETTE
-$logo-color: #233063;
-$logo-similar: #1b244b;
-$body-background: #E6EDF4;
-// Blue
-$primary-blue: #5999de;
-$lighter-blue: #7fb2eb;
-$lightest-blue: #b1d2f6;
-$darker-blue: #387fcf;
-$darkest-blue: #1765bc;
-// Orange
-$primary-orange: #ffa400;
-$lighter-orange: #ffb839;
-$lightest-orange: #ffc864;
-$darker-orange: #ef9a00;
-$darkest-orange: #e29100;
-// Grayscale
-$white: #fff;
-$lightest-gray: #eee;
-$lighter-gray: #ddd;
-$light-gray: #bbb;
-$gray: gray;
-$dark-gray: #777;
-$darker-gray: #444;
-$black: #000;
-// Success scale
-$emergency: #e51519;
-$danger: #e54835;
-$warning: #f4b46d;
-$moderate: #fedf9c;
-$good: #d9f0a3;
-$great: $p300-green; /// WAS #78c679; TODO: REMOVE
-$excellent: #16c63c;
-// Content separation
-$border-color: #c5c5c5;
-$border-top-color: #cacaca;
-$footer-color: #fafafa;
-// Other
-$error-color: #fcf2f2;
-$error-background: #df7667;
-$user-image: #f3f3f3;
+// TODO: Remove file
 
 // Classes
-.logo-color { color: $logo-color; }
-.logo-color-bcg { background-color: $logo-color; }
 
-.primary-blue { color: $primary-blue; }
-.lighter-blue { color: $lighter-blue; }
-.lighterer-blue { color: $lightest-blue; }
-.darker-blue { color: $darker-blue; }
-.darkerer-blue { color: $darkest-blue; }
 .primary-orange { color: $primary-orange; }
 .lighter-orange { color: $lighter-orange; }
 .lighterer-orange { color: $lightest-orange; }
 .darker-orange { color: $darker-orange; }
 .darkerer-orange { color: $darkest-orange; }
 
-.primary-blue-bcg {
-  background-color: $primary-blue;
-  color: $white;
-
-  .jumbotron {
-    background-color: transparent
-  }
-}
 .lighter-blue-bcg { background-color: $lighter-blue !important; }
 .lighterer-blue-bcg { background-color: $lightest-blue !important; }
 .darker-blue-bcg { background-color: $darker-blue !important; }

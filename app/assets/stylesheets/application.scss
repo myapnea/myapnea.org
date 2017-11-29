@@ -1,12 +1,12 @@
-// This file controls whether base styles or theme styles are used, based on config
+// Theme colors and variable definitions.
 @import 'themes/default';
 @import 'variables/all';
-@import 'bootstrap-sprockets';
-@import 'bootstrap';
-@import 'font-awesome';
 
-// Layout
-@import 'colors';
+// Core Bootstrap styles
+@import 'bootstrap';
+
+// Font Awesome Icons
+@import 'font-awesome';
 
 // App Mixins
 @import 'mixins/all';

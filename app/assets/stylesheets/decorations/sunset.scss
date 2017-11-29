@@ -21,7 +21,7 @@ $sunset-container-sm: $sunset-size-sm + $sunset-padding-sm;
   width: $sunset-container / 2;
 }
 
-@media screen and (min-width: $screen-sm-min) {
+@include media-breakpoint-up(sm) {
   .sunset-container {
     height: $sunset-container-sm;
     // top: -($sunset-container-sm / 2);
@@ -56,7 +56,7 @@ $sunset-container-sm: $sunset-size-sm + $sunset-padding-sm;
   }
 }
 
-@media screen and (min-width: $screen-sm-min) {
+@include media-breakpoint-up(sm) {
   .landing-upper-right {
     #sunset {
       font-size: $sunset-size-sm;
