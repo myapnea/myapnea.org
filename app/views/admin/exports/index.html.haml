@@ -8,7 +8,7 @@
   .header-container
     .container
       %h1.page-heading
-        .pull-right
+        .float-right
           = link_to download_or('Export CSV'), admin_exports_path, method: :post, class: 'btn btn-accent btn-shadow'
           = render 'layouts/per_page', per_page: 10, object_count: @admin_exports.total_count
         = @title

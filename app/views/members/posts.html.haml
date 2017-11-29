@@ -52,4 +52,4 @@
         - @replies.each do |reply|
           = render 'internal/reply', reply: reply
 
-    .center= paginate @replies, theme: 'bootstrap'
+    .center-horizontally= paginate@replies, theme: 'bootstrap'

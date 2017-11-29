@@ -7,7 +7,7 @@
   .header-container
     .container
       %h1.page-heading
-        .pull-right
+        .float-right
           = render 'layouts/edit_delete_dropdown_header', edit_url: edit_admin_category_path(@admin_category), delete_url: @admin_category, delete_confirmation: "Delete #{@admin_category.name}?"
         = @title
 

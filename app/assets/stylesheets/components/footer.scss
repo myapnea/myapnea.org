@@ -1,5 +1,5 @@
 .footer-container {
-  background-color: $brand-black;
+  background-color: $p200-blue;
   bottom: 0;
   color: $brand-white;
   height: $footer-height;
@@ -12,12 +12,7 @@
   }
 
   a {
-    color: $p300-blue; // Perhaps change back to $p300-orange;
-    transition: color .4s ease-out;
-  }
-
-  a:hover {
-    color: $p200-blue; // Perhaps change back to $p200-orange;
+    color: $brand-white;
   }
 
   img {

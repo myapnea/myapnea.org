@@ -1,5 +1,5 @@
 - @title = 'Sky'
-#top-menu.top-menu= render 'layouts/survey_menu'
+- @theme = "grass"
 
 .page-box.last-box.center-vertically.myapnea-sky-bg
   = render 'blank/sun'
@@ -24,5 +24,3 @@
     .survey-question-skip
       = link_to sunset_path, data: { confirm: 'Are you sure you want to skip this question?' } do
         Skip this question
-
-= render 'layouts/footer', theme: 'footer-grass'

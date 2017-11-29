@@ -4,7 +4,7 @@
 class StaticController < ApplicationController
   # GET /about
   def about
-    render layout: 'full_page_no_header'
+    render layout: "layouts/full_page_no_header"
   end
 
   # GET /team

@@ -7,7 +7,7 @@
   .header-container
     .container
       %h1.page-heading
-        .pull-right
+        .float-right
           = link_to plus_or('New Project'), new_project_path, class: 'btn btn-accent btn-shadow'
           = render 'layouts/per_page', per_page: 40, object_count: @projects.total_count
         = @title
@@ -36,7 +36,7 @@
                   %span.hidden-xs= project.launch_date ? project.launch_date.strftime('%a, %b %d, %Y') : nil
                   %span.hidden-sm.hidden-md.hidden-lg= project.launch_date ? project.launch_date.strftime('%b %d, %Y') : nil
                 %td= render 'layouts/edit_delete_dropdown', edit_url: edit_project_path(project), delete_url: project, delete_confirmation: "Delete #{project.name}?"
-      .center= paginate @projects, theme: 'bootstrap'
+      .center-horizontally= paginate@projects, theme: 'bootstrap'
     - else
       .jumbotron.jumbotron-action
         %p.center No projects found.

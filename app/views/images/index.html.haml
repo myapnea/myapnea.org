@@ -7,7 +7,7 @@
   .header-container
     .container
       %h1.page-heading
-        .pull-right
+        .float-right
           = link_to plus_or('New Image'), new_image_path, class: 'btn btn-accent btn-shadow'
           = render 'layouts/per_page', per_page: 40, object_count: @images.total_count
         = @title
@@ -44,7 +44,7 @@
                   %abbr{ rel: 'tooltip', data: { title: image.created_at.strftime('%-l:%M %p'), container: 'body', placement: 'left' } }
                     = image.created_at.strftime('%b %-d, %Y')
                 %td.center= render 'layouts/edit_delete_dropdown', edit_url: edit_image_path(image), delete_url: image, delete_confirmation: 'Delete image?'
-      .center= paginate @images, theme: 'bootstrap'
+      .center-horizontally= paginate@images, theme: 'bootstrap'
     - else
       .jumbotron.jumbotron-action
         %p.center No images found.

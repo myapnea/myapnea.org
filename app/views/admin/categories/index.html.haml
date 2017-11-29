@@ -7,7 +7,7 @@
   .header-container
     .container
       %h1.page-heading
-        .pull-right
+        .float-right
           = link_to plus_or('New Category'), new_admin_category_path, class: 'btn btn-accent btn-shadow'
           = render 'layouts/per_page', per_page: 40, object_count: @admin_categories.total_count
         = @title
@@ -35,7 +35,7 @@
                 %td
                   %code= admin_category.slug
                 %td.center= render 'layouts/edit_delete_dropdown', edit_url: edit_admin_category_path(admin_category), delete_url: admin_category, delete_confirmation: "Delete #{admin_category.name}?"
-      .center= paginate @admin_categories, theme: 'bootstrap'
+      .center-horizontally= paginate@admin_categories, theme: 'bootstrap'
     - else
       .jumbotron.jumbotron-action
         %p.center No categories found.

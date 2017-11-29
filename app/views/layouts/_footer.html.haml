@@ -1,22 +1,15 @@
-- theme = nil unless defined?(theme)
 .footer-container{ class: theme }
   .container
     .footer
-      .hidden-sm.hidden-md.hidden-lg.center.nowrap
+      .nowrap
+        .float-right{ style: "margin-top: -14px;" }
+          .d-none.d-sm-inline= link_to "Questions?", contact_path
+          .d-inline.d-sm-none
+            = link_to contact_path, style: "text-decoration: none;" do
+              %i.fa.fa-envelope-square.fa-2x
+          &nbsp;
+          = image_tag "logos/bwh-logo.png", size: "48x56", alt: ""
+
         &copy;
-        = Date.today.year
-        = link_to 'MyApnea', about_path
-        &middot;
-        = link_to 'Contact Us', contact_path
-      .row.hidden-xs
-        .col-xs-6.nowrap
-          &copy;
-          = Date.today.year
-          = ENV['website_name']
-          |
-          = link_to 'About', about_path
-        .col-xs-6.nowrap.text-right.hidden-xs
-          .pull-right{ style: 'margin-top: -20px;' }
-            = link_to 'Contact Us', contact_path
-            |
-            = link_to image_tag('myapnea/welcome/img-small/bwh_footer.png'), 'http://www.brighamandwomens.org/'
+        .d-none.d-sm-inline= Time.zone.today.year
+        = link_to ENV["website_name"], about_path

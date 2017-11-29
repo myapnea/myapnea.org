@@ -1,46 +1,46 @@
-- @title = ['Search', @search.gsub(' & ', ' ')].compact.join(' | ')
+- @title = ["Search", @search.gsub(" & ", " ")].compact.join(" | ")
 
 - content_for :body_class do
-  myapnea-sky-bg
+  myapnea-light-bg
 
 - content_for :header do
   .header-container
     .container
       %h1.page-heading
-        .pull-right
-          = render 'layouts/per_page', per_page: 10, object_count: @search_documents.total_count
+        .float-right
+          = render "layouts/per_page", per_page: 10, object_count: @search_documents.total_count
         Search
         - if params[:search].present?
           %small
-            %code{ data: { object: 'show-search-bar' }, style: 'cursor: pointer;' }= params[:search]
+            %code{ data: { object: "show-search-bar" }, style: "cursor: pointer;" }= params[:search]
         - else
           MyApnea
 
 .row
-  .col-sm-9
+  .col-md-9
     - if @search_documents.present?
       .dashboard-container
         - @search_documents.each do |document|
-          - case document.searchable.class.to_s when 'Broadcast'
-            = render 'search/broadcast', broadcast: document.searchable
-          - when 'Topic'
-            = render 'search/topic', topic: document.searchable
-          - when 'Reply'
-            = render 'search/reply', reply: document.searchable
-      .center= paginate @search_documents, theme: 'bootstrap'
+          - case document.searchable.class.to_s when "Broadcast"
+            = render "search/broadcast", broadcast: document.searchable
+          - when "Topic"
+            = render "search/topic", topic: document.searchable
+          - when "Reply"
+            = render "search/reply", reply: document.searchable
+      .center-horizontally= paginate@search_documents, theme: "bootstrap"
     - else
       .dashboard-container
         %p.lead.center
           No search results found.
           You may
           %span.hidden-xs
-            = link_to 'modify your search', '#', data: { object: 'show-search-bar' }
+            = link_to "modify your search", "#", data: { object: "show-search-bar" }
           %span.hidden-sm.hidden-md.hidden-lg
             modify your search
           or return to
-          = succeed '.' do
-            = link_to 'our blog', blog_path
+          = succeed "." do
+            = link_to "our blog", blog_path
 
-  .col-sm-3.col-sticky
-    .dashboard-container
-      = render 'blog/menu'
+  .col-md-3
+    .dashboard-container.col-sticky
+      = render "blog/menu"

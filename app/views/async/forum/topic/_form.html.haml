@@ -41,7 +41,7 @@
         = f.label :description, 'Topic Description', class: 'control-label'
         .preview-container
           .preview-header
-            .pull-right
+            .float-right
               = render 'replies/rich_text_editor_buttons', target: "#topic_description"
             = link_to 'Write', '#', data: { object: 'view-content-markdown' }, class: 'preview-tab active', tabindex: '-1'
             = link_to 'Preview', '#', data: { object: 'view-content-preview', content: '#topic_description' }, class: 'preview-tab', tabindex: '-1'
@@ -58,7 +58,7 @@
 - else
   .preview-container.preview-container-forum.preview-container-login
     .preview-header
-      .pull-right
+      .float-right
         = link_to '#', data: { object: 'close-new-forum-topic' }, style: 'color:#fff;font-weight:bold;text-decoration:none' do
           &times;
       Sign in to start a new topic

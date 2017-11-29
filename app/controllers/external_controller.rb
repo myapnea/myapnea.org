@@ -22,11 +22,6 @@ class ExternalController < ApplicationController
     redirect_to landing6_path
   end
 
-  # # GET /landing6
-  def landing6
-    render layout: "layouts/full_page_custom_header"
-  end
-
   # # POST /preview
   # def preview
   # end

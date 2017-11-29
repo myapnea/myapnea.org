@@ -36,4 +36,4 @@
           = link_to 'Edit', edit_broadcast_path(broadcast), class: 'btn btn-xs btn-default'
           = link_to 'Delete', broadcast, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-xs btn-danger'
 
-.center= paginate @broadcasts, theme: 'bootstrap'
+.center-horizontally= paginate@broadcasts, theme: 'bootstrap'

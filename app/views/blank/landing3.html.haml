@@ -1,6 +1,6 @@
 .menu-bar.menu-bar-fixed
   .container
-    .pull-right
+    .float-right
       - if current_user
         = current_user.first_name
       - else
@@ -21,7 +21,7 @@
           .myapnea-section-heading Forum
           .dashboard-container
             %div{ style: "margin-bottom: 10px;" }
-              .pull-right
+              .float-right
                 = link_to topics_path do
                   Visit Forum &raquo;
               = link_to "Start a Topic", new_topic_path
@@ -44,7 +44,7 @@
                                 %i.fa.fa-arrow-right
                             .landing-box-footer
                               .landing-box-footer-content
-                                .pull-right
+                                .float-right
                                   &nbsp;
                                   %i.fa.fa-comments{ style: "color: #2196F3;" }
                                   = topic.replies.count

@@ -15,8 +15,9 @@
 #
 #= require jquery3
 #= require jquery_ujs
-#= require bootstrap-sprockets
 #= require turbolinks
+#= require popper
+#= require bootstrap
 #= require jquery-ui/widgets/sortable
 
 # Compatibility

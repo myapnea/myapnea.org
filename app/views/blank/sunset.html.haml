@@ -1,8 +1,8 @@
+- @theme = "sunset"
+
 .menu-bar.menu-bar-fixed.menu-bar-sunset
   .container
     Sunset
-
-=# render 'layouts/survey_menu', theme: 'menu-sunset'
 
 .page-box.last-box.center-vertically.myapnea-sunset-bg
   = render 'blank/sunset'
@@ -27,5 +27,3 @@
     .survey-question-skip
       = link_to night_path, data: { confirm: 'Are you sure you want to skip this question?' } do
         Skip this question
-
-= render 'layouts/footer', theme: 'footer-sunset'

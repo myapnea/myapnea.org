@@ -8,8 +8,8 @@ class TopicsController < ApplicationController
 
   # GET /topics
   def index
-    @order = scrub_order(Topic, params[:order], 'pinned desc, last_reply_at desc, id desc')
-    if ['reply_count', 'reply_count desc'].include?(params[:order])
+    @order = scrub_order(Topic, params[:order], "pinned desc, last_reply_at desc, id desc")
+    if ["reply_count", "reply_count desc"].include?(params[:order])
       @order = params[:order]
     end
     topic_scope = Topic.current.reply_count.order(@order)
@@ -43,7 +43,7 @@ class TopicsController < ApplicationController
     if @topic.save
       @topic.touch(:last_reply_at)
       @topic.compute_shadow_ban!
-      redirect_to @topic, notice: 'Topic was successfully created.'
+      redirect_to @topic, notice: "Topic was successfully created."
     else
       render :new
     end
@@ -53,7 +53,7 @@ class TopicsController < ApplicationController
   def update
     if @topic.update(topic_params)
       @topic.compute_shadow_ban!
-      redirect_to @topic, notice: 'Topic was successfully updated.'
+      redirect_to @topic, notice: "Topic was successfully updated."
     else
       render :edit
     end
@@ -62,7 +62,7 @@ class TopicsController < ApplicationController
   # DELETE /topics/1
   def destroy
     @topic.destroy
-    redirect_to topics_path, notice: 'Topic was successfully deleted.'
+    redirect_to topics_path, notice: "Topic was successfully deleted."
   end
 
   private

@@ -1,7 +1,7 @@
-- @title = 'Notifications'
+- @title = "Notifications"
 
 - content_for :body_class do
-  myapnea-sky-bg
+  myapnea-light-bg
 
 - content_for :header do
   .header-container
@@ -10,54 +10,54 @@
         = @title
 
 .row
-  .col-sm-2
+  .col-md-2
     .row
-      .col-xs-6.col-sm-12
-        = link_to 'Unread', notifications_path, class: "btn btn-block btn-shadow #{current_page?(notifications_path) && params[:all] != '1' ? 'btn-primary' : 'btn-default' }", style: 'margin-bottom: 10px'
-      .col-xs-6.col-sm-12
-        = link_to 'All', notifications_path(all: '1'), class: "btn btn-block btn-shadow #{current_page?(notifications_path) && params[:all] == '1' ? 'btn-primary' : 'btn-default' }"
-  .col-sm-10
+      .col-6.col-md-12
+        = link_to "Unread", notifications_path, class: "btn btn-block btn-shadow #{current_page?(notifications_path) && params[:all] != "1" ? "btn-primary" : "btn-neutral" }", style: "margin-bottom: 10px"
+      .col-6.col-md-12
+        = link_to "All", notifications_path(all: "1"), class: "btn btn-block btn-shadow #{current_page?(notifications_path) && params[:all] == "1" ? "btn-primary" : "btn-neutral" }"
+  .col-md-10
     - if @notifications.present?
       - @notifications.where.not(broadcast_id: nil).order(created_at: :desc).includes(:broadcast, :reply).group_by(&:broadcast).each do |broadcast, notifications|
         .dashboard-container
           %table.table.table-fixed.table-borderless.table-striped
-            %col{ width: '32px' }
-            %col{ }
-            %col.hidden-xs{ width: '32px' }
-            %col.hidden-xs{ width: '165px' }
-            %col{ width: '32px' }
+            %col{ width: "32px" }
+            %col
+            %col.d-none.d-md-table-column{ width: "32px" }
+            %col.d-none.d-md-table-column{ width: "165px" }
+            %col{ width: "32px" }
             %thead
               %tr
-                %th{ colspan: 2 }= link_to broadcast.title, blog_post_path(broadcast.url_hash), class: 'link-unstyled'
-                %th.hidden-xs
-                %th.hidden-xs
+                %th{ colspan: 2 }= link_to broadcast.title, blog_post_path(broadcast.url_hash), class: "link-unstyled"
+                %th.d-none.d-md-table-cell
+                %th.d-none.d-md-table-cell
                 %th
-                  = link_to mark_all_as_read_notifications_path(broadcast_id: broadcast.id), method: :patch, remote: true, class: 'text-muted' do
+                  = link_to mark_all_as_read_notifications_path(broadcast_id: broadcast.id), method: :patch, remote: true, class: "text-muted" do
                     %span.glyphicon.glyphicon-ok
             %tbody
               - notifications.each do |notification|
                 %tr{ id: "notification_#{notification.id}"}
-                  = render 'notifications/show', notification: notification
+                  = render "notifications/show", notification: notification
       - @notifications.where.not(topic_id: nil).order(created_at: :desc).includes(:topic, :reply).group_by(&:topic).each do |topic, notifications|
         .dashboard-container
           %table.table.table-fixed.table-borderless.table-striped
-            %col{ width: '32px' }
-            %col{ }
-            %col.hidden-xs{ width: '32px' }
-            %col.hidden-xs{ width: '165px' }
-            %col{ width: '32px' }
+            %col{ width: "32px" }
+            %col
+            %col.d-none.d-md-table-column{ width: "32px" }
+            %col.d-none.d-md-table-column{ width: "165px" }
+            %col{ width: "32px" }
             %thead
               %tr
-                %th{ colspan: 2 }= link_to topic.title, topic, class: 'link-unstyled'
-                %th.hidden-xs
-                %th.hidden-xs
+                %th{ colspan: 2 }= link_to topic.title, topic, class: "link-unstyled"
+                %th.d-none.d-md-table-cell
+                %th.d-none.d-md-table-cell
                 %th
-                  = link_to mark_all_as_read_notifications_path(topic_id: topic.id), method: :patch, remote: true, class: 'text-muted' do
+                  = link_to mark_all_as_read_notifications_path(topic_id: topic.id), method: :patch, remote: true, class: "text-muted" do
                     %span.glyphicon.glyphicon-ok
             %tbody
               - notifications.each do |notification|
                 %tr{ id: "notification_#{notification.id}"}
-                  = render 'notifications/show', notification: notification
+                  = render "notifications/show", notification: notification
     - else
       .jumbotron.jumbotron-action
-        %p.center You have no unread notifications!
+        .lead.center{ style: "font-weight: 200;font-size: 24px;" } You have no unread notifications!

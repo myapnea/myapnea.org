@@ -99,7 +99,7 @@ $colors: (
 );
 
 $theme-colors: (
-  primary: $blue,
+  primary: $p500-blue, // $blue,
   secondary: $gray-600,
   success: $green,
   info: $cyan,

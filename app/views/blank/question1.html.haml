@@ -1,3 +1,5 @@
+- @theme = "grass"
+
 .menu-bar.menu-bar-fixed
   .container
     About Me &middot; MyApnea Core
@@ -15,5 +17,3 @@
           = select_tag 'year', options_for_select((1900..Time.zone.today.year - 18).to_a.reverse, selected: Time.zone.today.year), include_blank: 'Year', class: 'input-lg form-control', style: 'display: inline-block; width: auto; vertical-align: middle;'
       = render 'blank/next_question'
     = render 'blank/question_skip'
-
-= render 'layouts/footer', theme: 'footer-grass'

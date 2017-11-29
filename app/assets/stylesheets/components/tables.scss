@@ -14,3 +14,22 @@
     }
   }
 }
+
+.table-sticky {
+  position: relative;
+  z-index: 1;
+
+  th {
+    background-color: $p50-grey;
+    position: sticky;
+    top: $header-height - 1px;
+    z-index: $zindex-sticky;
+  }
+}
+
+.tr-align-middle {
+  td,
+  th {
+    vertical-align: middle;
+  }
+}

@@ -7,7 +7,7 @@
   .header-container
     .container
       %h1.page-heading
-        .pull-right
+        .float-right
           = link_to plus_or('New Partner'), new_admin_partner_path, class: 'btn btn-accent btn-shadow'
           = render 'layouts/per_page', per_page: 10, object_count: @admin_partners.total_count
         = @title
@@ -25,4 +25,4 @@
             Edit
         Displayed:
         = simple_check partner.displayed?
-    .center= paginate @admin_partners, theme: 'bootstrap'
+    .center-horizontally= paginate@admin_partners, theme: 'bootstrap'

@@ -23,21 +23,21 @@
                 .pull-left
                   = image_tag team_member_photo_url(tm), height: 30, width: 30
                   = tm.name
-                .pull-right
+                .float-right
                   = tmi
                   = link_to '^', admin_team_member_path(tm, admin_team_member: { position: tm.position-1 }, redirect_back: 'true'), method: :patch
                   = link_to 'v', admin_team_member_path(tm, admin_team_member: { position: tm.position+1 }, redirect_back: 'true'), method: :patch
                 .clearfix
           - else
             .list-group-item.list-group-item-danger
-              .pull-right
+              .float-right
                 = tmi
               .clearfix
         - @admin_team_members.where("position > ?", @admin_team_members.count - 1).each do |tm|
           .list-group-item.list-group-item-danger
             .pull-left
               = tm.name
-            .pull-right
+            .float-right
               = tm.position
               = link_to '^', admin_team_member_path(tm, admin_team_member: { position: tm.position-1 }, redirect_back: 'true'), method: :patch
               = link_to 'v', admin_team_member_path(tm, admin_team_member: { position: tm.position+1 }, redirect_back: 'true'), method: :patch

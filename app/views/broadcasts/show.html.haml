@@ -2,7 +2,7 @@
 
 .content-main-header2
   %h1
-    = link_to 'Blog Posts', broadcasts_path
+    = link_to "Blog Posts", broadcasts_path
     &middot;
     = @broadcast.title
   %div
@@ -10,24 +10,24 @@
 
       - if @broadcast.publish_date <= Time.zone.today
         %span.label.label-info Published
-        = link_to 'View Blog Post', blog_post_path(year: @broadcast.publish_date.year, month: @broadcast.publish_date.strftime('%m'), slug: @broadcast.slug), class: 'btn btn-xs btn-default'
+        = link_to "View Blog Post", blog_post_path(year: @broadcast.publish_date.year, month: @broadcast.publish_date.strftime("%m"), slug: @broadcast.slug), class: "btn btn-xs btn-default"
       - else
         %span.label.label-info
           Set to Publish on
-          = @broadcast.publish_date.strftime('%a, %B %-d, %Y')
+          = @broadcast.publish_date.strftime("%a, %B %-d, %Y")
     - else
       %span.label.label-warning DRAFT
     &nbsp;
-    = link_to edit_broadcast_path(@broadcast), class: 'btn btn-xs btn-default' do
+    = link_to edit_broadcast_path(@broadcast), class: "btn btn-xs btn-default" do
       %span.glyphicon.glyphicon-edit
       Edit Blog Post
 
 .row
-  .col-sm-9
+  .col-md-9
     .broadcast
       = simple_markdown @broadcast.description, true, false
 
-  .col-sm-3
+  .col-md-3
     %p
       %strong Short Description
       %br

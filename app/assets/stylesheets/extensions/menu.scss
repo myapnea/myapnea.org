@@ -1,3 +1,7 @@
+.navbar-myapnea {
+  border-bottom: 1px solid transparent;
+}
+
 .menu-blue {
   @include theme-menu($p600-blue, $p300-blue, $p700-blue, $p800-blue);
 }

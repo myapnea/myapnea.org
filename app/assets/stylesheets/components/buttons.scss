@@ -32,6 +32,25 @@
   }
 }
 
+.btn-neutral {
+  color: $p900-grey;
+  background-color: $p200-grey;
+  border-color: $p200-grey;
+
+  &:hover,
+  &:focus,
+  &:active,
+  &.active,
+  &.disabled,
+  &[disabled] {
+    background-color: $p300-grey;
+    background-image: none;
+    box-shadow: none;
+    border-color: $p400-grey;
+    color: $p900-grey;
+  }
+}
+
 // TODO: Fix btn menu
 // .btn-menu {
 //   background-color: $navbar-default-bg;
