@@ -16,16 +16,44 @@
 
 = render "videos/full_frame_video"
 
-.page-box-padding.d-flex.justify-content-center.align-items-center{ style: "min-height: 50vh;" }
-  =# render "blank/sun"
+.page-box-padding.d-flex.justify-content-center.align-items-center.myapnea-night-bg{ style: "min-height: 50vh;position: relative;" }
+  = render "blank/sun"
   .container
-    .background-questions-image.rounded
+    .background-questions-image.rounded.mb-3
       .embed-responsive.embed-responsive-16by9.p-3.box-shadow.rounded.d-flex.justify-content-center.align-items-center
         - video = "3I8YbWRgkjw"
         - video_loop = "0"
         - autoplay = "1"
         = link_to "#", data: { object: "launch-full-page-video", video_src: "//www.youtube.com/embed/#{video}?playlist=#{video}&autoplay=#{autoplay}&loop=#{video_loop}&controls=0&rel=0&modestbranding=1&showinfo=0" }, class: "link-blend myapnea-lead-sentence" do
           %i.fa.fa-play-circle.fa-2x
+
+    = link_to "#blog-0", data: { object: "scroll-anchor" }, class: "scroll-down-arrow-visible link-unstyled" do
+      %i.fa.fa-chevron-down.text-white
+
+- position = 0
+- Broadcast.current.order(id: :desc).each do |broadcast|
+  - if first_image_url(broadcast).present?
+    .anchor-menu{ id: "blog-#{position}"}
+    .page-box.d-flex.flex-column.justify-content-around.overflow-hidden.myapnea-black-bg{ style: "position: relative;" }
+      .background-blog-image.background-blur{ style: "background-image: url(#{first_image_url(broadcast)});" }
+      .container
+        .landing-blog-info
+          .landing-blog-title= broadcast.title
+          .landing-blog-content{ style: "position: relative;" }
+            = strip_tags(simple_markdown broadcast.description, true, false).gsub(/\r/, " ").gsub(/\n/, " ").truncate(500, separator: ".", omission: ".").html_safe
+
+            .d-none.d-sm-block{ style: "position: absolute;right: -1rem; bottom: -1rem;" }
+              = link_to blog_post_path(broadcast.url_hash), class: "btn btn-accent btn-lg" do
+                Read more
+                %i.fa.fa-caret-right
+
+            .d-block.d-sm-none{ style: "position: absolute;right: -.25rem; bottom: -.25rem;" }
+              = link_to blog_post_path(broadcast.url_hash), class: "btn btn-sm btn-accent" do
+                Read more
+                %i.fa.fa-caret-right
+        - position += 1
+        = link_to "#blog-#{position}", data: { object: "scroll-anchor" }, class: "scroll-down-arrow-visible link-unstyled" do
+          %i.fa.fa-chevron-down.text-white
 
 #join.anchor-menu
 .page-box.last-box.d-flex.align-items-center.myapnea-dark-blue-bg.text-white{ style: "position: relative;" }

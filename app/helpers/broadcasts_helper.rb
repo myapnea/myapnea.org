@@ -6,4 +6,12 @@ module BroadcastsHelper
     match = simple_markdown(broadcast.description, true, false).match(/<img.*?>/m)
     match[0].to_s.html_safe if match
   end
+
+  def first_image_url(broadcast)
+    image = first_image(broadcast)
+    if image
+      match = image.match(/src="(.*?)"/)
+      match[1].to_s if match
+    end
+  end
 end

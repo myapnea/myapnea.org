@@ -21,6 +21,24 @@
   height: 200px;
 }
 
+.background-blog-image {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: -.5rem;
+}
+
+.background-blur {
+  filter: blur(5px);
+  opacity: .5;
+}
+
 .background-questions-image {
   background-image: asset-url("backgrounds/questions.png");
   background-position: center;
@@ -54,6 +72,10 @@
 
 .myapnea-white-bg {
   background-color: $brand-white;
+}
+
+.myapnea-black-bg {
+  background-color: $black;
 }
 
 .myapnea-green-bg {
