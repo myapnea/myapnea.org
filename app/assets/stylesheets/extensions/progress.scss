@@ -4,6 +4,10 @@
   margin-bottom: 0;
 }
 
+.progress-bar {
+  transition: width 600ms ease;
+}
+
 .myapnea-sky-bg,
 .myapnea-blue-bg,
 .myapnea-sunset-bg {

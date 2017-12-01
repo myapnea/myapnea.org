@@ -61,7 +61,8 @@ $moon-container-sm: $moon-size-sm + $moon-padding-sm;
 }
 
 .moon-object-2 {
-  background: asset-url('themes/night/moon512.jpg');
+  // background: asset-url('themes/night/moon512.jpg');
+  background-color: $p300-grey;
   background-size: 256px;
   border-radius: 256px;
   height: 256px;
@@ -79,6 +80,6 @@ $moon-container-sm: $moon-size-sm + $moon-padding-sm;
     height: 384px;
     width: 384px;
     left: -192px;
-    top: 256px;
+    top: 200px;
   }
 }

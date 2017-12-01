@@ -1,13 +1,13 @@
 .profile
   - if current_user == member
-    .profile-image-container{ rel: 'tooltip', data: { title: 'Change your picture', container: 'body', placement: 'bottom' } }
+    .profile-image-container{ rel: "tooltip", data: { title: "Change your picture", container: "body", placement: "bottom" } }
       = link_to settings_path do
-        = image_tag user_photo_url(member), style: 'width: 220px;'
+        = image_tag user_photo_url(member), style: "width: 220px;"
   - else
     .profile-image-container
-      = image_tag user_photo_url(member), style: 'width: 220px;'
+      = image_tag user_photo_url(member), style: "width: 220px;"
 
-  %div.overflow-hidden{ style: 'margin-left: 20px;margin-right: 20px;margin-bottom: 0;' }
+  %div.overflow-hidden{ style: "margin-left: 20px;margin-right: 20px;margin-bottom: 0;" }
     %p
       - if current_user == member
         %strong
@@ -25,12 +25,12 @@
             = member.forum_name
         %br
         %small
-          = link_to 'Hiding Posts', '#', data: { object: 'suppress-click change-text-on-hover', text_hover: 'Show Posts', text_default: 'Hiding Posts' }, style: 'color: red;'
+          = link_to "Hiding Posts", "#", data: { object: "suppress-click change-text-on-hover", text_hover: "Show Posts", text_default: "Hiding Posts" }, style: "color: red;"
         %br
         %small
-          = link_to 'Showing Posts', '#', data: { object: 'suppress-click change-text-on-hover', text_hover: 'Hide Posts', text_default: 'Showing Posts' }, style: 'color: red;'
+          = link_to "Showing Posts", "#", data: { object: "suppress-click change-text-on-hover", text_hover: "Hide Posts", text_default: "Showing Posts" }, style: "color: red;"
 
     %p
       %small.profile-muted-description
         Joined
-        = member.created_at.strftime('%b %Y')
+        = member.created_at.strftime("%b %Y")

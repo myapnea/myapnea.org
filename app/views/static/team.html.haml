@@ -1,4 +1,4 @@
-- @title = 'Team'
+- @title = "Team"
 
 - content_for :body_class do
   myapnea-sky-bg
@@ -12,21 +12,21 @@
 .dashboard-container
   - lowest_position = @team_members.pluck(:position).min
   .carousel.slide#carousel-team
-    .carousel-inner{role: "listbox"}
+    .carousel-inner{ role: "listbox" }
       - @team_members.each do |team_member|
-        .item{ class: "#{'active' if team_member.position == lowest_position }"}
+        .carousel-item{ class: "#{"active" if team_member.position == lowest_position }"}
           = render team_member
   %div
     %ul.team-list
       .brand-title.text-left Steering Committee
-      - @team_members.where(group: 'steering').each do |team_member|
-        %li.active{data: {target: "#carousel-team", slide: {to: "#{team_member.position}"}}}
-          = image_tag team_member_photo_url(team_member), alt: '', class: 'team-member-picture img-bw img-color'
+      - @team_members.where(group: "steering").each do |team_member|
+        %li.active{data: { target: "#carousel-team", slide: { to: "#{team_member.position}" } } }
+          = image_tag team_member_photo_url(team_member), alt: "", class: "team-member-picture img-bw img-color"
       .brand-title.text-left Our Team
-      - @team_members.where(group: 'internal').each do |team_member|
-        %li.active{data: {target: "#carousel-team", slide: {to: "#{team_member.position}"}}}
-          = image_tag team_member_photo_url(team_member), alt: '', class: 'team-member-picture img-bw img-color'
+      - @team_members.where(group: "internal").each do |team_member|
+        %li.active{data: { target: "#carousel-team", slide: { to: "#{team_member.position}" } } }
+          = image_tag team_member_photo_url(team_member), alt: "", class: "team-member-picture img-bw img-color"
       .brand-title.text-left Patient Engagement Panel
-      - @team_members.where(group: 'patient').each do |team_member|
-        %li.active{data: {target: "#carousel-team", slide: {to: "#{team_member.position}"}}}
-          = image_tag team_member_photo_url(team_member), alt: '', class: 'team-member-picture img-bw img-color'
+      - @team_members.where(group: "patient").each do |team_member|
+        %li.active{data: { target: "#carousel-team", slide: { to: "#{team_member.position}" } } }
+          = image_tag team_member_photo_url(team_member), alt: "", class: "team-member-picture img-bw img-color"
