@@ -40,7 +40,7 @@
       - Broadcast.current.published.order(publish_date: :desc, id: :desc).limit(3).each do |broadcast|
         .card.background-image-container.mb-3.mb-md-0{ data: { object: "show-fullscreen-blog", broadcast_id: broadcast.id }, style: "cursor: pointer;" }
           .background-image{ style: "background-image: url(#{first_image_url(broadcast)});" }
-          .card-body.myapnea-blue-transparent-bg.myapnea-border-accent{ style: "position: relative;" }
+          .card-body.myapnea-blue-transparent-bg.myapnea-border-accent.d-flex.align-items-center{ style: "position: relative;" }
             %h4= broadcast.title
         .blog-fullscreen-backdrop{ data: { broadcast_id: broadcast.id } }
           .blog-fullscreen-content.d-flex.flex-column.justify-content-around
