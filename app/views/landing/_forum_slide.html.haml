@@ -3,10 +3,12 @@
     .landing-blog-title.text-dark
       Active Discussion
     .d-flex.flex-column.mb-5
-      - @replies = Reply.current.shadow_banned(current_user).order(created_at: :desc)
-      - @replies.joins(:user).limit(5).group_by(&:user).each do |user, replies|
+      - count = 0
+      - @replies = Reply.current.shadow_banned(current_user).points.having("COALESCE(SUM(reply_users.vote), 0) > -1").order(created_at: :desc)
+      - @replies.joins(:user).limit(20).group_by(&:user).each do |user, replies|
         - reply = replies.first
         - if reply
+          - count += 1
           .mx-3.mt-3
             .mb-1{ style: "font-size: 1.5rem;" }
               - url = reply.parent
@@ -18,3 +20,4 @@
               = link_to reply, data: { turbolinks: false } do
                 read more
                 %i.fa.fa-caret-right
+          - break if count >= 5
