@@ -18,7 +18,7 @@
       .dashboard-container.broadcast-container
         %h2.broadcast-title{ style: "margin-top: 0;border-bottom: 0;" }= link_to broadcast.title, blog_post_path(broadcast.url_hash)
         = render "blog/extract", broadcast: broadcast
-    .center-horizontally= paginate@broadcasts, theme: "bootstrap"
+    .center-horizontally= paginate @broadcasts, theme: "bootstrap"
   .col-md-3
     .dashboard-container.col-sticky
       = render "blog/menu"

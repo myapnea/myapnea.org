@@ -39,6 +39,45 @@
   opacity: .5;
 }
 
+.background-image-container {
+  position: relative;
+  overflow: hidden;
+  border: 0;
+  transition: transform 250ms ease-out;
+
+  @media (hover) {
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+}
+
+.background-image {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin: -.5rem;
+  filter: blur(5px);
+}
+
+.myapnea-blue-transparent-bg {
+  background-color: rgba($p500-blue, .5);
+  color: $brand-white;
+}
+
+.myapnea-white-transparent-bg {
+  background-color: rgba($brand-white, .85);
+}
+
+.myapnea-border-accent {
+  border-bottom: 2px solid $p500-orange;
+}
+
 .background-questions-image {
   background-image: asset-url("backgrounds/questions.png");
   background-position: center;
@@ -92,6 +131,9 @@
   background-color: transparent;
 }
 
+.myapnea-grey-bg {
+  background-color: $p100-grey;
+}
 
 .myapnea-light-bg {
   background-color: $p100-blue;
