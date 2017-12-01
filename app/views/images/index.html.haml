@@ -30,7 +30,7 @@
               %th User
               %th.hidden-xs File Size
               %th.hidden-xs Created At
-              %th.center Actions
+              %th.text-center Actions
 
           %tbody
             - @images.each do |image|
@@ -43,8 +43,8 @@
                 %td.hidden-xs
                   %abbr{ rel: 'tooltip', data: { title: image.created_at.strftime('%-l:%M %p'), container: 'body', placement: 'left' } }
                     = image.created_at.strftime('%b %-d, %Y')
-                %td.center= render 'layouts/edit_delete_dropdown', edit_url: edit_image_path(image), delete_url: image, delete_confirmation: 'Delete image?'
+                %td.text-center= render 'layouts/edit_delete_dropdown', edit_url: edit_image_path(image), delete_url: image, delete_confirmation: 'Delete image?'
       .center-horizontally= paginate@images, theme: 'bootstrap'
     - else
       .jumbotron.jumbotron-action
-        %p.center No images found.
+        %p.text-center No images found.

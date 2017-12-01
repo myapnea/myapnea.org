@@ -28,7 +28,7 @@
             %th Name
             %th File
             %th Progress
-            %th.center Actions
+            %th.text-center Actions
         %tbody
           - @admin_exports.each do |admin_export|
             %tr{ id: "admin-export-#{admin_export.id}" }
@@ -50,7 +50,7 @@
                     .progress-bar{ class: "progress-bar-#{status}", style: "width: #{percent}%;min-width: 2em" }
                       = succeed '%' do
                         = percent
-              %td.center
+              %td.text-center
                 %div{ id: "admin-export-#{admin_export.id}-request-delete" }
                   = link_to 'Delete', '#', class: 'btn btn-xs btn-danger', data: { object: 'toggle-delete-buttons', target_show: "#admin-export-#{admin_export.id}-confirm-delete", target_hide: "#admin-export-#{admin_export.id}-request-delete" }
                 %div{ id: "admin-export-#{admin_export.id}-confirm-delete", style: 'display:none' }
