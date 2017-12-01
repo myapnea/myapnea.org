@@ -65,6 +65,8 @@
                       Read more
                       %i.fa.fa-caret-right
 
+= render "landing/forum_slide"
+
 - if false
   - position = 0
   - Broadcast.current.order(id: :desc).each do |broadcast|
@@ -113,7 +115,6 @@
       .text-center
         = link_to new_user_registration_path, class: "btn btn-xl btn-accent btn-shadow" do
           Join Today
-
 
 - if false
   .page-box.last-box.myapnea-sky-bg
