@@ -20,12 +20,13 @@
   =# render "blank/sun"
   .container
     .background-questions-image.rounded.mb-3
-      .embed-responsive.embed-responsive-16by9.p-3.box-shadow.rounded.d-flex.justify-content-center.align-items-center
-        - video = "3I8YbWRgkjw"
-        - video_loop = "0"
-        - autoplay = "1"
-        = link_to "#", data: { object: "launch-full-page-video", video_src: "//www.youtube.com/embed/#{video}?playlist=#{video}&autoplay=#{autoplay}&loop=#{video_loop}&controls=0&rel=0&modestbranding=1&showinfo=0" }, class: "link-blend myapnea-lead-sentence" do
-          %i.fa.fa-play-circle.fa-2x
+      - video = "3I8YbWRgkjw"
+      - video_loop = "0"
+      - autoplay = "1"
+      .embed-responsive.embed-responsive-16by9.p-3.box-shadow.rounded{ style: "position: relative;", data: { object: "launch-full-page-video", video_src: "//www.youtube.com/embed/#{video}?playlist=#{video}&autoplay=#{autoplay}&loop=#{video_loop}&controls=0&rel=0&modestbranding=1&showinfo=0" } }
+        .d-flex.justify-content-center.align-items-center{ style: "position: absolute; top: 0; right: 0; left: 0; bottom: 0;" }
+          = link_to "#", data: { object: "launch-full-page-video", video_src: "//www.youtube.com/embed/#{video}?playlist=#{video}&autoplay=#{autoplay}&loop=#{video_loop}&controls=0&rel=0&modestbranding=1&showinfo=0" }, class: "link-blend myapnea-lead-sentence m-0" do
+            %i.fa.fa-play-circle.fa-2x
 
     .landing-sentence-small.text-center.text-white.p-3.rounded{ style: "background-color: rgba(0,0,0,.25);" }
       Our mission is to improve the diagnosis and treatment of sleep apnea through the active engagement of patients, families, researchers, and healthcare providers.
