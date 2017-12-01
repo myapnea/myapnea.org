@@ -1,0 +1,25 @@
+.page-box-padding.myapnea-grey-bg
+  .container
+    - if true
+      .landing-blog-title.text-dark.mb-5.text-center
+        Community Research Accomplishments
+
+    .card-deck.flex-column.flex-md-row
+      .card.myapnea-transparent-bg{ style: "border: 0;" }
+        .card-body.d-flex.flex-column.justify-content-center.align-items-center
+          .landing-blog-title.mb-0.text-dark.text-center{ style: "border: 0;" }
+            = number_with_delimiter AnswerSession.current.count
+            .landing-blog-content{ style: "background-color: transparent;color: #9e9e9e;" }
+              Completed Research Surveys
+
+
+
+      .card.myapnea-transparent-bg{ style: "border: 0;" }
+        .card-body.d-flex.flex-column.justify-content-center.align-items-center
+          .landing-blog-title.mb-0.text-dark.text-center{ style: "border: 0;" }
+            = number_with_delimiter User.current.count
+            .landing-blog-content{ style: "background-color: transparent;color: #9e9e9e;" }
+              Sleepers Awoken
+
+- # 2,000,000 Apnea Events Treated
+- # 2.5 hours per night gained

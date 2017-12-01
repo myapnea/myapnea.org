@@ -1,3 +1,4 @@
+- @footer = "grass"
 .menu-bar.menu-bar-fixed
   .container
     .float-right
@@ -98,5 +99,3 @@
             - else
               = succeed "," do
                 = link_to suggestion, search_path(search: suggestion), class: "link-white"
-
-= render "layouts/footer", theme: "footer-grass"

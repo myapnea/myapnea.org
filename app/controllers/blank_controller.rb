@@ -30,12 +30,7 @@ class BlankController < ApplicationController
   # end
 
   def landing4
-    @menu = true
-    if @menu
-      render layout: "layouts/full_page"
-    else
-      render layout: "layouts/full_page_no_header"
-    end
+    render layout: "layouts/full_page_custom_header"
   end
 
   def landing5
