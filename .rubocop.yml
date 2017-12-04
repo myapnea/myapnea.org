@@ -29,11 +29,17 @@ Style/MutableConstant:
 Rails/DynamicFindBy:
   Whitelist:
     - find_by_param
+Rails/HasManyOrHasOneDependent:
+  Enabled: false
 Rails/SkipsModelValidations:
   Enabled: false
 
 # Check quotes usage according to lint rule below.
 Style/StringLiterals:
+  Enabled: true
+  EnforcedStyle: double_quotes
+
+Style/StringLiteralsInInterpolation:
   Enabled: true
   EnforcedStyle: double_quotes
 
