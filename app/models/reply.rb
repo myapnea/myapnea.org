@@ -21,14 +21,13 @@ class Reply < ApplicationRecord
   scope :shadow_banned, -> (arg) { joins(:user).merge(User.where(shadow_banned: [nil, false]).or(User.where(id: arg))) }
 
   # Validations
-  validates :description, :user_id, presence: true
-  # validates :topic_id, :broadcast_id, presence: true
+  validates :description, presence: true
 
   # Relationships
   belongs_to :user
-  belongs_to :broadcast
-  belongs_to :topic
-  belongs_to :reply
+  belongs_to :broadcast, optional: true
+  belongs_to :topic, optional: true
+  belongs_to :reply, optional: true
   has_many :reply_users
 
   # Methods

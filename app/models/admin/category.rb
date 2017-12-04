@@ -3,7 +3,8 @@
 # Allows broadcasts to be grouped by category.
 class Admin::Category < ApplicationRecord
   # Concerns
-  include Deletable, Sluggable
+  include Deletable
+  include Sluggable
 
   # Validations
   validates :name, :slug, presence: true

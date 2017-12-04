@@ -3,7 +3,9 @@
   = render "forms/horizontal/slug_field", form: form, object: project, key: :slug
   = render "forms/horizontal/text_area", form: form, object: project, key: :short_description
   = render "forms/horizontal/date_field", form: form, object: project, key: :launch_date
-  = render "forms/horizontal/select", form: form, object: project, key: :theme, options: Project::THEMES, include_blank: true
+  = render "forms/horizontal/text_field", form: form, object: project, key: :access_token, help_text: "Located in project settings in Slice."
+  = render "forms/horizontal/check_box", form: form, object: project, key: :published
+  = render "forms/horizontal/select", form: form, object: project, key: :theme, options: Project::THEMES, include_blank: "Select a theme"
   = render "forms/horizontal/submit", form: form, object: project
 
 

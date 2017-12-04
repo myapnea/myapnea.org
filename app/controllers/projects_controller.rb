@@ -34,7 +34,7 @@ class ProjectsController < ApplicationController
   def create
     @project = current_user.projects.new(project_params)
     if @project.save
-      redirect_to @project, notice: 'Project was successfully created.'
+      redirect_to @project, notice: "Project was successfully created."
     else
       render :new
     end
@@ -43,7 +43,7 @@ class ProjectsController < ApplicationController
   # PATCH /projects/1
   def update
     if @project.update(project_params)
-      redirect_to @project, notice: 'Project was successfully updated.'
+      redirect_to @project, notice: "Project was successfully updated."
     else
       render :edit
     end
@@ -52,7 +52,7 @@ class ProjectsController < ApplicationController
   # DELETE /projects/1
   def destroy
     @project.destroy
-    redirect_to projects_path, notice: 'Project was successfully destroyed.'
+    redirect_to projects_path, notice: "Project was successfully deleted."
   end
 
   private
@@ -67,10 +67,11 @@ class ProjectsController < ApplicationController
   end
 
   def project_params
-    params[:project] ||= { blank: '1' }
+    params[:project] ||= { blank: "1" }
     parse_date_if_key_present(:project, :launch_date)
     params.require(:project).permit(
-      :name, :slug, :short_description, :consent, :theme, :launch_date
+      :name, :slug, :access_token, :short_description, :consent, :theme,
+      :launch_date, :published
     )
   end
 end

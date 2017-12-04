@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'test_helper'
+require "test_helper"
 
 # Tests to assure admins can manage projects.
 class ProjectsControllerTest < ActionDispatch::IntegrationTest
@@ -16,53 +16,55 @@ class ProjectsControllerTest < ActionDispatch::IntegrationTest
       short_description: @project.short_description,
       consent: @project.consent,
       launch_date: @project.launch_date,
-      theme: @project.theme
+      theme: @project.theme,
+      access_token: "access-66d74521",
+      published: "1"
     }
   end
 
-  test 'should get index' do
+  test "should get index" do
     login(@admin)
     get projects_path
     assert_response :success
   end
 
-  test 'should get new' do
+  test "should get new" do
     login(@admin)
     get new_project_path
     assert_response :success
   end
 
-  test 'should create project' do
+  test "should create project" do
     login(@admin)
-    assert_difference('Project.count') do
+    assert_difference("Project.count") do
       post projects_path, params: {
-        project: project_params.merge(slug: 'new-project')
+        project: project_params.merge(slug: "new-project")
       }
     end
     assert_redirected_to project_path(Project.last)
   end
 
-  test 'should show project' do
+  test "should show project" do
     login(@admin)
     get project_path(@project)
     assert_response :success
   end
 
-  test 'should get edit' do
+  test "should get edit" do
     login(@admin)
     get edit_project_path(@project)
     assert_response :success
   end
 
-  test 'should update project' do
+  test "should update project" do
     login(@admin)
     patch project_path(@project), params: { project: project_params }
     assert_redirected_to project_path(@project)
   end
 
-  test 'should destroy project' do
+  test "should destroy project" do
     login(@admin)
-    assert_difference('Project.current.count', -1) do
+    assert_difference("Project.current.count", -1) do
       delete project_path(@project)
     end
     @project.reload

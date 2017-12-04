@@ -60,7 +60,7 @@ class Admin::ExportsController < ApplicationController
   def destroy
     @admin_export.destroy
     respond_to do |format|
-      format.html { redirect_to admin_exports_path, notice: 'Export was successfully destroyed.' }
+      format.html { redirect_to admin_exports_path, notice: 'Export was successfully deleted.' }
       format.js
     end
   end

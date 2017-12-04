@@ -55,7 +55,7 @@ class Admin::PartnersController < ApplicationController
   # DELETE /admin/partners/1
   def destroy
     @admin_partner.destroy
-    redirect_to admin_partners_path, notice: 'Partner was successfully destroyed.'
+    redirect_to admin_partners_path, notice: 'Partner was successfully deleted.'
   end
 
   private

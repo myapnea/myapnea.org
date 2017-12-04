@@ -4,6 +4,8 @@ one:
   short_description: >
     Come together to learn about sleep apnea symptoms and treatment, and become
     part of a international research network to improve lives.
+  access_token: core-eed0e658
+  published: true
   user: admin
   consent: MyText
   theme: MyString
@@ -15,6 +17,8 @@ two:
   short_description: >
     Yoga is a group of physical, mental, and spiritual practices or disciplines
     which originated in ancient India.
+  access_token: yoga-7abf9b29
+  published: true
   user: admin
   consent: MyText
   theme: MyString

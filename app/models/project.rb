@@ -13,13 +13,14 @@ class Project < ApplicationRecord
   ]
 
   # Concerns
-  include Deletable, Sluggable
+  include Deletable
+  include Sluggable
 
   # Scopes
-  scope :published, -> { current.where.not(short_description: [nil, '']) }
+  scope :published, -> { current.where(published: true) }
 
   # Validations
-  validates :name, :user_id, presence: true
+  validates :name, :access_token, presence: true
 
   # Relationships
   belongs_to :user

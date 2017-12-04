@@ -18,9 +18,9 @@ class ImagesController < ApplicationController
 
   def download
     if @image && @image.image.size > 0
-      if params[:size] == 'preview'
+      if params[:size] == "preview"
         send_file File.join(CarrierWave::Uploader::Base.root, @image.image.preview.url)
-      elsif params[:size] == 'thumb'
+      elsif params[:size] == "thumb"
         send_file File.join(CarrierWave::Uploader::Base.root, @image.image.thumb.url)
       else
         send_file File.join(CarrierWave::Uploader::Base.root, @image.image.url)
@@ -45,7 +45,7 @@ class ImagesController < ApplicationController
     @image = current_user.images.new(image_params)
     if @image.save
       @image.update file_size: @image.image.size
-      redirect_to @image, notice: 'Image was successfully created.'
+      redirect_to @image, notice: "Image was successfully created."
     else
       render :new
     end
@@ -63,7 +63,7 @@ class ImagesController < ApplicationController
   # PATCH/PUT /images/1
   def update
     if @image.update(image_params)
-      redirect_to @image, notice: 'Image was successfully updated.'
+      redirect_to @image, notice: "Image was successfully updated."
     else
       render :edit
     end
@@ -72,7 +72,7 @@ class ImagesController < ApplicationController
   # DELETE /images/1
   def destroy
     @image.destroy
-    redirect_to images_path, notice: 'Image was successfully destroyed.'
+    redirect_to images_path, notice: "Image was successfully deleted."
   end
 
   private
