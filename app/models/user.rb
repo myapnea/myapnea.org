@@ -18,7 +18,9 @@ class User < ApplicationRecord
   after_commit :set_forum_name, :send_welcome_email_in_background!, on: :create
 
   # Concerns
-  include Deletable, Forkable, RandomNameGenerator
+  include Deletable
+  include Forkable
+  include RandomNameGenerator
 
   attr_accessor :user_is_updating
 
@@ -43,8 +45,10 @@ class User < ApplicationRecord
   has_many :replies, -> { current.joins(:topic).merge(Topic.current) }
   has_many :images
   has_many :notifications
-  has_many :exports, -> { order id: :desc }, class_name: 'Admin::Export'
+  has_many :exports, -> { order id: :desc }, class_name: "Admin::Export"
   has_many :projects, -> { current }
+
+  has_many :user_projects
 
   # Methods
 

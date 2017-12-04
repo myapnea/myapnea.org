@@ -1,0 +1,2 @@
+%span.period-box
+  = select_tag "response[period]", options_for_select([["AM", "am"], ["PM", "pm"]], value ? value["period"] : @variable.time_of_day_format == "12hour-pm" ? "pm" : "am"), class: "form-control #{"is-invalid" if @json.dig("errors", @variable.name).present?}", style: "display: inline-block;"

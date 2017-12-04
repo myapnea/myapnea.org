@@ -1,39 +1,25 @@
 - @title = @project.name
 
 - content_for :body_class do
-  myapnea-sky-bg
+  myapnea-light-bg
 
 - content_for :header do
   .header-container
     .container
       %h1.page-heading
         .float-right
-          = render 'layouts/edit_delete_dropdown_header', edit_url: edit_project_path(@project), delete_url: @project, delete_confirmation: "Delete #{@project.name}?"
+          = render "layouts/edit_delete_dropdown_header", edit_url: edit_project_path(@project), delete_url: @project, delete_confirmation: "Delete #{@project.name}?"
         = @title
 
 .drawer-and-shelf-container
   .drawer
-    = render 'admin/menu'
+    = render "admin/menu"
   .shelf
     .dashboard-container
-      %table.table.table-striped.table-borderless.table-hover
-        %col{ width: '30%' }
-        %tr
-          %th Name
-          %td= @project.name
-
-        %tr
-          %th Short description
-          %td= @project.short_description
-
-        %tr
-          %th Theme
-          %td= @project.theme
-
-        %tr
-          %th Launch date
-          %td= @project.launch_date
-
-        %tr
-          %th Consent
-          %td= link_to 'View Consent', consent_project_path(@project) if @project.consent.present?
+      = render "forms/horizontal/show/text", object: @project, key: :name
+      = render "forms/horizontal/show/markdown", object: @project, key: :short_description
+      = render "forms/horizontal/show/check_box", object: @project, key: :published
+      = render "forms/horizontal/show/text", object: @project, key: :launch_date
+      = render "forms/horizontal/show/text", object: @project, key: :theme
+      = render "forms/horizontal/show/generic", title: "Consent", content: link_to("View Consent", consent_project_path(@project)) if @project.consent.present?
+      = render "forms/horizontal/show/generic", title: "Subjects", content: @project.remote_subjects

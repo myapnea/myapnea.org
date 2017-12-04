@@ -148,6 +148,10 @@ Rails.application.routes.draw do
     get :search, action: "index", as: :search
   end
 
+  namespace :slice do
+    get :surveys
+  end
+
   # Surveys
   resources :surveys do
     collection do
@@ -164,6 +168,16 @@ Rails.application.routes.draw do
 
   # Admin Section
   get "admin" => "admin#dashboard"
+
+  resources :user_projects do
+    member do
+      get :start, path: ":event/:design/start"
+      get :resume, path: ":event/:design/resume"
+      get :complete, path: ":event/:design/complete"
+      get :page, path: ":event/:design/:page"
+      patch :submit_page, path: ":event/:design/:page"
+    end
+  end
 
   devise_for :users,
              controllers: { registrations: "registrations", sessions: "sessions" },

@@ -20,7 +20,7 @@ class Project < ApplicationRecord
   scope :published, -> { current.where(published: true) }
 
   # Validations
-  validates :name, :access_token, presence: true
+  validates :name, :access_token, :slice_site_id, :code_prefix, presence: true
 
   # Relationships
   belongs_to :user
@@ -29,5 +29,64 @@ class Project < ApplicationRecord
   def destroy
     update slug: nil
     super
+  end
+
+  def subjects_count
+    remote_subjects.size
+  end
+
+  # Returns array of [:user_id, :subject_code] pairs.
+  def remote_subjects
+    @remote_subjects ||= begin
+      subjects = []
+      page = 1
+      loop do
+        new_subjects = subjects_on_page(page)
+        subjects += new_subjects
+        page += 1
+        break unless new_subjects.size == 20
+      end
+      subjects
+    end
+  end
+
+  def all_subject_codes
+    @all_subject_codes ||= begin
+      all_codes = []
+      page = 1
+      loop do
+        new_subject_codes = subjects_on_page(page).collect(&:second)
+        all_codes += new_subject_codes.reject { |c| (/^#{code_prefix}\d{5}$/ =~ c).nil? }
+        page += 1
+        break unless new_subject_codes.size == 20
+      end
+      all_codes
+    end
+  end
+
+  def subjects_on_page(page)
+    params = { page: page }
+    (json, _status) = Slice::JsonRequest.get("#{project_url}/subjects.json", params)
+    return [] unless json
+    subjects = json.collect do |subject_json|
+      [subject_json["id"], subject_json["subject_code"]]
+    end
+    subjects
+  end
+
+  def project_url
+    "#{ENV["slice_url"]}/api/v1/projects/#{access_token}"
+  end
+
+  def generate_subject_code
+    "#{code_prefix}#{format("%05d", next_subject_code_number)}"
+  end
+
+  def next_subject_code_number
+    highest_subject_code_number + 1
+  end
+
+  def highest_subject_code_number
+    all_subject_codes.collect { |c| c.gsub(code_prefix, "").to_i }.max || 0
   end
 end

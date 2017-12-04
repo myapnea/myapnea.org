@@ -1,0 +1,80 @@
+- @title = "Surveys"
+- @footer = "light"
+
+- content_for :body_class do
+  myapnea-light-bg
+
+- content_for :header do
+  .header-container
+    .container
+      %h1.page-heading
+        = @title
+
+.dashboard-container
+  %ul
+    - Project.published.order(:name).each do |project|
+      %li
+        - user_project = current_user.user_projects.find_by(project: project)
+        - if user_project
+          .mb-3
+            %strong Study
+            = project.name
+            = link_to ">> DELETE <<", user_project, method: :delete, class: "text-danger small"
+          .mb-3
+            %strong Consented At
+            = user_project.consented_at
+          .mb-3
+            %strong Consent Revoked At
+            = user_project.consent_revoked_at
+          .mb-3
+            %strong Subject Code
+            %code= user_project.slice_subject_id
+            = user_project.slice_subject_code_cache
+        - else
+          = link_to user_projects_path(user_project: { project_id: project.id }), method: :post do
+            Consent to
+            = project.name
+            %i.fa.fa-spock
+
+
+.dashboard-container
+  - current_user.user_projects.each do |user_project|
+    - user_project.subject_events.reverse_each do |subject_event|
+      .panel.panel-full-width
+        %h1= subject_event.name
+        - if subject_event.percent.to_i.zero?
+          .progress.progress-simple
+            .progress-bar.progress-bar-striped{ role: "progressbar", style: "width: 100%;background-color: #ededed;", aria: { valuenow: "0", valuemin: "0", valuemax: "100" } }
+        - else
+          .progress.progress-simple
+            .progress-bar.progress-bar-striped.bg-success{ role: "progressbar", style: "width: #{subject_event.percent}%;", aria: { valuenow: "#{subject_event.percent}", valuemin: "0", valuemax: "100" } }
+        .float-right
+          %small.text-muted= "#{subject_event.percent}%"
+        .clearfix
+        .card-columns
+          - subject_event.event_designs.each do |event_design|
+            .card
+              .card-body
+                .small.card-title
+                  = event_design.design_name
+                - if event_design.percent.to_i.zero?
+                  .progress.progress-simple
+                    .progress-bar.progress-bar-striped{ role: "progressbar", style: "width: 100%;background-color: #ededed;", aria: { valuenow: "0", valuemin: "0", valuemax: "100" } }
+                - else
+                  .progress.progress-simple
+                    .progress-bar.progress-bar-striped.bg-success{ role: "progressbar", style: "width: #{event_design.percent}%;", aria: { valuenow: "#{event_design.percent}", valuemin: "0", valuemax: "100" } }
+
+              .card-footer
+                .float-right
+                  %small.text-muted= "#{event_design.percent}%"
+                - if event_design.valid? && event_design.incomplete?
+                  - if event_design.percent.zero?
+                    = link_to start_user_project_path(user_project, event_design.event_id, event_design.design_id) do
+                      Start
+                      %i.fa.fa-caret-right
+                  - else
+                    = link_to resume_user_project_path(user_project, event_design.event_id, event_design.design_id) do
+                      Resume
+                      %i.fa.fa-caret-right
+                .clearfix
+

@@ -1,0 +1,15 @@
+- @title = "Survey Complete"
+
+.page-box.last-slide.background-p50-grey.center-vertically-xs-sm
+  .container
+    %h1= @title
+    = @json
+
+    = link_to survey_start_path(params[:event], params[:design]) do
+      %i.fa.fa-undo
+      Restart
+
+    = link_to surveys_path do
+      %i.fa.fa-list
+      Back to Surveys
+

@@ -26,16 +26,15 @@
           %thead
             %tr
               %th Name
-              %th.center Launch Date
+              %th.text-center Launch Date
               %th.text-center Actions
-              %th
           %tbody
             - @projects.each do |project|
               %tr
                 %td= link_to project.name, project
                 %td.text-center
-                  %span.hidden-xs= project.launch_date ? project.launch_date.strftime("%a, %b %d, %Y") : nil
-                  %span.hidden-sm.hidden-md.hidden-lg= project.launch_date ? project.launch_date.strftime("%b %d, %Y") : nil
+                  %span.d-none.d-lg-inline= project.launch_date ? project.launch_date.strftime("%a, %b %-d, %Y") : nil
+                  %span.d-inline.d-lg-none= project.launch_date ? project.launch_date.strftime("%b %-d, %Y") : nil
                 %td= render "layouts/edit_delete_dropdown", edit_url: edit_project_path(project), delete_url: project, delete_confirmation: "Delete #{project.name}?"
       .center-horizontally= paginate@projects, theme: "bootstrap"
     - else

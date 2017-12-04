@@ -18,7 +18,9 @@ class ProjectsControllerTest < ActionDispatch::IntegrationTest
       launch_date: @project.launch_date,
       theme: @project.theme,
       access_token: "access-66d74521",
-      published: "1"
+      published: "1",
+      slice_site_id: "12345",
+      code_prefix: "TEST"
     }
   end
 

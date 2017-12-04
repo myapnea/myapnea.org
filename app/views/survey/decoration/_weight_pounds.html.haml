@@ -1,0 +1,3 @@
+.input-group
+  = number_field_tag "response[pounds]", value ? value["pounds"] : nil, maxlength: 2, class: "form-control #{"is-invalid" if @json.dig("errors", @variable.name).present?}", autocomplete: "off"
+  = render "survey/decoration/addon", addon: "lb"

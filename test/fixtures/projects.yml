@@ -10,6 +10,8 @@ one:
   consent: MyText
   theme: MyString
   launch_date: 2017-04-21
+  slice_site_id: 12345
+  code_prefix: CORE
 
 two:
   name: Yoga
@@ -23,3 +25,5 @@ two:
   consent: MyText
   theme: MyString
   launch_date: 2017-05-01
+  slice_site_id: 67890
+  code_prefix: YOGA

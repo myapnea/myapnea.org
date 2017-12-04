@@ -43,7 +43,7 @@ $drawer-width: 240px;
   transition-timing-function: ease-in-out;
 }
 
-@include media-breakpoint-up(sm) {
+@include media-breakpoint-up(md) {
   .drawer-and-shelf-container {
     &.drawer-open {
       .drawer {

@@ -1,0 +1,8 @@
+.survey-choices
+  - (@json.dig("variable", "domain_options") || []).each do |domain_option_json|
+    - checked = (domain_option_json["value"] == response)
+    %label.survey-choice.box-shadow{ class: checked ? "active" : nil }
+      = form.radio_button "response", domain_option_json["value"], checked: checked
+      = domain_option_json["name"]
+= render "survey/decoration/errors"
+= render "survey/decoration/field_note"

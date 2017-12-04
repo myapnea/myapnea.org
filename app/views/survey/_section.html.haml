@@ -1,0 +1,13 @@
+- alert_class = "alert-white"
+- alert_class = "alert-primary" if section.level == 2
+- alert_class = "alert-warning" if section.level == 3
+- alert_class = "alert-danger" if section.level == 4
+
+.survey-question
+  .alert.alert-box-shadow{ class: alert_class, role: "alert" }
+    - if section.name.present?
+      - if section.level == 0
+        %h2.alert-heading= section.name
+      - else
+        %h4.alert-heading= section.name
+    = simple_markdown section.description if section.description.present?

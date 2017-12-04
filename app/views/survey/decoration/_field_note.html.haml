@@ -1,0 +1,4 @@
+- if @json.dig("variable", "field_note").present?
+  %small.form-text.text-muted
+    %i.fa.fa-info-circle
+    = @json.dig("variable", "field_note")

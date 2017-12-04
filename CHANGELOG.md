@@ -18,6 +18,8 @@
 - **Projects Added**
   - Sets of surveys are now grouped by project, the initial set of surveys on
     MyApnea are going into the MyApnea Core project
+- **Survey Changes**
+  - Surveys now leverage the Slice API
 - **Gem Changes**
   - Updated `Gemfile` to `gems.rb`
   - Added bootsnap
