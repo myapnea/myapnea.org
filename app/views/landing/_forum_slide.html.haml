@@ -1,7 +1,8 @@
 .page-box-padding.myapnea-white-bg
   .container
-    .landing-blog-title.text-dark
-      Active Discussion
+    .landing-blog-title.text-dark.mb-3
+      Articles and Forum
+    = render "landing/broadcasts"
     .d-flex.flex-column.mb-5
       - count = 0
       - @replies = Reply.current.shadow_banned(current_user).points.having("COALESCE(SUM(reply_users.vote), 0) > -1").order(created_at: :desc)
@@ -11,11 +12,11 @@
           - count += 1
           .mx-3.mt-3
             .mb-1{ style: "font-size: 1.5rem;" }
-              - url = reply.parent
-              - url = blog_post_path(reply.parent.url_hash) if reply.broadcast
-              = link_to reply.parent.title, url, class: "link-blend"
+              -# url = reply.parent
+              -# url = blog_post_path(reply.parent.url_hash) if reply.broadcast
+              =# link_to reply.parent.title, url, class: "link-blend"
             %div
-              = strip_tags(simple_markdown reply.description, true, false).gsub(/\r/, " ").gsub(/\n/, " ").truncate(500, separator: ".", omission: "...").html_safe
+              = strip_tags(simple_markdown reply.description, true, false).gsub(/\r/, " ").gsub(/\n/, " ").truncate(100, separator: ".", omission: "...").html_safe
             %div
               = link_to reply, data: { turbolinks: false } do
                 read more
