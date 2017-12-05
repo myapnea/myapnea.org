@@ -1,4 +1,5 @@
 - @title = [@json.dig("design", "name"), @json.dig("event", "name")].compact.join(" - ")
+- @footer = "light"
 
 - response = @json.dig("response") || @json.dig("sheet_variable", "response")
 - value = @json.dig("response") || @json.dig("sheet_variable", "value")

@@ -122,3 +122,27 @@
     }
   }
 }
+
+.hours-box,
+.minutes-box,
+.seconds-box,
+.month-box,
+.day-box {
+  input {
+    &[type="text"],
+    &[type="number"] {
+      min-width: 55px;
+      width: 55px;
+    }
+  }
+}
+
+.year-box {
+  input {
+    &[type="text"],
+    &[type="number"] {
+      min-width: 63px;
+      width: 63px;
+    }
+  }
+}
