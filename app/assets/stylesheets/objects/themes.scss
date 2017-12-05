@@ -1,0 +1,67 @@
+.myapnea-light-bg,
+.myapnea-blue-bg,
+.myapnea-sky-bg,
+.myapnea-transparent-bg,
+.myapnea-night-bg {
+  .survey-question-lead {
+    color: $p500-blue;
+  }
+
+  .survey-question-desc {
+    border-color: $p100-blue;
+  }
+}
+
+.myapnea-green-bg {
+  .survey-question {
+    .survey-question-lead {
+      color: $p500-green;
+    }
+
+    .survey-question-desc {
+      border-color: $p100-green;
+    }
+  }
+}
+
+.myapnea-orange-bg,
+.myapnea-sunset-bg {
+  .survey-question {
+    .survey-question-lead {
+      color: $p500-orange;
+    }
+
+    .survey-question-desc {
+      border-color: $p100-orange;
+    }
+  }
+}
+
+.myapnea-green-bg {
+  .survey-choice {
+    &:hover,
+    &:focus {
+      background-color: $p100-green;
+    }
+
+    &:active,
+    &.active {
+      background-color: $p300-green;
+    }
+  }
+}
+
+.myapnea-orange-bg,
+.myapnea-sunset-bg {
+  .survey-choice {
+    &:hover,
+    &:focus {
+      background-color: $p100-orange;
+    }
+
+    &:active,
+    &.active {
+      background-color: $p300-orange;
+    }
+  }
+}

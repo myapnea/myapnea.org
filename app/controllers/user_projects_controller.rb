@@ -9,6 +9,8 @@ class UserProjectsController < ApplicationController
   ]
   before_action :find_page, only: [:page, :submit_page]
 
+  layout "layouts/full_page"
+
   # GET /user_projects
   def index
     @user_projects = current_user.user_projects
