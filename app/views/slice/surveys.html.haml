@@ -50,7 +50,7 @@
             .progress-bar.progress-bar-striped{ role: "progressbar", style: "width: 100%;background-color: #ededed;", aria: { valuenow: "0", valuemin: "0", valuemax: "100" } }
         - else
           .progress.progress-simple
-            .progress-bar.progress-bar-striped.bg-success{ role: "progressbar", style: "width: #{subject_event.percent}%;", aria: { valuenow: "#{subject_event.percent}", valuemin: "0", valuemax: "100" } }
+            .progress-bar.progress-bar-striped.bg-primary{ role: "progressbar", style: "width: #{subject_event.percent}%;", aria: { valuenow: "#{subject_event.percent}", valuemin: "0", valuemax: "100" } }
         .float-right
           %small.text-muted= "#{subject_event.percent}%"
         .clearfix
@@ -65,7 +65,7 @@
                     .progress-bar.progress-bar-striped{ role: "progressbar", style: "width: 100%;background-color: #ededed;", aria: { valuenow: "0", valuemin: "0", valuemax: "100" } }
                 - else
                   .progress.progress-simple
-                    .progress-bar.progress-bar-striped.bg-success{ role: "progressbar", style: "width: #{event_design.percent}%;", aria: { valuenow: "#{event_design.percent}", valuemin: "0", valuemax: "100" } }
+                    .progress-bar.progress-bar-striped.bg-primary{ role: "progressbar", style: "width: #{event_design.percent}%;", aria: { valuenow: "#{event_design.percent}", valuemin: "0", valuemax: "100" } }
 
               .card-footer
                 .float-right
