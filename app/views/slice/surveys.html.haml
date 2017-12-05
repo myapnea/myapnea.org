@@ -71,7 +71,7 @@
                 .float-right
                   %small.text-muted= "#{event_design.percent}%"
                 - if event_design.valid? && event_design.incomplete?
-                  - if event_design.percent.zero?
+                  - if event_design.percent.to_i.zero?
                     = link_to slice_surveys_start_path(subject.project, event_design.event_id, event_design.design_id) do
                       Start
                       %i.fa.fa-caret-right

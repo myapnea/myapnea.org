@@ -12,7 +12,7 @@ class Slice::SurveysController < ApplicationController
   # GET /slice/surveys/:project/1  ....  /survey/:event/:design/start
   def start
     survey_in_progress
-    redirect_to page_slice_subject_path(@subject, params[:event], params[:design], 1)
+    redirect_to slice_surveys_page_path(@project, params[:event], params[:design], 1)
   end
 
   # GET /slice/surveys/:project/subjects/1  ....  /survey/:event/:design/:page
