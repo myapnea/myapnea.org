@@ -5,5 +5,5 @@
     %label.survey-choice.box-shadow{ class: checked ? "active" : nil }
       = check_box_tag "response[]", domain_option_json["value"], checked, data: { mutually_exclusive: domain_option_json["mutually_exclusive"] }
       = domain_option_json["name"]
-= render "slice/survey/decoration/errors"
-= render "slice/survey/decoration/field_note"
+= render "slice/surveys/decoration/errors"
+= render "slice/surveys/decoration/field_note"

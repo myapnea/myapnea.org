@@ -1,4 +1,4 @@
 .form-group.string-container
   = form.text_area "response", class: "form-control #{"is-invalid" if @json.dig("errors", @variable.name).present?}", value: response, rows: 7, autocomplete: "off"
-  = render "slice/survey/decoration/errors"
-  = render "slice/survey/decoration/field_note"
+  = render "slice/surveys/decoration/errors"
+  = render "slice/surveys/decoration/field_note"

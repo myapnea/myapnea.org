@@ -9,6 +9,7 @@ class Subject < ApplicationRecord
   # Relationships
   belongs_to :user
   belongs_to :project
+  has_many :subject_surveys
 
   # Methods
 
@@ -21,7 +22,7 @@ class Subject < ApplicationRecord
       load_remote_subject
     else
       create_remote_subject!
-      # create_baseline_event
+      create_baseline_event!
     end
   end
 
@@ -53,6 +54,13 @@ class Subject < ApplicationRecord
     # root_attributes.each do |attribute|
     #   send("#{attribute}=", json[attribute.to_s])
     # end
+  end
+
+  def create_baseline_event!
+    return unless linked?
+    params = { event_id: "baseline" } # Event.first.slug
+    (json, status) = Slice::JsonRequest.post("#{project.project_url}/subjects/#{slice_subject_id}/events.json", params)
+    load_events_from_json(json, status)
   end
 
   def subject_events

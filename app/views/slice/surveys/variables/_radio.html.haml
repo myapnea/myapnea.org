@@ -4,5 +4,5 @@
     %label.survey-choice.box-shadow{ class: checked ? "active" : nil }
       = form.radio_button "response", domain_option_json["value"], checked: checked
       = domain_option_json["name"]
-= render "slice/survey/decoration/errors"
-= render "slice/survey/decoration/field_note"
+= render "slice/surveys/decoration/errors"
+= render "slice/surveys/decoration/field_note"

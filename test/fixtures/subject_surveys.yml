@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  subject: one
+  event: baseline
+  design: demographics
+  completed: true
+
+two:
+  subject: one
+  event: baseline
+  design: familyhx
+  completed: false

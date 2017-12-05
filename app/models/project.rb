@@ -24,6 +24,7 @@ class Project < ApplicationRecord
 
   # Relationships
   belongs_to :user
+  has_many :subjects
 
   # Methods
   def destroy

@@ -15,11 +15,11 @@
 -# background_class = "myapnea-orange-bg"
 
 .page-box.last-box.d-flex.d-md-block.flex-column.justify-content-center{ class: background_class }
-  = render "slice/survey/progress_bar", start: start, percent: percent
+  = render "slice/surveys/progress_bar", start: start, percent: percent
   .container
-    = form_with(url: submit_page_slice_subject_path(@subject, params[:event], params[:design], @page), method: :patch, local: true, autocomplete: "off", id: "survey-form") do |form|
+    = form_with(url: slice_surveys_submit_page_path(@project, params[:event], params[:design], @page), method: :patch, local: true, autocomplete: "off", id: "survey-form") do |form|
       - if @section
-        = render "slice/survey/section", section: @section
+        = render "slice/surveys/section", section: @section
         = link_to "#", data: { object: "submit-and-continue", target: "#survey-form" }, class: "btn btn-success btn-shadow float-right" do
           Continue
           %i.fa.fa-caret-right
@@ -34,7 +34,7 @@
             .survey-question-text= @variable.display_name
             - case @variable.variable_type
             - when "checkbox", "date", "dropdown", "imperial_height", "imperial_weight", "integer", "numeric", "radio", "string", "text", "time_duration", "time_of_day"
-              = render "slice/survey/variables/#{@variable.variable_type}", form: form, response: response, value: value
+              = render "slice/surveys/variables/#{@variable.variable_type}", form: form, response: response, value: value
             - else
               %p.lead.text-muted.d-none= @variable.variable_type
 

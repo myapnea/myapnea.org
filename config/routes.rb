@@ -148,32 +148,19 @@ Rails.application.routes.draw do
     get :search, action: "index", as: :search
   end
 
-  namespace :slice do
+  namespace :slice, path: "" do # OR: scope module: :slice
     get :surveys
-
-    resources :subjects do
-      member do
-        get :start, path: ":event/:design/start"
-        get :resume, path: ":event/:design/resume"
-        get :complete, path: ":event/:design/complete"
-        get :page, path: ":event/:design/:page"
-        patch :submit_page, path: ":event/:design/:page"
-      end
+    namespace :surveys do
+      get :start, path: ":project/:event/:design/start"
+      get :resume, path: ":project/:event/:design/resume"
+      get :complete, path: ":project/:event/:design/complete"
+      get :page, path: ":project/:event/:design/:page"
+      patch :submit_page, path: ":project/:event/:design/:page"
     end
   end
 
-  # Surveys
-  resources :surveys do
-    collection do
-      post :process_answer
-      post :submit
-    end
-    member do
-      get "(/:encounter)/report", action: "report", as: :report
-      get "(/:encounter)", action: "show", as: :show
-      get "(/:encounter)/report-detail", action: "report_detail", as: :report_detail
-      get ":encounter/accept-update-first(/:child_id)", action: :accept_update_first, as: :accept_update_first
-    end
+  namespace :slice do
+    resources :subjects
   end
 
   # Admin Section

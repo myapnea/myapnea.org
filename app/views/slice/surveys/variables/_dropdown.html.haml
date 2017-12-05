@@ -1,4 +1,4 @@
 .form-group.string-container
   = form.select :response, (@json.dig("variable", "domain_options") || []).collect { |doj| [doj["name"], doj["value"]] }, { include_blank: "Select answer", selected: response }, class: "form-control #{"is-invalid" if @json.dig("errors", @variable.name).present?}"
-  = render "slice/survey/decoration/errors"
-  = render "slice/survey/decoration/field_note"
+  = render "slice/surveys/decoration/errors"
+  = render "slice/surveys/decoration/field_note"

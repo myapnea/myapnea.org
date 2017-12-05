@@ -41,7 +41,10 @@
   - current_user.subjects.each do |subject|
     - subject.subject_events.reverse_each do |subject_event|
       .panel.panel-full-width
-        %h1= subject_event.name
+        %h1
+          .float-right
+            %small= subject.project.name
+          = subject_event.name
         - if subject_event.percent.to_i.zero?
           .progress.progress-simple
             .progress-bar.progress-bar-striped{ role: "progressbar", style: "width: 100%;background-color: #ededed;", aria: { valuenow: "0", valuemin: "0", valuemax: "100" } }
@@ -69,11 +72,11 @@
                   %small.text-muted= "#{event_design.percent}%"
                 - if event_design.valid? && event_design.incomplete?
                   - if event_design.percent.zero?
-                    = link_to start_slice_subject_path(subject, event_design.event_id, event_design.design_id) do
+                    = link_to slice_surveys_start_path(subject.project, event_design.event_id, event_design.design_id) do
                       Start
                       %i.fa.fa-caret-right
                   - else
-                    = link_to resume_slice_subject_path(subject, event_design.event_id, event_design.design_id) do
+                    = link_to slice_surveys_resume_path(subject.project, event_design.event_id, event_design.design_id) do
                       Resume
                       %i.fa.fa-caret-right
                 .clearfix

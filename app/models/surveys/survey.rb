@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 # Encapsulates a series of questions that a participant can answer.
+# TODO: Remove
 class Survey < ApplicationRecord
   # Constants
   STATUS = %w(show hide)

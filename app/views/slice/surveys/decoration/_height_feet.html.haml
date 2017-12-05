@@ -1,3 +1,3 @@
 .input-group
   = number_field_tag "response[feet]", value ? value["feet"] : nil, maxlength: 2, class: "form-control #{"is-invalid" if @json.dig("errors", @variable.name).present?}", autocomplete: "off"
-  = render "slice/survey/decoration/addon", addon: "ft"
+  = render "slice/surveys/decoration/addon", addon: "ft"

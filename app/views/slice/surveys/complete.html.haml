@@ -6,7 +6,7 @@
     %h1= @title
     = @json
 
-    = link_to start_slice_subject_path(@subject, params[:event], params[:design]) do
+    = link_to slice_surveys_start_path(@project, params[:event], params[:design]) do
       %i.fa.fa-undo
       Restart
 
