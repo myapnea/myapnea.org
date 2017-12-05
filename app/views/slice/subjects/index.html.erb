@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Subjects</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @subjects.each do |subject| %>
+      <tr>
+        <td><%= link_to "Show", [:slice, subject] %></td>
+        <td><%= link_to "Edit", edit_slice_subject_path(subject) %></td>
+        <td><%= link_to "Destroy", [:slice, subject], method: :delete, data: { confirm: "Are you sure?" } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to "New Subject", new_slice_subject_path %>

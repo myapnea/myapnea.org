@@ -150,6 +150,16 @@ Rails.application.routes.draw do
 
   namespace :slice do
     get :surveys
+
+    resources :subjects do
+      member do
+        get :start, path: ":event/:design/start"
+        get :resume, path: ":event/:design/resume"
+        get :complete, path: ":event/:design/complete"
+        get :page, path: ":event/:design/:page"
+        patch :submit_page, path: ":event/:design/:page"
+      end
+    end
   end
 
   # Surveys
@@ -168,16 +178,6 @@ Rails.application.routes.draw do
 
   # Admin Section
   get "admin" => "admin#dashboard"
-
-  resources :user_projects do
-    member do
-      get :start, path: ":event/:design/start"
-      get :resume, path: ":event/:design/resume"
-      get :complete, path: ":event/:design/complete"
-      get :page, path: ":event/:design/:page"
-      patch :submit_page, path: ":event/:design/:page"
-    end
-  end
 
   devise_for :users,
              controllers: { registrations: "registrations", sessions: "sessions" },

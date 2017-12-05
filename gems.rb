@@ -41,10 +41,16 @@ gem "turbolinks",           "~> 5"
 group :test do
   gem "artifice"
   gem "minitest"
+  gem "puma"
   gem "rails-controller-testing"
   gem "simplecov",          "~> 0.15.1", require: false
 end
 
 group :development do
   gem "web-console", "~> 3.0"
+end
+
+group :development, :test do
+  gem "capybara", "~> 2.13"
+  gem "selenium-webdriver"
 end

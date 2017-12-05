@@ -1,0 +1,22 @@
+.form-group.string-container
+  .form-inline
+    - case @variable.time_duration_format
+    - when "hh:mm:ss"
+      = render "slice/survey/decoration/hours", value: value
+      %span.px-1 :
+      = render "slice/survey/decoration/minutes", value: value
+      %span.px-1 :
+      = render "slice/survey/decoration/seconds", value: value
+    - when "hh:mm"
+      = render "slice/survey/decoration/hours", value: value
+      %span.px-1 :
+      = render "slice/survey/decoration/minutes", value: value
+    - else # "mm:ss"
+      = render "slice/survey/decoration/minutes", value: value
+      %span.px-1 :
+      = render "slice/survey/decoration/seconds", value: value
+
+    = link_to "Clear", "#", data: { object: "clear-time-duration-input", target_name: "response", time_duration_format: @variable.time_duration_format }, class: "btn btn-sm btn-link text-muted"
+
+  = render "slice/survey/decoration/errors"
+  = render "slice/survey/decoration/field_note"

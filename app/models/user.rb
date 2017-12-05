@@ -48,7 +48,7 @@ class User < ApplicationRecord
   has_many :exports, -> { order id: :desc }, class_name: "Admin::Export"
   has_many :projects, -> { current }
 
-  has_many :user_projects
+  has_many :subjects
 
   # Methods
 

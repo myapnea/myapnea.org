@@ -1,0 +1,45 @@
+- @title = [@json.dig("design", "name"), @json.dig("event", "name")].compact.join(" - ")
+- @footer = "light"
+
+- response = @json.dig("response") || @json.dig("sheet_variable", "response")
+- value = @json.dig("response") || @json.dig("sheet_variable", "value")
+- start = (@json.dig("design", "current_page") - 1) * 100 / @json.dig("design", "pages_count")
+- percent = (@json.dig("design", "current_page")) * 100 / @json.dig("design", "pages_count")
+- start = percent if @json.dig("errors").present?
+
+- background_class = "myapnea-light-bg"
+-# background_class = "myapnea-sky-bg"
+-# background_class = "myapnea-blue-bg"
+-# background_class = "myapnea-sunset-bg"
+-# background_class = "myapnea-green-bg"
+-# background_class = "myapnea-orange-bg"
+
+.page-box.last-box.d-flex.d-md-block.flex-column.justify-content-center{ class: background_class }
+  = render "slice/survey/progress_bar", start: start, percent: percent
+  .container
+    = form_with(url: submit_page_slice_subject_path(@subject, params[:event], params[:design], @page), method: :patch, local: true, autocomplete: "off", id: "survey-form") do |form|
+      - if @section
+        = render "slice/survey/section", section: @section
+        = link_to "#", data: { object: "submit-and-continue", target: "#survey-form" }, class: "btn btn-success btn-shadow float-right" do
+          Continue
+          %i.fa.fa-caret-right
+        .clearfix
+      - elsif @variable
+        .survey-question-container
+          .survey-question
+            - if @json.dig("group", "name").present?
+              .survey-question-lead= @json.dig("group", "name")
+            - if @json.dig("group", "description").present?
+              .survey-question-desc= simple_format @json.dig("group", "description")
+            .survey-question-text= @variable.display_name
+            - case @variable.variable_type
+            - when "checkbox", "date", "dropdown", "imperial_height", "imperial_weight", "integer", "numeric", "radio", "string", "text", "time_duration", "time_of_day"
+              = render "slice/survey/variables/#{@variable.variable_type}", form: form, response: response, value: value
+            - else
+              %p.lead.text-muted.d-none= @variable.variable_type
+
+        .float-right
+          = link_to "#", data: { object: "submit-and-continue", target: "#survey-form" }, class: "btn btn-success btn-shadow" do
+            Continue
+            %i.fa.fa-caret-right
+        .clearfix

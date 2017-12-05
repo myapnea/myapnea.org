@@ -14,32 +14,32 @@
   %ul
     - Project.published.order(:name).each do |project|
       %li
-        - user_project = current_user.user_projects.find_by(project: project)
-        - if user_project
+        - subject = current_user.subjects.find_by(project: project)
+        - if subject
           .mb-3
             %strong Study
             = project.name
-            = link_to ">> DELETE <<", user_project, method: :delete, class: "text-danger small"
+            = link_to ">> DELETE <<", [:slice, subject], method: :delete, class: "text-danger small"
           .mb-3
             %strong Consented At
-            = user_project.consented_at
+            = subject.consented_at
           .mb-3
             %strong Consent Revoked At
-            = user_project.consent_revoked_at
+            = subject.consent_revoked_at
           .mb-3
             %strong Subject Code
-            %code= user_project.slice_subject_id
-            = user_project.slice_subject_code_cache
+            %code= subject.slice_subject_id
+            = subject.slice_subject_code_cache
         - else
-          = link_to user_projects_path(user_project: { project_id: project.id }), method: :post do
+          = link_to slice_subjects_path(subject: { project_id: project.id }), method: :post do
             Consent to
             = project.name
             %i.fa.fa-spock
 
 
 .dashboard-container
-  - current_user.user_projects.each do |user_project|
-    - user_project.subject_events.reverse_each do |subject_event|
+  - current_user.subjects.each do |subject|
+    - subject.subject_events.reverse_each do |subject_event|
       .panel.panel-full-width
         %h1= subject_event.name
         - if subject_event.percent.to_i.zero?
@@ -69,11 +69,11 @@
                   %small.text-muted= "#{event_design.percent}%"
                 - if event_design.valid? && event_design.incomplete?
                   - if event_design.percent.zero?
-                    = link_to start_user_project_path(user_project, event_design.event_id, event_design.design_id) do
+                    = link_to start_slice_subject_path(subject, event_design.event_id, event_design.design_id) do
                       Start
                       %i.fa.fa-caret-right
                   - else
-                    = link_to resume_user_project_path(user_project, event_design.event_id, event_design.design_id) do
+                    = link_to resume_slice_subject_path(subject, event_design.event_id, event_design.design_id) do
                       Resume
                       %i.fa.fa-caret-right
                 .clearfix

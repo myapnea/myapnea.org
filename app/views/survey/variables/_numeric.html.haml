@@ -1,8 +1,0 @@
-.form-group.string-container
-  .input-group
-    = render "survey/decoration/addon", addon: @variable.prepend
-    = form.number_field "response", class: "form-control #{"is-invalid" if @json.dig("errors", @variable.name).present?}", value: response, autocomplete: "off"
-    = render "survey/decoration/addon", addon: @variable.units
-    = render "survey/decoration/addon", addon: @variable.append
-  = render "survey/decoration/errors"
-  = render "survey/decoration/field_note"
