@@ -21,3 +21,19 @@
     transform: scale(1.0, 1.0);
   }
 }
+
+.animate-wiggle-hover {
+  @media (hover) {
+    &:hover {
+      animation: wiggle 500ms ease-out 1;
+    }
+  }
+}
+
+.animate-pulsate-hover {
+  @media (hover) {
+    &:hover {
+      animation: pulsate 500ms ease-out 1;
+    }
+  }
+}

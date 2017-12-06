@@ -22,33 +22,43 @@
       .landing-about-slide-title-2
         A better site for sleep apnea
 
-    %div.float-right
-      = link_to topics_path, class: "landing-about-slide-feature link-unstyled p-5 mb-3" do
-        %h4 Share your story
-        %p
-          Do you suffer from sleep apnea? Does a loved one? Share and learn your
-          experiences with the sleep apnea community on the forum.
-          %span.text-primary
-            Visit the forum
-            %i.fa.fa-caret-right
+    .row
+      .col-0.col-md.d-flex.justify-content-center.align-items-center
+        %i.fa.fa-comments-o.text-primary.animate-pulsate-hover{ style: "font-size: 6rem;" }
+      .col-12.col-md
+        = link_to topics_path, class: "landing-about-slide-feature link-unstyled p-5 mb-3" do
+          %h4 Share your story
+          %p
+            Do you suffer from sleep apnea? Does a loved one? Share and learn your
+            experiences with the sleep apnea community on the forum.
+            %span.text-primary
+              Visit the forum
+              %i.fa.fa-caret-right
 
-      = link_to slice_surveys_path, class: "landing-about-slide-feature link-unstyled p-5 mb-3" do
-        %h4 Contribute to research
-        %p
-          Fill out surveys, and make an impact on the future of sleep apnea
-          research. Surveys focused on sleep apnea research, and provide feedback and
-          personalized report to you at the end of each survey.
-          %span.text-primary
-            Start surveys
-            %i.fa.fa-caret-right
-
-      = link_to blog_path, class: "landing-about-slide-feature link-unstyled p-5 mb-3" do
-        %h4 Learn about sleep apnea
-        %p
-          Read articles published by fellow patients and research professionals.
-          %span.text-primary
-            View articles
-            %i.fa.fa-caret-right
+    .row
+      .col-0.col-md.d-flex.justify-content-center.align-items-center
+        %i.fa.fa-flask.text-accent.animate-wiggle-hover{ style: "font-size: 6rem;" }
+      .col-12.col-md
+        = link_to slice_surveys_path, class: "landing-about-slide-feature link-unstyled p-5 mb-3" do
+          %h4 Contribute to research
+          %p
+            Fill out surveys, and make an impact on the future of sleep apnea
+            research. Surveys focused on sleep apnea research, and provide feedback and
+            personalized report to you at the end of each survey.
+            %span.text-primary
+              Start surveys
+              %i.fa.fa-caret-right
+    .row
+      .col-0.col-md.d-flex.justify-content-center.align-items-center
+        %i.fa.fa-book.text-primary.animate-pulsate-hover{ style: "font-size: 6rem;" }
+      .col-12.col-md
+        = link_to blog_path, class: "landing-about-slide-feature link-unstyled p-5 mb-3" do
+          %h4 Learn about sleep apnea
+          %p
+            Read articles published by fellow patients and research professionals.
+            %span.text-primary
+              View articles
+              %i.fa.fa-caret-right
 
     = link_to "#video", data: { object: "scroll-anchor" }, class: "scroll-down-arrow-visible link-unstyled" do
       %i.fa.fa-chevron-down
