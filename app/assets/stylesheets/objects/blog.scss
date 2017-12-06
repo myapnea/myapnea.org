@@ -99,6 +99,27 @@
   }
 }
 
+.landing-blog-title-alternate-border {
+  .landing-blog-title {
+    border: 0;
+    position: relative;
+    // padding: 0;
+  }
+
+  position: relative;
+
+  &::before {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border: 1px solid $p500-orange;
+    content: " ";
+    height: 1px;
+  }
+}
+
 .landing-blog-content {
   font-weight: 300;
   line-height: 1.2;

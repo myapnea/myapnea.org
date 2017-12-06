@@ -1,6 +1,7 @@
-- @title = 'Settings'
-- @menu_title = 'Account settings'
-- @theme = 'night'
+- @title = "Settings"
+- @menu_title = "Account settings"
+- @menu = "night"
+- @footer = "night"
 
 - content_for :body_class do
   myapnea-night-bg
@@ -11,11 +12,11 @@
       %h1.page-heading
         = @title
 
-= render 'blank/moon'
+= render "blank/moon"
 
 .drawer-and-shelf-container
   .drawer
-    = render 'internal/settings_menu'
+    = render "internal/settings_menu"
   .shelf
     .dashboard-container
       .settings-title Change password
@@ -36,4 +37,4 @@
           Once you delete your account, there is no going back. Any forum posts
           you have made will also be deleted.
 
-        = link_to 'Delete My Account', '#', data: { object: 'suppress-click' }, style: 'color: green'
+        = link_to "Delete My Account", "#", data: { object: "suppress-click" }, style: "color: green"

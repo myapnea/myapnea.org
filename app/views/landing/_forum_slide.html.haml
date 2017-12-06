@@ -2,7 +2,7 @@
   .container
     .landing-blog-title.text-dark.mb-3
       Articles and Forum
-    = render "landing/broadcasts"
+    =# render "landing/broadcasts"
     .d-flex.flex-column.mb-5
       - count = 0
       - @replies = Reply.current.shadow_banned(current_user).points.having("COALESCE(SUM(reply_users.vote), 0) > -1").order(created_at: :desc)

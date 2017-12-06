@@ -1,8 +1,31 @@
-- theme = "menu-blue" unless defined?(theme) && theme.present?
+- menu = "menu-blue" unless defined?(menu) && menu.present?
 .background-special
-  %nav.navbar.navbar-expand-lg.navbar-dark.navbar-myapnea{ class: theme }
+  %nav.navbar.navbar-expand-lg.navbar-dark.navbar-myapnea{ class: menu }
+
+
     %div{ class: defined?(container) && container.present? ? container : "container" }
       = render "layouts/logo"
+
+      .navbar-hide-scrolled
+        = form_tag search_path, method: :get, class: "form-inline d-none d-md-flex" do
+          .input-group.mr-sm-2
+            = text_field_tag :search, params[:search], class: "form-control", placeholder: "Search MyApnea", autocomplete: "off", aria: { label: "Search MyApnea" } #, id: "navigation-search"
+            %span.input-group-btn
+              = link_to "#", data: { object: "suppress-click" }, class: "btn btn-outline-light", name: nil, id: "navigation-form-search-btn", style: "background-color: #fff;color: #868e96;" do
+                %i.fa.fa-search
+          - if false
+            .input-group
+              = text_field_tag :search, params[:search], class: "form-control menu-search-input", placeholder: "Search MyApnea", autocomplete: "off", id: "navigation-search"
+              %span.input-group-btn
+                = link_to "#", data: { object: "suppress-click" }, class: "btn btn-outline-light", name: nil, id: "navigation-form-search-btn" do
+                  %i.fa.fa-search
+
+      - if false
+        <form class="form-inline">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+
 
       %button.navbar-toggler{ type: "button", data: { toggle: "collapse", target: "#menu-body" }, aria: { controls: "menu-body", expanded: "false", label: "Toggle navigation" } }
         %span.navbar-toggler-icon

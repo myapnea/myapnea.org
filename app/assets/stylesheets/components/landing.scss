@@ -282,3 +282,137 @@
     opacity: 0;
   }
 }
+
+.landing-about-slide-title {
+  font-weight: 300;
+  line-height: 1.2;
+  font-size: 2rem;
+  border-bottom: 2px solid $p500-orange;
+  padding: $spacer;
+
+  @include media-breakpoint-up(sm) {
+    font-size: 2.5rem;
+  }
+
+  @include media-breakpoint-up(md) {
+    font-size: 3rem;
+  }
+
+  @include media-breakpoint-up(lg) {
+    font-size: 4rem;
+  }
+}
+
+.orange-strike {
+  position: relative;
+  text-align: center;
+  margin-bottom: $spacer;
+
+  &::before {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border: 1px solid $p300-orange;
+    content: " ";
+    height: 1px;
+  }
+
+  .landing-about-slide-title-2 {
+    display: inline-block;
+  }
+}
+
+.landing-about-heading {
+  color: $brand-white;
+  font-size: 2rem;
+  font-weight: 300;
+  line-height: 1;
+  margin-bottom: $spacer;
+
+  @include media-breakpoint-up(sm) {
+    font-size: 3rem;
+  }
+
+  @include media-breakpoint-up(md) {
+    font-size: 4rem;
+  }
+
+  @include media-breakpoint-up(lg) {
+    font-size: 6rem;
+  }
+
+  // color: $brand-white;
+
+  // line-height: 1.2;
+  // font-size: 2rem;
+  // border-bottom: 2px solid $p500-orange;
+  // padding: $spacer;
+
+  // @include media-breakpoint-up(sm) {
+  //   font-size: 2.5rem;
+  // }
+
+  // @include media-breakpoint-up(md) {
+  //   font-size: 3rem;
+  // }
+
+  // @include media-breakpoint-up(lg) {
+  //   font-size: 4rem;
+  // }
+
+}
+
+.landing-about-slide-tagline {
+  font-weight: 300;
+  // line-height: 1.2;
+  font-size: 1rem;
+  color: $brand-white;
+
+  @include media-breakpoint-up(sm) {
+    font-size: 1.25rem;
+  }
+
+  @include media-breakpoint-up(md) {
+    font-size: 1.5rem;
+  }
+}
+
+.landing-about-slide-title-2 {
+  font-weight: 300;
+  line-height: 1.2;
+  font-size: 2rem;
+  padding: $spacer;
+  background-color: $brand-white;
+  position: relative;
+
+  @include media-breakpoint-up(sm) {
+    font-size: 2.5rem;
+  }
+
+  @include media-breakpoint-up(md) {
+    font-size: 3rem;
+  }
+
+  @include media-breakpoint-up(lg) {
+    font-size: 4rem;
+  }
+}
+
+.landing-about-slide-feature {
+  // border: 1px solid black;
+  display: block;
+  // text-decoration: none;
+  width: 50%;
+  transition: all 250ms ease-out;
+
+  @media (hover) {
+    &:hover {
+      overflow: visible;
+      box-shadow: $box-shadow;
+      background-color: $p50-orange;
+      // transform: scale(1.02);
+    }
+  }
+}

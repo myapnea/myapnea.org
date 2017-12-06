@@ -1,23 +1,26 @@
 %ul.navbar-nav.mr-auto.display-small-scrolled
-  = render "menu/item", title: "Dashboard", path: dashboard_path, icon: "database"
-  = render "menu/item", title: "Forum", path: topics_path, icon: "comments-o"
-  = render "menu/item", title: "Blog", path: blog_path, icon: "rss"
+  &nbsp;
 
-.full-search-bar
-  = form_tag search_path, method: :get, id: "navigation-search-form", class: "form-inline d-none d-md-flex" do
-    .input-group
-      = text_field_tag :search, params[:search], class: "form-control menu-search-input", placeholder: "Search MyApnea", autocomplete: "off", id: "navigation-search"
-      %span.input-group-btn
-        = link_to "#", data: { object: "suppress-click" }, class: "btn btn-outline-light", name: nil, id: "navigation-form-search-btn" do
-          %i.fa.fa-search
+- if false
+  .full-search-bar
+    = form_tag search_path, method: :get, id: "navigation-search-form", class: "form-inline d-none d-md-flex" do
+      .input-group
+        = text_field_tag :search, params[:search], class: "form-control menu-search-input", placeholder: "Search MyApnea", autocomplete: "off", id: "navigation-search"
+        %span.input-group-btn
+          = link_to "#", data: { object: "suppress-click" }, class: "btn btn-outline-light", name: nil, id: "navigation-form-search-btn" do
+            %i.fa.fa-search
 
-%ul.navbar-nav.tiny-search-icon
-  %li.nav-item.d-none.d-md-flex{ class: current_page?(search_path) ? "active" : nil }
-    = link_to "#", data: { object: "show-search-bar" }, name: nil, class: "nav-link" do
-      %i.fa.fa-search
-      Search
+  %ul.navbar-nav.tiny-search-icon
+    %li.nav-item.d-none.d-md-flex{ class: current_page?(search_path) ? "active" : nil }
+      = link_to "#", data: { object: "show-search-bar" }, name: nil, class: "nav-link" do
+        %i.fa.fa-search
+        Search
 
 %ul.navbar-nav
+  = render "menu/item", title: "About", path: about_path, icon: "info-circle"
+  = render "menu/item", title: "Forum", path: topics_path, icon: "comments-o"
+  = render "menu/item", title: "Articles", path: blog_path, icon: "rss"
+  = render "menu/item", title: "Surveys", path: slice_surveys_path, icon: "rss"
   - if current_user
     %li.nav-item.d-none.d-lg-block{ class: current_page?(notifications_path) ? "active" : nil }
       = link_to notifications_path, class: "nav-link notifications-link #{'notifications-link-active' if current_user.unread_notifications?}" do

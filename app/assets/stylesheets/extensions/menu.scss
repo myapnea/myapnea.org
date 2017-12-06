@@ -1,11 +1,16 @@
 .navbar-myapnea {
   border-bottom: 1px solid transparent;
+
 }
 
 .menu-blue,
 .menu-light,
 .menu-grass {
   @include theme-menu($p600-blue, $p300-blue, $p700-blue, $p800-blue);
+}
+
+.menu-dark-blue {
+  @include theme-menu($p900-blue, $p900-blue, $p900-blue, $p900-blue);
 }
 
 .menu-sunset {
