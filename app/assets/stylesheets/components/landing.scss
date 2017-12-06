@@ -405,6 +405,8 @@
   display: block;
   // text-decoration: none;
   transition: all 250ms ease-out;
+  margin-bottom: $spacer * 3;
+  padding: $spacer * 3;
 
   @media (hover) {
     &:hover {
