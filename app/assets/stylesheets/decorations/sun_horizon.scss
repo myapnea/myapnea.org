@@ -1,39 +1,24 @@
-$sun-color: $p200-yellow;
-$sun-inner-color: $p300-yellow;
-
-$sun-base-size: 128px;
-$sun-base-padding: 12px;
-
-$sun-size: $sun-base-size * 2; // 256px;
-$sun-padding: $sun-base-padding * 2; // 24px;
-$sun-container: $sun-size + $sun-padding;
-
-$sun-size-sm: $sun-base-size * 4; // 512px;
-$sun-padding-sm: $sun-base-padding * 4; // 48px;
-$sun-container-sm: $sun-size-sm + $sun-padding-sm;
-
-.sun-container {
+.sun-horizon-container {
+  bottom: -($sun-container / 2);
   height: $sun-container;
   overflow: hidden;
   position: absolute;
-  right: 0;
-  top: -($sun-container / 2);
-  width: $sun-container / 2;
-}
+  left: 50%;
+  width: $sun-container;
+  transform: translate(-50%);
 
-@include media-breakpoint-up(sm) {
-  .sun-container {
+  @include media-breakpoint-up(sm) {
+    bottom: -($sun-container-sm / 2);
     height: $sun-container-sm;
-    top: -($sun-container-sm / 2);
-    width: $sun-container-sm / 2;
+    width: $sun-container-sm;
   }
 }
 
-#sun {
+.sun-horizon {
   animation: spin-cw 120s linear infinite;
   font-size: $sun-size;
   position: absolute;
-  right: -$sun-size;
+  left: -$sun-size + ($sun-container / 2);
   top: -$sun-size + ($sun-container / 2);
 
   i {
@@ -52,9 +37,9 @@ $sun-container-sm: $sun-size-sm + $sun-padding-sm;
 }
 
 @include media-breakpoint-up(sm) {
-  #sun {
+  .sun-horizon {
     font-size: $sun-size-sm;
-    right: -$sun-size-sm;
+    left: -$sun-size-sm + ($sun-container-sm / 2);
     top: -$sun-size-sm + ($sun-container-sm / 2);
 
     i {

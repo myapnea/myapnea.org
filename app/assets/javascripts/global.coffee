@@ -13,6 +13,7 @@
 
 @componentsReady = ->
   animateProgressBar()
+  chartsReady()
   exportsReady()
   landingReady()
   teamReady()

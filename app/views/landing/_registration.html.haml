@@ -1,62 +1,67 @@
-- resource = User.new
-.sign-up-form
-  .sign-up-form-title
-    Create your account
-  = form_for(resource, url: user_registration_path, html: { class: "form-vertical", autocomplete: "off", id: "recaptcha-form" }) do |f|
-    .form-group
-      = render "layouts/label_or_errors", f: f, object: resource, key: :first_name, key_name: "Full name"
-      = f.text_field :first_name, class: "form-control"
-
-    - if false
+.d-block.d-md-none{ style: "position: relative;z-index: 1020;" }
+  .text-center
+    = link_to new_user_registration_path, class: "btn btn-xl btn-accent btn-shadow" do
+      Join Today
+.d-none.d-md-block
+  - resource = User.new
+  .sign-up-form
+    .sign-up-form-title
+      Create your account
+    = form_for(resource, url: user_registration_path, html: { class: "form-vertical", autocomplete: "off", id: "recaptcha-form" }) do |f|
       .form-group
-        = render "layouts/label_or_errors", f: f, object: resource, key: :last_name
-        = f.text_field :last_name, class: "form-control"
+        = render "layouts/label_or_errors", f: f, object: resource, key: :first_name, key_name: "Full name"
+        = f.text_field :first_name, class: "form-control"
 
-    .form-group
-      = render "layouts/label_or_errors", f: f, object: resource, key: :email
-      = f.email_field :email, class: "form-control"
+      - if false
+        .form-group
+          = render "layouts/label_or_errors", f: f, object: resource, key: :last_name
+          = f.text_field :last_name, class: "form-control"
 
-    .form-group
-      = render "layouts/label_or_errors", f: f, object: resource, key: :password
-      = f.password_field :password, class: "form-control", autocomplete: "off"
-
-    - if false
       .form-group
-        = render "layouts/label_or_errors", f: f, object: resource, key: :password_confirmation
-        = f.password_field :password_confirmation, class: "form-control", autocomplete: "off"
+        = render "layouts/label_or_errors", f: f, object: resource, key: :email
+        = f.email_field :email, class: "form-control"
 
-    - if false
       .form-group
-        %label.control-label Receive Forum Emails
-        .checkbox
+        = render "layouts/label_or_errors", f: f, object: resource, key: :password
+        = f.password_field :password, class: "form-control", autocomplete: "off"
+
+      - if false
+        .form-group
+          = render "layouts/label_or_errors", f: f, object: resource, key: :password_confirmation
+          = f.password_field :password_confirmation, class: "form-control", autocomplete: "off"
+
+      - if false
+        .form-group
+          %label.control-label Receive Forum Emails
+          .checkbox
+            %label
+              = f.check_box :emails_enabled
+              Allow MyApnea to send you emails?
+
+      .form-group
+        .checkbox.text-center{ style: "border: 1px solid #ccc;border-radius: 4px;padding: 10px;" }
           %label
-            = f.check_box :emails_enabled
-            Allow MyApnea to send you emails?
+            = f.check_box :over_eighteen
+            I am over the age of 18
+        - if resource.errors[:over_eighteen].present?
+          - error_message = resource.errors[:over_eighteen].join(", ")
+          .text-danger
+            = error_message
 
-    .form-group
-      .checkbox.text-center{ style: "border: 1px solid #ccc;border-radius: 4px;padding: 10px;" }
-        %label
-          = f.check_box :over_eighteen
-          I am over the age of 18
-      - if resource.errors[:over_eighteen].present?
-        - error_message = resource.errors[:over_eighteen].join(", ")
-        .text-danger
-          = error_message
+      - invisible_recaptcha = false
+      - if RECAPTCHA_ENABLED && !invisible_recaptcha
+        .form-group
+          %label.control-label Human Verification
+          .g-recaptcha{ data: { sitekey: ENV["recaptcha_site_key"] } }
+          <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
-    - invisible_recaptcha = false
-    - if RECAPTCHA_ENABLED && !invisible_recaptcha
-      .form-group
-        %label.control-label Human Verification
-        .g-recaptcha{ data: { sitekey: ENV["recaptcha_site_key"] } }
-        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+      - if resource.errors && resource.errors[:recaptcha].present?
+        .form-group.text-center
+          %small.text-danger= resource.errors[:recaptcha].join(" ")
 
-    - if resource.errors && resource.errors[:recaptcha].present?
-      .form-group.text-center
-        %small.text-danger= resource.errors[:recaptcha].join(" ")
-
-    .form-group.submit-btn-container
-      - if RECAPTCHA_ENABLED && invisible_recaptcha
-        %button.g-recaptcha.btn.btn-primary.btn-block.btn-shadow{ data: { sitekey: ENV["recaptcha_site_key"], callback: "recaptchaFormSubmit" } } Create an Account
-        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-      - else
-        = f.submit "Create an Account", class: "btn btn-primary btn-block btn-shadow"
+      .form-group.submit-btn-container
+        - if RECAPTCHA_ENABLED && invisible_recaptcha
+          %button.g-recaptcha.btn.btn-primary.btn-block.btn-shadow{ data: { sitekey: ENV["recaptcha_site_key"], callback: "recaptchaFormSubmit" } } Create an Account
+          <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+        - else
+          = f.submit "Create an Account", class: "btn btn-primary btn-block btn-shadow"

@@ -30,6 +30,7 @@
 #= require external/google_analytics
 #= require external/jquery-fieldselection.js
 #= require external/jquery.PrintArea.js
+#= require external/highcharts-6.0.3.src.js
 
 # Extensions
 #= require extensions/datepicker

@@ -324,6 +324,47 @@
   }
 }
 
+.orange-title-container {
+  font-size: 2rem;
+  font-weight: 300;
+  line-height: 1.2;
+
+  @include media-breakpoint-up(sm) {
+    font-size: 2.5rem;
+  }
+
+  @include media-breakpoint-up(md) {
+    font-size: 3rem;
+  }
+
+  @include media-breakpoint-up(lg) {
+    font-size: 4rem;
+  }
+
+  .orange-bar {
+    width: 0;
+    border-bottom: 2px solid $p300-orange;
+    height: calc(2rem - 2px);
+
+    @include media-breakpoint-up(sm) {
+      height: calc(2.5rem - 2px);
+    }
+
+    @include media-breakpoint-up(md) {
+      height: calc(3rem - 2px);
+    }
+
+    @include media-breakpoint-up(lg) {
+      height: calc(4rem - 2px);
+    }
+  }
+
+  .orange-title {
+    padding: $spacer;
+    text-align: center;
+  }
+}
+
 .landing-about-heading {
   color: $brand-white;
   font-size: 2rem;
@@ -365,17 +406,17 @@
 }
 
 .landing-about-slide-tagline {
-  font-weight: 300;
+  font-weight: 200;
   // line-height: 1.2;
-  font-size: 1rem;
+  font-size: 1.25rem;
   color: $brand-white;
 
   @include media-breakpoint-up(sm) {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
   }
 
   @include media-breakpoint-up(md) {
-    font-size: 1.5rem;
+    font-size: 1.75rem;
   }
 }
 

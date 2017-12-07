@@ -19,8 +19,15 @@
 %ul.navbar-nav
   = render "menu/item", title: "About", path: about_path, icon: "info-circle"
   = render "menu/item", title: "Forum", path: topics_path, icon: "comments-o"
-  = render "menu/item", title: "Articles", path: blog_path, icon: "rss"
-  = render "menu/item", title: "Surveys", path: slice_surveys_path, icon: "rss"
+  = render "menu/item", title: "Research", path: slice_surveys_path, icon: "flask"
+
+  %li.nav-item.dropdown.d-none.d-lg-block
+    = link_to "#", data: { toggle: "dropdown" }, aria: { haspopup: "true", expanded: "false" }, class: "nav-link dropdown-toggle" do
+      Blog
+    .dropdown-menu.dropdown-menu-right
+      - Admin::Category.current.order(:name).each do |category|
+        = link_to category.name, blog_category_path(category: category), class: "dropdown-item"
+
   - if current_user
     %li.nav-item.d-none.d-lg-block{ class: current_page?(notifications_path) ? "active" : nil }
       = link_to notifications_path, class: "nav-link notifications-link #{'notifications-link-active' if current_user.unread_notifications?}" do

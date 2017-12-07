@@ -29,48 +29,41 @@ $sunset-container-sm: $sunset-size-sm + $sunset-padding-sm;
   }
 }
 
-.landing-upper-right {
-  color: $sunset-color;
-  position: relative;
+#sunset {
+  // animation: spin-cw 120s linear infinite;
+  font-size: $sunset-size;
+  position: absolute;
+  right: -$sunset-size;
+  top: -$sunset-size + ($sunset-container / 2);
 
-  #sunset {
-    // animation: spin-cw 120s linear infinite;
-    font-size: $sunset-size;
-    position: absolute;
-    right: -$sunset-size;
-    top: -$sunset-size + ($sunset-container / 2);
+  i {
+    // animation: sun-pulse 1s ease-in-out infinite alternate;
 
-    i {
-      // animation: sun-pulse 1s ease-in-out infinite alternate;
+    &.fa-sunset-o {
+      font-size: $sunset-size;
+      color: $sunset-color;
+    }
 
-      &.fa-sunset-o {
-        font-size: $sunset-size;
-        color: $sunset-color;
-      }
-
-      &.fa-circle {
-        font-size: $sunset-size * 100 / 128; // 100px;
-        color: $sunset-inner-color;
-      }
+    &.fa-circle {
+      font-size: $sunset-size * 100 / 128; // 100px;
+      color: $sunset-inner-color;
     }
   }
 }
 
 @include media-breakpoint-up(sm) {
-  .landing-upper-right {
-    #sunset {
-      font-size: $sunset-size-sm;
-      right: -$sunset-size-sm;
-      top: -$sunset-size-sm + ($sunset-container-sm / 2);
+  #sunset {
+    font-size: $sunset-size-sm;
+    right: -$sunset-size-sm;
+    top: -$sunset-size-sm + ($sunset-container-sm / 2);
 
-      i {
-        &.fa-sunset-o {
-          font-size: $sunset-size-sm;
-        }
+    i {
+      &.fa-sunset-o {
+        font-size: $sunset-size-sm;
+      }
 
-        &.fa-circle {
-          font-size: $sunset-size-sm * 100 / 128; // 400px;
-        }
+      &.fa-circle {
+        font-size: $sunset-size-sm * 100 / 128; // 400px;
       }
     }
   }
