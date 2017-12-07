@@ -1,6 +1,6 @@
 .page-box.myapnea-black-bg.overflow-hidden.d-flex.flex-column.justify-content-around{ style: "position: relative;" }
   - video_path = "videos/research.mp4"
-  - video_found = Rails.application.assets.find_asset(video_path)
+  - video_found = (Rails.application.assets || ::Sprockets::Railtie.build_environment(Rails.application)).find_asset(video_path)
   - if video_found
     %video.video-full-page-absolute{ autoplay: "true", loop: "false", muted: "true", plays_inline: "true" }
       %source{ src: asset_url(video_path), type: "video/mp4" }
