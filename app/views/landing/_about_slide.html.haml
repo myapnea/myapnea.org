@@ -61,10 +61,9 @@
                 View articles
                 %i.fa.fa-caret-right
 
-  .footer-container.footer-grass{ style: "position: relative;" }
-    = link_to "#video", data: { object: "scroll-anchor" }, class: "scroll-down-arrow-visible link-unstyled", style: "z-index: 1070;" do
-      %i.fa.fa-chevron-down
-    &nbsp;
+    %div{ style: "position: relative;" }
+      = link_to "#video", data: { object: "scroll-anchor" }, class: "scroll-down-arrow-visible link-unstyled", style: "z-index: 1070;" do
+        %i.fa.fa-chevron-down
 
   - if false
     .page-box.myapnea-white-bg.d-flex.align-items-center
