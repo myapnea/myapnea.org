@@ -1,0 +1,33 @@
+- @title = "Our Partners"
+
+- @body = "light"
+- @footer = "light"
+
+- content_for :header do
+  .header-container
+    .container
+      %h1.page-heading
+        = @title
+
+- @partners.where(group: "main").each do |partner|
+  .dashboard-container= render partner
+
+.dashboard-container
+  .content-main-header2
+    %h1 Promotional Partners
+
+  %p.lead
+    The following companies and organizations share our mission and goals to
+    improve research and the treatment of sleep apnea and are working with us to
+    promote the MyApnea.Org Network to patients and health care professionals.*
+    We greatly appreciate their assistance.
+  .row
+    - @partners.where(group: "promotional").sort.each do |partner|
+      = render "admin/partners/promotional_partner", partner: partner
+  .content-footer
+    %p.small
+      * Our promotional and other partners DO NOT have access to your contact or
+      health information. Per our privacy policy, MyApnea.Org will never share
+      your contact or identifiable health information with any partners or other
+      organizations without your express consent. All members of the network DO
+      have access to de-identified aggregate data.

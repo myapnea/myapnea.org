@@ -74,9 +74,12 @@ Rails.application.routes.draw do
 
   scope module: :external do
     post :preview
+    get :about
     get :contact
     get :landing
+    get :partners
     get :sitemap_xml, path: "sitemap.xml.gz"
+    get :team
     get :voting
     get :version
   end
@@ -122,13 +125,6 @@ Rails.application.routes.draw do
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
-
-  # Static Pages
-  scope module: "static" do
-    get :about
-    get :team
-    get :partners
-  end
 
   get "members", to: "members#index", as: :members
   get "members/:forum_name", to: "members#show", as: :member

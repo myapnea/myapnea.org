@@ -3,9 +3,9 @@
 # TODO: Remove in v17.0.0
 
 namespace :replies do
-  desc 'Merge broadcast comments and topic replies'
+  desc "Merge broadcast comments and topic replies"
   task merge: :environment do
-    reply_map = { 'broadcast_comment_id_' => nil }
+    reply_map = { "broadcast_comment_id_" => nil }
     puts "Reply.count: #{Reply.count}"
     puts "BroadcastComment.count: #{BroadcastComment.count}"
     puts "Reply.where.not(broadcast_id: nil).count: #{Reply.where.not(broadcast_id: nil).count}"
@@ -36,7 +36,7 @@ namespace :replies do
     puts "Reply.where.not(broadcast_id: nil).count: #{Reply.where.not(broadcast_id: nil).count}"
   end
 
-  desc 'Remove notifications related to Broadcast Comments'
+  desc "Remove notifications related to Broadcast Comments"
   task clear_broadcast_comment_notifications: :environment do
     Notification.where.not(broadcast_comment_id: nil).delete_all
   end

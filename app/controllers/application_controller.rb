@@ -63,13 +63,13 @@ class ApplicationController < ActionController::Base
       blank: [],
       blog: [],
       external: [
-        :community, :consent, :contact, :faqs, :privacy_policy,
-        :terms_and_conditions, :terms_of_access, :voting
+        :about, :community, :consent, :contact, :faqs, :partners,
+        :privacy_policy, :terms_and_conditions, :terms_of_access, :team,
+        :voting, :version
       ],
       members: [:index, :show],
       replies: [:show],
       search: [],
-      static: [],
       surveys: [:index],
       tools: [],
       topics: [:index, :show]

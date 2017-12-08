@@ -8,6 +8,11 @@ class ExternalControllerTest < ActionDispatch::IntegrationTest
     @regular_user = users(:user_1)
   end
 
+  test "should get about" do
+    get about_url
+    assert_response :success
+  end
+
   test "should get contact" do
     get contact_url
     assert_response :success
@@ -21,6 +26,16 @@ class ExternalControllerTest < ActionDispatch::IntegrationTest
   test "should get landing for regular user" do
     login(@regular_user)
     get landing_url
+    assert_response :success
+  end
+
+  test "should get partners" do
+    get partners_url
+    assert_response :success
+  end
+
+  test "should get team" do
+    get team_url
     assert_response :success
   end
 

@@ -21,10 +21,6 @@
 #video.anchor-menu
 = render "landing/video_slide"
 
-= render "landing/featured_article_slide"
-
-=# render "landing/forum_slide"
-
 #research.anchor-menu
 = render "landing/research_slide"
 
@@ -50,10 +46,3 @@
       .text-center
         = link_to new_user_registration_path, class: "btn btn-xl btn-accent btn-shadow" do
           Join Today
-
-- if false
-  .page-box.last-box.myapnea-sky-bg
-    = render "blank/sun"
-    .container
-      .myapnea-heading
-        Get started!

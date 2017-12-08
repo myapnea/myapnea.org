@@ -17,7 +17,7 @@
     = stylesheet_link_tag "application", media: "all", data: { turbolinks_track: "reload" }
     = javascript_include_tag "application", data: { turbolinks_track: "reload" }
     = javascript_tag "var root_url=\"#{request.script_name + "/"}\";"
-  %body#top.full-page{ class: yield(:body_class) }
+  %body#top.full-page{ class: @body ? "myapnea-#{@body}-bg" : yield(:body_class) }
     = render "layouts/flash_bar"
     #top-menu.top-menu= render "layouts/menu", menu: @menu ? "menu-#{@menu}" : nil
     = yield :header

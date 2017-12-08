@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 namespace :search do
-  desc 'Resets search elements in pg_search_documents'
+  desc "Resets search elements in pg_search_documents"
   task reset: :environment do
     PgSearch::Document.delete_all
     Broadcast.find_each(&:update_pg_search_document)

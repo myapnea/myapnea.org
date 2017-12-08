@@ -2,10 +2,12 @@
 
 # Displays publicly available pages.
 class ExternalController < ApplicationController
-  # # GET /community
-  # def community
-  # end
+  # GET /about
+  def about
+    render layout: "layouts/full_page"
+  end
 
+  # TODO: Make this direct to MyApnea Core consent.
   # # GET /consent
   # def consent
   # end
@@ -14,20 +16,17 @@ class ExternalController < ApplicationController
   # def contact
   # end
 
-  # # GET /faqs
-  # def faqs
-  # end
-
   def landing
     render layout: "layouts/full_page_custom_header"
   end
 
+  # GET /partners
+  def partners
+    @partners = Admin::Partner.current.where(displayed: true).order(:position)
+  end
+
   # # POST /preview
   # def preview
-  # end
-
-  # # GET /privacy_policy
-  # def privacy_policy
   # end
 
   def sitemap
@@ -37,6 +36,11 @@ class ExternalController < ApplicationController
     else
       head :ok
     end
+  end
+
+  # GET /team
+  def team
+    @team_members = Admin::TeamMember.current.order(:position)
   end
 
   # # GET /terms-and-conditions

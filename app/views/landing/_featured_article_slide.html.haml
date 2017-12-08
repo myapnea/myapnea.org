@@ -1,5 +1,5 @@
 - position = 0
-- Broadcast.current.order("RANDOM()").limit(1).each do |broadcast|
+- Broadcast.current.order(Arel.sql("RANDOM()")).limit(1).each do |broadcast|
   - if first_image_url(broadcast).present?
     - background = "myapnea-black-bg"
   - else
