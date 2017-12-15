@@ -1,5 +1,9 @@
 ## 15.1.0
 
+### Enhancements
+- **Gem Changes**
+  - Updated `Gemfile` to `gems.rb`
+
 ## 15.0.5 (November 27, 2017)
 
 ### Enhancements
