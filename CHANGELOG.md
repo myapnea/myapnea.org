@@ -1,5 +1,9 @@
 ## 15.1.1
 
+### Enhancements
+- **General Changes**
+  - Minor changes to wording on about page
+
 ## 15.1.0 (December 15, 2017)
 
 ### Enhancements
