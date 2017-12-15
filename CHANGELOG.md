@@ -11,6 +11,7 @@
   - Updated to kaminari 1.1.1
   - Updated to pg_search 2.1.1
   - Updated to rubyzip 1.2.1
+  - Updated to sitemap_generator 6.0.0
 
 ## 15.0.5 (November 27, 2017)
 
