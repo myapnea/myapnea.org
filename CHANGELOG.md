@@ -2,6 +2,7 @@
 
 ### Enhancements
 - **Gem Changes**
+  - Updated to Ruby 2.4.3
   - Updated `Gemfile` to `gems.rb`
   - Updated to rails 5.1.4
   - Updated to carrierwave 1.2.1

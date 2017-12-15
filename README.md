@@ -4,7 +4,7 @@
 [![Dependency Status](https://gemnasium.com/myapnea/www.myapnea.org.svg)](https://gemnasium.com/myapnea/www.myapnea.org)
 [![Code Climate](https://codeclimate.com/github/myapnea/www.myapnea.org/badges/gpa.svg)](https://codeclimate.com/github/myapnea/www.myapnea.org)
 
-The web framework behind www.myapnea.org, built on Ruby on Rails 5.0+.
+The web framework behind www.myapnea.org, built on Ruby on Rails 5.1+.
 
 ## Before Starting Installation
 
@@ -61,14 +61,14 @@ Edit Cron Jobs `sudo crontab -e` to run the task `lib/tasks/surveys.rake`
 
 ```
 SHELL=/bin/bash
-0 1 * * * source /etc/profile.d/rvm.sh && cd /var/www/www.myapnea.org && /usr/local/rvm/gems/ruby-2.4.1/bin/bundle exec rake surveys:launch_followup_encounters RAILS_ENV=production
+0 1 * * * source /etc/profile.d/rvm.sh && cd /var/www/www.myapnea.org && /usr/local/rvm/gems/ruby-2.4.3/bin/bundle exec rake surveys:launch_followup_encounters RAILS_ENV=production
 ```
 
 Refreshing Sitemap
 
 ```
 SHELL=/bin/bash
-0 1 * * * source /etc/profile.d/rvm.sh && cd /var/www/www.myapnea.org && /usr/local/rvm/gems/ruby-2.4.1/bin/bundle exec rake sitemap:refresh RAILS_ENV=production
+0 1 * * * source /etc/profile.d/rvm.sh && cd /var/www/www.myapnea.org && /usr/local/rvm/gems/ruby-2.4.3/bin/bundle exec rake sitemap:refresh RAILS_ENV=production
 ```
 
 ## License
