@@ -22,10 +22,7 @@
       .col-sm-2.col-xs-4
         %p Features
         %ul
-          %li= link_to 'Community', community_path
-          %li= link_to 'Providers', providers_path
           %li= link_to 'Forum', chapters_path
-          %li= link_to 'Research', blog_category_path(category: 'research')
           %li= link_to 'Surveys', surveys_path, data: { turbolinks: false }
       .col-sm-2.col-xs-4
         %p Learn
@@ -36,8 +33,4 @@
           %li.hidden-sm.hidden-md.hidden-lg= link_to 'Contact Us', contact_path
 
       .col-md-2.col-md-offset-1.col-sm-3.col-sm-offset-0.hidden-xs
-        = link_to image_tag('myapnea/welcome/img-small/bwh_footer.png', class: 'partners-img-footer img-responsive'), 'http://www.brighamandwomens.org/'
-        %br
-        = link_to image_tag('myapnea/icons/facebook_icon.png', class: 'share-icons-md'), 'http://www.facebook.com/MyApnea'
-        = link_to image_tag('myapnea/icons/twitter_icon.png', class: 'share-icons-md'), 'http://www.twitter.com/myapneaorg'
-        = link_to image_tag('myapnea/icons/email_icon.png', class: 'share-icons-md'), "mailto:#{ENV['support_email']}"
+        = image_tag "logos/bwh-logo.png", size: "48x56", alt: ""
