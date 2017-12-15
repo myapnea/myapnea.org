@@ -10,11 +10,6 @@
         .float-right
           = render "layouts/per_page", per_page: 10, object_count: @search_documents.total_count
         Search
-        - if params[:search].present?
-          %small
-            %code{ data: { object: "show-search-bar" }, style: "cursor: pointer;" }= params[:search]
-        - else
-          MyApnea
 
 = form_tag search_path, method: :get, id: "search-form", class: "mb-5" do
   .input-group
