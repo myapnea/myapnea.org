@@ -1,6 +1,8 @@
 ## 15.1.0
 
 ### Enhancements
+- **Forum Changes**
+  - Improved management of spam accounts
 - **Gem Changes**
   - Updated to Ruby 2.4.3
   - Updated `Gemfile` to `gems.rb`

@@ -24,7 +24,7 @@ Rails.application.routes.draw do
     resources :broadcast_comments, only: :index, path: 'blog/comments'
     resources :replies, only: :index, path: 'forum/replies'
     get :spam_inbox, path: "spam-inbox"
-    post :unshadowban, path: "unshadowban/:id"
+    post :unspamban, path: "unspamban/:id"
     post :empty_spam, path: "empty-spam"
     resources :categories
     resources :exports do

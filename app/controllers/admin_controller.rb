@@ -17,12 +17,12 @@ class AdminController < ApplicationController
     @spammers = spammers
   end
 
-  # POST /admin/unshadowban/:id
-  def unshadowban
+  # POST /admin/unspamban/:id
+  def unspamban
     member = spammers.find_by(id: params[:id])
     if member
-      member.update(shadow_banned: false)
-      flash[:notice] = "Member un-shadowbanned successfully."
+      member.update(spammer: false)
+      flash[:notice] = "Member marked as not a spammer. You may still need to unshadow ban them."
     end
     redirect_to admin_spam_inbox_path
   end
@@ -193,7 +193,7 @@ class AdminController < ApplicationController
   private
 
   def spammers
-    User.current.where(shadow_banned: true)
+    User.current.where(shadow_banned: true, spammer: [nil, true])
   end
 
   def set_SEO_elements

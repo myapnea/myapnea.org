@@ -81,5 +81,12 @@
 
   .form-group
     .col-md-10.col-md-offset-2
+      .checkbox
+        %label
+          = f.check_box :spammer
+          Spammer
+
+  .form-group
+    .col-md-10.col-md-offset-2
       = f.submit nil, class: 'btn btn-primary'
       = link_to 'Cancel', user_path(@user), class: 'btn btn-default'

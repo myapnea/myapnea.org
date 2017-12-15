@@ -27,7 +27,7 @@
             = link_to "view topic", reply
             = reply.description if reply
         %td
-          = link_to "Not a spammer", admin_unshadowban_path(spammer), method: :post, class: "btn btn-xs btn-default"
+          = link_to "Not a spammer", admin_unspamban_path(spammer), method: :post, class: "btn btn-xs btn-default"
 
 - else
   .jumbotron
