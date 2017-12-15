@@ -4,10 +4,9 @@ class StaticController < ApplicationController
   before_action :set_active_top_nav_link_to_learn, only: [:learn]
   skip_before_action :check_ip_banlist, only: [:about]
 
-  ## Static
-  def about
-    render layout: 'simple'
-  end
+  # # GET /about
+  # def about
+  # end
 
   def team
     @team_members = Admin::TeamMember.current.order('position')

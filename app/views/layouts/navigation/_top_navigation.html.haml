@@ -9,11 +9,12 @@
         %span.icon-bar
       = link_to root_path, class: 'navbar-brand' do
         = image_tag 'myapnea/logos/MyApneaLogo_border_notext_173x46.png'
+
     #navbar-myapnea.collapse.navbar-collapse
-      - if current_user
-        %form.navbar-form.navbar-right.hidden-xs.hidden-sm
-          = link_to 'Logout', destroy_user_session_path, method: :delete, class: 'btn btn-primary'
-      - else
+      %ul.nav.navbar-nav
+        %li.hidden-xs.hidden-sm{ class: "#{'active' if current_page?(about_path)}" }
+          = link_to "About", about_path
+      - unless current_user
         %form.navbar-form.navbar-right.hidden-xs.hidden-sm
           = link_to 'Sign in', new_user_session_path, class: 'btn btn-primary'
 
@@ -57,19 +58,18 @@
                 %li= link_to 'Help', faqs_path
                 - if current_user.owner? || current_user.moderator?
                   %li.divider
-                  %li= link_to 'Admin Dashboard', admin_path
-                - if current_user.can_build_surveys?
-                  %li.divider
-                  %li= link_to 'Build a Survey', builder_path
-            %li.visible-xs
+                  %li= link_to 'Admin', admin_path
+                %li.divider
+                  %li= link_to 'Logout', destroy_user_session_path, method: :delete
+
+            %li.visible-xs.visible-sm
               = link_to 'Settings', account_path
             - if current_user.owner? || current_user.moderator?
-              %li.visible-xs
-                = link_to 'Admin Dashboard', admin_path
+              %li.visible-xs.visible-sm
+                = link_to 'Admin', admin_path
+            %li.visible-xs.visible-sm
+              = link_to 'Logout', destroy_user_session_path, method: :delete
 
-      - if current_user
-        %form.navbar-form.navbar-right.visible-xs.visible-sm
-          = link_to 'Logout', destroy_user_session_path, method: :delete, class: 'btn btn-primary'
-      - else
+      - unless current_user
         %form.navbar-form.navbar-right.visible-xs.visible-sm
           = link_to 'Sign in', new_user_session_path, class: 'btn btn-primary'
