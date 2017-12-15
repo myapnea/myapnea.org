@@ -1,5 +1,5 @@
 AllCops:
-  TargetRubyVersion: 2.4
+  TargetRubyVersion: 2.5
   DisplayCopNames: true
   Exclude:
     - 'db/**/*'
@@ -30,6 +30,8 @@ Rails/DynamicFindBy:
   Whitelist:
     - find_by_param
 Rails/HasManyOrHasOneDependent:
+  Enabled: false
+Rails/LexicallyScopedActionFilter:
   Enabled: false
 Rails/SkipsModelValidations:
   Enabled: false
