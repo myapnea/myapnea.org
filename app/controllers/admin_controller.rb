@@ -30,6 +30,7 @@ class AdminController < ApplicationController
   # POST /admin/empty-spam
   def empty_spam
     Chapter.current.where(user: spammers).destroy_all
+    spammers.update_all(spammer: true)
     spammers.destroy_all
     redirect_to admin_spam_inbox_path, notice: "All spammers have been deleted."
   end
