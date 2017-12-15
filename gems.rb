@@ -25,7 +25,7 @@ gem "maxminddb"
 gem "mini_magick"
 gem "pg_search",            "~> 2.1.1"
 gem "redcarpet",            "~> 3.4.0"
-gem "rubyzip",              "~> 1.2.0"
+gem "rubyzip",              "~> 1.2.1"
 gem "sitemap_generator",    "~> 5.3.1"
 
 # Rails Defaults

@@ -10,6 +10,7 @@
   - Updated to jquery-rails 4.3.1
   - Updated to kaminari 1.1.1
   - Updated to pg_search 2.1.1
+  - Updated to rubyzip 1.2.1
 
 ## 15.0.5 (November 27, 2017)
 
