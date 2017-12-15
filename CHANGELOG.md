@@ -21,19 +21,10 @@
 - **Survey Changes**
   - Surveys now leverage the Slice API
 - **Gem Changes**
-  - Updated `Gemfile` to `gems.rb`
   - Added bootsnap
-  - Updated to ruby 2.4.2
+  - Updated to ruby 2.5.0
   - Updated to rails 5.2.0.beta2
   - Updated to bootstrap 4.0.0.beta2
-  - Updated to carrierwave 1.2.1
-  - Updated to devise 4.3.0
-  - Updated to haml 5.0.4
-  - Updated to jquery-rails 4.3.1
-  - Updated to kaminari 1.1.1
-  - Updated to pg_search 2.1.1
-  - Updated to sitemap_generator 6.0.0
-  - Updated to simplecov 0.15.1
 
 ### Tests
 - Added tests to assure user passwords can be reset
@@ -42,6 +33,31 @@
 - Removed typeahead library
 - Combined blog post replies and forum topic replies into one model
 - Renamed internal forum chapters to topics
+
+## 15.1.1 (December 15, 2017)
+
+### Enhancements
+- **General Changes**
+  - Minor changes to wording on about page
+
+## 15.1.0 (December 15, 2017)
+
+### Enhancements
+- **Forum Changes**
+  - Improved management of spam accounts
+- **Gem Changes**
+  - Updated to ruby 2.4.3
+  - Updated `Gemfile` to `gems.rb`
+  - Updated to rails 5.1.4
+  - Updated to carrierwave 1.2.1
+  - Updated to devise 4.3.0
+  - Updated to haml 5.0.4
+  - Updated to jquery-rails 4.3.1
+  - Updated to kaminari 1.1.1
+  - Updated to pg_search 2.1.1
+  - Updated to rubyzip 1.2.1
+  - Updated to sitemap_generator 6.0.0
+  - Updated to simplecov 0.15.1
 
 ## 15.0.5 (November 27, 2017)
 

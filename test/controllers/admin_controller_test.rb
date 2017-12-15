@@ -48,12 +48,12 @@ class AdminControllerTest < ActionController::TestCase
     assert_redirected_to admin_spam_inbox_path
   end
 
-  test "should unshadowban user as admin" do
+  test "should unspamban user as admin" do
     login(@admin)
-    assert_difference("User.where(shadow_banned: false).count") do
-      post :unshadowban, params: { id: users(:shadow_banned).id }
+    assert_difference("User.where(spammer: nil).count", -1) do
+      post :unspamban, params: { id: users(:shadow_banned).id }
     end
-    assert_equal "Member un-shadowbanned successfully.", flash[:notice]
+    assert_equal "Member marked as not a spammer. You may still need to unshadow ban them.", flash[:notice]
     assert_redirected_to admin_spam_inbox_path
   end
 end
