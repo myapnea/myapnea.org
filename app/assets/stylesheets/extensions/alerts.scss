@@ -1,0 +1,12 @@
+.alert {
+  @include remove-last-child-bottom-margin;
+
+  &.alert-white {
+    background-color: $brand-white;
+    border-color: $p200-grey;
+  }
+
+  &.alert-box-shadow {
+    box-shadow: 0 1px 5px $box-shadow-color;
+  }
+}

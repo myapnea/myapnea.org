@@ -109,4 +109,8 @@ class Subject < ApplicationRecord
   def complete_event_survey(event, design)
     start_event_survey(event, design)
   end
+
+  def report_event_survey(event, design)
+    Slice::JsonRequest.get("#{project.project_url}/reports/#{event}/#{design}.json")
+  end
 end

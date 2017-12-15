@@ -1,0 +1,62 @@
+- @title = "#{@json.dig("design", "name")} Report"
+
+- @body = "light"
+- @footer = "light"
+
+- content_for :header do
+  .header-container
+    .container
+      %h1.page-heading
+        = @title
+
+.page-box.last-box
+  .container
+    - @json.fetch("design_options", []).each do |design_option|
+      .card.mb-5
+        .card-header= design_option.dig("display_name")
+        .card-body
+          - data = []
+          - categories = []
+          - design_option.fetch("domain_options", []).each do |domain_option|
+            - next if domain_option.dig("count").zero?
+            - data << domain_option.dig("count")
+            - categories << domain_option.dig("name")
+            .d-flex.flex-row.align-items-stretch
+              .display-1{ class: domain_option.dig("count").zero? ? "text-muted" : "text-accent" }= domain_option.dig("count")
+              .d-flex.align-items-center= domain_option.dig("name")
+          = data
+          - series = [{ type: "column", showInLegend: false, name: "Percent", data: data }]
+          - title = { text: design_option.dig("display_name"), align: "center" }
+          - x_axis = { categories: categories, title: { text: nil } }
+          - y_axis = { title: { text: "Count" } }
+          %div{ data: { object: "survey-report-chart", series: series.to_json, title: title.to_json, x_axis: x_axis.to_json, y_axis: y_axis.to_json } }
+
+    .card.mb-5
+      .card-header
+        What is your sex?
+      .card-body
+        .row.mb-3
+          .col.text-center
+            Male: 58.0%
+          .col.text-center
+            Female: 42.0%
+
+        Members of either sex can develop sleep apnea. Men are 2-to-3 times more
+        likely to have sleep apnea, but as women reach menopause their risk
+        increases.
+      .card-footer
+        Your answer: Male
+
+
+    .card.mb-5
+      .card-header
+        What is your racial background?
+      .card-body
+        %i.fa.fa-globe.fa-2x
+
+        Sleep apnea occurs in all races of people. Understanding associations
+        between sleep apnea and race may help shed light on the genes and
+        environmental risk factors that influence sleep apnea.
+      .card-footer
+        Your answer: White (a person having origins in any of the original
+        peoples of Europe, the Middle East, or North Africa)

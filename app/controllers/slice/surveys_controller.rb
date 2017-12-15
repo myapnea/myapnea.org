@@ -3,19 +3,19 @@
 # Allows subjects to start and fill out project surveys.
 class Slice::SurveysController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_project_or_redirect, except: []
-  before_action :find_subject_or_redirect, except: []
+  before_action :find_project_or_redirect
+  before_action :find_subject_or_redirect
   before_action :find_page, only: [:page, :submit_page]
 
   layout "layouts/full_page"
 
-  # GET /slice/surveys/:project/1  ....  /survey/:event/:design/start
+  # GET /surveys/:project/:event/:design/start
   def start
     survey_in_progress
     redirect_to slice_surveys_page_path(@project, params[:event], params[:design], 1)
   end
 
-  # GET /slice/surveys/:project/subjects/1  ....  /survey/:event/:design/:page
+  # GET /surveys/:project/:event/:design/:page
   def page
     @json = @subject.page_event_survey(params[:event], params[:design], @page)
     @survey = Slice::Survey.new(json: @json)
@@ -30,7 +30,7 @@ class Slice::SurveysController < ApplicationController
     end
   end
 
-  # GET /slice/surveys/:project/subjects/1  ....  /survey/:event/:design/:resume
+  # GET /surveys/:project/:event/:design/resume
   def resume
     survey_in_progress
     @json = @subject.resume_event_survey(params[:event], params[:design])
@@ -76,11 +76,16 @@ class Slice::SurveysController < ApplicationController
     end
   end
 
-  # GET /slice/surveys/:event/:design/complete
+  # GET /surveys/:project/:event/:design/complete
   def complete
     survey_completed
     # render "slice/surveys/complete"
     redirect_to slice_surveys_path
+  end
+
+  # GET /surveys/:project/:event/:design/report
+  def report
+    (@json, @status) = @subject.report_event_survey(params[:event], params[:design])
   end
 
   private

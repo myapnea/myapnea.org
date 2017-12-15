@@ -45,6 +45,25 @@
         }
       ]
 
+@surveyReportCharts = ->
+  $("[data-object~=survey-report-chart]").each((index, element) ->
+    $(element).highcharts
+      credits: enabled: false
+      chart:
+        backgroundColor: "#e3f2fd" # $p50-blue
+        borderColor: "transparent"
+        plotBackgroundColor: null
+        plotBorderWidth: 0
+        plotShadow: false
+      title: $(element).data("title")
+      tooltip: pointFormat: "{series.name}: <b>{point.percentage:.1f}%</b>"
+      series: $(element).data("series")
+      xAxis: $(element).data("x-axis")
+      yAxis: $(element).data("y-axis")
+      tooltip:
+        formatter: -> this.x
+  )
+
 @chartsReady = ->
   Highcharts.setOptions(
     lang:
@@ -62,3 +81,4 @@
     ]
   )
   drawLandingPageCharts()
+  surveyReportCharts()
