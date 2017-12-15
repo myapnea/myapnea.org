@@ -1,36 +1,31 @@
 %ul.navbar-nav.mr-auto.display-small-scrolled
-  &nbsp;
-
-- if false
-  .full-search-bar
-    = form_tag search_path, method: :get, id: "navigation-search-form", class: "form-inline d-none d-md-flex" do
-      .input-group
-        = text_field_tag :search, params[:search], class: "form-control menu-search-input", placeholder: "Search MyApnea", autocomplete: "off", id: "navigation-search"
-        %span.input-group-btn
-          = link_to "#", data: { object: "suppress-click" }, class: "btn btn-outline-light", name: nil, id: "navigation-form-search-btn" do
-            %i.fa.fa-search
-
-  %ul.navbar-nav.tiny-search-icon
-    %li.nav-item.d-none.d-md-flex{ class: current_page?(search_path) ? "active" : nil }
-      = link_to "#", data: { object: "show-search-bar" }, name: nil, class: "nav-link" do
-        %i.fa.fa-search
-        Search
-
-%ul.navbar-nav
-  = render "menu/item", title: "About", path: about_path, icon: "info-circle"
-  = render "menu/item", title: "Forum", path: topics_path, icon: "comments-o"
-  = render "menu/item", title: "Research", path: slice_surveys_path, icon: "flask"
-
   %li.nav-item.dropdown.d-none.d-lg-block
     = link_to "#", data: { toggle: "dropdown" }, aria: { haspopup: "true", expanded: "false" }, class: "nav-link dropdown-toggle" do
-      Blog
-    .dropdown-menu.dropdown-menu-right
-      - Admin::Category.current.order(:name).each do |category|
-        = link_to category.name, blog_category_path(category: category), class: "dropdown-item"
+      About
+    .dropdown-menu.dropdown-menu-myapnea
+      .dropdown-menu-myapnea-inner
+        = link_to "MyApnea", about_path, class: "dropdown-item"
+        = link_to "Team", team_path, class: "dropdown-item"
+        = link_to "Partners", partners_path, class: "dropdown-item"
+        .dropdown-divider
+        = link_to "Questions?", contact_path, class: "dropdown-item"
 
+  =# render "menu/item", title: "About", path: about_path
+  = render "menu/item", title: "Blog", path: blog_path, active: params[:controller] == "blog"
+  = render "menu/item", title: "Forum", path: topics_path, active: params[:controller] == "topics"
+  = render "menu/item", title: "Research", path: slice_surveys_path
+
+
+%ul.navbar-nav
+  %li.nav-item{ class: current_page?(search_path) ? "active" : nil }
+    = link_to search_path, class: "nav-link" do
+      %i.fa.fa-search.d-none.d-lg-inline
+      .d-inline.d-lg-none Search
+    - if current_page?(search_path)
+      %span.sr-only (current)
   - if current_user
     %li.nav-item.d-none.d-lg-block{ class: current_page?(notifications_path) ? "active" : nil }
-      = link_to notifications_path, class: "nav-link notifications-link #{'notifications-link-active' if current_user.unread_notifications?}" do
+      = link_to notifications_path, class: "nav-link notifications-link#{" notifications-link-active" if current_user.unread_notifications?}" do
         = content_tag :i, nil, class: "fa fa-#{icon} d-inline d-lg-none" if defined?(icon)
         %i.fa.fa-bell
       - if current_page?(notifications_path)

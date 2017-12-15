@@ -1,7 +1,7 @@
 - @title = "Users"
 
-- content_for :body_class do
-  myapnea-sky-bg
+- @body = "sky"
+- @footer = "grass"
 
 - content_for :header do
   .header-container
@@ -34,15 +34,15 @@
             %th Email
             = th_sort_field @order, "users.current_sign_in_at", "Activity", extra_class: "hidden-xs"
             = th_sort_field @order, "users.shadow_banned", "Shadow Banned", extra_class: "text-center"
-            %th.hidden-xs.text-center Surveys Completed
+            %th.d-none.d-sm-table-cell.text-center Surveys Completed
             = th_sort_field_rev @order, "users.sign_in_count", "Sign in Count", extra_class: "hidden-xs text-center"
             = th_sort_field_rev @order, "reply_count", "Posts", extra_class: "hidden-xs text-center"
             %th.text-center Actions
         - @users.each do |user|
           %tr{ id: "user-#{user.id}-container", class: "#{"todays-users" if user.created_at.today?} #{"this-weeks-users" if user.created_at > Time.zone.now.beginning_of_week(start_day = :sunday)}"}
             %td.nowrap
-              = render "forums/user_image_no_border", user: user, size: 18
-              %span.hidden-xs.hidden-sm= link_to user.name, user
+              = profile_picture_tag user, size: 18, style: "min-width: 18px;"
+              .d-none.d-md-inline-block= link_to user.name, user
             %td
               %span.hidden-xs.breakword= user.email
               %span.hidden-sm.hidden-md.hidden-lg= link_to user.email, user, style: "word-break: break-word;"
@@ -52,11 +52,11 @@
             %td.text-center
               - if user.shadow_banned?
                 %span.glyphicon.glyphicon-eye-close.text-muted
-            %td.hidden-xs.text-center
+            %td.d-none.d-sm-table-cell.text-center
               \-1
-            %td.hidden-xs.text-center
+            %td.d-none.d-sm-table-cell.text-center
               = user.sign_in_count
-            %td.hidden-xs.text-center
+            %td.d-none.d-sm-table-cell.text-center
               = user.replies.count
             %td
               .dropdown

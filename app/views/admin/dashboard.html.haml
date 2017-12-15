@@ -1,7 +1,7 @@
-- @title = 'Admin Dashboard'
+- @title = "Admin Dashboard"
 
-- content_for :body_class do
-  myapnea-sky-bg
+- @body = "sky"
+- @footer = "grass"
 
 - content_for :header do
   .header-container
@@ -11,15 +11,15 @@
 
 .drawer-and-shelf-container
   .drawer
-    = render 'admin/menu'
+    = render "admin/menu"
   .shelf
     .dashboard-container
       .dashboard-title You can do things here!
       .dashboard-body
         %p
           We have
-          = succeed '.' do
-            = link_to 'news', blog_path
+          = succeed "." do
+            = link_to "news", blog_path
 
         %p And other stuff. Just for you, hurray!
 

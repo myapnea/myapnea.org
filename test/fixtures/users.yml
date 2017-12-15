@@ -29,12 +29,14 @@ user_<%= i %>:
   encrypted_password: <%= pw %>
   accepted_terms_conditions_at: <%= Time.zone.now %>
   forum_name: User<%= i %>
+  photo: photo.png
 <% end %>
 
 has_accepted_privacy:
   email: privacy@example.com
   first_name: Tommy
   last_name: Privacy
+  forum_name: HasAcceptedPrivacy
   over_eighteen: true
   adult_diagnosed: true
   encrypted_password: <%= pw %>
@@ -44,6 +46,7 @@ has_accepted_consent:
   email: consent@example.com
   first_name: Tommy
   last_name: Consent
+  forum_name: HasAcceptedConsent
   over_eighteen: true
   adult_diagnosed: true
   encrypted_password: <%= pw %>
@@ -53,13 +56,13 @@ social:
   first_name: Tommy
   last_name: Boy
   email: tommyboy@gmail.com
+  forum_name: TomHaverford
   accepted_consent_at: <%= 5.day.ago.to_s(:db) %>
   accepted_privacy_policy_at: <%= 6.day.ago.to_s(:db) %>
   # accepted_update_at:
   over_eighteen: true
   adult_diagnosed: true
   encrypted_password: <%= pw %>
-  forum_name: TomHaverford
   current_sign_in_ip: 170.223.207.25
 
 participant:
@@ -136,6 +139,7 @@ deleted:
   first_name: Zombie
   last_name: Boy
   email: zombieboy@gmail.com
+  forum_name: zombieboy
   accepted_consent_at: <%= 10.day.ago.to_s(:db) %>
   accepted_privacy_policy_at: <%= 10.day.ago.to_s(:db) %>
   over_eighteen: true
@@ -354,6 +358,7 @@ heh_1:
   email: heh_1@example.com
   first_name: HeH
   last_name: Member
+  forum_name: HeH
   over_eighteen: true
   adult_diagnosed: true
   encrypted_password: <%= pw %>

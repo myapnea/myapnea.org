@@ -1,10 +1,16 @@
 - @title = "Spam Inbox"
 
-.content-main-header2
+- @body = "sky"
+- @footer = "grass"
 
-  %h1
-    .float-right= link_to "Empty Spam", admin_empty_spam_path, method: :post, data: { confirm: "DELETE all spammers?" }, class: "btn btn-xs btn-primary"
-    = @title
+- content_for :header do
+  .header-container
+    .container
+      %h1.page-heading
+        .float-right= link_to "Empty Spam", admin_empty_spam_path, method: :post, data: { confirm: "DELETE all spammers?" }, class: "btn btn-xs btn-accent"
+        = @title
+
+= render "blank/sunset"
 
 - if @spammers.present?
   %table.table
@@ -30,7 +36,7 @@
           = link_to "Not a spammer", admin_unspamban_path(spammer), method: :post, class: "btn btn-xs btn-default"
 
 - else
-  .jumbotron
-    %p.lead.text-center
-      %i.fa.fa-hand-peace-o.fa-2x.fa-spin
+  .jumbotron.jumbotron-action
+    .lead.text-center{ style: "font-weight: 200;font-size: 24px;" }
+      %i.fa.fa-fire-extinguisher.fa-2x.animate-wiggle.mr-3
       Hurray, no spammers!

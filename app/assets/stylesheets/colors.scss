@@ -2,22 +2,6 @@
 
 // Classes
 
-.primary-orange { color: $primary-orange; }
-.lighter-orange { color: $lighter-orange; }
-.lighterer-orange { color: $lightest-orange; }
-.darker-orange { color: $darker-orange; }
-.darkerer-orange { color: $darkest-orange; }
-
-.lighter-blue-bcg { background-color: $lighter-blue !important; }
-.lighterer-blue-bcg { background-color: $lightest-blue !important; }
-.darker-blue-bcg { background-color: $darker-blue !important; }
-.darkerer-blue-bcg { background-color: $darkest-blue !important; }
-.primary-orange-bcg { background-color: $primary-orange !important; }
-.lighter-orange-bcg { background-color: $lighter-orange !important; }
-.lighterer-orange-bcg { background-color: $lightest-orange !important; }
-.darker-orange-bcg { background-color: $darker-orange !important; }
-.darkerer-orange-bcg { background-color: $darkest-orange !important; }
-
 .white { color: transparentize($white, .0); }
 .light9 { color: transparentize($white, .1); }
 .light8 { color: transparentize($white, .2); }

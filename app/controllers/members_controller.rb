@@ -2,7 +2,7 @@
 
 # Displays public profiles for forum members.
 class MembersController < ApplicationController
-  before_action :find_member, only: :photo
+  before_action :find_member, only: [:photo, :profile_picture]
   before_action :find_member_or_redirect, only: [:show, :badges, :posts]
 
   def index
@@ -11,7 +11,7 @@ class MembersController < ApplicationController
 
   # GET /members/:forum_name
   def show
-    redirect_to member_posts_path(params[:forum_name])
+    redirect_to posts_member_path(params[:id])
   end
 
   # # GET /members/:forum_name/badges
@@ -21,7 +21,7 @@ class MembersController < ApplicationController
   # GET /members/:forum_name/posts
   def posts
     @replies = @member.replies.order(created_at: :desc).page(params[:page]).per(10)
-    @topics = @member.topics.reply_count.order('reply_count desc').limit(3)
+    @topics = @member.topics.reply_count.order("reply_count desc").limit(3)
     @recent_topics = @member.topics.reply_count.where.not(id: @topics.to_a.collect(&:id)).limit(3)
   end
 
@@ -33,18 +33,26 @@ class MembersController < ApplicationController
     end
   end
 
+  # GET /members/:forum_name/profile_picture
+  def profile_picture
+    if @member&.photo.present?
+      send_file(@member&.photo&.path)
+    else
+      file_path = Rails.root.join("app", "assets", "images", "member-secret.png")
+      File.open(file_path, "r") do |f|
+        send_data f.read, type: "image/png", filename: "member.png"
+      end
+    end
+  end
+
   private
 
   def find_member
-    @member = User.current.where('LOWER(users.forum_name) = ?', params[:forum_name].to_s.downcase).first
+    @member = User.current.find_by("LOWER(users.forum_name) = ?", params[:id].to_s.downcase)
   end
 
   def find_member_or_redirect
     find_member
-    redirect_without_member
-  end
-
-  def redirect_without_member
     empty_response_or_root_path(members_path) unless @member
   end
 end

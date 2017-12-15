@@ -61,10 +61,4 @@ class InternalControllerTest < ActionDispatch::IntegrationTest
     get settings_consents_path
     assert_response :success
   end
-
-  test 'should get settings emails' do
-    sign_in_as(@regular_user, 'password')
-    get settings_emails_path
-    assert_response :success
-  end
 end

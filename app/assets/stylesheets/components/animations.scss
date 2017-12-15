@@ -22,6 +22,10 @@
   }
 }
 
+.animate-wiggle {
+  animation: wiggle 500ms ease-out infinite;
+}
+
 .animate-wiggle-hover {
   @media (hover) {
     &:hover {

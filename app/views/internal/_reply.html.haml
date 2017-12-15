@@ -1,7 +1,7 @@
 .profile-reply
   .profile-reply-image-container
-    = link_to member_posts_path(reply.user.forum_name), class: 'link-muted' do
-      = image_tag user_photo_url(reply.user), alt: '', title: reply.user.forum_name, data: { toggle: 'tooltip', container: 'body', placement: 'top' }
+    = link_to posts_member_path(reply.user.forum_name), class: 'link-muted' do
+      = profile_picture_tag(reply.user)
       %small= reply.user.forum_name
   .profile-reply-description-container
     %p

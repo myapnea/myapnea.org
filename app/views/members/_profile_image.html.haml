@@ -2,10 +2,10 @@
   - if current_user == member
     .profile-image-container{ rel: "tooltip", data: { title: "Change your picture", container: "body", placement: "bottom" } }
       = link_to settings_path do
-        = image_tag user_photo_url(member), style: "width: 220px;"
+        = profile_picture_tag(member, size: "220", style: "width: 220px; height: auto; border-radius: 0 !important;")
   - else
     .profile-image-container
-      = image_tag user_photo_url(member), style: "width: 220px;"
+      = profile_picture_tag(member, size: "220", style: "width: 220px; height: auto; border-radius: 0 !important;")
 
   %div.overflow-hidden{ style: "margin-left: 20px;margin-right: 20px;margin-bottom: 0;" }
     %p

@@ -4,24 +4,13 @@
 - @body = "night"
 - @footer = "night"
 
-- content_for :header do
-  .header-container
-    .container
-      %h1.page-heading
-        = @title
-
-= render "blank/moon"
-
-
-- @title = "Your Profile"
-
 .card.mb-5
   %h4.card-header
     %i.fa.fa-user-circle
     Public profile
   .card-body
     = form_with model: current_user, url: settings_update_profile_path, method: :patch, local: true do |form|
-      =# render "forms/vertical/text_field", form: form, object: current_user, key: :full_name
+      = render "forms/vertical/text_field", form: form, object: current_user, key: :forum_name, help_text: "You can change your profile picture #{link_to "here", settings_profile_path(anchor: "picture")}.".html_safe
       = render "forms/vertical/text_area", form: form, object: current_user, key: :profile_bio, key_name: "Bio", help_text: "Short description about yourself.", rows: 3, maxlength: 160
       = render "forms/vertical/text_field", form: form, object: current_user, key: :profile_location, key_name: "Location", help_text: "Your city, state, and/or country, ex: Boston, MA, USA, or Sydney, AUSTRALIA"
 
@@ -35,5 +24,5 @@
   .card-body
     = form_with model: current_user, url: settings_update_profile_picture_path, method: :patch, local: true do |form|
       = profile_picture_tag current_user
-      = render "forms/vertical/file_field", form: form, object: current_user, key: :profile_picture, help_text: "You can change your username #{link_to "here", settings_account_path(anchor: "username")}.".html_safe
+      = render "forms/vertical/file_field", form: form, object: current_user, key: :profile_picture
       = render "forms/vertical/submit", form: form, object: current_user, submit_text: "Upload new picture", cancel: false

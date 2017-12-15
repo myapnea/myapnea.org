@@ -1,11 +1,11 @@
 - unless reply.deleted?
   %span.float-right{ id: "reply-#{reply.id}-vote" }
-    = render 'replies/vote', reply: reply, just_voted: just_voted
+    = render "replies/vote", reply: reply, just_voted: just_voted
 .nowrap.overflow-hidden
   - if reply.display_for_user?(current_user)
-    = link_to '[-]', '#', data: { object: 'toggle-reply' }, style: 'text-decoration:none', class: 'text-muted'
+    = link_to "[-]", "#", data: { object: "toggle-reply" }, style: "text-decoration: none;", class: "text-muted"
   - else
-    = link_to '[+]', '#', data: { object: 'toggle-reply' }, style: 'text-decoration:none', class: 'text-muted'
+    = link_to "[+]", "#", data: { object: "toggle-reply" }, style: "text-decoration: none;", class: "text-muted"
   - if reply.deleted?
     %small
       %i.text-muted [deleted]
@@ -14,9 +14,14 @@
       %span.glyphicon.glyphicon-eye-close.text-muted
     - if reply.parent_author?
       %small
-        %i.fa.fa-moon-o.primary-orange{ data: { toggle: 'tooltip', title: 'Topic Author', container: 'body' } }
-    = image_tag user_photo_url(reply.user), alt: '', style: "max-height:#{16+3}px;border-radius:4px", title: reply.user.forum_name, data: { toggle: 'tooltip', container: 'body', placement: 'top' }, class: 'hidden-md hidden-lg'
-    = link_to reply.user.forum_name, member_posts_path(reply.user.forum_name)
-  %span.text-muted{ id: "reply-#{reply.id}-points", style: 'font-size: 60%' }
-    = render 'replies/points', reply: reply
-  = render 'replies/badge', reply: reply
+        %i.fa.fa-moon-o.text-accent{ rel: "tooltip", data: { title: "Topic Author", container: "body" } }
+    .d-inline.d-md-none
+      - picture_content = profile_picture_tag(reply.user, size: 16, style: "max-height:#{16+3}px;border-radius:4px")
+      - if current_user == reply.user
+        = link_to picture_content, settings_profile_path(anchor: "picture")
+      - else
+        = picture_content
+    = link_to reply.user.forum_name, posts_member_path(reply.user.forum_name)
+  %span.text-muted{ id: "reply-#{reply.id}-points", style: "font-size: 60%" }
+    = render "replies/points", reply: reply
+  = render "replies/badge", reply: reply

@@ -1,7 +1,7 @@
 - @title = ["Search", @search.gsub(" & ", " ")].compact.join(" | ")
 
-- content_for :body_class do
-  myapnea-light-bg
+- @body = "light"
+- @footer = "light"
 
 - content_for :header do
   .header-container
@@ -16,31 +16,37 @@
         - else
           MyApnea
 
-.row
-  .col-md-9
-    - if @search_documents.present?
-      .dashboard-container
-        - @search_documents.each do |document|
-          - case document.searchable.class.to_s when "Broadcast"
-            = render "search/broadcast", broadcast: document.searchable
-          - when "Topic"
-            = render "search/topic", topic: document.searchable
-          - when "Reply"
-            = render "search/reply", reply: document.searchable
-      .center-horizontally= paginate@search_documents, theme: "bootstrap"
-    - else
-      .dashboard-container
-        %p.lead.text-center
-          No search results found.
-          You may
-          %span.hidden-xs
-            = link_to "modify your search", "#", data: { object: "show-search-bar" }
-          %span.hidden-sm.hidden-md.hidden-lg
-            modify your search
-          or return to
-          = succeed "." do
-            = link_to "our blog", blog_path
+= form_tag search_path, method: :get, id: "search-form", class: "mb-5" do
+  .input-group
+    = text_field_tag :search, params[:search], class: "form-control", placeholder: "Search...", autocomplete: "off", autofocus: true
+    %span.input-group-btn
+      = link_to "#", class: "btn btn-primary", data: { object: "submit-and-disable", target: "#search-form" } do
+        %i.fa.fa-search
 
-  .col-md-3
-    .dashboard-container.col-sticky
-      = render "blog/menu"
+- @highlight_found = true
+- if [0, 1].include?(params[:page].to_i)
+  - if false
+    = render "search/highlights/false"
+  - else
+    - @highlight_found = false
+- else
+  - @highlight_found = false
+
+- if @search_documents.present?
+  - @search_documents.each do |document|
+    .dashboard-container
+      - case document.searchable.class.to_s when "Broadcast"
+        = render "search/broadcast", broadcast: document.searchable
+      - when "Topic"
+        = render "search/topic", topic: document.searchable
+      - when "Reply"
+        = render "search/reply", reply: document.searchable
+  .center-horizontally= paginate @search_documents, theme: "bootstrap"
+- elsif @highlight_found
+  -# Nothing
+- else
+  %p.lead.text-center
+    - if params[:search].present?
+      No Search Results Found
+    - else
+      Type a search above.

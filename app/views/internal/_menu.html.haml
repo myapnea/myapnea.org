@@ -1,11 +1,11 @@
 - @drawer = true
 - if false
   %div.hidden-xs.profile
-    .profile-image-container{ rel: 'tooltip', data: { title: 'Change your picture', container: 'body', placement: 'bottom' } }
+    .profile-image-container{ rel: "tooltip", data: { title: "Change your picture", container: "body", placement: "bottom" } }
       = link_to settings_path do
-        = image_tag user_photo_url(current_user), style: 'width: 220px;'
+        = profile_picture_tag(current_user, size: "220", style: "width: 220px; height: auto; border-radius: 0 !important;")
 
-    %div.overflow-hidden{ style: 'margin-left: 20px;margin-right: 20px;margin-bottom: 0;' }
+    %div.overflow-hidden{ style: "margin-left: 20px;margin-right: 20px;margin-bottom: 0;" }
       %p
         %strong= current_user.name
         %br
@@ -13,19 +13,19 @@
       %p
         %small.profile-muted-description
           Joined
-          = current_user.created_at.strftime('%b %Y')
+          = current_user.created_at.strftime("%b %Y")
 
 .profile-menu-container
   %ul.blog-menu.profile-menu
     %li.blog-menu-header Dashboard
     - if false
-      %li= link_to 'Dashboard', dashboard_path, class: current_page?(dashboard_path) ? 'active' : nil
-    %li= link_to 'Activity', activity_path, class: current_page?(activity_path) ? 'active' : nil
-    %li= link_to 'Research', research_path, class: current_page?(research_path) ? 'active' : nil
-    %li= link_to 'Reports', reports_path, class: current_page?(reports_path) ? 'active' : nil
-    %li= link_to 'Timeline', timeline_path, class: current_page?(timeline_path) ? 'active' : nil
+      %li= link_to "Dashboard", dashboard_path, class: current_page?(dashboard_path) ? "active" : nil
+    %li= link_to "Activity", activity_path, class: current_page?(activity_path) ? "active" : nil
+    %li= link_to "Research", research_path, class: current_page?(research_path) ? "active" : nil
+    %li= link_to "Reports", reports_path, class: current_page?(reports_path) ? "active" : nil
+    %li= link_to "Timeline", timeline_path, class: current_page?(timeline_path) ? "active" : nil
 
 .profile-menu-container
   %ul.blog-menu.profile-menu
     %li.blog-menu-header Public
-    %li= link_to 'My Profile', member_posts_path(current_user.forum_name), class: current_page?(member_posts_path(current_user.forum_name)) ? 'active' : nil
+    %li= link_to "My Profile", posts_member_path(current_user.forum_name), class: current_page?(posts_member_path(current_user.forum_name)) ? "active" : nil

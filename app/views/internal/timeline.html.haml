@@ -16,7 +16,7 @@
     .dashboard-container
       .profile-muted-description.text-center{ style: 'margin-bottom: 20px;' }
         Only you can see your timeline,
-        = link_to 'see your public profile here.', member_posts_path(current_user.forum_name)
+        = link_to 'see your public profile here.', posts_member_path(current_user.forum_name)
       .dashboard-title.text-center= Time.zone.today.strftime('%a %b %d, %Y')
       .dashboard-body
         %ul

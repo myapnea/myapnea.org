@@ -113,8 +113,8 @@ Rails.application.routes.draw do
     get :settings
     get :settings_account, path: "settings/account"
     get :settings_consents, path: "settings/consents"
-    get :settings_emails, path: "settings/emails"
-    get :settings_profile, path: "settings/profile"
+    # get :settings_emails, path: "settings/emails"
+    # get :settings_profile, path: "settings/profile"
   end
 
   resources :projects do
@@ -127,11 +127,13 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   get "members", to: "members#index", as: :members
-  get "members/:forum_name", to: "members#show", as: :member
-  get "members/:forum_name/posts", to: "members#posts", as: :member_posts
-  get "members/:forum_name/badges", to: "members#badges", as: :member_badges
-  scope module: :members do
-    get "/photo/:forum_name", action: "photo", as: :photo_member
+
+  resources :members do
+    member do
+      get :profile_picture
+      get :badges
+      get :posts
+    end
   end
 
   resources :notifications do
@@ -142,6 +144,23 @@ Rails.application.routes.draw do
 
   scope module: :search do
     get :search, action: "index", as: :search
+  end
+
+  get :settings, to: redirect("settings/profile")
+  namespace :settings do
+    get :profile
+    patch :update_profile, path: "profile"
+    get :profile_picture, path: "profile/picture", to: redirect("settings/profile")
+    patch :update_profile_picture, path: "profile/picture"
+
+    get :account
+    patch :update_account, path: "account"
+    get :password, to: redirect("settings/account")
+    patch :update_password, path: "password"
+    delete :destroy, path: "account", as: "delete_account"
+
+    get :email
+    patch :update_email, path: "email"
   end
 
   namespace :slice, path: "" do # OR: scope module: :slice
