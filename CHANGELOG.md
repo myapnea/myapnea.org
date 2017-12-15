@@ -6,6 +6,7 @@
   - Updated to rails 5.1.4
   - Updated to carrierwave 1.2.1
   - Updated to devise 4.3.0
+  - Updated to haml 5.0.4
   - Updated to kaminari 1.1.1
 
 ## 15.0.5 (November 27, 2017)
