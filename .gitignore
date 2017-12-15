@@ -40,6 +40,7 @@
 /Gemfile.lock
 /db/schema.rb
 /doc/app/*
+/app/assets/images/videos/*
 
 /.sass-cache/
 /coverage/*
