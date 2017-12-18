@@ -1,4 +1,4 @@
-## 15.1.2
+## 15.1.2 (December 18, 2017)
 
 ### Bug Fix
 - Added missing page title to HTML head
