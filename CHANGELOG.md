@@ -34,6 +34,11 @@
 - Combined blog post replies and forum topic replies into one model
 - Renamed internal forum chapters to topics
 
+## 15.1.2 (December 18, 2017)
+
+### Bug Fix
+- Added missing page title to HTML head
+
 ## 15.1.1 (December 15, 2017)
 
 ### Enhancements

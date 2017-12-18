@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   include DateAndTimeParser
 
   def store_location
-    return unless !request.post? && !request.xhr? && params[:format] != 'atom'
+    return unless !request.post? && !request.xhr? && params[:format] != "atom"
     store_internal_location_in_session if internal_action?(params[:controller], params[:action])
     store_external_location_in_session if external_action?(params[:controller], params[:action])
   end
@@ -93,7 +93,7 @@ class ApplicationController < ActionController::Base
   end
 
   def devise_login?
-    params[:controller] == 'sessions' && params[:action] == 'create'
+    params[:controller] == "sessions" && params[:action] == "create"
   end
 
   def empty_response_or_root_path(path = root_path)
@@ -107,12 +107,12 @@ class ApplicationController < ActionController::Base
 
   def check_admin_or_moderator
     return if current_user && (current_user.admin? || current_user.moderator?)
-    redirect_to root_path, alert: 'You do not have sufficient privileges to access that page.'
+    redirect_to root_path, alert: "You do not have sufficient privileges to access that page."
   end
 
   def check_admin
     return if current_user && current_user.admin?
-    redirect_to root_path, alert: 'You do not have sufficient privileges to access that page.'
+    redirect_to root_path, alert: "You do not have sufficient privileges to access that page."
   end
 
   def parse_date_if_key_present(object, key)
@@ -121,29 +121,29 @@ class ApplicationController < ActionController::Base
   end
 
   def scrub_order(model, params_order, default_order)
-    (params_column, params_direction) = params_order.to_s.strip.downcase.split(' ')
-    direction = (params_direction == 'desc' ? 'desc nulls last' : nil)
+    (params_column, params_direction) = params_order.to_s.strip.downcase.split(" ")
+    direction = (params_direction == "desc" ? "desc nulls last" : nil)
     column_name = (model.column_names.collect{|c| model.table_name + "." + c}.select{|c| c == params_column}.first)
-    order = column_name.blank? ? default_order : [column_name, direction].compact.join(' ')
+    order = column_name.blank? ? default_order : [column_name, direction].compact.join(" ")
     order
   end
 
   def verify_recaptcha
-    url = URI.parse('https://www.google.com/recaptcha/api/siteverify')
+    url = URI.parse("https://www.google.com/recaptcha/api/siteverify")
     http = Net::HTTP.new(url.host, url.port)
-    if url.scheme == 'https'
+    if url.scheme == "https"
       http.use_ssl = true
       http.verify_mode = OpenSSL::SSL::VERIFY_NONE
     end
     post_params = [
-      "secret=#{ENV['recaptcha_secret_key']}",
-      "response=#{params['g-recaptcha-response']}",
+      "secret=#{ENV["recaptcha_secret_key"]}",
+      "response=#{params["g-recaptcha-response"]}",
       "remoteip=#{request.remote_ip}"
     ]
     response = http.start do |h|
-      h.post(url.path, post_params.join('&'))
+      h.post(url.path, post_params.join("&"))
     end
     json = JSON.parse(response.body)
-    json['success']
+    json["success"]
   end
 end
