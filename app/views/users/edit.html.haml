@@ -3,16 +3,14 @@
 - @body = "sky"
 - @footer = "grass"
 
-- content_for :header do
-  .header-container
-    .container
-      %h1.page-heading
-        = link_to @user.name_was, @user
-        Edit
+- content_for :container_class, "container-fluid"
 
-.drawer-and-shelf-container
-  .drawer
-    = render "admin/menu"
-  .shelf
-    .dashboard-container
-      = render "form", user: @user
+- content_for :sidebar do
+  = render "admin/sidebar"
+
+- content_for :header do
+  = link_to @user.name_was, @user
+  Edit
+
+.dashboard-container
+  = render "form", user: @user

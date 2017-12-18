@@ -1,34 +1,11 @@
-= form_for @admin_partner, html: { class: 'form-horizontal' } do |f|
-  .form-group
-    = f.label :photo, nil, class: 'control-label col-md-2'
-    .col-md-10
-      = f.file_field :photo
-  .form-group
-    = f.label :name, nil, class: 'control-label col-md-2'
-    .col-md-10
-      = f.text_field :name, class: 'form-control'
-      = render 'layouts/errors', object: @admin_partner, key: :name
-  .form-group
-    = f.label :description, nil, class: 'control-label col-md-2'
-    .col-md-10
-      = f.text_area :description, class: 'form-control'
-  .form-group
-    = f.label :link, nil, class: 'control-label col-md-2'
-    .col-md-10
-      = f.text_field :link, class: 'form-control'
-  .form-group
-    = f.label :position, nil, class: 'control-label col-md-2'
-    .col-md-10
-      = f.number_field :position, class: 'form-control'
-      = render 'layouts/errors', object: @admin_partner, key: :position
-  .form-group
-    = f.label :group, nil, class: 'control-label col-md-2'
-    .col-md-10
-      = f.select :group, Admin::Partner::GROUPS, { }, class: 'form-control'
-  .form-group
-    = f.label :displayed, nil, class: 'control-label col-md-2'
-    .col-md-10
-      = f.check_box :displayed
-  .form-group
-    .col-md-10.col-md-offset-2
-      = f.submit nil, class: 'btn btn-primary'
+= form_with model: admin_partner, local: true do |form|
+  = render "forms/horizontal/file_field", form: form, object: admin_partner, key: :photo
+  = render "forms/horizontal/text_field", form: form, object: admin_partner, key: :name
+  = render "forms/horizontal/text_area", form: form, object: admin_partner, key: :description
+  = render "forms/horizontal/text_field", form: form, object: admin_partner, key: :link
+  - # TODO: Add number_field
+  = render "forms/horizontal/text_field", form: form, object: admin_partner, key: :position
+  =# render "forms/horizontal/number_field", form: form, object: admin_partner, key: :position
+  = render "forms/horizontal/select", form: form, object: admin_partner, key: :group, options: Admin::Partner::GROUPS
+  = render "forms/horizontal/check_box", form: form, object: admin_partner, key: :displayed
+  = render "forms/horizontal/submit", form: form, object: admin_partner

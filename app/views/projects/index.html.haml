@@ -1,42 +1,43 @@
 - @title = "Projects"
-- @footer = "light"
 
-- content_for :body_class do
-  myapnea-light-bg
+- @menu = "night"
+- @body = "night"
+- @footer = "night"
+
+- content_for :container_class, "container-fluid"
+
+- content_for :sidebar do
+  = render "admin/sidebar"
 
 - content_for :header do
-  .header-container
-    .container
-      %h1.page-heading
-        .float-right
-          = link_to plus_or("New Project"), new_project_path, class: "btn btn-accent btn-shadow"
-          = render "layouts/per_page", per_page: 40, object_count: @projects.total_count
-        = @title
+  .float-right
+    = link_to plus_or("New Project"), new_project_path, class: "btn btn-accent btn-shadow"
+    = render "layouts/per_page", per_page: 40, object_count: @projects.total_count
+  = @title
 
-.drawer-and-shelf-container
-  .drawer
-    = render "admin/menu"
-  .shelf
-    - if @projects.present?
-      .dashboard-container
-        %table.table.table-striped.table-borderless.table-hover
-          %col
-          %col
-          %col{ width: "1px" }
-          %thead
-            %tr
-              %th Name
-              %th.text-center Launch Date
-              %th.text-center Actions
-          %tbody
-            - @projects.each do |project|
-              %tr
-                %td= link_to project.name, project
-                %td.text-center
-                  %span.d-none.d-lg-inline= project.launch_date ? project.launch_date.strftime("%a, %b %-d, %Y") : nil
-                  %span.d-inline.d-lg-none= project.launch_date ? project.launch_date.strftime("%b %-d, %Y") : nil
-                %td= render "layouts/edit_delete_dropdown", edit_url: edit_project_path(project), delete_url: project, delete_confirmation: "Delete #{project.name}?"
-      .center-horizontally= paginate@projects, theme: "bootstrap"
-    - else
-      .jumbotron.jumbotron-action
-        .lead.text-center{ style: "font-weight: 200;font-size: 24px;" } No projects found.
+- content_for :footer do
+  = render "blank/moon"
+
+- if @projects.present?
+  .dashboard-container.mb-0
+    %table.table.table-striped.table-borderless.table-hover
+      %col
+      %col
+      %col{ width: "1px" }
+      %thead
+        %tr
+          %th Name
+          %th.text-center Launch Date
+          %th.text-center Actions
+      %tbody
+        - @projects.each do |project|
+          %tr
+            %td= link_to project.name, project
+            %td.text-center
+              %span.d-none.d-lg-inline= project.launch_date ? project.launch_date.strftime("%a, %b %-d, %Y") : nil
+              %span.d-inline.d-lg-none= project.launch_date ? project.launch_date.strftime("%b %-d, %Y") : nil
+            %td= render "layouts/edit_delete_dropdown", edit_url: edit_project_path(project), delete_url: project, delete_confirmation: "Delete #{project.name}?"
+  .center-horizontally= paginate @projects, theme: "bootstrap"
+- else
+  .jumbotron.jumbotron-action.jumbotron-shadow
+    .lead.text-center{ style: "font-weight: 200;font-size: 24px;" } No projects found.

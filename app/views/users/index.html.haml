@@ -3,79 +3,68 @@
 - @body = "sky"
 - @footer = "grass"
 
+- content_for :container_class, "container-fluid"
+
+- content_for :sidebar do
+  = render "admin/sidebar"
+
 - content_for :header do
-  .header-container
-    .container
-      %h1.page-heading
-        .float-right
-          = link_to download_or("Export CSV"), export_users_path(format: "csv"), class: "btn btn-accent btn-shadow"
-          = render "layouts/per_page", per_page: 40, object_count: @users.total_count
-        = @title
-        = render "search/toggle"
+  .float-right
+    = link_to download_or("Export CSV"), export_users_path(format: "csv"), class: "btn btn-accent btn-shadow"
+    = render "layouts/per_page", per_page: 40, object_count: @users.total_count
+  = @title
+  = render "search/toggle"
 
 = render "search/simple", url: users_path
 
-.drawer-and-shelf-container
-  .drawer
-    = render "admin/menu"
-  .shelf
-    .dashboard-container
-      %button.btn.btn-default{ data: { object: "show-todays-users" } }
-        New users today:
-        %span.f500= @all_users.where("created_at > ?", Time.zone.now.beginning_of_day).count
-      %button.btn.btn-default{ data: { object: "show-this-weeks-users" } }
-        New users this week:
-        %span.f500= @all_users.where("created_at > ?", Time.zone.now.beginning_of_week(start_day = :sunday)).count
+.dashboard-container{ style: "overflow-x: scroll;" }
+  %table.table.table-striped.table-borderless.table-hover
+    %thead
+      %tr
+        %th Name
+        %th Email
+        = th_sort_field @order, "users.current_sign_in_at", "Activity", extra_class: "d-none d-sm-table-cell"
+        = th_sort_field @order, "users.shadow_banned", "Shadow Banned", extra_class: "text-center"
+        %th.d-none.d-sm-table-cell.text-center Surveys Completed
+        = th_sort_field_rev @order, "users.sign_in_count", "Sign in Count", extra_class: "d-none d-sm-table-cell text-center"
+        = th_sort_field_rev @order, "reply_count", "Posts", extra_class: "d-none d-sm-table-cell text-center"
+        %th.text-center Actions
+    - @users.each do |user|
+      %tr{ id: "user-#{user.id}-container", class: "#{"todays-users" if user.created_at.today?} #{"this-weeks-users" if user.created_at > Time.zone.now.beginning_of_week(start_day = :sunday)}"}
+        %td.nowrap
+          = profile_picture_tag user, size: 18, style: "min-width: 18px;"
+          .d-none.d-md-inline-block= link_to user.name, user
+        %td.small
+          %span.d-none.d-md-inline.breakword= user.email
+          %span.d-inline.d-md-none= link_to user.email, user, style: "word-break: break-word;"
+        %td.d-none.d-sm-table-cell.nowrap
+          - if user.current_sign_in_at
+            %small= abbreviated_time(user.current_sign_in_at)
+        %td.text-center
+          - if user.shadow_banned?
+            %span.glyphicon.glyphicon-eye-close.text-muted
+        %td.d-none.d-sm-table-cell.text-center
+          \-1
+        %td.d-none.d-sm-table-cell.text-center
+          = user.sign_in_count
+        %td.d-none.d-sm-table-cell.text-center
+          = user.replies.count
+        %td
+          .dropdown
+            = link_to "#", class: "btn btn-light btn-sm dropdown-toggle", data: { toggle: "dropdown" } do
+              .d-inline-block.d-sm-none
+                %i.fa.fa-cog
+              .d-none.d-sm-inline-block Actions
+              %strong.caret
 
-      %table.table.table-striped.table-borderless.table-hover
-        %thead
-          %tr
-            %th Name
-            %th Email
-            = th_sort_field @order, "users.current_sign_in_at", "Activity", extra_class: "hidden-xs"
-            = th_sort_field @order, "users.shadow_banned", "Shadow Banned", extra_class: "text-center"
-            %th.d-none.d-sm-table-cell.text-center Surveys Completed
-            = th_sort_field_rev @order, "users.sign_in_count", "Sign in Count", extra_class: "hidden-xs text-center"
-            = th_sort_field_rev @order, "reply_count", "Posts", extra_class: "hidden-xs text-center"
-            %th.text-center Actions
-        - @users.each do |user|
-          %tr{ id: "user-#{user.id}-container", class: "#{"todays-users" if user.created_at.today?} #{"this-weeks-users" if user.created_at > Time.zone.now.beginning_of_week(start_day = :sunday)}"}
-            %td.nowrap
-              = profile_picture_tag user, size: 18, style: "min-width: 18px;"
-              .d-none.d-md-inline-block= link_to user.name, user
-            %td
-              %span.hidden-xs.breakword= user.email
-              %span.hidden-sm.hidden-md.hidden-lg= link_to user.email, user, style: "word-break: break-word;"
-            %td.nowrap.hidden-xs
-              - if user.current_sign_in_at
-                %small= abbreviated_time(user.current_sign_in_at)
-            %td.text-center
-              - if user.shadow_banned?
-                %span.glyphicon.glyphicon-eye-close.text-muted
-            %td.d-none.d-sm-table-cell.text-center
-              \-1
-            %td.d-none.d-sm-table-cell.text-center
-              = user.sign_in_count
-            %td.d-none.d-sm-table-cell.text-center
-              = user.replies.count
-            %td
-              .dropdown
-                = link_to "#", class: "btn btn-default btn-xs dropdown-toggle", data: { toggle: "dropdown" } do
-                  %span.hidden-sm.hidden-md.hidden-lg.glyphicon.glyphicon-cog
-                  %span.hidden-xs Actions
-                  %strong.caret
+            .dropdown-menu.dropdown-menu-right
+              = link_to edit_user_path(user), class: "dropdown-item" do
+                %i.fa.fa-pencil
+                Edit
+              - unless user == current_user
+                .dropdown-divider
+                = link_to user, method: :delete, data: { confirm: "Delete #{user.name}?" }, class: "dropdown-item text-danger" do
+                  %i.fa.fa-trash
+                  Delete
 
-                %ul.dropdown-menu.dropdown-menu-right
-                  %li
-                    = link_to edit_user_path(user) do
-                      %span.glyphicon.glyphicon-edit
-                      Edit
-                  - unless user == current_user
-                    %li.divider{ role: "separator" }
-                    %li
-                      = link_to user, method: :delete, remote: true, data: { confirm: "Delete #{user.name}?" } do
-                        .text-danger
-                          %span.glyphicon.glyphicon-trash
-                          Delete
-
-    .center-horizontally= paginate @users, theme: "bootstrap"
+.center-horizontally= paginate @users, theme: "bootstrap"

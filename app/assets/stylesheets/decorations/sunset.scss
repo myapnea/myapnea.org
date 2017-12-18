@@ -35,6 +35,7 @@ $sunset-container-sm: $sunset-size-sm + $sunset-padding-sm;
   position: absolute;
   right: -$sunset-size;
   top: -$sunset-size + ($sunset-container / 2);
+  z-index: -1;
 
   i {
     // animation: sun-pulse 1s ease-in-out infinite alternate;

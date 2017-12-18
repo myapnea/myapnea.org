@@ -1,58 +1,52 @@
-- @title = 'Exports'
+- @title = "Exports"
 
+- @body = "sky"
+- @footer = "grass"
 
-- content_for :body_class do
-  myapnea-sky-bg
-
+- content_for :container_class, "container-fluid"
+- content_for :sidebar, render("admin/sidebar")
 - content_for :header do
-  .header-container
-    .container
-      %h1.page-heading
-        .float-right
-          = link_to download_or('Export CSV'), admin_exports_path, method: :post, class: 'btn btn-accent btn-shadow'
-          = render 'layouts/per_page', per_page: 10, object_count: @admin_exports.total_count
-        = @title
+  .float-right
+    = link_to download_or("Export CSV"), admin_exports_path, method: :post, class: "btn btn-accent btn-shadow"
+    = render "layouts/per_page", per_page: 10, object_count: @admin_exports.total_count
+  = @title
 
-.drawer-and-shelf-container
-  .drawer
-    = render 'admin/menu'
-  .shelf
-    .dashboard-container
-      %table.table.table-striped.table-borderless.table-hover
-        %col
-        %col
-        %col
-        %col{ width: '1px' }
-        %thead
-          %tr
-            %th Name
-            %th File
-            %th Progress
-            %th.text-center Actions
-        %tbody
-          - @admin_exports.each do |admin_export|
-            %tr{ id: "admin-export-#{admin_export.id}" }
-              %td= link_to admin_export.name, admin_export
-              %td
-                - if admin_export.file.size > 0
-                  = link_to admin_export.file.to_s.split('/').last, file_admin_export_path(admin_export), target: '_blank', class: 'btn btn-default btn-xs'
-                  = number_to_human_size admin_export.file.size
-              %td
-                - percent = admin_export.percent
-                - status = 'danger'
-                - status = 'warning' if percent >= 33
-                - status = 'success' if percent == 100
-                - status = 'danger' if admin_export.status == 'failed'
-                - if percent == 0 || admin_export.status == 'failed'
-                  %span.label{ class: "label-#{status}" }= admin_export.status
-                - else
-                  .progress.progress-striped{ style: 'margin: 0px' }
-                    .progress-bar{ class: "progress-bar-#{status}", style: "width: #{percent}%;min-width: 2em" }
-                      = succeed '%' do
-                        = percent
-              %td.text-center
-                %div{ id: "admin-export-#{admin_export.id}-request-delete" }
-                  = link_to 'Delete', '#', class: 'btn btn-xs btn-danger', data: { object: 'toggle-delete-buttons', target_show: "#admin-export-#{admin_export.id}-confirm-delete", target_hide: "#admin-export-#{admin_export.id}-request-delete" }
-                %div{ id: "admin-export-#{admin_export.id}-confirm-delete", style: 'display:none' }
-                  = link_to 'Confirm Delete', admin_export, method: :delete, remote: true, class: 'btn btn-xs btn-danger'
-                  = link_to 'Cancel', '#', class: 'btn btn-xs btn-default', data: { object: 'toggle-delete-buttons', target_show: "#admin-export-#{admin_export.id}-request-delete", target_hide: "#admin-export-#{admin_export.id}-confirm-delete" }
+.dashboard-container
+  %table.table.table-striped.table-borderless.table-hover
+    %col
+    %col
+    %col
+    %col{ width: "1px" }
+    %thead
+      %tr
+        %th Name
+        %th File
+        %th Progress
+        %th.text-center Actions
+    %tbody
+      - @admin_exports.each do |admin_export|
+        %tr{ id: "admin-export-#{admin_export.id}" }
+          %td= link_to admin_export.name, admin_export
+          %td
+            - if admin_export.file.size > 0
+              = link_to admin_export.file.to_s.split("/").last, file_admin_export_path(admin_export), target: "_blank", class: "btn btn-light btn-sm"
+              = number_to_human_size admin_export.file.size
+          %td
+            - percent = admin_export.percent
+            - status = "danger"
+            - status = "warning" if percent >= 33
+            - status = "success" if percent == 100
+            - status = "danger" if admin_export.status == "failed"
+            - if percent == 0 || admin_export.status == "failed"
+              %span.badge{ class: "badge-#{status}" }= admin_export.status
+            - else
+              .progress.progress-striped{ style: "margin: 0px" }
+                .progress-bar{ class: "progress-bar-#{status}", style: "width: #{percent}%;min-width: 2em" }
+                  = succeed "%" do
+                    = percent
+          %td.text-center
+            %div{ id: "admin-export-#{admin_export.id}-request-delete" }
+              = link_to "Delete", "#", class: "btn btn-sm btn-danger", data: { object: "toggle-delete-buttons", target_show: "#admin-export-#{admin_export.id}-confirm-delete", target_hide: "#admin-export-#{admin_export.id}-request-delete" }
+            %div{ id: "admin-export-#{admin_export.id}-confirm-delete", style: "display:none" }
+              = link_to "Confirm Delete", admin_export, method: :delete, remote: true, class: "btn btn-sm btn-danger"
+              = link_to "Cancel", "#", class: "btn btn-sm btn-light", data: { object: "toggle-delete-buttons", target_show: "#admin-export-#{admin_export.id}-request-delete", target_hide: "#admin-export-#{admin_export.id}-confirm-delete" }

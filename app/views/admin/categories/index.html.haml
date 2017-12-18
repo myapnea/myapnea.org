@@ -1,42 +1,37 @@
-- @title = 'Categories'
+- @title = "Categories"
 
-- content_for :body_class do
-  myapnea-sky-bg
+- @body = "sky"
+- @footer = "grass"
 
+- content_for :container_class, "container-fluid"
+- content_for :sidebar, render("admin/sidebar")
 - content_for :header do
-  .header-container
-    .container
-      %h1.page-heading
-        .float-right
-          = link_to plus_or('New Category'), new_admin_category_path, class: 'btn btn-accent btn-shadow'
-          = render 'layouts/per_page', per_page: 40, object_count: @admin_categories.total_count
-        = @title
+  .float-right
+    = link_to plus_or("New Category"), new_admin_category_path, class: "btn btn-accent btn-shadow"
+    = render "layouts/per_page", per_page: 40, object_count: @admin_categories.total_count
+  = @title
 
-.drawer-and-shelf-container
-  .drawer
-    = render 'admin/menu'
-  .shelf
-    - if @admin_categories.present?
-      .dashboard-container
-        %table.table.table-striped.table-borderless.table-hover
-          %col
-          %col
-          %col{ width: '1px' }
-          %thead
-            %tr
-              %th Name
-              %th Slug
-              %th.text-center Actions
+- if @admin_categories.present?
+  .dashboard-container
+    %table.table.table-striped.table-borderless.table-hover
+      %col
+      %col
+      %col{ width: "1px" }
+      %thead
+        %tr
+          %th Name
+          %th Slug
+          %th.text-center Actions
 
-          %tbody
-            - @admin_categories.each do |admin_category|
-              %tr
-                %td= link_to admin_category.name, admin_category
-                %td
-                  %code= admin_category.slug
-                %td.text-center= render 'layouts/edit_delete_dropdown', edit_url: edit_admin_category_path(admin_category), delete_url: admin_category, delete_confirmation: "Delete #{admin_category.name}?"
-      .center-horizontally= paginate@admin_categories, theme: 'bootstrap'
-    - else
-      .jumbotron.jumbotron-action
-        %p.text-center No categories found.
+      %tbody
+        - @admin_categories.each do |admin_category|
+          %tr
+            %td= link_to admin_category.name, admin_category
+            %td
+              %code= admin_category.slug
+            %td.text-center= render "layouts/edit_delete_dropdown", edit_url: edit_admin_category_path(admin_category), delete_url: admin_category, delete_confirmation: "Delete #{admin_category.name}?"
+  .center-horizontally= paginate@admin_categories, theme: "bootstrap"
+- else
+  .jumbotron.jumbotron-action.jumbotron-shadow
+    %p.text-center No categories found.
 

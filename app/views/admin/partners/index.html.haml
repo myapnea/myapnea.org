@@ -1,28 +1,24 @@
-- @title = 'Partners'
+- @title = "Partners"
 
-- content_for :body_class do
-  myapnea-sky-bg
+- @body = "sky"
+- @footer = "grass"
 
+- content_for :container_class, "container-fluid"
+- content_for :sidebar, render("admin/sidebar")
 - content_for :header do
-  .header-container
-    .container
-      %h1.page-heading
-        .float-right
-          = link_to plus_or('New Partner'), new_admin_partner_path, class: 'btn btn-accent btn-shadow'
-          = render 'layouts/per_page', per_page: 10, object_count: @admin_partners.total_count
-        = @title
+  .float-right
+    = link_to plus_or("New Partner"), new_admin_partner_path, class: "btn btn-accent btn-shadow"
+    = render "layouts/per_page", per_page: 10, object_count: @admin_partners.total_count
+  = @title
 
-.drawer-and-shelf-container
-  .drawer
-    = render 'admin/menu'
-  .shelf
-    .dashboard-container
-      - @admin_partners.each do |partner|
-        = render partner
-        = succeed ' ' do
-          = link_to edit_admin_partner_path(partner), class: 'btn btn-default btn-xs' do
-            %fa.fa.fa-pencil
-            Edit
-        Displayed:
-        = simple_check partner.displayed?
-    .center-horizontally= paginate@admin_partners, theme: 'bootstrap'
+.dashboard-container
+  - @admin_partners.each do |partner|
+    = render partner
+    = succeed " " do
+      = link_to edit_admin_partner_path(partner), class: "btn btn-light btn-sm" do
+        %fa.fa.fa-pencil
+        Edit
+    Displayed:
+    = simple_check partner.displayed?
+
+.center-horizontally= paginate @admin_partners, theme: "bootstrap"

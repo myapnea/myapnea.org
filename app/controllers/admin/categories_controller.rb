@@ -6,6 +6,8 @@ class Admin::CategoriesController < ApplicationController
   before_action :check_admin
   before_action :find_admin_category_or_redirect, only: [:show, :edit, :update, :destroy]
 
+  layout "layouts/full_page_sidebar"
+
   # GET /admin/categories
   def index
     @admin_categories = Admin::Category.current.order(:name).page(params[:page]).per(40)

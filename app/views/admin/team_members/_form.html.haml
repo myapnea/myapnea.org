@@ -1,41 +1,12 @@
-= form_for admin_team_member, html: { class: 'form-horizontal' } do |f|
-  .form-group
-    = f.label :name, nil, class: 'control-label col-md-2'
-    .col-md-10
-      = f.text_field :name, class: 'form-control'
-      = render 'layouts/errors', object: admin_team_member, key: :name
+= form_with model: admin_team_member, local: true do |form|
+  = render "forms/horizontal/text_field", form: form, object: admin_team_member, key: :name
+  = render "forms/horizontal/text_field", form: form, object: admin_team_member, key: :designations
+  = render "forms/horizontal/text_field", form: form, object: admin_team_member, key: :role
+  = render "forms/horizontal/select", form: form, object: admin_team_member, key: :group, options: Admin::TeamMember::GROUPS
+  - # TODO: Add number_field
+  = render "forms/horizontal/text_field", form: form, object: admin_team_member, key: :position
+  =# render "forms/horizontal/number_field", form: form, object: admin_team_member, key: :position
+  = render "forms/horizontal/file_field", form: form, object: admin_team_member, key: :photo
+  = render "forms/horizontal/text_area", form: form, object: admin_team_member, key: :bio
+  = render "forms/horizontal/submit", form: form, object: admin_team_member
 
-  .form-group
-    = f.label :designations, nil, class: 'control-label col-md-2'
-    .col-md-10
-      = f.text_field :designations, class: 'form-control'
-
-  .form-group
-    = f.label :role, nil, class: 'control-label col-md-2'
-    .col-md-10
-      = f.text_field :role, class: 'form-control'
-
-  .form-group
-    = f.label :group, nil, class: 'control-label col-md-2'
-    .col-md-10
-      = f.select :group, Admin::TeamMember::GROUPS, { }, class: 'form-control'
-
-  .form-group
-    = f.label :position, nil, class: 'control-label col-md-2'
-    .col-md-10
-      = f.number_field :position, class: 'form-control'
-
-  .form-group
-    = f.label :photo, nil, class: 'control-label col-md-2'
-    .col-md-10
-      = f.file_field :photo
-
-  .form-group
-    = f.label :bio, nil, class: 'control-label col-md-2'
-    .col-md-10
-      = f.text_area :bio, rows: 5, class: 'form-control'
-
-  .form-group
-    .col-md-10.col-md-offset-2
-      = f.submit nil, class: 'btn btn-primary'
-      = link_to 'Cancel', admin_team_member.new_record? ? admin_team_members_path : admin_team_member, class: 'btn btn-link'

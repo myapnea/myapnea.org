@@ -1,0 +1,18 @@
+.col-12.col-md-3.col-xl-2.sidebar-wrapper
+  .sidebar
+    #sidebar-nav-wrapper.sidebar-nav-wrapper.collapse{ style: "background-color: transparent;" }
+      - if true
+        = render "admin/menu"
+      - else
+        %nav.sidebar-nav
+          .sidebar-nav-group.active
+            = link_to admin_path, class: "sidebar-nav-group-link" do
+              Admin
+
+            %ul.nav.sidebar-nav-group-items
+              %li{ class: params[:controller] == "projects" ? "active" : nil }
+                = link_to projects_path, class: "ml-4" do
+                  Projects
+              %li{ class: params[:controller] == "users" ? "active" : nil }
+                = link_to users_path, class: "ml-4" do
+                  Users

@@ -6,6 +6,8 @@ class Admin::PartnersController < ApplicationController
   before_action :check_admin,         except: [:photo]
   before_action :find_admin_partner_or_redirect,   only: [:show, :edit, :update, :destroy, :photo]
 
+  layout "layouts/full_page_sidebar"
+
   def photo
     if @admin_partner.photo.size > 0
       send_file File.join(CarrierWave::Uploader::Base.root, @admin_partner.photo.url)

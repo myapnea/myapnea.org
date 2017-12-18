@@ -1,25 +1,26 @@
 - @title = @project.name
 
-- content_for :body_class do
-  myapnea-light-bg
+- @menu = "night"
+- @body = "night"
+- @footer = "night"
+
+- content_for :container_class, "container-fluid"
+
+- content_for :sidebar do
+  = render "admin/sidebar"
 
 - content_for :header do
-  .header-container
-    .container
-      %h1.page-heading
-        .float-right
-          = render "layouts/edit_delete_dropdown_header", edit_url: edit_project_path(@project), delete_url: @project, delete_confirmation: "Delete #{@project.name}?"
-        = @title
+  .float-right
+    = render "layouts/edit_delete_dropdown_header", edit_url: edit_project_path(@project), delete_url: @project, delete_confirmation: "Delete #{@project.name}?"
+  = @title
 
-.drawer-and-shelf-container
-  .drawer
-    = render "admin/menu"
-  .shelf
-    .dashboard-container
-      = render "forms/horizontal/show/text", object: @project, key: :name
-      = render "forms/horizontal/show/markdown", object: @project, key: :short_description
-      = render "forms/horizontal/show/check_box", object: @project, key: :published
-      = render "forms/horizontal/show/text", object: @project, key: :launch_date
-      = render "forms/horizontal/show/text", object: @project, key: :theme
-      = render "forms/horizontal/show/generic", title: "Consent", content: link_to("View Consent", consent_project_path(@project)) if @project.consent.present?
-      = render "forms/horizontal/show/generic", title: "Subjects", content: @project.remote_subjects
+- content_for :footer, render("blank/moon")
+
+.dashboard-container
+  = render "forms/horizontal/show/text", object: @project, key: :name
+  = render "forms/horizontal/show/markdown", object: @project, key: :short_description
+  = render "forms/horizontal/show/check_box", object: @project, key: :published
+  = render "forms/horizontal/show/text", object: @project, key: :launch_date
+  = render "forms/horizontal/show/text", object: @project, key: :theme
+  = render "forms/horizontal/show/generic", title: "Consent", content: link_to("View Consent", consent_project_path(@project)) if @project.consent.present?
+  = render "forms/horizontal/show/generic", title: "Subjects", content: @project.remote_subjects

@@ -10,7 +10,7 @@
 
       - if @broadcast.publish_date <= Time.zone.today
         %span.label.label-info Published
-        = link_to "View Blog Post", blog_post_path(year: @broadcast.publish_date.year, month: @broadcast.publish_date.strftime("%m"), slug: @broadcast.slug), class: "btn btn-xs btn-default"
+        = link_to "View Blog Post", blog_post_path(year: @broadcast.publish_date.year, month: @broadcast.publish_date.strftime("%m"), slug: @broadcast.slug), class: "btn btn-sm btn-light"
       - else
         %span.label.label-info
           Set to Publish on
@@ -18,7 +18,7 @@
     - else
       %span.label.label-warning DRAFT
     &nbsp;
-    = link_to edit_broadcast_path(@broadcast), class: "btn btn-xs btn-default" do
+    = link_to edit_broadcast_path(@broadcast), class: "btn btn-sm btn-light" do
       %span.glyphicon.glyphicon-edit
       Edit Blog Post
 

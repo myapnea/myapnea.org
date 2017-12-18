@@ -18,7 +18,7 @@
   %strong File
   - if @admin_export.file.size > 0
     - full_url = file_admin_export_path(@admin_export)
-    = link_to @admin_export.file.to_s.split('/').last, full_url, target: '_blank', class: 'btn btn-default btn-xs'
+    = link_to @admin_export.file.to_s.split('/').last, full_url, target: '_blank', class: 'btn btn-light btn-sm'
     = number_to_human_size @admin_export.file.size
     %span.text-muted
       Export took

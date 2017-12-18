@@ -1,0 +1,33 @@
+!!!
+%html{ lang: "en" }
+  %head
+    %meta{ charset: "utf-8" }
+    %meta{ content: "IE=Edge,chrome=1", http: { equiv: "X-UA-Compatible" } }
+    %meta{ name: "viewport", content: "width=device-width, initial-scale=1, shrink-to-fit=no" }
+    = render "layouts/meta/general"
+    = render "layouts/meta/facebook"
+    = render "layouts/meta/google"
+    = render "layouts/meta/analytics"
+    -# Don't cache any pages
+    %meta{ name: "turbolinks-cache-control", content: "no-cache" }
+    %title= [@title, "MyApnea"].compact.join(" - ").html_safe
+    = favicon_link_tag
+    = auto_discovery_link_tag(:rss, "#{ENV["website_url"]}/blog.atom")
+    = csrf_meta_tags
+    = stylesheet_link_tag "application", media: "all", data: { turbolinks_track: "reload" }
+    = javascript_include_tag "application", data: { turbolinks_track: "reload" }
+    = javascript_tag "var root_url=\"#{request.script_name + "/"}\";"
+  %body#top.full-page{ class: @body ? "myapnea-#{@body}-bg" : yield(:body_class) }
+    = render "layouts/flash_bar"
+    #top-menu.top-menu= render "layouts/menu", nocontainer: true, menu: @menu ? "menu-#{@menu}" : nil
+    .header-container
+      .container-fluid
+        %h1.page-heading
+          = yield :header
+          = render "sidebar/toggle"
+    .row.no-gutters.flex-xl-nowrap
+      = yield(:sidebar)
+      %main.col.p-3{ role: "main",  style: "overflow-x: scroll;" }
+        = yield
+    = yield :footer
+    = render "layouts/footer", container: yield(:container_class), footer: @footer ? "footer-#{@footer}" : nil

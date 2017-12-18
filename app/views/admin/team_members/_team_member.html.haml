@@ -1,7 +1,7 @@
 .team-member-container
   .row
     .col-md-5.team-member-image-wrapper
-      = image_tag team_member_photo_url(team_member), alt: '', class: 'team-member-img'
+      = image_tag team_member_photo_url(team_member), alt: "", class: "team-member-img"
     .col-md-7
       %h2
         = team_member.name
@@ -11,10 +11,10 @@
   %br
   %p.lead
     = team_member.bio
-  - if current_user && current_user.admin?
+  - if current_user&.admin?
     .admin-bar
-      = succeed ' ' do
-        = link_to edit_admin_team_member_path(team_member) do
+      = succeed " " do
+        = link_to edit_admin_team_member_path(team_member), class: "btn btn-sm btn-light" do
           %i.fa.fa-pencil>
-      = link_to admin_team_member_path(team_member), method: :delete, data: { confirm: 'Are you sure?' } do
+      = link_to admin_team_member_path(team_member), method: :delete, data: { confirm: "Delete #{team_member.name}?" }, class: "btn btn-sm btn-outline-danger" do
         %i.fa.fa-trash

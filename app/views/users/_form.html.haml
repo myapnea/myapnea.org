@@ -1,86 +1,13 @@
-= form_for(user, html: { class: 'form-horizontal' }) do |f|
-  .form-group
-    = f.label :first_name, nil, class: 'col-md-2 control-label'
-    .col-md-10
-      = f.text_field :first_name, class: 'form-control'
-      = render 'layouts/errors', object: user, key: :first_name
-
-  .form-group
-    = f.label :last_name, nil, class: 'col-md-2 control-label'
-    .col-md-10
-      = f.text_field :last_name, class: 'form-control'
-      = render 'layouts/errors', object: user, key: :last_name
-
-  .form-group
-    = f.label :forum_name, 'Forum Username', class: 'col-md-2 control-label'
-    .col-md-10
-      = f.text_field :forum_name, class: 'form-control'
-      = render 'layouts/errors', object: user, key: :forum_name
-
-  .form-group
-    = f.label :email, nil, class: 'col-md-2 control-label'
-    .col-md-10
-      = f.text_field :email, class: 'form-control'
-      = render 'layouts/errors', object: user, key: :email
-
-  .form-group
-    .col-md-10.col-md-offset-2
-      .checkbox
-        %label
-          = f.check_box :emails_enabled
-          Emails Enabled
-
-  .form-group
-    .col-md-10.col-md-offset-2
-      .checkbox
-        %label
-          = f.check_box :admin
-          Admin
-
-  .form-group
-    .col-md-10.col-md-offset-2
-      .checkbox
-        %label
-          = f.check_box :moderator
-          Moderator
-
-  .form-group
-    .col-md-10.col-md-offset-2
-      .checkbox
-        %label
-          = f.check_box :community_contributor
-          Community Contributor
-        .text-muted Can create and edit blog posts
-
-  .form-group
-    .col-md-10.col-md-offset-2
-      .checkbox
-        %label
-          = f.check_box :can_build_surveys
-          Can Build Surveys
-
-  .form-group
-    .col-md-10.col-md-offset-2
-      .checkbox
-        %label
-          = f.check_box :include_in_exports
-          Include in Exports and Reports
-
-  .form-group
-    .col-md-10.col-md-offset-2
-      .checkbox
-        %label
-          = f.check_box :shadow_banned
-          Shadow Banned
-
-  .form-group
-    .col-md-10.col-md-offset-2
-      .checkbox
-        %label
-          = f.check_box :spammer
-          Spammer
-
-  .form-group
-    .col-md-10.col-md-offset-2
-      = f.submit nil, class: 'btn btn-primary'
-      = link_to 'Cancel', user_path(user), class: 'btn btn-link'
+= form_with model: user, local: true do |form|
+  = render "forms/horizontal/text_field", form: form, object: user, key: :first_name
+  = render "forms/horizontal/text_field", form: form, object: user, key: :last_name
+  = render "forms/horizontal/text_field", form: form, object: user, key: :forum_name
+  = render "forms/horizontal/email_field", form: form, object: user, key: :email
+  = render "forms/horizontal/check_box", form: form, object: user, key: :emails_enabled
+  = render "forms/horizontal/check_box", form: form, object: user, key: :admin
+  = render "forms/horizontal/check_box", form: form, object: user, key: :moderator
+  = render "forms/horizontal/check_box", form: form, object: user, key: :community_contributor, help_text: "Can create and edit blog posts."
+  = render "forms/horizontal/check_box", form: form, object: user, key: :include_in_exports, key_name: "Include in exports and reports."
+  = render "forms/horizontal/check_box", form: form, object: user, key: :shadow_banned
+  = render "forms/horizontal/check_box", form: form, object: user, key: :spammer
+  = render "forms/horizontal/submit", form: form, object: user

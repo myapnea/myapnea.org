@@ -3,24 +3,24 @@
 - @body = "sky"
 - @footer = "grass"
 
-- content_for :header do
-  .header-container
-    .container
-      %h1.page-heading
-        = @title
+- content_for :container_class, "container-fluid"
 
-.drawer-and-shelf-container
-  .drawer
-    = render "admin/menu"
-  .shelf
-    .dashboard-container
-      .dashboard-title You can do things here!
-      .dashboard-body
-        %p
-          We have
-          = succeed "." do
-            = link_to "news", blog_path
+- content_for :sidebar do
+  = render "admin/sidebar"
 
-        %p And other stuff. Just for you, hurray!
+- content_for :header, @title
 
-        %p My Recent Topics I participated in
+- content_for :footer do
+  = render "blank/sunset"
+
+.dashboard-container
+  .dashboard-title You can do things here!
+  .dashboard-body
+    %p
+      We have
+      = succeed "." do
+        = link_to "news", blog_path
+
+    %p And other stuff. Just for you, hurray!
+
+    %p My Recent Topics I participated in

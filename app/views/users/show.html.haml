@@ -3,80 +3,78 @@
 - @body = "sky"
 - @footer = "grass"
 
+- content_for :container_class, "container-fluid"
+
+- content_for :sidebar do
+  = render "admin/sidebar"
+
 - content_for :header do
-  .header-container
-    .container
-      %h1.page-heading
-        .float-right
-          %span.dropdown
-            = link_to "#", class: "btn btn-default dropdown-toggle", data: { toggle: "dropdown" } do
-              %span.hidden-sm.hidden-md.hidden-lg.glyphicon.glyphicon-cog
-              %span.hidden-xs Actions
-              %strong.caret
-            %ul.dropdown-menu.dropdown-menu-right
-              %li
-                = link_to edit_user_path(@user) do
-                  %span.glyphicon.glyphicon-edit
-                  Edit
-              - unless current_user == @user
-                %li.divider{ role: "separator" }
-                %li
-                  = link_to @user, method: :delete, data: { confirm: "Delete #{@user.name}?" } do
-                    .text-danger
-                      %span.glyphicon.glyphicon-trash
-                      Delete
-        = @user.name
+  .float-right
+    %span.dropdown
+      = link_to "#", class: "btn btn-light dropdown-toggle", data: { toggle: "dropdown" } do
+        %span.hidden-sm.hidden-md.hidden-lg.glyphicon.glyphicon-cog
+        %span.hidden-xs Actions
+        %strong.caret
+      %ul.dropdown-menu.dropdown-menu-right
+        %li
+          = link_to edit_user_path(@user) do
+            %span.glyphicon.glyphicon-edit
+            Edit
+        - unless current_user == @user
+          %li.divider{ role: "separator" }
+          %li
+            = link_to @user, method: :delete, data: { confirm: "Delete #{@user.name}?" } do
+              .text-danger
+                %span.glyphicon.glyphicon-trash
+                Delete
+  = @user.name
 
-.drawer-and-shelf-container
-  .drawer
-    = render "admin/menu"
-  .shelf
-    .dashboard-container
-      - if @user.shadow_banned?
-        .jumbotron.jumbotron-action
-          %p.text-center
-            %span.glyphicon.glyphicon-eye-close
-            This user has been shadow banned.
+.dashboard-container
+  - if @user.shadow_banned?
+    .jumbotron.jumbotron-action.jumbotron-shadow
+      %p.text-center
+        %span.glyphicon.glyphicon-eye-close
+        This user has been shadow banned.
 
 
-      = render "forms/horizontal/show/text", object: @user, key: :email
-      = render "forms/horizontal/show/generic", title: "Forum Name", content: link_to(@user.forum_name, member_path(@user.forum_name)) if @user.forum_name.present?
-      = render "forms/horizontal/show/check_box", object: @user, key: :emails_enabled
-      = render "forms/horizontal/show/text", object: @user, key: :profile_bio, key_name: "Bio"
-      = render "forms/horizontal/show/text", object: @user, key: :profile_location, key_name: "Location"
-      = render "forms/horizontal/show/check_box", object: @user, key: :admin
-      = render "forms/horizontal/show/check_box", object: @user, key: :moderator
-      = render "forms/horizontal/show/check_box", object: @user, key: :community_contributor
+  = render "forms/horizontal/show/text", object: @user, key: :email
+  = render "forms/horizontal/show/generic", title: "Forum Name", content: link_to(@user.forum_name, member_path(@user.forum_name)) if @user.forum_name.present?
+  = render "forms/horizontal/show/check_box", object: @user, key: :emails_enabled
+  = render "forms/horizontal/show/text", object: @user, key: :profile_bio, key_name: "Bio"
+  = render "forms/horizontal/show/text", object: @user, key: :profile_location, key_name: "Location"
+  = render "forms/horizontal/show/check_box", object: @user, key: :admin
+  = render "forms/horizontal/show/check_box", object: @user, key: :moderator
+  = render "forms/horizontal/show/check_box", object: @user, key: :community_contributor
 
 
-      %table.table.table-striped.table-borderless.table-hover
-        %col{ width: "30%" }
-        %tr
-          %th Number of Sessions
-          %td= @user.sign_in_count if @user.sign_in_count.present?
+  %table.table.table-striped.table-borderless.table-hover
+    %col{ width: "30%" }
+    %tr
+      %th Number of Sessions
+      %td= @user.sign_in_count if @user.sign_in_count.present?
 
-        %tr
-          %th Most Recent Session
-          %td= @user.current_sign_in_at.strftime("%m/%d/%Y") if @user.current_sign_in_at.present?
+    %tr
+      %th Most Recent Session
+      %td= @user.current_sign_in_at.strftime("%m/%d/%Y") if @user.current_sign_in_at.present?
 
-        %tr
-          %th Joined
-          %td
-            = @user.created_at.strftime("%m/%d/%Y") if @user.created_at.present?
+    %tr
+      %th Joined
+      %td
+        = @user.created_at.strftime("%m/%d/%Y") if @user.created_at.present?
 
-        %tr
-          %th Privacy Policy
-          %td= @user.accepted_privacy_policy_at.strftime("%m/%d/%Y") if @user.accepted_privacy_policy_at.present?
+    %tr
+      %th Privacy Policy
+      %td= @user.accepted_privacy_policy_at.strftime("%m/%d/%Y") if @user.accepted_privacy_policy_at.present?
 
-        %tr
-          %th Consent
-          %td= @user.accepted_consent_at.strftime("%m/%d/%Y") if @user.accepted_consent_at.present?
+    %tr
+      %th Consent
+      %td= @user.accepted_consent_at.strftime("%m/%d/%Y") if @user.accepted_consent_at.present?
 
-        %tr
-          %th Terms of Access
-          %td= @user.accepted_terms_of_access_at.strftime("%m/%d/%Y") if @user.accepted_terms_of_access_at.present?
+    %tr
+      %th Terms of Access
+      %td= @user.accepted_terms_of_access_at.strftime("%m/%d/%Y") if @user.accepted_terms_of_access_at.present?
 
-        %tr
-          %th Include in Data
-          %td= simple_check @user.include_in_exports
+    %tr
+      %th Include in Data
+      %td= simple_check @user.include_in_exports
 

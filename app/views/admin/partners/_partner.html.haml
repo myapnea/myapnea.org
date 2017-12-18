@@ -1,13 +1,13 @@
 .row.partner-container
-  .col-md-8
+  .col.col-lg-8
     %h3.f300
       - if partner.link.present?
-        = link_to partner.name, partner.link, class: 'no-underline'
+        = link_to partner.name, partner.link, class: "link-blend"
       - else
         = partner.name
     %p
       = partner.description
-  .col-md-4.hidden-sm.hidden-xs.partner-img-wrapper
+  .col.col-lg-4.d-none.d-lg-block.partner-img-wrapper
     .img-centerer
-    = image_tag partner_photo_url(partner), alt: '', class: 'partners-logo-square'
+    = image_tag partner_photo_url(partner), alt: "", class: "partners-logo-square"
 

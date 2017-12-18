@@ -1,6 +1,11 @@
 - @title = "Edit Image: #{@image.name}"
 
-.content-main-header2
-  %h1 Edit Image
+- @body = "sky"
+- @footer = "grass"
 
-= render 'form'
+- content_for :container_class, "container-fluid"
+- content_for :sidebar, render("admin/sidebar")
+- content_for :header do
+  Edit Image
+
+.dashboard-container= render "form", image: @image

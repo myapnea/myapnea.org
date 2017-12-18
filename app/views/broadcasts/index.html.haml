@@ -5,10 +5,10 @@
     Blog Posts
   %div
     = succeed ' ' do
-      = link_to new_broadcast_path, class: 'btn btn-xs btn-default' do
+      = link_to new_broadcast_path, class: 'btn btn-sm btn-light' do
         %span.glyphicon.glyphicon-plus
         New Blog Post
-    = link_to 'Go To Blog', blog_path, class: 'btn btn-xs btn-default'
+    = link_to 'Go To Blog', blog_path, class: 'btn btn-sm btn-light'
 
 %table.table
   %thead
@@ -33,7 +33,7 @@
         %td= simple_check broadcast.archived
         %td= broadcast.user.name
         %td.nowrap
-          = link_to 'Edit', edit_broadcast_path(broadcast), class: 'btn btn-xs btn-default'
-          = link_to 'Delete', broadcast, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-xs btn-danger'
+          = link_to 'Edit', edit_broadcast_path(broadcast), class: 'btn btn-sm btn-light'
+          = link_to 'Delete', broadcast, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger'
 
 .center-horizontally= paginate@broadcasts, theme: 'bootstrap'

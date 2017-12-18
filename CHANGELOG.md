@@ -12,6 +12,8 @@
   - Improved page navigation after signing in and signing out
   - Redesigned dashboard and settings pages
   - Added "Top" and "Recent" topics to member profile
+- **Admin Changes**
+  - Major revamp of the administrative interface
 - **Forum Changes**
   - Adjusted how the forum index displays on mobile devices
   - Generated forum names are now simpler and shorter

@@ -1,17 +1,11 @@
-- @title = 'New Partner'
+- @title = "New Partner"
 
-- content_for :body_class do
-  myapnea-sky-bg
+- @body = "sky"
+- @footer = "grass"
 
-- content_for :header do
-  .header-container
-    .container
-      %h1.page-heading
-        = @title
+- content_for :container_class, "container-fluid"
+- content_for :sidebar, render("admin/sidebar")
+- content_for :header, @title
 
-.drawer-and-shelf-container
-  .drawer
-    = render 'admin/menu'
-  .shelf
-    .dashboard-container
-      = render 'form'
+.dashboard-container
+  = render "form", admin_partner: @admin_partner

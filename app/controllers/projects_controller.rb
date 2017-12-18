@@ -8,6 +8,8 @@ class ProjectsController < ApplicationController
     :show, :edit, :update, :destroy, :consent
   ]
 
+  layout "layouts/full_page_sidebar"
+
   # GET /projects
   def index
     @projects = Project.current.order(:launch_date).page(params[:page]).per(40)

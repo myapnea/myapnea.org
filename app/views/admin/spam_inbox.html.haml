@@ -3,14 +3,17 @@
 - @body = "sky"
 - @footer = "grass"
 
-- content_for :header do
-  .header-container
-    .container
-      %h1.page-heading
-        .float-right= link_to "Empty Spam", admin_empty_spam_path, method: :post, data: { confirm: "DELETE all spammers?" }, class: "btn btn-xs btn-accent"
-        = @title
+- content_for :container_class, "container-fluid"
 
-= render "blank/sunset"
+- content_for :sidebar do
+  = render "admin/sidebar"
+
+- content_for :header do
+  .float-right= link_to "Empty Spam", admin_empty_spam_path, method: :post, data: { confirm: "DELETE all spammers?" }, class: "btn btn-sm btn-accent"
+  = @title
+
+- content_for :footer do
+  = render "blank/sunset"
 
 - if @spammers.present?
   %table.table
@@ -33,10 +36,10 @@
             = link_to "view topic", reply
             = reply.description if reply
         %td
-          = link_to "Not a spammer", admin_unspamban_path(spammer), method: :post, class: "btn btn-xs btn-default"
+          = link_to "Not a spammer", admin_unspamban_path(spammer), method: :post, class: "btn btn-sm btn-light"
 
 - else
-  .jumbotron.jumbotron-action
+  .jumbotron.jumbotron-action.jumbotron-shadow
     .lead.text-center{ style: "font-weight: 200;font-size: 24px;" }
       %i.fa.fa-fire-extinguisher.fa-2x.animate-wiggle.mr-3
       Hurray, no spammers!

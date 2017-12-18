@@ -1,35 +1,32 @@
 - @title = @image.to_param
 
-- content_for :body_class do
-  myapnea-sky-bg
+- @body = "light"
+- @footer = "light"
 
 - content_for :header do
   .header-container
     .container
       %h1.page-heading
-        .float-right
-          = render 'layouts/edit_delete_dropdown_header', edit_url: edit_image_path(@image), delete_url: @image, delete_confirmation: 'Delete image?'
+        - if current_user&.admin?
+          .float-right
+            = render "layouts/edit_delete_dropdown_header", edit_url: edit_image_path(@image), delete_url: @image, delete_confirmation: "Delete image?"
         = @title
 
-.drawer-and-shelf-container
-  .drawer
-    = render 'admin/menu'
-  .shelf
-    .dashboard-container
-      %table.table.table-striped.table-borderless.table-hover
-        %col{ width: '30%' }
-        %tr
-          %th User
-          %td
-            = link_to @image.user.forum_name, posts_member_path(@image.user.forum_name)
+.dashboard-container
+  %table.table.table-striped.table-borderless.table-hover
+    %col{ width: "30%" }
+    %tr
+      %th User
+      %td
+        = link_to @image.user.forum_name, posts_member_path(@image.user.forum_name)
 
-        %tr
-          %th Image Link
-          %td
-            %code.breakword= "#{ENV['website_url']}/image/#{@image.to_param}"
+    %tr
+      %th Image Link
+      %td
+        %code.breakword= "#{ENV["website_url"]}/image/#{@image.to_param}"
 
-        %tr
-          %th File Size
-          %td= number_to_human_size @image.file_size
+    %tr
+      %th File Size
+      %td= number_to_human_size @image.file_size
 
-      .center= image_tag download_image_path(@image), alt: '', style: 'max-width: 100%; margin: 0 auto;'
+  .center= image_tag download_image_path(@image), alt: "", style: "max-width: 100%; margin: 0 auto;"
