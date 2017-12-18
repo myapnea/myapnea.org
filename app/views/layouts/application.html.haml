@@ -8,6 +8,7 @@
     = render "layouts/meta/facebook"
     = render "layouts/meta/google"
     = render "layouts/meta/analytics"
+    %title= [@title, "MyApnea"].compact.join(" - ").html_safe
     = favicon_link_tag
     = auto_discovery_link_tag(:rss, "#{ENV["website_url"]}/blog.atom")
     = csrf_meta_tags
