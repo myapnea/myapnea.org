@@ -1,14 +1,12 @@
-- @menu = "dark-blue"
+- @menu = "light"
+- @body = "dark-blue"
 - @footer = "dark-blue"
 
-- content_for :body_class do
-  myapnea-dark-blue-bg
-
-- if false
+- if true
   .background-fixed-image
     .d-flex.background-fixed-image-fixed-height.color-overlay.align-items-center
       .container.text-center
-        .mb-3= image_tag "myapnea/logos/MyApneaLogo_border_bluetext.png", style: "height: auto; width: 300px; max-width: 100%;", class: "img-ignore-selection"
+        .mb-3= image_tag "logos/myapnea-logo-large-bluetext.png", style: "height: auto; width: 300px; max-width: 100%;", class: "img-ignore-selection"
         %h1.d-none.landing-title.mb-3
           MyApnea.Org
         .landing-text
@@ -18,11 +16,11 @@
 
 = render "landing/about_slide"
 
-#video.anchor-menu
-= render "landing/video_slide"
-
 #research.anchor-menu
 = render "landing/research_slide"
+
+#video.anchor-menu
+= render "landing/video_slide"
 
 #join.anchor-menu
 .page-box.last-box.d-flex.align-items-center.myapnea-dark-blue-bg.text-white{ style: "position: relative;" }

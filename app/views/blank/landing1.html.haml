@@ -3,7 +3,7 @@
   - if false
     %div{ style: 'background-color: black;position: relative;' }
       .embed-responsive.embed-responsive-16by9{ style: 'position: relative;' }
-        %video#video-player{ style: 'position: absolute !important; max-height: 100vh;', muted: 'true', autoplay: 'true', poster: asset_path('myapnea/logos/MyApneaLogo_border_bluetext.png') }
+        %video#video-player{ style: 'position: absolute !important; max-height: 100vh;', muted: 'true', autoplay: 'true', poster: asset_path('logos/myapnea-logo-large-bluetext.png') }
           -# controls: 'true'
           %source{ src: "//player.vimeo.com/external/208487154.hd.mp4" }
           Your browser does not support the video tag.
@@ -97,7 +97,7 @@
   #third-place
   .page-box.center-both.myapnea-blue-bg
     .container
-      = image_tag 'myapnea/logos/MyApneaLogo_border_bluetext.png', style: 'height: auto; max-width: 100%;'
+      = image_tag 'logos/myapnea-logo-large-bluetext.png', style: 'height: auto; max-width: 100%;'
     .page-box-down-arrow
       = link_to "#fourth-place", data: { object: 'scroll-anchor' }, class: 'orange' do
         %i.fa.fa-chevron-circle-down
@@ -105,7 +105,7 @@
   #fourth-place
   .page-box.center-both.myapnea-orange-bg
     .container
-      = image_tag 'myapnea/logos/MyApneaLogo_border_bluetext.png', style: 'height: auto; max-width: 100%;'
+      = image_tag 'logos/myapnea-logo-large-bluetext.png', style: 'height: auto; max-width: 100%;'
     .page-box-down-arrow
       = link_to "#fifth-place", data: { object: 'scroll-anchor' } do
         %i.fa.fa-chevron-circle-down
@@ -158,9 +158,9 @@
   .page-box.last-box.center-both.myapnea-sky-bg
     = render 'blank/sun'
     .container
-      = image_tag 'myapnea/logos/MyApneaLogo_border_bluetext.png', style: 'height: auto; max-width: 100%;'
+      = image_tag 'logos/myapnea-logo-large-bluetext.png', style: 'height: auto; max-width: 100%;'
     .page-box-down-arrow
       = link_to "#top-place", data: { object: 'scroll-anchor' }, class: 'orange' do
         %i.fa.fa-chevron-circle-up
 
-= render 'layouts/footer'
+= render 'layouts/footer', footer: nil

@@ -1,32 +1,35 @@
 .overflow-hidden
-  .page-box.myapnea-dark-blue-bg.overflow-hidden
-    .container{ style: "position: relative;" }
-      .mb-5= render "landing/orange_title", title: "MyApnea.Org", text_class: "text-white"
-      .row{ style: "z-index: 1020;position: relative;" }
-        .col-12.col-md.mb-5.d-flex.flex-column.justify-content-center
-          .landing-about-heading
-            -# Something
-          .landing-about-slide-tagline
-            MyApnea.Org is a community of patients, doctors, and researchers
-            trying to improve the diagnosis and treatment of sleep apnea. You
-            can engage in discussions with other members, read blog posts, and
-            participate in research studies.
-        - unless current_user
-          .col-12.col-md= render "landing/registration"
+  - if false
+    .page-box.myapnea-dark-blue-bg.overflow-hidden
+      .container{ style: "position: relative;" }
+        .mb-5= render "landing/orange_title", title: "MyApnea.Org", text_class: "text-white"
+        .row{ style: "z-index: 1020;position: relative;" }
+          .col-12.col-md.mb-5.d-flex.flex-column.justify-content-center
+            .landing-about-heading
+              -# Something
+            .landing-about-slide-tagline
+              MyApnea.Org is a community of patients, doctors, and researchers
+              trying to improve the diagnosis and treatment of sleep apnea. You
+              can engage in discussions with other members, read blog posts, and
+              participate in research studies.
+          - unless current_user
+            .col-12.col-md= render "landing/registration"
 
-    = link_to "#about", data: { object: "scroll-anchor", duration: "1200" }, class: "scroll-down-arrow-visible link-unstyled", style: "z-index: 1070;" do
-      %i.fa.fa-chevron-down
+      = link_to "#about", data: { object: "scroll-anchor", duration: "1200" }, class: "scroll-down-arrow-visible link-unstyled", style: "z-index: 1070;" do
+        %i.fa.fa-chevron-down
 
-  %div{ style: "position: relative;" }= render "decorations/sun_horizon"
+    %div{ style: "position: relative;" }= render "decorations/sun_horizon"
   #about.anchor-menu
-  .page-box.myapnea-white-bg.d-flex.flex-column.justify-content-center{ style: "position: static;" }
+  .myapnea-white-bg.d-flex.flex-column.justify-content-center{ style: "position: static;" }
     .container{ style: "position: relative;" }
-      .mb-5= render "landing/orange_title", title: "A better site for sleep apnea"
+      - if false
+        .mb-5= render "landing/orange_title", title: "A better site for sleep apnea"
 
       .row
-        .col-0.col-md.d-flex.justify-content-center.align-items-center.landing-about-slide-feature-icon
-          %i.fa.fa-comments-o.text-primary.animate-pulsate-hover
-        .col-12.col-md
+        .col-0.col-md-4.d-flex.align-items-center.landing-about-slide-feature-icon
+          .text-center.text-md-right.w-100
+            %i.fa.fa-comments-o.text-primary
+        .col-12.col-md-6
           = link_to topics_path, class: "landing-about-slide-feature link-unstyled" do
             %h4 Share your story
             %p
@@ -37,9 +40,10 @@
                 %i.fa.fa-caret-right
 
       .row
-        .col-0.col-md.d-flex.justify-content-center.align-items-center.landing-about-slide-feature-icon
-          %i.fa.fa-flask.text-accent.animate-wiggle-hover
-        .col-12.col-md
+        .col-0.col-md-4.d-flex.justify-content-center.align-items-center.landing-about-slide-feature-icon
+          .text-center.text-md-right.w-100
+            %i.fa.fa-flask.text-accent
+        .col-12.col-md-6
           = link_to slice_surveys_path, class: "landing-about-slide-feature link-unstyled" do
             %h4 Contribute to research
             %p
@@ -48,10 +52,11 @@
               %span.text-primary
                 Start surveys
                 %i.fa.fa-caret-right
-      .row
-        .col-0.col-md.d-flex.justify-content-center.align-items-center.landing-about-slide-feature-icon
-          %i.fa.fa-book.text-dark-blue.animate-pulsate-hover
-        .col-12.col-md
+      .row.mb-5
+        .col-0.col-md-4.d-flex.justify-content-center.align-items-center.landing-about-slide-feature-icon
+          .text-center.text-md-right.w-100
+            %i.fa.fa-book.text-dark-blue
+        .col-12.col-md-6
           = link_to blog_path, class: "landing-about-slide-feature link-unstyled" do
             %h4 Learn about sleep apnea
             %p
@@ -62,7 +67,7 @@
                 %i.fa.fa-caret-right
   %div{ style: "position: relative;" }
     %div{ style: "position: relative;" }
-      = link_to "#video", data: { object: "scroll-anchor" }, class: "scroll-down-arrow-visible link-unstyled", style: "z-index: 1070;" do
+      = link_to "#research", data: { object: "scroll-anchor" }, class: "scroll-down-arrow-visible link-unstyled", style: "z-index: 1070;" do
         %i.fa.fa-chevron-down
 
   - if false

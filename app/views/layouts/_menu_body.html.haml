@@ -10,6 +10,12 @@
         .dropdown-divider
         = link_to "Questions?", contact_path, class: "dropdown-item"
 
+  %li.nav-item.d-lg-none{ class: current_page?(about_path) ? "active" : nil }
+    = link_to about_path, class: "nav-link" do
+      About
+    - if current_page?(about_path)
+      %span.sr-only (current)
+
   =# render "menu/item", title: "About", path: about_path
   = render "menu/item", title: "Blog", path: blog_path, active: params[:controller] == "blog"
   = render "menu/item", title: "Forum", path: topics_path, active: params[:controller] == "topics"

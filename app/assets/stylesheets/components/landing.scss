@@ -443,8 +443,11 @@
 
 .landing-about-slide-feature-icon {
   font-size: 6rem;
-  margin-top: $spacer * 1.5;
-  margin-bottom: $spacer * 1.5;
+
+  @include media-breakpoint-up(md) {
+    margin-top: $spacer * 1.5;
+    margin-bottom: $spacer * 1.5;
+  }
 }
 
 .landing-about-slide-feature {

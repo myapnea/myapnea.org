@@ -3,10 +3,7 @@
     .footer
       .nowrap
         .float-right{ style: "margin-top: -14px;" }
-          .d-none.d-sm-inline= link_to "Questions?", contact_path
-          .d-inline.d-sm-none
-            = link_to contact_path, style: "text-decoration: none;" do
-              %i.fa.fa-envelope-square.fa-2x
+          = link_to "Questions?", contact_path
           &nbsp;
           = image_tag "logos/bwh-logo.png", size: "48x56", alt: ""
 
