@@ -1,18 +1,18 @@
 .col-12.col-md-3.col-xl-2.sidebar-wrapper
   .sidebar
     #sidebar-nav-wrapper.sidebar-nav-wrapper.collapse{ style: "background-color: transparent;" }
-      - if true
-        = render "admin/menu"
-      - else
-        %nav.sidebar-nav
-          .sidebar-nav-group.active
-            = link_to admin_path, class: "sidebar-nav-group-link" do
-              Admin
-
-            %ul.nav.sidebar-nav-group-items
-              %li{ class: params[:controller] == "projects" ? "active" : nil }
-                = link_to projects_path, class: "ml-4" do
-                  Projects
-              %li{ class: params[:controller] == "users" ? "active" : nil }
-                = link_to users_path, class: "ml-4" do
-                  Users
+      .pt-3.mx-3.my-0.ml-md-3.mb-md-3.mr-md-0
+        %ul.sidebar-menu.sidebar-menu-shadow
+          %li.sidebar-menu-header Admin
+          %li= link_to "Dashboard", admin_path, class: current_page?(admin_path) ? "active" : nil
+          %li= link_to "Projects", projects_path, class: params[:controller] == "projects" ? "active" : nil
+          %li= link_to "Users", users_path, class: params[:controller] == "users" ? "active" : nil
+          %li.sidebar-menu-header Discussion
+          %li= link_to "Spam Inbox", admin_spam_inbox_path, class: current_page?(admin_spam_inbox_path) ? "active" : nil
+          %li= link_to "Member Posts", admin_replies_path, class: current_page?(admin_replies_path) ? "active" : nil
+          %li= link_to "Blog Categories", admin_categories_path, class: params[:controller] == "admin/categories" ? "active" : nil
+          %li= link_to "User Images", images_path, class: params[:controller] == "images" ? "active" : nil
+          %li.sidebar-menu-header Features
+          %li= link_to "Exports", admin_exports_path, class: params[:controller] == "admin/exports" ? "active" : nil
+          %li= link_to "Partners", admin_partners_path, class: params[:controller] == "admin/partners" ? "active" : nil
+          %li= link_to "Team Members", admin_team_members_path, class: params[:controller] == "admin/team_members" ? "active" : nil

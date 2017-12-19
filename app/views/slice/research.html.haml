@@ -1,0 +1,147 @@
+- @title = "Research"
+- @footer = "light"
+
+- @body = "grey"
+- @footer = "grey"
+
+- @special_heading = true
+
+- content_for :container_class, "container-fluid"
+- content_for :sidebar, render("internal/sidebar")
+- content_for :header, @title.upcase
+
+
+- Project.published.order(:name).each do |project|
+  - subject = current_user.subjects.find_by(project: project) if current_user
+  .research-study
+    .d-flex.flex-row.align-items-stretch
+      .research-study-icon.d-flex.align-items-center
+        %i.fa.fa-flask
+      .research-study-body.d-flex.align-items-center
+        %div
+          .research-study-name= project.name
+          = project.short_description
+    .research-study-footer
+      .float-right
+        = link_to "#", data: { object: "show-research-study", research_study: project.id } do
+          Read More
+          %i.fa.fa-angle-double-right
+      .ml-3.d-inline-block
+        %i.fa.fa-users.text-accent
+        %small
+          1,242 Participants
+      .ml-3.d-inline-block
+        %i.fa.fa-heartbeat.text-accent
+        %small
+          10 Surveys
+
+      .ml-3.d-inline-block
+        %i.fa.fa-pie-chart.text-accent
+        %small
+          2 Customized Reports
+
+  .research-study-fullscreen-backdrop{ data: { object: "close-research-study research-study-backdrop", research_study: project.id } }
+    .card.research-study-fullscreen-content
+      %h4.card-header
+        .float-right
+          = link_to "#", class: "link-unstyled", data: { object: "close-research-study", research_study: project.id } do
+            &times;
+        = project.name
+      .card-body.research-study-fullscreen-backdrop-body
+        - if subject
+          .consent-administrative.small
+            .mb-3
+              %strong Study
+              = project.name
+              = link_to ">> DELETE <<", [:slice, subject], method: :delete, class: "text-danger small"
+            .mb-3
+              %strong Consented At
+              = subject.consented_at
+            .mb-3
+              %strong Consent Revoked At
+              = subject.consent_revoked_at
+            .mb-3
+              %strong Subject Code
+              %code= subject.slice_subject_id
+              = subject.slice_subject_code_cache
+
+        .brand-title Consent
+
+        = simple_markdown project.consent
+
+      .card-footer.text-muted
+        .float-right
+          = link_to slice_subjects_path(subject: { project_id: project.id }), method: :post, class: "text-accent" do
+            I Consent
+            %i.fa.fa-caret-right
+        = link_to "#", class: "link-unstyled", data: { turbolinks: false } do
+          %i.fa.fa-print
+          Print
+
+- if false
+  - Project.published.order(:name).each do |project|
+    .study-small.box-shadow.d-flex.flex-row.justify-content-between.align-items-center.p-3.mb-3{ style: "background-color: #fff;color: #333;" }
+      .nowrap
+        %strong{ style: "font-size: 1.25rem;margin-right: 2rem;" }= project.name.upcase
+      .small.overflow-hidden.nowrap= project.short_description
+      %div
+        %i.fa.fa-angle-double-right.text-accent
+
+
+.row.d-flex.align-items-around.mt-5
+  .col-12.col-sm
+    .jumbotron.jumbotron-accent.jumbotron-shadow.jumbotron-custom-text.jumbotron-hover
+      .jumbotron-icon.box-shadow
+        %i.fa.fa-pencil
+      .mb-3{ style: "font-size: 1.5rem;font-weight: 600;" }
+        ACTIVE
+        %br
+        STUDIES
+      .small{ style: "font-size: .875rem;" } Check back in and work on studies you've already begun.
+
+  .col-12.col-sm
+    .jumbotron.jumbotron-white.jumbotron-shadow.jumbotron-custom-text.jumbotron-hover
+      .jumbotron-icon.box-shadow
+        %i.fa.fa-files-o
+      .mb-3{ style: "font-size: 1.5rem;font-weight: 600;" } STUDIES YOU MAY BE INTERESTED IN
+      .small{ style: "font-size: .875rem;" } Studies you might like based on previous studies you've done.
+
+  .col-12.col-sm
+    .jumbotron.jumbotron-accent.jumbotron-shadow.jumbotron-custom-text.jumbotron-hover
+      .jumbotron-icon.box-shadow
+        %i.fa.fa-flask
+      .mb-3{ style: "font-size: 1.5rem;font-weight: 600;" }
+        MYAPNEA
+        %br
+        CORE
+      .small{ style: "font-size: .875rem;" } Take part in an international research study onsleep apnea.
+
+.brand-title Research Articles
+
+.card-deck.flex-column.flex-md-row
+  - Broadcast.current.published.order(publish_date: :desc, id: :desc).limit(3).each do |broadcast|
+    .card.background-image-container.mb-3.mb-md-0{ data: { object: "show-fullscreen-blog", broadcast_id: broadcast.id }, style: "cursor: pointer;" }
+      .background-image{ style: "background-image: url(#{first_image_url(broadcast)});" }
+      .card-body.myapnea-blue-transparent-bg.myapnea-border-accent.d-flex.align-items-center{ style: "position: relative;" }
+        %h4= broadcast.title
+    .blog-fullscreen-backdrop{ data: { broadcast_id: broadcast.id } }
+      .blog-fullscreen-content.d-flex.flex-column.justify-content-around
+        .background-blog-image.background-blur{ style: "background-image: url(#{first_image_url(broadcast)});", data: { object: "close-fullscreen-blog", broadcast_id: broadcast.id } }
+        %div{ style: "position: absolute; top: 0; right: 1rem;font-size: 2rem;cursor: pointer;" }
+          = link_to "#", class: "link-white no-underline", data: { object: "close-fullscreen-blog", broadcast_id: broadcast.id } do
+            &times;
+        .container
+          .landing-blog-info
+            .landing-blog-title= broadcast.title
+            .landing-blog-content{ style: "position: relative;" }
+              = strip_tags(simple_markdown broadcast.description, true, false).gsub(/\r/, " ").gsub(/\n/, " ").truncate(500, separator: ".", omission: ".").html_safe
+
+              .d-none.d-sm-block{ style: "position: absolute;right: -1rem; bottom: -1rem;" }
+                = link_to blog_post_path(broadcast.url_hash), class: "btn btn-accent btn-lg" do
+                  Read more
+                  %i.fa.fa-caret-right
+
+              .d-block.d-sm-none{ style: "position: absolute;right: -.25rem; bottom: -.25rem;" }
+                = link_to blog_post_path(broadcast.url_hash), class: "btn btn-sm btn-accent" do
+                  Read more
+                  %i.fa.fa-caret-right

@@ -11,6 +11,7 @@
   - Added search to the mobile dropdown menu
   - Improved page navigation after signing in and signing out
   - Redesigned dashboard and settings pages
+  - Redesigned research page to include active surveys and research articles
   - Added "Top" and "Recent" topics to member profile
 - **Admin Changes**
   - Major revamp of the administrative interface

@@ -165,6 +165,7 @@ Rails.application.routes.draw do
 
   namespace :slice, path: "" do # OR: scope module: :slice
     get :surveys
+    get :research
     namespace :surveys do
       get :start, path: ":project/:event/:design/start"
       get :resume, path: ":project/:event/:design/resume"

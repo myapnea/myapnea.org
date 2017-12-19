@@ -1,0 +1,83 @@
+.research-study {
+  background-color: $brand-white;
+  // border: 5px solid $p500-grey;
+  margin-bottom: $spacer;
+  box-shadow: $box-shadow;
+
+  .research-study-icon {
+    background-color: $p500-blue;
+    color: $brand-white;
+    font-variant: small-caps;
+    font-weight: 300;
+    font-size: 3rem;
+    padding: $spacer;
+  }
+
+  .research-study-name {
+    font-variant: small-caps;
+    font-weight: 300;
+    font-size: 1.5rem;
+    margin-bottom: $spacer * .25;
+  }
+
+  .research-study-body {
+    padding: $spacer;
+    background-color: $p50-blue;
+    // background-color: $p50-grey;
+    flex-grow: 1;
+  }
+
+  .research-study-footer {
+    background-color: $p50-grey;
+    // background-color: $p50-blue;
+    padding: $spacer * .5;
+    font-size: 1.25rem;
+    font-weight: 300;
+    color: $text-muted;
+  }
+}
+
+
+
+.noscroll {
+  overflow: hidden;
+}
+
+@keyframes opacityin {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.research-study-fullscreen-backdrop {
+  animation: opacityin 250ms;
+  background-color: rgba(0, 0, 0, .75);
+  bottom: 0;
+  display: none;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: $zindex-modal;
+
+  .research-study-fullscreen-content {
+    margin: $spacer auto;
+    max-height: calc(100vh - #{$spacer * 2});
+    width: 100%;
+
+    @each $breakpoint in map-keys($container-max-widths) {
+      @include media-breakpoint-up($breakpoint) {
+        max-width: #{map-get($container-max-widths, $breakpoint)};
+      }
+    }
+  }
+
+  .research-study-fullscreen-backdrop-body {
+    @include remove-last-child-bottom-margin;
+
+    overflow-y: scroll;
+  }
+}

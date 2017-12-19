@@ -62,7 +62,7 @@ class Admin::TeamMembersController < ApplicationController
   def update
     respond_to do |format|
       if @admin_team_member.update(admin_team_member_params)
-        format.html { redirect_to params[:redirect_back] ? :back : @admin_team_member, notice: 'Team member was successfully updated.' }
+        format.html { redirect_to params[:redirect_back] ? order_admin_team_members_path : @admin_team_member, notice: 'Team member was successfully updated.' }
         format.json { render :show, status: :ok, location: @admin_team_member }
       else
         format.html { render :edit }
