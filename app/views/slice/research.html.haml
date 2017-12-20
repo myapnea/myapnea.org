@@ -23,9 +23,17 @@
           = project.short_description
     .research-study-footer
       .float-right
-        = link_to "#", data: { object: "show-research-study", research_study: project.id } do
-          Read More
-          %i.fa.fa-angle-double-right
+        - if current_user && @subject = current_user.subjects.find_by(project: project)
+          = link_to slice_surveys_path(project) do
+            Take Surveys
+            %i.fa.fa-angle-double-right
+        - else
+          = link_to "#", data: { object: "show-research-study", research_study: project.id } do
+            Read More
+            %i.fa.fa-angle-double-right
+          = link_to slice_consent_path(project) do
+            Read Consent
+            %i.fa.fa-angle-double-right
       .ml-3.d-inline-block
         %i.fa.fa-users.text-accent
         %small

@@ -163,9 +163,15 @@ Rails.application.routes.draw do
     patch :update_email, path: "email"
   end
 
+  get "surveys", to: redirect("research")
   namespace :slice, path: "" do # OR: scope module: :slice
-    get :surveys
     get :research
+    get :consent, path: "research/:project/consent"
+    post :enrollment_consent, path: "research/:project/consent"
+    get :enrollment_exit, path: "research/:project/exit"
+
+    get :surveys, path: "surveys/:project", to: "surveys#surveys"
+
     namespace :surveys do
       get :start, path: ":project/:event/:design/start"
       get :resume, path: ":project/:event/:design/resume"

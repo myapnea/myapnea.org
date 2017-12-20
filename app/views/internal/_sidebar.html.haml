@@ -5,4 +5,14 @@
         %ul.sidebar-menu.sidebar-menu-shadow
           %li.sidebar-menu-header MyApnea
           %li= link_to "Dashboard", dashboard_path, class: current_page?(dashboard_path) ? "active" : nil
-          %li= link_to "Research", slice_research_path, class: current_page?(slice_research_path) ? "active" : nil
+          %li= link_to "Research", slice_research_path, class: params[:controller] == "slice" ? "active" : nil
+          - if @project && @subject
+            %li.sidebar-menu-header= @project.name
+            - @subject.subject_events.reverse_each do |subject_event|
+              %li
+                = link_to slice_surveys_path(@project), class: current_page?(slice_surveys_path(@project)) ? "active" : nil do
+                  - if subject_event.complete?
+                    %i.fa.fa-check-square-o
+                  - else
+                    %i.fa.fa-square-o
+                  = subject_event.name

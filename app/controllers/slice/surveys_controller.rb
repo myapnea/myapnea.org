@@ -9,6 +9,11 @@ class Slice::SurveysController < ApplicationController
 
   layout "layouts/full_page"
 
+  # GET /surveys/:project
+  def surveys
+    render layout: "layouts/full_page_sidebar"
+  end
+
   # GET /surveys/:project/:event/:design/start
   def start
     survey_in_progress
@@ -80,7 +85,7 @@ class Slice::SurveysController < ApplicationController
   def complete
     survey_completed
     # render "slice/surveys/complete"
-    redirect_to slice_surveys_path
+    redirect_to slice_surveys_path(@project)
   end
 
   # GET /surveys/:project/:event/:design/report
@@ -92,12 +97,12 @@ class Slice::SurveysController < ApplicationController
 
   def find_project_or_redirect
     @project = Project.published.find_by_param(params[:project])
-    empty_response_or_root_path(slice_surveys_path) unless @project
+    empty_response_or_root_path(slice_research_path) unless @project
   end
 
   def find_subject_or_redirect
     @subject = @project.subjects.find_by(user: current_user)
-    empty_response_or_root_path(slice_surveys_path) unless @subject
+    empty_response_or_root_path(slice_research_path) unless @subject
   end
 
   def subject_params

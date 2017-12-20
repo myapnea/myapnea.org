@@ -67,3 +67,6 @@
         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
       - else
         = f.submit "Create an Account", class: "btn btn-primary btn-block btn-shadow"
+
+.sign-up-form.text-center
+  = link_to "I already have an account.", new_user_session_path

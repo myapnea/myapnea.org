@@ -21,6 +21,12 @@ class Project < ApplicationRecord
 
   # Validations
   validates :name, :access_token, :slice_site_id, :code_prefix, presence: true
+  validates :slug, format: { with: /\A[a-z][a-z0-9\-]*\Z/ },
+                   exclusion: { in: %w(new edit create update destroy research) },
+                   uniqueness: true,
+                   allow_nil: true
+
+
 
   # Relationships
   belongs_to :user

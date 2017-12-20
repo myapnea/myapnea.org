@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    session[:previous_internal_url] || session[:previous_external_url] || dashboard_path
+    join_study_path || session[:previous_internal_url] || session[:previous_external_url] || dashboard_path
   end
 
   def after_sign_out_path_for(resource_or_scope)
@@ -35,6 +35,14 @@ class ApplicationController < ActionController::Base
   end
 
   protected
+
+  def join_study_path
+    @project = Project.published.find_by(id: session[:project_id])
+    return unless @project && session[:consented_at].present?
+    current_user.consent!(@project, consented_at: session[:consented_at])
+    flash[:notice] = "Welcome to #{@project.name}."
+    slice_surveys_path(@project)
+  end
 
   def internal_controllers
     {
@@ -71,6 +79,7 @@ class ApplicationController < ActionController::Base
       replies: [:show],
       search: [],
       surveys: [:index],
+      slice: [],
       tools: [],
       topics: [:index, :show]
     }

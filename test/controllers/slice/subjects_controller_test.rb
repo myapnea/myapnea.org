@@ -29,7 +29,7 @@ class Slice::SubjectsControllerTest < ActionDispatch::IntegrationTest
     assert_difference("Subject.count") do
       post slice_subjects_url, params: { subject: subject_params }
     end
-    assert_redirected_to slice_surveys_url
+    assert_redirected_to slice_research_url
   end
 
   test "should show subject" do
@@ -47,7 +47,7 @@ class Slice::SubjectsControllerTest < ActionDispatch::IntegrationTest
   test "should update subject" do
     login(@regular)
     patch slice_subject_url(@subject), params: { subject: subject_params }
-    assert_redirected_to slice_surveys_url
+    assert_redirected_to slice_research_url
   end
 
   test "should destroy subject" do
@@ -55,6 +55,6 @@ class Slice::SubjectsControllerTest < ActionDispatch::IntegrationTest
     assert_difference("Subject.count", -1) do
       delete slice_subject_url(@subject)
     end
-    assert_redirected_to slice_surveys_url
+    assert_redirected_to slice_research_url
   end
 end

@@ -1,0 +1,26 @@
+- @title = "#{@project.name} Consent"
+
+= render "projects/theme", project: @project
+
+- content_for :container_class, "container-fluid"
+- content_for :sidebar, render("internal/sidebar")
+- content_for :header do
+  = @project.name
+  Consent
+
+.dashboard-container
+  .brand-title Consent
+  = simple_markdown_new @project.consent
+
+  .row
+    .col
+      .d-none.d-md-block
+        = render "slice/i_do_not_consent", project: @project, size: "btn-lg"
+      .d-block.d-md-none
+        = render "slice/i_do_not_consent", project: @project, size: ""
+    .col
+      .text-right
+        .d-none.d-md-block
+          = render "slice/i_consent", project: @project, size: "btn-lg"
+        .d-block.d-md-none
+          = render "slice/i_consent", project: @project, size: ""

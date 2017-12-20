@@ -31,7 +31,7 @@ class Slice::SubjectsController < ApplicationController
     if @subject.save
       @subject.update(consented_at: Time.zone.now)
       @subject.find_or_create_remote_subject!
-      redirect_to slice_surveys_path, notice: "Subject was successfully created."
+      redirect_to slice_research_path, notice: "Subject was successfully created."
     else
       render :new
     end
@@ -40,7 +40,7 @@ class Slice::SubjectsController < ApplicationController
   # PATCH /slice/subjects/1
   def update
     if @subject.update(subject_params)
-      redirect_to slice_surveys_path, notice: "Subject was successfully updated."
+      redirect_to slice_research_path, notice: "Subject was successfully updated."
     else
       render :edit
     end
@@ -49,7 +49,7 @@ class Slice::SubjectsController < ApplicationController
   # DELETE /slice/subjects/1
   def destroy
     @subject.destroy
-    redirect_to slice_surveys_path, notice: "Subject was successfully deleted."
+    redirect_to slice_research_path, notice: "Subject was successfully deleted."
   end
 
   private

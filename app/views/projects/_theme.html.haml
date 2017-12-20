@@ -1,0 +1,23 @@
+- @menu = project.theme || "light"
+- @body = project.theme || "light"
+- @footer = project.theme || "light"
+
+- case project.theme
+- when "green"
+  - @footer = "grass"
+- when "default"
+  - @menu = "light"
+  - @footer = "grey"
+
+- case project.theme
+- when "night"
+  - content_for :footer, render("blank/moon")
+- when "sunset"
+  - content_for :footer, render("blank/sunset")
+
+-# background_class = "myapnea-light-bg"
+-# background_class = "myapnea-sky-bg"
+-# background_class = "myapnea-blue-bg"
+-# background_class = "myapnea-sunset-bg"
+-# background_class = "myapnea-green-bg"
+-# background_class = "myapnea-orange-bg"

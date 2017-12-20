@@ -1,0 +1,67 @@
+- @title = "Surveys"
+
+=# render "projects/theme", project: @project
+
+- @footer = "light"
+- @body = "grey"
+- @footer = "grey"
+
+- @special_heading = true
+
+- content_for :container_class, "container-fluid"
+- content_for :sidebar, render("internal/sidebar")
+- content_for :header, @title.upcase
+
+.jumbotron.jumbotron-action.jumbotron-shadow.jumbotron-custom-text
+  %strong= @project.name
+  Consented at
+  = @subject.consented_at
+  %code= @subject.slice_subject_code_cache
+
+  = link_to [:slice, @subject], method: :delete, class: "btn btn-accent btn-sm", data: { confirm: "Leave the study?" } do
+    %i.fa.fa-ambulance
+    Leave Study
+
+.dashboard-container
+  - @subject.subject_events.reverse_each do |subject_event|
+    .panel.panel-full-width
+      %h1
+        .float-right
+          %small= @project.name
+        = subject_event.name
+      - if subject_event.percent.to_i.zero?
+        .progress.progress-simple
+          .progress-bar.progress-bar-striped{ role: "progressbar", style: "width: 100%;background-color: #ededed;", aria: { valuenow: "0", valuemin: "0", valuemax: "100" } }
+      - else
+        .progress.progress-simple
+          .progress-bar.progress-bar-striped.bg-primary{ role: "progressbar", style: "width: #{subject_event.percent}%;", aria: { valuenow: "#{subject_event.percent}", valuemin: "0", valuemax: "100" } }
+      .float-right
+        %small.text-muted= "#{subject_event.percent}%"
+      .clearfix
+      .card-columns
+        - subject_event.event_designs.each do |event_design|
+          .card
+            .card-body
+              .small.card-title
+                = event_design.design_name
+              - if event_design.percent.to_i.zero?
+                .progress.progress-simple
+                  .progress-bar.progress-bar-striped{ role: "progressbar", style: "width: 100%;background-color: #ededed;", aria: { valuenow: "0", valuemin: "0", valuemax: "100" } }
+              - else
+                .progress.progress-simple
+                  .progress-bar.progress-bar-striped.bg-primary{ role: "progressbar", style: "width: #{event_design.percent}%;", aria: { valuenow: "#{event_design.percent}", valuemin: "0", valuemax: "100" } }
+
+            .card-footer
+              .float-right
+                %small.text-muted= "#{event_design.percent}%"
+              - if event_design.valid? && event_design.incomplete?
+                - if event_design.percent.to_i.zero?
+                  = link_to slice_surveys_start_path(@project, event_design.event_id, event_design.design_id) do
+                    Start
+                    %i.fa.fa-caret-right
+                - else
+                  = link_to slice_surveys_resume_path(@project, event_design.event_id, event_design.design_id) do
+                    Resume
+                    %i.fa.fa-caret-right
+              .clearfix
+
