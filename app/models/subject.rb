@@ -58,7 +58,7 @@ class Subject < ApplicationRecord
 
   def create_baseline_event!
     return unless linked?
-    params = { event_id: "baseline" } # Event.first.slug
+    params = { event_id: project.slice_baseline_event || "baseline" } # Event.first.slug
     (json, status) = Slice::JsonRequest.post("#{project.project_url}/subjects/#{slice_subject_id}/events.json", params)
     load_events_from_json(json, status)
   end

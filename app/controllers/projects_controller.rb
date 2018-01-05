@@ -73,7 +73,8 @@ class ProjectsController < ApplicationController
     parse_date_if_key_present(:project, :launch_date)
     params.fetch(:project, {}).permit(
       :name, :slug, :access_token, :short_description, :consent, :theme,
-      :launch_date, :published, :slice_site_id, :code_prefix
+      :launch_date, :published, :slice_site_id, :slice_baseline_event,
+      :code_prefix
     )
   end
 end
