@@ -4,9 +4,9 @@
   = render "forms/horizontal/text_area", form: form, object: project, key: :short_description
   = render "forms/horizontal/text_area", form: form, object: project, key: :consent
   = render "forms/horizontal/date_field", form: form, object: project, key: :launch_date
-  = render "forms/horizontal/text_field", form: form, object: project, key: :access_token, help_text: "Located in project settings in Slice."
+  = render "forms/horizontal/text_field", form: form, object: project, key: :access_token, help_text: "Located in project settings in #{link_to("Slice", ENV["slice_url"])}.".html_safe
   = render "forms/horizontal/text_field", form: form, object: project, key: :slice_site_id
-  = render "forms/horizontal/text_field", form: form, object: project, key: :slice_baseline_event
+  = render "forms/horizontal/text_field", form: form, object: project, key: :slice_baseline_event, placeholder: "baseline"
   = render "forms/horizontal/text_field", form: form, object: project, key: :code_prefix
   = render "forms/horizontal/check_box", form: form, object: project, key: :published
   = render "forms/horizontal/select", form: form, object: project, key: :theme, options: Project::THEMES, include_blank: "Select a theme"
