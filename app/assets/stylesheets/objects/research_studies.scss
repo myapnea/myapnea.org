@@ -2,7 +2,8 @@
   background-color: $brand-white;
   // border: 5px solid $p500-grey;
   margin-bottom: $spacer;
-  box-shadow: $box-shadow;
+  // box-shadow: $box-shadow;
+  box-shadow: 0 1px 5px $box-shadow-color;
 
   .research-study-icon {
     background-color: $p500-blue;
