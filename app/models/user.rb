@@ -53,7 +53,7 @@ class User < ApplicationRecord
   # Methods
 
   def consent!(project, consented_at: Time.zone.now)
-    subject = current_user.subjects.where(project: project).first_or_create(consented_at: consented_at)
+    subject = subjects.where(project: project).first_or_create(consented_at: consented_at)
     subject.find_or_create_remote_subject!
   end
 
