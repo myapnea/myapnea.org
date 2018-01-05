@@ -24,12 +24,17 @@
             .d-flex.flex-row.align-items-stretch
               .display-1{ class: domain_option.dig("count").zero? ? "text-muted" : "text-accent" }= domain_option.dig("count")
               .d-flex.align-items-center= domain_option.dig("name")
-          = data
+          = data if Rails.env.development?
           - series = [{ type: "column", showInLegend: false, name: "Percent", data: data }]
           - title = { text: design_option.dig("display_name"), align: "center" }
           - x_axis = { categories: categories, title: { text: nil } }
           - y_axis = { title: { text: "Count" } }
           %div{ data: { object: "survey-report-chart", series: series.to_json, title: title.to_json, x_axis: x_axis.to_json, y_axis: y_axis.to_json } }
+
+    .mb-5.text-center
+      = link_to slice_surveys_path(@project), class: "btn btn-accent btn-lg btn-shadow" do
+        %i.fa.fa-caret-left
+        Back to Surveys
 
     .card.mb-5
       .card-header
