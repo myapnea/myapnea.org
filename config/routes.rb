@@ -104,7 +104,6 @@ Rails.application.routes.draw do
 
   scope module: :internal do
     get :dashboard
-    get :activity, path: "dashboard/activity"
     get :research, path: "dashboard/research"
     get :reports, path: "dashboard/reports"
     get :timeline

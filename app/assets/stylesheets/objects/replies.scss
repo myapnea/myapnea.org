@@ -112,3 +112,7 @@
     margin-left: 70px;
   }
 }
+
+.reply-remove-margin-bottom {
+  @include remove-last-child-bottom-margin;
+}

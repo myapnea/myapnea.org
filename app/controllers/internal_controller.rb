@@ -6,12 +6,8 @@ class InternalController < ApplicationController
 
   # GET /dashboard
   def dashboard
-    redirect_to activity_path
+    render layout: "layouts/full_page_sidebar_drawer"
   end
-
-  # # GET /dashboard/activity
-  # def activity
-  # end
 
   # # GET /dashboard/research
   # def research

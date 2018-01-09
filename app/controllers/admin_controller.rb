@@ -7,6 +7,7 @@ class AdminController < ApplicationController
 
   layout "layouts/full_page_sidebar"
 
+  # GET /admin
   # def dashboard
   # end
 

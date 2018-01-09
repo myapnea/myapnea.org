@@ -1,0 +1,17 @@
+.background-brand-white.mb-3.box-shadow
+  .reply-remove-margin-bottom.d-flex.d-column.justify-content-between
+    .py-3.pl-3
+      - size = 50
+      - picture_content = profile_picture_tag(reply.user, size: size, style: "max-height:#{(size * 2) + 5}px;max-width:#{size + 5}px;")
+      - if current_user == reply.user
+        = link_to picture_content, settings_profile_path(anchor: "picture")
+      - else
+        = picture_content
+    .py-3.pl-2.pr-3.mr-auto.w-100
+      .small
+        .float-right= link_to reply.parent.title, reply, data: { turbolinks: false }, class: "link-muted"
+        = link_to reply.user.forum_name, posts_member_path(reply.user.forum_name)
+      = render "replies/formatted", reply: reply
+    = link_to reply, class: "p-3 d-flex align-items-center myapnea-grey-bg no-underline", data: { turbolinks: false } do
+      %div
+        %i.fa.fa-angle-right
