@@ -3,17 +3,4 @@
 - @menu = "dark-blue"
 - @footer = "dark-blue"
 
-.page-box.last-box.myapnea-dark-blue-bg
-  .container{ style: "position: relative;" }
-    .row{ style: "z-index: 1020;position: relative;" }
-      .col-12.col-md.mb-5.d-flex.flex-column.justify-content-center
-        .mb-5.text-center
-          = image_tag "logos/myapnea-logo-large-whitetext.png", style: "height: auto; max-width: 540px; width: 100%;", class: "img-ignore-selection"
-        .landing-about-slide-tagline
-          MyApnea.Org is a community of patients, doctors, and researchers
-          trying to improve the diagnosis and treatment of sleep apnea. You
-          can engage in discussions with other members, read blog posts, and
-          participate in research studies.
-      - unless current_user
-        .col-12.col-md= render "landing/registration"
-
+= render "landing/register_slide"

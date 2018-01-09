@@ -16,8 +16,10 @@ class ExternalController < ApplicationController
   # def contact
   # end
 
+  # GET /
+  # GET /landing
   def landing
-    render layout: "layouts/full_page_custom_header"
+    render layout: "layouts/full_page"
   end
 
   # GET /partners

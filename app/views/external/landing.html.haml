@@ -1,8 +1,8 @@
-- @menu = "light"
+- @menu = "dark-blue"
 - @body = "dark-blue"
 - @footer = "dark-blue"
 
-- if true
+- if false
   .background-fixed-image
     .d-flex.background-fixed-image-fixed-height.color-overlay.align-items-center
       .container.text-center
@@ -12,8 +12,11 @@
         .landing-text
           Improving the lives of people with sleep apnea.
 
-#top-menu.top-menu= render "layouts/menu", menu: @menu ? "menu-#{@menu}" : nil
+  #top-menu.top-menu= render "layouts/menu", menu: @menu ? "menu-#{@menu}" : nil
 
+= render "landing/register_slide"
+
+#about.anchor-menu
 = render "landing/about_slide"
 
 #research.anchor-menu
