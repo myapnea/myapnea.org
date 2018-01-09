@@ -17,15 +17,16 @@
                     %i.fa.fa-square-o
                   = subject_event.name
 
-    .sidebar-photo.d-flex.align-items-center.text-center
-      .mr-auto.mx-md-auto.rounded
-        .d-none.d-md-block.px-lg-4.pt-lg-4
-          = link_to settings_profile_path(anchor: "picture"), class: "d-block mb-3" do
-            = profile_picture_tag current_user, size: 256, style: "max-width: 100%;height: auto;"
-        .d-none.d-md-block.text-md-center.overflow-hidden.text-accent.breakword.small.p-lg-1.myapnea-white-bg.rounded
-          = current_user.forum_name
-        - if false
-          .d-none.d-md-block.text-md-center
-            %small.text-muted
-              Member since
-              = current_user.created_at.strftime("%b %Y")
+    - if current_user
+      .sidebar-photo.d-flex.align-items-center.text-center
+        .mr-auto.mx-md-auto.rounded
+          .d-none.d-md-block.px-lg-4.pt-lg-4
+            = link_to settings_profile_path(anchor: "picture"), class: "d-block mb-3" do
+              = profile_picture_tag current_user, size: 256, style: "max-width: 100%;height: auto;"
+          .d-none.d-md-block.text-md-center.overflow-hidden.text-accent.breakword.small.p-lg-1.myapnea-white-bg.rounded
+            = current_user.forum_name
+          - if false
+            .d-none.d-md-block.text-md-center
+              %small.text-muted
+                Member since
+                = current_user.created_at.strftime("%b %Y")
