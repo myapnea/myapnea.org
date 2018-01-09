@@ -46,10 +46,8 @@
                       = link_to topic.title, topic, class: "link-blend"
 
 
-    .dashboard-container
-      .dashboard-title Recent Posts
-      .dashboard-body
-        - @replies.each do |reply|
-          = render "internal/reply", reply: reply
+    %p.lead Recent Posts
+    - @replies.each do |reply|
+      = render "replies/simple_full", reply: reply
 
     .center-horizontally= paginate@replies, theme: "bootstrap"
