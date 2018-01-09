@@ -26,24 +26,4 @@
 = render "landing/video_slide"
 
 #join.anchor-menu
-.page-box.last-box.d-flex.align-items-center.myapnea-dark-blue-bg.text-white{ style: "position: relative;" }
-  = link_to "#join", data: { object: "scroll-anchor" }, class: "scroll-down-arrow-visible scroll-down-arrow-top link-unstyled" do
-    %i.fa.fa-chevron-down.text-white
-
-  .container
-
-    - if current_user
-      .landing-sentence.text-center.mb-5
-        Thank you for
-        %span.text-accent making a difference
-        on MyApnea.Org.
-
-    - else
-      .landing-sentence.text-center.mb-5
-        Join
-        %span.text-accent thousands
-        of people already making a difference on MyApnea.Org.
-
-      .text-center
-        = link_to new_user_registration_path, class: "btn btn-xl btn-accent btn-shadow" do
-          Join Today
+= render "landing/join_slide"

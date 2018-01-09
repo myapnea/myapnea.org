@@ -71,7 +71,7 @@ class ApplicationController < ActionController::Base
       blank: [],
       blog: [],
       external: [
-        :about, :community, :consent, :contact, :faqs, :partners,
+        :community, :consent, :contact, :faqs, :partners,
         :privacy_policy, :terms_and_conditions, :terms_of_access, :team,
         :voting
       ],
