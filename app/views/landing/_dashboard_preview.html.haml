@@ -1,0 +1,13 @@
+.landing-sentence.text-center.mb-5.text-white
+  %div
+    Welcome
+    = succeed "!" do
+      %span.text-accent.small= current_user.forum_name
+  .mb-5{ style: "font-size: 0.8rem;" }
+    = link_to settings_path do
+      change my forum name
+      %i.fa.fa-caret-right
+  = link_to dashboard_path, class: "btn btn-xl btn-accent btn-shadow" do
+    My dashboard
+    %i.fa.fa-caret-right
+

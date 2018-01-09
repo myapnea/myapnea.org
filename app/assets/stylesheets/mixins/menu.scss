@@ -59,4 +59,13 @@
     color: $brand-white;
   }
 
+  .dropdown-menu-myapnea {
+    .dropdown-menu-myapnea-inner {
+      background-color: darken($background-color, 6.5%);
+    }
+
+    &::after {
+      border-bottom-color: darken($background-color, 6.5%);
+    }
+  }
 }

@@ -73,7 +73,7 @@ class ApplicationController < ActionController::Base
       external: [
         :about, :community, :consent, :contact, :faqs, :partners,
         :privacy_policy, :terms_and_conditions, :terms_of_access, :team,
-        :voting, :version
+        :voting
       ],
       members: [:index, :show],
       replies: [:show],

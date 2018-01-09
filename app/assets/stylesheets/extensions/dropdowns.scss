@@ -17,6 +17,7 @@
 
 .dropdown-menu-myapnea {
   border-width: 0;
+  border-radius: 0 0 $border-radius * 2 $border-radius * 2;
   box-shadow: 0 5px 10px 0 $box-shadow-color;
   margin-top: 0;
   padding: 0;
