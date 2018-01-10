@@ -17,10 +17,8 @@
 
 .profile-menu-container
   %ul.blog-menu.profile-menu
-    %li.blog-menu-header Dashboard
-    - if false
-      %li= link_to "Dashboard", dashboard_path, class: current_page?(dashboard_path) ? "active" : nil
-    %li= link_to "Activity", activity_path, class: current_page?(activity_path) ? "active" : nil
+    %li.blog-menu-header MyApnea
+    %li= link_to "Dashboard", dashboard_path, class: current_page?(dashboard_path) ? "active" : nil
     %li= link_to "Research", research_path, class: current_page?(research_path) ? "active" : nil
     %li= link_to "Reports", reports_path, class: current_page?(reports_path) ? "active" : nil
     %li= link_to "Timeline", timeline_path, class: current_page?(timeline_path) ? "active" : nil
