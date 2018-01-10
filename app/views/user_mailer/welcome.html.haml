@@ -1,11 +1,11 @@
 %p{ style: p_style }
   Dear
-  = succeed ',' do
+  = succeed "," do
     = @user.first_name
 
 %p{ style: p_style }
   Your registration with
-  = link_to 'MyApnea.Org', ENV['website_url'], style: link_style
+  = link_to ENV["website_name"], ENV["website_url"], style: link_style
   was successful. Thank you for joining our growing network!
 
 %p{ style: p_style }
@@ -16,22 +16,22 @@
   %li
     %span{ style: emphasis_style } Connect
     with other members on the
-    = link_to 'forum', "#{ENV['website_url']}/forum", style: link_style
+    = link_to "forum", "#{ENV["website_url"]}/forum", style: link_style
     to share your story and discuss your views on future research projects.
   %li
     %span{ style: emphasis_style } Track
     your health over time and compare with other network members by completing
-    = succeed '.' do
-      = link_to 'short surveys', "#{ENV['website_url']}/surveys", style: link_style
+    = succeed "." do
+      = link_to "short surveys", "#{ENV["website_url"]}/research", style: link_style
   %li
     %span{ style: emphasis_style } Learn
     more about sleep apnea research by reading informative
-    = link_to 'blog posts', "#{ENV['website_url']}/blog", style: link_style
+    = link_to "blog posts", "#{ENV["website_url"]}/blog", style: link_style
     written by researchers and fellow MyApnea members.
 
 %p{ style: p_style }
   Again, welcome and we look forward to finding answers together with you!
 
 %p{ style: p_style }
-  The MyApnea.Org Team
+  The MyApnea Team
 

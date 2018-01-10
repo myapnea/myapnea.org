@@ -6,6 +6,6 @@ class UserMailer < ApplicationMailer
     setup_email
     @user = user
     @email_to = user.email
-    mail(to: @email_to, subject: 'Welcome to MyApnea.Org!')
+    mail(to: @email_to, subject: "Welcome to MyApnea!")
   end
 end
