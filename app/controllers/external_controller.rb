@@ -2,10 +2,16 @@
 
 # Displays publicly available pages.
 class ExternalController < ApplicationController
+  before_action :find_article_or_redirect, only: [:article]
+
   # GET /about
   def about
     render layout: "layouts/full_page"
   end
+
+  # # GET /articles/:slug
+  # def article
+  # end
 
   # TODO: Make this direct to MyApnea Core consent.
   # # GET /consent
@@ -65,5 +71,12 @@ class ExternalController < ApplicationController
   # GET /version.json
   def version
     render layout: "layouts/full_page"
+  end
+
+  private
+
+  def find_article_or_redirect
+    @article = Broadcast.current.published.find_by(slug: params[:slug])
+    redirect_to blog_path unless @article
   end
 end

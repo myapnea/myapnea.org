@@ -13,6 +13,11 @@ class ExternalControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "should get article" do
+    get article_url(broadcasts(:published).slug)
+    assert_response :success
+  end
+
   test "should get contact" do
     get contact_url
     assert_response :success

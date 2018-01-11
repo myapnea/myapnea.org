@@ -53,8 +53,8 @@
     .col-12.col-sm
       .dashboard-container
         %div.mb-3{ style: "font-size: 1.25rem;" } Top FAQs
-        .small.mb-2 What is MyApnea.Org?
-        .small.mb-2 How is MyApnea.Org organized?
+        .small.mb-2= link_to "What is MyApnea.Org?", article_path("what-is-myapnea-org"), class: "link-blend"
+        .small.mb-2= link_to "How is MyApnea.Org organized?", article_path("how-is-myapnea-org-organized"), class: "link-blend"
     .col-12.col-sm
       - articles = Broadcast.current.published.where(category: Admin::Category.find_by(slug: "research")).order(view_count: :desc).limit(5)
       .dashboard-container

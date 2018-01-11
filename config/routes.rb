@@ -75,6 +75,7 @@ Rails.application.routes.draw do
   scope module: :external do
     post :preview
     get :about
+    get "articles/:slug", action: "article", as: :article
     get :contact
     get :landing
     get :partners

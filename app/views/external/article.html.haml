@@ -1,0 +1,32 @@
+- @title = @article.title
+- @keywords = @article.keywords
+
+- @menu = "night"
+- @body = "night"
+- @footer = "night"
+
+- content_for :header do
+  - @special_heading = true
+  .header-container
+    .container
+      %h1.page-heading{ style: @special_heading ? "font-weight: 300 !important;letter-spacing: .25rem !important;text-shadow: none !important;font-variant: small-caps;" : nil }
+        = @title
+- content_for :footer, render("blank/moon")
+
+
+.dashboard-container-margins{ style: "line-height: 1.8;" }
+  %h4= @title
+  .mb-4= simple_markdown_new @article.description, target_blank: false
+
+  %small Was this article helpful?
+  = succeed " " do
+    = link_to "#", class: "btn btn-outline-secondary btn-sm", data: { object: "suppress-click" } do
+      %i.fa.fa-thumbs-up
+  = link_to "#", class: "btn btn-outline-secondary btn-sm", data: { object: "suppress-click" } do
+    %i.fa.fa-thumbs-down
+
+  %hr
+
+  %small
+    Have more questions?
+    = link_to "Contact us", contact_path

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 namespace :projects do
   desc "Create MyApnea Core project."
   task create_myapnea_core: :environment do
