@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# TODO: Remove in v17.0.0
+
 namespace :projects do
   desc "Create MyApnea Core project."
   task create_myapnea_core: :environment do

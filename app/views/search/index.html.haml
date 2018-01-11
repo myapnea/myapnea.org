@@ -8,7 +8,7 @@
   .header-container
     .container
       %h1.page-heading{ style: @special_heading ? "font-weight: 300 !important;letter-spacing: .25rem !important;text-shadow: none !important;font-variant: small-caps;" : nil }
-        - if @search_documents.total_count.positive?
+        - if params[:search].present?
           .float-right= render "layouts/per_page", per_page: 10, object_count: @search_documents.total_count
         Help Center
 
@@ -67,9 +67,11 @@
     .col-12.col-sm
       .dashboard-container
         %div.mb-3{ style: "font-size: 1.25rem;" } Registration
-        .small.mb-2 Who can join MyApnea.Org?
-        .small.mb-2 How do I join MyApnea.Org?
-        .small.mb-2 Why do I have to sign a consent form to participate in the research portal?
+        .small.mb-2= link_to "Who can join MyApnea.Org?", article_path("who-can-join-myapnea-org"), class: "link-blend"
+        .small.mb-2= link_to "How do I join MyApnea.Org?", article_path("how-do-i-join-myapnea-org"), class: "link-blend"
+        .small.mb-2= link_to "Why do I have to sign a consent form to participate in the research portal?", article_path("why-do-i-have-to-sign-a-consent-form-to-participate-in-the-research-portal"), class: "link-blend"
+        - unless current_user
+          .small.mb-2= link_to "Register an account", new_user_registration_path, class: "link-accent"
 
 
 
@@ -77,15 +79,17 @@
       - articles = Broadcast.current.published.where(category: Admin::Category.find_by(slug: "research")).order(view_count: :desc).limit(5)
       .dashboard-container
         %div.mb-3{ style: "font-size: 1.25rem;" } Participating in the Research Portal
-        .small.mb-2 What's expected of me if I join the research portal?
-        .small.mb-2 What are the surveys about?
-        .small.mb-2 How often do I take these surveys?
+        .small.mb-2= link_to "What's expected of me if I join the research portal?", article_path("what-s-expected-of-me-if-i-join-the-research-portal"), class: "link-blend"
+        .small.mb-2= link_to "What are the surveys about?", article_path("what-are-the-surveys-about"), class: "link-blend"
+        .small.mb-2= link_to "How often do I take these surveys?", article_path("how-often-do-i-take-these-surveys"), class: "link-blend"
+        - if project = Project.find_by(slug: "myapnea-core")
+          .small.mb-2= link_to "View Consent", slice_consent_path(project), class: "link-accent"
 
   .row
     .col-12.col-sm
       .dashboard-container
         %div.mb-3{ style: "font-size: 1.25rem;" } Privacy and Security
-        .small.mb-2 Is my data safe?
+        .small.mb-2= link_to "Is my data safe?", article_path("is-my-data-safe"), class: "link-blend"
         = link_to "View Privacy Policy", privacy_policy_path, class: "small link-accent"
     .col-12.col-sm
       - articles = Broadcast.current.published.where(category: Admin::Category.find_by(slug: "learn")).order(view_count: :desc).limit(5)
