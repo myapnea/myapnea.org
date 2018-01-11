@@ -61,6 +61,7 @@
         %div.mb-3{ style: "font-size: 1.25rem;" } Top Articles
         - articles.each do |broadcast|
           .small.mb-2= link_to broadcast.title, blog_post_path(broadcast.url_hash), class: "link-blend"
+        = link_to "View all MyApnea articles", blog_path, class: "small link-accent"
 
   .row
     .col-12.col-sm
