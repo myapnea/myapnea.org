@@ -1,5 +1,5 @@
+.dashboard-container-margins,
 .dashboard-container {
-  @include remove-last-child-bottom-margin;
   @include scale-images;
 
   background-color: $dashboard-bg;
@@ -30,10 +30,13 @@
     padding-left: 0;
     padding-right: 0;
   }
-}
 
-@include media-breakpoint-up(sm) {
-  .dashboard-container {
+  @include media-breakpoint-up(sm) {
     padding: 30px;
   }
+}
+
+
+.dashboard-container {
+  @include remove-last-child-bottom-margin;
 }

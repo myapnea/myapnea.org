@@ -99,6 +99,12 @@
 
 .myapnea-dark-blue-bg {
   background-color: $p900-blue;
+
+  .header-container {
+    background-color: $p900-blue;
+    border-color: $p300-orange;
+    color: $brand-white;
+  }
 }
 
 .myapnea-orange-bg {

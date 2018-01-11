@@ -1,14 +1,15 @@
 - @title = "Team"
 - @menu_title = "Meet the Team"
 
-- @body = "light"
-- @footer = "light"
+- @menu = "dark-blue"
+- @body = "dark-blue"
+- @footer = "dark-blue"
 
 - content_for :header do
   .header-container
     .container
       %h1.page-heading
-        Meet the Team
+        = @menu_title
 
 .dashboard-container
   - lowest_position = @team_members.pluck(:position).min

@@ -1,0 +1,53 @@
+.featured-articles {
+  border-top: 1px solid $p300-grey;
+  padding: $spacer * 3 0;
+}
+
+.featured-article {
+  background-color: $p500-blue;
+  position: relative;
+  width: 100%;
+  max-width: 320px;
+  margin: $spacer 0;
+  padding-top: $spacer * 3;
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  @include media-breakpoint-up(sm) {
+    margin: 0 $spacer;
+  }
+
+  .featured-article-background-image {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .featured-article-title {
+    color: $brand-white;
+    padding-top: $spacer * 3;
+    position: relative;
+    font-weight: bold;
+    background-image: linear-gradient(-180deg, transparent 0%, #{$black} 150%);
+    padding: $spacer;
+  }
+
+  &::after {
+    color: $brand-white;
+    content: "ARTICLE";
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: $spacer;
+    padding: $spacer * .25 $spacer * .5;
+    font-size: .8rem;
+    background-color: $p500-orange;
+  }
+}
