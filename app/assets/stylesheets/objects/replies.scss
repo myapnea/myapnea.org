@@ -116,3 +116,15 @@
 .reply-remove-margin-bottom {
   @include remove-last-child-bottom-margin;
 }
+
+.reply-simple-full-hover-box {
+  background-color: $brand-white;
+
+  .reply-simple-full-link {
+    background-color: $p100-grey;
+  }
+
+  &:hover .reply-simple-full-link {
+    background-color: $p100-orange;
+  }
+}
