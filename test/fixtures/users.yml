@@ -408,3 +408,12 @@ verified_user:
   accepted_terms_conditions_at: <%= Time.zone.now %>
   forum_name: prolificuser
   shadow_banned: false
+
+content_manager:
+  first_name: Content
+  last_name: Manager
+  email: content_manager@example.com
+  over_eighteen: true
+  encrypted_password: ""
+  content_manager: true
+  forum_name: contentmanager

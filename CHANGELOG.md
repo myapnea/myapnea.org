@@ -13,6 +13,8 @@
   - Redesigned dashboard and settings pages
   - Redesigned research page to include active surveys and research articles
   - Added "Top" and "Recent" topics to member profile
+  - Added content manager role to streamline creation of articles for
+    "Education", "FAQs", and other static pages
 - **Admin Changes**
   - Major revamp of the administrative interface
 - **Forum Changes**
