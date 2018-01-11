@@ -78,6 +78,7 @@ Rails.application.routes.draw do
     get :contact
     get :landing
     get :partners
+    get :privacy_policy, path: "privacy-policy"
     get :sitemap_xml, path: "sitemap.xml.gz"
     get :team
     get :voting

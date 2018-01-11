@@ -1,47 +1,95 @@
 - @title = ["Search", @search.gsub(" & ", " ")].compact.join(" | ")
 
-- @body = "light"
-- @footer = "light"
+- @body = "grey"
+- @footer = "grey"
 
 - content_for :header do
+  - @special_heading = true
   .header-container
     .container
-      %h1.page-heading
-        .float-right
-          = render "layouts/per_page", per_page: 10, object_count: @search_documents.total_count
-        Search
+      %h1.page-heading{ style: @special_heading ? "font-weight: 300 !important;letter-spacing: .25rem !important;text-shadow: none !important;font-variant: small-caps;" : nil }
+        - if @search_documents.total_count.positive?
+          .float-right= render "layouts/per_page", per_page: 10, object_count: @search_documents.total_count
+        Help Center
 
 = form_tag search_path, method: :get, id: "search-form", class: "mb-5" do
   .input-group
-    = text_field_tag :search, params[:search], class: "form-control", placeholder: "Search...", autocomplete: "off", autofocus: true
-    %span.input-group-btn
-      = link_to "#", class: "btn btn-primary", data: { object: "submit-and-disable", target: "#search-form" } do
+    = text_field_tag :search, params[:search], class: "form-control form-control-lg", placeholder: "Start your search", autocomplete: "off", autofocus: true
+    .input-group-append
+      = link_to "#", class: "btn btn-lg btn-primary", data: { object: "submit-and-disable", target: "#search-form" } do
         %i.fa.fa-search
 
-- @highlight_found = true
-- if [0, 1].include?(params[:page].to_i)
-  - if false
-    = render "search/highlights/false"
+- if params[:search].present?
+  - @highlight_found = true
+  - if [0, 1].include?(params[:page].to_i)
+    - if false
+      = render "search/highlights/false"
+    - else
+      - @highlight_found = false
   - else
     - @highlight_found = false
-- else
-  - @highlight_found = false
 
-- if @search_documents.present?
-  - @search_documents.each do |document|
-    .dashboard-container
-      - case document.searchable.class.to_s when "Broadcast"
-        = render "search/broadcast", broadcast: document.searchable
-      - when "Topic"
-        = render "search/topic", topic: document.searchable
-      - when "Reply"
-        = render "search/reply", reply: document.searchable
-  .center-horizontally= paginate @search_documents, theme: "bootstrap"
-- elsif @highlight_found
-  -# Nothing
+  - if @search_documents.present?
+    - @search_documents.each do |document|
+      .dashboard-container
+        - case document.searchable.class.to_s when "Broadcast"
+          = render "search/broadcast", broadcast: document.searchable
+        - when "Topic"
+          = render "search/topic", topic: document.searchable
+        - when "Reply"
+          = render "search/reply", reply: document.searchable
+    .center-horizontally= paginate @search_documents, theme: "bootstrap"
+  - elsif @highlight_found
+    -# Nothing
+  - else
+    %p.lead.text-center
+      - if params[:search].present?
+        No Search Results Found
+      - else
+        Type a search above.
+
 - else
-  %p.lead.text-center
-    - if params[:search].present?
-      No Search Results Found
-    - else
-      Type a search above.
+  .row
+    .col-12.col-sm
+      .dashboard-container
+        %div.mb-3{ style: "font-size: 1.25rem;" } Top FAQs
+        .small.mb-2 What is MyApnea.Org?
+        .small.mb-2 How is MyApnea.Org organized?
+    .col-12.col-sm
+      - articles = Broadcast.current.published.where(category: Admin::Category.find_by(slug: "research")).order(view_count: :desc).limit(5)
+      .dashboard-container
+        %div.mb-3{ style: "font-size: 1.25rem;" } Top Articles
+        - articles.each do |broadcast|
+          .small.mb-2= link_to broadcast.title, blog_post_path(broadcast.url_hash), class: "link-blend"
+
+  .row
+    .col-12.col-sm
+      .dashboard-container
+        %div.mb-3{ style: "font-size: 1.25rem;" } Registration
+        .small.mb-2 Who can join MyApnea.Org?
+        .small.mb-2 How do I join MyApnea.Org?
+        .small.mb-2 Why do I have to sign a consent form to participate in the research portal?
+
+
+
+    .col-12.col-sm
+      - articles = Broadcast.current.published.where(category: Admin::Category.find_by(slug: "research")).order(view_count: :desc).limit(5)
+      .dashboard-container
+        %div.mb-3{ style: "font-size: 1.25rem;" } Participating in the Research Portal
+        .small.mb-2 What's expected of me if I join the research portal?
+        .small.mb-2 What are the surveys about?
+        .small.mb-2 How often do I take these surveys?
+
+  .row
+    .col-12.col-sm
+      .dashboard-container
+        %div.mb-3{ style: "font-size: 1.25rem;" } Privacy and Security
+        .small.mb-2 Is my data safe?
+        = link_to "View Privacy Policy", privacy_policy_path, class: "small link-accent"
+    .col-12.col-sm
+      - articles = Broadcast.current.published.where(category: Admin::Category.find_by(slug: "learn")).order(view_count: :desc).limit(5)
+      .dashboard-container
+        %div.mb-3{ style: "font-size: 1.25rem;" } Education
+        - articles.each do |broadcast|
+          .small.mb-2= link_to broadcast.title, blog_post_path(broadcast.url_hash), class: "link-blend"
+        = link_to "View all Education articles", blog_category_path("learn"), class: "small link-accent"
