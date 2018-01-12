@@ -20,8 +20,7 @@
     Change name
   .card-body
     = form_with model: current_user, url: settings_update_account_path, local: true do |form|
-      = render "forms/vertical/text_field", form: form, object: current_user, key: :first_name
-      = render "forms/vertical/text_field", form: form, object: current_user, key: :last_name
+      = render "forms/vertical/text_field", form: form, object: current_user, key: :full_name
       = render "forms/vertical/submit", form: form, object: current_user, submit_text: "Update name", cancel: false
 
 .card.mb-5

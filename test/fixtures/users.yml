@@ -1,16 +1,14 @@
 <% pw = User.new(password: 'password').encrypted_password %>
 
 valid:
-  first_name: Valid
-  last_name: McApnea
+  full_name: Valid McApnea
   email: valid@example.com
   encrypted_password: <%= pw %>
   emails_enabled: true
   forum_name: AwesomeCat
 
 admin:
-  first_name: Own
-  last_name: Er
+  full_name: Own Er
   email: admin@example.com
   admin: true
   over_eighteen: true
@@ -22,8 +20,7 @@ admin:
 <% 1.upto(10) do |i| %>
 user_<%= i %>:
   email: user_<%= i %>@example.com
-  first_name: User
-  last_name: <%= i %>wski
+  full_name: User <%= i %>wski
   over_eighteen: true
   adult_diagnosed: true
   encrypted_password: <%= pw %>
@@ -34,8 +31,7 @@ user_<%= i %>:
 
 has_accepted_privacy:
   email: privacy@example.com
-  first_name: Tommy
-  last_name: Privacy
+  full_name: Tommy Privacy
   forum_name: HasAcceptedPrivacy
   over_eighteen: true
   adult_diagnosed: true
@@ -44,8 +40,7 @@ has_accepted_privacy:
 
 has_accepted_consent:
   email: consent@example.com
-  first_name: Tommy
-  last_name: Consent
+  full_name: Tommy Consent
   forum_name: HasAcceptedConsent
   over_eighteen: true
   adult_diagnosed: true
@@ -53,8 +48,7 @@ has_accepted_consent:
   accepted_consent_at: <%= 6.day.ago.to_s(:db) %>
 
 social:
-  first_name: Tommy
-  last_name: Boy
+  full_name: Tommy Boy
   email: tommyboy@gmail.com
   forum_name: TomHaverford
   accepted_consent_at: <%= 5.day.ago.to_s(:db) %>
@@ -66,8 +60,7 @@ social:
   current_sign_in_ip: 170.223.207.25
 
 participant:
-  first_name: Research
-  last_name: Participant
+  full_name: Research Participant
   email: research_participant@example.com
   accepted_consent_at: <%= 5.day.ago.to_s(:db) %>
   accepted_privacy_policy_at: <%= 6.day.ago.to_s(:db) %>
@@ -78,8 +71,7 @@ participant:
   encrypted_password: <%= pw %>
 
 moderator_1:
-  first_name: Mod
-  last_name: Erator1
+  full_name: Mod Erator1
   email: mod1@mods.com
   moderator: true
   over_eighteen: true
@@ -89,8 +81,7 @@ moderator_1:
   accepted_terms_conditions_at: <%= Time.zone.now %>
 
 moderator_2:
-  first_name: Mod
-  last_name: Erator2
+  full_name: Mod Erator2
   email: mod2@mods.com
   moderator: true
   over_eighteen: true
@@ -100,8 +91,7 @@ moderator_2:
   accepted_terms_conditions_at: <%= Time.zone.now %>
 
 has_completed_survey:
-  first_name: Complete
-  last_name: Survey
+  full_name: Complete Survey
   email: cs@example.com
   over_eighteen: true
   accepted_consent_at: <%= 5.day.ago.to_s(:db) %>
@@ -112,8 +102,7 @@ has_completed_survey:
   encrypted_password: <%= pw %>
 
 has_incomplete_survey:
-  first_name: Incomplete
-  last_name: Survey
+  full_name: Incomplete Survey
   email: is@example.com
   accepted_consent_at: <%= 5.day.ago.to_s(:db) %>
   accepted_privacy_policy_at: <%= 6.day.ago.to_s(:db) %>
@@ -124,8 +113,7 @@ has_incomplete_survey:
   encrypted_password: <%= pw %>
 
 has_launched_survey:
-  first_name: Unstarted
-  last_name: Survey
+  full_name: Unstarted Survey
   email: us@example.com
   accepted_consent_at: <%= 5.day.ago.to_s(:db) %>
   accepted_privacy_policy_at: <%= 6.day.ago.to_s(:db) %>
@@ -136,8 +124,7 @@ has_launched_survey:
   encrypted_password: <%= pw %>
 
 deleted:
-  first_name: Zombie
-  last_name: Boy
+  full_name: Zombie Boy
   email: zombieboy@gmail.com
   forum_name: zombieboy
   accepted_consent_at: <%= 10.day.ago.to_s(:db) %>
@@ -151,8 +138,7 @@ deleted:
 
 ## Unassigned User
 blank_slate:
-  first_name: Blank
-  last_name: Slate
+  full_name: Blank Slate
   email: blankslate@gmail.com
   over_eighteen: true
   encrypted_password: <%= pw %>
@@ -160,8 +146,7 @@ blank_slate:
 
 ## Adult Diagnosed
 adult_diagnosed:
-  first_name: Adult
-  last_name: Diagnosed
+  full_name: Adult Diagnosed
   email: adultdiagnosed@gmail.com
   over_eighteen: true
   adult_diagnosed: true
@@ -170,8 +155,7 @@ adult_diagnosed:
 
 ## Adult At Risk
 adult_at_risk:
-  first_name: Adult
-  last_name: AtRisk
+  full_name: Adult AtRisk
   email: adultatrisk@gmail.com
   over_eighteen: true
   adult_at_risk: true
@@ -180,8 +164,7 @@ adult_at_risk:
 
 ## Caregiver Adult
 caregiver_adult:
-  first_name: Caregiver
-  last_name: Adult
+  full_name: Caregiver Adult
   email: caregiveradult@gmail.com
   over_eighteen: true
   caregiver_adult: true
@@ -190,8 +173,7 @@ caregiver_adult:
 
 ## Caregiver Child
 caregiver_child:
-  first_name: Caregiver
-  last_name: Child
+  full_name: Caregiver Child
   email: caregiverchild@gmail.com
   over_eighteen: true
   caregiver_child: true
@@ -200,8 +182,7 @@ caregiver_child:
 
 ## Researcher
 researcher:
-  first_name: Re
-  last_name: Searcher
+  full_name: Re Searcher
   email: researcher@gmail.com
   over_eighteen: true
   researcher: true
@@ -211,16 +192,14 @@ researcher:
   forum_name: researcher
 
 builder:
-  first_name: Survey
-  last_name: Builder
+  full_name: Survey Builder
   email: builder@example.com
   encrypted_password: <%= pw %>
   can_build_surveys: true
   forum_name: surveybuilder
 
 associated_builder:
-  first_name: Associated
-  last_name: Builder
+  full_name: Associated Builder
   email: associated_builder@example.com
   encrypted_password: <%= pw %>
   can_build_surveys: true
@@ -228,8 +207,7 @@ associated_builder:
 
 ## For survey encounter assignment tests
 created_today:
-  first_name: Created
-  last_name: Today
+  full_name: Created Today
   email: created_today@example.com
   over_eighteen: true
   encrypted_password: <%= pw %>
@@ -237,8 +215,7 @@ created_today:
   forum_name: createdtoday
 
 created_five_days_ago:
-  first_name: Created
-  last_name: FiveDaysAgo
+  full_name: Created FiveDaysAgo
   email: created_five_days_ago@example.com
   over_eighteen: true
   encrypted_password: <%= pw %>
@@ -246,8 +223,7 @@ created_five_days_ago:
   forum_name: createdfivedaysago
 
 created_fourteen_days_ago:
-  first_name: Created
-  last_name: FourteenDaysAgo
+  full_name: Created FourteenDaysAgo
   email: created_fourteen_days_ago@example.com
   over_eighteen: true
   encrypted_password: <%= pw %>
@@ -255,8 +231,7 @@ created_fourteen_days_ago:
   forum_name: createdfourteendaysago
 
 created_today_with_locked_baseline:
-  first_name: Created
-  last_name: Today
+  full_name: Created Today
   email: created_today_with_locked_baseline@example.com
   over_eighteen: true
   encrypted_password: <%= pw %>
@@ -264,8 +239,7 @@ created_today_with_locked_baseline:
   forum_name: createdtodaywithlockedbaseline
 
 created_five_days_ago_with_locked_baseline:
-  first_name: Created
-  last_name: FiveDaysAgo
+  full_name: Created FiveDaysAgo
   email: created_five_days_ago_with_locked_baseline@example.com
   over_eighteen: true
   encrypted_password: <%= pw %>
@@ -273,8 +247,7 @@ created_five_days_ago_with_locked_baseline:
   forum_name: createdfivedaysagowithlockedbaseline
 
 created_fourteen_days_ago_with_locked_baseline:
-  first_name: Created
-  last_name: FourteenDaysAgo
+  full_name: Created FourteenDaysAgo
   email: created_fourteen_days_ago_with_locked_baseline@example.com
   over_eighteen: true
   encrypted_password: <%= pw %>
@@ -283,8 +256,7 @@ created_fourteen_days_ago_with_locked_baseline:
 
 ## For completed about-me survey
 finished_about_me_1:
-  first_name: Finished
-  last_name: About Me 1
+  full_name: Finished About Me 1
   email: finished_about_me_1@example.com
   over_eighteen: true
   accepted_consent_at: <%= 5.day.ago.to_s(:db) %>
@@ -295,8 +267,7 @@ finished_about_me_1:
   forum_name: finishedaboutme1
 
 finished_about_me_2:
-  first_name: Finished
-  last_name: About Me 2
+  full_name: Finished About Me 2
   email: finished_about_me_2@example.com
   over_eighteen: true
   accepted_consent_at: <%= 5.day.ago.to_s(:db) %>
@@ -307,8 +278,7 @@ finished_about_me_2:
   forum_name: finishedaboutme2
 
 finished_about_me_3:
-  first_name: Finished
-  last_name: About Me 3
+  full_name: Finished About Me 3
   email: finished_about_me_3@example.com
   over_eighteen: true
   accepted_consent_at: <%= 5.day.ago.to_s(:db) %>
@@ -319,8 +289,7 @@ finished_about_me_3:
   forum_name: finishedaboutme3
 
 finished_about_me_4:
-  first_name: Finished
-  last_name: About Me 4
+  full_name: Finished About Me 4
   email: finished_about_me_4@example.com
   over_eighteen: true
   accepted_consent_at: <%= 5.day.ago.to_s(:db) %>
@@ -331,8 +300,7 @@ finished_about_me_4:
   forum_name: finishedaboutme4
 
 finished_about_me_5:
-  first_name: Finished
-  last_name: About Me 5
+  full_name: Finished About Me 5
   email: finished_about_me_5@example.com
   over_eighteen: true
   accepted_consent_at: <%= 5.day.ago.to_s(:db) %>
@@ -343,8 +311,7 @@ finished_about_me_5:
   forum_name: finishedaboutme5
 
 finished_about_me_6:
-  first_name: Finished
-  last_name: About Me 6
+  full_name: Finished About Me 6
   email: finished_about_me_6@example.com
   over_eighteen: true
   accepted_consent_at: <%= 5.day.ago.to_s(:db) %>
@@ -356,8 +323,7 @@ finished_about_me_6:
 
 heh_1:
   email: heh_1@example.com
-  first_name: HeH
-  last_name: Member
+  full_name: HeH Member
   forum_name: HeH
   over_eighteen: true
   adult_diagnosed: true
@@ -368,8 +334,7 @@ heh_1:
   outgoing_heh_at: <%= Time.zone.now %>
 
 community_contributor:
-  first_name: Community
-  last_name: Contributor
+  full_name: Community Contributor
   email: community_contributor@example.com
   over_eighteen: true
   encrypted_password: ""
@@ -377,8 +342,7 @@ community_contributor:
   forum_name: communitycontributor
 
 shadow_banned:
-  first_name: Dark
-  last_name: Shadow
+  full_name: Dark Shadow
   email: shadow_banned@example.com
   over_eighteen: true
   adult_diagnosed: true
@@ -388,8 +352,7 @@ shadow_banned:
   shadow_banned: true
 
 new_spammer:
-  first_name: Innocent
-  last_name: Ant
+  full_name: Innocent Ant
   email: new_spammer@example.com
   over_eighteen: true
   adult_diagnosed: true
@@ -399,8 +362,7 @@ new_spammer:
   # shadow_banned:
 
 verified_user:
-  first_name: Prolific
-  last_name: Poster
+  full_name: Prolific Poster
   email: verified_user@example.com
   over_eighteen: true
   adult_diagnosed: true
@@ -410,8 +372,7 @@ verified_user:
   shadow_banned: false
 
 content_manager:
-  first_name: Content
-  last_name: Manager
+  full_name: Content Manager
   email: content_manager@example.com
   over_eighteen: true
   encrypted_password: ""

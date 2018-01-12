@@ -7,7 +7,7 @@ class User < ApplicationRecord
   mount_uploader :photo, PhotoUploader
 
   #  For recent updates to consent/privacy policy/etc
-  RECENT_UPDATE_DATE = '2015-09-11'
+  RECENT_UPDATE_DATE = "2015-09-11"
 
   # Include default devise modules. Others available are:
   # :confirmable, :omniauthable
@@ -21,21 +21,24 @@ class User < ApplicationRecord
   include Deletable
   include Forkable
   include RandomNameGenerator
+  include Squishable
+  squish :full_name
 
   attr_accessor :user_is_updating
 
   # Scopes
-  scope :search, lambda { |arg| where( 'LOWER(first_name) LIKE ? or LOWER(last_name) LIKE ? or LOWER(email) LIKE ?', arg.to_s.downcase.gsub(/^| |$/, '%'), arg.to_s.downcase.gsub(/^| |$/, '%'), arg.to_s.downcase.gsub(/^| |$/, '%') ) }
+  scope :search, lambda { |arg| where( "LOWER(full_name) LIKE ? or LOWER(email) LIKE ?", arg.to_s.downcase.gsub(/^| |$/, "%"), arg.to_s.downcase.gsub(/^| |$/, "%") ) }
   scope :include_in_exports_and_reports, -> { where(include_in_exports: true) }
-  scope :reply_count, -> { select('users.*, COALESCE(COUNT(replies.id), 0) reply_count').joins('LEFT OUTER JOIN replies ON replies.user_id = users.id and replies.deleted IS FALSE and replies.topic_id IN (SELECT topics.id FROM topics WHERE topics.deleted IS FALSE)').group('users.id') }
+  scope :reply_count, -> { select("users.*, COALESCE(COUNT(replies.id), 0) reply_count").joins("LEFT OUTER JOIN replies ON replies.user_id = users.id and replies.deleted IS FALSE and replies.topic_id IN (SELECT topics.id FROM topics WHERE topics.deleted IS FALSE)").group("users.id") }
 
   # Validations
-  validates :first_name, :last_name, presence: true
+  validates :full_name, presence: true
+  validates :full_name, format: { with: /\A.+\s.+\Z/ }
 
   validates :forum_name, allow_blank: true, uniqueness: { case_sensitive: false }, format: { with: /\A[a-zA-Z0-9]*\Z/i }, unless: :update_by_user?
   validates :forum_name, allow_blank: false, uniqueness: { case_sensitive: false }, format: { with: /\A[a-zA-Z0-9]+\Z/i }, if: :update_by_user?
 
-  validates :over_eighteen, inclusion: { in: [true], message: 'You must be over 18 years of age to sign up' }, allow_nil: true
+  validates :over_eighteen, inclusion: { in: [true], message: "You must be over 18 years of age to sign up" }, allow_nil: true
 
   # Relationships
   has_many :broadcasts, -> { current }
@@ -79,7 +82,7 @@ class User < ApplicationRecord
     return unless parent.is_a?(Topic)
     topic_user = topic_users.where(topic_id: parent.id).first_or_create
     topic_user.update current_reply_read_id: [topic_user.current_reply_read_id.to_i, current_reply_read_id].max,
-                        last_reply_read_id: topic_user.current_reply_read_id
+                      last_reply_read_id: topic_user.current_reply_read_id
   end
 
   def editable_topics
@@ -99,19 +102,7 @@ class User < ApplicationRecord
   end
 
   def myapnea_id
-    'MA%06d' % id
-  end
-
-  def name
-    "#{first_name} #{last_name}"
-  end
-
-  def name_was
-    "#{first_name_was} #{last_name_was}"
-  end
-
-  def name_and_email
-    "#{first_name} #{last_name} <#{email}>"
+    format("MA%06d", id)
   end
 
   def unread_notifications?
@@ -199,7 +190,7 @@ class User < ApplicationRecord
 
   # This happens when any user updates changes from dashboard
   def update_by_user?
-    user_is_updating == '1'
+    user_is_updating == "1"
   end
 
   def set_forum_name

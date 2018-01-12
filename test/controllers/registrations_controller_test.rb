@@ -6,8 +6,7 @@ require "test_helper"
 class RegistrationsControllerTest < ActionController::TestCase
   def user_params
     {
-      first_name: "First Name",
-      last_name: "Last Name",
+      full_name: "FirstName LastName",
       over_eighteen: true,
       email: "new_user@example.com",
       password: "password"
@@ -22,8 +21,7 @@ class RegistrationsControllerTest < ActionController::TestCase
       }
     end
     assert_not_nil assigns(:user)
-    assert_equal "First Name", assigns(:user).first_name
-    assert_equal "Last Name", assigns(:user).last_name
+    assert_equal "FirstName LastName", assigns(:user).full_name
     assert_equal true, assigns(:user).over_eighteen?
     assert_equal "new_user@example.com", assigns(:user).email
     assert_redirected_to dashboard_path
@@ -33,12 +31,11 @@ class RegistrationsControllerTest < ActionController::TestCase
     request.env["devise.mapping"] = Devise.mappings[:user]
     assert_difference("User.count", 0) do
       post :create, params: {
-        user: user_params.merge(first_name: "", last_name: "", email: "", password: "")
+        user: user_params.merge(full_name: "", email: "", password: "")
       }
     end
     assert_not_nil assigns(:user)
-    assert_equal ["can't be blank"], assigns(:user).errors[:first_name]
-    assert_equal ["can't be blank"], assigns(:user).errors[:last_name]
+    assert_equal ["can't be blank", "is invalid"], assigns(:user).errors[:full_name]
     assert_equal ["can't be blank"], assigns(:user).errors[:email]
     assert_equal ["can't be blank"], assigns(:user).errors[:password]
     assert_template "devise/registrations/new"

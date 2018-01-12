@@ -1,9 +1,11 @@
 # frozen_string_literal: true
 
-require 'test_helper'
+require "test_helper"
+
+SimpleCov.command_name "test:controllers"
 
 # Tests to assure admins can manage users.
-class UsersControllerTest < ActionController::TestCase
+class UsersControllerTest < ActionDispatch::IntegrationTest
   setup do
     @user = users(:user_2)
     @admin = users(:admin)
@@ -13,183 +15,176 @@ class UsersControllerTest < ActionController::TestCase
 
   def user_params
     {
-      first_name: 'FirstName',
-      last_name: 'LastName',
-      email: 'valid_updated_email@example.com',
-      emails_enabled: '1'
+      full_name: "FirstName LastName",
+      email: "valid_updated_email@example.com",
+      emails_enabled: "1"
     }
   end
 
-  test 'should export users as admin' do
+  test "should export users as admin" do
     login(@admin)
-    get :export, format: 'csv'
+    get export_users_url(format: "csv")
     assert_not_nil assigns(:csv_string)
     assert_response :success
   end
 
-  test 'should not export users as moderator' do
+  test "should not export users as moderator" do
     login(@moderator)
-    get :export, format: 'csv'
+    get export_users_url(format: "csv")
     assert_nil assigns(:csv_string)
-    assert_redirected_to root_path
+    assert_redirected_to root_url
   end
 
-  test 'should not export users as regular user' do
+  test "should not export users as regular user" do
     login(@regular_user)
-    get :export, format: 'csv'
+    get export_users_url(format: "csv")
     assert_nil assigns(:csv_string)
   end
 
-  test 'should not export users for logged out user' do
-    get :export, format: 'csv'
-    assert_nil assigns(:csv_string)
+  test "should not export users for public user" do
+    get export_users_url(format: "csv")
     assert_response :unauthorized
   end
 
-  test 'should get index for admin' do
+  test "should get index for admin" do
     login(@admin)
-    get :index
+    get users_url
     assert_not_nil assigns(:users)
     assert_response :success
   end
 
-  test 'should not get index for regular user' do
+  test "should not get index for regular user" do
     login(@regular_user)
-    get :index
+    get users_url
     assert_nil assigns(:users)
-    assert_equal 'You do not have sufficient privileges to access that page.', flash[:alert]
-    assert_redirected_to root_path
+    assert_equal "You do not have sufficient privileges to access that page.", flash[:alert]
+    assert_redirected_to root_url
   end
 
-  test 'should not get index for logged out user' do
-    get :index
-    assert_nil assigns(:users)
-    assert_redirected_to new_user_session_path
+  test "should not get index for public user" do
+    get users_url
+    assert_redirected_to new_user_session_url
   end
 
-  test 'should show user for admin' do
+  test "should show user for admin" do
     login(@admin)
-    get :show, params: { id: @user }
+    get user_url(@user)
     assert_not_nil assigns(:user)
     assert_response :success
   end
 
-  test 'should not show user for regular user' do
+  test "should not show user for regular user" do
     login(@regular_user)
-    get :show, params: { id: @user }
+    get user_url(@user)
     assert_nil assigns(:user)
-    assert_equal 'You do not have sufficient privileges to access that page.', flash[:alert]
-    assert_redirected_to root_path
+    assert_equal "You do not have sufficient privileges to access that page.", flash[:alert]
+    assert_redirected_to root_url
   end
 
-  test 'should not show user for public user' do
-    get :show, params: { id: @user }
-    assert_nil assigns(:user)
-    assert_redirected_to new_user_session_path
+  test "should not show user for public user" do
+    get user_url(@user)
+    assert_redirected_to new_user_session_url
   end
 
-  test 'should get edit for admin' do
+  test "should get edit for admin" do
     login(@admin)
-    get :edit, params: { id: @user }
+    get edit_user_url(@user)
     assert_response :success
   end
 
-  test 'should not edit user for regular user' do
+  test "should not edit user for regular user" do
     login(@regular_user)
-    get :edit, params: { id: @user }
+    get edit_user_url(@user)
     assert_nil assigns(:user)
-    assert_equal 'You do not have sufficient privileges to access that page.', flash[:alert]
-    assert_redirected_to root_path
+    assert_equal "You do not have sufficient privileges to access that page.", flash[:alert]
+    assert_redirected_to root_url
   end
 
-  test 'should not edit user for logout out user' do
-    get :edit, params: { id: @user }
-    assert_nil assigns(:user)
-    assert_redirected_to new_user_session_path
+  test "should not edit user for public user" do
+    get edit_user_url(@user)
+    assert_redirected_to new_user_session_url
   end
 
-  test 'should update user for admin' do
+  test "should update user for admin" do
     login(@admin)
-    put :update, params: { id: @user, user: user_params }
-
+    patch user_url(@user), params: { user: user_params }
     assert_not_nil assigns(:user)
     assert_equal true, assigns(:user).emails_enabled?
-
-    assert_redirected_to user_path(assigns(:user))
+    assert_redirected_to user_url(assigns(:user))
   end
 
-  test 'should update user and enable survey building for user as admin' do
+  test "should update user and enable survey building for user as admin" do
     login(@admin)
-    put :update, params: { id: @user, user: { can_build_surveys: '1' } }
+    patch user_url(@user), params: { user: { can_build_surveys: "1" } }
     assert_not_nil assigns(:user)
     assert_equal true, assigns(:user).can_build_surveys?
-    assert_redirected_to user_path(assigns(:user))
+    assert_redirected_to user_url(assigns(:user))
   end
 
-  test 'should not update user and enable survey building for user as regular user' do
+  test "should not update user and enable survey building for user as regular user" do
     login(@regular_user)
-    put :update, params: { id: @user, user: { can_build_surveys: '1' } }
+    patch user_url(@user), params: { user: { can_build_surveys: "1" } }
     assert_nil assigns(:user)
     assert_equal false, @user.can_build_surveys?
-    assert_redirected_to root_path
+    assert_redirected_to root_url
   end
 
-  test 'should not update user for regular user' do
+  test "should not update user for regular user" do
     login(@regular_user)
-    put :update, params: { id: @user, user: user_params }
-    assert_equal 'You do not have sufficient privileges to access that page.', flash[:alert]
-    assert_redirected_to root_path
+    patch user_url(@user), params: { user: user_params }
+    assert_equal "You do not have sufficient privileges to access that page.", flash[:alert]
+    assert_redirected_to root_url
   end
 
-  test 'should not update user for logged out user' do
-    put :update, params: { id: @user, user: user_params }
-    assert_redirected_to new_user_session_path
+  test "should not update user for public user" do
+    patch user_url(@user), params: { user: user_params }
+    assert_redirected_to new_user_session_url
   end
 
-  test 'should not update user with blank name' do
+  test "should not update user with blank name" do
     login(@admin)
-    put :update, params: { id: @user, user: { first_name: '', last_name: '' } }
+    patch user_url(@user), params: { user: { full_name: "" } }
     assert_not_nil assigns(:user)
-    assert_template 'edit'
+    assert_template "edit"
   end
 
-  test 'should not update user with invalid id' do
+  test "should not update user with invalid id" do
     login(@admin)
-    put :update, params: { id: -1, user: user_params }
+    patch user_url(-1), params: { user: user_params }
     assert_nil assigns(:user)
-    assert_redirected_to users_path
+    assert_redirected_to users_url
   end
 
-  test 'should destroy user for admin' do
+  test "should destroy user for admin" do
     login(@admin)
-    assert_difference('User.current.count', -1) do
-      delete :destroy, params: { id: @user }
+    assert_difference("User.current.count", -1) do
+      delete user_url(@user)
     end
-    assert_redirected_to users_path
+    assert_redirected_to users_url
   end
 
-  test 'should destroy user for admin with ajax' do
+  test "should destroy user for admin with ajax" do
     login(@admin)
-    assert_difference('User.current.count', -1) do
-      delete :destroy, params: { id: @user }, format: 'js'
+    assert_difference("User.current.count", -1) do
+      delete user_url(@user, format: "js")
     end
-    assert_template 'destroy'
+    assert_template "destroy"
     assert_response :success
   end
 
-  test 'should not destroy user for regular user' do
+  test "should not destroy user for regular user" do
     login(@regular_user)
-    assert_difference('User.current.count', 0) do
-      delete :destroy, params: { id: @user }
+    assert_difference("User.current.count", 0) do
+      delete user_url(@user)
     end
-    assert_equal 'You do not have sufficient privileges to access that page.', flash[:alert]
-    assert_redirected_to root_path
+    assert_equal "You do not have sufficient privileges to access that page.", flash[:alert]
+    assert_redirected_to root_url
   end
 
-  test 'should not destroy user for admin' do
-    assert_difference('User.current.count', 0) do
-      delete :destroy, params: { id: @user }
+  test "should not destroy user for admin" do
+    assert_difference("User.current.count", 0) do
+      delete user_url(@user)
     end
-    assert_redirected_to new_user_session_path
+    assert_redirected_to new_user_session_url
   end
 end

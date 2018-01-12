@@ -30,7 +30,7 @@
             %td
               %code= admin_category.slug
             %td.text-center= render "layouts/edit_delete_dropdown", edit_url: edit_admin_category_path(admin_category), delete_url: admin_category, delete_confirmation: "Delete #{admin_category.name}?"
-  .center-horizontally= paginate@admin_categories, theme: "bootstrap"
+  .center-horizontally= paginate @admin_categories, theme: "bootstrap"
 - else
   .jumbotron.jumbotron-action.jumbotron-shadow
     %p.text-center No categories found.

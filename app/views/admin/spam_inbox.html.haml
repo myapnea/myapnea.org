@@ -25,7 +25,7 @@
     - @spammers.each do |spammer|
       %tr
         %td
-          = link_to spammer.name, spammer
+          = link_to spammer.full_name, spammer
           .small
             = spammer.email
           .small

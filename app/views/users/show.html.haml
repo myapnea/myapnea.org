@@ -11,23 +11,21 @@
 - content_for :header do
   .float-right
     %span.dropdown
-      = link_to "#", class: "btn btn-light dropdown-toggle", data: { toggle: "dropdown" } do
-        %span.hidden-sm.hidden-md.hidden-lg.glyphicon.glyphicon-cog
-        %span.hidden-xs Actions
+      = link_to "#", class: "btn btn-light btn-sm dropdown-toggle", data: { toggle: "dropdown" } do
+        .d-inline-block.d-sm-none
+          %i.fa.fa-cog
+        .d-none.d-sm-inline-block Actions
         %strong.caret
-      %ul.dropdown-menu.dropdown-menu-right
-        %li
-          = link_to edit_user_path(@user) do
-            %span.glyphicon.glyphicon-edit
-            Edit
+      .dropdown-menu.dropdown-menu-right
+        = link_to edit_user_path(@user), class: "dropdown-item" do
+          %i.fa.fa-pencil
+          Edit
         - unless current_user == @user
-          %li.divider{ role: "separator" }
-          %li
-            = link_to @user, method: :delete, data: { confirm: "Delete #{@user.name}?" } do
-              .text-danger
-                %span.glyphicon.glyphicon-trash
-                Delete
-  = @user.name
+          .dropdown-divider
+          = link_to @user, method: :delete, data: { confirm: "Delete #{@user.full_name}?" }, class: "dropdown-item text-danger" do
+            %i.fa.fa-trash
+            Delete
+  = @user.full_name
 
 .dashboard-container
   - if @user.shadow_banned?

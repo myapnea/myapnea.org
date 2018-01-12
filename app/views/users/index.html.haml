@@ -33,7 +33,7 @@
       %tr{ id: "user-#{user.id}-container", class: "#{"todays-users" if user.created_at.today?} #{"this-weeks-users" if user.created_at > Time.zone.now.beginning_of_week(start_day = :sunday)}"}
         %td.nowrap
           = profile_picture_tag user, size: 18, style: "min-width: 18px;"
-          .d-none.d-md-inline-block= link_to user.name, user
+          .d-none.d-md-inline-block= link_to user.full_name, user
         %td.small
           %span.d-none.d-md-inline.breakword= user.email
           %span.d-inline.d-md-none= link_to user.email, user, style: "word-break: break-word;"
@@ -63,7 +63,7 @@
                 Edit
               - unless user == current_user
                 .dropdown-divider
-                = link_to user, method: :delete, data: { confirm: "Delete #{user.name}?" }, class: "dropdown-item text-danger" do
+                = link_to user, method: :delete, data: { confirm: "Delete #{user.full_name}?" }, class: "dropdown-item text-danger" do
                   %i.fa.fa-trash
                   Delete
 

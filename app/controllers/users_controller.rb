@@ -11,8 +11,8 @@ class UsersController < ApplicationController
   # GET /users
   def index
     @all_users = User.current.search(params[:search]).order(current_sign_in_at: :desc)
-    @order = scrub_order(User, params[:order], 'current_sign_in_at desc')
-    @order = params[:order] if ['reply_count', 'reply_count desc'].include?(params[:order])
+    @order = scrub_order(User, params[:order], "current_sign_in_at desc")
+    @order = params[:order] if ["reply_count", "reply_count desc"].include?(params[:order])
     @users = @all_users.reply_count.reorder(@order).page(params[:page]).per(40)
   end
 
@@ -20,9 +20,9 @@ class UsersController < ApplicationController
   def export
     @csv_string = CSV.generate do |csv|
       csv << [
-        'MyApnea ID', 'Email', 'First Name', 'Last Name', 'Number of Surveys Completed',
-        'Last Login', 'Login Count', 'Forum Posts', 'First Forum Post',
-        'Last Forum Post'
+        "MyApnea ID", "Email", "Full Name", "Number of Surveys Completed",
+        "Last Login", "Login Count", "Forum Posts", "First Forum Post",
+        "Last Forum Post"
       ]
       User.current.find_each do |user|
         first_reply = user.replies.order(:created_at).first
@@ -30,8 +30,7 @@ class UsersController < ApplicationController
         row = [
           user.myapnea_id,
           user.email,
-          user.first_name,
-          user.last_name,
+          user.full_name,
           -1,
           (user.current_sign_in_at ? user.current_sign_in_at.to_date : nil),
           user.sign_in_count,
@@ -42,8 +41,8 @@ class UsersController < ApplicationController
         csv << row
       end
     end
-    filename = "myapnea-users-#{Time.zone.now.strftime('%Y-%m-%d-%Ih%M-%p')}.csv"
-    send_data @csv_string, type: 'text/csv; charset=iso-8859-1; header=present',
+    filename = "myapnea-users-#{Time.zone.now.strftime("%Y-%m-%d-%Ih%M-%p")}.csv"
+    send_data @csv_string, type: "text/csv; charset=iso-8859-1; header=present",
                            disposition: "attachment; filename=\"#{filename}\""
   end
 
@@ -54,7 +53,7 @@ class UsersController < ApplicationController
   # PATCH /users/1
   def update
     if @user.update(user_params)
-      redirect_to @user, notice: 'User was successfully updated.'
+      redirect_to @user, notice: "User was successfully updated."
     else
       render :edit
     end
@@ -65,7 +64,7 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     respond_to do |format|
-      format.html { redirect_to users_path, notice: 'User was successfully deleted.' }
+      format.html { redirect_to users_path, notice: "User was successfully deleted." }
       format.js
     end
   end
@@ -83,7 +82,7 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(
-      :first_name, :last_name, :email, :forum_name, :emails_enabled,
+      :full_name, :email, :forum_name, :emails_enabled,
       :include_in_exports, :admin, :moderator, :community_contributor,
       :can_build_surveys, :shadow_banned, :content_manager
     )

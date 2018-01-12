@@ -12,9 +12,9 @@
       - if current_user == member
         %strong
           - if current_user.admin?
-            = link_to current_user.name, current_user
+            = link_to current_user.full_name, current_user
           - else
-            = current_user.name
+            = current_user.full_name
         %br
         %small= member.forum_name
       - else

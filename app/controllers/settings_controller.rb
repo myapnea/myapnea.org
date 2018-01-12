@@ -87,7 +87,7 @@ class SettingsController < ApplicationController
   end
 
   def account_params
-    params.require(:user).permit(:first_name, :last_name)
+    params.require(:user).permit(:full_name)
   end
 
   def email_params

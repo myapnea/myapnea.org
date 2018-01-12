@@ -40,4 +40,4 @@
             %abbr{ rel: "tooltip", data: { title: reply.created_at.strftime("%-l:%M %p"), container: "body", placement: "left" } }
               = reply.created_at.strftime("%b %-d, %Y")
 
-.center-horizontally= paginate@replies, theme: "bootstrap"
+.center-horizontally= paginate @replies, theme: "bootstrap"

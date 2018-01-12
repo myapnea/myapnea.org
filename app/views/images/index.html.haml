@@ -39,7 +39,7 @@
               %abbr{ rel: "tooltip", data: { title: image.created_at.strftime("%-l:%M %p"), container: "body", placement: "left" } }
                 = image.created_at.strftime("%b %-d, %Y")
             %td.text-center= render "layouts/edit_delete_dropdown", edit_url: edit_image_path(image), delete_url: image, delete_confirmation: "Delete image?"
-  .center-horizontally= paginate@images, theme: "bootstrap"
+  .center-horizontally= paginate @images, theme: "bootstrap"
 - else
   .jumbotron.jumbotron-action.jumbotron-shadow
     %p.text-center No images found.

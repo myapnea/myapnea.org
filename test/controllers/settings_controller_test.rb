@@ -64,11 +64,10 @@ class SettingsControllerTest < ActionDispatch::IntegrationTest
   test "should update account" do
     login(@regular)
     patch settings_update_account_url, params: {
-      user: { first_name: "First Update", last_name: "Last Update" }
+      user: { full_name: "FirstUpdate LastUpdate" }
     }
     @regular.reload
-    assert_equal "First Update", @regular.first_name
-    assert_equal "Last Update", @regular.last_name
+    assert_equal "FirstUpdate LastUpdate", @regular.full_name
     assert_equal "Account successfully updated.", flash[:notice]
     assert_redirected_to settings_account_url
   end
