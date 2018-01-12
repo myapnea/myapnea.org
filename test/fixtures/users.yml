@@ -53,7 +53,6 @@ social:
   forum_name: TomHaverford
   accepted_consent_at: <%= 5.day.ago.to_s(:db) %>
   accepted_privacy_policy_at: <%= 6.day.ago.to_s(:db) %>
-  # accepted_update_at:
   over_eighteen: true
   adult_diagnosed: true
   encrypted_password: <%= pw %>
@@ -64,7 +63,6 @@ participant:
   email: research_participant@example.com
   accepted_consent_at: <%= 5.day.ago.to_s(:db) %>
   accepted_privacy_policy_at: <%= 6.day.ago.to_s(:db) %>
-  accepted_update_at: <%= Date.parse(User::RECENT_UPDATE_DATE).end_of_day %>
   over_eighteen: true
   adult_diagnosed: true
   forum_name: participant
@@ -96,7 +94,6 @@ has_completed_survey:
   over_eighteen: true
   accepted_consent_at: <%= 5.day.ago.to_s(:db) %>
   accepted_privacy_policy_at: <%= 6.day.ago.to_s(:db) %>
-  accepted_update_at: <%= Date.parse(User::RECENT_UPDATE_DATE).end_of_day %>
   adult_diagnosed: true
   forum_name: surveyfinisher
   encrypted_password: <%= pw %>
@@ -106,7 +103,6 @@ has_incomplete_survey:
   email: is@example.com
   accepted_consent_at: <%= 5.day.ago.to_s(:db) %>
   accepted_privacy_policy_at: <%= 6.day.ago.to_s(:db) %>
-  accepted_update_at: <%= Date.parse(User::RECENT_UPDATE_DATE).end_of_day %>
   over_eighteen: true
   adult_diagnosed: true
   forum_name: surveynotfinisher
@@ -117,7 +113,6 @@ has_launched_survey:
   email: us@example.com
   accepted_consent_at: <%= 5.day.ago.to_s(:db) %>
   accepted_privacy_policy_at: <%= 6.day.ago.to_s(:db) %>
-  accepted_update_at: <%= Date.parse(User::RECENT_UPDATE_DATE).end_of_day %>
   over_eighteen: true
   adult_diagnosed: true
   forum_name: surveylaunched
@@ -261,7 +256,6 @@ finished_about_me_1:
   over_eighteen: true
   accepted_consent_at: <%= 5.day.ago.to_s(:db) %>
   accepted_privacy_policy_at: <%= 6.day.ago.to_s(:db) %>
-  accepted_update_at: <%= Date.parse(User::RECENT_UPDATE_DATE).end_of_day %>
   adult_diagnosed: true
   encrypted_password: <%= pw %>
   forum_name: finishedaboutme1
@@ -272,7 +266,6 @@ finished_about_me_2:
   over_eighteen: true
   accepted_consent_at: <%= 5.day.ago.to_s(:db) %>
   accepted_privacy_policy_at: <%= 6.day.ago.to_s(:db) %>
-  accepted_update_at: <%= Date.parse(User::RECENT_UPDATE_DATE).end_of_day %>
   adult_diagnosed: true
   encrypted_password: <%= pw %>
   forum_name: finishedaboutme2
@@ -283,7 +276,6 @@ finished_about_me_3:
   over_eighteen: true
   accepted_consent_at: <%= 5.day.ago.to_s(:db) %>
   accepted_privacy_policy_at: <%= 6.day.ago.to_s(:db) %>
-  accepted_update_at: <%= Date.parse(User::RECENT_UPDATE_DATE).end_of_day %>
   adult_diagnosed: true
   encrypted_password: <%= pw %>
   forum_name: finishedaboutme3
@@ -294,7 +286,6 @@ finished_about_me_4:
   over_eighteen: true
   accepted_consent_at: <%= 5.day.ago.to_s(:db) %>
   accepted_privacy_policy_at: <%= 6.day.ago.to_s(:db) %>
-  accepted_update_at: <%= Date.parse(User::RECENT_UPDATE_DATE).end_of_day %>
   adult_diagnosed: true
   encrypted_password: <%= pw %>
   forum_name: finishedaboutme4
@@ -305,7 +296,6 @@ finished_about_me_5:
   over_eighteen: true
   accepted_consent_at: <%= 5.day.ago.to_s(:db) %>
   accepted_privacy_policy_at: <%= 6.day.ago.to_s(:db) %>
-  accepted_update_at: <%= Date.parse(User::RECENT_UPDATE_DATE).end_of_day %>
   adult_diagnosed: true
   encrypted_password: <%= pw %>
   forum_name: finishedaboutme5
@@ -316,7 +306,6 @@ finished_about_me_6:
   over_eighteen: true
   accepted_consent_at: <%= 5.day.ago.to_s(:db) %>
   accepted_privacy_policy_at: <%= 6.day.ago.to_s(:db) %>
-  accepted_update_at: <%= Date.parse(User::RECENT_UPDATE_DATE).end_of_day %>
   adult_diagnosed: true
   encrypted_password: <%= pw %>
   forum_name: finishedaboutme6

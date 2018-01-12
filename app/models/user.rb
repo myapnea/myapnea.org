@@ -6,13 +6,10 @@ class User < ApplicationRecord
   # Uploaders
   mount_uploader :photo, PhotoUploader
 
-  #  For recent updates to consent/privacy policy/etc
-  RECENT_UPDATE_DATE = "2015-09-11"
-
   # Include default devise modules. Others available are:
   # :confirmable, :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :timeoutable, :lockable
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable,
+         :trackable, :validatable, :timeoutable, :lockable
 
   # Callbacks
   after_commit :set_forum_name, :send_welcome_email_in_background!, on: :create
@@ -109,59 +106,13 @@ class User < ApplicationRecord
     notifications.where(read: false).present?
   end
 
-  def revoke_consent!
-    update_column :accepted_terms_of_access_at, nil
-    update_column :accepted_consent_at, nil
-    update_column :accepted_privacy_policy_at, nil
-  end
-
-  def signed_consent?
-    accepted_consent_at.present?
-  end
-
-  def accepted_privacy_policy?
-    accepted_privacy_policy_at.present?
-  end
-
   def accepted_consent?
     accepted_consent_at.present?
-  end
-
-  def accepted_terms_conditions?
-    accepted_terms_conditions_at.present?
-  end
-
-  def ready_for_research?
-    if is_only_researcher?
-      accepted_privacy_policy? && accepted_terms_of_access?
-    else
-      accepted_privacy_policy? && signed_consent?
-    end
-  end
-
-  def accepted_terms_of_access?
-    accepted_terms_of_access_at.present?
-  end
-
-  # Should not compare against RECENT_UPDATE_DATE if it is in the future
-  def accepted_most_recent_update?
-    (accepted_update_at.present? && accepted_update_at > Date.parse(RECENT_UPDATE_DATE).at_noon) ||
-      (Date.parse(RECENT_UPDATE_DATE).at_noon > Time.zone.now && !Rails.env.test?)
   end
 
   # Can Build Surveys
   def editable_surveys
     Survey.with_editor(id).order(:name_en)
-  end
-
-  def accepts_consent!
-    current_time = Time.zone.now
-    update accepted_consent_at: current_time, accepted_update_at: current_time
-  end
-
-  def accepts_terms_of_access!
-    current_time = Time.zone.now
-    update accepted_terms_of_access_at: current_time, accepted_update_at: current_time
   end
 
   def editable_broadcasts

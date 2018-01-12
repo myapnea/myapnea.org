@@ -134,6 +134,7 @@ class Admin::Export < ApplicationRecord
     UserMailer.export_ready(self).deliver_now if EMAILS_ENABLED
   end
 
+  # TODO: Rewrite/remove.
   def write_data_csv(data_csv)
     CSV.open(data_csv, 'wb') do |csv|
       row = %w(myapnea_id joined consented encounter state_code country_code)
