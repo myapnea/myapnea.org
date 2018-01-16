@@ -1,0 +1,10 @@
+- if project = Project.find_by(slug: "myapnea-core")
+  .dashboard-container
+    .search-result
+      .search-result-title
+        = link_to "MyApnea Core Consent", slice_consent_path(project)
+      .search-result-author
+        Posted by MyApnea
+      .search-result-body
+        = surround "..." do
+          purpose of the MyApnea.Org research portal is to engage people with sleep apnea

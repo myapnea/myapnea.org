@@ -8,8 +8,6 @@
   .header-container
     .container
       %h1.page-heading{ style: @special_heading ? "font-weight: 300 !important;letter-spacing: .25rem !important;text-shadow: none !important;font-variant: small-caps;" : nil }
-        - if params[:search].present?
-          .float-right= render "layouts/per_page", per_page: 10, object_count: @search_documents.total_count
         Help Center
 
 = form_tag search_path, method: :get, id: "search-form", class: "mb-5" do
@@ -22,8 +20,8 @@
 - if params[:search].present?
   - @highlight_found = true
   - if [0, 1].include?(params[:page].to_i)
-    - if false
-      = render "search/highlights/false"
+    - if /consent/ =~ params[:search].to_s
+      = render "search/highlights/consent"
     - else
       - @highlight_found = false
   - else
