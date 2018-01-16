@@ -1,11 +1,12 @@
 - @footer = "sunset"
 
+- content_for :footer, render("decorations/sunset")
+
 .menu-bar.menu-bar-fixed.menu-bar-sunset
   .container
     Sunset
 
 .page-box.last-box.center-vertically.myapnea-sunset-bg
-  = render 'blank/sunset'
   = render 'blank/progress_bar', start: 100 / 6 * 3, percent: 100 / 6 * 4
   .container
     .dashboard-container

@@ -20,26 +20,21 @@ $sunset-container-sm: $sunset-size-sm + $sunset-padding-sm;
   bottom: 0;
   width: $sunset-container / 2;
   z-index: -1;
-}
 
-@include media-breakpoint-up(sm) {
-  .sunset-container {
+  @include media-breakpoint-up(sm) {
     height: $sunset-container-sm;
     // top: -($sunset-container-sm / 2);
     width: $sunset-container-sm / 2;
   }
 }
 
-#sunset {
-  // animation: spin-cw 120s linear infinite;
+.sunset-object {
   font-size: $sunset-size;
   position: absolute;
   right: -$sunset-size;
   top: -$sunset-size + ($sunset-container / 2);
 
   i {
-    // animation: sun-pulse 1s ease-in-out infinite alternate;
-
     &.fa-sunset-o {
       font-size: $sunset-size;
       color: $sunset-color;
@@ -50,10 +45,8 @@ $sunset-container-sm: $sunset-size-sm + $sunset-padding-sm;
       color: $sunset-inner-color;
     }
   }
-}
 
-@include media-breakpoint-up(sm) {
-  #sunset {
+  @include media-breakpoint-up(sm) {
     font-size: $sunset-size-sm;
     right: -$sunset-size-sm;
     top: -$sunset-size-sm + ($sunset-container-sm / 2);

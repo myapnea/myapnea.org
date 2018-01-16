@@ -1,11 +1,18 @@
 - @title = "Version"
-- @themes = [{ background: "myapnea-night-bg", icon: "moon", header: "night", footer: "night" }, { background: "myapnea-sky-bg", icon: "sun", header: "grass", footer: "grass" }, { background: "myapnea-sunset-bg", icon: "sunset", header: "sunset", footer: "sunset" }]
+- @themes = []
+- @themes << { icon: "moon", header: "night", body: "night", footer: "night" }
+- @themes << { icon: "sun", header: "grass", body: "sky", footer: "grass" }
+- @themes << { icon: "sunset", header: "sunset", body: "sunset", footer: "sunset" }
 - number = rand(@themes.size)
-- @menu = @themes[number][:header]
-- @footer = @themes[number][:footer]
 
-.page-box.last-box.d-flex.align-items-center{ class: @themes[number][:background] }
-  = render "blank/#{@themes[number][:icon]}" if @themes[number][:icon].present?
+- @menu = @themes.dig(number, :header)
+- @body = @themes.dig(number, :body)
+- @footer = @themes.dig(number, :footer)
+
+- content_for :footer do
+  = render "decorations/#{@themes.dig(number, :icon)}" if @themes.dig(number, :icon).present?
+
+.page-box.last-box.d-flex.align-items-center
   .container
     .text-center
       .page-heading.text-white{ style: "font-size: 2rem;" }= "v#{Myapnea::VERSION::STRING}"

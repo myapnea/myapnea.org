@@ -19,49 +19,15 @@ $moon-container-sm: $moon-size-sm + $moon-padding-sm;
   bottom: 0;
   width: $moon-container / 2;
   z-index: -1;
-}
 
-.moon-object {
-  // animation: spin-cw 120s linear infinite;
-  font-size: $moon-size;
-  position: absolute;
-  left: -$moon-size;
-  top: -$moon-size + ($moon-container / 2);
-
-  i {
-    // animation: sun-pulse 1s ease-in-out infinite alternate;
-    // animation: wiggle 10s ease-in-out infinite alternate;
-
-    &.fa-circle,
-    &.fa-moon-o {
-      font-size: $moon-size;
-      color: $moon-color;
-    }
-  }
-}
-
-@include media-breakpoint-up(sm) {
-  .moon-container {
+  @include media-breakpoint-up(sm) {
     height: $moon-container-sm;
     bottom: 0;
     width: $moon-container-sm / 2;
   }
-
-  .moon-object {
-    font-size: $moon-size-sm;
-    left: -$moon-size-sm;
-    top: -$moon-size-sm + ($moon-container-sm / 2);
-
-    i {
-      &.fa-circle,
-      &.fa-moon-o {
-        font-size: $moon-size-sm;
-      }
-    }
-  }
 }
 
-.moon-object-2 {
+.moon-object {
   // background: asset-url('themes/night/moon512.jpg');
   background-color: $p300-grey;
   background-size: 256px;
@@ -72,10 +38,8 @@ $moon-container-sm: $moon-size-sm + $moon-padding-sm;
   top: 26px;
   position: absolute;
   box-shadow: 7px -10px 30px rgba($brand-white, .15);
-}
 
-@include media-breakpoint-up(sm) {
-  .moon-object-2 {
+  @include media-breakpoint-up(sm) {
     background-size: 384px;
     border-radius: 384px;
     height: 384px;
