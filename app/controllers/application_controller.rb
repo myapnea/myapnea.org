@@ -14,6 +14,7 @@ class ApplicationController < ActionController::Base
     return unless !request.post? && !request.xhr? && params[:format] != "atom"
     store_internal_location_in_session if internal_action?(params[:controller], params[:action])
     store_external_location_in_session if external_action?(params[:controller], params[:action])
+    clear_location_in_session if params[:controller] == "external" && params[:action] == "landing"
   end
 
   def after_sign_in_path_for(resource)
@@ -98,6 +99,11 @@ class ApplicationController < ActionController::Base
 
   def store_external_location_in_session
     session[:previous_external_url] = request.fullpath
+    session[:previous_internal_url] = nil
+  end
+
+  def clear_location_in_session
+    session[:previous_external_url] = nil
     session[:previous_internal_url] = nil
   end
 
