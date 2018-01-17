@@ -36,6 +36,9 @@
 ### Tests
 - Added tests to assure user passwords can be reset
 
+### Bug Fix
+- Welcome email should no longer be sent twice
+
 ### Refactoring
 - Removed typeahead library
 - Combined blog post replies and forum topic replies into one model

@@ -11,9 +11,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,
          :trackable, :validatable, :timeoutable, :lockable
 
-  # Callbacks
-  after_commit :send_welcome_email_in_background!, on: :create
-
   # Concerns
   include Deletable
   include Forkable
