@@ -56,7 +56,7 @@
                     %i.fa.fa-comments{ style: 'color: #2196F3;' }
                     = topic.replies.count
                   By
-                  .landing-box-footer-author-name= link_to reply.user.forum_name, member_path(reply.user.forum_name)
+                  .landing-box-footer-author-name= link_to reply.user.username, member_path(reply.user.username)
 
       .center= link_to 'ASK A QUESTION', new_topic_path, class: 'link-white'
     .page-box-down-arrow

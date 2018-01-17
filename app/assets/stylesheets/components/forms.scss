@@ -28,5 +28,6 @@
 }
 
 .submit-btn-container {
-  margin: 20px 0 0;
+  // This mimics .mt-4.mb-0
+  margin: $spacer * 1.5 0 0;
 }

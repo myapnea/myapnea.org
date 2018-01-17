@@ -27,9 +27,9 @@ class NavigationTest < ActionDispatch::IntegrationTest
   test "should register new account" do
     post user_registration_path, params: {
       user: {
-        full_name: "register account", email: "register@account.com",
-        password: "registerpassword098765", emails_enabled: "1",
-        over_eighteen: "1"
+        username: "registeraccount",
+        email: "register@account.com",
+        password: "registerpassword098765"
       }
     }
     assert_equal I18n.t("devise.registrations.signed_up"), flash[:notice]

@@ -1,369 +1,116 @@
-<% pw = User.new(password: 'password').encrypted_password %>
+<% pw = User.new(password: "password").encrypted_password %>
 
 valid:
-  full_name: Valid McApnea
+  username: AwesomeCat
   email: valid@example.com
   encrypted_password: <%= pw %>
   emails_enabled: true
-  forum_name: AwesomeCat
+  full_name: Valid McApnea
 
 admin:
+  username: MajorAdmin
   full_name: Own Er
   email: admin@example.com
   admin: true
-  over_eighteen: true
   adult_diagnosed: true
   encrypted_password: <%= pw %>
   accepted_terms_conditions_at: <%= Time.zone.now %>
-  forum_name: MajorAdmin
 
 <% 1.upto(10) do |i| %>
 user_<%= i %>:
+  username: User<%= i %>
   email: user_<%= i %>@example.com
   full_name: User <%= i %>wski
-  over_eighteen: true
   adult_diagnosed: true
   encrypted_password: <%= pw %>
   accepted_terms_conditions_at: <%= Time.zone.now %>
-  forum_name: User<%= i %>
   photo: photo.png
 <% end %>
 
-has_accepted_privacy:
-  email: privacy@example.com
-  full_name: Tommy Privacy
-  forum_name: HasAcceptedPrivacy
-  over_eighteen: true
-  adult_diagnosed: true
-  encrypted_password: <%= pw %>
-  accepted_privacy_policy_at: <%= 6.day.ago.to_s(:db) %>
-
-has_accepted_consent:
-  email: consent@example.com
-  full_name: Tommy Consent
-  forum_name: HasAcceptedConsent
-  over_eighteen: true
-  adult_diagnosed: true
-  encrypted_password: <%= pw %>
-  accepted_consent_at: <%= 6.day.ago.to_s(:db) %>
-
 social:
+  username: TomHaverford
   full_name: Tommy Boy
   email: tommyboy@gmail.com
-  forum_name: TomHaverford
   accepted_consent_at: <%= 5.day.ago.to_s(:db) %>
   accepted_privacy_policy_at: <%= 6.day.ago.to_s(:db) %>
-  over_eighteen: true
   adult_diagnosed: true
   encrypted_password: <%= pw %>
   current_sign_in_ip: 170.223.207.25
 
 participant:
+  username: participant
   full_name: Research Participant
   email: research_participant@example.com
   accepted_consent_at: <%= 5.day.ago.to_s(:db) %>
   accepted_privacy_policy_at: <%= 6.day.ago.to_s(:db) %>
-  over_eighteen: true
   adult_diagnosed: true
-  forum_name: participant
   encrypted_password: <%= pw %>
 
 moderator_1:
+  username: mod1
   full_name: Mod Erator1
   email: mod1@mods.com
   moderator: true
-  over_eighteen: true
   adult_diagnosed: true
   encrypted_password: <%= pw %>
-  forum_name: mod1
   accepted_terms_conditions_at: <%= Time.zone.now %>
 
 moderator_2:
+  username: mod2
   full_name: Mod Erator2
   email: mod2@mods.com
   moderator: true
-  over_eighteen: true
   adult_diagnosed: true
   encrypted_password: <%= pw %>
-  forum_name: mod2
   accepted_terms_conditions_at: <%= Time.zone.now %>
 
-has_completed_survey:
-  full_name: Complete Survey
-  email: cs@example.com
-  over_eighteen: true
-  accepted_consent_at: <%= 5.day.ago.to_s(:db) %>
-  accepted_privacy_policy_at: <%= 6.day.ago.to_s(:db) %>
-  adult_diagnosed: true
-  forum_name: surveyfinisher
-  encrypted_password: <%= pw %>
-
-has_incomplete_survey:
-  full_name: Incomplete Survey
-  email: is@example.com
-  accepted_consent_at: <%= 5.day.ago.to_s(:db) %>
-  accepted_privacy_policy_at: <%= 6.day.ago.to_s(:db) %>
-  over_eighteen: true
-  adult_diagnosed: true
-  forum_name: surveynotfinisher
-  encrypted_password: <%= pw %>
-
-has_launched_survey:
-  full_name: Unstarted Survey
-  email: us@example.com
-  accepted_consent_at: <%= 5.day.ago.to_s(:db) %>
-  accepted_privacy_policy_at: <%= 6.day.ago.to_s(:db) %>
-  over_eighteen: true
-  adult_diagnosed: true
-  forum_name: surveylaunched
-  encrypted_password: <%= pw %>
-
 deleted:
+  username: zombieboy
   full_name: Zombie Boy
   email: zombieboy@gmail.com
-  forum_name: zombieboy
   accepted_consent_at: <%= 10.day.ago.to_s(:db) %>
   accepted_privacy_policy_at: <%= 10.day.ago.to_s(:db) %>
-  over_eighteen: true
   encrypted_password: <%= pw %>
   adult_diagnosed: true
   deleted: true
 
-# User Types
-
-## Unassigned User
-blank_slate:
-  full_name: Blank Slate
-  email: blankslate@gmail.com
-  over_eighteen: true
-  encrypted_password: <%= pw %>
-  forum_name: blankslate
-
-## Adult Diagnosed
-adult_diagnosed:
-  full_name: Adult Diagnosed
-  email: adultdiagnosed@gmail.com
-  over_eighteen: true
-  adult_diagnosed: true
-  encrypted_password: <%= pw %>
-  forum_name: adultdiagnosed
-
-## Adult At Risk
-adult_at_risk:
-  full_name: Adult AtRisk
-  email: adultatrisk@gmail.com
-  over_eighteen: true
-  adult_at_risk: true
-  encrypted_password: <%= pw %>
-  forum_name: adultatrisk
-
-## Caregiver Adult
-caregiver_adult:
-  full_name: Caregiver Adult
-  email: caregiveradult@gmail.com
-  over_eighteen: true
-  caregiver_adult: true
-  encrypted_password: <%= pw %>
-  forum_name: caregiveradult
-
-## Caregiver Child
-caregiver_child:
-  full_name: Caregiver Child
-  email: caregiverchild@gmail.com
-  over_eighteen: true
-  caregiver_child: true
-  encrypted_password: <%= pw %>
-  forum_name: caregiverchild
-
-## Researcher
-researcher:
-  full_name: Re Searcher
-  email: researcher@gmail.com
-  over_eighteen: true
-  researcher: true
-  encrypted_password: <%= pw %>
-  accepted_privacy_policy_at: <%= 6.day.ago.to_s(:db) %>
-  accepted_terms_of_access_at: <%= 6.day.ago.to_s(:db) %>
-  forum_name: researcher
-
-builder:
-  full_name: Survey Builder
-  email: builder@example.com
-  encrypted_password: <%= pw %>
-  can_build_surveys: true
-  forum_name: surveybuilder
-
-associated_builder:
-  full_name: Associated Builder
-  email: associated_builder@example.com
-  encrypted_password: <%= pw %>
-  can_build_surveys: true
-  forum_name: associatedbuilder
-
-## For survey encounter assignment tests
-created_today:
-  full_name: Created Today
-  email: created_today@example.com
-  over_eighteen: true
-  encrypted_password: <%= pw %>
-  created_at: <%= Date.today.to_s(:db) %>
-  forum_name: createdtoday
-
-created_five_days_ago:
-  full_name: Created FiveDaysAgo
-  email: created_five_days_ago@example.com
-  over_eighteen: true
-  encrypted_password: <%= pw %>
-  created_at: <%= 5.day.ago.to_s(:db) %>
-  forum_name: createdfivedaysago
-
-created_fourteen_days_ago:
-  full_name: Created FourteenDaysAgo
-  email: created_fourteen_days_ago@example.com
-  over_eighteen: true
-  encrypted_password: <%= pw %>
-  created_at: <%= 14.day.ago.to_s(:db) %>
-  forum_name: createdfourteendaysago
-
-created_today_with_locked_baseline:
-  full_name: Created Today
-  email: created_today_with_locked_baseline@example.com
-  over_eighteen: true
-  encrypted_password: <%= pw %>
-  created_at: <%= Date.today.to_s(:db) %>
-  forum_name: createdtodaywithlockedbaseline
-
-created_five_days_ago_with_locked_baseline:
-  full_name: Created FiveDaysAgo
-  email: created_five_days_ago_with_locked_baseline@example.com
-  over_eighteen: true
-  encrypted_password: <%= pw %>
-  created_at: <%= 5.day.ago.to_s(:db) %>
-  forum_name: createdfivedaysagowithlockedbaseline
-
-created_fourteen_days_ago_with_locked_baseline:
-  full_name: Created FourteenDaysAgo
-  email: created_fourteen_days_ago_with_locked_baseline@example.com
-  over_eighteen: true
-  encrypted_password: <%= pw %>
-  created_at: <%= 14.day.ago.to_s(:db) %>
-  forum_name: createdfourteendaysagowithlockedbaseline
-
-## For completed about-me survey
-finished_about_me_1:
-  full_name: Finished About Me 1
-  email: finished_about_me_1@example.com
-  over_eighteen: true
-  accepted_consent_at: <%= 5.day.ago.to_s(:db) %>
-  accepted_privacy_policy_at: <%= 6.day.ago.to_s(:db) %>
-  adult_diagnosed: true
-  encrypted_password: <%= pw %>
-  forum_name: finishedaboutme1
-
-finished_about_me_2:
-  full_name: Finished About Me 2
-  email: finished_about_me_2@example.com
-  over_eighteen: true
-  accepted_consent_at: <%= 5.day.ago.to_s(:db) %>
-  accepted_privacy_policy_at: <%= 6.day.ago.to_s(:db) %>
-  adult_diagnosed: true
-  encrypted_password: <%= pw %>
-  forum_name: finishedaboutme2
-
-finished_about_me_3:
-  full_name: Finished About Me 3
-  email: finished_about_me_3@example.com
-  over_eighteen: true
-  accepted_consent_at: <%= 5.day.ago.to_s(:db) %>
-  accepted_privacy_policy_at: <%= 6.day.ago.to_s(:db) %>
-  adult_diagnosed: true
-  encrypted_password: <%= pw %>
-  forum_name: finishedaboutme3
-
-finished_about_me_4:
-  full_name: Finished About Me 4
-  email: finished_about_me_4@example.com
-  over_eighteen: true
-  accepted_consent_at: <%= 5.day.ago.to_s(:db) %>
-  accepted_privacy_policy_at: <%= 6.day.ago.to_s(:db) %>
-  adult_diagnosed: true
-  encrypted_password: <%= pw %>
-  forum_name: finishedaboutme4
-
-finished_about_me_5:
-  full_name: Finished About Me 5
-  email: finished_about_me_5@example.com
-  over_eighteen: true
-  accepted_consent_at: <%= 5.day.ago.to_s(:db) %>
-  accepted_privacy_policy_at: <%= 6.day.ago.to_s(:db) %>
-  adult_diagnosed: true
-  encrypted_password: <%= pw %>
-  forum_name: finishedaboutme5
-
-finished_about_me_6:
-  full_name: Finished About Me 6
-  email: finished_about_me_6@example.com
-  over_eighteen: true
-  accepted_consent_at: <%= 5.day.ago.to_s(:db) %>
-  accepted_privacy_policy_at: <%= 6.day.ago.to_s(:db) %>
-  adult_diagnosed: true
-  encrypted_password: <%= pw %>
-  forum_name: finishedaboutme6
-
-heh_1:
-  email: heh_1@example.com
-  full_name: HeH Member
-  forum_name: HeH
-  over_eighteen: true
-  adult_diagnosed: true
-  encrypted_password: <%= pw %>
-  accepted_terms_conditions_at: <%= Time.zone.now %>
-  incoming_heh_token: 0987654321
-  incoming_heh_at: <%= Time.zone.now %>
-  outgoing_heh_at: <%= Time.zone.now %>
-
 community_contributor:
+  username: communitycontributor
   full_name: Community Contributor
   email: community_contributor@example.com
-  over_eighteen: true
   encrypted_password: ""
   community_contributor: true
-  forum_name: communitycontributor
 
 shadow_banned:
+  username: darkshadow
   full_name: Dark Shadow
   email: shadow_banned@example.com
-  over_eighteen: true
   adult_diagnosed: true
   encrypted_password: <%= pw %>
   accepted_terms_conditions_at: <%= Time.zone.now %>
-  forum_name: darkshadow
   shadow_banned: true
 
 new_spammer:
+  username: innocentant
   full_name: Innocent Ant
   email: new_spammer@example.com
-  over_eighteen: true
   adult_diagnosed: true
   encrypted_password: <%= pw %>
   accepted_terms_conditions_at: <%= Time.zone.now %>
-  forum_name: innocentant
   # shadow_banned:
 
 verified_user:
+  username: prolificuser
   full_name: Prolific Poster
   email: verified_user@example.com
-  over_eighteen: true
   adult_diagnosed: true
   encrypted_password: <%= pw %>
   accepted_terms_conditions_at: <%= Time.zone.now %>
-  forum_name: prolificuser
   shadow_banned: false
 
 content_manager:
+  username: contentmanager
   full_name: Content Manager
   email: content_manager@example.com
-  over_eighteen: true
   encrypted_password: ""
   content_manager: true
-  forum_name: contentmanager

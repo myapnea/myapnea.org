@@ -24,7 +24,7 @@
             = link_to settings_profile_path(anchor: "picture"), class: "d-block mb-3" do
               = profile_picture_tag current_user, size: 256, style: "max-width: 100%;height: auto;"
           .d-none.d-md-block.text-md-center.overflow-hidden.text-accent.breakword.small.p-lg-1.myapnea-white-bg.rounded
-            = current_user.forum_name
+            = current_user.username
           - if false
             .d-none.d-md-block.text-md-center
               %small.text-muted

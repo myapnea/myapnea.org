@@ -9,7 +9,7 @@
       %p
         %strong= current_user.full_name
         %br
-        %small= current_user.forum_name
+        %small= current_user.username
       %p
         %small.profile-muted-description
           Joined
@@ -26,4 +26,4 @@
 .profile-menu-container
   %ul.blog-menu.profile-menu
     %li.blog-menu-header Public
-    %li= link_to "My Profile", posts_member_path(current_user.forum_name), class: current_page?(posts_member_path(current_user.forum_name)) ? "active" : nil
+    %li= link_to "My Profile", posts_member_path(current_user.username), class: current_page?(posts_member_path(current_user.username)) ? "active" : nil

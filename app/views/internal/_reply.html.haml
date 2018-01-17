@@ -1,8 +1,8 @@
 .profile-reply
   .profile-reply-image-container
-    = link_to posts_member_path(reply.user.forum_name), class: "link-muted" do
+    = link_to posts_member_path(reply.user.username), class: "link-muted" do
       = profile_picture_tag(reply.user)
-      %small= reply.user.forum_name
+      %small= reply.user.username
   .profile-reply-description-container
     %p
       %strong= reply.parent.title

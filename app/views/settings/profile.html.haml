@@ -10,7 +10,7 @@
     Public profile
   .card-body
     = form_with model: current_user, url: settings_update_profile_path, method: :patch, local: true do |form|
-      = render "forms/vertical/text_field", form: form, object: current_user, key: :forum_name, help_text: "You can change your profile picture #{link_to "here", settings_profile_path(anchor: "picture")}.".html_safe
+      = render "forms/vertical/text_field", form: form, object: current_user, key: :username, help_text: "You can change your profile picture #{link_to "here", settings_profile_path(anchor: "picture")}.".html_safe
       = render "forms/vertical/text_area", form: form, object: current_user, key: :profile_bio, key_name: "Bio", help_text: "Short description about yourself.", rows: 3, maxlength: 160
       = render "forms/vertical/text_field", form: form, object: current_user, key: :profile_location, key_name: "Location", help_text: "Your city, state, and/or country, ex: Boston, MA, USA, or Sydney, AUSTRALIA"
 

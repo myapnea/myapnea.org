@@ -79,7 +79,7 @@ class SettingsController < ApplicationController
   private
 
   def profile_params
-    params.require(:user).permit(:forum_name, :profile_bio, :profile_location)
+    params.require(:user).permit(:username, :profile_bio, :profile_location)
   end
 
   def profile_picture_params

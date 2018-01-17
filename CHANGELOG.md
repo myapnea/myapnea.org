@@ -15,6 +15,7 @@
   - Added "Top" and "Recent" topics to member profile
   - Added content manager role to streamline creation of articles for
     "Education", "FAQs", and other static pages
+  - Simplified registration process
 - **Admin Changes**
   - Major revamp of the administrative interface
 - **Forum Changes**

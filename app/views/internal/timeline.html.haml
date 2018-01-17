@@ -1,7 +1,6 @@
-- @title = 'Personal Timeline'
+- @title = "Personal Timeline"
 
-- content_for :body_class do
-  myapnea-light-bg
+- @body = "light"
 
 - content_for :header do
   .header-container
@@ -11,13 +10,13 @@
 
 .drawer-and-shelf-container
   .drawer
-    = render 'internal/menu'
+    = render "internal/menu"
   .shelf
     .dashboard-container
-      .profile-muted-description.text-center{ style: 'margin-bottom: 20px;' }
+      .profile-muted-description.text-center{ style: "margin-bottom: 20px;" }
         Only you can see your timeline,
-        = link_to 'see your public profile here.', posts_member_path(current_user.forum_name)
-      .dashboard-title.text-center= Time.zone.today.strftime('%a %b %d, %Y')
+        = link_to "see your public profile here.", posts_member_path(current_user.username)
+      .dashboard-title.text-center= Time.zone.today.strftime("%a %b %d, %Y")
       .dashboard-body
         %ul
           %li I did something.
@@ -30,12 +29,11 @@
       .dashboard-title.text-center Last Week
       .dashboard-body
         %ul
-          %li You changed your forum name :-(
+          %li You changed your username :-(
       %hr
-      .dashboard-title.text-center= (Time.zone.today - 1.month).strftime('%b %Y')
+      .dashboard-title.text-center= (Time.zone.today - 1.month).strftime("%b %Y")
       .dashboard-body
         %ul
           %li You joined!
           %li
-            We gave you an forum name!
-            = link_to 'Change my forum name', settings_profile_path
+            = link_to "Change my username", settings_profile_path

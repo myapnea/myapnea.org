@@ -12,16 +12,14 @@ class User < ApplicationRecord
          :trackable, :validatable, :timeoutable, :lockable
 
   # Callbacks
-  after_commit :set_forum_name, :send_welcome_email_in_background!, on: :create
+  after_commit :send_welcome_email_in_background!, on: :create
 
   # Concerns
   include Deletable
   include Forkable
-  include RandomNameGenerator
+  include UsernameGenerator
   include Squishable
   squish :full_name
-
-  attr_accessor :user_is_updating
 
   # Scopes
   scope :search, lambda { |arg| where( "LOWER(full_name) LIKE ? or LOWER(email) LIKE ?", arg.to_s.downcase.gsub(/^| |$/, "%"), arg.to_s.downcase.gsub(/^| |$/, "%") ) }
@@ -29,13 +27,16 @@ class User < ApplicationRecord
   scope :reply_count, -> { select("users.*, COALESCE(COUNT(replies.id), 0) reply_count").joins("LEFT OUTER JOIN replies ON replies.user_id = users.id and replies.deleted IS FALSE and replies.topic_id IN (SELECT topics.id FROM topics WHERE topics.deleted IS FALSE)").group("users.id") }
 
   # Validations
-  validates :full_name, presence: true
-  validates :full_name, format: { with: /\A.+\s.+\Z/ }
-
-  validates :forum_name, allow_blank: true, uniqueness: { case_sensitive: false }, format: { with: /\A[a-zA-Z0-9]*\Z/i }, unless: :update_by_user?
-  validates :forum_name, allow_blank: false, uniqueness: { case_sensitive: false }, format: { with: /\A[a-zA-Z0-9]+\Z/i }, if: :update_by_user?
-
-  validates :over_eighteen, inclusion: { in: [true], message: "You must be over 18 years of age to sign up" }, allow_nil: true
+  # validates :full_name, presence: true
+  validates :full_name, format: { with: /\A.+\s.+\Z/ }, allow_blank: true
+  validates :username, presence: true
+  validates :username, format: {
+                         with: /\A[a-zA-Z0-9]+\Z/i,
+                         message: "may only contain letters or digits"
+                       },
+                       exclusion: { in: %w(new edit show create update destroy) },
+                       allow_blank: true,
+                       uniqueness: { case_sensitive: false }
 
   # Relationships
   has_many :broadcasts, -> { current }
@@ -138,20 +139,6 @@ class User < ApplicationRecord
   end
 
   private
-
-  # This happens when any user updates changes from dashboard
-  def update_by_user?
-    user_is_updating == "1"
-  end
-
-  def set_forum_name
-    return if forum_name.present?
-    update forum_name: User.generate_forum_name(email, Time.zone.now.usec.to_s)
-  rescue ActiveRecord::RecordNotUnique, ActiveRecord::RecordInvalid
-    attempt ||= 0
-    attempt += 1
-    retry if attempt <= 10
-  end
 
   def send_welcome_email!
     UserMailer.welcome(self).deliver_now if EMAILS_ENABLED

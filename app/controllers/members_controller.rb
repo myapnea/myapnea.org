@@ -9,16 +9,16 @@ class MembersController < ApplicationController
     redirect_to topics_path
   end
 
-  # GET /members/:forum_name
+  # GET /members/:username
   def show
     redirect_to posts_member_path(params[:id])
   end
 
-  # # GET /members/:forum_name/badges
+  # # GET /members/:username/badges
   # def badges
   # end
 
-  # GET /members/:forum_name/posts
+  # GET /members/:username/posts
   def posts
     @replies = @member.replies.order(created_at: :desc).page(params[:page]).per(10)
     @topics = @member.topics.reply_count.order("reply_count desc").limit(3)
@@ -33,7 +33,7 @@ class MembersController < ApplicationController
     end
   end
 
-  # GET /members/:forum_name/profile_picture
+  # GET /members/:username/profile_picture
   def profile_picture
     if @member&.photo.present?
       send_file(@member&.photo&.path)
@@ -48,7 +48,7 @@ class MembersController < ApplicationController
   private
 
   def find_member
-    @member = User.current.find_by("LOWER(users.forum_name) = ?", params[:id].to_s.downcase)
+    @member = User.current.find_by("LOWER(username) = ?", params[:id].to_s.downcase)
   end
 
   def find_member_or_redirect

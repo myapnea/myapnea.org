@@ -29,13 +29,13 @@ class SettingsControllerTest < ActionDispatch::IntegrationTest
     login(@regular)
     patch settings_update_profile_url, params: {
       user: {
-        forum_name: "ForumNameUpdate",
+        username: "ForumNameUpdate",
         profile_bio: "Short Bio",
         profile_location: "Boston, MA"
       }
     }
     @regular.reload
-    assert_equal "ForumNameUpdate", @regular.forum_name
+    assert_equal "ForumNameUpdate", @regular.username
     assert_equal "Short Bio", @regular.profile_bio
     assert_equal "Boston, MA", @regular.profile_location
     assert_equal "Profile successfully updated.", flash[:notice]

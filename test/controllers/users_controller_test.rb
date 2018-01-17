@@ -15,7 +15,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
   def user_params
     {
-      full_name: "FirstName LastName",
+      username: "Username",
       email: "valid_updated_email@example.com",
       emails_enabled: "1"
     }
@@ -141,9 +141,9 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to new_user_session_url
   end
 
-  test "should not update user with blank name" do
+  test "should not update user with blank username" do
     login(@admin)
-    patch user_url(@user), params: { user: { full_name: "" } }
+    patch user_url(@user), params: { user: { username: "" } }
     assert_not_nil assigns(:user)
     assert_template "edit"
   end

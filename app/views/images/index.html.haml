@@ -33,7 +33,7 @@
             %td
               = link_to image, style: "width: 56px;display:block;" do
                 = image_tag download_image_path(image, size: "thumb"), style: "width: 56px;"
-            %td.breakword= link_to image.user.forum_name, image
+            %td.breakword= link_to image.user.username, image
             %td.hidden-xs.nowrap= number_to_human_size image.file_size
             %td.hidden-xs
               %abbr{ rel: "tooltip", data: { title: image.created_at.strftime("%-l:%M %p"), container: "body", placement: "left" } }

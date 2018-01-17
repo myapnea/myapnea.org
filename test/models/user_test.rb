@@ -6,23 +6,22 @@ require "test_helper"
 class UserTest < ActiveSupport::TestCase
   def user_params(email: nil)
     {
-      forum_name: User.generate_forum_name(email),
+      username: User.suggest_username(email),
       full_name: "First Last",
       email: email,
       password: "mynewpassword"
     }
   end
 
-  test "should generate valid forum names" do
-    assert_operator 6, :<=, User.generate_forum_name(nil).size
-    assert_operator 6, :<=, User.generate_forum_name("").size
-    assert_operator 6, :<=, User.generate_forum_name("test@example.com").size
+  test "should generate valid usernames" do
+    assert_operator 6, :<=, User.suggest_username("").size
+    assert_operator 6, :<=, User.suggest_username("test@example.com").size
     u = User.create(user_params(email: "email@example.com"))
-    assert_equal [], u.errors[:forum_name]
+    assert_equal [], u.errors[:username]
     u = User.create(user_params(email: "email2@example.com"))
-    assert_equal [], u.errors[:forum_name]
+    assert_equal [], u.errors[:username]
     u = User.create(user_params(email: "email3@example.com"))
-    assert_equal [], u.errors[:forum_name]
+    assert_equal [], u.errors[:username]
   end
 
   test "should have valid animals that only contain two or more letters" do

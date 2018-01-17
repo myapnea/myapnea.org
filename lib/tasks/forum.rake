@@ -9,7 +9,7 @@ namespace :forum do
         csv << [
           topic.id,
           "Topic",
-          topic.user.forum_name,
+          topic.user.username,
           topic.title.downcase.tr("\n", " "),
           topic.replies.current.count,
           topic.view_count
@@ -18,7 +18,7 @@ namespace :forum do
           csv << [
             topic.id,
             "Reply",
-            reply.user.forum_name,
+            reply.user.username,
             reply.description.downcase.tr("\n", " ")
           ]
         end

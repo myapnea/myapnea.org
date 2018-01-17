@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-# Generates random forum name.
-module RandomNameGenerator
+# Generates random username.
+module UsernameGenerator
   extend ActiveSupport::Concern
 
   included do
-    def self.generate_forum_name(input, additional_seed = nil)
+    def self.suggest_username(input, additional_seed = nil)
       input += additional_seed if additional_seed
       seed = Digest::MD5.hexdigest(input.to_s).hex.to_s
       # adjective = adjectives[(seed[0..3].to_i % adjectives.size)]
@@ -16,19 +16,19 @@ module RandomNameGenerator
     end
 
     def self.adjectives
-      @adjectives ||= load_yaml('adjectives')
+      @adjectives ||= load_yaml("adjectives")
     end
 
     def self.colors
-      @colors ||= load_yaml('colors')
+      @colors ||= load_yaml("colors")
     end
 
     def self.animals
-      @animals ||= load_yaml('animals')
+      @animals ||= load_yaml("animals")
     end
 
     def self.load_yaml(name)
-      YAML.load_file(Rails.root.join('lib', 'data', 'profiles', "#{name}.yml"))
+      YAML.load_file(Rails.root.join("lib", "data", "profiles", "#{name}.yml"))
     end
   end
 end

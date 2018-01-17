@@ -36,7 +36,7 @@
 
 
   = render "forms/horizontal/show/text", object: @user, key: :email
-  = render "forms/horizontal/show/generic", title: "Forum Name", content: link_to(@user.forum_name, member_path(@user.forum_name)) if @user.forum_name.present?
+  = render "forms/horizontal/show/generic", title: "Username", content: link_to(@user.username, member_path(@user.username)) if @user.username.present?
   = render "forms/horizontal/show/check_box", object: @user, key: :emails_enabled
   = render "forms/horizontal/show/text", object: @user, key: :profile_bio, key_name: "Bio"
   = render "forms/horizontal/show/text", object: @user, key: :profile_location, key_name: "Location"

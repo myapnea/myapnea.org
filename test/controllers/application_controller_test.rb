@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'test_helper'
+require "test_helper"
 
 # Tests to assure display of static pages.
 class ApplicationControllerTest < ActionController::TestCase
@@ -8,8 +8,8 @@ class ApplicationControllerTest < ActionController::TestCase
     proc do
       [
         200,
-        { 'Content-Type' => 'application/json' },
-        [{ success: true, challenge_ts: '', hostname: '' }.to_json]
+        { "Content-Type" => "application/json" },
+        [{ success: true, challenge_ts: "", hostname: "" }.to_json]
       ]
     end
   end
@@ -18,19 +18,19 @@ class ApplicationControllerTest < ActionController::TestCase
     proc do
       [
         200,
-        { 'Content-Type' => 'application/json' },
-        [{ success: false, challenge_ts: '', hostname: '' }.to_json]
+        { "Content-Type" => "application/json" },
+        [{ success: false, challenge_ts: "", hostname: "" }.to_json]
       ]
     end
   end
 
-  test 'should get verify repacture success' do
+  test "should get verify repacture success" do
     Artifice.activate_with(google_recaptcha_success) do
       assert_equal true, @controller.send(:verify_recaptcha)
     end
   end
 
-  test 'should get verify repacture failure' do
+  test "should get verify repacture failure" do
     Artifice.activate_with(google_recaptcha_failure) do
       assert_equal false, @controller.send(:verify_recaptcha)
     end

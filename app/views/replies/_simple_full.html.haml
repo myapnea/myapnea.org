@@ -10,7 +10,7 @@
     .py-3.pl-2.pr-3.mr-auto.w-100
       .small
         .float-right= link_to reply.parent.title, reply, data: { turbolinks: false }, class: "link-muted"
-        = link_to reply.user.forum_name, posts_member_path(reply.user.forum_name)
+        = link_to reply.user.username, posts_member_path(reply.user.username)
       = render "replies/formatted", reply: reply
     = link_to reply, class: "reply-simple-full-link p-3 d-flex align-items-center myapnea-grey-bg no-underline", data: { turbolinks: false } do
       %div

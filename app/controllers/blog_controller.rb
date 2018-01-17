@@ -20,8 +20,8 @@ class BlogController < ApplicationController
   def show
     @author = @broadcast.user
     @page = (params[:page].to_i > 1 ? params[:page].to_i : 1)
-    @order = scrub_order(Reply, params[:order], 'points desc')
-    if ['points', 'points desc'].include?(params[:order])
+    @order = scrub_order(Reply, params[:order], "points desc")
+    if ["points", "points desc"].include?(params[:order])
       @order = params[:order]
     end
     @replies = @broadcast.replies.points.includes(:broadcast)
@@ -39,11 +39,11 @@ class BlogController < ApplicationController
 
   def set_author
     return if params[:author].blank?
-    @author = User.current.where('lower(forum_name) = ?', params[:author].downcase).first
+    @author = User.current.where("lower(username) = ?", params[:author].downcase).first
   end
 
   def set_category
     return if params[:category].blank?
-    @category = Admin::Category.current.where('lower(slug) = ?', params[:category].downcase).first
+    @category = Admin::Category.current.where("lower(slug) = ?", params[:category].downcase).first
   end
 end

@@ -29,7 +29,7 @@
           .small
             = spammer.email
           .small
-            = spammer.forum_name
+            = spammer.username
         %td.small
           - reply = Reply.where(user: spammer).last
           - if reply
