@@ -35,6 +35,7 @@
 
 ### Tests
 - Added tests to assure user passwords can be reset
+- Added system tests to track changes to user interface
 
 ### Bug Fix
 - Welcome email should no longer be sent twice

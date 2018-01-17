@@ -10,7 +10,7 @@
 
     .sign-up-form
       .sign-up-form-title
-        Reset Password
+        Reset password
 
       = form_with model: resource, as: resource_name, url: password_path(resource_name), method: :post, local: true do |form|
         = render "forms/vertical/email_field", form: form, object: resource, key: :email
