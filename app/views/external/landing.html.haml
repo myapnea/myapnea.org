@@ -16,14 +16,15 @@
 
 = render "landing/register_slide"
 
-#about.anchor-menu
-= render "landing/about_slide"
-
 #research.anchor-menu
 = render "landing/research_slide"
 
-#video.anchor-menu
-= render "landing/video_slide"
+- if false
+  #about.anchor-menu
+  = render "landing/about_slide"
+
+  #video.anchor-menu
+  = render "landing/video_slide"
 
 #join.anchor-menu
 = render "landing/join_slide"

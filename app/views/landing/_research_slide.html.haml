@@ -1,31 +1,38 @@
-.page-box.myapnea-black-bg.overflow-hidden.d-flex.flex-column.justify-content-around{ style: "position: relative;" }
+.page-box.page-box-no-padding.myapnea-black-bg.overflow-hidden{ style: "position: relative;" }
   - video_path = "videos/research.mp4"
   - video_found = (Rails.application.assets || ::Sprockets::Railtie.build_environment(Rails.application)).find_asset(video_path)
   - if video_found
     %video.video-full-page-absolute{ autoplay: "true", loop: "false", muted: "true", plays_inline: "true" }
       %source{ src: asset_url(video_path), type: "video/mp4" }
 
-  .container
-    = render "landing/orange_title", title: "Community Power", text_class: "text-white"
+  .page-box.page-box-no-padding.myapnea-dark-blue-transparent-radial-bg.d-flex.flex-column.justify-content-around
+    .container
+      = render "landing/orange_title", title: "Community Power", text_class: "text-white"
 
-    .card-deck.flex-row
-      -# .flex-column.flex-md-row
-      .card.myapnea-transparent-bg{ style: "border: 0;" }
-        .card-body.d-flex.flex-column.justify-content-center.align-items-center
-          .landing-blog-title.mb-0.text-white.text-center{ style: "border: 0;" }
-            = number_with_delimiter AnswerSession.current.count
-            .landing-blog-content{ style: "background-color: transparent;color: #bdbdbd;" }
-              Surveys Completed
+      .card-deck.flex-row
+        -# .flex-column.flex-md-row
+        .card.myapnea-transparent-bg{ style: "border: 0;" }
+          .card-body.d-flex.flex-column.justify-content-center.align-items-center
+            .landing-blog-title.mb-0.text-white.text-center{ style: "border: 0;" }
+              = number_with_delimiter AnswerSession.current.count
+              .landing-blog-content{ style: "background-color: transparent;color: #bdbdbd;" }
+                Surveys Completed
 
-      .card.myapnea-transparent-bg{ style: "border: 0;" }
-        .card-body.d-flex.flex-column.justify-content-center.align-items-center
-          .landing-blog-title.mb-0.text-white.text-center{ style: "border: 0;" }
-            = number_with_delimiter User.current.count
-            .landing-blog-content{ style: "background-color: transparent;color: #bdbdbd;" }
-              MyApnea Members
+        .card.myapnea-transparent-bg{ style: "border: 0;" }
+          .card-body.d-flex.flex-column.justify-content-center.align-items-center
+            .landing-blog-title.mb-0.text-white.text-center{ style: "border: 0;" }
+              = number_with_delimiter User.current.count
+              .landing-blog-content{ style: "background-color: transparent;color: #bdbdbd;" }
+                MyApnea Members
 
-    - if false
-      #landing-page-users-surveys-chart{ style: "position: relative;background-color: rgba(1, 1, 1, .75);" }
+      - if false
+        #landing-page-users-surveys-chart{ style: "position: relative;background-color: rgba(1, 1, 1, .75);" }
+
+%div{ style: "position: relative;" }
+  %div{ style: "position: relative;" }
+    = link_to "#join", data: { object: "scroll-anchor" }, class: "text-white scroll-down-arrow-visible link-unstyled", style: "z-index: 1070;" do
+      %i.fa.fa-chevron-down
+
 
 - # 2,000,000 Apnea Events Treated
 - # 2.5 hours per night gained

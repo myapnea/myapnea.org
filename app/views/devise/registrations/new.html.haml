@@ -1,15 +1,17 @@
 - @title = "Join MyApnea"
 
-- @menu = "light"
-- @body = "light"
-- @footer = "light"
+- @menu = "dark-blue"
+- @body = "dark-blue"
+- @footer = "dark-blue"
 
-%p.lead.text-center Join our community.
+.page-box.last-box.d-flex.flex-column.justify-content-center.myapnea-dark-blue-light-center-bg
+  %div
+    %p.lead.text-center.text-white Join our community.
 
-.sign-up-form
-  .sign-up-form-title
-    Create your account
-  = render "devise/registrations/form", resource: resource
+    .sign-up-form
+      .sign-up-form-title
+        Create your account
+      = render "devise/registrations/form", resource: resource
 
-.sign-up-form.text-center
-  = link_to "I already have an account.", new_user_session_path
+    .sign-up-form.text-center
+      = link_to "I already have an account.", new_user_session_path
