@@ -26,12 +26,6 @@ class InternalControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should get research" do
-    login(@regular_user)
-    get research_url
-    assert_response :success
-  end
-
   test "should get settings" do
     login(@regular_user)
     get settings_url

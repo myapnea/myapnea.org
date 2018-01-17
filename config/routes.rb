@@ -106,11 +106,9 @@ Rails.application.routes.draw do
 
   scope module: :internal do
     get :dashboard
-    get :research, path: "dashboard/research"
     get :reports, path: "dashboard/reports"
     get :timeline
     get :yoga_consent, path: "yoga/consent"
-    get :research, path: "dashboard/research"
     get :settings
     get :settings_account, path: "settings/account"
     get :settings_consents, path: "settings/consents"
@@ -164,7 +162,7 @@ Rails.application.routes.draw do
     patch :update_email, path: "email"
   end
 
-  get "surveys", to: redirect("research")
+  get "surveys", to: redirect("research"), as: :surveys
   namespace :slice, path: "" do # OR: scope module: :slice
     get :research
     get :consent, path: "research/:project/consent"

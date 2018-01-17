@@ -10,13 +10,13 @@ class SliceControllerTest < ActionDispatch::IntegrationTest
     @regular_user = users(:user_1)
   end
 
+  test "should redirect surveys to research" do
+    get surveys_url
+    assert_redirected_to slice_research_url
+  end
+
   test "should get research" do
     get slice_research_url
     assert_response :success
   end
-
-  # test "should get surveys and redirect as public user" do
-  #   get slice_surveys_url
-  #   assert_redirected_to slice_research_url
-  # end
 end
