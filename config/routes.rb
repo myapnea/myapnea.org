@@ -189,7 +189,12 @@ Rails.application.routes.draw do
   get "admin" => "admin#dashboard"
 
   devise_for :users,
-             controllers: { registrations: "registrations", sessions: "sessions" },
+             controllers: {
+              passwords: "passwords",
+              registrations: "registrations",
+              sessions: "sessions",
+              unlocks: "unlocks"
+             },
              path_names: { sign_up: "join", sign_in: "login" },
              path: ""
 

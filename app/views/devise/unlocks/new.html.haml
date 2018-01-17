@@ -1,24 +1,24 @@
 - @title = "Unlock account"
 
-- content_for :body_class do
-  myapnea-light-bg
+- @menu = "dark-blue"
+- @body = "dark-blue"
+- @footer = "dark-blue"
 
-%p.lead.text-center Resend unlock instructions
+.page-box.last-box.d-flex.flex-column.justify-content-center.myapnea-dark-blue-light-center-bg
+  .container
+    %p.lead.text-center.text-white Resend unlock instructions
 
-.sign-up-form
-  .sign-up-form-title
-    Unlock account
+    .sign-up-form
+      .sign-up-form-title
+        Unlock account
 
-  = form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post, class: "form-vertical" }) do |f|
-    .form-group
-      = render "layouts/label_or_errors", f: f, object: resource, key: :email
-      = f.email_field :email, class: "form-control"
+      = form_with model: resource, as: resource_name, url: unlock_path(resource_name), method: :post, local: true do |form|
+        = render "forms/vertical/email_field", form: form, object: resource, key: :email
 
-    - if resource.errors.any?
-      .text-danger
-        - if resource.errors.messages.keys.include?(:unlock_token)
-          Your unlock token has expired. Please enter an email to regenerate
-          a new unlock token and URL.
+        - if resource.errors.any? && resource.errors.messages.keys.include?(:unlock_token)
+          %small.form-text.text-danger
+            Your unlock token has expired. Please enter an email to regenerate
+            a new unlock token and URL.
 
-    .form-group.submit-btn-container
-      = f.submit "Resend unlock instructions", class: "btn btn-primary btn-block btn-shadow"
+        .form-group.submit-btn-container
+          = form.submit "Resend unlock instructions", class: "btn btn-primary btn-block btn-shadow"
