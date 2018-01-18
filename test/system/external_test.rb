@@ -8,10 +8,10 @@ class ExternalTest < ApplicationSystemTestCase
     visit root_url
     screenshot("visit-landing-page")
     find("a[href='#research']").click
-    sleep(0.5) # Allow time to setup canvas for drawing
+    sleep(0.5) # Allow time to scroll
     screenshot("visit-landing-page")
     find("a[href='#join']").click
-    sleep(0.5) # Allow time to setup canvas for drawing
+    sleep(0.5) # Allow time to scroll
     screenshot("visit-landing-page")
   end
 
@@ -30,6 +30,12 @@ class ExternalTest < ApplicationSystemTestCase
   test "visit team page" do
     visit team_url
     screenshot("visit-team-page")
+  end
+
+  test "visit contact page" do
+    visit contact_url
+    sleep(0.5) # Allow time for map to load
+    screenshot("visit-contact-page")
   end
 
   test "visit blog" do
