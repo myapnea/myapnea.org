@@ -18,6 +18,20 @@ class InternalTest < ApplicationSystemTestCase
     click_form_submit
   end
 
+  test "visit projects page" do
+    visit_login(@admin)
+    visit projects_url
+    screenshot("visit-projects-page")
+    assert_selector "h1", text: "Projects"
+  end
+
+  test "visit users page" do
+    visit_login(@admin)
+    visit users_url
+    screenshot("visit-users-page")
+    assert_selector "h1", text: "Users"
+  end
+
   test "visit spam inbox" do
     visit_login(@admin)
     visit admin_spam_inbox_url
@@ -35,5 +49,41 @@ class InternalTest < ApplicationSystemTestCase
     visit admin_replies_url
     screenshot("visit-member-posts")
     assert_selector "h1", text: "Member Posts"
+  end
+
+  test "visit categories page" do
+    visit_login(@admin)
+    visit admin_categories_url
+    screenshot("visit-categories-page")
+    assert_selector "h1", text: "Categories"
+  end
+
+  test "visit images page" do
+    skip
+    visit_login(@admin)
+    visit images_url
+    screenshot("visit-images-page")
+    assert_selector "h1", text: "Images"
+  end
+
+  test "visit exports page" do
+    visit_login(@admin)
+    visit admin_exports_url
+    screenshot("visit-exports-page")
+    assert_selector "h1", text: "Exports"
+  end
+
+  test "visit admin partners page" do
+    visit_login(@admin)
+    visit admin_partners_url
+    screenshot("visit-admin-partners-page")
+    assert_selector "h1", text: "Partners"
+  end
+
+  test "visit admin team members page" do
+    visit_login(@admin)
+    visit admin_team_members_url
+    screenshot("visit-admin-team-members-page")
+    assert_selector "h1", text: "Team Members"
   end
 end
