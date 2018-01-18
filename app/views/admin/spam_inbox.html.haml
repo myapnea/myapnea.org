@@ -1,5 +1,6 @@
 - @title = "Spam Inbox"
 
+- @menu = "blue"
 - @body = "sky"
 - @footer = "grass"
 
@@ -12,31 +13,31 @@
   .float-right= link_to "Empty Spam", admin_empty_spam_path, method: :post, data: { confirm: "DELETE all spammers?" }, class: "btn btn-sm btn-accent"
   = @title
 
-- content_for :footer do
-  = render "decorations/sunset"
+- content_for :footer, render("decorations/sunset")
 
 - if @spammers.present?
-  %table.table
-    %thead
-      %tr
-        %td Spammer
-        %td Last Reply
-        %td Actions
-    - @spammers.each do |spammer|
-      %tr
-        %td
-          = link_to spammer.full_name, spammer
-          .small
-            = spammer.email
-          .small
-            = spammer.username
-        %td.small
-          - reply = Reply.where(user: spammer).last
-          - if reply
-            = link_to "view topic", reply
-            = reply.description if reply
-        %td
-          = link_to "Not a spammer", admin_unspamban_path(spammer), method: :post, class: "btn btn-sm btn-light"
+  .dashboard-container
+    %table.table.table-striped.table-borderless.table-hover
+      %thead
+        %tr
+          %th Spammer
+          %th Last Reply
+          %th.text-center Actions
+      - @spammers.each do |spammer|
+        %tr
+          %td
+            = link_to spammer.username, spammer
+            .small
+              = spammer.email
+            .small
+              = spammer.full_name
+          %td.small
+            - reply = Reply.where(user: spammer).last
+            - if reply
+              = link_to "view topic", reply
+              = reply.description if reply
+          %td.text-center
+            = link_to "Not a spammer", admin_unspamban_path(spammer), method: :post, class: "btn btn-sm btn-light"
 
 - else
   .jumbotron.jumbotron-action.jumbotron-shadow
