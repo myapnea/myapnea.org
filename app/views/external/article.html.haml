@@ -6,13 +6,11 @@
 - @footer = "night"
 
 - content_for :header do
-  - @special_heading = true
   .header-container
     .container
-      %h1.page-heading{ style: @special_heading ? "font-weight: 300 !important;letter-spacing: .25rem !important;text-shadow: none !important;font-variant: small-caps;" : nil }
+      %h1.page-heading
         = @title
 - content_for :footer, render("decorations/moon")
-
 
 .dashboard-container-margins{ style: "line-height: 1.8;" }
   %h4= @title

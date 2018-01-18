@@ -3,6 +3,13 @@
   text-shadow: 0 2px 3px $standard-shadow-color;
   word-break: break-word;
 
+  // .page-heading-small-caps
+  font-weight: 300;
+  letter-spacing: .25rem;
+  text-shadow: none;
+  font-variant: small-caps;
+  // end special small caps styling
+
   .btn,
   .dropdown-menu {
     text-shadow: none;
@@ -45,6 +52,9 @@
     line-height: 33px; // h1 font size * 1.1
     position: relative;
     z-index: 1;
+
+    font-variant: normal;
+    letter-spacing: normal;
   }
 }
 

@@ -1,14 +1,13 @@
-- @title = ["Search", @search.gsub(" & ", " ")].compact.join(" | ")
+- @title = "Help Center"
 
 - @body = "grey"
 - @footer = "grey"
 
 - content_for :header do
-  - @special_heading = true
   .header-container
     .container
-      %h1.page-heading{ style: @special_heading ? "font-weight: 300 !important;letter-spacing: .25rem !important;text-shadow: none !important;font-variant: small-caps;" : nil }
-        Help Center
+      %h1.page-heading
+        = @title
 
 = form_tag search_path, method: :get, id: "search-form", class: "mb-5" do
   .input-group

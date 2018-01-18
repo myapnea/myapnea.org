@@ -15,7 +15,7 @@
           - unless current_user
             .col-12.col-md= render "landing/registration"
 
-      = link_to "#about", data: { object: "scroll-anchor", duration: "1200" }, class: "scroll-down-arrow-visible link-unstyled", style: "z-index: 1070;" do
+      = link_to "#about", data: { object: "scroll-anchor", duration: "1200" }, class: "scroll-down-arrow-visible link-unstyled" do
         %i.fa.fa-chevron-down
 
     %div{ style: "position: relative;" }= render "decorations/sun_horizon_scroll"
@@ -67,7 +67,7 @@
                 %i.fa.fa-caret-right
   %div{ style: "position: relative;" }
     %div{ style: "position: relative;" }
-      = link_to "#video", data: { object: "scroll-anchor" }, class: "scroll-down-arrow-visible link-unstyled", style: "z-index: 1070;" do
+      = link_to "#video", data: { object: "scroll-anchor" }, class: "scroll-down-arrow-visible link-unstyled" do
         %i.fa.fa-chevron-down
 
   - if false

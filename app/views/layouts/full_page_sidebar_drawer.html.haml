@@ -22,7 +22,7 @@
     #top-menu.top-menu= render "layouts/menu", nocontainer: true, menu: @menu ? "menu-#{@menu}" : nil
     .header-container
       .container-fluid
-        %h1.page-heading{ style: @special_heading ? "font-weight: 300 !important;letter-spacing: .25rem !important;text-shadow: none !important;font-variant: small-caps;" : nil }
+        %h1.page-heading
           = yield :header
           = render "sidebar/toggle"
     .row.no-gutters.flex-xl-nowrap

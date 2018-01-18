@@ -22,3 +22,11 @@
     }
   }
 }
+
+.navbar-brand {
+  &.navbar-brand-small-caps {
+    font-weight: 300;
+    letter-spacing: .125rem;
+    font-variant: small-caps;
+  }
+}
