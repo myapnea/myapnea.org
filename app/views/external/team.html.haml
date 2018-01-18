@@ -5,11 +5,8 @@
 - @body = "dark-blue"
 - @footer = "dark-blue"
 
-- content_for :header do
-  .header-container
-    .container
-      %h1.page-heading
-        = @menu_title
+.mb-3{ data: { object: "menu-trigger" } }
+  = render "landing/orange_title", title: @menu_title, text_class: "text-white"
 
 .dashboard-container
   - lowest_position = @team_members.pluck(:position).min

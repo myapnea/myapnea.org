@@ -27,6 +27,11 @@ class ExternalTest < ApplicationSystemTestCase
     screenshot("visit-partners-page")
   end
 
+  test "visit team page" do
+    visit team_url
+    screenshot("visit-team-page")
+  end
+
   test "visit blog" do
     visit blog_url
     screenshot("visit-blog")
