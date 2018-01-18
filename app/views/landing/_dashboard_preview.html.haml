@@ -1,12 +1,8 @@
 .landing-sentence.text-center.mb-5.text-white
-  %div
+  .mb-3
     Welcome
     = succeed "!" do
       %span.text-accent.small= current_user.username
-  .mb-5{ style: "font-size: 0.8rem;" }
-    = link_to settings_path do
-      change my username
-      %i.fa.fa-caret-right
   = link_to dashboard_path, class: "btn btn-xl btn-accent btn-shadow" do
     My dashboard
     %i.fa.fa-caret-right
