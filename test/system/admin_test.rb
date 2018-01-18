@@ -29,4 +29,11 @@ class InternalTest < ApplicationSystemTestCase
     screenshot("visit-spam-inbox")
     assert_selector "div", text: "Hurray, no spammers!"
   end
+
+  test "visit member posts" do
+    visit_login(@admin)
+    visit admin_replies_url
+    screenshot("visit-member-posts")
+    assert_selector "h1", text: "Member Posts"
+  end
 end
