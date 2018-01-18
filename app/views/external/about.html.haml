@@ -1,24 +1,39 @@
 - @title = "About Us"
 
 - @menu = "dark-blue"
+- @body = "dark-blue"
 - @footer = "dark-blue"
-
 
 .page-box-padding.last-box.myapnea-dark-blue-bg.text-white
   .container
     = render "landing/orange_title", title: "About Us", text_class: "text-white"
 
     .landing-text.mb-3
-      MyApnea is all about improving sleep apnea through information, support, and research.
+      MyApnea is all about improving sleep apnea through information, support,
+      and research.
 
     %p
-      Join a new patient-led community created to fight sleep apnea. MyApnea is a network created by people with sleep apnea to empower others and to help get needed answers.
+      Join a patient-led community created to fight sleep apnea. MyApnea is a
+      network created by people with sleep apnea to empower others and to help
+      get needed answers.
 
     %p
-      We are inviting thousands of people with sleep apnea and their caregivers to come together at MyApnea to learn more about symptoms and treatment, to share their experiences with others within the community, and to become part of a international research network to improve lives. It’s a whole new way of finding help—for you and for millions of people with sleep apnea.
+      We are inviting thousands of people with sleep apnea and their caregivers
+      to come together at MyApnea to learn more about symptoms and treatment, to
+      share their experiences with others within the community, and to become
+      part of a international research network to improve lives. It's a whole
+      new way of finding help—for you and for millions of people with sleep
+      apnea.
 
     %p
-      MyApnea is a patient-powered research community. Together, members share health information, discuss experiences regarding treatment, and express views directly to researchers and sleep experts on future research projects that can make a difference. In return, you will get easy-to-use tools to track your health and will be able to learn from others about treatments, symptoms, and coping with sleep apnea to take control of your life. And we will report back on all interesting research findings, in language you don’t have to be a scientist to understand.
+      MyApnea is a patient-powered research community. Together, members share
+      health information, discuss experiences regarding treatment, and express
+      views directly to researchers and sleep experts on future research
+      projects that can make a difference. In return, you will get easy-to-use
+      tools to track your health and will be able to learn from others about
+      treatments, symptoms, and coping with sleep apnea to take control of your
+      life. And we will report back on all interesting research findings, in
+      language you don't have to be a scientist to understand.
 
 = render "landing/video_slide"
 
@@ -27,16 +42,23 @@
     = render "landing/orange_title", title: "Help us spread the word!", text_class: "text-white"
 
     %p
-      Collaboration is key to defeating sleep apnea. We have a few ways you can help us spread the word in order to get more people involved. Whether it's a quick tweet or telling a friend over coffee, we appreciate your help immensely - we can't do this without you!
+      Collaboration is key to defeating sleep apnea. We have a few ways you can
+      help us spread the word in order to get more people involved. Whether it's
+      a quick tweet or telling a friend over coffee, we appreciate your help
+      immensely - we can't do this without you!
 
     %ul
       %li
         = link_to "Print one of our flyers", "#{ENV["website_url"]}/pdfs/myapnea_flyer_2.pdf", data: { turbolinks: false }, class: "link-accent"
-        and post it at work or school, or ask your care provider if they will hang it in their offices - let's get more public exposure on sleep apnea!
+        and post it at work or school, or ask your care provider if they will
+        hang it in their offices - let's get more public exposure on sleep
+        apnea!
       %li
-        Share our pages on social media - it's quick, easy, and one of the best ways to get more people involved!
+        Share our pages on social media - it's quick, easy, and one of the best
+        ways to get more people involved!
       %li
-        Email your peers, professional networks, and alumni groups. We've made it easy by drafting an email -
+        Email your peers, professional networks, and alumni groups. We've made
+        it easy by drafting an email -
         = link_to "click here to quickly send it!", "mailto:?subject=Check out MyApnea.Org&body=This group is working to improve treatment and research of sleep apnea! You can learn more and join their community by visiting #{ENV["website_url"]}.", class: "link-accent"
 
     %hr.my-5
