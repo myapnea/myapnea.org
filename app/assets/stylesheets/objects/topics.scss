@@ -1,3 +1,9 @@
+.topics {
+  border-radius: $border-radius;
+  box-shadow: 0 1px 5px $box-shadow-color;
+  margin-bottom: $spacer * 1.5;
+}
+
 .topic-line-mark {
   width: 4px;
 
@@ -7,7 +13,7 @@
 }
 
 .topic-read {
-  color: $p300-blue;
+  color: $p200-blue;
 
   &:hover,
   &:focus,
@@ -20,6 +26,7 @@
 
 .topic-unread {
   color: $p500-blue;
+  font-weight: bold;
 
   &:hover,
   &:focus,

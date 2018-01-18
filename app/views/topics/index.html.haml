@@ -1,7 +1,8 @@
 - @title = "Forum"
 
-- content_for :body_class do
-  myapnea-light-bg
+- @menu = "blue"
+- @body = "grey"
+- @footer = "grey"
 
 - content_for :header do
   .header-container
@@ -11,13 +12,10 @@
           %span#forum-top-container= link_to "Start New Topic", async_forum_new_topic_path, method: :post, remote: true, class: "btn btn-accent btn-shadow"
           = render "layouts/per_page", per_page: 40, object_count: @topics.total_count
         = @title
-        = render "search/toggle"
-
-= render "search/simple", url: search_path
 
 #new-topic-container{ style: "display:none;" }
 
-.dashboard-container
+.topics
   %table.table.table-striped.table-borderless.table-sticky
     %col
     %col
@@ -41,7 +39,7 @@
             .float-right
               - if next_unread_reply
                 %small
-                  = link_to next_unread_reply, data: { turbolinks: false }, class: "link-accent" do
+                  = link_to next_unread_reply, data: { turbolinks: false }, class: "btn btn-sm btn-accent" do
                     = unread_replies
                     new
                     %fa.fa.fa-comments-o
@@ -58,6 +56,8 @@
               = link_to topic.title, next_unread_reply, data: { turbolinks: false }, class: (topic.started_reading?(current_user) && unread_replies.zero?) ? "topic-read" : "topic-unread"
             - else
               = link_to topic.title, topic, class: (topic.started_reading?(current_user) && unread_replies.zero?) ? "topic-read" : "topic-unread"
+            .small.text-muted
+              %small= link_to topic.user.username, member_path(topic.user.username), class: "link-blend-muted"
           %td.d-none.d-sm-table-cell.text-muted.text-center
             %span.small= number_with_delimiter topic.reply_count - 1
           %td.d-none.d-md-table-cell.text-muted.text-center

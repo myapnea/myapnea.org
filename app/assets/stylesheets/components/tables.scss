@@ -33,3 +33,7 @@
     vertical-align: middle;
   }
 }
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: rgba(0, 0, 0, .025);
+}
