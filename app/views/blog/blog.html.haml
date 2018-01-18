@@ -1,22 +1,20 @@
 - @title = ["Blog", @category ? @category.name : nil, @author ? @author.username : nil].compact.join(" | ")
 
-- content_for :body_class do
-  myapnea-light-bg
+- @menu = "blue"
+- @body = "grey"
+- @footer = "grey"
 
 - content_for :header do
   .header-container
     .container
       %h1.page-heading
         = @title
-        = render "search/toggle"
-
-= render "search/simple", url: search_path
 
 .row
   .col-lg-9
     - @broadcasts.each do |broadcast|
       .dashboard-container.broadcast-container
-        %h2.broadcast-title{ style: "margin-top: 0;border-bottom: 0;" }= link_to broadcast.title, blog_post_path(broadcast.url_hash)
+        %h2.broadcast-title.mt-0{ style: "border-bottom: 0;" }= link_to broadcast.title, blog_post_path(broadcast.url_hash)
         = render "blog/extract", broadcast: broadcast
     .center-horizontally= paginate @broadcasts, theme: "bootstrap"
   .col-lg-3

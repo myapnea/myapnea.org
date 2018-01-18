@@ -28,6 +28,7 @@ class BlogController < ApplicationController
                          .where(reply_id: nil).reorder(@order)
                          .page(params[:page]).per(Reply::REPLIES_PER_PAGE)
     @broadcast.increment! :view_count
+    render layout: "layouts/full_page"
   end
 
   private

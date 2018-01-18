@@ -41,7 +41,8 @@
   - else
     %p.lead.text-center
       - if params[:search].present?
-        No Search Results Found
+        No search results found.
+        = link_to "Start over", search_path
       - else
         Type a search above.
 
