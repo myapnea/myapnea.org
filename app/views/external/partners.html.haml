@@ -16,8 +16,8 @@
   %p.lead
     The following companies and organizations share our mission and goals to
     improve research and the treatment of sleep apnea and are working with us to
-    promote the MyApnea Network to patients and health care professionals.*
-    We greatly appreciate their assistance.
+    promote MyApnea to patients and health care professionals. We greatly
+    appreciate their assistance.
   .row
     - @partners.where(group: "promotional").sort.each do |partner|
       = render "admin/partners/promotional_partner", partner: partner
