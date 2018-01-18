@@ -15,7 +15,7 @@
           - video_loop = '1'
           - autoplay = '1'
           %iframe{ src: "//www.youtube.com/embed/#{video}?playlist=#{video}&autoplay=#{autoplay}&loop=#{video_loop}&controls=0&rel=0&modestbranding=1&showinfo=0", webkitallowfullscreen: true, mozallowfullscreen: true, allowfullscreen: true }
-      .page-box-down-arrow.hidden-xs
+      .page-box-down-arrow.d-none.d-sm-block
         = link_to "#forum-place", data: { object: 'scroll-anchor' } do
           %i.fa.fa-chevron-circle-down
   - elsif false

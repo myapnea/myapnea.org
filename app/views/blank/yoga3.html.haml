@@ -32,13 +32,13 @@
           &copy;
           = Date.today.year
           = ENV['website_name']
-        .row.hidden-xs
+        .row.d-none.d-sm-block
           .col-xs-6.nowrap
             &copy;
             = Date.today.year
             = ENV['website_name']
             |
             = link_to 'About', about_path
-          .col-xs-6.nowrap.text-right.hidden-xs
+          .col-xs-6.nowrap.text-right.d-none.d-sm-block
             .float-right
               Mindfulness

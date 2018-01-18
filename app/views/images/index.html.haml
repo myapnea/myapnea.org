@@ -16,15 +16,15 @@
     %table.table.table-striped.table-borderless.table-hover
       %col
       %col
-      %col.hidden-xs
-      %col.hidden-xs
+      %col.d-none.d-md-table-column
+      %col.d-none.d-md-table-column
       %col{ width: "1px" }
       %thead
         %tr
           %th
           %th User
-          %th.hidden-xs File Size
-          %th.hidden-xs Created At
+          %th.d-none.d-md-table-cell File Size
+          %th.d-none.d-md-table-cell Created At
           %th.text-center Actions
 
       %tbody
@@ -34,8 +34,8 @@
               = link_to image, style: "width: 56px;display:block;" do
                 = image_tag download_image_path(image, size: "thumb"), style: "width: 56px;"
             %td.breakword= link_to image.user.username, image
-            %td.hidden-xs.nowrap= number_to_human_size image.file_size
-            %td.hidden-xs
+            %td.d-none.d-md-table-cell.nowrap= number_to_human_size image.file_size
+            %td.d-none.d-md-table-cell
               %abbr{ rel: "tooltip", data: { title: image.created_at.strftime("%-l:%M %p"), container: "body", placement: "left" } }
                 = image.created_at.strftime("%b %-d, %Y")
             %td.text-center= render "layouts/edit_delete_dropdown", edit_url: edit_image_path(image), delete_url: image, delete_confirmation: "Delete image?"

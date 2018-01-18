@@ -1,6 +1,6 @@
 - @drawer = true
 - if false
-  %div.hidden-xs.profile
+  .d-none.d-sm-block.profile
     .profile-image-container{ rel: "tooltip", data: { title: "Change your picture", container: "body", placement: "bottom" } }
       = link_to settings_path do
         = profile_picture_tag(current_user, size: "220", style: "width: 220px; height: auto; border-radius: 0 !important;")

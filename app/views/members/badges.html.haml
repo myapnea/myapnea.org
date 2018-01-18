@@ -11,14 +11,14 @@
 
 .drawer-and-shelf-container
   .drawer
-    = render 'members/menu', member: @member
+    = render "members/menu", member: @member
   .shelf
     .dashboard-container
-      = render 'badges/replies', user: @member
+      = render "badges/replies", user: @member
       %p
-        %small{ style: 'color: #ccc;' } 1&cross;
-        %span.label.label-default{ rel: 'tooltip', data: { title: 'Cast an upvote or downvote on the forum', container: 'body', placement: 'right' } } Voter
+        %small{ style: "color: #ccc;" } 1&cross;
+        %span.label.label-default{ rel: "tooltip", data: { title: "Cast an upvote or downvote on the forum", container: "body", placement: "right" } } Voter
       %p
-        %small{ style: 'color: #ccc;' } 1&cross;
-        %span.label.label-default{ rel: 'tooltip', data: { title: 'Created a poll', container: 'body', placement: 'right' } } Pollster
+        %small{ style: "color: #ccc;" } 1&cross;
+        %span.label.label-default{ rel: "tooltip", data: { title: "Created a poll", container: "body", placement: "right" } } Pollster
 

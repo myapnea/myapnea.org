@@ -17,10 +17,10 @@
     %thead
       %tr
         %th.d-none.d-md-table-cell
-        = th_sort_field @order, "points", "Points", extra_class: "center hidden-xs hidden-sm"
+        = th_sort_field @order, "points", "Points", extra_class: "text-center d-none d-md-table-cell"
         %th Reply
         %th.d-none.d-md-table-cell Author
-        = th_sort_field @order, "replies.created_at", "Date", extra_class: "hidden-xs hidden-sm"
+        = th_sort_field @order, "replies.created_at", "Date", extra_class: "d-none d-md-table-cell"
 
     %tbody
       - @replies.each do |reply|
