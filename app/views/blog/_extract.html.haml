@@ -2,7 +2,7 @@
   = first_image(broadcast)
   %p
     = strip_tags(simple_markdown broadcast.description, true, false).gsub(/\r/, " ").gsub(/\n/, " ").truncate(500, separator: ".", omission: ".").html_safe
-    = link_to blog_post_path(broadcast.url_hash), class: "nowrap" do
+    = link_to url, class: "nowrap" do
       Keep reading
       %i.fa.fa-caret-right
 

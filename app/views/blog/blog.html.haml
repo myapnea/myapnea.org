@@ -1,22 +1,40 @@
-- @title = ["Blog", @category ? @category.name : nil, @author ? @author.username : nil].compact.join(" | ")
+- if @category && !@category.show_on_blog_roll?
+  - @title = @category.name
+  - @menu = "dark-blue"
+  - @body = "dark-blue"
+  - @footer = "dark-blue"
 
-- @menu = "blue"
-- @body = "grey"
-- @footer = "grey"
+  .mb-3{ data: { object: "menu-trigger" } }
+    = render "landing/orange_title", title: @title, text_class: "text-white"
 
-- content_for :header do
-  .header-container
-    .container
-      %h1.page-heading
-        = @title
+- else
+  - @title = ["Blog", @category ? @category.name : nil, @author ? @author.username : nil].compact.join(" | ")
+  - @menu = "blue"
+  - @body = "grey"
+  - @footer = "grey"
 
-.row
-  .col-lg-9
-    - @broadcasts.each do |broadcast|
-      .dashboard-container.broadcast-container
-        %h2.broadcast-title.mt-0{ style: "border-bottom: 0;" }= link_to broadcast.title, blog_post_path(broadcast.url_hash)
-        = render "blog/extract", broadcast: broadcast
-    .center-horizontally= paginate @broadcasts, theme: "bootstrap"
-  .col-lg-3
-    .dashboard-container.col-sticky
-      = render "blog/menu"
+  - content_for :header do
+    .header-container
+      .container
+        %h1.page-heading
+          = @title
+
+- if @category && !@category.show_on_blog_roll?
+  - @broadcasts.each do |broadcast|
+    .dashboard-container.broadcast-container
+      - url = article_path(broadcast)
+      %h2.broadcast-title.mt-0{ style: "border-bottom: 0;" }= link_to broadcast.title, url
+      = render "blog/extract", broadcast: broadcast, url: url
+  .center-horizontally= paginate @broadcasts, theme: "bootstrap"
+- else
+  .row
+    .col-lg-9
+      - @broadcasts.each do |broadcast|
+        .dashboard-container.broadcast-container
+          - url = blog_post_path(broadcast.url_hash)
+          %h2.broadcast-title.mt-0{ style: "border-bottom: 0;" }= link_to broadcast.title, url
+          = render "blog/extract", broadcast: broadcast, url: url
+      .center-horizontally= paginate @broadcasts, theme: "bootstrap"
+    .col-lg-3
+      .dashboard-container.col-sticky
+        = render "blog/menu"

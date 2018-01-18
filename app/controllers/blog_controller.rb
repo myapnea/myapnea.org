@@ -9,7 +9,12 @@ class BlogController < ApplicationController
   def blog
     broadcast_scope = Broadcast.current.published.order(publish_date: :desc, id: :desc)
     broadcast_scope = broadcast_scope.where(user: @author) if @author
-    broadcast_scope = broadcast_scope.where(category: @category) if @category
+    broadcast_scope = \
+      if @category
+        broadcast_scope.where(category: @category)
+      else
+        broadcast_scope.joins(:category).merge(Admin::Category.current.where(show_on_blog_roll: true))
+      end
     @broadcasts = broadcast_scope.page(params[:page]).per(10)
     respond_to do |format|
       format.html
@@ -21,9 +26,7 @@ class BlogController < ApplicationController
     @author = @broadcast.user
     @page = (params[:page].to_i > 1 ? params[:page].to_i : 1)
     @order = scrub_order(Reply, params[:order], "points desc")
-    if ["points", "points desc"].include?(params[:order])
-      @order = params[:order]
-    end
+    @order = params[:order] if ["points", "points desc"].include?(params[:order])
     @replies = @broadcast.replies.points.includes(:broadcast)
                          .where(reply_id: nil).reorder(@order)
                          .page(params[:page]).per(Reply::REPLIES_PER_PAGE)

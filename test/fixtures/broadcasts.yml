@@ -19,3 +19,14 @@ draft:
   # image: MyString
   publish_date: 2015-11-30
   published: false
+
+faq-what-is-myapnea:
+  title: What is MyApnea?
+  slug: faq-what-is-myapnea
+  description:
+    MyApnea is a network created by people with sleep apnea to empower others like us to get the answers we want and need through sharing and promoting research. MyApnea offers sleep apnea patients and caregivers the opportunity to LEARN more about apnea and effective treatments, SHARE experiences with other members of the community, and contribute to RESEARCH to improve diagnosis, management, and treatments for sleep apnea.
+    MyApnea is what’s called patient-powered research. You and others within the sleep apnea community can share health information, discuss experiences regarding treatment, and express views directly to researchers and sleep experts on future research projects that can make a difference. In return, you will get easy-to-use tools to track your health and learn from others about treatments, symptoms, and coping with sleep apnea to take control of your life.
+  user: myapnea
+  publish_date: 2018-01-18
+  published: true
+  category: faqs

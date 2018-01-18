@@ -13,3 +13,4 @@
 .dashboard-container
   = render "forms/horizontal/show/text", object: @admin_category, key: :name
   = render "forms/horizontal/show/generic", title: "Slug", content: content_tag(:code, @admin_category.slug)
+  = render "forms/horizontal/show/check_box", object: @admin_category, key: :show_on_blog_roll

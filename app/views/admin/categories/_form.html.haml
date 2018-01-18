@@ -1,4 +1,5 @@
 = form_with model: admin_category, local: true do |form|
   = render "forms/horizontal/text_field", form: form, object: admin_category, key: :name, slug: "slug"
   = render "forms/horizontal/slug_field", form: form, object: admin_category, key: :slug
+  = render "forms/horizontal/check_box", form: form, object: admin_category, key: :show_on_blog_roll
   = render "forms/horizontal/submit", form: form, object: admin_category

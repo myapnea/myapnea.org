@@ -19,6 +19,14 @@ class ArticlesTest < ApplicationSystemTestCase
     screenshot("visit-blog-post")
   end
 
-  # test "visit faqs" do
-  # end
+  test "visit faqs" do
+    visit blog_category_url("faqs")
+    screenshot("visit-faqs")
+  end
+
+  test "visit faq article" do
+    visit article_url("faq-what-is-myapnea")
+    screenshot("visit-faq-article")
+    assert_selector "h1", text: "What is MyApnea?"
+  end
 end

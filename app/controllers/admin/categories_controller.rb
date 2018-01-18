@@ -31,7 +31,7 @@ class Admin::CategoriesController < ApplicationController
     @admin_category = Admin::Category.new(admin_category_params)
 
     if @admin_category.save
-      redirect_to @admin_category, notice: 'Category was successfully created.'
+      redirect_to @admin_category, notice: "Category was successfully created."
     else
       render :new
     end
@@ -40,7 +40,7 @@ class Admin::CategoriesController < ApplicationController
   # PATCH /admin/categories/1
   def update
     if @admin_category.update(admin_category_params)
-      redirect_to @admin_category, notice: 'Category was successfully updated.'
+      redirect_to @admin_category, notice: "Category was successfully updated."
     else
       render :edit
     end
@@ -49,7 +49,7 @@ class Admin::CategoriesController < ApplicationController
   # DELETE /admin/categories/1
   def destroy
     @admin_category.destroy
-    redirect_to admin_categories_path, notice: 'Category was successfully deleted.'
+    redirect_to admin_categories_path, notice: "Category was successfully deleted."
   end
 
   private
@@ -64,6 +64,6 @@ class Admin::CategoriesController < ApplicationController
   end
 
   def admin_category_params
-    params.require(:admin_category).permit(:name, :slug)
+    params.require(:admin_category).permit(:name, :slug, :show_on_blog_roll)
   end
 end

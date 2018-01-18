@@ -1,11 +1,22 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  slug: mystring
-  deleted: false
+announcements:
+  name: Announcements
+  slug: announcements
 
-two:
-  name: News
-  slug: news
-  deleted: false
+education:
+  name: Edcuation
+  slug: education
+
+patient_stories:
+  name: Patient Stories
+  slug: patient-stories
+
+research:
+  name: Research
+  slug: research
+
+faqs:
+  name: FAQs
+  slug: faqs
+  show_on_blog_roll: false

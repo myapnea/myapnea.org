@@ -7,6 +7,12 @@ valid:
   emails_enabled: true
   full_name: Valid McApnea
 
+myapnea:
+  username: MyApnea
+  # full_name:
+  email: support@myapnea.org
+  admin: true
+
 admin:
   username: MajorAdmin
   full_name: Own Er
