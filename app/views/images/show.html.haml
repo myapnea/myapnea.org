@@ -29,4 +29,16 @@
       %th File Size
       %td= number_to_human_size @image.file_size
 
+    - replies = Reply.where("description like ?", "%#{@image.to_param}%")
+    - broadcasts = Broadcast.where("description like ?", "%#{@image.to_param}%")
+    - if replies.present? || broadcasts.present?
+      %tr
+        %th Linked From
+        %td
+          %ul.list-unstyled
+            - replies.each do |reply|
+              %li= link_to "Reply ##{reply.id}", reply, data: { turbolinks: false }
+            - broadcasts.each do |broadcast|
+              %li= link_to broadcast.title, broadcast
+
   .center= image_tag download_image_path(@image), alt: "", style: "max-width: 100%; margin: 0 auto;"
