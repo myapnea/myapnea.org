@@ -56,6 +56,14 @@ class ExternalTest < ApplicationSystemTestCase
     # screenshot("visit-forum")
   end
 
+  test "visit privacy policy" do
+    visit privacy_policy_url
+    screenshot("visit-privacy-policy")
+    assert_selector "h1", text: "Privacy Policy"
+    page.execute_script("window.scrollBy(0, $(\"body\").height());")
+    screenshot("visit-privacy-policy")
+  end
+
   test "visit research page" do
     visit slice_research_url
     screenshot("visit-research-page")
