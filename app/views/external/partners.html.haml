@@ -1,21 +1,18 @@
 - @title = "Our Partners"
 
-- @body = "light"
-- @footer = "light"
+- @menu = "dark-blue"
+- @body = "dark-blue"
+- @footer = "dark-blue"
 
-- content_for :header do
-  .header-container
-    .container
-      %h1.page-heading
-        = @title
+.mb-3{ data: { object: "menu-trigger" } }
+  = render "landing/orange_title", title: @title, text_class: "text-white"
 
 - @partners.where(group: "main").each do |partner|
   .dashboard-container= render partner
 
-.dashboard-container
-  .content-main-header2
-    %h1 Promotional Partners
+.mb-3= render "landing/orange_title", title: "Promotional Partners", text_class: "text-white"
 
+.dashboard-container
   %p.lead
     The following companies and organizations share our mission and goals to
     improve research and the treatment of sleep apnea and are working with us to
@@ -27,7 +24,10 @@
   .content-footer
     %p.small
       * Our promotional and other partners DO NOT have access to your contact or
-      health information. Per our privacy policy, MyApnea will never share
+      health information. Per our
+      = succeed "," do
+        = link_to "privacy policy", privacy_policy_path
+      MyApnea will never share
       your contact or identifiable health information with any partners or other
       organizations without your express consent. All members of the network DO
       have access to de-identified aggregate data.

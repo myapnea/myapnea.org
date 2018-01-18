@@ -7,7 +7,6 @@
         = partner.name
     %p
       = partner.description
-  .col.col-lg-4.d-none.d-lg-block.partner-img-wrapper
-    .img-centerer
+  .col.col-lg-4.d-none.d-lg-flex.partner-img-wrapper.justify-content-center.align-items-center
     = image_tag partner_photo_url(partner), alt: "", class: "partners-logo-square"
 
