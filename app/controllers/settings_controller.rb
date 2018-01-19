@@ -4,8 +4,6 @@
 class SettingsController < ApplicationController
   before_action :authenticate_user!
 
-  # layout "layouts/full_page_dashboard"
-
   # # GET /settings/profile
   # def profile
   # end

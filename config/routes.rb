@@ -110,7 +110,7 @@ Rails.application.routes.draw do
     get :timeline
     get :yoga_consent, path: "yoga/consent"
     get :settings
-    get :settings_account, path: "settings/account"
+    # get :settings_account, path: "settings/account"
     get :settings_consents, path: "settings/consents"
     # get :settings_emails, path: "settings/emails"
     # get :settings_profile, path: "settings/profile"
