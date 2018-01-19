@@ -6,16 +6,15 @@ namespace :projects do
   desc "Create MyApnea Core project."
   task create_myapnea_core: :environment do
     p = Project.where(slug: "myapnea-core").first_or_create(
+      user: User.first,
       name: "MyApnea Core",
       access_token: "access_token",
       slice_site_id: 0,
-      code_prefix: "MYAPNEA",
-      consent: myapnea_core_consent
+      code_prefix: "MYAPNEA"
     )
     p.update consent: myapnea_core_consent
   end
 end
-
 
 def myapnea_core_consent
   <<-MYAPNEACONSENT
