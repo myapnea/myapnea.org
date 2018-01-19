@@ -26,8 +26,6 @@ class Project < ApplicationRecord
                    uniqueness: true,
                    allow_nil: true
 
-
-
   # Relationships
   belongs_to :user
   has_many :subjects
