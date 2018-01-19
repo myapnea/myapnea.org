@@ -1,0 +1,21 @@
+%div.overflow-hidden.breakword{ style: "margin-left: 20px;margin-right: 20px;margin-bottom: 0;padding-top: 11px;" }
+  - if member.profile_bio.present?
+    %p
+      %strong Bio
+      %br
+      .small= simple_markdown(member.profile_bio)
+  - elsif current_user == member
+    %p
+      %strong Bio
+      %br
+      .small= link_to "Add a short bio", settings_profile_path
+  %p
+    %strong Posts
+    %br
+    %small
+      = number_with_delimiter member.replies.count
+      - karma = member.replies.collect(&:rank).sum
+      - if karma.negative?
+        %span.small= "(#{number_with_delimiter karma})"
+      - else
+        %span.small= "(+#{number_with_delimiter karma})"

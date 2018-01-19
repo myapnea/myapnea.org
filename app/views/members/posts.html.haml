@@ -1,7 +1,8 @@
 - @title = @member.username
 
-- content_for :body_class do
-  myapnea-light-bg
+- @menu = "blue"
+- @body = "grey"
+- @footer = "grey"
 
 - content_for :header do
   .header-container
@@ -13,40 +14,43 @@
   .drawer
     = render "members/menu", member: @member
   .shelf
-    .d-flex.justify-content-center.d-sm-none{ style: "display: flex;flex-wrap: wrap;" }
-      %div{ style: "flex: 1 0 240px;max-width: 240px;" }= render "members/profile_image", member: @member
+    .d-flex.justify-content-center.d-md-none.flex-column.flex-sm-row
+      .mx-auto.mx-sm-0{ style: "flex: 1 0 240px;max-width: 220px;" }= render "members/profile_image", member: @member
+      .profile.ml-sm-3.w-100
+        = render "members/bio_and_info", member: @member
 
     - if @topics.present? || @recent_topics.present?
-      .profile-topics-container
+      .profile-topics-container.d-flex.flex-column.flex-lg-row
         - if @topics.present?
           .profile-topics-overview
             .dashboard-container
-              .dashboard-title
-                Top Topics
+              %p
+                %strong Top Topics
               .dashboard-body.breakword
-                %ul.list-unstyled
-                  - @topics.each do |topic|
-                    %li
+                - @topics.each do |topic|
+                  .d-flex.flex-row.justify-content-start
+                    .mr-auto
+                      = link_to topic.title, topic, class: "link-blend"
+                    .nowrap
                       %small.text-muted
                         = topic.reply_count
                         %fa.fa.fa-comments-o
-                      = link_to topic.title, topic, class: "link-blend"
         - if @recent_topics.present?
           .profile-topics-overview
             .dashboard-container
-              .dashboard-title
-                Recent Topics
+              %p
+                %strong Recent Topics
               .dashboard-body.breakword
-                %ul.list-unstyled
-                  - @recent_topics.each do |topic|
-                    %li
+                - @recent_topics.each do |topic|
+                  .d-flex.flex-row.justify-content-start
+                    .mr-auto
+                      = link_to topic.title, topic, class: "link-blend"
+                    .nowrap
                       %small.text-muted
                         = topic.reply_count
                         %fa.fa.fa-comments-o
-                      = link_to topic.title, topic, class: "link-blend"
 
-
-    %p.lead Recent Posts
+    / %p.lead Recent Posts
     - @replies.each do |reply|
       = render "replies/simple_full", reply: reply
 
