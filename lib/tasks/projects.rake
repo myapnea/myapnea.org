@@ -12,8 +12,16 @@ namespace :projects do
       slice_site_id: 0,
       code_prefix: "MYAPNEA"
     )
-    p.update consent: myapnea_core_consent
+    p.update(
+      consent: myapnea_core_consent,
+      short_description: myapnea_short_description
+    )
   end
+end
+
+def myapnea_short_description
+  "Come together to learn about sleep apnea symptoms and treatment, and become"\
+  "part of a international research network to improve lives."
 end
 
 def myapnea_core_consent
