@@ -18,6 +18,13 @@ class InternalTest < ApplicationSystemTestCase
     click_form_submit
   end
 
+  test "visit admin dashboard" do
+    visit_login(@admin)
+    visit admin_url
+    screenshot("visit-admin-dashboard")
+    assert_selector "h1", text: "Admin Dashboard"
+  end
+
   test "visit projects page" do
     visit_login(@admin)
     visit projects_url

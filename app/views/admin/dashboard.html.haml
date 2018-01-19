@@ -13,14 +13,14 @@
 - content_for :footer do
   = render "decorations/sunset"
 
-.dashboard-container
-  .dashboard-title You can do things here!
-  .dashboard-body
-    %p
-      We have
-      = succeed "." do
-        = link_to "news", blog_path
 
-    %p And other stuff. Just for you, hurray!
-
-    %p My Recent Topics I participated in
+- user_scope = User.current.where(spammer: [false, nil], shadow_banned: [false, nil])
+.row
+  .col-12.col-sm.text-center
+    .jumbotron.jumbotron-white.jumbotron-shadow
+      .lead.nowrap Joined This Week
+      .display-1= number_with_delimiter user_scope.where("DATE(created_at) >= ?", Time.zone.today.beginning_of_week(:sunday)).count
+  .col-12.col-sm.text-center
+    .jumbotron.jumbotron-white.jumbotron-shadow
+      .lead.nowrap Total Users
+      .display-1= number_with_delimiter user_scope.count
