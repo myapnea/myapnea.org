@@ -42,7 +42,7 @@
             %small= abbreviated_time(user.current_sign_in_at)
         %td.text-center
           - if user.shadow_banned?
-            %span.glyphicon.glyphicon-eye-close.text-muted
+            %i.fa.fa-eye-slash.text-muted
         %td.d-none.d-sm-table-cell.text-center
           \-1
         %td.d-none.d-sm-table-cell.text-center

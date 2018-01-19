@@ -14,9 +14,10 @@ class SliceController < ApplicationController
     redirect_to slice_research_path unless current_user
   end
 
-  # # GET /research
-  # def research
-  # end
+  # GET /research
+  def research
+    render layout: "layouts/application"
+  end
 
   # # GET /research/:project/consent
   # def consent

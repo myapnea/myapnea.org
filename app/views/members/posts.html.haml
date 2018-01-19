@@ -16,8 +16,8 @@
   .shelf
     .d-flex.justify-content-center.d-md-none.flex-column.flex-sm-row
       .mx-auto.mx-sm-0{ style: "flex: 1 0 240px;max-width: 220px;" }= render "members/profile_image", member: @member
-      .profile.ml-sm-3.w-100
-        = render "members/bio_and_info", member: @member
+      - if @member.profile_bio.present? || @member.profile_location.present? || @member == current_user
+        .profile.ml-sm-3.w-100= render "members/bio_and_info", member: @member
 
     - if @topics.present? || @recent_topics.present?
       .profile-topics-container.d-flex.flex-column.flex-lg-row

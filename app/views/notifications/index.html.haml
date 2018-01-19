@@ -34,7 +34,7 @@
                 %th.d-none.d-md-table-cell
                 %th
                   = link_to mark_all_as_read_notifications_path(broadcast_id: broadcast.id), method: :patch, remote: true, class: "text-muted" do
-                    %span.glyphicon.glyphicon-ok
+                    %i.fa.fa-check
             %tbody
               - notifications.each do |notification|
                 %tr{ id: "notification_#{notification.id}"}
@@ -54,7 +54,7 @@
                 %th.d-none.d-md-table-cell
                 %th
                   = link_to mark_all_as_read_notifications_path(topic_id: topic.id), method: :patch, remote: true, class: "text-muted" do
-                    %span.glyphicon.glyphicon-ok
+                    %i.fa.fa-check
             %tbody
               - notifications.each do |notification|
                 %tr{ id: "notification_#{notification.id}"}

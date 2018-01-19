@@ -22,7 +22,17 @@ admin:
   encrypted_password: <%= pw %>
   accepted_terms_conditions_at: <%= Time.zone.now %>
 
-<% 1.upto(10) do |i| %>
+user_1:
+  username: RubyGem
+  email: user_1@example.com
+  full_name: David S Snahson
+  adult_diagnosed: true
+  encrypted_password: <%= pw %>
+  photo: photo.png
+  profile_bio: I enjoy eating seafood and long walks on the beach.
+  profile_location: San Francisco, CA
+
+<% 2.upto(10) do |i| %>
 user_<%= i %>:
   username: User<%= i %>
   email: user_<%= i %>@example.com

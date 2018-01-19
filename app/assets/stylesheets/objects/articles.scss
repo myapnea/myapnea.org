@@ -15,7 +15,7 @@
     text-decoration: none;
   }
 
-  @include media-breakpoint-up(sm) {
+  @include media-breakpoint-up(md) {
     margin: 0 $spacer;
   }
 

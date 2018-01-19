@@ -1,21 +1,18 @@
 %div.overflow-hidden.breakword{ style: "margin-left: 20px;margin-right: 20px;margin-bottom: 0;padding-top: 11px;" }
-  - if member.profile_bio.present?
-    %p
-      %strong Bio
-      %br
-      .small= simple_markdown(member.profile_bio)
-  - elsif current_user == member
-    %p
-      %strong Bio
-      %br
-      .small= link_to "Add a short bio", settings_profile_path
-  %p
-    %strong Posts
+  - if member.profile_bio.present? || member.profile_location.present? || current_user == member
+    %strong Bio
     %br
-    %small
-      = number_with_delimiter member.replies.count
-      - karma = member.replies.collect(&:rank).sum
-      - if karma.negative?
-        %span.small= "(#{number_with_delimiter karma})"
-      - else
-        %span.small= "(+#{number_with_delimiter karma})"
+    .small
+      - if member.profile_bio.present?
+        = simple_markdown(member.profile_bio)
+      - elsif current_user == member
+        %p= link_to "Add a short bio", settings_profile_path
+
+      - if member.profile_location.present?
+        %p
+          %i.fa.fa-map-marker
+          = member.profile_location
+      - elsif current_user == member
+        %p
+          %i.fa.fa-map-marker
+          = link_to "Add a location", settings_profile_path

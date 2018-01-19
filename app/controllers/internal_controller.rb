@@ -6,7 +6,7 @@ class InternalController < ApplicationController
 
   # GET /dashboard
   def dashboard
-    render layout: "layouts/full_page_sidebar_drawer"
+    # render layout: "layouts/full_page_sidebar_drawer"
   end
 
   # # GET /dashboard/research
