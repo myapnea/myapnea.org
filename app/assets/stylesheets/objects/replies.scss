@@ -35,7 +35,11 @@
 }
 
 .reply-read {
-  border-left: 4px solid $p50-blue;
+  border-left: 4px solid $p50-grey;
+
+  &.highlighted-reply {
+    border-color: $p100-yellow;
+  }
 }
 
 .highlighted-reply {
