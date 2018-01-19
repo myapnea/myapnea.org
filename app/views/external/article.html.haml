@@ -14,7 +14,7 @@
 
 .dashboard-container-margins{ style: "line-height: 1.8;" }
   %h4= @title
-  .mb-4= simple_markdown_new @article.description, target_blank: false
+  .mb-4= simple_markdown(@article.description, target_blank: false)
 
   %small Was this article helpful?
   = succeed " " do

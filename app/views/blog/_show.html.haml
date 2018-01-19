@@ -1,2 +1,2 @@
-.broadcast= simple_markdown broadcast.description, true, false
-.broadcast-by= render 'blog/author_and_category', broadcast: broadcast
+.broadcast= simple_markdown(broadcast.description, target_blank: false)
+.broadcast-by= render "blog/author_and_category", broadcast: broadcast

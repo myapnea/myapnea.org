@@ -8,11 +8,11 @@
       %strong= reply.parent.title
     %p
       = link_to reply, data: { turbolinks: false }, class: "link-blend" do
-        - clean_text = strip_tags(simple_markdown_new(reply.description)).gsub(/\r/, " ").gsub(/\n/, " ")
+        - clean_text = strip_tags(simple_markdown(reply.description)).gsub(/\r/, " ").gsub(/\n/, " ")
         - if clean_text.present?
           = clean_text.truncate(250, separator: ".", omission: "...").html_safe
           &raquo;
         - else
-          = simple_markdown_new(reply.description + " &raquo;")
+          = simple_markdown(reply.description + " &raquo;")
 
 

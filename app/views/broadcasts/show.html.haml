@@ -25,7 +25,7 @@
 .row
   .col-lg-9
     .broadcast
-      = simple_markdown @broadcast.description, true, false
+      = simple_markdown(@broadcast.description, target_blank: false)
 
   .col-lg-3
     %p

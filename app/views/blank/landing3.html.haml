@@ -39,7 +39,7 @@
                             .landing-box-header
                               = link_to topic.title, topic, class: "link-blend"
                             .landing-box-body
-                              = strip_tags(simple_markdown_new(reply.description)).gsub(/\r/, " ").gsub(/\n/, " ").truncate(250, separator: ".", omission: "...").html_safe
+                              = strip_tags(simple_markdown(reply.description)).gsub(/\r/, " ").gsub(/\n/, " ").truncate(250, separator: ".", omission: "...").html_safe
                               = link_to reply, class: "nowrap", data: { turbolinks: false } do
                                 Read more
                                 %i.fa.fa-arrow-right
@@ -78,7 +78,7 @@
           %div{ style: "font-size: 18px;font-weight: bold;margin-bottom: 11px;" }= broadcast.title
           .broadcast
             %p
-              = strip_tags(simple_markdown_new(broadcast.description)).gsub(/\r/, " ").gsub(/\n/, " ").truncate(500, separator: ".", omission: ".").html_safe
+              = strip_tags(simple_markdown(broadcast.description)).gsub(/\r/, " ").gsub(/\n/, " ").truncate(500, separator: ".", omission: ".").html_safe
               = link_to blog_post_path(broadcast.url_hash), class: "nowrap" do
                 Keep reading
                 %i.fa.fa-caret-right

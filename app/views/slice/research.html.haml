@@ -199,7 +199,7 @@
             .landing-blog-info
               .landing-blog-title= broadcast.title
               .landing-blog-content{ style: "position: relative;" }
-                = strip_tags(simple_markdown broadcast.description, true, false).gsub(/\r/, " ").gsub(/\n/, " ").truncate(500, separator: ".", omission: ".").html_safe
+                = strip_tags(simple_markdown(broadcast.description, target_blank: false)).gsub(/\r/, " ").gsub(/\n/, " ").truncate(500, separator: ".", omission: ".").html_safe
 
                 .d-none.d-sm-block{ style: "position: absolute;right: -1rem; bottom: -1rem;" }
                   = link_to blog_post_path(broadcast.url_hash), class: "btn btn-accent btn-lg" do

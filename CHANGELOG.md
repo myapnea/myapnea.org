@@ -25,6 +25,7 @@
 - **Forum Changes**
   - Adjusted how the forum index displays on mobile devices
   - Generated forum names are now simpler and shorter
+  - Improved how images are displayed on forum
 - **Projects Added**
   - Sets of surveys are now grouped by project, the initial set of surveys on
     MyApnea are going into the MyApnea Core project

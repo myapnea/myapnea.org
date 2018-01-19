@@ -34,7 +34,7 @@
           %td.breakword{ class: reply.deleted? ? "text-muted" : nil, style: reply.deleted? ? "text-decoration:line-through" : nil }
             = link_to reply.parent.title, reply, data: { turbolinks: false }
             .reply-body{ style: "font-size: 0.9em;padding:0;margin:0" }
-              = simple_markdown_new(sanitize(reply.description.gsub(/</, "&lt;")).gsub("&gt;", ">"), table_class: "table table-striped", allow_links: reply.display_links?)
+              = simple_markdown(sanitize(reply.description.gsub(/</, "&lt;")).gsub("&gt;", ">"), table_class: "table table-striped", allow_links: reply.display_links?, allow_images: reply.display_links?, allow_tables: reply.display_links?)
           %td.d-none.d-md-table-cell.breakword= link_to reply.user.username, posts_member_path(reply.user.username)
           %td.d-none.d-md-table-cell
             %abbr{ rel: "tooltip", data: { title: reply.created_at.strftime("%-l:%M %p"), container: "body", placement: "left" } }

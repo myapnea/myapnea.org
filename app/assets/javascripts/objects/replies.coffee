@@ -1,21 +1,21 @@
 @showReplyBox = (parent_reply_id, reply_id) ->
   $("#write_reply_#{parent_reply_id}_#{reply_id}").hide()
-  $("#comment_container_#{parent_reply_id}_#{reply_id}").fadeIn('fast')
+  $("#comment_container_#{parent_reply_id}_#{reply_id}").fadeIn("fast")
 
 @hideReplyBox = (parent_reply_id, reply_id) ->
-  $('[name=password]').tooltip("dispose")
-  $("#comment_container_#{parent_reply_id}_#{reply_id}").html('')
+  $("[name=password]").tooltip("dispose")
+  $("#comment_container_#{parent_reply_id}_#{reply_id}").html("")
   $("#comment_container_#{parent_reply_id}_#{reply_id}").hide()
   $("#write_reply_#{parent_reply_id}_#{reply_id}").show()
 
 @repliesReady = ->
-  if window.location.hash == '#write-a-reply'
+  if window.location.hash == "#write-a-reply"
     $("#write_reply_root_new a").click()
-  else if window.location.hash.substring(1,8) == 'comment'
-    $("#{window.location.hash}-container").addClass('highlighted-reply')
+  else if window.location.hash.substring(1,8) == "comment"
+    $("#{window.location.hash}-container").addClass("highlighted-reply")
 
 $(document)
-  .on('click', '[data-object~="toggle-reply"]', ->
+  .on("click", '[data-object~="toggle-reply"]', ->
     $(this).closest('.reply-header').siblings('.reply-body,.reply-avatar-container').toggle()
     if $(this).html() == '[-]'
       $(this).html('[+]')
@@ -91,6 +91,6 @@ $(document)
     $($(this).data('target')).val(new_string)
     false
   )
-  .on('click', '.reply-body img', ->
-    $(this).toggleClass('large-view')
+  .on("click", ".img-zoom-message", ->
+    $(this).toggleClass("img-zoom-large-view")
   )

@@ -10,4 +10,4 @@
         %h2.alert-heading= section.name
       - else
         %h4.alert-heading= section.name
-    = simple_markdown section.description if section.description.present?
+    = simple_markdown(section.description)

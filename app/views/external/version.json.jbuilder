@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 json.version do
   json.string Myapnea::VERSION::STRING
   json.major Myapnea::VERSION::MAJOR
