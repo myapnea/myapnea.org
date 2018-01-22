@@ -3,10 +3,7 @@
     .py-3.pl-3
       - size = 50
       - picture_content = profile_picture_tag(reply.user, size: size, style: "height: auto;max-width: #{size + 5}px;")
-      - if current_user == reply.user
-        = link_to picture_content, settings_profile_path(anchor: "picture")
-      - else
-        = picture_content
+      = link_to picture_content, posts_member_path(reply.user.username)
     .py-3.pl-2.pr-3.mr-auto.w-100
       .small
         .float-right= link_to reply.parent.title, reply, data: { turbolinks: false }, class: "link-muted"
