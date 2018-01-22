@@ -14,7 +14,7 @@
   = render "decorations/sunset"
 
 
-- user_scope = User.current.where(spammer: [false, nil], shadow_banned: [false, nil])
+- user_scope = User.current.no_spammer_or_shadow_banned
 .row
   .col-12.col-sm.text-center
     .jumbotron.jumbotron-white.jumbotron-shadow
