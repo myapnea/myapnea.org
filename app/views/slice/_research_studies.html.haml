@@ -27,9 +27,9 @@
           %i.fa.fa-heartbeat.text-accent
           %small
             18 surveys
-
-        .ml-3.d-inline-block
-          %i.fa.fa-pie-chart.text-accent
-          %small
-            = link_to "#", data: { object: "show-research-study", research_study: project.id } do
-              Personalized report
+        - if project.slug == "myapnea-core"
+          .ml-3.d-inline-block
+            %i.fa.fa-pie-chart.text-accent
+            %small
+              = link_to "#", data: { object: "show-research-study", research_study: project.id } do
+                Personalized report

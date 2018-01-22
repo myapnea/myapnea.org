@@ -25,7 +25,6 @@ class SliceController < ApplicationController
   # GET /research/:project/consent
   def consent
     @subject = current_user&.subjects&.find_by(project: @project)
-    render layout: "layouts/full_page_sidebar"
   end
 
   # GET /research/:project/consent.pdf
