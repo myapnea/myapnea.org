@@ -14,6 +14,7 @@ class Project < ApplicationRecord
 
   # Concerns
   include Deletable
+  include Latexable
   include Sluggable
 
   # Scopes
@@ -93,5 +94,25 @@ class Project < ApplicationRecord
 
   def highest_subject_code_number
     all_subject_codes.collect { |c| c.gsub(code_prefix, "").to_i }.max || 0
+  end
+
+  # Print Consent
+  def latex_partial(partial)
+    File.read(File.join("app", "views", "projects", "latex", "_#{partial}.tex.erb"))
+  end
+
+  def generate_printed_pdf!(subject)
+    jobname = subject ? "consent_#{subject.id}" : "consent"
+    output_folder = File.join("tmp", "files", "tex")
+    FileUtils.mkdir_p output_folder
+    file_tex = File.join("tmp", "files", "tex", "#{jobname}.tex")
+    @project = self
+    @subject = subject # Needed by Binding
+    File.open(file_tex, "w") do |file|
+      file.syswrite(ERB.new(latex_partial("header")).result(binding))
+      file.syswrite(ERB.new(latex_partial("consent")).result(binding))
+      file.syswrite(ERB.new(latex_partial("footer")).result(binding))
+    end
+    Project.generate_pdf(jobname, output_folder, file_tex)
   end
 end

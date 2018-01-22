@@ -165,9 +165,13 @@ Rails.application.routes.draw do
   get "surveys", to: redirect("research"), as: :surveys
   namespace :slice, path: "" do # OR: scope module: :slice
     get :research
+    get :print_consent, path: "research/:project/consent.pdf"
     get :consent, path: "research/:project/consent"
     post :enrollment_consent, path: "research/:project/consent"
     get :enrollment_exit, path: "research/:project/exit"
+    get :overview, path: "research/:project/overview"
+    get :leave_study, path: "research/:project/leave-study"
+    post :submit_leave_study, path: "research/:project/leave-study"
 
     get :surveys, path: "surveys/:project", to: "surveys#surveys"
 

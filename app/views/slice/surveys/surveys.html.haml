@@ -9,16 +9,6 @@
 - content_for :sidebar, render("internal/sidebar")
 - content_for :header, @title.upcase
 
-.jumbotron.jumbotron-action.jumbotron-shadow.jumbotron-custom-text
-  %strong= @project.name
-  Consented at
-  = @subject.consented_at
-  %code= @subject.slice_subject_code_cache
-
-  = link_to [:slice, @subject], method: :delete, class: "btn btn-accent btn-sm", data: { confirm: "Leave the study?" } do
-    %i.fa.fa-ambulance
-    Leave Study
-
 .dashboard-container
   - @subject.subject_events.reverse_each do |subject_event|
     .panel.panel-full-width

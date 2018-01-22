@@ -1,0 +1,35 @@
+.research-studies
+  - projects.each do |project|
+    - subject = current_user&.subjects&.find_by(project: project)
+    .research-study
+      .d-flex.flex-row.align-items-stretch
+        .research-study-icon.d-flex.align-items-center
+          %i.fa.fa-flask
+        .research-study-body.d-flex.align-items-center
+          %div
+            .research-study-name= project.name
+            = project.short_description
+      .research-study-footer
+        .float-right
+          - if current_user && subject
+            = link_to slice_surveys_path(project), class: "btn btn-sm btn-primary btn-shadow" do
+              Take Surveys
+              %i.fa.fa-angle-right
+          - else
+            = link_to slice_consent_path(project), class: "btn btn-sm btn-primary btn-shadow" do
+              Read Consent
+              %i.fa.fa-angle-right
+        .ml-3.d-inline-block
+          %i.fa.fa-users.text-accent
+          %small
+            1,242 participants
+        .ml-3.d-inline-block
+          %i.fa.fa-heartbeat.text-accent
+          %small
+            18 surveys
+
+        .ml-3.d-inline-block
+          %i.fa.fa-pie-chart.text-accent
+          %small
+            = link_to "#", data: { object: "show-research-study", research_study: project.id } do
+              Personalized report

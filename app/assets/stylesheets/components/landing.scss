@@ -363,6 +363,16 @@
     padding: $spacer;
     text-align: center;
   }
+
+  &.orange-title-strong {
+    font-size: 1.25rem;
+    line-height: initial;
+
+    .orange-bar {
+      border-bottom: 1px solid $p300-orange;
+      height: calc(1.875rem - 1px);
+    }
+  }
 }
 
 .landing-about-heading {

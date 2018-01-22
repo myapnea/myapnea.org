@@ -1,0 +1,38 @@
+- @title = "#{@project.name} Overview"
+
+= render "projects/theme", project: @project
+
+- content_for :container_class, "container-fluid"
+- content_for :sidebar, render("internal/sidebar")
+- content_for :header, @title
+
+.dashboard-container
+  .brand-title= @project.name
+  %p= @project.short_description
+
+  %p
+    You joined this study on
+    = succeed "." do
+      %strong= @subject.consented_at.strftime("%B %-d, %Y")
+
+  %p.lead.text-center.mt-5 Study Timeline
+  = render "slice/timeline", project: @project, subject: @subject
+
+.dashboard-container
+  .brand-title Consent
+  = link_to "Read consent", slice_consent_path(@project), class: "btn btn-sm btn-outline-primary"
+  = link_to slice_print_consent_path(@project), class: "btn btn-sm btn-outline-dark", data: { turbolinks: false } do
+    %i.fa.fa-print
+    Print consent
+
+.card.mb-5
+  %h4.card-header.text-danger
+    %i.fa.fa-user
+    Leave study
+  .card-body
+    %p You may leave the study, but this action is PERMANENT.
+    = link_to slice_leave_study_path(@project), class:  "btn btn-outline-danger" do
+      Leave study
+    - if false
+      = link_to [:slice, @subject], method: :delete, class: "btn btn-outline-danger", data: { confirm: "Delete your account?" } do
+        Leave study

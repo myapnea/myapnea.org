@@ -5,9 +5,13 @@
         %ul.sidebar-menu.sidebar-menu-shadow
           %li.sidebar-menu-header MyApnea
           %li= link_to "Dashboard", dashboard_path, class: current_page?(dashboard_path) ? "active" : nil
-          %li= link_to "Research", slice_research_path, class: params[:controller] == "slice" ? "active" : nil
+          %li= link_to "Research", slice_research_path, class: current_page?(slice_research_path) ? "active" : nil
           - if @project && @subject
             %li.sidebar-menu-header= @project.name
+            %li
+              = link_to slice_overview_path(@project), class: current_page?(slice_overview_path(@project)) || current_page?(slice_leave_study_path(@project)) ? "active" : nil do
+                %i.fa.fa-toggle-right
+                Overview
             - @subject.subject_events.reverse_each do |subject_event|
               %li
                 = link_to slice_surveys_path(@project), class: current_page?(slice_surveys_path(@project)) ? "active" : nil do
@@ -17,16 +21,3 @@
                     %i.fa.fa-square-o
                   = subject_event.name
 
-    - if current_user && false
-      .sidebar-photo.d-flex.align-items-center.text-center
-        .mr-auto.mx-md-auto.rounded
-          .d-none.d-md-block.px-lg-4.pt-lg-4
-            = link_to settings_profile_path(anchor: "picture"), class: "d-block mb-3" do
-              = profile_picture_tag current_user, size: 256, style: "max-width: 100%;height: auto;"
-          .d-none.d-md-block.text-md-center.overflow-hidden.text-accent.breakword.small.p-lg-1.myapnea-white-bg.rounded
-            = current_user.username
-          - if false
-            .d-none.d-md-block.text-md-center
-              %small.text-muted
-                Member since
-                = current_user.created_at.strftime("%b %Y")

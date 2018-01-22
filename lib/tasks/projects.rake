@@ -21,12 +21,12 @@ end
 
 def myapnea_short_description
   "Come together to learn about sleep apnea symptoms and treatment, and become"\
-  "part of a international research network to improve lives."
+  " part of a international research network to improve lives."
 end
 
 def myapnea_core_consent
   <<-MYAPNEACONSENT
-#### Overview:
+### Overview:
 The MyApnea.Org research page is a part of a medical research study across the U.S. It is paid for by the Patient-Centered Outcomes Research Institute (PCORI). Any page within MyApnea.Org that reads "Research" at the top indicates that information shared on that page can be used for research purposes as we describe in detail below. Research pages are only accessible after you have read this consent form and agree to participate in the research portal. The study is led by groups of doctors, patients and other advocacy groups working together. Dr. Susan Redline from Brigham and Women's Hospital in Boston, MA is in charge of the study. She and her staff are available to answer any questions you may have. Please email <support@myapnea.org> with any questions or call 617-732-5859.
 Research studies include only people who want to take part. Please take your time to make your decision about participating, and discuss your decision with your family or friends if you wish. Here is a brief overview of what we promise to you as researchers and what we will ask of you as a research participant:
 

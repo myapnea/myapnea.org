@@ -1,0 +1,15 @@
+.event-timeline {
+  text-align: center;
+
+  @include media-breakpoint-up(md) {
+    flex-grow: 2;
+    flex-basis: 0;
+  }
+}
+
+.event-timeline-arrow {
+  @include media-breakpoint-up(md) {
+    flex-grow: 1;
+    flex-basis: 0;
+  }
+}

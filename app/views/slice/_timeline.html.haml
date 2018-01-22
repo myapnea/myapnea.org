@@ -1,0 +1,30 @@
+-# current_event = subject.current_event
+- event_found = false
+.d-flex.justify-content-around.align-items-center.flex-column.flex-md-row
+  -# Event.order(:month).each do |event|
+  - [["Baseline", 0], ["Followup", 6], ["Followup", 6]].each do |event_name, event_month|
+    - unless event_month.zero?
+      .event-timeline-arrow
+        .text-center.d-none.d-md-block
+          %i.fa.fa-long-arrow-right.text-muted
+        .text-center.d-block.d-md-none
+          %i.fa.fa-long-arrow-down.text-muted
+    - if event_month.zero? # current_event == event
+      - event_found = true
+      .event-timeline.d-flex.flex-row.flex-md-column
+        .mr-1.mr-md-0
+          %i.fa.fa-user.text-primary
+        %div
+          %span.badge.badge-primary= event_name
+    - elsif event_found
+      .event-timeline.d-flex.flex-row.flex-md-column
+        .mr-1.mr-md-0
+          %i.fa.fa-square-o
+        %div
+          %span.badge.badge-secondary= event_name
+    - else
+      .event-timeline.d-flex.flex-row.flex-md-column
+        .mr-1.mr-md-0
+          %i.fa.fa-check-square.text-success
+        %div
+          %span.badge.badge-success= event_name

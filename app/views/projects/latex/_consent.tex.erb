@@ -1,0 +1,28 @@
+\begin{center}
+  {\Large <%= latex_safe @project.name %> Consent} \\[0.5cm]
+\end{center}
+
+<% content = @project.consent.to_s %>
+<% consent.gsub!(/\[(.*?)\]\(.*?\)/, "\\1") %>
+<% content = latex_safe(content) %>
+<% content.gsub!(/\\#\\#\\#\\#\s(.*?)\r\n/, "\\subsection*{\\1}\n\n") %>
+<% content.gsub!(/\\#\\#\\#\s(.*?)\r\n/, "\\section*{\\1}\n\n") %>
+<% content.gsub!(/\\#\\#\s(.*?)\r\n/, "\\section*{\\1}\n\n") %>
+<% content.gsub!(/\\#\s(.*?)\r\n/, "\\section*{\\1}\n\n") %>
+<% content.gsub!(/\*\*(.*?)\*\*/, "\\textbf{\\1}") %>
+<% content.gsub!(/==(.*?)==/, "\\hl{\\1}") %>
+<% content.gsub!(/XX(YES)XX/, "\\cmark") %>
+<% content.gsub!(/XX(NO)XX/, "\\xmark") %>
+<% content.gsub!(/\"([a-zA-Z\s\.-]*?)\"/, "``\\1''") %>
+<% content.gsub!(/\*(.*?)\*/, "\\textit{\\1}") %>
+<% content.gsub!(/(\\textless\{\}.*?\\textgreater\{\})/, "\\sloppy{\\mbox{\\1}}") %>
+<% content.gsub!(/\-\s(.*?)\r\n/, "\\begin{itemize}\\item \\1\\end{itemize}") %>
+<% content.gsub!(/\\end\{itemize\}\\begin\{itemize\}/, "") %>
+<% content.gsub!(/\n/, "\n\\\\\\\n") %>
+<%= content %> \\
+
+<% if @subject && false %>
+  <% if false %>\textbf{Subject} <%= latex_safe @subject.user.full_name %> \\<% end %>
+  \textbf{Date} <%= @subject.consented_at.strftime("%-m/%-d/%Y") %> \\
+  \textbf{Time} <%= @subject.consented_at.strftime("%-l:%M %p") %> \\
+<% end %>

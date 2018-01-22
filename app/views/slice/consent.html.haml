@@ -12,15 +12,23 @@
   .brand-title Consent
   = simple_markdown @project.consent
 
-  .row
-    .col
-      .d-none.d-md-block
-        = render "slice/i_do_not_consent", project: @project, size: "btn-lg"
-      .d-block.d-md-none
-        = render "slice/i_do_not_consent", project: @project, size: ""
-    .col
-      .text-right
+  - unless @subject
+    .row
+      .col
         .d-none.d-md-block
-          = render "slice/i_consent", project: @project, size: "btn-lg"
+          = render "slice/i_do_not_consent", project: @project, size: "btn-lg"
         .d-block.d-md-none
-          = render "slice/i_consent", project: @project, size: ""
+          = render "slice/i_do_not_consent", project: @project, size: ""
+      .col
+        .text-right
+          .d-none.d-md-block
+            = render "slice/i_consent", project: @project, size: "btn-lg"
+          .d-block.d-md-none
+            = render "slice/i_consent", project: @project, size: ""
+
+- if @subject
+  .dashboard-container
+    %p
+      You joined the study on
+      = succeed "." do
+        %strong= @subject.consented_at.strftime("%B %-d, %Y")
