@@ -5,10 +5,10 @@ class SliceController < ApplicationController
   # before_action :authenticate_user!
   before_action :find_project_or_redirect, only: [
     :consent, :print_consent, :enrollment_consent, :enrollment_exit,
-    :overview, :leave_study, :submit_leave_study
+    :overview, :overview_report, :leave_study, :submit_leave_study
   ]
   before_action :find_subject_or_redirect, only: [
-    :overview, :leave_study, :submit_leave_study
+    :overview, :overview_report, :leave_study, :submit_leave_study
   ]
 
   # GET /surveys
@@ -41,6 +41,12 @@ class SliceController < ApplicationController
 
   # GET /research/:project/overview
   def overview
+    redirect_to slice_research_path unless current_user
+    render layout: "layouts/full_page_sidebar"
+  end
+
+  # GET /research/:project/overview-report
+  def overview_report
     redirect_to slice_research_path unless current_user
     render layout: "layouts/full_page_sidebar"
   end

@@ -1,0 +1,1 @@
+%span= select_tag "response[seconds]", options_for_select((0..59).collect { |f| [format("%02d", f), f] }, value ? value["seconds"] : nil), include_blank: "ss", class: "custom-select #{"is-invalid" if @json.dig("errors", @variable.name).present?}"

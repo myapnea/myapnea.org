@@ -1,3 +1,3 @@
 .input-group
-  = number_field_tag "response[inches]", value ? value["inches"] : nil, maxlength: 2, class: "form-control #{"is-invalid" if @json.dig("errors", @variable.name).present?}", autocomplete: "off"
+  = select_tag "response[inches]", options_for_select((0..11).reverse_each.collect { |f| [f, f] }, value ? value["inches"] : nil), include_blank: true, class: "custom-select #{"is-invalid" if @json.dig("errors", @variable.name).present?}"
   .input-group-append= render "slice/surveys/decoration/addon", addon: "in"

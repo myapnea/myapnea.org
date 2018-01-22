@@ -1,0 +1,93 @@
+- @title = "#{@project.name} Overview Report"
+
+= render "projects/theme", project: @project
+
+- content_for :container_class, "container-fluid"
+- content_for :sidebar, render("internal/sidebar")
+- content_for :header, "Overview Report"
+
+.dashboard-container
+  .mb-5
+    .brand-title
+      .float-right
+        = link_to "#", class: "btn btn-sm btn-outline-dark" do
+          %i.fa.fa-print
+          Print
+      =# @project.name
+      Your MyApnea Sleep Report
+
+    %p
+      Print your personal sleep health report and bring it to your doctor. All of
+      the scores on this report are regularly used by sleep specialists.
+
+  .mb-5
+    .brand-title
+      .float-right
+        %span.text-accent Your Score
+      SLEEP SCALE YOUR SCORE
+
+  .mb-5
+    .brand-title
+      .float-right
+        %span.text-accent ##
+      BMI: Body mass index
+
+    %p
+      BMI is calculated based on your height and weight.
+      A BMI over 25 puts you in the 'overweight' category. Research has shown that people in this category are the more likely to develop severe obstructive sleep apnea, and more typically have mild or moderate OSA.
+
+  .mb-5
+    .brand-title
+      .float-right
+        %span.text-accent ##
+      ESS: Epworth sleepiness scale
+    %p
+      The ESS measures your 'daytime sleepiness'.
+      A normal level of sleepiness is any score from 0-10. If your score is higher than 10, talk to your doctor about your sleepiness.
+
+  .mb-5
+    .brand-title
+      .float-right
+        %span.text-accent ##
+      WHI IRS: Women's health initiative insomnia rating scale
+    %p
+      The WHI IRS evaluates insomnia symptoms.
+      If your score is higher than 8, talk to your doctor about insomnia.
+
+  .mb-5
+    .brand-title
+      .float-right
+        %span.text-accent ##
+      FOSQ- Functional outcomes of sleep
+    %p
+      The FOSQ is used to measure your ability to function given your sleepiness level. In other words, it can measure your 'sleep-related quality of life'.
+      The score range is 5-20 points. A higher score means a you have a better functional status.
+
+  .mb-5
+    .brand-title
+      .float-right
+        %span.text-accent ##
+      SF-12 - Physical health status
+      SF-12 - Mental health status
+    %p
+      The SF-12 measures your general health status. The scores are separated into physical health status and mental health status.
+
+  .mb-5
+    .brand-title
+      .float-right
+        %span.text-accent ##
+      World Health Organization (WHO) Well-Being Index
+    %p
+      A score lower than 13 (or if you answered 0 or 1 on any question) means you should talk to your doctor about depression.
+
+  .mb-5
+    .brand-title
+      .float-right
+        %span.text-accent ##
+      WPAI- Work Productivity and Activity Impairment
+    %p
+      %ol
+        %li Percent work time missed due to health (absenteeism):
+        %li Percent impairment while working due to health (presenteeism):
+        %li Percent overall work impairment due to health (overall work productivity loss):
+        %li Percent activity impairment due to health (activity impairment):

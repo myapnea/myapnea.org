@@ -2,28 +2,28 @@
   .form-inline
     - case @variable.time_of_day_format
     - when "24hour"
-      = render "slice/surveys/decoration/hours", value: value
+      = render "slice/surveys/decoration/hours_dropdown", value: value
       %span.px-1 :
-      = render "slice/surveys/decoration/minutes", value: value
+      = render "slice/surveys/decoration/minutes_dropdown", value: value
       - if @variable.show_seconds
         %span.px-1 :
-        = render "slice/surveys/decoration/seconds", value: value
+        = render "slice/surveys/decoration/seconds_dropdown", value: value
     - when "12hour"
-      = render "slice/surveys/decoration/hours", value: value
+      = render "slice/surveys/decoration/hours_dropdown", value: value
       %span.px-1 :
-      = render "slice/surveys/decoration/minutes", value: value
+      = render "slice/surveys/decoration/minutes_dropdown", value: value
       - if @variable.show_seconds
         %span.px-1 :
-        = render "slice/surveys/decoration/seconds", value: value
+        = render "slice/surveys/decoration/seconds_dropdown", value: value
       &nbsp;
       = render "slice/surveys/decoration/period", value: value
     - else # "12hour-pm"
-      = render "slice/surveys/decoration/hours", value: value
+      = render "slice/surveys/decoration/hours_dropdown", value: value
       %span.px-1 :
-      = render "slice/surveys/decoration/minutes", value: value
+      = render "slice/surveys/decoration/minutes_dropdown", value: value
       - if @variable.show_seconds
         %span.px-1 :
-        = render "slice/surveys/decoration/seconds", value: value
+        = render "slice/surveys/decoration/seconds_dropdown", value: value
       &nbsp;
       = render "slice/surveys/decoration/period", value: value
 
