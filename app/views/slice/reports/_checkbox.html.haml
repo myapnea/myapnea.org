@@ -15,6 +15,9 @@
 - title = { text: design_option.dig("display_name"), align: "center" }
 - x_axis = { categories: categories, title: { text: nil } }
 - y_axis = { title: { text: "Participants" } }
-%div.mb-5{ data: { object: "survey-report-chart", series: series.to_json, title: title.to_json, x_axis: x_axis.to_json, y_axis: y_axis.to_json } }
-
-= render "slice/reports/responses_tabular", variable_type: design_option.dig("variable_type"), responses: responses, my_color: my_color
+- if responses.count < Slice::Survey::MIN_SURVEY_RESPONSE
+  .brand-title= design_option.dig("display_name")
+  = render "slice/reports/responses_tabular", variable_type: design_option.dig("variable_type"), responses: responses.select { |r| r[2] == true }.collect { |a, b, c| [a, 1, c] }, my_color: my_color
+- else
+  %div.mb-5{ data: { object: "survey-report-chart", series: series.to_json, title: title.to_json, x_axis: x_axis.to_json, y_axis: y_axis.to_json } }
+  = render "slice/reports/responses_tabular", variable_type: design_option.dig("variable_type"), responses: responses, my_color: my_color

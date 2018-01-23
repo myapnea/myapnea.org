@@ -20,7 +20,8 @@
                   - else
                     %i.fa.fa-square-o
                   = subject_event.name
-            %li
-              = link_to slice_overview_report_path(@project), class: current_page?(slice_overview_report_path(@project)) ? "active" : nil do
-                %i.fa.fa-pie-chart
-                Report
+            - if false
+              %li
+                = link_to slice_overview_report_path(@project), class: current_page?(slice_overview_report_path(@project)) ? "active" : nil do
+                  %i.fa.fa-pie-chart
+                  Report

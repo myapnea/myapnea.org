@@ -2,6 +2,8 @@
 
 # Helps contain information about a survey.
 class Slice::Survey
+  MIN_SURVEY_RESPONSE = 10
+
   attr_accessor :json, :name
 
   def initialize(json: {})
