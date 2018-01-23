@@ -32,7 +32,7 @@ class SliceController < ApplicationController
     @subject = current_user&.subjects&.find_by(project: @project)
     pdf_file = Rails.root.join(@project.generate_printed_pdf!(@subject))
     if File.exist?(pdf_file)
-      send_file(pdf_file, filename: "SleepINNOVATEConsentForm.pdf", type: "application/pdf", disposition: "inline")
+      send_file(pdf_file, filename: "#{@project.name.titleize.gsub(/\s/, "")}ConsentForm.pdf", type: "application/pdf", disposition: "inline")
     else
       redirect_to slice_consent_path(@project), alert: "Unable to generate PDF at this time."
     end
