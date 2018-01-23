@@ -16,7 +16,6 @@
   chartsReady()
   exportsReady()
   landingReady()
-  reportsReady()
   teamReady()
 
 @objectsReady = ->

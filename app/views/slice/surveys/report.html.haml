@@ -1,39 +1,26 @@
 - @title = "#{@json.dig("design", "name")} Report"
 
-- @body = "light"
-- @footer = "light"
+= render "projects/theme", project: @project
 
-- content_for :header do
-  .header-container
-    .container
-      %h1.page-heading
-        = @title
+- content_for :container_class, "container-fluid"
+- content_for :sidebar, render("internal/sidebar")
+- content_for :header, @title
 
-.page-box.last-box
-  .container
-    - @json.fetch("design_options", []).each do |design_option|
-      .card.mb-5
-        .card-header= design_option.dig("display_name")
-        .card-body
-          - data = []
-          - categories = []
-          - design_option.fetch("domain_options", []).each do |domain_option|
-            - next if domain_option.dig("count").zero?
-            - data << domain_option.dig("count")
-            - categories << domain_option.dig("name")
-            .d-flex.flex-row.align-items-stretch
-              .display-1{ class: domain_option.dig("count").zero? ? "text-muted" : "text-accent" }= domain_option.dig("count")
-              .d-flex.align-items-center= domain_option.dig("name")
-          = data if Rails.env.development?
-          - series = [{ type: "column", showInLegend: false, name: "Percent", data: data }]
-          - title = { text: design_option.dig("display_name"), align: "center" }
-          - x_axis = { categories: categories, title: { text: nil } }
-          - y_axis = { title: { text: "Count" } }
-          %div{ data: { object: "survey-report-chart", series: series.to_json, title: title.to_json, x_axis: x_axis.to_json, y_axis: y_axis.to_json } }
-          %div{ style: "position: relative;" }
-            %canvas{ data: { object: "chartjs-report-chart" } }
+- @json.fetch("design_options", []).each do |design_option|
+  - case design_option.dig("variable_type") when "radio", "dropdown"
+    .dashboard-container= render "slice/reports/radio", design_option: design_option
+  - when "checkbox"
+    .dashboard-container= render "slice/reports/checkbox", design_option: design_option
+  - when "imperial_height"
+    .dashboard-container= render "slice/reports/imperial_height", design_option: design_option
+  - when "integer", "numeric"
+    .dashboard-container= render "slice/reports/numeric", design_option: design_option
+  - when "string"
+  - else
+    - if design_option.dig("variable_type").present?
+      .dashboard-container= design_option.dig("variable_type")
 
-    .mb-5.text-center
-      = link_to slice_surveys_path(@project), class: "btn btn-accent btn-lg btn-shadow" do
-        %i.fa.fa-caret-left
-        Back to Surveys
+.mb-5.text-center
+  = link_to slice_surveys_path(@project), class: "btn btn-accent btn-lg btn-shadow" do
+    %i.fa.fa-caret-left
+    Back to Surveys

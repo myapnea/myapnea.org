@@ -1,0 +1,37 @@
+- data = []
+- categories = []
+- responses = []
+- my_response = design_option.dig("subject_response")
+- my_color = "#ffcc80" # $p200-orange
+- everyone_else_color = "#90caf9" # $p200-blue
+- filter_responses = design_option.fetch("responses", []).select(&:present?).collect(&:to_i).sort
+- min = [(filter_responses.min || 1) - 1, 0].max
+- max = (filter_responses.max || 0) + 1
+
+- if max - min > 100
+  - width = 25
+  - data = []
+  - (min/width..(max/width) + 1).each do |increment|
+    - categories << "#{increment * width} - #{(increment + 1) * width - 1}"
+    - if my_response.to_i / width == increment
+      - count = filter_responses.count { |i| i >= increment * width && i < ((increment + 1) * width) }
+      - data << { y: count, color: my_color }
+    - else
+      - data << filter_responses.count { |i| i >= increment * width && i < ((increment + 1) * width) }.presence
+
+- else
+  - data = []
+  - (min..max).each do |increment|
+    - categories << increment
+    - if my_response == increment
+      - data << { y: filter_responses.count { |i| i == increment }, color: my_color }
+    - else
+      - data << filter_responses.count { |i| i == increment }.presence
+
+- series = [{ type: "spline", showInLegend: false, name: "participants", data: data }]
+- title = { text: design_option.dig("display_name"), align: "center" }
+- x_axis = { categories: categories, title: { text: design_option.dig("units") } }
+- y_axis = { title: { text: "Participants" } }
+%div.mb-5{ data: { object: "survey-report-chart", series: series.to_json, title: title.to_json, x_axis: x_axis.to_json, y_axis: y_axis.to_json } }
+
+=# render "slice/reports/responses_statistics", responses: responses, my_color: my_color

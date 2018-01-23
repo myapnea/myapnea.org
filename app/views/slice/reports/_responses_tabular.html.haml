@@ -1,0 +1,32 @@
+.d-flex.justify-content-around
+  .px-3{ style: "max-width: 800px;min-width: 300px;" }
+    %table.table.table-striped.table-borderless.table-sm
+      %col{ width: "1px" }
+      %col
+      %col
+      %thead
+        %th
+        %th Response
+        %th.text-center Percent
+      - total = responses.sum(&:second)
+      - responses.each do |response, count, voted|
+        %tr{ style: voted ? "background-color: #{my_color};" : nil }
+          %td
+            - case variable_type when "checkbox"
+              - if voted
+                %i.fa.fa-check-square
+              - else
+                %i.fa.fa-square-o
+            - else
+              - if voted
+                %i.fa.fa-check-circle
+              - else
+                %i.fa.fa-circle-o
+          %td= response
+          %td.text-center
+            - if total.zero?
+              %span.text-muted \-
+            - elsif count.zero?
+              %span.text-muted \-
+            - else
+              = format("%d%%", count * 100.0 / total)

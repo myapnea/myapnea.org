@@ -1,0 +1,28 @@
+- data = []
+- categories = []
+- responses = []
+- my_response = design_option.dig("subject_response")
+- my_color = "#ffcc80" # $p200-orange
+- everyone_else_color = "#90caf9" # $p200-blue
+- filter_responses = design_option.fetch("responses", []).select(&:present?).collect(&:to_i).sort
+- min = [(filter_responses.min || 1) - 1, 0].max
+- max = (filter_responses.max || 0) + 1
+
+- data = []
+- (min..max).each do |increment|
+  - feet = increment / 12
+  - inches = increment % 12
+  - categories << "#{feet}' #{inches}\""
+  - if my_response == increment
+    - count = filter_responses.count { |i| i == increment }
+    - data << { y: count, color: my_color }
+  - else
+    - data << filter_responses.count { |i| i == increment }.presence
+
+- series = [{ type: "spline", showInLegend: false, name: "participants", data: data }]
+- title = { text: design_option.dig("display_name"), align: "center" }
+- x_axis = { categories: categories, title: { text: nil } }
+- y_axis = { title: { text: "Participants" } }
+%div.mb-5{ data: { object: "survey-report-chart", series: series.to_json, title: title.to_json, x_axis: x_axis.to_json, y_axis: y_axis.to_json } }
+
+=# render "slice/reports/responses_statistics", responses: responses, my_color: my_color

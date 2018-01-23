@@ -1,0 +1,20 @@
+- data = []
+- categories = []
+- responses = []
+- my_response = design_option.dig("subject_response")
+- my_color = "#ffcc80" # $p200-orange
+- everyone_else_color = "#90caf9" # $p200-blue
+- design_option.fetch("domain_options", []).each do |domain_option|
+  - next if domain_option.dig("count").zero?
+  - voted = (my_response == domain_option.dig("value"))
+  - display_name = domain_option.dig("name").gsub(/\(.*\)/, "")
+  - data << { y: domain_option.dig("count"), color: voted ? my_color : everyone_else_color }
+  - categories << display_name
+  - responses << [display_name, domain_option.dig("count"), voted]
+- series = [{ type: "column", showInLegend: false, name: "participants", data: data }]
+- title = { text: design_option.dig("display_name"), align: "center" }
+- x_axis = { categories: categories, title: { text: nil } }
+- y_axis = { title: { text: "Participants" } }
+%div.mb-5{ data: { object: "survey-report-chart", series: series.to_json, title: title.to_json, x_axis: x_axis.to_json, y_axis: y_axis.to_json } }
+
+= render "slice/reports/responses_tabular", variable_type: design_option.dig("variable_type"), responses: responses, my_color: my_color

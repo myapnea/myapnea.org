@@ -91,6 +91,7 @@ class Slice::SurveysController < ApplicationController
   # GET /surveys/:project/:event/:design/report
   def report
     (@json, @status) = @subject.report_event_survey(params[:event], params[:design])
+    render layout: "layouts/full_page_sidebar"
   end
 
   private

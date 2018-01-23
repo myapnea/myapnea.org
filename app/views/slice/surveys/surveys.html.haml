@@ -1,9 +1,6 @@
 - @title = "Surveys"
 
-=# render "projects/theme", project: @project
-
-- @body = "grey"
-- @footer = "grey"
+= render "projects/theme", project: @project
 
 - content_for :container_class, "container-fluid"
 - content_for :sidebar, render("internal/sidebar")
