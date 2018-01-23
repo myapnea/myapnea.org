@@ -10,20 +10,14 @@
       %h1.page-heading
         = @title
 
-.drawer-and-shelf-container
-  .drawer
-    = render "internal/menu"
-  .shelf
-    - if @projects.present?
+- if current_user
+  .drawer-and-shelf-container
+    .drawer
+      = render "internal/menu"
+    .shelf
       = render "slice/research_studies", projects: @projects
-    - else
-      .jumbotron.jumbotron-action.jumbotron-shadow.jumbotron-custom-text
-        %p
-          No studies are currently collecting survey data.
-        %p
-          We are actively working on preparing the MyApnea Core surveys.
-
-        %p Please check back soon!
+- else
+  = render "slice/research_studies", projects: @projects
 
 - @projects.each do |project|
   = render "slice/research_studies_popups", projects: @projects
