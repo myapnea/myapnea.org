@@ -1,0 +1,65 @@
+- data = []
+- categories = []
+- responses = []
+- my_response = design_option.dig("subject_response")
+- my_color = "#ffcc80" # $p200-orange
+- everyone_else_color = "#90caf9" # $p200-blue
+- filter_responses = design_option.fetch("responses", []).select(&:present?).collect(&:to_i).sort
+
+- width = 30
+- data = []
+- (0..(24*(60/width) - 1)).each do |increment|
+  - min_time = increment * width * 60
+  - max_time = (increment + 1) * width * 60
+
+  - hours_24_f = increment / (60 / width)
+  - minutes_f = (increment % (60 / width)) * width
+  - hours_24_t = (increment + 1) / (60 / width)
+  - minutes_t = ((increment + 1) % (60 / width)) * width
+
+  - if hours_24_f == 0
+    - hours_f = 12
+    - period_f = "AM"
+  - elsif hours_24_f < 12
+    - hours_f = hours_24_f
+    - period_f = "AM"
+  - elsif hours_24_f == 12
+    - hours_f = 12
+    - period_f = "PM"
+  - else hours_24_f > 12
+    - hours_f = hours_24_f - 12
+    - period_f = "PM"
+
+  - if hours_24_t == 0
+    - hours_t = 12
+    - period_t = "AM"
+  - elsif hours_24_t < 12
+    - hours_t = hours_24_t
+    - period_t = "AM"
+  - elsif hours_24_t == 12
+    - hours_t = 12
+    - period_t = "PM"
+  - else hours_24_t > 12
+    - hours_t = hours_24_t - 12
+    - period_t = "PM"
+
+  - case design_option.dig("time_of_day_format") when "24hour"
+    - column_name = "#{format("%02d", hours_24_f)}#{format(":%02d", minutes_f)} to #{format("%02d", hours_24_t)}#{format(":%02d", minutes_t)}"
+    - categories << (minutes_f.zero? ? "#{format("%02d", hours_24_f)}#{format(":%02d", minutes_f)}" : "")
+  - else
+    - column_name = "#{hours_f}#{format(":%02d", minutes_f)}#{period_f} to #{hours_t}#{format(":%02d", minutes_t)}#{period_t}"
+    - categories << (minutes_f.zero? ? "#{hours_f}#{format(":%02d", minutes_f)}#{period_f}" : "")
+
+  - count = filter_responses.count { |i| i >= min_time && i < max_time }
+  - if my_response.to_i >= min_time && my_response.to_i < max_time
+    - data << { y: count, color: my_color, name: column_name }
+  - else
+    - data << { y: count.presence, name: column_name }
+
+- series = [{ type: "column", showInLegend: false, name: "participants", data: data }]
+- title = { text: design_option.dig("display_name"), align: "center" }
+- x_axis = { categories: categories, title: { text: nil } }
+- y_axis = { title: { text: "Participants" } }
+%div.mb-5{ data: { object: "survey-report-chart", series: series.to_json, title: title.to_json, x_axis: x_axis.to_json, y_axis: y_axis.to_json } }
+
+=# render "slice/reports/responses_statistics", responses: responses, my_color: my_color
