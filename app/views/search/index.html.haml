@@ -47,12 +47,22 @@
         Type a search above.
 
 - else
+  - default_faqs = []
+  - default_faqs += %w(what-is-myapnea how-is-myapnea-organized)
+  - default_faqs += %w(who-can-join-myapnea how-do-i-join-myapnea why-do-i-have-to-sign-a-consent-form-to-participate-in-the-research-portal)
+  - default_faqs += %w(what-s-expected-of-me-if-i-join-the-research-portal what-are-the-surveys-about how-often-do-i-take-these-surveys)
+  - default_faqs += %w(is-my-data-safe)
+
   .row
     .col-12.col-sm
       .dashboard-container
         %div.mb-3{ style: "font-size: 1.25rem;" } Top FAQs
         .small.mb-2= link_to "What is MyApnea?", article_path("what-is-myapnea"), class: "link-blend"
         .small.mb-2= link_to "How is MyApnea organized?", article_path("how-is-myapnea-organized"), class: "link-blend"
+        - top_faqs = Broadcast.current.published.where(category: Admin::Category.find_by(slug: "faqs")).where.not(slug: default_faqs).order(view_count: :desc).limit(3)
+        - top_faqs.each do |faq|
+          .small.mb-2= link_to faq.title, article_path(faq), class: "link-blend"
+        = link_to "View all FAQs", blog_category_path("faqs"), class: "small link-accent"
     .col-12.col-sm
       - articles = Broadcast.current.published.where(category: Admin::Category.find_by(slug: "research")).order(view_count: :desc).limit(5)
       .dashboard-container
