@@ -86,34 +86,10 @@ Rails.application.routes.draw do
     get :version
   end
 
-  scope module: :blank do
-    get :menu, path: "question/menu"
-    get :yoga, path: "mindfulness/yoga-usefulness-scale(/:id)"
-    get :question, path: "question(/:id)"
-    get :sky
-    get :sunset
-    get :night
-    get :blue
-    get :orange
-    get :green
-    get :landing1
-    get :landing2
-    get :landing3
-    get :landing4
-    get :landing5
-    get :landing6
-  end
-
   scope module: :internal do
     get :dashboard
-    get :reports, path: "dashboard/reports"
     get :timeline
-    get :yoga_consent, path: "yoga/consent"
     get :settings
-    # get :settings_account, path: "settings/account"
-    get :settings_consents, path: "settings/consents"
-    # get :settings_emails, path: "settings/emails"
-    # get :settings_profile, path: "settings/profile"
   end
 
   resources :projects do
@@ -224,8 +200,4 @@ Rails.application.routes.draw do
       post :vote
     end
   end
-
-  # TODO: Remove redirect after November 1, 2017
-  get "/providers(/:slug)", to: redirect("landing")
-  # END TODO
 end

@@ -14,12 +14,6 @@ class InternalControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should get dashboard reports" do
-    login(@regular_user)
-    get reports_url
-    assert_response :success
-  end
-
   test "should get timeline" do
     login(@regular_user)
     get timeline_url
@@ -30,17 +24,5 @@ class InternalControllerTest < ActionDispatch::IntegrationTest
     login(@regular_user)
     get settings_url
     assert_redirected_to settings_profile_url
-  end
-
-  test "should get settings account" do
-    login(@regular_user)
-    get settings_account_url
-    assert_response :success
-  end
-
-  test "should get settings consents" do
-    login(@regular_user)
-    get settings_consents_url
-    assert_response :success
   end
 end

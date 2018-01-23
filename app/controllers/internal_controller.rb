@@ -17,10 +17,6 @@ class InternalController < ApplicationController
   # def reports
   # end
 
-  # # GET /yoga/consent
-  # def yoga_consent
-  # end
-
   # # GET /timeline
   # def timeline
   # end
@@ -33,16 +29,4 @@ class InternalController < ApplicationController
   def settings
     redirect_to settings_profile_path
   end
-
-  # # GET /settings/account
-  # def settings_account
-  # end
-
-  # # GET /settings/consents
-  # def settings_consents
-  # end
-
-  # # GET /settings/profile
-  # def settings_profile
-  # end
 end
