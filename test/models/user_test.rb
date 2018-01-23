@@ -37,11 +37,4 @@ class UserTest < ActiveSupport::TestCase
       assert_operator 2, :<=, color.to_s.size
     end
   end
-
-  test "should have valid adjectives that only contain two or more letters" do
-    User.adjectives.each do |adjective|
-      assert_no_match(/[^a-zA-Z]/, adjective)
-      assert_operator 2, :<=, adjective.to_s.size
-    end
-  end
 end
