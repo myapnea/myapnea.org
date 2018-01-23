@@ -21,7 +21,7 @@ end
 
 def myapnea_short_description
   "Come together to learn about sleep apnea symptoms and treatment, and become"\
-  " part of a international research network to improve lives."
+  " part of an international research network to improve lives."
 end
 
 def myapnea_core_consent
