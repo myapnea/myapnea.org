@@ -3,7 +3,7 @@
 # Allows admins to view admin dashboard and reports.
 class AdminController < ApplicationController
   before_action :authenticate_user!
-  before_action :check_admin_or_moderator
+  before_action :check_admin_or_moderator_or_report_manager
 
   layout "layouts/full_page_sidebar"
 
@@ -38,7 +38,7 @@ class AdminController < ApplicationController
     @user = User.current.find_by(id: params[:user_id])
     answer_session = @user.answer_sessions.find_by(id: params[:answer_session_id]) if @user
     if answer_session
-      flash[:notice] = 'Survey unlocked successfully.'
+      flash[:notice] = "Survey unlocked successfully."
       answer_session.unlock!
     end
     redirect_to @user || users_path
@@ -52,5 +52,12 @@ class AdminController < ApplicationController
 
   def spammers
     User.current.where(shadow_banned: true, spammer: [nil, true])
+  end
+
+  private
+
+  def check_admin_or_moderator_or_report_manager
+    return if current_user && (current_user.admin? || current_user.moderator? || current_user.report_manager?)
+    redirect_to root_path, alert: "You do not have sufficient privileges to access that page."
   end
 end

@@ -4,9 +4,7 @@
 - @footer = "grass"
 
 - content_for :container_class, "container-fluid"
-
-- content_for :sidebar do
-  = render "admin/sidebar"
+- content_for :sidebar, render("admin/sidebar")
 
 - content_for :header do
   .float-right
@@ -41,38 +39,10 @@
   = render "forms/horizontal/show/text", object: @user, key: :profile_location, key_name: "Location"
   = render "forms/horizontal/show/check_box", object: @user, key: :admin
   = render "forms/horizontal/show/check_box", object: @user, key: :moderator
+  = render "forms/horizontal/show/check_box", object: @user, key: :report_manager
   = render "forms/horizontal/show/check_box", object: @user, key: :content_manager
   = render "forms/horizontal/show/check_box", object: @user, key: :community_contributor
-
-
-  %table.table.table-striped.table-borderless.table-hover
-    %col{ width: "30%" }
-    %tr
-      %th Number of Sessions
-      %td= @user.sign_in_count if @user.sign_in_count.present?
-
-    %tr
-      %th Most Recent Session
-      %td= @user.current_sign_in_at.strftime("%m/%d/%Y") if @user.current_sign_in_at.present?
-
-    %tr
-      %th Joined
-      %td
-        = @user.created_at.strftime("%m/%d/%Y") if @user.created_at.present?
-
-    %tr
-      %th Privacy Policy
-      %td= @user.accepted_privacy_policy_at.strftime("%m/%d/%Y") if @user.accepted_privacy_policy_at.present?
-
-    %tr
-      %th Consent
-      %td= @user.accepted_consent_at.strftime("%m/%d/%Y") if @user.accepted_consent_at.present?
-
-    %tr
-      %th Terms of Access
-      %td= @user.accepted_terms_of_access_at.strftime("%m/%d/%Y") if @user.accepted_terms_of_access_at.present?
-
-    %tr
-      %th Include in Data
-      %td= simple_check @user.include_in_exports
-
+  = render "forms/horizontal/show/text", object: @user, key: :sign_in_count
+  = render "forms/horizontal/show/generic", title: "Joined", content: @user.created_at.strftime("%-m/%-d/%Y") if @user.created_at.present?
+  = render "forms/horizontal/show/generic", title: "Most Recent Session", content: @user.current_sign_in_at.strftime("%-m/%-d/%Y") if @user.current_sign_in_at.present?
+  = render "forms/horizontal/show/check_box", object: @user, key: :include_in_exports

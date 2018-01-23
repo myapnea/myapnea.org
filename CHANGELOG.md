@@ -19,6 +19,7 @@
 - **Admin Changes**
   - Major revamp of the administrative interface
   - Admin image pages list replies and broadcasts that reference the image
+  - Added a report manager role
 - **Blog Changes**
   - FAQs now exist as blog pages, however the "FAQs" category does not show up
     on the blog roll, and is styled differently than regular blog posts

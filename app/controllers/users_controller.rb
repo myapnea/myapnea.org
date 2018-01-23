@@ -3,17 +3,19 @@
 # Allows admins to manage user accounts.
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :check_admin
+  before_action :check_admin_or_report_manager, only: [:index]
+  before_action :check_admin, except: [:index]
   before_action :find_user_or_redirect, only: [:show, :edit, :update, :destroy]
 
   layout "layouts/full_page_sidebar"
 
   # GET /users
   def index
-    @all_users = User.current.search(params[:search]).order(current_sign_in_at: :desc)
+    user_scope = User.current.search(params[:search]).order(current_sign_in_at: :desc)
     @order = scrub_order(User, params[:order], "current_sign_in_at desc")
     @order = params[:order] if ["reply_count", "reply_count desc"].include?(params[:order])
-    @users = @all_users.reply_count.reorder(@order).page(params[:page]).per(40)
+    user_scope = user_scope.no_spammer_or_shadow_banned if current_user.report_manager?
+    @users = user_scope.reply_count.reorder(@order).page(params[:page]).per(40)
   end
 
   # GET /users/export
@@ -84,7 +86,12 @@ class UsersController < ApplicationController
     params.require(:user).permit(
       :full_name, :email, :username, :emails_enabled,
       :include_in_exports, :admin, :moderator, :community_contributor,
-      :can_build_surveys, :shadow_banned, :content_manager
+      :can_build_surveys, :shadow_banned, :content_manager, :report_manager
     )
+  end
+
+  def check_admin_or_report_manager
+    return if current_user && (current_user.admin? || current_user.report_manager?)
+    redirect_to root_path, alert: "You do not have sufficient privileges to access that page."
   end
 end

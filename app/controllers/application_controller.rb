@@ -123,11 +123,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def check_admin_or_moderator
-    return if current_user && (current_user.admin? || current_user.moderator?)
-    redirect_to root_path, alert: "You do not have sufficient privileges to access that page."
-  end
-
   def check_admin
     return if current_user && current_user.admin?
     redirect_to root_path, alert: "You do not have sufficient privileges to access that page."
