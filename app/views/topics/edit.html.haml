@@ -1,16 +1,15 @@
 - @title = "Edit Topic: #{@topic.title_was}"
 
-- content_for :body_class do
-  myapnea-light-bg
+- @menu = "blue"
+- @body = "grey"
+- @footer = "grey"
 
 - content_for :header do
   .header-container
     .container
       %h1.page-heading
-        = @topic.title_was
-  .breadcrumb-container{ style: 'margin-bottom: 0;' }
-    .container
-      %ol
-        %li Edit Topic
+        = link_to @topic.title_was, @topic
+        Edit
 
-= render 'form'
+.dashboard-container
+  = render "form", topic: @topic
