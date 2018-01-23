@@ -24,6 +24,7 @@ class SliceController < ApplicationController
 
   # GET /research/:project/consent
   def consent
+    @user = current_user || User.new
     @subject = current_user&.subjects&.find_by(project: @project)
   end
 
@@ -69,13 +70,21 @@ class SliceController < ApplicationController
 
   # POST /research/:project/consent
   def enrollment_consent
-    if current_user
-      current_user.consent!(@project)
-      redirect_to slice_surveys_path(@project), notice: "Welcome to the study!"
+    @user = User.new(full_name: params[:user][:full_name], consenting: "1")
+    @user.valid?
+    if @user.errors.key?(:full_name)
+      render "consent"
     else
-      session[:project_id] = @project.id
-      session[:consented_at] = Time.zone.now
-      redirect_to new_user_registration_path
+      if current_user
+        current_user.update(full_name: params[:user][:full_name])
+        current_user.consent!(@project)
+        redirect_to slice_surveys_path(@project), notice: "Welcome to the study!"
+      else
+        session[:project_id] = @project.id
+        session[:consented_at] = Time.zone.now
+        session[:full_name] = params[:user][:full_name]
+        redirect_to new_user_registration_path
+      end
     end
   end
 
@@ -83,7 +92,7 @@ class SliceController < ApplicationController
   def enrollment_exit
     session[:project_id] = nil
     session[:consented_at] = nil
-    session[:consents] = nil
+    session[:full_name] = nil
     redirect_to slice_research_path
   end
 

@@ -18,6 +18,8 @@ class User < ApplicationRecord
   include Squishable
   squish :full_name
 
+  attr_accessor :consenting
+
   # Scopes
   scope :search, lambda { |arg| where( "LOWER(full_name) LIKE ? or LOWER(email) LIKE ?", arg.to_s.downcase.gsub(/^| |$/, "%"), arg.to_s.downcase.gsub(/^| |$/, "%") ) }
   scope :include_in_exports_and_reports, -> { where(include_in_exports: true) }
@@ -26,7 +28,8 @@ class User < ApplicationRecord
 
   # Validations
   # validates :full_name, presence: true
-  validates :full_name, format: { with: /\A.+\s.+\Z/ }, allow_blank: true
+  validates :full_name, format: { with: /\A.+\s.+\Z/, message: "must be provided to participate in research" }, allow_blank: true, unless: :consenting?
+  validates :full_name, format: { with: /\A.+\s.+\Z/, message: "must be provided to participate in research" }, allow_blank: false, if: :consenting?
   validates :username, presence: true
   validates :username, format: {
                          with: /\A[a-zA-Z0-9]+\Z/i,
@@ -134,6 +137,10 @@ class User < ApplicationRecord
 
   def send_welcome_email_in_background!
     fork_process :send_welcome_email!
+  end
+
+  def consenting?
+    consenting == "1"
   end
 
   private

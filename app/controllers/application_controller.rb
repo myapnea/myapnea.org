@@ -39,8 +39,12 @@ class ApplicationController < ActionController::Base
   def join_study_path
     @project = Project.published.find_by(id: session[:project_id])
     return unless @project && session[:consented_at].present?
+    current_user.update(full_name: session[:full_name]) if session[:full_name].present?
     current_user.consent!(@project, consented_at: session[:consented_at])
     flash[:notice] = "Welcome to #{@project.name}."
+    session[:project_id] = nil
+    session[:consented_at] = nil
+    session[:full_name] = nil
     slice_surveys_path(@project)
   end
 

@@ -13,18 +13,7 @@
   = simple_markdown @project.consent
 
   - unless @subject
-    .row
-      .col
-        .d-none.d-md-block
-          = render "slice/i_do_not_consent", project: @project, size: "btn-lg"
-        .d-block.d-md-none
-          = render "slice/i_do_not_consent", project: @project, size: ""
-      .col
-        .text-right
-          .d-none.d-md-block
-            = render "slice/i_consent", project: @project, size: "btn-lg"
-          .d-block.d-md-none
-            = render "slice/i_consent", project: @project, size: ""
+    #consent-form= render "slice/consent_form", project: @project, user: @user
 
 - if @subject
   .dashboard-container

@@ -32,7 +32,7 @@ class SettingsController < ApplicationController
 
   # PATCH /settings/account
   def update_account
-    if current_user.update(account_params)
+    if current_user.update(account_params.merge(consenting: "1"))
       redirect_to settings_account_path, notice: "Account successfully updated."
     else
       render :account
