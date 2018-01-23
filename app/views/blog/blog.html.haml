@@ -7,6 +7,8 @@
   .mb-3{ data: { object: "menu-trigger" } }
     = render "landing/orange_title", title: @title, text_class: "text-white"
 
+  - @broadcasts = @broadcasts.reorder(:id)
+
 - else
   - @title = ["Blog", @category ? @category.name : nil, @author ? @author.username : nil].compact.join(" | ")
   - @menu = "blue"
