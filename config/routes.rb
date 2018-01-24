@@ -152,6 +152,7 @@ Rails.application.routes.draw do
     patch :update_notifications, path: "notifications"
   end
 
+  get "consent", to: redirect("research/myapnea-core/consent")
   get "surveys", to: redirect("research"), as: :surveys
   namespace :slice, path: "" do # OR: scope module: :slice
     get :research
