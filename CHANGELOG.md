@@ -67,6 +67,7 @@
   - Updated to bootstrap 4.0.0
   - Updated to carrierwave 1.2.2
   - Updated to devise 4.4.0
+  - Updated to hashids 1.0.4
   - Updated to pg_search 2.1.2
 
 ### Tests
