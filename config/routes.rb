@@ -46,6 +46,16 @@ Rails.application.routes.draw do
     end
   end
 
+  get "learn", to: redirect("education")
+  get "education", to: "blog#blog", category: "education"
+  get "faqs", to: "blog#blog", category: "faqs"
+
+  # TODO: Remove January 2019
+  get "blog/category/learn", to: redirect("blog/category/education")
+  get "blog/category/narrative", to: redirect("blog/category/patient-stories")
+  get "blog/category/news", to: redirect("blog/category/announcements")
+  # END TODO
+
   scope module: :blog do
     get :blog
     get "blog/category/:category", action: "blog", as: :blog_category
