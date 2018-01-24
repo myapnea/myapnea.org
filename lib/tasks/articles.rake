@@ -39,7 +39,7 @@ namespace :articles do
       published: true,
       publish_date: Time.zone.today,
       title: "How do I join MyApnea?",
-      description: "It's easy — just sign up with your name, email, password, and birth year. You can then visit and explore the community pages to learn more about sleep apnea and to talk with other people like you. If you want to join the patient-led research community, you will need to read and sign the informed consent before you can join the RESEARCH portal."
+      description: "It's easy — just sign up with your username, email, and password. You can then visit and explore the community pages to learn more about sleep apnea and to talk with other people like you. If you want to join the patient-led research community, you will need to read and sign the informed consent before you can join the RESEARCH portal."
     )
 
     Broadcast.where(slug: "why-do-i-have-to-sign-a-consent-form-to-participate-in-the-research-portal").first_or_create(
