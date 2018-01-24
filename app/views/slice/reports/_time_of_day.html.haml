@@ -79,7 +79,7 @@
     - period_m = "PM"
   .survey-report-my-response
     - if my_response.present?
-      %span.text-accent= "#{hours_m}#{format(":%02d", minutes_m)}#{period_m}"
+      %span.text-accent= "#{hours_m}#{format(":%02d", minutes_m)} #{period_m}"
     - else
       %span.text-muted Not answered
 

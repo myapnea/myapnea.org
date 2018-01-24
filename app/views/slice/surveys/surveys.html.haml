@@ -22,9 +22,9 @@
       .float-right
         %small.text-muted= "#{subject_event.percent}%"
       .clearfix
-      .card-columns
+      .card-deck
         - subject_event.event_designs.each do |event_design|
-          .card
+          .card.mb-3{ style: "min-width: 250px;" }
             .card-body
               .small.card-title
                 = event_design.design_name
