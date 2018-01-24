@@ -38,4 +38,11 @@ class InternalTest < ApplicationSystemTestCase
     screenshot("visit-settings-profile")
     assert_selector "h1", text: "Profile Settings"
   end
+
+  test "visit notification settings" do
+    visit_login(@regular)
+    visit settings_notifications_path
+    screenshot("visit-settings-notifications")
+    assert_selector "h1", text: "Notification Settings"
+  end
 end

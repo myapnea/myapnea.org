@@ -103,6 +103,13 @@ class Topic < ApplicationRecord
     current_user.subscriptions.where(topic_id: id, subscribed: true).count > 0
   end
 
+  def generate_automatic_subscriptions!
+    User.current.where(forum_auto_subscribed: true).find_each do |user|
+      get_or_create_subscription(user).update subscribed: true
+      replies.first&.create_notifications!
+    end
+  end
+
   private
 
   def create_first_reply

@@ -32,6 +32,7 @@
     - Replying to a topic automatically subscribes a user to the topic, unless
       the user has previously unsubscribed from the topic
     - In-app notifications are sent to topic subscribers
+  - Users can now auto-subscribe to new forum topics in their settings
 - **Projects Added**
   - Sets of surveys are now grouped by project, the initial set of surveys on
     MyApnea are going into the MyApnea Core project

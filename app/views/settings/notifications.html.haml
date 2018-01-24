@@ -1,0 +1,25 @@
+- @title = "Notification Settings"
+- @menu = "night"
+- @body = "night"
+- @footer = "night"
+
+- content_for :header do
+  .header-container
+    .container
+      %h1.page-heading
+        = @title
+
+- content_for :footer, render("decorations/moon")
+
+.drawer-and-shelf-container
+  .drawer
+    = render "settings/menu"
+  .shelf
+    .card.mb-5
+      %h4.card-header
+        %i.fa.fa-user-circle
+        Forum notifications
+      .card-body
+        = form_with model: current_user, url: settings_update_notifications_path, method: :patch, local: true do |form|
+          = render "forms/vertical/check_box", form: form, object: current_user, key: :forum_auto_subscribed, key_name: "Auto-subscribe to new forum topics", help_text: "Check this if you would like to automatically receive in-app notifications for new forum topics."
+          = render "forms/vertical/submit", form: form, object: current_user, submit_text: "Update settings", cancel: false

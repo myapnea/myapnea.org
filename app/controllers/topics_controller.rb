@@ -48,6 +48,7 @@ class TopicsController < ApplicationController
     if @topic.save
       @topic.touch(:last_reply_at)
       @topic.compute_shadow_ban!
+      @topic.generate_automatic_subscriptions! unless @topic.user.shadow_banned?
       redirect_to @topic, notice: "Topic was successfully created."
     else
       render :new

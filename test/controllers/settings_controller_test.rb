@@ -133,4 +133,19 @@ class SettingsControllerTest < ActionDispatch::IntegrationTest
     assert_equal "Email successfully updated.", flash[:notice]
     assert_redirected_to settings_email_url
   end
+
+  test "should get notification settings" do
+    login(@regular)
+    get settings_notifications_url
+    assert_response :success
+  end
+
+  test "should update notification settings" do
+    login(@regular)
+    patch settings_update_notifications_url, params: { user: { forum_auto_subscribed: "1" } }
+    @regular.reload
+    assert_equal true, @regular.forum_auto_subscribed?
+    assert_equal "Notifications successfully updated.", flash[:notice]
+    assert_redirected_to settings_notifications_url
+  end
 end

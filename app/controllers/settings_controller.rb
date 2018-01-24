@@ -74,6 +74,19 @@ class SettingsController < ApplicationController
     end
   end
 
+  # # GET /settings/notifications
+  # def notifications
+  # end
+
+  # PATCH /settings/notifications
+  def update_notifications
+    if current_user.update(notification_params)
+      redirect_to settings_notifications_path, notice: "Notifications successfully updated."
+    else
+      render :notifications
+    end
+  end
+
   private
 
   def profile_params
@@ -90,5 +103,9 @@ class SettingsController < ApplicationController
 
   def email_params
     params.require(:user).permit(:email, :emails_enabled)
+  end
+
+  def notification_params
+    params.require(:user).permit(:forum_auto_subscribed)
   end
 end

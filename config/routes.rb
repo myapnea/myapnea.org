@@ -136,6 +136,9 @@ Rails.application.routes.draw do
 
     get :email
     patch :update_email, path: "email"
+
+    get :notifications
+    patch :update_notifications, path: "notifications"
   end
 
   get "surveys", to: redirect("research"), as: :surveys
