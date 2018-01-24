@@ -25,7 +25,7 @@
               .survey-question-lead= @json.dig("group", "name")
             - if @json.dig("group", "description").present?
               .survey-question-desc= simple_format @json.dig("group", "description")
-            .survey-question-text= @variable.display_name
+            .survey-question-text= simple_bold @variable.display_name
             - case @variable.variable_type
             - when "checkbox", "date", "dropdown", "imperial_height", "imperial_weight", "integer", "numeric", "radio", "string", "text", "time_duration", "time_of_day"
               = render "slice/surveys/variables/#{@variable.variable_type}", form: form, response: response, value: value
