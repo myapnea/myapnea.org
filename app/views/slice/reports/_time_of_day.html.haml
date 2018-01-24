@@ -61,7 +61,7 @@
 - x_axis = { categories: categories, title: { text: nil } }
 - y_axis = { title: { text: "Participants" } }
 - if filter_responses.count < Slice::Survey::MIN_SURVEY_RESPONSE
-  .brand-title= design_option.dig("display_name")
+  .survey-report-title= design_option.dig("display_name")
   - hours_24_m = my_response.to_i / 3600
   - minutes_m = (my_response.to_i / 60) % 60
 
@@ -77,10 +77,11 @@
   - else hours_24_m > 12
     - hours_m = hours_24_m - 12
     - period_m = "PM"
-  - if my_response.present?
-    %span.text-accent= "#{hours_m}#{format(":%02d", minutes_m)}#{period_m}"
-  - else
-    %span.text-muted Not answered
+  .survey-report-my-response
+    - if my_response.present?
+      %span.text-accent= "#{hours_m}#{format(":%02d", minutes_m)}#{period_m}"
+    - else
+      %span.text-muted Not answered
 
 - else
   %div.mb-5{ data: { object: "survey-report-chart", series: series.to_json, title: title.to_json, x_axis: x_axis.to_json, y_axis: y_axis.to_json } }

@@ -33,12 +33,13 @@
 - x_axis = { categories: categories, title: { text: design_option.dig("units") } }
 - y_axis = { title: { text: "Participants" } }
 - if filter_responses.count < Slice::Survey::MIN_SURVEY_RESPONSE
-  .brand-title= design_option.dig("display_name")
-  - if my_response.present?
-    %strong.text-accent= "#{my_response}"
-    = design_option.dig("units")
-  - else
-    %span.text-muted Not answered
+  .survey-report-title= design_option.dig("display_name")
+  .survey-report-my-response
+    - if my_response.present?
+      %strong.text-accent= "#{my_response}"
+      = design_option.dig("units")
+    - else
+      %span.text-muted Not answered
 - else
   %div.mb-5{ data: { object: "survey-report-chart", series: series.to_json, title: title.to_json, x_axis: x_axis.to_json, y_axis: y_axis.to_json } }
   =# render "slice/reports/responses_statistics", responses: responses, my_color: my_color

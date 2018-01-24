@@ -40,6 +40,7 @@
 /db/schema.rb
 /doc/app/*
 /app/assets/images/videos/*
+/lib/data/reports/**/*
 
 /.sass-cache/
 /coverage/*

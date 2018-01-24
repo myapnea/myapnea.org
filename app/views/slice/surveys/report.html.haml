@@ -6,6 +6,8 @@
 - content_for :sidebar, render("internal/sidebar")
 - content_for :header, @title
 
+- @design_report = YAML.load_file(Rails.root.join("lib", "data", "reports", "#{@project.slug}-#{params[:event]}-#{params[:design]}.yml")) rescue nil
+
 - @json.fetch("design_options", []).each do |design_option|
   - case design_option.dig("variable_type") when "radio", "dropdown"
     .dashboard-container= render "slice/reports/radio", design_option: design_option
