@@ -10,7 +10,7 @@ class Topic < ApplicationRecord
   include Replyable
   include UrlCountable
   multisearchable against: [:title],
-                  unless: :deleted?
+                  unless: :deleted_or_shadow_banned?
   include Strippable
   strip :title
 
@@ -41,6 +41,10 @@ class Topic < ApplicationRecord
     super
     update_pg_search_document
     replies.each(&:update_pg_search_document)
+  end
+
+  def deleted_or_shadow_banned?
+    deleted? || user.spammer? || user.shadow_banned?
   end
 
   def to_param

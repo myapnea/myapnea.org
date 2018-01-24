@@ -37,7 +37,7 @@ class Reply < ApplicationRecord
   end
 
   def deleted_or_parent_deleted?
-    deleted? || (topic && topic.deleted?) || (broadcast && broadcast.deleted?)
+    deleted? || (topic && topic.deleted?) || (broadcast && broadcast.deleted?) || user.spammer? || user.shadow_banned?
   end
 
   # TODO: Make this work for blog posts
