@@ -4,7 +4,7 @@
 [![Dependency Status](https://gemnasium.com/myapnea/www.myapnea.org.svg)](https://gemnasium.com/myapnea/www.myapnea.org)
 [![Code Climate](https://codeclimate.com/github/myapnea/www.myapnea.org/badges/gpa.svg)](https://codeclimate.com/github/myapnea/www.myapnea.org)
 
-The web framework behind www.myapnea.org, built on Ruby on Rails 5.2+.
+The web framework behind www.myapnea.org, built Rails 5.2+ and Ruby 2.5+.
 
 ## Before Starting Installation
 
