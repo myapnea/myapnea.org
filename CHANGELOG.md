@@ -2,32 +2,45 @@
 
 ### Enhancements
 - **General Changes**
-  - The focus of MyApnea is being changed to improve the participant-experience
-    first and foremost
-  - The forum, surveys, and blog are the primary components of MyApnea, pages
-    that don't directly support these components have been removed
-  - Started work on a new landing page
-  - Redesigned pages to match more vibrant landing page
-  - Added search to the mobile dropdown menu
-  - Improved page navigation after signing in and signing out
-  - Redesigned dashboard and settings pages
-  - Redesigned research page to include active surveys and research articles
-  - Added "Top" and "Recent" topics to member profile
-  - Added content manager role to streamline creation of articles for
-    "Education", "FAQs", and other static pages
-  - FAQs can be rated and ranked in terms of helpfulness
-  - Simplified registration process
+  - Improved the user interface to better focus on the forum, research studies
+    and surveys, and articles/blog
+  - The landing page has been simplified to create a better starting point for
+    future updates
+  - The help center has been added which integrates site FAQs and site-wide
+    search
+  - Registration and signing in now makes better use of friendly forwarding
+  - The dashboard now shows user replies from the blog and from the forum
+  - The research page has been redesigned to support multiple research studies
+    and also highlights recent research articles
+- **Profile Changes**
+  - Updated design of member profiles
+  - A user's "Top" and "Recent" topics are now listed on the member profile
+  - A user can provide a optional bio and location that displays on the member
+    profile
+  - Simplified the registration process
+    - Users are now asked to provide their own username as opposed to an
+      automatically generated one
+    - Users are no longer asked for age and full name on registration, this
+      has been moved to the research portal of the site when a user goes through
+      the consent process for a research study
+    - This allows users to more easily sign up and get started on the forum
 - **Admin Changes**
   - Major revamp of the administrative interface
   - Admin image pages list replies and broadcasts that reference the image
   - Added a report manager role
+  - Admins can manage projects that link to Slice research studies
 - **Blog Changes**
+  - Added content manager role to streamline creation of articles for
+    "Education", "FAQs", and other static pages
   - FAQs now exist as blog pages, however the "FAQs" category does not show up
     on the blog roll, and is styled differently than regular blog posts
+  - FAQs can be rated and ranked in terms of helpfulness
+  - FAQs will also show up in search results on the help center
 - **Forum Changes**
   - Adjusted how the forum index displays on mobile devices
-  - Generated forum names are now simpler and shorter
-  - Improved how images are displayed on forum
+  - Forum usernames are now set at sign up by the user, however a pre-generated
+    username is provided as an example to the user
+  - Improved the display of images in posts on the forum
   - Users can now subscribe to forum topics
     - Creating a new topic automatically subscribes the author to the topic
     - Replying to a topic automatically subscribes a user to the topic, unless
@@ -35,10 +48,19 @@
     - In-app notifications are sent to topic subscribers
   - Users can now auto-subscribe to new forum topics in their settings
 - **Projects Added**
+  - A project represents a research study in MyApnea, and provides a link to
+    the associated Slice project surveys and database records
   - Sets of surveys are now grouped by project, the initial set of surveys on
     MyApnea are going into the MyApnea Core project
+  - Users now have to go through the consent process for each research study
+    they wish to join
 - **Survey Changes**
   - Surveys now leverage the Slice API
+  - The internal survey data model for MyApnea has been removed and replaced
+    with the more robust Slice data model
+  - The Slice API provides study event timelines, conditional surveys, survey
+    completion, branching logic, data validation, and a number of other
+    features: https://tryslice.io/docs
 - **Gem Changes**
   - Updated to ruby 2.5.0
   - Updated to rails 5.2.0.beta2
