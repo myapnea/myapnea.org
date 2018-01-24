@@ -5,10 +5,7 @@
 - @footer = "night"
 
 - content_for :container_class, "container-fluid"
-
-- content_for :sidebar do
-  = render "admin/sidebar"
-
+- content_for :sidebar, render("admin/sidebar")
 - content_for :header do
   .float-right
     = render "layouts/edit_delete_dropdown_header", edit_url: edit_project_path(@project), delete_url: @project, delete_confirmation: "Delete #{@project.name}?"

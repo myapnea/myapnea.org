@@ -1,9 +1,15 @@
-- @title = 'New Blog Post'
+- @title = "New Article"
 
-.content-main-header2
-  %h1
-    = link_to 'Blog Posts', broadcasts_path
-    &middot;
-    New
+- @menu = "blue"
+- @body = "sky"
+- @footer = "grass"
 
-= render 'form'
+- content_for :container_class, "container-fluid"
+
+- content_for :sidebar do
+  = render "admin/sidebar"
+
+- content_for :header, @title
+
+.dashboard-container
+  = render "form", broadcast: @broadcast

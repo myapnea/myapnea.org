@@ -6,6 +6,8 @@ class BroadcastsController < ApplicationController
   before_action :check_community_contributor
   before_action :find_broadcast_or_redirect, only: [:show, :edit, :update, :destroy]
 
+  layout "layouts/full_page_sidebar"
+
   # GET /broadcasts
   def index
     @broadcasts = current_user.editable_broadcasts.order(publish_date: :desc, id: :desc)
@@ -29,7 +31,7 @@ class BroadcastsController < ApplicationController
   def create
     @broadcast = current_user.broadcasts.new(broadcast_params)
     if @broadcast.save
-      redirect_to @broadcast, notice: "Broadcast was successfully created."
+      redirect_to @broadcast, notice: "Article was successfully created."
     else
       render :new
     end
@@ -38,7 +40,7 @@ class BroadcastsController < ApplicationController
   # PATCH /broadcasts/1
   def update
     if @broadcast.update(broadcast_params)
-      redirect_to @broadcast, notice: "Broadcast was successfully updated."
+      redirect_to @broadcast, notice: "Article was successfully updated."
     else
       render :edit
     end
@@ -47,7 +49,7 @@ class BroadcastsController < ApplicationController
   # DELETE /broadcasts/1
   def destroy
     @broadcast.destroy
-    redirect_to broadcasts_path, notice: "Broadcast was successfully deleted."
+    redirect_to broadcasts_path, notice: "Article was successfully deleted."
   end
 
   private
@@ -72,6 +74,6 @@ class BroadcastsController < ApplicationController
 
   def check_community_contributor
     return if current_user.community_contributor?
-    redirect_to root_path, alert: "Only community editors may manage blog posts."
+    redirect_to root_path, alert: "Only community editors may manage articles."
   end
 end

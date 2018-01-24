@@ -1,11 +1,16 @@
 - @title = "Edit Broadcast: #{@broadcast.title_was}"
 
-.content-main-header2
-  %h1
-    = link_to 'Blog Posts', broadcasts_path
-    &middot;
-    = link_to @broadcast.title_was, @broadcast
-    &middot;
-    Edit
+- @menu = "blue"
+- @body = "sky"
+- @footer = "grass"
 
-= render 'form'
+- content_for :container_class, "container-fluid"
+
+- content_for :sidebar, render("admin/sidebar")
+
+- content_for :header do
+  = link_to @broadcast.title_was, @broadcast
+  Edit
+
+.dashboard-container
+  = render "form", broadcast: @broadcast

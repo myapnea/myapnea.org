@@ -1,59 +1,38 @@
 - @title = @broadcast.title
 
-.content-main-header2
-  %h1
-    = link_to "Blog Posts", broadcasts_path
-    &middot;
-    = @broadcast.title
-  %div
-    - if @broadcast.published?
+- @menu = "blue"
+- @body = "sky"
+- @footer = "grass"
 
-      - if @broadcast.publish_date <= Time.zone.today
-        %span.label.label-info Published
-        = link_to "View Blog Post", blog_post_path(year: @broadcast.publish_date.year, month: @broadcast.publish_date.strftime("%m"), slug: @broadcast.slug), class: "btn btn-sm btn-light"
+- content_for :container_class, "container-fluid"
+- content_for :sidebar, render("admin/sidebar")
+- content_for :header do
+  .float-right
+    %span.small
+      - if @broadcast.published?
+        - if @broadcast.publish_date <= Time.zone.today
+          %span.badge.badge-accent Published
+          = link_to "View Blog Post", blog_post_path(year: @broadcast.publish_date.year, month: @broadcast.publish_date.strftime("%m"), slug: @broadcast.slug), class: "btn btn-sm btn-light"
+        - else
+          %span.badge.badge-accent
+            Publishes on
+            = @broadcast.publish_date.strftime("%a, %B %-d, %Y")
       - else
-        %span.label.label-info
-          Set to Publish on
-          = @broadcast.publish_date.strftime("%a, %B %-d, %Y")
-    - else
-      %span.label.label-warning DRAFT
+        %span.badge.badge-warning DRAFT
     &nbsp;
-    = link_to edit_broadcast_path(@broadcast), class: "btn btn-sm btn-light" do
-      %span.glyphicon.glyphicon-edit
-      Edit Blog Post
+    = render "layouts/edit_delete_dropdown_header", edit_url: edit_broadcast_path(@broadcast), delete_url: @broadcast, delete_confirmation: "Delete #{@broadcast.title}?"
+  = @title
 
-.row
-  .col-lg-9
-    .broadcast
-      = simple_markdown(@broadcast.description, target_blank: false)
+.dashboard-container
+  %h1.broadcast-title.mt-0{ style: "border-bottom: 0;" }= @broadcast.title
+  .broadcast= simple_markdown(@broadcast.description, target_blank: false)
 
-  .col-lg-3
-    %p
-      %strong Short Description
-      %br
-      = @broadcast.short_description
+.dashboard-container
+  = render "forms/horizontal/show/generic", title: "Creator", content: link_to(@broadcast.user.username, member_path(@broadcast.user.username))
+  = render "forms/horizontal/show/markdown", object: @broadcast, key: :short_description
+  = render "forms/horizontal/show/text", object: @broadcast, key: :keywords
+  = render "forms/horizontal/show/text", object: @broadcast, key: :publish_date
+  = render "forms/horizontal/show/check_box", object: @broadcast, key: :published
+  = render "forms/horizontal/show/check_box", object: @broadcast, key: :pinned
+  = render "forms/horizontal/show/check_box", object: @broadcast, key: :archived
 
-    %p
-      %strong Keywords
-      %br
-      = @broadcast.keywords
-
-    %p
-      %strong Creator
-      %br
-      = @broadcast.user.full_name
-
-    %p
-      %strong Publish date
-      %br
-      = @broadcast.publish_date
-
-    %p
-      %strong Pinned
-      %br
-      = simple_check @broadcast.pinned
-
-    %p
-      %strong Archived
-      %br
-      = simple_check @broadcast.archived

@@ -1,39 +1,51 @@
-- @title = "Blog Posts"
+- @title = "Articles"
 
-.content-main-header2
-  %h1
-    Blog Posts
-  %div
+- @menu = "blue"
+- @body = "sky"
+- @footer = "grass"
+
+- content_for :container_class, "container-fluid"
+- content_for :sidebar, render("admin/sidebar")
+- content_for :header do
+  .float-right
     = succeed " " do
       = link_to new_broadcast_path, class: "btn btn-sm btn-light" do
         %span.glyphicon.glyphicon-plus
-        New Blog Post
+        New Article
     = link_to "Go To Blog", blog_path, class: "btn btn-sm btn-light"
+  = @title
 
-%table.table
-  %thead
-    %tr
-      %th Published
-      %th Title
-      %th Short Description
-      %th Publish date
-      %th Pinned
-      %th Archived
-      %th User
-      %th Actions
-
-  %tbody
-    - @broadcasts.each do |broadcast|
+.dashboard-container
+  %table.table.table-striped.table-borderless.table-hover.table-sticky
+    %thead
       %tr
-        %td= simple_check broadcast.published?
-        %td= link_to broadcast.title, broadcast
-        %td= broadcast.short_description
-        %td= broadcast.publish_date.strftime "%a %d %b %Y"
-        %td= simple_check broadcast.pinned
-        %td= simple_check broadcast.archived
-        %td= broadcast.user.full_name
-        %td.nowrap
-          = link_to "Edit", edit_broadcast_path(broadcast), class: "btn btn-sm btn-light"
-          = link_to "Delete", broadcast, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-sm btn-danger"
+        %th.text-center Published
+        %th Title
+        %th.d-none.d-sm-table-cell.text-center Date
+        %th.text-center Actions
+
+    %tbody
+      - @broadcasts.each do |broadcast|
+        %tr
+          %td.text-center= simple_check broadcast.published?
+          %td= link_to broadcast.title, broadcast
+          %td.d-none.d-sm-table-cell.text-center.nowrap= broadcast.publish_date.strftime "%a %d %b %Y"
+          %td.text-center
+            .dropdown
+              = link_to "#", class: "btn btn-light btn-sm dropdown-toggle", data: { toggle: "dropdown" } do
+                .d-inline-block.d-sm-none
+                  %i.fa.fa-cog
+                .d-none.d-sm-inline-block Actions
+                %strong.caret
+
+              .dropdown-menu.dropdown-menu-right
+                = link_to edit_broadcast_path(broadcast), class: "dropdown-item" do
+                  %i.fa.fa-pencil
+                  Edit
+                .dropdown-divider
+                = link_to broadcast, method: :delete, data: { confirm: "Delete #{broadcast.title}?" }, class: "dropdown-item text-danger" do
+                  %i.fa.fa-trash
+                  Delete
+
 
 .center-horizontally= paginate @broadcasts, theme: "bootstrap"
