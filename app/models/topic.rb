@@ -18,7 +18,7 @@ class Topic < ApplicationRecord
   after_create_commit :create_first_reply
 
   # Scopes
-  scope :reply_count, -> { select('topics.*, COUNT(replies.id) reply_count').joins(:replies).group('topics.id') }
+  scope :reply_count, -> { select("topics.*, COUNT(replies.id) reply_count").joins(:replies).group("topics.id") }
   scope :shadow_banned, -> (arg) { joins(:user).merge(User.where(shadow_banned: [nil, false]).or(User.where(id: arg))) }
 
   # Validations
@@ -30,6 +30,9 @@ class Topic < ApplicationRecord
   # Relationships
   belongs_to :user
   has_many :topic_users
+  has_many :subscriptions
+  has_many :subscribers, -> { current.where(subscriptions: { subscribed: true }) },
+           through: :subscriptions, source: :user
   # has_many :replies, -> { order :created_at }
   # has_many :reply_users
 
@@ -52,7 +55,7 @@ class Topic < ApplicationRecord
   def unread_replies(current_user)
     topic_user = topic_users.find_by user: current_user
     if topic_user
-      root_replies.current.where('id > ?', topic_user.current_reply_read_id).count
+      root_replies.current.where("id > ?", topic_user.current_reply_read_id).count
     else
       0
     end
@@ -60,7 +63,7 @@ class Topic < ApplicationRecord
 
   def next_unread_reply(current_user)
     topic_user = topic_users.find_by user: current_user
-    root_replies.current.find_by('id > ?', topic_user.current_reply_read_id) if topic_user
+    root_replies.current.find_by("id > ?", topic_user.current_reply_read_id) if topic_user
   end
 
   def root_replies
@@ -88,13 +91,26 @@ class Topic < ApplicationRecord
     replies.first.url_count
   end
 
+  def get_or_create_subscription(current_user)
+    current_user.subscriptions.where(topic_id: id).first_or_create
+  end
+
+  def set_subscription!(notify, current_user)
+    get_or_create_subscription(current_user).update subscribed: notify
+  end
+
+  def subscribed?(current_user)
+    current_user.subscriptions.where(topic_id: id, subscribed: true).count > 0
+  end
+
   private
 
   def create_first_reply
     replies.create description: description, user_id: user_id if description.present?
+    get_or_create_subscription(user)
   end
 
   def requires_description?
-    new_record? && migration_flag != '1'
+    new_record? && migration_flag != "1"
   end
 end

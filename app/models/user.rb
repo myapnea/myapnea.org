@@ -49,8 +49,8 @@ class User < ApplicationRecord
   has_many :notifications
   has_many :exports, -> { order id: :desc }, class_name: "Admin::Export"
   has_many :projects, -> { current }
-
   has_many :subjects
+  has_many :subscriptions
 
   # Methods
 

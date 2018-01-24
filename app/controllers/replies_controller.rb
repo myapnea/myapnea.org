@@ -60,9 +60,12 @@ class RepliesController < ApplicationController
   def create
     @reply = @parent.replies.where(user_id: current_user.id).new(reply_params)
     if @reply.save
-      @reply.create_notifications!
       @reply.compute_shadow_ban!
-      @reply.parent.touch(:last_reply_at) unless @reply.user.shadow_banned?
+      unless @reply.user.shadow_banned?
+        @reply.create_notifications!
+        @reply.parent.touch(:last_reply_at)
+      end
+      @reply.parent.get_or_create_subscription(current_user)
       current_user.read_parent!(@parent, @reply.id)
       render :create
     else

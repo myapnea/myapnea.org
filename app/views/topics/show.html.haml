@@ -39,4 +39,8 @@
 
 .center-horizontally= paginate @replies, theme: "bootstrap-small"
 
+- if current_user
+  #topic-subscription= render "topics/subscribe_unsubscribe", topic: @topic
+
+
 = render "topics/disclaimer"

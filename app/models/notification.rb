@@ -1,15 +1,12 @@
 # frozen_string_literal: true
 
-# Tracks if a user has seen replies to blog and forum posts and comments.
+# Tracks if a user has seen replies to blog posts and forum topics.
 class Notification < ApplicationRecord
-  # Validations
-  validates :user_id, presence: true
-
   # Relationships
   belongs_to :user
-  belongs_to :broadcast
-  belongs_to :topic
-  belongs_to :reply
+  belongs_to :broadcast, optional: true
+  belongs_to :topic, optional: true
+  belongs_to :reply, optional: true
 
   # Methods
 

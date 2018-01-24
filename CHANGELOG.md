@@ -27,6 +27,11 @@
   - Adjusted how the forum index displays on mobile devices
   - Generated forum names are now simpler and shorter
   - Improved how images are displayed on forum
+  - Users can now subscribe to forum topics
+    - Creating a new topic automatically subscribes the author to the topic
+    - Replying to a topic automatically subscribes a user to the topic, unless
+      the user has previously unsubscribed from the topic
+    - In-app notifications are sent to topic subscribers
 - **Projects Added**
   - Sets of surveys are now grouped by project, the initial set of surveys on
     MyApnea are going into the MyApnea Core project

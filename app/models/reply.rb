@@ -118,7 +118,7 @@ class Reply < ApplicationRecord
   end
 
   def parent_reply_id
-    reply_id || 'root'
+    reply_id || "root"
   end
 
   def computed_level
@@ -131,27 +131,10 @@ class Reply < ApplicationRecord
   end
 
   def create_notifications!
-    if reply
-      notify_comment_author
-    else
-      notify_parent_author
+    parent.subscribers.where.not(id: user_id).find_each do |u|
+      notification = u.notifications.where(topic_id: topic_id, broadcast_id: broadcast_id, reply_id: id).first_or_create
+      notification.mark_as_unread!
     end
-  end
-
-  def notify_comment_author
-    return if reply.user == user
-    notification = reply.user.notifications.where(
-      topic_id: topic_id, broadcast_id: broadcast_id, reply_id: id
-    ).first_or_create
-    notification.mark_as_unread!
-  end
-
-  def notify_parent_author
-    return if parent.user == user
-    notification = parent.user.notifications.where(
-      topic_id: topic_id, broadcast_id: broadcast_id, reply_id: id
-    ).first_or_create
-    notification.mark_as_unread!
   end
 
   def compute_shadow_ban!

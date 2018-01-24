@@ -187,6 +187,7 @@ Rails.application.routes.draw do
 
   resources :topics, path: "forum" do
     member do
+      post :subscription
       get "/edit", action: :edit, as: :edit
       get "/:page", action: :show, as: :page
     end

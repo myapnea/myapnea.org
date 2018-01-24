@@ -23,7 +23,7 @@
           = link_to @user, method: :delete, data: { confirm: "Delete #{@user.full_name}?" }, class: "dropdown-item text-danger" do
             %i.fa.fa-trash
             Delete
-  = @user.full_name
+  = @user.full_name.presence || @user.username
 
 .dashboard-container
   - if @user.shadow_banned?

@@ -2,11 +2,16 @@
 
 # Forum topics with replies and votes.
 class TopicsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
-  before_action :find_viewable_topic_or_redirect, only: [:show]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy, :subscription]
+  before_action :find_viewable_topic_or_redirect, only: [:show, :subscription]
   before_action :find_editable_topic_or_redirect, only: [:edit, :update, :destroy]
 
-  # GET /topics
+  # POST /forum/my-first-topic/subscription.js
+  def subscription
+    @topic.set_subscription!(params[:notify].to_s == "1", current_user)
+  end
+
+  # GET /forum
   def index
     @order = scrub_order(Topic, params[:order], "pinned desc, last_reply_at desc, id desc")
     if ["reply_count", "reply_count desc"].include?(params[:order])
@@ -17,7 +22,7 @@ class TopicsController < ApplicationController
     @topics = topic_scope.page(params[:page]).per(40)
   end
 
-  # GET /topics/1
+  # GET /forum/1
   def show
     @page = (params[:page].to_i > 1 ? params[:page].to_i : 1)
     reply_scope = @topic.replies.includes(:topic).where(reply_id: nil).page(@page).per(Reply::REPLIES_PER_PAGE)
@@ -28,16 +33,16 @@ class TopicsController < ApplicationController
     current_user.read_parent!(@topic, last_reply_id) if current_user
   end
 
-  # GET /topics/new
+  # GET /forum/new
   def new
     @topic = current_user.topics.new
   end
 
-  # # GET /topics/1/edit
+  # # GET /forum/1/edit
   # def edit
   # end
 
-  # POST /topics
+  # POST /forum
   def create
     @topic = current_user.topics.new(topic_params)
     if @topic.save
@@ -49,7 +54,7 @@ class TopicsController < ApplicationController
     end
   end
 
-  # PATCH /topics/1
+  # PATCH /forum/1
   def update
     if @topic.update(topic_params)
       @topic.compute_shadow_ban!
@@ -59,7 +64,7 @@ class TopicsController < ApplicationController
     end
   end
 
-  # DELETE /topics/1
+  # DELETE /forum/1
   def destroy
     @topic.destroy
     redirect_to topics_path, notice: "Topic was successfully deleted."
