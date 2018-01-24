@@ -177,10 +177,6 @@ Rails.application.routes.draw do
     end
   end
 
-  namespace :slice do
-    resources :subjects
-  end
-
   # Admin Section
   get "admin" => "admin#dashboard"
 
