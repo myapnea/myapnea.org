@@ -65,6 +65,7 @@
   - Updated to ruby 2.5.0
   - Updated to rails 5.2.0.beta2
   - Updated to bootstrap 4.0.0
+  - Updated to carrierwave 1.2.2
   - Updated to devise 4.4.0
   - Updated to pg_search 2.1.2
 
