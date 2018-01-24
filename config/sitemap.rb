@@ -18,16 +18,19 @@ SitemapGenerator::Sitemap.create do
   add "/landing", changefreq: "daily", priority: 0.7
   add "/blog", changefreq: "daily", priority: 0.9
   add "/forum", changefreq: "daily", priority: 0.8
+  add "/research", changefreq: "daily", priority: 0.8
   add "/about", changefreq: "weekly", priority: 0.7
   add "/team", changefreq: "monthly", priority: 0.51
-  add "/learn", changefreq: "weekly", priority: 0.51
+  add "/education", changefreq: "weekly", priority: 0.51
   add "/faqs", changefreq: "monthly", priority: 0.51
   add "/partners", changefreq: "monthly", priority: 0.3
   add "/contact", changefreq: "monthly", priority: 0.3
   add "/privacy-policy", changefreq: "monthly", priority: 0.3
-
-  Broadcast.published.find_each do |broadcast|
+  Broadcast.published.joins(:category).merge(Admin::Category.current.where(show_on_blog_roll: true)).find_each do |broadcast|
     add "/blog/#{broadcast.to_param}", lastmod: broadcast.updated_at
+  end
+  Broadcast.published.joins(:category).merge(Admin::Category.current.where(show_on_blog_roll: false)).find_each do |broadcast|
+    add "/articles/#{broadcast.to_param}", lastmod: broadcast.updated_at
   end
   Topic.current.find_each do |topic|
     add "/forum/#{topic.to_param}", lastmod: topic.updated_at
@@ -36,9 +39,5 @@ SitemapGenerator::Sitemap.create do
         add "/forum/#{topic.to_param}/#{page}", lastmod: topic.updated_at
       end
     end
-  end
-  add "/surveys", changefreq: "weekly", priority: 0.8
-  Survey.viewable.find_each do |survey|
-    add "/surveys/#{survey.to_param}", lastmod: survey.updated_at
   end
 end
