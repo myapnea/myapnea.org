@@ -1,5 +1,6 @@
 = form_with model: user, url: slice_enrollment_consent_path(project), method: :post do |form|
-  = render "forms/vertical/text_field", form: form, object: user, key: :full_name, help_text: user.full_name.present? ? "Check that you entered your full legal name." : "Enter your full name to participate in research."
+  .consent-fields
+    = render "forms/vertical/text_field", form: form, object: user, key: :full_name, help_text: user.full_name.present? ? "Check that you entered your full legal name." : "Enter your full name to participate in research."
 
   .row
     .col
