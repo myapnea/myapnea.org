@@ -18,6 +18,32 @@ class ExternalControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "should up vote article" do
+    login(@regular_user)
+    assert_difference("ArticleVote.where(rating: 1).count") do
+      post article_vote_url(broadcasts(:published).slug, vote: "up", format: "js")
+    end
+    assert_template "article_vote"
+    assert_response :success
+  end
+
+  test "should down vote article" do
+    login(@regular_user)
+    assert_difference("ArticleVote.where(rating: -1).count") do
+      post article_vote_url(broadcasts(:published).slug, vote: "down", format: "js")
+    end
+    assert_template "article_vote"
+    assert_response :success
+  end
+
+  test "should not vote on article as public user" do
+    assert_difference("ArticleVote.where(rating: 1).count", 0) do
+      post article_vote_url(broadcasts(:published).slug, vote: "up", format: "js")
+    end
+    assert_template "article_vote"
+    assert_response :success
+  end
+
   test "should get contact" do
     get contact_url
     assert_response :success

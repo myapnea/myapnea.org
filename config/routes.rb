@@ -86,6 +86,7 @@ Rails.application.routes.draw do
     post :preview
     get :about
     get "articles/:slug", action: "article", as: :article
+    post "articles/:slug/vote", action: "article_vote", as: :article_vote
     get :contact
     get :landing
     get :partners

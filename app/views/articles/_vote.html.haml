@@ -1,0 +1,35 @@
+%small Was this article helpful?
+
+- if !current_user && just_voted
+  %small= link_to "Login to vote", new_user_session_path
+- else
+  - rating = article.rating(current_user)
+
+  - if rating == 1
+    - klass = "btn-success"
+    - change_to = "clear"
+  - else
+    - klass = "btn-outline-secondary"
+    - change_to = "up"
+
+  = succeed " " do
+    = link_to article_vote_path(article, vote: change_to), method: :post, remote: true, class: "btn #{klass} btn-sm" do
+      %i.fa.fa-thumbs-up{ class: (just_voted && rating == 1 ? "just-voted" : nil) }
+
+  - if rating == -1
+    - klass = "btn-danger"
+    - change_to = "clear"
+  - else
+    - klass = "btn-outline-secondary"
+    - change_to = "down"
+
+  = link_to article_vote_path(article, vote: change_to), method: :post, remote: true, class: "btn #{klass} btn-sm" do
+    %i.fa.fa-thumbs-down{ class: (just_voted && rating == -1 ? "just-voted" : nil) }
+
+%span.small{ style: "color: #9e9e9e;" }
+  -# $p500-grey
+  %small
+    = article.article_votes.where(rating: 1).count
+    out of
+    = article.article_votes.where(rating: [-1, 1]).count
+    found this helpful

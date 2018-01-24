@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  article: faq-what-is-myapnea
+  user: valid
+  rating: 1
+
+two:
+  article: faq-what-is-myapnea
+  user: participant
+  rating: 1

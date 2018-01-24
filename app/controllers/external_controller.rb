@@ -13,6 +13,21 @@ class ExternalController < ApplicationController
   # def article
   # end
 
+  # POST /articles/:slug/vote
+  def article_vote
+    @article = Broadcast.current.published.find_by(slug: params[:slug])
+    return unless current_user && @article
+    @article_vote = @article.article_votes.where(user: current_user).first_or_create
+    case params[:vote]
+    when "up"
+      @article_vote.up_vote!
+    when "down"
+      @article_vote.down_vote!
+    else
+      @article_vote.remove_vote!
+    end
+  end
+
   # TODO: Make this direct to MyApnea Core consent.
   # # GET /consent
   # def consent

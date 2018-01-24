@@ -16,20 +16,7 @@
   %h4= @title
   .mb-4= simple_markdown(@article.description, target_blank: false)
 
-  %small Was this article helpful?
-  = succeed " " do
-    = link_to "#", class: "btn btn-outline-secondary btn-sm", data: { object: "suppress-click" } do
-      %i.fa.fa-thumbs-up
-  = link_to "#", class: "btn btn-outline-secondary btn-sm", data: { object: "suppress-click" } do
-    %i.fa.fa-thumbs-down
-
-  %span.small{ style: "color: #9e9e9e;" }
-    -# $p500-grey
-    %small
-      = 1
-      out of
-      = 1
-      found this helpful
+  %div{ id: "article-#{@article.id}-vote" }= render "articles/vote", article: @article, just_voted: false
 
   %hr
 

@@ -23,6 +23,7 @@ class Broadcast < ApplicationRecord
   belongs_to :category, class_name: "Admin::Category", optional: true
   has_many :broadcast_comments
   has_many :broadcast_comment_users
+  has_many :article_votes, foreign_key: :article_id
 
   # Methods
   def destroy
@@ -41,6 +42,11 @@ class Broadcast < ApplicationRecord
       month: publish_date.strftime("%m"),
       slug: slug
     }
+  end
+
+  def rating(current_user)
+    article_vote = article_votes.find_by(user: current_user)
+    article_vote&.rating || 0
   end
 
   def editable_by?(current_user)
