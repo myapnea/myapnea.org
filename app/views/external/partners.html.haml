@@ -10,17 +10,17 @@
 - @partners.where(group: "main").each do |partner|
   .dashboard-container= render partner
 
-.mb-3= render "landing/orange_title", title: "Promotional Partners", text_class: "text-white"
-
-.dashboard-container
-  %p.lead
-    The following companies and organizations share our mission and goals to
-    improve research and the treatment of sleep apnea and are working with us to
-    promote MyApnea to patients and health care professionals. We greatly
-    appreciate their assistance.
-  .row
-    - @partners.where(group: "promotional").sort.each do |partner|
-      = render "admin/partners/promotional_partner", partner: partner
+- if @partners.where(group: "promotional").present?
+  .mb-3= render "landing/orange_title", title: "Promotional Partners", text_class: "text-white"
+  .dashboard-container
+    %p.lead
+      The following companies and organizations share our mission and goals to
+      improve research and the treatment of sleep apnea and are working with us to
+      promote MyApnea to patients and health care professionals. We greatly
+      appreciate their assistance.
+    .row
+      - @partners.where(group: "promotional").each do |partner|
+        = render "admin/partners/promotional_partner", partner: partner
 
 .dashboard-container.dashboard-disclaimer
   Our partners DO NOT have access to your contact or health information. Per our
