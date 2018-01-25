@@ -19,13 +19,15 @@ class Topic < ApplicationRecord
 
   # Scopes
   scope :reply_count, -> { select("topics.*, COUNT(replies.id) reply_count").joins(:replies).group("topics.id") }
-  scope :shadow_banned, -> (arg) { joins(:user).merge(User.where(shadow_banned: [nil, false]).or(User.where(id: arg))) }
+  scope :shadow_banned, ->(arg) { joins(:user).merge(User.where(shadow_banned: [nil, false]).or(User.where(id: arg))) }
 
   # Validations
-  validates :title, :slug, :user_id, presence: true
+  validates :title, presence: true
   validates :description, presence: true, if: :requires_description?
-  validates :slug, uniqueness: { scope: :deleted }
-  validates :slug, format: { with: /\A(?!\Anew\Z)[a-z][a-z0-9\-]*\Z/ }
+  validates :slug, format: { with: /\A[a-z][a-z0-9\-]*\Z/ },
+                   exclusion: { in: %w(new edit create update destroy research) },
+                   uniqueness: true,
+                   allow_nil: true
 
   # Relationships
   belongs_to :user
@@ -38,6 +40,7 @@ class Topic < ApplicationRecord
 
   # Methods
   def destroy
+    update slug: nil
     super
     update_pg_search_document
     replies.each(&:update_pg_search_document)
