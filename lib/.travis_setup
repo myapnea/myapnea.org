@@ -9,7 +9,6 @@ smtp-username
 smtp-password
 echo /usr/bin/pdflatex
 GOOGLE_ANALYTICS
-HEH_REFERRAL_KEY
 n
 n
 
