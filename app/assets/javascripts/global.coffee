@@ -45,7 +45,3 @@ $(document)
   .on("click", "[data-object~=suppress-click]", ->
     false
   )
-  .on("click", "[data-object~=print]", ->
-    $("#print-area").printArea()
-    false
-  )

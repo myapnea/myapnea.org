@@ -75,4 +75,16 @@ class ExternalTest < ApplicationSystemTestCase
     screenshot("visit-search-page")
     assert_selector "h1", text: "Help Center"
   end
+
+  test "visit terms and conditions" do
+    visit terms_and_conditions_url
+    screenshot("visit-terms-and-conditions")
+    assert_selector "h1", text: "Terms and Conditions"
+  end
+
+  test "visit terms of access" do
+    visit terms_of_access_url
+    screenshot("visit-terms-of-access")
+    assert_selector "h1", text: "Terms of Access"
+  end
 end

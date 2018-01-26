@@ -1,17 +1,19 @@
-- @title = 'Terms and Conditions'
+- @title = "Terms and Conditions"
 
-- content_for :body_class do
-  gray-background
+- @menu = "night"
+- @body = "night"
+- @footer = "night"
 
 - content_for :header do
   .header-container
     .container
       %h1.page-heading
-        .float-right
-          = link_to print_or('Print'), '#', data: { object: 'print' }, class: 'btn btn-accent btn-shadow'
         = @title
+- content_for :footer, render("decorations/moon")
 
-#print-area.dashboard-container
+.dashboard-container
+  .brand-title= @title
+
   %p
     By accessing the
     %strong MyApnea Forum
@@ -37,10 +39,13 @@
     %ul
       %li
         %strong Shared personal experience:
-        "I'm sorry Member123 that you are not sleeping as well as you used to. When I experienced the same issue I met with my doctor and she lowered the pressure on my CPAP".
+        "I'm sorry Member123 that you are not sleeping as well as you used to.
+        When I experienced the same issue I met with my doctor and she lowered
+        the pressure on my CPAP".
       %li
         %strong Direct medical advice:
-        "Member123 if you are not sleeping well you should lower the pressure on your CPAP.""
+        "Member123 if you are not sleeping well you should lower the pressure on
+        your CPAP.""
   %br
   %p
     This is a moderated forum; however, entries are posted immediately after

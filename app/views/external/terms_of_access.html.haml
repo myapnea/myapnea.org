@@ -1,17 +1,19 @@
-- @title = 'Terms of Access'
+- @title = "Terms of Access"
 
-- content_for :body_class do
-  gray-background
+- @menu = "night"
+- @body = "night"
+- @footer = "night"
 
 - content_for :header do
   .header-container
     .container
       %h1.page-heading
-        .float-right
-          = link_to print_or('Print'), '#', data: { object: 'print' }, class: 'btn btn-accent btn-shadow'
         = @title
+- content_for :footer, render("decorations/moon")
 
-#print-area.dashboard-container
+.dashboard-container
+  .brand-title= @title
+
   %p
     Aggregate research results from the MyApnea research portal are
     available here to all registered users of MyApnea for viewing. Aggregate

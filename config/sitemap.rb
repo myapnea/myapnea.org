@@ -26,6 +26,8 @@ SitemapGenerator::Sitemap.create do
   add "/partners", changefreq: "monthly", priority: 0.3
   add "/contact", changefreq: "monthly", priority: 0.3
   add "/privacy-policy", changefreq: "monthly", priority: 0.3
+  add "/terms-and-conditions", changefreq: "monthly", priority: 0.3
+  add "/terms-of-access", changefreq: "monthly", priority: 0.3
   Broadcast.published.joins(:category).merge(Admin::Category.current.where(show_on_blog_roll: true)).find_each do |broadcast|
     add "/blog/#{broadcast.to_param}", lastmod: broadcast.updated_at
   end

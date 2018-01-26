@@ -84,6 +84,8 @@ Rails.application.routes.draw do
     get :privacy_policy, path: "privacy-policy"
     get :sitemap_xml, path: "sitemap.xml.gz"
     get :team
+    get :terms_of_access, path: "terms-of-access"
+    get :terms_and_conditions, path: "terms-and-conditions"
     get :voting
     get :version
   end

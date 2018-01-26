@@ -1,5 +1,9 @@
 ## 17.0.0
 
+### Enhancementrs
+- **General Changes**
+  - Updated styling of Terms of Access and Terms and Conditions
+
 ### Refactoring
 - Removed deprecated survey module
 - Removed deprecated broadcast comments

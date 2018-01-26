@@ -75,6 +75,16 @@ class ExternalControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "should get terms of access" do
+    get terms_of_access_url
+    assert_response :success
+  end
+
+  test "should get terms and conditions" do
+    get terms_and_conditions_url
+    assert_response :success
+  end
+
   test "should get voting" do
     get voting_url
     assert_response :success
