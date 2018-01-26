@@ -1,0 +1,54 @@
+.sun-horizon-half-container {
+  bottom: $footer-height;
+  height: $sun-container / 2;
+  overflow: hidden;
+  position: absolute;
+  left: 50%;
+  width: $sun-container;
+  transform: translate(-50%);
+
+  @include media-breakpoint-up(sm) {
+    bottom: $footer-height;
+    height: $sun-container-sm / 2;
+    width: $sun-container-sm;
+  }
+}
+
+.sun-horizon-half-object {
+  animation: spin-cw 120s linear infinite;
+  font-size: $sun-size;
+  position: absolute;
+  left: -$sun-size + ($sun-container / 2);
+  top: -$sun-size + ($sun-container / 2);
+
+  i {
+    animation: sun-pulse 1s ease-in-out infinite alternate;
+
+    &.fa-sun-o {
+      font-size: $sun-size;
+      color: $sun-color;
+    }
+
+    &.fa-circle {
+      font-size: $sun-size * 100 / 128; // 100px;
+      color: $sun-inner-color;
+    }
+  }
+
+  @include media-breakpoint-up(sm) {
+    font-size: $sun-size-sm;
+    left: -$sun-size-sm + ($sun-container-sm / 2);
+    top: -$sun-size-sm + ($sun-container-sm / 2);
+
+    i {
+      &.fa-sun-o {
+        font-size: $sun-size-sm;
+      }
+
+      &.fa-circle {
+        font-size: $sun-size-sm * 100 / 128; // 400px;
+      }
+    }
+  }
+}
+
