@@ -35,27 +35,11 @@ class AdminController < ApplicationController
     redirect_to admin_spam_inbox_path, notice: "All spammers have been deleted."
   end
 
-  def unlock_survey
-    @user = User.current.find_by(id: params[:user_id])
-    answer_session = @user.answer_sessions.find_by(id: params[:answer_session_id]) if @user
-    if answer_session
-      flash[:notice] = "Survey unlocked successfully."
-      answer_session.unlock!
-    end
-    redirect_to @user || users_path
-  end
-
-  def timeline
-    @first_month = Date.parse("2014-10-01")
-  end
-
   private
 
   def spammers
     User.current.where(shadow_banned: true, spammer: [nil, true])
   end
-
-  private
 
   def check_admin_or_moderator_or_report_manager
     return if current_user && (current_user.admin? || current_user.moderator? || current_user.report_manager?)
