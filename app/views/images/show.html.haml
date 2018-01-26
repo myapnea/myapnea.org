@@ -1,7 +1,8 @@
 - @title = @image.to_param
 
-- @body = "light"
-- @footer = "light"
+- @menu = "blue"
+- @body = "grey"
+- @footer = "grey"
 
 - content_for :header do
   .header-container
@@ -41,4 +42,4 @@
             - broadcasts.each do |broadcast|
               %li= link_to broadcast.title, broadcast
 
-  .center= image_tag download_image_path(@image), alt: "", style: "max-width: 100%; margin: 0 auto;"
+  .text-center= image_tag download_image_path(@image), alt: "", style: "max-width: 100%; margin: 0 auto;"

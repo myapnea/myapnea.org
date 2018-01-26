@@ -9,10 +9,6 @@ class InternalController < ApplicationController
     # render layout: "layouts/full_page_sidebar_drawer"
   end
 
-  # # GET /dashboard/research
-  # def research
-  # end
-
   # # GET /dashboard/reports
   # def reports
   # end

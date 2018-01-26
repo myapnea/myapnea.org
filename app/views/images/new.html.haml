@@ -1,6 +1,10 @@
 - @title = "New Image"
 
-.content-main-header2
-  %h1= @title
+- content_for :header do
+  .header-container
+    .container
+      %h1.page-heading
+        = @title
 
-= render "form", image: @image
+.dashboard-container
+  = render "form", image: @image

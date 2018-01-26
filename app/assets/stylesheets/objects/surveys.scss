@@ -16,10 +16,6 @@
       margin-bottom: 0;
     }
   }
-
-  + .center > .pagination {
-    margin-top: 0;
-  }
 }
 
 @include media-breakpoint-up(sm) {
