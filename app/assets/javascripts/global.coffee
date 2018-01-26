@@ -3,7 +3,7 @@
 
 @setFocusToField = (element_id) ->
   val = $(element_id).val()
-  $(element_id).focus().val('').val(val)
+  $(element_id).focus().val("").val(val)
 
 @extensionsReady = ->
   datepickerReady()
@@ -37,15 +37,15 @@
 
 $(document).ready(initialLoadReady)
 $(document)
-  .on('turbolinks:load', turbolinksReady)
-  .on('click', '[data-object~="submit"]', ->
-    $($(this).data('target')).submit()
+  .on("turbolinks:load", turbolinksReady)
+  .on("click", "[data-object~=submit]", ->
+    $($(this).data("target")).submit()
     false
   )
-  .on('click', '[data-object~="suppress-click"]', ->
+  .on("click", "[data-object~=suppress-click]", ->
     false
   )
-  .on('click', '[data-object~="print"]', ->
-    $('#print-area').printArea()
+  .on("click", "[data-object~=print]", ->
+    $("#print-area").printArea()
     false
   )

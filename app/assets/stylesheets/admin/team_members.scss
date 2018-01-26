@@ -2,7 +2,11 @@
   position: relative;
 
   .team-member-image-wrapper {
-    text-align: right;
+    text-align: center;
+
+    @include media-breakpoint-up(md) {
+      text-align: right;
+    }
   }
 
   .team-member-img {
@@ -30,12 +34,3 @@
     top: 0;
   }
 }
-
-// TODO: Fix max-width screen css
-// @media (max-width: $screen-md) {
-//   .team-member-container {
-//     .team-member-image-wrapper {
-//       text-align: center;
-//     }
-//   }
-// }

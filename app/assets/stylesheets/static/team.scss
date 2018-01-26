@@ -9,6 +9,7 @@
 }
 
 .team-list {
+  padding-left: 0;
   text-align: center;
 
   li {
@@ -41,27 +42,19 @@
 }
 
 .img-bw {
-  -webkit-backface-visibility: hidden; // Fix for transition flickering */
-  -webkit-filter: grayscale(100%); // Chrome 19+ & Safari 6+ */
-  -webkit-transition: all .4s ease; // Fade to color for Chrome and Safari */
+  backface-visibility: hidden;
+  filter: grayscale(100%);
+  transition: all .4s ease;
 }
 
 .img-bw-partial {
-  -webkit-backface-visibility: hidden; // Fix for transition flickering */
-  -webkit-filter: grayscale(50%); // Chrome 19+ & Safari 6+ */
-  -webkit-transition: all .4s ease; // Fade to color for Chrome and Safari */
+  backface-visibility: hidden;
+  filter: grayscale(50%);
+  transition: all .4s ease;
 }
 
 .img-color {
-  -webkit-backface-visibility: hidden; // Fix for transition flickering */
-  -webkit-filter: grayscale(0%); // Chrome 19+ & Safari 6+ */
-  -webkit-transition: all .4s ease; // Fade to color for Chrome and Safari */
+  backface-visibility: hidden;
+  filter: grayscale(0%);
+  transition: all .4s ease;
 }
-
-
-// TODO: Fix max-width screen css
-// @media (max-width: $screen-md) {
-//   .team-list {
-//     padding-left: 0;
-//   }
-// }
