@@ -19,19 +19,19 @@ class TopicsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should subscribe to notifications" do
-    login(users(:valid))
+    login(users(:regular))
     post subscription_topic_url(@topic, format: "js"), params: { notify: "1" }
     assert_not_nil assigns(:topic)
-    assert_equal true, assigns(:topic).subscribed?(users(:valid))
+    assert_equal true, assigns(:topic).subscribed?(users(:regular))
     assert_template "subscription"
     assert_response :success
   end
 
   test "should unsubscribe from notifications" do
-    login(users(:valid))
+    login(users(:regular))
     post subscription_topic_url(@topic, format: "js"), params: { notify: "0" }
     assert_not_nil assigns(:topic)
-    assert_equal false, assigns(:topic).subscribed?(users(:valid))
+    assert_equal false, assigns(:topic).subscribed?(users(:regular))
     assert_template "subscription"
     assert_response :success
   end

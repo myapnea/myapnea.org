@@ -9,7 +9,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   setup do
     @user = users(:user_2)
     @admin = users(:admin)
-    @moderator = users(:moderator_1)
+    @moderator = users(:moderator)
     @regular_user = users(:user_1)
   end
 

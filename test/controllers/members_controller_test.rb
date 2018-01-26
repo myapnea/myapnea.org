@@ -10,9 +10,8 @@ class MembersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get show" do
-    get member_url("TomHaverford")
-    assert_redirected_to posts_member_url("TomHaverford")
-    # assert_response :success
+    get member_url("AwesomeCat")
+    assert_redirected_to posts_member_url("AwesomeCat")
   end
 
   test "should not show without member" do
@@ -21,12 +20,12 @@ class MembersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get posts" do
-    get posts_member_url("TomHaverford")
+    get posts_member_url("AwesomeCat")
     assert_response :success
   end
 
   test "should get badges" do
-    get badges_member_url("TomHaverford")
+    get badges_member_url("AwesomeCat")
     assert_response :success
   end
 

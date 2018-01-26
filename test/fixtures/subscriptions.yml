@@ -2,7 +2,7 @@
 
 one:
   topic: one
-  user: valid
+  user: regular
   subscribed: true
 
 two:

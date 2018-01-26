@@ -6,7 +6,7 @@ require "test_helper.rb"
 class AdminControllerTest < ActionDispatch::IntegrationTest
   setup do
     @admin = users(:admin)
-    @moderator = users(:moderator_1)
+    @moderator = users(:moderator)
     @regular_user = users(:user_1)
   end
 

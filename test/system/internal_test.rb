@@ -5,7 +5,7 @@ require "application_system_test_case"
 # System tests for internal pages.
 class InternalTest < ApplicationSystemTestCase
   setup do
-    @regular = users(:valid)
+    @regular = users(:regular)
   end
 
   def visit_login(user, screenshot_name = nil)

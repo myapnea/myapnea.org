@@ -1,8 +1,8 @@
 <% pw = User.new(password: "password").encrypted_password %>
 
-valid:
+regular:
   username: AwesomeCat
-  email: valid@example.com
+  email: regular@example.com
   encrypted_password: <%= pw %>
   emails_enabled: true
   full_name: Valid McApnea
@@ -14,8 +14,8 @@ myapnea:
   admin: true
 
 admin:
-  username: MajorAdmin
-  full_name: Own Er
+  username: admin
+  # full_name:
   email: admin@example.com
   admin: true
   encrypted_password: <%= pw %>
@@ -29,21 +29,26 @@ user_1:
   profile_bio: I enjoy eating seafood and long walks on the beach.
   profile_location: San Francisco, CA
 
-<% 2.upto(10) do |i| %>
-user_<%= i %>:
-  username: User<%= i %>
-  email: user_<%= i %>@example.com
-  full_name: User <%= i %>wski
-  encrypted_password: <%= pw %>
+user_2:
+  username: user2
+  email: user_2@example.com
+  # full_name:
+  full_name: User 2wski
   photo: photo.png
-<% end %>
 
-social:
-  username: TomHaverford
-  full_name: Tommy Boy
-  email: tommyboy@gmail.com
-  encrypted_password: <%= pw %>
-  current_sign_in_ip: 170.223.207.25
+user_3:
+  username: user3
+  email: user_3@example.com
+  # full_name:
+  full_name: User 3wski
+  photo: photo.png
+
+user_4:
+  username: user4
+  email: user_4@example.com
+  # full_name:
+  full_name: User 4wski
+  photo: photo.png
 
 participant:
   username: participant
@@ -51,24 +56,17 @@ participant:
   email: research_participant@example.com
   encrypted_password: <%= pw %>
 
-moderator_1:
-  username: mod1
-  full_name: Mod Erator1
-  email: mod1@mods.com
-  moderator: true
-  encrypted_password: <%= pw %>
-
-moderator_2:
-  username: mod2
-  full_name: Mod Erator2
-  email: mod2@mods.com
+moderator:
+  username: moderator
+  # full_name:
+  email: moderator@example.com
   moderator: true
   encrypted_password: <%= pw %>
 
 deleted:
   username: zombieboy
   full_name: Zombie Boy
-  email: zombieboy@gmail.com
+  email: zombieboy@example.com
   encrypted_password: <%= pw %>
   deleted: true
 
