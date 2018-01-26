@@ -112,11 +112,6 @@ class User < ApplicationRecord
     accepted_consent_at.present?
   end
 
-  # Can Build Surveys
-  def editable_surveys
-    Survey.with_editor(id).order(:name_en)
-  end
-
   def editable_broadcasts
     if admin?
       Broadcast.current

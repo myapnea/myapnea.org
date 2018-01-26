@@ -23,7 +23,7 @@ run;
 data myapnea;
   infile "&path_file._sas.csv" delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=2 ;
 
-  /* Subject and Encounter Information */
+  /* Subject Information */
   informat myapnea_id           $10.      ;   * MyApnea ID ;
   informat joined               yymmdd10. ;   * Joined MyApnea ;
 
@@ -45,7 +45,7 @@ run;
 data myapnea;
   set myapnea;
 
-  /* Subject and Encounter Information */
+  /* Subject Information */
   label myapnea_id='MyApnea ID';
   label joined='Joined MyApnea';
 
