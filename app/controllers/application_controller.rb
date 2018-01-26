@@ -53,11 +53,9 @@ class ApplicationController < ActionController::Base
       account: [],
       admin: [],
       broadcasts: [],
-      children: [],
       images: [:index, :show, :new, :edit],
       internal: [],
       notifications: [],
-      surveys: [:show, :report, :report_detail],
       topics: [:new, :edit],
       users: []
     }
@@ -72,7 +70,6 @@ class ApplicationController < ActionController::Base
 
   def external_controllers
     {
-      blank: [],
       blog: [],
       external: [
         :community, :consent, :contact, :faqs, :partners,
@@ -82,7 +79,6 @@ class ApplicationController < ActionController::Base
       members: [:index, :show],
       replies: [:show],
       search: [],
-      surveys: [:index],
       slice: [],
       tools: [],
       topics: [:index, :show]
