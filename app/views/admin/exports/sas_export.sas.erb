@@ -1,5 +1,5 @@
 /*        MyApnea: v<%= Myapnea::VERSION::STRING %> */
-/* Date Generated: <%= Time.zone.now.strftime('%a, %B %d, %Y at %-l:%M %p') %> */
+/* Date Generated: <%= Time.zone.now.strftime("%a, %B %d, %Y at %-l:%M %p") %> */
 
 %let a=%sysget(SAS_EXECFILEPATH);
 %let b=%sysget(SAS_EXECFILENAME);
@@ -26,35 +26,16 @@ data myapnea;
   /* Subject and Encounter Information */
   informat myapnea_id           $10.      ;   * MyApnea ID ;
   informat joined               yymmdd10. ;   * Joined MyApnea ;
-  informat consented            best32.   ;   * Consented ;
-  informat encounter            $500.     ;   * Encounter ;
-  informat state_code           $10.      ;   * State Code ;
-  informat country_code         $10.      ;   * Country Code ;
-
-  /* Survey Answer Templates */
-<%= @export_formatter.column_informats.join("\n") %>
 
   /* Design and Subject Variables */
   format myapnea_id             $10.      ;
   format joined                 yymmdd10. ;
-  format consented              best32.   ;
-  format encounter              $500.     ;
-  format state_code             $10.      ;
-  format country_code           $10.      ;
-
-  /* Survey Answer Templates */
-<%= @export_formatter.column_formats.join("\n") %>
 
   /* Define Column Names */
 
   input
     myapnea_id
     joined
-    consented
-    encounter
-    state_code
-    country_code
-<%= @export_formatter.column_headers.collect{ |c| "    #{c}" }.join("\n") %>
   ;
 run;
 
@@ -67,29 +48,11 @@ data myapnea;
   /* Subject and Encounter Information */
   label myapnea_id='MyApnea ID';
   label joined='Joined MyApnea';
-  label consented='Consented?';
-  label encounter='Encounter';
-  label state_code='State Code';
-  label country_code='Country Code';
-
-  /* Survey Answer Templates */
-<%= @export_formatter.format_labels.join("\n") %>
-run;
-
-
-/* Step 3: Create formats for survey options */
-
-proc format;
-<%= @export_formatter.domains.join("\n") %>
-run;
-
 
 /* Step 4: Apply format to all of the variables */
 
 data myapnea;
   set myapnea;
-
-<%= @export_formatter.format_domains.join("\n") %>
 run;
 
 

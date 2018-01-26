@@ -21,32 +21,8 @@ class Admin::Export < ApplicationRecord
   end
 
   def percent
-    return 0 if total_steps == 0 && %w(started failed).include?(status)
-    total_steps > 0 ? current_step * 100 / total_steps : 100
-  end
-
-  def column_headers
-    answer_templates.collect(&:csv_column).flatten
-  end
-
-  def column_informats
-    answer_templates.collect(&:sas_informat_definition).flatten
-  end
-
-  def column_formats
-    answer_templates.collect(&:sas_format_definition).flatten
-  end
-
-  def format_labels
-    answer_templates.collect(&:sas_format_label).flatten
-  end
-
-  def domains
-    answer_templates.collect(&:sas_value_domain).flatten
-  end
-
-  def format_domains
-    answer_templates.collect(&:sas_format_domain).flatten.compact.uniq
+    return 0 if total_steps.zero? && %w(started failed).include?(status)
+    total_steps.positive? ? current_step * 100 / total_steps : 100
   end
 
   def start_export_in_background!
@@ -81,33 +57,27 @@ class Admin::Export < ApplicationRecord
         # Two arguments:
         # - The name of the file as it will appear in the archive
         # - The original file, including the path to find it
-        zipfile.add(location, input_file) if File.exist?(input_file) && File.size(input_file) > 0
+        zipfile.add(location, input_file) if File.exist?(input_file) && File.size(input_file).positive?
       end
     end
     zipfile_name
   end
 
   def generate_all_files(filename)
-    export_data(filename) + export_data_dictionary(filename) + export_sas(filename)
+    export_data(filename) + export_sas(filename)
   end
 
   def export_data(filename)
     data_csv = File.join("tmp", "exports", "#{filename}-#{created_at.strftime("%I%M%P")}-data.csv")
     write_data_csv(data_csv)
-    [["#{data_csv.split("/").last}", data_csv]]
-  end
-
-  def export_data_dictionary(filename)
-    dictionary_csv = File.join("tmp", "exports", "#{filename}-#{created_at.strftime("%I%M%P")}-dictionary.csv")
-    write_data_dictionary_csv(dictionary_csv)
-    [["#{dictionary_csv.split("/").last}", dictionary_csv]]
+    [[data_csv.split("/").last.to_s, data_csv]]
   end
 
   def export_sas(filename)
     sas_filename = "#{filename}-#{created_at.strftime("%I%M%P")}.sas"
     sas_file = File.join("tmp", "exports", sas_filename)
     write_sas(sas_file, sas_filename)
-    [["#{sas_file.split("/").last}", sas_file]]
+    [[sas_file.split("/").last.to_s, sas_file]]
   end
 
   def finalize_export(export_file)
@@ -134,38 +104,23 @@ class Admin::Export < ApplicationRecord
     UserMailer.export_ready(self).deliver_now if EMAILS_ENABLED
   end
 
-  # TODO: Rewrite/remove.
   def write_data_csv(data_csv)
     CSV.open(data_csv, "wb") do |csv|
-      row = %w(myapnea_id joined consented encounter state_code country_code)
-      question_slugs = []
-      surveys_answer_templates = []
-      csv << (row + question_slugs)
+      csv << %w(myapnea_id joined)
+      exportable_users.each do |user|
+        csv << [user.myapnea_id, user.created_at.strftime("%Y-%m-%d")]
+      end
     end
-  end
-
-  def write_data_dictionary_csv(dictionary_csv)
-    CSV.open(dictionary_csv, "wb") do |csv|
-      csv << %w(folder id display_name type domain)
-    end
-    update current_step: current_step + 1
   end
 
   def write_sas(sas_file, sas_filename)
     @export_formatter = self
     @filename = sas_filename.gsub(/\.sas$/, "-data")
-
     erb_file = File.join("app", "views", "admin", "exports", "sas_export.sas.erb")
-
     File.open(sas_file, "w") do |file|
       file.syswrite(ERB.new(File.read(erb_file)).result(binding))
     end
     update current_step: current_step + 1
-  end
-
-  def answer_templates
-    surveys_answer_templates = []
-    surveys_answer_templates
   end
 
   def exportable_users
