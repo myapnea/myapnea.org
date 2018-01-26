@@ -1,7 +1,8 @@
-- @title = 'Forum Voting'
+- @title = "Forum Voting"
 
-- content_for :body_class do
-  gray-background
+- @menu = "blue"
+- @body = "grey"
+- @footer = "grey"
 
 - content_for :header do
   .header-container
@@ -17,10 +18,10 @@
 
   .row
     .col-sm-6
-      .content-main-header2
+      .brand-title
         %h1
-          When to Upvote
           %i.fa.fa-arrow-up.text-success
+          When to upvote
 
       %p
         You may choose to upvote replies that are:
@@ -31,10 +32,10 @@
         %li Informative
 
     .col-sm-6
-      .content-main-header2
+      .brand-title
         %h1
-          When to Downvote
           %i.fa.fa-arrow-down.text-danger
+          When to downvote
 
       %p
         You may also downvote replies that are:
@@ -45,6 +46,7 @@
         %li Spam
         %li Contain Misinformation
         %li Product Advertisement
-        %li
-          %strong DO NOT
-          downvote simply because you disagree
+
+      %p
+        %strong DO NOT
+        downvote simply because you disagree.
