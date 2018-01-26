@@ -4,7 +4,7 @@ namespace :forum do
   desc "Export Forum to CSV"
   task export: :environment do
     CSV.open("tmp/forum.csv", "wb") do |csv|
-      csv << %w(TopicID Type UserForumName Text Replies Views)
+      csv << %w(TopicID Type UserName Text Replies Views)
       Topic.current.each do |topic|
         csv << [
           topic.id,
