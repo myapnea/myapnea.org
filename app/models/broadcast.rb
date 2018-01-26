@@ -21,8 +21,6 @@ class Broadcast < ApplicationRecord
   # Relationships
   belongs_to :user
   belongs_to :category, class_name: "Admin::Category", optional: true
-  has_many :broadcast_comments
-  has_many :broadcast_comment_users
   has_many :article_votes, foreign_key: :article_id
 
   # Methods

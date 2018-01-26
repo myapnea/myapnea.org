@@ -2,6 +2,7 @@
 
 ### Refactoring
 - Removed deprecated survey module
+- Removed deprecated broadcast comments
 
 ## 16.0.0
 

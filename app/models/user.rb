@@ -41,7 +41,6 @@ class User < ApplicationRecord
 
   # Relationships
   has_many :broadcasts, -> { current }
-  has_many :broadcast_comments
   has_many :topics, -> { current }
   has_many :topic_users
   has_many :replies, -> { current.joins(:topic).merge(Topic.current) }
@@ -119,16 +118,6 @@ class User < ApplicationRecord
       broadcasts
     end
   end
-
-  # TODO: Remove in v17.0.0
-  def editable_broadcast_comments
-    if moderator?
-      BroadcastComment.current
-    else
-      broadcast_comments
-    end
-  end
-  # END TODO
 
   def send_welcome_email_in_background!
     fork_process :send_welcome_email!
