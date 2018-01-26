@@ -107,10 +107,6 @@ class User < ApplicationRecord
     notifications.where(read: false).present?
   end
 
-  def accepted_consent?
-    accepted_consent_at.present?
-  end
-
   def editable_broadcasts
     if admin?
       Broadcast.current

@@ -113,22 +113,6 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to user_url(assigns(:user))
   end
 
-  test "should update user and enable survey building for user as admin" do
-    login(@admin)
-    patch user_url(@user), params: { user: { can_build_surveys: "1" } }
-    assert_not_nil assigns(:user)
-    assert_equal true, assigns(:user).can_build_surveys?
-    assert_redirected_to user_url(assigns(:user))
-  end
-
-  test "should not update user and enable survey building for user as regular user" do
-    login(@regular_user)
-    patch user_url(@user), params: { user: { can_build_surveys: "1" } }
-    assert_nil assigns(:user)
-    assert_equal false, @user.can_build_surveys?
-    assert_redirected_to root_url
-  end
-
   test "should not update user for regular user" do
     login(@regular_user)
     patch user_url(@user), params: { user: user_params }

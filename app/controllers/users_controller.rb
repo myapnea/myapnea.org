@@ -86,7 +86,7 @@ class UsersController < ApplicationController
     params.require(:user).permit(
       :full_name, :email, :username, :emails_enabled,
       :include_in_exports, :admin, :moderator, :community_contributor,
-      :can_build_surveys, :shadow_banned, :content_manager, :report_manager
+      :shadow_banned, :content_manager, :report_manager
     )
   end
 

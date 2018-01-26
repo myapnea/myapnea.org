@@ -18,15 +18,12 @@ admin:
   full_name: Own Er
   email: admin@example.com
   admin: true
-  adult_diagnosed: true
   encrypted_password: <%= pw %>
-  accepted_terms_conditions_at: <%= Time.zone.now %>
 
 user_1:
   username: RubyGem
   email: user_1@example.com
   full_name: David S Snahson
-  adult_diagnosed: true
   encrypted_password: <%= pw %>
   photo: photo.png
   profile_bio: I enjoy eating seafood and long walks on the beach.
@@ -37,9 +34,7 @@ user_<%= i %>:
   username: User<%= i %>
   email: user_<%= i %>@example.com
   full_name: User <%= i %>wski
-  adult_diagnosed: true
   encrypted_password: <%= pw %>
-  accepted_terms_conditions_at: <%= Time.zone.now %>
   photo: photo.png
 <% end %>
 
@@ -47,9 +42,6 @@ social:
   username: TomHaverford
   full_name: Tommy Boy
   email: tommyboy@gmail.com
-  accepted_consent_at: <%= 5.day.ago.to_s(:db) %>
-  accepted_privacy_policy_at: <%= 6.day.ago.to_s(:db) %>
-  adult_diagnosed: true
   encrypted_password: <%= pw %>
   current_sign_in_ip: 170.223.207.25
 
@@ -57,9 +49,6 @@ participant:
   username: participant
   full_name: Research Participant
   email: research_participant@example.com
-  accepted_consent_at: <%= 5.day.ago.to_s(:db) %>
-  accepted_privacy_policy_at: <%= 6.day.ago.to_s(:db) %>
-  adult_diagnosed: true
   encrypted_password: <%= pw %>
 
 moderator_1:
@@ -67,27 +56,20 @@ moderator_1:
   full_name: Mod Erator1
   email: mod1@mods.com
   moderator: true
-  adult_diagnosed: true
   encrypted_password: <%= pw %>
-  accepted_terms_conditions_at: <%= Time.zone.now %>
 
 moderator_2:
   username: mod2
   full_name: Mod Erator2
   email: mod2@mods.com
   moderator: true
-  adult_diagnosed: true
   encrypted_password: <%= pw %>
-  accepted_terms_conditions_at: <%= Time.zone.now %>
 
 deleted:
   username: zombieboy
   full_name: Zombie Boy
   email: zombieboy@gmail.com
-  accepted_consent_at: <%= 10.day.ago.to_s(:db) %>
-  accepted_privacy_policy_at: <%= 10.day.ago.to_s(:db) %>
   encrypted_password: <%= pw %>
-  adult_diagnosed: true
   deleted: true
 
 community_contributor:
@@ -101,27 +83,21 @@ shadow_banned:
   username: darkshadow
   full_name: Dark Shadow
   email: shadow_banned@example.com
-  adult_diagnosed: true
   encrypted_password: <%= pw %>
-  accepted_terms_conditions_at: <%= Time.zone.now %>
   shadow_banned: true
 
 new_spammer:
   username: innocentant
   full_name: Innocent Ant
   email: new_spammer@example.com
-  adult_diagnosed: true
   encrypted_password: <%= pw %>
-  accepted_terms_conditions_at: <%= Time.zone.now %>
   # shadow_banned:
 
 verified_user:
   username: prolificuser
   full_name: Prolific Poster
   email: verified_user@example.com
-  adult_diagnosed: true
   encrypted_password: <%= pw %>
-  accepted_terms_conditions_at: <%= Time.zone.now %>
   shadow_banned: false
 
 content_manager:
