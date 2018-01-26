@@ -38,7 +38,6 @@ module MyApnea
     # Add Model subfolders to autoload_paths
     # config.autoload_paths += Dir[Rails.root.join("app", "models", "{**/}")]
     config.autoload_paths << Rails.root.join("app", "models", "admin")
-    config.autoload_paths << Rails.root.join("app", "models", "reports")
 
     # Add Slice models to autoload_paths.
     config.autoload_paths << Rails.root.join("app", "models", "slice")
