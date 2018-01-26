@@ -1,5 +1,8 @@
 ## 17.0.0
 
+### Refactoring
+- Removed deprecated survey module
+
 ## 16.0.0
 
 ### Enhancements
