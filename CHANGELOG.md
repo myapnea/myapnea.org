@@ -1,5 +1,10 @@
 ## 16.1.0
 
+### Enhancements
+- **Forum Changes**
+  - Users can disable being auto-subscribed after replying to forum topics in
+    their settings
+
 ## 16.0.0 (January 29, 2018)
 
 ### Enhancements

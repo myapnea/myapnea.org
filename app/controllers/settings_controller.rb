@@ -106,6 +106,6 @@ class SettingsController < ApplicationController
   end
 
   def notification_params
-    params.require(:user).permit(:forum_auto_subscribed)
+    params.require(:user).permit(:forum_auto_subscribe_on_reply, :forum_auto_subscribed)
   end
 end
