@@ -5,6 +5,9 @@
   - Users can disable being auto-subscribed after replying to forum topics in
     their settings
 
+### Bug Fix
+- Education articles are now correctly listed in the Help Center
+
 ## 16.0.0 (January 29, 2018)
 
 ### Enhancements
