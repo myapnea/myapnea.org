@@ -4,6 +4,8 @@
 - **Forum Changes**
   - Users can disable being auto-subscribed after replying to forum topics in
     their settings
+- **Research Changes**
+  - Minor update to "surveys being updated" text
 
 ### Bug Fix
 - Education articles are now correctly listed in the Help Center
