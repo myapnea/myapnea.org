@@ -1,4 +1,4 @@
-## 16.1.0
+## 16.1.0 (January 30, 2018)
 
 ### Enhancements
 - **Dashboard Changes**
