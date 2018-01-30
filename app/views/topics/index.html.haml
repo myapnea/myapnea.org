@@ -56,8 +56,8 @@
               = link_to topic.title, next_unread_reply, data: { turbolinks: false }, class: (topic.started_reading?(current_user) && unread_replies.zero?) ? "topic-read" : "topic-unread"
             - else
               = link_to topic.title, topic, class: (topic.started_reading?(current_user) && unread_replies.zero?) ? "topic-read" : "topic-unread"
-            .small.text-muted
-              %small= link_to topic.user.username, member_path(topic.user.username), class: "link-blend-muted"
+            .small
+              %small= link_to topic.user.username, member_path(topic.user.username), class: "link-blend-semi-muted"
           %td.d-none.d-sm-table-cell.text-muted.text-center
             %span.small= number_with_delimiter topic.reply_count - 1
           %td.d-none.d-md-table-cell.text-muted.text-center

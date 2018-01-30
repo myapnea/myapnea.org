@@ -4,6 +4,7 @@
 - **Forum Changes**
   - Users can disable being auto-subscribed after replying to forum topics in
     their settings
+  - Improved contrast of usernames on forum index
 - **Research Changes**
   - Minor update to "surveys being updated" text
 
