@@ -18,7 +18,7 @@ class TopicsController < ApplicationController
       @order = params[:order]
     end
     topic_scope = Topic.current.reply_count.order(@order)
-    topic_scope = topic_scope.shadow_banned(current_user ? current_user.id : nil) unless current_user && current_user.admin?
+    topic_scope = topic_scope.shadow_banned(current_user&.id) unless current_user&.admin?
     @topics = topic_scope.page(params[:page]).per(40)
   end
 

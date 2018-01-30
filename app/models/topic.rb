@@ -54,23 +54,18 @@ class Topic < ApplicationRecord
     slug_was.to_s
   end
 
-  def started_reading?(current_user)
-    topic_user = topic_users.find_by user: current_user
+  def started_reading?(topic_user)
     topic_user ? true : false
   end
 
-  def unread_replies(current_user)
-    topic_user = topic_users.find_by user: current_user
-    if topic_user
-      root_replies.current.where("id > ?", topic_user.current_reply_read_id).count
-    else
-      0
-    end
+  def unread_replies(topic_user)
+    return 0 unless topic_user
+    root_replies.current.where("id > ?", topic_user.current_reply_read_id).count
   end
 
-  def next_unread_reply(current_user)
-    topic_user = topic_users.find_by user: current_user
-    root_replies.current.find_by("id > ?", topic_user.current_reply_read_id) if topic_user
+  def next_unread_reply(topic_user)
+    return nil unless topic_user
+    root_replies.current.find_by("id > ?", topic_user.current_reply_read_id)
   end
 
   def root_replies
