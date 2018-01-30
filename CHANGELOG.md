@@ -1,6 +1,8 @@
 ## 16.1.0
 
 ### Enhancements
+- **Dashboard Changes**
+  - Decreased size of user profile pictgure on the dashboard on mobile
 - **Forum Changes**
   - Users can disable being auto-subscribed after replying to forum topics in
     their settings
