@@ -15,6 +15,8 @@
             = link_to picture_content, posts_member_path(reply.user.username)
             .text-center.text-muted{ style: "font-size: 9px;margin-top:5px" }
               = pluralize(number_with_delimiter(reply.user.replies.count), "post")
+            .text-center.text-muted{ style: "font-size: 9px;" }
+              = link_to "bio", posts_member_path(reply.user.username), class: "link-blend-muted" if reply.user.profile_present?
       .reply-header{ data: { parent_reply_id: reply.parent_reply_id, reply_id: reply.id } }
         = render "replies/header", reply: reply, just_voted: false
       .reply-body{ style: "#{"display:none" unless reply.display_for_user?(current_user)}" }

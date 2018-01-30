@@ -53,6 +53,10 @@ class User < ApplicationRecord
 
   # Methods
 
+  def profile_present?
+    profile_bio.present? || profile_location.present?
+  end
+
   def consent!(project, consented_at: Time.zone.now)
     subject = subjects.where(project: project).first_or_create(consented_at: consented_at)
     subject.find_or_create_remote_subject!

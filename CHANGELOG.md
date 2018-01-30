@@ -8,6 +8,24 @@
 - Removed deprecated survey module
 - Removed deprecated broadcast comments
 
+## 16.1.0 (January 30, 2018)
+
+### Enhancements
+- **Dashboard Changes**
+  - Decreased size of user profile pictgure on the dashboard on mobile
+- **Forum Changes**
+  - Users can disable being auto-subscribed after replying to forum topics in
+    their settings
+  - Improved contrast of usernames on forum index
+  - Replies now link the bio for users that have completed a public profile
+  - Improved loading speed of the forum index
+  - Adjusted spacing of "Back to Forum" button on mobile
+- **Research Changes**
+  - Minor update to "surveys being updated" text
+
+### Bug Fix
+- Education articles are now correctly listed in the Help Center
+
 ## 16.0.0 (January 29, 2018)
 
 ### Enhancements

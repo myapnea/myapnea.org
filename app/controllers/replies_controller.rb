@@ -65,7 +65,7 @@ class RepliesController < ApplicationController
         @reply.create_notifications!
         @reply.parent.touch(:last_reply_at)
       end
-      @reply.parent.get_or_create_subscription(current_user)
+      @reply.parent.get_or_create_subscription(current_user) if current_user.forum_auto_subscribe_on_reply?
       current_user.read_parent!(@parent, @reply.id)
       render :create
     else

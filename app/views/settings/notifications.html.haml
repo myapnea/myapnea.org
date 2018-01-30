@@ -21,5 +21,6 @@
         Forum notifications
       .card-body
         = form_with model: current_user, url: settings_update_notifications_path, method: :patch, local: true do |form|
-          = render "forms/vertical/check_box", form: form, object: current_user, key: :forum_auto_subscribed, key_name: "Auto-subscribe to new forum topics", help_text: "Check this if you would like to automatically receive in-app notifications for new forum topics."
+          = render "forms/vertical/check_box", form: form, object: current_user, key: :forum_auto_subscribe_on_reply, key_name: "Auto-subscribe when replying to a forum topic", help_text: "Check this to receive in-app notifications for new replies on a topic on which you left a reply."
+          = render "forms/vertical/check_box", form: form, object: current_user, key: :forum_auto_subscribed, key_name: "Auto-subscribe to new forum topics", help_text: "Check this to receive in-app notifications for new forum topics."
           = render "forms/vertical/submit", form: form, object: current_user, submit_text: "Update settings", cancel: false

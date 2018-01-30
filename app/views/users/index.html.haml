@@ -18,12 +18,13 @@
 = render "search/simple", url: users_path
 
 .dashboard-container
-  %table.table.table-striped.table-borderless.table-hover
+  %table.table.table-striped.table-borderless.table-hover.table-sticky
     %thead
       %tr
         %th Name
         - if current_user.admin?
           %th Email
+        %th.text-center Bio
         = th_sort_field @order, "users.current_sign_in_at", "Activity", extra_class: "d-none d-sm-table-cell"
         = th_sort_field @order, "users.shadow_banned", "Shadow Banned", extra_class: "text-center" if current_user.admin?
         - if current_user.admin? && false
@@ -44,6 +45,7 @@
           %td.small
             %span.d-none.d-md-inline.breakword= user.email
             %span.d-inline.d-md-none= link_to user.email, user, style: "word-break: break-word;"
+        %td.text-center= simple_check user.profile_present?
         %td.d-none.d-sm-table-cell.nowrap
           - if user.current_sign_in_at
             %small= abbreviated_time(user.current_sign_in_at)
