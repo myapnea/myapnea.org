@@ -1,5 +1,5 @@
 %div.overflow-hidden.breakword{ style: "margin-left: 20px;margin-right: 20px;margin-bottom: 0;padding-top: 11px;" }
-  - if member.profile_bio.present? || member.profile_location.present? || current_user == member
+  - if member.profile_present? || current_user == member
     %strong Bio
     %br
     .small

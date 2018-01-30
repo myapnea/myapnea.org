@@ -5,6 +5,7 @@
   - Users can disable being auto-subscribed after replying to forum topics in
     their settings
   - Improved contrast of usernames on forum index
+  - Replies now link the bio for users that have completed a public profile
 - **Research Changes**
   - Minor update to "surveys being updated" text
 
