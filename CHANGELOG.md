@@ -7,6 +7,7 @@
   - Improved contrast of usernames on forum index
   - Replies now link the bio for users that have completed a public profile
   - Improved loading speed of the forum index
+  - Adjusted spacing of "Back to Forum" button on mobile
 - **Research Changes**
   - Minor update to "surveys being updated" text
 
