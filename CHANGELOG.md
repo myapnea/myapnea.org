@@ -1,4 +1,4 @@
-## 16.1.1
+## 16.1.1 (January 31, 2018)
 
 ### Bug Fix
 - Fixed `sitemap.xml.gz` file not being accessible
