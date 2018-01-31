@@ -70,6 +70,11 @@ class ExternalControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "should get sitemap xml file" do
+    get sitemap_xml_url
+    assert_response :success
+  end
+
   test "should get team" do
     get team_url
     assert_response :success

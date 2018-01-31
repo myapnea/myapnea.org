@@ -10,6 +10,11 @@
 - Removed deprecated survey module
 - Removed deprecated broadcast comments
 
+## 16.1.1 (January 31, 2018)
+
+### Bug Fix
+- Fixed `sitemap.xml.gz` file not being accessible
+
 ## 16.1.0 (January 30, 2018)
 
 ### Enhancements
