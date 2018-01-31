@@ -3,6 +3,8 @@
 ### Enhancements
 - **General Changes**
   - Updated styling of Terms of Access and Terms and Conditions
+- **Gem Changes**
+  - Updated to rails 5.2.0.rc1
 
 ### Refactoring
 - Removed deprecated survey module
