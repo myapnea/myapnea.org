@@ -1,4 +1,4 @@
-## 16.1.2
+## 16.1.2 (February 13, 2018)
 
 ### Bug Fix
 - Fixed error loading notifications when an associated topic had been deleted
