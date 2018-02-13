@@ -10,6 +10,11 @@
 - Removed deprecated survey module
 - Removed deprecated broadcast comments
 
+## 16.1.2 (February 13, 2018)
+
+### Bug Fix
+- Fixed error loading notifications when an associated topic had been deleted
+
 ## 16.1.1 (January 31, 2018)
 
 ### Bug Fix

@@ -8,6 +8,7 @@ class Topic < ApplicationRecord
   include Deletable
   include PgSearch
   include Replyable
+  include Sluggable
   include UrlCountable
   multisearchable against: [:title],
                   unless: :deleted_or_shadow_banned?
@@ -48,10 +49,6 @@ class Topic < ApplicationRecord
 
   def deleted_or_shadow_banned?
     deleted? || user.spammer? || user.shadow_banned?
-  end
-
-  def to_param
-    slug_was.to_s
   end
 
   def started_reading?(topic_user)
