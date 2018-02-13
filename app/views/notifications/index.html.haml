@@ -40,6 +40,9 @@
                 %tr{ id: "notification_#{notification.id}"}
                   = render "notifications/show", notification: notification
       - @notifications.where.not(topic_id: nil).order(created_at: :desc).includes(:topic, :reply).group_by(&:topic).each do |topic, notifications|
+        - if topic.deleted_or_shadow_banned?
+          - notifications.each { |n| n.destroy }
+          - next
         .dashboard-container
           %table.table.table-fixed.table-borderless.table-striped
             %col{ width: "32px" }
