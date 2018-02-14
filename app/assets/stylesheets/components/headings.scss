@@ -49,10 +49,6 @@
 
   .dropdown,
   .float-right {
-    line-height: 33px; // h1 font size * 1.1
-    position: relative;
-    z-index: 1;
-
     font-variant: normal;
     letter-spacing: normal;
   }
@@ -63,11 +59,6 @@
     h1 {
       font-size: 38px;
     }
-
-    .dropdown,
-    .float-right {
-      line-height: 41.8px; // h1 font size * 1.1
-    }
   }
 }
 
@@ -75,11 +66,6 @@
   .header-container {
     h1 {
       font-size: 41px;
-    }
-
-    .dropdown,
-    .float-right {
-      line-height: 45.1px; // h1 font size * 1.1
     }
   }
 }
