@@ -11,7 +11,7 @@
 - elsif @subject.next_survey
   = render "slice/cards/ongoing", event_design: @subject.next_survey
 - else
-  = render "slice/cards/completed", subject_event: @subject.subject_events.first
+  = render "slice/cards/completed", subject_event: @subject.subject_events.last
 
 .dashboard-container
   .brand-title= @project.name
