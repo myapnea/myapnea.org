@@ -3,6 +3,9 @@
 ### Enhancements
 - **General Changes**
   - Updated styling of Terms of Access and Terms and Conditions
+- **Survey Changes**
+  - Updated interface to account for surveys that were completed with skipped
+    questions
 - **Gem Changes**
   - Updated to rails 5.2.0.rc1
   - Updated to pg 1.0.0

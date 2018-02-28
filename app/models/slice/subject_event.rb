@@ -33,7 +33,7 @@ class Slice::SubjectEvent
     @event_designs.collect { |ed| ed.sheets_where(sheet_id) }.flatten
   end
 
-  def complete?
-    event_designs.count(&:incomplete?).zero?
+  def complete?(subject)
+    event_designs.count { |ed| ed.incomplete?(subject) }.zero?
   end
 end

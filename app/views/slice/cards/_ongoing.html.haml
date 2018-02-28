@@ -1,0 +1,61 @@
+- subject_event = event_design.subject_event
+- index = subject_event.event_designs.index(event_design)
+- survey_number = (index ? index + 1 : 0)
+- number_of_surveys = subject_event.event_designs.size
+.card.card-surveys-focus.mb-3
+  .card-body
+    .text-center{ style: "font-size: 6rem;" }
+      %i.fa.fa-tasks.text-primary
+
+    %h4.card-title
+      = subject_event.name
+      Surveys
+    - if survey_number.zero? || number_of_surveys.zero?
+      .progress
+        .progress-bar.progress-bar-striped{ role: "progressbar", style: "width: 100%;background-color: #ededed;", aria: { valuenow: "0", valuemin: "0", valuemax: "100" } }
+    - else
+      - percent = (survey_number - 1) * 100.0 / number_of_surveys
+      .progress
+        .progress-bar.progress-bar-striped.bg-primary{ role: "progressbar", style: "width: #{percent}%;", aria: { valuenow: "#{percent}", valuemin: "0", valuemax: "100" } }
+    - if event_design.sheets.present?
+      %p.card-text
+        .card-information
+          Continue survey
+          = survey_number
+          of
+          = succeed "." do
+            = number_of_surveys
+      .text-center
+        - if event_design.valid?
+          = link_to slice_surveys_resume_path(@project, event_design.event_id, event_design.design_id), class: "btn btn-primary btn-shadow" do
+            Continue survey
+            %i.fa.fa-caret-right
+        - else
+          .btn.btn-primary.btn-shadow.disabled
+            %i.fa.fa-exclamation-triangle
+            Survey Unavailable
+
+    - else
+      %p.card-text
+        .card-information
+          - if subject_event.percent.to_i.zero?
+            Get started.
+          - else
+            Start survey
+            = survey_number
+            of
+            = succeed "." do
+              = number_of_surveys
+      .text-center
+        - if event_design.valid?
+          = link_to slice_surveys_start_path(@project, event_design.event_id, event_design.design_id), class: "btn btn-primary btn-shadow", data: { object: "disable-spinner" } do
+            Start survey
+            %i.fa.fa-caret-right
+        - else
+          .btn.btn-primary.btn-shadow.disabled
+            %i.fa.fa-exclamation-triangle
+            Survey unavailable
+  - if event_design.valid?
+    .card-footer
+      .overflow-hidden.nowrap.text-muted.small
+        = event_design.design_name

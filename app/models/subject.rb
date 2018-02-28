@@ -83,6 +83,24 @@ class Subject < ApplicationRecord
     end
   end
 
+  def next_survey
+    @next_survey ||= begin
+      completed_surveys = subject_surveys.where(completed: true).pluck(:event, :design)
+      event = subject_events.find do |se|
+        se.percent != 100 &&
+          se.event_designs.count do |ed|
+            !completed_surveys.include?([ed.event_id.downcase, ed.design_id.downcase])
+          end.positive?
+      end
+      if event
+        event.event_designs.find do |ed|
+          !ed.complete?(self) &&
+            !completed_surveys.include?([ed.event_id.downcase, ed.design_id.downcase])
+        end
+      end
+    end
+  end
+
   def start_event_survey(event, design)
     (json, _status) = Slice::JsonRequest.get("#{project.project_url}/subjects/#{slice_subject_id}/surveys/#{event}/#{design}.json")
     # return unless status.is_a?(Net::HTTPSuccess)

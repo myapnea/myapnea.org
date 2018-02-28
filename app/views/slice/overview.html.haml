@@ -6,6 +6,13 @@
 - content_for :sidebar, render("internal/sidebar")
 - content_for :header, @title
 
+- if @subject.subject_events.blank?
+  = render "slice/cards/no_surveys"
+- elsif @subject.next_survey
+  = render "slice/cards/ongoing", event_design: @subject.next_survey
+- else
+  = render "slice/cards/completed", subject_event: @subject.subject_events.first
+
 .dashboard-container
   .brand-title= @project.name
   %p= @project.short_description

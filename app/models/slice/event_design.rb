@@ -17,12 +17,13 @@ class Slice::EventDesign
     @event_id.present? && @design_id.present? && @design_name.present?
   end
 
-  def complete?
-    @sheets.count { |s| s.percent == 100 }.positive?
+  def complete?(subject)
+    @sheets.count { |s| s.percent == 100 }.positive? ||
+      subject.subject_surveys.find_by(event: @event_id, design: @design_id)&.completed?
   end
 
-  def incomplete?
-    !complete?
+  def incomplete?(subject)
+    !complete?(subject)
   end
 
   def percent

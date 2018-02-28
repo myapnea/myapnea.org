@@ -1,0 +1,40 @@
+.card {
+  margin-bottom: 1rem;
+
+  @include media-breakpoint-up(md) {
+    margin-bottom: 0;
+  }
+
+  &.card-disabled {
+    position: relative;
+    overflow: hidden;
+
+    &::after {
+      position: absolute;
+      content: " ";
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.2);
+    }
+  }
+}
+
+.card-information {
+  color: $p400-grey;
+}
+
+.card-surveys-focus {
+  background-color: $brand-white;
+  box-shadow: 0 0 3px rgba($p500-blue, .5);
+  border-color: $p500-blue;
+}
+
+.card-dimmed {
+  background-color: $p300-grey;
+
+  .card-information {
+    color: $p500-grey;
+  }
+}

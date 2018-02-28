@@ -13,7 +13,10 @@
         .float-right
           %small= @project.name
         = subject_event.name
-      - if subject_event.percent.to_i.zero?
+      - if subject_event.complete?(@subject)
+        .progress.progress-simple
+          .progress-bar.progress-bar-striped.bg-success{ role: "progressbar", style: "width: 100%;", aria: { valuenow: "100", valuemin: "0", valuemax: "100" } }
+      - elsif subject_event.percent.to_i.zero?
         .progress.progress-simple
           .progress-bar.progress-bar-striped{ role: "progressbar", style: "width: 100%;background-color: #ededed;", aria: { valuenow: "0", valuemin: "0", valuemax: "100" } }
       - else
@@ -28,7 +31,10 @@
             .card-body
               .small.card-title
                 = event_design.design_name
-              - if event_design.percent.to_i.zero?
+              - if event_design.complete?(@subject)
+                .progress.progress-simple
+                  .progress-bar.progress-bar-striped.bg-success{ role: "progressbar", style: "width: 100%;", aria: { valuenow: "100", valuemin: "0", valuemax: "100" } }
+              - elsif event_design.percent.to_i.zero?
                 .progress.progress-simple
                   .progress-bar.progress-bar-striped{ role: "progressbar", style: "width: 100%;background-color: #ededed;", aria: { valuenow: "0", valuemin: "0", valuemax: "100" } }
               - else
@@ -37,8 +43,12 @@
 
             .card-footer
               .float-right
-                %small.text-muted= "#{event_design.percent}%"
-              - if event_design.valid? && event_design.incomplete?
+                %small.text-muted
+                  - if event_design.complete?(@subject)
+                    100%
+                  - else
+                    = "#{event_design.percent}%"
+              - if event_design.valid? && event_design.incomplete?(@subject)
                 - if event_design.percent.to_i.zero?
                   = link_to slice_surveys_start_path(@project, event_design.event_id, event_design.design_id) do
                     Start
@@ -47,7 +57,7 @@
                   = link_to slice_surveys_resume_path(@project, event_design.event_id, event_design.design_id) do
                     Resume
                     %i.fa.fa-caret-right
-              - elsif event_design.valid? && event_design.complete?
+              - elsif event_design.valid? && event_design.complete?(@subject)
                 %i.fa.fa-bar-chart.text-accent
                 = link_to slice_surveys_report_path(@project, event_design.event_id, event_design.design_id), class: "small" do
                   View Report

@@ -15,12 +15,12 @@
             - @subject.subject_events.reverse_each do |subject_event|
               %li
                 = link_to slice_surveys_path(@project), class: current_page?(slice_surveys_path(@project)) ? "active" : nil do
-                  - if subject_event.complete?
+                  - if subject_event.complete?(@subject)
                     %i.fa.fa-check-square-o
                   - else
                     %i.fa.fa-square-o
                   = subject_event.name
-            - if false
+            - if true
               %li
                 = link_to slice_overview_report_path(@project), class: current_page?(slice_overview_report_path(@project)) ? "active" : nil do
                   %i.fa.fa-pie-chart
