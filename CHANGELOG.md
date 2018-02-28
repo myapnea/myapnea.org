@@ -5,6 +5,7 @@
   - Updated styling of Terms of Access and Terms and Conditions
 - **Gem Changes**
   - Updated to rails 5.2.0.rc1
+  - Updated to pg 1.0.0
 
 ### Refactoring
 - Removed deprecated survey module
