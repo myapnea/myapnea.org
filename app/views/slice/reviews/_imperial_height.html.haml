@@ -1,0 +1,7 @@
+.survey-review-my-response
+  - if my_response.present?
+    - feet = my_response.to_i / 12
+    - inches = my_response.to_i % 12
+    %strong= "#{feet}'#{inches}\""
+  - else
+    = render "slice/reviews/not_answered"

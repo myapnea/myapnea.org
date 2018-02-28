@@ -6,6 +6,8 @@
 - **Survey Changes**
   - Updated interface to account for surveys that were completed with skipped
     questions
+  - Users can now review their survey responses before advancing to the next
+    survey
 - **Gem Changes**
   - Updated to rails 5.2.0.rc1
   - Updated to pg 1.0.0

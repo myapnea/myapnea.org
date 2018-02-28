@@ -128,6 +128,11 @@ class Subject < ApplicationRecord
     start_event_survey(event, design)
   end
 
+  def review_event_survey(event, design)
+    params = { subject_id: slice_subject_id }
+    Slice::JsonRequest.get("#{project.project_url}/reports/review/#{event}/#{design}.json", params)
+  end
+
   def report_event_survey(event, design)
     params = { subject_id: slice_subject_id }
     Slice::JsonRequest.get("#{project.project_url}/reports/#{event}/#{design}.json", params)

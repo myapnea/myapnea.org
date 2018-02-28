@@ -1,0 +1,88 @@
+- @title = "Survey Review"
+- @footer = "light"
+
+.page-box.last-box.background-p50-grey.d-flex.d-md-block.flex-column.justify-content-center
+  .container
+    %h1= @json.dig("design", "name")
+
+    %p
+      Please review your answers.
+
+    - unanswered_questions = 0
+    - first_page = nil
+    - @json.fetch("design_options", []).each_with_index do |design_option, index|
+      - next if design_option.dig("variable_type").blank?
+      - page = design_option.dig("page")
+      - my_response = design_option.dig("subject_response")
+      - unanswered_questions += 1 if my_response.blank?
+      - first_page = page if my_response.blank? && first_page.blank?
+      .survey-review{ class: my_response.blank? ? "survey-review-missing" : nil }
+        .survey-review-title= simple_bold design_option.dig("display_name")
+        - case design_option.dig("variable_type") when "radio", "dropdown"
+          = render "slice/reviews/radio", design_option: design_option, my_response: my_response
+        - when "checkbox"
+          = render "slice/reviews/checkbox", design_option: design_option, my_response: my_response
+        - when "imperial_height"
+          = render "slice/reviews/imperial_height", design_option: design_option, my_response: my_response
+        - when "integer", "numeric"
+          = render "slice/reviews/generic", design_option: design_option, my_response: my_response
+        - when "time_of_day"
+          = render "slice/reviews/time_of_day", design_option: design_option, my_response: my_response
+        - when "string"
+          = render "slice/reviews/generic", design_option: design_option, my_response: my_response
+        - else
+          = render "slice/reviews/generic", design_option: design_option, my_response: my_response
+
+        .mt-3.small
+          = link_to slice_surveys_page_path(@project, params[:event], params[:design], page, review: "1") do
+            %i.fa.fa-pencil
+            - if my_response.present?
+              Change response
+            - else
+              Add response
+          - if my_response.blank? && design_option.dig("skip_count")&.positive?
+            %span.text-muted
+              - if design_option.dig("skip_count") == 1
+                One other question depends on your response.
+              - else
+                = design_option.dig("skip_count")
+                other questions depend on your response.
+
+    - if unanswered_questions.positive?
+      .survey-review.survey-review-missing
+        %p
+          %strong
+            - if unanswered_questions == 1
+              Skipped Question
+            - else
+              Skipped Questions
+        %p
+          You skipped
+          = succeed "." do
+            - if unanswered_questions == 1
+              %strong one question
+            - else
+              %strong= pluralize(unanswered_questions, "question")
+
+          Click
+          %strong Continue
+          to
+          - if unanswered_questions.positive?
+            confirm that you want to skip
+            - if unanswered_questions == 1
+              this question
+            - else
+              these questions
+            and
+          advance to the next survey.
+
+    .text-center
+      - if first_page.present?
+        = succeed " " do
+          = link_to slice_surveys_page_path(@project, params[:event], params[:design], first_page, review: "1"), class: "btn btn-link" do
+            %i.fa.fa-caret-left
+            Return to survey
+
+      = link_to slice_surveys_complete_path(@project, params[:event], params[:design]), method: :post, class: "btn btn-success btn-shadow", data: { object: "disable-spinner" } do
+        Continue
+        %i.fa.fa-caret-right

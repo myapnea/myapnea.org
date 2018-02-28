@@ -12,6 +12,7 @@
   = render "slice/surveys/progress_bar", start: start, percent: percent
   .container
     = form_with(url: slice_surveys_submit_page_path(@project, params[:event], params[:design], @page), method: :patch, local: true, autocomplete: "off", id: "survey-form") do |form|
+      = form.hidden_field :review, value: params[:review] || 0
       - if @section
         = render "slice/surveys/section", section: @section
         = link_to "#", data: { object: "submit-and-continue", target: "#survey-form" }, class: "btn btn-primary btn-shadow float-right" do

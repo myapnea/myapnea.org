@@ -61,7 +61,7 @@
 - x_axis = { categories: categories, title: { text: nil } }
 - y_axis = { title: { text: "Participants" } }
 - if filter_responses.count < Slice::Survey::MIN_SURVEY_RESPONSE
-  .survey-report-title= design_option.dig("display_name")
+  .survey-report-title= simple_bold design_option.dig("display_name")
   - hours_24_m = my_response.to_i / 3600
   - minutes_m = (my_response.to_i / 60) % 60
 

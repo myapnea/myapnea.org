@@ -17,7 +17,7 @@
 - x_axis = { categories: categories, title: { text: nil } }
 - y_axis = { title: { text: "Participants" } }
 - if responses.sum(&:second) < Slice::Survey::MIN_SURVEY_RESPONSE
-  .survey-report-title= design_option.dig("display_name")
+  .survey-report-title= simple_bold design_option.dig("display_name")
   - if my_response.present?
     = render "slice/reports/responses_tabular", variable_type: design_option.dig("variable_type"), responses: responses.select{ |r| r[2] == true }.collect { |a, b, c| [a, 1, c] }, my_color: my_color
   - else

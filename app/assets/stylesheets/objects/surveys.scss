@@ -152,3 +152,24 @@
 .survey-report-my-response {
   text-align: center;
 }
+
+.survey-review-title {
+  font-size: 1.125rem;
+  margin-bottom: $spacer * .5;
+}
+
+.survey-review-my-response {
+  // text-align: center;
+}
+
+.survey-review {
+  margin-bottom: $spacer;
+  border-left: 2px solid $p200-grey;
+  padding: $spacer;
+  background-color: $p100-grey;
+}
+
+.survey-review-missing {
+  border-color: $p500-amber;
+  background-color: $p50-amber;
+}

@@ -1,0 +1,21 @@
+- hours_24_m = my_response.to_i / 3600
+- minutes_m = (my_response.to_i / 60) % 60
+
+- if hours_24_m == 0
+  - hours_m = 12
+  - period_m = "AM"
+- elsif hours_24_m < 12
+  - hours_m = hours_24_m
+  - period_m = "AM"
+- elsif hours_24_m == 12
+  - hours_m = 12
+  - period_m = "PM"
+- else hours_24_m > 12
+  - hours_m = hours_24_m - 12
+  - period_m = "PM"
+
+.survey-review-my-response
+  - if my_response.present?
+    %strong= "#{hours_m}#{format(":%02d", minutes_m)} #{period_m}"
+  - else
+    = render "slice/reviews/not_answered"

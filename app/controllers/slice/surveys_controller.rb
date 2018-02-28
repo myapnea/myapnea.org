@@ -29,7 +29,7 @@ class Slice::SurveysController < ApplicationController
       @variable = Slice::Variable.new(json: @json.dig("variable")) if @json.dig("variable").present?
     end
     if @json.blank?
-      redirect_to slice_surveys_complete_path(@project, params[:event], params[:design])
+      redirect_to slice_surveys_review_path(@project, params[:event], params[:design])
     else
       render "slice/surveys/page"
     end
@@ -41,7 +41,7 @@ class Slice::SurveysController < ApplicationController
     @json = @subject.resume_event_survey(params[:event], params[:design])
     @survey = Slice::Survey.new(json: @json)
     if @json.blank?
-      redirect_to slice_surveys_complete_path(@project, params[:event], params[:design])
+      redirect_to slice_surveys_review_path(@project, params[:event], params[:design])
     else
       @page = @json.dig("design", "current_page")
       @section = Slice::Section.new(json: @json.dig("section")) if @json.dig("section").present?
@@ -71,7 +71,11 @@ class Slice::SurveysController < ApplicationController
     end
     (@json, @status) = @subject.submit_response_event_survey(params[:event], params[:design], @page, value, request.remote_ip)
     if @status.is_a?(Net::HTTPOK)
-      redirect_to slice_surveys_page_path(@project, params[:event], params[:design], @page + 1)
+      if params[:review] == "1"
+        redirect_to slice_surveys_review_path(@project, params[:event], params[:design])
+      else
+        redirect_to slice_surveys_page_path(@project, params[:event], params[:design], @page + 1)
+      end
     elsif @json
       @section = Slice::Section.new(json: @json.dig("section")) if @json.dig("section").present?
       @variable = Slice::Variable.new(json: @json.dig("variable")) if @json.dig("variable").present?
@@ -81,11 +85,15 @@ class Slice::SurveysController < ApplicationController
     end
   end
 
-  # GET /surveys/:project/:event/:design/complete
+  # GET /surveys/:project/:event/:design/review
+  def review
+    (@json, @status) = @subject.review_event_survey(params[:event].downcase, params[:design].downcase)
+  end
+
+  # POST /surveys/:project/:event/:design/review
   def complete
     survey_completed
-    # render "slice/surveys/complete"
-    redirect_to slice_surveys_path(@project)
+    redirect_to slice_overview_path(@project)
   end
 
   # GET /surveys/:project/:event/:design/report
