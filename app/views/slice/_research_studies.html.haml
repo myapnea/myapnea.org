@@ -32,7 +32,7 @@
 
           .ml-3.d-block.d-sm-inline-block.text-center
             - if current_user && subject
-              = link_to slice_surveys_path(project), class: "btn btn-sm btn-primary btn-shadow" do
+              = link_to slice_overview_path(project), class: "btn btn-sm btn-primary btn-shadow" do
                 Take surveys
                 %i.fa.fa-angle-right
             - else

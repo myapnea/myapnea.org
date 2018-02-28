@@ -60,7 +60,7 @@
       .card-footer.text-muted
         .float-right
           - if subject
-            = link_to slice_surveys_path(project), class: "text-accent" do
+            = link_to slice_overview_path(project), class: "text-accent" do
               Take surveys
               %i.fa.fa-caret-right
           - else
