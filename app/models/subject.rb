@@ -137,4 +137,11 @@ class Subject < ApplicationRecord
     params = { subject_id: slice_subject_id }
     Slice::JsonRequest.get("#{project.project_url}/reports/#{event}/#{design}.json", params)
   end
+
+  def data(variables)
+    params = { variables: variables }
+    (json, _status) = Slice::JsonRequest.get("#{project.project_url}/subjects/#{slice_subject_id}/data.json", params)
+    # return unless status.is_a?(Net::HTTPSuccess)
+    json
+  end
 end

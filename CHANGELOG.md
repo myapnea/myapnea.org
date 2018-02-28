@@ -4,6 +4,7 @@
 - **General Changes**
   - Updated styling of Terms of Access and Terms and Conditions
 - **Survey Changes**
+  - Added the MyApnea core survey report
   - Updated interface to account for surveys that were completed with skipped
     questions
   - Users can now review their survey responses before advancing to the next
