@@ -26,15 +26,20 @@ module ReportsHelper
     fosqs << data.dig("data", "fosq_visiting")
     fosqs << data.dig("data", "fosq_desire")
     return if fosqs.count(&:blank?).positive?
-    scale_1s = fosqs[0..1].collect(&:to_i)
-    subscale_1_mean = scale_1s.sum.to_f / scale_1s.count
-    scale_2s = fosqs[2..4].collect(&:to_i).reject(&:zero?)
-    subscale_2_mean = scale_2s.sum.to_f / scale_2s.count
-    scale_3s = fosqs[5..7].collect(&:to_i).reject(&:zero?)
-    subscale_3_mean = scale_3s.sum.to_f / scale_3s.count
-    subscale_4_mean = fosqs[8]
-    subscale_5_mean = fosqs[9]
-    ((subscale_1_mean + subscale_2_mean + subscale_3_mean + subscale_4_mean + subscale_5_mean) / 5 * 5).to_i
+    subscales = []
+    subscales << mean_weighted(fosqs[0..1].collect(&:to_i))
+    subscales << mean_weighted(fosqs[2..4].collect(&:to_i))
+    subscales << mean_weighted(fosqs[5..7].collect(&:to_i))
+    subscales << mean_weighted(fosqs[8..8].collect(&:to_i))
+    subscales << mean_weighted(fosqs[9..9].collect(&:to_i))
+    scale = mean_weighted(subscales)
+    (scale * 5).to_i
+  end
+
+  def mean_weighted(array)
+    array.reject!(&:zero?)
+    return 0 if array.blank?
+    array.sum.to_f / array.count
   end
 
   def report_ess(data)
