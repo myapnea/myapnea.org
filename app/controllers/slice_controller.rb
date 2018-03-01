@@ -48,7 +48,7 @@ class SliceController < ApplicationController
   # GET /research/:project/overview-report
   def overview_report
     redirect_to slice_research_path unless current_user
-    @data = @subject.data(["dem_tall", "dem_weight", "ess_sitting_reading", "ess_watching_tv", "ess_public_place", "ess_car_passenger", "ess_lying_down_rest", "ess_sitting_talking", "ess_after_lunch", "ess_traffic"])
+    @data = @subject.data(["dem_height", "dem_weight", "ess_sitting_reading", "ess_watching_tv", "ess_public_place", "ess_car_passenger", "ess_lying_down_rest", "ess_sitting_talking", "ess_after_lunch", "ess_traffic"])
     render layout: "layouts/full_page_sidebar"
   end
 
