@@ -3,9 +3,34 @@
 # Computes scores for MyApnea core summary report.
 module ReportsHelper
   def report_insomnia(data)
+    insoms = []
+    insoms << data.dig("data", "is_falling_asleep")
+    insoms << data.dig("data", "is_falling_asleep_3")
+    insoms << data.dig("data", "is_wake_several_times")
+    insoms << data.dig("data", "is_wake_several_times_3")
+    insoms << data.dig("data", "is_wake_earlier")
+    insoms << data.dig("data", "is_wake_earlier_3")
+    insoms << data.dig("data", "is_trouble_back_sleep")
+    insoms << data.dig("data", "is_trouble_back_sleep_3")
+    insoms << data.dig("data", "is_overall_sleep_quality")
+    return if insoms.count(&:blank?).positive?
+    insoms.sum(&:to_i) * 1000
   end
 
   def report_fosq(data)
+    fosqs = []
+    fosqs << data.dig("data", "fosq_concentrating")
+    fosqs << data.dig("data", "fosq_remembering")
+    fosqs << data.dig("data", "fosq_operating_motor_less100")
+    fosqs << data.dig("data", "fosq_operating_motor_greater100")
+    fosqs << data.dig("data", "fosq_visiting")
+    fosqs << data.dig("data", "fosq_relationships")
+    fosqs << data.dig("data", "fosq_watching_movie")
+    fosqs << data.dig("data", "fosq_active_evening")
+    fosqs << data.dig("data", "fosq_active_morning")
+    fosqs << data.dig("data", "fosq_desire")
+    return if fosqs.count(&:blank?).positive?
+    fosqs.sum(&:to_i) * 5 / fosqs.count
   end
 
   def report_ess(data)
@@ -23,6 +48,14 @@ module ReportsHelper
   end
 
   def report_well_being(data)
+    whos = []
+    whos << data.dig("data", "who_cheerful")
+    whos << data.dig("data", "who_calm")
+    whos << data.dig("data", "who_active")
+    whos << data.dig("data", "who_fresh")
+    whos << data.dig("data", "who_things_interest_me")
+    return if whos.count(&:blank?).positive?
+    whos.sum(&:to_i) * 4
   end
 
   def report_bmi(data)

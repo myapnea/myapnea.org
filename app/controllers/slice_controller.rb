@@ -48,7 +48,8 @@ class SliceController < ApplicationController
   # GET /research/:project/overview-report
   def overview_report
     redirect_to slice_research_path unless current_user
-    @data = @subject.data(["dem_height", "dem_weight", "ess_sitting_reading", "ess_watching_tv", "ess_public_place", "ess_car_passenger", "ess_lying_down_rest", "ess_sitting_talking", "ess_after_lunch", "ess_traffic"])
+    variables = insomnia_variables + fosq_variables + ess_variables + who_variables + bmi_variables
+    @data = @subject.data(variables)
     render layout: "layouts/full_page_sidebar"
   end
 
@@ -107,5 +108,40 @@ class SliceController < ApplicationController
   def find_subject_or_redirect
     @subject = @project.subjects.find_by(user: current_user)
     empty_response_or_root_path(slice_research_path) unless @subject
+  end
+
+  def insomnia_variables
+    [
+      "is_falling_asleep", "is_falling_asleep_3",
+      "is_wake_several_times", "is_wake_several_times_3",
+      "is_wake_earlier", "is_wake_earlier_3",
+      "is_trouble_back_sleep", "is_trouble_back_sleep_3",
+      "is_overall_sleep_quality"
+    ]
+  end
+
+  def fosq_variables
+    [
+      "fosq_concentrating", "fosq_remembering", "fosq_operating_motor_less100",
+      "fosq_operating_motor_greater100", "fosq_visiting", "fosq_relationships",
+      "fosq_watching_movie", "fosq_active_evening", "fosq_active_morning",
+      "fosq_desire"
+    ]
+  end
+
+  def ess_variables
+    [
+      "ess_sitting_reading", "ess_watching_tv", "ess_public_place",
+      "ess_car_passenger", "ess_lying_down_rest", "ess_sitting_talking",
+      "ess_after_lunch", "ess_traffic"
+    ]
+  end
+
+  def who_variables
+    ["who_cheerful", "who_calm", "who_active", "who_fresh", "who_things_interest_me"]
+  end
+
+  def bmi_variables
+    ["dem_height", "dem_weight"]
   end
 end
