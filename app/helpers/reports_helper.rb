@@ -17,16 +17,24 @@ module ReportsHelper
     fosqs = []
     fosqs << data.dig("data", "fosq_concentrating")
     fosqs << data.dig("data", "fosq_remembering")
-    fosqs << data.dig("data", "fosq_operating_motor_less100")
-    fosqs << data.dig("data", "fosq_operating_motor_greater100")
-    fosqs << data.dig("data", "fosq_visiting")
     fosqs << data.dig("data", "fosq_relationships")
-    fosqs << data.dig("data", "fosq_watching_movie")
     fosqs << data.dig("data", "fosq_active_evening")
     fosqs << data.dig("data", "fosq_active_morning")
+    fosqs << data.dig("data", "fosq_operating_motor_less100")
+    fosqs << data.dig("data", "fosq_operating_motor_greater100")
+    fosqs << data.dig("data", "fosq_watching_movie")
+    fosqs << data.dig("data", "fosq_visiting")
     fosqs << data.dig("data", "fosq_desire")
     return if fosqs.count(&:blank?).positive?
-    fosqs.sum(&:to_i) * 5 / fosqs.count
+    scale_1s = fosqs[0..1].collect(&:to_i)
+    subscale_1_mean = scale_1s.sum.to_f / scale_1s.count
+    scale_2s = fosqs[2..4].collect(&:to_i).reject(&:zero?)
+    subscale_2_mean = scale_2s.sum.to_f / scale_2s.count
+    scale_3s = fosqs[5..7].collect(&:to_i).reject(&:zero?)
+    subscale_3_mean = scale_3s.sum.to_f / scale_3s.count
+    subscale_4_mean = fosqs[8]
+    subscale_5_mean = fosqs[9]
+    ((subscale_1_mean + subscale_2_mean + subscale_3_mean + subscale_4_mean + subscale_5_mean) / 5 * 5).to_i
   end
 
   def report_ess(data)
