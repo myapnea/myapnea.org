@@ -71,6 +71,6 @@ module ReportsHelper
     height = data.dig("data", "dem_height")
     weight = data.dig("data", "dem_weight")
     return unless weight.is_a?(Numeric) && height.is_a?(Numeric) && height.positive?
-    weight * 703 / (height * height)
+    weight * 703.0 / (height * height)
   end
 end
