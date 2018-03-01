@@ -1,0 +1,18 @@
+- if my_response.present?
+  %table.table-borderless.table-sm
+    %col{ width: "1px" }
+    %col
+    - design_option.fetch("domain_options", []).each do |domain_option|
+      - voted = (my_response == domain_option.dig("value"))
+      - display_name = domain_option.dig("name").gsub(/\(.*\)/, "")
+      - if voted
+        %tr
+          %td
+            - if voted
+              %i.fa.fa-check-circle
+            - else
+              %i.fa.fa-circle-o
+          %td= display_name
+- else
+  .survey-review-my-response
+    = render "slice/reviews/not_answered"

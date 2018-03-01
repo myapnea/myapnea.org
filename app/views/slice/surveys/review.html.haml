@@ -19,8 +19,10 @@
       - first_page = page if my_response.blank? && first_page.blank?
       .survey-review{ class: my_response.blank? ? "survey-review-missing" : nil }
         .survey-review-title= simple_bold design_option.dig("display_name")
-        - case design_option.dig("variable_type") when "radio", "dropdown"
+        - case design_option.dig("variable_type") when "radio"
           = render "slice/reviews/radio", design_option: design_option, my_response: my_response
+        - when "dropdown"
+          = render "slice/reviews/dropdown", design_option: design_option, my_response: my_response
         - when "checkbox"
           = render "slice/reviews/checkbox", design_option: design_option, my_response: my_response
         - when "imperial_height"
