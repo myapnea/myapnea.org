@@ -112,11 +112,8 @@ class SliceController < ApplicationController
 
   def insomnia_variables
     [
-      "is_falling_asleep", "is_falling_asleep_3",
-      "is_wake_several_times", "is_wake_several_times_3",
-      "is_wake_earlier", "is_wake_earlier_3",
-      "is_trouble_back_sleep", "is_trouble_back_sleep_3",
-      "is_overall_sleep_quality"
+      "is_falling_asleep", "is_wake_several_times", "is_wake_earlier",
+      "is_trouble_back_sleep", "is_overall_sleep_quality"
     ]
   end
 

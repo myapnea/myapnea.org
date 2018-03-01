@@ -5,16 +5,12 @@ module ReportsHelper
   def report_insomnia(data)
     insoms = []
     insoms << data.dig("data", "is_falling_asleep")
-    insoms << data.dig("data", "is_falling_asleep_3")
     insoms << data.dig("data", "is_wake_several_times")
-    insoms << data.dig("data", "is_wake_several_times_3")
     insoms << data.dig("data", "is_wake_earlier")
-    insoms << data.dig("data", "is_wake_earlier_3")
     insoms << data.dig("data", "is_trouble_back_sleep")
-    insoms << data.dig("data", "is_trouble_back_sleep_3")
     insoms << data.dig("data", "is_overall_sleep_quality")
     return if insoms.count(&:blank?).positive?
-    insoms.sum(&:to_i) * 1000
+    insoms.sum(&:to_i)
   end
 
   def report_fosq(data)
