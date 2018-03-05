@@ -7,20 +7,21 @@
           %li= link_to "Dashboard", dashboard_path, class: current_page?(dashboard_path) ? "active" : nil
           %li= link_to "Research", slice_research_path, class: current_page?(slice_research_path) ? "active" : nil
           - if @project && @subject
-            %li.sidebar-menu-header= @project.name
+            - if false
+              %li.sidebar-menu-header= @project.name
             %li
               = link_to slice_overview_path(@project), class: current_page?(slice_overview_path(@project)) || current_page?(slice_leave_study_path(@project)) ? "active" : nil do
-                %i.fa.fa-toggle-right
-                Overview
-            - @subject.subject_events.reverse_each do |subject_event|
-              %li
-                = link_to slice_surveys_path(@project), class: current_page?(slice_surveys_path(@project)) ? "active" : nil do
-                  - if subject_event.complete?(@subject)
-                    %i.fa.fa-check-square-o
-                  - else
-                    %i.fa.fa-square-o
-                  = subject_event.name
-            - if true
+                = @project.name
+            - if false
+              - @subject.subject_events.reverse_each do |subject_event|
+                %li
+                  = link_to slice_surveys_path(@project), class: current_page?(slice_surveys_path(@project)) ? "active" : nil do
+                    - if subject_event.complete?(@subject)
+                      %i.fa.fa-check-square-o
+                    - else
+                      %i.fa.fa-square-o
+                    = subject_event.name
+            - if false
               %li
                 = link_to slice_overview_report_path(@project), class: current_page?(slice_overview_report_path(@project)) ? "active" : nil do
                   %i.fa.fa-pie-chart

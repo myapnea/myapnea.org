@@ -1,0 +1,74 @@
+.dashboard-container
+  %h2
+    Survey status
+
+    - if @subject.subject_events.blank?
+      -# No Surveys
+    - elsif @subject.next_survey
+      -# Next Survey...
+      =# render "slice/cards/ongoing", event_design: @subject.next_survey
+      - event_design = @subject.next_survey
+      - subject_event = event_design.subject_event
+      - index = subject_event.event_designs.index(event_design)
+      - survey_number = (index ? index + 1 : 0)
+      - number_of_surveys = subject_event.event_designs.size
+
+      - if event_design.sheets.present?
+        - if event_design.valid?
+          = link_to slice_surveys_resume_path(@project, event_design.event_id, event_design.design_id), class: "btn btn-sm btn-primary" do
+            Continue
+            = event_design.design_name
+            survey
+            %i.fa.fa-caret-right
+        - else
+          .btn.btn-primary.btn-shadow.disabled
+            %i.fa.fa-exclamation-triangle
+            Survey unavailable
+      - else
+        - if event_design.valid?
+          = link_to slice_surveys_start_path(@project, event_design.event_id, event_design.design_id), class: "btn btn-sm btn-primary", data: { object: "disable-spinner" } do
+            Start
+            = event_design.design_name
+            survey
+            %i.fa.fa-caret-right
+        - else
+          .btn.btn-primary.btn-shadow.disabled
+            %i.fa.fa-exclamation-triangle
+            Survey unavailable
+    - else
+      -# Surveys completed.
+      %i.fa.fa-check-square.text-success
+
+  - if @subject.subject_events.blank?
+    -# No Surveys
+    .progress
+      .progress-bar.progress-bar-striped{ role: "progressbar", style: "width: 100%;background-color: #ededed;", aria: { valuenow: "0", valuemin: "0", valuemax: "100" } }
+    %small.text-muted Surveys currently unavailable.
+  - elsif @subject.next_survey
+    - event_design = @subject.next_survey
+    - subject_event = event_design.subject_event
+    - index = subject_event.event_designs.index(event_design)
+    - survey_number = (index ? index + 1 : 0)
+    - number_of_surveys = subject_event.event_designs.size
+
+
+    - if survey_number.zero? || number_of_surveys.zero?
+      .progress
+        .progress-bar.progress-bar-striped{ role: "progressbar", style: "width: 100%;background-color: #ededed;", aria: { valuenow: "0", valuemin: "0", valuemax: "100" } }
+      %small.text-muted Overall survey completion.
+    - else
+      - percent = (survey_number - 1) * 100.0 / number_of_surveys
+      .progress
+        .progress-bar.progress-bar-striped.bg-primary{ role: "progressbar", style: "width: #{percent}%;", aria: { valuenow: "#{percent}", valuemin: "0", valuemax: "100" } }
+      %small.text-muted Overall survey completion.
+
+  - else
+    -# Surveys completed
+    =# render "slice/cards/completed", subject_event: @subject.subject_events.last
+
+    .progress
+      .progress-bar.progress-bar-striped.bg-success{ role: "progressbar", style: "width: 100%;", aria: { valuenow: "100", valuemin: "0", valuemax: "100" } } 100%
+    %small.text-success
+      Congrats! You completed all
+      = @project.name
+      surveys.

@@ -6,24 +6,51 @@
 - content_for :sidebar, render("internal/sidebar")
 - content_for :header, @title
 
-- if @subject.subject_events.blank?
-  = render "slice/cards/no_surveys"
-- elsif @subject.next_survey
-  = render "slice/cards/ongoing", event_design: @subject.next_survey
-- else
-  = render "slice/cards/completed", subject_event: @subject.subject_events.last
+.dashboard-container.dashboard-container-border-accent
+  Our team has updated the MyApnea.Org surveys. They are now shorter, include
+  some new questions, and will continue to be useful for future research.
+  Whether you are updating your surveys or completing them for the first time,
+  sharing information (on our secure platform) is incredibly valuable to the
+  sleep apnea research community. When you complete the surveys you will receive
+  a personal sleep report that you can print and share with your health care
+  provider.
+
+
+= render "slice/survey_progress"
+= render "slice/overview_report"
 
 .dashboard-container
-  .brand-title= @project.name
-  %p= @project.short_description
+  .brand-title Timeline
 
-  %p
-    You joined this study on
-    = succeed "." do
-      %strong= @subject.consented_at.strftime("%B %-d, %Y")
+  - @subject.subject_surveys.where.not(completed_at: nil).order(completed_at: :desc).group_by{ |s| s.completed_at.to_date }.each do |completed_date, subject_surveys|
+    .mb-1.bordered.border-bottom.border-primary
+      %strong= completed_date.strftime("%B %-d, %Y")
+    .mb-3
+      Completed
+      - count = subject_surveys.count
+      - if count == 1
+        - subject_surveys.each do |subject_survey|
+          = succeed "." do
+            = subject_survey.design
+      - else
+        - subject_surveys.each_with_index do |subject_survey, index|
+          - if index == count - 1
+            and
+            = succeed "." do
+              = subject_survey.design
+          - elsif count == 2
+            = subject_survey.design
+          - else
+            = succeed ", " do
+              = subject_survey.design
 
-  %p.lead.text-center.mt-5 Study Timeline
-  = render "slice/timeline", project: @project, subject: @subject
+  .mb-3.bordered.border-bottom.border-primary
+    %strong= @subject.consented_at.strftime("%B %-d, %Y")
+    joined the study.
+
+  - if false
+    %p.lead.text-center.mt-5 Study Timeline
+    = render "slice/timeline", project: @project, subject: @subject
 
 .dashboard-container
   .brand-title Consent

@@ -2,6 +2,12 @@
 
 = render "projects/theme", project: @project
 
+- content_for :header do
+  .header-container
+    .container
+      %h1.page-heading
+        = @json.dig("design", "name")
+
 - response = @json.dig("response") || @json.dig("sheet_variable", "response")
 - value = @json.dig("response") || @json.dig("sheet_variable", "value")
 - start = (@json.dig("design", "current_page") - 1) * 100 / @json.dig("design", "pages_count")
@@ -15,7 +21,7 @@
       = form.hidden_field :review, value: params[:review] || 0
       - if @section
         = render "slice/surveys/section", section: @section
-        = link_to "#", data: { object: "submit-and-continue", target: "#survey-form" }, class: "btn btn-primary btn-shadow float-right" do
+        = link_to "#", data: { object: "submit-and-continue", target: "#survey-form" }, class: "btn btn-primary btn-shadow float-left" do
           Continue
           %i.fa.fa-caret-right
         .clearfix
@@ -33,7 +39,7 @@
             - else
               %p.lead.text-muted.d-none= @variable.variable_type
 
-        .float-right
+        .float-left
           = link_to "#", data: { object: "submit-and-continue", target: "#survey-form" }, class: "btn btn-primary btn-shadow" do
             Continue
             %i.fa.fa-caret-right

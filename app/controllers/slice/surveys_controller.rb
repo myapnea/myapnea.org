@@ -93,7 +93,11 @@ class Slice::SurveysController < ApplicationController
   # POST /surveys/:project/:event/:design/review
   def complete
     survey_completed
-    redirect_to slice_overview_path(@project)
+    if @subject.next_survey
+      redirect_to slice_surveys_start_path(@project, @subject.next_survey.event_id, @subject.next_survey.design_id)
+    else
+      redirect_to slice_overview_path(@project)
+    end
   end
 
   # GET /surveys/:project/:event/:design/report
@@ -123,11 +127,11 @@ class Slice::SurveysController < ApplicationController
   end
 
   def survey_in_progress
-    find_subject_survey.update(completed: false)
+    find_subject_survey.update(completed_at: nil)
   end
 
   def survey_completed
-    find_subject_survey.update(completed: true)
+    find_subject_survey.update(completed_at: Time.zone.now)
   end
 
   def find_page

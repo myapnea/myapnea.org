@@ -9,4 +9,8 @@ class SubjectSurvey < ApplicationRecord
   belongs_to :subject
 
   # Methods
+
+  def completed?
+    !completed_at.nil?
+  end
 end

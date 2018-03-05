@@ -44,6 +44,8 @@ class SliceController < ApplicationController
   # GET /research/:project/overview
   def overview
     redirect_to slice_research_path unless current_user
+    variables = insomnia_variables + fosq_variables + ess_variables + who_variables + bmi_variables
+    @data = @subject.data(variables)
     render layout: "layouts/full_page_sidebar"
   end
 

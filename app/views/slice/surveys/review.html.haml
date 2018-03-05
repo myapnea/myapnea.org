@@ -2,11 +2,31 @@
 
 = render "projects/theme", project: @project
 
+- unanswered_questions = 0
+- first_page = nil
+- @json.fetch("design_options", []).each_with_index do |design_option, index|
+  - next if design_option.dig("variable_type").blank?
+  - page = design_option.dig("page")
+  - my_response = design_option.dig("subject_response")
+  - unanswered_questions += 1 if my_response.blank?
+  - first_page = page if my_response.blank? && first_page.blank?
+
+
+- content_for :header do
+  .header-container
+    .container
+      %h1.page-heading
+        - if first_page.nil?
+          .float-right
+            = link_to slice_surveys_complete_path(@project, params[:event], params[:design]), method: :post, class: "btn btn-accent btn-shadow", data: { object: "disable-spinner" } do
+              Continue
+              %i.fa.fa-caret-right
+
+        = @json.dig("design", "name")
+
 .page-box.last-box.background-p50-grey.d-flex.d-md-block.flex-column.justify-content-center
   .container
-    %h1= @json.dig("design", "name")
-
-    %p
+    .dashboard-container.dashboard-container-border-accent
       Please review your answers.
 
     - unanswered_questions = 0
@@ -86,6 +106,6 @@
             %i.fa.fa-caret-left
             Return to survey
 
-      = link_to slice_surveys_complete_path(@project, params[:event], params[:design]), method: :post, class: "btn btn-success btn-shadow", data: { object: "disable-spinner" } do
+      = link_to slice_surveys_complete_path(@project, params[:event], params[:design]), method: :post, class: "btn btn-primary btn-shadow", data: { object: "disable-spinner" } do
         Continue
         %i.fa.fa-caret-right

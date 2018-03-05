@@ -1,0 +1,100 @@
+.dashboard-container
+  .mb-5
+    .brand-title
+      .float-right
+        = link_to slice_print_overview_report_path(@project), class: "btn btn-sm btn-outline-dark", data: { turbolinks: false } do
+          %i.fa.fa-print
+          Print
+      Your MyApnea Sleep Report
+
+    %p
+      Once you consent and complete all the surveys, you will receive a personal sleep health report that you can print and bring to your doctor. The scores are based on commonly used measures. Regardless of your scores, you should discuss any sleep health concerns with your doctor.
+
+  - @insomnia_scale = report_insomnia(@data)
+  - @fosq = report_fosq(@data)
+  - @sleepiness_scale = report_ess(@data)
+  - @well_being = report_well_being(@data)
+  - @bmi = report_bmi(@data)
+
+  .mb-5
+    .brand-title
+      .float-right
+        %span.text-accent Your Score
+      SLEEP SCALE
+
+  .mb-3.p-3{ class: @insomnia_scale.blank? ? "myapnea-grey-bg text-muted" : nil }
+    .brand-title
+      .float-right
+        %span.text-accent
+          - if @insomnia_scale
+            = @insomnia_scale
+          - else
+            = render "slice/complete_surveys_to_see_result"
+      Insomnia Scale
+      %span{ style: "font-weight: 300;" } (WHI Insomnia Rating Scale)
+    %p
+      This scale measures symptoms of poor sleep quality.
+    %p
+      Scores greater than 10 suggest problems with insomnia.
+
+  .mb-3.p-3{ class: @fosq.blank? ? "myapnea-grey-bg text-muted" : nil }
+    .brand-title
+      .float-right
+        %span.text-accent
+          - if @fosq
+            = @fosq
+          - else
+            = render "slice/complete_surveys_to_see_result"
+      Impact of Sleep on Daily Activities
+      %span{ style: "font-weight: 300;" } (FOSQ-10)
+    %p
+      This scale measures problems in every day functioning associated with sleep problems.
+    %p
+      The score range is 5-20 points. A higher score means you have a better functional status. You can follow your score over time- if it increases, this suggests improvement.
+
+  .mb-3.p-3{ class: @sleepiness_scale.blank? ? "myapnea-grey-bg text-muted" : nil }
+    .brand-title
+      .float-right
+        %span.text-accent
+          - if @sleepiness_scale
+            = @sleepiness_scale
+          - else
+            = render "slice/complete_surveys_to_see_result"
+      Sleepiness Scale
+      %span{ style: "font-weight: 300;" } (Epworth sleepiness scale)
+    %p
+      The scale measures how sleepy you are during the day.
+    %p
+      Scores higher than 10, suggest excessive sleepiness. This could be due to not getting enough sleep at night or poor quality of sleep due to a sleep disorder. If you score high, talk to your doctor about your sleep and sleepiness.
+
+  .mb-3.p-3{ class: @well_being.blank? ? "myapnea-grey-bg text-muted" : nil }
+    .brand-title
+      .float-right
+        %span.text-accent
+          - if @well_being
+            = @well_being
+          - else
+            = render "slice/complete_surveys_to_see_result"
+      Well-Being Index
+      %span{ style: "font-weight: 300;" } (World Health Organization)
+    %p
+      This scale measures recent feelings of mood and well-being.
+    %p
+      Scores vary from 0-100. A score lower than 50 (or if you answered 0 or 1 on any question) suggests symptoms of depression, which you should talk to your doctor about.
+
+  .mb-3.p-3{ class: @bmi.blank? ? "myapnea-grey-bg text-muted" : nil }
+    .brand-title
+      .float-right
+        %span.text-accent
+          - if @bmi
+            = format("%0.1f", @bmi)
+          - else
+            = render "slice/complete_surveys_to_see_result"
+
+      BMI
+      %span{ style: "font-weight: 300;" } (Body mass index)
+
+    %p
+      BMI is calculated based on your height and weight.
+    %p
+      A BMI over 25 puts you in the 'overweight' category. Research has shown that people in this category are more likely to develop severe obstructive sleep apnea.
