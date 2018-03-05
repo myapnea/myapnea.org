@@ -3,6 +3,9 @@
 # Associates a user to a study as a study participant. Tracks consent and
 # assigned subject code.
 class Subject < ApplicationRecord
+  # Concerns
+  include Latexable
+
   # Validations
   validates :user_id, uniqueness: { scope: :project_id }
 
@@ -143,5 +146,26 @@ class Subject < ApplicationRecord
     (json, _status) = Slice::JsonRequest.get("#{project.project_url}/subjects/#{slice_subject_id}/data.json", params)
     # return unless status.is_a?(Net::HTTPSuccess)
     json
+  end
+
+  # Print Consent
+  def latex_partial(partial)
+    File.read(File.join("app", "views", "subjects", "latex", "_#{partial}.tex.erb"))
+  end
+
+  def generate_overview_report_pdf!(data)
+    jobname = "overview_report_#{id}"
+    output_folder = File.join("tmp", "files", "tex")
+    FileUtils.mkdir_p output_folder
+    file_tex = File.join("tmp", "files", "tex", "#{jobname}.tex")
+    @project = project
+    @subject = self
+    @data = data
+    File.open(file_tex, "w") do |file|
+      file.syswrite(ERB.new(latex_partial("header")).result(binding))
+      file.syswrite(ERB.new(latex_partial("overview_report")).result(binding))
+      file.syswrite(ERB.new(latex_partial("footer")).result(binding))
+    end
+    Subject.generate_pdf(jobname, output_folder, file_tex)
   end
 end

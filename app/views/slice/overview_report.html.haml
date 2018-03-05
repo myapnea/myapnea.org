@@ -10,10 +10,9 @@
   .mb-5
     .brand-title
       .float-right
-        = link_to "#", class: "btn btn-sm btn-outline-dark" do
+        = link_to slice_print_overview_report_path(@project), class: "btn btn-sm btn-outline-dark", data: { turbolinks: false } do
           %i.fa.fa-print
           Print
-      =# @project.name
       Your MyApnea Sleep Report
 
     %p
@@ -96,7 +95,7 @@
       .float-right
         %span.text-accent
           - if @bmi
-            = format("%0.1f", @bmi.presence)
+            = format("%0.1f", @bmi)
           - else
             = render "slice/complete_surveys_to_see_result"
 

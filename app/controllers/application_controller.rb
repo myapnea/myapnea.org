@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   include DateAndTimeParser
 
   def store_location
-    return unless !request.post? && !request.xhr? && params[:format] != "atom"
+    return unless !request.post? && !request.xhr? && params[:format] != "atom" && params[:format] != "pdf"
     store_internal_location_in_session if internal_action?(params[:controller], params[:action])
     store_external_location_in_session if external_action?(params[:controller], params[:action])
     clear_location_in_session if params[:controller] == "external" && params[:action] == "landing"

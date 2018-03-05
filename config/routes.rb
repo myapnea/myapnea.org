@@ -154,6 +154,7 @@ Rails.application.routes.draw do
     post :enrollment_consent, path: "research/:project/consent"
     get :enrollment_exit, path: "research/:project/exit"
     get :overview, path: "research/:project/overview"
+    get :print_overview_report, path: "research/:project/overview-report.pdf"
     get :overview_report, path: "research/:project/overview-report"
     get :leave_study, path: "research/:project/leave-study"
     post :submit_leave_study, path: "research/:project/leave-study"

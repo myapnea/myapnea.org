@@ -1,0 +1,44 @@
+\begin{center}
+  {\Large <%= latex_safe @project.name %> Sleep Report} \\[0.5cm]
+\end{center}
+
+\textit{Print your personal sleep health report and bring it to your doctor. All of the scores on this report are regularly used by sleep specialists.} \\ \\
+
+<% @insomnia_scale = ActionController::Base.helpers.report_insomnia(@data) %>
+\begin{Large}\textbf{Insomnia Scale}\end{Large} (WHI Insomnia Rating Scale) \hfill
+<% if @insomnia_scale %>\begin{Large}\textbf{<%= latex_safe @insomnia_scale %>}\end{Large}<% else %>\textit{Complete surveys at MyApnea.Org to get your score.}<% end %> \\
+
+This scale measures symptoms of poor sleep quality. \\
+Scores greater than 10 suggest problems with insomnia. \\ \\
+
+
+<% @fosq = ActionController::Base.helpers.report_fosq(@data) %>
+\begin{Large}\textbf{Impact of Sleep on Daily Activities}\end{Large} (FOSQ-10) \hfill
+<% if @fosq %>\begin{Large}\textbf{<%= latex_safe @fosq %>}\end{Large}<% else %>\textit{Complete surveys at MyApnea.Org to get your score.}<% end %> \\
+
+This scale measures problems in every day functioning associated with sleep problems. \\
+The score range is 5-20 points. A higher score means you have a better functional status. You can follow your score over time- if it increases, this suggests improvement. \\ \\
+
+
+<% @sleepiness_scale = ActionController::Base.helpers.report_ess(@data) %>
+\begin{Large}\textbf{Sleepiness Scale}\end{Large} (Epworth sleepiness scale) \hfill
+<% if @sleepiness_scale %>\begin{Large}\textbf{<%= latex_safe @sleepiness_scale %>}\end{Large}<% else %>\textit{Complete surveys at MyApnea.Org to get your score.}<% end %> \\
+
+The scale measures how sleepy you are during the day. \\
+Scores higher than 10, suggest excessive sleepiness. This could be due to not getting enough sleep at night or poor quality of sleep due to a sleep disorder. If you score high, talk to your doctor about your sleep and sleepiness. \\ \\
+
+
+<% @well_being = ActionController::Base.helpers.report_well_being(@data) %>
+\begin{Large}\textbf{Well-Being Index}\end{Large} (World Health Organization) \hfill
+<% if @well_being %>\begin{Large}\textbf{<%= latex_safe @well_being %>}\end{Large}<% else %>\textit{Complete surveys at MyApnea.Org to get your score.}<% end %> \\
+
+This scale measures recent feelings of mood and well-being. \\
+Scores vary from 0-100. A score lower than 50 (or if you answered 0 or 1 on any question) suggests symptoms of depression, which you should talk to your doctor about. \\ \\
+
+
+<% @bmi = ActionController::Base.helpers.report_bmi(@data) %>
+\begin{Large}\textbf{BMI}\end{Large} (Body mass index) \hfill
+<% if @bmi %>\begin{Large}\textbf{<%= latex_safe format("%0.1f", @bmi) %>}\end{Large}<% else %>\textit{Complete surveys at MyApnea.Org to get your score.}<% end %> \\
+
+BMI is calculated based on your height and weight. \\
+A BMI over 25 puts you in the 'overweight' category. Research has shown that people in this category are the more likely to develop severe obstructive sleep apnea. \\ \\

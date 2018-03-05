@@ -5,10 +5,12 @@ class SliceController < ApplicationController
   # before_action :authenticate_user!
   before_action :find_project_or_redirect, only: [
     :consent, :print_consent, :enrollment_consent, :enrollment_exit,
-    :overview, :overview_report, :leave_study, :submit_leave_study
+    :overview, :overview_report, :print_overview_report, :leave_study,
+    :submit_leave_study
   ]
   before_action :find_subject_or_redirect, only: [
-    :overview, :overview_report, :leave_study, :submit_leave_study
+    :overview, :overview_report, :print_overview_report, :leave_study,
+    :submit_leave_study
   ]
 
   # GET /surveys
@@ -51,6 +53,19 @@ class SliceController < ApplicationController
     variables = insomnia_variables + fosq_variables + ess_variables + who_variables + bmi_variables
     @data = @subject.data(variables)
     render layout: "layouts/full_page_sidebar"
+  end
+
+  # GET /research/:project/overview-report.pdf
+  def print_overview_report
+    redirect_to slice_research_path unless current_user
+    variables = insomnia_variables + fosq_variables + ess_variables + who_variables + bmi_variables
+    @data = @subject.data(variables)
+    pdf_file = Rails.root.join(@subject.generate_overview_report_pdf!(@data))
+    if File.exist?(pdf_file)
+      send_file(pdf_file, filename: "#{@project.name.titleize.gsub(/\s/, "")}SleepReport.pdf", type: "application/pdf", disposition: "inline")
+    else
+      redirect_to slice_overview_report_path(@project), alert: "Unable to generate PDF at this time."
+    end
   end
 
   # GET /research/:project/leave-study
