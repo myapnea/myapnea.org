@@ -112,33 +112,56 @@ class SliceController < ApplicationController
 
   def insomnia_variables
     [
-      "is_falling_asleep", "is_wake_several_times", "is_wake_earlier",
-      "is_trouble_back_sleep", "is_overall_sleep_quality"
+      { event: "baseline", variable: "is_falling_asleep" },
+      { event: "baseline", variable: "is_wake_several_times" },
+      { event: "baseline", variable: "is_wake_earlier" },
+      { event: "baseline", variable: "is_trouble_back_sleep" },
+      { event: "baseline", variable: "is_overall_sleep_quality" }
     ]
   end
 
   def fosq_variables
     [
-      "fosq_concentrating", "fosq_remembering", "fosq_operating_motor_less100",
-      "fosq_operating_motor_greater100", "fosq_visiting", "fosq_relationships",
-      "fosq_watching_movie", "fosq_active_evening", "fosq_active_morning",
-      "fosq_desire"
+      { event: "baseline", variable: "fosq_concentrating" },
+      { event: "baseline", variable: "fosq_remembering" },
+      { event: "baseline", variable: "fosq_operating_motor_less100" },
+      { event: "baseline", variable: "fosq_operating_motor_greater100" },
+      { event: "baseline", variable: "fosq_visiting" },
+      { event: "baseline", variable: "fosq_relationships" },
+      { event: "baseline", variable: "fosq_watching_movie" },
+      { event: "baseline", variable: "fosq_active_evening" },
+      { event: "baseline", variable: "fosq_active_morning" },
+      { event: "baseline", variable: "fosq_desire" }
     ]
   end
 
   def ess_variables
     [
-      "ess_sitting_reading", "ess_watching_tv", "ess_public_place",
-      "ess_car_passenger", "ess_lying_down_rest", "ess_sitting_talking",
-      "ess_after_lunch", "ess_traffic"
+      { event: "baseline", variable: "ess_sitting_reading" },
+      { event: "baseline", variable: "ess_watching_tv" },
+      { event: "baseline", variable: "ess_public_place" },
+      { event: "baseline", variable: "ess_car_passenger" },
+      { event: "baseline", variable: "ess_lying_down_rest" },
+      { event: "baseline", variable: "ess_sitting_talking" },
+      { event: "baseline", variable: "ess_after_lunch" },
+      { event: "baseline", variable: "ess_traffic" }
     ]
   end
 
   def who_variables
-    ["who_cheerful", "who_calm", "who_active", "who_fresh", "who_things_interest_me"]
+    [
+      { event: "baseline", variable: "who_cheerful" },
+      { event: "baseline", variable: "who_calm" },
+      { event: "baseline", variable: "who_active" },
+      { event: "baseline", variable: "who_fresh" },
+      { event: "baseline", variable: "who_things_interest_me" }
+    ]
   end
 
   def bmi_variables
-    ["dem_height", "dem_weight"]
+    [
+      { event: "baseline", variable: "dem_height" },
+      { event: "baseline", variable: "dem_weight" }
+    ]
   end
 end
