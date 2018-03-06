@@ -43,8 +43,8 @@
               %tr
                 %td.nowrap
                   %i.fa.fa-bar-chart
-                  = link_to slice_surveys_report_path(@project, subject_survey.event, subject_survey.design) do
-                    view report
+                  = link_to slice_surveys_report_path(@project, subject_survey.event, subject_survey.design), class: "small" do
+                    View report
                 %td= subject_survey.design.titleize
         - if @subject.consented_at.to_date == completed_date
           - consent_date_found = true
