@@ -1,0 +1,5 @@
+.subject-timeline-item {
+  border-left: 4px solid $p100-blue;
+  margin-bottom: $spacer;
+  padding-left: map-get($spacers, 1)
+}

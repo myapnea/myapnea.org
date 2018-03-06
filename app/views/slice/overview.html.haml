@@ -23,28 +23,29 @@
   .brand-title Timeline
 
   - @subject.subject_surveys.where.not(completed_at: nil).order(completed_at: :desc).group_by{ |s| s.completed_at.to_date }.each do |completed_date, subject_surveys|
-    .mb-1.bordered.border-bottom.border-primary
-      %strong= completed_date.strftime("%B %-d, %Y")
-    .mb-3
-      Completed
-      - count = subject_surveys.count
-      - if count == 1
-        - subject_surveys.each do |subject_survey|
-          = succeed "." do
-            = subject_survey.design
-      - else
-        - subject_surveys.each_with_index do |subject_survey, index|
-          - if index == count - 1
-            and
+    .subject-timeline-item
+      .mb-1
+        %strong= completed_date.strftime("%B %-d, %Y")
+      %div
+        Completed
+        - count = subject_surveys.count
+        - if count == 1
+          - subject_surveys.each do |subject_survey|
             = succeed "." do
               = subject_survey.design
-          - elsif count == 2
-            = subject_survey.design
-          - else
-            = succeed ", " do
+        - else
+          - subject_surveys.each_with_index do |subject_survey, index|
+            - if index == count - 1
+              and
+              = succeed "." do
+                = subject_survey.design
+            - elsif count == 2
               = subject_survey.design
+            - else
+              = succeed ", " do
+                = subject_survey.design
 
-  .mb-3.bordered.border-bottom.border-primary
+  .subject-timeline-item
     %strong= @subject.consented_at.strftime("%B %-d, %Y")
     joined the study.
 
