@@ -4,10 +4,10 @@ one:
   subject: one
   event: baseline
   design: demographics
-  completed: true
+  completed_at: 2018-03-06 09:38:25
 
 two:
   subject: one
   event: baseline
   design: familyhx
-  completed: false
+  # completed_at:
