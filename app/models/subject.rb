@@ -5,6 +5,7 @@
 class Subject < ApplicationRecord
   # Concerns
   include Latexable
+  include Reportable
 
   # Validations
   validates :user_id, uniqueness: { scope: :project_id }

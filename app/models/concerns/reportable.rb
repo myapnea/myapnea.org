@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 # Computes scores for MyApnea core summary report.
-module ReportsHelper
+module Reportable
+  extend ActiveSupport::Concern
+
   def report_insomnia(data)
     insoms = []
     insoms << data.dig("data", "baseline", "is_falling_asleep")

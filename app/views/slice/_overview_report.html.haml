@@ -10,11 +10,11 @@
     %p
       Once you consent and complete all the surveys, you will receive a personal sleep health report that you can print and bring to your doctor. The scores are based on commonly used measures. Regardless of your scores, you should discuss any sleep health concerns with your doctor.
 
-  - @insomnia_scale = report_insomnia(@data)
-  - @fosq = report_fosq(@data)
-  - @sleepiness_scale = report_ess(@data)
-  - @well_being = report_well_being(@data)
-  - @bmi = report_bmi(@data)
+  - @insomnia_scale = @subject.report_insomnia(@data)
+  - @fosq = @subject.report_fosq(@data)
+  - @sleepiness_scale = @subject.report_ess(@data)
+  - @well_being = @subject.report_well_being(@data)
+  - @bmi = @subject.report_bmi(@data)
 
   .mb-5
     .brand-title
