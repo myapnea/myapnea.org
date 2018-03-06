@@ -89,19 +89,8 @@ class Subject < ApplicationRecord
 
   def next_survey
     @next_survey ||= begin
-      completed_surveys = subject_surveys.where.not(completed_at: nil).pluck(:event, :design)
-      event = subject_events.find do |se|
-        se.percent != 100 &&
-          se.event_designs.count do |ed|
-            !completed_surveys.include?([ed.event_id.downcase, ed.design_id.downcase])
-          end.positive?
-      end
-      if event
-        event.event_designs.find do |ed|
-          !ed.complete?(self) &&
-            !completed_surveys.include?([ed.event_id.downcase, ed.design_id.downcase])
-        end
-      end
+      event = subject_events.find { |se| !se.complete?(self) }
+      event&.event_designs&.find { |ed| !ed.complete?(self) }
     end
   end
 

@@ -11,18 +11,19 @@
               .research-study-name= project.name
               = project.short_description
         .research-study-footer.d-flex.flex-column.flex-sm-row
-          .ml-3.d-inline-block
-            %i.fa.fa-circle-o-notch.fa-spin{ style: "color: #4caf50;" }
-            %small
-              Recruiting
-          .ml-3.d-inline-block
+          .ml-3.d-inline-block{ class: project.slug == "myapnea-core" ? nil : "mr-auto" }
             %i.fa.fa-users.text-accent
             %small
-              1,200+ participants
-          .ml-3.mr-auto.d-inline-block
-            %i.fa.fa-heartbeat.text-accent
-            %small
-              17 surveys
+              Recruiting
+          - if project.slug == "myapnea-core"
+            .ml-3.d-inline-block
+              %i.fa.fa-heartbeat.text-accent
+              %small
+                17 surveys
+            .ml-3.mr-auto.d-inline-block
+              %i.fa.fa-pie-chart.text-accent
+              %small
+                Personalized report
           - if project.slug == "myapnea-core" && false
             .ml-3.d-inline-block
               %i.fa.fa-pie-chart.text-accent
