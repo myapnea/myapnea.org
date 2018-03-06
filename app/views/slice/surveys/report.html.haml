@@ -25,6 +25,6 @@
       .dashboard-container= design_option.dig("variable_type")
 
 .mb-5.text-center
-  = link_to slice_surveys_path(@project), class: "btn btn-accent btn-lg btn-shadow" do
+  = link_to slice_overview_path(@project), class: "btn btn-primary btn-shadow" do
     %i.fa.fa-caret-left
-    Back to Surveys
+    Back to overview

@@ -3,7 +3,7 @@
 = render "projects/theme", project: @project
 
 - content_for :header do
-  .header-container
+  .header-container{ style: "border-bottom: 0;" }
     .container
       %h1.page-heading
         = @json.dig("design", "name")
@@ -21,10 +21,10 @@
       = form.hidden_field :review, value: params[:review] || 0
       - if @section
         = render "slice/surveys/section", section: @section
-        = link_to "#", data: { object: "submit-and-continue", target: "#survey-form" }, class: "btn btn-primary btn-shadow float-left" do
-          Continue
-          %i.fa.fa-caret-right
-        .clearfix
+        .survey-submit-container
+          = link_to "#", data: { object: "submit-and-continue", target: "#survey-form" }, class: "btn btn-primary btn-shadow" do
+            Continue
+            %i.fa.fa-caret-right
       - elsif @variable
         .survey-question-container
           .survey-question
@@ -39,8 +39,7 @@
             - else
               %p.lead.text-muted.d-none= @variable.variable_type
 
-        .float-left
+        .survey-submit-container
           = link_to "#", data: { object: "submit-and-continue", target: "#survey-form" }, class: "btn btn-primary btn-shadow" do
             Continue
             %i.fa.fa-caret-right
-        .clearfix

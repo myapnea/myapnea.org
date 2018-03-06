@@ -3,12 +3,12 @@
   @include scale-images;
 
   background-color: $dashboard-bg;
-  border-radius: 3px;
+  border-radius: $border-radius;
   box-shadow: 0 1px 5px $box-shadow-color;
   color: $body-color;
-  margin-bottom: 40px;
+  margin-bottom: map-get($spacers, 4);
   padding: 10px;
-  position: relative;
+  // position: relative; // TODO: Remove
 
   > div,
   > table {

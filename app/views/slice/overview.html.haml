@@ -22,32 +22,42 @@
 .dashboard-container
   .brand-title Timeline
 
+  - consent_date_found = false
   - @subject.subject_surveys.where.not(completed_at: nil).order(completed_at: :desc).group_by{ |s| s.completed_at.to_date }.each do |completed_date, subject_surveys|
     .subject-timeline-item
       .mb-1
         %strong= completed_date.strftime("%B %-d, %Y")
       %div
-        Completed
-        - count = subject_surveys.count
-        - if count == 1
-          - subject_surveys.each do |subject_survey|
-            = succeed "." do
-              = subject_survey.design
-        - else
-          - subject_surveys.each_with_index do |subject_survey, index|
-            - if index == count - 1
-              and
-              = succeed "." do
-                = subject_survey.design
-            - elsif count == 2
-              = subject_survey.design
-            - else
-              = succeed ", " do
-                = subject_survey.design
+        .small
+          Completed
+          - if subject_surveys.count == 1
+            a survey.
+          - else
+            = subject_surveys.count
+            surveys.
+        %table.table.table-sm.table-borderless.table-striped
+          %col{ width: "1px" }
+          %col
+          %tbody
+            - subject_surveys.sort_by { |s| s.completed_at }.reverse_each do |subject_survey|
+              %tr
+                %td.nowrap
+                  %i.fa.fa-bar-chart
+                  = link_to slice_surveys_report_path(@project, subject_survey.event, subject_survey.design) do
+                    view report
+                %td= subject_survey.design.titleize
+        - if @subject.consented_at.to_date == completed_date
+          - consent_date_found = true
+          .small
+            Joined the study.
 
-  .subject-timeline-item
-    %strong= @subject.consented_at.strftime("%B %-d, %Y")
-    joined the study.
+  - unless consent_date_found
+    .subject-timeline-item
+      .mb-1
+        %strong= @subject.consented_at.strftime("%B %-d, %Y")
+      %div
+        .small
+          Joined the study.
 
   - if false
     %p.lead.text-center.mt-5 Study Timeline

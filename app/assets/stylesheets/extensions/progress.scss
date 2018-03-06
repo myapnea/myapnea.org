@@ -1,25 +1,23 @@
 .progress-simple {
-  border-radius: 0;
-  height: 5px;
-  margin-bottom: 0;
-}
+  background-color: $p100-orange;
 
-.progress-bar {
-  transition: width 600ms ease;
-}
-
-.myapnea-light-bg,
-.myapnea-sky-bg,
-.myapnea-blue-bg,
-.myapnea-sunset-bg {
-  .progress-simple {
-    background-color: $p100-orange;
-
-    .progress-bar {
-      background-color: $p500-orange;
-    }
+  .progress-bar {
+    background-color: $p300-orange;
   }
 }
+
+// .myapnea-light-bg,
+// .myapnea-sky-bg,
+// .myapnea-blue-bg,
+// .myapnea-sunset-bg {
+//   .progress-simple {
+//     background-color: $p100-orange;
+
+//     .progress-bar {
+//       background-color: $p500-orange;
+//     }
+//   }
+// }
 
 .myapnea-orange-bg {
   .progress-simple {
@@ -31,7 +29,6 @@
   }
 }
 
-.myapnea-orange-bg,
 .myapnea-night-bg {
   .progress-simple {
     background-color: $p100-indigo;
