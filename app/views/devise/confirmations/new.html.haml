@@ -1,0 +1,19 @@
+- @title = "Resend confirmation instructions"
+
+- @menu = "dark-blue"
+- @body = "dark-blue"
+- @footer = "dark-blue"
+
+.page-box.last-box.d-flex.flex-column.justify-content-center.myapnea-dark-blue-light-center-bg
+  .container
+    %p.lead.text-center.text-white= @title
+
+    .sign-up-form
+      .sign-up-form-title
+        Confirm my account
+
+      = form_with model: resource, as: resource_name, url: confirmation_path(resource_name), method: :post, local: true do |form|
+        = render "forms/vertical/email_field", form: form, object: resource, key: :email
+
+        .form-group.submit-btn-container
+          = form.submit "Resend confirmation instructions", class: "btn btn-primary btn-block btn-shadow"

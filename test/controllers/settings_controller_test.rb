@@ -129,8 +129,9 @@ class SettingsControllerTest < ActionDispatch::IntegrationTest
     login(@regular)
     patch settings_update_email_url, params: { user: { email: "newemail@example.com" } }
     @regular.reload
-    assert_equal "newemail@example.com", @regular.email
-    assert_equal "Email successfully updated.", flash[:notice]
+    assert_equal "user_1@example.com", @regular.email
+    assert_equal "newemail@example.com", @regular.unconfirmed_email
+    assert_equal I18n.t("devise.confirmations.send_instructions"), flash[:notice]
     assert_redirected_to settings_email_url
   end
 

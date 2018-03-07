@@ -9,7 +9,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,
-         :trackable, :validatable, :timeoutable, :lockable
+         :trackable, :validatable, :timeoutable, :lockable, :confirmable
 
   # Concerns
   include Deletable
@@ -133,6 +133,10 @@ class User < ApplicationRecord
 
   def consenting?
     consenting == "1"
+  end
+
+  def confirmation_required?
+    !BANNED_EMAILS.find { |banned_email| !(/#{banned_email["email"]}$/ =~ email).nil? }.nil?
   end
 
   private

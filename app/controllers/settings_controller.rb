@@ -68,7 +68,7 @@ class SettingsController < ApplicationController
   # PATCH /settings/email
   def update_email
     if current_user.update(email_params)
-      redirect_to settings_email_path, notice: "Email successfully updated."
+      redirect_to settings_email_path, notice: I18n.t("devise.confirmations.send_instructions")
     else
       render :email
     end

@@ -7,6 +7,9 @@
   - Admins can now perma-delete replies on blog posts and forum topics
 - **Blog Changes**
   - Reduced display of deleted replies without replies of their own on the blog
+- **Email Changes**
+  - Started testing conditional email confirmation requirements
+  - Changing account email now requires reconfirming the change via email
 - **Forum Changes**
   - Forum posts now show link text instead of URL in preview on dashboard
 - **Survey Changes**
