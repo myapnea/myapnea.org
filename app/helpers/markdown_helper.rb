@@ -24,7 +24,7 @@ module MarkdownHelper
   end
 
   def remove_links(text)
-    text.to_s.gsub(%r{<a[^>]*? href="(.*?)">(.*?)</a>}m, "\\1")
+    text.to_s.gsub(%r{<a[^>]*? href="(.*?)">(.*?)</a>}m, "\\2")
   end
 
   def wrap_images(text)

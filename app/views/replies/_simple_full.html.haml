@@ -8,7 +8,7 @@
       .small
         .float-right= link_to reply.parent.title, reply, data: { turbolinks: false }, class: "link-muted"
         .d-inline.d-lg-none
-          - picture_content = profile_picture_tag(reply.user, size: 16, style: "max-height:#{16+3}px;border-radius:4px")
+          - picture_content = profile_picture_tag(reply.user, size: 16, style: "max-height: #{16+3}px;")
           = link_to picture_content, posts_member_path(reply.user.username)
         = link_to reply.user.username, posts_member_path(reply.user.username)
       = link_to reply, data: { turbolinks: false }, class: "link-unstyled breakword" do

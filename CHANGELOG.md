@@ -3,6 +3,8 @@
 ### Enhancements
 - **General Changes**
   - Updated styling of Terms of Access and Terms and Conditions
+- **Forum Changes**
+  - Forum posts now show link text instead of URL in preview on dashboard
 - **Survey Changes**
   - Added the MyApnea core survey report
   - Updated interface to account for surveys that were completed with skipped

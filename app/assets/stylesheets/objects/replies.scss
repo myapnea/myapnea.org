@@ -92,10 +92,12 @@
       content: "Zoom in";
       display: inline-block;
       left: 0;
+      overflow: hidden;
       padding: $spacer;
       position: absolute;
       right: 0;
       text-align: center;
+      white-space: nowrap;
     }
 
     &.img-zoom-large-view {
