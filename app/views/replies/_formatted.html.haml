@@ -1,4 +1,9 @@
+- formatted_text = simple_markdown(sanitize(reply.description.gsub(/</, "&lt;")).gsub('&gt;', '>'), allow_links: reply.display_links?, allow_tables: reply.display_links?, allow_images: reply.display_links?, table_class: "table table-striped")
+
 - if reply.deleted?
-  %code.text-muted [deleted]
+  - if current_user&.admin?
+    .text-muted{ style: "text-decoration: line-through;" }= formatted_text
+  - else
+    %code.text-muted [deleted]
 - else
-  = simple_markdown(sanitize(reply.description.gsub(/</, "&lt;")).gsub('&gt;', '>'), allow_links: reply.display_links?, allow_tables: reply.display_links?, allow_images: reply.display_links?, table_class: "table table-striped")
+  = formatted_text

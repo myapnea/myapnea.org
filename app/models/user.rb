@@ -103,6 +103,14 @@ class User < ApplicationRecord
     end
   end
 
+  def deletable_replies
+    if moderator?
+      Reply
+    else
+      replies
+    end
+  end
+
   def myapnea_id
     format("MA%06d", id)
   end

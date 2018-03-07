@@ -17,7 +17,7 @@ class Reply < ApplicationRecord
   strip :description
 
   # Scopes
-  scope :points, -> { select('replies.*, COALESCE(SUM(reply_users.vote), 0) points').joins('LEFT JOIN reply_users ON reply_users.reply_id = replies.id').group('replies.id') }
+  scope :points, -> { select("replies.*, COALESCE(SUM(reply_users.vote), 0) points").joins("LEFT JOIN reply_users ON reply_users.reply_id = replies.id").group("replies.id") }
   scope :shadow_banned, -> (arg) { joins(:user).merge(User.where(shadow_banned: [nil, false]).or(User.where(id: arg))) }
 
   # Validations
@@ -33,7 +33,11 @@ class Reply < ApplicationRecord
   # Methods
   def destroy
     super
+    Notification.where(reply_id: id).destroy_all
     update_pg_search_document
+    return unless parent.replies.where(reply_id: id).count.zero?
+    reply_users.delete_all
+    delete
   end
 
   def deleted_or_parent_deleted?
@@ -151,7 +155,7 @@ class Reply < ApplicationRecord
 
   def email_count
     BANNED_EMAILS.each do |banned_email|
-      return banned_email['score'] unless (/#{banned_email['email']}$/ =~ user.email).nil?
+      return banned_email["score"] unless (/#{banned_email["email"]}$/ =~ user.email).nil?
     end
     0
   end

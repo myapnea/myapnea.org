@@ -5,7 +5,8 @@ class RepliesController < ApplicationController
   before_action :authenticate_user!, except: [:vote, :show]
   before_action :find_parent_or_redirect, only: [:create]
   before_action :find_viewable_reply_or_redirect, only: [:show, :vote]
-  before_action :find_editable_reply_or_redirect, only: [:edit, :update, :destroy]
+  before_action :find_editable_reply_or_redirect, only: [:edit, :update]
+  before_action :find_deletable_reply_or_redirect, only: [:destroy]
 
   # # GET /replies
   # def index
@@ -105,6 +106,11 @@ class RepliesController < ApplicationController
 
   def find_editable_reply_or_redirect
     @reply = current_user.editable_replies.find_by(id: params[:id])
+    redirect_without_reply
+  end
+
+  def find_deletable_reply_or_redirect
+    @reply = current_user.deletable_replies.find_by(id: params[:id])
     redirect_without_reply
   end
 

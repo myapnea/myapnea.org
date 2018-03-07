@@ -3,6 +3,8 @@
 ### Enhancements
 - **General Changes**
   - Updated styling of Terms of Access and Terms and Conditions
+- **Blog Changes**
+  - Reduced display of deleted replies without replies of their own on the blog
 - **Forum Changes**
   - Forum posts now show link text instead of URL in preview on dashboard
 - **Survey Changes**

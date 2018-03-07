@@ -27,9 +27,12 @@ class BlogController < ApplicationController
     @page = (params[:page].to_i > 1 ? params[:page].to_i : 1)
     @order = scrub_order(Reply, params[:order], "points desc")
     @order = params[:order] if ["points", "points desc"].include?(params[:order])
-    @replies = @broadcast.replies.points.includes(:broadcast)
-                         .where(reply_id: nil).reorder(@order)
-                         .page(params[:page]).per(Reply::REPLIES_PER_PAGE)
+    reply_scope = \
+      @broadcast.replies.points.includes(:broadcast)
+                .where(reply_id: nil).reorder(@order)
+                .page(@page).per(Reply::REPLIES_PER_PAGE)
+    reply_scope = reply_scope.shadow_banned(current_user&.id) unless current_user && current_user.admin?
+    @replies = reply_scope
     @broadcast.increment! :view_count
     render layout: "layouts/full_page"
   end
