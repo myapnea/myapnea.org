@@ -3,6 +3,8 @@
 ### Enhancements
 - **General Changes**
   - Updated styling of Terms of Access and Terms and Conditions
+- **Admin Changes**
+  - Admins can now perma-delete replies on blog posts and forum topics
 - **Blog Changes**
   - Reduced display of deleted replies without replies of their own on the blog
 - **Forum Changes**
