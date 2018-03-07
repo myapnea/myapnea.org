@@ -21,6 +21,10 @@
 - Removed deprecated survey module
 - Removed deprecated broadcast comments
 
+### Bug Fix
+- Fixed a bug that prevented blog post and forum topic previews and image
+  uploads from working correctly
+
 ## 16.1.2 (February 13, 2018)
 
 ### Bug Fix
