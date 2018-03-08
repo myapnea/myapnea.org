@@ -1,4 +1,4 @@
-## 17.0.0
+## 17.0.0 (March 8, 2018)
 
 ### Enhancements
 - **General Changes**
