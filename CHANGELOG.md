@@ -4,6 +4,8 @@
 - **Email Changes**
   - Email confirmation is now required for all accounts
   - Added detection of disposable email addresses
+- **Survey Changes**
+  - Updated "Insomnia Scale" text on summary report
 
 ## 17.0.0 (March 8, 2018)
 
