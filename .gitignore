@@ -41,6 +41,7 @@
 /doc/app/*
 /app/assets/images/videos/*
 /lib/data/reports/**/*
+/lib/data/spam/*
 
 /.sass-cache/
 /coverage/*
