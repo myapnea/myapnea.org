@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     resources :replies, only: :index
     get :spam_inbox, path: "spam-inbox"
     post :unspamban, path: "unspamban/:id"
+    post :destroy_spammer, path: "empty-spam/:id"
     post :empty_spam, path: "empty-spam"
     resources :categories
     resources :exports do

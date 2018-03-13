@@ -1,6 +1,12 @@
 Dear <%= @user.username %>,
 
 Your registration with MyApnea was successful.
+<% if !@user.disposable_email? && @user.confirmation_token.present? %>
+
+Please confirm your account to get started:
+
+<%= "#{ENV["website_url"]}/confirmation?confirmation_token=#{@user.confirmation_token}" %>
+<% end %>
 
 Thank you for joining our growing network!
 

@@ -26,6 +26,17 @@ class AdminController < ApplicationController
     redirect_to admin_spam_inbox_path
   end
 
+  # POST /admin/empty-spam/:id
+  def destroy_spammer
+    @spammer = spammers.find_by(id: params[:id])
+    return unless @spammer
+    @spammer.topics.destroy_all
+    Notification.where(reply: @spammer.replies).destroy_all
+    @spammer.update(spammer: true)
+    @spammer.destroy
+    @spammers = spammers
+  end
+
   # POST /admin/empty-spam
   def empty_spam
     Topic.current.where(user: spammers).destroy_all

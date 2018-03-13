@@ -16,17 +16,20 @@
 - if @spammers.present?
   .dashboard-container
     %table.table.table-striped.table-borderless.table-hover
+      %col
+      %col
+      %col{ width: "1px" }
       %thead
         %tr
           %th Spammer
           %th Last Reply
           %th.text-center Actions
       - @spammers.each do |spammer|
-        %tr
+        %tr{ id: "spammer-#{spammer.id}" }
           %td
             = link_to spammer.username, spammer
             .small
-              = spammer.email
+              = render "users/email", user: spammer
             .small
               = spammer.full_name
           %td.small
@@ -34,8 +37,9 @@
             - if reply
               = link_to "view topic", reply
               = reply.description if reply
-          %td.text-center
-            = link_to "Not a spammer", admin_unspamban_path(spammer), method: :post, class: "btn btn-sm btn-light"
+          %td.text-center.nowrap
+            = link_to "Not a spammer", admin_unspamban_path(spammer), method: :post, class: "btn btn-sm btn-outline-dark"
+            = link_to "Delete spammer", admin_destroy_spammer_path(spammer), method: :post, remote: true, class: "btn btn-sm btn-danger", data: { confirm: "DELETE #{spammer.email}?" }
 
 - else
   .jumbotron.jumbotron-action.jumbotron-shadow

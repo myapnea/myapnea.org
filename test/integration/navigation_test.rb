@@ -32,8 +32,8 @@ class NavigationTest < ActionDispatch::IntegrationTest
         password: "registerpassword098765"
       }
     }
-    assert_equal I18n.t("devise.registrations.signed_up"), flash[:notice]
-    assert_redirected_to dashboard_path
+    assert_equal I18n.t("devise.registrations.signed_up_but_unconfirmed"), flash[:notice]
+    assert_redirected_to root_url
   end
 
   test "should login regular user" do
@@ -61,7 +61,7 @@ class NavigationTest < ActionDispatch::IntegrationTest
     sign_in_as(@regular_user, "password")
     get topics_path
     get destroy_user_session_path
-    assert_redirected_to topics_path
+    assert_redirected_to topics_url
   end
 
   test "blog rss should not be stored in friendly forwarding after login" do

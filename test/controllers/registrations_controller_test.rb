@@ -22,7 +22,7 @@ class RegistrationsControllerTest < ActionController::TestCase
     assert_not_nil assigns(:user)
     assert_equal "SleepyDuck", assigns(:user).username
     assert_equal "new_user@example.com", assigns(:user).email
-    assert_redirected_to dashboard_path
+    assert_redirected_to root_url
   end
 
   test "should not sign up new user without required fields" do

@@ -1,8 +1,10 @@
 <% pw = User.new(password: "password").encrypted_password %>
+<% confirmed_at = Time.zone.now %>
 
 regular:
   username: AwesomeCat
   email: regular@example.com
+  confirmed_at: <%= confirmed_at %>
   encrypted_password: <%= pw %>
   emails_enabled: true
   full_name: Valid McApnea
@@ -11,18 +13,21 @@ myapnea:
   username: MyApnea
   # full_name:
   email: support@myapnea.org
+  confirmed_at: <%= confirmed_at %>
   admin: true
 
 admin:
   username: admin
   # full_name:
   email: admin@example.com
+  confirmed_at: <%= confirmed_at %>
   admin: true
   encrypted_password: <%= pw %>
 
 user_1:
   username: RubyGem
   email: user_1@example.com
+  confirmed_at: <%= confirmed_at %>
   full_name: David S Snahson
   encrypted_password: <%= pw %>
   photo: photo.png
@@ -32,6 +37,7 @@ user_1:
 user_2:
   username: user2
   email: user_2@example.com
+  confirmed_at: <%= confirmed_at %>
   # full_name:
   full_name: User 2wski
   photo: photo.png
@@ -39,6 +45,7 @@ user_2:
 user_3:
   username: user3
   email: user_3@example.com
+  confirmed_at: <%= confirmed_at %>
   # full_name:
   full_name: User 3wski
   photo: photo.png
@@ -46,6 +53,7 @@ user_3:
 user_4:
   username: user4
   email: user_4@example.com
+  confirmed_at: <%= confirmed_at %>
   # full_name:
   full_name: User 4wski
   photo: photo.png
@@ -54,12 +62,14 @@ participant:
   username: participant
   full_name: Research Participant
   email: research_participant@example.com
+  confirmed_at: <%= confirmed_at %>
   encrypted_password: <%= pw %>
 
 moderator:
   username: moderator
   # full_name:
   email: moderator@example.com
+  confirmed_at: <%= confirmed_at %>
   moderator: true
   encrypted_password: <%= pw %>
 
@@ -67,6 +77,7 @@ deleted:
   username: zombieboy
   full_name: Zombie Boy
   email: zombieboy@example.com
+  confirmed_at: <%= confirmed_at %>
   encrypted_password: <%= pw %>
   deleted: true
 
@@ -74,6 +85,7 @@ community_contributor:
   username: communitycontributor
   full_name: Community Contributor
   email: community_contributor@example.com
+  confirmed_at: <%= confirmed_at %>
   encrypted_password: ""
   community_contributor: true
 
@@ -81,6 +93,7 @@ shadow_banned:
   username: darkshadow
   full_name: Dark Shadow
   email: shadow_banned@example.com
+  confirmed_at: <%= confirmed_at %>
   encrypted_password: <%= pw %>
   shadow_banned: true
 
@@ -88,6 +101,7 @@ new_spammer:
   username: innocentant
   full_name: Innocent Ant
   email: new_spammer@example.com
+  confirmed_at: <%= confirmed_at %>
   encrypted_password: <%= pw %>
   # shadow_banned:
 
@@ -95,6 +109,7 @@ verified_user:
   username: prolificuser
   full_name: Prolific Poster
   email: verified_user@example.com
+  confirmed_at: <%= confirmed_at %>
   encrypted_password: <%= pw %>
   shadow_banned: false
 
@@ -102,5 +117,6 @@ content_manager:
   username: contentmanager
   full_name: Content Manager
   email: content_manager@example.com
+  confirmed_at: <%= confirmed_at %>
   encrypted_password: ""
   content_manager: true

@@ -135,8 +135,18 @@ class User < ApplicationRecord
     consenting == "1"
   end
 
-  def confirmation_required?
-    !BANNED_EMAILS.find { |banned_email| !(/#{banned_email["email"]}$/ =~ email).nil? }.nil?
+  def disposable_email?
+    DISPOSABLE_EMAILS.include?(email.split("@")[1])
+  end
+
+  def send_confirmation_instructions
+    return if disposable_email?
+    super
+  end
+
+  def send_on_create_confirmation_instructions
+    return if disposable_email?
+    send_welcome_email_in_background!
   end
 
   private

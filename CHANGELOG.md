@@ -1,5 +1,10 @@
 ## 17.1.0
 
+### Enhancements
+- **Email Changes**
+  - Email confirmation is now required for all accounts
+  - Added detection of disposable email addresses
+
 ## 17.0.0 (March 8, 2018)
 
 ### Enhancements

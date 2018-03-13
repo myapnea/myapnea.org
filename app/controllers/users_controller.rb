@@ -11,11 +11,11 @@ class UsersController < ApplicationController
 
   # GET /users
   def index
-    user_scope = User.current.search(params[:search]).order(current_sign_in_at: :desc)
-    @order = scrub_order(User, params[:order], "current_sign_in_at desc")
+    user_scope = User.current.search(params[:search])
+    @order = scrub_order(User, params[:order], Arel.sql("(CASE WHEN (users.current_sign_in_at IS NULL) THEN users.created_at ELSE users.current_sign_in_at END) desc"))
     @order = params[:order] if ["reply_count", "reply_count desc"].include?(params[:order])
     user_scope = user_scope.no_spammer_or_shadow_banned if current_user.report_manager?
-    @users = user_scope.reply_count.reorder(@order).page(params[:page]).per(40)
+    @users = user_scope.reply_count.order(@order).page(params[:page]).per(40)
   end
 
   # GET /users/export
@@ -86,7 +86,7 @@ class UsersController < ApplicationController
     params.require(:user).permit(
       :full_name, :email, :username, :emails_enabled,
       :include_in_exports, :admin, :moderator, :community_contributor,
-      :shadow_banned, :content_manager, :report_manager, :profile_bio,
+      :shadow_banned, :spammer, :content_manager, :report_manager, :profile_bio,
       :profile_location
     )
   end
