@@ -1,4 +1,4 @@
-## 17.1.0
+## 17.1.0 (March 14, 2018)
 
 ### Enhancements
 - **Admin Changes**
