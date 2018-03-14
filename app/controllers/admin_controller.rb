@@ -11,6 +11,17 @@ class AdminController < ApplicationController
   # def dashboard
   # end
 
+  # GET /admin/spam-report
+  def spam_report
+    @year = params[:year]
+    @spammers = User.where(spammer: true)
+    # @shadow_banned = User.where(shadow_banned: true)
+    if @year
+      @spammers = @spammers.where("EXTRACT(YEAR FROM created_at)::int = ?", @year)
+      # @shadow_banned = @shadow_banned.where("EXTRACT(YEAR FROM created_at)::int = ?", @year)
+    end
+  end
+
   # GET /admin/spam-inbox
   def spam_inbox
     @spammers = spammers

@@ -1,6 +1,8 @@
 ## 17.1.0
 
 ### Enhancements
+- **Admin Changes**
+  - Added an admin spam report
 - **Email Changes**
   - Email confirmation is now required for all accounts
   - Added detection of disposable email addresses

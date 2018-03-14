@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :replies, only: :index
     get :spam_inbox, path: "spam-inbox"
+    get :spam_report, path: "spam-report(/:year)"
     post :unspamban, path: "unspamban/:id"
     post :destroy_spammer, path: "empty-spam/:id"
     post :empty_spam, path: "empty-spam"

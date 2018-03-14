@@ -34,6 +34,12 @@ class AdminControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to new_user_session_url
   end
 
+  test "should get spam report as admin" do
+    login(@admin)
+    get admin_spam_report_url
+    assert_response :success
+  end
+
   test "should get spam inbox as admin" do
     login(@admin)
     get admin_spam_inbox_url

@@ -11,6 +11,7 @@
           - if current_user.admin?
             %li.sidebar-menu-header Discussion
             %li= link_to "Spam Inbox", admin_spam_inbox_path, class: current_page?(admin_spam_inbox_path) ? "active" : nil
+            %li= link_to "Spam Report", admin_spam_report_path, class: current_page?(admin_spam_report_path) ? "active" : nil
             %li= link_to "Member Posts", admin_replies_path, class: current_page?(admin_replies_path) ? "active" : nil
             %li= link_to "Blog Categories", admin_categories_path, class: params[:controller] == "admin/categories" ? "active" : nil
             %li= link_to "User Images", images_path, class: params[:controller] == "images" ? "active" : nil
