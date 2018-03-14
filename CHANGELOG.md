@@ -3,6 +3,7 @@
 ### Enhancements
 - **Admin Changes**
   - Added an admin spam report
+  - Admins can flag accounts as spam from users index
 - **Email Changes**
   - Email confirmation is now required for all accounts
   - Added detection of disposable email addresses

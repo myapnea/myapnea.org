@@ -192,6 +192,9 @@ Rails.application.routes.draw do
     collection do
       get :export
     end
+    member do
+      post :spam
+    end
   end
 
   resources :topics, path: "forum" do

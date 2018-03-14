@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :check_admin_or_report_manager, only: [:index]
   before_action :check_admin, except: [:index]
-  before_action :find_user_or_redirect, only: [:show, :edit, :update, :destroy]
+  before_action :find_user_or_redirect, only: [:show, :edit, :update, :spam, :destroy]
 
   layout "layouts/full_page_sidebar"
 
@@ -59,6 +59,11 @@ class UsersController < ApplicationController
     else
       render :edit
     end
+  end
+
+  # POST /users/1/spam.js
+  def spam
+    @user.update(shadow_banned: true, spammer: true)
   end
 
   # DELETE /users/1

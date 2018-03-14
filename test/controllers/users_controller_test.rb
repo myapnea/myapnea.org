@@ -139,6 +139,15 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to users_url
   end
 
+  test "should set user as spammer for admin with ajax" do
+    login(@admin)
+    assert_difference("User.where(spammer: true).count") do
+      post spam_user_url(@user, format: "js")
+    end
+    assert_template "spam"
+    assert_response :success
+  end
+
   test "should destroy user for admin" do
     login(@admin)
     assert_difference("User.current.count", -1) do

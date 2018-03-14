@@ -35,55 +35,6 @@
           %th.text-center Actions
     - @users.each do |user|
       %tr{ id: "user-#{user.id}-container" }
-        %td.nowrap
-          = profile_picture_tag user, size: 18, style: "min-width: 18px;"
-          - if current_user.admin?
-            .d-none.d-md-inline-block= link_to user.full_name.presence || user.username, user
-          - else
-            = link_to user.full_name.presence || user.username, posts_member_path(user.username)
-        - if current_user.admin?
-          %td.small
-            - if user.confirmed?
-              %i.fa.fa-check-circle.text-success{ rel: "tooltip", data: { title: "Email confirmed", container: "body", placement: "top" } }
-            - else
-              %i.fa.fa-question-circle.text-muted{ rel: "tooltip", data: { title: "Unconfirmed email", container: "body", placement: "top" } }
-            %span.d-none.d-md-inline.breakword
-              = render "users/email", user: user
-            %span.d-inline.d-md-none
-              = link_to user, style: "word-break: break-word;" do
-                = render "users/email", user: user
-
-        %td.text-center= simple_check user.profile_present?
-        %td.d-none.d-sm-table-cell.nowrap
-          %small= abbreviated_time(user.current_sign_in_at || user.created_at)
-        - if current_user.admin?
-          %td.text-center
-            - if user.shadow_banned?
-              %i.fa.fa-eye-slash.text-muted
-        - if current_user.admin? && false
-          %td.d-none.d-sm-table-cell.text-center
-            \-1
-        %td.d-none.d-sm-table-cell.text-center
-          %small= user.sign_in_count
-        %td.d-none.d-sm-table-cell.text-center
-          %small= user.replies.count
-        - if current_user.admin?
-          %td
-            .dropdown
-              = link_to "#", class: "btn btn-light btn-sm dropdown-toggle", data: { toggle: "dropdown" } do
-                .d-inline-block.d-sm-none
-                  %i.fa.fa-cog
-                .d-none.d-sm-inline-block Actions
-                %strong.caret
-
-              .dropdown-menu.dropdown-menu-right
-                = link_to edit_user_path(user), class: "dropdown-item" do
-                  %i.fa.fa-pencil
-                  Edit
-                - unless user == current_user
-                  .dropdown-divider
-                  = link_to user, method: :delete, data: { confirm: "Delete #{user.full_name}?" }, class: "dropdown-item text-danger" do
-                    %i.fa.fa-trash
-                    Delete
+        = render "users/user", user: user
 
 .center-horizontally= paginate @users, theme: "bootstrap"
