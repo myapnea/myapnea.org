@@ -4,6 +4,7 @@
 - **Gem Changes**
   - Updated to ruby 2.5.1
   - Updated to rails 5.2.0
+  - Updated to devise 4.4.3
 
 ## 17.1.0 (March 14, 2018)
 
