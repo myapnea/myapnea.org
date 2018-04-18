@@ -115,6 +115,10 @@ $(document)
     false
   )
   .on('click', '.survey-choices input', ->
+    if $(this).closest("label").hasClass("active")
+      $(this).prop("checked", false)
+    else
+      $(this).prop("checked", true)
     toggleMutuallyExclusive($(this))
     $(".survey-choices input").closest("label").removeClass("active")
     $(".survey-choices input:checked").closest("label").addClass("active")
