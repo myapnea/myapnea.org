@@ -7,6 +7,7 @@
   - Updated to bootstrap 4.1.0
   - Updated to devise 4.4.3
   - Updated to simplecov 0.16.1
+  - Updated to capybara 3.0
 
 ## 17.1.0 (March 14, 2018)
 
