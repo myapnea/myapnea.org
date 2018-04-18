@@ -1,6 +1,8 @@
 ## 17.2.0
 
 ### Enhancments
+- **Survey Changes**
+  - Updated text on the MyApnea core survey report
 - **Gem Changes**
   - Updated to ruby 2.5.1
   - Updated to rails 5.2.0
