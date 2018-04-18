@@ -2,7 +2,7 @@
   {\Large <%= latex_safe @project.name %> Sleep Report} \\[0.5cm]
 \end{center}
 
-\textit{Once you consent and complete all the surveys, you will receive a personal sleep health report that you can print and bring to your doctor. The scores are based on commonly used measures. Regardless of your scores, you should discuss any sleep health concerns with your doctor.} \\ \\
+\textit{The scores are based on commonly used measures. Regardless of your scores, you should discuss any sleep health concerns with your doctor.} \\ \\
 
 <% @insomnia_scale = @subject.report_insomnia(@data) %>
 \begin{Large}\textbf{Insomnia Scale}\end{Large} (WHI Insomnia Rating Scale) \hfill
@@ -44,6 +44,6 @@ about. Mood can affect your sleep. \\ \\
 <% if @bmi %>\begin{Large}\textbf{<%= latex_safe format("%0.1f", @bmi) %>}\end{Large}<% else %>\textit{Complete surveys at MyApnea.Org to get your score.}<% end %> \\
 
 BMI is calculated based on your height and weight. \\
-A BMI over 25 indicates you may be overweight and a BMI over 30 indicates you
-may be obese. Research has shown that people in this category are more likely to
-develop severe obstructive sleep apnea. \\ \\
+A BMI over 25 puts you in the overweight category and a BMI over 30 puts you in
+the obese category. Research has shown that people in these categories are the
+more likely to develop severe obstructive sleep apnea. \\ \\
