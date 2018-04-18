@@ -9,6 +9,10 @@
   - Updated to simplecov 0.16.1
   - Updated to capybara 3.0
 
+### Bug Fix
+- Fixed a bug that prevented study overview report from loading when referencing
+  a subject that no longer existed
+
 ## 17.1.0 (March 14, 2018)
 
 ### Enhancements

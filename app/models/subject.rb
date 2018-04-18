@@ -135,7 +135,7 @@ class Subject < ApplicationRecord
     params = { data_points: data_points }
     (json, _status) = Slice::JsonRequest.get("#{project.project_url}/subjects/#{slice_subject_id}/data.json", params)
     # return unless status.is_a?(Net::HTTPSuccess)
-    json
+    json.presence || {}
   end
 
   # Print Consent
