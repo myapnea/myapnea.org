@@ -7,7 +7,7 @@
 
   = render "forms/vertical/email_field", form: form, object: resource, key: :email, placeholder: "you@example.com"
 
-  = render "forms/vertical/password_field", form: form, object: resource, key: :password, placeholder: "Create a password"
+  = render "forms/vertical/password_field", form: form, object: resource, key: :password, placeholder: "Create a password", autocomplete: "new-password"
 
   - if RECAPTCHA_ENABLED && !INVISIBLE_RECAPTCHA
     .form-group

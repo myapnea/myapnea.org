@@ -1,6 +1,8 @@
 ## 17.3.0
 
 ### Enhancements
+- **General Changes**
+  - Improved password autocomplete
 - **Gem Changes**
   - Updated to bootstrap 4.1.1
 
