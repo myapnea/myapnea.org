@@ -4,6 +4,8 @@
 - **General Changes**
   - Removed Google Analytics
   - Improved password autocomplete
+- **Forum Changes**
+  - Improved spam filters
 - **Gem Changes**
   - Updated to bootstrap 4.1.1
 

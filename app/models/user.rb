@@ -135,8 +135,15 @@ class User < ApplicationRecord
     consenting == "1"
   end
 
+  # Disposable emails are one-off email address website generators.
   def disposable_email?
     DISPOSABLE_EMAILS.include?(email.split("@")[1])
+  end
+
+  # Blacklisted emails are email domains flagged for containing a high number of
+  # spammers to legitimate users.
+  def blacklisted_email?
+    BLACKLISTED_EMAILS.include?(email.split("@")[1])
   end
 
   def send_confirmation_instructions

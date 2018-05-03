@@ -8,7 +8,7 @@
   = ENV["website_name"]
   was successful. Thank you for joining our growing network!
 
-- if !@user.disposable_email? && @user.confirmation_token.present?
+- if !@user.disposable_email? && !@user.blacklisted_email? && @user.confirmation_token.present?
   %p{ style: center_style }
     Please
     = link_to "confirm your account", "#{ENV["website_url"]}/confirmation?confirmation_token=#{@user.confirmation_token}", style: link_style
