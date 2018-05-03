@@ -8,7 +8,6 @@ travis-ci@example.com
 smtp-username
 smtp-password
 echo /usr/bin/pdflatex
-GOOGLE_ANALYTICS
 n
 n
 

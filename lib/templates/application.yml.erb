@@ -12,8 +12,6 @@ smtp_password:                "<%= print "Enter SMTP Password [password]: "; s =
 
 latex_location:               "<%= print "PDF LaTeX Location [/usr/bin/pdflatex]: "; s = gets.chomp; s == "" ? "/usr/bin/pdflatex" : s %>"
 
-google_analytics:             "<%= print "Enter Google Analytics Tracking ID: "; gets.chomp %>"
-
 devise_pepper:                "<%= SecureRandom.hex(64) %>"
 website_secret:               "<%= SecureRandom.hex(64) %>"
 
