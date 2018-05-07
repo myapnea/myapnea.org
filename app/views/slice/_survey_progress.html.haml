@@ -19,11 +19,11 @@
   - url = nil
   - if event_design.sheets.present?
     - if event_design.valid?
-      - url = slice_surveys_resume_path(@project, event_design.event_id, event_design.design_id)
+      - url = slice_surveys_resume_path(@project, event_design.event_slug, event_design.design_slug)
       - link_text = "Continue"
   - else
     - if event_design.valid?
-      - url = slice_surveys_start_path(@project, event_design.event_id, event_design.design_id)
+      - url = slice_surveys_start_path(@project, event_design.event_slug, event_design.design_slug)
       - link_text = "Start"
   .subject-survey-progress.d-flex.d-column.justify-content-between
     .mr-auto.w-100

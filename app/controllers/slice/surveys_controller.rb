@@ -94,7 +94,7 @@ class Slice::SurveysController < ApplicationController
   def complete
     survey_completed
     if @subject.next_survey
-      redirect_to slice_surveys_start_path(@project, @subject.next_survey.event_id, @subject.next_survey.design_id)
+      redirect_to slice_surveys_start_path(@project, @subject.next_survey.event_slug, @subject.next_survey.design_slug)
     else
       redirect_to slice_overview_path(@project)
     end
@@ -123,15 +123,22 @@ class Slice::SurveysController < ApplicationController
   end
 
   def find_subject_survey
-    @subject.subject_surveys.where(event: params[:event].downcase, design: params[:design].downcase).first_or_create
+    request_params = { event: params[:event], design: params[:design] }
+    (json, status) = Slice::JsonRequest.get("#{@project.project_url}/survey-info.json", request_params)
+    if status.is_a?(Net::HTTPSuccess)
+      event_design = Slice::EventDesign.new(json, nil)
+      params[:event] = event_design.event_slug
+      params[:design] = event_design.design_slug
+      @subject.subject_surveys.where(event: event_design.event_id, design: event_design.design_id).first_or_create
+    end
   end
 
   def survey_in_progress
-    find_subject_survey.update(completed_at: nil)
+    find_subject_survey&.update(completed_at: nil)
   end
 
   def survey_completed
-    find_subject_survey.update(completed_at: Time.zone.now)
+    find_subject_survey&.update(completed_at: Time.zone.now)
   end
 
   def find_page

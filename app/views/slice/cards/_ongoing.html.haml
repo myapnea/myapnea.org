@@ -27,7 +27,7 @@
             = number_of_surveys
       .text-center
         - if event_design.valid?
-          = link_to slice_surveys_resume_path(@project, event_design.event_id, event_design.design_id), class: "btn btn-primary btn-shadow" do
+          = link_to slice_surveys_resume_path(@project, event_design.event_slug, event_design.design_slug), class: "btn btn-primary btn-shadow" do
             Continue survey
             %i.fa.fa-caret-right
         - else
@@ -48,7 +48,7 @@
               = number_of_surveys
       .text-center
         - if event_design.valid?
-          = link_to slice_surveys_start_path(@project, event_design.event_id, event_design.design_id), class: "btn btn-primary btn-shadow", data: { object: "disable-spinner" } do
+          = link_to slice_surveys_start_path(@project, event_design.event_slug, event_design.design_slug), class: "btn btn-primary btn-shadow", data: { object: "disable-spinner" } do
             Start survey
             %i.fa.fa-caret-right
         - else

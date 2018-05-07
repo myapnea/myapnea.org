@@ -1,5 +1,10 @@
 ## 17.4.0
 
+### Enhancements
+- **Survey Changes**
+  - Survey completeness is no longer affected by changes to survey event and
+    design slug changes
+
 ## 17.3.0 (May 3, 2018)
 
 ### Enhancements
