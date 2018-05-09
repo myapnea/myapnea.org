@@ -27,6 +27,28 @@ class AdminController < ApplicationController
     @spammers = spammers
   end
 
+  # GET /admin/profile-review
+  def profile_review
+    @users = User.where.not(profile_bio: ["", nil]).or(
+      User.where.not(profile_location: ["", nil])
+    ).or(
+      User.where.not(photo: ["", nil])
+    ).current.where(profile_reviewed: false).order(:id)
+  end
+
+  # POST /admin/profile-review
+  def submit_profile_review
+    user = User.current.find_by(id: params[:user_id])
+    if user && params[:approved] == "1"
+      user.update(profile_reviewed: true)
+      flash[:notice] = "Profile approved."
+    elsif user && params[:spammer] == "1"
+      user.set_as_spammer_and_destroy!
+      flash[:notice] = "Spammer deleted."
+    end
+    redirect_to admin_profile_review_path
+  end
+
   # POST /admin/unspamban/:id
   def unspamban
     member = spammers.find_by(id: params[:id])
@@ -41,10 +63,7 @@ class AdminController < ApplicationController
   def destroy_spammer
     @spammer = spammers.find_by(id: params[:id])
     return unless @spammer
-    @spammer.topics.destroy_all
-    Notification.where(reply: @spammer.replies).destroy_all
-    @spammer.update(spammer: true)
-    @spammer.destroy
+    @spammer.set_as_spammer_and_destroy!
     @spammers = spammers
   end
 

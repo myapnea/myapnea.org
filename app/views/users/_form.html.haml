@@ -4,6 +4,7 @@
   = render "forms/horizontal/email_field", form: form, object: user, key: :email
   = render "forms/horizontal/text_area", form: form, object: user, key: :profile_bio, key_name: "Bio"
   = render "forms/horizontal/text_field", form: form, object: user, key: :profile_location, key_name: "Location"
+  = render "forms/horizontal/check_box", form: form, object: user, key: :profile_reviewed
   = render "forms/horizontal/check_box", form: form, object: user, key: :emails_enabled
   = render "forms/horizontal/check_box", form: form, object: user, key: :admin
   = render "forms/horizontal/check_box", form: form, object: user, key: :moderator

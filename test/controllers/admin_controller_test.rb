@@ -71,4 +71,26 @@ class AdminControllerTest < ActionDispatch::IntegrationTest
     assert_equal "Member marked as not a spammer. You may still need to unshadow ban them.", flash[:notice]
     assert_redirected_to admin_spam_inbox_path
   end
+
+  test "should get profile review as admin" do
+    login(@admin)
+    get admin_profile_review_url
+    assert_response :success
+  end
+
+  test "should approve profile as admin" do
+    login(@admin)
+    assert_difference("User.where(profile_reviewed: true).count") do
+      post admin_submit_profile_review_url(user_id: users(:user_1), approved: "1")
+    end
+    assert_redirected_to admin_profile_review_url
+  end
+
+  test "should remove spammer profile as admin" do
+    login(@admin)
+    assert_difference("User.where(spammer: true).count") do
+      post admin_submit_profile_review_url(user_id: users(:new_spammer), spammer: "1")
+    end
+    assert_redirected_to admin_profile_review_url
+  end
 end

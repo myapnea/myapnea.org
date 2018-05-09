@@ -156,6 +156,13 @@ class User < ApplicationRecord
     send_welcome_email_in_background!
   end
 
+  def set_as_spammer_and_destroy!
+    topics.destroy_all
+    Notification.where(reply: replies).destroy_all
+    update(spammer: true)
+    destroy
+  end
+
   private
 
   def send_welcome_email!

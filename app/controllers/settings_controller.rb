@@ -10,7 +10,7 @@ class SettingsController < ApplicationController
 
   # PATCH /settings/profile
   def update_profile
-    if current_user.update(profile_params)
+    if current_user.update(profile_params.merge(profile_reviewed: false))
       redirect_to settings_profile_path, notice: "Profile successfully updated."
     else
       render :profile
@@ -19,7 +19,7 @@ class SettingsController < ApplicationController
 
   # PATCH /settings/profile/picture
   def update_profile_picture
-    if current_user.update(profile_picture_params)
+    if current_user.update(profile_picture_params.merge(profile_reviewed: false))
       redirect_to settings_profile_path, notice: "Profile picture successfully updated."
     else
       render :profile

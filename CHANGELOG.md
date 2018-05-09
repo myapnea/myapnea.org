@@ -1,6 +1,8 @@
 ## 17.4.0
 
 ### Enhancements
+- **Admin Changes**
+  - Admins can now review profile changes
 - **Survey Changes**
   - Survey completeness is no longer affected by changes to survey event and
     design slug changes
