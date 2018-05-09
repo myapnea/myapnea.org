@@ -41,11 +41,12 @@
           %tbody
             - subject_surveys.sort_by { |s| s.completed_at }.reverse_each do |subject_survey|
               %tr
-                %td.nowrap
+                %td
                   %i.fa.fa-bar-chart
+                %td
                   = link_to slice_surveys_report_path(@project, subject_survey.event, subject_survey.design), class: "small" do
-                    View report
-                %td= subject_survey.design.titleize
+                    = subject_survey.design_name_cache
+                    Report
         - if @subject.consented_at.to_date == completed_date
           - consent_date_found = true
           .small

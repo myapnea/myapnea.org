@@ -125,12 +125,16 @@ class Slice::SurveysController < ApplicationController
   def find_subject_survey
     request_params = { event: params[:event], design: params[:design] }
     (json, status) = Slice::JsonRequest.get("#{@project.project_url}/survey-info.json", request_params)
-    if status.is_a?(Net::HTTPSuccess)
-      event_design = Slice::EventDesign.new(json, nil)
-      params[:event] = event_design.event_slug
-      params[:design] = event_design.design_slug
-      @subject.subject_surveys.where(event: event_design.event_id, design: event_design.design_id).first_or_create
-    end
+    return unless status.is_a?(Net::HTTPSuccess)
+    event_design = Slice::EventDesign.new(json, nil)
+    params[:event] = event_design.event_slug
+    params[:design] = event_design.design_slug
+    subject_survey = \
+      @subject.subject_surveys
+              .where(event: event_design.event_id, design: event_design.design_id)
+              .first_or_create
+    subject_survey.update_cache!(event_design)
+    subject_survey
   end
 
   def survey_in_progress
