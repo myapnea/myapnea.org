@@ -5,9 +5,15 @@ one:
   event: baseline
   design: demographics
   completed_at: 2018-03-06 09:38:25
+  design_name_cache: Demographics
+  design_slug_cache: demographics
+  event_slug_cache: baseline
 
 two:
   subject: one
   event: baseline
   design: familyhx
   # completed_at:
+  design_name_cache: Family History
+  design_slug_cache: familyhx
+  event_slug_cache: baseline
