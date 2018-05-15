@@ -1,4 +1,3 @@
-= render "slice/surveys/decoration/field_note"
 .survey-choices
   - (@json.dig("variable", "domain_options") || []).each do |domain_option_json|
     - checked = (domain_option_json["value"] == response)
@@ -6,3 +5,4 @@
       = form.radio_button "response", domain_option_json["value"], checked: checked
       = domain_option_json["name"]
 = render "slice/surveys/decoration/errors"
+= render "slice/surveys/decoration/field_note"
