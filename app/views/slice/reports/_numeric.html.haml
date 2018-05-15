@@ -33,7 +33,7 @@
 - x_axis = { categories: categories, title: { text: design_option.dig("units") } }
 - y_axis = { title: { text: "Participants" } }
 - if filter_responses.count < Slice::Survey::MIN_SURVEY_RESPONSE
-  .survey-report-title= simple_bold design_option.dig("display_name")
+  .survey-report-title= simple_style design_option.dig("display_name")
   .survey-report-my-response
     - if my_response.present?
       %strong.text-accent= "#{my_response}"

@@ -1,5 +1,10 @@
 ## 17.5.0
 
+### Enhancements
+- **Survey Changes**
+  - Survey questions can now include markup for underline, italic, highlight, as
+    well as bold
+
 ## 17.4.0 (May 9, 2018)
 
 ### Enhancements
