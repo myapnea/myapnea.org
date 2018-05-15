@@ -1,4 +1,4 @@
-## 17.5.0
+## 17.5.0 (May 15, 2018)
 
 ### Enhancements
 - **Survey Changes**
