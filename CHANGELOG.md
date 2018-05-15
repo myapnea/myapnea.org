@@ -4,6 +4,7 @@
 - **Survey Changes**
   - Survey questions can now include markup for underline, italic, highlight, as
     well as bold
+  - Checkbox and radio button field notes now appear above the question
 
 ## 17.4.0 (May 9, 2018)
 
