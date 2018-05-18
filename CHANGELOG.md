@@ -1,5 +1,8 @@
 ## 17.5.1
 
+### Bug Fix
+- Fixed an issue downloading consent PDFs and survey overview report PDFs
+
 ## 17.5.0 (May 15, 2018)
 
 ### Enhancements
