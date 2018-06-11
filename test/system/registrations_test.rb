@@ -16,6 +16,6 @@ class RegistrationsTest < ApplicationSystemTestCase
     assert_equal "AmicableRaven", User.last.username
     assert_equal "jsmith@example.com", User.last.email
     screenshot("register-new-user")
-    assert_selector "div", text: "My Dashboard"
+    assert_selector "div", text: I18n.t("devise.registrations.signed_up_but_unconfirmed")
   end
 end

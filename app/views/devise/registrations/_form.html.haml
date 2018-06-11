@@ -1,28 +1,11 @@
-= form_with model: resource, url: user_registration_path, local: true, id: "recaptcha-form" do |form|
+= form_with model: resource, url: user_registration_path, local: true do |form|
   - if resource.username.blank?
     - username = User.suggest_username(Time.zone.now.usec.to_s)
     - username = User.suggest_username(Time.zone.now.usec.to_s) if User.find_by(username: username).present?
     - help_text = "Great usernames are short and fun. How about #{link_to(username, "#", data: { object: "select-username", username: username}, tabindex: "-1")}?".html_safe
-  = render "forms/vertical/text_field", form: form, object: resource, key: :username, id: true, placeholder: "Pick a username", help_text: help_text
-
+  = render "forms/vertical/text_field", form: form, object: resource, key: :username, id: true, placeholder: "Pick a username", help_text: help_text, autocomplete: "off", autocorrect: "off", autocapitalize: "none", spellcheck: "false"
   = render "forms/vertical/email_field", form: form, object: resource, key: :email, placeholder: "you@example.com"
-
   = render "forms/vertical/password_field", form: form, object: resource, key: :password, placeholder: "Create a password", autocomplete: "new-password"
 
-  - if RECAPTCHA_ENABLED && !INVISIBLE_RECAPTCHA
-    .form-group
-      %label.control-label Human Verification
-      .d-flex.justify-content-center
-        .g-recaptcha{ data: { sitekey: ENV["recaptcha_site_key"] } }
-        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-
-  - if resource.errors && resource.errors[:recaptcha].present?
-    .form-group.text-center
-      %small.text-danger= resource.errors[:recaptcha].join(" ")
-
   .form-group.submit-btn-container
-    - if RECAPTCHA_ENABLED && INVISIBLE_RECAPTCHA
-      %button.g-recaptcha.btn.btn-primary.btn-block.btn-shadow{ data: { sitekey: ENV["recaptcha_site_key"], callback: "recaptchaFormSubmit" } } Next step
-      <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-    - else
-      = form.submit "Next step", class: "btn btn-primary btn-block btn-shadow"
+    = form.submit "Next step", class: "btn btn-primary btn-block btn-shadow"

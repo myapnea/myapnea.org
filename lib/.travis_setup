@@ -8,10 +8,6 @@ travis-ci@example.com
 smtp-username
 smtp-password
 echo /usr/bin/pdflatex
-n
-n
-
-
 postgres
 
 
