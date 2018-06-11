@@ -2,10 +2,10 @@
 
 module Myapnea
   module VERSION #:nodoc:
-    MAJOR = 17
-    MINOR = 5
-    TINY = 1
-    BUILD = nil # "pre", "beta1", "beta2", "rc", "rc2", nil
+    MAJOR = 18
+    MINOR = 0
+    TINY = 0
+    BUILD = "pre" # "pre", "beta1", "beta2", "rc", "rc2", nil
 
     STRING = [MAJOR, MINOR, TINY, BUILD].compact.join(".").freeze
   end
