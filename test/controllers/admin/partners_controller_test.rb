@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
-require 'test_helper'
+require "test_helper"
 
-class Admin::PartnersControllerTest < ActionController::TestCase
+# Test to make sure admins can manage partners.
+class Admin::PartnersControllerTest < ActionDispatch::IntegrationTest
   setup do
     @admin = users(:admin)
     @admin_partner = admin_partners(:one)
@@ -20,57 +21,56 @@ class Admin::PartnersControllerTest < ActionController::TestCase
     }
   end
 
-  test 'should get photo for logged out user' do
-    get :photo, params: { id: @admin_partner }
+  test "should get photo for logged out user" do
+    get photo_admin_partner_url(@admin_partner)
     assert_response :success
   end
 
-  test 'should get index' do
+  test "should get index" do
     login(@admin)
-    get :index
-    assert_response :success
-    assert_not_nil assigns(:admin_partners)
-  end
-
-  test 'should get new' do
-    login(@admin)
-    get :new
+    get admin_partners_url
     assert_response :success
   end
 
-  test 'should create admin_partner' do
+  test "should get new" do
     login(@admin)
-    assert_difference('Admin::Partner.count') do
-      post :create, params: { admin_partner: admin_partner_params }
+    get new_admin_partner_url
+    assert_response :success
+  end
+
+  test "should create admin_partner" do
+    login(@admin)
+    assert_difference("Admin::Partner.count") do
+      post admin_partners_url, params: { admin_partner: admin_partner_params }
     end
-    assert_redirected_to admin_partner_path(assigns(:admin_partner))
+    assert_redirected_to admin_partner_url(Admin::Partner.last)
   end
 
-  test 'should show admin_partner and redirect to index' do
+  test "should show admin_partner and redirect to index" do
     login(@admin)
-    get :show, params: { id: @admin_partner }
-    assert_redirected_to admin_partners_path
+    get admin_partner_url(@admin_partner)
+    assert_redirected_to admin_partners_url
   end
 
-  test 'should get edit' do
+  test "should get edit" do
     login(@admin)
-    get :edit, params: { id: @admin_partner }
+    get edit_admin_partner_url(@admin_partner)
     assert_response :success
   end
 
-  test 'should update admin_partner' do
+  test "should update admin_partner" do
     login(@admin)
-    patch :update, params: {
-      id: @admin_partner, admin_partner: admin_partner_params
+    patch admin_partner_url(@admin_partner), params: {
+      admin_partner: admin_partner_params
     }
-    assert_redirected_to admin_partner_path(assigns(:admin_partner))
+    assert_redirected_to admin_partner_url(@admin_partner)
   end
 
-  test 'should destroy admin_partner' do
+  test "should destroy admin_partner" do
     login(@admin)
-    assert_difference('Admin::Partner.current.count', -1) do
-      delete :destroy, params: { id: @admin_partner }
+    assert_difference("Admin::Partner.current.count", -1) do
+      delete admin_partner_url(@admin_partner)
     end
-    assert_redirected_to admin_partners_path
+    assert_redirected_to admin_partners_url
   end
 end
