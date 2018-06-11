@@ -26,6 +26,6 @@ class BlogControllerTest < ActionDispatch::IntegrationTest
 
   test "should not show draft blog" do
     get blog_slug_url(broadcasts(:draft).slug)
-    assert_redirected_to blog_path
+    assert_redirected_to blog_url
   end
 end
