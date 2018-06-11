@@ -3,7 +3,7 @@
 require "test_helper"
 
 # Tests to assure that users can register on the site.
-class RegistrationsControllerTest < ActionController::TestCase
+class RegistrationsControllerTest < ActionDispatch::IntegrationTest
   def user_params
     {
       username: "SleepyDuck",
@@ -13,9 +13,8 @@ class RegistrationsControllerTest < ActionController::TestCase
   end
 
   test "should sign up new user" do
-    request.env["devise.mapping"] = Devise.mappings[:user]
     assert_difference("User.count") do
-      post :create, params: {
+      post user_registration_path, params: {
         user: user_params
       }
     end
@@ -26,9 +25,8 @@ class RegistrationsControllerTest < ActionController::TestCase
   end
 
   test "should not sign up new user without required fields" do
-    request.env["devise.mapping"] = Devise.mappings[:user]
     assert_difference("User.count", 0) do
-      post :create, params: {
+      post user_registration_path, params: {
         user: user_params.merge(username: "", email: "", password: "")
       }
     end
