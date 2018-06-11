@@ -3,7 +3,7 @@
 require "test_helper"
 
 # Tests to assure that admins can create and update broadcast categories.
-class Admin::CategoriesControllerTest < ActionController::TestCase
+class Admin::CategoriesControllerTest < ActionDispatch::IntegrationTest
   setup do
     @admin_category = admin_categories(:announcements)
     @admin = users(:admin)
@@ -19,29 +19,31 @@ class Admin::CategoriesControllerTest < ActionController::TestCase
 
   test "should get index" do
     login(@admin)
-    get :index
+    get admin_categories_url
     assert_response :success
     assert_not_nil assigns(:admin_categories)
   end
 
   test "should get new" do
     login(@admin)
-    get :new
+    get new_admin_category_url
     assert_response :success
   end
 
   test "should create category" do
     login(@admin)
     assert_difference("Admin::Category.count") do
-      post :create, params: { admin_category: category_params }
+      post admin_categories_url, params: { admin_category: category_params }
     end
-    assert_redirected_to admin_category_path(assigns(:admin_category))
+    assert_redirected_to admin_category_url(assigns(:admin_category))
   end
 
   test "should not create category with blank name" do
     login(@admin)
     assert_difference("Admin::Category.count", 0) do
-      post :create, params: { admin_category: category_params.merge(name: "") }
+      post admin_categories_url, params: {
+        admin_category: category_params.merge(name: "")
+      }
     end
     assert_template "new"
     assert_response :success
@@ -49,28 +51,28 @@ class Admin::CategoriesControllerTest < ActionController::TestCase
 
   test "should show category" do
     login(@admin)
-    get :show, params: { id: @admin_category }
+    get admin_category_url(@admin_category)
     assert_response :success
   end
 
   test "should get edit" do
     login(@admin)
-    get :edit, params: { id: @admin_category }
+    get edit_admin_category_url(@admin_category)
     assert_response :success
   end
 
   test "should update category" do
     login(@admin)
-    patch :update, params: {
-      id: @admin_category, admin_category: category_params
+    patch admin_category_url(@admin_category), params: {
+      admin_category: category_params
     }
-    assert_redirected_to admin_category_path(assigns(:admin_category))
+    assert_redirected_to admin_category_url(assigns(:admin_category))
   end
 
   test "should not update category with blank name" do
     login(@admin)
-    patch :update, params: {
-      id: @admin_category, admin_category: category_params.merge(name: "")
+    patch admin_category_url(@admin_category), params: {
+      admin_category: category_params.merge(name: "")
     }
     assert_template "edit"
     assert_response :success
@@ -79,8 +81,8 @@ class Admin::CategoriesControllerTest < ActionController::TestCase
   test "should destroy category" do
     login(@admin)
     assert_difference("Admin::Category.current.count", -1) do
-      delete :destroy, params: { id: @admin_category }
+      delete admin_category_url(@admin_category)
     end
-    assert_redirected_to admin_categories_path
+    assert_redirected_to admin_categories_url
   end
 end
