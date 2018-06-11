@@ -50,7 +50,7 @@ class AdminControllerTest < ActionDispatch::IntegrationTest
     post admin_empty_spam_url
     assert_equal 0, User.current.where(shadow_banned: true).count
     assert_equal 0, Topic.current.where(user: User.current.where(shadow_banned: true)).count
-    assert_redirected_to admin_spam_inbox_path
+    assert_redirected_to admin_spam_inbox_url
   end
 
   test "should destroy spammer as admin" do
@@ -68,7 +68,7 @@ class AdminControllerTest < ActionDispatch::IntegrationTest
       post admin_unspamban_url(users(:shadow_banned))
     end
     assert_equal "Member marked as not a spammer. You may still need to unshadow ban them.", flash[:notice]
-    assert_redirected_to admin_spam_inbox_path
+    assert_redirected_to admin_spam_inbox_url
   end
 
   test "should get profile review as admin" do
