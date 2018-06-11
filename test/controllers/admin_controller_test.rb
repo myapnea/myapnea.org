@@ -25,7 +25,6 @@ class AdminControllerTest < ActionDispatch::IntegrationTest
   test "should not get dashboard as regular user" do
     login(@regular_user)
     get admin_url
-    assert_equal flash[:alert], "You do not have sufficient privileges to access that page."
     assert_redirected_to root_url
   end
 

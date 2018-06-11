@@ -98,6 +98,6 @@ class UsersController < ApplicationController
 
   def check_admin_or_report_manager
     return if current_user && (current_user.admin? || current_user.report_manager?)
-    redirect_to root_path, alert: "You do not have sufficient privileges to access that page."
+    redirect_to root_path
   end
 end

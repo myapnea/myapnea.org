@@ -57,7 +57,6 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     login(@regular_user)
     get users_url
     assert_nil assigns(:users)
-    assert_equal "You do not have sufficient privileges to access that page.", flash[:alert]
     assert_redirected_to root_url
   end
 
@@ -77,7 +76,6 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     login(@regular_user)
     get user_url(@user)
     assert_nil assigns(:user)
-    assert_equal "You do not have sufficient privileges to access that page.", flash[:alert]
     assert_redirected_to root_url
   end
 
@@ -96,7 +94,6 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     login(@regular_user)
     get edit_user_url(@user)
     assert_nil assigns(:user)
-    assert_equal "You do not have sufficient privileges to access that page.", flash[:alert]
     assert_redirected_to root_url
   end
 
@@ -116,7 +113,6 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   test "should not update user for regular user" do
     login(@regular_user)
     patch user_url(@user), params: { user: user_params }
-    assert_equal "You do not have sufficient privileges to access that page.", flash[:alert]
     assert_redirected_to root_url
   end
 
@@ -170,7 +166,6 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_difference("User.current.count", 0) do
       delete user_url(@user)
     end
-    assert_equal "You do not have sufficient privileges to access that page.", flash[:alert]
     assert_redirected_to root_url
   end
 
