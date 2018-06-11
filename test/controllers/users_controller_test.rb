@@ -7,10 +7,10 @@ SimpleCov.command_name "test:controllers"
 # Tests to assure admins can manage users.
 class UsersControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @user = users(:user_2)
+    @user = users(:user_1)
     @admin = users(:admin)
     @moderator = users(:moderator)
-    @regular_user = users(:user_1)
+    @regular = users(:regular)
   end
 
   def user_params
@@ -36,7 +36,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should not export users as regular user" do
-    login(@regular_user)
+    login(@regular)
     get export_users_url(format: "csv")
     assert_nil assigns(:csv_string)
   end
@@ -54,7 +54,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should not get index for regular user" do
-    login(@regular_user)
+    login(@regular)
     get users_url
     assert_nil assigns(:users)
     assert_redirected_to root_url
@@ -73,7 +73,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should not show user for regular user" do
-    login(@regular_user)
+    login(@regular)
     get user_url(@user)
     assert_nil assigns(:user)
     assert_redirected_to root_url
@@ -91,7 +91,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should not edit user for regular user" do
-    login(@regular_user)
+    login(@regular)
     get edit_user_url(@user)
     assert_nil assigns(:user)
     assert_redirected_to root_url
@@ -111,7 +111,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should not update user for regular user" do
-    login(@regular_user)
+    login(@regular)
     patch user_url(@user), params: { user: user_params }
     assert_redirected_to root_url
   end
@@ -162,7 +162,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should not destroy user for regular user" do
-    login(@regular_user)
+    login(@regular)
     assert_difference("User.current.count", 0) do
       delete user_url(@user)
     end
