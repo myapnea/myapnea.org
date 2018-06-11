@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
-require 'test_helper'
+require "test_helper"
 
-class Admin::TeamMembersControllerTest < ActionController::TestCase
+# Test to make sure admins can manage team members.
+class Admin::TeamMembersControllerTest < ActionDispatch::IntegrationTest
   setup do
     @admin = users(:admin)
     @admin_team_member = admin_team_members(:one)
@@ -19,61 +20,64 @@ class Admin::TeamMembersControllerTest < ActionController::TestCase
     }
   end
 
-  test 'should get order for admin' do
+  test "should get order for admin" do
     login(@admin)
-    get :order
+    get order_admin_team_members_url
     assert_response :success
   end
 
-  test 'should get photo for logged out user' do
-    get :photo, params: { id: @admin_team_member }
+  test "should get photo for logged out user" do
+    get photo_admin_team_member_url(@admin_team_member)
     assert_response :success
   end
 
-  test 'should get index' do
+  test "should get index" do
     login(@admin)
-    get :index
-    assert_response :success
-    assert_not_nil assigns(:admin_team_members)
-  end
-
-  test 'should get new' do
-    login(@admin)
-    get :new
+    get admin_team_members_url
     assert_response :success
   end
 
-  test 'should create admin_team_member' do
+  test "should get new" do
     login(@admin)
-    assert_difference('Admin::TeamMember.count') do
-      post :create, params: { admin_team_member: admin_team_member_params }
+    get new_admin_team_member_url
+    assert_response :success
+  end
+
+  test "should create admin_team_member" do
+    login(@admin)
+    assert_difference("Admin::TeamMember.count") do
+      post admin_team_members_url, params: {
+        admin_team_member: admin_team_member_params
+      }
     end
-    assert_redirected_to admin_team_member_path(assigns(:admin_team_member))
+    assert_redirected_to admin_team_member_url(Admin::TeamMember.last)
   end
 
-  test 'should show admin_team_member' do
+  test "should show admin_team_member" do
     login(@admin)
-    get :show, params: { id: @admin_team_member }
-    assert_redirected_to admin_team_members_path
+    get admin_team_member_url(@admin_team_member)
+    assert_redirected_to admin_team_members_url
   end
 
-  test 'should get edit' do
+  test "should get edit" do
     login(@admin)
-    get :edit, params: { id: @admin_team_member }
+    get edit_admin_team_member_url(@admin_team_member)
     assert_response :success
   end
 
-  test 'should update admin_team_member' do
+  test "should update admin_team_member" do
     login(@admin)
-    patch :update, params: { id: @admin_team_member, admin_team_member: admin_team_member_params }
-    assert_redirected_to admin_team_member_path(assigns(:admin_team_member))
+    patch admin_team_member_url(@admin_team_member), params: {
+      admin_team_member: admin_team_member_params
+    }
+    assert_redirected_to admin_team_member_url(@admin_team_member)
   end
 
-  test 'should destroy admin_team_member' do
+  test "should destroy admin_team_member" do
     login(@admin)
-    assert_difference('Admin::TeamMember.current.count', -1) do
-      delete :destroy, params: { id: @admin_team_member }
+    assert_difference("Admin::TeamMember.current.count", -1) do
+      delete admin_team_member_url(@admin_team_member)
     end
-    assert_redirected_to admin_team_members_path
+    assert_redirected_to admin_team_members_url
   end
 end
