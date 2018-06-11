@@ -31,7 +31,9 @@ class RepliesControllerTest < ActionDispatch::IntegrationTest
 
   test "should preview reply" do
     login(@regular_user)
-    post preview_replies_url(format: "js"), params: { parent_reply_id: "root", reply_id: "new", reply: reply_params }
+    post preview_replies_url(format: "js"), params: {
+      parent_reply_id: "root", reply_id: "new", reply: reply_params
+    }
     assert_template "preview"
     assert_response :success
   end
@@ -39,7 +41,9 @@ class RepliesControllerTest < ActionDispatch::IntegrationTest
   test "should create reply" do
     login(@regular_user)
     assert_difference("Reply.count") do
-      post replies_url(format: "js"), params: { topic_id: @reply.topic.to_param, reply: reply_params }
+      post replies_url(format: "js"), params: {
+        topic_id: @reply.topic.to_param, reply: reply_params
+      }
     end
     assert_nil assigns(:reply).user.shadow_banned
     assert_template "create"
@@ -62,7 +66,7 @@ class RepliesControllerTest < ActionDispatch::IntegrationTest
   test "should show reply and redirect to correct page" do
     login(@regular_user)
     get reply_url(@reply), params: { topic_id: @reply.topic.to_param }
-    assert_redirected_to page_topic_path(@reply.topic, page: @reply.page, anchor: @reply.anchor)
+    assert_redirected_to page_topic_url(@reply.topic, page: @reply.page, anchor: @reply.anchor)
   end
 
   test "should show reply" do
@@ -74,19 +78,23 @@ class RepliesControllerTest < ActionDispatch::IntegrationTest
 
   test "should redirect to root path for deleted replies" do
     get reply_url(replies(:deleted))
-    assert_redirected_to root_path
+    assert_redirected_to root_url
   end
 
   test "should get edit" do
     login(@regular_user)
-    get edit_reply_url(@reply, format: "js"), params: { topic_id: @reply.topic.to_param }, xhr: true
+    get edit_reply_url(@reply, format: "js"), params: {
+      topic_id: @reply.topic.to_param
+    }, xhr: true
     assert_template "edit"
     assert_response :success
   end
 
   test "should update reply" do
     login(@regular_user)
-    patch reply_url(@reply, format: "js"), params: { topic_id: @reply.topic.to_param, reply: reply_params }
+    patch reply_url(@reply, format: "js"), params: {
+      topic_id: @reply.topic.to_param, reply: reply_params
+    }
     assert_nil assigns(:reply).user.shadow_banned
     assert_template "show"
     assert_response :success
