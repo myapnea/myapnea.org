@@ -3,7 +3,7 @@ one:
   # broadcast:
   topic: one
   description: I thought I'd make my first topic to get some dialogue started.
-  user: user_1
+  user: regular
   created_at: 2014-06-09 12:24:25
 
 nested:
@@ -27,7 +27,7 @@ two:
 #   # broadcast:
 #   topic: locked
 #   description: I made the first comment on this topic.
-#   user: user_1
+#   user: regular
 
 # four:
 #   id: 4
@@ -46,7 +46,7 @@ banned:
 
 deleted:
   id: 10
-  user: user_1
+  user: regular
   description: This is a deleted reply.
   topic: one
   # reply:
@@ -58,18 +58,18 @@ six:
   # broadcast:
   topic: one
   description: Removed the comment above.
-  user: user_1
+  user: regular
   created_at: 2014-06-09 16:34:21
 
 blog_one:
   broadcast: published
   # topic:
   description: Reply to the blog post.
-  user: user_1
+  user: regular
 
 blog_two:
   broadcast: published
   # topic:
   description: Another reply.
-  user: user_1
+  user: regular
 

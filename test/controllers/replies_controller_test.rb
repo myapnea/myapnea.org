@@ -6,7 +6,7 @@ require "test_helper"
 class RepliesControllerTest < ActionDispatch::IntegrationTest
   setup do
     @reply = replies(:one)
-    @regular_user = users(:user_1)
+    @regular = users(:regular)
   end
 
   def reply_params
@@ -17,20 +17,20 @@ class RepliesControllerTest < ActionDispatch::IntegrationTest
   end
 
   # test "should get index" do
-  #   login(@regular_user)
+  #   login(@regular)
   #   get :index, topic_id: @reply.topic.to_param
   #   assert_response :success
   #   assert_not_nil assigns(:replies)
   # end
 
   # test "should get new" do
-  #   login(@regular_user)
+  #   login(@regular)
   #   get :new, topic_id: @reply.topic.to_param
   #   assert_response :success
   # end
 
   test "should preview reply" do
-    login(@regular_user)
+    login(@regular)
     post preview_replies_url(format: "js"), params: {
       parent_reply_id: "root", reply_id: "new", reply: reply_params
     }
@@ -39,7 +39,7 @@ class RepliesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create reply" do
-    login(@regular_user)
+    login(@regular)
     assert_difference("Reply.count") do
       post replies_url(format: "js"), params: {
         topic_id: @reply.topic.to_param, reply: reply_params
@@ -51,7 +51,7 @@ class RepliesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should shadow ban new spammer after creating reply" do
-    login(@regular_user)
+    login(@regular)
     assert_difference("Reply.count") do
       post replies_url(format: "js"), params: {
         topic_id: @reply.topic.to_param,
@@ -64,13 +64,13 @@ class RepliesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should show reply and redirect to correct page" do
-    login(@regular_user)
+    login(@regular)
     get reply_url(@reply), params: { topic_id: @reply.topic.to_param }
     assert_redirected_to page_topic_url(@reply.topic, page: @reply.page, anchor: @reply.anchor)
   end
 
   test "should show reply" do
-    login(@regular_user)
+    login(@regular)
     get reply_url(@reply, format: "js"), params: { topic_id: @reply.topic.to_param }, xhr: true
     assert_template "show"
     assert_response :success
@@ -82,7 +82,7 @@ class RepliesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get edit" do
-    login(@regular_user)
+    login(@regular)
     get edit_reply_url(@reply, format: "js"), params: {
       topic_id: @reply.topic.to_param
     }, xhr: true
@@ -91,7 +91,7 @@ class RepliesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update reply" do
-    login(@regular_user)
+    login(@regular)
     patch reply_url(@reply, format: "js"), params: {
       topic_id: @reply.topic.to_param, reply: reply_params
     }
@@ -101,7 +101,7 @@ class RepliesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update reply and shadow ban spammer" do
-    login(@regular_user)
+    login(@regular)
     patch reply_url(@reply, format: "js"), params: {
       topic_id: @reply.topic.to_param,
       reply: reply_params.merge(description: "http://www.example.com\nhttp://www.example.com")
@@ -112,7 +112,7 @@ class RepliesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should destroy reply" do
-    login(@regular_user)
+    login(@regular)
     assert_difference("Reply.current.count", -1) do
       delete reply_url(@reply, format: "js"), params: { topic_id: @reply.topic.to_param }
     end

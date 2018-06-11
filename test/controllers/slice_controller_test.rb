@@ -7,7 +7,7 @@ class SliceControllerTest < ActionDispatch::IntegrationTest
   setup do
     @admin = users(:admin)
     @moderator = users(:moderator)
-    @regular_user = users(:user_1)
+    @regular = users(:regular)
   end
 
   test "should redirect surveys to research" do
