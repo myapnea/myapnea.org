@@ -6,7 +6,7 @@ require "test_helper"
 class ImagesControllerTest < ActionDispatch::IntegrationTest
   setup do
     @admin = users(:admin)
-    @regular = users(:user_1)
+    @regular = users(:regular)
     @image = images(:one)
   end
 

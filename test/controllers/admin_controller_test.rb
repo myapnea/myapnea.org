@@ -7,7 +7,7 @@ class AdminControllerTest < ActionDispatch::IntegrationTest
   setup do
     @admin = users(:admin)
     @moderator = users(:moderator)
-    @regular_user = users(:user_1)
+    @regular = users(:regular)
   end
 
   test "should get dashboard as admin" do
@@ -23,7 +23,7 @@ class AdminControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should not get dashboard as regular user" do
-    login(@regular_user)
+    login(@regular)
     get admin_url
     assert_redirected_to root_url
   end

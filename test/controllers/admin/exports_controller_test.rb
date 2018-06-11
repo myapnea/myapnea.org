@@ -6,7 +6,7 @@ require "test_helper"
 class Admin::ExportsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @admin = users(:admin)
-    @regular_user = users(:user_1)
+    @regular = users(:regular)
     @admin_export = admin_exports(:started)
     @completed = admin_exports(:completed)
   end
@@ -27,7 +27,7 @@ class Admin::ExportsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should not get index as regular user" do
-    login(@regular_user)
+    login(@regular)
     get admin_exports_url
     assert_redirected_to root_url
   end
@@ -41,7 +41,7 @@ class Admin::ExportsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should not create admin export as regular user" do
-    login(@regular_user)
+    login(@regular)
     assert_difference("Admin::Export.count", 0) do
       post admin_exports_url, params: { admin_export: admin_export_params }
     end
@@ -55,7 +55,7 @@ class Admin::ExportsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should not show admin export as regular user" do
-    login(@regular_user)
+    login(@regular)
     get admin_export_url(@admin_export)
     assert_redirected_to root_url
   end
@@ -68,7 +68,7 @@ class Admin::ExportsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should not get progress as regular user" do
-    login(@regular_user)
+    login(@regular)
     post progress_admin_export_url(@admin_export, format: "js")
     assert_redirected_to root_url
   end
@@ -81,7 +81,7 @@ class Admin::ExportsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should not download export file as regular user" do
-    login(@regular_user)
+    login(@regular)
     get file_admin_export_url(@completed)
     assert_redirected_to root_url
   end
@@ -104,7 +104,7 @@ class Admin::ExportsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should not destroy admin export as regular user" do
-    login(@regular_user)
+    login(@regular)
     assert_difference("Admin::Export.count", 0) do
       delete admin_export_url(@admin_export)
     end

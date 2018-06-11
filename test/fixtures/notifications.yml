@@ -7,11 +7,11 @@ broadcast_reply_one:
   reply: blog_one
 
 broadcast_reply_two:
-  user: user_1
+  user: regular
   read: false
   broadcast: published
   reply: blog_two
 
 blank:
-  user: user_1
+  user: regular
   read: false

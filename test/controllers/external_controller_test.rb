@@ -5,7 +5,7 @@ require "test_helper"
 # Test for publicly available pages.
 class ExternalControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @regular_user = users(:user_1)
+    @regular = users(:regular)
   end
 
   test "should get about" do
@@ -19,7 +19,7 @@ class ExternalControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should up vote article" do
-    login(@regular_user)
+    login(@regular)
     assert_difference("ArticleVote.where(rating: 1).count") do
       post article_vote_url(broadcasts(:published).slug, vote: "up", format: "js")
     end
@@ -28,7 +28,7 @@ class ExternalControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should down vote article" do
-    login(@regular_user)
+    login(@regular)
     assert_difference("ArticleVote.where(rating: -1).count") do
       post article_vote_url(broadcasts(:published).slug, vote: "down", format: "js")
     end
@@ -55,7 +55,7 @@ class ExternalControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get landing for regular user" do
-    login(@regular_user)
+    login(@regular)
     get landing_url
     assert_response :success
   end
