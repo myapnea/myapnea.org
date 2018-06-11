@@ -21,7 +21,7 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
       "#{file_name}-#{format("%02d", @counter)}.png"
     )
     page.save_screenshot(Rails.root.join(relative_location))
-    puts "[Screenshot]: #{relative_location}"
+    # puts "[Screenshot]: #{relative_location}"
   end
 
   def click_form_submit
