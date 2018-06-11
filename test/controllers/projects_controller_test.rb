@@ -26,51 +26,51 @@ class ProjectsControllerTest < ActionDispatch::IntegrationTest
 
   test "should get index" do
     login(@admin)
-    get projects_path
+    get projects_url
     assert_response :success
   end
 
   test "should get new" do
     login(@admin)
-    get new_project_path
+    get new_project_url
     assert_response :success
   end
 
   test "should create project" do
     login(@admin)
     assert_difference("Project.count") do
-      post projects_path, params: {
+      post projects_url, params: {
         project: project_params.merge(slug: "new-project")
       }
     end
-    assert_redirected_to project_path(Project.last)
+    assert_redirected_to project_url(Project.last)
   end
 
   test "should show project" do
     login(@admin)
-    get project_path(@project)
+    get project_url(@project)
     assert_response :success
   end
 
   test "should get edit" do
     login(@admin)
-    get edit_project_path(@project)
+    get edit_project_url(@project)
     assert_response :success
   end
 
   test "should update project" do
     login(@admin)
-    patch project_path(@project), params: { project: project_params }
-    assert_redirected_to project_path(@project)
+    patch project_url(@project), params: { project: project_params }
+    assert_redirected_to project_url(@project)
   end
 
   test "should destroy project" do
     login(@admin)
     assert_difference("Project.current.count", -1) do
-      delete project_path(@project)
+      delete project_url(@project)
     end
     @project.reload
     assert_nil @project.slug
-    assert_redirected_to projects_path
+    assert_redirected_to projects_url
   end
 end
