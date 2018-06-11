@@ -14,7 +14,7 @@ class RegistrationsControllerTest < ActionDispatch::IntegrationTest
 
   test "should sign up new user" do
     assert_difference("User.count") do
-      post user_registration_path, params: {
+      post user_registration_url, params: {
         user: user_params
       }
     end
@@ -26,7 +26,7 @@ class RegistrationsControllerTest < ActionDispatch::IntegrationTest
 
   test "should not sign up new user without required fields" do
     assert_difference("User.count", 0) do
-      post user_registration_path, params: {
+      post user_registration_url, params: {
         user: user_params.merge(username: "", email: "", password: "")
       }
     end

@@ -9,7 +9,7 @@ class NavigationTest < ActionDispatch::IntegrationTest
   fixtures :users
 
   def setup
-    @regular_user = users(:user_1)
+    @regular = users(:regular)
     @deleted = users(:deleted)
   end
 
@@ -19,13 +19,13 @@ class NavigationTest < ActionDispatch::IntegrationTest
   end
 
   test "should get sign up page" do
-    get new_user_registration_path
+    get new_user_registration_url
     assert_equal new_user_registration_path, path
     assert_response :success
   end
 
   test "should register new account" do
-    post user_registration_path, params: {
+    post user_registration_url, params: {
       user: {
         username: "registeraccount",
         email: "register@account.com",
@@ -37,37 +37,37 @@ class NavigationTest < ActionDispatch::IntegrationTest
   end
 
   test "should login regular user" do
-    get dashboard_path
-    get new_user_session_path
-    sign_in_as(@regular_user, "password")
+    get dashboard_url
+    get new_user_session_url
+    sign_in_as(@regular, "password")
     assert_equal dashboard_path, path
   end
 
   test "should not login deleted user" do
-    get new_user_session_path
+    get new_user_session_url
     sign_in_as(@deleted, "password")
     assert_equal new_user_session_path, path
   end
 
   test "should friendly forward after login" do
-    get topics_path
-    get new_user_session_path
-    sign_in_as(@regular_user, "password")
+    get topics_url
+    get new_user_session_url
+    sign_in_as(@regular, "password")
     assert_equal topics_path, path
   end
 
   test "should friendly forward after logout" do
-    get topics_path
-    sign_in_as(@regular_user, "password")
-    get topics_path
-    get destroy_user_session_path
+    get topics_url
+    sign_in_as(@regular, "password")
+    get topics_url
+    get destroy_user_session_url
     assert_redirected_to topics_url
   end
 
   test "blog rss should not be stored in friendly forwarding after login" do
-    get blog_path(format: "atom")
-    get new_user_session_path
-    sign_in_as(@regular_user, "password")
+    get blog_url(format: "atom")
+    get new_user_session_url
+    sign_in_as(@regular, "password")
     assert_equal dashboard_path, path
   end
 end
