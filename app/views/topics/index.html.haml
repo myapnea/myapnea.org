@@ -30,7 +30,7 @@
         = th_sort_field_rev @order, "topics.view_count", "Views", extra_class: "d-none d-md-table-cell text-center"
         = th_sort_field_rev @order, "topics.last_reply_at", "Last Post", extra_class: "d-none d-md-table-cell text-center"
     %tbody
-      - topic_users = TopicUser.where(topic: @topics.pluck(:id), user: current_user).to_a
+      - topic_users = TopicUser.where(topic: @topics.collect(&:id), user: current_user).to_a
       - @topics.each do |topic|
         - topic_user = topic_users.find { |tu| tu.topic_id == topic.id }
         - unread_replies = topic.unread_replies(topic_user)
