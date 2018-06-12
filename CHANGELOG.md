@@ -1,4 +1,4 @@
-## 17.5.2
+## 17.5.2 (June 12, 2018)
 
 ### Bug Fix
 - Fixed an issue sorting forum topics by number of replies
