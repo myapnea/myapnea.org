@@ -46,6 +46,36 @@ class TopicsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "should get index ordered by replies" do
+    get topics_url, params: { order: "reply_count desc" }
+    assert_response :success
+  end
+
+  test "should get index ordered by replies lowest to highest" do
+    get topics_url, params: { order: "reply_count" }
+    assert_response :success
+  end
+
+  test "should get index ordered by views" do
+    get topics_url, params: { order: "topics.view_count desc" }
+    assert_response :success
+  end
+
+  test "should get index ordered by views lowest to highest" do
+    get topics_url, params: { order: "topics.view_count" }
+    assert_response :success
+  end
+
+  test "should get index ordered by most recent reply" do
+    get topics_url, params: { order: "topics.last_reply_at desc" }
+    assert_response :success
+  end
+
+  test "should get index ordered by least recent reply" do
+    get topics_url, params: { order: "topics.last_reply_at" }
+    assert_response :success
+  end
+
   test "should get new" do
     login(@regular)
     get new_topic_url
