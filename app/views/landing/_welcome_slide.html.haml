@@ -1,0 +1,47 @@
+.page-box.myapnea-dark-blue-light-center-bg.d-flex.flex-column.justify-content-around
+  .container{ style: "position: relative;" }
+
+    %div
+      .mb-5.d-flex.flex-column.justify-content-center
+        .mb-5.text-center
+          = image_tag "logos/myapnea-logo-large-whitetext.png", style: "height: auto; max-width: 540px; width: 100%;", class: "img-ignore-selection"
+
+      .d-flex.flex-column.flex-md-row.mb-5
+        .bg-white.mb-3.mb-md-0.p-3.rounded.btn-shadow.mx-1{ style: "flex: 1 1 0 !important"}
+          %div.text-center{ style: "font-size: 3.75rem;" }
+            %i.fa.fa-comments-o
+          %div
+            = link_to topics_path do
+              Visit the forum
+              %i.fa.fa-caret-right
+
+        .bg-white.mb-3.mb-md-0.p-3.rounded.btn-shadow.mx-1{ style: "flex: 1 1 0 !important"}
+          %div.text-center{ style: "font-size: 3.75rem;" }
+            %i.fa.fa-book
+          %div
+            = link_to blog_path do
+              Read our blog
+              %i.fa.fa-caret-right
+
+
+        .bg-white.mb-3.mb-md-0.p-3.rounded.btn-shadow.mx-1{ style: "flex: 1 1 0 !important"}
+          %div.text-center{ style: "font-size: 3.75rem;" }
+            %i.fa.fa-flask
+
+          %div
+            = link_to slice_research_path do
+              Participate in research a lot of research yes
+              %i.fa.fa-caret-right
+
+      %div
+        .landing-about-slide-tagline
+          MyApnea is a community of patients, doctors, and researchers
+          trying to improve the diagnosis and treatment of sleep apnea. You
+          can engage in discussions with other members, read research articles,
+          and participate in research studies.
+
+
+%div{ style: "position: relative;" }
+  %div{ style: "position: relative;" }
+    = link_to "#research", data: { object: "scroll-anchor" }, class: "text-white scroll-down-arrow-visible link-unstyled" do
+      %i.fa.fa-chevron-down

@@ -11,11 +11,9 @@ class UsersController < ApplicationController
 
   # GET /users
   def index
-    user_scope = User.current.search(params[:search])
-    @order = scrub_order(User, params[:order], Arel.sql("(CASE WHEN (users.current_sign_in_at IS NULL) THEN users.created_at ELSE users.current_sign_in_at END) desc"))
-    @order = params[:order] if ["reply_count", "reply_count desc"].include?(params[:order])
-    user_scope = user_scope.no_spammer_or_shadow_banned if current_user.report_manager?
-    @users = user_scope.reply_count.order(@order).page(params[:page]).per(40)
+    scope = User.current.search(params[:search], match_start: false)
+    scope = scope.no_spammer_or_shadow_banned if current_user.report_manager?
+    @users = scope_order(scope).page(params[:page]).per(40)
   end
 
   # GET /users/export
@@ -99,5 +97,10 @@ class UsersController < ApplicationController
   def check_admin_or_report_manager
     return if current_user && (current_user.admin? || current_user.report_manager?)
     redirect_to root_path
+  end
+
+  def scope_order(scope)
+    @order = params[:order]
+    scope.order(Arel.sql(User::ORDERS[params[:order]] || User::DEFAULT_ORDER))
   end
 end

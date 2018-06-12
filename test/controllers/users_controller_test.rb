@@ -65,6 +65,18 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to new_user_session_url
   end
 
+  test "should get index ordered by replies" do
+    login(@admin)
+    get users_url, params: { order: "replies desc" }
+    assert_response :success
+  end
+
+  test "should get index ordered by replies lowest to highest" do
+    login(@admin)
+    get users_url, params: { order: "replies" }
+    assert_response :success
+  end
+
   test "should show user for admin" do
     login(@admin)
     get user_url(@user)

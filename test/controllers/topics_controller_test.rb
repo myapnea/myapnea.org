@@ -47,32 +47,32 @@ class TopicsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get index ordered by replies" do
-    get topics_url, params: { order: "reply_count desc" }
+    get topics_url, params: { order: "replies desc" }
     assert_response :success
   end
 
   test "should get index ordered by replies lowest to highest" do
-    get topics_url, params: { order: "reply_count" }
+    get topics_url, params: { order: "replies" }
     assert_response :success
   end
 
   test "should get index ordered by views" do
-    get topics_url, params: { order: "topics.view_count desc" }
+    get topics_url, params: { order: "views desc" }
     assert_response :success
   end
 
   test "should get index ordered by views lowest to highest" do
-    get topics_url, params: { order: "topics.view_count" }
+    get topics_url, params: { order: "views" }
     assert_response :success
   end
 
   test "should get index ordered by most recent reply" do
-    get topics_url, params: { order: "topics.last_reply_at desc" }
+    get topics_url, params: { order: "latest" }
     assert_response :success
   end
 
   test "should get index ordered by least recent reply" do
-    get topics_url, params: { order: "topics.last_reply_at" }
+    get topics_url, params: { order: "oldest" }
     assert_response :success
   end
 
@@ -155,6 +155,11 @@ class TopicsControllerTest < ActionDispatch::IntegrationTest
     get topic_url(@topic)
     @topic.reload
     assert_equal 0, @topic.view_count
+    assert_response :success
+  end
+
+  test "should show topic with no replies" do
+    get topic_url(topics(:noreplies))
     assert_response :success
   end
 

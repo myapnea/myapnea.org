@@ -1,5 +1,14 @@
 ## 18.0.0
 
+### Enhancements
+- **General Changes**
+  - Added tagline to forum and research pages to better describe the website for
+    users visiting from search engine results
+- **Admin Changes**
+  - Accents in names are now ignored on the user search
+- **Forum Changes**
+  - Added a prominent forum search to the forum index
+
 ## 17.5.2 (June 12, 2018)
 
 ### Bug Fix

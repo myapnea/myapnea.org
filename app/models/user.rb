@@ -3,6 +3,19 @@
 # Defines the user model, relationships, and permissions. Also provides methods
 # to check forum and research consent.
 class User < ApplicationRecord
+  # Constants
+  ORDERS = {
+    "posts" => "users.replies_count",
+    "posts desc" => "users.replies_count desc",
+    "activity desc" => "(CASE WHEN (users.current_sign_in_at IS NULL) THEN users.created_at ELSE users.current_sign_in_at END) desc",
+    "activity" => "(CASE WHEN (users.current_sign_in_at IS NULL) THEN users.created_at ELSE users.current_sign_in_at END)",
+    "banned desc" => "users.shadow_banned",
+    "banned" => "users.shadow_banned desc nulls last",
+    "logins desc" => "users.sign_in_count desc",
+    "logins" => "users.sign_in_count"
+  }
+  DEFAULT_ORDER = "(CASE WHEN (users.current_sign_in_at IS NULL) THEN users.created_at ELSE users.current_sign_in_at END) desc"
+
   # Uploaders
   mount_uploader :photo, PhotoUploader
 
@@ -14,6 +27,7 @@ class User < ApplicationRecord
   # Concerns
   include Deletable
   include Forkable
+  include Searchable
   include UsernameGenerator
   include Squishable
   squish :full_name
@@ -21,9 +35,7 @@ class User < ApplicationRecord
   attr_accessor :consenting
 
   # Scopes
-  scope :search, lambda { |arg| where( "LOWER(full_name) LIKE ? or LOWER(email) LIKE ?", arg.to_s.downcase.gsub(/^| |$/, "%"), arg.to_s.downcase.gsub(/^| |$/, "%") ) }
   scope :include_in_exports_and_reports, -> { where(include_in_exports: true) }
-  scope :reply_count, -> { select("users.*, COALESCE(COUNT(replies.id), 0) reply_count").joins("LEFT OUTER JOIN replies ON replies.user_id = users.id and replies.deleted IS FALSE and replies.topic_id IN (SELECT topics.id FROM topics WHERE topics.deleted IS FALSE)").group("users.id") }
   scope :no_spammer_or_shadow_banned, -> { where(spammer: [false, nil], shadow_banned: [false, nil]) }
 
   # Validations
@@ -52,6 +64,10 @@ class User < ApplicationRecord
   has_many :subscriptions
 
   # Methods
+
+  def self.searchable_attributes
+    %w(full_name email username)
+  end
 
   def profile_present?
     profile_bio.present? || profile_location.present?

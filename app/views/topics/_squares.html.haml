@@ -4,7 +4,7 @@
       Forum
 
     .landing-box-container
-      - @topics = Topic.current.shadow_banned(current_user).reply_count.order(last_reply_at: :desc, id: :desc)
+      - @topics = Topic.current.shadow_banned(current_user).order(last_reply_at: :desc, id: :desc)
       - @topics.limit(9).each do |topic| # limit(99)
         - reply = topic.replies.current.first
         - if reply
@@ -21,6 +21,6 @@
                 .float-right
                   &nbsp;
                   %i.fa.fa-comments{ style: 'color: #2196F3;' }
-                  = topic.replies.count
+                  = topic.replies_count
                 By
                 .landing-box-footer-author-name= link_to reply.user.username, member_path(reply.user.username)

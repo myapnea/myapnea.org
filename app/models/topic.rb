@@ -2,6 +2,17 @@
 
 # Allows users to start new discussion topics on the forum.
 class Topic < ApplicationRecord
+  # Constants
+  ORDERS = {
+    "replies" => "topics.replies_count",
+    "replies desc" => "topics.replies_count desc",
+    "views" => "topics.view_count",
+    "views desc" => "topics.view_count desc",
+    "latest" => "topics.last_reply_at desc",
+    "oldest" => "topics.last_reply_at"
+  }
+  DEFAULT_ORDER = "topics.pinned desc, topics.last_reply_at desc, topics.id desc"
+
   attr_accessor :description, :migration_flag
 
   # Concerns
@@ -19,7 +30,6 @@ class Topic < ApplicationRecord
   after_create_commit :create_first_reply
 
   # Scopes
-  scope :reply_count, -> { select("topics.*, COUNT(replies.id) reply_count").joins(:replies).group("topics.id") }
   scope :shadow_banned, ->(arg) { joins(:user).merge(User.where(shadow_banned: [nil, false]).or(User.where(id: arg))) }
 
   # Validations

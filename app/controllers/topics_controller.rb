@@ -13,24 +13,20 @@ class TopicsController < ApplicationController
 
   # GET /forum
   def index
-    @order = scrub_order(Topic, params[:order], "pinned desc, last_reply_at desc, id desc")
-    if ["reply_count", "reply_count desc"].include?(params[:order])
-      @order = params[:order]
-    end
-    topic_scope = Topic.current.reply_count.order(@order)
-    topic_scope = topic_scope.shadow_banned(current_user&.id) unless current_user&.admin?
-    @topics = topic_scope.page(params[:page]).per(40)
+    scope = Topic.current
+    scope = scope.shadow_banned(current_user&.id) unless current_user&.admin?
+    @topics = scope_order(scope).page(params[:page]).per(40)
   end
 
   # GET /forum/1
   def show
     @page = (params[:page].to_i > 1 ? params[:page].to_i : 1)
     reply_scope = @topic.replies.includes(:topic).where(reply_id: nil).page(@page).per(Reply::REPLIES_PER_PAGE)
-    last_reply_id = reply_scope.last.id
+    last_reply_id = reply_scope.last&.id
     reply_scope = reply_scope.shadow_banned(current_user ? current_user.id : nil) unless current_user && current_user.admin?
     @replies = reply_scope
     @topic.increment!(:view_count) if !current_user || (current_user && !current_user.shadow_banned?)
-    current_user.read_parent!(@topic, last_reply_id) if current_user
+    current_user.read_parent!(@topic, last_reply_id) if current_user && last_reply_id
   end
 
   # GET /forum/new
@@ -97,5 +93,10 @@ class TopicsController < ApplicationController
     else
       params.require(:topic).permit(:title, :slug, :description)
     end
+  end
+
+  def scope_order(scope)
+    @order = params[:order]
+    scope.order(Arel.sql(Topic::ORDERS[params[:order]] || Topic::DEFAULT_ORDER))
   end
 end

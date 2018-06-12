@@ -24,9 +24,9 @@ class Reply < ApplicationRecord
   validates :description, presence: true
 
   # Relationships
-  belongs_to :user
-  belongs_to :broadcast, optional: true
-  belongs_to :topic, optional: true
+  belongs_to :user, counter_cache: true
+  belongs_to :broadcast, optional: true, counter_cache: true
+  belongs_to :topic, optional: true, counter_cache: true
   belongs_to :reply, optional: true
   has_many :reply_users
 
@@ -34,6 +34,8 @@ class Reply < ApplicationRecord
   def destroy
     super
     Notification.where(reply_id: id).destroy_all
+    parent.class.reset_counters(parent.id, :countable_replies)
+    User.reset_counters(user.id, :replies)
     update_pg_search_document
     return unless parent.replies.where(reply_id: id).count.zero?
     reply_users.delete_all
@@ -61,9 +63,7 @@ class Reply < ApplicationRecord
   end
 
   def number
-    parent.replies.where(reply_id: nil).pluck(:id).index(id) + 1
-  rescue
-    0
+    (parent.replies.where(reply_id: nil).pluck(:id).index(id) || -1) + 1
   end
 
   def page

@@ -36,6 +36,10 @@
   @include remove-last-child-bottom-margin;
 }
 
+.dashboard-table {
+  padding: map-get($spacers, 1) 0;
+}
+
 .dashboard-container-border-accent {
   border-left: 4px solid $p200-orange;
 }

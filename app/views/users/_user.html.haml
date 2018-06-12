@@ -15,8 +15,6 @@
     %span.d-inline.d-md-none
       = link_to user, style: "word-break: break-word;" do
         = render "users/email", user: user
-
-%td.text-center= simple_check user.profile_present?
 %td.d-none.d-sm-table-cell.nowrap
   %small= abbreviated_time(user.current_sign_in_at || user.created_at)
 - if current_user.admin?
@@ -29,9 +27,9 @@
 %td.d-none.d-sm-table-cell.text-center
   %small= user.sign_in_count
 %td.d-none.d-sm-table-cell.text-center
-  %small= user.replies.count
+  %small= user.replies_count
 - if current_user.admin?
-  %td
+  %td.text-center
     .dropdown
       = link_to "#", class: "btn btn-light btn-sm dropdown-toggle", data: { toggle: "dropdown" } do
         .d-inline-block.d-sm-none

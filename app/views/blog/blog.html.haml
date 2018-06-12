@@ -20,6 +20,7 @@
       .container
         %h1.page-heading
           = @title
+    = render "layouts/tagline"
 
 - if @category && !@category.show_on_blog_roll?
   - @broadcasts.each do |broadcast|
