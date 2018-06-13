@@ -9,10 +9,8 @@ class Admin::RepliesController < ApplicationController
 
   # GET /admin/replies
   def index
-    @order = scrub_order(Reply, params[:order], 'created_at desc')
-    if ['points', 'points desc'].include?(params[:order])
-      @order = params[:order]
-    end
-    @replies = Reply.current.points.order(@order).page(params[:page]).per(40)
+    @order = scrub_order(Reply, params[:order], "created_at desc")
+    @order = params[:order] if ["points", "points desc"].include?(params[:order])
+    @replies = Reply.current.points.current_users.order(@order).page(params[:page]).per(40)
   end
 end

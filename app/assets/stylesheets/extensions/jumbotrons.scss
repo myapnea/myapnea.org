@@ -1,8 +1,5 @@
-.jumbotron-action,
-.jumbotron-accent,
-.jumbotron-white {
+.jumbotron {
   @include remove-last-child-bottom-margin;
-  text-align: center;
 }
 
 .jumbotron-action {
@@ -34,14 +31,14 @@
   }
 }
 
-.jumbotron-shadow {
-  box-shadow: 0 1px 5px $box-shadow-color;
-}
-
 .jumbotron-custom-text {
   font-weight: 200;
   font-size: 1.5rem;
-  position: relative;
+  text-align: center;
+}
+
+.jumbotron-shadow {
+  box-shadow: 0 1px 5px $box-shadow-color;
 }
 
 .jumbotron-icon {

@@ -14,7 +14,7 @@
 - content_for :footer, render("decorations/sunset")
 
 - if @spammers.present?
-  .dashboard-container
+  .dashboard-container.dashboard-table
     %table.table.table-striped.table-borderless.table-hover
       %col
       %col
@@ -42,7 +42,6 @@
             = link_to "Delete spammer", admin_destroy_spammer_path(spammer), method: :post, remote: true, class: "btn btn-sm btn-danger", data: { confirm: "DELETE #{spammer.email}?" }
 
 - else
-  .jumbotron.jumbotron-action.jumbotron-shadow
-    .lead.text-center{ style: "font-weight: 200;font-size: 24px;" }
-      %i.fa.fa-fire-extinguisher.fa-2x.animate-wiggle.mr-3
-      Hurray, no spammers!
+  .jumbotron.jumbotron-action.jumbotron-custom-text.jumbotron-shadow
+    %i.fa.fa-fire-extinguisher.animate-wiggle.mr-1
+    Hurray, no spammers!

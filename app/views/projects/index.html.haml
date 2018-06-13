@@ -19,7 +19,7 @@
   = render "decorations/moon"
 
 - if @projects.present?
-  .dashboard-container.mb-0
+  .dashboard-container.dashboard-table
     %table.table.table-striped.table-borderless.table-hover
       %col
       %col
@@ -39,5 +39,5 @@
             %td= render "layouts/edit_delete_dropdown", edit_url: edit_project_path(project), delete_url: project, delete_confirmation: "Delete #{project.name}?"
   .center-horizontally= paginate @projects, theme: "bootstrap"
 - else
-  .jumbotron.jumbotron-action.jumbotron-shadow
-    .lead.text-center{ style: "font-weight: 200;font-size: 24px;" } No projects found.
+  .jumbotron.jumbotron-action.jumbotron-custom-text.jumbotron-shadow
+    No projects found.

@@ -2,5 +2,5 @@
   - @replies.each do |reply|
     = render "replies/show", reply: reply, level: defined?(level) ? level + 1 : 0, include_parent_title: false
 - else
-  .jumbotron.jumbotron-custom-text.text-center
+  .jumbotron.jumbotron-custom-text
     No replies on this topic.
