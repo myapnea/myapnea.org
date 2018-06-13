@@ -10,6 +10,8 @@
   - Team members can now be reordered using drag-and-drop
 - **Forum Changes**
   - Added a prominent forum search to the forum index
+- **Search Changes**
+  - Member profile previews are displayed when searching usernames
 
 ## 17.5.2 (June 12, 2018)
 

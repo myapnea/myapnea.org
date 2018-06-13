@@ -26,6 +26,9 @@
   - else
     - @highlight_found = false
 
+  - if @member.present?
+    = render "members/mini_profile", member: @member
+
   - if @search_documents.present?
     - @search_documents.each do |document|
       .dashboard-container

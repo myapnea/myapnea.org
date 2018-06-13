@@ -1,0 +1,13 @@
+.member-photo {
+  flex: 0 0 auto;
+}
+
+.member-name {
+  font-size: 2rem;
+}
+
+.member-bio {
+  font-size: 1.25rem;
+  font-weight: 300;
+  margin-top: map-get($spacers, 4);
+}
