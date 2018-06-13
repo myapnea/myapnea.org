@@ -25,18 +25,10 @@ class MembersController < ApplicationController
     @recent_topics = @member.topics.where.not(id: @topics.to_a.collect(&:id)).limit(3)
   end
 
-  def photo
-    if @member && @member.photo.size.positive?
-      send_file File.join(CarrierWave::Uploader::Base.root, @member.photo.url)
-    else
-      head :ok
-    end
-  end
-
   # GET /members/:username/profile_picture
   def profile_picture
     if @member&.photo.present?
-      send_file(@member&.photo&.path)
+      send_file_if_present @member&.photo
     else
       file_path = Rails.root.join("app", "assets", "images", "member-secret.png")
       File.open(file_path, "r") do |f|

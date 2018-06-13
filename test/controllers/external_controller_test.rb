@@ -65,6 +65,12 @@ class ExternalControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "should get partner photo as public user" do
+    get partner_photo_url(admin_partners(:two))
+    assert_equal File.binread(admin_partners(:two).photo.path), response.body
+    assert_response :success
+  end
+
   test "should get privacy policy" do
     get privacy_policy_url
     assert_response :success
@@ -80,8 +86,9 @@ class ExternalControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should get photo for logged out user" do
-    get team_member_photo_url(admin_team_members(:one))
+  test "should get team member photo as public user" do
+    get team_member_photo_url(admin_team_members(:two))
+    assert_equal File.binread(admin_team_members(:two).photo.path), response.body
     assert_response :success
   end
 

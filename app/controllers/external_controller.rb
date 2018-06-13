@@ -77,6 +77,12 @@ class ExternalController < ApplicationController
     send_file_if_present @admin_team_member&.photo
   end
 
+  # GET /partners/:id/photo
+  def partner_photo
+    @admin_partner = Admin::Partner.find_by(id: params[:id])
+    send_file_if_present @admin_partner&.photo
+  end
+
   # # GET /terms-and-conditions
   # def terms_and_conditions
   # end

@@ -2,19 +2,13 @@
 
 # Allows admins to modify partners page.
 class Admin::PartnersController < ApplicationController
-  before_action :authenticate_user!,  except: [:photo]
-  before_action :check_admin,         except: [:photo]
-  before_action :find_admin_partner_or_redirect,   only: [:show, :edit, :update, :destroy, :photo]
+  before_action :authenticate_user!
+  before_action :check_admin
+  before_action :find_admin_partner_or_redirect, only: [
+    :show, :edit, :update, :destroy
+  ]
 
   layout "layouts/full_page_sidebar"
-
-  def photo
-    if @admin_partner.photo.size > 0
-      send_file File.join(CarrierWave::Uploader::Base.root, @admin_partner.photo.url)
-    else
-      head :ok
-    end
-  end
 
   # GET /admin/partners
   def index
@@ -39,7 +33,7 @@ class Admin::PartnersController < ApplicationController
   def create
     @admin_partner = Admin::Partner.new(admin_partner_params)
     if @admin_partner.save
-      redirect_to @admin_partner, notice: 'Partner was successfully created.'
+      redirect_to @admin_partner, notice: "Partner was successfully created."
     else
       render :new
     end
@@ -48,7 +42,7 @@ class Admin::PartnersController < ApplicationController
   # PATCH /admin/partners/1
   def update
     if @admin_partner.update(admin_partner_params)
-      redirect_to @admin_partner, notice: 'Partner was successfully updated.'
+      redirect_to @admin_partner, notice: "Partner was successfully updated."
     else
       render :edit
     end
@@ -57,7 +51,7 @@ class Admin::PartnersController < ApplicationController
   # DELETE /admin/partners/1
   def destroy
     @admin_partner.destroy
-    redirect_to admin_partners_path, notice: 'Partner was successfully deleted.'
+    redirect_to admin_partners_path, notice: "Partner was successfully deleted."
   end
 
   private

@@ -41,11 +41,7 @@ Rails.application.routes.draw do
         post :order, action: "update_order"
       end
     end
-    resources :partners do
-      member do
-        get :photo
-      end
-    end
+    resources :partners
   end
 
   get "learn", to: redirect("education")
@@ -83,6 +79,7 @@ Rails.application.routes.draw do
     get :contact
     get :landing
     get :partners
+    get :partner_photo, path: "partners/:id/photo"
     get :privacy_policy, path: "privacy-policy"
     get :sitemap_xml, path: "sitemap.xml.gz"
     get :team

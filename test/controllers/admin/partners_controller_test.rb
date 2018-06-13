@@ -21,11 +21,6 @@ class Admin::PartnersControllerTest < ActionDispatch::IntegrationTest
     }
   end
 
-  test "should get photo for logged out user" do
-    get photo_admin_partner_url(@admin_partner)
-    assert_response :success
-  end
-
   test "should get index" do
     login(@admin)
     get admin_partners_url
@@ -38,7 +33,7 @@ class Admin::PartnersControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should create admin_partner" do
+  test "should create partner" do
     login(@admin)
     assert_difference("Admin::Partner.count") do
       post admin_partners_url, params: { admin_partner: admin_partner_params }
@@ -46,7 +41,7 @@ class Admin::PartnersControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to admin_partner_url(Admin::Partner.last)
   end
 
-  test "should show admin_partner and redirect to index" do
+  test "should show partner and redirect to index" do
     login(@admin)
     get admin_partner_url(@admin_partner)
     assert_redirected_to admin_partners_url
@@ -58,7 +53,7 @@ class Admin::PartnersControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should update admin_partner" do
+  test "should update partner" do
     login(@admin)
     patch admin_partner_url(@admin_partner), params: {
       admin_partner: admin_partner_params
@@ -66,7 +61,7 @@ class Admin::PartnersControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to admin_partner_url(@admin_partner)
   end
 
-  test "should destroy admin_partner" do
+  test "should destroy partner" do
     login(@admin)
     assert_difference("Admin::Partner.current.count", -1) do
       delete admin_partner_url(@admin_partner)

@@ -6,3 +6,11 @@ one:
   link: http://www.brighamandwomens.org/Departments_and_Services/medicine/services/sleepmedicine/default.aspx
   group: main
   position: 0
+
+two:
+  name: Rails
+  description: Rails is a web framework.
+  link: https://rubyonrails.org
+  group: main
+  position: 1
+  photo: rails.png
