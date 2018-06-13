@@ -19,7 +19,7 @@ module Searchable
 
     def self.search_queries
       searchable_attributes.collect do |searchable_attribute|
-        "unaccent(#{table_name}.#{searchable_attribute}) ILIKE unaccent(?)"
+        "#{table_name}.#{searchable_attribute} ILIKE ?"
       end
     end
 
