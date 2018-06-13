@@ -2,94 +2,83 @@
 
 # Allows admins to modify team members page.
 class Admin::TeamMembersController < ApplicationController
-  before_action :authenticate_user!,    except: [:photo]
-  before_action :check_admin,           except: [:photo]
-  before_action :set_admin_team_member, only: [:show, :edit, :update, :destroy, :photo]
+  before_action :authenticate_user!
+  before_action :check_admin
+  before_action :find_admin_team_member_or_redirect, only: [
+    :show, :edit, :update, :destroy
+  ]
 
   layout "layouts/full_page_sidebar"
 
-  def photo
-    if @admin_team_member.photo.size > 0
-      send_file File.join(CarrierWave::Uploader::Base.root, @admin_team_member.photo.url)
-    else
-      head :ok
-    end
-  end
-
+  # GET /admin/team-members/order
   def order
-    @admin_team_members = Admin::TeamMember.current.order('position')
+    @admin_team_members = Admin::TeamMember.current.order("position nulls last")
   end
 
-  # GET /admin/team_members
-  # GET /admin/team_members.json
+  # POST /admin/team-members/order.js
+  def update_order
+    params[:team_member_ids].each_with_index do |team_member_id, index|
+      team_member = Admin::TeamMember.find_by(id: team_member_id)
+      team_member&.update(position: index)
+    end
+    head :ok
+  end
+
+  # GET /admin/team-members
   def index
-    @admin_team_members = Admin::TeamMember.current.order('position').page(params[:page]).per(40)
+    @admin_team_members = Admin::TeamMember.current.order("position nulls last").page(params[:page]).per(40)
   end
 
-  # GET /admin/team_members/1
-  # GET /admin/team_members/1.json
+  # GET /admin/team-members/1
   def show
     redirect_to admin_team_members_path
   end
 
-  # GET /admin/team_members/new
+  # GET /admin/team-members/new
   def new
     @admin_team_member = Admin::TeamMember.new
   end
 
-  # GET /admin/team_members/1/edit
-  def edit
-  end
+  # # GET /admin/team-members/1/edit
+  # def edit
+  # end
 
-  # POST /admin/team_members
-  # POST /admin/team_members.json
+  # POST /admin/team-members
   def create
     @admin_team_member = Admin::TeamMember.new(admin_team_member_params)
-
-    respond_to do |format|
-      if @admin_team_member.save
-        format.html { redirect_to @admin_team_member, notice: 'Team member was successfully created.' }
-        format.json { render :show, status: :created, location: @admin_team_member }
-      else
-        format.html { render :new }
-        format.json { render json: @admin_team_member.errors, status: :unprocessable_entity }
-      end
+    if @admin_team_member.save
+      redirect_to @admin_team_member, notice: "Team member was successfully created."
+    else
+      render :new
     end
   end
 
-  # PATCH /admin/team_members/1
-  # PATCH /admin/team_members/1.json
+  # PATCH /admin/team-members/1
   def update
-    respond_to do |format|
-      if @admin_team_member.update(admin_team_member_params)
-        format.html { redirect_to params[:redirect_back] ? order_admin_team_members_path : @admin_team_member, notice: 'Team member was successfully updated.' }
-        format.json { render :show, status: :ok, location: @admin_team_member }
-      else
-        format.html { render :edit }
-        format.json { render json: @admin_team_member.errors, status: :unprocessable_entity }
-      end
+    if @admin_team_member.update(admin_team_member_params)
+      redirect_to @admin_team_member, notice: "Team member was successfully updated."
+    else
+      render :edit
     end
   end
 
-  # DELETE /admin/team_members/1
-  # DELETE /admin/team_members/1.json
+  # DELETE /admin/team-members/1
+  # DELETE /admin/team-members/1.json
   def destroy
     @admin_team_member.destroy
-    respond_to do |format|
-      format.html { redirect_to admin_team_members_url, notice: 'Team member was successfully deleted.' }
-      format.json { head :no_content }
-    end
+    redirect_to admin_team_members_path, notice: "Team member was successfully deleted."
   end
 
   private
 
-  def set_admin_team_member
-    @admin_team_member = Admin::TeamMember.find(params[:id])
+  def find_admin_team_member_or_redirect
+    @admin_team_member = Admin::TeamMember.find_by(id: params[:id])
+    empty_response_or_root_path(admin_team_members_path) unless @admin_team_member
   end
 
   def admin_team_member_params
     params.require(:admin_team_member).permit(
-      :name, :designations, :role, :position, :bio, :photo, :group
+      :name, :designations, :role, :bio, :photo
     )
   end
 end

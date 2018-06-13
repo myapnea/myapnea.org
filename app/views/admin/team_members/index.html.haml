@@ -14,8 +14,7 @@
 
 - if @admin_team_members.present?
   - @admin_team_members.each do |team_member|
-    .dashboard-container
-      = render team_member
+    = render team_member
 - else
   .jumbotron.jumbotron-action.jumbotron-shadow
     %p.text-center No team members found.

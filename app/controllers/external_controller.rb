@@ -71,6 +71,12 @@ class ExternalController < ApplicationController
     @team_members = Admin::TeamMember.current.order(:position)
   end
 
+  # GET /team/:id/photo
+  def team_member_photo
+    @admin_team_member = Admin::TeamMember.find_by(id: params[:id])
+    send_file_if_present @admin_team_member&.photo
+  end
+
   # # GET /terms-and-conditions
   # def terms_and_conditions
   # end

@@ -35,12 +35,10 @@ Rails.application.routes.draw do
         post :progress
       end
     end
-    resources :team_members do
-      member do
-        get :photo
-      end
+    resources :team_members, path: "team-members" do
       collection do
         get :order
+        post :order, action: "update_order"
       end
     end
     resources :partners do
@@ -88,6 +86,7 @@ Rails.application.routes.draw do
     get :privacy_policy, path: "privacy-policy"
     get :sitemap_xml, path: "sitemap.xml.gz"
     get :team
+    get :team_member_photo, path: "team/:id/photo"
     get :terms_of_access, path: "terms-of-access"
     get :terms_and_conditions, path: "terms-and-conditions"
     get :voting

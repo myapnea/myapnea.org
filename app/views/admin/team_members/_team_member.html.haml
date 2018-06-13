@@ -1,20 +1,20 @@
-.team-member-container
-  .row
-    .col-md-5.team-member-image-wrapper
-      = image_tag team_member_photo_url(team_member), alt: "", class: "team-member-img"
-    .col-md-7
-      %h2
+- name_anchor = team_member.name.parameterize.dasherize
+%a.anchor-top{ name: name_anchor, id: name_anchor }
+.dashboard-container
+  .d-flex.flex-column.flex-sm-row.align-items-sm-center.mb-4
+    %div.team-member-photo.text-center.mr-0.mr-sm-3
+      = link_to team_member_photo_tag(team_member), "##{name_anchor}", data: { object: "scroll-anchor-keep-link" }, class: "link-unstyled"
+    %div.flex-fill
+      - if current_user&.admin?
+        .float-right
+          = succeed " " do
+            = link_to edit_admin_team_member_path(team_member), class: "btn btn-sm btn-light" do
+              %i.fa.fa-pencil>
+          = link_to admin_team_member_path(team_member), method: :delete, data: { confirm: "Delete #{team_member.name}?" }, class: "btn btn-sm btn-outline-danger" do
+            %i.fa.fa-trash
+
+      .team-member-name
         = team_member.name
-        %span.designations= team_member.designations
-      %h3
-        = team_member.role
-  %br
-  %p.lead
-    = team_member.bio
-  - if current_user&.admin?
-    .admin-bar
-      = succeed " " do
-        = link_to edit_admin_team_member_path(team_member), class: "btn btn-sm btn-light" do
-          %i.fa.fa-pencil>
-      = link_to admin_team_member_path(team_member), method: :delete, data: { confirm: "Delete #{team_member.name}?" }, class: "btn btn-sm btn-outline-danger" do
-        %i.fa.fa-trash
+        .team-member-designations= team_member.designations
+      .team-member-role= team_member.role
+  .team-member-bio= team_member.bio

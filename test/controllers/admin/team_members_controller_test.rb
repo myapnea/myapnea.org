@@ -20,14 +20,21 @@ class Admin::TeamMembersControllerTest < ActionDispatch::IntegrationTest
     }
   end
 
-  test "should get order for admin" do
+  test "should get order as admin" do
     login(@admin)
     get order_admin_team_members_url
     assert_response :success
   end
 
-  test "should get photo for logged out user" do
-    get photo_admin_team_member_url(@admin_team_member)
+  test "should update order as admin" do
+    login(@admin)
+    post order_admin_team_members_url, params: {
+      team_member_ids: [admin_team_members(:two).id, admin_team_members(:one).id]
+    }
+    admin_team_members(:one).reload
+    admin_team_members(:two).reload
+    assert_equal 0, admin_team_members(:two).position
+    assert_equal 1, admin_team_members(:one).position
     assert_response :success
   end
 

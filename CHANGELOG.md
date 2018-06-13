@@ -4,8 +4,10 @@
 - **General Changes**
   - Added tagline to forum and research pages to better describe the website for
     users visiting from search engine results
+  - Updated the team page
 - **Admin Changes**
   - Accents in names are now ignored on the user search
+  - Team members can now be reordered using drag-and-drop
 - **Forum Changes**
   - Added a prominent forum search to the forum index
 

@@ -80,6 +80,11 @@ class ExternalControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "should get photo for logged out user" do
+    get team_member_photo_url(admin_team_members(:one))
+    assert_response :success
+  end
+
   test "should get terms of access" do
     get terms_of_access_url
     assert_response :success

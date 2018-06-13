@@ -1,60 +1,50 @@
-#carousel-team {
-  border-radius: 20px;
-  clear: both;
-  position: relative;
-
-  .item {
-    min-height: 465px;
-  }
-}
-
-.team-list {
-  padding-left: 0;
-  text-align: center;
-
-  li {
-    cursor: pointer;
-    display: inline-block;
-    height: auto;
-    list-style-type: none;
-    margin: 0 2.5% 20px;
-    max-width: 200px;
-    width: 14%;
-  }
-}
-
 .team-member-picture {
+  background-color: $p100-grey;
   border: 2px solid $p400-orange;
   border-radius: 50%;
-  margin-right: 20px;
+  display: block;
   width: 100%;
 }
 
-.team-member-picture-large {
-  border: 2px solid $p400-orange;
-  border-radius: 50%;
+.team-member-photo {
+  flex: 0 0 auto;
 }
 
-.team-member-picture-md {
-  border: 2px solid $p400-orange;
-  height: auto;
-  width: 70%;
+.team-member-name {
+  font-size: 2rem;
 }
 
-.img-bw {
-  backface-visibility: hidden;
-  filter: grayscale(100%);
-  transition: all .4s ease;
+.team-member-designations {
+  color: $p500-grey;
+  display: inline;
+  font-size: 1.5rem;
+  font-weight: 300;
 }
 
-.img-bw-partial {
-  backface-visibility: hidden;
-  filter: grayscale(50%);
-  transition: all .4s ease;
+.team-member-role {
+  font-size: 1.5rem;
+  font-weight: 300;
 }
 
-.img-color {
-  backface-visibility: hidden;
-  filter: grayscale(0%);
-  transition: all .4s ease;
+.team-member-bio {
+  font-size: 1.25rem;
+    font-weight: 300;
+}
+
+.team-member-box {
+  background-color: $dashboard-bg;
+  border-radius: $border-radius;
+  box-shadow: 0 1px 5px $box-shadow-color;
+  cursor: move; // Cursor fallback
+  cursor: grab;
+  color: $body-color;
+  margin-bottom: map-get($spacers, 1);
+  padding: map-get($spacers, 2);
+}
+
+.ui-sortable-helper {
+  .team-member-box {
+    cursor: move; // Cursor fallback
+    cursor: grabbing;
+  }
 }
