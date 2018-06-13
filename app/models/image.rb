@@ -9,7 +9,7 @@ class Image < ApplicationRecord
   include Hashable
 
   # Validations
-  validates :user_id, :image, presence: true
+  validates :image, presence: true
 
   # Relationships
   belongs_to :user

@@ -63,7 +63,7 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
     assert_difference("Image.count") do
       post images_url, params: { image: image_params }
     end
-    assert_redirected_to image_url(assigns(:image))
+    assert_redirected_to image_url(Image.last)
   end
 
   test "should create image as regular user" do
@@ -71,14 +71,23 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
     assert_difference("Image.count") do
       post images_url, params: { image: image_params }
     end
-    assert_redirected_to image_url(assigns(:image))
+    assert_redirected_to image_url(Image.last)
   end
 
-  test "should create image as public user" do
+  test "should not create image as public user" do
     assert_difference("Image.count", 0) do
       post images_url, params: { image: image_params }
     end
     assert_redirected_to new_user_session_url
+  end
+
+  test "should not create image without image file as regular user" do
+    login(@regular)
+    assert_difference("Image.count", 0) do
+      post images_url, params: { image: image_params.merge(image: "") }
+    end
+    assert_template "new"
+    assert_response :success
   end
 
   test "should upload multiple images as admin" do
@@ -126,20 +135,32 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
   test "should download image as admin" do
     login(@admin)
     get download_image_url(@image)
-    assert_equal File.binread(assigns(:image).image.path), response.body
+    assert_equal File.binread(@image.image.path), response.body
     assert_response :success
   end
 
   test "should download image as regular user" do
     login(@regular)
     get download_image_url(@image)
-    assert_equal File.binread(assigns(:image).image.path), response.body
+    assert_equal File.binread(@image.image.path), response.body
     assert_response :success
   end
 
   test "should download image as public user" do
     get download_image_url(@image)
-    assert_equal File.binread(assigns(:image).image.path), response.body
+    assert_equal File.binread(@image.image.path), response.body
+    assert_response :success
+  end
+
+  test "should download preview image as public user" do
+    get download_image_url(@image), params: { size: "preview" }
+    assert_equal File.binread(@image.image.preview.path), response.body
+    assert_response :success
+  end
+
+  test "should download thumbnail image as public user" do
+    get download_image_url(@image), params: { size: "thumb" }
+    assert_equal File.binread(@image.image.thumb.path), response.body
     assert_response :success
   end
 
@@ -164,6 +185,15 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
     login(@admin)
     patch image_url(images(:three)), params: { image: image_params }
     assert_redirected_to image_url(images(:three))
+  end
+
+  test "should not update image without image file as admin" do
+    login(@admin)
+    patch image_url(images(:three)), params: {
+      image: image_params.merge(image: "")
+    }
+    assert_template "edit"
+    assert_response :success
   end
 
   test "should not update image as regular user" do

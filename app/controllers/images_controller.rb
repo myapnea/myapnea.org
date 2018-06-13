@@ -2,9 +2,15 @@
 
 # Allows user to insert images into blog and forum posts.
 class ImagesController < ApplicationController
-  before_action :authenticate_user!, only: [:index, :new, :edit, :create, :create_multiple, :update, :destroy]
-  before_action :check_admin, only: [:index, :edit, :update, :destroy]
-  before_action :set_image, only: [:show, :download, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [
+    :index, :new, :edit, :create, :create_multiple, :update, :destroy
+  ]
+  before_action :check_admin, only: [
+    :index, :edit, :update, :destroy
+  ]
+  before_action :find_image_or_redirect, only: [
+    :show, :download, :edit, :update, :destroy
+  ]
 
   # GET /images
   def index
@@ -12,22 +18,18 @@ class ImagesController < ApplicationController
     render layout: "layouts/full_page_sidebar"
   end
 
-  # GET /images/1
-  def show
-    redirect_to images_path unless @image
-  end
+  # # GET /images/1
+  # def show
+  # end
 
   def download
-    if @image && @image.image.size > 0
-      if params[:size] == "preview"
-        send_file File.join(CarrierWave::Uploader::Base.root, @image.image.preview.url)
-      elsif params[:size] == "thumb"
-        send_file File.join(CarrierWave::Uploader::Base.root, @image.image.thumb.url)
-      else
-        send_file File.join(CarrierWave::Uploader::Base.root, @image.image.url)
-      end
+    case params[:size]
+    when "preview"
+      send_file_if_present @image.image.preview
+    when "thumb"
+      send_file_if_present @image.image.thumb
     else
-      head :ok
+      send_file_if_present @image.image
     end
   end
 
@@ -38,7 +40,6 @@ class ImagesController < ApplicationController
 
   # GET /images/1/edit
   def edit
-    redirect_to images_path unless @image
     render layout: "layouts/full_page_sidebar"
   end
 
@@ -62,7 +63,7 @@ class ImagesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /images/1
+  # PATCH /images/1
   def update
     if @image.update(image_params)
       redirect_to @image, notice: "Image was successfully updated."
@@ -79,10 +80,9 @@ class ImagesController < ApplicationController
 
   private
 
-  def set_image
-    @image = Image.find params[:id]
-  rescue
-    @image = nil
+  def find_image_or_redirect
+    @image = Image.find_by(id: Image.decode_id(params[:id]))
+    empty_response_or_root_path(images_path) unless @image
   end
 
   def image_params
