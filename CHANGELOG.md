@@ -7,6 +7,7 @@
   - Updated the team page
 - **Admin Changes**
   - Team members can now be reordered using drag-and-drop
+  - Updated exports interface
 - **Forum Changes**
   - Added a prominent forum search to the forum index
 - **Search Changes**

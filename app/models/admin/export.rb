@@ -91,6 +91,7 @@ class Admin::Export < ApplicationRecord
   def export_succeeded(export_file)
     update status: "completed",
            file: File.open(export_file),
+           file_size: File.size(export_file),
            file_created_at: Time.zone.now,
            current_step: total_steps
     notify_user!

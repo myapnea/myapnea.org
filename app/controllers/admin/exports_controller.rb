@@ -22,11 +22,7 @@ class Admin::ExportsController < ApplicationController
   # end
 
   def file
-    if @admin_export.file.size > 0
-      send_file File.join(CarrierWave::Uploader::Base.root, @admin_export.file.url)
-    else
-      head :ok
-    end
+    send_file_if_present @admin_export.file
   end
 
   # # GET /admin/exports/new
@@ -43,7 +39,7 @@ class Admin::ExportsController < ApplicationController
     @admin_export = current_user.exports.new
     if @admin_export.save
       @admin_export.start_export_in_background!
-      redirect_to @admin_export, notice: 'Export was successfully created.'
+      redirect_to @admin_export, notice: "Export was successfully created."
     else
       render :new
     end
@@ -52,7 +48,7 @@ class Admin::ExportsController < ApplicationController
   # # PATCH /admin/exports/1
   # def update
   #   if @admin_export.update(admin_export_params)
-  #     redirect_to @admin_export, notice: 'Export was successfully updated.'
+  #     redirect_to @admin_export, notice: "Export was successfully updated."
   #   else
   #     render :edit
   #   end
@@ -62,7 +58,7 @@ class Admin::ExportsController < ApplicationController
   def destroy
     @admin_export.destroy
     respond_to do |format|
-      format.html { redirect_to admin_exports_path, notice: 'Export was successfully deleted.' }
+      format.html { redirect_to admin_exports_path, notice: "Export was successfully deleted." }
       format.js
     end
   end

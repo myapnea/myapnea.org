@@ -9,8 +9,13 @@
 
 .dashboard-container
   #progress{ data: { object: "#{"ajax-timer" if @admin_export.status == "started"}", path: progress_admin_export_path(@admin_export) } }
-    = render "admin/exports/progress"
+    = render "admin/exports/progress", export: @admin_export
 
-  %p
-    %strong Creator
-    = @admin_export.user.full_name
+  .form-group.row
+    .col-md-2.col-form-label
+      .form-label-elegant Status
+    .col-md-10
+      .form-control-plaintext#export_status
+        = render "admin/exports/status", export: @admin_export
+
+  = render "forms/horizontal/show/generic", title: "Creator", content: @admin_export.user.full_name
