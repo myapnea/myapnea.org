@@ -7,9 +7,9 @@ class Slice::EventDesign
   def initialize(json, subject_event)
     @subject_event = subject_event
     @json = json
-    @event_id = json.dig("event", "actual_id").presence || json.dig("event", "id")
+    @event_id = json.dig("event", "id")
     @event_slug = json.dig("event", "slug").presence || @event_id
-    @design_id = json.dig("design", "actual_id").presence || json.dig("design", "id")
+    @design_id = json.dig("design", "id")
     @design_slug = json.dig("design", "slug").presence || @design_id
     @design_name = json.dig("design", "name")
     @sheets = load_sheets(json["sheets"])

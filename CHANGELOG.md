@@ -12,6 +12,8 @@
   - Added a prominent forum search to the forum index
 - **Search Changes**
   - Member profile previews are displayed when searching usernames
+- **Survey Changes**
+  - Updated events and designs to match new Slice survey API format
 
 ## 17.5.2 (June 12, 2018)
 
