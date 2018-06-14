@@ -23,7 +23,7 @@
   .cookie-consent.d-flex.align-items-center
     .container.d-flex.align-items-center
       .mr-auto.pr-3
-        = cookies[:accepted_cookies]
-        This site uses cookies. By using this site you are accepting the terms and
-        conditions and privacy policy.
-      %div= link_to "Accept", "#", data: { object: "cookie-accept" }, class: "btn btn-success"
+        = link_to "We use cookies to collect information. Click here to read more.", privacy_policy_path, class: "text-dark"
+      %div
+        = link_to "#", data: { object: "cookie-accept" }, style: "font-weight: 300;font-size: 1.5rem;", class: "text-dark no-underline" do
+          &cross;
