@@ -478,3 +478,12 @@
     }
   }
 }
+
+.landing-topic {
+  background-color: $brand-white;
+}
+
+.landing-topic:nth-of-type(odd) {
+  // background-color: $p50-blue;
+  background-color: rgba(0, 0, 0, 0.025);
+}
