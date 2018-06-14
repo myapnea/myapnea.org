@@ -18,3 +18,12 @@
           &nbsp;
           = image_tag "logos/bwh-logo.png", size: "48x56", alt: ""
 
+
+- unless cookies[:accepted_cookies] == "1"
+  .cookie-consent.d-flex.align-items-center
+    .container.d-flex.align-items-center
+      .mr-auto.pr-3
+        = cookies[:accepted_cookies]
+        This site uses cookies. By using this site you are accepting the terms and
+        conditions and privacy policy.
+      %div= link_to "Accept", "#", data: { object: "cookie-accept" }, class: "btn btn-success"
