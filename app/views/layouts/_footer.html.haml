@@ -1,12 +1,20 @@
 .footer-container{ class: footer }
   %div{ class: defined?(container) && container.present? ? container : "container" }
     .footer
-      .nowrap
-        .float-right{ style: "margin-top: -14px;" }
+      .nowrap.row
+
+        .col
+          &copy;
+          .d-none.d-sm-inline= Time.zone.today.year
+          = link_to ENV["website_name"], about_path
+
+
+        .col.text-center.d-none.d-sm-block
+          %small.px-2= link_to "Terms", terms_and_conditions_path
+          %small.px-2= link_to "Privacy", privacy_policy_path
+
+        .col.text-right{ style: "margin-top: -14px;" }
           = link_to "Questions?", search_path
           &nbsp;
           = image_tag "logos/bwh-logo.png", size: "48x56", alt: ""
 
-        &copy;
-        .d-none.d-sm-inline= Time.zone.today.year
-        = link_to ENV["website_name"], about_path

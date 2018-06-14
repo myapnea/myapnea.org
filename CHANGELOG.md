@@ -5,6 +5,7 @@
   - Added tagline to forum and research pages to better describe the website for
     users visiting from search engine results
   - Updated the team page
+  - Added terms and conditions and privacy policy links to footer
 - **Admin Changes**
   - Team members can now be reordered using drag-and-drop
   - Updated exports interface
