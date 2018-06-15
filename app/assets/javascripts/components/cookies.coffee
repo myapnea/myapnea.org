@@ -31,6 +31,6 @@ $(document)
   )
   .on("click", "[data-object~=cookie-accept]", ->
     $(".cookie-consent").remove()
-    createCookie("accepted_cookies", "1")
+    createCookie("accepted_cookies", "1", 30)
     false
   )
