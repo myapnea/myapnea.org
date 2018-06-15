@@ -49,7 +49,6 @@ class NotificationsControllerTest < ActionDispatch::IntegrationTest
     }
     notifications(:broadcast_reply_two).reload
     assert_equal true, notifications(:broadcast_reply_two).read?
-    assert_template "show"
     assert_response :success
   end
 
@@ -59,7 +58,6 @@ class NotificationsControllerTest < ActionDispatch::IntegrationTest
       broadcast_id: broadcasts(:published).id
     }
     assert_equal 0, @regular.notifications.where(broadcast_id: broadcasts(:published), read: false).count
-    assert_template "mark_all_as_read"
     assert_response :success
   end
 
@@ -68,7 +66,6 @@ class NotificationsControllerTest < ActionDispatch::IntegrationTest
     assert_difference("Notification.where(read: false).count", 0) do
       patch mark_all_as_read_notifications_url(format: "js")
     end
-    assert_template "mark_all_as_read"
     assert_response :success
   end
 end

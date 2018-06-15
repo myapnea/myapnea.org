@@ -21,7 +21,6 @@ class Admin::CategoriesControllerTest < ActionDispatch::IntegrationTest
     login(@admin)
     get admin_categories_url
     assert_response :success
-    assert_not_nil assigns(:admin_categories)
   end
 
   test "should get new" do
@@ -35,7 +34,7 @@ class Admin::CategoriesControllerTest < ActionDispatch::IntegrationTest
     assert_difference("Admin::Category.count") do
       post admin_categories_url, params: { admin_category: category_params }
     end
-    assert_redirected_to admin_category_url(assigns(:admin_category))
+    assert_redirected_to admin_category_url(Admin::Category.last)
   end
 
   test "should not create category with blank name" do
@@ -45,7 +44,6 @@ class Admin::CategoriesControllerTest < ActionDispatch::IntegrationTest
         admin_category: category_params.merge(name: "")
       }
     end
-    assert_template "new"
     assert_response :success
   end
 
@@ -66,7 +64,8 @@ class Admin::CategoriesControllerTest < ActionDispatch::IntegrationTest
     patch admin_category_url(@admin_category), params: {
       admin_category: category_params
     }
-    assert_redirected_to admin_category_url(assigns(:admin_category))
+    @admin_category.reload
+    assert_redirected_to admin_category_url(@admin_category)
   end
 
   test "should not update category with blank name" do
@@ -74,7 +73,6 @@ class Admin::CategoriesControllerTest < ActionDispatch::IntegrationTest
     patch admin_category_url(@admin_category), params: {
       admin_category: category_params.merge(name: "")
     }
-    assert_template "edit"
     assert_response :success
   end
 

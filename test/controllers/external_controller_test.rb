@@ -23,7 +23,6 @@ class ExternalControllerTest < ActionDispatch::IntegrationTest
     assert_difference("ArticleVote.where(rating: 1).count") do
       post article_vote_url(broadcasts(:published).slug, vote: "up", format: "js")
     end
-    assert_template "article_vote"
     assert_response :success
   end
 
@@ -32,7 +31,6 @@ class ExternalControllerTest < ActionDispatch::IntegrationTest
     assert_difference("ArticleVote.where(rating: -1).count") do
       post article_vote_url(broadcasts(:published).slug, vote: "down", format: "js")
     end
-    assert_template "article_vote"
     assert_response :success
   end
 
@@ -40,7 +38,6 @@ class ExternalControllerTest < ActionDispatch::IntegrationTest
     assert_difference("ArticleVote.where(rating: 1).count", 0) do
       post article_vote_url(broadcasts(:published).slug, vote: "up", format: "js")
     end
-    assert_template "article_vote"
     assert_response :success
   end
 

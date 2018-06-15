@@ -13,6 +13,13 @@ class UserTest < ActiveSupport::TestCase
     }
   end
 
+  test "should only create valid user" do
+    user = User.create
+    assert_equal ["can't be blank"], user.errors[:username]
+    assert_equal ["can't be blank"], user.errors[:email]
+    assert_equal ["can't be blank"], user.errors[:password]
+  end
+
   test "should generate valid usernames" do
     assert_operator 6, :<=, User.suggest_username("").size
     assert_operator 6, :<=, User.suggest_username("test@example.com").size

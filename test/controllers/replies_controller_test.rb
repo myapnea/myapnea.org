@@ -20,7 +20,6 @@ class RepliesControllerTest < ActionDispatch::IntegrationTest
   #   login(@regular)
   #   get :index, topic_id: @reply.topic.to_param
   #   assert_response :success
-  #   assert_not_nil assigns(:replies)
   # end
 
   # test "should get new" do
@@ -34,7 +33,6 @@ class RepliesControllerTest < ActionDispatch::IntegrationTest
     post preview_replies_url(format: "js"), params: {
       parent_reply_id: "root", reply_id: "new", reply: reply_params
     }
-    assert_template "preview"
     assert_response :success
   end
 
@@ -45,8 +43,8 @@ class RepliesControllerTest < ActionDispatch::IntegrationTest
         topic_id: @reply.topic.to_param, reply: reply_params
       }
     end
-    assert_nil assigns(:reply).user.shadow_banned
-    assert_template "create"
+    @regular.reload
+    assert_nil @regular.shadow_banned
     assert_response :success
   end
 
@@ -58,8 +56,8 @@ class RepliesControllerTest < ActionDispatch::IntegrationTest
         reply: reply_params.merge(description: "http://www.example.com\nhttp://www.example.com")
       }
     end
-    assert_equal true, assigns(:reply).user.shadow_banned
-    assert_template "create"
+    @regular.reload
+    assert_equal true, @regular.shadow_banned
     assert_response :success
   end
 
@@ -72,7 +70,6 @@ class RepliesControllerTest < ActionDispatch::IntegrationTest
   test "should show reply" do
     login(@regular)
     get reply_url(@reply, format: "js"), params: { topic_id: @reply.topic.to_param }, xhr: true
-    assert_template "show"
     assert_response :success
   end
 
@@ -86,7 +83,6 @@ class RepliesControllerTest < ActionDispatch::IntegrationTest
     get edit_reply_url(@reply, format: "js"), params: {
       topic_id: @reply.topic.to_param
     }, xhr: true
-    assert_template "edit"
     assert_response :success
   end
 
@@ -95,8 +91,8 @@ class RepliesControllerTest < ActionDispatch::IntegrationTest
     patch reply_url(@reply, format: "js"), params: {
       topic_id: @reply.topic.to_param, reply: reply_params
     }
-    assert_nil assigns(:reply).user.shadow_banned
-    assert_template "show"
+    @regular.reload
+    assert_nil @regular.shadow_banned
     assert_response :success
   end
 
@@ -106,8 +102,8 @@ class RepliesControllerTest < ActionDispatch::IntegrationTest
       topic_id: @reply.topic.to_param,
       reply: reply_params.merge(description: "http://www.example.com\nhttp://www.example.com")
     }
-    assert_equal true, assigns(:reply).user.shadow_banned
-    assert_template "show"
+    @regular.reload
+    assert_equal true, @regular.shadow_banned
     assert_response :success
   end
 
@@ -116,7 +112,6 @@ class RepliesControllerTest < ActionDispatch::IntegrationTest
     assert_difference("Reply.current.count", -1) do
       delete reply_url(@reply, format: "js"), params: { topic_id: @reply.topic.to_param }
     end
-    assert_template "show"
     assert_response :success
   end
 end

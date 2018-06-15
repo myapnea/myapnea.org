@@ -18,23 +18,35 @@ class RegistrationsControllerTest < ActionDispatch::IntegrationTest
         user: user_params
       }
     end
-    assert_not_nil assigns(:user)
-    assert_equal "SleepyDuck", assigns(:user).username
-    assert_equal "new_user@example.com", assigns(:user).email
+    assert_equal "SleepyDuck", User.last.username
+    assert_equal "new_user@example.com", User.last.email
     assert_redirected_to root_url
   end
 
-  test "should not sign up new user without required fields" do
+  test "should not sign up new user without username" do
     assert_difference("User.count", 0) do
       post user_registration_url, params: {
-        user: user_params.merge(username: "", email: "", password: "")
+        user: user_params.merge(username: "")
       }
     end
-    assert_not_nil assigns(:user)
-    assert_equal ["can't be blank"], assigns(:user).errors[:username]
-    assert_equal ["can't be blank"], assigns(:user).errors[:email]
-    assert_equal ["can't be blank"], assigns(:user).errors[:password]
-    assert_template "devise/registrations/new"
+    assert_response :success
+  end
+
+  test "should not sign up new user without email" do
+    assert_difference("User.count", 0) do
+      post user_registration_url, params: {
+        user: user_params.merge(email: "")
+      }
+    end
+    assert_response :success
+  end
+
+  test "should not sign up new user without password" do
+    assert_difference("User.count", 0) do
+      post user_registration_url, params: {
+        user: user_params.merge(password: "")
+      }
+    end
     assert_response :success
   end
 end

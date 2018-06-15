@@ -94,7 +94,6 @@ class SettingsControllerTest < ActionDispatch::IntegrationTest
         password_confirmation: "newpassword"
       }
     }
-    assert_template "account"
     assert_response :success
   end
 
@@ -107,7 +106,6 @@ class SettingsControllerTest < ActionDispatch::IntegrationTest
         password_confirmation: "mismatched"
       }
     }
-    assert_template "account"
     assert_response :success
   end
 

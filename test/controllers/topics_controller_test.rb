@@ -22,7 +22,6 @@ class TopicsControllerTest < ActionDispatch::IntegrationTest
     login(@regular)
     post subscription_topic_url(@topic, format: "js"), params: { notify: "1" }
     assert_equal true, @topic.subscribed?(@regular)
-    assert_template "subscription"
     assert_response :success
   end
 
@@ -30,13 +29,11 @@ class TopicsControllerTest < ActionDispatch::IntegrationTest
     login(@regular)
     post subscription_topic_url(@topic, format: "js"), params: { notify: "0" }
     assert_equal false, @topic.subscribed?(@regular)
-    assert_template "subscription"
     assert_response :success
   end
 
   test "should not subscribe for anonymous user" do
     post subscription_topic_url(@topic, format: "js"), params: { notify: "1" }
-    assert_template nil
     assert_response :unauthorized
   end
 
@@ -99,7 +96,6 @@ class TopicsControllerTest < ActionDispatch::IntegrationTest
     assert_difference("Topic.count", 0) do
       post topics_url, params: { topic: topic_params.merge(title: "") }
     end
-    assert_template "new"
     assert_response :success
   end
 
@@ -174,13 +170,13 @@ class TopicsControllerTest < ActionDispatch::IntegrationTest
     patch topic_url(@topic), params: {
       topic: topic_params.merge(title: "Updated Topic Title")
     }
-    assert_redirected_to assigns(:topic)
+    @topic.reload
+    assert_redirected_to topic_path(@topic)
   end
 
   test "should not update topic with blank title" do
     login(@regular)
     patch topic_url(@topic), params: { topic: topic_params.merge(title: "") }
-    assert_template "edit"
     assert_response :success
   end
 

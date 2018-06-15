@@ -26,7 +26,6 @@ class BroadcastsControllerTest < ActionDispatch::IntegrationTest
   test "should get index" do
     get broadcasts_url
     assert_response :success
-    assert_not_nil assigns(:broadcasts)
   end
 
   test "should get new" do
@@ -52,7 +51,6 @@ class BroadcastsControllerTest < ActionDispatch::IntegrationTest
     assert_difference("Broadcast.count", 0) do
       post broadcasts_url, params: { broadcast: broadcast_params.merge(title: "") }
     end
-    assert_template "new"
     assert_response :success
   end
 
@@ -68,12 +66,12 @@ class BroadcastsControllerTest < ActionDispatch::IntegrationTest
 
   test "should update broadcast" do
     patch broadcast_url(@broadcast), params: { broadcast: broadcast_params }
-    assert_redirected_to broadcast_url(assigns(:broadcast))
+    @broadcast.reload
+    assert_redirected_to broadcast_url(@broadcast)
   end
 
   test "should not update broadcast with blank title" do
     patch broadcast_url(@broadcast), params: { broadcast: broadcast_params.merge(title: "") }
-    assert_template "edit"
     assert_response :success
   end
 

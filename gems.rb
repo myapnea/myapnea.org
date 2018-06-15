@@ -38,7 +38,6 @@ group :test do
   gem "artifice"
   gem "minitest"
   gem "puma"
-  gem "rails-controller-testing"
   gem "simplecov",          "~> 0.16.1", require: false
 end
 

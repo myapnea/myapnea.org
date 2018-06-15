@@ -17,6 +17,9 @@
 - **Survey Changes**
   - Updated events and designs to match new Slice survey API format
 
+### Testing
+- Removed dependency on rails-controller-testing gem
+
 ## 17.5.2 (June 12, 2018)
 
 ### Bug Fix

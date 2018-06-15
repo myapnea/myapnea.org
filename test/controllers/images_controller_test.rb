@@ -86,7 +86,6 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
     assert_difference("Image.count", 0) do
       post images_url, params: { image: image_params.merge(image: "") }
     end
-    assert_template "new"
     assert_response :success
   end
 
@@ -95,7 +94,6 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
     assert_difference("Image.count", 2) do
       post upload_images_url(format: "js"), params: { images: multiple_images }
     end
-    assert_template "create_multiple"
     assert_response :success
   end
 
@@ -104,7 +102,6 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
     assert_difference("Image.count", 2) do
       post upload_images_url(format: "js"), params: { images: multiple_images }
     end
-    assert_template "create_multiple"
     assert_response :success
   end
 
@@ -192,7 +189,6 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
     patch image_url(images(:three)), params: {
       image: image_params.merge(image: "")
     }
-    assert_template "edit"
     assert_response :success
   end
 

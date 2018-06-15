@@ -58,7 +58,6 @@ class AdminControllerTest < ActionDispatch::IntegrationTest
     assert_difference("User.where(spammer: true).count") do
       post admin_destroy_spammer_url(users(:shadow_banned), format: "js")
     end
-    assert_template "destroy_spammer"
     assert_response :success
   end
 

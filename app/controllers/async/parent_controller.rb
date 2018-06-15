@@ -30,7 +30,7 @@ class Async::ParentController < Async::BaseController
     @reply = @parent.replies.find_by(id: params[:reply_id])
     return if @reply
     @reply = @parent.replies.new(
-      reply_id: params[:parent_reply_id] == 'root' ? nil : params[:parent_reply_id]
+      reply_id: params[:parent_reply_id] == "root" ? nil : params[:parent_reply_id]
     )
   end
 end

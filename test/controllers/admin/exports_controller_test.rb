@@ -63,7 +63,6 @@ class Admin::ExportsControllerTest < ActionDispatch::IntegrationTest
   test "should get progress as admin" do
     login(@admin)
     post progress_admin_export_url(@admin_export, format: "js")
-    assert_template "progress"
     assert_response :success
   end
 
@@ -99,7 +98,6 @@ class Admin::ExportsControllerTest < ActionDispatch::IntegrationTest
     assert_difference("Admin::Export.count", -1) do
       delete admin_export_url(@admin_export, format: "js")
     end
-    assert_template "destroy"
     assert_response :success
   end
 

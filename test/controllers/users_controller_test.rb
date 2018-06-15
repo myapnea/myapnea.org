@@ -24,21 +24,18 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   test "should export users as admin" do
     login(@admin)
     get export_users_url(format: "csv")
-    assert_not_nil assigns(:csv_string)
     assert_response :success
   end
 
   test "should not export users as moderator" do
     login(@moderator)
     get export_users_url(format: "csv")
-    assert_nil assigns(:csv_string)
     assert_redirected_to root_url
   end
 
   test "should not export users as regular user" do
     login(@regular)
     get export_users_url(format: "csv")
-    assert_nil assigns(:csv_string)
   end
 
   test "should not export users for public user" do
@@ -49,14 +46,12 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   test "should get index for admin" do
     login(@admin)
     get users_url
-    assert_not_nil assigns(:users)
     assert_response :success
   end
 
   test "should not get index for regular user" do
     login(@regular)
     get users_url
-    assert_nil assigns(:users)
     assert_redirected_to root_url
   end
 
@@ -80,14 +75,12 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   test "should show user for admin" do
     login(@admin)
     get user_url(@user)
-    assert_not_nil assigns(:user)
     assert_response :success
   end
 
   test "should not show user for regular user" do
     login(@regular)
     get user_url(@user)
-    assert_nil assigns(:user)
     assert_redirected_to root_url
   end
 
@@ -105,7 +98,6 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   test "should not edit user for regular user" do
     login(@regular)
     get edit_user_url(@user)
-    assert_nil assigns(:user)
     assert_redirected_to root_url
   end
 
@@ -117,9 +109,9 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   test "should update user for admin" do
     login(@admin)
     patch user_url(@user), params: { user: user_params }
-    assert_not_nil assigns(:user)
-    assert_equal true, assigns(:user).emails_enabled?
-    assert_redirected_to user_url(assigns(:user))
+    @user.reload
+    assert_equal true, @user.emails_enabled?
+    assert_redirected_to user_url(@user)
   end
 
   test "should not update user for regular user" do
@@ -136,14 +128,11 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   test "should not update user with blank username" do
     login(@admin)
     patch user_url(@user), params: { user: { username: "" } }
-    assert_not_nil assigns(:user)
-    assert_template "edit"
   end
 
   test "should not update user with invalid id" do
     login(@admin)
     patch user_url(-1), params: { user: user_params }
-    assert_nil assigns(:user)
     assert_redirected_to users_url
   end
 
@@ -152,7 +141,6 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_difference("User.where(spammer: true).count") do
       post spam_user_url(@user, format: "js")
     end
-    assert_template "spam"
     assert_response :success
   end
 
@@ -169,7 +157,6 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_difference("User.current.count", -1) do
       delete user_url(@user, format: "js")
     end
-    assert_template "destroy"
     assert_response :success
   end
 

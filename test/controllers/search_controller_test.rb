@@ -11,7 +11,6 @@ class SearchControllerTest < ActionDispatch::IntegrationTest
 
   test "should get member profile on index" do
     get search_url, params: { search: "AwesomeCat" }
-    assert_template partial: "_mini_profile"
     assert_response :success
   end
 end
