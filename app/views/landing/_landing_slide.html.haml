@@ -16,6 +16,9 @@
           .random-small-text
             Learn about yourself, contribute to sleep research, see how you
             compare to others.
+            = link_to slice_research_path, class: "link-accent" do
+              Get started
+              %i.fa.fa-caret-right
 
         .random-text.mb-5
           Print personalized report.
@@ -39,5 +42,5 @@
 
 %div{ style: "position: relative;" }
   %div{ style: "position: relative;" }
-    = link_to "#research", data: { object: "scroll-anchor" }, class: "text-white scroll-down-arrow-visible link-unstyled" do
+    = link_to "#featured-article", data: { object: "scroll-anchor" }, class: "text-white scroll-down-arrow-visible link-unstyled" do
       %i.fa.fa-chevron-down

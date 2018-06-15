@@ -44,10 +44,7 @@
           - if display_count < users_count
             .d-inline-block{ style: "border: 1px solid #ffa726;border-radius: 50%;padding: 0 2px;font-size: .625rem;background-color: #ffcc80;" }
               = "+#{users_count - display_count}"
-    %tr
-      %td
-      %td
-        = link_to topics_path do
-          See more
-          %i.fa.fa-caret-right
-      %td
+.random-small-text
+  = link_to topics_path, class: "link-accent" do
+    Explore the forum
+    %i.fa.fa-caret-right
