@@ -14,7 +14,9 @@
 
   #top-menu.top-menu= render "layouts/menu", menu: @menu ? "menu-#{@menu}" : nil
 
-= render "landing/welcome_slide"
+= render "landing/landing_slide"
+
+= render "landing/welcome_slide" if false
 
 #research.anchor-menu
 = render "landing/research_slide"

@@ -32,21 +32,46 @@
                     = "+#{users_count - display_count}"
 
         .bg-white.mb-3.mb-md-0.p-3.rounded.btn-shadow.mx-1{ style: "flex: 1 0 0 !important"}
-          %div.text-center{ style: "font-size: 3.75rem;" }
-            %i.fa.fa-book
-          %div
-            = link_to blog_path do
-              Read our blog
-              %i.fa.fa-caret-right
+          %div.d-flex.align-items-center.mb-3{ style: "font-size: 2rem;" }
+            %div.mr-auto= link_to "Articles", blog_path
+            %div
+              %i.fa.fa-book{ style: "font-size: 2rem;" }
+
+          - articles = Broadcast.current.published.where.not(category: Admin::Category.find_by(slug: "faqs")).order(publish_date: :desc, id: :desc).limit(3)
+          - articles.each do |broadcast|
+            .landing-topic.mb-1.pl-1{ style: "border-left: 2px solid #ffe0b2;font-weight: bold;border-bottom: 1px solid #fafafa;" }= link_to broadcast.title, "#", data: { object: "show-fullscreen-blog", broadcast_id: broadcast.id }, class: "link-blend-semi-muted"
+            .blog-fullscreen-backdrop{ data: { broadcast_id: broadcast.id } }
+              .blog-fullscreen-content.d-flex.flex-column.justify-content-around
+                .background-blog-image.background-blur{ style: "background-image: url(#{first_image_url(broadcast)});", data: { object: "close-fullscreen-blog", broadcast_id: broadcast.id } }
+                %div{ style: "position: absolute; top: 0; right: 1rem;font-size: 2rem;cursor: pointer;" }
+                  = link_to "#", class: "link-white no-underline", data: { object: "close-fullscreen-blog", broadcast_id: broadcast.id } do
+                    &times;
+                .container
+                  .landing-blog-info
+                    .landing-blog-title= broadcast.title
+                    .landing-blog-content{ style: "position: relative;" }
+                      = strip_tags(simple_markdown(broadcast.description, target_blank: false)).gsub(/\r/, " ").gsub(/\n/, " ").truncate(500, separator: ".", omission: ".").html_safe
+
+                      .d-none.d-sm-block{ style: "position: absolute;right: -1rem; bottom: -1rem;" }
+                        = link_to blog_post_path(broadcast.url_hash), class: "btn btn-accent btn-lg" do
+                          Read more
+                          %i.fa.fa-caret-right
+
+                      .d-block.d-sm-none{ style: "position: absolute;right: -.25rem; bottom: -.25rem;" }
+                        = link_to blog_post_path(broadcast.url_hash), class: "btn btn-sm btn-accent" do
+                          Read more
+                          %i.fa.fa-caret-right
 
 
         .bg-white.mb-3.mb-md-0.p-3.rounded.btn-shadow.mx-1{ style: "flex: 1 0 0 !important"}
-          %div.text-center{ style: "font-size: 3.75rem;" }
-            %i.fa.fa-flask
+          - if false
+            %div.text-center{ style: "font-size: 3.75rem;" }
+              %i.fa.fa-flask
 
-          %div
+          %div.mb-2
             = link_to slice_research_path do
-              Participate in research
+              Take surveys and create
+              a personalized report to take to your doctor.
               %i.fa.fa-caret-right
 
       %div
@@ -60,3 +85,5 @@
   %div{ style: "position: relative;" }
     = link_to "#research", data: { object: "scroll-anchor" }, class: "text-white scroll-down-arrow-visible link-unstyled" do
       %i.fa.fa-chevron-down
+
+=# render "landing/featured_article_slide"

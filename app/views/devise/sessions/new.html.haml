@@ -32,7 +32,3 @@
     .sign-up-form.text-center
       New to MyApnea?
       = link_to "Create an account.", new_user_registration_path
-
-    - if devise_mapping.confirmable? && false
-      .text-center{ style: "margin-bottom: 20px;" }
-        = link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name), class: "link-white"

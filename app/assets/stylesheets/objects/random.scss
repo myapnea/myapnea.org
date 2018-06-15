@@ -1,0 +1,30 @@
+.random-text {
+  font-size: 2rem;
+  color: $brand-white;
+  text-shadow: 0 2px 3px $standard-shadow-color;
+  margin-bottom: map-get($spacers, 5);
+}
+
+.random-small-text {
+  font-size: 1.25rem;
+  color: $p500-grey;
+  text-shadow: 0 2px 3px $standard-shadow-color;
+  margin-bottom: $spacer;
+  margin-left: $spacer;
+}
+
+.random-hover-size {
+  background-color: $dashboard-bg;
+  border-radius: $border-radius;
+  box-shadow: 0 1px 5px $box-shadow-color;
+  cursor: pointer;
+  padding: map-get($spacers, 1);
+  overflow: hidden;
+  transition: transform .25s ease-out;
+
+  @media (hover) {
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+}
