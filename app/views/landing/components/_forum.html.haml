@@ -5,18 +5,19 @@
 
 .topics.bg-white
   %table.table.table-striped.table-borderless.table-sticky
-    %col{ width: "1px" }
+    %col.d-none.d-lg-table-column{ width: "1px" }
     %col
     %col
 
     %tr
-      - if false
-        %td.small.nowrap.text-right
-          %i.fa.fa-search
-      %td
+      %td.d-none.d-lg-table-cell
       %td{ colspan: 2 }
         = form_tag search_path, method: :get, id: "search-form" do
-          = text_field_tag :search, params[:search], placeholder: "Search the forum", autocomplete: "off", class: "table-cell-search-input border rounded"
+          .input-group
+            = text_field_tag :search, params[:search], placeholder: "Search the forum", autocomplete: "off", class: "table-cell-search-input border form-control"
+            .input-group-append
+              = link_to "#", class: "btn btn-sm btn-primary", data: { object: "submit-and-disable", target: "#search-form" } do
+                %i.fa.fa-search
 
     - @topics.includes(countable_replies: :user).each do |topic|
       - topic_user = topic_users.find { |tu| tu.topic_id == topic.id }
@@ -25,9 +26,10 @@
       - started_reading = topic.started_reading?(topic_user)
 
       %tr
-        %td.small.nowrap
-          = topic.replies_count
-          %i.fa.fa-comments-o
+        %td.d-none.d-lg-table-cell
+          .small.nowrap
+            = topic.replies_count
+            %i.fa.fa-comments-o
         %td
           = link_to topic.title, topic, class: (started_reading && unread_replies.zero?) ? "topic-read" : "topic-unread"
         %td.text-right.nowrap

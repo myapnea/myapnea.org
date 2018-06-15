@@ -5,3 +5,8 @@
     = link_to blog_post_path(broadcast.url_hash), class: "featured-article d-flex align-items-end mb-3 ml-0 mr-0", style: "min-width: 320px;" do
       .featured-article-background-image{ style: "background-image: url(#{first_image_url(broadcast)});" }
       .featured-article-title= broadcast.title
+
+.random-small-text
+  = link_to blog_path, class: "link-accent" do
+    More articles
+    %i.fa.fa-caret-right

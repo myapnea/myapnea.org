@@ -40,11 +40,12 @@ class ExternalController < ApplicationController
   # GET /
   # GET /landing
   def landing
+    topics_to_find = 12
     (1..10).each do |week_number|
       @topics = Topic.current.shadow_banned(nil)
                      .where("topics.created_at > ?", Time.zone.today - week_number.week)
-                     .order(replies_count: :desc).limit(10)
-      break if @topics.count >= 10
+                     .order(replies_count: :desc).limit(topics_to_find)
+      break if @topics.count >= topics_to_find
     end
     render layout: "layouts/full_page"
   end
