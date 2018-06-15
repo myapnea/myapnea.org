@@ -1,25 +1,23 @@
 - @articles = Broadcast.current.published.where.not(category: Admin::Category.find_by(slug: "faqs")).order(publish_date: :desc, id: :desc).limit(3)
 
 .page-box.myapnea-dark-blue-light-center-bg.d-flex.flex-column
-  .container
+  .container.mb-5
     .text-center.mb-5= image_tag "logos/myapnea-logo-large-whitetext.png", style: "height: auto; max-width: 540px; width: 100%;", class: "img-ignore-selection"
 
+    .landing-about-slide-tagline
+      MyApnea is a community of patients, doctors, and researchers
+      trying to improve the diagnosis and treatment of sleep apnea.
+
     .d-flex.flex-column.flex-md-row.align-items-center.mb-3
-      .mr-auto
-        .random-text
-          Join the study.
-
-          .random-small-text
-            Consent to the MyApnea.Org study.
-
-        .random-text
+      .mr-auto.d-flex.flex-column.justify-content-around
+        .random-text.mb-5
           Complete surveys.
 
           .random-small-text
             Learn about yourself, contribute to sleep research, see how you
             compare to others.
 
-        .random-text
+        .random-text.mb-5
           Print personalized report.
 
           .random-small-text
@@ -32,44 +30,12 @@
 
 
     .d-flex.flex-column.flex-md-row
-      .pr-3.pt-3.mr-0.mr-md-3.d-flex.flex-column
-        .random-text.mb-3.text-center.text-md-left
-          Read articles.
-        .d-flex.flex-column.align-items-center
-          - @articles.each do |broadcast|
-            = link_to blog_post_path(broadcast.url_hash), class: "featured-article d-flex align-items-end mb-3 ml-0 mr-0", style: "min-width: 320px;" do
-              .featured-article-background-image{ style: "background-image: url(#{first_image_url(broadcast)});" }
-              .featured-article-title= broadcast.title
+      .pr-3.pt-3.flex-fill
+        = render "landing/components/forum"
 
+      .pl-3.pt-3.mr-0.mr-md-3.d-flex.flex-column
+        = render "landing/components/read_articles"
 
-      .pl-3.pt-3.flex-fill
-        .random-text.mb-3
-          Participate on forum.
-
-        .dashboard-container
-          - @topics.includes(countable_replies: :user).each do |topic|
-            .landing-topic.d-flex.align-items-center.mb-1.pl-1{ style: "border-left: 2px solid #ffe0b2;" }
-              %div.mr-auto.pr-3
-                = link_to topic.title, topic, class: "link-blend-semi-muted", style: "font-weight: bold;"
-              %div.nowrap
-                - max_display = 4
-                - display_count = 0
-                - users = topic.countable_replies.collect { |r| r.user }.uniq
-                - users_count = users.size
-                - users.each do |user|
-                  - if display_count >= max_display
-                    - break
-                  - if user.photo.present?
-                    - display_count += 1
-                    = profile_picture_tag user, size: 16, style: "border-radius: 50% !important;border: 1px solid #ffa726;"
-                - if display_count < users_count
-                  .d-inline-block{ style: "border: 1px solid #ffa726;border-radius: 50%;padding: 0 2px;font-size: .625rem;background-color: #ffcc80;" }
-                    = "+#{users_count - display_count}"
-        .landing-about-slide-tagline
-          MyApnea is a community of patients, doctors, and researchers
-          trying to improve the diagnosis and treatment of sleep apnea. You
-          can engage in discussions with other members, read research articles,
-          and participate in research studies.
 
 %div{ style: "position: relative;" }
   %div{ style: "position: relative;" }

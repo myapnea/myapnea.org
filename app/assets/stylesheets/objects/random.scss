@@ -2,15 +2,14 @@
   font-size: 2rem;
   color: $brand-white;
   text-shadow: 0 2px 3px $standard-shadow-color;
-  margin-bottom: map-get($spacers, 5);
 }
 
 .random-small-text {
+  color: $p400-grey;
   font-size: 1.25rem;
-  color: $p500-grey;
-  text-shadow: 0 2px 3px $standard-shadow-color;
-  margin-bottom: $spacer;
+  font-weight: 200;
   margin-left: $spacer;
+  text-shadow: 0 2px 3px $standard-shadow-color;
 }
 
 .random-hover-size {

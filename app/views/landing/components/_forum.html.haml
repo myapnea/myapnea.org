@@ -1,0 +1,53 @@
+- topic_users = TopicUser.where(topic: @topics, user: current_user).to_a
+
+.random-text.mb-3
+  Participate on forum.
+
+.topics.bg-white
+  %table.table.table-striped.table-borderless.table-sticky
+    %col{ width: "1px" }
+    %col
+    %col
+
+    %tr
+      - if false
+        %td.small.nowrap.text-right
+          %i.fa.fa-search
+      %td
+      %td{ colspan: 2 }
+        = form_tag search_path, method: :get, id: "search-form" do
+          = text_field_tag :search, params[:search], placeholder: "Search the forum", autocomplete: "off", class: "table-cell-search-input border rounded"
+
+    - @topics.includes(countable_replies: :user).each do |topic|
+      - topic_user = topic_users.find { |tu| tu.topic_id == topic.id }
+      - unread_replies = topic.unread_replies(topic_user)
+      - next_unread_reply = topic.next_unread_reply(topic_user)
+      - started_reading = topic.started_reading?(topic_user)
+
+      %tr
+        %td.small.nowrap
+          = topic.replies_count
+          %i.fa.fa-comments-o
+        %td
+          = link_to topic.title, topic, class: (started_reading && unread_replies.zero?) ? "topic-read" : "topic-unread"
+        %td.text-right.nowrap
+          - max_display = 4
+          - display_count = 0
+          - users = topic.countable_replies.collect { |r| r.user }.uniq
+          - users_count = users.size
+          - users.each do |user|
+            - if display_count >= max_display
+              - break
+            - if user.photo.present?
+              - display_count += 1
+              = profile_picture_tag user, size: 16, style: "border-radius: 50% !important;border: 1px solid #ffa726;"
+          - if display_count < users_count
+            .d-inline-block{ style: "border: 1px solid #ffa726;border-radius: 50%;padding: 0 2px;font-size: .625rem;background-color: #ffcc80;" }
+              = "+#{users_count - display_count}"
+    %tr
+      %td
+      %td
+        = link_to topics_path do
+          See more
+          %i.fa.fa-caret-right
+      %td
