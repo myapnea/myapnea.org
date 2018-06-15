@@ -8,7 +8,6 @@
 @extensionsReady = ->
   datepickerReady()
   fileDragReady()
-  notouchReady()
   tooltipsReady()
 
 @componentsReady = ->

@@ -2,7 +2,7 @@
   display: none;
 }
 
-.no-touch {
+@media (hover) {
   .vote-info:hover .vote-expanded-info {
     display: inline-block;
   }
