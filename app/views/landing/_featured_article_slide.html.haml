@@ -1,5 +1,5 @@
 - position = 0
-- Broadcast.current.order(Arel.sql("RANDOM()")).where.not(category: Admin::Category.find_by(slug: "faqs")).limit(1).each do |broadcast|
+- Broadcast.current.published.order(Arel.sql("RANDOM()")).where.not(category: Admin::Category.find_by(slug: "faqs")).limit(1).each do |broadcast|
   - if first_image_url(broadcast).present?
     - background = "myapnea-black-bg"
   - else
