@@ -2,10 +2,10 @@
   = render "forms/vertical/text_field", form: form, object: topic, key: :title, key_name: "Topic Subject", slug: "slug"
   = render "forms/vertical/slug_field", form: form, object: topic, key: :slug, key_name: "URL Location"
 
-  - if @topic.new_record?
+  - if topic.new_record?
     .form-group
       = form.label :description, "Topic Description", class: "control-label"
-      .preview-container
+      .preview-container{ class: topic.errors[:description].present? ? "is-invalid" : nil }
         .preview-header
           .float-right
             = render "replies/rich_text_editor_buttons", target: "#topic_description"
@@ -13,11 +13,12 @@
           = link_to "Preview", "#", data: { object: "view-content-preview", content: "#topic_description" }, class: "preview-tab", tabindex: "-1"
         .preview-body
           #content_markdown
-            = form.text_area :description, rows: [[15, @topic.description.to_s.count("\n") + 1].max, 25].min, class: "preview-control filedrag-container", data: { object: "expandable-text-area dropfile-image", default_rows: 15, upload_url: upload_images_path(update: "#topic_description", format: "js"), fallback_url: new_image_path, log_id: "#log_new" }, id: "topic_description"
+            = form.text_area :description, rows: [[15, topic.description.to_s.count("\n") + 1].max, 25].min, class: "preview-control filedrag-container", data: { object: "expandable-text-area dropfile-image", default_rows: 15, upload_url: upload_images_path(update: "#topic_description", format: "js"), fallback_url: new_image_path, log_id: "#log_new" }, id: "topic_description"
             #log_new.filedrag
               Drag images above to insert into post.
           #content_preview.topic{ style: "display: none;" }
-      = render "layouts/errors", object: @topic, key: :description
+      - if topic.errors[:description].present?
+        %small.text-danger= topic.errors[:description].collect { |e| "Description #{e}" }.join(", ")
 
   = render "forms/vertical/check_box", form: form, object: topic, key: :pinned if current_user.admin?
 

@@ -11,6 +11,10 @@
     margin-bottom: 20px;
     border-left: 4px solid $p100-orange;
   }
+
+  &.is-invalid {
+    border-color: $form-feedback-invalid-color;
+  }
 }
 
 .preview-header {
