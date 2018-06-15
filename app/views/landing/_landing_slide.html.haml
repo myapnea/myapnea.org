@@ -1,6 +1,4 @@
 - @articles = Broadcast.current.published.where.not(category: Admin::Category.find_by(slug: "faqs")).order(publish_date: :desc, id: :desc).limit(3)
--# @topics.includes(countable_replies: :user).each do |topic|
-
 
 .page-box.myapnea-dark-blue-light-center-bg.d-flex.flex-column
   .container
