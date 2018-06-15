@@ -4,7 +4,7 @@
   .container.mb-5
     .text-center.mb-5= image_tag "logos/myapnea-logo-large-whitetext.png", style: "height: auto; max-width: 540px; width: 100%;", class: "img-ignore-selection"
 
-    .landing-about-slide-tagline
+    .landing-about-slide-tagline.mb-5.mb-lg-0
       MyApnea is a community of patients, doctors, and researchers
       trying to improve the diagnosis and treatment of sleep apnea.
 
@@ -33,10 +33,10 @@
 
 
     .d-flex.flex-column.flex-md-row
-      .pr-3.pt-3.flex-fill
+      .pr-0.pr-md-3.pt-3.flex-fill
         = render "landing/components/forum"
 
-      .pl-3.pt-3.mr-0.mr-md-3.d-flex.flex-column
+      .pl-0.pl-md-3.pt-3.mr-0.mr-md-3.d-flex.flex-column
         = render "landing/components/read_articles"
 
 
