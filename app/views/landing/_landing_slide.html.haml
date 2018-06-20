@@ -1,13 +1,15 @@
 - @articles = Broadcast.current.published.where.not(category: Admin::Category.find_by(slug: "faqs")).order(publish_date: :desc, id: :desc).limit(3)
 
-.page-box.myapnea-dark-blue-light-center-bg.d-flex.flex-column
-  .container.mb-5
-    .text-center.mb-5= image_tag "logos/myapnea-logo-large-whitetext.png", style: "height: auto; max-width: 540px; width: 100%;", class: "img-ignore-selection"
+.logo-container
+  .container.d-flex.flex-column.flex-lg-row.align-items-center.pb-3
+    %div.mr-0.mr-lg-5.mb-3.mb-lg-0= image_tag "logos/myapnea-logo-large-whitetext.png", style: "height: auto; width: 320px;", class: "img-ignore-selection"
 
-    .landing-about-slide-tagline.mb-5.mb-lg-0
+    .landing-about-slide-tagline
       MyApnea is a community of patients, doctors, and researchers
       trying to improve the diagnosis and treatment of sleep apnea.
 
+.page-box.myapnea-dark-blue-light-center-bg.d-flex.flex-column
+  .container.mb-5
     .d-flex.flex-column.flex-md-row.align-items-center.mb-3
       .mr-auto.d-flex.flex-column.justify-content-around
         .random-text.mb-5
