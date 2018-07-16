@@ -55,7 +55,7 @@ class User < ApplicationRecord
   has_many :broadcasts, -> { current }
   has_many :topics, -> { current }
   has_many :topic_users
-  has_many :replies, -> { current.joins(:topic).merge(Topic.current) }
+  has_many :replies, -> { current.left_outer_joins(:broadcast, :topic).where(topics: { id: Topic.current}).or(current.left_outer_joins(:broadcast, :topic).where(broadcasts: { id: Broadcast.published })) }
   has_many :images
   has_many :notifications
   has_many :exports, -> { order id: :desc }, class_name: "Admin::Export"
