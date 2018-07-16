@@ -2,30 +2,23 @@
 
 // Primary Colors
 
-// // Red
-// $p50: #ffebee;
-// $p100: #ffcdd2;
-// $p200: #ef9a9a;
-// $p300: #e57373;
-// $p400: #ef5350;
-// $p500: #f44336;
-// $p600: #e53935;
-// $p700: #d32f2f;
-// $p800: #c62828;
-// $p900: #b71c1c;
+// Red
+$p50-red: #ffebee;
+$p100-red: #ffcdd2;
+$p200-red: #ef9a9a;
+$p300-red: #e57373;
+$p400-red: #ef5350;
+$p500-red: #f44336;
+$p600-red: #e53935;
+$p700-red: #d32f2f;
+$p800-red: #c62828;
+$p900-red: #b71c1c;
+$a100-red: #ff8a80;
+$a200-red: #ff5252;
+$a400-red: #ff1744;
+$a700-red: #d50000;
 
-// // Pink
-// $p50: #fce4ec;
-// $p100: #f8bbd0;
-// $p200: #f48fb1;
-// $p300: #f06292;
-// $p400: #ec407a;
-// $p500: #e91e63;
-// $p600: #d81b60;
-// $p700: #c2185b;
-// $p800: #ad1457;
-// $p900: #880e4f;
-
+// Pink
 $p50-pink: #fce4ec;
 $p100-pink: #f8bbd0;
 $p200-pink: #f48fb1;
@@ -36,43 +29,44 @@ $p600-pink: #d81b60;
 $p700-pink: #c2185b;
 $p800-pink: #ad1457;
 $p900-pink: #880e4f;
+$a100-pink: #ff80ab;
+$a200-pink: #ff4081;
+$a400-pink: #f50057;
+$a700-pink: #c51162;
 
-// // Purple
-// $p50: #f3e5f5;
-// $p100: #e1bee7;
-// $p200: #ce93d8;
-// $p300: #ba68c8;
-// $p400: #ab47bc;
-// $p500: #9c27b0;
-// $p600: #8e24aa;
-// $p700: #7b1fa2;
-// $p800: #6a1b9a;
-// $p900: #4a148c;
+// Purple
+$p50-purple: #f3e5f5;
+$p100-purple: #e1bee7;
+$p200-purple: #ce93d8;
+$p300-purple: #ba68c8;
+$p400-purple: #ab47bc;
+$p500-purple: #9c27b0;
+$p600-purple: #8e24aa;
+$p700-purple: #7b1fa2;
+$p800-purple: #6a1b9a;
+$p900-purple: #4a148c;
+$a100-purple: #ea80fc;
+$a200-purple: #e040fb;
+$a400-purple: #d500f9;
+$a700-purple: #aa00ff;
 
-// // Deep Purple
-// $p50: #ede7f6;
-// $p100: #d1c4e9;
-// $p200: #b39ddb;
-// $p300: #9575cd;
-// $p400: #7e57c2;
-// $p500: #673ab7;
-// $p600: #5e35b1;
-// $p700: #512da8;
-// $p800: #4527a0;
-// $p900: #311b92;
+// Deep Purple
+$p50-deep-purple: #ede7f6;
+$p100-deep-purple: #d1c4e9;
+$p200-deep-purple: #b39ddb;
+$p300-deep-purple: #9575cd;
+$p400-deep-purple: #7e57c2;
+$p500-deep-purple: #673ab7;
+$p600-deep-purple: #5e35b1;
+$p700-deep-purple: #512da8;
+$p800-deep-purple: #4527a0;
+$p900-deep-purple: #311b92;
+$a100-deep-purple: #b388ff;
+$a200-deep-purple: #7c4dff;
+$a400-deep-purple: #651fff;
+$a700-deep-purple: #6200ea;
 
-// // Indigo
-// $p50: #e8eaf6;
-// $p100: #c5cae9;
-// $p200: #9fa8da;
-// $p300: #7986cb;
-// $p400: #5c6bc0;
-// $p500: #3f51b5;
-// $p600: #3949ab;
-// $p700: #303f9f;
-// $p800: #283593;
-// $p900: #1a237e;
-
+// Indigo
 $p50-indigo: #e8eaf6;
 $p100-indigo: #c5cae9;
 $p200-indigo: #9fa8da;
@@ -85,7 +79,6 @@ $p800-indigo: #283593;
 $p900-indigo: #1a237e;
 
 // Blue
-
 $p50-blue: #e3f2fd;
 $p100-blue: #bbdefb;
 $p200-blue: #90caf9;
@@ -96,45 +89,40 @@ $p600-blue: #1e88e5;
 $p700-blue: #1976d2;
 $p800-blue: #1565c0;
 $p900-blue: #0d47a1;
+$a100-blue: #82b1ff;
+$a200-blue: #448aff;
+$a400-blue: #2979ff;
+$a700-blue: #2962ff;
 
-// // Light Blue
-// $p50: #e1f5fe;
-// $p100: #b3e5fc;
-// $p200: #81d4fa;
-// $p300: #4fc3f7;
-// $p400: #29b6f6;
-// $p500: #03a9f4;
-// $p600: #039be5;
-// $p700: #0288d1;
-// $p800: #0277bd;
-// $p900: #01579b;
+// Light Blue
+$p50-light-blue: #e1f5fe;
+$p100-light-blue: #b3e5fc;
+$p200-light-blue: #81d4fa;
+$p300-light-blue: #4fc3f7;
+$p400-light-blue: #29b6f6;
+$p500-light-blue: #03a9f4;
+$p600-light-blue: #039be5;
+$p700-light-blue: #0288d1;
+$p800-light-blue: #0277bd;
+$p900-light-blue: #01579b;
+$a100-light-blue: #80d8ff;
+$a200-light-blue: #40c4ff;
+$a400-light-blue: #00b0ff;
+$a700-light-blue: #0091ea;
 
-// $p500-light-blue: #03a9f4;
+// Cyan
+$p50-cyan: #e0f7fa;
+$p100-cyan: #b2ebf2;
+$p200-cyan: #80deea;
+$p300-cyan: #4dd0e1;
+$p400-cyan: #26c6da;
+$p500-cyan: #00bcd4;
+$p600-cyan: #00acc1;
+$p700-cyan: #0097a7;
+$p800-cyan: #00838f;
+$p900-cyan: #006064;
 
-// // Cyan
-// $p50: #e0f7fa;
-// $p100: #b2ebf2;
-// $p200: #80deea;
-// $p300: #4dd0e1;
-// $p400: #26c6da;
-// $p500: #00bcd4;
-// $p600: #00acc1;
-// $p700: #0097a7;
-// $p800: #00838f;
-// $p900: #006064;
-
-// // Teal
-// $p50: #e0f2f1;
-// $p100: #b2dfdb;
-// $p200: #80cbc4;
-// $p300: #4db6ac;
-// $p400: #26a69a;
-// $p500: #009688;
-// $p600: #00897b;
-// $p700: #00796b;
-// $p800: #00695c;
-// $p900: #004d40;
-
+// Teal
 $p50-teal: #e0f2f1;
 $p100-teal: #b2dfdb;
 $p200-teal: #80cbc4;
@@ -145,19 +133,12 @@ $p600-teal: #00897b;
 $p700-teal: #00796b;
 $p800-teal: #00695c;
 $p900-teal: #004d40;
+$a100-teal: #a7ffeb;
+$a200-teal: #64ffda;
+$a400-teal: #1de9b6;
+$a700-teal: #00bfa5;
 
-// // Green
-// $p50: #e8f5e9;
-// $p100: #c8e6c9;
-// $p200: #a5d6a7;
-// $p300: #81c784;
-// $p400: #66bb6a;
-// $p500: #4caf50;
-// $p600: #43a047;
-// $p700: #388e3c;
-// $p800: #2e7d32;
-// $p900: #1b5e20;
-
+// Green
 $p50-green: #e8f5e9;
 $p100-green: #c8e6c9;
 $p200-green: #a5d6a7;
@@ -168,32 +149,38 @@ $p600-green: #43a047;
 $p700-green: #388e3c;
 $p800-green: #2e7d32;
 $p900-green: #1b5e20;
+$a100-green: #b9f6ca;
+$a200-green: #69f0ae;
+$a400-green: #00e676;
+$a700-green: #00c853;
 
-// // Light Green
-// $p50: #f1f8e9;
-// $p100: #dcedc8;
-// $p200: #c5e1a5;
-// $p300: #aed581;
-// $p400: #9ccc65;
-// $p500: #8bc34a;
-// $p600: #7cb342;
-// $p700: #689f38;
-// $p800: #558b2f;
-// $p900: #33691e;
-
+// Light Green
+$p50-light-green: #f1f8e9;
+$p100-light-green: #dcedc8;
+$p200-light-green: #c5e1a5;
+$p300-light-green: #aed581;
+$p400-light-green: #9ccc65;
+$p500-light-green: #8bc34a;
+$p600-light-green: #7cb342;
+$p700-light-green: #689f38;
+$p800-light-green: #558b2f;
 $p900-light-green: #33691e;
+$a100-light-green: #ccff90;
+$a200-light-green: #b2ff59;
+$a400-light-green: #76ff03;
+$a700-light-green: #64dd17;
 
-// // Lime
-// $p50: #f9fbe7;
-// $p100: #f0f4c3;
-// $p200: #e6ee9c;
-// $p300: #dce775;
-// $p400: #d4e157;
-// $p500: #cddc39;
-// $p600: #c0ca33;
-// $p700: #afb42b;
-// $p800: #9e9d24;
-// $p900: #827717;
+// Lime
+$p50-lime: #f9fbe7;
+$p100-lime: #f0f4c3;
+$p200-lime: #e6ee9c;
+$p300-lime: #dce775;
+$p400-lime: #d4e157;
+$p500-lime: #cddc39;
+$p600-lime: #c0ca33;
+$p700-lime: #afb42b;
+$p800-lime: #9e9d24;
+$p900-lime: #827717;
 
 // Yellow
 $p50-yellow: #fffde7;
@@ -207,18 +194,7 @@ $p700-yellow: #fbc02d;
 $p800-yellow: #f9a825;
 $p900-yellow: #f57f17;
 
-// // Amber
-// $p50: #fff8e1;
-// $p100: #ffecb3;
-// $p200: #ffe082;
-// $p300: #ffd54f;
-// $p400: #ffca28;
-// $p500: #ffc107;
-// $p600: #ffb300;
-// $p700: #ffa000;
-// $p800: #ff8f00;
-// $p900: #ff6f00;
-
+// Amber
 $p50-amber: #fff8e1;
 $p100-amber: #ffecb3;
 $p200-amber: #ffe082;
@@ -229,19 +205,12 @@ $p600-amber: #ffb300;
 $p700-amber: #ffa000;
 $p800-amber: #ff8f00;
 $p900-amber: #ff6f00;
+$a100-amber: #ffe57f;
+$a200-amber: #ffd740;
+$a400-amber: #ffc400;
+$a700-amber: #ffab00;
 
-// // Orange
-// $p50: #fff3e0;
-// $p100: #ffe0b2;
-// $p200: #ffcc80;
-// $p300: #ffb74d;
-// $p400: #ffa726;
-// $p500: #ff9800;
-// $p600: #fb8c00;
-// $p700: #f57c00;
-// $p800: #ef6c00;
-// $p900: #e65100;
-
+// Orange
 $p50-orange: #fff3e0;
 $p100-orange: #ffe0b2;
 $p200-orange: #ffcc80;
@@ -252,19 +221,12 @@ $p600-orange: #fb8c00;
 $p700-orange: #f57c00;
 $p800-orange: #ef6c00;
 $p900-orange: #e65100;
+$a100-orange: #ffd180;
+$a200-orange: #ffab40;
+$a400-orange: #ff9100;
+$a700-orange: #ff6d00;
 
-// // Deep Orange
-// $p50: #fbe9e7;
-// $p100: #ffccbc;
-// $p200: #ffab91;
-// $p300: #ff8a65;
-// $p400: #ff7043;
-// $p500: #ff5722;
-// $p600: #f4511e;
-// $p700: #e64a19;
-// $p800: #d84315;
-// $p900: #bf360c;
-
+// Deep Orange
 $p50-deep-orange: #fbe9e7;
 $p100-deep-orange: #ffccbc;
 $p200-deep-orange: #ffab91;
@@ -275,19 +237,12 @@ $p600-deep-orange: #f4511e;
 $p700-deep-orange: #e64a19;
 $p800-deep-orange: #d84315;
 $p900-deep-orange: #bf360c;
+$a100-deep-orange: #ff9e80;
+$a200-deep-orange: #ff6e40;
+$a400-deep-orange: #ff3d00;
+$a700-deep-orange: #dd2c00;
 
-// // Brown
-// $p50: #efebe9;
-// $p100: #d7ccc8;
-// $p200: #bcaaa4;
-// $p300: #a1887f;
-// $p400: #8d6e63;
-// $p500: #795548;
-// $p600: #6d4c41;
-// $p700: #5d4037;
-// $p800: #4e342e;
-// $p900: #3e2723;
-
+// Brown
 $p50-brown: #efebe9;
 $p100-brown: #d7ccc8;
 $p200-brown: #bcaaa4;
@@ -311,140 +266,26 @@ $p700-grey: #616161;
 $p800-grey: #424242;
 $p900-grey: #212121;
 
-// // Blue Grey
-// $p50: #eceff1;
-// $p100: #cfd8dc;
-// $p200: #b0bec5;
-// $p300: #90a4ae;
-// $p400: #78909c;
-// $p500: #607d8b;
-// $p600: #546e7a;
-// $p700: #455a64;
-// $p800: #37474f;
-// $p900: #263238;
+// Blue Grey
+$p50-blue-grey: #eceff1;
+$p100-blue-grey: #cfd8dc;
+$p200-blue-grey: #b0bec5;
+$p300-blue-grey: #90a4ae;
+$p400-blue-grey: #78909c;
+$p500-blue-grey: #607d8b;
+$p600-blue-grey: #546e7a;
+$p700-blue-grey: #455a64;
+$p800-blue-grey: #37474f;
+$p900-blue-grey: #263238;
 
-// Accent Colors
-
-// // Red
-// $a100: #ff8a80;
-// $a200: #ff5252;
-// $a400: #ff1744;
-// $a700: #d50000;
-// $a200-text: #fff;
-
-// // Pink
-// $a100: #ff80ab;
-// $a200: #ff4081;
-// $a400: #f50057;
-// $a700: #c51162;
-// $a200-text: #fff;
-
-// // Purple
-// $a100: #ea80fc;
-// $a200: #e040fb;
-// $a400: #d500f9;
-// $a700: #aa00ff;
-// $a200-text: #fff;
-
-// // Deep Purple
-// $a100: #b388ff;
-// $a200: #7c4dff;
-// $a400: #651fff;
-// $a700: #6200ea;
-// $a200-text: #333;
-
-// // Indigo
-// $a100: #8c9eff;
-// $a200: #536dfe;
-// $a400: #3d5afe;
-// $a700: #304ffe;
-// $a200-text: #333;
-
-// // Blue
-// $a100: #82b1ff;
-// $a200: #448aff;
-// $a400: #2979ff;
-// $a700: #2962ff;
-// $a200-text: #333;
-
-// // Light Blue
-// $a100: #80d8ff;
-// $a200: #40c4ff;
-// $a400: #00b0ff;
-// $a700: #0091ea;
-// $a200-text: #fff;
-
-$a100-light-blue: #80d8ff;
-$a200-light-blue: #40c4ff;
-$a400-light-blue: #00b0ff;
-$a700-light-blue: #0091ea;
-
-// // Cyan
-// $a100: #84ffff;
-// $a200: #18ffff;
-// $a400: #00e5ff;
-// $a700: #00b8d4;
-// $a200-text: #333;
-
-// // Teal
-// $a100: #a7ffeb;
-// $a200: #64ffda;
-// $a400: #1de9b6;
-// $a700: #00bfa5;
-// $a200-text: #333;
-
-// // Green
-// $a100: #b9f6ca;
-// $a200: #69f0ae;
-// $a400: #00e676;
-// $a700: #00c853;
-
-// // Light Green
-// $a100: #ccff90;
-// $a200: #b2ff59;
-// $a400: #76ff03;
-// $a700: #64dd17;
-
-// // Lime
-// $a100: #f4ff81;
-// $a200: #eeff41;
-// $a400: #c6ff00;
-// $a700: #aeea00;
-
-// // Yellow
-// $a100: #ffff8d;
-// $a200: #ffff00;
-// $a400: #ffea00;
-// $a700: #ffd600;
-
-// // Amber
-// $a100: #ffe57f;
-// $a200: #ffd740;
-// $a400: #ffc400;
-// $a700: #ffab00;
-// $a200-text: #333;
-
-// // Orange
-// $a100: #ffd180;
-// $a200: #ffab40;
-// $a400: #ff9100;
-// $a700: #ff6d00;
-// $a200-text: #333;
-$a100-orange: #ffd180;
-$a200-orange: #ffab40;
-$a400-orange: #ff9100;
-$a700-orange: #ff6d00;
-$a200-orange-text: #333;
-
-// // Deep Orange
-// $a100: #ff9e80;
-// $a200: #ff6e40;
-// $a400: #ff3d00;
-// $a700: #dd2c00;
-// $a200-text: #333;
-
-$a100-deep-orange: #ff9e80;
-$a200-deep-orange: #ff6e40;
-$a400-deep-orange: #ff3d00;
-$a700-deep-orange: #dd2c00;
-$a200-text: #333;
+// Black (Custom)
+$p50-black: #505050;
+$p100-black: #484848;
+$p200-black: #404040;
+$p300-black: #383838;
+$p400-black: #303030;
+$p500-black: #282828;
+$p600-black: #202020;
+$p700-black: #181818;
+$p800-black: #101010;
+$p900-black: #080808;

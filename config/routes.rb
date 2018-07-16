@@ -31,7 +31,7 @@ Rails.application.routes.draw do
     resources :categories
     resources :exports do
       member do
-        get :file
+        get :download
         post :progress
       end
     end
@@ -187,9 +187,6 @@ Rails.application.routes.draw do
              path: ""
 
   resources :users do
-    collection do
-      get :export
-    end
     member do
       post :spam
     end

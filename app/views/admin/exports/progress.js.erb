@@ -1,6 +1,6 @@
-$("#progress").html("<%=j render "admin/exports/progress", export: @admin_export %>");
-
-<% if %w(failed completed).include?(@admin_export.status) %>
+$("#progress").css("width", "<%= @admin_export.percent %>%");
+<% if %w(completed failed).include?(@admin_export.status) %>
 clearInterval(<%= params[:interval] %>);
-$("#export_status").html("<%=j render "admin/exports/status", export: @admin_export %>");
+$("#export-status").html("<%=j render "admin/exports/status", export: @admin_export %>");
+$("#progress").addClass("custom-progress-<%= @admin_export.status %>");
 <% end %>

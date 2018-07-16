@@ -7,15 +7,8 @@
 - content_for :sidebar, render("admin/sidebar")
 - content_for :header, @title
 
-.dashboard-container
-  #progress{ data: { object: "#{"ajax-timer" if @admin_export.status == "started"}", path: progress_admin_export_path(@admin_export) } }
-    = render "admin/exports/progress", export: @admin_export
+.dashboard-container{ style: "position: relative;" }
+  - if @admin_export.status == "started"
+    #progress.custom-progress-bar{ style: "width: #{@admin_export.percent}%;", data: { object: "#{"ajax-timer" if @admin_export.total_steps != @admin_export.completed_steps}", path: progress_admin_export_path(@admin_export) } }
 
-  .form-group.row
-    .col-md-2.col-form-label
-      .form-label-elegant Status
-    .col-md-10
-      .form-control-plaintext#export_status
-        = render "admin/exports/status", export: @admin_export
-
-  = render "forms/horizontal/show/generic", title: "Creator", content: @admin_export.user.full_name
+  #export-status= render "admin/exports/status", export: @admin_export

@@ -4,13 +4,15 @@
 class Admin::ExportsController < ApplicationController
   before_action :authenticate_user!
   before_action :check_admin
-  before_action :find_admin_export_or_redirect, only: [:show, :progress, :file, :destroy]
+  before_action :find_admin_export_or_redirect, only: [
+    :show, :progress, :download, :destroy
+  ]
 
   layout "layouts/full_page_sidebar"
 
   # GET /admin/exports
   def index
-    @admin_exports = current_user.exports.page(params[:page]).per(10)
+    @admin_exports = current_user.exports.order(id: :desc).page(params[:page]).per(20)
   end
 
   # # GET /admin/exports/1
@@ -21,8 +23,9 @@ class Admin::ExportsController < ApplicationController
   # def progress
   # end
 
-  def file
-    send_file_if_present @admin_export.file
+  # GET /admin/exports/1/download
+  def download
+    send_file_if_present @admin_export.zipped_file
   end
 
   # # GET /admin/exports/new
@@ -38,7 +41,7 @@ class Admin::ExportsController < ApplicationController
   def create
     @admin_export = current_user.exports.new
     if @admin_export.save
-      @admin_export.start_export_in_background!
+      @admin_export.generate_export_in_background!
       redirect_to @admin_export, notice: "Export was successfully created."
     else
       render :new
@@ -66,7 +69,7 @@ class Admin::ExportsController < ApplicationController
   private
 
   def find_admin_export_or_redirect
-    @admin_export = Admin::Export.find_by(id: params[:id])
+    @admin_export = current_user.exports.find_by(id: params[:id])
     redirect_without_admin_export
   end
 

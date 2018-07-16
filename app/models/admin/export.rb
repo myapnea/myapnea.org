@@ -2,8 +2,11 @@
 
 # Allows admins to generate exports.
 class Admin::Export < ApplicationRecord
+  # Constants
+  STATUS = %w(started completed failed).collect { |i| [i, i] }
+
   # Uploaders
-  mount_uploader :file, ZipUploader
+  mount_uploader :zipped_file, ZipUploader
 
   # Concerns
   include Forkable
@@ -20,111 +23,130 @@ class Admin::Export < ApplicationRecord
     created_at.strftime("%-d %B %Y, %-l:%M %p")
   end
 
-  def percent
-    return 0 if total_steps.zero? && %w(started failed).include?(status)
-    total_steps.positive? ? current_step * 100 / total_steps : 100
+  def destroy
+    remove_zipped_file!
+    super
   end
 
-  def start_export_in_background!
-    fork_process :start_export
+  def percent
+    return 100 unless total_steps.positive?
+    completed_steps * 100 / total_steps
+  end
+
+  def generate_export_in_background!
+    update(total_steps: 5)
+    fork_process(:generate_export!)
+  end
+
+  def filename
+    "myapnea-data-#{created_at.strftime("%Y%m%d%H%M")}"
+  end
+
+  def generate_export!
+    all_files = export_data + export_sas
+    finalize_export!(all_files)
+  rescue => e
+    export_failed(e.message.to_s + e.backtrace.to_s)
+  end
+
+  def finalize_export!(all_files)
+    # Create a zip file
+    zip_name = "#{filename}.zip"
+    temp_zip_file = Tempfile.new(zip_name)
+    begin
+      # Initialize temp zip file.
+      Zip::OutputStream.open(temp_zip_file) { |zos| }
+      # Write to temp zip file.
+      Zip::File.open(temp_zip_file, Zip::File::CREATE) do |zip|
+        all_files.uniq.each do |location, input_file|
+          # Two arguments:
+          # - The name of the file as it will appear in the archive
+          # - The original file, including the path to find it
+          zip.add(location, input_file) if File.exist?(input_file) && File.size(input_file).positive?
+        end
+      end
+      temp_zip_file.define_singleton_method(:original_filename) do
+        zip_name
+      end
+      update(
+        zipped_file: temp_zip_file,
+        file_created_at: Time.zone.now,
+        status: "completed",
+        completed_steps: total_steps
+      )
+      update file_size: zipped_file.size # Cache after attaching to model.
+      notify_user!
+      # create_notification
+    ensure
+      # Close and delete the temp file
+      temp_zip_file.close
+      temp_zip_file.unlink
+    end
+  end
+
+  def export_failed(details)
+    update(status: "failed", details: details)
+    # create_notification
   end
 
   private
 
-  def number_of_steps
-    exportable_users.count + 2
-  end
+  def export_data
+    csv_name = "#{filename}-data.csv"
+    temp_csv_file = Tempfile.new("#{filename}-inverted.csv")
+    transposed_csv_file = Tempfile.new(csv_name)
 
-  def start_export
-    update current_step: 0, total_steps: number_of_steps
-    finalize_export generate_zip_file
-  rescue => e
-    export_failed e.message.to_s + e.backtrace.to_s
-  end
+    field_one = "NULLIF(users.full_name, '')::text"
+    field_two = "users.username"
+    full_name_or_username = "(CASE WHEN (#{field_one} IS NULL) THEN #{field_two} ELSE #{field_one} END)"
 
-  # Zip multiple files, or zip one file if it's part of the sheet uploaded
-  # files, always zip folder
-  def generate_zip_file
-    filename = "myapnea-data-#{created_at.strftime("%Y%m%d%H%M")}"
-    all_files = generate_all_files(filename)
-
-    return if all_files.empty?
-
-    # Create a zip file
-    zipfile_name = File.join("tmp", "exports", "#{filename}-#{SecureRandom.hex(4)}.zip")
-    Zip::File.open(zipfile_name, Zip::File::CREATE) do |zipfile|
-      all_files.uniq.each do |location, input_file|
-        # Two arguments:
-        # - The name of the file as it will appear in the archive
-        # - The original file, including the path to find it
-        zipfile.add(location, input_file) if File.exist?(input_file) && File.size(input_file).positive?
-      end
+    CSV.open(temp_csv_file, "wb") do |csv|
+      csv << ["MyApnea ID"] + exportable_users.pluck(:id).collect { |id| format("MA%06d", id) }
+      update completed_steps: completed_steps + 1
+      csv << ["Email"] + exportable_users.pluck(:email)
+      update completed_steps: completed_steps + 1
+      csv << ["Full Name or Username"] + exportable_users.pluck(Arel.sql(full_name_or_username))
+      update completed_steps: completed_steps + 1
+      csv << ["Emails Enabled"] + exportable_users.pluck(:emails_enabled)
+      update completed_steps: completed_steps + 1
     end
-    zipfile_name
+    transpose_tmp_csv(temp_csv_file, transposed_csv_file)
+    [[csv_name, transposed_csv_file]]
   end
 
-  def generate_all_files(filename)
-    export_data(filename) + export_sas(filename)
-  end
-
-  def export_data(filename)
-    data_csv = File.join("tmp", "exports", "#{filename}-#{created_at.strftime("%I%M%P")}-data.csv")
-    write_data_csv(data_csv)
-    [[data_csv.split("/").last.to_s, data_csv]]
-  end
-
-  def export_sas(filename)
-    sas_filename = "#{filename}-#{created_at.strftime("%I%M%P")}.sas"
-    sas_file = File.join("tmp", "exports", sas_filename)
-    write_sas(sas_file, sas_filename)
-    [[sas_file.split("/").last.to_s, sas_file]]
-  end
-
-  def finalize_export(export_file)
-    if export_file
-      export_succeeded export_file
-    else
-      export_failed "No files were added to zip file."
-    end
-  end
-
-  def export_succeeded(export_file)
-    update status: "completed",
-           file: File.open(export_file),
-           file_size: File.size(export_file),
-           file_created_at: Time.zone.now,
-           current_step: total_steps
-    notify_user!
-  end
-
-  def export_failed(details)
-    update status: "failed", details: details
+  def export_sas
+    sas_name = "#{filename}.sas"
+    sas_file = Tempfile.new(sas_name)
+    write_sas(sas_file)
+    [[sas_name, sas_file]]
   end
 
   def notify_user!
     UserMailer.export_ready(self).deliver_now if EMAILS_ENABLED
   end
 
-  def write_data_csv(data_csv)
-    CSV.open(data_csv, "wb") do |csv|
-      csv << %w(myapnea_id joined)
-      exportable_users.each do |user|
-        csv << [user.myapnea_id, user.created_at.strftime("%Y-%m-%d")]
-      end
-    end
-  end
-
-  def write_sas(sas_file, sas_filename)
+  def write_sas(sas_file)
     @export_formatter = self
-    @filename = sas_filename.gsub(/\.sas$/, "-data")
+    @filename = "#{filename}-data"
     erb_file = File.join("app", "views", "admin", "exports", "sas_export.sas.erb")
     File.open(sas_file, "w") do |file|
       file.syswrite(ERB.new(File.read(erb_file)).result(binding))
     end
-    update current_step: current_step + 1
+    update completed_steps: completed_steps + 1
   end
 
   def exportable_users
-    User.include_in_exports_and_reports.order(:id)
+    User.order(:id)
+  end
+
+  def transpose_tmp_csv(temp_csv_file, transposed_csv_file)
+    arr_of_arrs = CSV.parse(File.open(temp_csv_file, "r:iso-8859-1:utf-8", &:read))
+    l = arr_of_arrs.map(&:length).max
+    arr_of_arrs.map! { |e| e.values_at(0...l) }
+    CSV.open(transposed_csv_file, "wb") do |csv|
+      arr_of_arrs.transpose.each do |array|
+        csv << array
+      end
+    end
   end
 end

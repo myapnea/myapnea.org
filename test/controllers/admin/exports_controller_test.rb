@@ -13,8 +13,8 @@ class Admin::ExportsControllerTest < ActionDispatch::IntegrationTest
 
   def admin_export_params
     {
-      current_step: @admin_export.current_step,
-      file: @admin_export.file,
+      completed_steps: @admin_export.completed_steps,
+      zipped_file: @admin_export.zipped_file,
       total_steps: @admin_export.total_steps,
       user_id: @admin_export.user_id
     }
@@ -74,14 +74,14 @@ class Admin::ExportsControllerTest < ActionDispatch::IntegrationTest
 
   test "should download export file as admin" do
     login(@admin)
-    assert_not_equal 0, @completed.file.size
-    get file_admin_export_url(@completed)
-    assert_equal File.binread(@completed.file.path), response.body
+    assert_not_equal 0, @completed.zipped_file.size
+    get download_admin_export_url(@completed)
+    assert_equal File.binread(@completed.zipped_file.path), response.body
   end
 
   test "should not download export file as regular user" do
     login(@regular)
-    get file_admin_export_url(@completed)
+    get download_admin_export_url(@completed)
     assert_redirected_to root_url
   end
 

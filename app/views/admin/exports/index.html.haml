@@ -8,59 +8,38 @@
 - content_for :header do
   .float-right
     = link_to download_or("Export CSV"), admin_exports_path, method: :post, class: "btn btn-accent btn-shadow"
-    = render "layouts/per_page", per_page: 10, object_count: @admin_exports.total_count
+    = render "layouts/per_page", per_page: 20, object_count: @admin_exports.total_count
   = @title
 
 - if @admin_exports.present?
   .dashboard-container.dashboard-table
-    %table.table.table-striped.table-borderless.table-hover.table-sticky
-      %col{ width: "1px" }
+    %table.table.table-striped.table-borderless.table-sticky
       %col
-      %col.d-none.d-md-table-column{ width: "1px" }
-      %col.d-none.d-sm-table-column{ width: "1px" }
+      %col
       %col{ width: "1px" }
       %thead
         %tr
-          = th_sort_field @order, "exports.status", ""
-          = th_sort_field @order, "exports.created_at", "Exported"
-          = th_sort_field_rev @order, "exports.file_size", "Size", extra_class: "d-none d-md-table-cell"
-          %th.d-none.d-sm-table-cell.text-center File
-          %th.text-center Actions
+          %th Name
+          %th Status
+          %th.text-center
+            .d-none.d-sm-inline-block Actions
 
-      - @admin_exports.each do |export|
-        %tr
-          %td
-            %span.badge{ class: "badge-#{export.status == "completed" ? "success" : (export.status == "started" ? "primary" : "danger")}" }
-              = export.status
-          %td.nowrap
-            = link_to export, rel: "tooltip", data: { title: export.created_at.strftime("%-l:%M %p"), container: "body", placement: "left" } do
-              = export.created_at.strftime("%b %-d, %Y")
-          %td.d-none.d-md-table-cell
-            - if export.file_size.positive?
-              %small.nowrap= number_to_human_size(export.file_size)
-          %td.d-none.d-sm-table-cell.text-center
-            - if export.file_size.positive?
-              - full_url = file_admin_export_path(export)
-              = link_to full_url, target: "_blank", class: "btn btn-light btn-sm" do
-                zip
-                %i.fa.fa-download
-          %td.text-center
-            .dropdown
-              = link_to "#", class: "btn btn-light btn-sm dropdown-toggle", data: { toggle: "dropdown" } do
-                .d-inline-block.d-sm-none
-                  %i.fa.fa-cog
-                .d-none.d-sm-inline-block Actions
+      %tbody
+        - @admin_exports.each do |export|
+          %tr
+            %td= link_to export.name, export
+            %td= export_status_helper(export)
+            %td
+              .dropdown
+                = link_to "#", class: "btn btn-light btn-sm dropdown-toggle", data: { toggle: "dropdown" } do
+                  .d-inline-block.d-sm-none
+                    %i.fa.fa-cog
+                  .d-none.d-sm-inline-block Actions
 
-              .dropdown-menu.dropdown-menu-right
-                - if export.file_size.positive?
-                  - full_url = file_admin_export_path(export)
-                  = link_to full_url, target: "_blank", class: "dropdown-item" do
-                    %i.fa.fa-download
-                    Download
-                  .dropdown-divider
-                = link_to [@project, export], method: :delete, data: { confirm: "Delete #{export.name}?" }, class: "dropdown-item text-danger" do
-                  %i.fa.fa-trash
-                  Delete
+                .dropdown-menu.dropdown-menu-right
+                  = link_to [@project, export], method: :delete, data: { confirm: "Delete #{export.name}?" }, class: "dropdown-item text-danger" do
+                    %i.fa.fa-trash
+                    Delete
 
   .center-horizontally= paginate @admin_exports, theme: "bootstrap"
 - else

@@ -10,7 +10,7 @@
 
 - content_for :header do
   .float-right
-    = link_to download_or("Export CSV"), export_users_path(format: "csv"), class: "btn btn-accent btn-shadow"
+    = link_to download_or("Export CSV"), admin_exports_path, method: :post, class: "btn btn-accent btn-shadow"
     = render "layouts/per_page", per_page: 40, object_count: @users.total_count
   = @title
 

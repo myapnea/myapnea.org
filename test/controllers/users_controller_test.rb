@@ -21,28 +21,6 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     }
   end
 
-  test "should export users as admin" do
-    login(@admin)
-    get export_users_url(format: "csv")
-    assert_response :success
-  end
-
-  test "should not export users as moderator" do
-    login(@moderator)
-    get export_users_url(format: "csv")
-    assert_redirected_to root_url
-  end
-
-  test "should not export users as regular user" do
-    login(@regular)
-    get export_users_url(format: "csv")
-  end
-
-  test "should not export users for public user" do
-    get export_users_url(format: "csv")
-    assert_response :unauthorized
-  end
-
   test "should get index for admin" do
     login(@admin)
     get users_url

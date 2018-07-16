@@ -13,8 +13,8 @@
 @componentsReady = ->
   animateProgressBar()
   chartsReady()
-  exportsReady()
   landingReady()
+  progressReady()
 
 @objectsReady = ->
   repliesReady()

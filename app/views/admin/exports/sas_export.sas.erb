@@ -24,18 +24,24 @@ data myapnea;
   infile "&path_file._sas.csv" delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=2 ;
 
   /* Subject Information */
-  informat myapnea_id           $10.      ;   * MyApnea ID ;
-  informat joined               yymmdd10. ;   * Joined MyApnea ;
+  informat myapnea_id               $10.      ;   * MyApnea ID ;
+  informat email                    best32.   ;   * Email ;
+  informat full_name_or_username    best32.   ;   * Full Name or Username ;
+  informat emails_enabled           best32.   ;   * Missing ;
 
   /* Design and Subject Variables */
-  format myapnea_id             $10.      ;
-  format joined                 yymmdd10. ;
+  format myapnea_id                 $10.      ;
+  format email                      best32.   ;
+  format full_name_or_username      best32.   ;
+  format emails_enabled             best32.   ;
 
   /* Define Column Names */
 
   input
     myapnea_id
-    joined
+    email
+    full_name_or_username
+    emails_enabled
   ;
 run;
 
@@ -47,7 +53,9 @@ data myapnea;
 
   /* Subject Information */
   label myapnea_id='MyApnea ID';
-  label joined='Joined MyApnea';
+  label email='Email';
+  label full_name_or_username='Full Name or Username';
+  label emails_enabled='Emails Enabled';
 
 /* Step 4: Apply format to all of the variables */
 

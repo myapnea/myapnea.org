@@ -10,6 +10,8 @@
 - **Admin Changes**
   - Team members can now be reordered using drag-and-drop
   - Updated exports interface
+- **Export Changes**
+  - Simplified user export
 - **Forum Changes**
   - Added a prominent forum search to the forum index
 - **Search Changes**
