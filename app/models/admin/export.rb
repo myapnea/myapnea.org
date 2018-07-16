@@ -11,14 +11,10 @@ class Admin::Export < ApplicationRecord
   # Concerns
   include Forkable
 
-  # Model Validation
-  validates :user_id, presence: true
-
-  # Model Relationships
+  # Relationships
   belongs_to :user
 
-  # Model Methods
-
+  # Methods
   def name
     created_at.strftime("%-d %B %Y, %-l:%M %p")
   end
@@ -136,7 +132,7 @@ class Admin::Export < ApplicationRecord
   end
 
   def exportable_users
-    User.order(:id)
+    User.current.order(:id)
   end
 
   def transpose_tmp_csv(temp_csv_file, transposed_csv_file)
