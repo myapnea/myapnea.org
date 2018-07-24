@@ -7,6 +7,7 @@
   - Updated the team page
   - Added terms and conditions and privacy policy links to footer
   - Added cookie notification to footer
+  - Updated framework files to resemble Rails 5.2 defaults more closely
 - **Admin Changes**
   - Team members can now be reordered using drag-and-drop
   - Updated exports interface
