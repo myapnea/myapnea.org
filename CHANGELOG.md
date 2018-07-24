@@ -11,6 +11,9 @@
 - **Admin Changes**
   - Team members can now be reordered using drag-and-drop
   - Updated exports interface
+- **Blog Changes**
+  - Simplified navigation between live blog and unpublished (draft) articles
+  - Blogs can now have a cover image
 - **Export Changes**
   - Simplified user export
 - **Forum Changes**

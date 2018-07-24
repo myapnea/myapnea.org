@@ -29,8 +29,6 @@
 }
 
 .header-container {
-  background-color: $p500-blue;
-  border-bottom: 2px solid $p200-orange;
   color: $brand-white;
   padding: 20px 0;
 
@@ -66,6 +64,27 @@
   .header-container {
     h1 {
       font-size: 41px;
+    }
+  }
+}
+
+@each $name, $theme in $themes {
+  $header-bg: map-get($theme, p800);
+  @if map-get($theme, header-bg) {
+    $header-bg: map-get($theme, header-bg);
+  }
+
+  .theme-#{$name}-bg {
+    .header-container {
+      background-color: $header-bg;
+      @if map-get($theme, header-border) {
+        border-bottom: 2px solid map-get($theme, header-border);
+      }
+      color: map-get($theme, brand-white);
+
+      &.header-container-no-border {
+        border: 0;
+      }
     }
   }
 }

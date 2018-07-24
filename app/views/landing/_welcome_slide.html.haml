@@ -42,7 +42,7 @@
             .landing-topic.mb-1.pl-1{ style: "border-left: 2px solid #ffe0b2;font-weight: bold;border-bottom: 1px solid #fafafa;" }= link_to broadcast.title, "#", data: { object: "show-fullscreen-blog", broadcast_id: broadcast.id }, class: "link-blend-semi-muted"
             .blog-fullscreen-backdrop{ data: { broadcast_id: broadcast.id } }
               .blog-fullscreen-content.d-flex.flex-column.justify-content-around
-                .background-blog-image.background-blur{ style: "background-image: url(#{first_image_url(broadcast)});", data: { object: "close-fullscreen-blog", broadcast_id: broadcast.id } }
+                .background-blog-image-full.background-blur{ style: "background-image: url(#{first_image_url(broadcast)});", data: { object: "close-fullscreen-blog", broadcast_id: broadcast.id } }
                 %div{ style: "position: absolute; top: 0; right: 1rem;font-size: 2rem;cursor: pointer;" }
                   = link_to "#", class: "link-white no-underline", data: { object: "close-fullscreen-blog", broadcast_id: broadcast.id } do
                     &times;

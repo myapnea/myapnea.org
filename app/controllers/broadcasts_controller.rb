@@ -6,7 +6,7 @@ class BroadcastsController < ApplicationController
   before_action :check_community_contributor
   before_action :find_broadcast_or_redirect, only: [:show, :edit, :update, :destroy]
 
-  layout "layouts/full_page_sidebar"
+  # layout "layouts/full_page_sidebar"
 
   # GET /broadcasts
   def index
@@ -68,7 +68,7 @@ class BroadcastsController < ApplicationController
     parse_date_if_key_present(:broadcast, :publish_date)
     params.require(:broadcast).permit(
       :title, :slug, :short_description, :description, :pinned, :archived,
-      :publish_date, :published, :keywords, :category_id
+      :publish_date, :published, :keywords, :category_id, :cover
     )
   end
 

@@ -59,6 +59,7 @@ Rails.application.routes.draw do
     get "blog/category/:category", action: "blog", as: :blog_category
     get "blog/author/:author", action: "blog", as: :blog_author
     get "blog/:slug", action: "show", as: :blog_slug
+    get "blog/:slug/cover", action: "cover", as: :blog_cover
     get "blog/:year/:month/:slug", action: "show", as: :blog_post
   end
 

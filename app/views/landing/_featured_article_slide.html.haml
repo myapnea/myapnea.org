@@ -7,7 +7,7 @@
 
   .anchor-menu{ id: "blog-#{position}"}
   .page-box.d-flex.flex-column.justify-content-around.overflow-hidden{ class: background, style: "position: relative;" }
-    .background-blog-image.background-blur{ style: "background-image: url(#{first_image_url(broadcast)});" }
+    .background-blog-image-full.background-blur{ style: "background-image: url(#{first_image_url(broadcast)});" }
     .container
       .landing-blog-title{ style: "border: 0;" }
         .small{ style: "font-variant: small-caps;" } Featured Article
@@ -42,7 +42,7 @@
           %h4= broadcast.title
       .blog-fullscreen-backdrop{ data: { broadcast_id: broadcast.id } }
         .blog-fullscreen-content.d-flex.flex-column.justify-content-around
-          .background-blog-image.background-blur{ style: "background-image: url(#{first_image_url(broadcast)});", data: { object: "close-fullscreen-blog", broadcast_id: broadcast.id } }
+          .background-blog-image-full.background-blur{ style: "background-image: url(#{first_image_url(broadcast)});", data: { object: "close-fullscreen-blog", broadcast_id: broadcast.id } }
           %div{ style: "position: absolute; top: 0; right: 1rem;font-size: 2rem;cursor: pointer;" }
             = link_to "#", class: "link-white no-underline", data: { object: "close-fullscreen-blog", broadcast_id: broadcast.id } do
               &times;

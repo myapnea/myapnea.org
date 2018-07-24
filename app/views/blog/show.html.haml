@@ -5,17 +5,28 @@
 - @body = "grey"
 - @footer = "grey"
 
+- cover_present = @broadcast.cover.present?
 .page-box.page-box-no-padding.last-box.myapnea-light-bg
-  .header-container
-    .container
-      %i.fa.fa-angle-left
-      = link_to "Back to blog", blog_path, class: "link-white"
+  - if cover_present
+    .background-blog-image.d-flex.flex-column.justify-content-end{ style: "background-image: url(#{blog_cover_url(@broadcast)});" }
+      .blog-cover-overlay
+      .blog-title
+        .pt-5.pb-1.text-center
+          %h1.broadcast-title.mt-0{ style: "border-bottom: 0;" }
+            .container= @broadcast.title
+
+  - if false
+    .header-container
+      .container
+        %i.fa.fa-angle-left
+        = link_to "Back to blog", blog_path, class: "link-white"
   .page-box-padding.myapnea-grey-bg
     .container
       .row
         .col-lg-9
           .dashboard-container.mb-4.mb-lg-0.broadcast-container
-            %h1.broadcast-title.mt-0{ style: "border-bottom: 0;" }= @broadcast.title
+            - unless cover_present
+              %h1.broadcast-title.mt-0{ style: "border-bottom: 0;" }= @broadcast.title
             = render "blog/show", broadcast: @broadcast
         .col-lg-3
           .dashboard-container.mb-0.col-sticky

@@ -21,7 +21,7 @@
   height: 200px;
 }
 
-.background-blog-image {
+.background-blog-image-full {
   position: absolute;
   top: 0;
   right: 0;
@@ -156,10 +156,10 @@
   background-color: $p100-blue;
 }
 
-.myapnea-sky-bg {
-  background-color: $a700-light-blue;
-  background-image: linear-gradient(180deg, $a100-light-blue, $a200-light-blue 60%, $a400-light-blue 80%, $a700-light-blue 90%, $a700-light-blue);
-}
+// .myapnea-sky-bg {
+//   background-color: $a700-light-blue;
+//   background-image: linear-gradient(180deg, $a100-light-blue, $a200-light-blue 60%, $a400-light-blue 80%, $a700-light-blue 90%, $a700-light-blue);
+// }
 
 .myapnea-sunset-bg {
   background-color: $a700-deep-orange;
@@ -207,6 +207,54 @@
   .page-box-down-arrow {
     a:hover {
       color: $p500-blue;
+    }
+  }
+}
+
+
+// TODO: Remove/refactor into themes everything above this line.
+
+.background-cover {
+  // background-attachment: fixed;
+  // background-attachment: scroll;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.theme-bg {
+  transition: $transition-bg;
+}
+
+@each $name, $theme in $themes {
+  $selection-bg: map-get($theme, p200);
+  @if map-get($theme, selection-bg) {
+    $selection-bg: map-get($theme, selection-bg);
+  }
+
+  $selection-color: map-get($theme, body-color);
+  @if map-get($theme, selection-color) {
+    $selection-color: map-get($theme, selection-color);
+  }
+
+  .theme-#{$name}-bg {
+    background-color: map-get($theme, body-bg);
+    color: map-get($theme, body-color);
+
+    ::selection {
+      background-color: rgba($selection-bg, .99);
+      color: $selection-color;
+      text-shadow: none;
+    }
+
+    :focus {
+      outline-color: $selection-bg !important;
+    }
+  }
+
+  @if map-get($theme, footer-bg) and map-get($theme, body-focus) {
+    .theme-#{$name}-focus-bg {
+      background-image: linear-gradient(180deg, map-get($theme, footer-bg), map-get($theme, body-focus) 50%, map-get($theme, footer-bg));
     }
   }
 }

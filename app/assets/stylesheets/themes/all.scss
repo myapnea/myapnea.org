@@ -1,0 +1,14 @@
+// Variables
+
+@import 'themes/colors';
+@import 'themes/default';
+@import 'themes/blue_sky';
+@import 'themes/dark_blue';
+@import 'themes/night';
+
+$themes: (
+  default: $default,
+  blue-sky: $blue-sky,
+  dark-blue: $dark-blue,
+  night: $night
+);
