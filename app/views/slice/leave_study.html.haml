@@ -1,11 +1,8 @@
 - @title = "Leave #{@project.name} Study"
 
 = render "projects/theme", project: @project
-
-- content_for :container_class, "container-fluid"
-- content_for :sidebar, render("internal/sidebar")
 - content_for :header, @title
-
+- content_for :sidebar, render("internal/sidebar")
 
 .dashboard-container
   .brand-title= @title
