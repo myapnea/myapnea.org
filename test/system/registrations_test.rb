@@ -5,9 +5,9 @@ require "application_system_test_case"
 # System tests for registration process.
 class RegistrationsTest < ApplicationSystemTestCase
   test "register new user" do
-    visit root_url
+    visit new_user_registration_url
     screenshot("register-new-user")
-    assert_selector "div", text: "Join MyApnea"
+    assert_selector "div", text: "Join our community."
     fill_in "user[username]", with: "AmicableRaven"
     fill_in "user[email]", with: "jsmith@example.com"
     fill_in "user[password]", with: "longpassword"

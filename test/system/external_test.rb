@@ -7,6 +7,9 @@ class ExternalTest < ApplicationSystemTestCase
   test "visit landing page" do
     visit root_url
     screenshot("visit-landing-page")
+    find("a[href='#video']").click
+    sleep(0.5) # Allow time to scroll
+    screenshot("visit-landing-page")
     find("a[href='#research']").click
     sleep(0.5) # Allow time to scroll
     screenshot("visit-landing-page")
