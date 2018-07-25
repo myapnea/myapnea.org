@@ -1,13 +1,14 @@
-- @title = "Edit Partner: #{@admin_partner.name_was}"
+- @title = "Edit Partner - #{@admin_partner.name_was}"
 
-- @body = "sky"
-- @footer = "grass"
-
-- content_for :container_class, "container-fluid"
+- @theme = "blue-sky"
+- content_for :header, @admin_partner.name_was
+= render "admin/tabs"
+- content_for :breadcrumbs do
+  %ol
+    %li= link_to "partners", admin_partners_path
+    %li= link_to @admin_partner.name_was.downcase, @admin_partner
+    %li.breadcrumb-muted edit
 - content_for :sidebar, render("admin/sidebar")
-- content_for :header do
-  = link_to @admin_partner.name_was, @admin_partner
-  Edit
 
 .dashboard-container
   = render "form", admin_partner: @admin_partner

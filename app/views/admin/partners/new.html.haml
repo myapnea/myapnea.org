@@ -1,11 +1,14 @@
 - @title = "New Partner"
 
-- @body = "sky"
-- @footer = "grass"
-
-- content_for :container_class, "container-fluid"
-- content_for :sidebar, render("admin/sidebar")
+- @theme = "blue-sky"
 - content_for :header, @title
+= render "admin/tabs"
+- content_for :breadcrumbs do
+  %ol
+    %li= link_to "partners", admin_partners_path
+    %li.breadcrumb-muted new
+- content_for :sidebar, render("admin/sidebar")
+
 
 .dashboard-container
   = render "form", admin_partner: @admin_partner

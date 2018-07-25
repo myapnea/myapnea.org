@@ -39,6 +39,6 @@
     - if content_for?(:header_tagline)
       = yield :header_tagline
     .py-3
-      .container= yield
+      .container.remove-last-margin= yield
     = yield :footer
     = render "layouts/footer", footer: @theme ? "footer-#{@theme}" : nil

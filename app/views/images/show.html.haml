@@ -1,45 +1,16 @@
-- @title = @image.to_param
+- @title = "Image #{@image.to_param}"
 
-- @menu = "blue"
-- @body = "grey"
-- @footer = "grey"
-
-- content_for :header do
-  .header-container
-    .container
-      %h1.page-heading
-        - if current_user&.admin?
-          .float-right
-            = render "layouts/edit_delete_dropdown_header", edit_url: edit_image_path(@image), delete_url: @image, delete_confirmation: "Delete image?"
-        = @title
+- @theme = "default"
+- content_for :header_simple do
+  - if current_user&.admin?
+    .float-right
+      = render "layouts/edit_delete_dropdown", edit_url: edit_image_path(@image), delete_url: @image, delete_confirmation: "Delete #{@image.name}?"
+  = @title
 
 .dashboard-container
-  %table.table.table-striped.table-borderless.table-hover
-    %col{ width: "30%" }
-    %tr
-      %th User
-      %td
-        = link_to @image.user.username, posts_member_path(@image.user.username)
+  = render "forms/horizontal/show/generic", title: "User", content: link_to(@image.user.username, posts_member_path(@image.user.username))
+  = render "forms/horizontal/show/generic", title: "File size", content: number_to_human_size(@image.file_size)
+  = render "forms/horizontal/show/generic", title: "Markdown", content: render("images/copy_markdown", image: @image)
+  = render "forms/horizontal/show/generic", title: "Linked from", content: render("images/linked_from", image: @image)
 
-    %tr
-      %th Image Link
-      %td
-        %code.breakword= "#{ENV["website_url"]}/image/#{@image.to_param}"
-
-    %tr
-      %th File Size
-      %td= number_to_human_size @image.file_size
-
-    - replies = Reply.where("description like ?", "%#{@image.to_param}%")
-    - broadcasts = Broadcast.where("description like ?", "%#{@image.to_param}%")
-    - if replies.present? || broadcasts.present?
-      %tr
-        %th Linked From
-        %td
-          %ul.list-unstyled
-            - replies.each do |reply|
-              %li= link_to "Reply ##{reply.id}", reply, data: { turbolinks: false }
-            - broadcasts.each do |broadcast|
-              %li= link_to broadcast.title, broadcast
-
-  .text-center= image_tag download_image_path(@image), alt: "", style: "max-width: 100%; margin: 0 auto;"
+.text-center= image_tag download_image_path(@image), alt: "", class: "img-fluid img-ignore-selection"

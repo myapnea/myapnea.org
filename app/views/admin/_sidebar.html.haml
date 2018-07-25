@@ -1,18 +1,26 @@
 .col-12.col-md-3.col-xl-2.sidebar-wrapper
   .sidebar
     #sidebar-nav-wrapper.sidebar-nav-wrapper.collapse{ style: "background-color: transparent;" }
-      .pt-3.mx-3.my-0.ml-md-3.mb-md-3.mr-md-0
+      .py-3.mx-3.my-0.ml-md-3.mb-md-3.mr-md-0
         %ul.sidebar-menu.sidebar-menu-shadow
           %li.sidebar-menu-header Admin
           %li= link_to "Dashboard", admin_path, class: current_page?(admin_path) ? "active" : nil if current_user.admin? || current_user.report_manager?
-          %li= link_to "Articles", broadcasts_path, class: params[:controller] == "broadcasts" ? "active" : nil
           %li= link_to "Projects", projects_path, class: params[:controller] == "projects" ? "active" : nil if current_user.admin?
           %li= link_to "Users", users_path, class: params[:controller] == "users" ? "active" : nil if current_user.admin? || current_user.report_manager?
           - if current_user.admin?
             %li.sidebar-menu-header Discussion
-            %li= link_to "Spam Inbox", admin_spam_inbox_path, class: current_page?(admin_spam_inbox_path) ? "active" : nil
-            %li= link_to "Spam Report", admin_spam_report_path, class: current_page?(admin_spam_report_path) ? "active" : nil
-            %li= link_to "Profile Review", admin_profile_review_path, class: current_page?(admin_profile_review_path) ? "active" : nil
+            %li
+              - spam_count = User.spam_review.count
+              = link_to admin_spam_inbox_path, class: current_page?(admin_spam_inbox_path) ? "active" : nil do
+                Spam Inbox
+                - if spam_count.positive?
+                  %span.badge.badge-sidebar.badge-pill= spam_count
+            %li
+              - profile_count = User.profile_review.count
+              = link_to admin_profile_review_path, class: current_page?(admin_profile_review_path) ? "active" : nil do
+                Profile Review
+                - if profile_count.positive?
+                  %span.badge.badge-sidebar.badge-pill= profile_count
             %li= link_to "Member Posts", admin_replies_path, class: current_page?(admin_replies_path) ? "active" : nil
             %li= link_to "Blog Categories", admin_categories_path, class: params[:controller] == "admin/categories" ? "active" : nil
             %li= link_to "User Images", images_path, class: params[:controller] == "images" ? "active" : nil

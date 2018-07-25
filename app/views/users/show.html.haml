@@ -1,11 +1,6 @@
-- @title = "Users"
+- @title = "#{@user.username} - Users"
 
-- @body = "sky"
-- @footer = "grass"
-
-- content_for :container_class, "container-fluid"
-- content_for :sidebar, render("admin/sidebar")
-
+- @theme = "blue-sky"
 - content_for :header do
   .float-right
     %span.dropdown
@@ -24,6 +19,12 @@
             %i.fa.fa-trash
             Delete
   = @user.full_name.presence || @user.username
+= render "admin/tabs"
+- content_for :breadcrumbs do
+  %ol
+    %li= link_to "users", users_path
+    %li.breadcrumb-muted= @user.username.downcase
+- content_for :sidebar, render("admin/sidebar")
 
 .dashboard-container
   - if @user.shadow_banned?

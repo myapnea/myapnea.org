@@ -1,16 +1,17 @@
-- @title = @project.name
+- @title = "#{@project.name} - Projects"
+- @menu_title = @project.name
 
-- @menu = "night"
-- @body = "night"
-- @footer = "night"
-
-- content_for :container_class, "container-fluid"
-- content_for :sidebar, render("admin/sidebar")
+- @theme = "night"
 - content_for :header do
   .float-right
     = render "layouts/edit_delete_dropdown_header", edit_url: edit_project_path(@project), delete_url: @project, delete_confirmation: "Delete #{@project.name}?"
-  = @title
-
+  = @menu_title
+= render "admin/tabs"
+- content_for :breadcrumbs do
+  %ol
+    %li= link_to "projects", projects_path
+    %li.breadcrumb-muted= @project.slug
+- content_for :sidebar, render("admin/sidebar")
 - content_for :footer, render("decorations/moon")
 
 .dashboard-container

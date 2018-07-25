@@ -1,19 +1,9 @@
 - @title = "Profile Review"
 
-- @menu = "blue"
-- @body = "sky"
-- @footer = "grass"
-
-- content_for :container_class, "container-fluid"
-
+- @theme = "blue-sky"
+- content_for :header, @title
+= render "admin/tabs"
 - content_for :sidebar, render("admin/sidebar")
-- content_for :header do
-  .float-right
-    .badge.badge-light{ style: "font-size: 1rem;" }
-      = pluralize(@users.count, "profile")
-      to review
-  = @title
-
 - content_for :footer, render("decorations/sunset")
 
 - if @users.present?

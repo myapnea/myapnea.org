@@ -4,10 +4,9 @@
 class InternalController < ApplicationController
   before_action :authenticate_user!
 
-  # GET /dashboard
-  def dashboard
-    # render layout: "layouts/full_page_sidebar_drawer"
-  end
+  # # GET /dashboard
+  # def dashboard
+  # end
 
   # # GET /dashboard/reports
   # def reports

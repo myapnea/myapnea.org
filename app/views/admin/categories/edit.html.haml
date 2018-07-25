@@ -1,13 +1,14 @@
-- @title = "Edit Category: #{@admin_category.name_was}"
+- @title = "Edit Category - #{@admin_category.name_was}"
 
-- @body = "sky"
-- @footer = "grass"
-
-- content_for :container_class, "container-fluid"
+- @theme = "blue-sky"
+- content_for :header, @admin_category.name_was
+= render "admin/tabs"
+- content_for :breadcrumbs do
+  %ol
+    %li= link_to "categories", admin_categories_path
+    %li= link_to @admin_category.slug_was, @admin_category
+    %li.breadcrumb-muted edit
 - content_for :sidebar, render("admin/sidebar")
-- content_for :header do
-  = link_to @admin_category.name_was, @admin_category
-  Edit
 
 .dashboard-container
   = render "form", admin_category: @admin_category

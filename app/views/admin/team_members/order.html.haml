@@ -1,13 +1,14 @@
-- @title = "Team Members"
+- @title = "Reorder Team Members"
 
-- @body = "sky"
-- @footer = "grass"
-
-- content_for :container_class, "container-fluid"
-- content_for :sidebar, render("admin/sidebar")
+- @theme = "blue-sky"
 - content_for :header do
-  = link_to "Team Members", admin_team_members_path
-  Reorder
+  Team Members
+= render "admin/tabs"
+- content_for :breadcrumbs do
+  %ol
+    %li= link_to "team members", admin_team_members_path
+    %li.breadcrumb-muted reorder
+- content_for :sidebar, render("admin/sidebar")
 
 %div{ data: { object: "team-members-sortable" } }
   - @admin_team_members.each do |team_member|

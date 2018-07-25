@@ -69,6 +69,18 @@ class User < ApplicationRecord
     %w(full_name email username)
   end
 
+  def self.profile_review
+    where.not(profile_bio: ["", nil]).or(
+      where.not(profile_location: ["", nil])
+    ).or(
+      where.not(photo: ["", nil])
+    ).current.where(profile_reviewed: false).order(:id)
+  end
+
+  def self.spam_review
+    current.where(shadow_banned: true, spammer: [nil, true])
+  end
+
   def profile_present?
     profile_bio.present? || profile_location.present?
   end

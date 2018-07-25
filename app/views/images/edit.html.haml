@@ -1,11 +1,14 @@
-- @title = "Edit Image: #{@image.name}"
+- @title = "Edit Image - #{@image.name}"
+- @menu_title = @image.name
 
-- @body = "sky"
-- @footer = "grass"
-
-- content_for :container_class, "container-fluid"
+- @theme = "blue-sky"
+- content_for :header, @menu_title
+= render "admin/tabs"
+- content_for :breadcrumbs do
+  %ol
+    %li= link_to "images", images_path
+    %li= link_to @image.name, @image
+    %li.breadcrumb-muted edit
 - content_for :sidebar, render("admin/sidebar")
-- content_for :header do
-  Edit Image
 
 .dashboard-container= render "form", image: @image

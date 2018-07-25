@@ -1,15 +1,16 @@
 - @title = "Partners"
 
-- @body = "sky"
-- @footer = "grass"
-
-- content_for :container_class, "container-fluid"
-- content_for :sidebar, render("admin/sidebar")
+- @theme = "blue-sky"
 - content_for :header do
   .float-right
     = link_to plus_or("New Partner"), new_admin_partner_path, class: "btn btn-accent btn-shadow"
-    = render "layouts/per_page", per_page: 10, object_count: @admin_partners.total_count
   = @title
+= render "admin/tabs"
+- content_for :breadcrumbs do
+  = render "layouts/per_page_breadcrumbs", per_page: 10, object_count: @admin_partners.total_count
+  %ol
+    %li.breadcrumb-muted partners
+- content_for :sidebar, render("admin/sidebar")
 
 .dashboard-container
   - @admin_partners.each do |partner|
