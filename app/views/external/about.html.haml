@@ -6,7 +6,7 @@
   .container
     = render "landing/orange_title", title: "About Us", text_class: "text-white"
 
-    .landing-text.mb-3
+    %p.lead
       MyApnea is all about improving sleep apnea through information, support,
       and research.
 
@@ -33,7 +33,7 @@
       life. And we will report back on all interesting research findings, in
       language you don't have to be a scientist to understand.
 
-= render "landing/video_slide"
+= render "landing/video_slide", landing: false
 
 .page-box-padding.text-white
   .container

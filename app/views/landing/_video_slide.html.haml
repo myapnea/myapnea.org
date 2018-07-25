@@ -1,6 +1,6 @@
 = render "videos/full_frame_video"
 
-.page-box-padding.d-flex.justify-content-center.align-items-center{ style: "position: relative;" }
+.d-flex.justify-content-center.align-items-center{ class: landing ? "page-box" : "page-box-padding", style: "position: relative;" }
   .container
     .background-questions-image.rounded.mb-3
       - video = "3I8YbWRgkjw"
@@ -14,6 +14,6 @@
     .landing-sentence-small.text-center.text-white.p-3.rounded{ style: "background-color: rgba(0,0,0,.25);" }
       Play video to learn more about MyApnea.
 
-    - if false
-      = link_to "#blog-0", data: { object: "scroll-anchor" }, class: "scroll-down-arrow-visible link-unstyled" do
+    - if landing
+      = link_to "#research", data: { object: "scroll-anchor" }, class: "scroll-down-arrow-visible link-unstyled" do
         %i.fa.fa-chevron-down.text-white

@@ -1,41 +1,20 @@
-.overflow-hidden
-  - if false
-    .page-box.myapnea-dark-blue-bg.overflow-hidden
-      .container{ style: "position: relative;" }
-        .mb-5= render "landing/orange_title", title: "MyApnea", text_class: "text-white"
-        .row{ style: "z-index: 1020;position: relative;" }
-          .col-12.col-md.mb-5.d-flex.flex-column.justify-content-center
-            .landing-about-heading
-              -# Something
-            .landing-about-slide-tagline
-              MyApnea is a community of patients, doctors, and researchers
-              trying to improve the diagnosis and treatment of sleep apnea. You
-              can engage in discussions with other members, read research
-              articles, and participate in research studies.
-          - unless current_user
-            .col-12.col-md= render "landing/registration"
-
-      = link_to "#about", data: { object: "scroll-anchor", duration: "1200" }, class: "scroll-down-arrow-visible link-unstyled" do
-        %i.fa.fa-chevron-down
-
-    %div{ style: "position: relative;" }= render "decorations/sun_horizon_scroll"
-  #about.anchor-menu
-  .myapnea-grey-bg.d-flex.flex-column.justify-content-center{ style: "position: static;" }
-    .container{ style: "position: relative;" }
-      - if false
-        .mb-5= render "landing/orange_title", title: "A better site for sleep apnea"
-
+#about.anchor-menu
+.page-box.page-box-no-padding
+  = render "landing/tagline"
+  .d-flex.flex-column.justify-content-center.myapnea-dark-blue-light-center-bg
+    .container
       .row
         .col-0.col-md-4.d-flex.align-items-center.landing-about-slide-feature-icon
           .text-center.text-md-right.w-100
             %i.fa.fa-comments-o.text-primary
-        .col-12.col-md-6
+        .col-12.col-md-8.col-lg-6
           = link_to topics_path, class: "landing-about-slide-feature link-unstyled" do
-            %h4 Share your story
-            %p
+            .random-text
+              Share your story
+            .random-small-text
               Do you or a loved one suffer from sleep apnea? Share your
               experiences with the sleep apnea community on the forum.
-              %span.text-primary
+              %span.text-accent
                 Visit the forum
                 %i.fa.fa-caret-right
 
@@ -43,73 +22,31 @@
         .col-0.col-md-4.d-flex.justify-content-center.align-items-center.landing-about-slide-feature-icon
           .text-center.text-md-right.w-100
             %i.fa.fa-flask.text-accent
-        .col-12.col-md-6
+        .col-12.col-md-8.col-lg-6
           = link_to slice_research_path, class: "landing-about-slide-feature link-unstyled" do
-            %h4 Contribute to research
-            %p
-              Fill out surveys, and make an impact on the future of sleep apnea
-              research. View personalized reports at the end of each survey.
-              %span.text-primary
+            .random-text
+              Receive a personalized report
+            .random-small-text
+              Contribute to research by filling out surveys. We'll provide you a
+              personalized report that you can bring to your doctor.
+              %span.text-accent
                 Start surveys
                 %i.fa.fa-caret-right
       .row.mb-5
         .col-0.col-md-4.d-flex.justify-content-center.align-items-center.landing-about-slide-feature-icon
           .text-center.text-md-right.w-100
-            %i.fa.fa-book.text-dark-blue
-        .col-12.col-md-6
+            %i.fa.fa-book.text-primary
+        .col-12.col-md-8.col-lg-6
           = link_to blog_path, class: "landing-about-slide-feature link-unstyled" do
-            %h4 Learn about sleep apnea
-            %p
+            .random-text
+              Learn about sleep apnea
+            .random-small-text
               Read articles published by fellow patients and research
               professionals.
-              %span.text-primary
+              %span.text-accent
                 View articles
                 %i.fa.fa-caret-right
+%div{ style: "position: relative;" }
   %div{ style: "position: relative;" }
-    %div{ style: "position: relative;" }
-      = link_to "#video", data: { object: "scroll-anchor" }, class: "scroll-down-arrow-visible link-unstyled" do
-        %i.fa.fa-chevron-down
-
-  - if false
-    .page-box.myapnea-white-bg.d-flex.align-items-center
-      .container
-        =# .myapnea-light-bg
-        .mb-3
-          .landing-blog-title.text-dark
-            What is MyApnea?
-
-          .landing-blog-content
-            MyApnea is a patient-powered community that empowers patients to learn about
-            sleep apnea and contribute to sleep apnea research.
-
-        .mb-3
-          .landing-blog-title.text-dark
-            What you can do on MyApnea
-
-          .landing-blog-content
-            %p
-              Share your story on MyApnea, fill out sleep related surveys.
-
-            %p
-              Engage with other patients and professionals on the forum to discuss
-              anything and everything related to sleep apnea.
-
-            %p
-              Give back to research by completing ongoing research surveys.
-
-
-        .mb-3
-          .landing-blog-title.text-dark
-            What you can expect from MyApnea
-
-          .landing-blog-content
-            %p
-              Surveys you complete will provide you feedback on how you relate to others
-              on MyApnea that have participated in the survey.
-
-            %p
-              MyApnea will publish articles relating to sleep apnea news, research, and
-              patient experiences with sleep apnea.
-
-            %p
-              MyApnea provides a safe and engaging forum to learn and ask questions to fellow MyApnea members.
+    = link_to "#video", data: { object: "scroll-anchor" }, class: "text-white scroll-down-arrow-visible link-unstyled" do
+      %i.fa.fa-chevron-down

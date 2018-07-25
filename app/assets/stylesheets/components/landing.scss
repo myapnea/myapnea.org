@@ -189,39 +189,6 @@
   position: relative;
 }
 
-.landing-title {
-  // color: $brand-white;
-  font-size: 1.5rem;
-  font-weight: 300;
-}
-
-.landing-text {
-  // color: $p100-grey;
-  font-size: 1rem;
-  font-weight: 200;
-}
-
-@include media-breakpoint-up(sm) {
-  .landing-title {
-    font-size: 2rem;
-  }
-
-  .landing-text {
-    font-size: 1.25rem;
-  }
-}
-
-@include media-breakpoint-up(lg) {
-  .landing-title {
-    font-size: 3rem;
-  }
-
-  .landing-text {
-    font-size: 1.5rem;
-  }
-}
-
-
 .landing-sentence {
   font-weight: 300;
   line-height: 1.2;
@@ -455,27 +422,20 @@
   font-size: 6rem;
 
   @include media-breakpoint-up(md) {
-    margin-top: $spacer * 1.5;
-    margin-bottom: $spacer * 1.5;
+    margin-top: map-get($spacers, 4);
+    margin-bottom: map-get($spacers, 4);
   }
 }
 
 .landing-about-slide-feature {
-  // border: 1px solid black;
   display: block;
-  // text-decoration: none;
-  transition: all 250ms ease-out;
-  margin-top: $spacer * 1.5;
-  margin-bottom: $spacer * 1.5;
-  padding: $spacer * 3;
+  margin-top: map-get($spacers, 2);
+  margin-bottom: map-get($spacers, 5);
 
-  @media (hover) {
-    &:hover {
-      overflow: visible;
-      box-shadow: $box-shadow;
-      background-color: $p50-orange;
-      // transform: scale(1.02);
-    }
+  @include media-breakpoint-up(md) {
+    padding: map-get($spacers, 5);
+    margin-top: map-get($spacers, 4);
+    margin-bottom: map-get($spacers, 4);
   }
 }
 
