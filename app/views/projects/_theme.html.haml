@@ -1,23 +1,24 @@
-- @menu = project.theme.presence || "light"
-- @body = project.theme.presence || "grey"
-- @footer = project.theme.presence || "grey"
+-# todo make project themes dynamic.
+-# @theme = project.theme.presence || "default"
+- @theme = "default"
 
-- case project.theme
-- when "green"
-  - @footer = "grass"
-- when "default"
-  - @menu = "light"
-  - @footer = "grey"
+- if false
+  - case project.theme
+  - when "green"
+    - @footer = "grass"
+  - when "default"
+    - @menu = "light"
+    - @footer = "grey"
 
-- case project.theme
-- when "night"
-  - content_for :footer, render("decorations/moon")
-- when "sunset"
-  - content_for :footer, render("decorations/sunset")
+  - case project.theme
+  - when "night"
+    - content_for :footer, render("decorations/moon")
+  - when "sunset"
+    - content_for :footer, render("decorations/sunset")
 
--# background_class = "myapnea-light-bg"
--# background_class = "myapnea-sky-bg"
--# background_class = "myapnea-blue-bg"
--# background_class = "myapnea-sunset-bg"
--# background_class = "myapnea-green-bg"
--# background_class = "myapnea-orange-bg"
+  -# background_class = "myapnea-light-bg"
+  -# background_class = "myapnea-sky-bg"
+  -# background_class = "myapnea-blue-bg"
+  -# background_class = "myapnea-sunset-bg"
+  -# background_class = "myapnea-green-bg"
+  -# background_class = "myapnea-orange-bg"

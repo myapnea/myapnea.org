@@ -1,10 +1,10 @@
 - @title = "#{@project.name} Overview"
 
 = render "projects/theme", project: @project
-
-- content_for :container_class, "container-fluid"
-- content_for :sidebar, render("internal/sidebar")
 - content_for :header, @title
+= render "internal/tabs"
+- content_for :sidebar, render("internal/sidebar")
+
 
 .dashboard-container.dashboard-container-border-accent
   Our team has updated the MyApnea surveys. They are now shorter, include
@@ -14,7 +14,6 @@
   apnea research community. When you complete the surveys you will receive a
   personal sleep report that you can print and share with your health care
   provider.
-
 
 = render "slice/survey_progress"
 = render "slice/overview_report"

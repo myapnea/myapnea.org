@@ -1,5 +1,5 @@
 .remove-last-margin {
-  .dashboard-container {
+  > .dashboard-container {
     &:last-child {
       margin-bottom: 0;
     }

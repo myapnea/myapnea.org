@@ -15,6 +15,9 @@
 - **Blog Changes**
   - Simplified navigation between live blog and unpublished (draft) articles
   - Blogs can now have a cover image
+- **Dashboard Changes**
+  - Added navigational tabs to dashboard to simplify navigating between
+    dashboard, profile, research, and the forum
 - **Export Changes**
   - Simplified user export
 - **Forum Changes**

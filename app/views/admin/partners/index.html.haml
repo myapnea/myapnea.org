@@ -14,7 +14,7 @@
 
 .dashboard-container
   - @admin_partners.each do |partner|
-    = render partner
+    .py-5= render partner
     = succeed " " do
       = link_to edit_admin_partner_path(partner), class: "btn btn-light btn-sm" do
         %fa.fa.fa-pencil
