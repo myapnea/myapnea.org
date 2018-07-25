@@ -38,7 +38,8 @@
           = yield :breadcrumbs
     - if content_for?(:header_tagline)
       = yield :header_tagline
-    .py-3
-      .container.remove-last-margin= yield
+    %div{ class: @theme ? "theme-#{@theme}-spacing" : nil }
+      .py-3
+        .container.remove-last-margin= yield
     = yield :footer
     = render "layouts/footer", footer: @theme ? "footer-#{@theme}" : nil
