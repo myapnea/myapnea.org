@@ -24,7 +24,6 @@
       .container-fluid
         %h1.page-heading
           = yield :header
-          = render "sidebar/toggle"
     = yield :header_append
     - if content_for?(:tabs)
       .header-tabs{ class: "#{"header-tabs-no-breadcrumbs" unless content_for?(:breadcrumbs)}" }
@@ -35,6 +34,7 @@
         .container-fluid
           .px-1= yield :breadcrumbs
     .row.no-gutters.flex-md-nowrap{ class: @theme ? "theme-#{@theme}-spacing" : nil }
+      = render "sidebar/mini"
       = yield(:sidebar)
       %main.col.p-3.remove-last-margin{ role: "main" }
         = yield

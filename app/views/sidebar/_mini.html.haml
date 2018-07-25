@@ -1,0 +1,11 @@
+.col-12.sidebar-wrapper.d-block.d-md-none
+  .sidebar
+    #sidebar-mini.sidebar-nav-wrapper
+      .pt-3.py-md-3.mx-3.my-0.ml-md-3.mb-md-3.mr-md-0
+        %ul.sidebar-menu.sidebar-menu-shadow{ style: "background-color: #e0e0e0;" }
+          %li.sidebar-menu-header.mb-0
+            = link_to "#", data: { object: "sidebar-show" }, class: "d-block d-md-none" do
+              .float-right
+                %i.fa.fa-caret-left
+              %i.fa.fa-bars
+              Menu

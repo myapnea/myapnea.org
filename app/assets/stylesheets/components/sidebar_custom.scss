@@ -39,6 +39,13 @@
       padding-left: 15px;
       padding-right: 15px;
       font-variant: small-caps;
+
+      a {
+        background-color: initial;
+        border: 0;
+        color: $body-color;
+        padding: 0;
+      }
     }
 
     // Add a margin to the top of a menu header if it has other menu items

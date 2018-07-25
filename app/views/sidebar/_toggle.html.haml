@@ -1,2 +1,6 @@
-= link_to "#", data: { toggle: "collapse", target: "#sidebar-nav-wrapper" }, aria: { controls: "sidebar-nav-wrapper", expanded: "false", label: "Toggle navigation" }, class: "d-inline d-md-none" do
-  %i.fa.fa-caret-down
+= link_to "#", data: { object: "sidebar-hide" }, class: "d-block d-md-none" do
+  .float-right
+    %i.fa.fa-caret-down
+  = title
+.d-none.d-md-block
+  = title

@@ -1,9 +1,9 @@
 .col-12.col-md-3.col-xl-2.sidebar-wrapper
   .sidebar
-    #sidebar-nav-wrapper.sidebar-nav-wrapper.collapse{ style: "background-color: transparent;" }
-      .py-3.mx-3.my-0.ml-md-3.mb-md-3.mr-md-0
+    #sidebar-nav-wrapper.sidebar-nav-wrapper.collapse
+      .pt-3.py-md-3.mx-3.my-0.ml-md-3.mb-md-3.mr-md-0
         %ul.sidebar-menu.sidebar-menu-shadow
-          %li.sidebar-menu-header MyApnea
+          %li.sidebar-menu-header= render "sidebar/toggle", title: "MyApnea"
           %li= link_to "Dashboard", dashboard_path, class: current_page?(dashboard_path) ? "active" : nil
           %li= link_to "Research", slice_research_path, class: current_page?(slice_research_path) ? "active" : nil
           - if @project && @subject

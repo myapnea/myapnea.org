@@ -1,9 +1,9 @@
 .col-12.col-md-3.col-xl-2.sidebar-wrapper
   .sidebar
-    #sidebar-nav-wrapper.sidebar-nav-wrapper.collapse{ style: "background-color: transparent;" }
-      .py-3.mx-3.my-0.ml-md-3.mb-md-3.mr-md-0
+    #sidebar-nav-wrapper.sidebar-nav-wrapper.collapse
+      .pt-3.py-md-3.mx-3.my-0.ml-md-3.mb-md-3.mr-md-0
         %ul.sidebar-menu.sidebar-menu-shadow
-          %li.sidebar-menu-header Admin
+          %li.sidebar-menu-header= render "sidebar/toggle", title: "Admin"
           %li= link_to "Dashboard", admin_path, class: current_page?(admin_path) ? "active" : nil if current_user.admin? || current_user.report_manager?
           %li= link_to "Projects", projects_path, class: params[:controller] == "projects" ? "active" : nil if current_user.admin?
           %li= link_to "Users", users_path, class: params[:controller] == "users" ? "active" : nil if current_user.admin? || current_user.report_manager?
