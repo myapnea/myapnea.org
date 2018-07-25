@@ -1,13 +1,8 @@
 - @title = "Help Center"
 
-- @body = "grey"
-- @footer = "grey"
+- @theme = "default"
 
-- content_for :header do
-  .header-container
-    .container
-      %h1.page-heading
-        = @title
+- content_for :header_simple, @title
 
 = form_tag search_path, method: :get, id: "search-form", class: "mb-5" do
   .input-group

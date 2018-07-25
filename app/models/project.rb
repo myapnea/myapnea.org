@@ -2,16 +2,6 @@
 
 # Groups together a series of surveys and a consent.
 class Project < ApplicationRecord
-  # Constants
-  THEMES = [
-    %w(Default default),
-    %w(Sunset sunset),
-    %w(Night night),
-    %w(Blue blue),
-    %w(Green green),
-    %w(Orange orange)
-  ]
-
   # Concerns
   include Deletable
   include Latexable

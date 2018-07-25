@@ -9,14 +9,11 @@
   = render "forms/horizontal/text_field", form: form, object: project, key: :slice_baseline_event, placeholder: "baseline"
   = render "forms/horizontal/text_field", form: form, object: project, key: :code_prefix
   = render "forms/horizontal/check_box", form: form, object: project, key: :published
-  = render "forms/horizontal/select", form: form, object: project, key: :theme, options: Project::THEMES, include_blank: "Select a theme"
+  = render "forms/horizontal/select", form: form, object: project, key: :theme, options: MyApnea::THEMES, include_blank: "Select a theme"
   = render "forms/horizontal/submit", form: form, object: project
 
-
 - if false
-
-  = form_for project, html: { class: "form-horizontal" } do |f|
-    .form-group
-      = f.label :consent, nil, class: "col-md-2 control-label"
-      .col-md-10
-        = f.text_area :consent, rows: [[15, project.consent.to_s.count("\n") + 1].max, 25].min, data: { object: "expandable-text-area", default_rows: 15 }, class: "form-control"
+  .form-group
+    = f.label :consent, nil, class: "col-md-2 control-label"
+    .col-md-10
+      = f.text_area :consent, rows: [[15, project.consent.to_s.count("\n") + 1].max, 25].min, data: { object: "expandable-text-area", default_rows: 15 }, class: "form-control"

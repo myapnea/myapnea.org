@@ -1,12 +1,12 @@
 - @title = "Edit Broadcast: #{@broadcast.title_was}"
 
 - @theme = "blue-sky"
-
 - content_for :header_simple, @broadcast.title_was
 = render "broadcasts/tabs"
-
 - content_for :breadcrumbs do
   %ol
+    - if false
+      %li= link_to "articles", broadcasts_path
     %li= link_to @broadcast.slug_was, @broadcast
     %li.breadcrumb-muted edit
 

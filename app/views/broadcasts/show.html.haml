@@ -10,6 +10,8 @@
 
 - content_for :breadcrumbs do
   %ol
+    - if false
+      %li= link_to "articles", broadcasts_path
     %li.breadcrumb-muted= @broadcast.slug
 
 -# content_for :sidebar, render("broadcasts/sidebar")

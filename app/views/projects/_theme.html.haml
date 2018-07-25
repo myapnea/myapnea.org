@@ -4,13 +4,6 @@
 
 - if false
   - case project.theme
-  - when "green"
-    - @footer = "grass"
-  - when "default"
-    - @menu = "light"
-    - @footer = "grey"
-
-  - case project.theme
   - when "night"
     - content_for :footer, render("decorations/moon")
   - when "sunset"
