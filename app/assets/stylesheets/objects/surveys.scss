@@ -41,10 +41,11 @@
   }
 
   .survey-question-desc {
-    color: $text-muted;
+    margin-bottom: $spacer;
+  }
 
+  .survey-question-lead + .survey-question-desc {
     border-top: 1px solid transparent;
-    margin-top: 10px;
   }
 }
 
@@ -65,6 +66,16 @@
 
 @each $name, $theme in $themes {
   .theme-#{$name}-bg {
+    .survey-question {
+      .survey-question-lead {
+        color: map-get($theme, p500);
+      }
+
+      .survey-question-desc {
+        border-color: map-get($theme, p100);
+      }
+    }
+
     .survey-choice {
       background-color: $p50-grey;
 
