@@ -11,7 +11,7 @@
       %i.text-muted [deleted]
   - else
     - if current_user && current_user.admin? && reply.user.shadow_banned?
-      %span.glyphicon.glyphicon-eye-close.text-muted
+      %i.fa.fa-eye-slash
     - if reply.parent_author?
       %small
         %i.fa.fa-moon-o.text-accent{ rel: "tooltip", data: { title: "Topic Author", container: "body" } }

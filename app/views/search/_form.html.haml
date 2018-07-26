@@ -1,6 +1,0 @@
-= form_tag search_path, method: :get, id: 'search-form', style: 'margin-bottom:20px' do
-  .input-group
-    = text_field_tag :search, params[:search], class: 'form-control', style: 'width:100%', placeholder: 'Search MyApnea', autocomplete: 'off'
-    %span.input-group-btn
-      = link_to '#', data: { object: 'submit', target: '#search-form' }, class: 'btn btn-primary', name: nil do
-        %span.glyphicon.glyphicon-search
