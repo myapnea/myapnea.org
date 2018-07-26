@@ -13,7 +13,7 @@ class Topic < ApplicationRecord
   }
   DEFAULT_ORDER = "topics.pinned desc, topics.last_reply_at desc, topics.id desc"
 
-  attr_accessor :description, :migration_flag
+  attr_accessor :description
 
   # Concerns
   include Deletable
@@ -34,7 +34,7 @@ class Topic < ApplicationRecord
 
   # Validations
   validates :title, presence: true
-  validates :description, presence: true, if: :requires_description?
+  validates :description, presence: true, if: :new_record?
   validates :slug, format: { with: /\A[a-z][a-z0-9\-]*\Z/ },
                    exclusion: { in: %w(new edit create update destroy research) },
                    uniqueness: true,
@@ -124,9 +124,5 @@ class Topic < ApplicationRecord
   def create_first_reply
     replies.create description: description, user_id: user_id if description.present?
     get_or_create_subscription(user)
-  end
-
-  def requires_description?
-    new_record? && migration_flag != "1"
   end
 end
