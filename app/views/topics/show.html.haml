@@ -2,7 +2,7 @@
 
 - @theme = "default"
 
-- content_for :header_simple do
+- content_for :header do
   .float-right
     = link_to pencil_or("Write a reply"), page_topic_path(@topic, page: @topic.last_page, anchor: "write-a-reply"), method: :get, class: "btn btn-sm btn-accent btn-shadow"
     - if current_user && @topic.editable_by?(current_user)

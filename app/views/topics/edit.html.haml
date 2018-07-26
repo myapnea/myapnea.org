@@ -1,7 +1,7 @@
 - @title = "Edit Topic - #{@topic.title_was}"
 
 - @theme = "default"
-- content_for :header_simple, @topic.title_was
+- content_for :header, @topic.title_was
 - content_for :breadcrumbs do
   %ol
     %li= link_to @topic.slug_was, @topic

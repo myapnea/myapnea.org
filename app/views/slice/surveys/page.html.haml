@@ -8,7 +8,7 @@
 - percent = (@json.dig("design", "current_page")) * 100 / @json.dig("design", "pages_count")
 - start = percent if @json.dig("errors").present?
 
-- content_for :header_simple, @json.dig("design", "name")
+- content_for :header, @json.dig("design", "name")
 - content_for :progress_bar, render("slice/surveys/progress_bar", start: start, percent: percent)
 
 = form_with(url: slice_surveys_submit_page_path(@project, params[:event], params[:design], @page), method: :patch, local: true, autocomplete: "off", id: "survey-form") do |form|

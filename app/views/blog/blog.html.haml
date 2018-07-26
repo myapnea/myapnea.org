@@ -10,7 +10,7 @@
   - @title = ["Blog", @category ? @category.name : nil, @author ? @author.username : nil].compact.join(" | ")
   - @theme = "default"
 
-  - content_for :header_simple, @title
+  - content_for :header, @title
   - content_for :header_tagline, render("layouts/tagline")
   = render "broadcasts/tabs" if current_user&.community_contributor?
 

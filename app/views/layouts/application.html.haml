@@ -20,12 +20,11 @@
   %body#top.full-page.theme-bg{ class: "theme-#{@theme.presence || "default"}-bg", data: { theme: @theme } }
     = render "layouts/flash_bar"
     #top-menu.top-menu= render "layouts/menu", menu: @theme.present? ? "menu-#{@theme}" : nil
-    = yield :header
-    - if content_for?(:header_simple)
+    - if content_for?(:header)
       .header-container{ class: content_for?(:tabs) || content_for?(:progress_bar) ? "header-container-no-border" : nil }
         %div{ class: defined?(container) && container.present? ? container : "container" }
           %h1.page-heading
-            = yield :header_simple
+            = yield :header
     = yield :header_append
     - if content_for?(:tabs)
       .header-tabs{ class: "#{"header-tabs-no-breadcrumbs" unless content_for?(:breadcrumbs)}" }
