@@ -5,7 +5,7 @@
     %video.video-full-page-absolute{ autoplay: "true", loop: "false", muted: "true", plays_inline: "true" }
       %source{ src: asset_url(video_path), type: "video/mp4" }
 
-  .page-box.p-0.myapnea-dark-blue-transparent-radial-bg.d-flex.flex-column.justify-content-around
+  .page-box.p-0.d-flex.flex-column.justify-content-around{ class: "theme-#{@theme}-radial-bg" }
     .container
       = render "landing/orange_title", title: "Community Power", text_class: "text-white"
 

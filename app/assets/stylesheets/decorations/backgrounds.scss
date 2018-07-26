@@ -44,19 +44,6 @@
   filter: blur(5px);
 }
 
-.myapnea-blue-transparent-bg {
-  background-color: rgba($p500-blue, .5);
-  color: $brand-white;
-}
-
-.myapnea-white-transparent-bg {
-  background-color: rgba($brand-white, .85);
-}
-
-.myapnea-border-accent {
-  border-bottom: 2px solid $p500-orange;
-}
-
 .background-questions-image {
   background-image: asset-url("backgrounds/questions.png");
   background-position: center;
@@ -80,16 +67,6 @@
   .header-container {
     background-color: $p900-blue;
     border-color: $p300-orange;
-    color: $brand-white;
-  }
-}
-
-.myapnea-orange-bg {
-  background-color: $p400-orange;
-
-  .header-container {
-    background-color: $p500-orange;
-    border-color: $p200-blue;
     color: $brand-white;
   }
 }
@@ -132,62 +109,6 @@
 .myapnea-light-bg {
   background-color: $p100-blue;
 }
-
-// .myapnea-sky-bg {
-//   background-color: $a700-light-blue;
-//   background-image: linear-gradient(180deg, $a100-light-blue, $a200-light-blue 60%, $a400-light-blue 80%, $a700-light-blue 90%, $a700-light-blue);
-// }
-
-.myapnea-sunset-bg {
-  background-color: $a700-deep-orange;
-  background-image: linear-gradient(180deg, $a100-deep-orange, $a200-deep-orange 60%, $a400-deep-orange 80%, $a700-deep-orange 90%, $a700-deep-orange);
-
-  .header-container {
-    background-color: $p500-deep-orange;
-    border-color: $p200-deep-orange;
-    color: $brand-white;
-  }
-}
-
-.myapnea-night-bg {
-  background-color: $p900-indigo;
-  background-image: linear-gradient(180deg, $p900-indigo, $p800-indigo 60%, $p700-indigo 80%, $p500-indigo 90%, $p500-indigo);
-
-  .header-container {
-    background-color: $p500-indigo;
-    border-color: $p200-indigo;
-    color: $brand-white;
-  }
-}
-
-.myapnea-dark-blue-light-center-bg {
-  background-color: $p900-blue;
-  background-image: linear-gradient(180deg, $p900-blue, $p800-blue 50%, $p900-blue);
-}
-
-.myapnea-dark-blue-transparent-radial-bg {
-  background-color: transparent;
-  // background-image: linear-gradient(180deg, $p900-blue, transparent 20%, transparent 80%, transparent);
-  background-image: radial-gradient(circle at center, transparent 30%, $p900-blue 100%);
-}
-
-.myapnea-blue-bg {
-  .page-box-down-arrow {
-    a:hover {
-      color: $p500-orange;
-    }
-  }
-}
-
-.myapnea-orange-bg,
-.myapnea-sunset-bg {
-  .page-box-down-arrow {
-    a:hover {
-      color: $p500-blue;
-    }
-  }
-}
-
 
 // TODO: Remove/refactor into themes everything above this line.
 

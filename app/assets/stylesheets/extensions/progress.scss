@@ -1,40 +1,11 @@
-.progress-simple {
-  background-color: $p100-orange;
+@each $name, $theme in $themes {
+  .theme-#{$name}-bg {
+    .progress-simple {
+      background-color: theme-color($theme, progress-simple, $p100-orange);
 
-  .progress-bar {
-    background-color: $p300-orange;
-  }
-}
-
-// .myapnea-light-bg,
-// .myapnea-sky-bg,
-// .myapnea-blue-bg,
-// .myapnea-sunset-bg {
-//   .progress-simple {
-//     background-color: $p100-orange;
-
-//     .progress-bar {
-//       background-color: $p500-orange;
-//     }
-//   }
-// }
-
-.myapnea-orange-bg {
-  .progress-simple {
-    background-color: $p100-blue;
-
-    .progress-bar {
-      background-color: $p500-blue;
-    }
-  }
-}
-
-.myapnea-night-bg {
-  .progress-simple {
-    background-color: $p100-indigo;
-
-    .progress-bar {
-      background-color: $p500-indigo;
+      .progress-bar {
+        background-color: theme-color($theme, progress-bar, $p300-orange);
+      }
     }
   }
 }

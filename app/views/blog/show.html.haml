@@ -4,7 +4,7 @@
 - @theme = "default"
 
 - cover_present = @broadcast.cover.present?
-.page-box.p-0.last-box.myapnea-light-bg
+.page-box.p-0.last-box{ class: "footer-#{@theme.presence || "default"}-bg" }
   - if cover_present
     .background-blog-image.d-flex.flex-column.justify-content-end{ style: "background-image: url(#{blog_cover_url(@broadcast)});" }
       .blog-cover-overlay
@@ -13,7 +13,7 @@
           %h1.broadcast-title.mt-0{ style: "border-bottom: 0;" }
             .container= @broadcast.title
 
-  .py-3.myapnea-grey-bg
+  .py-3{ class: "theme-#{@theme.presence || "default"}-bg" }
     .container.remove-last-margin
       .row
         .col-lg-9

@@ -2,13 +2,15 @@
 
 @import 'themes/colors';
 @import 'themes/default';
-@import 'themes/blue_sky';
+@import 'themes/day';
 @import 'themes/dark_blue';
 @import 'themes/night';
+@import 'themes/sunset';
 
 $themes: (
   default: $default,
-  blue-sky: $blue-sky,
+  day: $day,
   dark-blue: $dark-blue,
-  night: $night
+  night: $night,
+  sunset: $sunset
 );

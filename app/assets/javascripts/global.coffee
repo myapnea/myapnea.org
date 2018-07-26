@@ -15,6 +15,7 @@
   chartsReady()
   landingReady()
   progressReady()
+  themesReady()
 
 @objectsReady = ->
   repliesReady()

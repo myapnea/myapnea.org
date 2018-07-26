@@ -106,7 +106,7 @@
         = link_to "View all Education articles", blog_category_path("education"), class: "small link-accent"
 
 - content_for :footer do
-  .py-5{ class: @theme.present? ? "footer-#{@theme}-bg" : "footer-default-bg" }
+  .py-5{ class: "footer-#{@theme.presence || "default"}-bg" }
     .container
       .lead.text-center.mb-5
         Have another question?

@@ -1,42 +1,42 @@
-$night: (
+$sunset: (
   brand-white: #fff,
   brand-black: $p900-grey,
 
-  p50: $p50-indigo,
-  p100: $p100-indigo,
-  p200: $p200-indigo,
-  p300: $p300-indigo,
-  p400: $p400-indigo,
-  p500: $p500-indigo,
-  p600: $p600-indigo,
-  p700: $p700-indigo,
-  p800: $p800-indigo,
-  p900: $p900-indigo,
+  p50: $p50-orange,
+  p100: $p100-orange,
+  p200: $p200-orange,
+  p300: $p300-orange,
+  p400: $p400-orange,
+  p500: $p500-orange,
+  p600: $p600-orange,
+  p700: $p700-orange,
+  p800: $p800-orange,
+  p900: $p900-orange,
 
-  primary: $p500-indigo,
+  primary: $p500-orange,
   accent: $p300-orange,
   success: null, // $p500-green
 
   selection-bg: $p200-orange, // $p200-COLOR
 
-  menu-bg: $p600-indigo, // $p900-COLOR
+  menu-bg: $p600-deep-orange, // $p900-COLOR
   menu-color: null, // brand-white
 
-  header-bg: $p500-indigo,
-  header-border: $p200-indigo,
+  header-bg: $p500-deep-orange,
+  header-border: $p200-deep-orange,
 
-  progress-simple: $p100-indigo, // $p100-orange
-  progress-bar: $p500-indigo, // $p300-orange
+  progress-simple: $p100-orange, // $p100-orange
+  progress-bar: $p500-orange, // $p300-orange
 
-  body-bg: $p900-indigo,
+  body-bg: $p900-orange,
   body-color: null,
-  body-focus: $p800-indigo,
+  body-focus: $p800-orange,
 
-  footer-bg: $p900-indigo, // $p100-grey
+  footer-bg: $p900-orange, // $p100-grey
   footer-color: #fff, // $p900-grey
 
   dashboard-bg: #fff,
-  form-title-bg: $p500-indigo, // $p500-COLOR
+  form-title-bg: $p500-orange, // $p500-COLOR
   form-bg: $p50-grey,
 
   input-bg: null, // $white

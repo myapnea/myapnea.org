@@ -1,3 +1,8 @@
 .footer-container.footer-dark-blue {
   background-color: $p900-blue;
 }
+
+.theme-dark-blue-radial-bg {
+  background-color: transparent;
+  background-image: radial-gradient(circle at center, transparent 30%, $p900-blue 100%);
+}

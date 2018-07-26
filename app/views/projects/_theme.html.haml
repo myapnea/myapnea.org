@@ -1,17 +1,8 @@
--# todo make project themes dynamic.
--# @theme = project.theme.presence || "default"
-- @theme = "default"
+- if params[:theme].present?
+  - @theme = params[:theme]
+- else
+  -# TODO: Should be the following:
+  -# @theme = project.theme.presence || "default"
+  - @theme = "default"
 
-- if false
-  - case project.theme
-  - when "night"
-    - content_for :footer, render("decorations/moon")
-  - when "sunset"
-    - content_for :footer, render("decorations/sunset")
-
-  -# background_class = "myapnea-light-bg"
-  -# background_class = "myapnea-sky-bg"
-  -# background_class = "myapnea-blue-bg"
-  -# background_class = "myapnea-sunset-bg"
-  -# background_class = "myapnea-green-bg"
-  -# background_class = "myapnea-orange-bg"
+= render "themes/decorations"

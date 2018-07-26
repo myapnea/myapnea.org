@@ -1,31 +1,3 @@
-// TODO: Move these to themes.
-// .menu-blue,
-// .menu-light,
-// .menu-grass {
-//   @include theme-menu($p600-blue, $p300-blue, $p700-blue, $p800-blue);
-// }
-
-// .menu-dark-blue {
-//   @include theme-menu($p900-blue, $p900-blue, $p900-blue, $p900-blue);
-// }
-
-// .menu-sunset {
-//   @include theme-menu($p600-deep-orange, $p300-deep-orange, $p700-deep-orange, $p800-deep-orange);
-// }
-
-// .menu-night {
-//   @include theme-menu($p600-indigo, $p300-indigo, $p700-indigo, $p800-indigo);
-// }
-
-// .menu-green {
-//   @include theme-menu($p600-green, $p300-green, $p700-green, $p800-green);
-// }
-
-// .menu-orange {
-//   @include theme-menu($p600-orange, $p300-orange, $p700-orange, $p800-orange);
-// }
-
-
 @each $name, $theme in $themes {
   $menu-bg: map-get($theme, p900);
   @if map-get($theme, menu-bg) {

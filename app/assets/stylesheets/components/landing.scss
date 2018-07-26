@@ -15,46 +15,6 @@
   display: none;
 }
 
-.frozen-container {
-  bottom: 0;
-  left: 0;
-  // pointer-events: none;
-  position: fixed;
-  right: 0;
-  top: 0;
-}
-
-.page-box-down-arrow {
-  bottom: 50px;
-  font-size: 40px;
-  left: 50%;
-  margin-left: -25px;
-  overflow: hidden;
-  position: absolute;
-  width: 50px;
-  cursor: pointer;
-  transition: all .3s ease-in-out;
-  text-align: center;
-
-  &:hover {
-    transform: scale(1.5, 1.5);
-  }
-
-  a {
-    color: #ccc;
-    color: rgba(0, 0, 0, .25);
-    transition: color .3s ease-in-out;
-
-    &:hover {
-      color: $p500-blue;
-    }
-
-    &.orange:hover {
-      color: $p500-orange;
-    }
-  }
-}
-
 .myapnea-heading {
   color: $brand-white;
   font-size: 40px;
