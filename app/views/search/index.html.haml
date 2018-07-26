@@ -2,110 +2,127 @@
 
 - @theme = "default"
 
-- content_for :header, @title
+.page-box.p-0.last-box.d-flex.flex-column.justify-content-between
+  %div
+    .header-container
+      .container
+        %h1.page-heading
+          = @title
+    .py-3
+      .container
+        = form_with url: search_path, method: :get, local: true, id: "search-form", class: "mb-3", skip_enforcing_utf8: true do |form|
+          .input-group
+            = form.text_field :search, value: params[:search], class: "form-control form-control-lg", placeholder: "Start your search...", autocomplete: "off", autofocus: params[:search].blank?
+            .input-group-append
+              = link_to "#", class: "btn btn-lg btn-primary", data: { object: "submit-and-disable", target: "#search-form" } do
+                %i.fa.fa-search
 
-= form_tag search_path, method: :get, id: "search-form", class: "mb-5" do
-  .input-group
-    = text_field_tag :search, params[:search], class: "form-control form-control-lg", placeholder: "Start your search", autocomplete: "off", autofocus: params[:search].blank?
-    .input-group-append
-      = link_to "#", class: "btn btn-lg btn-primary", data: { object: "submit-and-disable", target: "#search-form" } do
-        %i.fa.fa-search
+        - if params[:search].present?
+          - @highlight_found = true
+          - if [0, 1].include?(params[:page].to_i)
+            - if /consent/i =~ params[:search].to_s
+              = render "search/highlights/consent"
+            - elsif /contact|mail|support|phone|help/i =~ params[:search].to_s
+              = render "search/highlights/contact"
+            - elsif /(^|\W)ahi($|\W)/i =~ params[:search].to_s
+              = render "search/highlights/ahi"
+            - elsif /(^|\W)csa($|\W)/i =~ params[:search].to_s
+              = render "search/highlights/csa"
+            - elsif /(^|\W)osa($|\W)/i =~ params[:search].to_s
+              = render "search/highlights/osa"
+            - elsif /(^|\W)password($|\W)/i =~ params[:search].to_s
+              = render "search/highlights/password"
+            - elsif /(^|\W)delete( my)? account($|\W)/i =~ params[:search].to_s
+              = render "search/highlights/delete_account"
+            - else
+              - @highlight_found = false
+          - else
+            - @highlight_found = false
 
-- if params[:search].present?
-  - @highlight_found = true
-  - if [0, 1].include?(params[:page].to_i)
-    - if /consent/ =~ params[:search].to_s
-      = render "search/highlights/consent"
-    - else
-      - @highlight_found = false
-  - else
-    - @highlight_found = false
+          - if @member.present?
+            = render "members/mini_profile", member: @member
 
-  - if @member.present?
-    = render "members/mini_profile", member: @member
+          - if @search_documents.present?
+            - @search_documents.each do |document|
+              .dashboard-container
+                - case document.searchable.class.to_s when "Broadcast"
+                  = render "search/broadcast", broadcast: document.searchable
+                - when "Topic"
+                  = render "search/topic", topic: document.searchable
+                - when "Reply"
+                  = render "search/reply", reply: document.searchable
+            .center-horizontally= paginate @search_documents, theme: "bootstrap"
+          - elsif @highlight_found
+            -# Nothing
+          - else
+            %p.lead.text-center
+              - if params[:search].present?
+                No search results found.
+                = link_to "Start over", search_path
+              - else
+                Type a search above.
 
-  - if @search_documents.present?
-    - @search_documents.each do |document|
-      .dashboard-container
-        - case document.searchable.class.to_s when "Broadcast"
-          = render "search/broadcast", broadcast: document.searchable
-        - when "Topic"
-          = render "search/topic", topic: document.searchable
-        - when "Reply"
-          = render "search/reply", reply: document.searchable
-    .center-horizontally= paginate @search_documents, theme: "bootstrap"
-  - elsif @highlight_found
-    -# Nothing
-  - else
-    %p.lead.text-center
-      - if params[:search].present?
-        No search results found.
-        = link_to "Start over", search_path
-      - else
-        Type a search above.
+        - else
+          - default_faqs = []
+          - default_faqs += %w(what-is-myapnea how-is-myapnea-organized)
+          - default_faqs += %w(who-can-join-myapnea how-do-i-join-myapnea why-do-i-have-to-sign-a-consent-form-to-participate-in-the-research-portal)
+          - default_faqs += %w(what-s-expected-of-me-if-i-join-the-research-portal what-are-the-surveys-about how-often-do-i-take-these-surveys)
+          - default_faqs += %w(is-my-data-safe)
 
-- else
-  - default_faqs = []
-  - default_faqs += %w(what-is-myapnea how-is-myapnea-organized)
-  - default_faqs += %w(who-can-join-myapnea how-do-i-join-myapnea why-do-i-have-to-sign-a-consent-form-to-participate-in-the-research-portal)
-  - default_faqs += %w(what-s-expected-of-me-if-i-join-the-research-portal what-are-the-surveys-about how-often-do-i-take-these-surveys)
-  - default_faqs += %w(is-my-data-safe)
+          .row
+            .col-12.col-sm
+              .dashboard-container
+                %div.mb-3{ style: "font-size: 1.25rem;" } Top FAQs
+                .small.mb-2= link_to "What is MyApnea?", article_path("what-is-myapnea"), class: "link-blend"
+                .small.mb-2= link_to "How is MyApnea organized?", article_path("how-is-myapnea-organized"), class: "link-blend"
+                - top_faqs = Broadcast.current.published.where(category: Admin::Category.find_by(slug: "faqs")).where.not(slug: default_faqs).order(view_count: :desc).limit(3)
+                - top_faqs.each do |faq|
+                  .small.mb-2= link_to faq.title, article_path(faq), class: "link-blend"
+                = link_to "View all FAQs", blog_category_path("faqs"), class: "small link-accent"
+            .col-12.col-sm
+              - articles = Broadcast.current.published.where(category: Admin::Category.find_by(slug: "research")).order(view_count: :desc).limit(5)
+              .dashboard-container
+                %div.mb-3{ style: "font-size: 1.25rem;" } Top Articles
+                - articles.each do |broadcast|
+                  .small.mb-2= link_to broadcast.title, blog_post_path(broadcast.url_hash), class: "link-blend"
+                = link_to "View all MyApnea articles", blog_path, class: "small link-accent"
 
-  .row
-    .col-12.col-sm
-      .dashboard-container
-        %div.mb-3{ style: "font-size: 1.25rem;" } Top FAQs
-        .small.mb-2= link_to "What is MyApnea?", article_path("what-is-myapnea"), class: "link-blend"
-        .small.mb-2= link_to "How is MyApnea organized?", article_path("how-is-myapnea-organized"), class: "link-blend"
-        - top_faqs = Broadcast.current.published.where(category: Admin::Category.find_by(slug: "faqs")).where.not(slug: default_faqs).order(view_count: :desc).limit(3)
-        - top_faqs.each do |faq|
-          .small.mb-2= link_to faq.title, article_path(faq), class: "link-blend"
-        = link_to "View all FAQs", blog_category_path("faqs"), class: "small link-accent"
-    .col-12.col-sm
-      - articles = Broadcast.current.published.where(category: Admin::Category.find_by(slug: "research")).order(view_count: :desc).limit(5)
-      .dashboard-container
-        %div.mb-3{ style: "font-size: 1.25rem;" } Top Articles
-        - articles.each do |broadcast|
-          .small.mb-2= link_to broadcast.title, blog_post_path(broadcast.url_hash), class: "link-blend"
-        = link_to "View all MyApnea articles", blog_path, class: "small link-accent"
-
-  .row
-    .col-12.col-sm
-      .dashboard-container
-        %div.mb-3{ style: "font-size: 1.25rem;" } Registration
-        .small.mb-2= link_to "Who can join MyApnea?", article_path("who-can-join-myapnea"), class: "link-blend"
-        .small.mb-2= link_to "How do I join MyApnea?", article_path("how-do-i-join-myapnea"), class: "link-blend"
-        .small.mb-2= link_to "Why do I have to sign a consent form to participate in the research portal?", article_path("why-do-i-have-to-sign-a-consent-form-to-participate-in-the-research-portal"), class: "link-blend"
-        - unless current_user
-          .small.mb-2= link_to "Register an account", new_user_registration_path, class: "link-accent"
+          .row
+            .col-12.col-sm
+              .dashboard-container
+                %div.mb-3{ style: "font-size: 1.25rem;" } Registration
+                .small.mb-2= link_to "Who can join MyApnea?", article_path("who-can-join-myapnea"), class: "link-blend"
+                .small.mb-2= link_to "How do I join MyApnea?", article_path("how-do-i-join-myapnea"), class: "link-blend"
+                .small.mb-2= link_to "Why do I have to sign a consent form to participate in the research portal?", article_path("why-do-i-have-to-sign-a-consent-form-to-participate-in-the-research-portal"), class: "link-blend"
+                - unless current_user
+                  .small.mb-2= link_to "Register an account", new_user_registration_path, class: "link-accent"
 
 
 
-    .col-12.col-sm
-      - articles = Broadcast.current.published.where(category: Admin::Category.find_by(slug: "research")).order(view_count: :desc).limit(5)
-      .dashboard-container
-        %div.mb-3{ style: "font-size: 1.25rem;" } Participating in the Research Portal
-        .small.mb-2= link_to "What's expected of me if I join the research portal?", article_path("what-s-expected-of-me-if-i-join-the-research-portal"), class: "link-blend"
-        .small.mb-2= link_to "What are the surveys about?", article_path("what-are-the-surveys-about"), class: "link-blend"
-        .small.mb-2= link_to "How often do I take these surveys?", article_path("how-often-do-i-take-these-surveys"), class: "link-blend"
-        - if project = Project.find_by(slug: "myapnea-core")
-          .small.mb-2= link_to "View Consent", slice_consent_path(project), class: "link-accent"
+            .col-12.col-sm
+              - articles = Broadcast.current.published.where(category: Admin::Category.find_by(slug: "research")).order(view_count: :desc).limit(5)
+              .dashboard-container
+                %div.mb-3{ style: "font-size: 1.25rem;" } Participating in the Research Portal
+                .small.mb-2= link_to "What's expected of me if I join the research portal?", article_path("what-s-expected-of-me-if-i-join-the-research-portal"), class: "link-blend"
+                .small.mb-2= link_to "What are the surveys about?", article_path("what-are-the-surveys-about"), class: "link-blend"
+                .small.mb-2= link_to "How often do I take these surveys?", article_path("how-often-do-i-take-these-surveys"), class: "link-blend"
+                - if project = Project.find_by(slug: "myapnea-core")
+                  .small.mb-2= link_to "View Consent", slice_consent_path(project), class: "link-accent"
 
-  .row
-    .col-12.col-sm
-      .dashboard-container
-        %div.mb-3{ style: "font-size: 1.25rem;" } Privacy and Security
-        .small.mb-2= link_to "Is my data safe?", article_path("is-my-data-safe"), class: "link-blend"
-        = link_to "View Privacy Policy", privacy_policy_path, class: "small link-accent"
-    .col-12.col-sm
-      - articles = Broadcast.current.published.where(category: Admin::Category.find_by(slug: "education")).order(view_count: :desc).limit(5)
-      .dashboard-container
-        %div.mb-3{ style: "font-size: 1.25rem;" } Education
-        - articles.each do |broadcast|
-          .small.mb-2= link_to broadcast.title, blog_post_path(broadcast.url_hash), class: "link-blend"
-        = link_to "View all Education articles", blog_category_path("education"), class: "small link-accent"
+          .row
+            .col-12.col-sm
+              .dashboard-container
+                %div.mb-3{ style: "font-size: 1.25rem;" } Privacy and Security
+                .small.mb-2= link_to "Is my data safe?", article_path("is-my-data-safe"), class: "link-blend"
+                = link_to "View Privacy Policy", privacy_policy_path, class: "small link-accent"
+            .col-12.col-sm
+              - articles = Broadcast.current.published.where(category: Admin::Category.find_by(slug: "education")).order(view_count: :desc).limit(5)
+              .dashboard-container
+                %div.mb-3{ style: "font-size: 1.25rem;" } Education
+                - articles.each do |broadcast|
+                  .small.mb-2= link_to broadcast.title, blog_post_path(broadcast.url_hash), class: "link-blend"
+                = link_to "View all Education articles", blog_category_path("education"), class: "small link-accent"
 
-- content_for :footer do
   .py-5{ class: "footer-#{@theme.presence || "default"}-bg" }
     .container
       .lead.text-center.mb-5

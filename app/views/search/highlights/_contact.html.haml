@@ -1,0 +1,12 @@
+.dashboard-container.dashboard-container-border-accent
+  .dashboard-title
+    Contact
+    = ENV["website_name"]
+
+  %p
+    %strong= mail_to ENV["support_email"], ENV["support_email"], class: "text-dark"
+
+  %p
+    More information on our
+    = succeed "." do
+      = link_to "contact page", contact_path

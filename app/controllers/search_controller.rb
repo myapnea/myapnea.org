@@ -2,6 +2,8 @@
 
 # Provides back search results from across MyApnea.
 class SearchController < ApplicationController
+  layout "layouts/full_page"
+
   # GET /search
   def index
     @member = User.current.find_by("LOWER(username) = ?", params[:search].to_s.downcase)

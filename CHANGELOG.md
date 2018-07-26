@@ -28,6 +28,7 @@
   - Added a prominent forum search to the forum index
 - **Search Changes**
   - Member profile previews are displayed when searching usernames
+  - Added customized search results
 - **Survey Changes**
   - Updated events and designs to match new Slice survey API format
 

@@ -6,6 +6,7 @@
 - content_for :sidebar, render("settings/sidebar")
 - content_for :footer, render("decorations/moon")
 
+%a.anchor-top{ name: "password", id: "password" }
 .card.mb-3
   %h4.card-header
     %i.fa.fa-user
@@ -29,6 +30,7 @@
       = render "forms/vertical/text_field", form: form, object: current_user, key: :full_name
       = render "forms/vertical/submit", form: form, object: current_user, submit_text: "Update name", cancel: false
 
+%a.anchor-top{ name: "delete-account", id: "delete-account" }
 .card
   %h4.card-header.text-danger
     %i.fa.fa-user
