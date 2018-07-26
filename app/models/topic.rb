@@ -30,7 +30,12 @@ class Topic < ApplicationRecord
   after_create_commit :create_first_reply
 
   # Scopes
-  scope :shadow_banned, ->(arg) { joins(:user).merge(User.where(shadow_banned: [nil, false]).or(User.where(id: arg))) }
+  scope :shadow_banned, ->(arg) do
+    joins(:user).merge(
+      User.where(shadow_banned: [nil, false])
+      .or(User.where(id: arg))
+    )
+  end
 
   # Validations
   validates :title, presence: true
@@ -109,7 +114,7 @@ class Topic < ApplicationRecord
   end
 
   def subscribed?(current_user)
-    current_user.subscriptions.where(topic_id: id, subscribed: true).count > 0
+    current_user.subscriptions.where(topic_id: id, subscribed: true).count.positive?
   end
 
   def generate_automatic_subscriptions!
