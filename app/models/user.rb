@@ -81,6 +81,15 @@ class User < ApplicationRecord
     current.where(shadow_banned: true, spammer: [nil, true])
   end
 
+  # Used for account confirmation and password reset emails.
+  def first_name_or_username
+    first_name.presence || username
+  end
+
+  def first_name
+    full_name.to_s.split(" ").first
+  end
+
   def profile_present?
     profile_bio.present? || profile_location.present?
   end

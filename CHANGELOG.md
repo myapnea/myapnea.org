@@ -18,6 +18,10 @@
 - **Dashboard Changes**
   - Added navigational tabs to dashboard to simplify navigating between
     dashboard, profile, research, and the forum
+- **Email Changes**
+  - Account confirmation and password reset emails now address the recipient by
+    first name if present instead of using username to reduce confusion for
+    users revisiting the site after several years
 - **Export Changes**
   - Simplified user export
 - **Forum Changes**

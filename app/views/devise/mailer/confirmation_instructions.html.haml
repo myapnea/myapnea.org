@@ -1,7 +1,7 @@
 %p{ style: p_style }
   Dear
   = succeed "," do
-    = @resource.username
+    = @resource.first_name_or_username
 
 %p{ style: p_style }
   You can confirm your account email through the link below:
