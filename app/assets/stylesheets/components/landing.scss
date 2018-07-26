@@ -369,3 +369,11 @@
   // background-color: $p50-blue;
   background-color: rgba(0, 0, 0, 0.025);
 }
+
+.bg-landing-video {
+  background-color: $brand-white;
+  background-image: asset-url("backgrounds/questions.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}

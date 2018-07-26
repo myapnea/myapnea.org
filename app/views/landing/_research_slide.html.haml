@@ -1,4 +1,4 @@
-.page-box.p-0.myapnea-black-bg.overflow-hidden{ style: "position: relative;" }
+.page-box.p-0.bg-black.overflow-hidden{ style: "position: relative;" }
   - video_path = "videos/research.mp4"
   - video_found = (Rails.application.assets || ::Sprockets::Railtie.build_environment(Rails.application)).find_asset(video_path)
   - if video_found
@@ -11,14 +11,14 @@
 
       .card-deck.flex-row
         -# .flex-column.flex-md-row
-        .card.myapnea-transparent-bg{ style: "border: 0;" }
+        .card.bg-transparent{ style: "border: 0;" }
           .card-body.d-flex.flex-column.justify-content-center.align-items-center
             .landing-blog-title.mb-0.text-white.text-center{ style: "border: 0;" }
               = number_with_delimiter 125_218
               .landing-blog-content{ style: "background-color: transparent;color: #bdbdbd;" }
                 Surveys Completed
 
-        .card.myapnea-transparent-bg{ style: "border: 0;" }
+        .card.bg-transparent{ style: "border: 0;" }
           .card-body.d-flex.flex-column.justify-content-center.align-items-center
             .landing-blog-title.mb-0.text-white.text-center{ style: "border: 0;" }
               = number_with_delimiter User.current.no_spammer_or_shadow_banned.count

@@ -1,3 +1,11 @@
+.bg-black {
+  background-color: $black;
+}
+
+.bg-transparent {
+  background-color: transparent;
+}
+
 @each $color, $value in $theme-colors {
   @each $name, $theme in $themes {
     @if map-get($theme, $color) {
