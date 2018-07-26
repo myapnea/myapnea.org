@@ -2,11 +2,7 @@
 
 = render "projects/theme", project: @project
 
-- content_for :header do
-  .header-container
-    .container
-      %h1.page-heading
-        = @title
+- content_for :header_simple, @title
 
 .dashboard-container-margins
   .brand-title Consent

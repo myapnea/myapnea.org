@@ -11,18 +11,13 @@
   - unanswered_questions += 1 if my_response.blank?
   - first_page = page if my_response.blank? && first_page.blank?
 
-
-- content_for :header do
-  .header-container
-    .container
-      %h1.page-heading
-        - if first_page.nil?
-          .float-right
-            = link_to slice_surveys_complete_path(@project, params[:event], params[:design]), method: :post, class: "btn btn-accent btn-shadow", data: { object: "disable-spinner" } do
-              Continue
-              %i.fa.fa-caret-right
-
-        = @json.dig("design", "name")
+- content_for :header_simple do
+  - if first_page.nil?
+    .float-right
+      = link_to slice_surveys_complete_path(@project, params[:event], params[:design]), method: :post, class: "btn btn-accent btn-shadow", data: { object: "disable-spinner" } do
+        Continue
+        %i.fa.fa-caret-right
+  = @json.dig("design", "name")
 
 .page-box.last-box.background-p50-grey.d-flex.d-md-block.flex-column.justify-content-center
   .container
