@@ -7,8 +7,6 @@ class Slice::SurveysController < ApplicationController
   before_action :find_subject_or_redirect
   before_action :find_page, only: [:page, :submit_page]
 
-  layout "layouts/full_page"
-
   # GET /surveys/:project
   def surveys
     render layout: "layouts/full_page_sidebar"
@@ -88,6 +86,7 @@ class Slice::SurveysController < ApplicationController
   # GET /surveys/:project/:event/:design/review
   def review
     (@json, @status) = @subject.review_event_survey(params[:event].downcase, params[:design].downcase)
+    render layout: "layouts/full_page"
   end
 
   # POST /surveys/:project/:event/:design/review

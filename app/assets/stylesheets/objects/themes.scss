@@ -9,8 +9,7 @@
   }
 }
 
-.myapnea-orange-bg,
-.myapnea-sunset-bg {
+.theme-sunset-bg {
   .survey-question {
     .survey-question-lead {
       color: $p500-orange;
@@ -18,21 +17,6 @@
 
     .survey-question-desc {
       border-color: $p100-orange;
-    }
-  }
-}
-
-.myapnea-orange-bg,
-.myapnea-sunset-bg {
-  .survey-choice {
-    &:hover,
-    &:focus {
-      background-color: $p100-orange;
-    }
-
-    &:active,
-    &.active {
-      background-color: $p300-orange;
     }
   }
 }

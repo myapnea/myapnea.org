@@ -19,7 +19,7 @@
   %body#top.full-page.theme-bg{ class: "theme-#{@theme.presence || "default"}-bg", data: { theme: @theme } }
     = render "layouts/flash_bar"
     #top-menu.top-menu= render "layouts/menu", nocontainer: true, menu: @theme.present? ? "menu-#{@theme}" : nil
-    .header-container{ class: content_for?(:tabs) ? "header-container-no-border" : nil }
+    .header-container{ class: content_for?(:tabs) || content_for?(:progress_bar) ? "header-container-no-border" : nil }
       .container-fluid
         %h1.page-heading
           = yield :header
@@ -28,6 +28,7 @@
       .header-tabs{ class: "#{"header-tabs-no-breadcrumbs" unless content_for?(:breadcrumbs)}" }
         .container-fluid
           = yield :tabs
+    = yield :progress_bar
     - if content_for?(:breadcrumbs)
       .breadcrumb-container
         .container-fluid

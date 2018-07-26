@@ -49,7 +49,6 @@
 }
 
 .survey-choice {
-  background-color: $p50-grey;
   border-radius: 4px;
   box-shadow: 0 1px 5px $box-shadow-color;
   cursor: pointer;
@@ -57,17 +56,29 @@
   margin-bottom: 10px;
   padding: 10px;
 
-  &:hover,
-  &:focus {
-    background-color: $p100-blue;
-  }
-
   &:active,
   &.active {
-    background-color: $p300-blue;
     box-shadow: inset 0 1px 5px $box-shadow-color;
-    color: $brand-white;
     text-decoration: none;
+  }
+}
+
+@each $name, $theme in $themes {
+  .theme-#{$name}-bg {
+    .survey-choice {
+      background-color: $p50-grey;
+
+      &:hover,
+      &:focus {
+        background-color: map-get($theme, p100); // $p100-blue;
+      }
+
+      &:active,
+      &.active {
+        background-color: map-get($theme, p300);
+        color: $brand-white;
+      }
+    }
   }
 }
 
