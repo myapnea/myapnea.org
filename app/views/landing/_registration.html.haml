@@ -1,9 +1,0 @@
-.d-block.d-md-none{ style: "position: relative;z-index: 1020;" }
-  .text-center
-    = link_to new_user_registration_path, class: "btn btn-xl btn-accent btn-shadow" do
-      Join Today
-.d-none.d-md-block
-  .sign-up-form
-    .sign-up-form-title
-      Join MyApnea
-    = render "devise/registrations/form", resource: User.new

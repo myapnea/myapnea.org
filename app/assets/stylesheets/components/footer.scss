@@ -36,4 +36,9 @@
       }
     }
   }
+
+  .footer-#{$name}-bg {
+    background-color: theme-color($theme, footer-bg, $p100-grey);
+    color: theme-color($theme, footer-color, $body-color);
+  }
 }

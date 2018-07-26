@@ -4,7 +4,7 @@
 - @theme = "default"
 
 - cover_present = @broadcast.cover.present?
-.page-box.page-box-no-padding.last-box.myapnea-light-bg
+.page-box.p-0.last-box.myapnea-light-bg
   - if cover_present
     .background-blog-image.d-flex.flex-column.justify-content-end{ style: "background-image: url(#{blog_cover_url(@broadcast)});" }
       .blog-cover-overlay
@@ -13,13 +13,8 @@
           %h1.broadcast-title.mt-0{ style: "border-bottom: 0;" }
             .container= @broadcast.title
 
-  - if false
-    .header-container
-      .container
-        %i.fa.fa-angle-left
-        = link_to "Back to blog", blog_path, class: "link-white"
-  .page-box-padding.myapnea-grey-bg
-    .container
+  .py-3.myapnea-grey-bg
+    .container.remove-last-margin
       .row
         .col-lg-9
           .dashboard-container.mb-4.mb-lg-0.broadcast-container
@@ -36,7 +31,7 @@
         .float-right.d-none.d-md-block{ style: "margin-top: -20px;" }
           = paginate @replies, theme: "bootstrap-small"
 
-  .page-box-padding
+  .py-3
     .container
       .broadcast-discussion
         .broadcast-discussion-header

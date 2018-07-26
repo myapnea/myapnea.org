@@ -1,27 +1,9 @@
-.page-box-padding,
-.page-box {
-  padding: 20px 0;
-}
-
 .page-box {
   @include remove-last-child-bottom-margin;
 
   min-height: 960px;
+  padding: map-get($spacers, 3) 0;
   position: relative;
-}
-
-@include media-breakpoint-up(md) {
-  .page-box-padding,
-  .page-box {
-    padding: 30px 0;
-  }
-}
-
-@include media-breakpoint-up(lg) {
-  .page-box-padding,
-  .page-box {
-    padding: 40px 0;
-  }
 }
 
 .full-page {
@@ -52,8 +34,4 @@
       min-height: 100vh;
     }
   }
-}
-
-.page-box-no-padding {
-  padding: 0;
 }

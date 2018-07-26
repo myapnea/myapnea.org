@@ -12,17 +12,17 @@
         .section-title
           via email
         .section-body
-          = mail_to ENV["support_email"]
+          %strong= mail_to ENV["support_email"], ENV["support_email"], class: "text-dark"
 
       .section-container
         .section-title
           our address
         .section-body
+          %strong Brigham Health
+          %br
           %strong Division of Sleep and Circadian Disorders
           %br
-          Brigham and Women"s Hospital
-          %br
-          221 Longwood Avenue
+          221 Longwood Avenue, BLI 225
           %br
           Boston, MA 02115
 

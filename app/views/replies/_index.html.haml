@@ -1,4 +1,4 @@
-- if @replies.present?
+- if @replies.present? || parent.is_a?(Broadcast)
   - @replies.each do |reply|
     = render "replies/show", reply: reply, level: defined?(level) ? level + 1 : 0, include_parent_title: false
 - else

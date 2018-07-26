@@ -1,11 +1,11 @@
-.page-box.page-box-no-padding.myapnea-black-bg.overflow-hidden{ style: "position: relative;" }
+.page-box.p-0.myapnea-black-bg.overflow-hidden{ style: "position: relative;" }
   - video_path = "videos/research.mp4"
   - video_found = (Rails.application.assets || ::Sprockets::Railtie.build_environment(Rails.application)).find_asset(video_path)
   - if video_found
     %video.video-full-page-absolute{ autoplay: "true", loop: "false", muted: "true", plays_inline: "true" }
       %source{ src: asset_url(video_path), type: "video/mp4" }
 
-  .page-box.page-box-no-padding.myapnea-dark-blue-transparent-radial-bg.d-flex.flex-column.justify-content-around
+  .page-box.p-0.myapnea-dark-blue-transparent-radial-bg.d-flex.flex-column.justify-content-around
     .container
       = render "landing/orange_title", title: "Community Power", text_class: "text-white"
 

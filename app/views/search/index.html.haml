@@ -104,3 +104,15 @@
         - articles.each do |broadcast|
           .small.mb-2= link_to broadcast.title, blog_post_path(broadcast.url_hash), class: "link-blend"
         = link_to "View all Education articles", blog_category_path("education"), class: "small link-accent"
+
+- content_for :footer do
+  .py-5{ class: @theme.present? ? "footer-#{@theme}-bg" : "footer-default-bg" }
+    .container
+      .lead.text-center.mb-5
+        Have another question?
+
+        = link_to contact_path, class: "nowrap" do
+          Contact us
+          %i.fa.fa-caret-right
+      .text-center
+        = link_to image_tag("contact/letters-1132703_640.png", width: "320", class: "img-fluid"), contact_path

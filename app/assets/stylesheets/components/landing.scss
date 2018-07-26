@@ -207,6 +207,7 @@
 }
 
 .landing-sentence-small {
+  background-color: darken($p900-blue, 6.5%);
   font-weight: 300;
   line-height: 1.2;
   font-size: 1rem;
@@ -342,51 +343,12 @@
   }
 }
 
-.landing-about-heading {
-  color: $brand-white;
-  font-size: 2rem;
-  font-weight: 300;
-  line-height: 1;
-  margin-bottom: $spacer;
-
-  @include media-breakpoint-up(sm) {
-    font-size: 3rem;
-  }
-
-  @include media-breakpoint-up(md) {
-    font-size: 4rem;
-  }
-
-  @include media-breakpoint-up(lg) {
-    font-size: 6rem;
-  }
-
-  // color: $brand-white;
-
-  // line-height: 1.2;
-  // font-size: 2rem;
-  // border-bottom: 2px solid $p500-orange;
-  // padding: $spacer;
-
-  // @include media-breakpoint-up(sm) {
-  //   font-size: 2.5rem;
-  // }
-
-  // @include media-breakpoint-up(md) {
-  //   font-size: 3rem;
-  // }
-
-  // @include media-breakpoint-up(lg) {
-  //   font-size: 4rem;
-  // }
-
-}
-
 .landing-about-slide-tagline {
   font-weight: 200;
   // line-height: 1.2;
   font-size: 1.25rem;
   color: $brand-white;
+  text-shadow: 0 2px 3px $standard-shadow-color;
 
   @include media-breakpoint-up(sm) {
     font-size: 1.5rem;

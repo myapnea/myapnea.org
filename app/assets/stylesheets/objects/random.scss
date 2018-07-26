@@ -13,7 +13,11 @@
 }
 
 .logo-container {
+  padding: map-get($spacers, 4) 0 map-get($spacers, 3);
+}
+
+.logo-container-original {
   background-color: darken($p900-blue, 6.5%);
   border-bottom: 2px solid $p200-orange;
-  padding: map-get($spacers, 4) 0 map-get($spacers, 3);
+  margin-top: 0 !important;
 }
