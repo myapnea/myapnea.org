@@ -77,7 +77,7 @@ module Slice
     def key_value_to_string(key, value, scope = nil)
       current_scope = (scope ? "#{scope}[#{key}]" : key)
       if value.is_a? Hash
-        value.collect do |k,v|
+        value.collect do |k, v|
           key_value_to_string(k, v, current_scope)
         end.join("&")
       elsif value.is_a? Array
