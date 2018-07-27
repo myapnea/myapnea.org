@@ -9,6 +9,13 @@ regular:
   emails_enabled: true
   full_name: Valid McApnea
 
+unconfirmed:
+  username: unconfirmed
+  # full_name:
+  email: unconfirmed@example.com
+  confirmation_sent_at: <%= Time.zone.now %>
+  confirmation_token: <%= Devise.friendly_token %>
+
 myapnea:
   username: MyApnea
   # full_name:
