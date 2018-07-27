@@ -8,7 +8,6 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   before_action :store_location
-  include DateAndTimeParser
 
   def store_location
     return unless !request.post? && !request.xhr? && params[:format] != "atom" && params[:format] != "pdf"
@@ -122,6 +121,16 @@ class ApplicationController < ActionController::Base
   def check_admin
     return if current_user&.admin?
     redirect_to root_path
+  end
+
+  def parse_date(date_string, default_date = nil)
+    if date_string.to_s.split("/").last.size == 2
+      Date.strptime(date_string, "%m/%d/%y")
+    else
+      Date.strptime(date_string, "%m/%d/%Y")
+    end
+  rescue
+    default_date
   end
 
   def parse_date_if_key_present(object, key)
