@@ -15,11 +15,12 @@
     %thead
       %tr
         %th.d-none.d-md-table-cell
-        = th_sort_field @order, "points", "Points", extra_class: "text-center d-none d-md-table-cell"
+        %th.d-none.d-md-table-cell
+          = order_to "Points", primary: "points"
         %th Reply
         %th.d-none.d-md-table-cell Author
-        = th_sort_field @order, "replies.created_at", "Date", extra_class: "d-none d-md-table-cell"
-
+        %th.d-none.d-md-table-cell
+          = order_to "Date", primary: "replies.created_at"
     %tbody
       - @replies.each do |reply|
         %tr
