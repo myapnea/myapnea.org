@@ -2,8 +2,8 @@
 
 CarrierWave.configure do |config|
   config.root = if Rails.env.test?
-                  File.join Rails.root, 'test', 'support'
+                  Rails.root.join("test", "support")
                 else
-                  File.join Rails.root, 'carrierwave'
+                  Rails.root.join("carrierwave")
                 end
 end
