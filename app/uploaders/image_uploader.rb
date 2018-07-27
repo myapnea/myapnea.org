@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Generic uploader that removes the image name, but does no resizing.
 class ImageUploader < CarrierWave::Uploader::Base
   # Choose what kind of storage to use for this uploader:
   storage :file
