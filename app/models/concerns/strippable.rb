@@ -10,7 +10,7 @@ module Strippable
   module ClassMethods
     def strip(*attributes)
       attributes.each do |attribute|
-        class_eval <<-RUBY
+        class_eval <<-RUBY, __FILE__, __LINE__ + 1
           def #{attribute}=(attribute)
             super(attribute.try(:strip))
           end

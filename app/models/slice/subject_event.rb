@@ -2,7 +2,8 @@
 
 # Tracks a series of designs filled out on an event date for a subject.
 class Slice::SubjectEvent
-  attr_accessor :json, :id, :name, :event, :event_designs, :percent, :unblinded_responses_count, :unblinded_questions_count
+  attr_accessor :json, :id, :name, :event, :event_designs,
+                :unblinded_responses_count, :unblinded_questions_count
 
   def initialize(json)
     @json = json
