@@ -48,7 +48,7 @@ module MarkdownHelper
   end
 
   def ascii_number(number)
-    "&##{(number.to_i + 48).to_s};"
+    "&##{number.to_i + 48};"
   end
 
   def redcarpet_markdown
