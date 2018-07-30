@@ -3,8 +3,8 @@
 - @theme = "default"
 
 - content_for :header, @title
-= render "internal/tabs"
-- content_for :sidebar, render("internal/sidebar")
+= render "internal/tabs" if current_user
+- content_for :sidebar, render("internal/sidebar") if current_user
 
 = render "slice/research_studies", projects: @projects
 
