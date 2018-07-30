@@ -17,7 +17,7 @@
 
       .d-flex.flex-column.mr-sm-auto.order-2.order-sm-1
 
-        %h1.profile-review-title= link_to @user.username, @user, class: "link-blend no-underline"
+        %h1.profile-review-title= link_to @user.username, @user, class: "link-blend link-no-underline"
         .mb-3
           = render "users/email", user: @user
           - if @user.replies.count.positive?

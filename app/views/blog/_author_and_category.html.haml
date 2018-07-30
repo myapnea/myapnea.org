@@ -2,7 +2,7 @@
   - if broadcast.category&.show_on_blog_roll
     .float-right
       &nbsp;
-      = link_to blog_post_path(broadcast.url_hash.merge(anchor: "comments")), class: "no-underline", data: { turbolinks: false } do
+      = link_to blog_post_path(broadcast.url_hash.merge(anchor: "comments")), class: "link-no-underline", data: { turbolinks: false } do
         %i.fa.fa-comments
         = broadcast.replies.where(deleted: false).count
   By

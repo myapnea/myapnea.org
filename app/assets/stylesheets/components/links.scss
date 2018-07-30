@@ -48,6 +48,14 @@
   }
 }
 
+.link-no-underline {
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
 .link-unstyled {
   color: $body-color;
 
@@ -67,22 +75,4 @@
   &:active {
     color: $brand-white;
   }
-}
-
-// TODO: Cleanup/refactor following
-
-a.no-underline,
-a.no-underline:hover {
-  text-decoration: none;
-}
-
-
-// TODO: Remove anchor
-a.anchor {
-  display: block;
-  height: 0;
-  position: relative;
-  top: -($header-height);
-  width: 0;
-  visibility:hidden;
 }

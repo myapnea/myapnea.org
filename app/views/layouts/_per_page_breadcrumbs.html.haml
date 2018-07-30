@@ -8,7 +8,7 @@
 
 .float-right
   - if current_page_min > 1
-    = link_to url_for(filtered_params.merge(page: page - 1)), class: "no-underline small" do
+    = link_to url_for(filtered_params.merge(page: page - 1)), class: "link-no-underline small" do
       %i.fa.fa-angle-double-left
   - else
     %i.fa.fa-angle-double-left.text-muted.small
@@ -23,7 +23,7 @@
       = number_with_delimiter object_count
 
   - if current_page_max < object_count
-    = link_to url_for(filtered_params.merge(page: page + 1)), class: "no-underline small" do
+    = link_to url_for(filtered_params.merge(page: page + 1)), class: "link-no-underline small" do
       %i.fa.fa-angle-double-right
   - else
     %i.fa.fa-angle-double-right.text-muted.small
