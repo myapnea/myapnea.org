@@ -12,6 +12,7 @@ class SearchController < ApplicationController
     @search_documents = PgSearch.multisearch(params[:search]).page(params[:page]).per(10)
     if clean_search.present?
       search = Search.where(search: clean_search).first_or_create
+      search.update results_count: @search_documents.total_count
       search.increment! :search_count
     end
   end

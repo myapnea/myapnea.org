@@ -34,7 +34,7 @@ class AdminController < ApplicationController
 
   # GET /admin/searches
   def searches
-    @searches = Search.order(search_count: :desc).page(params[:page]).per(40)
+    @searches = scope_order(Search).page(params[:page]).per(40)
   end
 
   # POST /admin/profile-review
@@ -86,5 +86,10 @@ class AdminController < ApplicationController
   def check_admin_or_moderator_or_report_manager
     return if current_user && (current_user.admin? || current_user.moderator? || current_user.report_manager?)
     redirect_to root_path
+  end
+
+  def scope_order(scope)
+    @order = params[:order]
+    scope.order(Arel.sql(Search::ORDERS[params[:order]] || Search::DEFAULT_ORDER))
   end
 end
