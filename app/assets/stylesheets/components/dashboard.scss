@@ -2,13 +2,9 @@
 .dashboard-container {
   @include scale-images;
 
-  background-color: $dashboard-bg;
   border-radius: $border-radius;
-  box-shadow: 0 1px 5px $box-shadow-color;
-  color: $body-color;
   margin-bottom: map-get($spacers, 4);
   padding: 10px;
-  // position: relative; // TODO: Remove
 
   > div,
   > table {
@@ -29,6 +25,17 @@
 
   @include media-breakpoint-up(sm) {
     padding: 30px;
+  }
+}
+
+@each $name, $theme in $themes {
+  .theme-#{$name}-bg {
+    .dashboard-container-margins,
+    .dashboard-container {
+      background-color: map-get($theme, dashboard-bg);
+      box-shadow: 0 1px 5px map-get($theme, box-shadow-color);
+      color: theme-color($theme, body-color, $p900-grey);
+    }
   }
 }
 

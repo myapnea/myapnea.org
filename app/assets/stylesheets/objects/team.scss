@@ -32,14 +32,21 @@
 }
 
 .team-member-box {
-  background-color: $dashboard-bg;
   border-radius: $border-radius;
-  box-shadow: 0 1px 5px $box-shadow-color;
   cursor: move; // Cursor fallback
   cursor: grab;
-  color: $body-color;
   margin-bottom: map-get($spacers, 1);
   padding: map-get($spacers, 2);
+}
+
+@each $name, $theme in $themes {
+  .theme-#{$name}-bg {
+    .team-member-box {
+      background-color: map-get($theme, dashboard-bg);
+      box-shadow: 0 1px 5px map-get($theme, box-shadow-color);
+      color: theme-color($theme, body-color, $p900-grey);
+    }
+  }
 }
 
 .ui-sortable-helper {

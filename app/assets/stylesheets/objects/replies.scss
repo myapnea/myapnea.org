@@ -1,23 +1,32 @@
 .reply-outer-container {
-  background-color: $brand-white;
-  box-shadow: 0 1px 5px $box-shadow-color;
   margin-bottom: 20px;
   padding: 20px;
 }
 
 .reply-container {
-  &.reply-even {
-    background-color: $comment-unread-even;
-  }
-
-  &.reply-odd {
-    background-color: $comment-unread-odd;
-  }
-
   .reply-container {
     margin-right: -11px;
     margin-top: 10px;
     padding: 10px;
+  }
+}
+
+@each $name, $theme in $themes {
+  .theme-#{$name}-bg {
+    .reply-outer-container {
+      background-color: map-get($theme, brand-white);
+      box-shadow: 0 1px 5px map-get($theme, box-shadow-color);
+    }
+
+    .reply-container {
+      &.reply-even {
+        background-color: map-get($theme, brand-white);
+      }
+
+      &.reply-odd {
+        background-color: $p50-grey;
+      }
+    }
   }
 }
 

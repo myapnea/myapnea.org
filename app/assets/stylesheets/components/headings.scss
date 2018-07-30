@@ -15,16 +15,22 @@
     text-shadow: none;
   }
 
-  > a {
-    color: $breadcrumb-link-color;
-  }
-
-  > a:hover {
-    color: darken($breadcrumb-link-color, 10%);
-  }
-
   code {
     text-shadow: none;
+  }
+}
+
+@each $name, $theme in $themes {
+  .theme-#{$name}-bg {
+    .page-heading {
+      > a:not([class]) {
+        color: map-get($theme, p200);
+
+        &:hover {
+          color: darken(map-get($theme, p200), 10%);
+        }
+      }
+    }
   }
 }
 

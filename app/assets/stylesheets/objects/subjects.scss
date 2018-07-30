@@ -5,9 +5,7 @@
 }
 
 .subject-survey-progress {
-  background-color: $dashboard-bg;
   border-radius: $border-radius;
-  box-shadow: 0 1px 5px $box-shadow-color;
   margin-bottom: $spacer;
 
   .progress {
@@ -23,6 +21,15 @@
     text-decoration: none;
   }
 
+}
+
+@each $name, $theme in $themes {
+  .theme-#{$name}-bg {
+    .subject-survey-progress {
+      background-color: map-get($theme, dashboard-bg);
+      box-shadow: 0 1px 5px map-get($theme, box-shadow-color);
+    }
+  }
 }
 
 .subject-survey-progress-body {
