@@ -20,8 +20,8 @@
         %h1.profile-review-title= link_to @user.username, @user, class: "link-blend link-no-underline"
         .mb-3
           = render "users/email", user: @user
-          - if @user.replies.count.positive?
-            = link_to pluralize(@user.replies.count, "post"), posts_member_path(@user.username), class: "badge badge-light"
+          - if @user.replies_count.positive?
+            = link_to pluralize(@user.replies_count, "post"), posts_member_path(@user.username), class: "badge badge-light"
 
         - if @user.profile_present?
           %div.bg-light.p-3.mb-4

@@ -25,19 +25,18 @@
           .dashboard-container.mb-0.col-sticky
             = render "blog/menu"
             - if current_user && current_user.community_contributor? && @broadcast.editable_by?(current_user)
-              .mt-5= link_to pencil_or("Edit Blog Post"), edit_broadcast_path(@broadcast), class: "btn btn-accent btn-shadow btn-sm btn-block"
+              .mt-5= link_to pencil_or("Edit article"), edit_broadcast_path(@broadcast), class: "btn btn-accent btn-shadow btn-sm btn-block"
 
       %div{ style: "margin-bottom: 20px" }
         .float-right.d-none.d-md-block{ style: "margin-top: -20px;" }
           = paginate @replies, theme: "bootstrap-small"
-
   .py-3
     .container
       .broadcast-discussion
         .broadcast-discussion-header
-          - if @broadcast.replies.count > 0
+          - if @broadcast.replies_count.positive?
             all
-            = pluralize(@broadcast.replies.count, "comment")
+            = pluralize(@broadcast.replies_count, "comment")
           - else
             no comments
           %div{ style: "display: inline-block" }
