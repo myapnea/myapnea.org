@@ -69,7 +69,7 @@ class ApplicationController < ActionController::Base
 
   def external_controllers
     {
-      blog: [],
+      blog: [:blog, :show],
       external: [
         :community, :consent, :contact, :faqs, :partners,
         :privacy_policy, :terms_and_conditions, :terms_of_access, :team,
