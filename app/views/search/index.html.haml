@@ -20,9 +20,9 @@
         - if params[:search].present?
           - @highlight_found = true
           - if [0, 1].include?(params[:page].to_i)
-            - if /consent/i =~ params[:search].to_s
+            - if /(^|\W)consent($|\W)/i =~ params[:search].to_s
               = render "search/highlights/consent"
-            - elsif /contact|mail|support|phone|help|call/i =~ params[:search].to_s
+            - elsif /(^|\W)contact|mail|support|phone|help|call($|\W)/i =~ params[:search].to_s
               = render "search/highlights/contact"
             - elsif /(^|\W)ahi($|\W)/i =~ params[:search].to_s
               = render "search/highlights/ahi"
@@ -34,6 +34,8 @@
               = render "search/highlights/password"
             - elsif /(^|\W)delete( my)? account($|\W)/i =~ params[:search].to_s
               = render "search/highlights/delete_account"
+            - elsif /(^|\W)privacy($|\W)/i =~ params[:search].to_s
+              = render "search/highlights/privacy"
             - else
               - @highlight_found = false
           - else
