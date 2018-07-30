@@ -19,5 +19,5 @@
       .featured-articles.d-flex.flex-column.flex-md-row.justify-content-around.align-items-center.align-items-md-stretch
         - articles.each do |broadcast|
           = link_to blog_post_path(broadcast.url_hash), class: "featured-article d-flex align-items-end" do
-            .featured-article-background-image{ style: "background-image: url(#{first_image_url(broadcast)});" }
+            .featured-article-background-image{ style: "background-image: url(#{blog_cover_url(broadcast)});" }
             .featured-article-title= broadcast.title
