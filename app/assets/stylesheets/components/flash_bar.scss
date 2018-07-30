@@ -21,20 +21,27 @@
 }
 
 .flash-bar {
-  visibility: hidden;
-  background-color: $brand-black;
-  color: $brand-white;
-  text-align: center;
+  left: 0;
   padding: 16px;
   position: fixed;
-  z-index: $zindex-tooltip;
-  left: 0;
   right: 0;
+  text-align: center;
   top: 0;
+  visibility: hidden;
+  z-index: $zindex-tooltip;
+
+  &.flash-bar-show {
+    animation: fadein 0.5s, fadeout 0.5s 4s;
+    animation-fill-mode: forwards;
+    visibility: visible;
+  }
 }
 
-.flash-bar.flash-bar-show {
-  animation: fadein 0.5s, fadeout 0.5s 4s;
-  animation-fill-mode: forwards;
-  visibility: visible;
+@each $name, $theme in $themes {
+  .theme-#{$name}-bg {
+    .flash-bar {
+      background-color: map-get($theme, brand-black);
+      color: map-get($theme, brand-white);
+    }
+  }
 }
