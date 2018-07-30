@@ -22,7 +22,7 @@
           - if [0, 1].include?(params[:page].to_i)
             - if /consent/i =~ params[:search].to_s
               = render "search/highlights/consent"
-            - elsif /contact|mail|support|phone|help/i =~ params[:search].to_s
+            - elsif /contact|mail|support|phone|help|call/i =~ params[:search].to_s
               = render "search/highlights/contact"
             - elsif /(^|\W)ahi($|\W)/i =~ params[:search].to_s
               = render "search/highlights/ahi"
