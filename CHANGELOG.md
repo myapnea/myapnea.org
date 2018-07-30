@@ -12,6 +12,7 @@
   - Team members can now be reordered using drag-and-drop
   - Updated exports interface
   - Improved navigation between admin pages
+  - Added admin report for Help Center searches
 - **Blog Changes**
   - Simplified navigation between live blog and unpublished (draft) articles
   - Blogs can now have a cover image

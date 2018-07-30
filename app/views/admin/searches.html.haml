@@ -1,0 +1,26 @@
+- @title = "Profile Review"
+
+- @theme = "day"
+- content_for :header, @title
+= render "admin/tabs"
+- content_for :sidebar, render("admin/sidebar_reports")
+- content_for :footer, render("decorations/sunset")
+
+- if @searches.present?
+  .dashboard-container.dashboard-table
+    %table.table.table-striped.table-borderless.table-hover
+      %col{ width: "1px" }
+      %col
+      %thead
+        %tr
+          %th.text-center Count
+          %th Search Text
+      %tbody
+        - @searches.each do |search|
+          %tr
+            %td.text-center= number_with_delimiter search.search_count
+            %td= search.search
+  .center-horizontally= paginate @searches, theme: "bootstrap"
+- else
+  .jumbotron.jumbotron-action.jumbotron-custom-text.jumbotron-shadow
+    No searches found.

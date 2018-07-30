@@ -24,6 +24,7 @@ Rails.application.routes.draw do
     get :spam_inbox, path: "spam-inbox"
     get :spam_report, path: "spam-report(/:year)"
     get :profile_review, path: "profile-review"
+    get :searches
     post :submit_profile_review, path: "profile-review"
     post :unspamban, path: "unspamban/:id"
     post :destroy_spammer, path: "empty-spam/:id"

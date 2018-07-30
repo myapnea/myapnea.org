@@ -32,6 +32,11 @@ class AdminController < ApplicationController
     @users = User.profile_review
   end
 
+  # GET /admin/searches
+  def searches
+    @searches = Search.order(search_count: :desc).page(params[:page]).per(40)
+  end
+
   # POST /admin/profile-review
   def submit_profile_review
     user = User.current.find_by(id: params[:user_id])

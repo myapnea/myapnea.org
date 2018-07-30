@@ -5,3 +5,4 @@
         %ul.sidebar-menu.sidebar-menu-shadow
           %li.sidebar-menu-header= render "sidebar/toggle", title: "Reports"
           %li= link_to "Spam Report", admin_spam_report_path, class: current_page?(admin_spam_report_path) ? "active" : nil
+          %li= link_to "Searches", admin_searches_path, class: current_page?(admin_searches_path) ? "active" : nil
