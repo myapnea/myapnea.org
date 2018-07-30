@@ -197,6 +197,7 @@ class User < ApplicationRecord
     topics.destroy_all
     Notification.where(reply: replies).destroy_all
     update(spammer: true)
+    Topic.where(id: replies.select(:topic_id)).find_each(&:reset_last_reply_at!)
     destroy
   end
 

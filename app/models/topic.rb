@@ -105,6 +105,11 @@ class Topic < ApplicationRecord
     replies.first.url_count
   end
 
+  def reset_last_reply_at!
+    last_reply_at = replies.reject(&:deleted_or_parent_deleted?).last&.created_at
+    update(last_reply_at: last_reply_at) if last_reply_at
+  end
+
   def get_or_create_subscription(current_user)
     current_user.subscriptions.where(topic_id: id).first_or_create
   end
