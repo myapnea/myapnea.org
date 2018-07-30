@@ -1,23 +1,24 @@
-.footer-container {
-  &.footer-night {
-    background-color: $p500-indigo;
-
-    a {
-      color: $p100-indigo;
-      transition: color .4s ease-out;
-    }
-
-    a:hover {
-      color: $p50-indigo;
-    }
-  }
-}
-
 .theme-night-bg {
   background-color: $p900-indigo;
   background-image: linear-gradient(180deg, $p900-indigo, $p800-indigo 60%, $p700-indigo 80%, $p500-indigo 90%, $p500-indigo);
+
+  .footer-container {
+    &.footer-custom {
+      background-color: $p500-indigo;
+
+      a {
+        color: $p100-indigo;
+        transition: color .4s ease-out;
+      }
+
+      a:hover {
+        color: $p50-indigo;
+      }
+    }
+  }
+
+  .footer-custom-bg {
+    background-color: transparent !important;
+  }
 }
 
-.footer-night-bg {
-  background-color: transparent !important;
-}

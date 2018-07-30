@@ -18,7 +18,7 @@
     = javascript_tag "var root_url=\"#{request.script_name + "/"}\";"
   %body#top.full-page.theme-bg{ class: "theme-#{@theme.presence || "default"}-bg", data: { theme: @theme } }
     = render "layouts/flash_bar"
-    #top-menu.top-menu= render "layouts/menu", nocontainer: true, menu: @theme.present? ? "menu-#{@theme}" : nil
+    #top-menu.top-menu= render "layouts/menu", nocontainer: true
     .header-container{ class: content_for?(:tabs) || content_for?(:progress_bar) ? "header-container-no-border" : nil }
       .container-fluid
         %h1.page-heading
@@ -33,10 +33,10 @@
       .breadcrumb-container
         .container-fluid
           .px-1= yield :breadcrumbs
-    .row.no-gutters.flex-md-nowrap{ class: @theme.present? ? "theme-#{@theme}-spacing" : nil }
+    .row.no-gutters.flex-md-nowrap.theme-custom-spacing
       = render "sidebar/mini"
       = yield(:sidebar)
       %main.col.p-3.remove-last-margin{ role: "main" }
         = yield
     = yield :footer
-    = render "layouts/footer", footer: @theme.present? ? "footer-#{@theme}" : nil, container: "container-fluid"
+    = render "layouts/footer", container: "container-fluid"

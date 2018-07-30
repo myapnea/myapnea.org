@@ -20,15 +20,7 @@
     .active,
     a:hover,
     a:focus {
-      background-color: $p400-blue;
-      border-color: $p200-orange;
-      color: $brand-white;
       text-decoration: none;
-
-      > .badge-sidebar {
-        background-color: $brand-white;
-        color: $p400-blue;
-      }
     }
 
     &.sidebar-menu-header {
@@ -41,9 +33,7 @@
       font-variant: small-caps;
 
       a {
-        background-color: initial;
         border: 0;
-        color: $body-color;
         padding: 0;
       }
     }
@@ -62,7 +52,38 @@
   }
 }
 
-.badge-sidebar {
-  background-color: $p400-blue;
-  color: $brand-white;
+@each $name, $theme in $themes {
+  .theme-#{$name}-bg {
+    .sidebar-menu {
+      .badge-sidebar {
+        background-color: map-get($theme, p400);
+        color: map-get($theme, brand-white);
+      }
+
+      .active,
+      a:hover,
+      a:focus {
+        background-color: map-get($theme, p400);
+        border-color: map-get($theme, header-border); // $p200-orange
+        color: map-get($theme, brand-white);
+
+        > .badge-sidebar {
+          background-color: map-get($theme, brand-white);
+          color: map-get($theme, p400);
+        }
+      }
+
+      &.sidebar-menu-header {
+        a {
+          background-color: initial;
+          color: map-get($theme, body-color);
+        }
+      }
+
+      &.sidebar-menu-shadow {
+        background-color: map-get($theme, brand-white);
+        box-shadow: 0 1px 5px map-get($theme, box-shadow-color);
+      }
+    }
+  }
 }

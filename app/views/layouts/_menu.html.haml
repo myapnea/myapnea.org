@@ -1,5 +1,4 @@
-- menu = "menu-default" unless defined?(menu) && menu.present?
-%nav.navbar.navbar-expand-lg.navbar-dark.navbar-custom{ class: menu }
+%nav.navbar.navbar-expand-lg.navbar-dark.navbar-custom
   - if defined?(nocontainer)
     = render "layouts/logo"
 

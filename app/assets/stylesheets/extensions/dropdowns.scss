@@ -1,68 +1,3 @@
-// .dropdown-sm {
-//   margin: -3px 0;
-
-//   .dropdown-menu {
-//     padding: 0;
-
-//     .dropdown-divider {
-//       margin: 0;
-//     }
-//   }
-
-//   .dropdown-item {
-//     font-size: 0.9rem;
-//     padding: 0.25rem .5rem;
-//   }
-// }
-
-// .dropdown-menu-myapnea {
-//   border-width: 0;
-//   border-radius: 0 0 $border-radius * 2 $border-radius * 2;
-//   box-shadow: 0 5px 10px 0 $box-shadow-color;
-//   margin-top: 0;
-//   padding: 0;
-//   position: relative;
-
-//   .dropdown-menu-myapnea-inner {
-//     background-color: $p700-blue;
-//     border-radius: 0 0 $border-radius $border-radius;
-//     padding: .5rem 0;
-//   }
-
-//   .dropdown-item {
-//     border-left: 2px solid transparent;
-//     color: $brand-white;
-
-//     &:focus,
-//     &:hover {
-//       background-color: rgba($brand-black, .2);
-//       border-color: $p300-orange;
-//       text-decoration: none;
-//     }
-//   }
-
-//   .dropdown-divider {
-//     border-color: rgba($brand-white, .2);
-//   }
-
-//   &::after {
-//     content: "";
-//     border: 7px solid transparent;
-//     border-bottom-color: $p700-blue;
-//     display: inline-block;
-//     left: auto;
-//     position: absolute;
-//     left: 29px;
-//     top: -14px;
-//   }
-
-//   &.dropdown-menu-right::after {
-//     right: 29px;
-//     left: initial;
-//   }
-// }
-
-
 .dropdown-sm {
   margin: -3px 0;
 
@@ -144,34 +79,36 @@
     }
   }
 
-  .menu-#{$name} {
-    .dropdown-menu-custom {
-      box-shadow: 0 0 10px 0 map-get($theme, box-shadow-color);
+  .theme-#{$name}-bg {
+    .navbar-custom {
+      .dropdown-menu-custom {
+        box-shadow: 0 0 10px 0 map-get($theme, box-shadow-color);
 
-      .dropdown-menu-custom-inner {
-        background-color: map-get($theme, p700);
-      }
-
-      .dropdown-item {
-        @if map-get($theme, menu-color) {
-          color: map-get($theme, menu-color);
-        } @else {
-          color: map-get($theme, brand-white);
+        .dropdown-menu-custom-inner {
+          background-color: map-get($theme, p700);
         }
 
-        &:focus,
-        &:hover {
-          background-color: rgba(map-get($theme, brand-black), .2);
-          border-color: map-get($theme, accent);
+        .dropdown-item {
+          @if map-get($theme, menu-color) {
+            color: map-get($theme, menu-color);
+          } @else {
+            color: map-get($theme, brand-white);
+          }
+
+          &:focus,
+          &:hover {
+            background-color: rgba(map-get($theme, brand-black), .2);
+            border-color: map-get($theme, accent);
+          }
         }
-      }
 
-      .dropdown-divider {
-        border-color: rgba(map-get($theme, brand-white), .2);
-      }
+        .dropdown-divider {
+          border-color: rgba(map-get($theme, brand-white), .2);
+        }
 
-      &::after {
-        border-bottom-color: map-get($theme, p700);
+        &::after {
+          border-bottom-color: map-get($theme, p700);
+        }
       }
     }
   }

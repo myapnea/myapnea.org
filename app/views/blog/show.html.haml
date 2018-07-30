@@ -4,7 +4,7 @@
 - @theme = "default"
 
 - cover_present = @broadcast.cover.present?
-.page-box.p-0.last-box{ class: "footer-#{@theme.presence || "default"}-bg" }
+.page-box.p-0.last-box.footer-custom-bg
   - if cover_present
     .background-blog-image.d-flex.flex-column.justify-content-end{ style: "background-image: url(#{blog_cover_url(@broadcast)});" }
       .blog-cover-overlay

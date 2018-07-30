@@ -1,0 +1,12 @@
+@each $name, $theme in $themes {
+  .theme-#{$name}-bg {
+    $theme_link_color: map-get($theme, primary);
+    @if map-get($theme, link-color) {
+      $theme_link_color: map-get($theme, link-color);
+    }
+
+    a:not([class]) {
+      color: $theme_link_color;
+    }
+  }
+}

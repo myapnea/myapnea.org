@@ -1,5 +1,9 @@
-.footer-container.footer-dark-blue {
-  background-color: $p900-blue;
+.theme-dark-blue-bg {
+  .footer-container {
+    &.footer-custom {
+      background-color: $p900-blue;
+    }
+  }
 }
 
 .theme-dark-blue-radial-bg {

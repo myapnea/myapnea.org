@@ -20,25 +20,27 @@
 }
 
 @each $name, $theme in $themes {
-  .footer-#{$name} {
-    background-color: theme-color($theme, footer-bg, $p100-grey);
-    color: theme-color($theme, footer-color, $body-color);
+  .theme-#{$name}-bg {
+    .footer-custom {
+      background-color: theme-color($theme, footer-bg, $p100-grey);
+      color: theme-color($theme, footer-color, $body-color);
 
-    a {
-      color: theme-color($theme, footer-color, $body-color) !important;
+      a {
+        color: theme-color($theme, footer-color, $body-color) !important;
 
-      &:hover,
-      &:focus,
-      &:active,
-      &.active,
-      &.disabled,
-      &[disabled] {
+        &:hover,
+        &:focus,
+        &:active,
+        &.active,
+        &.disabled,
+        &[disabled] {
+        }
       }
     }
-  }
 
-  .footer-#{$name}-bg {
-    background-color: theme-color($theme, footer-bg, $p100-grey);
-    color: theme-color($theme, footer-color, $body-color);
+    .footer-custom-bg {
+      background-color: theme-color($theme, footer-bg, $p100-grey);
+      color: theme-color($theme, footer-color, $body-color);
+    }
   }
 }

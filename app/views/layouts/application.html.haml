@@ -19,7 +19,7 @@
   - @random_theme ? render("themes/random") : render("themes/theme") unless @theme
   %body#top.full-page.theme-bg{ class: "theme-#{@theme.presence || "default"}-bg", data: { theme: @theme } }
     = render "layouts/flash_bar"
-    #top-menu.top-menu= render "layouts/menu", menu: @theme.present? ? "menu-#{@theme}" : nil
+    #top-menu.top-menu= render "layouts/menu"
     - if content_for?(:header)
       .header-container{ class: content_for?(:tabs) || content_for?(:progress_bar) ? "header-container-no-border" : nil }
         %div{ class: defined?(container) && container.present? ? container : "container" }
@@ -37,8 +37,8 @@
           = yield :breadcrumbs
     - if content_for?(:header_tagline)
       = yield :header_tagline
-    %div{ class: @theme.present? ? "theme-#{@theme}-spacing" : nil }
+    .theme-custom-spacing
       .py-3
         .container.remove-last-margin= yield
     = yield :footer
-    = render "layouts/footer", footer: @theme.present? ? "footer-#{@theme}" : nil
+    = render "layouts/footer"

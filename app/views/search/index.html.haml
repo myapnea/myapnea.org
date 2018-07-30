@@ -125,7 +125,7 @@
                   .small.mb-2= link_to broadcast.title, blog_post_path(broadcast.url_hash), class: "link-blend"
                 = link_to "View all Education articles", blog_category_path("education"), class: "small link-accent"
 
-  .py-5{ class: "footer-#{@theme.presence || "default"}-bg" }
+  .py-5.footer-custom-bg
     .container
       .lead.text-center.mb-5
         Have another question?

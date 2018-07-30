@@ -20,7 +20,7 @@ module MarkdownHelper
   end
 
   def target_link_as_blank(text)
-    text.to_s.gsub(/<a(.*?)>/m, "<a\\1 class=\"content-link\" target=\"_blank\">").html_safe
+    text.to_s.gsub(/<a(.*?)>/m, "<a\\1 target=\"_blank\">").html_safe
   end
 
   def remove_links(text)
