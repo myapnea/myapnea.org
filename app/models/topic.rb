@@ -13,6 +13,8 @@ class Topic < ApplicationRecord
   }
   DEFAULT_ORDER = "topics.pinned desc, topics.last_reply_at desc, topics.id desc"
 
+  AUTO_LOCK_IN = 2.months
+
   attr_accessor :description
 
   # Concerns
@@ -36,6 +38,9 @@ class Topic < ApplicationRecord
       .or(User.where(id: arg))
     )
   end
+  # Auto-lock after one month.
+  scope :not_auto_locked, -> { where(locked: false).where("DATE(last_reply_at) >= ?", Time.zone.today - AUTO_LOCK_IN) }
+  scope :auto_locked, -> { where(locked: true).or(where("DATE(last_reply_at) < ?", Time.zone.today - AUTO_LOCK_IN)) }
 
   # Validations
   validates :title, presence: true
@@ -85,7 +90,7 @@ class Topic < ApplicationRecord
   end
 
   def editable_by?(current_user)
-    user == current_user || current_user.moderator? || current_user.admin?
+    (!auto_locked? && user == current_user) || current_user.moderator? || current_user.admin?
   end
 
   def last_page
@@ -120,6 +125,14 @@ class Topic < ApplicationRecord
 
   def subscribed?(current_user)
     current_user.subscriptions.where(topic_id: id, subscribed: true).count.positive?
+  end
+
+  def auto_locked?
+    locked? || last_reply_at.to_date < Time.zone.today - AUTO_LOCK_IN
+  end
+
+  def not_auto_locked?
+    !auto_locked?
   end
 
   def generate_automatic_subscriptions!

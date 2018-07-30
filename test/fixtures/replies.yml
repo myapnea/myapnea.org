@@ -73,3 +73,9 @@ blog_two:
   description: Another reply.
   user: regular
 
+auto_locked:
+  id: 9
+  # broadcast:
+  topic: auto_locked
+  description: This topic will be auto-locked in the future
+  user: regular

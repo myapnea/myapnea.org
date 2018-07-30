@@ -2,24 +2,34 @@ one:
   title: One
   slug: one
   user: regular
-  pinned: false
-  last_reply_at: 2016-05-18 11:19:02
-  view_count: 0
-  deleted: false
+  created_at: <%= Time.zone.now - 21.days %>
+  last_reply_at: <%= Time.zone.now - 21.days %>
 
 two:
   title: Two
   slug: two
   user: user_2
-  pinned: false
-  last_reply_at: 2016-05-18 11:19:02
-  view_count: 0
-  deleted: false
+  created_at: <%= Time.zone.now - 20.days %>
+  last_reply_at: <%= Time.zone.now - 20.days %>
+
+auto_locked:
+  title: This is an old thread
+  slug: this-is-an-old-thread
+  user: regular
+  created_at: <%= Time.zone.now - 2.months - 1.day %>
+  last_reply_at: <%= Time.zone.now - 2.months - 1.day %>
+
+locked:
+  title: This thread is locked
+  slug: this-thread-is-locked
+  user: valid
+  locked: true
+  created_at: <%= Time.zone.now - 19.days %>
+  last_reply_at: <%= Time.zone.now - 19.days %>
 
 noreplies:
   title: No Replies
   slug: no-replies
   user: regular
-  pinned: false
-  # last_reply_at:
-  # view_count: 0
+  created_at: <%= Time.zone.now - 18.days %>
+  last_reply_at: <%= Time.zone.now - 18.days %>

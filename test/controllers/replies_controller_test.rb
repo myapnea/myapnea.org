@@ -2,7 +2,7 @@
 
 require "test_helper"
 
-# Tests to assure that community members can comment on blog posts.
+# Tests to assure that members can reply to blog posts and forum topics.
 class RepliesControllerTest < ActionDispatch::IntegrationTest
   setup do
     @reply = replies(:one)
@@ -16,18 +16,6 @@ class RepliesControllerTest < ActionDispatch::IntegrationTest
     }
   end
 
-  # test "should get index" do
-  #   login(@regular)
-  #   get :index, topic_id: @reply.topic.to_param
-  #   assert_response :success
-  # end
-
-  # test "should get new" do
-  #   login(@regular)
-  #   get :new, topic_id: @reply.topic.to_param
-  #   assert_response :success
-  # end
-
   test "should preview reply" do
     login(@regular)
     post preview_replies_url(format: "js"), params: {
@@ -36,15 +24,23 @@ class RepliesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should create reply" do
+  test "should create reply to forum topic" do
     login(@regular)
     assert_difference("Reply.count") do
       post replies_url(format: "js"), params: {
-        topic_id: @reply.topic.to_param, reply: reply_params
+        topic_id: topics(:one).to_param, reply: reply_params
       }
     end
-    @regular.reload
-    assert_nil @regular.shadow_banned
+    assert_response :success
+  end
+
+  test "should create reply to blog post" do
+    login(@regular)
+    assert_difference("Reply.count") do
+      post replies_url(format: "js"), params: {
+        broadcast_id: broadcasts(:published).to_param, reply: reply_params
+      }
+    end
     assert_response :success
   end
 
@@ -61,10 +57,38 @@ class RepliesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should show reply and redirect to correct page" do
+  test "should not create reply on locked forum topic" do
     login(@regular)
-    get reply_url(@reply), params: { topic_id: @reply.topic.to_param }
+    assert_difference("Reply.count", 0) do
+      post replies_url(format: "js"), params: {
+        topic_id: topics(:locked).to_param, reply: reply_params
+      }
+    end
+    assert_response :success
+  end
+
+  test "should not create reply on auto-locked forum topic" do
+    login(@regular)
+    assert_difference("Reply.count", 0) do
+      post replies_url(format: "js"), params: {
+        topic_id: topics(:auto_locked).to_param, reply: reply_params
+      }
+    end
+    assert_response :success
+  end
+
+  test "should show reply to a forum topic and redirect to correct page" do
+    login(@regular)
+    get reply_url(@reply)
     assert_redirected_to page_topic_url(@reply.topic, page: @reply.page, anchor: @reply.anchor)
+  end
+
+  test "should show reply to a blog post and redirect to correct page" do
+    login(@regular)
+    get reply_url(replies(:blog_one))
+    assert_redirected_to blog_post_url(
+      broadcasts(:published).url_hash.merge(page: replies(:blog_one).page, anchor: replies(:blog_one).anchor)
+    )
   end
 
   test "should show reply" do
@@ -104,6 +128,12 @@ class RepliesControllerTest < ActionDispatch::IntegrationTest
     }
     @regular.reload
     assert_equal true, @regular.shadow_banned
+    assert_response :success
+  end
+
+  test "should not update reply on locked topic" do
+    login(@regular)
+    patch reply_url(replies(:auto_locked), format: "js"), params: { reply: reply_params }
     assert_response :success
   end
 

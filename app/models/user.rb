@@ -128,7 +128,7 @@ class User < ApplicationRecord
     if moderator? || admin?
       Topic.current
     else
-      topics
+      topics.not_auto_locked
     end
   end
 
