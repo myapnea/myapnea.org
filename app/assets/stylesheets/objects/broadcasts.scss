@@ -106,12 +106,17 @@
   }
 }
 
-.broadcast-discussion {
-  .broadcast-discussion-header {
-    background-color: $p50-orange;
-    border: 2px solid $p200-orange;
-    box-shadow: 0 1px 5px $box-shadow-color;
-    margin: 10px 0;
-    padding: 20px;
+.broadcast-discussion-header {
+  margin: 10px 0;
+  padding: 20px;
+}
+
+@each $name, $theme in $themes {
+  .theme-#{$name}-bg {
+    .broadcast-discussion-header {
+      background-color: $p50-orange;
+      border: 2px solid $p200-orange;
+      box-shadow: 0 1px 5px map-get($theme, box-shadow-color);
+    }
   }
 }

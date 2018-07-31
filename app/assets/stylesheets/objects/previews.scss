@@ -1,19 +1,29 @@
 // Defines the style of description fields that can be previewed.
 
 .preview-container {
-  border: 1px solid $input-border-color;
   border-radius: $input-border-radius;
 
   &.preview-container-forum {
-    border: 1px solid $p200-grey;
     border-radius: 0;
-    box-shadow: 0 1px 5px $box-shadow-color;
     margin-bottom: 20px;
-    border-left: 4px solid $p100-orange;
   }
 
   &.is-invalid {
     border-color: $form-feedback-invalid-color;
+  }
+}
+
+@each $name, $theme in $themes {
+  .theme-#{$name}-bg {
+    .preview-container {
+      border: 1px solid $input-border-color;
+
+      &.preview-container-forum {
+        border: 1px solid $p200-grey;
+        box-shadow: 0 1px 5px map-get($theme, box-shadow-color);
+        border-left: 4px solid $p100-orange;
+      }
+    }
   }
 }
 
@@ -27,14 +37,24 @@
 
 .preview-container-login {
   border: 0;
-  box-shadow: 0 1px 5px $box-shadow-color;
   margin-bottom: 20px;
 
   .preview-header {
-    border-bottom: 2px solid $p200-orange;
-    background-color: $p500-blue;
-    color: $brand-white;
     border-radius: $border-radius $border-radius 0 0;
+  }
+}
+
+@each $name, $theme in $themes {
+  .theme-#{$name}-bg {
+    .preview-container-login {
+      box-shadow: 0 1px 5px map-get($theme, box-shadow-color);
+
+      .preview-header {
+        border-bottom: 2px solid $p200-orange;
+        background-color: map-get($theme, p500);
+        color: map-get($theme, brand-white);
+      }
+    }
   }
 }
 

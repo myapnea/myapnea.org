@@ -2,9 +2,7 @@
   @include remove-last-child-bottom-margin;
   @include scale-images;
 
-  background-color: $brand-white;
-  border-radius: 3px;
-  box-shadow: 0 1px 5px $box-shadow-color;
+  border-radius: $border-radius;
   margin-bottom: 40px;
   padding: 10px;
   position: relative;
@@ -50,8 +48,7 @@
 }
 
 .survey-choice {
-  border-radius: 4px;
-  box-shadow: 0 1px 5px $box-shadow-color;
+  border-radius: $border-radius;
   cursor: pointer;
   display: block;
   margin-bottom: 10px;
@@ -59,13 +56,17 @@
 
   &:active,
   &.active {
-    box-shadow: inset 0 1px 5px $box-shadow-color;
     text-decoration: none;
   }
 }
 
 @each $name, $theme in $themes {
   .theme-#{$name}-bg {
+    .survey-question-container {
+      background-color: map-get($theme, brand-white);
+      box-shadow: 0 1px 5px map-get($theme, box-shadow-color);
+    }
+
     .survey-question {
       .survey-question-lead {
         color: map-get($theme, p500);
@@ -78,6 +79,7 @@
 
     .survey-choice {
       background-color: $p50-grey;
+      box-shadow: 0 1px 5px map-get($theme, box-shadow-color);
 
       &:hover,
       &:focus {
@@ -87,6 +89,7 @@
       &:active,
       &.active {
         background-color: map-get($theme, p300);
+        box-shadow: inset 0 1px 5px map-get($theme, box-shadow-color);
         color: $brand-white;
       }
     }

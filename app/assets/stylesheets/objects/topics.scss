@@ -1,6 +1,5 @@
 .topics {
   border-radius: $border-radius;
-  box-shadow: 0 1px 5px $box-shadow-color;
   margin-bottom: $spacer * 1.5;
 }
 
@@ -35,5 +34,13 @@
   &:active,
   &.active {
     color: darken($p500-blue, 15%);
+  }
+}
+
+@each $name, $theme in $themes {
+  .theme-#{$name}-bg {
+    .topics {
+      box-shadow: 0 1px 5px map-get($theme, box-shadow-color);
+    }
   }
 }
