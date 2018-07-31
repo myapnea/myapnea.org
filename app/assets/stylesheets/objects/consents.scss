@@ -5,9 +5,16 @@
 }
 
 .consent-fields {
-  background-color: $p50-grey;
   border-radius: $border-radius;
-  box-shadow: $box-shadow;
   padding: $spacer $spacer $spacer * .5;
-  margin-bottom: $spacer * 1.5;
+  margin-bottom: map-get($spacers, 4);
+}
+
+@each $name, $theme in $themes {
+  .theme-#{$name}-bg {
+    .consent-fields {
+      background-color: $mark-bg;
+      border-left: 2px solid $p100-yellow;
+    }
+  }
 }

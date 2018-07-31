@@ -1,6 +1,5 @@
 .page-heading {
   position: relative;
-  text-shadow: 0 2px 3px $standard-shadow-color;
   word-break: break-word;
 
   // .page-heading-small-caps
@@ -23,6 +22,8 @@
 @each $name, $theme in $themes {
   .theme-#{$name}-bg {
     .page-heading {
+      text-shadow: 0 2px 3px map-get($theme, shadow-color);
+
       > a:not([class]) {
         color: map-get($theme, p200);
 
@@ -91,22 +92,6 @@
       &.header-container-no-border {
         border: 0;
       }
-    }
-  }
-}
-
-.header-link {
-  display: inline-block;
-  font-size: 65%;
-  font-weight: normal;
-  line-height: 1;
-  white-space: nowrap;
-
-  a {
-    color: $p100-blue;
-
-    &:hover {
-      color: $p50-blue;
     }
   }
 }

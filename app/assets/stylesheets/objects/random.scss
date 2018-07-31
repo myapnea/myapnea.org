@@ -1,15 +1,11 @@
 .random-text {
   font-size: 2rem;
-  color: $brand-white;
-  text-shadow: 0 2px 3px $standard-shadow-color;
 }
 
 .random-small-text {
-  color: $p200-grey;
   font-size: 1.25rem;
   font-weight: 200;
   margin-left: $spacer;
-  text-shadow: 0 2px 3px $standard-shadow-color;
 }
 
 .logo-container {
@@ -17,7 +13,27 @@
 }
 
 .logo-container-original {
-  background-color: darken($p900-blue, 6.5%);
-  border-bottom: 2px solid $p200-orange;
   margin-top: 0 !important;
 }
+
+@each $name, $theme in $themes {
+  .theme-#{$name}-bg {
+    .random-text {
+      color: map-get($theme, brand-white);
+      text-shadow: 0 2px 3px map-get($theme, shadow-color);
+    }
+
+    .random-small-text {
+      color: $p200-grey;
+      text-shadow: 0 2px 3px map-get($theme, shadow-color);
+    }
+
+    .logo-container-original {
+      background-color: darken(map-get($theme, p900), 6.5%);
+      @if map-get($theme, header-border) {
+        border-bottom: 2px solid map-get($theme, header-border);
+      }
+    }
+  }
+}
+

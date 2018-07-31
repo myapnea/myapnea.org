@@ -2,16 +2,39 @@
   transition: all .25s ease-out;
 }
 
-.btn-shadow {
-  box-shadow: 0 0 15px $standard-shadow-color;
+@each $name, $theme in $themes {
+  .theme-#{$name}-bg {
+    .btn-shadow {
+      box-shadow: 0 0 5px map-get($theme, shadow-color);
 
-  &:hover,
-  &:focus,
-  &:active,
-  &.active,
-  &.disabled,
-  &[disabled] {
-    box-shadow: 0 0 8px $standard-shadow-hover-color;
+      &:hover,
+      &:focus,
+      &:active,
+      &.active,
+      &.disabled,
+      &[disabled] {
+        box-shadow: 0 0 10px map-get($theme, shadow-color);
+      }
+    }
+
+    // // Accent
+    // .btn-accent,
+    // .show > .btn-accent.dropdown-toggle {
+    //   @include button-variant(map-get($theme, accent), map-get($theme, accent));
+    //   color: map-get($theme, brand-white) !important;
+    // }
+
+    // .btn-outline-accent {
+    //   border-color: map-get($theme, accent) !important;
+    //   color: map-get($theme, accent) !important;
+
+    //   &:active,
+    //   &.active,
+    //   &:hover {
+    //     background-color: map-get($theme, accent) !important;
+    //     color: map-get($theme, brand-white) !important;
+    //   }
+    // }
   }
 }
 
@@ -50,24 +73,6 @@
     color: $p900-grey;
   }
 }
-
-// TODO: Fix btn menu
-// .btn-menu {
-//   background-color: $navbar-default-bg;
-//   border: 1px solid darken($navbar-default-bg, 6.5%);
-//   color: $brand-white;
-
-//   &:hover,
-//   &:focus,
-//   &:active,
-//   &.active,
-//   &.disabled,
-//   &[disabled] {
-//     background-color: darken($navbar-default-bg, 6.5%);
-//     border: 1px solid darken($navbar-default-bg, 6.5%);
-//     color: $brand-white;
-//   }
-// }
 
 .btn-xl {
   padding: .5rem 2rem;
