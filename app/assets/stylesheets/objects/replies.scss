@@ -39,24 +39,28 @@
   }
 }
 
-.reply-unread {
-  border-left: 4px solid $p100-orange;
-}
+@each $name, $theme in $themes {
+  .theme-#{$name}-bg {
+    .reply-unread {
+      border-left: 4px solid $p100-orange;
+    }
 
-.reply-read {
-  border-left: 4px solid $p50-grey;
+    .reply-read {
+      border-left: 4px solid $p50-grey;
 
-  &.highlighted-reply {
-    border-color: $p100-yellow;
-  }
-}
+      &.highlighted-reply {
+        border-color: $p100-yellow;
+      }
+    }
 
-.highlighted-reply {
-  background-color: $mark-bg;
+    .highlighted-reply {
+      background-color: $mark-bg;
 
-  > .reply-container.reply-even,
-  > .reply-container.reply-odd {
-    background-color: $mark-bg;
+      > .reply-container.reply-even,
+      > .reply-container.reply-odd {
+        background-color: $mark-bg;
+      }
+    }
   }
 }
 
