@@ -1,15 +1,22 @@
 .forum-badge {
-  background-color: $p200-grey;
   border-radius: 2px;
   font-size: 8px;
   padding: 2px 4px;
-
-  &.forum-badge-color {
-    background-color: $p500-blue;
-    color: $brand-white;
-  }
 }
 
-.badge-accent {
-  background-color: $p500-orange;
+@each $name, $theme in $themes {
+  .theme-#{$name}-bg {
+    .forum-badge {
+      background-color: $p200-grey;
+
+      &.forum-badge-color {
+        background-color: map-get($theme, p500);
+        color: map-get($theme, brand-white);
+      }
+    }
+
+    .badge-accent {
+      background-color: $p500-orange;
+    }
+  }
 }

@@ -3,7 +3,6 @@
 }
 
 .featured-article {
-  background-color: $p500-blue;
   position: relative;
   width: 100%;
   max-width: 320px;
@@ -31,7 +30,6 @@
   }
 
   .featured-article-title {
-    color: $brand-white;
     padding-top: $spacer * 3;
     position: relative;
     font-weight: bold;
@@ -41,7 +39,6 @@
   }
 
   &::after {
-    color: $brand-white;
     content: "ARTICLE";
     position: absolute;
     top: 0;
@@ -49,6 +46,22 @@
     margin: $spacer;
     padding: $spacer * .25 $spacer * .5;
     font-size: .8rem;
-    background-color: $p500-orange;
+  }
+}
+
+@each $name, $theme in $themes {
+  .theme-#{$name}-bg {
+    .featured-article {
+      background-color: map-get($theme, p500);
+
+      .featured-article-title {
+        color: map-get($theme, brand-white);
+      }
+
+      &::after {
+        background-color: $p500-orange;
+        color: map-get($theme, brand-white);
+      }
+    }
   }
 }

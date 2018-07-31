@@ -38,20 +38,24 @@
   }
 }
 
-.btn-accent {
-  background-color: $p400-orange;
-  border: 1px solid $p300-orange;
-  color: $brand-white;
+@each $name, $theme in $themes {
+  .theme-#{$name}-bg {
+    .btn-accent {
+      background-color: $p400-orange;
+      border: 1px solid $p300-orange;
+      color: map-get($theme, brand-white);
 
-  &:hover,
-  &:focus,
-  &:active,
-  &.active,
-  &.disabled,
-  &[disabled] {
-    background-color: $p500-orange;
-    border: 1px solid $p400-orange;
-    color: $brand-white;
+      &:hover,
+      &:focus,
+      &:active,
+      &.active,
+      &.disabled,
+      &[disabled] {
+        background-color: $p500-orange;
+        border: 1px solid $p400-orange;
+        color: map-get($theme, brand-white);
+      }
+    }
   }
 }
 

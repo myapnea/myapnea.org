@@ -90,7 +90,7 @@
       &.active {
         background-color: map-get($theme, p300);
         box-shadow: inset 0 1px 5px map-get($theme, box-shadow-color);
-        color: $brand-white;
+        color: map-get($theme, brand-white);
       }
     }
   }

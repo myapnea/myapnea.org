@@ -59,10 +59,6 @@
 }
 
 .preview-body {
-  background-color: $brand-white;
-  // border-bottom: 1px solid $gray-400;
-  // border-left: 1px solid $gray-400;
-  // border-right: 1px solid $gray-400;
   border-radius: 0 0 $border-radius $border-radius;
   min-height: 350px;
   padding: 10px;
@@ -73,6 +69,14 @@
 
   .broadcast {
     margin-bottom: 0;
+  }
+}
+
+@each $name, $theme in $themes {
+  .theme-#{$name}-bg {
+    .preview-body {
+      background-color: map-get($theme, brand-white);
+    }
   }
 }
 
@@ -100,7 +104,6 @@
   border: 1px solid transparent;
   border-bottom: 0;
   border-radius: 4px 4px 0 0;
-  color: $text-muted;
   display: inline-block;
   margin-bottom: -6px;
   margin-top: -5px;
@@ -110,10 +113,21 @@
   padding-right: 10px;
   padding-top: 5px;
   text-decoration: none;
+}
 
-  &.active {
-    background-color: $brand-white;
-    border-color: $gray-400;
-    color: $body-color;
+@each $name, $theme in $themes {
+  .theme-#{$name}-bg {
+    .preview-tab,
+    .preview-tab:active,
+    .preview-tab:focus,
+    .preview-tab:hover {
+      color: $text-muted;
+
+      &.active {
+        background-color: map-get($theme, brand-white);
+        border-color: $gray-400;
+        color: theme-color($theme, body-color, $p900-grey);
+      }
+    }
   }
 }

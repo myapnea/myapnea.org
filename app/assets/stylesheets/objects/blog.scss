@@ -24,9 +24,6 @@
     .active,
     a:hover,
     a:focus {
-      background-color: $p400-blue;
-      border-color: $p200-orange;
-      color: $brand-white;
       text-decoration: none;
     }
 
@@ -44,6 +41,24 @@
     // preceding it
     + .blog-menu-header {
       margin-top: 20px;
+    }
+  }
+}
+
+@each $name, $theme in $themes {
+  .theme-#{$name}-bg {
+    .blog-menu {
+      li {
+        .active,
+        a:hover,
+        a:focus {
+          background-color: map-get($theme, p400);
+          @if map-get($theme, header-border) {
+            border-color: map-get($theme, header-border);
+          }
+          color: map-get($theme, brand-white);
+        }
+      }
     }
   }
 }
@@ -79,11 +94,9 @@
 }
 
 .landing-blog-title {
-  color: $brand-white;
   font-weight: 300;
   line-height: 1.2;
   font-size: 2rem;
-  border-bottom: 2px solid $p500-orange;
   padding: $spacer;
 
   @include media-breakpoint-up(sm) {
@@ -96,6 +109,17 @@
 
   @include media-breakpoint-up(lg) {
     font-size: 4rem;
+  }
+}
+
+@each $name, $theme in $themes {
+  .theme-#{$name}-bg {
+    .landing-blog-title {
+      @if map-get($theme, header-border) {
+        border-bottom: 2px solid map-get($theme, header-border);
+      }
+      color: map-get($theme, brand-white);
+    }
   }
 }
 
@@ -125,7 +149,6 @@
   line-height: 1.2;
   font-size: 1rem;
   padding: $spacer;
-  background-color: $brand-white;
 
   @include media-breakpoint-up(sm) {
     font-size: 1.25rem;
@@ -133,6 +156,14 @@
 
   @include media-breakpoint-up(md) {
     font-size: 1.5rem;
+  }
+}
+
+@each $name, $theme in $themes {
+  .theme-#{$name}-bg {
+    .landing-blog-content {
+      background-color: map-get($theme, brand-white);
+    }
   }
 }
 
@@ -189,7 +220,14 @@
 
 .blog-title {
   background-image: linear-gradient(-180deg, transparent 0%, $black 150%);
-  color: $brand-white;
   min-height: 100px;
   position: relative;
+}
+
+@each $name, $theme in $themes {
+  .theme-#{$name}-bg {
+    .blog-title {
+      color: map-get($theme, brand-white);
+    }
+  }
 }

@@ -85,7 +85,6 @@
 
 .reply-body-formatted {
   .img-zoom-message {
-    color: $brand-white;
     position: relative;
     display: inline-block;
     cursor: zoom-in;
@@ -140,6 +139,16 @@
   }
 }
 
+@each $name, $theme in $themes {
+  .theme-#{$name}-bg {
+    .reply-body-formatted {
+      .img-zoom-message {
+        color: map-get($theme, brand-white);
+      }
+    }
+  }
+}
+
 .reply-inner-container {
   margin-left: 0;
   position: relative;
@@ -170,14 +179,7 @@
 }
 
 .reply-simple-full-hover-box {
-  background-color: $brand-white;
-
-  .reply-simple-full-link {
-    background-color: $p100-grey;
-  }
-
   &:hover .reply-simple-full-link {
-    background-color: $p100-orange;
     text-decoration: none;
   }
 
@@ -190,6 +192,22 @@
       height: auto;
       max-height: 50px;
       max-width: 100%;
+    }
+  }
+}
+
+@each $name, $theme in $themes {
+  .theme-#{$name}-bg {
+    .reply-simple-full-hover-box {
+      background-color: map-get($theme, brand-white);
+
+      .reply-simple-full-link {
+        background-color: $p100-grey;
+      }
+
+      &:hover .reply-simple-full-link {
+        background-color: $p100-orange;
+      }
     }
   }
 }

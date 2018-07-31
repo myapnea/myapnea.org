@@ -24,13 +24,20 @@
   cursor: pointer;
   line-height: 1rem;
   padding: 1rem;
-  color: $brand-white;
 
   transition: transform 250ms ease-out;
 
   @media (hover) {
     &:hover {
       transform: scale(1.2);
+    }
+  }
+}
+
+@each $name, $theme in $themes {
+  .theme-#{$name}-bg {
+    .full-video-frame-close {
+      color: map-get($theme, brand-white);
     }
   }
 }
