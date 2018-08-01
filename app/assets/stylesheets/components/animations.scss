@@ -25,19 +25,3 @@
 .animate-wiggle {
   animation: wiggle 500ms ease-out infinite;
 }
-
-.animate-wiggle-hover {
-  @media (hover) {
-    &:hover {
-      animation: wiggle 500ms ease-out 1;
-    }
-  }
-}
-
-.animate-pulsate-hover {
-  @media (hover) {
-    &:hover {
-      animation: pulsate 500ms ease-out 1;
-    }
-  }
-}
