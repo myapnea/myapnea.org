@@ -49,4 +49,51 @@ class RegistrationsControllerTest < ActionDispatch::IntegrationTest
     end
     assert_response :success
   end
+
+  test "should consent to study and sign up new user" do
+    post slice_enrollment_consent_url(projects(:one)), params: {
+      user: {
+        full_name: "Joe Smith"
+      }
+    }
+    assert_redirected_to new_user_registration_url
+    assert_difference("Subject.count") do
+      assert_difference("User.count") do
+        post user_registration_url, params: {
+          user: {
+            username: "JoeSmith",
+            email: "joe_smith@example.com",
+            password: "password"
+          }
+        }
+      end
+    end
+    assert_equal projects(:one), Subject.last.project
+    assert_equal User.last, Subject.last.user
+    assert_equal "Joe Smith", User.last.full_name
+    assert_redirected_to root_url
+  end
+
+  test "should consent to study and sign up existing user" do
+    post slice_enrollment_consent_url(projects(:one)), params: {
+      user: {
+        full_name: "Joe Smith"
+      }
+    }
+    assert_redirected_to new_user_registration_url
+    # Navigate to user login for existing account.
+    password = "123334567890"
+    @unconsented = users(:unconsented)
+    @unconsented.update password: password, password_confirmation: password
+    assert_difference("Subject.count") do
+      post new_user_session_url, params: {
+        user: { email: @unconsented.email, password: password }
+      }
+    end
+    @unconsented.reload
+    assert_equal projects(:one), Subject.last.project
+    assert_equal @unconsented, Subject.last.user
+    assert_equal "Joe Smith", @unconsented.full_name
+    assert_redirected_to slice_overview_url(projects(:one))
+  end
 end

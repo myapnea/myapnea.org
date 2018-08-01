@@ -8,16 +8,6 @@ class InternalTest < ApplicationSystemTestCase
     @regular = users(:regular)
   end
 
-  def visit_login(user, screenshot_name = nil)
-    password = "PASSword2"
-    user.update(password: password, password_confirmation: password)
-    visit new_user_session_url
-    screenshot(screenshot_name) if screenshot_name.present?
-    fill_in "user[email]", with: user.email
-    fill_in "user[password]", with: user.password
-    click_form_submit
-  end
-
   test "visit dashboard" do
     visit_login(@regular)
     visit dashboard_url

@@ -33,6 +33,7 @@
   - Added customized search results
 - **Survey Changes**
   - Updated events and designs to match new Slice survey API format
+  - Consent flow has been improved for logged out new and existing users
 
 ### Testing
 - Removed dependency on rails-controller-testing gem

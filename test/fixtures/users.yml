@@ -31,6 +31,12 @@ admin:
   admin: true
   encrypted_password: <%= pw %>
 
+unconsented:
+  username: unconsented
+  email: unconsented@example.com
+  confirmed_at: <%= confirmed_at %>
+  emails_enabled: true
+
 user_1:
   username: RubyGem
   email: user_1@example.com

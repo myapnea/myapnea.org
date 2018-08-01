@@ -102,7 +102,7 @@ class SliceController < ApplicationController
       if current_user
         current_user.update(full_name: params[:user][:full_name])
         current_user.consent!(@project)
-        redirect_to slice_overview_path(@project), notice: "Thank you for agreeing to participate in the #{@project.name} research study! "
+        redirect_to slice_overview_path(@project), notice: "Thank you for agreeing to participate in the #{@project.name} research study!"
       else
         session[:project_id] = @project.id
         session[:consented_at] = Time.zone.now
