@@ -1,5 +1,5 @@
 %nav.navbar.navbar-expand-lg.navbar-dark.navbar-custom
-  - if defined?(nocontainer)
+  - if defined?(nocontainer) || @nocontainer.present?
     = render "layouts/logo"
 
     %button.navbar-toggler{ type: "button", data: { toggle: "collapse", target: "#menu-body" }, aria: { controls: "menu-body", expanded: "false", label: "Toggle navigation" } }
