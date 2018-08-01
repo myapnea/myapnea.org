@@ -10,7 +10,7 @@ class ApplicationMailer < ActionMailer::Base
   protected
 
   def setup_email
-    location = "app/assets/images/myapnea/logos/MyApneaLogo_border_whitetext_300x80.png"
+    location = "app/assets/images/logos/MyApneaLogo_border_whitetext_300x80.png"
     attachments.inline["myapnea-logo.png"] = File.read(location)
   rescue
     nil

@@ -1,10 +1,4 @@
-- if false
-  = link_to root_path, class: "navbar-brand navbar-hide-scrolled img-ignore-selection", style: "width: 173px;position: relative;" do
-    =# image_tag "myapnea/logos/MyApneaLogo_border_notext_173x46.png", style: "height: 30px; width: auto;", alt: ""
-    &nbsp;
-    %div{ style: "position: absolute; top: 4px; left: 0;" }= image_tag "myapnea/logos/MyApneaLogo_border_notext_173x46.png", alt: "", class: "img-ignore-selection"
-- else
-  = link_to "MyApnea", root_path, class: "navbar-brand navbar-hide-scrolled", style: "font-weight: 300;"
+= link_to "MyApnea", root_path, class: "navbar-brand navbar-hide-scrolled", style: "font-weight: 300;"
 
 - if @menu_title || @title
   = link_to "#top", data: { object: "remove-collapse-in scroll-anchor", target: ".navbar-full-menu" }, class: "navbar-brand navbar-show-scrolled navbar-brand-small-caps", style: "font-weight: 300;" do
