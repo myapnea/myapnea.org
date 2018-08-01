@@ -2,9 +2,14 @@
 
 - render "themes/random"
 
--# content_for :footer, render("decorations/#{@themes.dig(number, :icon)}") if @themes.dig(number, :icon).present?
+- case @theme
+- when "day"
+  - if rand(2).zero?
+    - content_for :footer, render("decorations/sun_horizon_half")
+  - else
+    - content_for :footer, render("decorations/sun")
 
 .page-box.last-box.d-flex.align-items-center
   .container
-    .text-center
-      .page-heading.text-white{ style: "font-size: 2rem; font-weight: normal; letter-spacing: normal; text-shadow: none; font-variant: normal;" }= "v#{Myapnea::VERSION::STRING}"
+    .text-center{ class: @theme != "default" ? "text-white" : nil, style: "font-size: 2rem;" }
+      = "v#{Myapnea::VERSION::STRING}"
