@@ -1,6 +1,6 @@
 .mb-3.text-center
   - if topic.subscribed?(current_user)
-    You are subscribed to this topic. You may
+    You may
     = succeed " " do
       = link_to subscription_topic_path(topic, notify: "0"), method: :post, remote: true, class: "btn btn-sm btn-outline-dark" do
         %i.fa.fa-volume-off
