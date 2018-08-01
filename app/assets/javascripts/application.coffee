@@ -26,7 +26,6 @@
 
 # External
 #= require external/bootstrap-datepicker.js
-#= require external/froogaloop2.min.js
 #= require external/jquery-fieldselection.js
 #= require external/highcharts-6.0.3.src.js
 
