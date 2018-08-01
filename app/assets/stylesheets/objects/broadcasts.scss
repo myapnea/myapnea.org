@@ -85,11 +85,21 @@
 
   blockquote {
     border: 0;
-    border-left: 2px solid $p200-grey;
-    color: $p500-grey;
+    border-left: 2px solid transparent;
     font-size: $font-size-base;
     margin: 0 0 11px;
     padding: 0 10px;
+  }
+}
+
+@each $name, $theme in $themes {
+  .theme-#{$name}-bg {
+    .broadcast {
+      blockquote {
+        border-color: theme-color($theme, blockquote-border, $p200-grey);
+        color: theme-color($theme, blockquote-color, $p500-grey);
+      }
+    }
   }
 }
 
