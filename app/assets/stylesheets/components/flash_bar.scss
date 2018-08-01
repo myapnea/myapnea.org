@@ -1,22 +1,24 @@
 @keyframes fadein {
   from {
-    top: -60px;
     opacity: 0;
+    top: -60px;
   }
+
   to {
-    top: 0;
     opacity: 1;
+    top: 0;
   }
 }
 
 @keyframes fadeout {
   from {
-    top: 0;
     opacity: 1;
+    top: 0;
   }
+
   to {
-    top: -60px;
     opacity: 0;
+    top: -60px;
   }
 }
 
@@ -31,7 +33,7 @@
   z-index: $zindex-tooltip;
 
   &.flash-bar-show {
-    animation: fadein 0.5s, fadeout 0.5s 4s;
+    animation: fadein 500ms, fadeout 500ms 4s;
     animation-fill-mode: forwards;
     visibility: visible;
   }

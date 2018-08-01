@@ -88,8 +88,8 @@
 .profile-topics-overview {
   display: flex;
   flex: 1;
-  padding: 0 10px;
   margin-bottom: $spacer;
+  padding: 0 10px;
 
   .dashboard-container {
     flex: 1;
@@ -103,7 +103,7 @@
   word-wrap: break-word;
 
   @include media-breakpoint-up(sm) {
-    font-size: 2.0rem;
+    font-size: 2rem;
   }
 
   @include media-breakpoint-up(md) {
@@ -111,7 +111,7 @@
   }
 
   @include media-breakpoint-up(lg) {
-    font-size: 3.0rem;
+    font-size: 3rem;
   }
 }
 

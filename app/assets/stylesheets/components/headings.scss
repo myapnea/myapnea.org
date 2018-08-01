@@ -1,13 +1,10 @@
 .page-heading {
-  position: relative;
-  word-break: break-word;
-
-  // .page-heading-small-caps
+  font-variant: small-caps;
   font-weight: 300;
   letter-spacing: .25rem;
+  position: relative;
   text-shadow: none;
-  font-variant: small-caps;
-  // end special small caps styling
+  word-break: break-word;
 
   .btn,
   .dropdown-menu {
@@ -147,10 +144,10 @@
 }
 
 .brand-title {
-  font-size: 24px;
-  margin-bottom: 15px;
   border-bottom: 2px solid $p200-orange;
+  font-size: 24px;
   font-weight: bold;
+  margin-bottom: 15px;
 }
 
 .brand-subtitle {

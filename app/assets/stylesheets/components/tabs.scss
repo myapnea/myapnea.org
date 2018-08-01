@@ -36,10 +36,10 @@
       .header-tab-active:hover {
         background-color: $p100-grey;
         @if map-get($theme, header-border) {
+          border-bottom: 2px solid $p100-grey !important;
           border-left: 2px solid map-get($theme, header-border) !important;
           border-right: 2px solid map-get($theme, header-border) !important;
           border-top: 2px solid map-get($theme, header-border) !important;
-          border-bottom: 2px solid $p100-grey !important;
         }
         color: map-get($theme, brand-black);
       }

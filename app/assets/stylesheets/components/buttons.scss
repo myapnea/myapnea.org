@@ -60,9 +60,9 @@
 }
 
 .btn-neutral {
-  color: $p900-grey;
   background-color: $p200-grey;
   border-color: $p200-grey;
+  color: $p900-grey;
 
   &:hover,
   &:focus,
@@ -72,15 +72,15 @@
   &[disabled] {
     background-color: $p300-grey;
     background-image: none;
-    box-shadow: none;
     border-color: $p400-grey;
+    box-shadow: none;
     color: $p900-grey;
   }
 }
 
 .btn-xl {
-  padding: .5rem 2rem;
+  border-radius: 5rem;
   font-size: 2.25rem;
   line-height: 1.5;
-  border-radius: 5rem;
+  padding: .5rem 2rem;
 }

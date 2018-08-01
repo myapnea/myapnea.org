@@ -1,20 +1,3 @@
-#video-slide {
-  display: none;
-}
-
-.video-box {
-  position: relative;
-  height: 770px;
-  height: 56.25vw;
-  // padding-bottom: 56.25%;
-  background-color: white;
-  max-height: 100vh;
-}
-
-.show-me-video {
-  display: none;
-}
-
 .myapnea-heading {
   font-size: 40px;
   margin-bottom: 5px;
@@ -31,8 +14,8 @@
 .myapnea-lead-sentence {
   font-size: 40px;
   font-weight: 200;
-  text-align: center;
   margin-bottom: 20px;
+  text-align: center;
 }
 
 @include media-breakpoint-up(sm) {
@@ -70,9 +53,9 @@
 }
 
 .landing-sentence {
+  font-size: 2rem;
   font-weight: 300;
   line-height: 1.2;
-  font-size: 2rem;
 
   @include media-breakpoint-up(sm) {
   }
@@ -88,9 +71,9 @@
 
 .landing-sentence-small {
   background-color: darken($p900-blue, 6.5%);
+  font-size: 1rem;
   font-weight: 300;
   line-height: 1.2;
-  font-size: 1rem;
 
   @include media-breakpoint-up(sm) {
   }
@@ -106,21 +89,20 @@
 
 .scroll-down-arrow,
 .scroll-down-arrow-visible {
-  position: absolute;
   bottom: 0;
-  left: 0;
-  right: 0;
-  padding-bottom: 1rem;
-  line-height: 1rem;
   font-size: 2rem;
+  left: 0;
+  line-height: 1rem;
+  padding-bottom: 1rem;
+  position: absolute;
+  right: 0;
   text-align: center;
-
   transition: opacity 250ms ease-in;
 }
 
 .scroll-down-arrow-top {
-  top: 1rem;
   bottom: initial;
+  top: 1rem;
 }
 
 .scroll-down-arrow-visible {
@@ -149,9 +131,9 @@
   }
 
   .orange-bar {
-    width: 0;
     border-bottom: 2px solid $p300-orange;
     height: calc(2rem - 2px);
+    width: 0;
 
     @include media-breakpoint-up(sm) {
       height: calc(2.5rem - 2px);
@@ -183,8 +165,8 @@
 }
 
 .landing-about-slide-tagline {
-  font-weight: 200;
   font-size: 1.25rem;
+  font-weight: 200;
 
   @include media-breakpoint-up(sm) {
     font-size: 1.5rem;
@@ -208,20 +190,20 @@
   font-size: 6rem;
 
   @include media-breakpoint-up(md) {
-    margin-top: map-get($spacers, 4);
     margin-bottom: map-get($spacers, 4);
+    margin-top: map-get($spacers, 4);
   }
 }
 
 .landing-about-slide-feature {
   display: block;
-  margin-top: map-get($spacers, 2);
   margin-bottom: map-get($spacers, 5);
+  margin-top: map-get($spacers, 2);
 
   @include media-breakpoint-up(md) {
-    padding: map-get($spacers, 5);
-    margin-top: map-get($spacers, 4);
     margin-bottom: map-get($spacers, 4);
+    margin-top: map-get($spacers, 4);
+    padding: map-get($spacers, 5);
   }
 }
 
