@@ -71,7 +71,7 @@
         }
       }
 
-      &.sidebar-menu-header {
+      .sidebar-menu-header {
         a {
           background-color: initial;
           color: map-get($theme, body-color);
