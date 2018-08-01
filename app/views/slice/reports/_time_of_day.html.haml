@@ -8,7 +8,13 @@
 
 - width = 30
 - data = []
-- (0..(24*(60/width) - 1)).each do |increment|
+
+- if design_option.dig("time_of_day_format") == "12hour-pm"
+  - range = ((12*(60/width))..(24*(60/width) - 1)).to_a + (0..(12*(60/width) - 1)).to_a
+- else # "12hour", "24hour"
+  - range = (0..(24*(60/width) - 1))
+
+- range.each do |increment|
   - min_time = increment * width * 60
   - max_time = (increment + 1) * width * 60
 

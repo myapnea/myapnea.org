@@ -36,6 +36,8 @@
   - Consent flow has been improved for logged out new and existing users
 - **Report Changes**
   - Reports now correctly render markdown in graph titles
+  - Graphs that display time of day that default to PM are now shifted by 12
+    hours to better display responses over the midnight time range
 
 ### Testing
 - Removed dependency on rails-controller-testing gem
