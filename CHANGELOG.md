@@ -42,6 +42,7 @@
 
 ### Testing
 - Removed dependency on rails-controller-testing gem
+- Added tests to check friendly forwarding
 
 ## 17.5.2 (June 12, 2018)
 
