@@ -8,5 +8,9 @@
     a:not([class]) {
       color: $theme_link_color;
     }
+
+    a.btn-link {
+      color: $theme_link_color;
+    }
   }
 }
