@@ -8,7 +8,6 @@
     - if current_user && @topic.editable_by?(current_user)
       = render "layouts/edit_delete_dropdown_header", edit_url: edit_topic_path(@topic), delete_url: @topic, delete_confirmation: "Delete \"#{@topic.title}\"?"
   = @title
-- content_for :header_append, render("layouts/tagline")
 
 %div
   .float-right.d-none.d-md-block

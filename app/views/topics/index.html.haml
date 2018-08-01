@@ -7,8 +7,6 @@
     %span#forum-top-container= link_to "Start new topic", async_forum_new_topic_path, method: :post, remote: true, class: "btn btn-accent btn-shadow"
     = render "layouts/per_page", per_page: 40, object_count: @topics.total_count
   = @title
-- content_for :header_append do
-  = render "layouts/tagline"
 
 #new-topic-container{ style: "display:none;" }
 

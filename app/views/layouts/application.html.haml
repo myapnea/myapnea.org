@@ -36,8 +36,6 @@
       .breadcrumb-container
         %div{ class: defined?(container) && container.present? ? container : "container" }
           = yield :breadcrumbs
-    - if content_for?(:header_tagline)
-      = yield :header_tagline
     .theme-custom-spacing
       .py-3
         .container.remove-last-margin= yield
