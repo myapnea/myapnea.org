@@ -50,24 +50,12 @@ $(document)
     $.post("#{root_url}replies/preview", params, null, 'script')
     false
   )
-  .on('click', '[data-object~="bold-selection"]', ->
-    selection = $($(this).data('target')).getSelection()
-    return false unless selection?
-    return false if selection.length == 0
-    original_text = $($(this).data('target')).val()
-    substitute = "**#{selection.text}**"
-    new_string = original_text.substring(0, selection.start) + substitute + original_text.substring(selection.end)
-    $($(this).data('target')).val(new_string)
+  .on("click", "[data-object~=bold-selection]", ->
+    boldSelection($($(this).data("target"))[0])
     false
   )
-  .on('click', '[data-object~="italic-selection"]', ->
-    selection = $($(this).data('target')).getSelection()
-    return false unless selection?
-    return false if selection.length == 0
-    original_text = $($(this).data('target')).val()
-    substitute = "*#{selection.text}*"
-    new_string = original_text.substring(0, selection.start) + substitute + original_text.substring(selection.end)
-    $($(this).data('target')).val(new_string)
+  .on("click", "[data-object~=italic-selection]", ->
+    italicizeSelection($($(this).data("target"))[0])
     false
   )
   .on('click', '[data-object~="link-selection"]', ->

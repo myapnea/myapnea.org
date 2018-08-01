@@ -28,6 +28,7 @@
 - **Forum Changes**
   - Added a prominent forum search to the forum index
   - Topics now auto-lock after two months of inactivity
+  - Improved bolding and italicizing selected text
 - **Search Changes**
   - Member profile previews are displayed when searching usernames
   - Added customized search results
