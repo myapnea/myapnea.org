@@ -34,6 +34,8 @@
 - **Survey Changes**
   - Updated events and designs to match new Slice survey API format
   - Consent flow has been improved for logged out new and existing users
+- **Report Changes**
+  - Reports now correctly render markdown in graph titles
 
 ### Testing
 - Removed dependency on rails-controller-testing gem

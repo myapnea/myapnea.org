@@ -57,7 +57,7 @@
     - data << { y: count.presence, name: column_name }
 
 - series = [{ type: "column", showInLegend: false, name: "participants", data: data }]
-- title = { text: design_option.dig("display_name"), align: "center" }
+- title = { text: simple_style(design_option.dig("display_name")), align: "center" }
 - x_axis = { categories: categories, title: { text: nil } }
 - y_axis = { title: { text: "Participants" } }
 - if filter_responses.count < Slice::Survey::MIN_SURVEY_RESPONSE
