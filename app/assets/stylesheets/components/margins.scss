@@ -10,5 +10,11 @@
       margin-bottom: 0;
     }
   }
+
+  > .research-study {
+    &:last-child {
+      margin-bottom: 0 !important;
+    }
+  }
 }
 

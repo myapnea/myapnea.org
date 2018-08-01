@@ -2,22 +2,30 @@
 
 - @theme = "default"
 
-- content_for :header, @title
 = render "internal/tabs" if current_user
-- content_for :sidebar, render("internal/sidebar") if current_user
-
-= render "slice/research_studies", projects: @projects
-
-- @projects.each do |project|
-  = render "slice/research_studies_popups", projects: @projects
-
-- content_for :footer do
-  .container
-    - articles = Broadcast.current.published.where(category: Admin::Category.find_by(slug: "research")).order(publish_date: :desc, id: :desc).limit(3)
-    - if articles.present?
-      .mb-3= render "landing/orange_title_strong", title: "MyApnea Research Articles"
-      .featured-articles.d-flex.flex-column.flex-md-row.justify-content-around.align-items-center.align-items-md-stretch
-        - articles.each do |broadcast|
-          = link_to blog_post_path(broadcast.url_hash), class: "featured-article d-flex align-items-end" do
-            .featured-article-background-image{ style: "background-image: url(#{blog_cover_url(broadcast)});" }
-            .featured-article-title= broadcast.title
+.page-box.p-0.last-box.footer-custom-bg.d-flex.flex-column
+  .header-container{ class: content_for?(:tabs) || content_for?(:progress_bar) ? "header-container-no-border" : nil }
+    .container-fluid
+      %h1.page-heading
+        = @title
+  - if content_for?(:tabs)
+    .header-tabs{ class: "#{"header-tabs-no-breadcrumbs" unless content_for?(:breadcrumbs)}" }
+      .container-fluid
+        = yield :tabs
+  .row.no-gutters.flex-md-nowrap.theme-custom-spacing.flex-fill{ class: "theme-#{@theme.presence || "default"}-bg" }
+    = render "sidebar/mini"
+    = render("internal/sidebar") if current_user
+    %main.col.p-3.remove-last-margin{ role: "main" }
+      - @projects.each do |project|
+        = render "slice/research_studies_popups", projects: @projects
+      = render "slice/research_studies", projects: @projects
+  .py-3.mt-auto
+    .container
+      - articles = Broadcast.current.published.where(category: Admin::Category.find_by(slug: "research")).order(publish_date: :desc, id: :desc).limit(3)
+      - if articles.present?
+        .mb-3= render "landing/orange_title_strong", title: "MyApnea Research Articles"
+        .featured-articles.d-flex.flex-column.flex-md-row.justify-content-around.align-items-center.align-items-md-stretch
+          - articles.each do |broadcast|
+            = link_to blog_post_path(broadcast.url_hash), class: "featured-article d-flex align-items-end" do
+              .featured-article-background-image{ style: "background-image: url(#{blog_cover_url(broadcast)});" }
+              .featured-article-title= broadcast.title

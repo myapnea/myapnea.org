@@ -22,7 +22,7 @@ class SliceController < ApplicationController
   # GET /research
   def research
     @projects = Project.published.order(:launch_date)
-    render layout: "layouts/full_page_sidebar"
+    render layout: "layouts/full_page"
   end
 
   # GET /research/:project/consent
