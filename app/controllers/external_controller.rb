@@ -28,7 +28,6 @@ class ExternalController < ApplicationController
     end
   end
 
-  # TODO: Make this direct to MyApnea Core consent.
   # # GET /consent
   # def consent
   # end
