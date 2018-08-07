@@ -1,13 +1,8 @@
-- show_tagline = false
 #about.anchor-menu
-%div{ class: show_tagline ? "page-box p-0" : nil }
-  - if show_tagline
-    = render "landing/tagline", extra_class: "logo-container-original"
-  .d-flex.flex-column.justify-content-center.theme-bg{ class: !show_tagline ? "page-box theme-#{@theme}-focus-bg" : "theme-#{@theme}-focus-bg" }
+%div
+  .d-flex.flex-column.justify-content-center.theme-bg.page-box{ class: "theme-#{@theme}-focus-bg" }
     .container
-      - unless show_tagline
-        - if true
-          .text-center.mb-3= image_tag "logos/myapnea-logo-large-whitetext.png", style: "height: auto; width: 480px;", class: "img-ignore-selection img-fluid"
+      .text-center.mb-3= image_tag "logos/myapnea-logo-large-whitetext.png", style: "height: auto; width: 480px;", class: "img-ignore-selection img-fluid"
 
       .row
         .col-0.col-md-4.d-flex.align-items-center.landing-about-slide-feature-icon
@@ -27,10 +22,7 @@
       .row
         .col-0.col-md-4.d-flex.justify-content-center.align-items-center.landing-about-slide-feature-icon
           .text-center.text-md-right.w-100
-            - if show_tagline
-              %i.fa.fa-flask.text-accent
-            - else
-              %i.fa.fa-file-text.text-accent
+            %i.fa.fa-file-text.text-accent
         .col-12.col-md-8.col-lg-6
           = link_to slice_research_path, class: "landing-about-slide-feature link-unstyled" do
             .random-text
