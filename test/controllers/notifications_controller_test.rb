@@ -6,6 +6,7 @@ require "test_helper"
 class NotificationsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @regular = users(:regular)
+    @admin = users(:admin)
   end
 
   test "should get index" do
@@ -26,6 +27,15 @@ class NotificationsControllerTest < ActionDispatch::IntegrationTest
     notifications(:broadcast_reply_two).reload
     assert_equal true, notifications(:broadcast_reply_two).read?
     assert_redirected_to notifications(:broadcast_reply_two).reply
+  end
+
+  test "should show export notification" do
+    login(@admin)
+    notification = notifications(:export)
+    get notification_url(notification)
+    notification.reload
+    assert_equal true, notification.read?
+    assert_redirected_to notification.admin_export
   end
 
   test "should show blank notification and redirect" do

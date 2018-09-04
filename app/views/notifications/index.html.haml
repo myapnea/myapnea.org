@@ -56,6 +56,26 @@
               - notifications.each do |notification|
                 %tr{ id: "notification_#{notification.id}"}
                   = render "notifications/show", notification: notification
+      - admin_export_notifications = @notifications.where.not(admin_export_id: nil).order(created_at: :desc).includes(:admin_export)
+      - if admin_export_notifications.present?
+        .dashboard-container
+          %table.table.table-fixed.table-borderless.table-striped
+            %col{ width: "32px" }
+            %col
+            %col.d-none.d-md-table-column{ width: "42px" }
+            %col.d-none.d-md-table-column{ width: "165px" }
+            %col{ width: "32px" }
+            %thead
+              %tr
+                %th{ colspan: 2 } Exports
+                %th.d-none.d-md-table-cell
+                %th.d-none.d-md-table-cell
+                %th
+            %tbody
+              - admin_export_notifications.each do |notification|
+                %tr{ id: "notification_#{notification.id}"}
+                  = render "notifications/show", notification: notification
+
     - else
       .jumbotron.jumbotron-action.jumbotron-shadow
         .lead.text-center{ style: "font-weight: 200;font-size: 24px;" } You have no unread notifications!

@@ -1,5 +1,8 @@
 ## 18.0.1
 
+### Bug Fix
+- Admin exports now complete successfully
+
 ## 18.0.0 (August 7, 2018)
 
 ### Enhancements

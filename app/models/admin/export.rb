@@ -13,6 +13,7 @@ class Admin::Export < ApplicationRecord
 
   # Relationships
   belongs_to :user
+  has_many :notifications
 
   # Methods
   def name
@@ -27,6 +28,11 @@ class Admin::Export < ApplicationRecord
   def percent
     return 100 unless total_steps.positive?
     completed_steps * 100 / total_steps
+  end
+
+  def create_notification
+    notification = user.notifications.where(admin_export_id: id).first_or_create
+    notification.mark_as_unread!
   end
 
   def generate_export_in_background!
@@ -71,8 +77,7 @@ class Admin::Export < ApplicationRecord
         completed_steps: total_steps
       )
       update file_size: zipped_file.size # Cache after attaching to model.
-      notify_user!
-      # create_notification
+      create_notification
     ensure
       # Close and delete the temp file
       temp_zip_file.close
@@ -82,7 +87,7 @@ class Admin::Export < ApplicationRecord
 
   def export_failed(details)
     update(status: "failed", details: details)
-    # create_notification
+    create_notification
   end
 
   private
@@ -115,10 +120,6 @@ class Admin::Export < ApplicationRecord
     sas_file = Tempfile.new(sas_name)
     write_sas(sas_file)
     [[sas_name, sas_file]]
-  end
-
-  def notify_user!
-    UserMailer.export_ready(self).deliver_now if EMAILS_ENABLED
   end
 
   def write_sas(sas_file)

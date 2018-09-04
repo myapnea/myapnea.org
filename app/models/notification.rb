@@ -7,6 +7,7 @@ class Notification < ApplicationRecord
   belongs_to :broadcast, optional: true
   belongs_to :topic, optional: true
   belongs_to :reply, optional: true
+  belongs_to :admin_export, optional: true, class_name: "Admin::Export"
 
   # Methods
 

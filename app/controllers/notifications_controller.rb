@@ -61,6 +61,7 @@ class NotificationsController < ApplicationController
 
   def notification_redirect_path
     return reply_path(@notification.reply) if @notification.reply
+    return @notification.admin_export if @notification.admin_export
     notifications_path
   end
 end
