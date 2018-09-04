@@ -106,6 +106,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   test "should not update user with blank username" do
     login(@admin)
     patch user_url(@user), params: { user: { username: "" } }
+    assert_response :success
   end
 
   test "should not update user with invalid id" do
