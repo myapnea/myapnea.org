@@ -10,6 +10,7 @@
   - Update to jquery-rails 4.3.3
   - Update to mini_magick 4.9.2
   - Update to rubyzip 1.2.2
+  - Update to sitemap_generator 6.0.1
 
 ## 18.0.1 (September 4, 2018)
 
