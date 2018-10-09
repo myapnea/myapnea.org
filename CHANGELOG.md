@@ -3,6 +3,7 @@
 ### Enhancements
 - **Gem Changes**
   - Update to rails 5.2.1
+  - Update to pg 1.1.3
 
 ## 18.0.1 (September 4, 2018)
 
