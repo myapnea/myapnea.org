@@ -3,6 +3,9 @@
 ### Enhancements
 - **General Changes**
   - External research projects can be added to research page
+- **Admin Changes**
+  - Paginated results are no longer counted in admin report for Help Center
+    searches
 - **Gem Changes**
   - Update to rails 5.2.1
   - Update to pg 1.1.3
