@@ -8,8 +8,11 @@
   = render "forms/horizontal/text_field", form: form, object: project, key: :slice_site_id
   = render "forms/horizontal/text_field", form: form, object: project, key: :slice_baseline_event, placeholder: "baseline"
   = render "forms/horizontal/text_field", form: form, object: project, key: :code_prefix
+  = render "forms/horizontal/check_box", form: form, object: project, key: :external, help_text: "Select this if the project does not use Slice surveys."
+  = render "forms/horizontal/text_field", form: form, object: project, key: :external_link, help_text: "Provide link to external site that does not use Slice surveys."
   = render "forms/horizontal/check_box", form: form, object: project, key: :published
   = render "forms/horizontal/select", form: form, object: project, key: :theme, options: MyApnea::THEMES, include_blank: "Select a theme"
+  = render "forms/horizontal/select", form: form, object: project, key: :cover_theme, options: [["Default", nil], ["MOOD", "mood"]], include_blank: "Select a theme"
   = render "forms/horizontal/submit", form: form, object: project
 
 - if false

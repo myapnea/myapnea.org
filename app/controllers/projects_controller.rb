@@ -74,7 +74,7 @@ class ProjectsController < ApplicationController
     params.fetch(:project, {}).permit(
       :name, :slug, :access_token, :short_description, :consent, :theme,
       :launch_date, :published, :slice_site_id, :slice_baseline_event,
-      :code_prefix
+      :code_prefix, :external, :external_link, :cover_theme
     )
   end
 end

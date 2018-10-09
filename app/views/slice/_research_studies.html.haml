@@ -1,14 +1,17 @@
 - if @projects.present?
   - projects.each do |project|
     - subject = current_user&.subjects&.find_by(project: project)
-    .research-study
+    .research-study{ class: "cover-theme-#{project.cover_theme}" }
       .d-flex.flex-row.align-items-stretch
         .research-study-icon.d-flex.align-items-center
           %i.fa.fa-flask
         .research-study-body.d-flex.align-items-center
-          %div
-            .research-study-name= project.name
-            = project.short_description
+          .d-flex.flex-column.flex-lg-row
+            .research-study-text.order-1.order-lg-0
+              .research-study-name= project.name
+              = project.short_description
+            - if project.cover_theme == "mood"
+              .research-study-background-image.order-0.order-lg-1{ class: "research-study-background-image-#{rand(2)}" }
       .research-study-footer.d-flex.flex-column.flex-sm-row
         .ml-3.d-inline-block{ class: project.slug == "myapnea-core" ? nil : "mr-auto" }
           %i.fa.fa-users.text-accent
@@ -31,14 +34,24 @@
                 Personalized report
 
         .ml-3.d-block.d-sm-inline-block.text-center
-          - if current_user && subject
-            = link_to slice_overview_path(project), class: "btn btn-sm btn-primary btn-shadow" do
-              Take surveys
-              %i.fa.fa-angle-right
+          - if project.external?
+            - if current_user && subject
+              = link_to participate_path(project), class: "btn btn-sm btn-primary btn-shadow" do
+                Visit study
+                %i.fa.fa-angle-right
+            - else
+              = link_to participate_path(project), class: "btn btn-sm btn-primary btn-shadow" do
+                Get started
+                %i.fa.fa-angle-right
           - else
-            = link_to slice_consent_path(project), class: "btn btn-sm btn-primary btn-shadow" do
-              Get started
-              %i.fa.fa-angle-right
+            - if current_user && subject
+              = link_to slice_overview_path(project), class: "btn btn-sm btn-primary btn-shadow" do
+                Take surveys
+                %i.fa.fa-angle-right
+            - else
+              = link_to slice_consent_path(project), class: "btn btn-sm btn-primary btn-shadow" do
+                Get started
+                %i.fa.fa-angle-right
 
 - else
   .jumbotron.jumbotron-action.jumbotron-custom-text.jumbotron-shadow

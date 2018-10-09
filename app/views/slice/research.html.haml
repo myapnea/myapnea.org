@@ -18,8 +18,9 @@
     = render "sidebar/mini"
     = render("internal/sidebar") if current_user
     %main.col.p-3.remove-last-margin{ role: "main" }
-      - @projects.each do |project|
-        = render "slice/research_studies_popups", projects: @projects
+      - if false
+        - @projects.each do |project|
+          = render "slice/research_studies_popups", projects: @projects
       = render "slice/research_studies", projects: @projects
   .py-3.mt-auto
     .container

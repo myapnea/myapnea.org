@@ -20,7 +20,28 @@ class ProjectsControllerTest < ActionDispatch::IntegrationTest
       access_token: "access-66d74521",
       published: "1",
       slice_site_id: "12345",
-      code_prefix: "TEST"
+      code_prefix: "TEST",
+      external: "0",
+      external_link: "",
+      cover_theme: ""
+    }
+  end
+
+  def external_project_params
+    {
+      name: "External Project",
+      slug: "external-project",
+      short_description: "Participate in this external project",
+      consent: "",
+      launch_date: "2018-10-05",
+      theme: "",
+      access_token: "",
+      published: "1",
+      slice_site_id: "",
+      code_prefix: "",
+      external: "1",
+      external_link: "https://example.com",
+      cover_theme: "mood"
     }
   end
 
@@ -41,6 +62,16 @@ class ProjectsControllerTest < ActionDispatch::IntegrationTest
     assert_difference("Project.count") do
       post projects_url, params: {
         project: project_params.merge(slug: "new-project")
+      }
+    end
+    assert_redirected_to project_url(Project.last)
+  end
+
+  test "should create external project" do
+    login(@admin)
+    assert_difference("Project.count") do
+      post projects_url, params: {
+        project: external_project_params
       }
     end
     assert_redirected_to project_url(Project.last)

@@ -11,7 +11,9 @@ class Project < ApplicationRecord
   scope :published, -> { current.where(published: true) }
 
   # Validations
-  validates :name, :access_token, :slice_site_id, :code_prefix, presence: true
+  validates :name, presence: true
+  validates :access_token, :slice_site_id, :code_prefix, presence: true, unless: :external?
+  validates :external_link, presence: true, if: :external?
   validates :slug, format: { with: /\A[a-z][a-z0-9\-]*\Z/ },
                    exclusion: { in: %w(new edit create update destroy research) },
                    uniqueness: true,

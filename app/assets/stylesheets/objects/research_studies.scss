@@ -16,8 +16,17 @@
   }
 
   .research-study-body {
-    padding: $spacer;
     flex-grow: 1;
+
+    .research-study-text {
+      padding: $spacer;
+    }
+
+    .research-study-background-image {
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
   }
 
   .research-study-footer {
@@ -39,12 +48,57 @@
       }
 
       .research-study-body {
-        background-color: map-get($theme, p50);
+        background-color: map-get($theme, brand-white);
+      }
+
+      .research-study-name {
+        color: map-get($theme, p500);
       }
 
       .research-study-footer {
         background-color: $p50-grey;
         color: $text-muted;
+      }
+    }
+  }
+}
+
+.research-study {
+  $mood-blue: #006195;
+  $mood-teal: #227285;
+
+  &.cover-theme-mood {
+    .research-study-icon {
+      background-color: $mood-blue;
+    }
+
+    .research-study-body {
+      background-color: $white;
+    }
+
+    .research-study-name {
+      color: $mood-teal;
+    }
+
+    .btn-primary {
+      @include button-variant($mood-blue, $mood-blue);
+    }
+
+    .research-study-background-image-0 {
+      background-image: asset-url("studies/mood/vertical_clouds.jpeg");
+      min-height: 181px;
+
+      @include media-breakpoint-up(lg) {
+        min-width: 325px;
+      }
+    }
+
+    .research-study-background-image-1 {
+      background-image: asset-url("studies/mood/vertical_yoga.jpeg");
+      min-height: 181px;
+
+      @include media-breakpoint-up(lg) {
+        min-width: 325px;
       }
     }
   }

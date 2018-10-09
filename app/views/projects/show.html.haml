@@ -20,5 +20,11 @@
   = render "forms/horizontal/show/check_box", object: @project, key: :published
   = render "forms/horizontal/show/text", object: @project, key: :launch_date
   = render "forms/horizontal/show/text", object: @project, key: :theme
-  = render "forms/horizontal/show/generic", title: "Consent", content: link_to("View Consent", consent_project_path(@project)) if @project.consent.present?
-  = render "forms/horizontal/show/generic", title: "Subjects", content: @project.remote_subjects
+  = render "forms/horizontal/show/text", object: @project, key: :cover_theme
+  - if @project.external?
+    = render "forms/horizontal/show/check_box", object: @project, key: :external
+    = render "forms/horizontal/show/text", object: @project, key: :external_link
+    = render "forms/horizontal/show/generic", title: "Recruited", content: number_with_delimiter(@project.subjects.count)
+  - else
+    = render "forms/horizontal/show/generic", title: "Consent", content: link_to("View Consent", consent_project_path(@project)) if @project.consent.present?
+    = render "forms/horizontal/show/generic", title: "Subjects", content: number_with_delimiter(@project.subjects.count)

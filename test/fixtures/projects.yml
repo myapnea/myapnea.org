@@ -27,3 +27,19 @@ two:
   launch_date: 2017-05-01
   slice_site_id: 67890
   code_prefix: YOGA
+
+external:
+  name: Mood
+  slug: mood
+  short_description: >
+    This project has no surveys and links to an external site.
+  published: true
+  user: admin
+  theme: MyString
+  launch_date: 2018-10-09
+  external: true
+  external_link: https://example.com
+  # access_token:
+  # consent:
+  # slice_site_id:
+  # code_prefix:

@@ -174,6 +174,8 @@ Rails.application.routes.draw do
     end
   end
 
+  get :participate, path: "research/:project/participate", to: "participate#participate"
+
   # Admin Section
   get "admin" => "admin#dashboard"
 

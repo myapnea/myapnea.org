@@ -17,6 +17,11 @@ class Subject < ApplicationRecord
 
   # Methods
 
+  # This method is only for external projects (that don't have Slice surveys).
+  def recruited?
+    recruited_at.present?
+  end
+
   def linked?
     slice_subject_id.present?
   end

@@ -59,6 +59,7 @@ class ApplicationController < ActionController::Base
       images: [:index, :show, :new, :edit],
       internal: [],
       notifications: [],
+      participate: [],
       topics: [:new, :edit],
       users: []
     }
