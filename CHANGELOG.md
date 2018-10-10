@@ -1,4 +1,4 @@
-## 18.1.0
+## 18.1.0 (October 10, 2018)
 
 ### Enhancements
 - **General Changes**
