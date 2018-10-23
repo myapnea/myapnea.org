@@ -11,10 +11,17 @@
       .section-container
         .section-title
           via email
-        .section-body
+        .section-body.mb-3
           %strong= mail_to ENV["support_email"], ENV["support_email"], class: "text-dark"
+        .section-body.small.mb-0
+          .pl-3{ style: "border-left: 3px solid #ffcc80;" }
+            This support email is for questions regarding the use of this website
+            and for questions regarding the MyApnea.Org research study.
+            Please refer any
+            %strong medical questions
+            to your physician or relevant sleep health medical provider.
 
-      .section-container
+      .section-container.mt-4
         .section-title
           our address
         .section-body

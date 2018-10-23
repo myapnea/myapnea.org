@@ -1,6 +1,8 @@
 ## 19.0.0
 
 ### Enhancements
+- **General Changes**
+  - Clarify purpose of support email on contact page
 - **Gem Changes**
   - Update to ruby 2.5.3
 
