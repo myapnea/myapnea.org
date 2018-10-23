@@ -60,7 +60,7 @@ Edit Cron Jobs `sudo crontab -e` to run the task `lib/tasks/sitemap.rake`
 
 ```
 SHELL=/bin/bash
-0 1 * * * source /etc/profile.d/rvm.sh && cd /var/www/www.myapnea.org && rvm 2.5.1 && rails sitemap:refresh RAILS_ENV=production
+0 1 * * * source /etc/profile.d/rvm.sh && cd /var/www/www.myapnea.org && rvm 2.5.3 && rails sitemap:refresh RAILS_ENV=production
 ```
 
 ## License
