@@ -27,7 +27,7 @@
                     .nowrap
                       %small.text-muted
                         = topic.replies_count
-                        %fa.fa.fa-comments-o
+                        = icon("far", "comments")
         - if @recent_topics.present?
           .profile-topics-overview
             .dashboard-container
@@ -41,7 +41,7 @@
                     .nowrap
                       %small.text-muted
                         = topic.replies_count
-                        %fa.fa.fa-comments-o
+                        = icon("far", "comments")
 
     - @replies.each do |reply|
       = render "replies/simple_full", reply: reply

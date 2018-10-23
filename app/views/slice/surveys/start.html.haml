@@ -13,5 +13,5 @@
       .float-right
         = link_to slice_surveys_page_path(@project, params[:event], params[:design], 1), class: "btn btn-success btn-shadow" do
           Start survey
-          %i.fa.fa-caret-right
+          = icon("fas", "caret-right")
       .clearfix

@@ -16,7 +16,7 @@
     .float-right
       = link_to slice_surveys_complete_path(@project, params[:event], params[:design]), method: :post, class: "btn btn-accent btn-shadow", data: { object: "disable-spinner" } do
         Continue
-        %i.fa.fa-caret-right
+        = icon("fas", "caret-right")
   = @json.dig("design", "name")
 
 .page-box.last-box.background-p50-grey.d-flex.d-md-block.flex-column.justify-content-center
@@ -53,7 +53,7 @@
 
         .mt-3.small
           = link_to slice_surveys_page_path(@project, params[:event], params[:design], page, review: "1") do
-            %i.fa.fa-pencil
+            = icon("fas", "pencil-alt")
             - if my_response.present?
               Change response
             - else
@@ -98,9 +98,9 @@
       - if first_page.present?
         = succeed " " do
           = link_to slice_surveys_page_path(@project, params[:event], params[:design], first_page, review: "1"), class: "btn btn-link" do
-            %i.fa.fa-caret-left
+            = icon("fas", "caret-left")
             Return to survey
 
       = link_to slice_surveys_complete_path(@project, params[:event], params[:design]), method: :post, class: "btn btn-primary btn-shadow", data: { object: "disable-spinner" } do
         Continue
-        %i.fa.fa-caret-right
+        = icon("fas", "caret-right")

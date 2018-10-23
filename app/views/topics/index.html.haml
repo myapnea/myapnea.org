@@ -45,7 +45,7 @@
                   = link_to next_unread_reply, data: { turbolinks: false }, class: "btn btn-sm btn-accent" do
                     = unread_replies
                     new
-                    %fa.fa.fa-comments-o
+                    = icon("far", "comments")
               - elsif topic.last_page(current_user) > 1
                 %span.d-none.d-sm-inline
                   = link_to "1", topic, class: "btn btn-sm btn-light"

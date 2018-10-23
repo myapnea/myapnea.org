@@ -11,5 +11,5 @@
 
   - current_page = params[:controller].in?(%w(settings))
   = link_to settings_profile_path, class: "link-unstyled d-inline-block px-3 pt-2 pb-2 rounded-top header-tab #{"border border-bottom-0 header-tab-active" if current_page}", data: { object: "#{"suppress-click" if current_page?(settings_profile_path)}" } do
-    %i.fa.fa-cog
+    = icon("fas", "cog")
     Settings

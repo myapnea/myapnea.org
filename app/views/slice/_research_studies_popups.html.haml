@@ -62,11 +62,11 @@
           - if subject
             = link_to slice_overview_path(project), class: "text-accent" do
               Take surveys
-              %i.fa.fa-caret-right
+              = icon("fas", "caret-right")
           - else
             = link_to slice_consent_path(project), class: "text-accent" do
               Get started
-              %i.fa.fa-caret-right
+              = icon("fas", "caret-right")
         = link_to "#", class: "link-unstyled", data: { turbolinks: false } do
           %i.fa.fa-print
           Print

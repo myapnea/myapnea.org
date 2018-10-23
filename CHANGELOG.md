@@ -5,6 +5,7 @@
   - Clarify purpose of support email on contact page
 - **Gem Changes**
   - Update to ruby 2.5.3
+  - Update to font-awesome-sass 5.4.1
 
 ### Bug Fix
 - Fixed "Write a Reply" redirection on topics with interleaved deleted replies

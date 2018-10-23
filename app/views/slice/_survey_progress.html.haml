@@ -33,7 +33,7 @@
           = link_text
           = link_to url, data: { object: "disable-spinner" } do
             = event_design.design_name
-            %i.fa.fa-caret-right
+            = icon("fas", "caret-right")
         - else
           .disabled
             %i.fa.fa-exclamation-triangle

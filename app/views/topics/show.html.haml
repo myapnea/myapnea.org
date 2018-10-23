@@ -24,7 +24,7 @@
   .mb-3
     - if @topic.auto_locked?
       .box-shadow.bg-light.p-3.rounded.text-center
-        %i.fa.fa-lock
+        = icon("fas", "lock")
         Topic is locked.
         = link_to "Start a new topic", new_topic_path
     - else

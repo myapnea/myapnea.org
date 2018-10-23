@@ -17,7 +17,7 @@
     .py-5= render partner
     = succeed " " do
       = link_to edit_admin_partner_path(partner), class: "btn btn-light btn-sm" do
-        %fa.fa.fa-pencil
+        = icon("fas", "pencil-alt")
         Edit
     Displayed:
     = simple_check partner.displayed?

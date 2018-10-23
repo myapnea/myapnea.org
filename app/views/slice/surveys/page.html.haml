@@ -18,7 +18,7 @@
     .survey-submit-container
       = link_to "#", data: { object: "submit-and-continue", target: "#survey-form" }, class: "btn btn-primary btn-shadow" do
         Continue
-        %i.fa.fa-caret-right
+        = icon("fas", "caret-right")
   - elsif @variable
     .survey-question-container
       .survey-question
@@ -36,4 +36,4 @@
     .survey-submit-container
       = link_to "#", data: { object: "submit-and-continue", target: "#survey-form" }, class: "btn btn-primary btn-shadow" do
         Continue
-        %i.fa.fa-caret-right
+        = icon("fas", "caret-right")

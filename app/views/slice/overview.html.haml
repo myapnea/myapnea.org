@@ -41,7 +41,7 @@
             - subject_surveys.sort_by { |s| s.completed_at }.reverse_each do |subject_survey|
               %tr
                 %td
-                  %i.fa.fa-bar-chart
+                  = icon("fas", "chart-bar")
                 %td
                   = link_to slice_surveys_report_path(@project, subject_survey.event, subject_survey.design), class: "small" do
                     = subject_survey.design_name_cache

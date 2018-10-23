@@ -7,11 +7,9 @@
     %div.flex-fill
       - if current_user&.admin?
         .float-right
-          = succeed " " do
-            = link_to edit_admin_team_member_path(team_member), class: "btn btn-sm btn-light" do
-              %i.fa.fa-pencil>
+          = link_to icon("fas", "pencil-alt"), edit_admin_team_member_path(team_member), class: "btn btn-sm btn-light"
           = link_to admin_team_member_path(team_member), method: :delete, data: { confirm: "Delete #{team_member.name}?" }, class: "btn btn-sm btn-outline-danger" do
-            %i.fa.fa-trash
+            = icon("fas", "trash-alt")
 
       .team-member-name
         = team_member.name

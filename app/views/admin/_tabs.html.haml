@@ -1,10 +1,10 @@
 - content_for :tabs do
   - current_page = params[:controller].in?(%w(admin)) && params[:action].in?(%w(dashboard spam_inbox profile_review)) || params[:controller].in?(%w(users broadcasts admin/replies admin/categories images admin/exports projects admin/partners admin/team_members))
   = link_to admin_path, class: "link-unstyled d-inline-block px-3 pt-2 pb-2 rounded-top header-tab #{"border border-bottom-0 header-tab-active" if current_page}", data: { object: "#{"suppress-click" if current_page?(admin_path)}" } do
-    %i.fa.fa-home
+    = icon("fas", "home")
     Admin
   - if current_user.admin?
     - current_page = params[:controller].in?(%w(admin)) && params[:action].in?(%w(spam_report searches))
     = link_to admin_spam_report_path, class: "link-unstyled d-inline-block px-3 pt-2 pb-2 rounded-top header-tab #{"border border-bottom-0 header-tab-active" if current_page}", data: { object: "#{"suppress-click" if current_page?(admin_spam_report_path)}" } do
-      %i.fa.fa-area-chart
+      = icon("fas", "chart-area")
       Reports

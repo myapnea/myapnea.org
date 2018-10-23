@@ -9,11 +9,11 @@
         = member.created_at.strftime("%b %Y")
 
       - if member.profile_location.present?
-        %i.fa.fa-map-marker
+        = icon("fas", "map-marker-alt")
         = member.profile_location
       = link_to posts_member_path(member.username) do
         View profile
-        %i.fa.fa-caret-right
+        = icon("fas", "caret-right")
 
   - if member.profile_bio.present?
     .member-bio

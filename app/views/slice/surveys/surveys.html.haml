@@ -51,11 +51,11 @@
                 - if event_design.percent.to_i.zero?
                   = link_to slice_surveys_start_path(@project, event_design.event_slug, event_design.design_slug) do
                     Start
-                    %i.fa.fa-caret-right
+                    = icon("fas", "caret-right")
                 - else
                   = link_to slice_surveys_resume_path(@project, event_design.event_slug, event_design.design_slug) do
                     Resume
-                    %i.fa.fa-caret-right
+                    = icon("fas", "caret-right")
               - elsif event_design.valid? && event_design.complete?(@subject)
                 %i.fa.fa-bar-chart.text-accent
                 = link_to slice_surveys_report_path(@project, event_design.event_slug, event_design.design_slug), class: "small" do
