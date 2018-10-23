@@ -21,25 +21,26 @@
 = render "replies/index", parent: @topic
 
 - if @page == @topic.last_page
-  - if @topic.auto_locked?
-    .box-shadow.bg-light.p-3.rounded.text-center
-      %i.fa.fa-lock
-      Topic is locked.
-      = link_to "Start a new topic", new_topic_path
-  - else
-    #comment_container_root_new{ style: "display:none" }
-      - reply = @topic.replies.new
-      = render "replies/form", reply: reply
+  .mb-3
+    - if @topic.auto_locked?
+      .box-shadow.bg-light.p-3.rounded.text-center
+        %i.fa.fa-lock
+        Topic is locked.
+        = link_to "Start a new topic", new_topic_path
+    - else
+      #comment_container_root_new{ style: "display:none" }
+        - reply = @topic.replies.new
+        = render "replies/form", reply: reply
 
-    %a.anchor{ name: "write-a-reply" }
-    #write_reply_root_new
-      - async_write_a_reply_path = async_parent_reply_path(topic_id: @topic, parent_reply_id: "root", reply_id: "new")
-      = link_to "Write a reply", async_write_a_reply_path, method: :post, remote: true, class: "btn btn-accent btn-shadow"
+      %a.anchor{ name: "write-a-reply" }
+      #write_reply_root_new
+        - async_write_a_reply_path = async_parent_reply_path(topic_id: @topic, parent_reply_id: "root", reply_id: "new")
+        = link_to "Write a reply", async_write_a_reply_path, method: :post, remote: true, class: "btn btn-accent btn-shadow"
 
-.center-horizontally= paginate @replies, theme: "bootstrap-small"
+- unless @replies.first_page? && @replies.last_page?
+  .center-horizontally= paginate @replies, theme: "bootstrap-small"
 
 - if current_user
-  #topic-subscription= render "topics/subscribe_unsubscribe", topic: @topic
-
+  #topic-subscription.mb-4.text-center= render "topics/subscribe_unsubscribe", topic: @topic
 
 = render "topics/disclaimer"
