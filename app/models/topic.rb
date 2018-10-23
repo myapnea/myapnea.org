@@ -93,8 +93,12 @@ class Topic < ApplicationRecord
     (!auto_locked? && user == current_user) || current_user.moderator? || current_user.admin?
   end
 
-  def last_page
-    ((replies.where(reply_id: nil).count - 1) / Reply::REPLIES_PER_PAGE) + 1
+  def last_page(current_user)
+    if current_user&.admin?
+      ((replies.where(reply_id: nil).count - 1) / Reply::REPLIES_PER_PAGE) + 1
+    else
+      ((replies.where(reply_id: nil).shadow_banned(current_user).count - 1) / Reply::REPLIES_PER_PAGE) + 1
+    end
   end
 
   def compute_shadow_ban!

@@ -6,6 +6,9 @@
 - **Gem Changes**
   - Update to ruby 2.5.3
 
+### Bug Fix
+- Fixed "Write a Reply" redirection on topics with interleaved deleted replies
+
 ## 18.1.0 (October 10, 2018)
 
 ### Enhancements
