@@ -14,7 +14,7 @@
       = icon("fas", "eye-slash", class: "text-muted")
     .d-inline.d-md-none
       - if reply.user[:photo]
-        - picture_content = profile_picture_tag(reply.user, size: 16, style: "max-height: #{16+3}px;border-radius: 4px;")
+        - picture_content = profile_picture_tag(reply.user, size: 16, style: "max-height: #{16+3}px;border-radius: .25rem;")
       - else
         - picture_content = icon("fas", "user", class: "text-muted")
       = link_to picture_content, posts_member_path(reply.user.username)

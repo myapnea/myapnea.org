@@ -103,7 +103,7 @@
 .preview-tab:hover {
   border: 1px solid transparent;
   border-bottom: 0;
-  border-radius: 4px 4px 0 0;
+  border-radius: $border-radius $border-radius 0 0;
   display: inline-block;
   margin-bottom: -6px;
   margin-top: -5px;
