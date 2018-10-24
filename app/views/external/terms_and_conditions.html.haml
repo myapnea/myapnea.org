@@ -6,14 +6,17 @@
 - content_for :footer, render("decorations/moon")
 
 .dashboard-container
-  .brand-title= @title
+  .brand-title
+    = ENV["website_name"]
+    = @title
 
   %p
     By accessing the
     %strong MyApnea Forum
     (hereinafter
-    %em we, us, our, MyApnea Forum
-    ), you agree to be legally bound by the following terms. If you do not agree
+    = succeed ")," do
+      %em we, us, our, MyApnea Forum
+    you agree to be legally bound by the following terms. If you do not agree
     to be legally bound by all of the following terms then please do not access
     and/or use the
     %strong MyApnea Forum.
@@ -30,26 +33,26 @@
     direct medical advice and MyApnea has the right to remove, edit, move or
     close any topic or material that is related to direct medical advice. To
     help clarify, here are examples:
-    %ul
-      %li
-        %strong Shared personal experience:
-        "I'm sorry Member123 that you are not sleeping as well as you used to.
-        When I experienced the same issue I met with my doctor and she lowered
-        the pressure on my CPAP".
-      %li
-        %strong Direct medical advice:
-        "Member123 if you are not sleeping well you should lower the pressure on
-        your CPAP.""
-  %br
+
+  .mb-3.border-left{ style: "border-width: 2px !important;" }
+    %p.ml-3
+      %strong Shared personal experience:
+      "I'm sorry Member123 that you are not sleeping as well as you used to.
+      When I experienced the same issue I met with my doctor and she lowered
+      the pressure on my CPAP".
+    %p.ml-3
+      %strong Direct medical advice:
+      "Member123 if you are not sleeping well you should lower the pressure on
+      your CPAP.""
+
   %p
     This is a moderated forum; however, entries are posted immediately after
     they are created. We provide this tag on all topics that may include entries
-    that have not yet been moderated. "This topic includes at least one post
-    that has not been approved by a moderator. Please be advised that these
-    posts may contain sensitive material or unsolicited medical advice.
-    MyApnea does not endorse the content of these posts. The information
-    provided on this site is not intended nor recommended as a substitute for
-    advice from a health care professional who has evaluated you."
+    that have not yet been moderated. "Please be advised that these posts may
+    contain sensitive material or unsolicited medical advice. MyApnea does not
+    endorse the content of these posts. The information provided on this site is
+    not intended nor recommended as a substitute for advice from a health care
+    professional who has evaluated you."
   %p
     You agree
     not to post any abusive, obscene, vulgar, slanderous, hateful, threatening,

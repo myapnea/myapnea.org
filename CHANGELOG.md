@@ -2,6 +2,7 @@
 
 ### Enhancements
 - **General Changes**
+  - Add updated Privacy Policy
   - Clarify purpose of support email on contact page
 - **Gem Changes**
   - Update to ruby 2.5.3
