@@ -4,18 +4,18 @@
       = link_to "#", class: "nav-link", data: { toggle: "dropdown" }, aria: { haspopup: "true", expanded: "false" } do
         = icon("fas", "ellipsis-v")
     - else
-      = link_to "#", class: "nav-link dropdown-toggle", data: { toggle: "dropdown" }, aria: { haspopup: "true", expanded: "false" } do
-        = profile_picture_tag(current_user, size: 20)
+      - if current_user[:photo]
+        - picture_content = profile_picture_tag(current_user, size: 20)
+      - else
+        - picture_content = icon("fas", "user", class: "text-muted")
+
+      = link_to picture_content, "#", class: "nav-link dropdown-toggle", data: { toggle: "dropdown" }, aria: { haspopup: "true", expanded: "false" }
 
     .dropdown-menu.dropdown-menu-right.dropdown-menu-custom
       .dropdown-menu-custom-inner
-        = link_to dashboard_path, class: "dropdown-item" do
-          My dashboard
-
+        = link_to "My dashboard", dashboard_path, class: "dropdown-item"
         = link_to "My profile", posts_member_path(current_user.username), class: "dropdown-item"
-
-        = link_to settings_path, class: "dropdown-item" do
-          Settings
+        = link_to "Settings", settings_path, class: "dropdown-item"
 
         .dropdown-divider
         - if current_user.admin? || current_user.report_manager?
@@ -29,24 +29,20 @@
   %hr
 
 %li.nav-item.d-lg-none{ class: current_page?(dashboard_path) ? "active" : nil }
-  = link_to dashboard_path, class: "nav-link" do
-    My Dashboard
+  = link_to "My dashboard", dashboard_path, class: "nav-link"
   - if current_page?(dashboard_path)
     %span.sr-only (current)
 
 %li.nav-item.d-lg-none{ class: current_page?(settings_path) ? "active" : nil }
-  = link_to settings_path, class: "nav-link" do
-    Settings
+  = link_to "Settings", settings_path, class: "nav-link"
   - if current_page?(settings_path)
     %span.sr-only (current)
 
 - if current_user.admin? || current_user.report_manager?
   %li.nav-item.d-lg-none{ class: current_page?(admin_path) ? "active" : nil }
-    = link_to admin_path, class: "nav-link" do
-      Admin
+    = link_to "Admin", admin_path, class: "nav-link"
     - if current_page?(admin_path)
       %span.sr-only (current)
 
 %li.nav-item.d-lg-none
-  = link_to destroy_user_session_path, class: "nav-link" do
-    Sign out
+  = link_to "Sign out", destroy_user_session_path, class: "nav-link"
