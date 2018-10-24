@@ -34,7 +34,7 @@ gem "jquery-rails",         "~> 4.3.3"
 gem "turbolinks",           "~> 5"
 
 group :development do
-  gem "web-console", "~> 3.0"
+  gem "web-console",        "~> 3.0"
 end
 
 # Testing
