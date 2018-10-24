@@ -7,7 +7,7 @@
       - if current_user[:photo]
         - picture_content = profile_picture_tag(current_user, size: 20)
       - else
-        - picture_content = icon("fas", "user", class: "text-muted")
+        - picture_content = icon("fas", "user")
 
       = link_to picture_content, "#", class: "nav-link dropdown-toggle", data: { toggle: "dropdown" }, aria: { haspopup: "true", expanded: "false" }
 
