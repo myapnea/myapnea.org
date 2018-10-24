@@ -25,8 +25,12 @@
     - if @topic.auto_locked?
       .box-shadow.bg-light.p-3.rounded.text-center
         = icon("fas", "lock")
-        Topic is locked.
-        = link_to "Start a new topic", new_topic_path
+        - if @topic.locked?
+          Topic locked by moderator.
+        - else
+          Topic locked due to inactivity.
+          = link_to "Start a new topic", new_topic_path
+          to engage with active community members.
     - else
       #comment_container_root_new{ style: "display:none" }
         - reply = @topic.replies.new
@@ -40,7 +44,7 @@
 - unless @replies.first_page? && @replies.last_page?
   .center-horizontally= paginate @replies, theme: "bootstrap-small"
 
-- if current_user
+- if current_user && @topic.not_auto_locked?
   #topic-subscription.mb-4.text-center= render "topics/subscribe_unsubscribe", topic: @topic
 
 = render "topics/disclaimer"

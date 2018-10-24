@@ -4,6 +4,8 @@
 - **General Changes**
   - Add updated Privacy Policy
   - Clarify purpose of support email on contact page
+- **Forum Changes**
+  - Locked topics now provide information on why they are locked
 - **Gem Changes**
   - Update to ruby 2.5.3
   - Update to font-awesome-sass 5.4.1
