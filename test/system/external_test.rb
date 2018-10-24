@@ -21,7 +21,7 @@ class ExternalTest < ApplicationSystemTestCase
   test "visit about page" do
     visit about_url
     screenshot("visit-about-page")
-    page.execute_script("window.scrollBy(0, $(\"body\").height());")
+    scroll_down
     screenshot("visit-about-page")
   end
 
@@ -46,7 +46,7 @@ class ExternalTest < ApplicationSystemTestCase
     screenshot("visit-blog")
     assert_selector "h1", text: "Blog"
     # Add if blog extends beyond bottom of browser.
-    # page.execute_script("window.scrollBy(0, $(\"body\").height());")
+    # scroll_down
     # screenshot("visit-blog")
   end
 
@@ -55,7 +55,7 @@ class ExternalTest < ApplicationSystemTestCase
     screenshot("visit-forum")
     assert_selector "h1", text: "Forum"
     # Add if forum extends beyond bottom of browser.
-    # page.execute_script("window.scrollBy(0, $(\"body\").height());")
+    # scroll_down
     # screenshot("visit-forum")
   end
 
@@ -63,7 +63,7 @@ class ExternalTest < ApplicationSystemTestCase
     visit privacy_policy_url
     screenshot("visit-privacy-policy")
     assert_selector "h1", text: "Privacy Policy"
-    page.execute_script("window.scrollBy(0, $(\"body\").height());")
+    scroll_down
     screenshot("visit-privacy-policy")
   end
 

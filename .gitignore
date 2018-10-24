@@ -7,10 +7,6 @@
 # Ignore bundler config.
 /.bundle
 
-# Ignore the default SQLite database.
-/db/*.sqlite3
-/db/*.sqlite3-journal
-
 # Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*
@@ -19,6 +15,7 @@
 
 # Ignore uploaded files in development
 /storage/*
+!/storage/.keep
 
 /node_modules
 /yarn-error.log
@@ -29,6 +26,17 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
+# Ignore code coverage results.
+/coverage/*
+
+# Ignore system test documentation output.
+/docs/*
+
+# Ignore OS generated files.
+.DS_Store
+
+
+### OLDER BELOW
 
 # These files contain application specific passwords that should NEVER be included in version control.
 # These files are generated when the user initially runs ruby initial_setup.rb from the <rails_root> directory.
@@ -38,23 +46,13 @@
 /config/database.yml
 /config/urlregex.yml
 
-/public/cache/*
-/public/stylesheets/cache/*
-/public/javascripts/cache/*
-
-# CarrierWave
-/carrierwave/**/*
-/test/support/*
-
 # Other Files
-
 /gems.locked
 /db/schema.rb
 /app/assets/images/videos/*
 /lib/data/reports/**/*
 /lib/data/spam/*
 
-/coverage/*
-
-# OS generated files #
-.DS_Store
+# CarrierWave
+/carrierwave/**/*
+/test/support/*

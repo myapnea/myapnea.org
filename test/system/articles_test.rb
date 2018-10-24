@@ -10,7 +10,7 @@ class ArticlesTest < ApplicationSystemTestCase
   test "visit blog" do
     visit blog_url
     screenshot("visit-blog")
-    # page.execute_script("window.scrollBy(0, $(\"body\").height());")
+    # scroll_down
     # screenshot("visit-blog")
   end
 

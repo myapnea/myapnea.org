@@ -15,9 +15,9 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
     return unless @screenshots_enabled
     @counter += 1
     relative_location = File.join(
-      "tmp",
-      "screenshots",
+      "docs",
       Myapnea::VERSION::STRING,
+      "screenshots",
       "#{file_name}-#{format("%02d", @counter)}.png"
     )
     page.save_screenshot(Rails.root.join(relative_location))
@@ -26,5 +26,13 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
 
   def click_form_submit
     find("input[type=submit]").click
+  end
+
+  def click_element(selector)
+    page.execute_script("$(\"#{selector}\").click();")
+  end
+
+  def scroll_down
+    page.execute_script("window.scrollBy(0, $(window).height());")
   end
 end

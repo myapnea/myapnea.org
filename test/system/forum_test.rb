@@ -7,7 +7,7 @@ class ForumTest < ApplicationSystemTestCase
   test "visit forum" do
     visit topics_url
     screenshot("visit-forum")
-    # page.execute_script("window.scrollBy(0, $(\"body\").height());")
+    # scroll_down
     # screenshot("visit-forum")
   end
 
