@@ -6,6 +6,10 @@
   - Clarify purpose of support email on contact page
 - **Forum Changes**
   - Locked topics now provide information on why they are locked
+  - Forum badges are now more visible
+  - Original Poster added as a more prominent forum badge
+  - Add customizable forum badges
+    - Examples: Support Team, Researcher, and Sleep Professional
 - **Gem Changes**
   - Update to ruby 2.5.3
   - Update to font-awesome-sass 5.4.1

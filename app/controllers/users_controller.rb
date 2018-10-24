@@ -60,7 +60,7 @@ class UsersController < ApplicationController
       :full_name, :email, :username, :emails_enabled,
       :include_in_exports, :admin, :moderator, :community_contributor,
       :shadow_banned, :spammer, :content_manager, :report_manager, :profile_bio,
-      :profile_location, :profile_reviewed
+      :profile_location, :profile_reviewed, :forum_badge
     )
   end
 

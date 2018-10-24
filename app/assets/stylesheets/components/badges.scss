@@ -1,7 +1,6 @@
 .forum-badge {
-  border-radius: 2px;
-  font-size: 8px;
-  padding: 2px 4px;
+  font-size: 80%;
+  font-weight: 500;
 }
 
 @each $name, $theme in $themes {
@@ -9,8 +8,13 @@
     .forum-badge {
       background-color: $p200-grey;
 
-      &.forum-badge-color {
+      &.forum-badge-primary {
         background-color: map-get($theme, p500);
+        color: map-get($theme, brand-white);
+      }
+
+      &.forum-badge-accent {
+        background-color: map-get($theme, accent);
         color: map-get($theme, brand-white);
       }
     }

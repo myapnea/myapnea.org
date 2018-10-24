@@ -45,6 +45,7 @@
   = render "forms/horizontal/show/check_box", object: @user, key: :report_manager
   = render "forms/horizontal/show/check_box", object: @user, key: :content_manager
   = render "forms/horizontal/show/check_box", object: @user, key: :community_contributor
+  = render "forms/horizontal/show/generic", title: "Forum badge", content: render("users/forum_badge", user: @user) if @user.forum_badge.present?
   = render "forms/horizontal/show/text", object: @user, key: :sign_in_count
   = render "forms/horizontal/show/generic", title: "Most Recent Session", content: @user.current_sign_in_at.strftime("%-m/%-d/%Y") if @user.current_sign_in_at.present?
   = render "forms/horizontal/show/check_box", object: @user, key: :include_in_exports

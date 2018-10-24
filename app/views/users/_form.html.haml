@@ -11,6 +11,7 @@
   = render "forms/horizontal/check_box", form: form, object: user, key: :report_manager, help_text: "Can view site statistics."
   = render "forms/horizontal/check_box", form: form, object: user, key: :content_manager, help_text: "Can create FAQs and articles."
   = render "forms/horizontal/check_box", form: form, object: user, key: :community_contributor, help_text: "Can create and edit blog posts."
+  = render "forms/horizontal/text_field", form: form, object: user, key: :forum_badge, help_text: "Ex: Support Team, Researcher, Sleep Professional"
   = render "forms/horizontal/check_box", form: form, object: user, key: :include_in_exports, key_name: "Include in exports and reports."
   = render "forms/horizontal/check_box", form: form, object: user, key: :shadow_banned
   = render "forms/horizontal/check_box", form: form, object: user, key: :spammer
