@@ -14,7 +14,7 @@
 
   = succeed " " do
     = link_to article_vote_path(article, vote: change_to), method: :post, remote: true, class: "btn #{klass} btn-sm" do
-      %i.fa.fa-thumbs-up{ class: (just_voted && rating == 1 ? "just-voted" : nil) }
+      = icon("fas", "thumbs-up", class: (just_voted && rating == 1 ? "just-voted" : nil))
 
   - if rating == -1
     - klass = "btn-danger"
@@ -24,7 +24,7 @@
     - change_to = "down"
 
   = link_to article_vote_path(article, vote: change_to), method: :post, remote: true, class: "btn #{klass} btn-sm" do
-    %i.fa.fa-thumbs-down{ class: (just_voted && rating == -1 ? "just-voted" : nil) }
+    = icon("fas", "thumbs-down", class: (just_voted && rating == -1 ? "just-voted" : nil))
 
 %span.small{ style: "color: #9e9e9e;" }
   -# $p500-grey

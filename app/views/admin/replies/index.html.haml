@@ -26,7 +26,7 @@
         %tr
           %td.d-none.d-md-table-cell.text-center
             - if reply.deleted?
-              %i.fa.fa-eye-slash.text-muted{ rel: "tooltip", data: { title: "Deleted", container: "body", placement: "left" } }
+              = icon("fas", "eye-slash", class: "text-muted", rel: "tooltip", data: { title: "Deleted", container: "body", placement: "top" })
           %td.d-none.d-md-table-cell.text-right.text-center
             - symbol = "+" if reply.rank >= 0
             = "#{symbol}#{reply.rank}"

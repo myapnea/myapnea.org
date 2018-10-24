@@ -24,13 +24,13 @@
   i {
     animation: sun-pulse 1s ease-in-out infinite alternate;
 
-    &.fa-sun-o {
+    &.fa-sun {
       font-size: $sun-size;
       color: $sun-color;
     }
 
     &.fa-circle {
-      font-size: $sun-size * 100 / 128; // 100px;
+      font-size: $sun-size * 80 / 128; // 80px;
       color: $sun-inner-color;
     }
   }
@@ -41,12 +41,12 @@
     top: -$sun-size-sm + ($sun-container-sm / 2);
 
     i {
-      &.fa-sun-o {
+      &.fa-sun {
         font-size: $sun-size-sm;
       }
 
       &.fa-circle {
-        font-size: $sun-size-sm * 100 / 128; // 400px;
+        font-size: $sun-size-sm * 80 / 128; // 320px;
       }
     }
   }

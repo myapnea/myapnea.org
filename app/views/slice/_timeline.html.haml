@@ -6,25 +6,25 @@
     - unless event_month.zero?
       .event-timeline-arrow
         .text-center.d-none.d-md-block
-          %i.fa.fa-long-arrow-right.text-muted
+          = icon("fas", "long-arrow-alt-right", class: "text-muted")
         .text-center.d-block.d-md-none
-          %i.fa.fa-long-arrow-down.text-muted
+          = icon("fas", "long-arrow-alt-down", class: "text-muted")
     - if event_month.zero? # current_event == event
       - event_found = true
       .event-timeline.d-flex.flex-row.flex-md-column
         .mr-1.mr-md-0
-          %i.fa.fa-user.text-primary
+          = icon("fas", "user", class: "text-primary")
         %div
           %span.badge.badge-primary= event_name
     - elsif event_found
       .event-timeline.d-flex.flex-row.flex-md-column
         .mr-1.mr-md-0
-          %i.fa.fa-square-o
+          = icon("far", "square")
         %div
           %span.badge.badge-secondary= event_name
     - else
       .event-timeline.d-flex.flex-row.flex-md-column
         .mr-1.mr-md-0
-          %i.fa.fa-check-square.text-success
+          = icon("fas", "check-square", class: "text-success")
         %div
           %span.badge.badge-success= event_name

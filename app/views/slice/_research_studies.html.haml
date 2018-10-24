@@ -4,7 +4,7 @@
     .research-study{ class: "cover-theme-#{project.cover_theme}" }
       .d-flex.flex-row.align-items-stretch
         .research-study-icon.d-flex.align-items-center
-          %i.fa.fa-flask
+          = icon("fas", "book-open")
         .research-study-body.d-flex.align-items-center
           .d-flex.flex-column.flex-lg-row
             .research-study-text.order-1.order-lg-0
@@ -14,21 +14,21 @@
               .research-study-background-image.order-0.order-lg-1{ class: "research-study-background-image-#{rand(2)}" }
       .research-study-footer.d-flex.flex-column.flex-sm-row
         .ml-3.d-inline-block{ class: project.slug == "myapnea-core" ? nil : "mr-auto" }
-          %i.fa.fa-users.text-accent
+          = icon("fas", "users", class: "text-accent")
           %small
             Recruiting
         - if project.slug == "myapnea-core"
           .ml-3.d-inline-block
-            %i.fa.fa-heartbeat.text-accent
+            = icon("fas", "heartbeat", class: "text-accent")
             %small
               17 surveys
           .ml-3.mr-auto.d-inline-block
-            %i.fa.fa-pie-chart.text-accent
+            = icon("fas", "chart-pie", class: "text-accent")
             %small
               Personalized report
         - if project.slug == "myapnea-core" && false
           .ml-3.d-inline-block
-            %i.fa.fa-pie-chart.text-accent
+            = icon("fas", "chart-pie", class: "text-accent")
             %small
               = link_to "#", data: { object: "show-research-study", research_study: project.id } do
                 Personalized report
@@ -38,20 +38,20 @@
             - if current_user && subject
               = link_to participate_path(project), class: "btn btn-sm btn-primary btn-shadow" do
                 Visit study
-                %i.fa.fa-angle-right
+                = icon("fas", "angle-right")
             - else
               = link_to participate_path(project), class: "btn btn-sm btn-primary btn-shadow" do
                 Get started
-                %i.fa.fa-angle-right
+                = icon("fas", "angle-right")
           - else
             - if current_user && subject
               = link_to slice_overview_path(project), class: "btn btn-sm btn-primary btn-shadow" do
                 Take surveys
-                %i.fa.fa-angle-right
+                = icon("fas", "angle-right")
             - else
               = link_to slice_consent_path(project), class: "btn btn-sm btn-primary btn-shadow" do
                 Get started
-                %i.fa.fa-angle-right
+                = icon("fas", "angle-right")
 
 - else
   .jumbotron.jumbotron-action.jumbotron-custom-text.jumbotron-shadow

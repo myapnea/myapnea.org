@@ -15,7 +15,7 @@
   %ul.pagination.pagination-sm
     %li.page-item
       = link_to topics_path, class: "page-link" do
-        %i.fa.fa-angle-left
+        = icon("fas", "angle-left")
         Back to forum
 
 = render "replies/index", parent: @topic

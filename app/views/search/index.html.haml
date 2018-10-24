@@ -14,8 +14,7 @@
           .input-group
             = form.text_field :search, value: params[:search], class: "form-control form-control-lg", placeholder: "Start your search...", autocomplete: "off", autofocus: params[:search].blank?
             .input-group-append
-              = link_to "#", class: "btn btn-lg btn-primary", data: { object: "submit-and-disable", target: "#search-form" } do
-                %i.fa.fa-search
+              = link_to icon("fas", "search"), "#", class: "btn btn-lg btn-primary", data: { object: "submit-and-disable", target: "#search-form" }
 
         - if params[:search].present?
           - @highlight_found = true

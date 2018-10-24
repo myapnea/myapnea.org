@@ -7,9 +7,9 @@
 - if current_user.admin?
   %td.small
     - if user.confirmed?
-      %i.fa.fa-check-circle.text-success{ rel: "tooltip", data: { title: "Email confirmed", container: "body", placement: "top" } }
+      = icon("fas", "check-circle", class: "text-success", rel: "tooltip", data: { title: "Email confirmed", container: "body", placement: "top" })
     - else
-      %i.fa.fa-question-circle.text-muted{ rel: "tooltip", data: { title: "Unconfirmed email", container: "body", placement: "top" } }
+      = icon("fas", "question-circle", class: "text-muted", data: { toggle: "tooltip", title: "Unconfirmed email", container: "body", placement: "top" })
     %span.d-none.d-md-inline.breakword
       = render "users/email", user: user
     %span.d-inline.d-md-none
@@ -19,8 +19,7 @@
   %small= abbreviated_time(user.current_sign_in_at || user.created_at)
 - if current_user.admin?
   %td.text-center
-    - if user.shadow_banned?
-      %i.fa.fa-eye-slash.text-muted
+    = icon("fas", "eye-slash", class: "text-muted") if user.shadow_banned?
 - if current_user.admin? && false
   %td.d-none.d-sm-table-cell.text-center
     \-1
@@ -43,7 +42,7 @@
           .dropdown-divider
           - if !user.spammer? || !user.shadow_banned?
             = link_to spam_user_path(user), method: :post, remote: true, class: "dropdown-item text-danger" do
-              %i.fa.fa-user-secret
+              = icon("fas", "user-secret")
               Spam
           = link_to user, method: :delete, data: { confirm: "Delete #{user.full_name}?" }, class: "dropdown-item text-danger" do
             = icon("fas", "trash-alt")

@@ -67,12 +67,12 @@
   .brand-title Consent
   = link_to "Read consent", slice_consent_path(@project), class: "btn btn-sm btn-outline-primary"
   = link_to slice_print_consent_path(@project), class: "btn btn-sm btn-outline-dark", data: { turbolinks: false } do
-    %i.fa.fa-print
+    = icon("fas", "print")
     Print consent
 
 .card.mb-5
   %h4.card-header.text-danger
-    %i.fa.fa-user
+    = icon("fas", "user")
     Leave study
   .card-body
     %p You may leave the study, but this action is PERMANENT.

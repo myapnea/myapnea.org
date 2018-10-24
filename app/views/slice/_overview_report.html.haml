@@ -2,7 +2,7 @@
   .mb-5
     .float-right
       = link_to slice_print_overview_report_path(@project), class: "btn btn-sm btn-outline-dark", data: { turbolinks: false } do
-        %i.fa.fa-print
+        = icon("fas", "print")
         Print
 
     .brand-title

@@ -28,7 +28,7 @@
 .dashboard-container
   - if @user.shadow_banned?
     .jumbotron.jumbotron-action.jumbotron-custom-text.jumbotron-shadow
-      %i.fa.fa-eye-slash
+      = icon("fas", "eye-slash")
       User is shadow banned.
 
   = render "forms/horizontal/show/generic", title: "Username", content: link_to(@user.username, member_path(@user.username)) if @user.username.present?

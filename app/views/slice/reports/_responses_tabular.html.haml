@@ -14,14 +14,14 @@
           %td
             - case variable_type when "checkbox"
               - if voted
-                %i.fa.fa-check-square
+                = icon("fas", "check-square")
               - else
-                %i.fa.fa-square-o
+                = icon("far", "square")
             - else
               - if voted
-                %i.fa.fa-check-circle
+                = icon("fas", "check-circle")
               - else
-                %i.fa.fa-circle-o
+                = icon("far", "circle")
           %td= response
           %td.text-center
             - if total.zero?

@@ -17,14 +17,14 @@
                 %li
                   = link_to slice_surveys_path(@project), class: current_page?(slice_surveys_path(@project)) ? "active" : nil do
                     - if subject_event.complete?(@subject)
-                      %i.fa.fa-check-square-o
+                      = icon("far", "check-square")
                     - else
-                      %i.fa.fa-square-o
+                      = icon("far", "square")
                     = subject_event.name
             - if false
               %li
                 = link_to slice_overview_report_path(@project), class: current_page?(slice_overview_report_path(@project)) ? "active" : nil do
-                  %i.fa.fa-pie-chart
+                  = icon("fas", "chart-pie")
                   Report
           - if current_user
             %li.sidebar-menu-header Public

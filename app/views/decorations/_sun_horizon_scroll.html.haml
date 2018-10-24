@@ -2,12 +2,11 @@
   = link_to "#about", data: { object: "scroll-anchor decoration-sun-horizon-scroll", duration: "1200" }, class: "sun-horizon-container" do
     .sun-horizon-object
       %span.fa-stack
-        %i.fa.fa-circle.fa-stack-1x
-        %i.fa.fa-sun-o.fa-stack-1x
-
+        = icon("fas", "sun", class: "fa-stack-1x")
+        = icon("fas", "circle", class: "fa-stack-1x")
 - else
   .sun-horizon-container{ data: { object: "decoration-sun-horizon-scroll" } }
     .sun-horizon-object
       %span.fa-stack
-        %i.fa.fa-circle.fa-stack-1x
-        %i.fa.fa-sun-o.fa-stack-1x
+        = icon("fas", "sun", class: "fa-stack-1x")
+        = icon("fas", "circle", class: "fa-stack-1x")

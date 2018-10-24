@@ -8,9 +8,9 @@
       %tr
         %td
           - if voted
-            %i.fa.fa-check-square
+            = icon("fas", "check-square")
           - else
-            %i.fa.fa-square-o
+            = icon("far", "square")
         %td= display_name
 - else
   .survey-review-my-response

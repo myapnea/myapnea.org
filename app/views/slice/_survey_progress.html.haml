@@ -36,7 +36,7 @@
             = icon("fas", "caret-right")
         - else
           .disabled
-            %i.fa.fa-exclamation-triangle
+            = icon("fas", "exclamation-triangle")
             Survey unavailable
 
       .text-center
@@ -52,8 +52,7 @@
 
     - if event_design.valid?
       = link_to url, class: "subject-survey-progress-link p-3 d-flex align-items-center myapnea-grey-bg", data: { turbolinks: false } do
-        %div
-          %i.fa.fa-angle-right
+        %div= icon("fas", "angle-right")
 
 - else
   -# Surveys completed
@@ -62,7 +61,7 @@
       .subject-survey-progress-body
         %h2
           Survey status
-          %i.fa.fa-check-square.text-success
+          = icon("fas", "check-square", class: "text-success")
         .text-success
           Congrats! You completed all
           = @project.name

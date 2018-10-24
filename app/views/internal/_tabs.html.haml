@@ -1,12 +1,12 @@
 - content_for :tabs do
   - current_page = params[:controller].in?(%w(internal))
   = link_to dashboard_path, class: "link-unstyled d-inline-block px-3 pt-2 pb-2 rounded-top header-tab #{"border border-bottom-0 header-tab-active" if current_page}", data: { object: "#{"suppress-click" if current_page?(dashboard_path)}" } do
-    %i.fa.fa-home
+    = icon("fas", "home")
     Dashboard
 
   - current_page = params[:controller].in?(%w(slice))
   = link_to slice_research_path, class: "link-unstyled d-inline-block px-3 pt-2 pb-2 rounded-top header-tab #{"border border-bottom-0 header-tab-active" if current_page}", data: { object: "#{"suppress-click" if current_page?(slice_research_path)}" } do
-    %i.fa.fa-files-o
+    = icon("far", "copy")
     Surveys
 
   - current_page = params[:controller].in?(%w(settings))

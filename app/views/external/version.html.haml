@@ -1,15 +1,8 @@
 - @title = "Version"
 
-- render "themes/random"
+- @theme = "dark-blue"
 
-- case @theme
-- when "day"
-  - if rand(2).zero?
-    - content_for :footer, render("decorations/sun_horizon_half")
-  - else
-    - content_for :footer, render("decorations/sun")
-
-.page-box.last-box.d-flex.align-items-center
+.page-box.last-box.d-flex.align-items-center.theme-bg{ class: "theme-#{@theme}-focus-bg" }
   .container
-    .text-center{ class: @theme != "default" ? "text-white" : nil, style: "font-size: 2rem;" }
+    .text-center.text-white{ style: "font-size: 2rem;" }
       = "v#{Myapnea::VERSION::STRING}"

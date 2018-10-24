@@ -41,7 +41,7 @@ $sunset-container-sm: $sunset-size-sm + $sunset-padding-sm;
     }
 
     &.fa-circle {
-      font-size: $sunset-size * 100 / 128; // 100px;
+      font-size: $sunset-size * 90 / 128; // 90px;
       color: $sunset-inner-color;
     }
   }
@@ -57,7 +57,7 @@ $sunset-container-sm: $sunset-size-sm + $sunset-padding-sm;
       }
 
       &.fa-circle {
-        font-size: $sunset-size-sm * 100 / 128; // 400px;
+        font-size: $sunset-size-sm * 90 / 128; // 360px;
       }
     }
   }
