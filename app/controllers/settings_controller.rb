@@ -96,7 +96,7 @@ class SettingsController < ApplicationController
   end
 
   def profile_picture_params
-    params.require(:user).permit(:photo)
+    params.require(:user).permit(:photo, :remove_photo)
   end
 
   def account_params

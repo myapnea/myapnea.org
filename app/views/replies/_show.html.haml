@@ -11,10 +11,13 @@
             = link_to reply.parent.title, reply, data: { turbolinks: false }
       .reply-inner-container
         .reply-avatar-container{ style: "#{"display:none" unless reply.display_for_user?(current_user)}" }
-          .reply-avatar
+          .reply-avatar.text-center
             - unless reply.deleted?
               - size = 50
-              - picture_content = profile_picture_tag(reply.user, size: size, style: "height: auto;max-width:#{size + 5}px;")
+              - if reply.user[:photo]
+                - picture_content = profile_picture_tag(reply.user, size: size, style: "height: auto;max-width:#{size + 5}px;")
+              - else
+                - picture_content = icon("fas", "user", class: "text-muted fa-3x", style: "width: 50px;")
               = link_to picture_content, posts_member_path(reply.user.username)
               .text-center.text-muted{ style: "font-size: 9px;margin-top:5px" }
                 = pluralize(number_with_delimiter(reply.user.replies_count), "post")

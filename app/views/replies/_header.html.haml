@@ -13,7 +13,10 @@
     - if current_user && current_user.admin? && reply.user.shadow_banned?
       = icon("fas", "eye-slash", class: "text-muted")
     .d-inline.d-md-none
-      - picture_content = profile_picture_tag(reply.user, size: 16, style: "max-height:#{16+3}px;border-radius:4px")
+      - if reply.user[:photo]
+        - picture_content = profile_picture_tag(reply.user, size: 16, style: "max-height: #{16+3}px;border-radius: 4px;")
+      - else
+        - picture_content = icon("fas", "user", class: "text-muted")
       = link_to picture_content, posts_member_path(reply.user.username)
     = link_to reply.user.username, posts_member_path(reply.user.username)
   %span.text-muted{ id: "reply-#{reply.id}-points", style: "font-size: 60%" }

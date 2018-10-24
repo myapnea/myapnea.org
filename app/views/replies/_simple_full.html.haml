@@ -1,14 +1,20 @@
 .reply-simple-full-hover-box.mb-3.box-shadow
   .reply-remove-margin-bottom.d-flex.d-column.justify-content-between
-    .py-3.pl-3.d-none.d-lg-block
+    .py-3.pl-3.d-none.d-lg-block.text-center
       - size = 50
-      - picture_content = profile_picture_tag(reply.user, size: size, style: "height: auto;max-width: #{size + 5}px;")
+      - if reply.user[:photo]
+        - picture_content = profile_picture_tag(reply.user, size: size, style: "height: auto;max-width:#{size + 5}px;")
+      - else
+        - picture_content = icon("fas", "user", class: "text-muted fa-3x", style: "width: 50px;")
       = link_to picture_content, posts_member_path(reply.user.username)
     .py-3.pl-2.pr-3.mr-auto.w-100
       .small
         .float-right= link_to reply.parent.title, reply, data: { turbolinks: false }, class: "link-muted"
         .d-inline.d-lg-none
-          - picture_content = profile_picture_tag(reply.user, size: 16, style: "max-height: #{16+3}px;")
+          - if reply.user[:photo]
+            - picture_content = profile_picture_tag(reply.user, size: 16, style: "max-height: #{16+3}px;border-radius: 4px;")
+          - else
+            - picture_content = icon("fas", "user", class: "text-muted")
           = link_to picture_content, posts_member_path(reply.user.username)
         = link_to reply.user.username, posts_member_path(reply.user.username)
       = link_to reply, data: { turbolinks: false }, class: "link-unstyled breakword" do

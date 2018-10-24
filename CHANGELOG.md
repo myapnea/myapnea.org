@@ -10,6 +10,8 @@
   - Original Poster added as a more prominent forum badge
   - Add customizable forum badges
     - Examples: Support Team, Researcher, and Sleep Professional
+  - Generic "Secret Man" forum placeholder photo replaced with more
+    gender-neutral user icon
 - **Gem Changes**
   - Update to ruby 2.5.3
   - Update to font-awesome-sass 5.4.1

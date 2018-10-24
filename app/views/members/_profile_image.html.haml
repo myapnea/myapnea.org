@@ -1,11 +1,14 @@
 .profile
-  - if current_user == member
-    .profile-image-container{ rel: "tooltip", data: { title: "Change your picture", container: "body", placement: "bottom" } }
-      = link_to settings_path do
-        = profile_picture_tag(member, size: "220", style: "width: 220px; height: auto; border-radius: 0 !important;")
+  - if member[:photo]
+    - picture_content = profile_picture_tag(member, size: "220", style: "width: 220px; height: auto; border-radius: 0 !important;")
   - else
-    .profile-image-container
-      = profile_picture_tag(member, size: "220", style: "width: 220px; height: auto; border-radius: 0 !important;")
+    - picture_content = icon("fas", "user", class: "text-muted pt-3", style: "font-size: 200px;")
+  - if current_user == member
+    .profile-image-container.text-center{ rel: "tooltip", data: { title: "Change your picture", container: "body", placement: "bottom" } }
+      = link_to picture_content, settings_path
+  - else
+    .profile-image-container.text-center
+      = picture_content
 
   %div.overflow-hidden{ style: "margin-left: 20px;margin-right: 20px;margin-bottom: 0;" }
     %strong
