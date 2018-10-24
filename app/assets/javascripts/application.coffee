@@ -20,19 +20,8 @@
 #= require bootstrap
 #= require jquery-ui/widgets/sortable
 
-# Compatibility
-#= require compatibility/array_prototype_index_of.js
-#= require compatibility/array_prototype_map.js
-
 # External
-#= require external/bootstrap-datepicker.js
-#= require external/jquery-fieldselection.js
-#= require external/highcharts-6.0.3.src.js
-
-# Extensions
-#= require extensions/datepicker
-#= require extensions/filedrag
-#= require extensions/tooltips
+#= require_tree ./external
 
 # Other
 #= require_tree .

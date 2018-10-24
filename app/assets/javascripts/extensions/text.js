@@ -8,6 +8,18 @@ function italicizeSelection(element) {
   surroundSelection(element, "*");
 }
 
+function linkSelection(element) {
+  if (nothingSelected(element)) {
+    insertTextAtCursor(element, "[Example Link Text](http://example.com)");
+  } else {
+    surroundSelection(element, "[", "](http://example.com)");
+  }
+}
+
+function quoteSelection(element) {
+  surroundSelection(element, "> ", "");
+}
+
 function surroundSelection(element, before, after) {
   if (after == null) after = before;
 

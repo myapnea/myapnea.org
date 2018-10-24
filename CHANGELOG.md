@@ -16,6 +16,9 @@
   - Update to ruby 2.5.3
   - Update to font-awesome-sass 5.4.1
 
+### Refactoring
+- Remove legacy JavaScript polyfills and code
+
 ### Bug Fix
 - Fixed "Write a Reply" redirection on topics with interleaved deleted replies
 
