@@ -11,7 +11,8 @@
 - content_for :header, @json.dig("design", "name")
 - content_for :progress_bar, render("slice/surveys/progress_bar", start: start, percent: percent)
 
-= form_with(url: slice_surveys_submit_page_path(@project, params[:event], params[:design], @page), method: :patch, local: true, autocomplete: "off", id: "survey-form") do |form|
+= form_with url: slice_surveys_submit_page_path(@project, params[:event], params[:design], @page), method: :patch, local: true, autocomplete: "off", id: "survey-form" do |form|
+  = form.hidden_field :design_option_id, value: @json.dig("design_option_id")
   = form.hidden_field :review, value: params[:review] || 0
   - if @section
     = render "slice/surveys/section", section: @section

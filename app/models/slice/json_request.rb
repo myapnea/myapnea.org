@@ -43,24 +43,28 @@ module Slice
       full_path = @url.path
       query = ([@url.query] + @params).flatten.compact.join("&")
       full_path += "?#{query}" if query.to_s != ""
+      Rails.logger.debug "#{"GET".green} #{full_path}"
       response = @http.start do |http|
         http.get(full_path)
       end
-      [JSON.parse(response.body), response]
+      json = JSON.parse(response.body) if response.body.present?
+      [json, response]
     rescue => e
-      Rails.logger.debug "GET Error: #{e}"
-      nil
+      Rails.logger.debug e
+      [nil, nil]
     end
 
     def post
       return unless @error.nil?
+      Rails.logger.debug "#{"POST".yellow} #{@url.path}?#{@params.flatten.compact.join("&")}"
       response = @http.start do |http|
         http.post(@url.path, @params.flatten.compact.join("&"))
       end
-      [JSON.parse(response.body), response]
+      json = JSON.parse(response.body) if response.body.present?
+      [json, response]
     rescue => e
-      Rails.logger.debug "POST ERROR: #{e}"
-      nil
+      Rails.logger.debug e
+      [nil, nil]
     end
 
     def patch

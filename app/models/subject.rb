@@ -99,31 +99,17 @@ class Subject < ApplicationRecord
     end
   end
 
-  def start_event_survey(event, design)
-    (json, _status) = Slice::JsonRequest.get("#{project.project_url}/subjects/#{slice_subject_id}/surveys/#{event}/#{design}.json")
-    # return unless status.is_a?(Net::HTTPSuccess)
-    json
-  end
-
   def resume_event_survey(event, design)
-    (json, _status) = Slice::JsonRequest.get("#{project.project_url}/subjects/#{slice_subject_id}/surveys/#{event}/#{design}/resume.json")
-    # return unless status.is_a?(Net::HTTPSuccess)
-    json
+    Slice::JsonRequest.get("#{project.project_url}/subjects/#{slice_subject_id}/surveys/#{event}/#{design}/resume.json")
   end
 
   def page_event_survey(event, design, page)
-    (json, _status) = Slice::JsonRequest.get("#{project.project_url}/subjects/#{slice_subject_id}/surveys/#{event}/#{design}/#{page}.json")
-    # return unless status.is_a?(Net::HTTPSuccess)
-    json
+    Slice::JsonRequest.get("#{project.project_url}/subjects/#{slice_subject_id}/surveys/#{event}/#{design}/#{page}.json")
   end
 
-  def submit_response_event_survey(event, design, page, response, remote_ip)
-    params = { _method: "patch", response: response, remote_ip: remote_ip }
+  def submit_response_event_survey(event, design, page, design_option_id, response, remote_ip)
+    params = { _method: "patch", design_option_id: design_option_id, response: response, remote_ip: remote_ip }
     Slice::JsonRequest.post("#{project.project_url}/subjects/#{slice_subject_id}/surveys/#{event}/#{design}/#{page}.json", params)
-  end
-
-  def complete_event_survey(event, design)
-    start_event_survey(event, design)
   end
 
   def review_event_survey(event, design)
@@ -138,9 +124,9 @@ class Subject < ApplicationRecord
 
   def data(data_points)
     params = { data_points: data_points }
-    (json, _status) = Slice::JsonRequest.get("#{project.project_url}/subjects/#{slice_subject_id}/data.json", params)
-    # return unless status.is_a?(Net::HTTPSuccess)
-    json.presence || {}
+    (json, status) = Slice::JsonRequest.get("#{project.project_url}/subjects/#{slice_subject_id}/data.json", params)
+    return unless status.is_a?(Net::HTTPSuccess)
+    json
   end
 
   # Print Consent

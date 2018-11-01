@@ -1,5 +1,9 @@
 ## 20.0.0
 
+### Enhancements
+- **Survey Changes**
+  - Improve survey stability and submission of responses to Slice API
+
 ## 19.0.0 (October 25, 2018)
 
 ### Enhancements

@@ -5,6 +5,7 @@ module Reportable
   extend ActiveSupport::Concern
 
   def report_insomnia(data)
+    return if data.nil?
     insoms = []
     insoms << data.dig("data", "baseline", "is_falling_asleep")
     insoms << data.dig("data", "baseline", "is_wake_several_times")
@@ -16,6 +17,7 @@ module Reportable
   end
 
   def report_fosq(data)
+    return if data.nil?
     fosqs = []
     fosqs << data.dig("data", "baseline", "fosq_concentrating")
     fosqs << data.dig("data", "baseline", "fosq_remembering")
@@ -45,6 +47,7 @@ module Reportable
   end
 
   def report_ess(data)
+    return if data.nil?
     e1 = data.dig("data", "baseline", "ess_sitting_reading")
     e2 = data.dig("data", "baseline", "ess_sitting_reading")
     e3 = data.dig("data", "baseline", "ess_watching_tv")
@@ -59,6 +62,7 @@ module Reportable
   end
 
   def report_well_being(data)
+    return if data.nil?
     whos = []
     whos << data.dig("data", "baseline", "who_cheerful")
     whos << data.dig("data", "baseline", "who_calm")
@@ -70,6 +74,7 @@ module Reportable
   end
 
   def report_bmi(data)
+    return if data.nil?
     height = data.dig("data", "baseline", "dem_height")
     weight = data.dig("data", "baseline", "dem_weight")
     return unless weight.is_a?(Numeric) && height.is_a?(Numeric) && height.positive?

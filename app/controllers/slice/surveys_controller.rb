@@ -20,31 +20,28 @@ class Slice::SurveysController < ApplicationController
 
   # GET /surveys/:project/:event/:design/:page
   def page
-    @json = @subject.page_event_survey(params[:event], params[:design], @page)
-    @survey = Slice::Survey.new(json: @json)
-    if @json.present?
+    (@json, status) = @subject.page_event_survey(params[:event], params[:design], @page)
+    if status.is_a?(Net::HTTPOK) && @json.present?
+      @survey = Slice::Survey.new(json: @json)
       @section = Slice::Section.new(json: @json.dig("section")) if @json.dig("section").present?
       @variable = Slice::Variable.new(json: @json.dig("variable")) if @json.dig("variable").present?
-    end
-    if @json.blank?
-      redirect_to slice_surveys_review_path(@project, params[:event], params[:design])
     else
-      render "slice/surveys/page"
+      redirect_to slice_surveys_review_path(@project, params[:event], params[:design])
     end
   end
 
   # GET /surveys/:project/:event/:design/resume
   def resume
     survey_in_progress
-    @json = @subject.resume_event_survey(params[:event], params[:design])
-    @survey = Slice::Survey.new(json: @json)
-    if @json.blank?
-      redirect_to slice_surveys_review_path(@project, params[:event], params[:design])
-    else
+    (@json, status) = @subject.resume_event_survey(params[:event], params[:design])
+    if status.is_a?(Net::HTTPOK) && @json.present?
+      @survey = Slice::Survey.new(json: @json)
       @page = @json.dig("design", "current_page")
       @section = Slice::Section.new(json: @json.dig("section")) if @json.dig("section").present?
       @variable = Slice::Variable.new(json: @json.dig("variable")) if @json.dig("variable").present?
       render "slice/surveys/page"
+    else
+      redirect_to slice_surveys_review_path(@project, params[:event], params[:design])
     end
   end
 
@@ -67,14 +64,14 @@ class Slice::SurveysController < ApplicationController
     else
       value = params[:response]
     end
-    (@json, @status) = @subject.submit_response_event_survey(params[:event], params[:design], @page, value, request.remote_ip)
-    if @status.is_a?(Net::HTTPOK)
+    (@json, status) = @subject.submit_response_event_survey(params[:event], params[:design], @page, params[:design_option_id], value, request.remote_ip)
+    if status.is_a?(Net::HTTPOK)
       if params[:review] == "1"
         redirect_to slice_surveys_review_path(@project, params[:event], params[:design])
       else
         redirect_to slice_surveys_page_path(@project, params[:event], params[:design], @page + 1)
       end
-    elsif @json
+    elsif status.is_a?(Net::HTTPUnprocessableEntity) && @json.present?
       @section = Slice::Section.new(json: @json.dig("section")) if @json.dig("section").present?
       @variable = Slice::Variable.new(json: @json.dig("variable")) if @json.dig("variable").present?
       render "slice/surveys/page"
@@ -85,8 +82,12 @@ class Slice::SurveysController < ApplicationController
 
   # GET /surveys/:project/:event/:design/review
   def review
-    (@json, @status) = @subject.review_event_survey(params[:event].downcase, params[:design].downcase)
-    render layout: "layouts/full_page"
+    (@json, status) = @subject.review_event_survey(params[:event].downcase, params[:design].downcase)
+    if status.is_a?(Net::HTTPOK) && @json.present?
+      render layout: "layouts/full_page"
+    else
+      redirect_to dashboard_path, notice: "Surveys are currently unavailable."
+    end
   end
 
   # POST /surveys/:project/:event/:design/review
@@ -101,8 +102,12 @@ class Slice::SurveysController < ApplicationController
 
   # GET /surveys/:project/:event/:design/report
   def report
-    (@json, @status) = @subject.report_event_survey(params[:event], params[:design])
-    render layout: "layouts/full_page_sidebar"
+    (@json, status) = @subject.report_event_survey(params[:event], params[:design])
+    if status.is_a?(Net::HTTPOK) && @json.present?
+      render layout: "layouts/full_page_sidebar"
+    else
+      redirect_to slice_overview_path(@project), notice: "Survey report currently unavailable."
+    end
   end
 
   private
