@@ -1,6 +1,6 @@
 # MyApnea
 
-[![Build Status](https://travis-ci.org/myapnea/www.myapnea.org.svg?branch=master)](https://travis-ci.org/myapnea/www.myapnea.org)
+[![Build Status](https://travis-ci.com/myapnea/www.myapnea.org.svg?branch=master)](https://travis-ci.com/myapnea/www.myapnea.org)
 [![Code Climate](https://codeclimate.com/github/myapnea/www.myapnea.org/badges/gpa.svg)](https://codeclimate.com/github/myapnea/www.myapnea.org)
 
 The web framework behind https://myapnea.org, built Rails 5.2+ and Ruby 2.5+.
