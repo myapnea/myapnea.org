@@ -9,4 +9,5 @@
 .theme-dark-blue-radial-bg {
   background-color: transparent;
   background-image: radial-gradient(circle at center, transparent 30%, $p900-blue 100%);
+  position: relative;
 }

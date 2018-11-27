@@ -1,5 +1,8 @@
 ## 21.0.0
 
+### Bug Fix
+- Fixed missing gradient on landing page "Community Power" section
+
 ## 20.0.0 (November 5, 2018)
 
 ### Enhancements
