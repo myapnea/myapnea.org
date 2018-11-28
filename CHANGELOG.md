@@ -1,5 +1,9 @@
 ## 21.0.0
 
+### Enhancements
+- **Gem Changes**
+  - Update to rails 5.2.1.1
+
 ### Bug Fix
 - Fixed missing gradient on landing page "Community Power" section
 
