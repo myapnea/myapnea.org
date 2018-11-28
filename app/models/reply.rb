@@ -159,7 +159,7 @@ class Reply < ApplicationRecord
   end
 
   def url_count
-    if user.sign_in_count == 1
+    if user.sign_in_count == 1 || user.created_at + 2.days > Time.zone.now
       count_urls(description) * 2 + email_count
     else
       count_urls(description) + email_count

@@ -1,6 +1,8 @@
 ## 21.0.0
 
 ### Enhancements
+- **Forum Changes**
+  - Improved spam filters
 - **Survey Changes**
   - Improved process of leaving and rejoining a research study
   - Overview reports and project consents are now generated in temporary
