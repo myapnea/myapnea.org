@@ -3,6 +3,7 @@
 ### Enhancements
 - **Gem Changes**
   - Update to rails 5.2.1.1
+  - Update to font-awesome-sass 5.5.0
 
 ### Bug Fix
 - Fixed missing gradient on landing page "Community Power" section
