@@ -3,9 +3,16 @@
 # Associates a user to a study as a study participant. Tracks consent and
 # assigned subject code.
 class Subject < ApplicationRecord
+  # Uploaders
+  mount_uploader :overview_report_pdf, PDFUploader
+
   # Concerns
   include Latexable
   include Reportable
+
+  # Scopes
+  scope :consented, -> { where.not(consented_at: nil).where(consent_revoked_at: nil) }
+  scope :consent_revoked, -> { where.not(consented_at: nil, consent_revoked_at: nil) }
 
   # Validations
   validates :user_id, uniqueness: { scope: :project_id }
@@ -17,9 +24,21 @@ class Subject < ApplicationRecord
 
   # Methods
 
+  def consented?
+    !consented_at.nil? && consent_revoked_at.nil?
+  end
+
+  def consent_revoked?
+    !consented_at.nil? && !consent_revoked_at.nil?
+  end
+
+  def revoke_consent!
+    update(consent_revoked_at: Time.zone.now)
+  end
+
   # This method is only for external projects (that don't have Slice surveys).
   def recruited?
-    recruited_at.present?
+    !recruited_at.nil?
   end
 
   def linked?
@@ -135,18 +154,27 @@ class Subject < ApplicationRecord
   end
 
   def generate_overview_report_pdf!(data)
-    jobname = "overview_report_#{id}"
-    output_folder = File.join("tmp", "files", "tex")
-    FileUtils.mkdir_p output_folder
-    file_tex = File.join("tmp", "files", "tex", "#{jobname}.tex")
+    jobname = "overview_report"
+    temp_dir = Dir.mktmpdir
+    temp_tex = File.join(temp_dir, "#{jobname}.tex")
+    write_tex_file(temp_tex, data)
+    self.class.compile(jobname, temp_dir, temp_tex)
+    temp_pdf = File.join(temp_dir, "#{jobname}.pdf")
+    update overview_report_pdf: File.open(temp_pdf, "r"), overview_report_pdf_file_size: File.size(temp_pdf) if File.exist?(temp_pdf)
+  ensure
+    # Remove the directory.
+    FileUtils.remove_entry temp_dir
+  end
+
+  def write_tex_file(temp_tex, data)
+    # Needed by binding
     @project = project
     @subject = self
     @data = data
-    File.open(file_tex, "w") do |file|
+    File.open(temp_tex, "w") do |file|
       file.syswrite(ERB.new(latex_partial("header")).result(binding))
       file.syswrite(ERB.new(latex_partial("overview_report")).result(binding))
       file.syswrite(ERB.new(latex_partial("footer")).result(binding))
     end
-    Subject.generate_pdf(jobname, output_folder, file_tex)
   end
 end

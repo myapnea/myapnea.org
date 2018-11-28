@@ -1,6 +1,5 @@
 - if @projects.present?
   - projects.each do |project|
-    - subject = current_user&.subjects&.find_by(project: project)
     .research-study{ class: "cover-theme-#{project.cover_theme}" }
       .d-flex.flex-row.align-items-stretch
         .research-study-icon.d-flex.align-items-center
@@ -34,8 +33,9 @@
                 Personalized report
 
         .ml-3.d-block.d-sm-inline-block.text-center
+          - subject = current_user&.subjects&.find_by(project: project)
           - if project.external?
-            - if current_user && subject
+            - if current_user && subject&.recruited?
               = link_to participate_path(project), class: "btn btn-sm btn-primary btn-shadow" do
                 Visit study
                 = icon("fas", "angle-right")
@@ -44,7 +44,7 @@
                 Get started
                 = icon("fas", "angle-right")
           - else
-            - if current_user && subject
+            - if current_user && subject&.consented?
               = link_to slice_overview_path(project), class: "btn btn-sm btn-primary btn-shadow" do
                 Take surveys
                 = icon("fas", "angle-right")

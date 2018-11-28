@@ -20,9 +20,3 @@
 <% content.gsub!(/\\end\{itemize\}\\begin\{itemize\}/, "") %>
 <% content.gsub!(/\n/, "\n\\\\\\\n") %>
 <%= content %> \\
-
-<% if @subject && false %>
-  <% if false %>\textbf{Subject} <%= latex_safe @subject.user.full_name %> \\<% end %>
-  \textbf{Date} <%= @subject.consented_at.strftime("%-m/%-d/%Y") %> \\
-  \textbf{Time} <%= @subject.consented_at.strftime("%-l:%M %p") %> \\
-<% end %>

@@ -119,6 +119,7 @@ class ApplicationController < ActionController::Base
       format.html { redirect_to path }
       format.js { head :ok }
       format.json { head :no_content }
+      format.pdf { redirect_to path }
       format.text { head :no_content }
     end
   end

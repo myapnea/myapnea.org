@@ -1,6 +1,10 @@
 ## 21.0.0
 
 ### Enhancements
+- **Survey Changes**
+  - Improved process of leaving and rejoining a research study
+  - Overview reports and project consents are now generated in temporary
+    folders that are deleted after generating the PDFs
 - **Gem Changes**
   - Update to rails 5.2.1.1
   - Update to font-awesome-sass 5.5.0

@@ -59,7 +59,7 @@
 
       .card-footer.text-muted
         .float-right
-          - if subject
+          - if subject&.consented?
             = link_to slice_overview_path(project), class: "text-accent" do
               Take surveys
               = icon("fas", "caret-right")

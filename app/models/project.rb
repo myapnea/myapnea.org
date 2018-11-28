@@ -2,6 +2,9 @@
 
 # Groups together a series of surveys and a consent.
 class Project < ApplicationRecord
+  # Uploaders
+  mount_uploader :consent_pdf, PDFUploader
+
   # Concerns
   include Deletable
   include Latexable
@@ -93,18 +96,25 @@ class Project < ApplicationRecord
     File.read(File.join("app", "views", "projects", "latex", "_#{partial}.tex.erb"))
   end
 
-  def generate_printed_pdf!(subject)
-    jobname = subject ? "consent_#{subject.id}" : "consent"
-    output_folder = File.join("tmp", "files", "tex")
-    FileUtils.mkdir_p output_folder
-    file_tex = File.join("tmp", "files", "tex", "#{jobname}.tex")
-    @project = self
-    @subject = subject # Needed by Binding
-    File.open(file_tex, "w") do |file|
+  def generate_consent_pdf!
+    jobname = "consent"
+    temp_dir = Dir.mktmpdir
+    temp_tex = File.join(temp_dir, "#{jobname}.tex")
+    write_tex_file(temp_tex)
+    self.class.compile(jobname, temp_dir, temp_tex)
+    temp_pdf = File.join(temp_dir, "#{jobname}.pdf")
+    update consent_pdf: File.open(temp_pdf, "r"), consent_pdf_file_size: File.size(temp_pdf) if File.exist?(temp_pdf)
+  ensure
+    # Remove the directory.
+    FileUtils.remove_entry temp_dir
+  end
+
+  def write_tex_file(temp_tex)
+    @project = self # Needed by binding
+    File.open(temp_tex, "w") do |file|
       file.syswrite(ERB.new(latex_partial("header")).result(binding))
       file.syswrite(ERB.new(latex_partial("consent")).result(binding))
       file.syswrite(ERB.new(latex_partial("footer")).result(binding))
     end
-    Project.generate_pdf(jobname, output_folder, file_tex)
   end
 end

@@ -118,7 +118,7 @@ class Slice::SurveysController < ApplicationController
   end
 
   def find_subject_or_redirect
-    @subject = @project.subjects.find_by(user: current_user)
+    @subject = @project.subjects.consented.find_by(user: current_user)
     empty_response_or_root_path(slice_research_path) unless @subject
   end
 

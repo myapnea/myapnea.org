@@ -33,15 +33,8 @@ class SliceController < ApplicationController
 
   # GET /research/:project/consent.pdf
   def print_consent
-    @subject = current_user&.subjects&.find_by(project: @project)
-    pdf_file = Rails.root.join(@project.generate_printed_pdf!(@subject))
-    if File.exist?(pdf_file)
-      File.open(pdf_file, "r") do |f|
-        send_data f.read, filename: "#{@project.name.titleize.gsub(/\s/, "")}ConsentForm.pdf", type: "application/pdf", disposition: "inline"
-      end
-    else
-      redirect_to slice_consent_path(@project), alert: "Unable to generate PDF at this time."
-    end
+    @project.generate_consent_pdf! # TODO: Check if cached version needs to be regenerated.
+    send_file_if_present @project.consent_pdf, type: "application/pdf", disposition: "inline", filename: "#{@project.name.titleize.gsub(/\s/, "")}ConsentForm.pdf"
   end
 
   # GET /research/:project/overview
@@ -65,14 +58,8 @@ class SliceController < ApplicationController
     redirect_to slice_research_path unless current_user
     variables = insomnia_variables + fosq_variables + ess_variables + who_variables + bmi_variables
     @data = @subject.data(variables)
-    pdf_file = Rails.root.join(@subject.generate_overview_report_pdf!(@data))
-    if File.exist?(pdf_file)
-      File.open(pdf_file, "r") do |f|
-        send_data f.read, filename: "#{@project.name.titleize.gsub(/\s/, "")}SleepReport.pdf", type: "application/pdf", disposition: "inline"
-      end
-    else
-      redirect_to slice_overview_report_path(@project), alert: "Unable to generate PDF at this time."
-    end
+    @subject.generate_overview_report_pdf!(@data) # TODO: Check if cached version needs to be regenerated.
+    send_file_if_present @subject.overview_report_pdf, type: "application/pdf", disposition: "inline", filename: "#{@project.name.titleize.gsub(/\s/, "")}SleepReport.pdf"
   end
 
   # GET /research/:project/leave-study
@@ -84,7 +71,7 @@ class SliceController < ApplicationController
   # POST /research/:project/leave-study
   def submit_leave_study
     if params[:withdraw].to_s.casecmp("withdraw").zero?
-      @subject.destroy
+      @subject.revoke_consent!
       redirect_to slice_research_path, notice: "You left the #{@project.name} study."
     else
       @withdraw_error = true
@@ -98,17 +85,15 @@ class SliceController < ApplicationController
     @user.valid?
     if @user.errors.key?(:full_name)
       render "consent"
+    elsif current_user
+      current_user.update(full_name: params[:user][:full_name])
+      current_user.consent!(@project)
+      redirect_to slice_overview_path(@project), notice: "Thank you for agreeing to participate in the #{@project.name} research study!"
     else
-      if current_user
-        current_user.update(full_name: params[:user][:full_name])
-        current_user.consent!(@project)
-        redirect_to slice_overview_path(@project), notice: "Thank you for agreeing to participate in the #{@project.name} research study!"
-      else
-        session[:project_id] = @project.id
-        session[:consented_at] = Time.zone.now
-        session[:full_name] = params[:user][:full_name]
-        redirect_to new_user_registration_path
-      end
+      session[:project_id] = @project.id
+      session[:consented_at] = Time.zone.now
+      session[:full_name] = params[:user][:full_name]
+      redirect_to new_user_registration_path
     end
   end
 
@@ -128,7 +113,7 @@ class SliceController < ApplicationController
   end
 
   def find_subject_or_redirect
-    @subject = @project.subjects.find_by(user: current_user)
+    @subject = @project.subjects.consented.find_by(user: current_user)
     empty_response_or_root_path(slice_research_path) unless @subject
   end
 

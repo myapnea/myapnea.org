@@ -105,6 +105,7 @@ class User < ApplicationRecord
 
   def consent!(project, consented_at: Time.zone.now)
     subject = subjects.where(project: project).first_or_create(consented_at: consented_at)
+    subject.update(consent_revoked_at: nil)
     subject.find_or_create_remote_subject!
   end
 
