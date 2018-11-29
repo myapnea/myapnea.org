@@ -1,5 +1,10 @@
 ## 22.0.0
 
+### Enhancements
+- **General Changes**
+  - Landing page survey count now includes newly completed surveys from Slice
+    along with original survey count
+
 ## 21.0.0 (November 29, 2018)
 
 ### Enhancements

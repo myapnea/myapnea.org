@@ -14,7 +14,7 @@
         .card.bg-transparent{ style: "border: 0;" }
           .card-body.d-flex.flex-column.justify-content-center.align-items-center
             .landing-blog-title.mb-0.text-white.text-center{ style: "border: 0;" }
-              = number_with_delimiter 125_218
+              = number_with_delimiter 125_218 + SubjectSurvey.where.not(completed_at: nil).count
               .landing-blog-content{ style: "background-color: transparent;color: #bdbdbd;" }
                 Surveys Completed
 
