@@ -1,4 +1,4 @@
-## 21.1.0
+## 21.1.0 (January 2, 2019)
 
 ### Enhancements
 - **General Changes**
