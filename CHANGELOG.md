@@ -3,6 +3,7 @@
 ### Enhancements
 - **Gem Changes**
   - Update to ruby 2.6.0
+  - Update to rails 5.2.2
 
 ### Bug Fix
 - Fixed styling of sunset decoration on admin pages
