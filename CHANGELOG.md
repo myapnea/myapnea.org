@@ -1,6 +1,8 @@
 ## 21.1.0
 
 ### Enhancements
+- **General Changes**
+  - Contact page support email information moved above support email
 - **Gem Changes**
   - Update to ruby 2.6.0
   - Update to rails 5.2.2
