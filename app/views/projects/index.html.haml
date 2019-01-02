@@ -31,7 +31,7 @@
             %td.text-center
               %span.d-none.d-lg-inline= project.launch_date ? project.launch_date.strftime("%a, %b %-d, %Y") : nil
               %span.d-inline.d-lg-none= project.launch_date ? project.launch_date.strftime("%b %-d, %Y") : nil
-            %td= render "layouts/edit_delete_dropdown", edit_url: edit_project_path(project), delete_url: project, delete_confirmation: "Delete #{project.name}?"
+            %td.nowrap= render "layouts/edit_delete_dropdown", edit_url: edit_project_path(project), delete_url: project, delete_confirmation: "Delete #{project.name}?"
   .center-horizontally= paginate @projects, theme: "bootstrap"
 - else
   .jumbotron.jumbotron-action.jumbotron-custom-text.jumbotron-shadow

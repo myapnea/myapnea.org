@@ -5,6 +5,21 @@
   - Landing page survey count now includes newly completed surveys from Slice
     along with original survey count
 
+## 21.1.0 (January 2, 2019)
+
+### Enhancements
+- **General Changes**
+  - Contact page support email information moved above support email
+- **Gem Changes**
+  - Update to ruby 2.6.0
+  - Update to rails 5.2.2
+  - Update to bootstrap 4.2.1
+  - Update to font-awesome-sass 5.6.1
+
+### Bug Fix
+- Fixed styling of sunset decoration on admin pages
+- Fixed issue caused by replying to restored forum topics that had no slug
+
 ## 21.0.0 (November 29, 2018)
 
 ### Enhancements
