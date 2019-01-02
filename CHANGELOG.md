@@ -9,6 +9,7 @@
 
 ### Bug Fix
 - Fixed styling of sunset decoration on admin pages
+- Fixed issue caused by replying to restored forum topics that had no slug
 
 ## 21.0.0 (November 29, 2018)
 
