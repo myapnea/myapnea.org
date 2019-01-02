@@ -31,15 +31,10 @@ $sunset-container-sm: $sunset-size-sm + $sunset-padding-sm;
 .sunset-object {
   font-size: $sunset-size;
   position: absolute;
-  right: -$sunset-size;
+  right: -$sunset-size - 64px;
   top: -$sunset-size + ($sunset-container / 2);
 
   i {
-    &.fa-sunset-o {
-      font-size: $sunset-size;
-      color: $sunset-color;
-    }
-
     &.fa-circle {
       font-size: $sunset-size * 90 / 128; // 90px;
       color: $sunset-inner-color;
@@ -48,14 +43,10 @@ $sunset-container-sm: $sunset-size-sm + $sunset-padding-sm;
 
   @include media-breakpoint-up(sm) {
     font-size: $sunset-size-sm;
-    right: -$sunset-size-sm;
+    right: -$sunset-size-sm - 128px;
     top: -$sunset-size-sm + ($sunset-container-sm / 2);
 
     i {
-      &.fa-sunset-o {
-        font-size: $sunset-size-sm;
-      }
-
       &.fa-circle {
         font-size: $sunset-size-sm * 90 / 128; // 360px;
       }

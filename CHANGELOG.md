@@ -1,5 +1,8 @@
 ## 21.1.0
 
+### Bug Fix
+- Fixed styling of sunset decoration on admin pages
+
 ## 21.0.0 (November 29, 2018)
 
 ### Enhancements
