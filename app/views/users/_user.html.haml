@@ -28,7 +28,7 @@
 %td.d-none.d-sm-table-cell.text-center
   %small= user.replies_count
 - if current_user.admin?
-  %td.text-center
+  %td.nowrap.text-center
     .dropdown
       = link_to "#", class: "btn btn-light btn-sm dropdown-toggle", data: { toggle: "dropdown" } do
         .d-inline-block.d-sm-none
