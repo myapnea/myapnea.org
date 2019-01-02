@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.com/myapnea/www.myapnea.org.svg?branch=master)](https://travis-ci.com/myapnea/www.myapnea.org)
 [![Code Climate](https://codeclimate.com/github/myapnea/www.myapnea.org/badges/gpa.svg)](https://codeclimate.com/github/myapnea/www.myapnea.org)
 
-The web framework behind https://myapnea.org, built Rails 5.2+ and Ruby 2.5+.
+The web framework behind https://myapnea.org, built Rails 5.2+ and Ruby 2.6+.
 
 ## Before Starting Installation
 
@@ -60,7 +60,7 @@ Edit Cron Jobs `sudo crontab -e` to run the task `lib/tasks/sitemap.rake`
 
 ```
 SHELL=/bin/bash
-0 1 * * * source /etc/profile.d/rvm.sh && cd /var/www/myapnea.org && rvm 2.5.3 && rails sitemap:refresh RAILS_ENV=production
+0 1 * * * source /etc/profile.d/rvm.sh && cd /var/www/myapnea.org && rvm 2.6.0 && rails sitemap:refresh RAILS_ENV=production
 ```
 
 ## License

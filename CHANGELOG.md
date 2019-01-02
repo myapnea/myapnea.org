@@ -1,5 +1,9 @@
 ## 21.1.0
 
+### Enhancements
+- **Gem Changes**
+  - Update to ruby 2.6.0
+
 ### Bug Fix
 - Fixed styling of sunset decoration on admin pages
 
