@@ -7,18 +7,18 @@
 
 .dashboard-container.dashboard-table
   %table.table.table-striped.table-borderless.table-hover
-    %col.d-none.d-md-table-column{ width: "40px" }
-    %col.d-none.d-md-table-column{ width: "67px" }
+    %col.d-none.d-md-table-column
+    %col.d-none.d-md-table-column
     %col
-    %col.d-none.d-md-table-column{ width: "120px" }
-    %col.d-none.d-md-table-column{ width: "150px" }
+    %col.d-none.d-md-table-column
+    %col.d-none.d-md-table-column
     %thead
       %tr
         %th.d-none.d-md-table-cell
-        %th.d-none.d-md-table-cell= order_to "Points", primary: "points"
+        %th.d-none.d-md-table-cell= order_to "Points", primary: "points desc", secondary: "points"
         %th Reply
         %th.d-none.d-md-table-cell Author
-        %th.d-none.d-md-table-cell= order_to "Date", primary: "replies.created_at"
+        %th.d-none.d-md-table-cell= order_to "Date", primary: "oldest", secondary: "newest"
     %tbody
       - @replies.each do |reply|
         %tr
