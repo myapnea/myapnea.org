@@ -15,12 +15,10 @@
     %thead
       %tr
         %th.d-none.d-md-table-cell
-        %th.d-none.d-md-table-cell
-          = order_to "Points", primary: "points"
+        %th.d-none.d-md-table-cell= order_to "Points", primary: "points"
         %th Reply
         %th.d-none.d-md-table-cell Author
-        %th.d-none.d-md-table-cell
-          = order_to "Date", primary: "replies.created_at"
+        %th.d-none.d-md-table-cell= order_to "Date", primary: "replies.created_at"
     %tbody
       - @replies.each do |reply|
         %tr
