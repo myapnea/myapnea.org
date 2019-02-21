@@ -5,6 +5,8 @@
   - Landing page survey count now includes newly completed surveys from Slice
     along with original survey count
   - Tabs now display better on smaller screens
+- **Gem Changes**
+  - Update to ruby 2.6.1
 
 ## 21.1.0 (January 2, 2019)
 
