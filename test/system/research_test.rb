@@ -38,7 +38,7 @@ class ResearchTest < ApplicationSystemTestCase
     fill_in "user[full_name]", with: "Joe Smith"
     screenshot("consent-existing-signed-in-user")
     click_on "I Consent"
-    assert_selector "div", text: "Thank you for agreeing to participate in the MyApnea Core research study!"
+    assert_selector "div", text: "Thank you for agreeing to participate in the MyApnea research study!"
     @unconsented.reload
     assert_equal true, @unconsented.subjects.first.consented_at.present?
     screenshot("consent-existing-signed-in-user")
@@ -63,7 +63,7 @@ class ResearchTest < ApplicationSystemTestCase
     screenshot("consent-existing-signed-out-user")
     click_form_submit
     assert_equal true, @unconsented.subjects.first.consented_at.present?
-    assert_selector "div", text: "Thank you for agreeing to participate in the MyApnea Core research study!"
+    assert_selector "div", text: "Thank you for agreeing to participate in the MyApnea research study!"
     screenshot("consent-existing-signed-out-user")
   end
 end

@@ -79,6 +79,7 @@ Rails.application.routes.draw do
     get "articles/:slug", action: "article", as: :article
     post "articles/:slug/vote", action: "article_vote", as: :article_vote
     get :contact
+    get :consent
     get :landing
     get :partners
     get :partner_photo, path: "partners/:id/photo"
@@ -147,7 +148,6 @@ Rails.application.routes.draw do
     patch :update_notifications, path: "notifications"
   end
 
-  get "consent", to: redirect("research/myapnea-core/consent")
   get "surveys", to: redirect("research"), as: :surveys
   namespace :slice, path: "" do # OR: scope module: :slice
     get :research

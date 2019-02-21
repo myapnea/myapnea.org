@@ -1,6 +1,7 @@
 one:
-  name: MyApnea Core
-  slug: core
+  primary: true
+  name: MyApnea
+  slug: myapnea
   short_description: >
     Come together to learn about sleep apnea symptoms and treatment, and become
     part of an international research network to improve lives.

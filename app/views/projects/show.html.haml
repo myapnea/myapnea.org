@@ -15,6 +15,15 @@
 - content_for :footer, render("decorations/moon")
 
 .dashboard-container
+  - if @project.primary?
+    .alert.alert-primary
+      This is the
+      %strong primary
+      project for MyApnea. The primary project determines the consent that is
+      displayed when visiting
+      = succeed "." do
+        = link_to consent_url, consent_path
+
   = render "forms/horizontal/show/text", object: @project, key: :name
   = render "forms/horizontal/show/markdown", object: @project, key: :short_description
   = render "forms/horizontal/show/check_box", object: @project, key: :published

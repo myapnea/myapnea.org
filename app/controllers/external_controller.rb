@@ -28,9 +28,15 @@ class ExternalController < ApplicationController
     end
   end
 
-  # # GET /consent
-  # def consent
-  # end
+  # GET /consent
+  def consent
+    project = Project.find_by(primary: true)
+    if project
+      redirect_to slice_consent_path(project)
+    else
+      redirect_to root_path
+    end
+  end
 
   # # GET /contact
   # def contact

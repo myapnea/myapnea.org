@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Computes scores for MyApnea core summary report.
+# Computes scores for MyApnea summary report.
 module Reportable
   extend ActiveSupport::Concern
 

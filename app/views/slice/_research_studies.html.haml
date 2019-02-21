@@ -12,11 +12,11 @@
             - if project.cover_theme == "mood"
               .research-study-background-image.order-0.order-lg-1{ class: "research-study-background-image-#{rand(2)}" }
       .research-study-footer.d-flex.flex-column.flex-sm-row
-        .ml-3.d-inline-block{ class: project.slug == "myapnea-core" ? nil : "mr-auto" }
+        .ml-3.d-inline-block{ class: project.primary? ? nil : "mr-auto" }
           = icon("fas", "users", class: "text-accent")
           %small
             Recruiting
-        - if project.slug == "myapnea-core"
+        - if project.primary?
           .ml-3.d-inline-block
             = icon("fas", "heartbeat", class: "text-accent")
             %small
@@ -25,12 +25,6 @@
             = icon("fas", "chart-pie", class: "text-accent")
             %small
               Personalized report
-        - if project.slug == "myapnea-core" && false
-          .ml-3.d-inline-block
-            = icon("fas", "chart-pie", class: "text-accent")
-            %small
-              = link_to "#", data: { object: "show-research-study", research_study: project.id } do
-                Personalized report
 
         .ml-3.d-block.d-sm-inline-block.text-center
           - subject = current_user&.subjects&.find_by(project: project)

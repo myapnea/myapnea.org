@@ -1,10 +1,9 @@
-- if project = Project.find_by(slug: "myapnea-core")
+- if project = Project.find_by(primary: true)
   .dashboard-container.dashboard-container-border-accent
     .search-result
       .search-result-title
-        = link_to "MyApnea Core Consent", slice_consent_path(project)
+        = link_to "#{project.name} Consent", slice_consent_path(project)
       .search-result-author
         Posted by MyApnea
       .search-result-body
-        = surround "..." do
-          purpose of the MyApnea.Org research portal is to engage people with sleep apnea
+        = strip_tags(simple_markdown(project.consent)).gsub(/\r/, " ").gsub(/\n/, " ").truncate(80, separator: " ")

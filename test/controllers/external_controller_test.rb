@@ -46,6 +46,11 @@ class ExternalControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "should get consent" do
+    get consent_url
+    assert_redirected_to slice_consent_url(projects(:one))
+  end
+
   test "should get landing" do
     get landing_url
     assert_response :success

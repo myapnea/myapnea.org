@@ -98,8 +98,6 @@
                 - unless current_user
                   .small.mb-2= link_to "Register an account", new_user_registration_path, class: "link-accent"
 
-
-
             .col-12.col-sm
               - articles = Broadcast.current.published.where(category: Admin::Category.find_by(slug: "research")).order(view_count: :desc).limit(5)
               .dashboard-container
@@ -107,8 +105,7 @@
                 .small.mb-2= link_to "What's expected of me if I join the research portal?", article_path("what-s-expected-of-me-if-i-join-the-research-portal"), class: "link-blend"
                 .small.mb-2= link_to "What are the surveys about?", article_path("what-are-the-surveys-about"), class: "link-blend"
                 .small.mb-2= link_to "How often do I take these surveys?", article_path("how-often-do-i-take-these-surveys"), class: "link-blend"
-                - if project = Project.find_by(slug: "myapnea-core")
-                  .small.mb-2= link_to "View Consent", slice_consent_path(project), class: "link-accent"
+                .small.mb-2= link_to "View Consent", consent_path, class: "link-accent"
 
           .row
             .col-12.col-sm
