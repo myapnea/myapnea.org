@@ -7,8 +7,8 @@ class ParticipateController < ApplicationController
 
   # GET /research/:project/participate
   def participate
-    subject = current_user.subjects.where(project: @project).first_or_create(recruited_at: Time.zone.now)
-    redirect_to @project.external_link
+    current_user.subjects.where(project: @project).first_or_create(recruited_at: Time.zone.now)
+    redirect_to @project.external_link, allow_other_host: true
   end
 
   private
