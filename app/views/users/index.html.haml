@@ -30,7 +30,7 @@
       %thead
         %tr.tr-align-middle
           %th.py-2
-            = form_tag users_path, method: :get, id: "search-form", enforce_utf8: false do
+            = form_tag users_path, method: :get, id: "search-form" do
               = text_field_tag :search, params[:search], placeholder: "Search users", autocomplete: "off", class: "table-cell-search-input border rounded"
           - if current_user.admin?
             %th Email
