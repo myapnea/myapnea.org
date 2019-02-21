@@ -1,0 +1,37 @@
+- response = json.dig("response") || json.dig("sheet_variable", "response")
+- value = json.dig("response") || json.dig("sheet_variable", "value")
+
+- if dashboard
+  %p.lead
+    Continue
+    = link_to project.name, slice_overview_path(project)
+    Surveys
+
+= form_with url: slice_surveys_submit_page_path(project, event, design, page), method: :patch, local: true, autocomplete: "off", id: "survey-form" do |form|
+  = form.hidden_field :design_option_id, value: json.dig("design_option_id")
+  = form.hidden_field :review, value: params[:review] || 0
+  - if section
+    = render "slice/surveys/section", section: section, json: json, dashboard: dashboard
+  - elsif variable
+    .survey-question-container
+      .survey-question
+        - if json.dig("group", "name").present?
+          .survey-question-lead= json.dig("group", "name")
+        - if json.dig("group", "description").present?
+          .survey-question-desc= simple_format json.dig("group", "description")
+        .survey-question-text= simple_style variable.display_name
+        - case variable.variable_type
+        - when "checkbox", "date", "dropdown", "imperial_height", "imperial_weight", "integer", "numeric", "radio", "string", "text", "time_duration", "time_of_day"
+          = render "slice/surveys/variables/#{variable.variable_type}", form: form, response: response, value: value, variable: variable, json: json
+        - else
+          %p.lead.text-muted.d-none= variable.variable_type
+      - if dashboard
+        = link_to "#", data: { object: "submit-and-continue", target: "#survey-form" }, class: "btn btn-primary btn-shadow" do
+          Continue
+          = icon("fas", "caret-right")
+
+    - unless dashboard
+      .survey-submit-container
+        = link_to "#", data: { object: "submit-and-continue", target: "#survey-form" }, class: "btn btn-primary btn-shadow" do
+          Continue
+          = icon("fas", "caret-right")

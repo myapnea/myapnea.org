@@ -1,22 +1,22 @@
 .form-group.string-container
   .form-inline
-    - case @variable.time_duration_format
+    - case variable.time_duration_format
     - when "hh:mm:ss"
-      = render "slice/surveys/decoration/hours", value: value
+      = render "slice/surveys/decoration/hours", value: value, variable: variable, json: json
       %span.px-1 :
-      = render "slice/surveys/decoration/minutes", value: value
+      = render "slice/surveys/decoration/minutes", value: value, variable: variable, json: json
       %span.px-1 :
-      = render "slice/surveys/decoration/seconds", value: value
+      = render "slice/surveys/decoration/seconds", value: value, variable: variable, json: json
     - when "hh:mm"
-      = render "slice/surveys/decoration/hours", value: value
+      = render "slice/surveys/decoration/hours", value: value, variable: variable, json: json
       %span.px-1 :
-      = render "slice/surveys/decoration/minutes", value: value
+      = render "slice/surveys/decoration/minutes", value: value, variable: variable, json: json
     - else # "mm:ss"
-      = render "slice/surveys/decoration/minutes", value: value
+      = render "slice/surveys/decoration/minutes", value: value, variable: variable, json: json
       %span.px-1 :
-      = render "slice/surveys/decoration/seconds", value: value
+      = render "slice/surveys/decoration/seconds", value: value, variable: variable, json: json
 
-    = link_to "Clear", "#", data: { object: "clear-time-duration-input", target_name: "response", time_duration_format: @variable.time_duration_format }, class: "btn btn-sm btn-link text-muted"
+    = link_to "Clear", "#", data: { object: "clear-time-duration-input", target_name: "response", time_duration_format: variable.time_duration_format }, class: "btn btn-sm btn-link text-muted"
 
-  = render "slice/surveys/decoration/errors"
-  = render "slice/surveys/decoration/field_note"
+  = render "slice/surveys/decoration/errors", variable: variable, json: json
+  = render "slice/surveys/decoration/field_note", variable: variable, json: json

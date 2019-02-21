@@ -1,1 +1,1 @@
-%span.month-box= number_field_tag "response[month]", value ? value["month"] : nil, maxlength: 2, placeholder: "mm", class: "form-control #{"is-invalid" if @json.dig("errors", @variable.name).present?}", style: "display: inline-block;", autocomplete: "off"
+%span.month-box= number_field_tag "response[month]", value ? value["month"] : nil, maxlength: 2, placeholder: "mm", class: "form-control #{"is-invalid" if json.dig("errors", variable.name).present?}", style: "display: inline-block;", autocomplete: "off"

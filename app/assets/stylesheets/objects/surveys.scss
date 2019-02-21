@@ -4,7 +4,7 @@
 
   border-radius: $border-radius;
   margin-bottom: 40px;
-  padding: 10px;
+  padding: $spacer;
   position: relative;
 
   > div,
@@ -15,15 +15,15 @@
   }
 
   @include media-breakpoint-up(sm) {
-    padding: 30px;
+    padding: map-get($spacers, 4);
   }
 }
 
 .survey-submit-container {
-  padding: 0 10px;
+  padding: 0 $spacer;
 
   @include media-breakpoint-up(sm) {
-    padding: 0 30px;
+    padding: 0 map-get($spacers, 4);
   }
 }
 

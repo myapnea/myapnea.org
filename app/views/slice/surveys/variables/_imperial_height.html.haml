@@ -1,7 +1,7 @@
 .form-group.string-container
   .form-inline
-    = render "slice/surveys/decoration/height_feet", value: value
+    = render "slice/surveys/decoration/height_feet", value: value, variable: variable, json: json
     &nbsp;
-    = render "slice/surveys/decoration/height_inches", value: value
-  = render "slice/surveys/decoration/errors"
-  = render "slice/surveys/decoration/field_note"
+    = render "slice/surveys/decoration/height_inches", value: value, variable: variable, json: json
+  = render "slice/surveys/decoration/errors", variable: variable, json: json
+  = render "slice/surveys/decoration/field_note", variable: variable, json: json

@@ -1,2 +1,2 @@
 %span.month-box
-  = select_tag "response[month]", options_for_select(Date::ABBR_MONTHNAMES[1..12].collect.with_index { |m, i| [m.to_s.upcase, i + 1] }, value ? value["month"] : nil), include_blank: "mmm", class: "form-control #{"is-invalid" if @json.dig("errors", @variable.name).present?}", style: "display: inline-block;"
+  = select_tag "response[month]", options_for_select(Date::ABBR_MONTHNAMES[1..12].collect.with_index { |m, i| [m.to_s.upcase, i + 1] }, value ? value["month"] : nil), include_blank: "mmm", class: "form-control #{"is-invalid" if json.dig("errors", variable.name).present?}", style: "display: inline-block;"

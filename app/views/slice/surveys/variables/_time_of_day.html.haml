@@ -1,34 +1,34 @@
 .form-group.string-container
   .form-inline
-    - case @variable.time_of_day_format
+    - case variable.time_of_day_format
     - when "24hour"
-      = render "slice/surveys/decoration/hours_dropdown", value: value
+      = render "slice/surveys/decoration/hours_dropdown", value: value, variable: variable, json: json
       %span.px-1 :
-      = render "slice/surveys/decoration/minutes_dropdown", value: value
-      - if @variable.show_seconds
+      = render "slice/surveys/decoration/minutes_dropdown", value: value, variable: variable, json: json
+      - if variable.show_seconds
         %span.px-1 :
-        = render "slice/surveys/decoration/seconds_dropdown", value: value
+        = render "slice/surveys/decoration/seconds_dropdown", value: value, variable: variable, json: json
     - when "12hour"
-      = render "slice/surveys/decoration/hours_dropdown", value: value
+      = render "slice/surveys/decoration/hours_dropdown", value: value, variable: variable, json: json
       %span.px-1 :
-      = render "slice/surveys/decoration/minutes_dropdown", value: value
-      - if @variable.show_seconds
+      = render "slice/surveys/decoration/minutes_dropdown", value: value, variable: variable, json: json
+      - if variable.show_seconds
         %span.px-1 :
-        = render "slice/surveys/decoration/seconds_dropdown", value: value
+        = render "slice/surveys/decoration/seconds_dropdown", value: value, variable: variable, json: json
       &nbsp;
-      = render "slice/surveys/decoration/period", value: value
+      = render "slice/surveys/decoration/period", value: value, variable: variable, json: json
     - else # "12hour-pm"
-      = render "slice/surveys/decoration/hours_dropdown", value: value
+      = render "slice/surveys/decoration/hours_dropdown", value: value, variable: variable, json: json
       %span.px-1 :
-      = render "slice/surveys/decoration/minutes_dropdown", value: value
-      - if @variable.show_seconds
+      = render "slice/surveys/decoration/minutes_dropdown", value: value, variable: variable, json: json
+      - if variable.show_seconds
         %span.px-1 :
-        = render "slice/surveys/decoration/seconds_dropdown", value: value
+        = render "slice/surveys/decoration/seconds_dropdown", value: value, variable: variable, json: json
       &nbsp;
-      = render "slice/surveys/decoration/period", value: value
+      = render "slice/surveys/decoration/period", value: value, variable: variable, json: json
 
-    = link_to "Current Time", "#", data: { object: "set-time-input-to-current-time", target_name: "response", time_of_day_format: @variable.time_of_day_format }, class: "btn btn-sm btn-link" if @variable.show_current_button
-    = link_to "Clear", "#", data: { object: "clear-time-of-day-input", target_name: "response", time_of_day_format: @variable.time_of_day_format }, class: "btn btn-sm btn-link text-muted"
+    = link_to "Current Time", "#", data: { object: "set-time-input-to-current-time", target_name: "response", time_of_day_format: variable.time_of_day_format }, class: "btn btn-sm btn-link" if variable.show_current_button
+    = link_to "Clear", "#", data: { object: "clear-time-of-day-input", target_name: "response", time_of_day_format: variable.time_of_day_format }, class: "btn btn-sm btn-link text-muted"
 
-  = render "slice/surveys/decoration/errors"
-  = render "slice/surveys/decoration/field_note"
+  = render "slice/surveys/decoration/errors", variable: variable, json: json
+  = render "slice/surveys/decoration/field_note", variable: variable, json: json

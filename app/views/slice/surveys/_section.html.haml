@@ -5,3 +5,13 @@
     - else
       %h4= section.name
   = simple_markdown(section.description)
+  - if dashboard
+    = link_to "#", data: { object: "submit-and-continue", target: "#survey-form" }, class: "btn btn-primary btn-shadow" do
+      Continue
+      = icon("fas", "caret-right")
+
+- unless dashboard
+  .survey-submit-container
+    = link_to "#", data: { object: "submit-and-continue", target: "#survey-form" }, class: "btn btn-primary btn-shadow" do
+      Continue
+      = icon("fas", "caret-right")

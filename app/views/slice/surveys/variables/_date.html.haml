@@ -1,33 +1,33 @@
 .form-group.string-container
   .form-inline
-    - case @variable.date_format
+    - case variable.date_format
     - when "dd-mmm-yyyy"
-      = render "slice/surveys/decoration/day", value: value
+      = render "slice/surveys/decoration/day", value: value, variable: variable, json: json
       %span.px-1 -
-      = render "slice/surveys/decoration/month_select", value: value
+      = render "slice/surveys/decoration/month_select", value: value, variable: variable, json: json
       %span.px-1 -
-      = render "slice/surveys/decoration/year", value: value
+      = render "slice/surveys/decoration/year", value: value, variable: variable, json: json
     - when "yyyy-mm-dd"
-      = render "slice/surveys/decoration/year", value: value
+      = render "slice/surveys/decoration/year", value: value, variable: variable, json: json
       %span.px-1 -
-      = render "slice/surveys/decoration/month", value: value
+      = render "slice/surveys/decoration/month", value: value, variable: variable, json: json
       %span.px-1 -
-      = render "slice/surveys/decoration/day", value: value
+      = render "slice/surveys/decoration/day", value: value, variable: variable, json: json
     - when "dd/mm/yyyy"
-      = render "slice/surveys/decoration/day", value: value
+      = render "slice/surveys/decoration/day", value: value, variable: variable, json: json
       %span.px-1 /
-      = render "slice/surveys/decoration/month", value: value
+      = render "slice/surveys/decoration/month", value: value, variable: variable, json: json
       %span.px-1 /
-      = render "slice/surveys/decoration/year", value: value
+      = render "slice/surveys/decoration/year", value: value, variable: variable, json: json
     - else # "mm/dd/yyyy"
-      = render "slice/surveys/decoration/month", value: value
+      = render "slice/surveys/decoration/month", value: value, variable: variable, json: json
       %span.px-1 /
-      = render "slice/surveys/decoration/day", value: value
+      = render "slice/surveys/decoration/day", value: value, variable: variable, json: json
       %span.px-1 /
-      = render "slice/surveys/decoration/year", value: value
+      = render "slice/surveys/decoration/year", value: value, variable: variable, json: json
 
-    = link_to "Today", "#", data: { object: "set-date-input-to-current-date", target_name: "response" }, class: "btn btn-sm btn-link" if @variable.show_current_button
+    = link_to "Today", "#", data: { object: "set-date-input-to-current-date", target_name: "response" }, class: "btn btn-sm btn-link" if variable.show_current_button
     = link_to "Clear", "#", data: { object: "clear-date-input", target_name: "response" }, class: "btn btn-sm btn-link text-muted"
 
-  = render "slice/surveys/decoration/errors"
-  = render "slice/surveys/decoration/field_note"
+  = render "slice/surveys/decoration/errors", variable: variable, json: json
+  = render "slice/surveys/decoration/field_note", variable: variable, json: json

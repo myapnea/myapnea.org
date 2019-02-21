@@ -1,1 +1,1 @@
-%span.hours-box= number_field_tag "response[hours]", value ? value["hours"] : nil, maxlength: 2, placeholder: "hh", class: "form-control #{"is-invalid" if @json.dig("errors", @variable.name).present?}", style: "display: inline-block;", autocomplete: "off"
+%span.hours-box= number_field_tag "response[hours]", value ? value["hours"] : nil, maxlength: 2, placeholder: "hh", class: "form-control #{"is-invalid" if json.dig("errors", variable.name).present?}", style: "display: inline-block;", autocomplete: "off"

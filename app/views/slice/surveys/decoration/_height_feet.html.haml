@@ -1,3 +1,3 @@
 .input-group
-  = select_tag "response[feet]", options_for_select((0..8).reverse_each.collect { |f| [f, f] }, value ? value["feet"] : nil), include_blank: true, class: "custom-select #{"is-invalid" if @json.dig("errors", @variable.name).present?}"
+  = select_tag "response[feet]", options_for_select((0..8).reverse_each.collect { |f| [f, f] }, value ? value["feet"] : nil), include_blank: true, class: "custom-select #{"is-invalid" if json.dig("errors", variable.name).present?}"
   .input-group-append= render "slice/surveys/decoration/addon", addon: "ft"

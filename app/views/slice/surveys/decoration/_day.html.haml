@@ -1,1 +1,1 @@
-%span.day-box= number_field_tag "response[day]", value ? value["day"] : nil, maxlength: 2, placeholder: "dd", class: "form-control #{"is-invalid" if @json.dig("errors", @variable.name).present?}", style: "display: inline-block;", autocomplete: "off"
+%span.day-box= number_field_tag "response[day]", value ? value["day"] : nil, maxlength: 2, placeholder: "dd", class: "form-control #{"is-invalid" if json.dig("errors", variable.name).present?}", style: "display: inline-block;", autocomplete: "off"

@@ -1,0 +1,5 @@
+- Project.published.where(external: false).order(:launch_date).each do |project|
+  - subject = project.subjects.consented.find_by(user: current_user)
+  - if project && subject&.consented?
+    = render "slice/surveys/next_question", project: project, subject: subject
+    - break

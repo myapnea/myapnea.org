@@ -2,39 +2,12 @@
 
 = render "projects/theme", project: @project
 
-- response = @json.dig("response") || @json.dig("sheet_variable", "response")
-- value = @json.dig("response") || @json.dig("sheet_variable", "value")
+- content_for :header, @json.dig("design", "name")
+
 - start = (@json.dig("design", "current_page") - 1) * 100 / @json.dig("design", "pages_count")
 - percent = (@json.dig("design", "current_page")) * 100 / @json.dig("design", "pages_count")
 - start = percent if @json.dig("errors").present?
-
-- content_for :header, @json.dig("design", "name")
 - content_for :progress_bar, render("slice/surveys/progress_bar", start: start, percent: percent)
 
-= form_with url: slice_surveys_submit_page_path(@project, params[:event], params[:design], @page), method: :patch, local: true, autocomplete: "off", id: "survey-form" do |form|
-  = form.hidden_field :design_option_id, value: @json.dig("design_option_id")
-  = form.hidden_field :review, value: params[:review] || 0
-  - if @section
-    = render "slice/surveys/section", section: @section
-    .survey-submit-container
-      = link_to "#", data: { object: "submit-and-continue", target: "#survey-form" }, class: "btn btn-primary btn-shadow" do
-        Continue
-        = icon("fas", "caret-right")
-  - elsif @variable
-    .survey-question-container
-      .survey-question
-        - if @json.dig("group", "name").present?
-          .survey-question-lead= @json.dig("group", "name")
-        - if @json.dig("group", "description").present?
-          .survey-question-desc= simple_format @json.dig("group", "description")
-        .survey-question-text= simple_style @variable.display_name
-        - case @variable.variable_type
-        - when "checkbox", "date", "dropdown", "imperial_height", "imperial_weight", "integer", "numeric", "radio", "string", "text", "time_duration", "time_of_day"
-          = render "slice/surveys/variables/#{@variable.variable_type}", form: form, response: response, value: value
-        - else
-          %p.lead.text-muted.d-none= @variable.variable_type
 
-    .survey-submit-container
-      = link_to "#", data: { object: "submit-and-continue", target: "#survey-form" }, class: "btn btn-primary btn-shadow" do
-        Continue
-        = icon("fas", "caret-right")
+= render "slice/surveys/page", project: @project, event: params[:event], design: params[:design], page: @page, json: @json, section: @section, variable: @variable, dashboard: false

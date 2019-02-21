@@ -1,0 +1,21 @@
+- if subject.subject_events.blank?
+  -# nothing
+- elsif subject.next_survey
+  - event_design = subject.next_survey
+  -# subject_event = event_design.subject_event
+  - event = event_design.event_slug
+  - design = event_design.design_slug
+
+  - if event_design.valid?
+    - if event_design.sheets.present?
+      - (json, status) = subject.resume_event_survey(event, design)
+    - else
+      - page = 1
+      - (json, status) = subject.page_event_survey(event, design, page)
+
+- if status.is_a?(Net::HTTPOK) && json.present?
+  - survey = Slice::Survey.new(json: json)
+  - section = Slice::Section.new(json: json.dig("section")) if json.dig("section").present?
+  - variable = Slice::Variable.new(json: json.dig("variable")) if json.dig("variable").present?
+  - page = json.dig("design", "current_page") if page.blank?
+  = render "slice/surveys/page", project: project, event: event, design: design, page: page, json: json, section: section, variable: variable, dashboard: true

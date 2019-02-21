@@ -1,1 +1,1 @@
-%span.year-box= number_field_tag "response[year]", value ? value["year"] : nil, maxlength: 4, placeholder: "yyyy", class: "form-control #{"is-invalid" if @json.dig("errors", @variable.name).present?}", style: "display: inline-block;", autocomplete: "off"
+%span.year-box= number_field_tag "response[year]", value ? value["year"] : nil, maxlength: 4, placeholder: "yyyy", class: "form-control #{"is-invalid" if json.dig("errors", variable.name).present?}", style: "display: inline-block;", autocomplete: "off"

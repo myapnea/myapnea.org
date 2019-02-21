@@ -5,6 +5,8 @@
   - Landing page survey count now includes newly completed surveys from Slice
     along with original survey count
   - Tabs now display better on smaller screens
+- **Survey Changes**
+  - Dashboard now displays next survey question
 - **Gem Changes**
   - Update to ruby 2.6.1
   - Update to rails 6.0.0.beta1

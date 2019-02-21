@@ -1,2 +1,2 @@
-- if @json.dig("errors", @variable.name).present?
-  .form-text.text-danger= @json.dig("errors", @variable.name).join(", ")
+- if json.dig("errors", variable.name).present?
+  .form-text.text-danger= json.dig("errors", variable.name).join(", ")

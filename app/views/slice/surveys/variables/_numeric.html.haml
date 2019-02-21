@@ -1,12 +1,12 @@
 .form-group.string-container
   .input-group
-    - if @variable.prepend.present?
+    - if variable.prepend.present?
       .input-group-prepend
-        = render "slice/surveys/decoration/addon", addon: @variable.prepend
-    = form.number_field "response", class: "form-control #{"is-invalid" if @json.dig("errors", @variable.name).present?}", value: response, autocomplete: "off"
-    - if @variable.units.present? || @variable.append.present?
+        = render "slice/surveys/decoration/addon", addon: variable.prepend
+    = form.number_field "response", class: "form-control #{"is-invalid" if json.dig("errors", variable.name).present?}", value: response, autocomplete: "off"
+    - if variable.units.present? || variable.append.present?
       .input-group-append
-        = render "slice/surveys/decoration/addon", addon: @variable.units
-        = render "slice/surveys/decoration/addon", addon: @variable.append
-  = render "slice/surveys/decoration/errors"
-  = render "slice/surveys/decoration/field_note"
+        = render "slice/surveys/decoration/addon", addon: variable.units
+        = render "slice/surveys/decoration/addon", addon: variable.append
+  = render "slice/surveys/decoration/errors", variable: variable, json: json
+  = render "slice/surveys/decoration/field_note", variable: variable, json: json
