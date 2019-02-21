@@ -15,6 +15,7 @@
   - Update to carrierwave 1.3.1
   - Update to devise 4.6.1
   - Update to hashids 1.0.5
+  - Update to pg_search 2.1.4
   - Update to sitemap_generator 6.0.2
 
 ## 21.1.0 (January 2, 2019)
