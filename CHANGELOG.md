@@ -1,4 +1,4 @@
-## 23.0.0
+## 23.0.0 (April 10, 2019)
 
 ### Enhancements
 - **Gem Changes**
