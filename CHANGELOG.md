@@ -1,5 +1,9 @@
 ## 23.0.0
 
+### Enhancements
+- **Gem Changes**
+  - Update to ruby 2.6.2
+
 ## 22.0.0 (February 26, 2019)
 
 ### Enhancements
