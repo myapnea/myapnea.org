@@ -7,30 +7,16 @@ This file describes some prerequisites that need to be in place to make the web 
 
 In order to make full use of the `mini_magick` gem, the underlying ImageMagick library and binaries needs to be compiled.
 
-The following instructions are specific to CentOS and Mac OS X systems.
-
-### Installing JPEG and PNG libraries
-
-In order for ImageMagick to be able to handle JPEGs, the jpeg development libraries need to be installed first.
-
-On CentOS:
-
-```
-sudo yum -y install libjpeg libjpeg-devel libpng libpng-devel
-```
-
-On Mac OS X:
-
-Download and install the prebuilt JPG and PNG DMG here: http://ethan.tira-thompson.com/Mac_OS_X_Ports.html
-
-Alternatively, you can compile them from source yourself. Mac libjpeg and libpng can be found here: http://www.libpng.org/pub/png/libpng.html, http://www.ijg.org/files/
-
+The following instructions are specific to CentOS and macOS.
 
 ### Installing ImageMagick
+
+On CentOS:
 
 Installing ImageMagick from source: http://www.imagemagick.org/script/install-source.php
 
 ```
+sudo yum -y install libjpeg libjpeg-devel libpng libpng-devel
 cd ~/code/source
 curl http://www.imagemagick.org/download/ImageMagick.tar.gz | tar xvz
 cd ImageMagick-*
@@ -48,6 +34,12 @@ Make executables accessible by web server process using symbolic links:
 ```
 sudo ln -s /usr/local/bin/identify /usr/bin/identify
 sudo ln -s /usr/local/bin/mogrify /usr/bin/mogrify
+```
+
+On macOS:
+
+```
+brew install imagemagick
 ```
 
 ### Verifying ImageMagick installation
