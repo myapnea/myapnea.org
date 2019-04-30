@@ -3,6 +3,8 @@
 ### Enhancements
 - **General Changes**
   - Include "Email confirmed" in user export
+- **Gem Changes**
+  - Update to ruby 2.6.3
 
 ## 23.0.0 (April 10, 2019)
 
