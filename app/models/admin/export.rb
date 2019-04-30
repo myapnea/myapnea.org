@@ -36,7 +36,7 @@ class Admin::Export < ApplicationRecord
   end
 
   def generate_export_in_background!
-    update(total_steps: 5)
+    update(total_steps: 6)
     fork_process(:generate_export!)
   end
 
@@ -109,6 +109,8 @@ class Admin::Export < ApplicationRecord
       csv << ["Full Name or Username"] + exportable_users.pluck(Arel.sql(full_name_or_username))
       update completed_steps: completed_steps + 1
       csv << ["Emails Enabled"] + exportable_users.pluck(:emails_enabled)
+      update completed_steps: completed_steps + 1
+      csv << ["Email Confirmed"] + exportable_users.pluck(:confirmed_at).map { |timestamp| timestamp ? "Yes" : "No" }
       update completed_steps: completed_steps + 1
     end
     transpose_tmp_csv(temp_csv_file, transposed_csv_file)
