@@ -1,5 +1,9 @@
 ## 24.0.0
 
+### Enhancements
+- **General Changes**
+  - Include "Email confirmed" in user export
+
 ## 23.0.0 (April 10, 2019)
 
 ### Enhancements
