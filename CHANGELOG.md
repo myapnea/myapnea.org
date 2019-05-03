@@ -1,6 +1,8 @@
 ## 24.0.0
 
 ### Enhancements
+- **Admin Changes**
+  - Include "Email confirmed" in user export
 - **Gem Changes**
   - Update to ruby 2.6.3
 
