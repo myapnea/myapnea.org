@@ -1,4 +1,4 @@
-## 24.0.0
+## 24.0.0 (May 10, 2019)
 
 ### Enhancements
 - **Admin Changes**
