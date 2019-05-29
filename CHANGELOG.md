@@ -1,5 +1,8 @@
 ## 24.0.1
 
+### Bug Fix
+- Fix an issue displaying topics without last reply at timestamp
+
 ## 24.0.0 (May 10, 2019)
 
 ### Enhancements
