@@ -44,6 +44,14 @@
         = @broadcast.short_description
 
       %p
+        %strong Category
+        %br
+        - if @broadcast.category
+          = @broadcast.category.name
+        - else
+          %span.text-muted None
+
+      %p
         %strong Keywords
         %br
         = @broadcast.keywords
