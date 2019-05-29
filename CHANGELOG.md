@@ -1,4 +1,4 @@
-## 24.0.1
+## 24.0.1 (May 28, 2019)
 
 ### Enhancements
 - **Article Changes**
