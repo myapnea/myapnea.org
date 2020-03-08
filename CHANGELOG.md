@@ -6,6 +6,7 @@
 - **Gem Changes**
   - Update to rails 6.0.2.1
   - Update to pg 1.2.2
+  - Update to carrierwave 2.1.0
   - Update to devise 4.7.1
   - Update to haml 5.1.2
   - Update to pg_search 2.3.2
