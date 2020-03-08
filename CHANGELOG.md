@@ -1,5 +1,9 @@
 ## 25.0.0
 
+### Enhancements
+- **Admin Changes**
+  - Add a Slice Subject ID export task
+
 ## 24.0.1 (May 28, 2019)
 
 ### Enhancements
