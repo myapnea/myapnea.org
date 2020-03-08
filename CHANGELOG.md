@@ -3,6 +3,8 @@
 ### Enhancements
 - **Admin Changes**
   - Add a Slice Subject ID export task
+- **Gem Changes**
+  - Update to rails 6.0.2.1
 
 ## 24.0.1 (May 28, 2019)
 
