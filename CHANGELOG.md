@@ -6,6 +6,7 @@
 - **Gem Changes**
   - Update to rails 6.0.2.1
   - Update to devise 4.7.1
+  - Update to haml 5.1.2
 
 ## 24.0.1 (May 28, 2019)
 
