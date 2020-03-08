@@ -26,12 +26,12 @@ gem "rubyzip",                    "~> 1.2.3"
 gem "sitemap_generator",          "~> 6.0.2"
 
 # Rails defaults.
-gem "coffee-rails",               "~> 4.2"
-gem "sass-rails",                 "~> 5.0"
+gem "coffee-rails",               "~> 5.0"
+gem "sass-rails",                 "~> 5"
 gem "uglifier",                   ">= 1.3.0"
 
 gem "jbuilder",                   "~> 2.9"
-gem "jquery-rails",               "~> 4.3.3"
+gem "jquery-rails",               "~> 4.3.5"
 gem "turbolinks",                 "~> 5"
 
 group :development do
