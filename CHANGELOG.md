@@ -3,6 +3,7 @@
 ### Enhancements
 - **Admin Changes**
   - Add a Slice Subject ID export task
+  - Topics marked as spam are no longer listed on the index for admins
 - **Gem Changes**
   - Update to rails 6.0.2.1
   - Update to pg 1.2.2
