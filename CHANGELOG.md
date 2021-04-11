@@ -1,4 +1,4 @@
-## 25.0.0
+## 25.0.0 (April 11, 2021)
 
 ### Enhancements
 - **Admin Changes**
