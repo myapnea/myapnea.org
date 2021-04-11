@@ -1,11 +1,13 @@
 language: ruby
 rvm:
-- 2.6.5
-- 2.7.0
+- 2.7.1
+- 3.0.1
 - ruby-head
 gemfile: "gems.rb"
 addons:
   postgresql: "10"
+before_install:
+- nvm install 10
 before_script:
 - "ruby lib/initial_setup.rb ../.travis_setup"
 - "psql -c 'create database myapnea_test;' -U postgres"
