@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.com/myapnea/myapnea.org.svg?branch=master)](https://travis-ci.com/myapnea/myapnea.org)
 [![Code Climate](https://codeclimate.com/github/myapnea/myapnea.org/badges/gpa.svg)](https://codeclimate.com/github/myapnea/myapnea.org)
 
-The web framework behind https://myapnea.org, built Rails 6.0+ and Ruby 3.0+.
+The web framework behind https://myapnea.org, built Rails 6.1+ and Ruby 3.0+.
 
 ## Before Starting Installation
 

@@ -11,7 +11,7 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
   end
 
   def fixture_rails_png
-    fixture_file_upload("../../test/support/images/rails.png")
+    fixture_file_upload("../../support/images/rails.png")
   end
 
   def image_params
