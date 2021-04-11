@@ -17,7 +17,7 @@
   - Update to kaminari 1.2.1
   - Update to pg_search 2.3.2
   - Update to redcarpet 3.5.1
-  - Update to rubyzip 2.2.0
+  - Update to rubyzip 2.3.0
   - Update to coffee-rails 5.0
   - Update to jquery-rails 4.3.5
 
