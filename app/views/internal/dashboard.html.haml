@@ -8,6 +8,5 @@
 = render "slice/surveys/projects_next_question"
 
 %p.lead Recent Forum Activity
-- @replies = Reply.current.shadow_banned(current_user).order(created_at: :desc).limit(30)
 - @replies.each do |reply|
   = render "replies/simple_full", reply: reply

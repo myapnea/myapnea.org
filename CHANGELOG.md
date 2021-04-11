@@ -21,6 +21,9 @@
   - Update to coffee-rails 5.0
   - Update to jquery-rails 4.3.5
 
+### Bug Fixes
+- Dashboard forum activity no longer displays replies to deleted topics
+
 ## 24.0.1 (May 28, 2019)
 
 ### Enhancements

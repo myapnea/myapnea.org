@@ -6,9 +6,18 @@ class InternalController < ApplicationController
 
   layout "layouts/full_page_sidebar"
 
-  # # GET /dashboard
-  # def dashboard
-  # end
+  # GET /dashboard
+  def dashboard
+    @replies = Reply.current
+      .left_outer_joins(:broadcast, :topic)
+      .where(topics: { id: Topic.current })
+      .or(
+        Reply.current
+        .left_outer_joins(:broadcast, :topic)
+        .where(broadcasts: { id: Broadcast.published })
+      )
+      .shadow_banned(current_user).order(created_at: :desc).limit(30)
+  end
 
   # # GET /dashboard/reports
   # def reports
