@@ -131,7 +131,7 @@ class RepliesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should not update reply on locked topic" do
+  test "should update reply on locked topic" do
     login(@regular)
     patch reply_url(replies(:auto_locked), format: "js"), params: { reply: reply_params }
     assert_response :success

@@ -4,6 +4,9 @@
 - **Admin Changes**
   - Add a Slice Subject ID export task
   - Topics marked as spam are no longer listed on the index for admins
+- **Forum Changes**
+  - Existing replies to locked topics now be edited or deleted after the topic
+    has been locked
 - **Gem Changes**
   - Update to ruby 3.0.1
   - Update to rails 6.1.3.1
