@@ -5,10 +5,10 @@
   - Add a Slice Subject ID export task
   - Topics marked as spam are no longer listed on the index for admins
 - **Gem Changes**
-  - Update to rails 6.0.2.1
+  - Update to rails 6.0.3.6
   - Update to pg 1.2.2
   - Update to bootstrap 4.4.1
-  - Update to carrierwave 2.1.0
+  - Update to carrierwave 2.2.1
   - Update to devise 4.7.1
   - Update to font-awesome-sass 5.12.0
   - Update to haml 5.1.2
