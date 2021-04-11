@@ -73,6 +73,17 @@ class ExternalControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "should get resources" do
+    get resources_url
+    assert_response :success
+  end
+
+  test "should get resource photo as public user" do
+    get resource_photo_url(admin_resources(:two))
+    assert_equal File.binread(admin_resources(:two).photo.path), response.body
+    assert_response :success
+  end
+
   test "should get privacy policy" do
     get privacy_policy_url
     assert_response :success

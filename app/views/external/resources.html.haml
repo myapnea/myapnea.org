@@ -1,0 +1,9 @@
+- @title = "Resources"
+
+- @theme = "dark-blue"
+
+.mb-3{ data: { object: "menu-trigger" } }
+  = render "landing/orange_title", title: @title, text_class: "text-white"
+
+- @resources.each do |resource|
+  .dashboard-container= render resource

@@ -1,0 +1,14 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: "Resource One"
+  description: "Resource One"
+  link: http://www.example.com
+  position: 0
+
+two:
+  name: Rails
+  description: Rails is a web framework.
+  link: https://rubyonrails.org
+  position: 1
+  photo: rails.png

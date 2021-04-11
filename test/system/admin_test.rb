@@ -87,6 +87,13 @@ class InternalTest < ApplicationSystemTestCase
     assert_selector "h1", text: "Partners"
   end
 
+  test "visit admin resources page" do
+    visit_login(@admin)
+    visit admin_resources_url
+    screenshot("visit-admin-resources-page")
+    assert_selector "h1", text: "Resources"
+  end
+
   test "visit admin team members page" do
     visit_login(@admin)
     visit admin_team_members_url

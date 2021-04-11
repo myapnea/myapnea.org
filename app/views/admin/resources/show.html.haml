@@ -1,0 +1,21 @@
+- @title = "#{@admin_resource.name} - Resources"
+- @menu_title = @admin_resource.name
+
+- @theme = "day"
+- content_for :header do
+  .float-right
+    = render "layouts/edit_delete_dropdown_header", edit_url: edit_admin_resource_path(@admin_resource), delete_url: @admin_resource, delete_confirmation: "Delete #{@admin_resource.name}?"
+  = @menu_title
+= render "admin/tabs"
+- content_for :breadcrumbs do
+  %ol
+    %li= link_to "resources", admin_resources_path
+    %li.breadcrumb-muted= @admin_resource.name.downcase
+- content_for :sidebar, render("admin/sidebar")
+
+.dashboard-container
+  = render "forms/horizontal/show/text", object: @admin_resource, key: :name
+  = render "forms/horizontal/show/markdown", object: @admin_resource, key: :description
+  = render "forms/horizontal/show/markdown", object: @admin_resource, key: :link
+  = render "forms/horizontal/show/check_box", object: @admin_resource, key: :displayed
+  = render "forms/horizontal/show/generic", title: "Photo", content: image_tag(resource_photo_path(@admin_resource), alt: "", class: "img-fluid")

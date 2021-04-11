@@ -1,0 +1,10 @@
+.row
+  .col.col-lg-8
+    %h3
+      - if resource.link.present?
+        = link_to resource.name, resource.link, class: "link-blend"
+      - else
+        = resource.name
+    = simple_markdown resource.description
+  .col.col-lg-4.d-none.d-lg-flex.justify-content-center.align-items-center
+    = image_tag resource_photo_path(resource), alt: "", class: "img-fluid"

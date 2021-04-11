@@ -4,6 +4,9 @@
 - **Admin Changes**
   - Add a Slice Subject ID export task
   - Topics marked as spam are no longer listed on the index for admins
+- **General Changes**
+  - A new resources page was added that allows admins to create and list
+    resources for general visitors of the website
 - **Forum Changes**
   - Existing replies to locked topics now be edited or deleted after the topic
     has been locked

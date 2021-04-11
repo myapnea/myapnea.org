@@ -60,6 +60,11 @@ class ExternalController < ApplicationController
     @partners = Admin::Partner.current.where(displayed: true).order(:position)
   end
 
+  # GET /resources
+  def resources
+    @resources = Admin::Resource.current.where(displayed: true).order(:position)
+  end
+
   # # POST /preview
   # def preview
   # end
@@ -93,6 +98,12 @@ class ExternalController < ApplicationController
   def partner_photo
     @admin_partner = Admin::Partner.find_by(id: params[:id])
     send_file_if_present @admin_partner&.photo
+  end
+
+  # GET /resources/:id/photo
+  def resource_photo
+    @admin_resource = Admin::Resource.find_by(id: params[:id])
+    send_file_if_present @admin_resource&.photo
   end
 
   # # GET /terms-and-conditions
