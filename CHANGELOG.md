@@ -10,7 +10,7 @@
   - Update to pg 1.2.2
   - Update to bootstrap 4.4.1
   - Update to carrierwave 2.2.1
-  - Update to devise 4.7.1
+  - Update to devise 4.7.3
   - Update to figaro 1.2.0
   - Update to font-awesome-sass 5.12.0
   - Update to haml 5.1.2
