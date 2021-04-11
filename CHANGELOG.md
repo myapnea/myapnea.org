@@ -7,6 +7,8 @@
 - **General Changes**
   - A new resources page was added that allows admins to create and list
     resources for general visitors of the website
+  - Added note to the MyApnea contact page that MyApnea is not affiliated with
+    MyAir or Resmed
 - **Forum Changes**
   - Existing replies to locked topics now be edited or deleted after the topic
     has been locked
