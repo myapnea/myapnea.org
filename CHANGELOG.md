@@ -3,6 +3,7 @@
 ### Enhancements
 - **General Changes**
   - Privacy policy now redirects to https://www.massgeneralbrigham.org/notices/web-privacy-policy
+  - Added Google Analytics
 
 ### Bug Fix
 - Fixed a bug that prevented new articles from reusing a URL slug from a
