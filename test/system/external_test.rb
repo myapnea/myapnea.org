@@ -64,12 +64,9 @@ class ExternalTest < ApplicationSystemTestCase
     # screenshot("visit-forum")
   end
 
-  test "visit privacy policy" do
+  test "visiting the privacy policy page" do
     visit privacy_policy_url
-    screenshot("visit-privacy-policy")
-    assert_selector "h1", text: "Privacy Policy"
-    scroll_down
-    screenshot("visit-privacy-policy")
+    screenshot("visit-privacy-policy-page")
   end
 
   test "visit research page" do
