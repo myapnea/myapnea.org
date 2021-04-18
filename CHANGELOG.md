@@ -1,4 +1,4 @@
-## 26.0.0
+## 26.0.0 (April 18, 2021)
 
 ### Enhancements
 - **General Changes**
