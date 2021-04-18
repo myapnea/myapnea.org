@@ -4,6 +4,8 @@
 - **General Changes**
   - Privacy policy now redirects to https://www.massgeneralbrigham.org/notices/web-privacy-policy
   - Added Google Analytics
+- **Resource Page Changes**
+  - Images on resources now also link to the resource URL
 
 ### Bug Fix
 - Fixed a bug that prevented new articles from reusing a URL slug from a
