@@ -1,5 +1,9 @@
 ## 26.0.0
 
+### Bug Fix
+- Fixed a bug that prevented new articles from reusing a URL slug from a
+  previously deleted article
+
 ## 25.0.0 (April 11, 2021)
 
 ### Enhancements

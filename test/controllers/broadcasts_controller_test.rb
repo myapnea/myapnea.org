@@ -80,6 +80,8 @@ class BroadcastsControllerTest < ActionDispatch::IntegrationTest
     assert_difference("Broadcast.current.count", -1) do
       delete broadcast_url(@broadcast)
     end
+    @broadcast.reload
+    assert_nil @broadcast.slug
     assert_redirected_to broadcasts_url
   end
 end

@@ -17,9 +17,11 @@ class Broadcast < ApplicationRecord
   scope :published, -> { current.where(published: true).where("publish_date <= ?", Time.zone.today) }
 
   # Validations
-  validates :title, :slug, :description, :publish_date, presence: true
-  validates :slug, uniqueness: { scope: :deleted }
-  validates :slug, format: { with: /\A(?!\Anew\Z)[a-z][a-z0-9\-]*\Z/ }
+  validates :title, :description, :publish_date, presence: true
+  validates :slug, format: { with: /\A[a-z][a-z0-9\-]*\Z/ },
+                   exclusion: { in: %w(new edit create update destroy research) },
+                   uniqueness: true,
+                   allow_nil: true
 
   # Relationships
   belongs_to :user
@@ -29,6 +31,7 @@ class Broadcast < ApplicationRecord
   # Methods
   def destroy
     super
+    update slug: nil
     update_pg_search_document
     replies.each(&:update_pg_search_document)
   end
