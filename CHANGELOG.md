@@ -1,5 +1,9 @@
 ## 26.0.0
 
+### Enhancements
+- **General Changes**
+  - Privacy policy now redirects to https://www.massgeneralbrigham.org/notices/web-privacy-policy
+
 ### Bug Fix
 - Fixed a bug that prevented new articles from reusing a URL slug from a
   previously deleted article
