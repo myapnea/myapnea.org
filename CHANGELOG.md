@@ -1,5 +1,8 @@
 ## 27.0.0
 
+### Bug Fix
+- Fixed a bug that prevented a nested reply from being linked
+
 ## 26.0.0 (April 18, 2021)
 
 ### Enhancements
