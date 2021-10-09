@@ -16,8 +16,8 @@ auto_locked:
   title: This is an old thread
   slug: this-is-an-old-thread
   user: regular
-  created_at: <%= Time.zone.now - 2.months - 2.days %>
-  last_reply_at: <%= Time.zone.now - 2.months - 2.days %>
+  created_at: <%= Time.zone.now - 100.years - 2.days %>
+  last_reply_at: <%= Time.zone.now - 100.years - 2.days %>
 
 locked:
   title: This thread is locked

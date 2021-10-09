@@ -5,6 +5,7 @@
   - Email notifications for replies to forum topics have been re-added
     - Notifications are only sent to users who have subscribed to the forum
       topic and who have emails enabled
+  - Old topics are now auto-locked after 100 years (and not 2 months)
 
 ### Bug Fix
 - Fixed a bug that prevented a nested reply from being linked
