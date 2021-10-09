@@ -159,7 +159,16 @@ class Reply < ApplicationRecord
     parent.subscribers.where.not(id: user_id).find_each do |u|
       notification = u.notifications.where(topic_id: topic_id, broadcast_id: broadcast_id, reply_id: id).first_or_create
       notification.mark_as_unread!
+      send_reply_on_subscribed_topic_email_in_background!(u)
     end
+  end
+
+  def send_reply_on_subscribed_topic_email_in_background!(subscriber)
+    fork_process :send_reply_on_subscribed_topic_email!, subscriber
+  end
+
+  def send_reply_on_subscribed_topic_email!(subscriber)
+    UserMailer.reply_on_subscribed_topic(self).deliver_now if EMAILS_ENABLED && subscriber.emails_enabled?
   end
 
   def compute_shadow_ban!

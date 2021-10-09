@@ -8,4 +8,12 @@ class UserMailer < ApplicationMailer
     @email_to = user.email
     mail(to: @email_to, subject: "Welcome to MyApnea!")
   end
+
+  def reply_on_subscribed_topic(reply, user)
+    setup_email
+    @reply = reply
+    @user = user
+    @email_to = user.email
+    mail(to: @email_to, subject: "New reply on \"#{reply.topic.title}\" on the MyApnea forum")
+   end
 end

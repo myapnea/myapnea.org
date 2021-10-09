@@ -1,0 +1,10 @@
+- reply_url = "#{ENV["website_url"]}/replies/#{@reply.id}"
+%p{ style: p_style }
+  = @reply.user.username
+  has left a reply on
+  = succeed "." do
+    = link_to @reply.topic.title, reply_url, style: link_style
+
+%p{ style: blockquote_style }
+  = strip_tags(simple_markdown @reply.description).truncate(100, separator: " ").html_safe
+  = link_to "read more &raquo;".html_safe, reply_url, style: link_style

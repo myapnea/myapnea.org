@@ -1,5 +1,11 @@
 ## 27.0.0
 
+### Enhancements
+- **Forum Changes**
+  - Email notifications for replies to forum topics have been re-added
+    - Notifications are only sent to users who have subscribed to the forum
+      topic and who have emails enabled
+
 ### Bug Fix
 - Fixed a bug that prevented a nested reply from being linked
 - Fixed a bug that caused remote forms from correctly rendering the response

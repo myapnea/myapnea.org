@@ -6,4 +6,12 @@ class UserMailerPreview < ActionMailer::Preview
     user = User.first
     UserMailer.welcome(user)
   end
+
+  def reply_on_subscribed_topic
+    user = User.first
+    reply = Reply.first
+    UserMailer.reply_on_subscribed_topic(reply, user)
+  end
 end
+
+

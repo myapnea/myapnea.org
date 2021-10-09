@@ -1,0 +1,7 @@
+<%= @reply.user.username %> has left a reply on "<%= @reply.topic.title %>"
+
+
+  <%= strip_tags(simple_markdown @reply.description).truncate(100, separator: " ").html_safe %>
+
+
+Read more here <%= "#{ENV["website_url"]}/replies/#{@reply.id}" %>
