@@ -3,6 +3,7 @@
 ### Bug Fix
 - Fixed a bug that prevented a nested reply from being linked
 - Fixed a bug that caused remote forms from correctly rendering the response
+- Fixed video not playing on landing page
 
 ## 26.0.0 (April 18, 2021)
 
