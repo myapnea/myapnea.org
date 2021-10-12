@@ -3,7 +3,8 @@
 - if notification.admin_export
   = render "notifications/show/admin_export", notification: notification
 - else
-  %td{ colspan: 3 }
+  %td{ colspan: 2 }
+  %td.d-none.d-md-table-cell
 
 %td.d-none.d-md-table-cell.text-muted
   %small
