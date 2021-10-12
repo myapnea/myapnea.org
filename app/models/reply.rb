@@ -169,7 +169,7 @@ class Reply < ApplicationRecord
   end
 
   def send_reply_on_subscribed_topic_email!(subscriber)
-    UserMailer.reply_on_subscribed_topic(self).deliver_now if EMAILS_ENABLED && subscriber.emails_enabled?
+    UserMailer.reply_on_subscribed_topic(self, subscriber).deliver_now if EMAILS_ENABLED && subscriber.emails_enabled?
   end
 
   def compute_shadow_ban!
