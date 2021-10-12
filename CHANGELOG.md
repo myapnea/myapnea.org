@@ -1,5 +1,9 @@
 ## 28.0.0
 
+### Enhancements
+- **Gem Changes**
+  - Update to rails 6.1.4.1
+
 ### Bug Fix
 - Fixed a bug that prevented posts from posting correctly
 
