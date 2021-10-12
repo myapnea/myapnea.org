@@ -1,6 +1,6 @@
 - if notification.reply
   = render "notifications/show/reply", notification: notification
-- if notification.admin_export
+- elsif notification.admin_export
   = render "notifications/show/admin_export", notification: notification
 - else
   %td{ colspan: 2 }
