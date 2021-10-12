@@ -6,6 +6,8 @@
 
 ### Bug Fix
 - Fixed a bug that prevented posts from posting correctly
+- Fixed an issue where mobile safari would play the globe video when clicking
+  on the MyApnea menu item
 
 ## 27.0.0 (October 9, 2021)
 

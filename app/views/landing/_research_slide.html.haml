@@ -2,7 +2,7 @@
   - video_path = "videos/research.mp4"
   - video_found = (Rails.application.assets || ::Sprockets::Railtie.build_environment(Rails.application)).find_asset(video_path)
   - if video_found
-    %video.video-full-page-absolute{ autoplay: "true", loop: "false", muted: "true", plays_inline: "true" }
+    %video.video-full-page-absolute{ autoplay: "true", loop: "false", muted: "true", playsinline: "true" }
       %source{ src: asset_url(video_path), type: "video/mp4" }
 
   .page-box.p-0.d-flex.flex-column.justify-content-around{ class: "theme-#{@theme}-radial-bg" }
