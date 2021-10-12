@@ -1,5 +1,8 @@
 ## 28.0.0
 
+### Bug Fix
+- Fixed a bug that prevented posts from posting correctly
+
 ## 27.0.0 (October 9, 2021)
 
 ### Enhancements

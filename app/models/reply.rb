@@ -17,6 +17,7 @@ class Reply < ApplicationRecord
 
   # Concerns
   include Deletable
+  include Forkable
   include PgSearch::Model
   include UrlCountable
   multisearchable against: [:description],
