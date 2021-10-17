@@ -8,6 +8,8 @@
 - Fixed a bug that prevented posts from posting correctly
 - Fixed an issue where mobile safari would play the globe video when clicking
   on the MyApnea menu item
+- Fixed a bug that would generate excessive notifications for users who chose to
+  be auto-subscribed to new forum posts
 
 ## 27.0.0 (October 9, 2021)
 

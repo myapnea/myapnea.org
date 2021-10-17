@@ -142,8 +142,8 @@ class Topic < ApplicationRecord
   def generate_automatic_subscriptions!
     User.current.where(forum_auto_subscribed: true).find_each do |user|
       get_or_create_subscription(user).update subscribed: true
-      replies.first&.create_notifications!
     end
+    replies.first&.create_notifications!
   end
 
   private
