@@ -1,5 +1,9 @@
 ## 29.0.0
 
+### Enhancements
+- **General Changes**
+  - The research page is now fixed with for the public facing view
+
 ## 28.0.0 (November 7, 2021)
 
 ### Enhancements

@@ -15,7 +15,13 @@ class SliceControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to slice_research_url
   end
 
-  test "should get research" do
+  test "should get external research page" do
+    get slice_research_url
+    assert_response :success
+  end
+
+  test "should get internal research as regular user" do
+    login(@regular)
     get slice_research_url
     assert_response :success
   end

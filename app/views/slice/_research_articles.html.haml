@@ -1,0 +1,8 @@
+- articles = Broadcast.current.published.where(category: Admin::Category.find_by(slug: "research")).order(publish_date: :desc, id: :desc).limit(3)
+- if articles.present?
+  .mb-3= render "landing/orange_title_strong", title: "MyApnea Research Articles"
+  .featured-articles.d-flex.flex-column.flex-md-row.justify-content-around.align-items-center.align-items-md-stretch
+    - articles.each do |broadcast|
+      = link_to blog_post_path(broadcast.url_hash), class: "featured-article d-flex align-items-end" do
+        .featured-article-background-image{ style: "background-image: url(#{blog_cover_url(broadcast)});" }
+        .featured-article-title= broadcast.title
