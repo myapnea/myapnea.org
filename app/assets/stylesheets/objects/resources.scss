@@ -36,13 +36,14 @@
 }
 
 
+.resource-content a,
 .resource-link {
-  color: #D06335;
+  color: #D06335 !important;
 
   &:hover,
   &:focus,
   &:active {
-    color: #D06335;
+    color: #D06335 !important;
     // text-decoration: none;
   }
 }
