@@ -1,7 +1,7 @@
 language: ruby
 rvm:
-- 3.0.1
-- ruby-head
+  - 3.0.1
+  - ruby-head
 gemfile: "gems.rb"
 addons:
   postgresql: "10"
