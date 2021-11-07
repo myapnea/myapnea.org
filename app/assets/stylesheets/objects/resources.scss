@@ -35,3 +35,14 @@
   color: #2461AC;
 }
 
+
+.resource-link {
+  color: #D06335;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: #D06335;
+    // text-decoration: none;
+  }
+}
