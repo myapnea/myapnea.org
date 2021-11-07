@@ -1,6 +1,6 @@
 - if @category && !@category.show_on_blog_roll?
   - @title = @category.name
-  - @theme = "dark-blue"
+  - @theme = "default-dark"
 
   .mb-3{ data: { object: "menu-trigger" } }
     = render "landing/orange_title", title: @title, text_class: "text-white"
@@ -8,9 +8,9 @@
 
 - else
   - @title = ["Blog", @category ? @category.name : nil, @author ? @author.username : nil].compact.join(" | ")
-  - @theme = "default"
+  - @theme = "default-dark"
 
-  - content_for :header, @title
+  = render "layouts/white_title", title: @title
   = render "broadcasts/tabs" if current_user&.community_contributor?
 
 - if @category && !@category.show_on_blog_roll?

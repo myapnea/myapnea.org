@@ -2,11 +2,10 @@
   .col.col-lg-8
     %h3
       - if partner.link.present?
-        = link_to partner.name, partner.link, class: "link-blend"
+        = link_to partner.name, partner.link, class: "resource-title"
       - else
         = partner.name
-    %p
-      = partner.description
+    .resource-content= partner.description
   .col.col-lg-4.d-none.d-lg-flex.justify-content-center.align-items-center
     = image_tag partner_photo_path(partner), alt: "", class: "img-fluid"
 

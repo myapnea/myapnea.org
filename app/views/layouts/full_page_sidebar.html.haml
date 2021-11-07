@@ -20,6 +20,7 @@
   %body#top.full-page.theme-bg{ class: "theme-#{@theme.presence || "default"}-bg", data: { theme: @theme } }
     = render "layouts/service_announcement", container: "container-fluid"
     = render "layouts/flash_bar"
+    = render "layouts/logo_bar", container: "container-fluid"
     #top-menu.top-menu= render "layouts/menu", nocontainer: true
     .header-container{ class: content_for?(:tabs) || content_for?(:progress_bar) ? "header-container-no-border" : nil }
       .container-fluid

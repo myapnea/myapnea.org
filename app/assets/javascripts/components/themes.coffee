@@ -1,6 +1,7 @@
 @themes = ->
   [
     "default"
+    "default-dark"
     "dark-blue"
     "day"
     "sunset"

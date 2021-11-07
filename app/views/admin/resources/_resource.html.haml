@@ -1,6 +1,6 @@
-.row
+.row.p-3
   .col.col-lg-8
-    %h3= link_to_if resource.link.present?, resource.name, resource.link, class: "link-blend"
-    = simple_markdown resource.description
+    %h3= link_to_if resource.link.present?, resource.name, resource.link, class: "resource-title"
+    .resource-content= simple_markdown resource.description
   .col.col-lg-4.d-none.d-lg-flex.justify-content-center.align-items-center
     = link_to_if resource.link.present?, image_tag(resource_photo_path(resource), alt: "", class: "img-fluid"), resource.link

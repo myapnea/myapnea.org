@@ -1,0 +1,7 @@
+.logo-bar.p-3.border-bottom{ style: "border-width: 3px !important;background-color: #2461AC;" }
+  %div{ class: defined?(container) && container.present? ? container : "container" }
+    .d-flex.flex-row.align-items-center
+      %div.flex-fill
+        = link_to image_tag("logos/Group 2.svg", style: "height: 66px; width: auto;", alt: ""), root_path
+      .d-none.d-sm-block
+        = link_to image_tag("logos/Group 11@2x.png", style: "height: 54px; width: auto;", alt: ""), root_path

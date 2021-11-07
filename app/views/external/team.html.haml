@@ -1,21 +1,20 @@
 - @title = "Team"
 - @menu_title = "Meet the Team"
 
-- @theme = "dark-blue"
+- @theme = "default-dark"
 
-.mb-3{ data: { object: "menu-trigger" } }
-  = render "landing/orange_title", title: @menu_title, text_class: "text-white"
+= render "layouts/white_title", title: @menu_title
 
 - @team_members.each do |team_member|
   - name_anchor = team_member.name.parameterize.dasherize
   %a.anchor-top{ name: name_anchor, id: name_anchor }
-  .dashboard-container
+  .resource-container
     .d-flex.flex-column.flex-sm-row.align-items-sm-center.mb-4
       %div.team-member-photo.text-center.mr-0.mr-sm-3
         = link_to team_member_photo_tag(team_member), "##{name_anchor}", data: { object: "scroll-anchor-keep-link" }, class: "link-unstyled"
       %div.flex-fill
-        .team-member-name
+        .team-member-name.resource-title
           = team_member.name
-          .team-member-designations= team_member.designations
-        .team-member-role= team_member.role
-    .team-member-bio= team_member.bio
+          .resource-title-next= team_member.designations
+        .resource-sub-title= team_member.role
+    .resource-content= team_member.bio

@@ -1,16 +1,15 @@
 - @title = "Our Partners"
 
-- @theme = "dark-blue"
+- @theme = "default-dark"
 
-.mb-3{ data: { object: "menu-trigger" } }
-  = render "landing/orange_title", title: @title, text_class: "text-white"
+= render "layouts/white_title", title: @title
 
 - @partners.where(group: "main").each do |partner|
-  .dashboard-container= render partner
+  .resource-container= render partner
 
 - if @partners.where(group: "promotional").present?
   .mb-3= render "landing/orange_title", title: "Promotional Partners", text_class: "text-white"
-  .dashboard-container
+  .resource-container
     %p.lead
       The following companies and organizations share our mission and goals to
       improve research and the treatment of sleep apnea and are working with us to

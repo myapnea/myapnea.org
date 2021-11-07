@@ -1,0 +1,37 @@
+.resource-container {
+  background-color: $white;
+  border: 3px solid #F89B1C;
+  border-radius: $border-radius;
+  margin-bottom: 3rem;
+  padding: 1.5rem;
+}
+
+.resource-title {
+  color: #D06335;
+  font-weight: bold;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: #D06335;
+    // text-decoration: none;
+  }
+}
+
+.resource-title-next {
+  color: #D06335;
+  display: inline;
+  font-size: 1.5rem;
+  font-weight: 300;
+}
+
+.resource-sub-title {
+  color: #233066;
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+.resource-content {
+  color: #2461AC;
+}
+

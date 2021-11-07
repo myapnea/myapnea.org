@@ -1,4 +1,6 @@
 %ul.navbar-nav.mr-auto.display-small-scrolled
+  = render "menu/item", title: "Home", path: root_path
+
   %li.nav-item.dropdown.d-none.d-lg-block
     = link_to "About", "#", data: { toggle: "dropdown" }, aria: { haspopup: "true", expanded: "false" }, class: "nav-link dropdown-toggle"
     .dropdown-menu.dropdown-menu-custom

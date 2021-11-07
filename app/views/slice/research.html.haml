@@ -1,15 +1,13 @@
 - @title = "Research"
 
-- @theme = "default"
+- @theme = "default-dark"
 - @container = current_user ? "container-fluid" : "container"
 - @nocontainer = current_user ? true : false
 
 = render "internal/tabs" if current_user
 .page-box.p-0.last-box.footer-custom-bg.d-flex.flex-column
-  .header-container{ class: content_for?(:tabs) || content_for?(:progress_bar) ? "header-container-no-border" : nil }
-    %div{ class: @container }
-      %h1.page-heading
-        = @title
+  .py-3{ class: @container }
+    = render "layouts/white_title", title: @title
   - if content_for?(:tabs)
     .header-tabs{ class: "#{"header-tabs-no-breadcrumbs" unless content_for?(:breadcrumbs)}" }
       %div{ class: @container }

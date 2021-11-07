@@ -186,3 +186,15 @@
     }
   }
 }
+
+.white-title,
+.white-title-uppercase {
+  border-bottom: 1px solid #2156A2;
+  color: #2156A2;
+  margin-bottom: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.white-title-uppercase {
+  text-transform: uppercase;
+}

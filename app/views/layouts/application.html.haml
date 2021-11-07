@@ -21,6 +21,7 @@
   %body#top.full-page.theme-bg{ class: "theme-#{@theme.presence || "default"}-bg", data: { theme: @theme } }
     = render "layouts/service_announcement", container: defined?(container) ? container : nil
     = render "layouts/flash_bar"
+    = render "layouts/logo_bar", container: defined?(container) ? container : nil
     #top-menu.top-menu= render "layouts/menu"
     - if content_for?(:header)
       .header-container{ class: content_for?(:tabs) || content_for?(:progress_bar) ? "header-container-no-border" : nil }

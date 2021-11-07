@@ -2,6 +2,7 @@
 
 @import 'themes/colors';
 @import 'themes/default';
+@import 'themes/default_dark';
 @import 'themes/day';
 @import 'themes/dark_blue';
 @import 'themes/night';
@@ -9,6 +10,7 @@
 
 $themes: (
   default: $default,
+  default-dark: $default-dark,
   day: $day,
   dark-blue: $dark-blue,
   night: $night,
