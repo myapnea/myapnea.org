@@ -4,10 +4,9 @@
 class ExternalController < ApplicationController
   before_action :find_article_or_redirect, only: [:article]
 
-  # GET /about
-  def about
-    render layout: "layouts/full_page"
-  end
+  # # GET /about
+  # def about
+  # end
 
   # # GET /articles/:slug
   # def article
