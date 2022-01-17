@@ -1,10 +1,10 @@
 - @title = "Unlock account"
 
-- @theme = "dark-blue"
+- @theme = "default-dark"
 
 .page-box.last-box.d-flex.flex-column.justify-content-center.theme-bg{ class: "theme-#{@theme}-focus-bg" }
   .container
-    %p.lead.text-center.text-white Resend unlock instructions
+    %p.lead.text-center.text-default-dark Resend unlock instructions
 
     .sign-up-form
       .sign-up-form-title
@@ -19,4 +19,4 @@
             a new unlock token and URL.
 
         .form-group.submit-btn-container
-          = form.submit "Resend unlock instructions", class: "btn btn-primary btn-block btn-shadow"
+          = form.submit "Resend unlock instructions", class: "btn btn-accent btn-block"

@@ -1,10 +1,10 @@
 - @title = "Forgot your password?"
 
-- @theme = "dark-blue"
+- @theme = "default-dark"
 
 .page-box.last-box.d-flex.flex-column.justify-content-center.theme-bg{ class: "theme-#{@theme}-focus-bg" }
   .container
-    %p.lead.text-center.text-white= @title
+    %p.lead.text-center.text-default-dark= @title
 
     .sign-up-form
       .sign-up-form-title
@@ -14,4 +14,4 @@
         = render "forms/vertical/email_field", form: form, object: resource, key: :email
 
         .form-group.submit-btn-container
-          = form.submit "Send me reset password instructions", class: "btn btn-primary btn-block btn-shadow"
+          = form.submit "Send me reset password instructions", class: "btn btn-accent btn-block"

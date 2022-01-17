@@ -1,10 +1,10 @@
 - @title = "Change your password"
 
-- @theme = "dark-blue"
+- @theme = "default-dark"
 
 .page-box.last-box.d-flex.flex-column.justify-content-center.theme-bg{ class: "theme-#{@theme}-focus-bg" }
   .container
-    %p.lead.text-center.text-white= @title
+    %p.lead.text-center.text-default-dark= @title
 
     .sign-up-form
       .sign-up-form-title
@@ -17,4 +17,4 @@
         = render "forms/vertical/password_field", form: form, object: resource, key: :password_confirmation, key_name: "Password Confirmation", autocomplete: "new-password"
 
         .form-group.submit-btn-container
-          = form.submit "Change my password", class: "btn btn-primary btn-block btn-shadow"
+          = form.submit "Change my password", class: "btn btn-accent btn-block"

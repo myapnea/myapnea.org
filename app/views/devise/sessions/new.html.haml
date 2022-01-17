@@ -1,10 +1,10 @@
 - @title = "Sign in"
 
-- @theme = "dark-blue"
+- @theme = "default-dark"
 
 .page-box.last-box.d-flex.flex-column.justify-content-center{ class: "theme-#{@theme}-focus-bg" }
   .container
-    %p.lead.text-center.text-white Welcome back!
+    %p.lead.text-center.text-default-dark Welcome back!
 
     .sign-up-form
       .sign-up-form-title
@@ -23,7 +23,7 @@
             .invalid-feedback= flash[:alert].html_safe
 
         .form-group.submit-btn-container
-          = form.submit "Sign in", class: "btn btn-primary btn-block btn-shadow"
+          = form.submit "Sign in", class: "btn btn-accent btn-block"
 
         - flash[:alert] = nil
 

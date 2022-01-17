@@ -30,10 +30,13 @@
   .theme-#{$name}-bg {
     .sign-up-form {
       background-color: $p50-grey;
+      @if map-get($theme, sign-up-form-border) {
+        border: 1px solid map-get($theme, sign-up-form-border);
+      }
     }
 
     .sign-up-form-title {
-      background-color: map-get($theme, p500);
+      background-color: theme-color($theme, sign-up-form-title-bg, map-get($theme, p500));
       @if map-get($theme, header-border) {
         border-bottom: 2px solid map-get($theme, header-border);
       }

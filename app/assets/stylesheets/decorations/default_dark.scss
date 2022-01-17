@@ -3,3 +3,9 @@
   background-image: radial-gradient(circle at center, transparent 30%, $p900-blue 100%);
   position: relative;
 }
+
+.theme-default-dark-bg {
+  .sign-up-form {
+    color: #2156A2;
+  }
+}
