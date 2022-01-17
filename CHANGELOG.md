@@ -4,6 +4,8 @@
 - **General Changes**
   - The research page is now fixed with for the public facing view
   - Improved consistency of styling across various public pages
+- **Gem Changes**
+  - Update to ruby 3.0.2
 
 ## 28.0.0 (November 7, 2021)
 
