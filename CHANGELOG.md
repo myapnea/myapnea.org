@@ -2,6 +2,7 @@
 
 ### Enhancements
 - **General Changes**
+  - Updated landing page based on new design
   - The research page is now fixed with for the public facing view
   - Improved consistency of styling across various public pages
 - **Gem Changes**

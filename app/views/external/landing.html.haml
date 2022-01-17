@@ -1,12 +1,13 @@
 - @theme = "dark-blue"
+- @theme = "default-dark"
 
 = render "landing/about_slide"
 
 #video.anchor-menu
-= render "landing/video_slide", landing: true
+.myapnea-dark-blue-bg= render "landing/video_slide", landing: true
 
 #research.anchor-menu
 = render "landing/research_slide"
 
 #join.anchor-menu
-= render "landing/join_slide"
+.myapnea-dark-blue-bg= render "landing/join_slide"
