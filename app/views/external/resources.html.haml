@@ -4,5 +4,12 @@
 
 = render "layouts/white_title", title: @title
 
+.text-default-dark.mb-5{ style: "font-size: 1.25rem;" }
+  Our team has worked with sleep apnea patients across the US and asked them
+  what they wanted to know about sleep apnea symptoms, treatment options,
+  success strategies, and more. To answer some common questions, we developed a
+  series of information sheets. We hope you find these tools helpful and we
+  welcome your input via the survey questions at the bottom of each resource.
+
 - @resources.each do |resource|
   .resource-container= render resource
