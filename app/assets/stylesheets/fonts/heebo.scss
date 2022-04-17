@@ -1,0 +1,31 @@
+@font-face {
+  font-family: "Heebo";
+  font-style: normal;
+  font-weight: 300;
+  src: asset-url("heebo/Heebo-Light.woff") format("woff"),
+       asset-url("heebo/Heebo-Light.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Heebo";
+  font-style: normal;
+  font-weight: 400;
+  src: asset-url("heebo/Heebo-Regular.woff") format("woff"),
+       asset-url("heebo/Heebo-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Heebo";
+  font-style: normal;
+  font-weight: 500;
+  src: asset-url("heebo/Heebo-Medium.woff") format("woff"),
+       asset-url("heebo/Heebo-Medium.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Heebo";
+  font-style: normal;
+  font-weight: 700;
+  src: asset-url("heebo/Heebo-Bold.woff") format("woff"),
+       asset-url("heebo/Heebo-Bold.ttf") format("truetype");
+}
