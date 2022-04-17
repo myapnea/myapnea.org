@@ -1,51 +1,81 @@
 - if @projects.present?
   - projects.each do |project|
-    .research-study{ class: "cover-theme-#{project.cover_theme}" }
-      .d-flex.flex-row.align-items-stretch
-        .research-study-icon.d-flex.align-items-center
-          = icon("fas", "book-open")
-        .research-study-body.d-flex.align-items-center
-          .d-flex.flex-column.flex-lg-row
-            .research-study-text.order-1.order-lg-0
-              .research-study-name= project.name
-              = project.short_description
-            - if project.cover_theme == "mood"
-              .research-study-background-image.order-0.order-lg-1{ class: "research-study-background-image-#{rand(2)}" }
-      .research-study-footer.d-flex.flex-column.flex-sm-row
-        .ml-3.d-inline-block{ class: project.primary? ? nil : "mr-auto" }
-          = icon("fas", "users", class: "text-accent")
-          %small
-            Recruiting
-        - if project.primary?
-          .ml-3.d-inline-block
-            = icon("fas", "heartbeat", class: "text-accent")
-            %small
-              17 surveys
-          .ml-3.mr-auto.d-inline-block
-            = icon("fas", "chart-pie", class: "text-accent")
-            %small
-              Personalized report
+    .resource-container
+      %h2.resource-title.mt-0{ style: "border-bottom: 0;" }
+        = project.name
+      .resource-content
+        = project.short_description
 
-        .ml-3.d-block.d-sm-inline-block.text-center
-          - subject = current_user&.subjects&.find_by(project: project)
-          - if project.external?
-            - if current_user && subject&.recruited?
-              = link_to participate_path(project), class: "btn btn-sm btn-primary btn-shadow" do
-                Visit study
-                = icon("fas", "angle-right")
+        .mt-3
+          %strong
+            - subject = current_user&.subjects&.find_by(project: project)
+            - if project.external?
+              - if current_user && subject&.recruited?
+                = link_to participate_path(project) do
+                  Visit study
+                  = icon("fas", "angle-right")
+              - else
+                = link_to participate_path(project) do
+                  Get started
+                  = icon("fas", "angle-right")
             - else
-              = link_to participate_path(project), class: "btn btn-sm btn-primary btn-shadow" do
-                Get started
-                = icon("fas", "angle-right")
-          - else
-            - if current_user && subject&.consented?
-              = link_to slice_overview_path(project), class: "btn btn-sm btn-primary btn-shadow" do
-                Take surveys
-                = icon("fas", "angle-right")
+              - if current_user && subject&.consented?
+                = link_to slice_overview_path(project) do
+                  Take surveys
+                  = icon("fas", "angle-right")
+              - else
+                = link_to slice_consent_path(project) do
+                  Get started
+                  = icon("fas", "angle-right")
+
+
+    - if false
+      .research-study{ class: "cover-theme-#{project.cover_theme}" }
+        .d-flex.flex-row.align-items-stretch
+          .research-study-icon.d-flex.align-items-center
+            = icon("fas", "book-open")
+          .research-study-body.d-flex.align-items-center
+            .d-flex.flex-column.flex-lg-row
+              .research-study-text.order-1.order-lg-0
+                .research-study-name= project.name
+                = project.short_description
+              - if project.cover_theme == "mood"
+                .research-study-background-image.order-0.order-lg-1{ class: "research-study-background-image-#{rand(2)}" }
+        .research-study-footer.d-flex.flex-column.flex-sm-row
+          .ml-3.d-inline-block{ class: project.primary? ? nil : "mr-auto" }
+            = icon("fas", "users", class: "text-accent")
+            %small
+              Recruiting
+          - if project.primary?
+            .ml-3.d-inline-block
+              = icon("fas", "heartbeat", class: "text-accent")
+              %small
+                17 surveys
+            .ml-3.mr-auto.d-inline-block
+              = icon("fas", "chart-pie", class: "text-accent")
+              %small
+                Personalized report
+
+          .ml-3.d-block.d-sm-inline-block.text-center
+            - subject = current_user&.subjects&.find_by(project: project)
+            - if project.external?
+              - if current_user && subject&.recruited?
+                = link_to participate_path(project), class: "btn btn-sm btn-primary btn-shadow" do
+                  Visit study
+                  = icon("fas", "angle-right")
+              - else
+                = link_to participate_path(project), class: "btn btn-sm btn-primary btn-shadow" do
+                  Get started
+                  = icon("fas", "angle-right")
             - else
-              = link_to slice_consent_path(project), class: "btn btn-sm btn-primary btn-shadow" do
-                Get started
-                = icon("fas", "angle-right")
+              - if current_user && subject&.consented?
+                = link_to slice_overview_path(project), class: "btn btn-sm btn-primary btn-shadow" do
+                  Take surveys
+                  = icon("fas", "angle-right")
+              - else
+                = link_to slice_consent_path(project), class: "btn btn-sm btn-primary btn-shadow" do
+                  Get started
+                  = icon("fas", "angle-right")
 
 - else
   .jumbotron.jumbotron-action.jumbotron-custom-text.jumbotron-shadow
