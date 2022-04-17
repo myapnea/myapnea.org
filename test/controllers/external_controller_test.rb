@@ -78,6 +78,21 @@ class ExternalControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "should get resource without link and redirect to resources page" do
+    get resource_url(admin_resources(:one))
+    assert_redirected_to admin_resources(:one).link
+  end
+
+  test "should get resource with link and redirect to link" do
+    get resource_url(admin_resources(:no_link))
+    assert_redirected_to resources_url
+  end
+
+  test "should redirect on non-existent resource" do
+    get resource_url("invalid")
+    assert_redirected_to resources_url
+  end
+
   test "should get resource photo as public user" do
     get resource_photo_url(admin_resources(:two))
     assert_equal File.binread(admin_resources(:two).photo.path), response.body

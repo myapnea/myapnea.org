@@ -64,6 +64,16 @@ class ExternalController < ApplicationController
     @resources = Admin::Resource.current.where(displayed: true).order(:position)
   end
 
+  # GET /resource/:id
+  def resource
+    @resource = Admin::Resource.current.where(displayed: true).find_by_param(params[:id])
+    if @resource&.link
+      redirect_to @resource.link
+    else
+      redirect_to resources_path
+    end
+  end
+
   # # POST /preview
   # def preview
   # end

@@ -6,6 +6,8 @@
   - The research page is now fixed with for the public facing view
   - Improved consistency of styling across various public pages
   - Added Fathom Analytics to website
+- **Resource Page Changes**
+  - Resources now have a slug that can act as a short link to the resource
 - **Gem Changes**
   - Update to ruby 3.0.2
 

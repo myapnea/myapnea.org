@@ -1,6 +1,7 @@
 = form_with model: admin_resource, local: true do |form|
   = render "forms/horizontal/file_field", form: form, object: admin_resource, key: :photo
-  = render "forms/horizontal/text_field", form: form, object: admin_resource, key: :name
+  = render "forms/horizontal/text_field", form: form, object: admin_resource, key: :name, slug: "slug"
+  = render "forms/horizontal/slug_field", form: form, object: admin_resource, key: :slug
   = render "forms/horizontal/text_area", form: form, object: admin_resource, key: :description
   = render "forms/horizontal/text_field", form: form, object: admin_resource, key: :link
   = render "forms/horizontal/text_field", form: form, object: admin_resource, key: :position

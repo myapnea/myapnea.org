@@ -56,7 +56,7 @@ class Admin::ResourcesController < ApplicationController
   private
 
   def find_admin_resource_or_redirect
-    @admin_resource = Admin::Resource.find_by(id: params[:id])
+    @admin_resource = Admin::Resource.find_by_param(params[:id])
     redirect_without_admin_resource
   end
 
@@ -66,7 +66,7 @@ class Admin::ResourcesController < ApplicationController
 
   def admin_resource_params
     params.require(:admin_resource).permit(
-      :name, :description, :photo, :link, :position, :displayed
+      :name, :slug, :description, :photo, :link, :position, :displayed
     )
   end
 end

@@ -12,3 +12,10 @@ two:
   link: https://rubyonrails.org
   position: 1
   photo: rails.png
+
+no_link:
+  name: No Link
+  description: No link provided
+  # link:
+  position: 2
+  photo: rails.png

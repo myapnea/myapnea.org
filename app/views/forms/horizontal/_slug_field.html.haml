@@ -2,7 +2,7 @@
 .form-group.row{ style: "#{"display: none;" if object.new_record? && !object.errors.key?(key)}" }
   = form.label key, defined?(key_name) ? key_name : nil, class: "col-md-2 col-form-label"
   .col-md-10
-    = form.text_field key, class: "form-control#{" is-invalid" if object.errors[key].present?}", id: "#{object.class.to_s.underscore}_#{key}"
+    = form.text_field key, class: "form-control#{" is-invalid" if object.errors[key].present?}", id: "#{object.class.to_s.underscore.gsub("/", "_")}_#{key}"
     - if defined?(key_name)
       = render "forms/invalid_feedback", object: object, key: key, key_name: key_name
     - else

@@ -79,6 +79,7 @@ Rails.application.routes.draw do
     get :partners
     get :partner_photo, path: "partners/:id/photo"
     get :resources
+    get :resource, path: "resources/:id"
     get :resource_photo, path: "resources/:id/photo"
     get :privacy_policy, path: "privacy-policy", to: redirect("https://www.massgeneralbrigham.org/notices/web-privacy-policy")
     get :sitemap_xml, path: "sitemap.xml.gz"
