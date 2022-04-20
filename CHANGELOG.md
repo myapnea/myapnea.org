@@ -8,6 +8,7 @@
   - Added Fathom Analytics to website and removed Google Analytics
 - **Resource Page Changes**
   - Resources now have a slug that can act as a short link to the resource
+  - Resources can now be configured to open in a new tab
 - **Gem Changes**
   - Update to ruby 3.0.2
 

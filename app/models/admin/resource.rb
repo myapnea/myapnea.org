@@ -10,7 +10,6 @@ class Admin::Resource < ApplicationRecord
   validates :name, presence: true
   validates :position, presence: true
 
-
   # Callback
   mount_uploader :photo, PhotoUploader
 

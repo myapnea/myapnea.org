@@ -18,4 +18,5 @@
   = render "forms/horizontal/show/markdown", object: @admin_resource, key: :description
   = render "forms/horizontal/show/markdown", object: @admin_resource, key: :link
   = render "forms/horizontal/show/check_box", object: @admin_resource, key: :displayed
+  = render "forms/horizontal/show/check_box", object: @admin_resource, key: :open_in_new_tab
   = render "forms/horizontal/show/generic", title: "Photo", content: image_tag(resource_photo_path(@admin_resource), alt: "", class: "img-fluid")

@@ -66,7 +66,8 @@ class Admin::ResourcesController < ApplicationController
 
   def admin_resource_params
     params.require(:admin_resource).permit(
-      :name, :slug, :description, :photo, :link, :position, :displayed
+      :name, :slug, :description, :photo, :link, :position, :displayed,
+      :open_in_new_tab
     )
   end
 end

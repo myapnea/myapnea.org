@@ -1,6 +1,6 @@
 .row.p-3
   .col.col-lg-8
-    %h3= link_to_if resource.link.present?, resource.name, resource.link, class: "resource-title", target: "_blank", rel: "noopener noreferrer"
+    %h3= link_to_if resource.link.present?, resource.name, resource.link, class: "resource-title", target: resource.open_in_new_tab? ? "_blank" : nil, rel: resource.open_in_new_tab? ? "noopener noreferrer" : nil
     .resource-content= simple_markdown resource.description
   .col.col-lg-4.d-none.d-lg-flex.justify-content-center.align-items-center
     = link_to_if resource.link.present?, image_tag(resource_photo_path(resource), alt: "", class: "img-fluid"), resource.link
