@@ -6,8 +6,9 @@
 
 = render "internal/tabs" if current_user
 .page-box.p-0.last-box.footer-custom-bg.d-flex.flex-column
-  .py-3{ class: @container }
-    = render "layouts/white_title", title: @title
+  %div{ style: "background-color: #fafafa" }
+    .white-header-container{ class: @container }
+      = render "layouts/white_title", title: @title
   - if content_for?(:tabs)
     .header-tabs{ class: "#{"header-tabs-no-breadcrumbs" unless content_for?(:breadcrumbs)}" }
       %div{ class: @container }

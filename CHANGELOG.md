@@ -6,6 +6,7 @@
   - The research page is now fixed with for the public facing view
   - Improved consistency of styling across various public pages
   - Added Fathom Analytics to website and removed Google Analytics
+  - Updated internal dashboard pages to match new theme
 - **Resource Page Changes**
   - Resources now have a slug that can act as a short link to the resource
   - Resources can now be configured to open in a new tab

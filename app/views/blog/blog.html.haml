@@ -9,8 +9,7 @@
 - else
   - @title = ["Blog", @category ? @category.name : nil, @author ? @author.username : nil].compact.join(" | ")
   - @theme = "default-dark"
-
-  = render "layouts/white_title", title: @title
+  - content_for :white_header, @title
   = render "broadcasts/tabs" if current_user&.community_contributor?
 
 - if @category && !@category.show_on_blog_roll?

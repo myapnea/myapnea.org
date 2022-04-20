@@ -23,6 +23,10 @@
     = render "layouts/flash_bar"
     = render "layouts/logo_bar", container: defined?(container) ? container : nil
     #top-menu.top-menu= render "layouts/menu"
+    - if content_for?(:white_header)
+      .white-header-container{ class: defined?(container) && container.present? ? container : "container" }
+        %h1.white-title-uppercase.mb-0
+          = yield :white_header
     - if content_for?(:header)
       .header-container{ class: content_for?(:tabs) || content_for?(:progress_bar) ? "header-container-no-border" : nil }
         %div{ class: defined?(container) && container.present? ? container : "container" }
