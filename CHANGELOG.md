@@ -1,6 +1,8 @@
 ## 29.1.0
 
 ### Enhancements
+- **Security Changes**
+  - Fixed a Cross Site Scripting (XSS) issue
 - **Gem Changes**
   - Update to Ruby 3.1.2
 
