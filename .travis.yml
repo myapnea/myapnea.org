@@ -1,5 +1,6 @@
 language: ruby
-dist: focal
+rvm:
+- 3.1.2
 gemfile: "gems.rb"
 addons:
   postgresql: "10"
