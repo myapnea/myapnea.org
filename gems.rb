@@ -20,6 +20,9 @@ gem "hashids",                    "~> 1.0.5"
 gem "jquery-ui-rails",            "~> 6.0.1"
 gem "kaminari",                   "~> 1.2.1"
 gem "mini_magick",                "~> 4.9.3"
+gem "net-imap",                   require: false
+gem "net-pop",                    require: false
+gem "net-smtp",                   require: false
 gem "pg_search",                  "~> 2.3.2"
 gem "redcarpet",                  "~> 3.5.1"
 gem "rubyzip",                    "~> 2.3.0"
