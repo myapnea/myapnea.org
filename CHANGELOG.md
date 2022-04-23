@@ -1,5 +1,9 @@
 ## 29.1.0
 
+### Enhancements
+- **Gem Changes**
+  - Update to Ruby 3.1.2
+
 ## 29.0.0 (April 19, 2022)
 
 ### Enhancements
