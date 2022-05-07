@@ -1,4 +1,4 @@
-## 29.2.0
+## 29.2.0 (May 7, 2022)
 
 ### Bug Fix
 - Fixed landing page text overflow issue on small screens
