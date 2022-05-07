@@ -1,29 +1,28 @@
 #about.anchor-menu
 
-%div
-  .d-flex.flex-column.justify-content-center
-    .container.d-flex.flex-row
-      %div.d-none.d-lg-block
-        = image_tag "backgrounds/about-slide.png", style: "height: 670px;", class: "img-ignore-selection"
-      .d-flex.flex-column.justify-content-around.p-5.text-default-dark
-        .mb-3.mb-lg-0
-          .landing-default-dark-heading SHARE YOUR STORY
-          .mb-3
-            Do you or a loved one suffer from sleep apnea? Share your experiences with the sleep apnea community on the forum.
-          .mb-3
-            = link_to topics_path, class: "btn btn-landing btn-accent" do
-              Visit the forum
-        .mb-3.mb-lg-0
-          .landing-default-dark-heading RECEIVE A PERSONALIZED REPORT
-          .mb-3
-            Contribute to research by filling out surveys. We’ll provide you a personalized report that you can bring to your doctor.
-          .mb-3
-            = link_to slice_research_path, class: "btn btn-landing btn-accent" do
-              Start surveys
-        .mb-3.mb-lg-0
-          .landing-default-dark-heading LEARN ABOUT SLEEP APNEA
-          .mb-3
-            Read articles published by fellow patients and research professionals.
-          .mb-3
-            = link_to blog_path, class: "btn btn-landing btn-accent" do
-              View articles
+.d-flex.flex-column.justify-content-center
+  .d-flex.flex-row.container
+    %div.d-none.d-lg-block
+      = image_tag "backgrounds/about-slide.png", style: "height: 693px;", class: "img-ignore-selection"
+    .d-flex.flex-column.justify-content-around.p-3.p-md-5.text-default-dark
+      .mb-3.mb-lg-0
+        .landing-default-dark-heading SHARE YOUR STORY
+        .mb-3
+          Do you or a loved one suffer from sleep apnea? Share your experiences with the sleep apnea community on the forum.
+        .mb-3
+          = link_to topics_path, class: "btn btn-landing btn-accent" do
+            Visit the forum
+      .mb-3.mb-lg-0
+        .landing-default-dark-heading RECEIVE A PERSONALIZED REPORT
+        .mb-3
+          Contribute to research by filling out surveys. We’ll provide you a personalized report that you can bring to your doctor.
+        .mb-3
+          = link_to slice_research_path, class: "btn btn-landing btn-accent" do
+            Start surveys
+      .mb-3.mb-lg-0
+        .landing-default-dark-heading LEARN ABOUT SLEEP APNEA
+        .mb-3
+          Read articles published by fellow patients and research professionals.
+        .mb-3
+          = link_to blog_path, class: "btn btn-landing btn-accent" do
+            View articles
