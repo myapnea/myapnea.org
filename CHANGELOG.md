@@ -1,4 +1,4 @@
-## 30.0.0
+## 30.0.0 (June 18, 2022)
 
 ### Enhancements
 - **General Changes**
