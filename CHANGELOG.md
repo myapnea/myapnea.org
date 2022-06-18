@@ -1,5 +1,8 @@
 ## 30.0.1
 
+### Bug Fix
+- Enable cache_store in production to store text captcha responses
+
 ## 30.0.0 (June 18, 2022)
 
 ### Enhancements
