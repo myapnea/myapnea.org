@@ -1,5 +1,9 @@
 ## 30.0.0
 
+### Enhancements
+- **Gem Changes**
+  - Update to rails 6.1.6
+
 ## 29.2.0 (May 7, 2022)
 
 ### Bug Fix
