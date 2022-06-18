@@ -28,7 +28,8 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(
       :sign_up,
       keys: [
-        :username, :email, :password, :emails_enabled # :password_confirmation
+        :username, :email, :password, :emails_enabled,
+        :textcaptcha_answer, :textcaptcha_key
       ]
     )
   end

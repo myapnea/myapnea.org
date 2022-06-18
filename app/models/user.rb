@@ -32,6 +32,12 @@ class User < ApplicationRecord
   include Squishable
   squish :full_name
 
+  acts_as_textcaptcha api_key: ENV["support_email"]
+
+  def perform_textcaptcha?
+    super && !Rails.env.test?
+  end
+
   attr_accessor :consenting
 
   # Scopes

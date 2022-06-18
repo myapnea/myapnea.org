@@ -9,6 +9,7 @@ gem "rails",                      "6.1.6"
 gem "pg",                         "1.2.3"
 
 # Gems used by project.
+gem "acts_as_textcaptcha",        "~> 4.6.0"
 gem "autoprefixer-rails"
 gem "bootstrap",                  "~> 4.4.1"
 gem "carrierwave",                "~> 2.2.1"

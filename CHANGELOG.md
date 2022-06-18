@@ -1,6 +1,8 @@
 ## 30.0.0
 
 ### Enhancements
+- **General Changes**
+  - Added a text captcha to the registration page
 - **Resource Changes**
   - Admins can now attach PDFs to resources
 - **Gem Changes**
