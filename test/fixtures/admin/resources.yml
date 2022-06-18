@@ -19,3 +19,13 @@ no_link:
   # link:
   position: 2
   photo: rails.png
+
+pdf_attachment:
+  name: PDF
+  description: Attached PDF
+  attachment: blank.pdf
+  attachment_name: blank.pdf
+  attachment_byte_size: 10_892
+  attachment_content_type: pdf
+  position: 3
+

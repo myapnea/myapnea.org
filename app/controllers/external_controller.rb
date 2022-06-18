@@ -67,7 +67,9 @@ class ExternalController < ApplicationController
   # GET /resource/:id
   def resource
     @resource = Admin::Resource.current.where(displayed: true).find_by_param(params[:id])
-    if @resource&.link
+    if @resource&.attachment.present?
+      send_file_if_present @resource.attachment, type: "application/pdf", disposition: "inline"
+    elsif @resource&.link.present?
       redirect_to @resource.link
     else
       redirect_to resources_path

@@ -1,6 +1,8 @@
 ## 30.0.0
 
 ### Enhancements
+- **Resource Changes**
+  - Admins can now attach PDFs to resources
 - **Gem Changes**
   - Update to rails 6.1.6
 

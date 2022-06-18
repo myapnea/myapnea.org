@@ -88,6 +88,12 @@ class ExternalControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to resources_url
   end
 
+  test "should get resource with pdf attachment" do
+    get resource_url(admin_resources(:pdf_attachment))
+    assert_equal File.binread(admin_resources(:pdf_attachment).attachment.path), response.body
+    assert_response :success
+  end
+
   test "should redirect on non-existent resource" do
     get resource_url("invalid")
     assert_redirected_to resources_url

@@ -65,9 +65,19 @@ class Admin::ResourcesController < ApplicationController
   end
 
   def admin_resource_params
+    params[:admin_resource] ||= { blank: "1" }
+    if params[:admin_resource][:attachment].present?
+      params[:admin_resource][:attachment_byte_size] = params[:admin_resource][:attachment].size
+      if params[:admin_resource][:attachment].original_filename.present?
+        params[:admin_resource][:attachment_name] = params[:admin_resource][:attachment].original_filename
+        params[:admin_resource][:attachment_content_type] = params[:admin_resource][:attachment].content_type
+      end
+    end
+
     params.require(:admin_resource).permit(
       :name, :slug, :description, :photo, :link, :position, :displayed,
-      :open_in_new_tab
+      :open_in_new_tab, :attachment, :attachment_cache, :attachment_name,
+      :attachment_byte_size, :attachment_content_type
     )
   end
 end

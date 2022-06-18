@@ -16,7 +16,10 @@
 .dashboard-container
   = render "forms/horizontal/show/text", object: @admin_resource, key: :name
   = render "forms/horizontal/show/markdown", object: @admin_resource, key: :description
-  = render "forms/horizontal/show/markdown", object: @admin_resource, key: :link
   = render "forms/horizontal/show/check_box", object: @admin_resource, key: :displayed
+  - if @admin_resource.attachment?
+    = render "forms/horizontal/show/generic", title: "Attachment", content: link_to(@admin_resource.attachment_name, resource_path(@admin_resource), data: { turbolinks: false })
+  - else
+    = render "forms/horizontal/show/markdown", object: @admin_resource, key: :link
   = render "forms/horizontal/show/check_box", object: @admin_resource, key: :open_in_new_tab
   = render "forms/horizontal/show/generic", title: "Photo", content: image_tag(resource_photo_path(@admin_resource), alt: "", class: "img-fluid")

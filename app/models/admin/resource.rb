@@ -2,6 +2,10 @@
 
 # Defines resources for MyApnea website.
 class Admin::Resource < ApplicationRecord
+  # Uploaders
+  mount_uploader :attachment, PDFUploader
+  mount_uploader :photo, PhotoUploader
+
   # Concerns
   include Deletable
   include Sluggable
@@ -9,9 +13,6 @@ class Admin::Resource < ApplicationRecord
   # Validations
   validates :name, presence: true
   validates :position, presence: true
-
-  # Callback
-  mount_uploader :photo, PhotoUploader
 
   # Methods
   def destroy

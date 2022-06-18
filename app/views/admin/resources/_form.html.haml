@@ -3,8 +3,10 @@
   = render "forms/horizontal/text_field", form: form, object: admin_resource, key: :name, slug: "slug"
   = render "forms/horizontal/slug_field", form: form, object: admin_resource, key: :slug
   = render "forms/horizontal/text_area", form: form, object: admin_resource, key: :description
-  = render "forms/horizontal/text_field", form: form, object: admin_resource, key: :link
+  = render "forms/horizontal/file_field", form: form, object: admin_resource, key: :attachment, help_text: "PDF"
   = render "forms/horizontal/text_field", form: form, object: admin_resource, key: :position
   = render "forms/horizontal/check_box", form: form, object: admin_resource, key: :displayed
+  - if admin_resource.attachment.blank?
+    = render "forms/horizontal/text_field", form: form, object: admin_resource, key: :link
   = render "forms/horizontal/check_box", form: form, object: admin_resource, key: :open_in_new_tab
   = render "forms/horizontal/submit", form: form, object: admin_resource
