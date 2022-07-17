@@ -28,7 +28,6 @@ gem "pg_search",                  "~> 2.3.2"
 gem "redcarpet",                  "~> 3.5.1"
 gem "rubyzip",                    "~> 2.3.0"
 gem "sitemap_generator",          "~> 6.0.2"
-gem "activesupport_cache_database", "~> 0.2.1"
 
 # Rails defaults.
 gem "coffee-rails",               "~> 5.0"
