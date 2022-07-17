@@ -1,4 +1,4 @@
-= form_with model: resource, url: user_registration_path, local: true do |form|
+= form_with model: resource, url: join_path, local: true do |form|
   - if resource.username.blank?
     - username = User.suggest_username(Time.zone.now.usec.to_s)
     - username = User.suggest_username(Time.zone.now.usec.to_s) if User.find_by(username: username).present?

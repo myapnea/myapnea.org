@@ -177,6 +177,10 @@ Rails.application.routes.draw do
   # Admin Section
   get "admin" => "admin#dashboard"
 
+  devise_scope :user do
+    post :join, to: "registrations#create"
+  end
+
   devise_for :users,
              controllers: {
                confirmations: "confirmations",
