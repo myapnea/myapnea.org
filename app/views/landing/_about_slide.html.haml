@@ -12,13 +12,14 @@
         .mb-3
           = link_to topics_path, class: "btn btn-landing btn-accent" do
             Visit the forum
-      .mb-3.mb-lg-0
-        .landing-default-dark-heading RECEIVE A PERSONALIZED REPORT
-        .mb-3
-          Contribute to research by filling out surveys. We’ll provide you a personalized report that you can bring to your doctor.
-        .mb-3
-          = link_to slice_research_path, class: "btn btn-landing btn-accent" do
-            Start surveys
+      - if false
+        .mb-3.mb-lg-0
+          .landing-default-dark-heading RECEIVE A PERSONALIZED REPORT
+          .mb-3
+            Contribute to research by filling out surveys. We’ll provide you a personalized report that you can bring to your doctor.
+          .mb-3
+            = link_to slice_research_path, class: "btn btn-landing btn-accent" do
+              Start surveys
       .mb-3.mb-lg-0
         .landing-default-dark-heading SLEEP APNEA RESOURCES FOR PATIENTS
         .mb-3

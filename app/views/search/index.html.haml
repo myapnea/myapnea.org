@@ -95,27 +95,30 @@
                 .small.mb-2= link_to "Register an account", new_user_registration_path, class: "link-accent"
 
           .col-12.col-sm
-            - articles = Broadcast.current.published.where(category: Admin::Category.find_by(slug: "research")).order(view_count: :desc).limit(5)
-            .dashboard-container
-              %div.mb-3{ style: "font-size: 1.25rem;" } Participating in the Research Portal
-              .small.mb-2= link_to "What's expected of me if I join the research portal?", article_path("what-s-expected-of-me-if-i-join-the-research-portal"), class: "link-blend"
-              .small.mb-2= link_to "What are the surveys about?", article_path("what-are-the-surveys-about"), class: "link-blend"
-              .small.mb-2= link_to "How often do I take these surveys?", article_path("how-often-do-i-take-these-surveys"), class: "link-blend"
-              .small.mb-2= link_to "View Consent", consent_path, class: "link-accent"
-
-        .row
-          .col-12.col-sm
-            .dashboard-container
-              %div.mb-3{ style: "font-size: 1.25rem;" } Privacy and Security
-              .small.mb-2= link_to "Is my data safe?", article_path("is-my-data-safe"), class: "link-blend"
-              = link_to "View Privacy Policy", privacy_policy_path, class: "small link-accent"
-          .col-12.col-sm
             - articles = Broadcast.current.published.where(category: Admin::Category.find_by(slug: "education")).order(view_count: :desc).limit(5)
             .dashboard-container
               %div.mb-3{ style: "font-size: 1.25rem;" } Education
               - articles.each do |broadcast|
                 .small.mb-2= link_to broadcast.title, blog_post_path(broadcast.url_hash), class: "link-blend"
               = link_to "View all Education articles", blog_category_path("education"), class: "small link-accent"
+
+          - if false
+            .col-12.col-sm
+              .dashboard-container
+                %div.mb-3{ style: "font-size: 1.25rem;" } Participating in the Research Portal
+                .small.mb-2= link_to "What's expected of me if I join the research portal?", article_path("what-s-expected-of-me-if-i-join-the-research-portal"), class: "link-blend"
+                .small.mb-2= link_to "What are the surveys about?", article_path("what-are-the-surveys-about"), class: "link-blend"
+                .small.mb-2= link_to "How often do I take these surveys?", article_path("how-often-do-i-take-these-surveys"), class: "link-blend"
+                .small.mb-2= link_to "View Consent", consent_path, class: "link-accent"
+
+        .row
+          .col-12.col-sm
+            .dashboard-container
+              %div.mb-3{ style: "font-size: 1.25rem;" }
+                = icon("fa", "lock")
+                Privacy and Security
+              .small.mb-2= link_to "Is my data safe?", article_path("is-my-data-safe"), class: "link-blend"
+              = link_to "View Privacy Policy", privacy_policy_path, class: "small link-accent"
 
   .py-5.footer-custom-bg
     .container

@@ -1,5 +1,9 @@
 ## 30.0.1
 
+### Enhancements
+- **General Changes**
+  - Removed links to research pages
+
 ## 30.0.0 (June 18, 2022)
 
 ### Enhancements
