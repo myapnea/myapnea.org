@@ -4,6 +4,9 @@
 - **General Changes**
   - Removed links to research pages
 
+### Bug Fix
+- Fixed issue with maintaining text captcha responses across multiple servers
+
 ## 30.0.0 (June 18, 2022)
 
 ### Enhancements
