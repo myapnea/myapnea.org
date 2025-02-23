@@ -20,8 +20,8 @@ class User < ApplicationRecord
   mount_uploader :photo, PhotoUploader
 
   # Include default devise modules. Others available are:
-  # :confirmable, :omniauthable
-  devise :database_authenticatable, :registerable, :recoverable, :rememberable,
+  # :confirmable, :omniauthable, :registerable
+  devise :database_authenticatable, :recoverable, :rememberable,
          :trackable, :validatable, :timeoutable, :lockable, :confirmable
 
   # Concerns

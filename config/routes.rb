@@ -182,10 +182,13 @@ Rails.application.routes.draw do
   end
 
   devise_for :users,
+             skip: [
+              :registrations
+             ],
              controllers: {
                confirmations: "confirmations",
                passwords: "passwords",
-               registrations: "registrations",
+               # registrations: "registrations",
                sessions: "sessions",
                unlocks: "unlocks"
              },

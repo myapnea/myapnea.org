@@ -85,14 +85,16 @@
               = link_to "View all MyApnea articles", blog_path, class: "small link-accent"
 
         .row
-          .col-12.col-sm
-            .dashboard-container
-              %div.mb-3{ style: "font-size: 1.25rem;" } Registration
-              .small.mb-2= link_to "Who can join MyApnea?", article_path("who-can-join-myapnea"), class: "link-blend"
-              .small.mb-2= link_to "How do I join MyApnea?", article_path("how-do-i-join-myapnea"), class: "link-blend"
-              .small.mb-2= link_to "Why do I have to sign a consent form to participate in the research portal?", article_path("why-do-i-have-to-sign-a-consent-form-to-participate-in-the-research-portal"), class: "link-blend"
-              - unless current_user
-                .small.mb-2= link_to "Register an account", new_user_registration_path, class: "link-accent"
+
+          - if false
+            .col-12.col-sm
+              .dashboard-container
+                %div.mb-3{ style: "font-size: 1.25rem;" } Registration
+                .small.mb-2= link_to "Who can join MyApnea?", article_path("who-can-join-myapnea"), class: "link-blend"
+                .small.mb-2= link_to "How do I join MyApnea?", article_path("how-do-i-join-myapnea"), class: "link-blend"
+                .small.mb-2= link_to "Why do I have to sign a consent form to participate in the research portal?", article_path("why-do-i-have-to-sign-a-consent-form-to-participate-in-the-research-portal"), class: "link-blend"
+                - unless current_user
+                  .small.mb-2= link_to "Register an account", new_user_registration_path, class: "link-accent"
 
           .col-12.col-sm
             - articles = Broadcast.current.published.where(category: Admin::Category.find_by(slug: "education")).order(view_count: :desc).limit(5)

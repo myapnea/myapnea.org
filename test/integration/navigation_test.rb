@@ -18,23 +18,23 @@ class NavigationTest < ActionDispatch::IntegrationTest
     assert_equal "/", path
   end
 
-  test "should get sign up page" do
-    get new_user_registration_url
-    assert_equal new_user_registration_path, path
-    assert_response :success
-  end
+  # test "should get sign up page" do
+  #   get new_user_registration_url
+  #   assert_equal new_user_registration_path, path
+  #   assert_response :success
+  # end
 
-  test "should register new account" do
-    post user_registration_url, params: {
-      user: {
-        username: "registeraccount",
-        email: "register@account.com",
-        password: "registerpassword098765"
-      }
-    }
-    assert_equal I18n.t("devise.registrations.signed_up_but_unconfirmed"), flash[:notice]
-    assert_redirected_to root_url
-  end
+  # test "should register new account" do
+  #   post user_registration_url, params: {
+  #     user: {
+  #       username: "registeraccount",
+  #       email: "register@account.com",
+  #       password: "registerpassword098765"
+  #     }
+  #   }
+  #   assert_equal I18n.t("devise.registrations.signed_up_but_unconfirmed"), flash[:notice]
+  #   assert_redirected_to root_url
+  # end
 
   test "should login regular user" do
     get dashboard_url
