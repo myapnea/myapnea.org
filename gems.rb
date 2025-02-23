@@ -6,7 +6,7 @@ source "https://rubygems.org"
 gem "rails",                      "6.1.6"
 
 # PostgreSQL as the Active Record database.
-gem "pg",                         "1.2.3"
+gem "pg",                         "1.5.6"
 
 # Gems used by project.
 gem "acts_as_textcaptcha",        "~> 4.6.0"
@@ -28,6 +28,7 @@ gem "pg_search",                  "~> 2.3.2"
 gem "redcarpet",                  "~> 3.5.1"
 gem "rubyzip",                    "~> 2.3.0"
 gem "sitemap_generator",          "~> 6.0.2"
+gem "concurrent-ruby",            "1.3.4"
 
 # Rails defaults.
 gem "coffee-rails",               "~> 5.0"
